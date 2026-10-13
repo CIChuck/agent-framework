@@ -465,7 +465,199 @@ def response_from_message(
     )
 
 
+def _optional_numbers(value: dict[str, JSONValue], *keys: str) -> None:
+    for key in keys:
+        if key in value and (
+            isinstance(value[key], bool) or not isinstance(value[key], (int, float))
+        ):
+            raise ProtocolFailure("invalid_result")
+
+
+def _string_list(value: JSONValue) -> None:
+    if not isinstance(value, list) or any(not isinstance(x, str) for x in value):
+        raise ProtocolFailure("invalid_result")
+
+
+def _enum_options(value: JSONValue) -> None:
+    if not isinstance(value, list):
+        raise ProtocolFailure("invalid_result")
+    for option in value:
+        if (
+            not isinstance(option, dict)
+            or not isinstance(option.get("const"), str)
+            or not isinstance(option.get("title"), str)
+        ):
+            raise ProtocolFailure("invalid_result")
+
+
+def _validate_form_property(value: JSONValue) -> None:
+    """The pinned primitive/selection union, without evaluating peer schemas."""
+    if not isinstance(value, dict):
+        raise ProtocolFailure("invalid_result")
+    _strings(value, "title", "description")
+    kind = value.get("type")
+    if kind == "string":
+        _strings(value, "default")
+        _optional_numbers(value, "minLength", "maxLength")
+        if "format" in value and value["format"] not in (
+            "email",
+            "uri",
+            "date",
+            "date-time",
+        ):
+            raise ProtocolFailure("invalid_result")
+        if "enum" in value:
+            _string_list(value["enum"])
+        if "enumNames" in value:
+            _string_list(value["enumNames"])
+            if "enum" not in value:
+                raise ProtocolFailure("invalid_result")
+        if "oneOf" in value:
+            _enum_options(value["oneOf"])
+    elif kind in ("number", "integer"):
+        _optional_numbers(value, "minimum", "maximum", "default")
+    elif kind == "boolean":
+        if "default" in value and type(value["default"]) is not bool:
+            raise ProtocolFailure("invalid_result")
+    elif kind == "array":
+        _optional_numbers(value, "minItems", "maxItems")
+        if "default" in value:
+            _string_list(value["default"])
+        items = value.get("items")
+        if not isinstance(items, dict):
+            raise ProtocolFailure("invalid_result")
+        if "anyOf" in items:
+            _enum_options(items["anyOf"])
+        elif items.get("type") == "string" and "enum" in items:
+            _string_list(items["enum"])
+        else:
+            raise ProtocolFailure("invalid_result")
+    else:
+        raise ProtocolFailure("invalid_result")
+
+
+def _validate_sampling_block(block: JSONValue, tool_ids: set[str]) -> None:
+    if not isinstance(block, dict):
+        raise ProtocolFailure("invalid_result")
+    kind = block.get("type")
+    if kind in ("text", "image", "audio"):
+        _validate_content_block(block)
+        return
+    if "_meta" in block:
+        _metadata(block["_meta"])
+    if kind == "tool_use":
+        identifier = block.get("id")
+        if (
+            not isinstance(identifier, str)
+            or not isinstance(block.get("name"), str)
+            or not isinstance(block.get("input"), dict)
+        ):
+            raise ProtocolFailure("invalid_result")
+        tool_ids.add(identifier)
+    elif kind == "tool_result":
+        identifier, content = block.get("toolUseId"), block.get("content")
+        if (
+            not isinstance(identifier, str)
+            or identifier not in tool_ids
+            or not isinstance(content, list)
+            or ("isError" in block and type(block["isError"]) is not bool)
+        ):
+            raise ProtocolFailure("invalid_result")
+        for child in content:
+            if not isinstance(child, dict):
+                raise ProtocolFailure("invalid_result")
+            _validate_content_block(child)
+        # structuredContent is any bounded JSON, including explicit null.
+    else:
+        raise ProtocolFailure("invalid_result")
+
+
+def _validate_sampling_params(params: dict[str, JSONValue]) -> None:
+    messages, tokens = params.get("messages"), params.get("maxTokens")
+    if (
+        not isinstance(messages, list)
+        or isinstance(tokens, bool)
+        or not isinstance(tokens, (int, float))
+    ):
+        raise ProtocolFailure("invalid_result")
+    _strings(params, "systemPrompt")
+    _optional_numbers(params, "temperature")
+    if "includeContext" in params and params["includeContext"] not in (
+        "none",
+        "thisServer",
+        "allServers",
+    ):
+        raise ProtocolFailure("invalid_result")
+    if "stopSequences" in params:
+        _string_list(params["stopSequences"])
+    if "metadata" in params and not isinstance(params["metadata"], dict):
+        raise ProtocolFailure("invalid_result")
+    if "modelPreferences" in params:
+        preferences = params["modelPreferences"]
+        if not isinstance(preferences, dict):
+            raise ProtocolFailure("invalid_result")
+        for key in ("costPriority", "speedPriority", "intelligencePriority"):
+            _optional_numbers(preferences, key)
+            priority = preferences.get(key)
+            if isinstance(priority, (int, float)) and not 0 <= priority <= 1:
+                raise ProtocolFailure("invalid_result")
+        if "hints" in preferences:
+            hints = preferences["hints"]
+            if not isinstance(hints, list):
+                raise ProtocolFailure("invalid_result")
+            for hint in hints:
+                if not isinstance(hint, dict):
+                    raise ProtocolFailure("invalid_result")
+                _strings(hint, "name")
+    if "toolChoice" in params:
+        choice = params["toolChoice"]
+        if not isinstance(choice, dict) or (
+            "mode" in choice and choice["mode"] not in ("auto", "required", "none")
+        ):
+            raise ProtocolFailure("invalid_result")
+    if "tools" in params:
+        tools = params["tools"]
+        if not isinstance(tools, list):
+            raise ProtocolFailure("invalid_result")
+        for tool in tools:
+            schema = tool.get("inputSchema") if isinstance(tool, dict) else None
+            if (
+                not isinstance(tool, dict)
+                or not isinstance(tool.get("name"), str)
+                or not isinstance(schema, dict)
+                or schema.get("type") != "object"
+            ):
+                raise ProtocolFailure("invalid_result")
+            _strings(schema, "$schema")
+            _strings(tool, "description")
+            _tool_optional_fields(tool)
+            if "outputSchema" in tool:
+                output = tool["outputSchema"]
+                if not isinstance(output, dict):
+                    raise ProtocolFailure("invalid_result")
+                _strings(output, "$schema")
+    tool_ids: set[str] = set()
+    for message in messages:
+        if not isinstance(message, dict) or message.get("role") not in (
+            "user",
+            "assistant",
+        ):
+            raise ProtocolFailure("invalid_result")
+        if "_meta" in message:
+            _metadata(message["_meta"])
+        content = message.get("content")
+        for block in content if isinstance(content, list) else [content]:
+            _validate_sampling_block(block, tool_ids)
+
+
 def _validate_input_requests(requests: dict[str, JSONValue]) -> None:
+    try:
+        _validate_input_request_variants(requests)
+    except ProtocolFailure:
+        raise ProtocolFailure("invalid_result") from None
+
+
+def _validate_input_request_variants(requests: dict[str, JSONValue]) -> None:
     for request in requests.values():
         if not isinstance(request, dict):
             raise ProtocolFailure("invalid_result")
@@ -478,24 +670,7 @@ def _validate_input_requests(requests: dict[str, JSONValue]) -> None:
         if method == "roots/list":
             continue
         if method == "sampling/createMessage":
-            messages, tokens = params.get("messages"), params.get("maxTokens")
-            if (
-                not isinstance(messages, list)
-                or isinstance(tokens, bool)
-                or not isinstance(tokens, (int, float))
-            ):
-                raise ProtocolFailure("invalid_result")
-            for message in messages:
-                if not isinstance(message, dict) or message.get("role") not in (
-                    "user",
-                    "assistant",
-                ):
-                    raise ProtocolFailure("invalid_result")
-                content = message.get("content")
-                for block in content if isinstance(content, list) else [content]:
-                    if not isinstance(block, dict):
-                        raise ProtocolFailure("invalid_result")
-                    _validate_content_block(block)
+            _validate_sampling_params(params)
         elif method == "elicitation/create":
             if not isinstance(params.get("message"), str):
                 raise ProtocolFailure("invalid_result")
@@ -504,12 +679,20 @@ def _validate_input_requests(requests: dict[str, JSONValue]) -> None:
                     raise ProtocolFailure("invalid_result")
             elif params.get("mode", "form") == "form":
                 schema = params.get("requestedSchema")
+                properties = (
+                    schema.get("properties") if isinstance(schema, dict) else None
+                )
                 if (
                     not isinstance(schema, dict)
                     or schema.get("type") != "object"
-                    or not isinstance(schema.get("properties"), dict)
+                    or not isinstance(properties, dict)
                 ):
                     raise ProtocolFailure("invalid_result")
+                _strings(schema, "$schema")
+                if "required" in schema:
+                    _string_list(schema["required"])
+                for value in properties.values():
+                    _validate_form_property(value)
             else:
                 raise ProtocolFailure("invalid_result")
         else:

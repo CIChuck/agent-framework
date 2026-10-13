@@ -490,9 +490,13 @@ class MCPClientBase(ABC):
 
     async def refresh_tool_catalog(self) -> MCPCatalogSnapshot:
         deadline = asyncio.get_running_loop().time() + self._timeout()
+        # Retire admission synchronously, even when capacity rejects this attempt
+        # or the owned discovery task has not yet been scheduled. The virtual
+        # hook also retires transport-specific raw-call recovery bindings.
+        self._catalog_attempted = True
+        self._invalidate_catalog()
         if len(self._refresh_tasks) >= self.limits.concurrent_requests:
             raise ProtocolFailure("limit_exceeded")
-        self._catalog_attempted = True
         task = asyncio.create_task(
             self._refresh_catalog(deadline), name="mcp-catalog-refresh"
         )
