@@ -1,0 +1,202 @@
+{
+  "INT-AC-01": {
+    "positive": [
+      "packages/friday-chat/tests_chat/test_mcp_config_compatibility.py::test_both_real_yaml_loaders_preserve_http_reference",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_public_kernel_stdio_profiles_and_child_cleanup"
+    ],
+    "negative": [
+      "packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py::test_http_union_rejects_bad_shapes_including_disabled_before_effects",
+      "packages/friday-chat/tests_chat/test_mcp_config_compatibility.py::test_chat_validates_remote_shape_before_any_interpolation"
+    ],
+    "check_receipts": [
+      "stable-up03-focused",
+      "stable-up03-http",
+      "stable-up03-original",
+      "stable-up03-mcp",
+      "stable-up03-core-runtime-chat-telemetry",
+      "stable-up03-root"
+    ],
+    "proof_boundary": "Exact parametrizations/source inspection supplement accepted transport regressions; builder evidence subject to independent full unit review."
+  },
+  "INT-AC-02": {
+    "positive": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_yaml_kernel_tls_discovery_call_stop",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_runtime_actual_connect_policy_rechecks_dns_and_preserves_hostname"
+    ],
+    "negative": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_tls_hostname_rejection_required_optional_and_no_outer_retry",
+      "packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py::test_remote_opt_in_and_local_union_defaults",
+      "packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py::test_http_union_rejects_bad_shapes_including_disabled_before_effects"
+    ],
+    "check_receipts": [
+      "stable-up03-focused",
+      "stable-up03-http",
+      "stable-up03-original",
+      "stable-up03-mcp",
+      "stable-up03-core-runtime-chat-telemetry",
+      "stable-up03-root"
+    ],
+    "proof_boundary": "Exact parametrizations/source inspection supplement accepted transport regressions; builder evidence subject to independent full unit review."
+  },
+  "INT-AC-03": {
+    "positive": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_credential_resolver_only_named_reference_reconnect_and_safe_resolver_failure",
+      "packages/friday-chat/tests_chat/test_mcp_config_compatibility.py::test_both_real_yaml_loaders_preserve_http_reference",
+      "packages/friday-chat/tests_chat/test_mcp_config_compatibility.py::test_chat_keeps_remote_fields_literal_and_does_not_expand_disabled_url"
+    ],
+    "negative": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_disabled_http_never_resolves_or_constructs",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_bad_credential_has_no_chain_or_content",
+      "packages/friday-chat/tests_chat/test_mcp_config_compatibility.py::test_chat_rejects_credential_interpolation_before_environment_access"
+    ],
+    "check_receipts": [
+      "stable-up03-focused",
+      "stable-up03-http",
+      "stable-up03-original",
+      "stable-up03-mcp",
+      "stable-up03-core-runtime-chat-telemetry",
+      "stable-up03-root"
+    ],
+    "proof_boundary": "Exact parametrizations/source inspection supplement accepted transport regressions; builder evidence subject to independent full unit review."
+  },
+  "INT-AC-04": {
+    "positive": [
+      "packages/friday-mcp/tests_mcp/client/test_manager_profiles.py::test_ordered_distinct_public_factories_and_exact_adapter_routing",
+      "packages/friday-mcp/tests_mcp/client/test_manager_profiles.py::test_default_manager_keeps_legacy_stdio_and_sse_public_api",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_public_stdio_profile_factory_preserves_defaults_and_lower_limits",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_http_complete_catalog_default_per_server_total_caps_and_mixed_peers"
+    ],
+    "negative": [
+      "packages/friday-mcp/tests_mcp/client/test_manager_profiles.py::test_ambiguous_duplicate_malformed_entries_reject_before_invocation",
+      "packages/friday-mcp/tests_mcp/client/test_manager_profiles.py::test_managed_record_validates_shape",
+      "packages/friday-mcp/tests_mcp/client/test_manager_profiles.py::test_partial_adoption_preserves_primary_and_retains_incomplete_owner"
+    ],
+    "check_receipts": [
+      "stable-up03-focused",
+      "stable-up03-http",
+      "stable-up03-original",
+      "stable-up03-mcp",
+      "stable-up03-core-runtime-chat-telemetry",
+      "stable-up03-root"
+    ],
+    "proof_boundary": "Exact parametrizations/source inspection supplement accepted transport regressions; builder evidence subject to independent full unit review."
+  },
+  "INT-AC-05": {
+    "positive": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_yaml_kernel_tls_discovery_call_stop",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_runtime_modern_schema_additions_and_exact_original_header_catalog",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_http_complete_catalog_default_per_server_total_caps_and_mixed_peers"
+    ],
+    "negative": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_http_admission_filters_collision_and_raw_export_budgets",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_tls_hostname_rejection_required_optional_and_no_outer_retry"
+    ],
+    "check_receipts": [
+      "stable-up03-focused",
+      "stable-up03-http",
+      "stable-up03-original",
+      "stable-up03-mcp",
+      "stable-up03-core-runtime-chat-telemetry",
+      "stable-up03-root"
+    ],
+    "proof_boundary": "Exact parametrizations/source inspection supplement accepted transport regressions; builder evidence subject to independent full unit review."
+  },
+  "INT-AC-06": {
+    "positive": [
+      "packages/friday-chat/tests_chat/test_mcp_http_integration.py::test_real_chat_yaml_factory_selection_call_quarantine_transcript_memory"
+    ],
+    "negative": [
+      "packages/friday-chat/tests_chat/test_mcp_http_integration.py::test_real_chat_malicious_remote_output_rejected_and_not_ingested",
+      "packages/friday-chat/tests_chat/test_mcp_http_integration.py::test_real_chat_factory_safe_result_dispositions_never_continue_or_fetch",
+      "packages/friday-chat/tests_chat/test_mcp_http_integration.py::test_real_chat_optional_failure_and_disabled_observations",
+      "packages/friday-chat/tests_chat/test_mcp_http_integration.py::test_real_chat_factory_required_failure_retains_public_owner"
+    ],
+    "check_receipts": [
+      "stable-up03-focused",
+      "stable-up03-http",
+      "stable-up03-original",
+      "stable-up03-mcp",
+      "stable-up03-core-runtime-chat-telemetry",
+      "stable-up03-root"
+    ],
+    "proof_boundary": "Exact parametrizations/source inspection supplement accepted transport regressions; builder evidence subject to independent full unit review."
+  },
+  "INT-AC-07": {
+    "positive": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_2025_runtime_recovery_is_read_only_and_observed_once"
+    ],
+    "negative": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_runtime_new_profile_one_deadline_across_handshake_and_discovery",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_runtime_no_call_replay_on_real_ambiguous_drop_and_timeout",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_runtime_late_2025_404_preserves_healthy_recovered_session"
+    ],
+    "check_receipts": [
+      "stable-up03-focused",
+      "stable-up03-http",
+      "stable-up03-original",
+      "stable-up03-mcp",
+      "stable-up03-core-runtime-chat-telemetry",
+      "stable-up03-root"
+    ],
+    "proof_boundary": "Exact parametrizations/source inspection supplement accepted transport regressions; builder evidence subject to independent full unit review."
+  },
+  "INT-AC-08": {
+    "positive": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_public_kernel_stdio_profiles_and_child_cleanup",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_yaml_kernel_tls_discovery_call_stop",
+      "packages/friday-chat/tests_chat/test_mcp_http_integration.py::test_real_chat_yaml_factory_selection_call_quarantine_transcript_memory"
+    ],
+    "negative": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_http_runtime_retains_resistant_cleanup_and_never_replaces_owner",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_http_registration_primary_safe_failure_and_retained_registry_owner",
+      "packages/friday-mcp/tests_mcp/client/test_manager_profiles.py::test_partial_adoption_preserves_primary_and_retains_incomplete_owner"
+    ],
+    "check_receipts": [
+      "stable-up03-focused",
+      "stable-up03-http",
+      "stable-up03-original",
+      "stable-up03-mcp",
+      "stable-up03-core-runtime-chat-telemetry",
+      "stable-up03-root"
+    ],
+    "proof_boundary": "Exact parametrizations/source inspection supplement accepted transport regressions; builder evidence subject to independent full unit review."
+  },
+  "INT-AC-09": {
+    "positive": [
+      "packages/friday-chat/tests_chat/test_mcp_http_integration.py::test_real_chat_yaml_factory_selection_call_quarantine_transcript_memory",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_2025_runtime_recovery_is_read_only_and_observed_once"
+    ],
+    "negative": [
+      "packages/friday-chat/tests_chat/test_mcp_http_integration.py::test_real_chat_optional_failure_and_disabled_observations",
+      "packages/friday-chat/tests_chat/test_mcp_http_integration.py::test_real_chat_factory_safe_result_dispositions_never_continue_or_fetch"
+    ],
+    "check_receipts": [
+      "stable-up03-focused",
+      "stable-up03-http",
+      "stable-up03-original",
+      "stable-up03-mcp",
+      "stable-up03-core-runtime-chat-telemetry",
+      "stable-up03-root"
+    ],
+    "proof_boundary": "Exact parametrizations/source inspection supplement accepted transport regressions; builder evidence subject to independent full unit review."
+  },
+  "INT-AC-10": {
+    "positive": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_yaml_kernel_tls_discovery_call_stop",
+      "packages/friday-chat/tests_chat/test_mcp_http_integration.py::test_real_chat_yaml_factory_selection_call_quarantine_transcript_memory"
+    ],
+    "negative": [
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_tls_hostname_rejection_required_optional_and_no_outer_retry"
+    ],
+    "process": "Full frozen stable-up03 profile, independently reproduced debt/skips/source/control/scope/library integrity; fresh reviewer must supply verdict, not this builder.",
+    "check_receipts": [
+      "stable-up03-focused",
+      "stable-up03-http",
+      "stable-up03-original",
+      "stable-up03-mcp",
+      "stable-up03-core-runtime-chat-telemetry",
+      "stable-up03-root"
+    ],
+    "proof_boundary": "Exact parametrizations/source inspection supplement accepted transport regressions; builder evidence subject to independent full unit review."
+  }
+}

@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Implement approved CD-MCP-UP-003 exact 28-path integration; freeze full verification and dispatch fresh independent full unit review
+  next_gate: Fresh-context read-only independent full CD-MCP-UP-003 Runtime/YAML/Chat unit validation
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1498,3 +1498,10 @@ events:
   action: approved Runtime YAML Chat integration
   note: 'Exact statement: approved. CD-MCP-UP-003 28 paths; full profile and fresh independent review; started/local.'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-03.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T02:29:52+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze Runtime YAML Chat candidate for independent review
+  note: Approved exact CD-MCP-UP-003 scope; full frozen checks complete; fresh review required, started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up03/report.md

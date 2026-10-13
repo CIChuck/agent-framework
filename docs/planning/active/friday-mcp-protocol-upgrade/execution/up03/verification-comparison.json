@@ -1,0 +1,157 @@
+{
+  "root_ruff": {
+    "diagnostics": 327,
+    "complete_normalized_diagnostic_and_fix_multiset_equal": true
+  },
+  "full_mypy": {
+    "diagnostics": [
+      "packages/friday-core/src/friday_core/profiles.py:77: error: Returning Any from function declared to return \"VectorStoreAdapter\"  [no-any-return]",
+      "packages/friday-core/src/friday_core/profiles.py:82: error: Returning Any from function declared to return \"VectorStoreAdapter\"  [no-any-return]",
+      "packages/friday-core/src/friday_core/profiles.py:110: error: Returning Any from function declared to return \"GraphStoreAdapter\"  [no-any-return]",
+      "packages/friday-core/src/friday_core/profiles.py:115: error: Returning Any from function declared to return \"GraphStoreAdapter\"  [no-any-return]"
+    ],
+    "complete_path_line_code_message_equal": true
+  },
+  "pytest": {
+    "root": {
+      "skips": [
+        "SKIPPED [2] packages/friday-chat/tests_chat/test_live_lmstudio.py:96: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+        "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:109: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+        "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:124: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+        "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:154: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+        "SKIPPED [5] packages/friday-llm/tests_llm/test_live_lmstudio.py:66: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+        "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:88: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+        "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:144: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+        "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:156: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+        "SKIPPED [1] packages/friday-memory/tests_memory/test_adapters/test_graph.py:250: could not import 'scipy': No module named 'scipy'"
+      ],
+      "warnings": "packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_basic_run\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_session_initialization\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_context_assembly\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_tool_execution\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_max_iterations\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_turn_archiving\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_conversation_history\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_clear_history\n  <snapshot>/packages/friday-agent/tests_agent/test_copilot.py:115: DeprecationWarning: CopilotAgent is deprecated in Phase 4; use InteractiveAgent instead.\n    return CopilotAgent(\n\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_basic_run\n  <snapshot>/packages/friday-agent/src/friday_agent/repl_base.py:95: DeprecationWarning: Legacy Agent LLM injection is deprecated; provide a TypedLLMClient\n    response = await complete_agent_request(\n\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_telemetry_integration\n  <snapshot>/packages/friday-agent/tests_agent/test_copilot.py:209: DeprecationWarning: CopilotAgent is deprecated in Phase 4; use InteractiveAgent instead.\n    agent = CopilotAgent(\n\npackages/friday-chat/tests_chat/test_reorganization_mutation.py::test_litellm_provider_supplies_schema_and_parses_noisy_json\n  <snapshot>/packages/friday-chat/src/friday_chat/reorganization/mutation.py:245: DeprecationWarning: Legacy Memory LLM injection is deprecated; provide a TypedLLMClient\n    response = await complete_memory_request(\n\npackages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields\npackages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields\n  /private/tmp/friday-mcp-upgrade/venv/lib/python3.13/site-packages/litellm/litellm_core_utils/model_response_utils.py:18: PydanticDeprecatedSince211: Accessing the 'model_computed_fields' attribute on the instance is deprecated. Instead, you should access this attribute from the model class. Deprecated in Pydantic V2.11 to be removed in V3.0.\n    attribute: Final[_AttributeView] = {\"value\": getattr(source, name)}\n\npackages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields\npackages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields\n  /private/tmp/friday-mcp-upgrade/venv/lib/python3.13/site-packages/litellm/litellm_core_utils/model_response_utils.py:18: PydanticDeprecatedSince211: Accessing the 'model_fields' attribute on the instance is deprecated. Instead, you should access this attribute from the model class. Deprecated in Pydantic V2.11 to be removed in V3.0.\n    attribute: Final[_AttributeView] = {\"value\": getattr(source, name)}\n",
+      "summary": "3793 passed, 14 skipped, 15 warnings in 107.11s (0:01:47)"
+    },
+    "baseline-root": {
+      "skips": [
+        "SKIPPED [2] packages/friday-chat/tests_chat/test_live_lmstudio.py:96: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+        "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:109: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+        "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:124: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+        "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:154: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+        "SKIPPED [5] packages/friday-llm/tests_llm/test_live_lmstudio.py:66: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+        "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:88: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+        "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:144: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+        "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:156: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+        "SKIPPED [1] packages/friday-memory/tests_memory/test_adapters/test_graph.py:250: could not import 'scipy': No module named 'scipy'"
+      ],
+      "warnings": "packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_basic_run\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_session_initialization\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_context_assembly\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_tool_execution\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_max_iterations\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_turn_archiving\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_conversation_history\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_clear_history\n  <snapshot>/packages/friday-agent/tests_agent/test_copilot.py:115: DeprecationWarning: CopilotAgent is deprecated in Phase 4; use InteractiveAgent instead.\n    return CopilotAgent(\n\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_basic_run\n  <snapshot>/packages/friday-agent/src/friday_agent/repl_base.py:95: DeprecationWarning: Legacy Agent LLM injection is deprecated; provide a TypedLLMClient\n    response = await complete_agent_request(\n\npackages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_telemetry_integration\n  <snapshot>/packages/friday-agent/tests_agent/test_copilot.py:209: DeprecationWarning: CopilotAgent is deprecated in Phase 4; use InteractiveAgent instead.\n    agent = CopilotAgent(\n\npackages/friday-chat/tests_chat/test_reorganization_mutation.py::test_litellm_provider_supplies_schema_and_parses_noisy_json\n  <snapshot>/packages/friday-chat/src/friday_chat/reorganization/mutation.py:245: DeprecationWarning: Legacy Memory LLM injection is deprecated; provide a TypedLLMClient\n    response = await complete_memory_request(\n\npackages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields\npackages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields\n  /private/tmp/friday-mcp-upgrade/venv/lib/python3.13/site-packages/litellm/litellm_core_utils/model_response_utils.py:18: PydanticDeprecatedSince211: Accessing the 'model_computed_fields' attribute on the instance is deprecated. Instead, you should access this attribute from the model class. Deprecated in Pydantic V2.11 to be removed in V3.0.\n    attribute: Final[_AttributeView] = {\"value\": getattr(source, name)}\n\npackages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields\npackages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields\n  /private/tmp/friday-mcp-upgrade/venv/lib/python3.13/site-packages/litellm/litellm_core_utils/model_response_utils.py:18: PydanticDeprecatedSince211: Accessing the 'model_fields' attribute on the instance is deprecated. Instead, you should access this attribute from the model class. Deprecated in Pydantic V2.11 to be removed in V3.0.\n    attribute: Final[_AttributeView] = {\"value\": getattr(source, name)}\n",
+      "summary": "3628 passed, 14 skipped, 15 warnings in 95.94s (0:01:35)"
+    }
+  },
+  "protected_scope": {
+    "authorized_products": 28,
+    "changed_products": 25,
+    "metadata_files_preserved": 19,
+    "accepted_http_outside_overlap_preserved": true,
+    "recursive_authority_controls_preserved": true
+  },
+  "checks": {
+    "board": {
+      "exit_code": 0,
+      "stdout_sha256": "f86479667ca73f712d72cac3ab0abf3e4e9e165dc7c65159298cfb8ce281a947",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "next": {
+      "exit_code": 0,
+      "stdout_sha256": "60890100e7da6f17616913a4b28707382a476f0d11df492e146db29960fd5649",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "show": {
+      "exit_code": 0,
+      "stdout_sha256": "eacca82c94f561e52697ceef08d4c28befc71b1a4e4f881ea9eb2f93103cf948",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "focused": {
+      "exit_code": 0,
+      "stdout_sha256": "20cc5deb3805ba3eec000cdd9e6670ae6010bf410386a5898d0389d5d24c5d59",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "http": {
+      "exit_code": 0,
+      "stdout_sha256": "7a3935c3e8f726cf531005490a76376eae9aeaab954e32b45ce5315734a10221",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "original": {
+      "exit_code": 0,
+      "stdout_sha256": "aaf5321e649454154ce457713c4569a8d352ae0748c52688f9a4b351bcd155da",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "mcp": {
+      "exit_code": 0,
+      "stdout_sha256": "65c1e3a23e5d9e685f1078474b39a7199f39fdc0dcc97fae7a5e406edf716990",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "core-runtime-chat-telemetry": {
+      "exit_code": 0,
+      "stdout_sha256": "63fdae9bc585b33b4b261a84e2f43c5dc22bc3114a9f5e84ac1433ee1fa4ba07",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "root": {
+      "exit_code": 0,
+      "stdout_sha256": "eedbe86d15f82b581230e3c77a9eed115718acfae73d7a5d5b7ab2c86fcdc340",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "baseline-root": {
+      "exit_code": 0,
+      "stdout_sha256": "336551077e2bbfe0d3cfc80565e974fb5dc56adbd17fbae91fd81bdb0fbd6bac",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ruff": {
+      "exit_code": 0,
+      "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "root-ruff": {
+      "exit_code": 1,
+      "stdout_sha256": "0c93bf5f06b18289815373ab38c786bcb506cd92b455e5bc79c5c04a1854b68b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "baseline-root-ruff": {
+      "exit_code": 1,
+      "stdout_sha256": "300d0a30bbe131e7e125638729db0d6b668015f042fbc893d7cf2252976a5884",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "narrow-mypy": {
+      "exit_code": 0,
+      "stdout_sha256": "46984ca20bf69f7b14ec1fd9bd82101d56a4e109e68f016fd2a04f22481b09b3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "mcp-mypy": {
+      "exit_code": 0,
+      "stdout_sha256": "3253c7a5a8535995ce0dc8b25611174b1763d2c9ff1bbb0a29e2e90cca3ca91e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "full-mypy": {
+      "exit_code": 1,
+      "stdout_sha256": "660c2488d941839c20e17e0a3f493c2af818a0f86aa50f4de882d317666d47ae",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "baseline-full-mypy": {
+      "exit_code": 1,
+      "stdout_sha256": "0cbf1e33bb02dc5d9db2c7878ceaa4bb8e47c0e38d9fa675eb6842aa4a0da983",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs": {
+      "exit_code": 0,
+      "stdout_sha256": "12de1be5a3634095a882d911ffd6915ab66eb24f6a52b5a572526783f7d3fc65",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "render": {
+      "exit_code": 0,
+      "stdout_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "whitespace": {
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "verdict_boundary": "Builder comparison only; fresh independent review required."
+}

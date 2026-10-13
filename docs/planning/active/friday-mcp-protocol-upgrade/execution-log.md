@@ -257,3 +257,14 @@ those proposed bytes. execution_phase: implementation; validation_state:
 not_ready. Required construction and full fresh-context validation proceed in
 the guarded private snapshot; source/credential/dependency/effect exclusions and
 unrelated root changes remain preserved. No acceptance or publication inferred.
+
+
+## 2026-10-12 — Runtime/YAML/Chat candidate frozen for independent review
+
+execution_phase: validation; validation_state: in_review. Product commit b604fe9f8988591dc8bb11712341e564d6d283fc
+implements the approved integration inside25 of28 authorized paths. All20 stable
+required checks and exact327/4 debt and14/15 skip/warning comparisons are archived
+under execution/up03. Complete dated clause/schema mapping is retained losslessly.
+Fresh independent full unit review must decide; no completion/acceptance or later
+unit/publication authority inferred. Original controls and unrelated root changes
+remain preserved.

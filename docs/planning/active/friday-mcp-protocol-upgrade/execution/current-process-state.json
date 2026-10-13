@@ -1,9 +1,9 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-03",
-  "execution_phase": "implementation",
-  "validation_state": "not_ready",
-  "next_gate": "Implement approved CD-MCP-UP-003 exact 28-path integration; freeze full verification and dispatch fresh independent full unit review",
+  "execution_phase": "validation",
+  "validation_state": "in_review",
+  "next_gate": "Fresh-context read-only independent full CD-MCP-UP-003 Runtime/YAML/Chat unit validation",
   "work_state": "started",
   "delivery_state": "local",
   "note": "Separate exact approval supplies UP-03 construction authority; accepted prior units remain immutable.",
@@ -28,7 +28,7 @@
       "receipt": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json"
     }
   ],
-  "unit_completion": "not proposed",
+  "unit_completion": "not proposed; fresh independent full review pending",
   "remediation_directive": "docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-002-streamable-http.md",
   "remediation_status": "accepted HTTP unit corrections closed",
   "remediation_implementation_authority": "granted",
@@ -42,5 +42,6 @@
   "prior_unit_reviewed_candidate": "14dba178feff8789111db88d981f1d0e85e6a748",
   "prior_unit_independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-003-runtime-yaml-chat.md",
-  "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-03-authority-manifest.json"
+  "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-03-authority-manifest.json",
+  "builder_product_candidate": "b604fe9f8988591dc8bb11712341e564d6d283fc"
 }
