@@ -1,0 +1,20 @@
+{
+  "packages/friday-mcp/src/friday_mcp/server/__init__.py": "1cc8890e67abbdf500b38de3c62bc95aea5e66ad7207f35a186cb2dd4fdc32b7",
+  "packages/friday-mcp/src/friday_mcp/server/protocol.py": "431fc1dd937167e7a4fd4340f3626985c34158bd3306a044b0a0b445a6b00b90",
+  "packages/friday-mcp/src/friday_mcp/server/modern.py": "3d76f4f18da43c46edfc1037f497249c2f59d41b3c61834a77e703c11981e052",
+  "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py": "4469f7d8b80b930d1fae963f2f6f7af14ce6bcdac54ed272164b72aca16eed3a",
+  "packages/friday-mcp/src/friday_mcp/server/http.py": "f38ba480740a2c6bdb74d30a150ecb8bc00e52d6ffbbba70c71da021963deb5a",
+  "packages/friday-mcp/src/friday_mcp/server/registry.py": "1bf1902aefcf63263acc194690dd7811fbfa6dc047bfaf3b93282ca51262cd38",
+  "packages/friday-mcp/src/friday_mcp/server/http_policy.py": "862c38c323c207c105d23ee0d295795f8217e41b4ad3bf77c18a40693d3fe70c",
+  "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py": "3b3d81eede1fdd8b16c138ab55f355c71748f586f19b5baebb30d3662e0b22bf",
+  "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py": "9975a4f81e1a7119e8451ffea1075782d806458ae3af41ea3f9a049da29ab124",
+  "packages/friday-mcp/tests_mcp/server/test_streamable_http.py": "01968249fed26f580b0b853cc3d6301d242a851ac91e665aca65a85f90c43bc5",
+  "packages/friday-mcp/tests_mcp/server/test_server_security.py": "d07217f8358fd2171c11f250eb97baafad7f68aa63900610647233224f9aade4",
+  "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py": "4b6537dc31b2099f84ae10bb194108195d499dfd33f617454f6d9d58d887c08c",
+  "packages/friday-mcp/tests_mcp/server/test_registry.py": "2c4f44cd26b4ff15001d6e4685db0f41f4aa23b824c0f0061522b55de9745c93",
+  "packages/friday-mcp/tests_mcp/server/test_server_interop.py": "27dd165a0435f08817440f233474eb2cf3a9152c5cbe2133ae5f7d2a1fb14c8d",
+  "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py": "546898b92d067786cd1362389a3235e968265220ad53ab1e17a8c9c2ce8d372d",
+  "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py": "a37be9de1c6e5f4068b7188b35712c3f200b41af05b65d158a31ed92ed69e139",
+  "packages/friday-mcp/README.md": "622934cf74dc3d41b55ee33d9808d225b09833172f650fe16c6356f07d2da2a8",
+  "docs/guides/18-mcp-server.md": "1daa623bff75177f84e952adf4fa7eb32c0c6b0ea2e0b5790bb11fa28425f499"
+}

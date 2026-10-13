@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Separate remediator resolves all four REM-MCP-UP-006 findings; stable corrected candidate, full20 checks and fresh delta/full UP-05 review
+  next_gate: Fresh-context read-only REM-MCP-UP-006 delta then complete18-path/12-criterion UP-05 independent validation
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1689,3 +1689,10 @@ events:
   action: approved exact REM-MCP-UP-006 six-file correction
   note: 'Exact statement: approved continue. Four findings; separate remediator and fresh delta/full review; local only'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-006.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T20:55:06+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze REM-MCP-UP-006 corrected server candidate
+  note: Separate six-path correction; full20 checks; fresh delta/full review required; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/rem006/report.md

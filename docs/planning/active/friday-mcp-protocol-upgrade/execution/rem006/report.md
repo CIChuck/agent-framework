@@ -1,0 +1,7 @@
+# REM-MCP-UP-006 stable corrected server candidate
+
+Status: separate-remediator candidate; fresh independent delta and full UP-05 review required.
+
+Product commit: `e284ebaf1ec4b596c8e3edb9511a7012c6dfa133`. Exact six-path/four-finding authority remains controlling; all18 original work-unit paths/all12 criteria/all20 checks are in scope for verification. The original CHANGES_REQUESTED report and failed probes remain immutable. [Original separate-remediator evidence](stored-manifest.json) contains prospective and final field/clause/variant/assertion/command mapping plus raw checks. [Full controller comparisons](verification-comparison.json): 5326 passed, 14 skipped, 15 warnings in 136.59s (0:02:16); baseline 4744 passed, 14 skipped, 15 warnings in 117.97s (0:01:57). Narrow Ruff/Mypy/MCP typing clean; inherited327 complete Ruff objects/fixes and4 complete Mypy column diagnostics equal; full warning sections and skip locations/reasons equal; all22009 library files/192 distributions unchanged with hashes strictly before first profile check and after last. All19 metadata/60 accepted product hashes and unaffected original server paths unchanged.
+
+The fresh validator must assess each finding mitigation and complete applicable modern2026 server-role requirements; passing commands and a builder mapping do not establish VERIFIED. Whole MCP remains started/local. Maintainer acceptance, UP06 aggregate closeout, Langfuse and publication remain separate.

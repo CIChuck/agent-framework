@@ -577,3 +577,13 @@ no further approval is required for this exact correction. Fresh delta then full
 UP-05 review remains required before completion proposal; acceptance, UP06,
 Langfuse and publication remain separate. Remediation cycle1; stop after two
 unsuccessful formal remediation cycles under repository policy.
+
+
+## REM-MCP-UP-006 stable corrected candidate and fresh review gate
+
+Separate remediator committed e284ebaf1ec4b596c8e3edb9511a7012c6dfa133 within six authorized paths.
+Its original prospective plan/final mapping/report and safe raw attempts are
+retained losslessly with controller full20 checks, exact inherited debt/skip/
+warning comparisons and strict before/after library integrity. Original review
+and controls remain immutable. Fresh remediation delta followed by full UP-05
+review is required; no completion/acceptance/UP06/publication inferred.
