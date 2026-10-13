@@ -1,10 +1,10 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-05",
-  "execution_phase": "validation",
-  "validation_state": "in_review",
-  "unit_completion": "not proposed; fresh remediation delta/full UP-05 review pending",
-  "next_gate": "Fresh-context read-only REM-MCP-UP-006-R1 delta then complete18-path/12-criterion UP-05 independent validation",
+  "execution_phase": "closeout",
+  "validation_state": "verified",
+  "unit_completion": "proposed; maintainer acceptance pending",
+  "next_gate": "Maintainer acceptance of independently VERIFIED MCP-UP-05/CD-MCP-UP-005; then prepare MCP-UP-06 aggregate compatibility and migration closeout",
   "work_state": "started",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-005",
@@ -49,97 +49,14 @@
   "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-04.json",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-005-modern-tools-server.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-05-authority-manifest.json",
-  "note": "Separate remediator stable exact three-path correction; full20 profile evidence archived; independent verdict required",
+  "note": "Fresh independent REM006 delta and full18-path/12-criterion UP-05 review VERIFIED; acceptance and UP06 aggregate remain separate",
   "builder_product_candidate": "780a42e18b75dc30a61d12e6bab5d2b140b35435",
-  "reviewed_candidate": "2b536516068f9e946572d165636211a24a93638d",
-  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-02/report.md",
-  "independent_report_sha256": "7c38b79f1f0438b3fd59cb51efafecf6386cb336b028898a9957ef457918d0d9",
-  "open_findings": [
-    {
-      "id": "VAL-UP05-005",
-      "number": 5,
-      "severity": "medium",
-      "title": "Malformed standard metadata header values bypass HeaderMismatch validation",
-      "classification": [
-        "protocol conformance",
-        "HTTP security boundary"
-      ],
-      "locations": [
-        {
-          "path": "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
-          "line": 149
-        },
-        {
-          "path": "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
-          "line": 226
-        },
-        {
-          "path": "packages/friday-mcp/src/friday_mcp/server/http.py",
-          "line": 225
-        }
-      ],
-      "criteria": [
-        "SRV-AC-01",
-        "SRV-AC-05",
-        "SRV-AC-06"
-      ],
-      "requirements": [
-        {
-          "path": "docs/planning/active/friday-mcp-protocol-upgrade/up05-server-contract.md",
-          "line": 110,
-          "requirement": "Header failures are HTTP400/-32020; access/header/body checks precede handler admission."
-        },
-        {
-          "path": "docs/planning/active/friday-mcp-protocol-upgrade/up05-server-contract.md",
-          "line": 120,
-          "requirement": "Validate required standard metadata headers against the body; preserve exact malformed/header status grammar."
-        }
-      ],
-      "normative_source": {
-        "capture": "inputs/normative/specification--2026-07-28--basic--transports--streamable-http.md",
-        "sha256": "93daa4bb4e189f0bd51d866950b3b8a3b4e7d0b1e0e6eede5ba1998641d0b955",
-        "lines": [
-          479,
-          480,
-          481,
-          596,
-          597,
-          602,
-          623,
-          629
-        ],
-        "requirement": "Header values use visibleASCII/space/HTAB; malformed required headers and invalid-character validation failures require HTTP400 JSON-RPC -32020. Base64 is permitted for Mcp-Name/Mcp-Param, not Method/Version."
-      },
-      "schema_source": {
-        "sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
-        "declaration": "HeaderMismatchError",
-        "line": 468,
-        "field": "code: typeof HEADER_MISMATCH; (-32020)"
-      },
-      "observation": "With matching header/body values, Mcp-Method containing U+0001, DEL or literal UTF8 Unicode returns404/-32601; MCP-Protocol-Version returns400/-32022. Six independently authored ASGI cases fail. Literal UTF8 Unicode reproduces over the real named Friday subprocess on verified privateTLS in BOTH JSON/SSE modes, with0 handler starts, final active0 and child exit0. h11 rejects raw control/DEL bytes before ASGI with400/plaintext; that parser behavior is recorded separately and is not claimed as a new application finding.",
-      "cause": "HTTPServerPolicy.validate checks only CR/LF/NUL and duplicates for mirrored values. validate_rpc_headers compares Method/Version raw bytes without complete character validation, unlike decode_header for Name/custom parameters. Matching malformed bytes therefore pass the header gate and reach method/version routing.",
-      "evidence": [
-        "checks/independent-edges-001/stdout",
-        "checks/independent-edges-001/receipt.json",
-        "checks/independent-live-standard-001/stdout",
-        "checks/independent-live-standard-001/receipt.json",
-        "test_review_edges.py::test_standard_metadata_header_invalid_characters_exact_code",
-        "test_standard_header_live.py::test_real_verified_tls_standard_header_boundary"
-      ],
-      "risk": "The application violates its dated header/error contract and lets malformed mirrored standard values reach RPC routing. No authorization bypass, mutating replay or handler invocation is demonstrated.",
-      "required_mitigation": "Within the existing bounded HTTP policy path, validate standard Method/Version metadata values for the required character/value grammar before RPC routing and return fixed400/-32020 for malformed recognized metadata. Retain separate Host/Origin/Bearer/TLS access handling, byte bounds, duplicate rejection, exact Name/custom Base64 rules and privacy. No accepted client, checker, dependency or other product-path change.",
-      "required_tests": [
-        "Matching Method/Version values with control,DEL and raw nonASCII ASGI cases: exact400/-32020 and0 handlers; positive valid ASCII and case rules.",
-        "Actual private verifiedTLS JSON/SSE raw nonASCII negatives bypass SDK retry; zero handler counters, owner/child settlement.",
-        "Retain valid unsupported ASCII version400/-32022 supported/requested and unknown ASCII method404/-32601, standard/custom duplicate/CRLFNUL and access-specific status/privacy regressions.",
-        "Rerun unchanged full20 profile plus exact diagnostic/skip/warning/dependency integrity and a fresh separate delta/full review."
-      ],
-      "documentation_configuration_impact": "Guide18 exact HeaderMismatch claim must match all required standard metadata values. No configuration/default/metadata/optional-role change.",
-      "remediation_role": "Separate remediator required for HTTP security-boundary correction; this report grants no implementation or publication authority."
-    }
-  ],
+  "reviewed_candidate": "012430089bcd1b60b12c071b8c8220f20d2bac79",
+  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md",
+  "independent_report_sha256": "e6d05f3eaa6518fc6efac1826a939d8d73f99440699108d4739e4c9aa7a97cd3",
+  "open_findings": [],
   "remediation_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/REM-MCP-UP-006-R1-standard-header-byte-grammar.md",
-  "remediation_status": "candidate_frozen",
+  "remediation_status": "verified",
   "remediation_implementation_authority": "granted",
   "remediation_proposal": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/REM-MCP-UP-006-authority-manifest.json",
   "remediation_product_candidate": "a8ef5b78054f1d0008706cc09a265c50a58fc0ac",
@@ -148,7 +65,8 @@
     "VAL-UP05-001": "Resolved in fresh independent64-case assessment; final unit still blocked by VAL-UP05-005",
     "VAL-UP05-002": "Resolved in fresh independent64-case assessment; final unit still blocked by VAL-UP05-005",
     "VAL-UP05-003": "Resolved in fresh independent64-case assessment; final unit still blocked by VAL-UP05-005",
-    "VAL-UP05-004": "Resolved in fresh independent64-case assessment; final unit still blocked by VAL-UP05-005"
+    "VAL-UP05-004": "Resolved in fresh independent64-case assessment; final unit still blocked by VAL-UP05-005",
+    "VAL-UP05-005": "Resolved by bounded REM006-R1 and fresh independent delta/full UP05 review; original four prior findings also independently reassessed"
   },
   "pending_amendment": null,
   "construction_stop": null,

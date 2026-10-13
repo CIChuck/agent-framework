@@ -1,0 +1,13 @@
+{
+  "prior_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-02/report.md",
+  "prior_report_sha256": "7c38b79f1f0438b3fd59cb51efafecf6386cb336b028898a9957ef457918d0d9",
+  "prior_outcome": "CHANGES_REQUESTED",
+  "prior_reviewed_candidate": "2b536516068f9e946572d165636211a24a93638d",
+  "new_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md",
+  "new_report_sha256": "e6d05f3eaa6518fc6efac1826a939d8d73f99440699108d4739e4c9aa7a97cd3",
+  "new_outcome": "VERIFIED",
+  "reviewed_candidate": "012430089bcd1b60b12c071b8c8220f20d2bac79",
+  "also_retained_prior_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-01/report.md",
+  "also_retained_prior_report_sha256": "f582f81ca59b6e67d704d51dcbf3888b4d6aa086c4f342ddaa9417c1a10d58b7",
+  "boundary": "Both prior reports/probes unchanged; only decisions for corrected candidate superseded"
+}
