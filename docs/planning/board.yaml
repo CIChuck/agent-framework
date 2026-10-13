@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Prepare separate UP-04 results/manual-refresh directive and proposal; no UP-04 source authority yet
+  next_gate: Maintainer approval of exact CD-MCP-UP-004 result/manual-refresh directive, contract, profile and UP-04 proposal before product construction
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -475,6 +475,7 @@ tasks:
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-01/report.md: CHANGES_REQUESTED; sole bounded guide-accuracy finding; runtime checks pass'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-02/report.md: VERIFIED Runtime/YAML/Chat full work-unit review; maintainer acceptance pending'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json: maintainer accepted independently VERIFIED Runtime/YAML/Chat unit'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/execution/up04-planning/report.md: exact UP-04 planning packet; no product construction authority'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
 - id: friday-langfuse-integration
@@ -1536,3 +1537,10 @@ events:
   action: accepted CD-MCP-UP-003 Runtime YAML Chat unit
   note: 'Exact statement: accepted, continue. UP-03 only; UP-04 packet preparation authorized, later construction separate'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T03:44:33+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared CD-MCP-UP-004 result manual refresh packet
+  note: 20 exact product paths,10 criteria,20 full checks; UP-03 accepted; UP-04 construction awaits exact approval
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-004-results-manual-refresh.md

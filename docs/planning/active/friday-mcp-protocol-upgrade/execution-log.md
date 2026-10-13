@@ -312,3 +312,16 @@ correction, with reviewed product/report/control hashes. Frozen original reports
 prior authority and accepted product bytes are preserved. Whole MCP stays
 started/local. Proceed with separate UP-04 planning, without later construction
 or publication authority. Langfuse remains queued after whole MCP acceptance.
+
+
+## UP-04 exact result/manual-refresh packet prepared
+
+UP-03 acceptance is recorded separately. CD-MCP-UP-004 proposes20 product paths,
+ten RES-AC criteria, typed catalog generations, failure-safe manual refresh,
+same-generation output/header binding and complete dated result validation.
+2025 required-task tools are excluded; Tasks remains unsupported. No product
+edits or dependency changes. execution/up04-planning retains the no-network
+probe including its initial import failure and complete dated Tasks capture.
+The exact directive/contract/profile/proposal require approval before UP-04
+construction. Old reports/controls/accepted products are immutable; whole MCP
+stays started/local, UP-05/UP-06 and Langfuse remain later gates.

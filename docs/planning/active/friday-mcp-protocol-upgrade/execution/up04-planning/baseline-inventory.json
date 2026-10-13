@@ -1,0 +1,168 @@
+{
+  "status": "read-only planning baseline, not new test results",
+  "product_baseline": "3fd5437088c5ddf5d68be3a2a097770c294cba6b",
+  "acceptance_commit": "cf730a4d9ee0aae1fcb9dcdb088674459c55a97f",
+  "product_paths": [
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/base.py",
+      "baseline_sha256": "28c31aed4544203da38fb146958e07ec234a0c70811c2cad3ee18497ff14a570",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/protocol.py",
+      "baseline_sha256": "ad5e06fdfd4eab5e40a58eebe75f92436be6af63d85aa1e4240293aeefca9c6f",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/http.py",
+      "baseline_sha256": "5b1eaf77b631f4a6cb18300164688b2b1e08f83a5c525d8e236ef79a8d5aa3c3",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/adapter.py",
+      "baseline_sha256": "f061af1c437fb73e7eb6823ddc79ccfd4ce8b02b4783d83f90718f4348e8399a",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/__init__.py",
+      "baseline_sha256": "fb323775d60155ba0ebb2f62b40291b391942041ddacb313a43dffa88c452f88",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/catalog.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+      "baseline_sha256": "94f1ba32a9630e0eb028661080590d1401d61d93e527197b29fca5a0554ac339",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_http_protocol.py",
+      "baseline_sha256": "0ec3c23af14eae8b6bccf433101a18e31beb45545ac4bfac7d61605b03e2d6c7",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py",
+      "baseline_sha256": "625f015518a52968568d5b2655f4904cd7f174f13407d0bc09f96be294711797",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_lifecycle.py",
+      "baseline_sha256": "f3921e04d2ece03af6d26053fa7b2d52425868085211984e0abef0d1aab48d3d",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_adapter.py",
+      "baseline_sha256": "12b30dbc1c15023101bf7bed67408a54c6b596e099d6ae8c6258aeae85a0ab8d",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py",
+      "baseline_sha256": "50e4c1422545ef85dff9d5e3c53d39566b86cda39e9c0567847fd8b913167f11",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py",
+      "baseline_sha256": "a4350e6b06b029f9a8596a51187a9708ee8cd82530c36ce68ee3f75cd1596c56",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py",
+      "baseline_sha256": "d1cbdf9382ca267075f89dcfa5dbbc03bd1e30e6410a457fb626d05248e6d31b",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_result_refresh.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_result_refresh_interop.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py",
+      "baseline_sha256": "00edc6f983ee960a71871d3927dbd4a1ff77b19b0b2b77d9b630b62c389b5b9b",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_mcp_http_integration.py",
+      "baseline_sha256": "5e088ac4d859349c1d849b5df9357ce37c300d81d2cb64cbc8fdb82e2e5941ac",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/README.md",
+      "baseline_sha256": "5bf255278e2970b06d01b024e2aa466b3bda624f59a6cf13a7d09c1b48da2ac9",
+      "change": "existing"
+    },
+    {
+      "path": "docs/guides/17-mcp-client.md",
+      "baseline_sha256": "7333021a56c5b83f0adafd1f478fe032583c42606e2bfd54526575dae1079172",
+      "change": "existing"
+    }
+  ],
+  "metadata_hashes": {
+    "packages/friday-agent/pyproject.toml": "155343ffc1affe151e5a8b13c898d28f2bb1c23978487a6371fa56c02368aa26",
+    "packages/friday-chat/pyproject.toml": "4fa72a6497d637920558b4ebe2cddd13e99fb1191c8a432cb2c7d031a0926de5",
+    "packages/friday-cli/pyproject.toml": "19a2898a4716ba4f481f8396c7605b7deefa077e536b5b7c6ebb85bb06ca8a00",
+    "packages/friday-core/pyproject.toml": "001b4d83e69969664d38c91f007d618df82674cc379c2acfa12767703eafa594",
+    "packages/friday-finance/pyproject.toml": "c410c9b183df854d6fb1be274cfafaf31d560b4b3faa4bb2c65052f78b711070",
+    "packages/friday-llm/pyproject.toml": "672f623315a1113e459cd481f3de4324c7c29767cf31aeb71eab34fa078960a4",
+    "packages/friday-mcp/pyproject.toml": "665eb50f54d283f23532c919db662fc64a376e0bf8155fd6ff6052913efd9a45",
+    "packages/friday-memory/pyproject.toml": "0f0cfa552fdbd2127d5e186d8847db331a9aaef70175569e9cfe77098798c511",
+    "packages/friday-moltbook/pyproject.toml": "136f6278e82471ebaae3a62bdb8379a6f8d7b6b4e4bef5cb78b196ff72886deb",
+    "packages/friday-optimization/pyproject.toml": "b89bdecd833287a1628c17c84bc61cb03ec8a3c4b7ea27f1476d9a2d997c9bb2",
+    "packages/friday-runtime/pyproject.toml": "cc426372026847a66dc8f8a43f135a498b1a2e3861b0b24ad14c639807eedbc1",
+    "packages/friday-sandbox/pyproject.toml": "51c56051ccc351c58ef91aec0a325a643751d824697e0a9293040fe3624b7d25",
+    "packages/friday-speech/pyproject.toml": "0bf80e8501cce2e6c3161ac5ef942855269cefc88da2ee598b875de674487ff4",
+    "packages/friday-telemetry/pyproject.toml": "8b4a0abbbd8c2a76b81d2763176c934c9cf620b864e09e4e3b4663950218e5e9",
+    "packages/friday-tools/pyproject.toml": "1db7f0c87c7197b5b264e2f4e7f2fbd84e8febbdd040665edba9cd898e715326",
+    "packages/friday-transcript/pyproject.toml": "4a58596abafe3f7ca409084b1a0627f77164aabb48cefa2dcc217211b0ba1679",
+    "pyproject.toml": "b85b708def24f4f2045a12388f7026ce361bdf6c13490f0f160fdfe3176e3a77",
+    "tests/lab/pyproject.toml": "8532ff4a6e205c45efdfc41199facd687943b949fc2f253a3fcdad6275c8197f",
+    "uv.lock": "5efcfafd68f3ed94a64ee943e6379fa57e603518ff2d215bb87710e25dc06759"
+  },
+  "accepted_up03_product_hashes": {
+    "packages/friday-core/src/friday_core/mcp.py": "66419c6c67894d7f4b051384ff4bfaef1f45e693aa7ff2efef684900e46b8ace",
+    "packages/friday-core/tests_core/test_mcp_contracts.py": "c9f7746b5384e7f5a513b13b5d071f4de81a0a14957c4e5b4945514ef2d74e56",
+    "packages/friday-mcp/src/friday_mcp/client/manager.py": "d613e3cd2c677549085628a333408d36e7e1f56ac4aee7eb464ae974076b3cc7",
+    "packages/friday-mcp/src/friday_mcp/client/__init__.py": "fb323775d60155ba0ebb2f62b40291b391942041ddacb313a43dffa88c452f88",
+    "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py": "a4350e6b06b029f9a8596a51187a9708ee8cd82530c36ce68ee3f75cd1596c56",
+    "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py": "d1cbdf9382ca267075f89dcfa5dbbc03bd1e30e6410a457fb626d05248e6d31b",
+    "packages/friday-mcp/README.md": "5bf255278e2970b06d01b024e2aa466b3bda624f59a6cf13a7d09c1b48da2ac9",
+    "packages/friday-runtime/src/friday_runtime/config.py": "cc248bb8b8b4e713deede41d07f0729b699f341f7f05a38304e46b004ed72d0d",
+    "packages/friday-runtime/src/friday_runtime/mcp_loading.py": "35a9728803d7bb774f5017ce58e938e61ddc4b37895864cea31fc24e07167c0d",
+    "packages/friday-runtime/src/friday_runtime/mcp_registration.py": "f18bfe62e06419bbcbe5cf61088c825f0fc3d171552f75d726034bfb31f88d80",
+    "packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py": "38f053a03e329b6e1dbfc5e8db69500b4e01236991708eb93f9b378de072951e",
+    "packages/friday-runtime/tests_runtime/test_mcp_loading.py": "27f46abff635f1bfc288d65afd1dff3564d3bc686a9d218455724599095e8bd6",
+    "packages/friday-runtime/tests_runtime/test_mcp_registration.py": "7590b9b2565563e37a2ad2acd24ecbfd53242225832d6d8149fdd8f4d07bdfa2",
+    "packages/friday-runtime/README.md": "d77889ced295841b991e162caec0a085788c6ad298532f0e5c7f3f3794d7823b",
+    "packages/friday-chat/src/friday_chat/config.py": "734559482073fa66b2197604136d4fde805fc8f9e4ce7078f33df57c4a3c52d1",
+    "packages/friday-chat/src/friday_chat/tools/mcp.py": "3ac24fc406d84aa5d49b91bf79c2160dcdf4b982161a08d4d6557d08cf332aa7",
+    "packages/friday-chat/tests_chat/test_mcp_config_compatibility.py": "4fa6555dc1144c08042ffa6a1f4b019d89cb2933118bbf8dd9f860b9c153197d",
+    "packages/friday-chat/tests_chat/test_mcp_chat_bridge.py": "e3f834037ee55a123d2b2ba2c9f77e10d99837cb7923111d3703e9bb79d6e4e3",
+    "packages/friday-chat/tests_chat/test_mcp_execution_security.py": "c0863818cb4c44e8f08a4a85b53b587708c6e6c7f4795ee57bdb3449c3f2ca8f",
+    "packages/friday-chat/README.md": "d09e601fac26d5e1f6dee2a2add053af08bdfaa96c78930ca4c7afccde469388",
+    "packages/friday-chat/src/friday_chat/config_templates/config.example.yaml": "6fecbd23bb6b15dbe68d7bf4dbb8dfe14a431f74c68efa5379a545b13671c110",
+    "packages/friday-chat/src/friday_chat/config_templates/cli-config.example.yaml": "4d513ca9e00fddc76f9cf037afe93b496d379b233c875e0c013d2d61ca953c69",
+    "docs/guides/10-configuration.md": "5085a99de6fb7b9417a5eb7c3d19983070eba2ed14052d4e5c085410699056c0",
+    "docs/guides/17-mcp-client.md": "7333021a56c5b83f0adafd1f478fe032583c42606e2bfd54526575dae1079172",
+    "packages/friday-runtime/src/friday_runtime/mcp_clients.py": "99f202242b79ba263437f119cce1a918e3fe4f0c086a00517480915747812c95",
+    "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py": "00edc6f983ee960a71871d3927dbd4a1ff77b19b0b2b77d9b630b62c389b5b9b",
+    "packages/friday-chat/tests_chat/test_mcp_http_integration.py": "5e088ac4d859349c1d849b5df9357ce37c300d81d2cb64cbc8fdb82e2e5941ac",
+    "packages/friday-mcp/tests_mcp/client/test_manager_profiles.py": "ed4e93f52b7b744852e5fcd436577deeec23c81da868e06e5652eb0dcb6f8245"
+  },
+  "historical_verified_checks": {
+    "report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-02/report.md",
+    "report_sha256": "ac091f6bee4a215f40fbc4a951e791dc8e2f6adf00c412b7f8aff5e4857a7420",
+    "root": "3793 passed,14 skipped,15 warnings",
+    "full_ruff": "327 exact inherited diagnostic/fix objects",
+    "full_mypy": "4 exact inherited no-any-return objects in untouched profiles.py",
+    "mcp_mypy": "clean21 files"
+  },
+  "planning_product_edits": 0,
+  "baseline_snapshot_manifest_sha256": "e51902648d20d42c26c746ecaddd6d209a88910bc7a2afe1784bf04bbbcd2ccf"
+}
