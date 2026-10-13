@@ -2160,9 +2160,12 @@ admitted HTTPS Streamable HTTP peer. Stdio defaults to legacy; select
 `protocol_version: '2026-07-28'` or `'2025-11-25'`, `trust_level: remote`,
 and the matching global remote security pair. Use `auth: bearer_env` with a
 literal `credential_env` identifier, resolved only at enabled connection assembly;
-`${...}` interpolation and inline HTTP tokens are rejected. Default HTTPS443/public
-network policy can be narrowed with exact per-peer address/port permissions;
-there is no TLS relaxation, HTTP startup retry or tool-call replay.
+`${...}` interpolation and inline HTTP tokens are rejected. The default network
+policy permits eligible public addresses on HTTPS port443. `allowed_addresses`
+adds exact per-peer address permissions alongside eligible public destinations;
+it does not restrict public addresses to that list. `allowed_ports` selects the
+permitted peer ports. There is no TLS relaxation, HTTP startup retry or tool-call
+replay.
 The provider defaults to `enabled: false` and `mode: selected`; selected mode
 can admit canonical names through `include_tools` or a category through
 `include_categories: [mcp]`. Server `required: true` makes
