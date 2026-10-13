@@ -1,6 +1,7 @@
 """Access and observation rejection precede synthetic handler side effects."""
 
 import asyncio
+import hashlib
 import json
 
 import pytest
@@ -260,5 +261,61 @@ async def test_cancelled_observation_one_start_and_terminal():
     await server.stop()
     assert observer.events == [
         ("start", "mcp.tools.call", None),
-        ("end", {"method": "tools/call", "outcome": "cancelled"}),
+        (
+            "end",
+            {
+                "method": "tools/call",
+                "tool_id": hashlib.sha256(b"echo").hexdigest()[:16],
+                "outcome": "cancelled",
+            },
+        ),
     ]
+
+
+@pytest.mark.parametrize(
+    "options",
+    [
+        {"bind_host": True},
+        {"bind_host": 2130706433},
+        {"allowed_origins": ("\thttps://example.invalid",)},
+        {"allowed_origins": ("https://example.invalid\n",)},
+        {"allowed_hosts": ("a" * 257,)},
+    ],
+)
+def test_policy_rejects_nonstring_bind_and_noncanonical_authorities(options):
+    with pytest.raises(ValueError):
+        HTTPServerPolicy(**options)
+
+
+@pytest.mark.asyncio
+async def test_bearer_scheme_case_insensitive_credentials_case_sensitive():
+    server, calls = make_server(policy=HTTPServerPolicy(bearer_token="SyntheticToken"))
+    async with http_client(server) as client:
+        for scheme in ("bearer", "BEARER", "bEaReR"):
+            result = await client.post(
+                "/mcp",
+                headers={**headers(), "Authorization": scheme + " SyntheticToken"},
+                content=rpc("tools/call", params={"name": "echo"}),
+            )
+            assert result.status_code == 200
+        result = await client.post(
+            "/mcp",
+            headers={**headers(), "Authorization": "Bearer synthetictoken"},
+            content=rpc("tools/call", params={"name": "echo"}),
+        )
+        assert result.status_code == 401
+    assert len(calls) == 3
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("method", ["GET", "DELETE", "HEAD", "OPTIONS"])
+async def test_invalid_origin_rejected_on_all_endpoint_methods(method):
+    server, calls = make_server()
+    async with http_client(server) as client:
+        response = await client.request(
+            method, "/mcp", headers={"Origin": "https://evil.invalid"}
+        )
+        assert response.status_code == 403
+        valid = await client.request(method, "/mcp")
+        assert valid.status_code == 405
+    assert not calls

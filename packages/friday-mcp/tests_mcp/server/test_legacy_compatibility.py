@@ -64,3 +64,33 @@ async def test_partial_stdio_start_failure_settles_and_retry_is_possible(monkeyp
     assert server.active_requests == 0
     server.start()
     await server.stop()
+
+
+@pytest.mark.asyncio
+async def test_partial_stdio_output_pipe_start_failure_closes_input(
+    monkeypatch, capsys
+):
+    server = ModernStdioMCPServer()
+    loop = asyncio.get_running_loop()
+
+    class InputTransport:
+        closed = False
+
+        def close(self):
+            self.closed = True
+
+    transport = InputTransport()
+
+    async def input_pipe(factory, pipe):
+        return transport, factory()
+
+    async def output_pipe(factory, pipe):
+        raise OSError("private-output-pipe-sentinel")
+
+    monkeypatch.setattr(loop, "connect_read_pipe", input_pipe)
+    monkeypatch.setattr(loop, "connect_write_pipe", output_pipe)
+    await server.serve()
+    assert transport.closed and server.active_requests == 0
+    assert "private-output-pipe-sentinel" not in capsys.readouterr().err
+    server.start()
+    await server.stop()

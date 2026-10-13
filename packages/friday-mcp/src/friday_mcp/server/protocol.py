@@ -22,8 +22,18 @@ from friday_mcp.client.protocol import (
 )
 
 VERSION = "2026-07-28"
+SSE_PREFIX = b"event: message\ndata: "
+SSE_SUFFIX = b"\n\n"
+SSE_OVERHEAD = len(SSE_PREFIX) + len(SSE_SUFFIX)
 PREFIX = "io.modelcontextprotocol/"
-IDENTITY: dict[str, JSONValue] = {"name": "FridayModernTools", "version": "1.0.0"}
+IDENTITY_NAME = "FridayModernTools"
+IDENTITY_VERSION = "1.0.0"
+
+
+def identity() -> dict[str, JSONValue]:
+    return {"name": IDENTITY_NAME, "version": IDENTITY_VERSION}
+
+
 _META_KEY = re.compile(
     r"(?:[A-Za-z](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z](?:[A-Za-z0-9-]*[A-Za-z0-9])?)*/)?(?:[A-Za-z0-9](?:[A-Za-z0-9_.-]*[A-Za-z0-9])?)?"
 )
@@ -129,8 +139,25 @@ DEFAULT_SERVER_LIMITS = ServerLimits()
 class ServerWireError(ValueError):
     """Only fixed normative wire errors; exception details never cross the boundary."""
 
-    def __init__(self, code: WireCode) -> None:
+    def __init__(self, code: WireCode, *, requested_version: str | None = None) -> None:
+        if type(code) is not int or code not in _MESSAGES or code == -32021:
+            raise ValueError("Inactive or invalid MCP server error variant")
+        if code == -32022:
+            if not isinstance(requested_version, str):
+                raise ValueError("MCP version error requires requested version")
+            try:
+                valid_version = (
+                    len(requested_version.encode("utf-8"))
+                    <= DEFAULT_SERVER_LIMITS.identity_bytes
+                )
+            except UnicodeError:
+                valid_version = False
+            if not valid_version:
+                raise ValueError("Invalid requested MCP version")
+        elif requested_version is not None:
+            raise ValueError("Requested version belongs only to version error")
         self.code = code
+        self.requested_version = requested_version
         super().__init__(_MESSAGES[code])
 
     def response(self, request_id: str | int | None = None) -> dict[str, JSONValue]:
@@ -139,10 +166,15 @@ class ServerWireError(ValueError):
             "message": _MESSAGES[self.code],
         }
         if self.code == -32022:
-            error["data"] = {"supportedVersions": [VERSION]}
+            if self.requested_version is None:
+                raise ValueError("MCP version error requires requested version")
+            error["data"] = {
+                "supported": [VERSION],
+                "requested": self.requested_version,
+            }
         result: dict[str, JSONValue] = {"jsonrpc": "2.0", "error": error}
         if request_id is not None:
-            result["id"] = request_id
+            result["id"] = identifier(request_id, DEFAULT_SERVER_LIMITS)
         return result
 
     @property
@@ -187,6 +219,10 @@ def bounded_json(value: object, limits: ServerLimits, byte_limit: int) -> JSONVa
             for key, child in item.items():
                 if not isinstance(key, str):
                     raise ServerWireError(-32602)
+                try:
+                    key.encode("utf-8")
+                except UnicodeError:
+                    raise ServerWireError(-32602) from None
                 characters += len(key)
                 if characters > byte_limit:
                     raise ServerWireError(-32602)
@@ -226,12 +262,28 @@ def _pairs(pairs: list[tuple[str, JSONValue]]) -> dict[str, JSONValue]:
     return result
 
 
+def _constant(value: str) -> JSONValue:
+    raise ServerWireError(-32700)
+
+
+def _float(value: str) -> float:
+    number = float(value)
+    if not math.isfinite(number):
+        raise ServerWireError(-32700)
+    return number
+
+
 def decode(raw: bytes, limits: ServerLimits, *, budget: int | None = None) -> JSONValue:
     bound = limits.request_bytes if budget is None else budget
     if len(raw) > bound:
         raise ServerWireError(-32600)
     try:
-        obj: object = json.loads(raw.decode("utf-8"), object_pairs_hook=_pairs)
+        obj: object = json.loads(
+            raw.decode("utf-8"),
+            object_pairs_hook=_pairs,
+            parse_constant=_constant,
+            parse_float=_float,
+        )
         return bounded_json(obj, limits, bound)
     except ServerWireError:
         raise
@@ -245,6 +297,13 @@ def identifier(value: JSONValue, limits: ServerLimits) -> str | int:
     if type(value) is int and isinstance(value, int) and abs(value) <= 2**53 - 1:
         return value
     raise ServerWireError(-32600)
+
+
+def parameter_id(value: JSONValue, limits: ServerLimits) -> str | int:
+    try:
+        return identifier(value, limits)
+    except ServerWireError:
+        raise ServerWireError(-32602) from None
 
 
 def _object(value: JSONValue) -> dict[str, JSONValue]:
@@ -379,9 +438,13 @@ def metadata(
     _trace_formats(obj, limits)
     if notification:
         if PREFIX + "subscriptionId" in obj:
-            identifier(obj[PREFIX + "subscriptionId"], limits)
+            parameter_id(obj[PREFIX + "subscriptionId"], limits)
         return obj
-    if not isinstance(obj.get(PREFIX + "protocolVersion"), str):
+    version = obj.get(PREFIX + "protocolVersion")
+    if (
+        not isinstance(version, str)
+        or len(version.encode("utf-8")) > limits.identity_bytes
+    ):
         raise ServerWireError(-32602)
     caps = _object(obj.get(PREFIX + "clientCapabilities"))
     for key in ("roots", "sampling", "elicitation", "experimental", "extensions"):
@@ -455,7 +518,7 @@ class ServerRequest:
             if "_meta" in params:
                 metadata(params["_meta"], limits, notification=True)
             if method == "notifications/cancelled":
-                identifier(params.get("requestId"), limits)
+                parameter_id(params.get("requestId"), limits)
                 if "reason" in params and not isinstance(params["reason"], str):
                     raise ServerWireError(-32602)
             return cls(None, method, params)
@@ -463,7 +526,7 @@ class ServerRequest:
         version = meta[PREFIX + "protocolVersion"]
         if not isinstance(version, str):
             raise ServerWireError(-32602)
-        if "inputResponses" in params:
+        if "inputResponses" in params or "requestState" in params:
             raise ServerWireError(-32602)
         return cls(request_id, method, params, version)
 
@@ -473,8 +536,6 @@ def safe_error_id(raw: bytes, limits: ServerLimits) -> str | int | None:
         obj = decode(raw, limits)
         if (
             isinstance(obj, dict)
-            and obj.get("jsonrpc") == "2.0"
-            and isinstance(obj.get("method"), str)
             and not any(k in obj for k in ("result", "error"))
             and "id" in obj
         ):
@@ -627,6 +688,8 @@ class ToolCallResult:
             clean.get("content"), list
         ):
             raise ServerWireError(-32603)
+        if "_meta" in clean:
+            _trace_formats(_object(clean["_meta"]), limits)
         content = clean["content"]
         if not isinstance(content, list):
             raise ServerWireError(-32603)
@@ -637,6 +700,8 @@ class ToolCallResult:
                 or not isinstance(block.get("text"), str)
             ):
                 raise ServerWireError(-32603)
+            if "_meta" in block:
+                _trace_formats(_object(block["_meta"]), limits)
             # Validate every supported dated text annotation and metadata field.
         from friday_mcp.client.protocol import ToolResult
 
@@ -685,18 +750,20 @@ class RegisteredTool:
         if not isinstance(clean, dict):
             raise ValueError("Invalid MCP tool definition")
         try:
-            parsed = ToolDefinition.parse(
-                clean, ProtocolLimits(depth=limits.depth), modern=True
-            )
-            name = parsed.name
-            if not name or len(name.encode("utf-8")) > min(128, limits.identity_bytes):
-                raise ValueError("Invalid MCP tool definition")
             input_raw = validate_schema(clean["inputSchema"], limits, input_schema=True)
             output_raw = (
                 validate_schema(clean["outputSchema"], limits)
                 if "outputSchema" in clean
                 else None
             )
+            parsed = ToolDefinition.parse(
+                clean, ProtocolLimits(depth=limits.depth), modern=True
+            )
+            name = parsed.name
+            if "_meta" in clean:
+                _trace_formats(_object(clean["_meta"]), limits)
+            if not name or len(name.encode("utf-8")) > min(128, limits.identity_bytes):
+                raise ValueError("Invalid MCP tool definition")
             schema = decode(input_raw, limits, budget=8192)
             if not isinstance(schema, dict):
                 raise ValueError("Invalid MCP tool definition")

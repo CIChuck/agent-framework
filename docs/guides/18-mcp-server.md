@@ -114,8 +114,8 @@ and event-stream, `MCP-Protocol-Version`, `Mcp-Method`, and `Mcp-Name` for calls
 Static primitive `x-mcp-header` bindings, including nested property paths, must
 match the body. Unicode/unsafe ASCII values use the dated Base64 sentinel.
 HeaderMismatch (`-32020`) is an HTTP400 failure before any handler runs. Unknown
-methods return HTTP404/`-32601`; unsupported versions HTTP400/`-32022` with safe
-supportedVersions data. GET/DELETE return405. There are no protocol sessions,
+methods return HTTP404/`-32601`; unsupported versions HTTP400/`-32022` with bounded
+supported/requested data. GET/DELETE return405. There are no protocol sessions,
 GET event streams, session cookies/IDs, `/message` split endpoints or redirects.
 
 ## Discovery, limits and lifecycle
@@ -131,13 +131,15 @@ encoding rather than silently rewritten.
 
 `ServerLimits` provides lower-only bounds: request/result wire64KiB, depth32,
 nodes8192, catalog1MiB/256 tools/16 pages/64 tools per page,32 active operations,
-headers16KiB, IDs256 bytes, cursors256 bytes,30s operation timeout and0.5s shutdown
+headers16KiB, IDs/protocol-version strings256 bytes, cursors256 bytes,30s operation timeout and0.5s shutdown
 settlement. Individual schemas are additionally capped at8KiB/256 schema nodes,
 with bounded instance-validation work. Lower incompatible bounds fail before
 publishing a partial catalog. Catalog pages account for the actual encoded wire
 and worst permitted ID; opaque cursors expire when the catalog changes.
-Admission bounds simultaneous invocations; deployment-wide rate policy remains
-an application responsibility. Deadlines include body/admission/handler work.
+Admission bounds simultaneous invocations and tool starts per second, both
+to active_requests (default32). The per-instance rolling one-second start window
+persists across restart; denied starts have no handler span. Deployment-wide
+policy remains an application responsibility. Deadlines include body/admission/handler work.
 
 Stdio cancellation targets only the connection's pending request. HTTP disconnect
 cancels only its originating POST. Stop closes streams/listeners and cancels owned
@@ -147,7 +149,8 @@ drains the owners. A restarted connection cannot publish an old reply or remove
 its new owner. Python async cancellation requires cooperative handler behavior.
 
 Optional `telemetry=...` accepts the existing public TelemetryInterface. It creates
-one handler span with fixed method/outcome labels, without raw IDs, tool names,
+one handler span with fixed method/outcome and a bounded hash of the registered
+tool identity, without raw IDs, tool names,
 arguments/results/schemas, credentials, URLs or client trace data. Observer failure
 cannot replay a handler. No provider/exporter is created and Langfuse is optional
 future work. Unsupported server profiles include2025 compatibility, prompts,
@@ -169,3 +172,20 @@ legacy handshake. The version-hint-on-initialize-error SHOULD is declined for a
 uniform fixed-error policy. Application consent/UI policy remains with the
 explicit tool owner; this server never loads arbitrary application tools.
 Do not annotate sensitive parameters with x-mcp-header: intermediaries see them.
+
+Unsupported-version errors carry exactly `data.supported` and `data.requested`
+according to the pinned2026 error schema; discovery separately uses
+`supportedVersions`. The bounded requested version appears only in its own wire
+error data, with a fixed diagnostic message and no telemetry label. The server
+refuses requestState/inputResponses and cannot construct the inactive missing-
+client-capability error without an activated optional role. Complete tool/text/
+result metadata is format-validated before emission; registered tool metadata
+and trusted custom result metadata are immutable snapshots.
+
+HTTP ownership includes response writes: a blocked send remains owned, disconnect
+cancels only its request, and attempted headers are never replayed. The original
+operation deadline covers successful body/handler/delivery work. A fixed terminal
+timeout rejection may use only the remaining shutdown-settlement window measured
+from that original deadline; it cannot restart a handler or extend its deadline.
+If a response write already started, timeout closes that operation without a
+second response. Cooperative cancellation is required of the ASGI transport.

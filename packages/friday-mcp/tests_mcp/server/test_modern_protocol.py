@@ -260,7 +260,7 @@ async def test_unsupported_version_safe_data():
     assert result["error"] == {
         "code": -32022,
         "message": "Unsupported protocol version",
-        "data": {"supportedVersions": [VERSION]},
+        "data": {"supported": [VERSION], "requested": "2025-11-25"},
     }
 
 
@@ -682,9 +682,11 @@ def test_text_annotation_metadata_complete_and_input_required_rejected():
 
 @pytest.mark.asyncio
 async def test_page_worst_encoded_valid_id_and_low_catalog_count():
-    server = ModernToolsMCPServer(limits=ServerLimits(result_bytes=2500))
+    server = ModernToolsMCPServer(
+        limits=ServerLimits(result_bytes=2500, identity_bytes=192)
+    )
     server.register_tool(definition(), echo)
-    result = await server.handle(rpc("tools/list", rid=chr(0) * 256))
+    result = await server.handle(rpc("tools/list", rid=chr(0) * 192))
     assert "result" in result and len(encode(result, server.limits)) <= 2500
     tiny = ModernToolsMCPServer(limits=ServerLimits(catalog_tools=1))
     tiny.register_tool(definition(), echo)
@@ -755,3 +757,305 @@ async def test_valid_trace_fields_never_forwarded_to_handler(trace):
     )
     assert "result" in response and received == [{}]
     assert all(key not in str(response) for key in trace)
+
+
+@pytest.mark.asyncio
+async def test_version_error_required_data_sdk_model():
+    from mcp_types import UnsupportedProtocolVersionErrorData
+    from pydantic import ValidationError
+
+    server = ModernToolsMCPServer()
+    version = "2026-08-01"
+    response = await server.handle(
+        rpc(
+            meta={
+                PREFIX + "protocolVersion": version,
+                PREFIX + "clientCapabilities": {},
+            }
+        )
+    )
+    data = response["error"]["data"]
+    parsed = UnsupportedProtocolVersionErrorData.model_validate(data)
+    assert parsed.supported == [VERSION] and parsed.requested == version
+    assert set(data) == {"supported", "requested"}
+    discovery = (await server.handle(rpc()))["result"]
+    assert discovery["supportedVersions"] == [VERSION] and "supported" not in discovery
+    for malformed in (
+        {"supportedVersions": [VERSION]},
+        {"supported": None, "requested": version},
+        {"supported": [VERSION], "requested": None},
+        {"supported": [None], "requested": version},
+        {"supported": [VERSION]},
+        {"requested": version},
+    ):
+        with pytest.raises(ValidationError):
+            UnsupportedProtocolVersionErrorData.model_validate(malformed)
+
+
+@pytest.mark.asyncio
+async def test_version_error_owner_privacy(caplog):
+    from tests_mcp.server.test_server_security import Observer
+
+    observer = Observer()
+    server = ModernToolsMCPServer(telemetry=observer)
+    version = "bounded-requested-version"
+    meta = {
+        PREFIX + "protocolVersion": version,
+        PREFIX + "clientCapabilities": {},
+        "example.org/token": "metadata-secret",
+    }
+    response = await server.handle(rpc(rid="own-id", meta=meta))
+    assert (
+        response["id"] == "own-id" and response["error"]["data"]["requested"] == version
+    )
+    assert version not in response["error"]["message"]
+    assert "metadata-secret" not in str(response) and not observer.events
+    assert version not in caplog.text
+    other = await server.handle(rpc())
+    assert version not in str(other)
+    meta[PREFIX + "protocolVersion"] = "x" * 257
+    assert (await server.handle(rpc(meta=meta)))["error"]["code"] == -32602
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("key", ["requestState", "inputResponses"])
+@pytest.mark.parametrize("value", [None, "state", {}, [], True, 1])
+async def test_interactive_state_fields_rejected(key, value):
+    server = ModernToolsMCPServer()
+    invoked = []
+
+    async def handler(args):
+        invoked.append(args)
+        return ToolCallResult.text("done")
+
+    server.register_tool(definition(), handler)
+    response = await server.handle(
+        rpc("tools/call", params={"name": "echo", key: value})
+    )
+    assert response["error"]["code"] == -32602 and not invoked
+    assert "result" in await server.handle(rpc("tools/call", params={"name": "echo"}))
+    assert invoked == [{}]
+
+
+def test_inactive_error_variant_cannot_be_constructed():
+    with pytest.raises(ValueError, match="Inactive"):
+        ServerWireError(-32021)
+    with pytest.raises(ValueError, match="requires requested"):
+        ServerWireError(-32022)
+    with pytest.raises(ValueError):
+        ServerWireError(-32022, requested_version="x" * 257)
+    with pytest.raises(ValueError):
+        ServerWireError(-32603, requested_version="wrong-role")
+
+
+@pytest.mark.parametrize("level", ["result", "text", "tool"])
+@pytest.mark.parametrize(
+    "key,value",
+    [
+        ("traceparent", None),
+        ("traceparent", "bad-secret"),
+        ("tracestate", "A=x"),
+        ("baggage", "x=bad%QQ"),
+    ],
+)
+def test_emitted_meta_reserved_trace_variants(level, key, value):
+    meta = {key: value}
+    with pytest.raises((ValueError, ServerWireError)):
+        if level == "tool":
+            RegisteredTool.from_definition(definition(_meta=meta), echo)
+        elif level == "text":
+            ToolCallResult.from_value(
+                {"content": [{"type": "text", "text": "done", "_meta": meta}]}
+            )
+        else:
+            ToolCallResult.from_value({"content": [], "_meta": meta})
+
+
+@pytest.mark.asyncio
+async def test_result_meta_preserved_with_fixed_server_identity():
+    async def handler(args):
+        return ToolCallResult.from_value(
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "done",
+                        "_meta": {"example.org/block": "block"},
+                    }
+                ],
+                "_meta": {
+                    "example.org/annotation": "trusted",
+                    PREFIX + "serverInfo": {"name": "override-attempt", "version": "1"},
+                },
+            }
+        )
+
+    server = ModernToolsMCPServer()
+    server.register_tool(definition(), handler)
+    result = (await server.handle(rpc("tools/call", params={"name": "echo"})))["result"]
+    assert result["_meta"]["example.org/annotation"] == "trusted"
+    assert result["_meta"][PREFIX + "serverInfo"]["name"] == "FridayModernTools"
+    assert result["content"][0]["_meta"] == {"example.org/block": "block"}
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("value", [b"NaN", b"Infinity", b"-Infinity", b"1e999"])
+async def test_nonfinite_json_tokens_parse_error_zero_handler(value):
+    raw = rpc(
+        "tools/call", params={"name": "echo", "arguments": {"value": "PLACEHOLDER"}}
+    ).replace(b'"PLACEHOLDER"', value)
+    response = await ModernToolsMCPServer().handle(raw)
+    assert response["error"]["code"] == -32700
+
+
+@pytest.mark.asyncio
+async def test_surrogate_object_key_rejected_before_handler():
+    received = []
+
+    async def handler(args):
+        received.append(args)
+        return ToolCallResult.text("done")
+
+    server = ModernToolsMCPServer()
+    server.register_tool(definition(), handler)
+    raw = rpc(
+        "tools/call", params={"name": "echo", "arguments": {"key": "value"}}
+    ).replace(b'"key"', b'"\\ud800"')
+    assert (await server.handle(raw))["error"]["code"] == -32602
+    assert not received
+
+
+@pytest.mark.asyncio
+async def test_every_emitted_error_variant_pinned_fields():
+    from mcp_types.jsonrpc import ErrorData, JSONRPCError
+
+    server = ModernToolsMCPServer()
+
+    async def malformed(args):
+        return ToolCallResult(b'{"content":null}')
+
+    server.register_tool(definition(), malformed)
+    inputs = [
+        (b"{", -32700),
+        (b"{}", -32600),
+        (rpc("unknown"), -32601),
+        (
+            rpc(
+                meta={
+                    PREFIX + "protocolVersion": VERSION,
+                    PREFIX + "clientCapabilities": None,
+                }
+            ),
+            -32602,
+        ),
+        (rpc("tools/call", params={"name": "echo"}), -32603),
+    ]
+    for raw, code in inputs:
+        response = await server.handle(raw)
+        # The dated schema permits no-id parse/invalid errors. The SDK generic
+        # JSONRPCError wrapper still requires id, so validate the common body
+        # and separately check the dated envelope rather than fabricating id.
+        error = ErrorData.model_validate(response["error"])
+        assert error.code == code and set(response["error"]) == {"code", "message"}
+        if "id" in response:
+            assert JSONRPCError.model_validate(response).error.code == code
+        else:
+            assert set(response) == {"jsonrpc", "error"}
+    await server.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "key,value",
+    [
+        ("progressToken", None),
+        ("progressToken", True),
+        ("progressToken", {}),
+        (PREFIX + "logLevel", None),
+        (PREFIX + "logLevel", "invalid"),
+        (PREFIX + "clientCapabilities", {"sampling": {"context": None}}),
+        (PREFIX + "clientCapabilities", {"sampling": {"tools": None}}),
+        (PREFIX + "clientCapabilities", {"elicitation": {"form": None}}),
+        (PREFIX + "clientCapabilities", {"elicitation": {"url": None}}),
+        (PREFIX + "clientCapabilities", {"extensions": {"unprefixed": {}}}),
+        (PREFIX + "clientCapabilities", {"extensions": {"example.org/test": None}}),
+    ],
+)
+async def test_known_meta_dependent_field_null_malformed(key, value):
+    meta = {
+        PREFIX + "protocolVersion": VERSION,
+        PREFIX + "clientCapabilities": {},
+        key: value,
+    }
+    assert (await ModernToolsMCPServer().handle(rpc(meta=meta)))["error"][
+        "code"
+    ] == -32602
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "level",
+    ["debug", "info", "notice", "warning", "error", "critical", "alert", "emergency"],
+)
+async def test_log_level_enum_valid_but_no_logging_role(level):
+    meta = {
+        PREFIX + "protocolVersion": VERSION,
+        PREFIX + "clientCapabilities": {},
+        PREFIX + "logLevel": level,
+    }
+    response = await ModernToolsMCPServer().handle(rpc(meta=meta))
+    assert response["result"]["capabilities"] == {"tools": {}}
+
+
+def test_text_metadata_omitted_null_and_invalid_key():
+    assert "_meta" not in ToolCallResult.text("done").value()["content"][0]
+    for meta in (None, [], {"invalid/key/format": "x"}, {PREFIX + "serverInfo": None}):
+        with pytest.raises(ServerWireError):
+            ToolCallResult.from_value({"content": [], "_meta": meta})
+
+
+@pytest.mark.parametrize("field", ["jsonrpc", "method", "params"])
+@pytest.mark.asyncio
+async def test_request_envelope_mandatory_field_omission_or_null(field):
+    for null in (True, False):
+        value = json.loads(rpc())
+        if null:
+            value[field] = None
+        else:
+            value.pop(field)
+        response = await ModernToolsMCPServer().handle(json.dumps(value).encode())
+        assert response["error"]["code"] == (-32602 if field == "params" else -32600)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "body",
+    [
+        {"jsonrpc": "2.0", "id": "known"},
+        {"jsonrpc": "wrong", "method": "server/discover", "id": "known"},
+        {"jsonrpc": "2.0", "method": None, "id": "known"},
+    ],
+)
+async def test_malformed_request_known_id_echoes_only_own_error(body):
+    response = await ModernToolsMCPServer().handle(json.dumps(body).encode())
+    assert response["error"]["code"] == -32600 and response["id"] == "known"
+
+
+@pytest.mark.parametrize(
+    "params",
+    [
+        {},
+        {"requestId": None},
+        {"requestId": True},
+        {"requestId": 1.5},
+        {"requestId": 1, "reason": None},
+        {"requestId": 1, "_meta": {PREFIX + "subscriptionId": None}},
+    ],
+)
+def test_notification_dependent_params_exact_invalid_params(params):
+    raw = json.dumps(
+        {"jsonrpc": "2.0", "method": "notifications/cancelled", "params": params}
+    ).encode()
+    with pytest.raises(ServerWireError) as error:
+        ServerRequest.parse(raw, ServerLimits())
+    assert error.value.code == -32602

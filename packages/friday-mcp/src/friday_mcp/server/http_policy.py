@@ -9,6 +9,7 @@ import ipaddress
 import math
 import re
 from dataclasses import dataclass, field
+from decimal import Decimal, InvalidOperation
 from urllib.parse import urlsplit
 
 from friday_mcp.client.protocol import JSONValue
@@ -32,7 +33,12 @@ class HTTPAccessError(ValueError):
 
 
 def _authority(value: str) -> bool:
-    if not value or _AUTHORITY.fullmatch(value) is None or ".." in value:
+    if (
+        not value
+        or len(value) > 256
+        or _AUTHORITY.fullmatch(value) is None
+        or ".." in value
+    ):
         return False
     try:
         parsed = urlsplit("https://" + value)
@@ -44,6 +50,8 @@ def _authority(value: str) -> bool:
 
 
 def _origin(value: str) -> bool:
+    if not value or any(not 0x21 <= ord(c) <= 0x7E for c in value):
+        return False
     try:
         parsed = urlsplit(value)
         return (
@@ -86,6 +94,8 @@ class HTTPServerPolicy:
             or type(self.require_tls) is not bool
         ):
             raise ValueError("Invalid MCP HTTP policy")
+        if not isinstance(self.bind_host, str):
+            raise ValueError("Invalid MCP HTTP policy")
         try:
             address = ipaddress.ip_address(self.bind_host)
         except ValueError:
@@ -124,13 +134,15 @@ class HTTPServerPolicy:
         query: bytes,
         limits: ServerLimits,
     ) -> dict[bytes, bytes]:
-        if query:
-            raise HTTPAccessError(400)
         headers: dict[bytes, bytes] = {}
         size = 0
         for name, value in pairs:
             size += len(name) + len(value) + 4
             lower = name.lower()
+            if lower in (b"mcp-protocol-version", b"mcp-method", b"mcp-name") and (
+                lower in headers or any(c in value for c in (b"\r", b"\n", b"\0"))
+            ):
+                raise ServerWireError(-32020)
             if (
                 size > limits.header_bytes
                 or _TOKEN.fullmatch(name) is None
@@ -139,6 +151,13 @@ class HTTPServerPolicy:
             ):
                 raise HTTPAccessError(400)
             headers[lower] = value
+        if b"origin" in headers:
+            try:
+                origin = headers[b"origin"].decode("ascii")
+            except UnicodeError:
+                raise HTTPAccessError(403) from None
+            if not _origin(origin) or origin not in self.allowed_origins:
+                raise HTTPAccessError(403)
         try:
             host = headers.get(b"host", b"").decode("ascii").lower()
             expected = self.allowed_hosts or (
@@ -152,16 +171,20 @@ class HTTPServerPolicy:
                 raise HTTPAccessError(400)
             if self.require_tls and scheme != "https":
                 raise HTTPAccessError(400)
-            if b"origin" in headers:
-                origin = headers[b"origin"].decode("ascii")
-                if not _origin(origin) or origin not in self.allowed_origins:
-                    raise HTTPAccessError(403)
         except UnicodeError:
-            raise HTTPAccessError(403 if b"origin" in headers else 400) from None
+            raise HTTPAccessError(400) from None
+        if query:
+            raise HTTPAccessError(400)
         if self.bearer_token is not None:
-            expected_token = b"Bearer " + self.bearer_token.encode("ascii")
-            if not hmac.compare_digest(
-                headers.get(b"authorization", b""), expected_token
+            auth_scheme, separator, credential = headers.get(
+                b"authorization", b""
+            ).partition(b" ")
+            if (
+                auth_scheme.lower() != b"bearer"
+                or not separator
+                or not hmac.compare_digest(
+                    credential, self.bearer_token.encode("ascii")
+                )
             ):
                 raise HTTPAccessError(401)
         elif b"authorization" in headers:
@@ -241,9 +264,66 @@ def validate_rpc_headers(
                 or int(value) != value
             ):
                 raise ServerWireError(-32020)
-            try:
-                number = float(text)
-            except ValueError:
-                raise ServerWireError(-32020) from None
-            if not math.isfinite(number) or number != value:
+            if (
+                re.fullmatch(
+                    r"[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?", text
+                )
+                is None
+            ):
                 raise ServerWireError(-32020)
+            try:
+                number = Decimal(text)
+            except InvalidOperation:
+                raise ServerWireError(-32020) from None
+            if not number.is_finite() or number != int(value):
+                raise ServerWireError(-32020)
+
+
+def validate_media_headers(headers: dict[bytes, bytes]) -> None:
+    content = headers.get(b"content-type", b"").split(b";")
+    if content[0].strip().lower() != b"application/json":
+        raise ServerWireError(-32600)
+    seen: set[bytes] = set()
+    for parameter in content[1:]:
+        key, separator, value = parameter.strip().partition(b"=")
+        key = key.lower()
+        if (
+            not separator
+            or key != b"charset"
+            or key in seen
+            or value.strip().lower() not in (b"utf-8", b'"utf-8"')
+        ):
+            raise ServerWireError(-32600)
+        seen.add(key)
+    accepted: set[bytes] = set()
+    for part in headers.get(b"accept", b"").split(b","):
+        fields = part.split(b";")
+        media = fields[0].strip().lower()
+        if (
+            re.fullmatch(
+                rb"(?:[!#$%&'*+.^_`|~0-9A-Za-z-]+|\*)/(?:[!#$%&'*+.^_`|~0-9A-Za-z-]+|\*)",
+                media,
+            )
+            is None
+        ):
+            raise ServerWireError(-32600)
+        quality = 1.0
+        quality_seen = False
+        for field_value in fields[1:]:
+            key, separator, value = field_value.strip().partition(b"=")
+            if (
+                not separator
+                or key.lower() != b"q"
+                or quality_seen
+                or re.fullmatch(
+                    rb"(?:0(?:\.[0-9]{0,3})?|1(?:\.0{0,3})?)", value.strip()
+                )
+                is None
+            ):
+                raise ServerWireError(-32600)
+            quality = float(value.strip())
+            quality_seen = True
+        if quality > 0:
+            accepted.add(media)
+    if not {b"application/json", b"text/event-stream"}.issubset(accepted):
+        raise ServerWireError(-32600)

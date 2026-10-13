@@ -18,11 +18,12 @@ from friday_mcp.server.protocol import (
 
 
 def _handler(tool: ToolDefinition, limits: ServerLimits) -> ToolHandler:
-    if not inspect.iscoroutinefunction(tool.execute):
+    method = tool.execute
+    if not inspect.iscoroutinefunction(method):
         raise ValueError("MCP registry tool must be async")
 
     async def execute(arguments: dict[str, JSONValue]) -> ToolCallResult:
-        result = await tool.execute(**arguments)
+        result = await method(**arguments)
         if not isinstance(result, str):
             raise ValueError("MCP registry tool returned invalid result")
         return ToolCallResult.text(result, limits=limits)

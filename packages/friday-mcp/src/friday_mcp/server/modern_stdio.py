@@ -92,7 +92,12 @@ class ModernStdioMCPServer(ModernToolsMCPServer):
             if remaining <= 0:
                 return
             try:
-                raw = encode(response, self.limits) + b"\n"
+                raw = (
+                    encode(
+                        response, self.limits, byte_limit=self.limits.result_bytes - 1
+                    )
+                    + b"\n"
+                )
                 async with asyncio.timeout(remaining):
                     async with lock:
                         if self._connection is connection:

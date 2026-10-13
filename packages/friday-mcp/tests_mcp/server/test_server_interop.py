@@ -69,6 +69,15 @@ async def exercise_sdk(client, counter):
     with pytest.raises(MCPError) as invalid:
         await client.session.send_discover("unsupported")
     assert invalid.value.error.code == -32022
+    from mcp_types import UnsupportedProtocolVersionErrorData
+
+    decoded_error = UnsupportedProtocolVersionErrorData.model_validate(
+        invalid.value.error.data
+    )
+    assert (
+        decoded_error.supported == [VERSION]
+        and decoded_error.requested == "unsupported"
+    )
     requests = [r for r in rows(counter) if r["event"] == "request"]
     assert any(
         r["method"] == "server/discover" and r["version"] == VERSION for r in requests

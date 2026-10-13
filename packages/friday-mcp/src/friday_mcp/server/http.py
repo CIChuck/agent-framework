@@ -14,11 +14,14 @@ from friday_core import TelemetryInterface
 from friday_mcp.server.http_policy import (
     HTTPAccessError,
     HTTPServerPolicy,
+    validate_media_headers,
     validate_rpc_headers,
 )
 from friday_mcp.server.modern import ModernToolsMCPServer
 from friday_mcp.server.protocol import (
     DEFAULT_SERVER_LIMITS,
+    SSE_PREFIX,
+    SSE_SUFFIX,
     ServerLimits,
     ServerRequest,
     ServerWireError,
@@ -28,7 +31,7 @@ from friday_mcp.server.protocol import (
 
 if TYPE_CHECKING:
     from fastapi import FastAPI
-    from starlette.types import Receive, Scope, Send
+    from starlette.types import Message, Receive, Scope, Send
     from uvicorn import Server
 
 
@@ -67,9 +70,7 @@ class StreamableHTTPMCPServer(ModernToolsMCPServer):
             redirect_slashes=False,
             lifespan=self._lifespan,
         )
-        app.router.routes.append(
-            Route(self.policy.path, self, methods=["POST", "GET", "DELETE"])
-        )
+        app.router.routes.append(Route(self.policy.path, self))
         return app
 
     @asynccontextmanager
@@ -159,69 +160,105 @@ class StreamableHTTPMCPServer(ModernToolsMCPServer):
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if scope.get("type") != "http":
             return
-        if scope.get("path") != self.policy.path:
-            await self._send(send, 404, b"", b"application/json")
-            return
-        if scope.get("method") != "POST":
-            await self._send(
-                send, 405, b"", b"application/json", extra=[(b"allow", b"POST")]
-            )
-            return
-        deadline = asyncio.get_running_loop().time() + self.limits.timeout_seconds
+        loop = asyncio.get_running_loop()
+        deadline = loop.time() + self.limits.timeout_seconds
         raw = bytearray()
         body_done = asyncio.Event()
-        headers: dict[bytes, bytes] = {}
-        try:
-            headers = self.policy.validate(
-                scope.get("headers", []),
-                scheme=scope.get("scheme", "http"),
-                query=scope.get("query_string", b""),
-                limits=self.limits,
-            )
-        except HTTPAccessError as error:
+        peer_gone = False
+        response_started = False
+
+        async def outgoing(message: Message) -> None:
+            nonlocal response_started
+            if peer_gone or self._closed:
+                raise asyncio.CancelledError
+            if message.get("type") == "http.response.start":
+                # An attempted write may already have an effect. Never replay headers.
+                response_started = True
+            await send(message)
+
+        async def error_response(
+            error: ServerWireError, status: int | None = None
+        ) -> None:
             await self._send(
-                send,
-                error.status,
-                encode(ServerWireError(-32600).response(), self.limits),
+                outgoing,
+                error.http_status if status is None else status,
+                encode(
+                    error.response(safe_error_id(bytes(raw), self.limits)), self.limits
+                ),
                 b"application/json",
             )
-            return
 
-        async def operation() -> bytes:
-            if (
-                headers.get(b"content-type", b"").split(b";", 1)[0].strip().lower()
-                != b"application/json"
-            ):
-                raise ServerWireError(-32600)
-            accepts = {
-                v.split(b";", 1)[0].strip().lower()
-                for v in headers.get(b"accept", b"").split(b",")
-            }
-            if not {b"application/json", b"text/event-stream"}.issubset(accepts):
-                raise ServerWireError(-32600)
-            while True:
-                message = await receive()
-                if message["type"] == "http.disconnect":
-                    raise asyncio.CancelledError
-                if message["type"] != "http.request":
-                    raise ServerWireError(-32600)
-                chunk = message.get("body", b"")
-                if len(raw) + len(chunk) > self.limits.request_bytes:
-                    raise ServerWireError(-32600)
-                raw.extend(chunk)
-                if not message.get("more_body", False):
-                    break
-            body_done.set()
-            request = ServerRequest.parse(bytes(raw), self.limits)
-            validate_rpc_headers(headers, request, self.selected_tool(request))
-            response = await self.dispatch(request)
-            return encode(response, self.limits)
+        async def operation() -> None:
+            try:
+                headers = self.policy.validate(
+                    scope.get("headers", []),
+                    scheme=scope.get("scheme", "http"),
+                    query=scope.get("query_string", b""),
+                    limits=self.limits,
+                )
+                if scope.get("path") != self.policy.path:
+                    await self._send(outgoing, 404, b"", b"application/json")
+                    return
+                if scope.get("method") != "POST":
+                    await self._send(
+                        outgoing,
+                        405,
+                        b"",
+                        b"application/json",
+                        extra=[(b"allow", b"POST")],
+                    )
+                    return
+                validate_media_headers(headers)
+                while True:
+                    message = await receive()
+                    if message["type"] == "http.disconnect":
+                        raise asyncio.CancelledError
+                    if message["type"] != "http.request":
+                        raise ServerWireError(-32600)
+                    chunk = message.get("body", b"")
+                    if len(raw) + len(chunk) > self.limits.request_bytes:
+                        raise ServerWireError(-32600)
+                    raw.extend(chunk)
+                    if not message.get("more_body", False):
+                        break
+                body_done.set()
+                request = ServerRequest.parse(bytes(raw), self.limits)
+                validate_rpc_headers(headers, request, self.selected_tool(request))
+                result = encode(await self.dispatch(request), self.limits)
+                if self.response_mode == "sse":
+                    event = SSE_PREFIX + result + SSE_SUFFIX
+                    if len(event) > self.limits.result_bytes:
+                        raise ServerWireError(-32603)
+                    await self._send(
+                        outgoing,
+                        200,
+                        event,
+                        b"text/event-stream",
+                        extra=[
+                            (b"x-accel-buffering", b"no"),
+                            (b"cache-control", b"no-cache"),
+                        ],
+                    )
+                else:
+                    await self._send(outgoing, 200, result, b"application/json")
+            except HTTPAccessError as error:
+                if not response_started:
+                    await error_response(ServerWireError(-32600), error.status)
+            except ServerWireError as error:
+                if response_started:
+                    raise
+                await error_response(error)
+            except asyncio.CancelledError:
+                raise
+            except Exception:
+                if response_started:
+                    raise ServerWireError(-32603) from None
+                await error_response(ServerWireError(-32603))
 
         async def disconnect() -> None:
             await body_done.wait()
             while True:
-                message = await receive()
-                if message["type"] == "http.disconnect":
+                if (await receive())["type"] == "http.disconnect":
                     return
 
         running = asyncio.create_task(self.run_owned(operation, deadline))
@@ -231,48 +268,40 @@ class StreamableHTTPMCPServer(ModernToolsMCPServer):
                 (running, watcher), return_when=asyncio.FIRST_COMPLETED
             )
             if watcher in done:
+                peer_gone = True
                 running.cancel()
                 await asyncio.gather(running, return_exceptions=True)
                 return
-            result = running.result()
-            if self.response_mode == "sse":
-                await self._send(
-                    send,
-                    200,
-                    b"event: message\ndata: " + result + b"\n\n",
-                    b"text/event-stream",
-                    extra=[
-                        (b"x-accel-buffering", b"no"),
-                        (b"cache-control", b"no-cache"),
-                    ],
+            running.result()
+        except ServerWireError:
+            # The original operation deadline covers body, handler and successful
+            # delivery. Only a fixed terminal error may use the remaining bounded
+            # shutdown-settlement window; never restart work or replay a write.
+            await asyncio.sleep(0)
+            if not response_started and not peer_gone and not self._closed:
+
+                async def terminal() -> None:
+                    await error_response(ServerWireError(-32603))
+
+                terminal_task = asyncio.create_task(
+                    self.run_owned(terminal, deadline + self.limits.shutdown_seconds)
                 )
-            else:
-                await self._send(send, 200, result, b"application/json")
-        except ServerWireError as error:
-            await self._send(
-                send,
-                error.http_status,
-                encode(
-                    error.response(safe_error_id(bytes(raw), self.limits)), self.limits
-                ),
-                b"application/json",
-            )
+                try:
+                    done, _ = await asyncio.wait(
+                        (terminal_task, watcher), return_when=asyncio.FIRST_COMPLETED
+                    )
+                    if watcher in done:
+                        peer_gone = True
+                        terminal_task.cancel()
+                    await asyncio.gather(terminal_task, return_exceptions=True)
+                finally:
+                    if not terminal_task.done():
+                        terminal_task.cancel()
         except asyncio.CancelledError:
+            peer_gone = True
             running.cancel()
             await asyncio.gather(running, return_exceptions=True)
             raise
-        except Exception:
-            await self._send(
-                send,
-                500,
-                encode(
-                    ServerWireError(-32603).response(
-                        safe_error_id(bytes(raw), self.limits)
-                    ),
-                    self.limits,
-                ),
-                b"application/json",
-            )
         finally:
             watcher.cancel()
             await asyncio.gather(watcher, return_exceptions=True)

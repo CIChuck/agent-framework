@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
+import math
 import secrets
+from collections import deque
 from collections.abc import Awaitable, Callable, Iterable
 from contextlib import suppress
 from dataclasses import dataclass
@@ -13,8 +16,10 @@ from friday_core import TelemetryInterface
 from friday_mcp.client.protocol import JSONValue
 from friday_mcp.server.protocol import (
     DEFAULT_SERVER_LIMITS,
-    IDENTITY,
+    IDENTITY_NAME,
+    IDENTITY_VERSION,
     PREFIX,
+    SSE_OVERHEAD,
     VERSION,
     RegisteredTool,
     ServerLimits,
@@ -23,6 +28,7 @@ from friday_mcp.server.protocol import (
     ToolCallResult,
     ToolHandler,
     encode,
+    identity,
     safe_error_id,
 )
 
@@ -49,6 +55,23 @@ class ModernToolsMCPServer:
         self._telemetry = telemetry
         self._owners: set[asyncio.Task[object]] = set()
         self._closed = False
+        self._tool_starts: deque[float] = deque()
+        if limits.identity_bytes < max(
+            len(IDENTITY_NAME.encode("utf-8")), len(IDENTITY_VERSION.encode("utf-8"))
+        ):
+            raise ValueError("MCP identity limits cannot represent server")
+        try:
+            encode(
+                ServerWireError(
+                    -32022, requested_version="\0" * limits.identity_bytes
+                ).response("\0" * limits.identity_bytes),
+                limits,
+                byte_limit=limits.result_bytes - SSE_OVERHEAD,
+            )
+        except ServerWireError:
+            raise ValueError(
+                "MCP result limits cannot represent version error"
+            ) from None
         self._catalog = self._stage(())
 
     @property
@@ -62,7 +85,7 @@ class ModernToolsMCPServer:
     def _result(self, fields: dict[str, JSONValue]) -> dict[str, JSONValue]:
         return {
             "resultType": "complete",
-            "_meta": {PREFIX + "serverInfo": dict(IDENTITY)},
+            "_meta": {PREFIX + "serverInfo": identity()},
             **fields,
         }
 
@@ -118,6 +141,7 @@ class ModernToolsMCPServer:
                         "result": self._page(tuple(items), reserved_cursor),
                     },
                     self.limits,
+                    byte_limit=self.limits.result_bytes - SSE_OVERHEAD,
                 )
                 return True
             except ServerWireError:
@@ -174,7 +198,14 @@ class ModernToolsMCPServer:
         """Bound admission and retain owners that resist cancellation."""
         if self._closed or len(self._owners) >= self.limits.active_requests:
             raise ServerWireError(-32603)
-        remaining = deadline - asyncio.get_running_loop().time()
+        if (
+            isinstance(deadline, bool)
+            or not isinstance(deadline, (int, float))
+            or not math.isfinite(deadline)
+        ):
+            raise ServerWireError(-32603)
+        now = asyncio.get_running_loop().time()
+        remaining = min(deadline - now, self.limits.timeout_seconds)
         if remaining <= 0:
             raise ServerWireError(-32603)
 
@@ -225,7 +256,9 @@ class ModernToolsMCPServer:
         if request.request_id is None:
             raise ServerWireError(-32601)
         if request.version != VERSION:
-            raise ServerWireError(-32022)
+            if request.version is None:
+                raise ServerWireError(-32602)
+            raise ServerWireError(-32022, requested_version=request.version)
         params = request.params
         catalog = self._catalog
         if request.method == "server/discover":
@@ -276,7 +309,7 @@ class ModernToolsMCPServer:
             "result": result,
         }
         try:
-            encode(response, self.limits)
+            encode(response, self.limits, byte_limit=self.limits.result_bytes - 1)
         except ServerWireError:
             raise ServerWireError(-32603) from None
         return response
@@ -290,6 +323,12 @@ class ModernToolsMCPServer:
     async def _execute(
         self, tool: RegisteredTool, arguments: dict[str, JSONValue]
     ) -> dict[str, JSONValue]:
+        now = asyncio.get_running_loop().time()
+        while self._tool_starts and self._tool_starts[0] <= now - 1.0:
+            self._tool_starts.popleft()
+        if len(self._tool_starts) >= self.limits.active_requests:
+            raise ServerWireError(-32603)
+        self._tool_starts.append(now)
         span: str | None = None
         outcome = "error"
         observer = self._telemetry
@@ -317,12 +356,22 @@ class ModernToolsMCPServer:
                 raise ServerWireError(-32603) from None
             if not tool.validate_output(result, self.limits):
                 raise ServerWireError(-32603)
-            result["_meta"] = {PREFIX + "serverInfo": dict(IDENTITY)}
+            meta = result.get("_meta", {})
+            if not isinstance(meta, dict):
+                raise ServerWireError(-32603)
+            result["_meta"] = {**meta, PREFIX + "serverInfo": identity()}
             outcome = "error" if result.get("isError") is True else "success"
             return result
         finally:
             if observer is not None and span is not None:
                 with suppress(Exception):
                     observer.end_span(
-                        span, {"method": "tools/call", "outcome": outcome}
+                        span,
+                        {
+                            "method": "tools/call",
+                            "tool_id": hashlib.sha256(
+                                tool.name.encode("utf-8")
+                            ).hexdigest()[:16],
+                            "outcome": outcome,
+                        },
                     )

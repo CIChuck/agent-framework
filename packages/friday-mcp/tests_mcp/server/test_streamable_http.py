@@ -331,3 +331,166 @@ async def test_http_notifications_unsupported_no_id_no_handler(method):
         )
         assert response.status_code == 404 and "id" not in response.json()
     assert not calls
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "content_type,accept",
+    [
+        ("application/json; garbage", "application/json,text/event-stream"),
+        ("application/json; charset=latin1", "application/json,text/event-stream"),
+        (
+            "application/json; charset=utf-8; charset=utf-8",
+            "application/json,text/event-stream",
+        ),
+        ("application/json", "application/json;q=0,text/event-stream"),
+        ("application/json", "application/json,text/event-stream;q=0"),
+        ("application/json", "application/json;q=2,text/event-stream"),
+        ("application/json", "application/json;,text/event-stream"),
+        ("application/json", "application/json;q=0.0001,text/event-stream"),
+    ],
+)
+async def test_media_header_parameter_and_quality_failures_zero_handler(
+    content_type, accept
+):
+    server, calls = make_server()
+    async with http_client(server) as client:
+        result = await client.post(
+            "/mcp",
+            headers={**headers(), "Content-Type": content_type, "Accept": accept},
+            content=rpc("tools/call", params={"name": "echo"}),
+        )
+        assert result.status_code == 400 and result.json()["error"]["code"] == -32600
+    assert not calls
+
+
+@pytest.mark.asyncio
+async def test_media_header_valid_parameters_and_unsupported_error_data():
+    from mcp_types import UnsupportedProtocolVersionErrorData
+
+    server, calls = make_server()
+    async with http_client(server) as client:
+        good = {
+            **headers(),
+            "Content-Type": 'Application/JSON; charset="UTF-8"',
+            "Accept": "application/json;q=0.5,text/event-stream;q=1.000",
+        }
+        assert (
+            await client.post(
+                "/mcp", headers=good, content=rpc("tools/call", params={"name": "echo"})
+            )
+        ).status_code == 200
+        version = "2026-08-01"
+        bad = {**headers("server/discover", name=None), "MCP-Protocol-Version": version}
+        response = await client.post(
+            "/mcp",
+            headers=bad,
+            content=rpc(
+                meta={
+                    PREFIX + "protocolVersion": version,
+                    PREFIX + "clientCapabilities": {},
+                }
+            ),
+        )
+        assert response.status_code == 400
+        parsed = UnsupportedProtocolVersionErrorData.model_validate(
+            response.json()["error"]["data"]
+        )
+        assert parsed.supported == [VERSION] and parsed.requested == version
+        assert len(calls) == 1
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "header",
+    [
+        "9007199254740991.1",
+        "9007199254740990.9",
+        "9007199254740991_0",
+        "NaN",
+        "Infinity",
+    ],
+)
+async def test_large_integer_header_does_not_round_mismatch_into_match(header):
+    server, calls = make_server(
+        schema={
+            "type": "object",
+            "properties": {"value": {"type": "integer", "x-mcp-header": "Value"}},
+        }
+    )
+    async with http_client(server) as client:
+        response = await client.post(
+            "/mcp",
+            headers={**headers(), "Mcp-Param-Value": header},
+            content=rpc(
+                "tools/call", params={"name": "echo", "arguments": {"value": 2**53 - 1}}
+            ),
+        )
+        assert (
+            response.status_code == 400 and response.json()["error"]["code"] == -32020
+        )
+    assert not calls
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("name", ["Mcp-Method", "Mcp-Name", "MCP-Protocol-Version"])
+async def test_duplicate_standard_metadata_header_exact_header_mismatch(name):
+    server, calls = make_server()
+    values = list(headers().items()) + [(name.lower(), "conflict")]
+    async with http_client(server) as client:
+        response = await client.post(
+            "/mcp", headers=values, content=rpc("tools/call", params={"name": "echo"})
+        )
+        assert (
+            response.status_code == 400 and response.json()["error"]["code"] == -32020
+        )
+        assert "id" not in response.json()  # Header rejection preceded body parsing.
+    assert not calls
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("mode,status", [("json", 200), ("sse", 500)])
+async def test_actual_sse_framing_budget_and_single_invocation(mode, status):
+    from friday_mcp.server import ServerLimits
+
+    limit = 2048
+    server, _ = make_server(
+        mode, limits=ServerLimits(result_bytes=limit, identity_bytes=64)
+    )
+    skeleton = {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+            "resultType": "complete",
+            "content": [{"type": "text", "text": ""}],
+            "isError": False,
+            "_meta": {
+                PREFIX + "serverInfo": {"name": "FridayModernTools", "version": "1.0.0"}
+            },
+        },
+    }
+    count = (
+        limit
+        - 1
+        - len(json.dumps(skeleton, separators=(",", ":"), sort_keys=True).encode())
+    )
+    called = []
+
+    async def handler(args):
+        called.append(1)
+        return ToolCallResult.text("x" * count)
+
+    server.replace_tools([])
+    server.register_tool(definition(), handler)
+    async with http_client(server) as client:
+        response = await client.post(
+            "/mcp",
+            headers=headers(),
+            content=rpc("tools/call", params={"name": "echo"}),
+        )
+        assert response.status_code == status and len(response.content) <= limit
+        if mode == "json":
+            assert len(response.content) == limit - 1
+        else:
+            assert response.json()["error"]["code"] == -32603
+    assert called == [1]

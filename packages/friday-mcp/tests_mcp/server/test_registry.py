@@ -108,3 +108,24 @@ def test_collision_staged_before_any_publication():
     with pytest.raises(ValueError, match="collision"):
         configure_modern_tools_mode(server, registry)
     assert server.tools == () and not a.calls and not b.calls
+
+
+@pytest.mark.asyncio
+async def test_registry_handler_reference_captured(monkeypatch):
+    registry = DefaultToolRegistry()
+    tool = SyntheticTool()
+    registry.register(tool)
+    server = ModernToolsMCPServer()
+    configure_modern_tools_mode(server, registry)
+    changed = []
+
+    async def replacement(**kwargs):
+        changed.append(kwargs)
+        return "replacement"
+
+    monkeypatch.setattr(tool, "execute", replacement)
+    response = await server.handle(
+        rpc("tools/call", params={"name": "echo", "arguments": {"text": "captured"}})
+    )
+    assert response["result"]["content"][0]["text"] == "captured"
+    assert not changed and tool.calls == [{"text": "captured"}]

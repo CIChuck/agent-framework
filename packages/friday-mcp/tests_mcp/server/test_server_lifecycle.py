@@ -184,3 +184,193 @@ async def test_http_body_wait_consumes_original_deadline():
     assert messages[0]["status"] == 500 and not calls
     await server.stop()
     assert server.active_requests == 0
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("budget", [1, 2, 3, 4])
+async def test_tool_start_rate_budget_is_instance_local_and_bounded(budget):
+    from tests_mcp.server.test_server_security import Observer
+
+    observer = Observer()
+    server = ModernToolsMCPServer(
+        limits=ServerLimits(active_requests=budget), telemetry=observer
+    )
+    starts = []
+
+    async def handler(args):
+        starts.append(1)
+        return ToolCallResult.text("done")
+
+    server.register_tool(definition(), handler)
+    for _ in range(budget):
+        assert "result" in await server.handle(
+            rpc("tools/call", params={"name": "echo"})
+        )
+    assert server.active_requests == 0
+    response = await server.handle(rpc("tools/call", params={"name": "echo"}))
+    assert response["error"]["code"] == -32603 and len(starts) == budget
+    assert len(observer.events) == 2 * budget
+    other = ModernToolsMCPServer(limits=ServerLimits(active_requests=budget))
+    other.register_tool(definition(), handler)
+    assert "result" in await other.handle(rpc("tools/call", params={"name": "echo"}))
+    await asyncio.sleep(1.01)
+    assert "result" in await server.handle(rpc("tools/call", params={"name": "echo"}))
+    assert len(starts) == budget + 2
+    await server.stop()
+    await other.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("deadline", [True, float("nan"), float("inf")])
+async def test_invalid_public_deadline_no_owned_operation(deadline):
+    server = ModernToolsMCPServer()
+    assert (await server.handle(rpc(), deadline=deadline))["error"]["code"] == -32603
+    assert server.active_requests == 0
+
+
+@pytest.mark.asyncio
+async def test_public_later_deadline_cannot_extend_operation_budget():
+    server = ModernToolsMCPServer(limits=ServerLimits(timeout_seconds=0.03))
+
+    async def handler(args):
+        await asyncio.sleep(1)
+        return ToolCallResult.text("late")
+
+    server.register_tool(definition(), handler)
+    result = await asyncio.wait_for(
+        server.handle(
+            rpc("tools/call", params={"name": "echo"}),
+            deadline=asyncio.get_running_loop().time() + 10,
+        ),
+        0.2,
+    )
+    assert result["error"]["code"] == -32603
+    await server.stop()
+
+
+@pytest.mark.asyncio
+async def test_http_blocked_send_remains_owned_until_deadline_without_replay():
+    server, calls = make_server(limits=ServerLimits(timeout_seconds=0.03))
+    queue = asyncio.Queue()
+    await queue.put({"type": "http.request", "body": rpc(), "more_body": False})
+    scope = {
+        "type": "http",
+        "path": "/mcp",
+        "method": "POST",
+        "scheme": "http",
+        "query_string": b"",
+        "headers": [
+            (k.lower().encode(), v.encode())
+            for k, v in {
+                "Host": "127.0.0.1:8000",
+                **headers("server/discover", name=None),
+            }.items()
+        ],
+    }
+    started = asyncio.Event()
+    messages = []
+
+    async def send(message):
+        messages.append(message)
+        if message["type"] == "http.response.start":
+            started.set()
+        else:
+            await asyncio.Event().wait()
+
+    task = asyncio.create_task(server(scope, queue.get, send))
+    await started.wait()
+    assert server.active_requests == 1
+    await asyncio.wait_for(task, 0.2)
+    assert [m["type"] for m in messages] == [
+        "http.response.start",
+        "http.response.body",
+    ]
+    assert not calls
+    await server.stop()
+    assert server.active_requests == 0
+
+
+@pytest.mark.asyncio
+async def test_http_disconnect_during_send_has_no_new_messages_or_orphan():
+    server, _ = make_server()
+    queue = asyncio.Queue()
+    await queue.put({"type": "http.request", "body": rpc(), "more_body": False})
+    scope = {
+        "type": "http",
+        "path": "/mcp",
+        "method": "POST",
+        "scheme": "http",
+        "query_string": b"",
+        "headers": [
+            (k.lower().encode(), v.encode())
+            for k, v in {
+                "Host": "127.0.0.1:8000",
+                **headers("server/discover", name=None),
+            }.items()
+        ],
+    }
+    blocked = asyncio.Event()
+    messages = []
+
+    async def send(message):
+        messages.append(message)
+        if message["type"] == "http.response.body":
+            blocked.set()
+            await asyncio.Event().wait()
+
+    issued = asyncio.create_task(server(scope, queue.get, send))
+    await blocked.wait()
+    assert server.active_requests == 1
+    await queue.put({"type": "http.disconnect"})
+    await asyncio.wait_for(issued, 0.2)
+    await server.stop()
+    assert server.active_requests == 0 and len(messages) == 2
+
+
+@pytest.mark.asyncio
+async def test_resistant_http_send_retains_owner_and_blocks_restart_until_drain():
+    server, _ = make_server(
+        limits=ServerLimits(
+            active_requests=1, timeout_seconds=0.03, shutdown_seconds=0.01
+        )
+    )
+    queue = asyncio.Queue()
+    await queue.put({"type": "http.request", "body": rpc(), "more_body": False})
+    scope = {
+        "type": "http",
+        "path": "/mcp",
+        "method": "POST",
+        "scheme": "http",
+        "query_string": b"",
+        "headers": [
+            (k.lower().encode(), v.encode())
+            for k, v in {
+                "Host": "127.0.0.1:8000",
+                **headers("server/discover", name=None),
+            }.items()
+        ],
+    }
+    blocked, release = asyncio.Event(), asyncio.Event()
+
+    async def send(message):
+        if message["type"] == "http.response.body":
+            blocked.set()
+            while not release.is_set():
+                try:
+                    await release.wait()
+                except asyncio.CancelledError:
+                    continue
+
+    issued = asyncio.create_task(server(scope, queue.get, send))
+    await blocked.wait()
+    await asyncio.wait_for(issued, 0.2)
+    assert server.active_requests == 1
+    with pytest.raises(TimeoutError, match="incomplete"):
+        await server.stop()
+    with pytest.raises(RuntimeError, match="unsettled"):
+        server.start()
+    release.set()
+    await server.stop()
+    assert server.active_requests == 0
+    server.start()
+    await server.stop()
