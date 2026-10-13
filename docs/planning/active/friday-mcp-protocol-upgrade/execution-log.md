@@ -545,3 +545,13 @@ execution/up05/amendment002-final. Wrong historical plan/draft/failed attempts
 remain immutable and do not establish conformance. Full current-baseline debt,
 skip/warning and library comparisons passed. Fresh full-unit independent review
 is required; unit completion is not proposed and no acceptance/publication inferred.
+
+
+## MCP-UP-05 independent full-unit result
+
+Fresh-context read-only full work-unit review returned CHANGES_REQUESTED for
+b57c25d9fc4933059f64ed836783291f5753b9a8. Original report and explicit safe raw evidence are retained
+losslessly under validation/VAL-UP05-01. Process state and board next gate agree.
+No completion proposal or source repair authority is inferred; bounded disposition required.
+Whole MCP remains started/local; UP06 aggregate compatibility/migration closeout,
+Langfuse implementation and publication remain later separate gates.

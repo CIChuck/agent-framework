@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Fresh-context read-only full MCP-UP-05/CD-MCP-UP-005 independent validation against approved AMEND001 and AMEND002
+  next_gate: Reconcile independent MCP-UP-05 CHANGES_REQUESTED and prepare exact bounded disposition before product edits
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -480,6 +480,7 @@ tasks:
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-02/report.md: independent corrected-candidate CHANGES_REQUESTED; VAL-UP04-003'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-03/report.md: independent remediation delta and full UP-04 VERIFIED; acceptance pending'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-04.json: maintainer accepted independently VERIFIED UP-04; all3 findings resolved'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-01/report.md: independent full UP-05 CHANGES_REQUESTED'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
 - id: friday-langfuse-integration
@@ -1667,3 +1668,10 @@ events:
   action: froze amended MCP-UP-05 candidate
   note: Exact18 paths/12 criteria/20 checks; corrected modern schema mapping; fresh independent full review required; started/local
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up05/amendment002-final/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T20:25:24+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: recorded independent full MCP-UP-05 CHANGES_REQUESTED
+  note: Original fresh report/evidence retained; no acceptance/publication inferred; whole MCP started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-01/report.md
