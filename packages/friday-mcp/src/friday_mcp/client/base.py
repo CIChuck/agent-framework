@@ -597,7 +597,11 @@ class MCPClientBase(ABC):
     async def _call_tool(
         self, name: str, arguments: dict[str, Any], generation: int | None
     ) -> str:
-        snapshot = self.current_catalog_snapshot
+        snapshot = (
+            self.current_catalog_snapshot
+            if generation is not None
+            else self._catalog_for_direct_call()
+        )
         if generation is not None and (
             type(generation) is not int
             or snapshot is None
@@ -630,6 +634,9 @@ class MCPClientBase(ABC):
             return result.text(self.limits)
         except ProtocolFailure as exc:
             raise MCPToolExecutionError(exc.failure_code) from None
+
+    def _catalog_for_direct_call(self) -> MCPCatalogSnapshot | None:
+        return self.current_catalog_snapshot
 
     async def _request_tool(
         self, name: str, arguments: dict[str, Any], snapshot: MCPCatalogSnapshot | None

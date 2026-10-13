@@ -131,6 +131,7 @@ class StreamableHTTPMCPClient(MCPClientBase):
         self._call_bindings: ContextVar[tuple[HeaderBinding, ...] | None] = ContextVar(
             "mcp-call-bindings", default=None
         )
+        self._recovered_call_catalog: MCPCatalogSnapshot | None = None
         self._initializing = False
         self._issued = self._backend.issued
         self.rejected_http_tools = 0
@@ -667,6 +668,7 @@ class StreamableHTTPMCPClient(MCPClientBase):
                 # and shutdown. A stale response/waiter never owns newer state.
                 async with asyncio.timeout_at(deadline), self._lifecycle:
                     if generation == self._generation:
+                        prior_call_catalog = self._catalog_for_direct_call()
                         self._generation += 1
                         recovery_generation = self._generation
                         self._connected = False
@@ -677,6 +679,10 @@ class StreamableHTTPMCPClient(MCPClientBase):
                             await self._handshake(deadline)
                             if recovery_generation == self._generation:
                                 self._connected = True
+                                # Preserve the accepted explicit 2025 raw call API
+                                # with its prior schema, never a schema-free retry.
+                                # Generation-bound wrappers remain invalid.
+                                self._recovered_call_catalog = prior_call_catalog
                         except BaseException:
                             if recovery_generation == self._generation:
                                 self._connected = False
@@ -715,8 +721,16 @@ class StreamableHTTPMCPClient(MCPClientBase):
 
     def _invalidate_catalog(self) -> None:
         super()._invalidate_catalog()
+        self._recovered_call_catalog = None
         self._bindings.clear()
         self.rejected_http_tools = 0
+
+    def _catalog_for_direct_call(self) -> MCPCatalogSnapshot | None:
+        return self.current_catalog_snapshot or (
+            self._recovered_call_catalog
+            if self._selected_version == HTTP_COMPAT_VERSION and self._connected
+            else None
+        )
 
     async def _catalog_request(
         self, params: dict[str, Any], deadline: float

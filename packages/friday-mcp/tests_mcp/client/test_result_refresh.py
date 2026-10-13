@@ -433,3 +433,61 @@ def test_valid_input_requests_remain_unsupported_without_continuation(params):
             ProtocolLimits(),
         )
     assert exc.value.failure_code == "input_required_unsupported"
+
+
+@pytest.mark.asyncio
+async def test_2025_raw_call_recovery_keeps_schema_and_retires_wrappers():
+    peer = Peer(version="2025-11-25")
+    peer.tools[0]["outputSchema"] = {
+        "type": "object",
+        "properties": {"v": {"type": "integer"}},
+        "required": ["v"],
+    }
+    client, _, _ = make_client(peer)
+    await client.connect()
+    try:
+        old = (await MCPToolAdapter(client).get_tools())[0]
+        peer.expire_once = True
+        with pytest.raises(MCPToolExecutionError):
+            await old.execute(text="first")
+        assert client.current_catalog_snapshot is None
+        before = peer.methods().count("tools/call")
+        with pytest.raises(MCPToolExecutionError) as stale:
+            await old.execute(text="stale")
+        assert stale.value.failure_code == "catalog_unavailable"
+        assert peer.methods().count("tools/call") == before
+        peer.hook = (
+            lambda verb, headers, message: peer.rpc(
+                message, {"content": [], "structuredContent": {"v": "wrong"}}
+            )
+            if message.get("method") == "tools/call"
+            else None
+        )
+        with pytest.raises(MCPToolExecutionError) as invalid:
+            await client.call_tool("echo", {})
+        assert invalid.value.failure_code == "invalid_result"
+        assert peer.methods().count("tools/call") == before + 1
+        peer.hook = (
+            lambda verb, headers, message: peer.rpc(
+                message, {"content": [], "structuredContent": {"v": 7}}
+            )
+            if message.get("method") == "tools/call"
+            else None
+        )
+        assert await client.call_tool("echo", {}) == '{"v":7}'
+        peer.hook = (
+            lambda verb, headers, message: peer.rpc(
+                message, error={"code": -32603, "message": "synthetic"}
+            )
+            if message.get("method") == "tools/list"
+            else None
+        )
+        with pytest.raises(MCPError):
+            await client.refresh_tool_catalog()
+        before = len(peer.requests)
+        with pytest.raises(MCPToolExecutionError) as blocked:
+            await client.call_tool("echo", {})
+        assert blocked.value.failure_code == "catalog_unavailable"
+        assert len(peer.requests) == before
+    finally:
+        await client.disconnect()

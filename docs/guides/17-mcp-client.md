@@ -302,3 +302,10 @@ task support remain ordinary tool candidates. This dated field does not enable a
 modern extension. No Tasks RPC, polling, persistence, subscriptions, automatic
 refresh, cross-call result cache or outgoing trace/baggage is added. This tools-client
 profile and SDK fixture interoperability do not claim whole MCP conformance.
+
+The accepted2025 raw `call_tool` API permits a later explicit call after session
+recovery, without replaying the failed call. It retains the prior output schema
+for that raw call; generation-bound wrappers stay invalid and current catalog
+snapshot stays unavailable until explicit rediscovery. Manual refresh failure or
+explicit disconnect clears this compatibility data. Runtime/Chat wrappers use
+public stop/start rediscovery after recovery.
