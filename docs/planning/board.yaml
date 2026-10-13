@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Maintainer approval of exact CD-MCP-UP-005 modern tools-server directive/contract/profile/18-path manifest before construction
+  next_gate: Implement exact CD-MCP-UP-005, complete all required checks, freeze stable candidate for fresh independent full-unit validation
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1625,3 +1625,10 @@ events:
   action: prepared exact MCP-UP-05 modern tools-server construction packet
   note: 18 paths/12 criteria/20 commands; planning only, no product edit or server publication; exact approval gate
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-005-modern-tools-server.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T17:56:24+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact CD-MCP-UP-005
+  note: 'Exact statement: approved, continue. Exact18-path UP-05 scope, full checks and independent review; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05.json

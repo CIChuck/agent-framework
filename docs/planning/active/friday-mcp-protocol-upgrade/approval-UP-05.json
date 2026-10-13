@@ -1,0 +1,12 @@
+{
+  "directive": "CD-MCP-UP-005",
+  "work_unit": "MCP-UP-05",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "approved, continue",
+  "recorded_at_utc": "2026-10-13T17:56:24.360993+00:00",
+  "proposal_commit": "11e36b87f0e752f6df9894d46f22ef1b00669578",
+  "proposal_manifest_sha256": "70f1d339aee14c72058fd198aabcb05b57ea3e24870aaeacb72323a1c8ff822c",
+  "scope": "Exact18 product paths,12 criteria,20 required commands and bounded private fixture effects of immutable directive/contract/profile/manifest",
+  "later_unit_or_delivery_authority": "not granted"
+}

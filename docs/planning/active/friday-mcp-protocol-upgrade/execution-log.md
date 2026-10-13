@@ -453,3 +453,12 @@ the modern handler contract to cooperative async registration only, with no
 thread/executor adaptation. Proposed controls are re-pinned before any approval.
 The reproducible initial planning command-count bookkeeping failure and script
 are retained losslessly; the corrected profile contains20 actual commands.
+
+
+## 2026-10-13 - exact UP-05 construction approved
+
+Chuck Russell explicitly stated “approved, continue” in response to the complete
+CD-MCP-UP-005 packet. Separate approval-UP-05.json and authority-UP-05.json pin
+the immutable18-path/12-criterion/20-check proposal. Current UP-05 enters
+construction/not_ready/granted. No dependency, later-unit or publication authority
+is inferred. Preserve accepted evidence and all unrelated root changes.
