@@ -1,0 +1,439 @@
+{
+  "artifacts": [
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-board--stdout.gz",
+      "raw_sha256": "f86479667ca73f712d72cac3ab0abf3e4e9e165dc7c65159298cfb8ce281a947",
+      "raw_bytes": 46,
+      "artifact_sha256": "a8fe0ac655745a8f208c9bac35d6e3f1f21b43eaae46fc65ba4ac7784df9b202",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-board/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-board--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-board/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-board--receipt.json.gz",
+      "raw_sha256": "8411cf2658d84c53a90175ddc85968fa7eead84e06c6396dae10f7c7a7a071a6",
+      "raw_bytes": 2591,
+      "artifact_sha256": "c7dc0b4453cbd671e80d438a85988af3350f3334979697b85874eaf62e505402",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-board/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-next--stdout.gz",
+      "raw_sha256": "081180f795ff5fefa945be28e693d9344d4934b79d2b0039a9bb8c86a461cc9c",
+      "raw_bytes": 169,
+      "artifact_sha256": "e825a4324efb5a5fe8be97dcf0479490f8992ef0b351aa61e4a38bcbfb389141",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-next/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-next--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-next/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-next--receipt.json.gz",
+      "raw_sha256": "6c43dccbeab25145ea85e2eb27c7445f27bf71adb0152f1c9e5025a59e79a829",
+      "raw_bytes": 2584,
+      "artifact_sha256": "f36d42cbff777f105727c3ca65e44268c5c6b30dd82aa60d32f1ab2d27e7dedf",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-next/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-show--stdout.gz",
+      "raw_sha256": "ff1329c5070fadfcc67169d4624786b9aef67d7aef396815ea53b5b62b2036c7",
+      "raw_bytes": 2679,
+      "artifact_sha256": "0bfe0cd106706f1c7ade83e58ff3b3c90fccf13609a18b75d6d0fae0a57d0c83",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-show/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-show--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-show/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-show--receipt.json.gz",
+      "raw_sha256": "d487f30c2a28bdaff0250d4cc1c4f75d0b86d300f6ab9a291dac0b3eaf1a3392",
+      "raw_bytes": 2619,
+      "artifact_sha256": "5e14cb8a15da567ec38e8e7a008b06dcde8945ff50c6d9c4b1f5d435d83ea361",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-show/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-docs--stdout.gz",
+      "raw_sha256": "f43eae1cb5056262308663d77c3d27f92b27db958254d4f015364b5676aaf192",
+      "raw_bytes": 70,
+      "artifact_sha256": "fe6eec1747dfb1781f7788f2ac1063f8b69d66d72aa6b18f16dfca4dfdf0c5c3",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-docs/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-docs--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-docs/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-docs--receipt.json.gz",
+      "raw_sha256": "c59df6d1d855cfbb7f7270ff3979d1ebe31016e95513b798d2937b3b6a9cd389",
+      "raw_bytes": 2585,
+      "artifact_sha256": "eed1aeadb86fef655f7d54d224ae59f4fb0b1edd5d13a78d8c8a218f57e5ce9e",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-docs/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-render--stdout.gz",
+      "raw_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "raw_bytes": 30,
+      "artifact_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-render/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-render--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-render/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-approved-render--receipt.json.gz",
+      "raw_sha256": "71ef7e4858e81f369121fb80c35f9b9c2cb8b96dac9300587d8399bf43c8180d",
+      "raw_bytes": 2607,
+      "artifact_sha256": "f0cc40227ad0e310af4a1999553251870d4e9bed818f527c8a46692629759a66",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-approved-render/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-source-mypy-01--stdout.gz",
+      "raw_sha256": "ba1e4ac47ffe75896a40717639539029e03b845a5343876c07614ce9ee6764e5",
+      "raw_bytes": 991,
+      "artifact_sha256": "854a2e472d8fc494765702dd58c9951b46df046d578a44d85987b7efb3a80b40",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-source-mypy-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-source-mypy-01--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-source-mypy-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-source-mypy-01--receipt.json.gz",
+      "raw_sha256": "3b0d5e225a87d618f0ac719221c656b9bde07e731809d99614da820b0de2b0e6",
+      "raw_bytes": 3268,
+      "artifact_sha256": "ad4273295e38d06ff23eb93cbf80742dee3a85583e7a8a052164f06711c3d6e6",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-source-mypy-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-source-mypy-01--preflight.json.gz",
+      "raw_sha256": "cf776693cbdc9ba194c135be7a278410c43a0ea1e55ecd3053cc431ae78c9087",
+      "raw_bytes": 17503,
+      "artifact_sha256": "086e6230b9ec061813b87b9447c5afa8715e151b0f66b5de751754aa1e56fa47",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-source-mypy-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-source-mypy-02--stdout.gz",
+      "raw_sha256": "050c52a2b0c61e8b681ef5c485e0bc03340b8d55148e0acef27d744c8be42033",
+      "raw_bytes": 43,
+      "artifact_sha256": "fdb64fd1b612abf113a7e9d9af21d753210c0b1072a0e772a75c3c30170013eb",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-source-mypy-02/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-source-mypy-02--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-source-mypy-02/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-source-mypy-02--receipt.json.gz",
+      "raw_sha256": "12dedb79597c79cd1c69616cfb2c963f34629c575323322b33ff63b3a0514ab3",
+      "raw_bytes": 3268,
+      "artifact_sha256": "47d9a68c857903b4408009762b0d59532cf37cb19adcbac2292af609d5f11b80",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-source-mypy-02/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-source-mypy-02--preflight.json.gz",
+      "raw_sha256": "6e68428f7934b7a0664c8062404f868ed04061546d3077bdfafac2699e86e673",
+      "raw_bytes": 18061,
+      "artifact_sha256": "8ee6dc31710c203d7fb4ac4a4e12da69a0bc379db54b19cea372ba20d07a01e1",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-source-mypy-02/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-protocol-01--stdout.gz",
+      "raw_sha256": "1aefd7da755215110e50ebee8dfa1d5c2750854751c4555a71f8f4a7ccd151ed",
+      "raw_bytes": 1453,
+      "artifact_sha256": "9cc1fcdf3386342dd5a132f7cffc09bdc11dc18c215d2dfb9b5633807c730a2d",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-protocol-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-protocol-01--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-protocol-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-protocol-01--receipt.json.gz",
+      "raw_sha256": "97284c945d602524963d1f78436bc0ecce8a8e4511f1a89cc6d4a8070be88617",
+      "raw_bytes": 2902,
+      "artifact_sha256": "034e69c6bfdce7be9f020a360fba2a84e653c1647f74d44d65a572bbcda48381",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-protocol-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-protocol-01--preflight.json.gz",
+      "raw_sha256": "cbb4a19fd30220e9161b02740fdf8c75ca4abc7e6740f4a4caf526a90151f8f3",
+      "raw_bytes": 17199,
+      "artifact_sha256": "adcc7ed065712aa012511197f2d4fd7cdc037ab357349b905601da8ead71d577",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-protocol-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-http-01--stdout.gz",
+      "raw_sha256": "5ecd7ee63fdba66180de2f8fa04b60c006d9fa046aafa95e26869d21d8e2e157",
+      "raw_bytes": 99,
+      "artifact_sha256": "09d8d12c3530bd4a4d5c902b0ca70c8f70d92741036f993375ecf36d9eb7fa4e",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-http-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-http-01--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-http-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-http-01--receipt.json.gz",
+      "raw_sha256": "61e115ca79f71a1684e614971d9f35ea3881cc45a279e91ac9f7dc48424a5766",
+      "raw_bytes": 2878,
+      "artifact_sha256": "06094aec6a708d68763ea6a6b731cd79118527bd4d78a2ae02b2a02db9921597",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-http-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-http-01--preflight.json.gz",
+      "raw_sha256": "09a21899c0f9912b0a0a58f87ac873603526fb88f18f568b1d8f6862321b3309",
+      "raw_bytes": 17237,
+      "artifact_sha256": "53712066dde302b0aa49512703dff26c53c065efcc2ad872d932a12b68634a75",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-http-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-security-lifecycle-01--stdout.gz",
+      "raw_sha256": "43840c5e58acf26ac4641dfbe4a4b122186d6668ed540588b78029c30726ee84",
+      "raw_bytes": 99,
+      "artifact_sha256": "44e4c94d77d25466b583956852242542ae8119aa468b2f639a49d069421735d3",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-security-lifecycle-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-security-lifecycle-01--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-security-lifecycle-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-security-lifecycle-01--receipt.json.gz",
+      "raw_sha256": "c7f2eea59e0cfd88d546e985a7ffffc23229f3c110f1d53602631746e85d3407",
+      "raw_bytes": 3031,
+      "artifact_sha256": "bd7b7997a3e19e27727e2a09690adecccd3dcf5761a24a00c8a20f4380004bec",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-security-lifecycle-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-security-lifecycle-01--preflight.json.gz",
+      "raw_sha256": "afb05bcc2b176abdd33714cc774b597fd58f0d056109d3ae036e56ced64f8e6d",
+      "raw_bytes": 17514,
+      "artifact_sha256": "cec37f9671cfcb65b91657fcf88fb7eab7ea54ef66b366db28fe476ec029bbb8",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-security-lifecycle-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-stdio-registry-01--stdout.gz",
+      "raw_sha256": "eb37e990028fae08572bae43a8a119124835a976938ae940fa9391ebcd9eb28e",
+      "raw_bytes": 99,
+      "artifact_sha256": "8d0b2ef1b8f46b01be75da25d5226f35f75b68e71aae33e915028f4c8acf0930",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-stdio-registry-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-stdio-registry-01--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-stdio-registry-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-stdio-registry-01--receipt.json.gz",
+      "raw_sha256": "5464a8d4a6a1f16fe81a6afc7a42f5af4532c49954d33085a0e40c217fb26fe0",
+      "raw_bytes": 2996,
+      "artifact_sha256": "0225062433d63de8d87b25c7cf4f535c74e56e8a1f8068db51871750dafbaaf5",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-stdio-registry-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-stdio-registry-01--preflight.json.gz",
+      "raw_sha256": "64e32629e15b74893335573cbc0b3a673ba4c8a575d518cb6d92b64caa5d4862",
+      "raw_bytes": 17665,
+      "artifact_sha256": "efc92f1868bcc7e152cdde75ab7dbcfca3f5b591b49ae0dc2ef540a3b4a78eb5",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-stdio-registry-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-sdk-01--stdout.gz",
+      "raw_sha256": "3c48dc479df4eb442142f399bb09d1d1e2b049972e0a06e6ab1e8575a312c1c2",
+      "raw_bytes": 26003,
+      "artifact_sha256": "e6124a1aa12f11f1b23af33ced068b024e26510fe6481f9622de7ac8be1e9d0e",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-sdk-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-sdk-01--stderr.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-sdk-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-sdk-01--receipt.json.gz",
+      "raw_sha256": "3d9abd846ed505ee078478cbba77ff41d7e74236385273f3728d872884365fe3",
+      "raw_bytes": 2944,
+      "artifact_sha256": "3c2265004bd10f045d2ca0f1be42b2d01b9b1989a7edd806c06ec47a6d7f9f9e",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-sdk-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/up05-dev-sdk-01--preflight.json.gz",
+      "raw_sha256": "08a60022a216a750f9bbd9c0c9cc64df9e0518d49d6482adf0f644b38410281d",
+      "raw_bytes": 17737,
+      "artifact_sha256": "344bf00188a84b8b07983076ce922a9f11bb24e05b5f533c3acaf72d2fa184d7",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-dev-sdk-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--src--friday_mcp--server--__init__.py.gz",
+      "raw_sha256": "0344e43f48aa5bdf49365649a968bbbc607b745dcaa1c3f2c1ac43503a836834",
+      "raw_bytes": 1355,
+      "artifact_sha256": "63d62c6107466968441f03f27255dc0c63a4cbddeec401ee3d0675f3b3af4d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/src/friday_mcp/server/__init__.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--src--friday_mcp--server--protocol.py.gz",
+      "raw_sha256": "37512eb812b24201edb70ec0a23527f01ecebd8660cd04deb3a193a55bed2613",
+      "raw_bytes": 19754,
+      "artifact_sha256": "df5fff040434b935d378e19c791637013fd21917f1f2d1d496f18d14c20a5290",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/src/friday_mcp/server/protocol.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--src--friday_mcp--server--modern.py.gz",
+      "raw_sha256": "ee9d60934dcb5b31ccde84481faaedcd0e0b863c642d3fa46b191665602079c9",
+      "raw_bytes": 10824,
+      "artifact_sha256": "7cfe2558f91907aa4092e11dc55dd070e9cf21c51841e8faec74c2d5f1bcb09d",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/src/friday_mcp/server/modern.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--src--friday_mcp--server--modern_stdio.py.gz",
+      "raw_sha256": "91b419950b393b352d686160f979f8ae228f82c30f667fdf402b1357455664ae",
+      "raw_bytes": 7281,
+      "artifact_sha256": "29e0923caa482c2cbea3b2ba19d9819015365265480404258ddfc9ed80f16959",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--src--friday_mcp--server--http.py.gz",
+      "raw_sha256": "46b6d4727a5850315e61deb32a9ceaa25741e8b5684aab1b3c0926dfcafa28d4",
+      "raw_bytes": 6397,
+      "artifact_sha256": "99ea86f6ed26620551952243939c687d262b54a9a9767d088185227cfd5aa1f9",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/src/friday_mcp/server/http.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--src--friday_mcp--server--registry.py.gz",
+      "raw_sha256": "79b226deb40618f15d96a2ad71d9cc77f6404ebae6f6d9b73664f68e36ec17e3",
+      "raw_bytes": 2172,
+      "artifact_sha256": "9c1d32d2ab22651377466a12bae20a2dfa8987f7926141e5057ff4eb8416b542",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/src/friday_mcp/server/registry.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--src--friday_mcp--server--http_policy.py.gz",
+      "raw_sha256": "2e9a36a6cb9fab06e49529d4a44d339244357e9fa0b0a10051182d1a68d785bc",
+      "raw_bytes": 7820,
+      "artifact_sha256": "de024597c25d4b59babfd65ffe32144aed7c0366de3c331447c2f98576b1ee30",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/src/friday_mcp/server/http_policy.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--tests_mcp--server--test_modern_protocol.py.gz",
+      "raw_sha256": "12febef3d9bd4035bb8df35dac46ea3efe07763aae6288564c27a9184ba0cb00",
+      "raw_bytes": 14259,
+      "artifact_sha256": "20ae9195b737687c813cfae0cb8eff9bb2ba65478abb281e929d7b4c5395d8e5",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--tests_mcp--server--test_modern_stdio.py.gz",
+      "raw_sha256": "cbf9d13af181a822ce24bfd99fb3a9d54512842d4c328287ee4516d7a2fe53cc",
+      "raw_bytes": 4414,
+      "artifact_sha256": "cd248580ce6aeff93c1fe2c75c1003a35ae5225928b7a7971a24ce1d53d1af99",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--tests_mcp--server--test_streamable_http.py.gz",
+      "raw_sha256": "77e9204e1bd23605f3238e880d73b5046ccb3325841dc9d068f35f936d60d35b",
+      "raw_bytes": 9518,
+      "artifact_sha256": "e32d51f137a8d37094bbba51f2056b0da64e762bd57987137e17ded0185e67ef",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/tests_mcp/server/test_streamable_http.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--tests_mcp--server--test_server_security.py.gz",
+      "raw_sha256": "dbed0d990ea13dc2c2192332307f0e1c142d7cf99ff9296aeb3804d5d461ba21",
+      "raw_bytes": 6950,
+      "artifact_sha256": "26994410704773affe737f1aeba340035be52912bd7852a30d499436db9e0b16",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/tests_mcp/server/test_server_security.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--tests_mcp--server--test_server_lifecycle.py.gz",
+      "raw_sha256": "18771f29fecb89c11eb3cd4a50692c42549dd353e5a6327f93756fc5672a3d50",
+      "raw_bytes": 5113,
+      "artifact_sha256": "156b823290a7cd475bf4facc43babb26f755b756cbbfb885bcb9a98c5f718794",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--tests_mcp--server--test_registry.py.gz",
+      "raw_sha256": "d722daf24728a10a99d6afb3deaf33f65ec6d5b839b5e8471b7e29ec88ae68b5",
+      "raw_bytes": 3291,
+      "artifact_sha256": "bb958589d29676cb26c7c6c53bfdb96cd2c2ef283cb1e5678816b1cea56f104f",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/tests_mcp/server/test_registry.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--tests_mcp--server--test_server_interop.py.gz",
+      "raw_sha256": "aec4306818ff54d35517da64d3b0a696487533e48faaca6bdfa0cecbab081c5c",
+      "raw_bytes": 5606,
+      "artifact_sha256": "85d6f04f261ba8d9e8c8c0ed68dc3d78b65d01f2f40f1c52b1ff621f04a6b033",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/tests_mcp/server/test_server_interop.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--tests_mcp--server--test_legacy_compatibility.py.gz",
+      "raw_sha256": "2cff997bf9a250af616b37ca8aacc5d8f6887f1a5385a9b33971648aa25a7239",
+      "raw_bytes": 2188,
+      "artifact_sha256": "d885641c240e328f88652d5bdd089a5208a26de92318e5a36d23eaeb0d13b6f7",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/partial-product--packages--friday-mcp--tests_mcp--fixtures--friday_modern_tools_server.py.gz",
+      "raw_sha256": "bb81821512a7f93d44279669aec4e41f688f03e2cb63a2bc9540bf8993807ca0",
+      "raw_bytes": 3299,
+      "artifact_sha256": "ae022c45c03c3a629a69d1adef01810543d2084085bbeb3ca9b509d7ab3ab0e6",
+      "provenance": "/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/approval-controller.py.gz",
+      "raw_sha256": "c19fce037f8a04f7d79a597dfbb38ccd3bb1429a84123c3765f19057eb4dc51e",
+      "raw_bytes": 5429,
+      "artifact_sha256": "6b400df030678ca024b419190f85ec2920a5706609c7721581658c529bb35596",
+      "provenance": "/private/tmp/friday-mcp-upgrade/approve_up05.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/preconstruction-controller.py.gz",
+      "raw_sha256": "8b9bdeb7e169162c3469e76a0a5091973d2eb99d123fc8720edbfd2695cd24ea",
+      "raw_bytes": 7315,
+      "artifact_sha256": "dd05669f119c8cb73d9c4b7196b13cacaf6cd991c8886b636921b18389d7e32b",
+      "provenance": "/private/tmp/friday-mcp-upgrade/plan_up05_requirements.py"
+    },
+    {
+      "artifact": "execution/up05/construction-artifacts/official-sdk-230-dated-wire-models.py.gz",
+      "raw_sha256": "4f8286444b1108c62705fe72bc426e3e7fe6ea275b6d137914650f2601785a93",
+      "raw_bytes": 116817,
+      "artifact_sha256": "34b7cba64b11d6b01dd9fa2e8ed1ca1c2bffd043bd694c1a07059da03be37068",
+      "provenance": "/private/tmp/friday-mcp-upgrade/venv/lib/python3.13/site-packages/mcp_types/_v2026_07_28/__init__.py"
+    }
+  ],
+  "runtime_private_keys_and_homes": "excluded"
+}

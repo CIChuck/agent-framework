@@ -462,3 +462,25 @@ CD-MCP-UP-005 packet. Separate approval-UP-05.json and authority-UP-05.json pin
 the immutable18-path/12-criterion/20-check proposal. Current UP-05 enters
 construction/not_ready/granted. No dependency, later-unit or publication authority
 is inferred. Preserve accepted evidence and all unrelated root changes.
+
+
+## 2026-10-13 - UP-05 construction and normative cache-metadata stop
+
+Exact CD-MCP-UP-005 approval was recorded separately. All19 captures were parsed
+and a preconstruction plan froze316 normative paragraphs/560 keywords and145
+TypeScript declarations/355 field references. Those counts describe planning
+coverage, not completed conformance. Partial18-path implementation remains private.
+Development HTTP46, security/lifecycle47 and stdio/registry11 tests passed;
+strict seven-source Mypy passed. Original protocol run had200 passes/one malformed
+envelope-ID assertion failure; correction is unverified pending rerun. SDK run
+had3 failures/3 passes: the dated official wire models require missing ttlMs/
+cacheScope, contradicting the contract. TLS child signal cleanup assertions also
+remain unfinished under existing scope. Every original check/controller/partial
+source snapshot is retained, with no private keys/runtime stores in the archive.
+
+Stopped product edits on discovery of the contract/schema conflict. Proposed
+AMEND-MCP-UP-005-001 requires only immediately stale private discovery/list wire
+metadata, preserving18 paths, all20 checks, immutable controls and independent
+review. No full profile, stable candidate, VERIFIED or completion is claimed.
+No live fixture child remains. Original authority and earlier accepted units
+remain intact; no later-unit or remote delivery is authorized.
