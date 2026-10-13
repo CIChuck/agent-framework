@@ -40,7 +40,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](active/friday-mcp-protocol-upgrade/) | normal | granted | local | Separate remediator resolves both findings within three-file scope; freeze corrected candidate, repeat full checks, then fresh delta and full UP-04 independent review |
+| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](active/friday-mcp-protocol-upgrade/) | normal | granted | local | Fresh-context read-only independent REM-MCP-UP-004 delta review followed by full CD-MCP-UP-004 work-unit validation |
 | 26 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
 
 ## Completed

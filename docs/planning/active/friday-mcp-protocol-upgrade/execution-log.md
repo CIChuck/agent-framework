@@ -371,3 +371,13 @@ remediation packet. Separate approval and execution authority bind the immutable
 proposal/profile, both findings, a separate security remediator and fresh delta
 plus full-unit review. Original reports and controls remain retained. No later
 unit, dependency change or publication authority is inferred.
+
+
+## REM-MCP-UP-004 stable corrected candidate
+
+Separate remediator committed 2aeaeb780af6324ff934737ff453f3aff211017b within the exact three-file product
+scope. Its original preconstruction plan, dependent variant/field/test mapping,
+report and safe evidence are retained losslessly with all20 controller checks,
+complete debt/skip/warning comparisons and private library integrity. The original
+CHANGES_REQUESTED report and controls remain immutable. Fresh delta followed by
+full UP-04 review is required; no completion, acceptance or publication inferred.

@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Separate remediator resolves both findings within three-file scope; freeze corrected candidate, repeat full checks, then fresh delta and full UP-04 independent review
+  next_gate: Fresh-context read-only independent REM-MCP-UP-004 delta review followed by full CD-MCP-UP-004 work-unit validation
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1573,3 +1573,10 @@ events:
   action: approved exact REM-MCP-UP-004
   note: 'Exact statement: approved , continue. Three product files; separate security remediator; full checks and fresh independent review; local only'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-004.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T14:33:56+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze REM-MCP-UP-004 corrected candidate
+  note: Separate three-file remediation; full20 checks archived; fresh delta plus full-unit validation required; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/rem004/report.md
