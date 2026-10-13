@@ -2,9 +2,9 @@
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-04",
   "execution_phase": "remediation",
-  "validation_state": "changes_requested",
+  "validation_state": "not_ready",
   "unit_completion": "not proposed; two independent findings remain",
-  "next_gate": "Maintainer approval of exact REM-MCP-UP-004 three-file security/shape remediation packet; separate remediator and fresh delta/full review required",
+  "next_gate": "Separate remediator resolves both findings within three-file scope; freeze corrected candidate, repeat full checks, then fresh delta and full UP-04 independent review",
   "work_state": "started",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-004",
@@ -41,7 +41,7 @@
   "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-004-results-manual-refresh.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-04-authority-manifest.json",
-  "note": "Initiative-level granted status does not authorize a later unseen work unit; current UP-04 unit awaits exact directive approval.",
+  "note": "Exact REM-MCP-UP-004 approval recorded; separate security remediator authorized for three product files; original controls retained",
   "builder_product_candidate": "8170c26b541433dcd5b9107d44a1c7a4a92fdd83",
   "reviewed_candidate": "138fb68e33b94d20c17bbaff79ec6be3c8bfc3fb",
   "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-01/report.md",
@@ -51,7 +51,7 @@
     "VAL-UP04-002"
   ],
   "remediation_directive": "docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-004-refresh-input-validation.md",
-  "remediation_status": "proposed",
-  "remediation_implementation_authority": "not_granted",
+  "remediation_status": "approved",
+  "remediation_implementation_authority": "granted",
   "remediation_proposal": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/REM-MCP-UP-004-authority-manifest.json"
 }

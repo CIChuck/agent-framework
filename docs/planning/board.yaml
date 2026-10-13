@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Maintainer approval of exact REM-MCP-UP-004 three-file security/shape remediation packet; separate remediator and fresh delta/full review required
+  next_gate: Separate remediator resolves both findings within three-file scope; freeze corrected candidate, repeat full checks, then fresh delta and full UP-04 independent review
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1566,3 +1566,10 @@ events:
   action: recorded UP-04 independent findings and proposed exact remediation
   note: Original report preserved.3-file REM-MCP-UP-004 approval required; separate security remediator; source unchanged after review
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-004-refresh-input-validation.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T14:07:38+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact REM-MCP-UP-004
+  note: 'Exact statement: approved , continue. Three product files; separate security remediator; full checks and fresh independent review; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-004.json

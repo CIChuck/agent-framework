@@ -362,3 +362,12 @@ profile. A separate security/architecture remediator and fresh delta/full review
 are mandatory. Exact remediation approval is pending; no corrective source edits
 have been made. Whole MCP remains started/local; no completion, acceptance or
 publication is inferred.
+
+
+## 2026-10-13 - exact REM-MCP-UP-004 approved
+
+Chuck Russell stated “approved , continue” in response to the complete three-file
+remediation packet. Separate approval and execution authority bind the immutable
+proposal/profile, both findings, a separate security remediator and fresh delta
+plus full-unit review. Original reports and controls remain retained. No later
+unit, dependency change or publication authority is inferred.
