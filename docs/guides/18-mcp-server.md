@@ -115,7 +115,12 @@ Static primitive `x-mcp-header` bindings, including nested property paths, must
 match the body. Unicode/unsafe ASCII values use the dated Base64 sentinel.
 HeaderMismatch (`-32020`) is an HTTP400 failure before any handler runs.
 Malformed or case-insensitive duplicate mirrored parameter headers use this
-fixed error as well; pre-body rejection omits the request ID and header values. Unknown
+fixed error as well; pre-body rejection omits the request ID and header values.
+Mcp-Method and MCP-Protocol-Version are plain field values: visible ASCII,
+space and horizontal tab are permitted and compared exactly with the body.
+Other controls, DEL and raw non-ASCII bytes fail with HeaderMismatch before
+body parsing or RPC routing. These two fields do not use Base64 decoding;
+Mcp-Name and Mcp-Param values retain their separate sentinel encoding rules. Unknown
 methods return HTTP404/`-32601`; unsupported versions HTTP400/`-32022` with bounded
 supported/requested data. GET/DELETE return405. There are no protocol sessions,
 GET event streams, session cookies/IDs, `/message` split endpoints or redirects.

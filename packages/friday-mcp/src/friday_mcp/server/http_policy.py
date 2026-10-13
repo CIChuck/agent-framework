@@ -141,6 +141,10 @@ class HTTPServerPolicy:
             lower = name.lower()
             if size > limits.header_bytes:
                 raise HTTPAccessError(400)
+            if lower in (b"mcp-protocol-version", b"mcp-method") and any(
+                byte != 0x09 and not 0x20 <= byte <= 0x7E for byte in value
+            ):
+                raise ServerWireError(-32020)
             mirrored = lower in (
                 b"mcp-protocol-version",
                 b"mcp-method",

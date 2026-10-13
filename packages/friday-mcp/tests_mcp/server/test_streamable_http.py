@@ -627,3 +627,197 @@ async def test_custom_header_interior_tab_and_unknown_valid_header_preserved():
         )
     assert response.status_code == 200 and calls == [{"x": "a\tb"}]
     await server.stop()
+
+
+async def standard_header_case(field, value, *, body_value=None):
+    import asyncio
+
+    server, calls = make_server()
+    method = value if field == "mcp-method" else "tools/call"
+    version = value if field == "mcp-protocol-version" else VERSION
+    if body_value is not None:
+        if field == "mcp-method":
+            method = body_value
+        else:
+            version = body_value
+    body = rpc(
+        method,
+        params={"name": "echo"},
+        meta={PREFIX + "protocolVersion": version, PREFIX + "clientCapabilities": {}},
+    )
+    pairs = [(k.lower().encode(), v.encode()) for k, v in headers().items()]
+    pairs = [
+        (k, value.encode("latin-1") if k == field.encode() else v) for k, v in pairs
+    ]
+    queue, consumed, messages = asyncio.Queue(), [], []
+    await queue.put({"type": "http.request", "body": body, "more_body": False})
+
+    async def receive():
+        message = await queue.get()
+        consumed.append(message)
+        return message
+
+    async def send(message):
+        messages.append(message)
+
+    try:
+        await server(
+            {
+                "type": "http",
+                "path": "/mcp",
+                "method": "POST",
+                "scheme": "http",
+                "query_string": b"",
+                "headers": [(b"host", b"127.0.0.1:8000"), *pairs],
+            },
+            receive,
+            send,
+        )
+        return messages[0]["status"], json.loads(messages[1]["body"]), calls, consumed
+    finally:
+        await server.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("field", ["mcp-method", "mcp-protocol-version"])
+@pytest.mark.parametrize("byte", [*range(0, 9), *range(10, 32), *range(127, 256)])
+async def test_plain_standard_header_invalid_byte_sweep_exact_mismatch(field, byte):
+    value = "synthetic-private-" + chr(byte) + "-sentinel"
+    status, body, calls, consumed = await standard_header_case(field, value)
+    assert status == 400 and body == {
+        "jsonrpc": "2.0",
+        "error": {"code": -32020, "message": "Header mismatch"},
+    }
+    assert not calls and not consumed and "sentinel" not in json.dumps(body)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("field", ["mcp-method", "mcp-protocol-version"])
+@pytest.mark.parametrize("byte", [9, *range(32, 127)])
+async def test_plain_standard_header_valid_byte_sweep_keeps_routing_category(
+    field, byte
+):
+    value = "unknown-plain-" + chr(byte) + "-value"
+    status, body, calls, consumed = await standard_header_case(field, value)
+    if field == "mcp-method":
+        assert status == 404 and body == {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "error": {"code": -32601, "message": "Method not found"},
+        }
+    else:
+        assert status == 400 and body == {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "error": {
+                "code": -32022,
+                "message": "Unsupported protocol version",
+                "data": {"supported": [VERSION], "requested": value},
+            },
+        }
+    assert not calls and len(consumed) == 1
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("field", ["mcp-method", "mcp-protocol-version"])
+@pytest.mark.parametrize("suffix", ["世界", "é"])
+async def test_plain_standard_header_raw_utf8_matching_body_exact_mismatch(
+    field, suffix
+):
+    server, calls = make_server()
+    method = "tools/call" + (suffix if field == "mcp-method" else "")
+    version = VERSION + (suffix if field == "mcp-protocol-version" else "")
+    pairs = [(k.lower().encode(), v.encode()) for k, v in headers(method).items()]
+    pairs = [
+        (k, version.encode() if k == b"mcp-protocol-version" else v) for k, v in pairs
+    ]
+    async with http_client(server) as client:
+        response = await client.post(
+            "/mcp",
+            headers=pairs,
+            content=rpc(
+                method,
+                params={"name": "echo"},
+                meta={
+                    PREFIX + "protocolVersion": version,
+                    PREFIX + "clientCapabilities": {},
+                },
+            ),
+        )
+    assert response.status_code == 400 and response.json() == {
+        "jsonrpc": "2.0",
+        "error": {"code": -32020, "message": "Header mismatch"},
+    }
+    assert not calls and suffix not in response.text
+    await server.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "field,actual", [("mcp-method", "tools/call"), ("mcp-protocol-version", VERSION)]
+)
+@pytest.mark.parametrize("variation", ["upper", "space", "tab", "base64"])
+async def test_plain_standard_header_equality_does_not_normalize_or_decode(
+    field, actual, variation
+):
+    value = {
+        "upper": actual.upper() if field == "mcp-method" else "2026-07-2B",
+        "space": " " + actual + " ",
+        "tab": "\t" + actual + "\t",
+        "base64": "=?base64?" + base64.b64encode(actual.encode()).decode() + "?=",
+    }[variation]
+    status, body, calls, consumed = await standard_header_case(
+        field, value, body_value=actual
+    )
+    assert status == 400 and body == {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "error": {"code": -32020, "message": "Header mismatch"},
+    }
+    assert not calls and len(consumed) == 1
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("mode", ["json", "sse"])
+async def test_real_tls_raw_utf8_standard_headers_exact_mismatch(tmp_path, mode):
+    from tests_mcp.server.test_server_interop import tls_friday
+
+    observations = []
+    async with (
+        tls_friday(tmp_path, mode) as (url, context, counter, process),
+        httpx.AsyncClient(
+            verify=context, trust_env=False, follow_redirects=False
+        ) as client,
+    ):
+        for field in ("mcp-method", "mcp-protocol-version"):
+            for suffix in ("世界", "é"):
+                method = "tools/call" + (suffix if field == "mcp-method" else "")
+                version = VERSION + (suffix if field == "mcp-protocol-version" else "")
+                pairs = [
+                    (k.lower().encode(), v.encode()) for k, v in headers(method).items()
+                ]
+                pairs = [
+                    (k, version.encode() if k == b"mcp-protocol-version" else v)
+                    for k, v in pairs
+                ]
+                response = await client.post(
+                    url,
+                    headers=pairs,
+                    content=rpc(
+                        method,
+                        params={"name": "echo"},
+                        meta={
+                            PREFIX + "protocolVersion": version,
+                            PREFIX + "clientCapabilities": {},
+                        },
+                    ),
+                )
+                assert response.status_code == 400 and response.json() == {
+                    "jsonrpc": "2.0",
+                    "error": {"code": -32020, "message": "Header mismatch"},
+                }
+                observations.append((field, suffix, response.status_code))
+    rows = [json.loads(row) for row in counter.read_text().splitlines()]
+    assert sum(row.get("event") == "handler_start" for row in rows) == 0
+    assert rows[-1] == {"event": "server_stopped", "active": 0}
+    assert process.returncode == 0 and len(observations) == 4
