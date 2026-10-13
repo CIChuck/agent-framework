@@ -246,3 +246,14 @@ source checks pass; full four-package Mypy retains four exact inherited errors
 in untouched Core profiles. No product edits or new construction approval is
 claimed. Exact proposal/contract/profile hashes control the next approval gate.
 Prior controls, reports, artifacts and accepted product bytes remain unchanged.
+
+
+## 2026-10-12 — Runtime/YAML/Chat integration approved
+
+Chuck Russell stated “approved” in response to the exact CD-MCP-UP-003 packet.
+approval-UP-03.json and authority-UP-03.json bind the original directive,
+integration contract, verification profile and 28-path proposal without changing
+those proposed bytes. execution_phase: implementation; validation_state:
+not_ready. Required construction and full fresh-context validation proceed in
+the guarded private snapshot; source/credential/dependency/effect exclusions and
+unrelated root changes remain preserved. No acceptance or publication inferred.
