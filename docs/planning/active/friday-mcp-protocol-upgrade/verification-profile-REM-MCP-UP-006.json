@@ -1,0 +1,563 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "unit": "MCP-UP-05",
+  "directive": "REM-MCP-UP-006",
+  "status": "proposed/not_granted",
+  "required_checks": [
+    {
+      "id": "board",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "next",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "next"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "show",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "show",
+        "friday-mcp-protocol-upgrade"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "server-focused",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+        "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+        "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+        "packages/friday-mcp/tests_mcp/server/test_registry.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+        "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "server-http",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "original-clients",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/client",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "mcp",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "core-runtime-chat-telemetry",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-core/tests_core",
+        "packages/friday-runtime/tests_runtime",
+        "packages/friday-chat/tests_chat",
+        "packages/friday-telemetry/tests_telemetry",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "root",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-rs"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "baseline-root",
+      "snapshot": "up05-baseline",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-rs"
+      ],
+      "success": "exit0; full normalized skip reasons/locations and warnings equal; accepted history4744/14/15 is not a substitute for current baseline run"
+    },
+    {
+      "id": "ruff",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+        "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+        "packages/friday-mcp/src/friday_mcp/server/http.py",
+        "packages/friday-mcp/src/friday_mcp/server/registry.py",
+        "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
+        "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+        "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+        "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+        "packages/friday-mcp/tests_mcp/server/test_registry.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+        "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+        "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "root-ruff",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        ".",
+        "--output-format=json"
+      ],
+      "success": "retain raw exit1 only with exactly same327 complete normalized diagnostic/fix objects as accepted baseline"
+    },
+    {
+      "id": "baseline-root-ruff",
+      "snapshot": "up05-baseline",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        ".",
+        "--output-format=json"
+      ],
+      "success": "retain raw exit1 and all complete objects"
+    },
+    {
+      "id": "narrow-mypy",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+        "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+        "packages/friday-mcp/src/friday_mcp/server/http.py",
+        "packages/friday-mcp/src/friday_mcp/server/registry.py",
+        "packages/friday-mcp/src/friday_mcp/server/http_policy.py"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "mcp-mypy",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-mcp/src/friday_mcp"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "full-mypy",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-core/src/friday_core",
+        "packages/friday-mcp/src/friday_mcp",
+        "packages/friday-runtime/src/friday_runtime",
+        "packages/friday-chat/src/friday_chat"
+      ],
+      "success": "raw exit1 only with exact same4 inherited profiles.py diagnostics; compare complete path/line/column/severity/code/message; narrow source clean"
+    },
+    {
+      "id": "baseline-full-mypy",
+      "snapshot": "up05-baseline",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-core/src/friday_core",
+        "packages/friday-mcp/src/friday_mcp",
+        "packages/friday-runtime/src/friday_runtime",
+        "packages/friday-chat/src/friday_chat"
+      ],
+      "success": "repeat exact baseline4 with supplemental explicit columns"
+    },
+    {
+      "id": "docs",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "render",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "whitespace",
+      "snapshot": "work",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "f876603c74d8a90639fb5dc90d287d17ab523705",
+        "HEAD"
+      ],
+      "success": "exit0 plus uncommitted whitespace check"
+    }
+  ],
+  "acceptance_criteria": {
+    "SRV-AC-01": "Typed2026-only per-request server role; complete bounded envelope/request/notification/metadata grammar with omitted/null cases, optional clientInfo, per-request required capabilities and exact fixed wire codes. No initialize/session-state trust or local-code leakage.",
+    "SRV-AC-02": "Honest empty/nonempty discover/tools capability, immutable complete catalog/definitions and bounded byte/count pagination, atomic filter/prefix/collision/schema registration. Invalid/obsolete/oversized cursors and definitions fail with zero handler I/O; old failures cannot mutate a newer catalog.",
+    "SRV-AC-03": "Captured definition/schema/handler, validated arguments before exactly one invocation; complete typed text/structured results (omitted/null/mixed/order), captured successful output validation and legitimate safe tool errors. Mutation during issued call preserves captured schema; malformed/unsafe output and unknown tools cannot cause replay.",
+    "SRV-AC-04": "Real newline stdio with clean stdout, responsive concurrent dispatch, owner-local cancellation, partial-line/UTF8/JSON/batch/duplicate-ID negatives, EOF/partial-start/pipe/stop/restart/SIGTERM cleanup. No stale owner reply or server cancellation outside unsupported subscription role.",
+    "SRV-AC-05": "Single stateless HTTP POST endpoint, JSON and request-scoped SSE, exact status/body/header grammar; protocol/method/name/custom parameter/header/body agreement, Base64 and null/absent/type cases, no handler before validation. GET/DELETE405, unsupported404/-32601, version400/-32022, HeaderMismatch400/-32020; no sessions/legacy split.",
+    "SRV-AC-06": "Explicit typed bind/path/Host/Origin/bearer/TLS access policy with pre-dispatch rejection/counter0, duplicate/query/Unicode/header-size negatives, token nonrepr/privacy, no clientInfo authorization. Static administrative gate does not claim optional OAuth conformance; all fixtures literal127 only, no live exposure.",
+    "SRV-AC-07": "Lower-only limits and original absolute deadlines, bounded admission/owners/body/header/schema/output/page work, request/connection-owned cancellation and retryable shutdown. Lower budgets1..4 and ignored cancellation retain truthful owners; no orphan process/task/stream, unrelated cancellation or mutating replay.",
+    "SRV-AC-08": "Declared public Core ToolRegistry/ToolDefinition integration using real public DefaultToolRegistry with synthetic tools; strict staged snapshots/filter/prefix/collision/unsupported schema negatives and distinct instances. No implicit agent/prompt/resource/memory/model loading or incidental private contracts.",
+    "SRV-AC-09": "New strict-typed exports preserve optional-dependency import behavior and all legacy imports/constructors/config/version/tool/agent/prompt/resource/SSE interfaces and readonly hashes. No modifications to accepted client/Runtime/Chat/Core/telemetry sources or config defaults.",
+    "SRV-AC-10": "Optional existing TelemetryInterface injection, one admitted-handler start/terminal observation, safe trusted labels and provider/state isolation; observer failure causes no duplicate invocation/replay. Credentials/raw arguments/results/schema/client IDs/URLs/trace state absent from logs/telemetry, no new provider/exporter/global state.",
+    "SRV-AC-11": "Official SDK2.3.0 Client against actual Friday server real subprocess stdio and private verified TLS HTTP JSON/SSE. Explicit2026 mode/cacheNone/no interactive extensions; actual discovery/version/metadata/wire counters, errors/cancel/disconnect/child exit. Deterministic/raw negatives complement SDK, no self-client-only or in-process shortcut proof.",
+    "SRV-AC-12": "Accurate programmatic modern/legacy guide/API examples and explicit unsupported OAuth/agent/extensions;18-path source budget,19 unchanged metadata, existing22009-library/192dist integrity, all19 captures and full server-role clause/field plan/final actual mapping; all20 required checks and exact inherited debt/skip/warning comparisons plus fresh independent full-unit VERIFIED before completion."
+  },
+  "finding_regressions": [
+    {
+      "id": "VAL-UP05-001",
+      "number": 1,
+      "severity": "high",
+      "title": "Inline stdio rejection writes block cancellation processing",
+      "classification": [
+        "security",
+        "resource lifecycle",
+        "transport architecture"
+      ],
+      "locations": [
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+          "line": 148
+        },
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+          "line": 197
+        },
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+          "line": 105
+        }
+      ],
+      "criteria": [
+        "SRV-AC-04",
+        "SRV-AC-07"
+      ],
+      "violated_requirements": [
+        {
+          "path": "docs/planning/active/friday-mcp-protocol-upgrade/up05-server-contract.md",
+          "line": 101,
+          "requirement": "Concurrent owned dispatch keeps the reader responsive to cancellation."
+        },
+        {
+          "path": "docs/planning/active/friday-mcp-protocol-upgrade/up05-server-contract.md",
+          "line": 153,
+          "requirement": "Bound admission/lock waits and preserve connection-owned cancellation and unrelated operation progress."
+        }
+      ],
+      "normative_source": {
+        "capture": "specification--2026-07-28--basic--transports--stdio.md",
+        "line": 86,
+        "requirement": "Servers should stop work on cancelled requests as soon as practical; cancellation messages share the stdio reader."
+      },
+      "observation": "With one admitted synthetic held handler, {} followed by a cancellation notification enters inline writer.drain(). At40ms the cancellation remains buffered (84 bytes), handler has not seen cancellation and core ownership is1. Releasing the writer immediately allows cancellation to settle. The same inline path handles malformed, duplicate-active-ID, admission-rejection and oversized frames. A default timeout can therefore defer a cooperative cancellation for up to30 seconds solely because an unrelated error write is backpressured.",
+      "evidence": [
+        "checks/independent-probes/stdout",
+        "checks/independent-probes-final/stdout",
+        "checks/independent-probes-final/receipt.json",
+        "test_independent_probes.py::test_blocked_rejection_stalls_stdio_cancellation"
+      ],
+      "risk": "Peer-controlled malformed traffic and stdout backpressure can prevent the reader from observing cancellation and EOF promptly, retaining admitted handler effects and preventing unrelated messages from progressing.",
+      "required_bounded_mitigation": "Move rejection delivery off the read loop into explicitly bounded connection-owned output work. Preserve serialized writes and original deadlines, prevent unbounded rejection tasks/queues, and keep the reader able to consume valid cancellation and EOF while any response drain or output lock is blocked. Coordinate this with VAL-UP05-002; do not add a thread/executor, replay or public side effect.",
+      "required_tests": [
+        "Held cooperative handler plus blocked malformed-frame rejection: process cancellation promptly before releasing output.",
+        "Repeat for duplicate active ID, admission-limit and oversized-frame rejection with limits1..4; assert no duplicate handler and bounded owners/output work.",
+        "EOF/stop while a rejection drain or output lock is blocked; no orphan tasks or stale writes."
+      ],
+      "documentation_configuration_impact": "Reconcile guide18 responsive-cancellation/ownership claims and tests with final behavior; no default/config enum/dependency change.",
+      "remediation_role": "Separate remediator required by independent-validation policy because this is security and transport architecture."
+    },
+    {
+      "id": "VAL-UP05-002",
+      "number": 2,
+      "severity": "high",
+      "title": "Untracked stdio serving work permits false shutdown and stale cleanup of a newer connection",
+      "classification": [
+        "security",
+        "resource lifecycle",
+        "transport architecture",
+        "state integrity"
+      ],
+      "locations": [
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+          "line": 47
+        },
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+          "line": 71
+        },
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+          "line": 215
+        }
+      ],
+      "criteria": [
+        "SRV-AC-04",
+        "SRV-AC-07"
+      ],
+      "violated_requirements": [
+        {
+          "path": "docs/planning/active/friday-mcp-protocol-upgrade/up05-server-contract.md",
+          "line": 104,
+          "requirement": "An old task cannot publish into a newer connection or remove a newer owner."
+        },
+        {
+          "path": "docs/planning/active/friday-mcp-protocol-upgrade/up05-server-contract.md",
+          "line": 155,
+          "requirement": "Stop cancels and settles owned tasks; incomplete settlement retains honest bounded owners and blocks unsafe restart until explicit retry drains them."
+        }
+      ],
+      "normative_source": {
+        "capture": "specification--2026-07-28--basic--transports--stdio.md",
+        "line": 107,
+        "requirement": "Servers should exit promptly when stdin closes or EOF occurs; the stronger truthful-owner/restart requirement is explicitly in the approved contract."
+      },
+      "observation": "A cancellation-resistant malformed-frame drain remains pending after the30ms operation budget. stop() nevertheless returns success: old serving task is unfinished, core owners0, dispatchers0, writer cleared. A second serve() is admitted and replies to new. Releasing the old drain runs the old serve finally: its unconditional self.stop() closes the new writer/connection and finishes the new serving task.",
+      "evidence": [
+        "checks/resistant-rejection-probe/stdout",
+        "checks/resistant-rejection-probe/receipt.json",
+        "checks/independent-probes-final/stdout",
+        "checks/independent-probes-final/receipt.json",
+        "test_independent_probes.py::test_resistant_rejection_writer_untracked_shutdown_and_stale_restart"
+      ],
+      "risk": "Shutdown reports an inaccurate terminal state; an old task can tear down a healthy replacement connection. This is a demonstrated ownership-generation violation, even though normal cooperative subprocess fixtures pass.",
+      "required_bounded_mitigation": "Track the serving loop and all rejection/response output work under their original connection generation, including cancellation-resistant drain/lock work. Incomplete stop must raise a fixed incomplete-cleanup error, retain honest ownership, and prohibit restart until retry drains it. Scope finally cleanup to its captured generation so an old task cannot close/remove new streams, transports, dispatchers or owners. Keep existing public async API and bounded budgets.",
+      "required_tests": [
+        "Cancellation-resistant rejection drain: stop reports incomplete and retains the old serving/output owner after timeout; start/serve is rejected until explicit release and retry.",
+        "After drain and retry stop, new serve works; late old completion cannot close the replacement writer or remove new dispatchers.",
+        "Stop/restart races and partial startup/read/write failures at limits1..4, with exact task/stream/connection counts."
+      ],
+      "documentation_configuration_impact": "Guide18 claims about truthful incomplete shutdown and restart must reflect all serving/output owners. No new configuration defaults, metadata or dependency changes.",
+      "remediation_role": "Separate remediator required for security, architecture and state integrity; coordinate bounded ownership fix with VAL-UP05-001."
+    },
+    {
+      "id": "VAL-UP05-003",
+      "number": 3,
+      "severity": "medium",
+      "title": "Stdio frame assembly starts a fresh deadline after body processing",
+      "classification": [
+        "security",
+        "resource budgeting",
+        "transport lifecycle"
+      ],
+      "locations": [
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+          "line": 124
+        },
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+          "line": 181
+        },
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+          "line": 194
+        }
+      ],
+      "criteria": [
+        "SRV-AC-07",
+        "SRV-AC-04"
+      ],
+      "violated_requirements": [
+        {
+          "path": "docs/planning/active/friday-mcp-protocol-upgrade/up05-server-contract.md",
+          "line": 150,
+          "requirement": "Deadline starts before operation waits/body processing and is never reset by phase."
+        },
+        {
+          "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-005-modern-tools-server.md",
+          "line": 91,
+          "requirement": "SRV-AC-07 original absolute deadlines and bounded body work apply across the modern transport profile."
+        }
+      ],
+      "normative_source": {
+        "capture": "modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md",
+        "line": 49,
+        "requirement": "Timeout guidance is SHOULD; the violated mandatory stronger server-body deadline is the approved SRV-AC-07 contract."
+      },
+      "observation": "A discover frame split after20 bytes waits100ms with timeout_seconds0.03, then the remaining bytes/newline are delivered and the server returns a successful result. Frame read/assembly has no deadline, line() creates a new deadline after full assembly, and oversized/partial-EOF rejection also receives a new budget.",
+      "evidence": [
+        "checks/independent-probes/stdout",
+        "checks/independent-probes-final/stdout",
+        "checks/independent-probes-final/receipt.json",
+        "test_independent_probes.py::test_partial_stdio_frame_absolute_deadline"
+      ],
+      "risk": "A peer can retain a partial or oversized frame indefinitely and reset the allowed request budget by eventually completing it. The configured deadline does not bound all body work as promised.",
+      "required_bounded_mitigation": "Establish a connection-owned absolute deadline when a nonempty frame first arrives, retain it across split reads, assembly/oversize discard, parse, admission, handler and output, and reject/close an expired frame before any handler admission. Preserve indefinitely idle connections separately from an in-progress frame. Do not reset the deadline on newline or error handling.",
+      "required_tests": [
+        "Real or owned-stream split frame completing after a lowered deadline: no success and zero handler invocation.",
+        "Many fragments before expiry followed by handler/output phases cannot extend the original budget.",
+        "Oversized discard, partial EOF, idle connection, timeout cleanup, next-frame behavior and restart with limits1..4; no unbounded owner or task."
+      ],
+      "documentation_configuration_impact": "Clarify frame deadline semantics in guide18 while keeping current timeout defaults and lower-only ServerLimits.",
+      "remediation_role": "Separate remediator required because the budget weakness is security-related; no self-repair."
+    },
+    {
+      "id": "VAL-UP05-004",
+      "number": 4,
+      "severity": "medium",
+      "title": "Malformed recognized custom headers emit InvalidRequest instead of HeaderMismatch",
+      "classification": [
+        "protocol conformance",
+        "HTTP security boundary"
+      ],
+      "locations": [
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
+          "line": 142
+        },
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
+          "line": 152
+        },
+        {
+          "path": "packages/friday-mcp/src/friday_mcp/server/http.py",
+          "line": 245
+        },
+        {
+          "path": "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+          "line": 142
+        }
+      ],
+      "criteria": [
+        "SRV-AC-05",
+        "SRV-AC-06",
+        "SRV-AC-01"
+      ],
+      "violated_requirements": [
+        {
+          "path": "docs/planning/active/friday-mcp-protocol-upgrade/up05-server-contract.md",
+          "line": 110,
+          "requirement": "Header failures are HTTP400/-32020; validate every recognized custom binding and reject duplicate headers before handler effects."
+        },
+        {
+          "path": "docs/planning/active/friday-mcp-protocol-upgrade/up05-server-contract.md",
+          "line": 120,
+          "requirement": "Exact duplicate/case/sentinel and recognized Mcp-Param-* validation."
+        }
+      ],
+      "normative_source": {
+        "capture": "specification--2026-07-28--basic--transports--streamable-http.md",
+        "line": 597,
+        "requirement": "Header validation failure must return HTTP400 with JSON-RPC -32020. Recognized custom headers with invalid characters must be rejected, per lines553-560. Pinned HeaderMismatchError.error.code is -32020."
+      },
+      "observation": "For a registered string x-mcp-header:X binding, each CR/LF/NUL header value and conflicting case-insensitive duplicate Mcp-Param-X receives HTTP400 with code-32600/message Invalid request and no handler call. Only three standard metadata headers enter the -32020 branch; custom-header invalid bytes/duplicates are converted to HTTPAccessError and then the generic error. The existing generic duplicate test asserts only HTTP400, allowing the wrong code.",
+      "evidence": [
+        "checks/independent-probes/stdout",
+        "checks/independent-probes-final/stdout",
+        "checks/independent-probes-final/receipt.json",
+        "test_independent_probes.py::test_recognized_header_invalid_char_exact_wire_code",
+        "test_independent_probes.py::test_recognized_duplicate_header_exact_wire_code"
+      ],
+      "risk": "The endpoint violates its dated error contract and conceals the required HeaderMismatch category from clients/middleware. Rejection is fail-closed and all reproduced handler counts are0; no authorization bypass or replay was observed.",
+      "required_bounded_mitigation": "Preserve fail-closed access handling while classifying malformed/duplicate recognized Mcp-Param-* metadata as fixed HeaderMismatch HTTP400/-32020 before any handler. Keep access-specific Host/Origin/bearer handling distinct and diagnostic values private; preserve no-id grammar when rejection happens before a body ID is safely read. No accepted client changes or SDK retry path.",
+      "required_tests": [
+        "Exact status, error code/message/field grammar and zero handlers for CR/LF/NUL/invalid characters and case-insensitive conflicting/equal duplicates on recognized custom bindings.",
+        "Standard metadata header cases still return400/-32020; Host/Origin/bearer failures retain their exact access status and safe body.",
+        "Raw/ASGI negatives complement real TLS JSON/SSE tests; bypass SDK automatic HeaderMismatch retries."
+      ],
+      "documentation_configuration_impact": "Guide18 exact HeaderMismatch claims remain controlling; update final field/assertion mapping and strengthen exact-code tests. No new headers or configuration defaults.",
+      "remediation_role": "Separate remediator required for HTTP security-boundary code, under a bounded approved directive."
+    }
+  ],
+  "guard": {
+    "path": "/private/tmp/friday-mcp-upgrade/guard/sitecustomize.py",
+    "sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8"
+  },
+  "runner": {
+    "original_path": "/private/tmp/friday-mcp-upgrade/run_check_UP04.py",
+    "original_sha256": "5e5c9901bf66117ee11669d32de857ea2087738add9eef3c7ae6aa6f3c8592a6",
+    "UP05_path": "/private/tmp/friday-mcp-upgrade/run_check_UP05.py",
+    "rule": "Same guarded allowlisted environment, fresh per-command HOME/checker/pytest caches; UP05-only source/current-control/metadata/preserved-product freeze before every child. Reviewer copies redirect only own private destinations.",
+    "UP05_sha256": "e302adaef56d824be9ee962ee6c648624330f0d0d6aa1c992f5b0dbeced8e017"
+  },
+  "permitted_effects": "Only new named tests_mcp/fixtures/friday_modern_tools_server.py synthetic Friday subprocess stdio and literal127.0.0.1 ephemeral verified TLS HTTP JSON/SSE, pinned official SDK Client, deterministic/ASGI peers, and retained approved client/cross/root fixture effects under original guard. Private synthetic TLS cert/key generation and counter files under private HOME/TMP; keys/runtime stores excluded from archive. No non-loopback bind/connect, public DNS, real tools/workspaces/providers/credentials, installs/sync, shared env writes or publication. Guarded loopback escalation allowed after exact approval; known prior OS bind rejection need not be repeated.",
+  "additional_required_evidence": [
+    "Supplemental explicit-column Mypy complete4-object comparison",
+    "Exact327 normalized Ruff complete diagnostic/fix object comparison",
+    "Root full warning and skip location/reason comparison against fresh accepted baseline",
+    "22009 library files/192 distributions before/after unchanged",
+    "Original failed independent probes and new corrected reruns preserved losslessly",
+    "Prospective finding-specific modern schema/paragraph/variant plan and final actual mapping",
+    "Fresh separate validator remediation delta then complete18-path/12-criterion work-unit review"
+  ]
+}

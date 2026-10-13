@@ -555,3 +555,13 @@ losslessly under validation/VAL-UP05-01. Process state and board next gate agree
 No completion proposal or source repair authority is inferred; bounded disposition required.
 Whole MCP remains started/local; UP06 aggregate compatibility/migration closeout,
 Langfuse implementation and publication remain later separate gates.
+
+
+## REM-MCP-UP-006 bounded correction proposal
+
+Fresh UP05 CHANGES_REQUESTED findings are recorded exactly once in proposed
+REM-MCP-UP-006. Six existing product paths, unchanged original12 criteria/20 checks,
+existing private effects and original modern schema constraints. Security/lifecycle/
+architecture requires a separate remediator. No source change made or authority
+granted; exact maintainer approval is required. Original report/probes/controls
+remain immutable; acceptance/UP06/publication remain later gates.

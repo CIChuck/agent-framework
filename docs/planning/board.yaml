@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Reconcile independent MCP-UP-05 CHANGES_REQUESTED and prepare exact bounded disposition before product edits
+  next_gate: Maintainer approval of REM-MCP-UP-006 exact six-path server header/deadline/ownership correction, then separate remediator and fresh delta/full UP-05 review
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1675,3 +1675,10 @@ events:
   action: recorded independent full MCP-UP-05 CHANGES_REQUESTED
   note: Original fresh report/evidence retained; no acceptance/publication inferred; whole MCP started/local
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-01/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T20:25:30+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: prepared exact REM-MCP-UP-006 proposal
+  note: Six-path correction of independent UP05 findings; separate remediator required; implementation not granted; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/REM-MCP-UP-006-server-boundary-and-stdio-ownership.md
