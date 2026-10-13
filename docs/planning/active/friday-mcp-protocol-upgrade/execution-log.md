@@ -400,3 +400,13 @@ described. The separate REM005 receipt and authority bind the concrete immutable
 proposal, two paths and unchanged original20-check profile. No additional approval
 is requested for this authorized correction. No dependency/later-unit/delivery
 authority is inferred.
+
+
+## REM-MCP-UP-005 stable corrected candidate
+
+Separate remediator committed a9c913e41cdbd5bd824f36fe7b15001e6c126e17 within the exact two-file product
+scope. Its original preconstruction plan, dependent variant/field/test mapping,
+report and safe evidence are retained losslessly with all20 controller checks,
+complete debt/skip/warning comparisons and private library integrity. The original
+CHANGES_REQUESTED report and controls remain immutable. Fresh delta followed by
+full UP-04 review is required; no completion, acceptance or publication inferred.

@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Fresh separate remediator fixes exact REM-MCP-UP-005 two-file scope; full20 checks, stable candidate and fresh delta plus full UP-04 review
+  next_gate: Fresh-context read-only independent REM-MCP-UP-005 delta review followed by full CD-MCP-UP-004 work-unit validation
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1595,3 +1595,10 @@ events:
   action: approved exact REM-MCP-UP-005 two-file amendment
   note: 'Exact statement: I''ll approve that amendment without reservation, continue. Two paths; fresh security remediator; full checks and fresh independent review; local only'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-005.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T15:07:13+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze REM-MCP-UP-005 corrected candidate
+  note: Separate two-file remediation; full20 checks archived; fresh delta plus full-unit validation required; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/rem005/report.md
