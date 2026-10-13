@@ -333,3 +333,15 @@ keep their virtual APIs. `supports_catalog_refresh` defaults to false for these
 subclasses; they may explicitly opt in when their optional refresh/generation
 methods implement this contract. Other custom clients can implement the declared
 MCPRefreshClient protocol directly.
+
+## Modern tools server
+
+Use `friday_mcp.server.ModernStdioMCPServer` or `StreamableHTTPMCPServer` to expose
+explicit async tools using MCP2026-07-28. The HTTP server uses one POST endpoint
+with JSON or request-scoped SSE, explicit Host/Origin/bearer/TLS policy and no
+protocol sessions. `configure_modern_tools_mode` snapshots the public Core
+registry without loading agents or resources. The [server guide](../../docs/guides/18-mcp-server.md)
+provides registration and lifecycle examples, limits, schema restrictions and
+optional TelemetryInterface injection. Discovery/list responses are immediately
+stale (`ttlMs: 0`, `cacheScope: "private"`); there is no cache engine or OAuth
+login. These programmatic APIs preserve existing2024 server names and YAML defaults.
