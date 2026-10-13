@@ -491,3 +491,25 @@ async def test_2025_raw_call_recovery_keeps_schema_and_retires_wrappers():
         assert len(peer.requests) == before
     finally:
         await client.disconnect()
+
+
+@pytest.mark.asyncio
+async def test_existing_base_subclass_raw_virtual_methods_are_not_bypassed():
+    class LegacySubclass(Client):
+        async def list_tools(self):
+            return [tool(name="Custom.Exact")]
+
+        async def call_tool(self, name, arguments):
+            assert name == "Custom.Exact"
+            return "custom"
+
+    client = LegacySubclass()
+    await client.connect()
+    try:
+        adapter = MCPToolAdapter(client)
+        wrapper = (await adapter.get_tools())[0]
+        assert await wrapper.execute() == "custom"
+        assert not client.supports_catalog_refresh
+        assert wrapper is (await adapter.get_tools())[0]
+    finally:
+        await client.disconnect()

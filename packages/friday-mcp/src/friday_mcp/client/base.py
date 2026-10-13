@@ -450,6 +450,19 @@ class MCPClientBase(ABC):
         logger.debug("Received MCP server notification")
 
     @property
+    def supports_catalog_refresh(self) -> bool:
+        """Legacy subclasses overriding raw discovery/calls opt in explicitly.
+
+        Adding the optional API to this base must not bypass their existing
+        virtual methods. This check stays within the client implementation;
+        external clients use the declared optional protocol directly.
+        """
+        return (
+            type(self).list_tools is MCPClientBase.list_tools
+            and type(self).call_tool is MCPClientBase.call_tool
+        )
+
+    @property
     def current_catalog_snapshot(self) -> MCPCatalogSnapshot | None:
         return self._catalog_snapshot
 

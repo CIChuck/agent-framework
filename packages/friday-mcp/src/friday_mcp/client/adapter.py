@@ -18,6 +18,7 @@ from typing import Any, Literal
 from friday_core.interfaces.tools import SchemaFormat
 from friday_core.mcp import MCPToolMetadata
 
+from friday_mcp.client.base import MCPClientBase
 from friday_mcp.client.catalog import MCPCatalogSnapshot, MCPRefreshClient
 from friday_mcp.protocols import MCPClient, ToolDefinition
 from friday_mcp.utils.schema import mcp_to_friday_schema
@@ -27,6 +28,12 @@ logger = logging.getLogger(__name__)
 MCPCallPhase = Literal["start", "finish", "failure"]
 MCPCallOutcome = Literal["success", "timeout", "cancelled", "execution_error"]
 MCPCallObserver = Callable[[MCPCallPhase, str, MCPCallOutcome | None], None]
+
+
+def _refresh_client(client: MCPClient) -> MCPRefreshClient | None:
+    if isinstance(client, MCPClientBase) and not client.supports_catalog_refresh:
+        return None
+    return client if isinstance(client, MCPRefreshClient) else None
 
 
 @dataclass(frozen=True)
@@ -72,9 +79,7 @@ class MCPToolWrapper:
             name_prefix: Optional prefix for tool name
         """
         self._client = client
-        self._refresh_client: MCPRefreshClient | None = (
-            client if isinstance(client, MCPRefreshClient) else None
-        )
+        self._refresh_client: MCPRefreshClient | None = _refresh_client(client)
         snapshot = catalog_snapshot
         if snapshot is None and self._refresh_client is not None:
             snapshot = self._refresh_client.current_catalog_snapshot
@@ -261,9 +266,7 @@ class MCPToolAdapter:
         self._prefix = prefix
         self._tools_cache: list[MCPToolWrapper] | None = None
         self._cache_generation: int | None = None
-        self._refresh_client: MCPRefreshClient | None = (
-            client if isinstance(client, MCPRefreshClient) else None
-        )
+        self._refresh_client: MCPRefreshClient | None = _refresh_client(client)
 
     async def get_tools(self, refresh: bool = False) -> list[ToolDefinition]:
         """

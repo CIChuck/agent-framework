@@ -309,3 +309,9 @@ for that raw call; generation-bound wrappers stay invalid and current catalog
 snapshot stays unavailable until explicit rediscovery. Manual refresh failure or
 explicit disconnect clears this compatibility data. Runtime/Chat wrappers use
 public stop/start rediscovery after recovery.
+
+Custom MCPClientBase subclasses that override raw `list_tools` or `call_tool`
+keep their virtual APIs. `supports_catalog_refresh` defaults to false for these
+subclasses; they may explicitly opt in when their optional refresh/generation
+methods implement this contract. Other custom clients can implement the declared
+MCPRefreshClient protocol directly.

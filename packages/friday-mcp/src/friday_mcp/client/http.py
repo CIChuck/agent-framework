@@ -719,6 +719,13 @@ class StreamableHTTPMCPClient(MCPClientBase):
             if not task.done():
                 task.cancel()
 
+    @property
+    def supports_catalog_refresh(self) -> bool:
+        return (
+            type(self).list_tools is MCPClientBase.list_tools
+            and type(self).call_tool is StreamableHTTPMCPClient.call_tool
+        )
+
     def _invalidate_catalog(self) -> None:
         super()._invalidate_catalog()
         self._recovered_call_catalog = None
