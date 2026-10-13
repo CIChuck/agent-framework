@@ -10,7 +10,8 @@ Friday runtime, memory, agent, LLM, transcript, and tools packages.
 The distributed `config.example.yaml` and packaged
 `src/friday_chat/config_templates/config.example.yaml` include the same
 default-disabled MCP stanza. Copy the runtime example to an editable config
-outside the package, then configure a trusted local stdio server under
+outside the package, then configure local stdio or an explicitly admitted HTTPS
+Streamable HTTP peer under
 `tools.providers.mcp`. Run
 `friday-chat --config /path/to/config.yaml --runtime real` to use real
 providers; the CLI's default fake runtime does not connect
@@ -224,3 +225,14 @@ Execution schema versions require actual integer1, including forged-instance ent
 Acquired close-capable model iterators are explicitly awaited before terminal return
 through direct, legacy and typed stream paths. Cleanup preserves an active callback,
 model or cancellation exception; chunk ordering, heartbeat and buffering stay intact.
+
+
+MCP YAML can explicitly select stdio protocol_profile:modern/auto, or HTTP
+protocol_version:'2026-07-28'/'2025-11-25'. HTTP uses the same strict Runtime
+parser, remote opt-ins and actual-connect network policy. Bearer authentication
+stores only a literal credential_env reference in config; `${...}` syntax is
+rejected before generic Chat interpolation. No inline token, HTTP header override,
+TLS relaxation or insecure endpoint is accepted. The existing turn selection,
+result sanitizer, quarantined transcript/provenance and explicit memory opt-in
+apply to remote tools. Telemetry remains injected and provider-neutral; Langfuse
+is a separate optional queued implementation.

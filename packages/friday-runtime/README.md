@@ -21,7 +21,8 @@ import friday_runtime
 
 `RuntimeConfig.tools.providers.mcp` is the canonical headless MCP client
 configuration. It is disabled by default. Enabling it connects to explicit
-local stdio servers at startup and registers only tools admitted by the
+local stdio or explicitly opted-in HTTPS Streamable HTTP servers at startup
+and registers only tools admitted by the
 provider's selected-mode filters, schema checks and caps. An optional server
 connection failure remains in typed diagnostics, but a pinned missing
 `include_tools` name still fails registration with `missing_include`; a
@@ -33,9 +34,23 @@ failed start. Its public `operational_diagnostics` snapshot covers discovery,
 server lifecycle, registration/collision decisions, budget skips, truncation
 and ingestion outcomes. Optional telemetry exports only closed redacted MCP
 events. The [MCP client guide](../../docs/guides/17-mcp-client.md) contains a
-parser-checked stdio example, the Friday Chat compatibility shape, security
+stdio and both dated HTTP examples, the Friday Chat compatibility shape, security
 defaults and troubleshooting steps.
 
 ## License
 
 MIT
+
+
+Stdio omits `protocol_profile` for legacy compatibility or explicitly uses modern/
+auto. HTTP requires `transport: streamable_http`, explicit `protocol_version`
+2026-07-28 or2025-11-25 and `trust_level: remote`; enabled entries also require
+security.integrated_transport: stdio_and_streamable_http and trust_posture:
+explicit_remote. Only verified HTTPS is configurable. Per-peer network lists
+permit exact canonical IPs/ports; DNS policy is enforced at every actual connection.
+`auth: bearer_env` names a literal credential_env identifier, resolved only at
+connection assembly by the typed MCPCredentialResolver. No OAuth or automatic
+refresh occurs. Disabled peers/providers and auto_connect:false perform no
+credential lookup. New-profile startup has one capped30-second deadline across
+handshake and complete discovery; call budgets are lower-only. HTTP never retries
+startup or replays a tool call. Borrowed telemetry/network providers remain open.

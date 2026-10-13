@@ -1,8 +1,9 @@
 # Friday Framework MCP
 
 `friday-mcp` provides protocol-level MCP clients, transports and server APIs.
-Its programmatic clients support stdio and SSE; the integrated Friday runtime
-client currently configures **local stdio only**. The runtime owns discovery,
+Its programmatic clients support stdio, Streamable HTTP and legacy SSE. The
+integrated Friday runtime supports local stdio and explicitly admitted HTTPS
+Streamable HTTP peers. The runtime owns discovery,
 registration, filters, diagnostics and lifecycle. See the
 [MCP client guide](../../docs/guides/17-mcp-client.md) for the canonical
 `tools.providers.mcp` configuration and Friday Chat use.
@@ -63,7 +64,8 @@ MIT
 
 The client-core profile supports MCP **2026-07-28** over stdio and retains
 **2024-11-05** initialization compatibility. Current constructors, manager and
-integrated runtime YAML continue to select legacy behavior. Modern stdio is
+integrated runtime YAML default to legacy behavior. YAML may explicitly select
+`protocol_profile: modern` or `auto`. Modern stdio is
 an explicit programmatic choice:
 
 ```python
@@ -92,9 +94,10 @@ modern wire error (`-32020`, `-32021` or `-32022`) remains an error. Calls are n
 ambiguous failure. Modern stdio rejects server requests without sending a
 forbidden client response; legacy unknown requests receive MethodNotFound.
 
-Streamable HTTP, remote YAML admission and a modern Friday server are subsequent
-construction units. Existing programmatic HTTP+SSE remains legacy. This first
-client-core slice does not claim whole-initiative conformance.
+Streamable HTTP and remote YAML admission are available through the Runtime
+provider described below. A modern Friday server remains a separate construction
+unit. Existing programmatic HTTP+SSE remains legacy. Client integration does not
+claim whole-initiative or optional-feature conformance.
 
 ### Resource and result behavior
 
@@ -169,8 +172,9 @@ deterministic legacy peer and full MCP/Runtime/Chat/telemetry regressions.
 
 `StreamableHTTPMCPClient` supports explicit MCP `2026-07-28` and `2025-11-25`
 tools profiles. It is a separate transport from the retained 2024 HTTP+SSE
-client. Runtime/Chat `config.yaml` remote registration belongs to the later
-UP-03 unit; this API does not change current runtime admission/defaults.
+client. Runtime/Chat `config.yaml` can select either dated HTTP profile explicitly
+with the matching global remote policy and per-peer `trust_level: remote`. Local
+stdio and disabled-provider defaults are preserved.
 
 ```python
 from friday_mcp.client import HTTPEndpointPolicy, StreamableHTTPMCPClient
@@ -249,3 +253,14 @@ and allows a later `disconnect()` retry. A teardown failure does not replace an
 existing request failure. Always await shutdown; no background owner is silently
 forgotten. Fixture-only plaintext HTTP is restricted to an explicitly allowlisted
 literal 127.0.0.1/port and cannot relax production TLS.
+
+
+### Runtime factory ownership
+
+`friday_mcp.client.MCPManagedServer` is a frozen name/enabled/client-factory
+record. `MCPClientManager(config, managed_servers=entries)` owns the complete
+ordered entry list; config.servers must be empty in that mode. Duplicate names
+and invalid entries fail before invocation. The default MCPConfig API retains
+stdio/SSE compatibility. Factories return MCPClientBase; the manager adopts the
+client before connecting and retains incomplete cleanup owners for public retry.
+Runtime uses this typed seam, without injecting clients into private dictionaries.

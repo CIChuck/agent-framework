@@ -27,6 +27,25 @@ def record(verb, request, headers):
                 )
                 + "\n"
             )
+    path = os.environ.get("MCP_FIXTURE_WIRE_COUNTER")
+    if path:
+        expected = os.environ.get("MCP_FIXTURE_EXPECT_BEARER")
+        with Path(path).open("a") as stream:
+            stream.write(
+                json.dumps(
+                    {
+                        "method": request.get("method"),
+                        "version": headers.get("mcp-protocol-version"),
+                        "auth_matches": expected is None
+                        or headers.get("authorization") == "Bearer " + expected,
+                        "trace_present": any(
+                            key in headers
+                            for key in ("traceparent", "tracestate", "baggage")
+                        ),
+                    }
+                )
+                + "\n"
+            )
 
 
 async def handle(reader, writer):
@@ -50,7 +69,13 @@ async def handle(reader, writer):
         method = request.get("method")
         status, kind, extras = 200, "application/json", []
         result = None
-        if verb == "DELETE":
+        expected = os.environ.get("MCP_FIXTURE_EXPECT_BEARER")
+        if (
+            expected is not None
+            and headers.get("authorization") != "Bearer " + expected
+        ):
+            status = 401
+        elif verb == "DELETE":
             status = 405
         elif method == "initialize":
             sessions += 1
@@ -140,7 +165,7 @@ async def handle(reader, writer):
 
 async def main():
     context = None
-    if mode.startswith("tls"):
+    if mode.startswith("tls") or os.environ.get("MCP_FIXTURE_TLS_CERT"):
         context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
         context.load_cert_chain(
             os.environ["MCP_FIXTURE_TLS_CERT"], os.environ["MCP_FIXTURE_TLS_KEY"]

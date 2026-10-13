@@ -326,3 +326,113 @@ def test_non_mcp_provider_behavior_is_unchanged() -> None:
     )
     assert tools.providers.builtin.enabled
     assert not tools.providers.mcp.enabled
+
+
+def remote_server(**changes):
+    return {
+        "name": "remote",
+        "transport": "streamable_http",
+        "protocol_version": "2026-07-28",
+        "trust_level": "remote",
+        "url": "https://example.com/mcp",
+        **changes,
+    }
+
+
+def remote_stanza(servers, **changes):
+    return {
+        "enabled": True,
+        "mode": "all",
+        "config": {
+            "security": {
+                "integrated_transport": "stdio_and_streamable_http",
+                "trust_posture": "explicit_remote",
+            },
+            "servers": servers,
+            **changes,
+        },
+    }
+
+
+@pytest.mark.parametrize(
+    "change",
+    [
+        {"protocol_version": None},
+        {"protocol_version": "auto"},
+        {"trust_level": "local"},
+        {"command": "SENTINEL_COMMAND"},
+        {"args": []},
+        {"env": {}},
+        {"cwd": None},
+        {"protocol_profile": "modern"},
+        {"headers": {}},
+        {"cookies": {}},
+        {"proxy": None},
+        {"verify_tls": False},
+        {"allow_fixture_http": True},
+        {"ca_file": None},
+        {"retry_attempts": 1},
+        {"retry_attempts": False},
+        {"timeout_seconds": True},
+        {"tool_timeout_seconds": 0},
+        {"enabled": "yes"},
+        {"required": True, "enabled": False},
+        {"url": "http://example.com/mcp"},
+        {"url": "https://user:SENTINEL_TOKEN@example.com/mcp"},
+        {"url": "https://example.com/mcp?SENTINEL_QUERY"},
+        {"url": "https://example.com/mcp#SENTINEL_FRAGMENT"},
+        {"url": "https://127.0.0.1/mcp"},
+        {"url": "https://example.com:8443/mcp"},
+        {"url": "https://[::ffff:127.0.0.1]/mcp"},
+        {"url": "https://example.com/雪"},
+        {"auth": "inline"},
+        {"credential_env": "SENTINEL_TOKEN"},
+        {"auth": "bearer_env"},
+        {"auth": "bearer_env", "credential_env": "${SENTINEL_TOKEN}"},
+        {"network": {"allowed_addresses": ["127.0.0.1/32"]}},
+        {"network": {"allowed_addresses": ["*.example.com"]}},
+        {"network": {"allowed_addresses": ["127.0.0.1", "127.0.0.1"]}},
+        {"network": {"allowed_addresses": ["::ffff:127.0.0.1"]}},
+        {"network": {"allowed_ports": [True]}},
+        {"network": {"allowed_ports": []}},
+        {"network": {"allowed_ports": [443, 443]}},
+        {"network": {"allowed_ports": [65536]}},
+    ],
+)
+@pytest.mark.parametrize("disabled", [False, True])
+def test_http_union_rejects_bad_shapes_including_disabled_before_effects(
+    change, disabled
+):
+    entry = (
+        remote_server(enabled=not disabled, **change)
+        if "enabled" not in change
+        else remote_server(**change)
+    )
+    with pytest.raises(ValueError) as failure:
+        MCPToolProviderConfig.from_dict(remote_stanza([entry]))
+    current = failure.value
+    while current is not None:
+        assert "SENTINEL" not in str(current)
+        current = current.__cause__ or current.__context__
+
+
+def test_remote_opt_in_and_local_union_defaults():
+    with pytest.raises(ValueError, match="explicit remote"):
+        _provider({"servers": [remote_server()]})
+    off = _provider({"servers": [remote_server(enabled=False)]})
+    assert off.config.security.trust_posture == "local_stdio_only"
+    for profile in ("legacy", "modern", "auto"):
+        local = _provider(
+            {
+                "servers": [
+                    {"name": "local", "command": "fake", "protocol_profile": profile}
+                ]
+            }
+        )
+        assert local.config.servers[0].protocol_profile == profile
+    assert (
+        _provider({"servers": [{"name": "local", "command": "fake"}]})
+        .config.servers[0]
+        .protocol_profile
+        == "legacy"
+    )

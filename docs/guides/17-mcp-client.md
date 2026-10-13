@@ -1,7 +1,8 @@
 # MCP client setup and operation
 
 This guide covers the integrated MCP **client** in the Friday runtime and
-Friday Chat. It connects to local stdio servers, discovers their tools at
+Friday Chat. It connects to local stdio and explicitly admitted HTTPS Streamable
+HTTP servers, discovers their tools at
 startup, and registers only tools admitted by Friday's filters and limits.
 MCP is off by default. For a repository-checkout test, the local peer below
 needs no network or credentials.
@@ -116,8 +117,9 @@ tools:
 ```
 
 For a headless RuntimeConfig caller, provide the server `env` mapping from
-your application's secret source. The integrated configuration accepts local
-stdio only. Programmatic `friday-mcp` transport/server APIs are separate and
+your application's secret source. Local stdio defaults to legacy2024 behavior;
+`protocol_profile: modern` selects2026-07-28, while `auto` uses bounded read-only
+discovery/fallback. Programmatic `friday-mcp` transport/server APIs are separate and
 do not make remote SSE an integrated runtime option. The reserved
 `tools.providers.mcp.config_file` key is **rejected**; external includes belong
 to deferred WS-09. MCP resources, prompts and server exposure are not part of
@@ -168,3 +170,79 @@ truncated output, review `max_result_bytes` and the peer's output size. If
 memory is missing, first check the default-disabled ingestion policy, then
 the explicit opt-ins and pending/published diagnostic outcome. See
 [Troubleshooting](13-troubleshooting.md) for the failure table.
+
+
+## Explicit HTTPS Streamable HTTP peers
+
+Use the same inline config.yaml location for headless Runtime and real Friday Chat.
+Every HTTP peer requires an explicit dated version and per-peer remote admission;
+enabled HTTP also requires the matching global security pair. Example:
+
+```yaml
+tools:
+  providers:
+    mcp:
+      enabled: true
+      mode: all
+      config:
+        security:
+          integrated_transport: stdio_and_streamable_http
+          trust_posture: explicit_remote
+        servers:
+          - name: remote_tools
+            transport: streamable_http
+            protocol_version: '2026-07-28'
+            trust_level: remote
+            url: https://mcp.example.com/mcp
+            auth: bearer_env
+            credential_env: FRIDAY_REMOTE_MCP_TOKEN
+            network:
+              allowed_addresses: []
+              allowed_ports: [443]
+            timeout_seconds: 30
+            tool_timeout_seconds: 30
+            retry_attempts: 0
+```
+
+Provide the token through the named process environment variable. credential_env
+is a literal reference, never `${...}` or an inline value. It remains unresolved
+through loading/model_dump; only an enabled connection looks it up. `auth: none`
+omits credential_env. Explicit compatibility uses protocol_version:'2025-11-25'.
+No default/auto HTTP version, legacy SSE fallback, OAuth discovery/login/refresh,
+GET subscriptions, resources/prompts or server exposure is configured here.
+The target is the pinned MCP2026-07-28 tools/transport specification plus the
+explicit2025-11-25 compatibility profile, not every optional MCP feature.
+
+Endpoints are ASCII HTTPS without userinfo, query, fragment or escaped host.
+TLS verifies the original hostname; no YAML flag changes trust or verification.
+Default port443 and public addresses apply. Private destinations/non443 ports
+need exact per-peer allowed_addresses/allowed_ports; hostnames/CIDR/wildcards and
+mapped IPv6 opt-ins are rejected. All DNS candidates are checked for each new
+connection before a validated numeric address is passed to the connector; mixed
+allowed/forbidden answers fail closed. No proxies, redirects or ambient cookies.
+
+The strict union rejects process fields on HTTP, remote fields on stdio and
+unknown fields even for disabled entries. Required+disabled is invalid. Provider
+or peer disable and auto_connect:false perform no factory invocation or credential
+lookup. Missing/invalid tokens and peer failures have fixed safe diagnostics.
+HTTP startup retries must be zero; no failed/ambiguous tools/call is replayed.
+2025 session recovery only initializes a fresh session; a subsequent call requires
+an explicit new invocation. Modern HTTP cancellation closes the owned request
+stream; modern stdio/2025 use their dated accepted cancellation behavior.
+
+For modern/auto stdio and HTTP, handshake plus full discovery share
+min(server timeout, global connection timeout,30 seconds). Calls use
+min(server tool timeout, global tool timeout,30 seconds), at most four concurrent
+requests and at most64KiB protocol results. Legacy stdio retains its existing
+budgets/retries. Runtime admission and Chat per-turn count/schema/result budgets
+still apply. Remote metadata accurately reports streamable_http/remote; peer
+instructions and annotations never grant policy or enter prompts automatically.
+
+The model-facing inline schema admits the canonical root2020-12 declaration and
+validated modern HTTP x-mcp-header annotations, then removes those protocol fields.
+The client retains its original catalog/wire bindings, including exact Unicode
+Base64 header encoding. Unsupported references/dialects/keywords remain rejected.
+Checked results use the same sanitation, quarantine, transcript correlation and
+explicit memory opt-in as stdio. Borrowed telemetry stays open; no trace/baggage
+or credential/application content is forwarded as telemetry. Public stop is
+idempotent, with failed cleanup owners retained for retry before replacement.

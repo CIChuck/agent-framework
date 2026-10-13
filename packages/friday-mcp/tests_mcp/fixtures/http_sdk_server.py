@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 from typing import Annotated
 
+import uvicorn
 from mcp.server import MCPServer
 from pydantic import Field
 
@@ -52,11 +53,70 @@ async def drop() -> str:
 
 
 if __name__ == "__main__":
-    asyncio.run(
-        server.run_streamable_http_async(
+    if os.environ.get("MCP_FIXTURE_TLS_CERT"):
+        app = server.streamable_http_app(
             host="127.0.0.1",
-            port=int(sys.argv[1]),
-            json_response=sys.argv[2] == "json",
+            json_response=sys.argv[2] != "tls-sse",
             stateless_http=True,
         )
-    )
+        inner = app
+
+        async def app(scope, receive, send):
+            if scope["type"] == "http":
+                headers = dict(scope["headers"])
+                path = os.environ.get("MCP_FIXTURE_WIRE_COUNTER")
+                expected = os.environ.get("MCP_FIXTURE_EXPECT_BEARER")
+                matches = (
+                    expected is None
+                    or headers.get(b"authorization") == ("Bearer " + expected).encode()
+                )
+                if path:
+                    safe = {
+                        k.decode(): v.decode()
+                        for k, v in headers.items()
+                        if k
+                        in (
+                            b"mcp-protocol-version",
+                            b"mcp-method",
+                            b"mcp-name",
+                            b"mcp-param-text",
+                        )
+                    }
+                    safe.update(
+                        auth_matches=matches,
+                        trace_present=any(
+                            k in headers
+                            for k in (b"traceparent", b"tracestate", b"baggage")
+                        ),
+                    )
+                    with Path(path).open("a") as stream:
+                        stream.write(json.dumps(safe) + "\n")
+                if not matches:
+                    await send(
+                        {"type": "http.response.start", "status": 401, "headers": []}
+                    )
+                    await send({"type": "http.response.body", "body": b""})
+                    return
+            await inner(scope, receive, send)
+
+        asyncio.run(
+            uvicorn.Server(
+                uvicorn.Config(
+                    app,
+                    host="127.0.0.1",
+                    port=int(sys.argv[1]),
+                    log_level="error",
+                    ssl_certfile=os.environ["MCP_FIXTURE_TLS_CERT"],
+                    ssl_keyfile=os.environ["MCP_FIXTURE_TLS_KEY"],
+                )
+            ).serve()
+        )
+    else:
+        asyncio.run(
+            server.run_streamable_http_async(
+                host="127.0.0.1",
+                port=int(sys.argv[1]),
+                json_response=sys.argv[2] == "json",
+                stateless_http=True,
+            )
+        )

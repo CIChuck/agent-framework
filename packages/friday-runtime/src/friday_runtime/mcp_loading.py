@@ -23,8 +23,8 @@ from friday_core.mcp import (
     MCPToolMetadata,
     build_mcp_metadata_index,
 )
-from friday_mcp.client.manager import MCPClientManager
-from friday_mcp.config import MCPConfig, MCPServerConfig
+from friday_mcp.client import MCPClientManager
+from friday_mcp.config import MCPConfig
 from friday_mcp.protocols import MCPClient
 from friday_telemetry import (
     MCPEventName,
@@ -33,7 +33,16 @@ from friday_telemetry import (
     TelemetryInterface,
 )
 
-from friday_runtime.config import MCPRuntimeServerConfig, MCPToolProviderConfig
+from friday_runtime.config import (
+    MCPRuntimeHTTPServerConfig,
+    MCPRuntimeServerConfig,
+    MCPToolProviderConfig,
+)
+from friday_runtime.mcp_clients import (
+    EnvironmentMCPCredentialResolver,
+    MCPCredentialResolver,
+    managed_mcp_server,
+)
 from friday_runtime.mcp_registration import (
     MCPBindingContext,
     MCPRegistrationDecision,
@@ -87,7 +96,7 @@ class MCPDiscoveredTool:
 
 @dataclass
 class _ServerResult:
-    server: MCPRuntimeServerConfig
+    server: MCPRuntimeServerConfig | MCPRuntimeHTTPServerConfig
     outcome: MCPLifecycleOutcome
     # Any is confined to the JSON-RPC boundary; never a diagnostic contract.
     tools: list[dict[str, Any]] = field(default_factory=list, repr=False)
@@ -116,8 +125,13 @@ class RuntimeMCPProvider:
         config: MCPToolProviderConfig,
         workspace_root: str,
         telemetry: TelemetryInterface | None = None,
+        *,
+        credential_resolver: MCPCredentialResolver | None = None,
     ) -> None:
         self._config = config
+        self._credential_resolver = (
+            credential_resolver or EnvironmentMCPCredentialResolver()
+        )
         self._telemetry = MCPTelemetryHelper(telemetry)
         self._budget_skips = 0
         self._truncated_results = 0
@@ -189,8 +203,10 @@ class RuntimeMCPProvider:
             )
         else:
             reason: MCPEventReason = (
-                "timeout" if outcome == "timeout"
-                else "cancelled" if outcome == "cancelled"
+                "timeout"
+                if outcome == "timeout"
+                else "cancelled"
+                if outcome == "cancelled"
                 else "execution_error"
             )
             self.emit_event(
@@ -232,6 +248,7 @@ class RuntimeMCPProvider:
             for state in self.discovery.servers:
                 if state.connection_state == "connected":
                     clients[state.server_id] = manager.get_client(state.server_id)
+        admission_failure: ToolProviderLoadError | None = None
         try:
             plan = prepare_registration(
                 self._config, self.prepared_tools, clients, registry.list_names()
@@ -239,10 +256,16 @@ class RuntimeMCPProvider:
         except MCPRegistrationError as exc:
             self.registration_decisions = exc.decisions
             self._publish_registration_counts(exc.decisions, exc.code, committed=False)
-            await self.stop()
-            raise ToolProviderLoadError(str(exc)) from None
+            try:
+                await self.stop()
+            except BaseException:
+                self.emit_event("disconnect", reason="cleanup_failed")
+            admission_failure = ToolProviderLoadError(str(exc))
+        if admission_failure is not None:
+            raise admission_failure
         self.registration_decisions = plan.decisions
         self._registry = registry
+        registration_failure: ToolProviderLoadError | None = None
         try:
             for wrapper, metadata in zip(plan.wrappers, plan.metadata, strict=True):
                 wrapper.set_call_observer(self._observe_call)
@@ -291,12 +314,17 @@ class RuntimeMCPProvider:
             self._publish_registration_counts(
                 plan.decisions, "registration_failed", committed=False
             )
-            await self.stop()
+            try:
+                await self.stop()
+            except BaseException:
+                self.emit_event("disconnect", reason="cleanup_failed")
             if isinstance(exc, asyncio.CancelledError):
                 raise
-            raise ToolProviderLoadError(
+            registration_failure = ToolProviderLoadError(
                 "MCP registration failed; inspect mcp_provider.diagnostics"
-            ) from None
+            )
+        if registration_failure is not None:
+            raise registration_failure
 
     def _publish_registration_counts(
         self,
@@ -369,7 +397,8 @@ class RuntimeMCPProvider:
                 else decision.reason
             )
             self.emit_event(
-                "tool_registered" if committed and decision.reason == "registered"
+                "tool_registered"
+                if committed and decision.reason == "registered"
                 else "tool_skipped",
                 server_id=decision.server_id,
                 tool_name=decision.canonical_name,
@@ -427,10 +456,19 @@ class RuntimeMCPProvider:
         self.registration_decisions = ()
         self.manager = MCPClientManager(
             MCPConfig(
-                servers=[self._protocol_config(server) for server in servers],
+                servers=[],
                 auto_connect=False,
                 tool_name_prefix=config.tool_name_prefix,
-            )
+            ),
+            managed_servers=[
+                managed_mcp_server(
+                    server,
+                    config.limits,
+                    self._workspace_root,
+                    self._credential_resolver,
+                )
+                for server in servers
+            ],
         )
         results: dict[str, _ServerResult] = {
             server.name: _ServerResult(server, "disabled")
@@ -475,11 +513,15 @@ class RuntimeMCPProvider:
             if not published:
                 self._publish(results)
             self.discovery = self.discovery.model_copy(update={"status": "failed"})
-            await self.stop()
+            try:
+                await self.stop()
+            except BaseException:
+                # The same public owner remains reachable for cleanup retry.
+                self.emit_event("disconnect", reason="cleanup_failed")
             raise
 
     async def _batch(
-        self, servers: list[MCPRuntimeServerConfig]
+        self, servers: list[MCPRuntimeServerConfig | MCPRuntimeHTTPServerConfig]
     ) -> list[_ServerResult]:
         tasks = [asyncio.create_task(self._discover(server)) for server in servers]
         try:
@@ -498,23 +540,9 @@ class RuntimeMCPProvider:
             await asyncio.gather(*tasks, return_exceptions=True)
             raise
 
-    def _protocol_config(self, server: MCPRuntimeServerConfig) -> MCPServerConfig:
-        raw_cwd = Path(server.cwd) if server.cwd is not None else self._workspace_root
-        cwd = (
-            raw_cwd if raw_cwd.is_absolute() else self._workspace_root / raw_cwd
-        ).resolve()
-        return MCPServerConfig(
-            name=server.name,
-            enabled=True,
-            command=server.command,
-            args=list(server.args),
-            env=dict(server.env),
-            cwd=cwd,
-            timeout_seconds=server.timeout_seconds,
-            retry_attempts=server.retry_attempts,
-        )
-
-    async def _connect(self, server: MCPRuntimeServerConfig) -> None:
+    async def _connect(
+        self, server: MCPRuntimeServerConfig | MCPRuntimeHTTPServerConfig
+    ) -> None:
         manager = self.manager
         if manager is None:
             raise RuntimeError("MCP manager not initialized")
@@ -526,7 +554,9 @@ class RuntimeMCPProvider:
                 if attempt == server.retry_attempts:
                     raise
 
-    async def _discover(self, server: MCPRuntimeServerConfig) -> _ServerResult:
+    async def _discover(
+        self, server: MCPRuntimeServerConfig | MCPRuntimeHTTPServerConfig
+    ) -> _ServerResult:
         manager = self.manager
         if manager is None:
             raise RuntimeError("MCP manager not initialized")
@@ -534,6 +564,13 @@ class RuntimeMCPProvider:
             server.timeout_seconds,
             self._config.config.limits.connection_timeout_seconds,
         )
+        bounded_profile = (
+            isinstance(server, MCPRuntimeHTTPServerConfig)
+            or server.protocol_profile != "legacy"
+        )
+        if bounded_profile:
+            timeout = min(timeout, 30)
+        deadline = asyncio.get_running_loop().time() + timeout
         outcome: MCPLifecycleOutcome
         self.emit_event(
             "connection_start", server_id=server.name, required=server.required
@@ -562,7 +599,10 @@ class RuntimeMCPProvider:
             self.emit_event("list_tools_start", server_id=server.name)
             try:
                 tools = await asyncio.wait_for(
-                    manager.get_client(server.name).list_tools(), timeout=timeout
+                    manager.get_client(server.name).list_tools(),
+                    timeout=max(0.0, deadline - asyncio.get_running_loop().time())
+                    if bounded_profile
+                    else timeout,
                 )
                 if not isinstance(tools, list):
                     raise ValueError("Invalid MCP catalog")
@@ -572,6 +612,14 @@ class RuntimeMCPProvider:
                     reason="success",
                     count=min(len(tools), 1_000_000),
                 )
+                if bounded_profile:
+                    manager.get_client(server.name).request_timeout_seconds = float(
+                        min(
+                            server.tool_timeout_seconds,
+                            self._config.config.limits.tool_timeout_seconds,
+                            30,
+                        )
+                    )
                 return _ServerResult(server, "connected", tools)
             except asyncio.CancelledError:
                 self.emit_event(
@@ -584,9 +632,7 @@ class RuntimeMCPProvider:
                 outcome = "discovery_timeout"
             except Exception:
                 outcome = "discovery_failed"
-            self.emit_event(
-                "list_tools_failure", server_id=server.name, reason=outcome
-            )
+            self.emit_event("list_tools_failure", server_id=server.name, reason=outcome)
         if outcome in ("connection_failed", "connection_timeout"):
             self.emit_event(
                 "connection_failure",
@@ -602,9 +648,7 @@ class RuntimeMCPProvider:
                 "disconnect", server_id=server.name, reason="cleanup_failed"
             )
         else:
-            self.emit_event(
-                "disconnect", server_id=server.name, reason="success"
-            )
+            self.emit_event("disconnect", server_id=server.name, reason="success")
         return _ServerResult(server, outcome)
 
     def _publish(self, results: dict[str, _ServerResult]) -> None:
@@ -697,9 +741,7 @@ class RuntimeMCPProvider:
                 MCPServerDiscoveryState(
                     server_id=server.name,
                     connection_state=state,
-                    cache_timestamp=datetime.now(UTC)
-                    if state == "connected"
-                    else None,
+                    cache_timestamp=datetime.now(UTC) if state == "connected" else None,
                     rejected_tools=server_rejected,
                     diagnostic_codes=tuple(sorted(codes)),
                 )
@@ -742,13 +784,12 @@ class RuntimeMCPProvider:
                         "disconnect",
                         server_id=server_id,
                         reason="cleanup_failed"
-                        if server_id in still_connected else "success",
+                        if server_id in still_connected
+                        else "success",
                     )
                 raise ToolProviderLoadError("MCP shutdown incomplete") from None
             for server_id in connected_before:
-                self.emit_event(
-                    "disconnect", server_id=server_id, reason="success"
-                )
+                self.emit_event("disconnect", server_id=server_id, reason="success")
         self.discovery = self.discovery.model_copy(
             update={
                 "connected_servers": 0,

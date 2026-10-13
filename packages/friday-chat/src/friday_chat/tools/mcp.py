@@ -64,7 +64,10 @@ class MCPChatRegistry:
             await self.provider.start()
             await self.provider.register_tools(self.registry)
         except BaseException:
-            await self.provider.stop()
+            try:
+                await self.provider.stop()
+            except BaseException:
+                self.provider.emit_event("disconnect", reason="cleanup_failed")
             raise
 
     async def stop(self) -> None:
@@ -103,8 +106,13 @@ class MCPChatRegistry:
         facts = record.mcp_provenance
         if facts is not None:
             reason: Literal[
-                "tool_error", "invalid_result", "execution_error", "timeout",
-                "output_rejected", "truncated", "checked"
+                "tool_error",
+                "invalid_result",
+                "execution_error",
+                "timeout",
+                "output_rejected",
+                "truncated",
+                "checked",
             ]
             if facts.failure_code == "tool_error":
                 reason = "tool_error"
@@ -155,9 +163,7 @@ class MCPChatRegistry:
             code = getattr(exc, "failure_code", None)
             if code == "tool_error":
                 return self._observed(
-                    self.output_policy.failed_record(
-                        metadata, identifier, "tool_error"
-                    )
+                    self.output_policy.failed_record(metadata, identifier, "tool_error")
                 )
             if code == "invalid_result":
                 return self._observed(
@@ -172,9 +178,7 @@ class MCPChatRegistry:
             )
         if not isinstance(result, str):
             return self._observed(
-                self.output_policy.failed_record(
-                    metadata, identifier, "invalid_result"
-                )
+                self.output_policy.failed_record(metadata, identifier, "invalid_result")
             )
         try:
             return self._observed(
