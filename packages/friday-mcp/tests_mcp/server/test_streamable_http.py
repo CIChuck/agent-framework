@@ -494,3 +494,136 @@ async def test_actual_sse_framing_budget_and_single_invocation(mode, status):
         else:
             assert response.json()["error"]["code"] == -32603
     assert called == [1]
+
+
+async def raw_boundary_response(server, pairs):
+    consumed, messages = [], []
+
+    async def receive():
+        consumed.append(1)
+        return {"type": "http.request", "body": rpc(), "more_body": False}
+
+    async def send(message):
+        messages.append(message)
+
+    await server(
+        {
+            "type": "http",
+            "path": "/mcp",
+            "method": "POST",
+            "scheme": "http",
+            "query_string": b"",
+            "headers": [(b"host", b"127.0.0.1:8000"), *pairs],
+        },
+        receive,
+        send,
+    )
+    return messages[0]["status"], json.loads(messages[1]["body"]), consumed
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("bad", [b"x\rprivate", b"x\nprivate", b"x\0private"])
+async def test_custom_header_invalid_bytes_exact_mismatch_before_body(bad):
+    server, calls = make_server(
+        schema={
+            "type": "object",
+            "properties": {"x": {"type": "string", "x-mcp-header": "X"}},
+        }
+    )
+    status, body, consumed = await raw_boundary_response(
+        server, [(b"mCp-PaRaM-X", bad)]
+    )
+    assert status == 400 and body == {
+        "jsonrpc": "2.0",
+        "error": {"code": -32020, "message": "Header mismatch"},
+    }
+    assert not calls and not consumed
+    await server.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "bad", [b"\x7f", b"\x80", b"\x01", b" padded ", b"=?base64?!!!!?="]
+)
+async def test_recognized_custom_header_invalid_encoding_zero_handler(bad):
+    server, calls = make_server(
+        schema={
+            "type": "object",
+            "properties": {"x": {"type": "string", "x-mcp-header": "X"}},
+        }
+    )
+    h = [(k.encode(), v.encode()) for k, v in headers().items()]
+    async with http_client(server) as client:
+        response = await client.post(
+            "/mcp",
+            headers=[*h, (b"Mcp-Param-X", bad)],
+            content=rpc("tools/call", params={"name": "echo", "arguments": {"x": "x"}}),
+        )
+    assert response.status_code == 400 and response.json() == {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "error": {"code": -32020, "message": "Header mismatch"},
+    }
+    assert not calls
+    await server.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("second", [b"same", b"conflicting-private"])
+async def test_custom_header_duplicate_exact_mismatch_before_body(second):
+    server, calls = make_server(
+        schema={
+            "type": "object",
+            "properties": {"x": {"type": "string", "x-mcp-header": "X"}},
+        }
+    )
+    status, body, consumed = await raw_boundary_response(
+        server, [(b"Mcp-Param-X", b"same"), (b"mCp-PaRaM-x", second)]
+    )
+    assert status == 400 and body == {
+        "jsonrpc": "2.0",
+        "error": {"code": -32020, "message": "Header mismatch"},
+    }
+    assert not calls and not consumed
+    await server.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "name,bad,status",
+    [
+        (b"host", b"private-invalid", 400),
+        (b"origin", b"https://private.invalid", 403),
+        (b"authorization", b"Bearer private-credential", 401),
+    ],
+)
+async def test_access_failures_keep_exact_status_and_private_body(name, bad, status):
+    server, calls = make_server()
+    pairs = [(name, bad)]
+    actual, body, consumed = await raw_boundary_response(server, pairs)
+    assert actual == status and body == {
+        "jsonrpc": "2.0",
+        "error": {"code": -32600, "message": "Invalid request"},
+    }
+    assert not calls and not consumed and "private" not in json.dumps(body)
+    await server.stop()
+
+
+@pytest.mark.asyncio
+async def test_custom_header_interior_tab_and_unknown_valid_header_preserved():
+    server, calls = make_server(
+        schema={
+            "type": "object",
+            "properties": {"x": {"type": "string", "x-mcp-header": "X"}},
+        }
+    )
+    async with http_client(server) as client:
+        response = await client.post(
+            "/mcp",
+            headers={**headers(), "Mcp-Param-X": "a\tb", "Mcp-Param-Unknown": "unused"},
+            content=rpc(
+                "tools/call", params={"name": "echo", "arguments": {"x": "a\tb"}}
+            ),
+        )
+    assert response.status_code == 200 and calls == [{"x": "a\tb"}]
+    await server.stop()

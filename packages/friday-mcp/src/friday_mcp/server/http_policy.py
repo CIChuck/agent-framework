@@ -139,7 +139,14 @@ class HTTPServerPolicy:
         for name, value in pairs:
             size += len(name) + len(value) + 4
             lower = name.lower()
-            if lower in (b"mcp-protocol-version", b"mcp-method", b"mcp-name") and (
+            if size > limits.header_bytes:
+                raise HTTPAccessError(400)
+            mirrored = lower in (
+                b"mcp-protocol-version",
+                b"mcp-method",
+                b"mcp-name",
+            ) or lower.startswith(b"mcp-param-")
+            if mirrored and (
                 lower in headers or any(c in value for c in (b"\r", b"\n", b"\0"))
             ):
                 raise ServerWireError(-32020)

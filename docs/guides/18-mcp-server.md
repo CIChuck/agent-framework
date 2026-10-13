@@ -113,7 +113,9 @@ HTTP requests include `Content-Type: application/json`, Accept listing both JSON
 and event-stream, `MCP-Protocol-Version`, `Mcp-Method`, and `Mcp-Name` for calls.
 Static primitive `x-mcp-header` bindings, including nested property paths, must
 match the body. Unicode/unsafe ASCII values use the dated Base64 sentinel.
-HeaderMismatch (`-32020`) is an HTTP400 failure before any handler runs. Unknown
+HeaderMismatch (`-32020`) is an HTTP400 failure before any handler runs.
+Malformed or case-insensitive duplicate mirrored parameter headers use this
+fixed error as well; pre-body rejection omits the request ID and header values. Unknown
 methods return HTTP404/`-32601`; unsupported versions HTTP400/`-32022` with bounded
 supported/requested data. GET/DELETE return405. There are no protocol sessions,
 GET event streams, session cookies/IDs, `/message` split endpoints or redirects.
@@ -139,11 +141,20 @@ and worst permitted ID; opaque cursors expire when the catalog changes.
 Admission bounds simultaneous invocations and tool starts per second, both
 to active_requests (default32). The per-instance rolling one-second start window
 persists across restart; denied starts have no handler span. Deployment-wide
-policy remains an application responsibility. Deadlines include body/admission/handler work.
+policy remains an application responsibility. Deadlines include body/admission/handler/delivery work.
+For stdio, the first frame byte starts the absolute deadline. Fragments and
+oversized-frame discard retain that deadline; an expired partial frame closes
+the connection before handler admission. Waiting on an idle connection consumes
+no frame budget.
 
 Stdio cancellation targets only the connection's pending request. HTTP disconnect
 cancels only its originating POST. Stop closes streams/listeners and cancels owned
-work; cancellation-resistant handlers remain tracked. Incomplete settlement raises
+work; cancellation-resistant handlers, serving loops and output work remain tracked.
+Stdio rejection delivery has a separate bounded pool of at most active_requests
+tasks and shares the serialized output lock with admitted requests. The reader
+continues processing cancellation and EOF while output is blocked. If that pool
+is full, the connection closes instead of accumulating queued rejection work.
+Signal registrations, streams and teardown belong to their connection generation. Incomplete settlement raises
 a fixed TimeoutError and blocks unsafe restart until a later stop successfully
 drains the owners. A restarted connection cannot publish an old reply or remove
 its new owner. Python async cancellation requires cooperative handler behavior.
