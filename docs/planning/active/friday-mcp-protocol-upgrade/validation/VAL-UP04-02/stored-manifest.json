@@ -1,0 +1,3697 @@
+{
+  "decision": "CHANGES_REQUESTED",
+  "reviewed_candidate": "0fac03d69d0fb74eb52429970e5c0910b65922fe",
+  "original_report_sha256": "bb68a1ff03a47e30d9e1d7d1f39d6270a1b73b9be36ff1dd736001736fb79692",
+  "original_evidence_manifest_sha256": "c1f95ebfbefc701bcbf386ea4e8dc71577807488ef1c574f1eb9cb926d4930d5",
+  "artifacts": [
+    {
+      "original_path": "attempts/sandbox/checks/baseline-full-mypy/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/baseline-full-mypy/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-full-mypy/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/baseline-full-mypy/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5670,
+      "sha256": "b7e81439e34621d593517b129582914a5c0feb563192249a85d892a0723b9495",
+      "stored_sha256": "a95afe8bea835823581279e10e10b3366ce0c42e8a0707f3230c90383af2efd2"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-full-mypy/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/baseline-full-mypy/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3404,
+      "sha256": "97335bf134804b5ef7dcf748fd3583c52d9f57218a64cf4b64987b928dcd3733",
+      "stored_sha256": "09367dbc0f4d7a7a81f4f6e1ac0a1a461d46f943997eed6fd02932cd4744f086"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-full-mypy/stderr",
+      "path": "artifacts/attempts/sandbox/checks/baseline-full-mypy/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-full-mypy/stdout",
+      "path": "artifacts/attempts/sandbox/checks/baseline-full-mypy/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 632,
+      "sha256": "660c2488d941839c20e17e0a3f493c2af818a0f86aa50f4de882d317666d47ae",
+      "stored_sha256": "278ae5f7e4f07c2b3e9d96cd291f058535c3966258dfcd19bca30eca5e005ef8"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-root/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/baseline-root/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-root/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/baseline-root/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5478,
+      "sha256": "5b68f3dec0e200a18004bd77815bbbb7285c40419ab42c597c35b874e2886154",
+      "stored_sha256": "7a35b8189420e749f0609ab5de2fd1837faec2944379aa549e1fd0b8017d6bcd"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-root/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/baseline-root/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3212,
+      "sha256": "2679c41fd37decdb6a8ea71f9db8fe5e2870cfa7c9063e934362913cc8551571",
+      "stored_sha256": "ff16c32cc17f8f8f7868297ce35a4b70ca1c82c3491fc1d63b204b4962e4457c"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-root/stderr",
+      "path": "artifacts/attempts/sandbox/checks/baseline-root/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-root/stdout",
+      "path": "artifacts/attempts/sandbox/checks/baseline-root/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 95990,
+      "sha256": "45db74ecd8cdd184f88e4e75d4a491b25087665fc8c421a89fc0d3990a129168",
+      "stored_sha256": "b8d32327b7dba09d1c7a5727ccabe22edea430cb7da544e42e365740c857ed03"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-root-ruff/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/baseline-root-ruff/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-root-ruff/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/baseline-root-ruff/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5516,
+      "sha256": "67021dd823a7984d64862f5683afc056e4ae2bfb8319ef27cb4fff9e7a84ab0d",
+      "stored_sha256": "021be1f5297398bc59ff9d7aabaa5b43c0fee6c86819e8a2f7f3ec5e89076faa"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-root-ruff/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/baseline-root-ruff/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3250,
+      "sha256": "da1ee9fb5bd7b30b0a0d60d2df99da53d4af08ab1425420cc26412e41d38bbfc",
+      "stored_sha256": "555a57357af0a3cd2c8a5d1eb99c2d09ec57fda7b69fa08298e8bc0322c0f1b0"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-root-ruff/stderr",
+      "path": "artifacts/attempts/sandbox/checks/baseline-root-ruff/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/baseline-root-ruff/stdout",
+      "path": "artifacts/attempts/sandbox/checks/baseline-root-ruff/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 173534,
+      "sha256": "7ff2826769ffdf0fef63b279a9144f8fbe075c130138c37d3e0d14e541baddf0",
+      "stored_sha256": "d96990e1738547f0c4f983157d00bc830e1b9f7e3383d37adfc179b367913893"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/board/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/board/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/board/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/board/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5461,
+      "sha256": "c033ce3f3cc77830312a5da813ffdf58ef7a3274c478873eb5c899ddd2cc0b8b",
+      "stored_sha256": "a7b5648e1e262896835758c044d096b9a903d841d12976648e97e3ddd92e0fe0"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/board/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/board/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3000,
+      "sha256": "1beda198eb8f141dd90a2e4b3ab154f651f626a7e461592a611ab52c2f8f8043",
+      "stored_sha256": "1410961b694c69c73767606bdd5ccb51b46250ea09c75dba8e576b2d773c2139"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/board/stderr",
+      "path": "artifacts/attempts/sandbox/checks/board/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/board/stdout",
+      "path": "artifacts/attempts/sandbox/checks/board/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 46,
+      "sha256": "f86479667ca73f712d72cac3ab0abf3e4e9e165dc7c65159298cfb8ce281a947",
+      "stored_sha256": "a8fe0ac655745a8f208c9bac35d6e3f1f21b43eaae46fc65ba4ac7784df9b202"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/core-runtime-chat-telemetry/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/core-runtime-chat-telemetry/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/core-runtime-chat-telemetry/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/core-runtime-chat-telemetry/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5770,
+      "sha256": "c01b0ff90a9602bf54444b807312623155aac471763103e4ba63736957d8e035",
+      "stored_sha256": "4ace6b8af47e2c4c6f1435439c99bed0cec2cc74fd3c44a30ff22f64c9be468b"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/core-runtime-chat-telemetry/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/core-runtime-chat-telemetry/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3309,
+      "sha256": "f968e6202bcaf41c489af488811b5e9f0d7e9f40b1233282af680de91eefbbff",
+      "stored_sha256": "419b2b6550a27af78bb010855fa8b620272e3c6c17c720155a2e83b5061c9528"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/core-runtime-chat-telemetry/stderr",
+      "path": "artifacts/attempts/sandbox/checks/core-runtime-chat-telemetry/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/core-runtime-chat-telemetry/stdout",
+      "path": "artifacts/attempts/sandbox/checks/core-runtime-chat-telemetry/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 60783,
+      "sha256": "82c8bec86155499fd1e54ca705b1c5c8356bf36d809fc5986acac4855b55903a",
+      "stored_sha256": "48c4baba9ddf3e975d50b19f7fc2df8d0afe202dc8748c6a3d8c1f2ec43df5eb"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/docs/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/docs/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/docs/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/docs/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5451,
+      "sha256": "475d17be2f9ff1168beb8d0c333f178eb6e93ff3ce6b642b655488fce1df0029",
+      "stored_sha256": "afe872d451313b0b618e9934771994eb98a0da39c99ec42083c117fc7ede8bd5"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/docs/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/docs/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 2990,
+      "sha256": "375135479426ed57463e19eaf752f448627b209021cce75b35b1ee2cb199d70f",
+      "stored_sha256": "7999704ef78b59b08f706038ef86997710c80b3a173c53a7695c86085dfe6964"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/docs/stderr",
+      "path": "artifacts/attempts/sandbox/checks/docs/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/docs/stdout",
+      "path": "artifacts/attempts/sandbox/checks/docs/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 70,
+      "sha256": "0a0218e90bf79b1f80b245dac3542b93ac465ccc0cd1b162d975c58ae4d08928",
+      "stored_sha256": "7ecfa00c49ce08c054d9261adaaf49be8edc6da8e8775faebe8e98771b945589"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/focused/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/focused/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/focused/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/focused/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 6065,
+      "sha256": "709ddebefa2028a0f1d12ef376714611572de5aeb8376642e75aa3aea966376f",
+      "stored_sha256": "e3cd9c133d5aefa319ce1542125d1e8ea3211ad3f2aed6fc51f6c1acb6915210"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/focused/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/focused/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3604,
+      "sha256": "f17cd8f39a133e4d1db983afefcdba9b0e0a51c223eabd21844ee9c37697b877",
+      "stored_sha256": "d32e97bf875b1bf6cfc1754ea31255619ed3ba5095eb346e77ae7c76792a1ddb"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/focused/stderr",
+      "path": "artifacts/attempts/sandbox/checks/focused/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/focused/stdout",
+      "path": "artifacts/attempts/sandbox/checks/focused/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 55715,
+      "sha256": "cef8d988bc37c2c50ec3098405ea5a572664ba8a310b1d68a9dc915744a12d10",
+      "stored_sha256": "098ad71728ae1f4df1e1d9aaf47e6137114f09eb085df41e5c76effd7d2e7fdc"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/full-mypy/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/full-mypy/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/full-mypy/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/full-mypy/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5640,
+      "sha256": "cf766daf6e8e4c887f38caf81aa624dfecff33ab6c13e2c3787767bb98c6bbc1",
+      "stored_sha256": "01b0cc0bf12e72b9b860f4b8ef974c10be45cdc9f19c8b24ec6b65fccf7b23cf"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/full-mypy/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/full-mypy/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3179,
+      "sha256": "b01aab0b667ef2310805f04f92f0f26edfb8b30d7bfea0b18a315d4ce2314e02",
+      "stored_sha256": "60bde981214e8e2a008d14a43824a2d1cae6603b1e4518dc0c054e6fb672893b"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/full-mypy/stderr",
+      "path": "artifacts/attempts/sandbox/checks/full-mypy/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/full-mypy/stdout",
+      "path": "artifacts/attempts/sandbox/checks/full-mypy/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 632,
+      "sha256": "0f12b4a8d2a4279d4764bed68c80e3526c18920dd55358577a6e8511b118aa89",
+      "stored_sha256": "b1e8e9a8002575ee572e9bad4c0d2a1be2c17a038718f1c5346d04d90735b54c"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/http/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/http/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/http/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/http/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5635,
+      "sha256": "66cae448a7045072dc3330c61a7dc6d42db3f2a64e6bf1224e54654a7c66fd70",
+      "stored_sha256": "ea2d8efe744a0de3e8017ac5af5ac9d7438e12ff12a761bb4571c9434a00afcf"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/http/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/http/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3174,
+      "sha256": "1d685d53759c86d9f12d13c0b88f986116be473ca8923b33bdb9750005e3b264",
+      "stored_sha256": "8c4175e8b937dcec0852126eb24c29378c0d11f7ec905db1b61dd88c6f7738a6"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/http/stderr",
+      "path": "artifacts/attempts/sandbox/checks/http/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/http/stdout",
+      "path": "artifacts/attempts/sandbox/checks/http/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 20856,
+      "sha256": "66cf0b060c14c8a63c01d49827411252962a55cb5a3ba5e287eef9022e475886",
+      "stored_sha256": "b64991c3bf149917e4a20fa11e658c49d1c2c373f49ca7b1455be271c800732a"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/mcp/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/mcp/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/mcp/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/mcp/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5467,
+      "sha256": "f15f3caa4529e369836374c9fd97a3514cd49e2bd7878e1445b699b106791370",
+      "stored_sha256": "82c20483c9bfb9f75e69c646e25232c4ce05bc8c36da22afc2aca35fd5da5538"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/mcp/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/mcp/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3006,
+      "sha256": "8d0c068293292db32dc566d581641f0b7d4de3f4746ca20bf532f98aac16ae60",
+      "stored_sha256": "c3a4749cbd7fdb5b5f97da964018330e70a469a378ac9ba7b811f6f18eb81454"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/mcp/stderr",
+      "path": "artifacts/attempts/sandbox/checks/mcp/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/mcp/stdout",
+      "path": "artifacts/attempts/sandbox/checks/mcp/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 30779,
+      "sha256": "b43087b0a801f45e951ffd9bae3d60eaa4336eedc84ab0eb84f09c7071e809c2",
+      "stored_sha256": "59884778733db63e58c986248fa12034c99a2de8900fb1c1f09704325bc4127e"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/mcp-mypy/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/mcp-mypy/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/mcp-mypy/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/mcp-mypy/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5495,
+      "sha256": "22fe3abb819e786df406aba87db987d92a8a1944c9416c044b8caa518e285b3b",
+      "stored_sha256": "984ab71fb9ed0cef6d4df42a3878fbb3bcc70861bfe2f0c0e01c8aa3a288df86"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/mcp-mypy/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/mcp-mypy/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3034,
+      "sha256": "d28360839d311b079f57d279f6871744dbe18956cba472353d6512df232babe4",
+      "stored_sha256": "b0c174ac35eac5e9d48361f62fa8c294b9a7050b91f3f45b922737bb94820639"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/mcp-mypy/stderr",
+      "path": "artifacts/attempts/sandbox/checks/mcp-mypy/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/mcp-mypy/stdout",
+      "path": "artifacts/attempts/sandbox/checks/mcp-mypy/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 44,
+      "sha256": "5ca59a2361304496c36048048a43aa6f41eb23e74111d16719b962637888fc08",
+      "stored_sha256": "fa8f400fc50b6223958d59dc9062ee3cd0c160c7d33978f1ba42de97791e77a5"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/narrow-mypy/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/narrow-mypy/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/narrow-mypy/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/narrow-mypy/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5830,
+      "sha256": "33e834e4042ec9dae8ca0aaded4f1f23a9fc9985fa71d286615b843dfbd0035f",
+      "stored_sha256": "f092a8110bdd8d2db1691dc65aa02d89817cb0da2eceabf9a56fbb7db516b84d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/narrow-mypy/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/narrow-mypy/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3369,
+      "sha256": "e775ba345b283aec7d401718a9aa5933b1cc66d0d2f2feb27b39e162e25f552e",
+      "stored_sha256": "fc7dcf3d024147d4b062dc3043bcf1261abc25b4c57a24ab889f6f0036105230"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/narrow-mypy/stderr",
+      "path": "artifacts/attempts/sandbox/checks/narrow-mypy/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/narrow-mypy/stdout",
+      "path": "artifacts/attempts/sandbox/checks/narrow-mypy/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 43,
+      "sha256": "ab35ee42183d4d6d3ba483825ab037d18a5a15622d03be01d82220b1564851ff",
+      "stored_sha256": "6a9336c27dc45c47c050eb2e9d104f4bf91a7ecebc28720a22dd7bd69cfdc5ee"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/next/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/next/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/next/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/next/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5450,
+      "sha256": "93ef51156f0b43b4d854a5f6076827f0b87cfa1d712d5a81ba2423a1cc36e37e",
+      "stored_sha256": "ccd530113a2b289c73c31ae9e08b8957b122693e665c76780b5396945738a882"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/next/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/next/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 2989,
+      "sha256": "3f4cd03272a42062108089d23f1c822061fb5f726690e2df7eb66902bdf4b5f2",
+      "stored_sha256": "a976f26e6ac352552a008842534961f17f721da0fc06cf9f40f9af9851b61633"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/next/stderr",
+      "path": "artifacts/attempts/sandbox/checks/next/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/next/stdout",
+      "path": "artifacts/attempts/sandbox/checks/next/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 157,
+      "sha256": "f91e619757037d947fb21d777afaab17acb5a44c0efd05708bea88362a0b28d1",
+      "stored_sha256": "7806ac83ed46ba7343256051825b2eab7f25f8507681c67dd450e61a2c29cda7"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/original/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/original/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/original/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/original/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5723,
+      "sha256": "afe81c5cc8655a04bd94334635914d03a2c3525b3e4fc13b57654008331c5aea",
+      "stored_sha256": "6185b067f6c0ab04b1c66ff35d03a9c5d3dd2a2bbed217eeecc187af817e6a81"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/original/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/original/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3262,
+      "sha256": "e042119df6aa28a10dfe1ef363441ba2c1a8f3972582485a9e9e49baf89a92f7",
+      "stored_sha256": "027ec4364d378b6e9af603b2e2be1797f071001f314bed7e6101843657bb20d1"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/original/stderr",
+      "path": "artifacts/attempts/sandbox/checks/original/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/original/stdout",
+      "path": "artifacts/attempts/sandbox/checks/original/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 340,
+      "sha256": "9e5c0fe61e961edafbc565605042125cd6aa9765a3d37e8c3a0f09e01260c7c3",
+      "stored_sha256": "d747e02551eef8b5bf4af7669393c02d1fab22da6d6d5b0bfab476586625d97b"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/render/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/render/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/render/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/render/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5481,
+      "sha256": "a8b9c5906495a00c1010e5d67eacb0927f804a1b80fc0239426708bd7079ff74",
+      "stored_sha256": "57877ed2485994f7e6ccf33b481643ea57c2206671be7bed36d2aafca994c64f"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/render/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/render/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3020,
+      "sha256": "0af00068ed3a94f811972771ceb39582e50696277379cdc8b3e556bb8ed4bb7d",
+      "stored_sha256": "b80830fc523edefb5cc5a2379fd532394e7d1e83bfcde38f01142994fd7522b4"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/render/stderr",
+      "path": "artifacts/attempts/sandbox/checks/render/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/render/stdout",
+      "path": "artifacts/attempts/sandbox/checks/render/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 30,
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stored_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/root/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/root/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/root/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/root/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5448,
+      "sha256": "e300e1350a0466511abe8fc699f2faaa819d23f07495eeb5118ca10fa64204ad",
+      "stored_sha256": "f14f8314afca426746fc15b0eb15171c1594d53e8e1581e2a88ff909c85b7158"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/root/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/root/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 2987,
+      "sha256": "cce97576962b8418cdcd4608383bd7fb7d5e22c341ab1707c8da87435537bf6d",
+      "stored_sha256": "5ca9cba1f479278bb0ebdddabfd3842bcd014224f104e00fd412d4db114c0d81"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/root/stderr",
+      "path": "artifacts/attempts/sandbox/checks/root/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/root/stdout",
+      "path": "artifacts/attempts/sandbox/checks/root/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 105029,
+      "sha256": "3c24c1e78eafa5daeb53570de7a102f3bdec68a5952ae68098ef7558c3380b14",
+      "stored_sha256": "54baad134f5f1ed143b293cfbe21d87e52f3ef6159f96b31d3d261a9c3e7d430"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/root-ruff/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/root-ruff/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/root-ruff/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/root-ruff/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5486,
+      "sha256": "d7995e84870f69356735003c30bce05f3c1c1317b1de44e29cb28d079adc1a09",
+      "stored_sha256": "426e83968f178708ac8d8af7733016eadf11e86266fc69d0514215ffc357e1d4"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/root-ruff/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/root-ruff/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3025,
+      "sha256": "c61f2d3cb16c8be84ddcd7f060eb0e0167466cda557476523bd8daab0df50da7",
+      "stored_sha256": "e12e36d1960f34aa26bc11864daeffaec70d15497e22c8671d602124ea449c31"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/root-ruff/stderr",
+      "path": "artifacts/attempts/sandbox/checks/root-ruff/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/root-ruff/stdout",
+      "path": "artifacts/attempts/sandbox/checks/root-ruff/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 170591,
+      "sha256": "0c93bf5f06b18289815373ab38c786bcb506cd92b455e5bc79c5c04a1854b68b",
+      "stored_sha256": "f5316562999344fb8876255d4f6057ea6b158cacd0aa34dfdfdb51657c7460ce"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/ruff/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/ruff/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/ruff/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/ruff/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 6577,
+      "sha256": "c5491b2c6ba28898e2a8eb3877a8fd508c0c4cbe2311af4691dc34e86236b9af",
+      "stored_sha256": "df60ce569db9e90bedbd32921fd04f28fd3c40a72ab042acb31e2becf84a3f2d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/ruff/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/ruff/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 4116,
+      "sha256": "080b2a91bd5e851cde87e2be0851ce3fd0cce2eca756f99636350c09e8d4cc49",
+      "stored_sha256": "56d7ead28f4b3900170a8b113d90bf979b13b1ebe156fb60efed8b5b2185f9da"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/ruff/stderr",
+      "path": "artifacts/attempts/sandbox/checks/ruff/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/ruff/stdout",
+      "path": "artifacts/attempts/sandbox/checks/ruff/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stored_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/show/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/show/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/show/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/show/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5485,
+      "sha256": "3d2a9d93b37bb5a6f59c8b44db24710726ae109d9ebabc508ef014c0e4d741c9",
+      "stored_sha256": "09c60ca39d6e63a63e0f3dacdd0c1682020f2f9c6c3e25dd9a9a2d912031c03d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/show/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/show/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3024,
+      "sha256": "75e211810e0c95984d4f7fc3527e23e9d7026a732280257956d535a727cb2216",
+      "stored_sha256": "08f03e1899aaf799819303adf205a542f159565f386a0272c6df322a7e6c2b41"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/show/stderr",
+      "path": "artifacts/attempts/sandbox/checks/show/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/show/stdout",
+      "path": "artifacts/attempts/sandbox/checks/show/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 2196,
+      "sha256": "69f985b75e2906a73613b7050d08f3a92acc60e541627e004a452657eb7b2b30",
+      "stored_sha256": "efceb6443511ba6838c407942b4af281e08c77a06e41d74a1d13e8a67ec95705"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/whitespace/candidate-authority-freeze.json",
+      "path": "artifacts/attempts/sandbox/checks/whitespace/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "0309b4b6b395bfdf89d1f445d0f81f80e8bcda1ea4648ff49c66c89f8de623b6",
+      "stored_sha256": "09330e1125412269f8bb46e24b839725b6880141930b2a0bac6706dfa6df125d"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/whitespace/preflight.json",
+      "path": "artifacts/attempts/sandbox/checks/whitespace/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5488,
+      "sha256": "94427cff7fa603795ed922856571c5c50b854606d9a89c2bf4f9ff944e4fbdb4",
+      "stored_sha256": "153a8074fa3e3cb53e0dfb31fa25c07813b8f26dba5dc66b1fe6a3cdbea43227"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/whitespace/receipt.json",
+      "path": "artifacts/attempts/sandbox/checks/whitespace/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3027,
+      "sha256": "507b19fcfe3be193d242f3768c5d2920a9d84296db5078bcdff7144ebb6ea2fa",
+      "stored_sha256": "13dc1a36fc5a782d09c1bd729734316acb1f3dd5933e5f169714919d9aa86f2f"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/whitespace/stderr",
+      "path": "artifacts/attempts/sandbox/checks/whitespace/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "attempts/sandbox/checks/whitespace/stdout",
+      "path": "artifacts/attempts/sandbox/checks/whitespace/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "authority-audit.json",
+      "path": "artifacts/authority-audit.json.gz",
+      "encoding": "gzip",
+      "bytes": 31774,
+      "sha256": "5f862a1583ab30e4d9c8b2a5ada510efb380e7675c6b6988df64cab2a1cf2b4c",
+      "stored_sha256": "ad37aff1d58b3d4977976378f653b449cc0fee0fe11e7e5f18323bc78d8e97a0"
+    },
+    {
+      "original_path": "candidate-final-stability.json",
+      "path": "artifacts/candidate-final-stability.json.gz",
+      "encoding": "gzip",
+      "bytes": 111,
+      "sha256": "41327e9816738909f4d8707006cfdb607b49c7e56790fe2b6edf2071f9ab0932",
+      "stored_sha256": "0636c47c812a4808dfffbc13a4b27f16bba3206d2797242d197e1bde5a5dec62"
+    },
+    {
+      "original_path": "checks/board/candidate-authority-freeze.json",
+      "path": "artifacts/checks/board/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "b5b44739363d614804ed49cfcd29ba5cc18e7d1eddcf6cd94aec9cdef80b1323",
+      "stored_sha256": "3031c241dcdd147c1fa34ccc4a636ef6773c662c02dba34a0a418a8a7093667c"
+    },
+    {
+      "original_path": "checks/board/preflight.json",
+      "path": "artifacts/checks/board/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5509,
+      "sha256": "d702a685936a3c5bc7370400e1065e8bdbf6485bdfc6623c641a903cd8b46069",
+      "stored_sha256": "280be84537131f51e6f0e4d37bd061c0027279108126c751abeb22f3c63134ff"
+    },
+    {
+      "original_path": "checks/board/receipt.json",
+      "path": "artifacts/checks/board/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3048,
+      "sha256": "23dda7aaf9f460bf5a167210bf90d9e4bbe146c1d859738eb99f3d50834b2d2c",
+      "stored_sha256": "5250321c646733148ebbf7be92eba32120efcbee0a118d2c8b431ffff54b8efb"
+    },
+    {
+      "original_path": "checks/board/stderr",
+      "path": "artifacts/checks/board/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/board/stdout",
+      "path": "artifacts/checks/board/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 46,
+      "sha256": "f86479667ca73f712d72cac3ab0abf3e4e9e165dc7c65159298cfb8ce281a947",
+      "stored_sha256": "a8fe0ac655745a8f208c9bac35d6e3f1f21b43eaae46fc65ba4ac7784df9b202"
+    },
+    {
+      "original_path": "checks/core-runtime-chat-telemetry/candidate-authority-freeze.json",
+      "path": "artifacts/checks/core-runtime-chat-telemetry/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "b5b44739363d614804ed49cfcd29ba5cc18e7d1eddcf6cd94aec9cdef80b1323",
+      "stored_sha256": "3031c241dcdd147c1fa34ccc4a636ef6773c662c02dba34a0a418a8a7093667c"
+    },
+    {
+      "original_path": "checks/core-runtime-chat-telemetry/preflight.json",
+      "path": "artifacts/checks/core-runtime-chat-telemetry/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5818,
+      "sha256": "406c0b625f24891b1a0c2abb9b13f69c68d5f03e5ab26a9eb454f9f44153daa0",
+      "stored_sha256": "b1bd83131e416bd80d8a731cfe11481dc50bb474c5bbff856ff15e4dfcf21382"
+    },
+    {
+      "original_path": "checks/core-runtime-chat-telemetry/receipt.json",
+      "path": "artifacts/checks/core-runtime-chat-telemetry/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3357,
+      "sha256": "ff1f4970fe76b86fb300ce3ed4b4389a395d5f994b29e6a96128f991a5b12430",
+      "stored_sha256": "5dc168700d9625744bd09960d1575f754774fd7464b479a1b67f958259b805c1"
+    },
+    {
+      "original_path": "checks/core-runtime-chat-telemetry/stderr",
+      "path": "artifacts/checks/core-runtime-chat-telemetry/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/core-runtime-chat-telemetry/stdout",
+      "path": "artifacts/checks/core-runtime-chat-telemetry/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 2325,
+      "sha256": "d875f887228c0257cd4c1aecea9c173847cc7a15e64abf3c1d42ca6a92a3cfe2",
+      "stored_sha256": "a279d5ed6e2f778fb8df9b9dc6ce604613ae527ebe4377949b14168019f48bc4"
+    },
+    {
+      "original_path": "checks/focused/candidate-authority-freeze.json",
+      "path": "artifacts/checks/focused/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "b5b44739363d614804ed49cfcd29ba5cc18e7d1eddcf6cd94aec9cdef80b1323",
+      "stored_sha256": "3031c241dcdd147c1fa34ccc4a636ef6773c662c02dba34a0a418a8a7093667c"
+    },
+    {
+      "original_path": "checks/focused/preflight.json",
+      "path": "artifacts/checks/focused/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 6113,
+      "sha256": "41a00b84adbd0bc3f790ebdc9166f619f635caec19332643e8a7dbc30567a3ba",
+      "stored_sha256": "3550c7e4b407e591839e5b6db1d1d383824ef3430b7178a5ce81e20e4ad6ca9d"
+    },
+    {
+      "original_path": "checks/focused/receipt.json",
+      "path": "artifacts/checks/focused/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3652,
+      "sha256": "a10fab6012fda2921b0b08e32fb829a18a0f9b56886f4d16142c7cdae13ea54a",
+      "stored_sha256": "54b4dab19f65c885d5732267c2ebe0e04c0390db58c1b38d1a268e7b76c212d2"
+    },
+    {
+      "original_path": "checks/focused/stderr",
+      "path": "artifacts/checks/focused/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/focused/stdout",
+      "path": "artifacts/checks/focused/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 1702,
+      "sha256": "e20feb132c587a02dd385b4c03435698b7bda2ae1a67d1faeb2d21d0e8aaab39",
+      "stored_sha256": "c2d9a68c9536a7e4c3a7dd2da8554586dff6f1e9174fe3a10c8601211e597107"
+    },
+    {
+      "original_path": "checks/http/candidate-authority-freeze.json",
+      "path": "artifacts/checks/http/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "b5b44739363d614804ed49cfcd29ba5cc18e7d1eddcf6cd94aec9cdef80b1323",
+      "stored_sha256": "3031c241dcdd147c1fa34ccc4a636ef6773c662c02dba34a0a418a8a7093667c"
+    },
+    {
+      "original_path": "checks/http/preflight.json",
+      "path": "artifacts/checks/http/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5683,
+      "sha256": "9824e8717dc12c12ab91ee6d31b1edbe49561d8d565cdc0f08f4fbce38bdd1b2",
+      "stored_sha256": "14c8894ba17f67803188a7e1d5fcc8bb629d20f978eee8aa32743f5da3fef4a3"
+    },
+    {
+      "original_path": "checks/http/receipt.json",
+      "path": "artifacts/checks/http/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3222,
+      "sha256": "d81656fc00c5435f3700caec25b908f518239a8c5aa52ea575b4326d772aba36",
+      "stored_sha256": "33f676ad29675bb1108e491e76f882271e2cb1d19eefd5e5336f1b92e89169d1"
+    },
+    {
+      "original_path": "checks/http/stderr",
+      "path": "artifacts/checks/http/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/http/stdout",
+      "path": "artifacts/checks/http/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 421,
+      "sha256": "585f46769750af49c8b9394813feeac36d1dc1bd73665779dcbf94625b565629",
+      "stored_sha256": "e63be28a86b23a7d07f2c333c8e510daf7d94bcb8a79d717b3eade350a212ca2"
+    },
+    {
+      "original_path": "checks/initial/candidate-authority-freeze.json",
+      "path": "artifacts/checks/initial/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "16f452b3534c6bb7fe23593881739f4e5116798f441c17dcce1065c211509f0d",
+      "stored_sha256": "c0125007af72a3094e16e2f5f5195ed4dfe88112c7526de4de52e952826df8a2"
+    },
+    {
+      "original_path": "checks/mcp/candidate-authority-freeze.json",
+      "path": "artifacts/checks/mcp/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "b5b44739363d614804ed49cfcd29ba5cc18e7d1eddcf6cd94aec9cdef80b1323",
+      "stored_sha256": "3031c241dcdd147c1fa34ccc4a636ef6773c662c02dba34a0a418a8a7093667c"
+    },
+    {
+      "original_path": "checks/mcp/preflight.json",
+      "path": "artifacts/checks/mcp/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5515,
+      "sha256": "cdaf1f84b31c5bfdfb8714bbcba4f7234af10def0d1469ba15c32e4a69a9e138",
+      "stored_sha256": "04f253d910a605b7c31d8bdf0d3c1ec652aef1893a5255159ac41bb53770f8bf"
+    },
+    {
+      "original_path": "checks/mcp/receipt.json",
+      "path": "artifacts/checks/mcp/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3054,
+      "sha256": "f2d5aecddc81ab33a2eea3a006d70628b71661c2dc44dde19df1fbaa9451e7c8",
+      "stored_sha256": "6d97f1fd699d1476fa8a6cc3dcc74191e964e7802ade506a0599b01145c299dc"
+    },
+    {
+      "original_path": "checks/mcp/stderr",
+      "path": "artifacts/checks/mcp/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/mcp/stdout",
+      "path": "artifacts/checks/mcp/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 1702,
+      "sha256": "06f7fb622c7128fa1d228495d2f218cba9a4d15b232d578dc217c222ec30af0e",
+      "stored_sha256": "460154baf3e32150d3222f73ce852fffc1cab0ae2faf9b774caa70ab1de172f7"
+    },
+    {
+      "original_path": "checks/next/candidate-authority-freeze.json",
+      "path": "artifacts/checks/next/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "b5b44739363d614804ed49cfcd29ba5cc18e7d1eddcf6cd94aec9cdef80b1323",
+      "stored_sha256": "3031c241dcdd147c1fa34ccc4a636ef6773c662c02dba34a0a418a8a7093667c"
+    },
+    {
+      "original_path": "checks/next/preflight.json",
+      "path": "artifacts/checks/next/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5498,
+      "sha256": "fe840b5dcc785c433691bd1b647cd97a79e768d3ab179c781872e50c63184de7",
+      "stored_sha256": "f3a833c49800eb1e671dc3637526682ac1afe4c71ce57c0d14d5d10ff46ada77"
+    },
+    {
+      "original_path": "checks/next/receipt.json",
+      "path": "artifacts/checks/next/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3037,
+      "sha256": "88d9a9cddad2f6c8adb85d6177950dbdb1e78703e3481bf8ea1f524fa1fad4f5",
+      "stored_sha256": "06f3d4197e8eb73819b13d9c9acc43145a3198228fef40ffc317ebed301c48d8"
+    },
+    {
+      "original_path": "checks/next/stderr",
+      "path": "artifacts/checks/next/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/next/stdout",
+      "path": "artifacts/checks/next/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 157,
+      "sha256": "f91e619757037d947fb21d777afaab17acb5a44c0efd05708bea88362a0b28d1",
+      "stored_sha256": "7806ac83ed46ba7343256051825b2eab7f25f8507681c67dd450e61a2c29cda7"
+    },
+    {
+      "original_path": "checks/original/candidate-authority-freeze.json",
+      "path": "artifacts/checks/original/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "b5b44739363d614804ed49cfcd29ba5cc18e7d1eddcf6cd94aec9cdef80b1323",
+      "stored_sha256": "3031c241dcdd147c1fa34ccc4a636ef6773c662c02dba34a0a418a8a7093667c"
+    },
+    {
+      "original_path": "checks/original/preflight.json",
+      "path": "artifacts/checks/original/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5771,
+      "sha256": "47f8a1899f4bcda1a5a1f83accb8f87326e16b9f2f8f9f0a76ff490c6285a864",
+      "stored_sha256": "41650f3c3e9cf91933f846c93c79ae442dc3e033c0c6775d80c899a2bef47026"
+    },
+    {
+      "original_path": "checks/original/receipt.json",
+      "path": "artifacts/checks/original/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3310,
+      "sha256": "aaca87016b0f0e831bb3c07f8136d78f678197ef26a1b760f619718a93567919",
+      "stored_sha256": "e0d6b3d8b4b59d7f72473bce8c05c7443d08950f7da6d23981348b192e97a8a4"
+    },
+    {
+      "original_path": "checks/original/stderr",
+      "path": "artifacts/checks/original/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/original/stdout",
+      "path": "artifacts/checks/original/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 340,
+      "sha256": "9e5c0fe61e961edafbc565605042125cd6aa9765a3d37e8c3a0f09e01260c7c3",
+      "stored_sha256": "d747e02551eef8b5bf4af7669393c02d1fab22da6d6d5b0bfab476586625d97b"
+    },
+    {
+      "original_path": "checks/original-constructor-probe/preflight.json",
+      "path": "artifacts/checks/original-constructor-probe/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5723,
+      "sha256": "5a40de28ef26a109959797d39e5dcab10da2b82bd6e386fcc5948109608f6332",
+      "stored_sha256": "a99c5bdaaec953912e056d9d69f0fc01eef48694f13f0877199716b5e92734e3"
+    },
+    {
+      "original_path": "checks/original-constructor-probe/receipt.json",
+      "path": "artifacts/checks/original-constructor-probe/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3262,
+      "sha256": "699b89ccca975d0d20a2ed0f288bdc48905c0dfbda50304639d99f0a2adc9a05",
+      "stored_sha256": "4c6c6ddc28c84e179e8f6ec08f88b7658c5e0ed7057d90771347b2e7a3ec14c7"
+    },
+    {
+      "original_path": "checks/original-constructor-probe/stderr",
+      "path": "artifacts/checks/original-constructor-probe/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/original-constructor-probe/stdout",
+      "path": "artifacts/checks/original-constructor-probe/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 206,
+      "sha256": "aa9fbd673605e80ba506a827d6d4b5c5df48a708c3704a8843155952714e3349",
+      "stored_sha256": "9b26a13a022a8c633144a2bcd576f2d4a10634a61639b4afb707c76f6ab4e25f"
+    },
+    {
+      "original_path": "checks/original-instance-probe/preflight.json",
+      "path": "artifacts/checks/original-instance-probe/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5690,
+      "sha256": "ce5288a92be123d9e3d96b1ac952d34d23bc0f57ccfd3a3853327ccc2cae0566",
+      "stored_sha256": "7c714a5efd4686129d16118725309e38b65d86927bc053c289977ab2463be165"
+    },
+    {
+      "original_path": "checks/original-instance-probe/receipt.json",
+      "path": "artifacts/checks/original-instance-probe/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3229,
+      "sha256": "7bc66c1558d81c32b935bab28ad168b6a46d4d8a9d8f18ef373276b621e289cf",
+      "stored_sha256": "cf47dc3c93a0d0225dcf422821000d75d29732ca479eb532d38232e0de762a10"
+    },
+    {
+      "original_path": "checks/original-instance-probe/stderr",
+      "path": "artifacts/checks/original-instance-probe/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/original-instance-probe/stdout",
+      "path": "artifacts/checks/original-instance-probe/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 206,
+      "sha256": "aa9fbd673605e80ba506a827d6d4b5c5df48a708c3704a8843155952714e3349",
+      "stored_sha256": "9b26a13a022a8c633144a2bcd576f2d4a10634a61639b4afb707c76f6ab4e25f"
+    },
+    {
+      "original_path": "checks/original-supplemental-probe/preflight.json",
+      "path": "artifacts/checks/original-supplemental-probe/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5717,
+      "sha256": "551b85af5f0ef74479bebbe3337f28cb32be7a18f5d627cbf470e549a279dadd",
+      "stored_sha256": "01dd4bed7266bc7a6a3f05fed7498210203b987bdc8b1eecd36582dfe36129fa"
+    },
+    {
+      "original_path": "checks/original-supplemental-probe/receipt.json",
+      "path": "artifacts/checks/original-supplemental-probe/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3256,
+      "sha256": "5594ff0dc18182d48cdd27cc79a1b5adb5c63dfaa76f4a814f7091f58a6ca1ad",
+      "stored_sha256": "77a91b16babc3b8b0170ca8f4b635f1c8bc5b6db11ccc39a63f7a35134f83cae"
+    },
+    {
+      "original_path": "checks/original-supplemental-probe/stderr",
+      "path": "artifacts/checks/original-supplemental-probe/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/original-supplemental-probe/stdout",
+      "path": "artifacts/checks/original-supplemental-probe/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 1913,
+      "sha256": "444a18b18ebc5933002739860df3427a563789769a7ea45ecacfa3be31e8fc2b",
+      "stored_sha256": "35fac1d9f2a75f5df9007672cc95da1221e7d7ce8316dad611a6ac1951d332be"
+    },
+    {
+      "original_path": "checks/recovery-overlap/candidate-authority-freeze.json",
+      "path": "artifacts/checks/recovery-overlap/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "8d0d7a2de7cb21f7cf1d9d2f7a5dd012d7835169fffd439ce1421d66edda453d",
+      "stored_sha256": "5be4f2bc5064bd6bceb823f4a674a0bc928b4ed4715e40202263340e5e467ae8"
+    },
+    {
+      "original_path": "checks/recovery-overlap/preflight.json",
+      "path": "artifacts/checks/recovery-overlap/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5581,
+      "sha256": "7e9b040d8065b06917e4f0ccbbb86317537c1271e2c357472d037deb361c4f1b",
+      "stored_sha256": "76163d782af61f9118294bb71288dcd89069899e9f49993afd5adb3f1d85ac0d"
+    },
+    {
+      "original_path": "checks/recovery-overlap/receipt.json",
+      "path": "artifacts/checks/recovery-overlap/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3120,
+      "sha256": "5f88a7993e242a0e4a7a0b7bc908136215837eff9a2fee6b4b125794dfce12a9",
+      "stored_sha256": "99f492fc9426af02bad030d25fa149cb4355068b8eb2c6d56bd58096d79312d7"
+    },
+    {
+      "original_path": "checks/recovery-overlap/stderr",
+      "path": "artifacts/checks/recovery-overlap/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/recovery-overlap/stdout",
+      "path": "artifacts/checks/recovery-overlap/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 309,
+      "sha256": "d7c332cb99b5e992dca8e58dc71d9a954baa707c779126e9b8438dc1343d50e8",
+      "stored_sha256": "fb13c1c6469d081eb6f24b5c41cf66f75c00ec8c485d4f7f6492ba2e5dbc97ba"
+    },
+    {
+      "original_path": "checks/recovery-overlap-budgets/preflight.json",
+      "path": "artifacts/checks/recovery-overlap-budgets/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5693,
+      "sha256": "f160008c5d2717376e4ac82d8d785973118c64ebcf79e4d8f16b851389ec8f2c",
+      "stored_sha256": "e2fbd4174b3db06dccf0edd52ef1c609b07936df4e3b520d2b830a64abfe16c3"
+    },
+    {
+      "original_path": "checks/recovery-overlap-budgets/receipt.json",
+      "path": "artifacts/checks/recovery-overlap-budgets/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3232,
+      "sha256": "5e40ee5af7165a8406d8d1f8a50bddd752b7ab33f47b68fcbf2926a05af2b84e",
+      "stored_sha256": "37ac013de3366f6136d436a6cebe27d54f9bb1024802870f083712f752592427"
+    },
+    {
+      "original_path": "checks/recovery-overlap-budgets/stderr",
+      "path": "artifacts/checks/recovery-overlap-budgets/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/recovery-overlap-budgets/stdout",
+      "path": "artifacts/checks/recovery-overlap-budgets/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 1711,
+      "sha256": "89b2354c16d6e773cf26f00ccd81c74f246ce1efa75e69ce9785f5616ccc2108",
+      "stored_sha256": "d574db213e2e9e65f09b674a665cc7272047bfa58bd4fbb5c581b740180b3ae3"
+    },
+    {
+      "original_path": "checks/show/candidate-authority-freeze.json",
+      "path": "artifacts/checks/show/candidate-authority-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 32455,
+      "sha256": "b5b44739363d614804ed49cfcd29ba5cc18e7d1eddcf6cd94aec9cdef80b1323",
+      "stored_sha256": "3031c241dcdd147c1fa34ccc4a636ef6773c662c02dba34a0a418a8a7093667c"
+    },
+    {
+      "original_path": "checks/show/preflight.json",
+      "path": "artifacts/checks/show/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5533,
+      "sha256": "55196f324cd6b8415620da3dbb51fc4ba0dfdfb431d6875b828fbd6a6abdc18e",
+      "stored_sha256": "fd3ff3e6059a1b63469ab03e4efe35c34032bcbedf657c48ee0618ce2fd73628"
+    },
+    {
+      "original_path": "checks/show/receipt.json",
+      "path": "artifacts/checks/show/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3072,
+      "sha256": "35a32a58851b9e463d955cbe2f28c95d5182cde7b5547fe51f65a849a0550ba0",
+      "stored_sha256": "56d5e289f9196ecb809b5a306eeb0f2f81a2bdb31be18633ad1c49fd7f8576a8"
+    },
+    {
+      "original_path": "checks/show/stderr",
+      "path": "artifacts/checks/show/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/show/stdout",
+      "path": "artifacts/checks/show/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 2196,
+      "sha256": "69f985b75e2906a73613b7050d08f3a92acc60e541627e004a452657eb7b2b30",
+      "stored_sha256": "efceb6443511ba6838c407942b4af281e08c77a06e41d74a1d13e8a67ec95705"
+    },
+    {
+      "original_path": "checks/supplemental-baseline-mypy/preflight.json",
+      "path": "artifacts/checks/supplemental-baseline-mypy/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5822,
+      "sha256": "0434de583149c9be9a2ec252db439e8fa34ce50d8a6a82c04234c1a57a569cd8",
+      "stored_sha256": "704c02fbcc3ebf63b70045f749ec78f74a23bf96746edd870e9aed6d8a514fc7"
+    },
+    {
+      "original_path": "checks/supplemental-baseline-mypy/receipt.json",
+      "path": "artifacts/checks/supplemental-baseline-mypy/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3556,
+      "sha256": "68ce49336168f62227d59f0a63270d7b91d8975379b504bcb31dc8eaa23df413",
+      "stored_sha256": "4a80c28693befb70673fcb03fbbb70ca57a5e4b2f8b47d504478e885c35753a7"
+    },
+    {
+      "original_path": "checks/supplemental-baseline-mypy/stderr",
+      "path": "artifacts/checks/supplemental-baseline-mypy/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/supplemental-baseline-mypy/stdout",
+      "path": "artifacts/checks/supplemental-baseline-mypy/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 640,
+      "sha256": "c5a7db2252a51f971a20df2319ad8001a54b0590bc1834ff00874618416fe0a9",
+      "stored_sha256": "65659fb7e38c2dc11dc2ab128fab11e474381a57c2e430b1c8b4a2a2f438599a"
+    },
+    {
+      "original_path": "checks/supplemental-mypy/preflight.json",
+      "path": "artifacts/checks/supplemental-mypy/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5792,
+      "sha256": "749e6dcb24be5754b7e11462e560cbfcf0d33045df9b22a325fb0920b94ef2eb",
+      "stored_sha256": "8a2d9ec882741bfef8b23898cb759e71c450ff6d8326acec75dd406130ff7f3c"
+    },
+    {
+      "original_path": "checks/supplemental-mypy/receipt.json",
+      "path": "artifacts/checks/supplemental-mypy/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3331,
+      "sha256": "d6eb806e0a4b86dbe2a93a26d0d3ef638ff7ab72467001ae02d1cd7e10afb484",
+      "stored_sha256": "0b5f1cbd2aa3248ed45de5760fcc903b4d0b9e3f2994bcff5e418b205a732c92"
+    },
+    {
+      "original_path": "checks/supplemental-mypy/stderr",
+      "path": "artifacts/checks/supplemental-mypy/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/supplemental-mypy/stdout",
+      "path": "artifacts/checks/supplemental-mypy/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 640,
+      "sha256": "c5ac4092482b3e8cdbca198418a634385f1b87e2a4f1666fa249450e10625a40",
+      "stored_sha256": "bdea01f2e51d4c862831c76443d5aabd5bb3cb1ac1617592a53c63e4970fff4a"
+    },
+    {
+      "original_path": "compare.py",
+      "path": "artifacts/compare.py.gz",
+      "encoding": "gzip",
+      "bytes": 2201,
+      "sha256": "04ef9592dac656141e9ebcb165acf1b3571d1251655c7699ccd021d69170338d",
+      "stored_sha256": "2684ebec379222508c5bb852e35171870b4cca601413f6cee4e98f3b9a401cff"
+    },
+    {
+      "original_path": "comparison.json",
+      "path": "artifacts/comparison.json.gz",
+      "encoding": "gzip",
+      "bytes": 390,
+      "sha256": "6af92074c0fc261f4db7813880095711adceff511f0cec434135e62a31e8ec7a",
+      "stored_sha256": "44e2b38b705922387532848854794f56dd7c5f98cff493bd660693da724b6607"
+    },
+    {
+      "original_path": "delta-candidate.diff",
+      "path": "artifacts/delta-candidate.diff.gz",
+      "encoding": "gzip",
+      "bytes": 597648,
+      "sha256": "3f0def7cb9ac8be0c54aa6c6430bed02af5b24ac5c311c55e76af5f3c37175a2",
+      "stored_sha256": "59200cea18b8bf4f8a9cdf1c78cf3370c8fa56d70f78a6fd2ecbdd1b0fd82952"
+    },
+    {
+      "original_path": "delta-paths.json",
+      "path": "artifacts/delta-paths.json.gz",
+      "encoding": "gzip",
+      "bytes": 65917,
+      "sha256": "b8194fc2c332ee579a00a1022ed9bc3cb2d1f80aebf41b05d387289f917c1afb",
+      "stored_sha256": "5a3b609f4d1df273b8dfd3970c3ca1de83d761885760b822cbfb96093a80cf97"
+    },
+    {
+      "original_path": "dependency-artifacts-edges.json",
+      "path": "artifacts/dependency-artifacts-edges.json.gz",
+      "encoding": "gzip",
+      "bytes": 21245,
+      "sha256": "0e54eea520aaff759f1d29810ee99f6a8386e75958599b8529be740e46cf5791",
+      "stored_sha256": "efc6a7abd05fb173f6c0ec35f7e5e9642ba23bd01c24e65c083af8d871849fd7"
+    },
+    {
+      "original_path": "dependent-schema-audit.json",
+      "path": "artifacts/dependent-schema-audit.json.gz",
+      "encoding": "gzip",
+      "bytes": 12506,
+      "sha256": "f70eacc252ebcb4def2ef52f8efe9f42e02b8235c5734501eb2a2d450b4edada",
+      "stored_sha256": "d38068e880e2461dcfdaa768e5838ab2254ccf703706907735c6b0629bf4bcbd"
+    },
+    {
+      "original_path": "freeze-paths.json",
+      "path": "artifacts/freeze-paths.json.gz",
+      "encoding": "gzip",
+      "bytes": 17470,
+      "sha256": "f9bce0930c056bb7318326b1a4fa618d7ad43fafa23e02260ea4930db0fd7aaf",
+      "stored_sha256": "9c4363eb51a2ee1a8680389247688bef3f607b2b1e2fdd066a799d4b11ca005e"
+    },
+    {
+      "original_path": "freeze.py",
+      "path": "artifacts/freeze.py.gz",
+      "encoding": "gzip",
+      "bytes": 2534,
+      "sha256": "31e973c389381dc5eefd14fb4b1261f7f657e2a45d1296b8d410f11493604ed5",
+      "stored_sha256": "82b3196223f0d5e8537232eed1336dde434b87eb70e8230083f30224ec9084fa"
+    },
+    {
+      "original_path": "full-candidate.diff",
+      "path": "artifacts/full-candidate.diff.gz",
+      "encoding": "gzip",
+      "bytes": 2774273,
+      "sha256": "83d87c67c289c70ff3bd42eb6ab908b4bb80fb3f4c81ef3ef8e317bfbbc09e79",
+      "stored_sha256": "b011f3aad1379516b8b7bc6369dce07a11c5773955c1dc2b2820388c7878a76d"
+    },
+    {
+      "original_path": "full-paths.json",
+      "path": "artifacts/full-paths.json.gz",
+      "encoding": "gzip",
+      "bytes": 114596,
+      "sha256": "0bea4da4e7d6fd46b51fc1b7bb82bd5278796ad4e30f5b11fefd6b9ed9fb3e9e",
+      "stored_sha256": "e7a0d6c8d59618f81ee8dee7f9b7f956e4596bcd0dc50a0f65c39421947759a3"
+    },
+    {
+      "original_path": "initial-candidate.txt",
+      "path": "artifacts/initial-candidate.txt.gz",
+      "encoding": "gzip",
+      "bytes": 85,
+      "sha256": "e34fd8a7f9ca8445ec86e00b91f26d239a39e9a7ff17f5dcd095afb20d6744d3",
+      "stored_sha256": "b4b5b1dfec3f049439ab059963d7bd662cb4f5fe63532e681121cc7bea94b2c4"
+    },
+    {
+      "original_path": "inputs/AGENTS.md",
+      "path": "artifacts/inputs/AGENTS.md.gz",
+      "encoding": "gzip",
+      "bytes": 11738,
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "stored_sha256": "0e6ae04d51b0af9a5c79e27bd872c438cdc3ffd064edc17cf1266a6fcc400ea3"
+    },
+    {
+      "original_path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation-request-REM-MCP-UP-004.json",
+      "path": "artifacts/inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation-request-REM-MCP-UP-004.json.gz",
+      "encoding": "gzip",
+      "bytes": 17352,
+      "sha256": "a714d560f19c821b1313830add99c2cc72bf84dc25b803f9a7a814363d15c9a3",
+      "stored_sha256": "5331cfa2f8d3a5ca7734e20d6a4342ffaa03a84f38c8ff3f3999fb47d6b9858f"
+    },
+    {
+      "original_path": "inputs/docs/reference/policies/development-task-lifecycle.md",
+      "path": "artifacts/inputs/docs/reference/policies/development-task-lifecycle.md.gz",
+      "encoding": "gzip",
+      "bytes": 6422,
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "stored_sha256": "c33353dddf28fe9cb91d0b674ac23e1b81164e9dc704451d4f0bee783cb43e9f"
+    },
+    {
+      "original_path": "inputs/docs/reference/policies/independent-validation-policy.md",
+      "path": "artifacts/inputs/docs/reference/policies/independent-validation-policy.md.gz",
+      "encoding": "gzip",
+      "bytes": 11956,
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "stored_sha256": "c83ebcd057d45d6fc71340bf4cf52346f07c49b1f5df6db78191eddbfc7e5845"
+    },
+    {
+      "original_path": "inputs/docs/reference/policies/repository-engineering-policy.md",
+      "path": "artifacts/inputs/docs/reference/policies/repository-engineering-policy.md.gz",
+      "encoding": "gzip",
+      "bytes": 8006,
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "stored_sha256": "fb9996f57ab5ee8666f8cd556f65b997bb2317a585b2bed369273aee75f53d45"
+    },
+    {
+      "original_path": "inputs/libraries/additional-validation-libraries.json.gz",
+      "path": "artifacts/inputs/libraries/additional-validation-libraries.json.gz.gz",
+      "encoding": "gzip",
+      "bytes": 149874,
+      "sha256": "bdc56c7faae6db860212bd4098d74eb9c19c4899a6d5bfaf41bd662774e9ba57",
+      "stored_sha256": "ac8f5a9445dd83311ff60c4fc05f71e138187386c5ed0729052d594fa805f0b2"
+    },
+    {
+      "original_path": "inputs/libraries/reused-library-manifest.json.gz",
+      "path": "artifacts/inputs/libraries/reused-library-manifest.json.gz.gz",
+      "encoding": "gzip",
+      "bytes": 833232,
+      "sha256": "6a7924915245c5d026d757608f8650f12c7268edbc95f74162166242afc71f61",
+      "stored_sha256": "b2f8d1d1031ebd6b6d755bafd6868a6cefe910ba80a4fa4ca3c92225d81db641"
+    },
+    {
+      "original_path": "inputs/normative/modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "path": "artifacts/inputs/normative/modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts.gz",
+      "encoding": "gzip",
+      "bytes": 98426,
+      "sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "stored_sha256": "d9283883c8d95d99ef17c293bd4495788e4cf30bc3134847545f0cbcd8459eb5"
+    },
+    {
+      "original_path": "inputs/normative/modelcontextprotocol.io--specification--2025-11-25--basic--index.md",
+      "path": "artifacts/inputs/normative/modelcontextprotocol.io--specification--2025-11-25--basic--index.md.gz",
+      "encoding": "gzip",
+      "bytes": 11194,
+      "sha256": "a504a34039368f1cb715096d664f234ce7e1af4511e6ad3fd41e901d8040b97e",
+      "stored_sha256": "f03955e29f62198dc77c7123811c3bccc8f9431a68027d0984b7c7f9aee38aec"
+    },
+    {
+      "original_path": "inputs/normative/modelcontextprotocol.io--specification--2025-11-25--basic--lifecycle.md",
+      "path": "artifacts/inputs/normative/modelcontextprotocol.io--specification--2025-11-25--basic--lifecycle.md.gz",
+      "encoding": "gzip",
+      "bytes": 9217,
+      "sha256": "8c030bf50b74e562d244916b16baab1bfcd86ae03736d4e5b6e24ed58a913af9",
+      "stored_sha256": "36168ffae11aadaf6622bc419ca4353ac09a392f0dc4ffd98cdf5d6ea865ec95"
+    },
+    {
+      "original_path": "inputs/normative/modelcontextprotocol.io--specification--2025-11-25--basic--security_best_practices.md",
+      "path": "artifacts/inputs/normative/modelcontextprotocol.io--specification--2025-11-25--basic--security_best_practices.md.gz",
+      "encoding": "gzip",
+      "bytes": 37327,
+      "sha256": "27dfdc9c8fb0f29750e52d64797077bc1ba01f25a0d584e3189954f47a2601c7",
+      "stored_sha256": "bf6804e4f57672d51aedd4dda0d513758578b0eb3a5f32a92b136ac58ad65958"
+    },
+    {
+      "original_path": "inputs/normative/modelcontextprotocol.io--specification--2025-11-25--basic--transports.md",
+      "path": "artifacts/inputs/normative/modelcontextprotocol.io--specification--2025-11-25--basic--transports.md.gz",
+      "encoding": "gzip",
+      "bytes": 16191,
+      "sha256": "5a86d66ae0ab08f29460229f3b7f56d504388d1f106e21097575621717fc0e7a",
+      "stored_sha256": "edb24318788ee0dbb472ac8c62183d73ac5ec2e26b2f0f0acc12831be0660e52"
+    },
+    {
+      "original_path": "inputs/normative/modelcontextprotocol.io--specification--2025-11-25--basic--utilities--cancellation.md",
+      "path": "artifacts/inputs/normative/modelcontextprotocol.io--specification--2025-11-25--basic--utilities--cancellation.md.gz",
+      "encoding": "gzip",
+      "bytes": 2921,
+      "sha256": "a52208278358eebe5d91061d78122247c8e0b348701547386393aa7fbbabdf2e",
+      "stored_sha256": "ececcd5dac5a288f0b83e672a17c11a46e0d2eb2876afde5cbd34988be5f35a0"
+    },
+    {
+      "original_path": "inputs/normative/modelcontextprotocol.io--specification--2025-11-25--server--tools.md",
+      "path": "artifacts/inputs/normative/modelcontextprotocol.io--specification--2025-11-25--server--tools.md.gz",
+      "encoding": "gzip",
+      "bytes": 14061,
+      "sha256": "b372c48eea58744850f5684b796438f32643402533b24084d82b49b580721aff",
+      "stored_sha256": "80259cc4cb4b74248ea0591fa061b9cc11ed4592985f639d7a10fba84ad9b091"
+    },
+    {
+      "original_path": "inputs/normative/modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md",
+      "path": "artifacts/inputs/normative/modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md.gz",
+      "encoding": "gzip",
+      "bytes": 4627,
+      "sha256": "5ad380cae6ee6f29f63210694de90400c2aa84efaddc1c8f3f286ea3a36664a3",
+      "stored_sha256": "0ffcd169eacf5a97d37b5e13a52ebcbb2259977db0975b70766e429e7d1cc43d"
+    },
+    {
+      "original_path": "inputs/normative/raw.githubusercontent.com--modelcontextprotocol--modelcontextprotocol--271ecc9accafdd9b83a3c869fa67c22953b2af80--schema--2025-11-25--schema.ts",
+      "path": "artifacts/inputs/normative/raw.githubusercontent.com--modelcontextprotocol--modelcontextprotocol--271ecc9accafdd9b83a3c869fa67c22953b2af80--schema--2025-11-25--schema.ts.gz",
+      "encoding": "gzip",
+      "bytes": 66671,
+      "sha256": "e74b56e73b2e37bdb595f74ba22e428ad7f07aa3519355ba661d681298ed38ac",
+      "stored_sha256": "967c04a3a2d7bff08a573ece66c9378aa3a580c7f523d7ef682e169b6c13b76f"
+    },
+    {
+      "original_path": "inputs/normative/specification--2025-11-25--basic--utilities--tasks.md",
+      "path": "artifacts/inputs/normative/specification--2025-11-25--basic--utilities--tasks.md.gz",
+      "encoding": "gzip",
+      "bytes": 35997,
+      "sha256": "c33da0b5b3912a4826d6e1d8a6a6fdcb3700d9af9f3e66dd4ee14d7440497fb6",
+      "stored_sha256": "decdfbda41a309110b6dbddccd5e4604c3b783170ced636a6da38250575fb992"
+    },
+    {
+      "original_path": "inputs/normative/specification--2026-07-28--basic--authorization.md",
+      "path": "artifacts/inputs/normative/specification--2026-07-28--basic--authorization.md.gz",
+      "encoding": "gzip",
+      "bytes": 25173,
+      "sha256": "93fd383906873fedb80119a636b342e25b166ed3f9bee4fa8ae1b3bcb4c2b8f7",
+      "stored_sha256": "e973ccaa554ba125c4533104d13c8fa37b0d5bfe0720e02f5b7380f4bd1b2dcc"
+    },
+    {
+      "original_path": "inputs/normative/specification--2026-07-28--basic--index.md",
+      "path": "artifacts/inputs/normative/specification--2026-07-28--basic--index.md.gz",
+      "encoding": "gzip",
+      "bytes": 24001,
+      "sha256": "67a62de95bdc816ff96e8d5c69b0fc19237191f42805846e2ec8f8d7063e123e",
+      "stored_sha256": "e980304353744183e828a00344e250fc9db51c39688447f02161b49495da2589"
+    },
+    {
+      "original_path": "inputs/normative/specification--2026-07-28--basic--patterns--mrtr.md",
+      "path": "artifacts/inputs/normative/specification--2026-07-28--basic--patterns--mrtr.md.gz",
+      "encoding": "gzip",
+      "bytes": 13364,
+      "sha256": "cfbb4bf592fd0678d9b7e3fdeb5ebc3156c106146e583f55851b3a3c026dc6c9",
+      "stored_sha256": "a6e04c2f9de8cbaa2ee8ebbad6e831f4611c00ff0722ebad0062505bb7943fc0"
+    },
+    {
+      "original_path": "inputs/normative/specification--2026-07-28--basic--transports--stdio.md",
+      "path": "artifacts/inputs/normative/specification--2026-07-28--basic--transports--stdio.md.gz",
+      "encoding": "gzip",
+      "bytes": 7352,
+      "sha256": "a021917cb77ecd936143aced4fd243e12dd7b5f9a9344546742df97a381277f5",
+      "stored_sha256": "dc20b20f4fa591c6a21ff3cc63e62167e358697cae61f4f6158b907250f7dfcb"
+    },
+    {
+      "original_path": "inputs/normative/specification--2026-07-28--basic--transports--streamable-http.md",
+      "path": "artifacts/inputs/normative/specification--2026-07-28--basic--transports--streamable-http.md.gz",
+      "encoding": "gzip",
+      "bytes": 30407,
+      "sha256": "93daa4bb4e189f0bd51d866950b3b8a3b4e7d0b1e0e6eede5ba1998641d0b955",
+      "stored_sha256": "c6577a8a16e81f65ff48d00f92b470e880050833b2ad1660d3bdbe87b4fd88f6"
+    },
+    {
+      "original_path": "inputs/normative/specification--2026-07-28--basic--versioning.md",
+      "path": "artifacts/inputs/normative/specification--2026-07-28--basic--versioning.md.gz",
+      "encoding": "gzip",
+      "bytes": 8410,
+      "sha256": "43b48c19cbc330410beed44da8cf441e100a05652a3654f39eb331bb94f46402",
+      "stored_sha256": "b8823526205253bec25b8416df2d555e2bdafe5e4b4f27165992b9768b80ba79"
+    },
+    {
+      "original_path": "inputs/normative/specification--2026-07-28--index.md",
+      "path": "artifacts/inputs/normative/specification--2026-07-28--index.md.gz",
+      "encoding": "gzip",
+      "bytes": 5817,
+      "sha256": "f8df03767e5cbdd4921ae569d1d69e8da9e455e1629fadf4d0613cd658dd632f",
+      "stored_sha256": "ba5b1cdebd99f81b48c400dd263477ecac9be0bb0887bd5dd2d595c76e93ce81"
+    },
+    {
+      "original_path": "inputs/normative/specification--2026-07-28--server--discover.md",
+      "path": "artifacts/inputs/normative/specification--2026-07-28--server--discover.md.gz",
+      "encoding": "gzip",
+      "bytes": 3835,
+      "sha256": "331489cd2984399cfe4828357fdd5a23e062ef40f69f4815499b055b51e2b82c",
+      "stored_sha256": "fa62da1c05778bfbd8068a5cb2c60d2b9d657dee7d0316b2b8cd31bf94109bd6"
+    },
+    {
+      "original_path": "inputs/normative/specification--2026-07-28--server--tools.md",
+      "path": "artifacts/inputs/normative/specification--2026-07-28--server--tools.md.gz",
+      "encoding": "gzip",
+      "bytes": 24314,
+      "sha256": "09be49a064940ef288b47f8df09e95e6e3dc087c3f94e466acd60ec66dff25c3",
+      "stored_sha256": "97849c034d2a7eada88f431f68b6435afd5ff69e0671ee1e8a0d859f9940a1a6"
+    },
+    {
+      "original_path": "inputs/remediator/builder/actual-variant-matrix.json",
+      "path": "artifacts/inputs/remediator/builder/actual-variant-matrix.json.gz",
+      "encoding": "gzip",
+      "bytes": 289607,
+      "sha256": "0c3cff87e33c1129545c8ef055e1a46226c584fa9936d440f7d9ce2fae16e218",
+      "stored_sha256": "02f5efd12e856fc8643d8ce9281fda6b108711126e241c7991a1e88f4be72bfc"
+    },
+    {
+      "original_path": "inputs/remediator/builder/build_mapping.py",
+      "path": "artifacts/inputs/remediator/builder/build_mapping.py.gz",
+      "encoding": "gzip",
+      "bytes": 9068,
+      "sha256": "3697d1ffa3074d5bf268993840099430b0978ec072918c81e50a856b44194b6d",
+      "stored_sha256": "c0a4df0c3e5c82fb48a3bec32215baa38629fc114af7d6e377f7a66b6451a7db"
+    },
+    {
+      "original_path": "inputs/remediator/builder/build_mapping_initial.py",
+      "path": "artifacts/inputs/remediator/builder/build_mapping_initial.py.gz",
+      "encoding": "gzip",
+      "bytes": 8984,
+      "sha256": "4d2b3b99ea469207baac4f89665f3a3f0ef23f548df09b8dbc83d8c3f0e08495",
+      "stored_sha256": "72f7e345d8e6b114f5f91c8a0822d73f5dbb99bad3fe866ff371fb4e04193610"
+    },
+    {
+      "original_path": "inputs/remediator/builder/checks/final-mapping/preflight.json",
+      "path": "artifacts/inputs/remediator/builder/checks/final-mapping/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5528,
+      "sha256": "30e1b4940a31f6ca4273540e0eb7cab3fbee7e66452062c2922561840b8f1289",
+      "stored_sha256": "ccf76733debfb912f3824bf58312e654f40d445be75a690c93a991beed6f0447"
+    },
+    {
+      "original_path": "inputs/remediator/builder/checks/final-mapping/receipt.json",
+      "path": "artifacts/inputs/remediator/builder/checks/final-mapping/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3067,
+      "sha256": "10082a39c4283409b2d41353de1e90f2245696a9f75851a06311d9d8c04f1e0a",
+      "stored_sha256": "cd6289fde4bf6db8d6868115b1f7e986877b711f174b46fd9e4665ccab9f5f59"
+    },
+    {
+      "original_path": "inputs/remediator/builder/checks/final-mapping/stderr",
+      "path": "artifacts/inputs/remediator/builder/checks/final-mapping/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 1343,
+      "sha256": "11ab86ca124d1efd552d0ad3787d48b381468460f77d3b4a66b156818ee29f1e",
+      "stored_sha256": "d4a78f158097e96caa71f5f89b72064ba8875bb2dc5752a423b6f00c529a9eea"
+    },
+    {
+      "original_path": "inputs/remediator/builder/checks/final-mapping/stdout",
+      "path": "artifacts/inputs/remediator/builder/checks/final-mapping/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "inputs/remediator/builder/checks/final-mapping-2/preflight.json",
+      "path": "artifacts/inputs/remediator/builder/checks/final-mapping-2/preflight.json.gz",
+      "encoding": "gzip",
+      "bytes": 5544,
+      "sha256": "2766207e3950cc7b62b85e28538e38e91d18854d0927eec2ce4821c09f307104",
+      "stored_sha256": "88fc063ed5ab81031b125b7903289097a4f73aecafe636ba1c7938df8e6a5917"
+    },
+    {
+      "original_path": "inputs/remediator/builder/checks/final-mapping-2/receipt.json",
+      "path": "artifacts/inputs/remediator/builder/checks/final-mapping-2/receipt.json.gz",
+      "encoding": "gzip",
+      "bytes": 3083,
+      "sha256": "ffe6751258e5d42b6c328760618015ec7078a930990c7286b948b8aa4fe09dcd",
+      "stored_sha256": "04dbae071669c0fc301a791760ef9dce78934af2eb2a7c327caa53fb4554203f"
+    },
+    {
+      "original_path": "inputs/remediator/builder/checks/final-mapping-2/stderr",
+      "path": "artifacts/inputs/remediator/builder/checks/final-mapping-2/stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "inputs/remediator/builder/checks/final-mapping-2/stdout",
+      "path": "artifacts/inputs/remediator/builder/checks/final-mapping-2/stdout.gz",
+      "encoding": "gzip",
+      "bytes": 140,
+      "sha256": "c613072c893d1c4c290381ff4187ecb2001d21ec88fa8a03176e908db77b04d2",
+      "stored_sha256": "43954ddb8562446e558f35ec9eb7d20931a92274b0977dcd206ca0bc6ad5118f"
+    },
+    {
+      "original_path": "inputs/remediator/builder/compat-schema.ts",
+      "path": "artifacts/inputs/remediator/builder/compat-schema.ts.gz",
+      "encoding": "gzip",
+      "bytes": 66671,
+      "sha256": "e74b56e73b2e37bdb595f74ba22e428ad7f07aa3519355ba661d681298ed38ac",
+      "stored_sha256": "967c04a3a2d7bff08a573ece66c9378aa3a580c7f523d7ef682e169b6c13b76f"
+    },
+    {
+      "original_path": "inputs/remediator/builder/evidence-manifest.json",
+      "path": "artifacts/inputs/remediator/builder/evidence-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 19727,
+      "sha256": "8276f95d45779525b1740f4ef823ea58ff1de3896d36ae78821718c8ab9ec051",
+      "stored_sha256": "72b8cbd8f3442288774a1e9ba11fed9438359aa1b4371d92d5f4ad1aaa936e5d"
+    },
+    {
+      "original_path": "inputs/remediator/builder/final-requirement-test-mapping.json",
+      "path": "artifacts/inputs/remediator/builder/final-requirement-test-mapping.json.gz",
+      "encoding": "gzip",
+      "bytes": 132925,
+      "sha256": "cad6306b5e641b85f18824cca57c38e18a95a65c4928eaca5be7d516404c7a9d",
+      "stored_sha256": "12fd70d9fef978ffc8c609445b255b6f1c9302eef6bfdce2c1faa54121af4dc8"
+    },
+    {
+      "original_path": "inputs/remediator/builder/modern-schema.ts",
+      "path": "artifacts/inputs/remediator/builder/modern-schema.ts.gz",
+      "encoding": "gzip",
+      "bytes": 98426,
+      "sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "stored_sha256": "d9283883c8d95d99ef17c293bd4495788e4cf30bc3134847545f0cbcd8459eb5"
+    },
+    {
+      "original_path": "inputs/remediator/builder/preconstruction-plan.md",
+      "path": "artifacts/inputs/remediator/builder/preconstruction-plan.md.gz",
+      "encoding": "gzip",
+      "bytes": 4771,
+      "sha256": "ec2c594d7b34aaa7b9bd2669ded3dd4b22f4f9b85879f7c6a06f48b929e73ad5",
+      "stored_sha256": "ed8ca746adeb32550b3a20f8006722153c0995fa63da87f7a577fe67d600cc09"
+    },
+    {
+      "original_path": "inputs/sources/AGENTS.md",
+      "path": "artifacts/inputs/sources/AGENTS.md.gz",
+      "encoding": "gzip",
+      "bytes": 11738,
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "stored_sha256": "0e6ae04d51b0af9a5c79e27bd872c438cdc3ffd064edc17cf1266a6fcc400ea3"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-mcp/directives/ws-00-contract-policy-foundation.md",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-mcp/directives/ws-00-contract-policy-foundation.md.gz",
+      "encoding": "gzip",
+      "bytes": 10774,
+      "sha256": "651eb15e072d567d33a044e09e746422ca49458c5f386cb39d2228b710cd3485",
+      "stored_sha256": "1b276fa8312c4d3b97c0f4691d21b6e253076ea5be3aa4463d0d85b6058ee226"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-mcp/directives/ws-05-execution-provenance-transcript.md",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-mcp/directives/ws-05-execution-provenance-transcript.md.gz",
+      "encoding": "gzip",
+      "bytes": 22376,
+      "sha256": "9d8a14ffa65a71643fe6a6d92b9c21499dfb88bdd5e62693d7c0859bc17e8e8c",
+      "stored_sha256": "6d709ffcca2be7ead2c9fba74d8e7515bc14a97c3d9a32c6c21958388079be8d"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-mcp/directives/ws-06-memory-compatibility-ingestion.md",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-mcp/directives/ws-06-memory-compatibility-ingestion.md.gz",
+      "encoding": "gzip",
+      "bytes": 20228,
+      "sha256": "332eba2e05c67675f9578e2d2f455ef69ab707462f3d3fd60c41bcefcade47be",
+      "stored_sha256": "caa47f23f1a2c4bc7e96a2e96e78abf843d1e2486fa743e4ff42b4447770f019"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md.gz",
+      "encoding": "gzip",
+      "bytes": 8528,
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "stored_sha256": "cdbf52f8dc17088b553742742351aad6b3177139d3a1bdd9363613c2dae43160"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-mcp-protocol-upgrade-up-02b/README.md",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-mcp-protocol-upgrade-up-02b/README.md.gz",
+      "encoding": "gzip",
+      "bytes": 784,
+      "sha256": "3fb995f681792d2a49f736f1960e7331bf1ed13d56db0cdb0719ce1a4e0f40bf",
+      "stored_sha256": "36d0d4b0f7e15a56765647ff6ce9eeb721b6d55b7d861881f6c32ba01d7b91f0"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-mcp-protocol-upgrade-up-02b/acceptance-evidence.json",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-mcp-protocol-upgrade-up-02b/acceptance-evidence.json.gz",
+      "encoding": "gzip",
+      "bytes": 3571,
+      "sha256": "58744b5ec72aa8d29b95523e7dd9c154525d056b188a4a77ebad35a54dff6cb7",
+      "stored_sha256": "f9211281d66954bcb3504af8d3ab9983ef7d584dd3fccb0b7da2faf40fae8752"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md.gz",
+      "encoding": "gzip",
+      "bytes": 2942,
+      "sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b",
+      "stored_sha256": "65af503cea9ed589753559881f0da73fb524c54770451e40084bbb3faeef3827"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md.gz",
+      "encoding": "gzip",
+      "bytes": 2627,
+      "sha256": "9fa124dbafeb71a06dc00c12281767a843fbc5fc2829167268c0341b6928b31c",
+      "stored_sha256": "696028250f1df05839e0370bf89dab55bdc1b0791a4480b1740d33a6c3686155"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-02/acceptance-evidence.json",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-02/acceptance-evidence.json.gz",
+      "encoding": "gzip",
+      "bytes": 6470,
+      "sha256": "d48636248178ab4e53daaa038e04d590d8c1d8c65bf18d222a5c3e99b7286d23",
+      "stored_sha256": "e3407058c9c0f8f1697aaf7c702169e04997566fcac4efe5ab900ff6cfd91b5f"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-03/README.md",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-03/README.md.gz",
+      "encoding": "gzip",
+      "bytes": 1869,
+      "sha256": "4f05b1fba680718fee3148536fc0409cde867ae51b56c9df3ec26d1435cc4590",
+      "stored_sha256": "20655334682779e5485e0c98650528e3b1d065589da48aec90821debcaaf7949"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-03/acceptance-evidence.json",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-03/acceptance-evidence.json.gz",
+      "encoding": "gzip",
+      "bytes": 7467,
+      "sha256": "0283012c33a3b51f5b0f9880f19015ab09f2125bd9352b9bfa7a4beeb5fe4363",
+      "stored_sha256": "fec020366086edd914cfd61e6153d1a736131ff0b895d88476f749e3e439a3f6"
+    },
+    {
+      "original_path": "inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json",
+      "path": "artifacts/inputs/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json.gz",
+      "encoding": "gzip",
+      "bytes": 14620,
+      "sha256": "db6ffff278434cabdf688839ec988b09e10fff437e8aac6a5c1ead9fac140075",
+      "stored_sha256": "2c845044cd9890317a89e129a26c6ea501e2871718e0a743932e828b48af8029"
+    },
+    {
+      "original_path": "inputs/sources/docs/guides/17-mcp-client.md",
+      "path": "artifacts/inputs/sources/docs/guides/17-mcp-client.md.gz",
+      "encoding": "gzip",
+      "bytes": 15822,
+      "sha256": "075ee0e94f558b2fddfefb87596db7e1d27fc9702b57329e9c5349397bb8bf38",
+      "stored_sha256": "f82dbc4748c0b14f44a93b15d06a031c5a3b35cf36f4cb082c360ebba7d2bad5"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/README.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/README.md.gz",
+      "encoding": "gzip",
+      "bytes": 9502,
+      "sha256": "af1c1e6c9cc5a532a0d99cdab0674c449b7d8e689fbc9fed6f492c5d005d459b",
+      "stored_sha256": "15f206b5acf8723959b9d3398441bc4e2ba906dcabacb136fe90be7dc099bc8f"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json.gz",
+      "encoding": "gzip",
+      "bytes": 2839,
+      "sha256": "b77ef183c7ed1ffdf8a465cebfd293f1f9bdb97bc3deed6e20c4b4dd08a31184",
+      "stored_sha256": "ae578809a1fd09407d929391b2a7f2dc59b933427cb004fb5941712077484c77"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json.gz",
+      "encoding": "gzip",
+      "bytes": 3571,
+      "sha256": "58744b5ec72aa8d29b95523e7dd9c154525d056b188a4a77ebad35a54dff6cb7",
+      "stored_sha256": "f9211281d66954bcb3504af8d3ab9983ef7d584dd3fccb0b7da2faf40fae8752"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.md.gz",
+      "encoding": "gzip",
+      "bytes": 873,
+      "sha256": "3227978e66825995a22435e32c312b39e5a25c28f4075bf7ccb2aed2afab9878",
+      "stored_sha256": "2bbd90d6c00d98c6949176f5138d4f6f46317b5609c690ea1010fcad5d19cc43"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json.gz",
+      "encoding": "gzip",
+      "bytes": 7742,
+      "sha256": "a2ec13178c03889ec6d7db146851639f97f99c39d2e5273e83266988a2bd93d7",
+      "stored_sha256": "f3cae0c17fbe90abb69db64fc01678c20a938c7e9f4153a0387aa0b54c029a6c"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.md.gz",
+      "encoding": "gzip",
+      "bytes": 816,
+      "sha256": "60448a5097808bb5b7f4e026a5b619f99d41b0ce9f9c77eecb5c6bbacbb693aa",
+      "stored_sha256": "adc4560ffbb118ee08ac70131684104fead2ab48a4268551e58e67914e951516"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-002.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-002.json.gz",
+      "encoding": "gzip",
+      "bytes": 799,
+      "sha256": "6ff881f654dc2a4894f57c1393700fa481349b938bd16ea1d48c57ef82390cf9",
+      "stored_sha256": "06e9e772226723b2cc3ec1cbb4aae9778fb78c28208984625c3d5aabce1f6a74"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-004.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-004.json.gz",
+      "encoding": "gzip",
+      "bytes": 619,
+      "sha256": "4d3ab495dd6dcc00a09c1c80fb868ba973fbd0bc567f8070bad9bf1376a1e2ff",
+      "stored_sha256": "7ac441f0b15790a1a8e9509cc83c78750840b7eff4e79176c7d2a26d9474260e"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-02B.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-02B.json.gz",
+      "encoding": "gzip",
+      "bytes": 742,
+      "sha256": "0506dafaf9c876ecc449bdf8ff8db741dc7c34dcf5ffe531f47e0afab1791534",
+      "stored_sha256": "91cf47a517d0a2c4dae224b49998b2b13f430e002ecafd556238fdaa9be2c0b1"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-03.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-03.json.gz",
+      "encoding": "gzip",
+      "bytes": 3070,
+      "sha256": "68ceedcb23900fb3bac5d87f70fa09e275d3b65b674224da043732aa5ff53ca0",
+      "stored_sha256": "d34c2b39c069eb2a538986f20397334cfe1df9ae0d1615fe19950d6e46d4c278"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-04.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-04.json.gz",
+      "encoding": "gzip",
+      "bytes": 596,
+      "sha256": "9b5816102251a515a6f0efaf57742e43d6fce7a995ac16b5a0ffc610270da158",
+      "stored_sha256": "4063d24cae1d0214c83c7262ed0d1b1eb447c14329c5ce017dd5d436190d7138"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/approval.json.gz",
+      "encoding": "gzip",
+      "bytes": 5378,
+      "sha256": "44210f5108c60626efa51e450d2853b6e502cd0711f7c0b11936d24c298d7b2e",
+      "stored_sha256": "202355201693ca07ab834a6ba7412e584854c8fff5c275647160916761312989"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-002.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-002.json.gz",
+      "encoding": "gzip",
+      "bytes": 5119,
+      "sha256": "da46b64374f63ddb937d1073baae241d6832264de5fa34e4f07ef47ad758a785",
+      "stored_sha256": "0dc0b1499fba0fbaa2e54d4ab125ed635e93ab69f77821e97e3cda8be53bb2ba"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-003.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-003.json.gz",
+      "encoding": "gzip",
+      "bytes": 8561,
+      "sha256": "573fab0c6db1b85816b0627af5b680cd7bd0a69538943a7e5d30e32511d444a6",
+      "stored_sha256": "875a742be8e6fa406c97c31ffb775eaa1406cee67ff1ec4ca9bb6b594933dc8e"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-004.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-004.json.gz",
+      "encoding": "gzip",
+      "bytes": 17244,
+      "sha256": "9836b2169582da7e90e6cd79bbb14104a09dbb8a66a8c8fd7a6580bfc8b3d422",
+      "stored_sha256": "7249b543bab128666531fbc9d3cc09127474e35163432123473b0b1020222960"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-02B.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-02B.json.gz",
+      "encoding": "gzip",
+      "bytes": 9871,
+      "sha256": "563969f358940e8af38433a64d4f13420658b9de619a337e4b307940d43e7ec1",
+      "stored_sha256": "5588fea8220b97b0b106a3e80c8ce6708d23b2f37c2fdaf3717f22900566c733"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-03.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-03.json.gz",
+      "encoding": "gzip",
+      "bytes": 21750,
+      "sha256": "acafd7e66b9125e6ff651c9b95a786eb5f17f8cce62a7327d4ccdb6c5ebe0037",
+      "stored_sha256": "9d30a1139f2aa8f6a829deee389153982c4a262ff2ea77f77ab10fec95dc9568"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-04.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-04.json.gz",
+      "encoding": "gzip",
+      "bytes": 18987,
+      "sha256": "a5799eb167c5ede63f9cc00a5e578bab2194d2e1f21f88e18338fd637b782329",
+      "stored_sha256": "913b1b451050db2af7655b70e5a17e961c2d57ae25eb6bea5431eeb2ef7d9011"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/authority-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 8292,
+      "sha256": "c202d2d8a3fe83e29187a2273faee7b743471bc0d528f1de8b06ca1b3b0775b2",
+      "stored_sha256": "df0da92dc162dba39fed14b92b601937de1dbdd7a1b166224efa94cadbb3afa6"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/baseline.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/baseline.json.gz",
+      "encoding": "gzip",
+      "bytes": 18391,
+      "sha256": "52b22d13a059fed099355406d77c947310fcec3762a2d90a0bcc1570386ad9a8",
+      "stored_sha256": "7f85f499cf1c00f21d527f25cf6cf596d88c91ccdc0cce56751fa772a11fff94"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md.gz",
+      "encoding": "gzip",
+      "bytes": 6972,
+      "sha256": "042dc7dac9093d11b5c120a417d89e49136ed577464aa1a4b175389ee1ebb571",
+      "stored_sha256": "4664667316d237f8501dbb6d6bb81abc9aa527b19146506e1a50feb409867fcc"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/conformance-matrix.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/conformance-matrix.md.gz",
+      "encoding": "gzip",
+      "bytes": 5762,
+      "sha256": "e5c204aa63644eb8b798cd734a2a427bf9d1a7a2f48a2d468f15178846eff6b0",
+      "stored_sha256": "abbf4c61d48f28e3a609c844f2f7c5587bb0d958a27dc82db8ac114455a90ab6"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-approval.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-approval.json.gz",
+      "encoding": "gzip",
+      "bytes": 2130,
+      "sha256": "cb1b25e5f8bd694c815c5e525216b6aaa33e7e337024e527a75e1490524d53f0",
+      "stored_sha256": "0642b9665d693c73e4b227b7c15a47c41b6c2bfd3deb4f1d7facdafed5a023b4"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-sdk-dependency.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-sdk-dependency.md.gz",
+      "encoding": "gzip",
+      "bytes": 4200,
+      "sha256": "f3118e48a9c2e80756b39c410db3ecca7f63c7f141cd704f29aaa574386e5e19",
+      "stored_sha256": "50112c7585d499e26e157a418f78161061a29fe58eb9b1f4dbdaa67885fe5690"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-client-core.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-client-core.md.gz",
+      "encoding": "gzip",
+      "bytes": 9132,
+      "sha256": "06839e00eecdb1c7e40e76562d32a3f53c7c1aea1095f508d767ef57d198e964",
+      "stored_sha256": "2dcdccf37c998f3f7bdfe0dac8e1ffafff8d0fd7a88eeb839b30a132e259ee52"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-002-streamable-http.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-002-streamable-http.md.gz",
+      "encoding": "gzip",
+      "bytes": 16313,
+      "sha256": "f69b275dd018e03ed8c7d05fa96f5b7d6ec34439c5c8d49d8f7ab2aab4887ea7",
+      "stored_sha256": "9892e3e6f9a7fad9786abd73237df7e2bfa2876ac8b16f9872f4b11be18305eb"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-003-runtime-yaml-chat.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-003-runtime-yaml-chat.md.gz",
+      "encoding": "gzip",
+      "bytes": 17911,
+      "sha256": "3576560f3076584d3bbd0ec69d5f7565481f0a1e50aba5e0c2d332c692bc1147",
+      "stored_sha256": "6a0d6197807c8798d8a7473a9790cc2ea50139c689b2e4dc0cc6e2f22a7ee219"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-004-results-manual-refresh.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-004-results-manual-refresh.md.gz",
+      "encoding": "gzip",
+      "bytes": 12761,
+      "sha256": "ea4bc460c1f06f21f77f9cfa9855412b5dfaeb5d83a4c7126be067c2dd9b4593",
+      "stored_sha256": "f1f6ef0862864c8cda5741d49de953abcc685b69fec48e2384314dc7ccdea163"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/idna-3.20-pypi.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/idna-3.20-pypi.json.gz",
+      "encoding": "gzip",
+      "bytes": 9180,
+      "sha256": "e7cbd26e23ce60f6cb3a151d2adf3b1b087bb8f10ac2d9d6db70fdccbf3bb041",
+      "stored_sha256": "9c0f9eb8f2ec9b04205676ff7dac20304603b8b48bbbe423ecf96b9fd22500db"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/mcp-2.3.0-pypi.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/mcp-2.3.0-pypi.json.gz",
+      "encoding": "gzip",
+      "bytes": 8676,
+      "sha256": "d9348a2813cdf05df82f7852afb9f13d8a8035d62c3a5e07fb9657bc5382aad7",
+      "stored_sha256": "edd3da9d7566f5f2b84f1564d4d830089e3beb1aa37bf04dc628848744c86198"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-mcp-pyproject.toml.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-mcp-pyproject.toml.gz.gz",
+      "encoding": "gzip",
+      "bytes": 826,
+      "sha256": "8fed981ee2777ab00a7d41aa4d4cdcf4b0e9efc2fd093991236b36ca72ad146d",
+      "stored_sha256": "84c9e60d787b10b1e4302ace75b2a66b109a66126a78e54a1f16601580a3039d"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-uv.lock.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-uv.lock.gz.gz",
+      "encoding": "gzip",
+      "bytes": 206321,
+      "sha256": "46da8d70f22930ec8b65182aba5ebd6b568c2b0d3c8d65c7d5c87ce9650246f8",
+      "stored_sha256": "b7bace1259ec3a4e154865b9fe68288ddcd87e4842d737df44fc5f2221efb4fd"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/report.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/report.json.gz",
+      "encoding": "gzip",
+      "bytes": 1281,
+      "sha256": "61bb44f1eeae33013ea71a8d3b45067c19fe92e09971d28c6503c614b643b187",
+      "stored_sha256": "509d15aa7d011c94b5123f43dacc1f3ff09662963ee83b271b0823614b47cbbf"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/baseline-comparison.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/baseline-comparison.json.gz",
+      "encoding": "gzip",
+      "bytes": 465,
+      "sha256": "fe63bd14c0f9d3988c0440104417f1b9445303b401b541dce6744ff16269e612",
+      "stored_sha256": "7d48036607c53a93dcf6cdbcb268b1ed772000ffcde629769652b59b6b5446bd"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/criterion-ledger.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/criterion-ledger.json.gz",
+      "encoding": "gzip",
+      "bytes": 1913,
+      "sha256": "5a349ebc53977624e322e71aa9b2c7c07e0b18cc1e33ddc5965b618c45af6746",
+      "stored_sha256": "65605f139280fa786ec0c99d71cae6399a5e739693c8125d99aaa4e5fd8a0e8e"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/effects-and-check-profile.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/effects-and-check-profile.json.gz",
+      "encoding": "gzip",
+      "bytes": 10548,
+      "sha256": "971b7bbdbdfdd0377f97e983b7c024d4c6bee06f010c40f003527e35a06e219c",
+      "stored_sha256": "3d03f7235cc0df5d21c739b781f1706e9c50d00baf2923c8323190338a73119b"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/normative-clause-ledger.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/normative-clause-ledger.json.gz",
+      "encoding": "gzip",
+      "bytes": 585758,
+      "sha256": "903816eb83c4e7a6ceb014dfa572ab57e662cd898ea91a33042155756a7fc927",
+      "stored_sha256": "acf18197d29ee6eb0d1ef696b3884417c8ccad5dc8c83e443d9c88fae36ae3ba"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/report.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 6905,
+      "sha256": "a584f9988b640a8f67e14321cf604b12bd2bca98e03c948b58da95a556218495",
+      "stored_sha256": "4b0e3ca7527c31933dbaea022ee39a602ef33e963f8c3fb9756578ca85572e71"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/root-ruff-comparison.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/root-ruff-comparison.json.gz",
+      "encoding": "gzip",
+      "bytes": 85,
+      "sha256": "3d6b75998e3b87f8461c53679ab361139143b4e2ffb2e44094caccad1af53c2f",
+      "stored_sha256": "35a1253abcc893dfae7c1549bddb74e6ba7a61e7f313b713b485702eccb18890"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/stable-check-freeze.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/http/stable-check-freeze.json.gz",
+      "encoding": "gzip",
+      "bytes": 7856,
+      "sha256": "3c6d78dd299489222db63122bfe917409f9cb83d186386736644c7ae7cdb71ca",
+      "stored_sha256": "d718e19faa55cf84d9503687e5de5d23f3eb804460eb64552021d9438925a75b"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/up03-planning/baseline-static.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/up03-planning/baseline-static.json.gz",
+      "encoding": "gzip",
+      "bytes": 4350,
+      "sha256": "4a35a5d03f322637ec0ff0591a164bdd016e977a778d2402d414ff7439d86f5d",
+      "stored_sha256": "4127da897a912d374573948594302f49b40e93e5076bb43df967f563d18c1140"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/up03-planning/stored-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/up03-planning/stored-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 12763,
+      "sha256": "a893556e2dfd4d34041907cab8aa44f692feaedea36ba6b38ddfc782027eeedb",
+      "stored_sha256": "ffd130139d5026367f720be4b71523e9e8d81f8cb1c082a2fbee0e634a3ad0c3"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/up04-planning/baseline-inventory.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/up04-planning/baseline-inventory.json.gz",
+      "encoding": "gzip",
+      "bytes": 10488,
+      "sha256": "13032e8e655ee70f71a3f562d9b7fd9ee66ccd91bc195f799a6ade7bb81040c8",
+      "stored_sha256": "ddcceb02eec08eb50c4d28c5c84c1a5f145dd7caf312ded1c2769ac53a9a3b71"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/up04-planning/report.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/up04-planning/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 3281,
+      "sha256": "3cef70f1e94b4551971131cd9041eb7f59f021ad3d011bb0541ea3d3160f3240",
+      "stored_sha256": "d69d8f3b69f8684bd3ac1876b1bdc71e43797dc0f43d3a29af587c3b2b10303d"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/up04-planning/stored-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/execution/up04-planning/stored-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 9472,
+      "sha256": "08ba61c2be272d884fbac57f0f2616668019334ec1b323efde953e312b70f70a",
+      "stored_sha256": "541495b62bab26177b14d344cb624ce2f1afef4499af97400ab114a1eb5ed818"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/proposals/REM-MCP-UP-002-authority-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/proposals/REM-MCP-UP-002-authority-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 4638,
+      "sha256": "45a40aa7d241b44b68021ab1d7a0e1dae461bec8350bb3c05627123b706c7873",
+      "stored_sha256": "2ac03ec8921cc73f509bcffdef0c038d00e525bb568e107931831c75db72f40b"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/proposals/REM-MCP-UP-004-authority-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/proposals/REM-MCP-UP-004-authority-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 16771,
+      "sha256": "9e09270af12fc464c1fcd62b0a2a3fbc39754d86bd772f913fb098db2c70e8a4",
+      "stored_sha256": "799c0242165b7218651d2c6975f86cb7e21cee99403bee5623b7e4af4ee8c453"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-02B-authority-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-02B-authority-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 9414,
+      "sha256": "730b21aa4417485d08c1752ae14228b8d1ce9c85579651d8517221661081db0e",
+      "stored_sha256": "64420bcd3e860c2d195a6f66939ab02e10dce5a984038770a4a369614f40c766"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-03-authority-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-03-authority-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 21295,
+      "sha256": "aba491e2419d1fdb0e5e76f02cef92d128909b6844443239cc88a6f6654add45",
+      "stored_sha256": "a35c4bf779de2fd1c7b24dc58908635978126f15138fd301c95a29ca053011eb"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-04-authority-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-04-authority-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 18532,
+      "sha256": "d7c7aec9f927d124f22bc44b82ad1b317c57e7cabf8927b2e9abbfb10c1bef06",
+      "stored_sha256": "f7c2114b2add6a7b0150d5521cbc6ecf4180882a94695f9d581069119d093d95"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/protocol-contract.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/protocol-contract.md.gz",
+      "encoding": "gzip",
+      "bytes": 9803,
+      "sha256": "339390e41c4643c82d8421dd5eddffa619c123d345b7db84559e05e9b4c3d573",
+      "stored_sha256": "7bff20d3fefc4318ba194f53c947c55133c76c43bc47fd9bb70ec780edc748bf"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-001.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-001.md.gz",
+      "encoding": "gzip",
+      "bytes": 3918,
+      "sha256": "1b7299c05bf63877075ea55b6764b93efdf66267b42eeb3fc7a39b424fa08024",
+      "stored_sha256": "36990a73d32538a67cdb945d8b2fa328f728abfa72e1664570a7fe7a2ae883ba"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-002-streamable-http.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-002-streamable-http.md.gz",
+      "encoding": "gzip",
+      "bytes": 7948,
+      "sha256": "bab8e478d5d2e73d3d79818c9984474e5a0ab136ae9230179718487f17197240",
+      "stored_sha256": "b4cdbf09e044a56937258de0a466c3c706c1ddcc26b33a25fbaea24ba56f0946"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-003-guide-accuracy.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-003-guide-accuracy.md.gz",
+      "encoding": "gzip",
+      "bytes": 3583,
+      "sha256": "79225446f390979b27c2c44d147db3552334d9cf20af78962f94d35bcfca3652",
+      "stored_sha256": "8909a86b3b8fff6bf797427adb1a8616e62879a8f1b0f55cacc461528360c9da"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-004-refresh-input-validation.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-004-refresh-input-validation.md.gz",
+      "encoding": "gzip",
+      "bytes": 6192,
+      "sha256": "78e18a1598de58b11553902445cc3521a0c24201cac3addeab55bc6ac8e6cbab",
+      "stored_sha256": "be9477c91b7f2559453010b7d64876ef8e4cd3c9b3d9f8d3578dcddf5e4fdc72"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 6565,
+      "sha256": "6664e309b175da791930e1f026052b884e964dec0cdf200c185dd3bb1de99ad7",
+      "stored_sha256": "d7ab6eda31c3accdd5178ae48d573dd3b9a80b81e911b7100eb76cc3564cc641"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 4933,
+      "sha256": "1f99847e978b50036c2b1b00ba08873ebd899b4f0e9d0d6680ccba035bd3d4b6",
+      "stored_sha256": "e285ae5a92a2fc36a5bb6d9c976935d2e82464f8070c9de176386981a48f5bd7"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--index.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--index.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 4276,
+      "sha256": "f03955e29f62198dc77c7123811c3bccc8f9431a68027d0984b7c7f9aee38aec",
+      "stored_sha256": "26705aebf08acdc5a6c91b7688e4147e1f50f11e4a256b8a034d8725deb2bfb4"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--lifecycle.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--lifecycle.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 2989,
+      "sha256": "36168ffae11aadaf6622bc419ca4353ac09a392f0dc4ffd98cdf5d6ea865ec95",
+      "stored_sha256": "9c7cd603a9495361a79c093ea90b852be742bbddb8b147bf786d53f4d2bfa9bd"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--security_best_practices.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--security_best_practices.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 12552,
+      "sha256": "bf6804e4f57672d51aedd4dda0d513758578b0eb3a5f32a92b136ac58ad65958",
+      "stored_sha256": "5e228795e2bc01b60d16eefe2acaa2232f116744f73fcd84e462379564da1194"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--transports.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--transports.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 5429,
+      "sha256": "edb24318788ee0dbb472ac8c62183d73ac5ec2e26b2f0f0acc12831be0660e52",
+      "stored_sha256": "e8ea25d9ecb9fe9b3e6da476a140a445175ac03035f7c1a32144f3330b58fddd"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--utilities--cancellation.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--utilities--cancellation.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 1300,
+      "sha256": "ececcd5dac5a288f0b83e672a17c11a46e0d2eb2876afde5cbd34988be5f35a0",
+      "stored_sha256": "006444b98255dbe57e747cfd92bd034359322d79a1c09d24a6f292f312ada963"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--server--tools.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--server--tools.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 4713,
+      "sha256": "80259cc4cb4b74248ea0591fa061b9cc11ed4592985f639d7a10fba84ad9b091",
+      "stored_sha256": "5a9a107d5db7bf9371731d68070c2d978f3c41333dbc8b2fa0e11e62d6770fc0"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 1867,
+      "sha256": "0ffcd169eacf5a97d37b5e13a52ebcbb2259977db0975b70766e429e7d1cc43d",
+      "stored_sha256": "a8e41bd39f2669534d2d6e34396e42570bb3020c10b216eb1ff5c75e32380958"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/raw.githubusercontent.com--modelcontextprotocol--modelcontextprotocol--271ecc9accafdd9b83a3c869fa67c22953b2af80--schema--2025-11-25--schema.ts.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/raw.githubusercontent.com--modelcontextprotocol--modelcontextprotocol--271ecc9accafdd9b83a3c869fa67c22953b2af80--schema--2025-11-25--schema.ts.gz.gz",
+      "encoding": "gzip",
+      "bytes": 14450,
+      "sha256": "967c04a3a2d7bff08a573ece66c9378aa3a580c7f523d7ef682e169b6c13b76f",
+      "stored_sha256": "8ab04b2b9a1553116dcd1b205d9dba68ce9deccbe19abc0bf366b49a61c7c62d"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up04/manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up04/manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 903,
+      "sha256": "3689fcc707ef6c833e46aba1e792182ed2284e19f46f3a9bf5523ee52f5c5603",
+      "stored_sha256": "185465c433088a62f55f83e98e3341a693ce641f59d3dbcd1930288c6c26d2eb"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/research.md.gz",
+      "encoding": "gzip",
+      "bytes": 7284,
+      "sha256": "3bedeed491b63fe4690263df9018e79ca4baf843da387b3861239d37beaf771b",
+      "stored_sha256": "034770fd2fd28188266e21f3fcf3dfa53bb15a56da7be97d0901417c5a8cb084"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/tactical-plan.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/tactical-plan.md.gz",
+      "encoding": "gzip",
+      "bytes": 7207,
+      "sha256": "9e8bd734e695411698833a3285bb43a760a4d5d5812d919ec9b08f774adf7405",
+      "stored_sha256": "a57961b416ff0e63351030dca96adb4f588498bcab219ebe0f2cfae0fca42977"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/up03-integration-contract.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/up03-integration-contract.md.gz",
+      "encoding": "gzip",
+      "bytes": 13385,
+      "sha256": "3137b831da2475d3043d0e98f6787c016f3574e281a7a231864015ffcaeb366b",
+      "stored_sha256": "e6cf8730b612d3f3e5136da1d2910191cd475ff2b5e6a59c06fbd8ba114ed7a3"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/up04-results-refresh-contract.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/up04-results-refresh-contract.md.gz",
+      "encoding": "gzip",
+      "bytes": 10683,
+      "sha256": "dc70e082544c61b01091a0a678ac57f9270b2a68eb7d11bd1601fce97ab68365",
+      "stored_sha256": "5f4ae73da4b7dbdde4f6067692ebb05cec04f9f1ed46c483d756db877234f8d3"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/artifacts/report.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/artifacts/report.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 7498,
+      "sha256": "aa6a46ed2472a9775d7d8093b3fb4f0bcaeac39e91e8cf233b6b11f0ad377c1b",
+      "stored_sha256": "1355967a76444a8bdbd1d952d1935c080ed510e4c1cc9a98d477f259a0c6158b"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/stored-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/stored-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 42672,
+      "sha256": "c0a15a7eb2547da3e580cd05919d15006c729959bece3715fc09d85c478d3e76",
+      "stored_sha256": "1cbdc49659b13d582acaba939f47b5de520c2a4e28cc0599383295f1e9c17d8d"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/artifacts/report.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/artifacts/report.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 7398,
+      "sha256": "0f90a9ab227e78405fd97ee4da77c3726971b59ab797d3aeea60cfb9bc568180",
+      "stored_sha256": "11125fa29fee551ac54cf39310e4373e1c398bec013ce0e654e1b8a1bba1739e"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 1739,
+      "sha256": "c360460f8ea1380a49bc24e049953d79edbd6723663fee50639c2923f7c1734b",
+      "stored_sha256": "338caec2bc201a80de4ce856fe569716769a1671855ae9e288ff675a94e42165"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/stored-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/stored-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 52387,
+      "sha256": "76c359d05e1b0a354beec8467e9a311984d06c40233765bcd771b6f693ac06cc",
+      "stored_sha256": "ca0202b7d8338f0f86ae2fa95ad404751c03b5ec2d80ed25e4fb03bb2f90f8fa"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-01/artifacts/report.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-01/artifacts/report.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 9171,
+      "sha256": "9b879059c02c114ebcd0c5ad33f0686a136f8cbba2ccd3966303b00cfc8f9765",
+      "stored_sha256": "114e46629427bf26438bae76eeea6830bd9d3269409ba87b519364823624156d"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-01/stored-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-01/stored-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 115064,
+      "sha256": "002861bbe8798b8dde2e7f28aa56b185bf39e28122724683c9d2b13859c861b2",
+      "stored_sha256": "3f409eebbb560f1a878fd38c20673ddc7ec4b8bc006e143619f01963df29a49f"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-01/report.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-01/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 25383,
+      "sha256": "838174fdf12a017d9bb9d7accc11f41d104e688868342e0d23ed7fb4f787a103",
+      "stored_sha256": "ffa31373090841eb9314d0f0dc27dcb020f2e842c4329660e89ca0574fe23024"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-01/stored-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-01/stored-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 90630,
+      "sha256": "35776d142f54629399d5e521a76a182ae68b370ed89a1064bdf692a650e1e5ee",
+      "stored_sha256": "3e724a31415e669f72abd00d883248a225b9aee7d1e2eb09dfcb26ed6aa07a9d"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation-request-UP-02B.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation-request-UP-02B.json.gz",
+      "encoding": "gzip",
+      "bytes": 8425,
+      "sha256": "8a8fb73d2a8d39dcada2ab18b5fee04f92fddfa9e7befb3d9da2c065ae95b399",
+      "stored_sha256": "423b197fecc83c0495e017ca3f876948f3564441e283e0a720be3c80beaed914"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation-request-UP-03.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation-request-UP-03.json.gz",
+      "encoding": "gzip",
+      "bytes": 18256,
+      "sha256": "2e86065822371dcb1b79306c8006420115c6d30b2589890174faa286f046e754",
+      "stored_sha256": "cbe431ec6a18c4a206da2bcb8b4eb0535e2ead74fe50a09cddad3d0e84663e7e"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation-request-UP-04.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/validation-request-UP-04.json.gz",
+      "encoding": "gzip",
+      "bytes": 16481,
+      "sha256": "ca0fd9912b16b5859cdad7a9eedfce6b8f49c7cb1c1dd0a2225e809e1edc0e99",
+      "stored_sha256": "300495cfa65403283bc37495d1b0678fb9ee30670301988fd511498e4076e148"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/verification-profile-REM-MCP-UP-004.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/verification-profile-REM-MCP-UP-004.json.gz",
+      "encoding": "gzip",
+      "bytes": 13332,
+      "sha256": "ef4bf2da7ca11f68a51f56c4892fce560335eb92787bb7d09a32afe3d9da1b33",
+      "stored_sha256": "bc09fcb5367b6480b527a97d1ff0748f9d499cdf23422c9a604b609f0007d1a6"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/verification-profile-UP-03.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/verification-profile-UP-03.json.gz",
+      "encoding": "gzip",
+      "bytes": 11637,
+      "sha256": "fde7ebc7eea09422d59f0e1939fa434fce12cfa50d4145d88152bd2236dc1105",
+      "stored_sha256": "63bc0f245fde9e391df63d832ddb8aac83529fb8aea2d81ebae8a9de599c92b8"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/verification-profile-UP-04.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-mcp-protocol-upgrade/verification-profile-UP-04.json.gz",
+      "encoding": "gzip",
+      "bytes": 12132,
+      "sha256": "6ec68f8b8252ef33e3675486da5e987952f68f36977e9595ec17ef8df00c5ba9",
+      "stored_sha256": "1c5795d2c59b4198ffba757729a7272de5435a844a5b947b2941cc5cdafc644d"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-REM-005.yaml",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-REM-005.yaml.gz",
+      "encoding": "gzip",
+      "bytes": 13283,
+      "sha256": "d14b38d5350641373363c49e8953578ec46a60871f899b9b98f341993315c337",
+      "stored_sha256": "db2d4aa630f035dbc57d7f7e6cef0a3f664c0e17f5c25fc301cc1876e73913a4"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml.gz",
+      "encoding": "gzip",
+      "bytes": 4596,
+      "sha256": "5eda19c81a429584634ee535e19098264e4735e76fae6da8ac0aa631d8a427c2",
+      "stored_sha256": "33d2e0a5104e330fb73c9d977551e0365c1880b53840e95713b61e897c00bc74"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-03.yaml",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-03.yaml.gz",
+      "encoding": "gzip",
+      "bytes": 7313,
+      "sha256": "62964692726067e8521355229a3c073fc82234d115c013ed43b3caa303ff09cd",
+      "stored_sha256": "0f5b923eea538f436ecc22b33647281139c9c8d2792a81e11073fada4647166c"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-04.yaml",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-04.yaml.gz",
+      "encoding": "gzip",
+      "bytes": 10701,
+      "sha256": "989ccd69a653a97b95ca0e8f520683f0a4686c440fc1e8796a980d35e56f81a0",
+      "stored_sha256": "5cfe47a916804670cca07c51762550239f87cc6345b2769f19ecc1eb7659044e"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml.gz",
+      "encoding": "gzip",
+      "bytes": 3869,
+      "sha256": "6c959caec631d7388e6c29e431742ee4cbff2bfdd1ed4f98aff39a39f073bd89",
+      "stored_sha256": "e8218aeb89f1902dc5f374f2e3e5d5dcaddd1ace1534f9e21c75cbf5692e18e9"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/build-plan.md.gz",
+      "encoding": "gzip",
+      "bytes": 17431,
+      "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "stored_sha256": "05ad6f2815b79aaa9c4a8f45f11465a44f7e6b4e8a742ad2aefd5a49734fd0b8"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/closeout-TELEM-04.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/closeout-TELEM-04.md.gz",
+      "encoding": "gzip",
+      "bytes": 2797,
+      "sha256": "bd9888e36cad4d95ee33cd8f59509cd2754c2bff480bc2e0281f2e3ceb1bfe30",
+      "stored_sha256": "ce0a3bd4d3ecc3062cc92333790ce9c365cfcfb37a09e1c88a555e0303dceb5f"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md.gz",
+      "encoding": "gzip",
+      "bytes": 1012,
+      "sha256": "0c64a20f193f02a44430f1eabd06d7e95dd34a3f1a78c6db5ee53768cec22cd7",
+      "stored_sha256": "0d13f287b7cc7a09e326191dbb609e8e71785a83c892b363fbb65ff5f26098ad"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md.gz",
+      "encoding": "gzip",
+      "bytes": 3090,
+      "sha256": "d98cdacb5ac531a03b1a4445e7f7ac9152733f82ce62ee2f339754ddbfabe97c",
+      "stored_sha256": "95ae6c5943a6ae134dbb045f30546c30c7a8bd77602aa4797c0d2945f1d0b471"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md.gz",
+      "encoding": "gzip",
+      "bytes": 1682,
+      "sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "stored_sha256": "81b696eee148d120b4b9b383efc2c88657a1f52c3dedecbe4353e457e3fbd3ca"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md.gz",
+      "encoding": "gzip",
+      "bytes": 8101,
+      "sha256": "bc172371fdcbc437f2be0e841596983a0687fcf3385af131fbcce8c8970c6528",
+      "stored_sha256": "f5b220e9c51ce6aceec12e4edc80f43342eea6d3a8ef91c085201eabfcf1452c"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-003-approval-evidence.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-003-approval-evidence.json.gz",
+      "encoding": "gzip",
+      "bytes": 6563,
+      "sha256": "5a7ff3af3f4c5c6258110b5c699b1a81a49fb871cd39da9f70fa137e6b14cb25",
+      "stored_sha256": "8e4f72a3095b2feb2e6c9c442b19b5d7cee02e59eebc0d601890bfd691551f43"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-003-approval-record.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-003-approval-record.md.gz",
+      "encoding": "gzip",
+      "bytes": 1933,
+      "sha256": "c6ae3950a286fea558e1b59b75ae55c239d20c051b99c2721677b233f9c39e8e",
+      "stored_sha256": "1dcd36ef99ea396d6a25ab4d597ec1c04b5b53b1d889eb2d2c4685555a1b1175"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-003-safe-llm-metrics.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-003-safe-llm-metrics.md.gz",
+      "encoding": "gzip",
+      "bytes": 10834,
+      "sha256": "61dbc5f2fa49680c03f5ee027d7e546ee3a294da53c532a56f9d6a3d831f64fb",
+      "stored_sha256": "e9136f68f4500255278494bfe1721cedb07020b798fa361544044df29d9af69c"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-evidence.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-evidence.json.gz",
+      "encoding": "gzip",
+      "bytes": 9844,
+      "sha256": "2b680f11e6e29b1a34fd8d3515317446cf4b27bcb4feb8d4869021c0dc934d7a",
+      "stored_sha256": "ec04a01537d8c0399d6c7d0cc00d527aeaef0134ac45ca133a29d188745c4189"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md.gz",
+      "encoding": "gzip",
+      "bytes": 1752,
+      "sha256": "5e6a92960f4000055a4481499e2cb39e79d932303c5747528a3fd0ea8b020d31",
+      "stored_sha256": "721d99aaa731eb9f3ffab0889196f5225abf787e81a8a35b7fae80c6d5662b58"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-004-correlated-execution.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-004-correlated-execution.md.gz",
+      "encoding": "gzip",
+      "bytes": 8596,
+      "sha256": "de736e9cd8bb0fafc07ecd840cf8f1db332204619bb9c83fa67044a809ceff6d",
+      "stored_sha256": "4517a63ebc02b2835c1ec1caa4df026a2d9880134f496eae85aee24079ed6504"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/REM-005-candidate/product-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/REM-005-candidate/product-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 2481,
+      "sha256": "83c10cca3584cc1c72ba876160eb826d4ee17f29654be225087133a7b43a2349",
+      "stored_sha256": "864a6922af850dd86a8ac80a694040d29c320f22ed407b33f0de6f97353d957d"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/REM-005-final/original-artifact-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/REM-005-final/original-artifact-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 44609,
+      "sha256": "1ccb18f2ade01a3e8203ac9da546d354599665a8873da9419621a9fea36cd6e9",
+      "stored_sha256": "f961e782dba52952c80589281492c8e1c8263537d98fedcf44072732e1638c8a"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/REM-005-final/report.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/REM-005-final/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 2053,
+      "sha256": "90416e69c066299be3322e60e9805d3c252e779505cefb0a49ff0fd7e87139df",
+      "stored_sha256": "67f16a110ed90d74547e221101ffcac396e07337e3e0bb911c224b00a259f4c3"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/REM-005-final/stored-artifact-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/REM-005-final/stored-artifact-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 94997,
+      "sha256": "9acec03616c6b452bff8d88d74c8242569f4ce942a07fb75122d12baf4262496",
+      "stored_sha256": "e0b83a314bcb61dfcaff08b9190036909dd4f5d31d1946a6c5bd684ad5f91a3a"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/artifact-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/artifact-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 68404,
+      "sha256": "9079b36684472ca678a67f7623619f8f81be4ae0d6d5a7ce4239784b91071525",
+      "stored_sha256": "adb5c25fc28935ff27a04f31b3df3f7e9d836c51c262765e94b7f2c78c919a27"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/builder-report.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/builder-report.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 5074,
+      "sha256": "2a6bcb96ac34b581aff94f124c2c9a26f3aa374787392613d5731a585922e36a",
+      "stored_sha256": "e9de5939f0b698562ddda6c25d818cbcf563dcfac559b7210c69a05277baae15"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/report.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 12180,
+      "sha256": "4304d0f03aa2b4a62fe7aa2d42c9b4e59d2999dd147c46b4b3a1209fbb203dfd",
+      "stored_sha256": "fe526ac6b9f9753fc0be8d5e6b608410a7e009a170855c81b4f03af385e8bf0f"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json.gz",
+      "encoding": "gzip",
+      "bytes": 2126,
+      "sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "stored_sha256": "29b12272435d075bb4b22f32de2999a2b7920ef398c68e0c68ea07f80a3553d1"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-final/artifact-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-final/artifact-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 127127,
+      "sha256": "3fa3df711f9b00ddd55fe0a31acb4eff24517fbba0c8de21b622934d9f505113",
+      "stored_sha256": "da16d8e0924e6ec0b684bc6aba9eee55352e64b2a46606a089870d7016f28171"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-final/report.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-final/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 4898,
+      "sha256": "492fbf68899782e80427110b8ecc3d87ea1c557db187d8e6d3e92b200cb19526",
+      "stored_sha256": "aee8131455c9658afe765387e113dda1bdef36495c4c5f0db77d8970b04237c3"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/listener-scope.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/listener-scope.json.gz",
+      "encoding": "gzip",
+      "bytes": 2487,
+      "sha256": "a0aa6a37ae5c8fb54c5c260d9b2fe1c36f0385dd333801352e802bdd2d541aaf",
+      "stored_sha256": "03cb2c4aefd42e36ddf675d841159d51e6134da3ddd8d23672693f6f4b1a618f"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/source-inventory.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/source-inventory.json.gz",
+      "encoding": "gzip",
+      "bytes": 51731,
+      "sha256": "5a6aa3188f88914d88b023330d02fe0e66e65c9a48c585fdebdfec5a5b6acacd",
+      "stored_sha256": "e849c42244d4aaa1b6c1d3eebec1c6afe9da018fd1351ef9e1ec469c75f04b42"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/source-inventory.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/source-inventory.md.gz",
+      "encoding": "gzip",
+      "bytes": 4193,
+      "sha256": "fc09ced856206623821175547484947e05f361dc5479f36d46b4e689dcceaaed",
+      "stored_sha256": "ceb3f3495c9c88e088079e77e277ee626e79c6d26505fc30359bba966cfb274c"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/listener-scope.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/listener-scope.json.gz",
+      "encoding": "gzip",
+      "bytes": 2523,
+      "sha256": "270a79f015766963da5c107e2683b5c6afc93f4cfdef64560ed7d9331ec56cdd",
+      "stored_sha256": "136b377fc2e8b2b77410d5dfa7b90c864c90f436fbd96c532ee740e23c871ee6"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/report.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 2718,
+      "sha256": "7def4aad735257c24cddb6d78ff10ccaa6307a61da1451637982b7a77eb78226",
+      "stored_sha256": "7431303d11d7f1fe52c324d8efd59b1fa67bf0465d031ad304c9e05b47fd78b0"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/source-inventory.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/source-inventory.json.gz",
+      "encoding": "gzip",
+      "bytes": 75444,
+      "sha256": "0e518e019ba1249a98a3097132a2d7de5d686901581b994bf398f8513f37a391",
+      "stored_sha256": "61a6b0cec41b6ef51a7ceff491119c5c989cc127114816f86b8b490e9e50734d"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/source-inventory.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/source-inventory.md.gz",
+      "encoding": "gzip",
+      "bytes": 2976,
+      "sha256": "b2a1fe17a2736835eb11b2b1e9bd5f7362332602625b7632a0352b4a241d6753",
+      "stored_sha256": "24cddc6dc43b7e47ae5a1f20206cc74206cd2c6a4ba72b0591c67d4a7661778c"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-evidence.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-evidence.json.gz",
+      "encoding": "gzip",
+      "bytes": 12340,
+      "sha256": "624ef663cda53663d4df8e4789e9a54bb45c856c198c3ef451f754accc137972",
+      "stored_sha256": "6b88562e03f8512a967286f31a66260a1c299172c52d57634cf4c019e6eacdca"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-record.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-record.md.gz",
+      "encoding": "gzip",
+      "bytes": 1683,
+      "sha256": "fd611bae2cd029a41e952fc77885ce8bebd23efbcfa3cfd878604ca3f9540125",
+      "stored_sha256": "ae1fb4983ccd0bb8cf77a38eae4e8d9154e64225cb7b80ebd77ab2b27e26b54e"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-state-reconciliation.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-state-reconciliation.md.gz",
+      "encoding": "gzip",
+      "bytes": 1134,
+      "sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b",
+      "stored_sha256": "f9024d41ce16441b2ff6c3492894f1e7b4639474b376864e386adb9a05a4a06e"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/remediation/REM-005-execution-correlation.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/remediation/REM-005-execution-correlation.md.gz",
+      "encoding": "gzip",
+      "bytes": 9181,
+      "sha256": "a1ef632771870931933ea3d0068f1ca6b9018ab50bdc1d53b965b0dba2d2f5ab",
+      "stored_sha256": "ef55fe7a33501359d77bfe5cd1278ab3e0673af105441a4f125f50e43a6030f9"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/tactical-plan.md.gz",
+      "encoding": "gzip",
+      "bytes": 3458,
+      "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "stored_sha256": "3e3d9d115836e95b8c18bfc6db7bef17fb6663ddb0e2ff574ba4abbc7b684c69"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/telem02-contract.md.gz",
+      "encoding": "gzip",
+      "bytes": 15022,
+      "sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89",
+      "stored_sha256": "7bb220245d2ffeb14869da27989f57de4a38667821efc8a7dccc7635876015ef"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/telem03-contract.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/telem03-contract.md.gz",
+      "encoding": "gzip",
+      "bytes": 10393,
+      "sha256": "90485994f2acc73f26b2870bb1c4c19a7147d31b4f02fc49cdf22a5c73ff563b",
+      "stored_sha256": "82039f9794ebd96e855656dd9a2b87fee3ef362db23d4f84cf61b6c12f9a302d"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/telem04-contract.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/telem04-contract.md.gz",
+      "encoding": "gzip",
+      "bytes": 11676,
+      "sha256": "100a6c81bdf1875c9beaa0a127df93d4cc9b0f8641da11463f529eedd087d242",
+      "stored_sha256": "f1247a01ae08b6c016961b278c61370f712c3df8122bb8a468d4680a32b0c360"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md.gz",
+      "encoding": "gzip",
+      "bytes": 5186,
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "stored_sha256": "a5c4cac76406845b1cafc27482d5cb0494d308916773aa499224190a52c8160a"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-007/artifact-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-007/artifact-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 52963,
+      "sha256": "b926f6cf1a0f6ed6c280048facf1e4efb0397e79b62d852b4c0c5180c00fde73",
+      "stored_sha256": "2c4e1f5c82b3eb2b102b1915a219bd417ac147ae10e71d11faa06658c6503eb0"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-007/evidence.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-007/evidence.json.gz",
+      "encoding": "gzip",
+      "bytes": 177353,
+      "sha256": "40db9ffd7563aeaa95c151e34fcb3188667b514190594c1bc22562e5841dfbf7",
+      "stored_sha256": "bb6ecfbedf946ca7b92f2aef9a4310a5fa562b6a79432098d985cb0815ee1ec6"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-007/report.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-007/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 13531,
+      "sha256": "1d0f77c8a4ad82f1f851e758dd6bc344e34d41e90074354d6a84b5761b8b8c15",
+      "stored_sha256": "5371f695178ae2db6721dbd9d68825d76bf8a87a5880245542707672cc11f88c"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-007/reviewer-report.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-007/reviewer-report.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 5335,
+      "sha256": "461a6de2c4dcf1eeca94631398717db4eace01cda0623acdf6c15daa6c474868",
+      "stored_sha256": "204586244392a085f9c975445cefd9c3ff59064e7242f37b485873796667c2ba"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-008/controller-closeout-evidence.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-008/controller-closeout-evidence.json.gz",
+      "encoding": "gzip",
+      "bytes": 19881,
+      "sha256": "54295bc32dd01e756d3441e370e201a8f756559a61abe56fecd0660039b6cc39",
+      "stored_sha256": "03220e3684109f987e592f58b855df81ed0e58d8a5ef2dbb0123d88a18f1d52f"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-008/original-raw-artifact-manifest-final.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-008/original-raw-artifact-manifest-final.json.gz",
+      "encoding": "gzip",
+      "bytes": 32380,
+      "sha256": "50ed79ce3e639f52c9de2d2d4b7d7295bae5f9fdc67369c1e71f89c9b80b5bcc",
+      "stored_sha256": "8931c3d74466b35f967575ee335ec4706cc2ed7981785b747213be6914fb0bf1"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-008/raw/report.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-008/raw/report.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 7295,
+      "sha256": "356efc3a7744fd0227f3f49374331db45cd3616f00f03411769db41816ed2ef8",
+      "stored_sha256": "2ea2688a489bc82b0986cbee887525e3fc9c9da2353e4bed4c4e181c42fb4a5f"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-008/report.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-008/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 2930,
+      "sha256": "e513d94d1e5ad3d396415041e736f02694c1674b58008b040edc5ebbbec974de",
+      "stored_sha256": "1805fa74cb9290732b53a71abb999bb40d15e671b9812dfa640518da3164835a"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-008/stored-artifact-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-008/stored-artifact-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 77125,
+      "sha256": "b5e2d70b2d635ece2e9b7861f7ba64a7dc138cca88342352f175ba72b248ecda",
+      "stored_sha256": "d2b541b180711f391b351cb51e279684715c44b2684d4c71428f2229a0825bb5"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-009/original-artifact-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-009/original-artifact-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 23516,
+      "sha256": "600ced2de3d81d78c6d98bd3dbbcaffb22176725c5887532beab32f31bc0e0e1",
+      "stored_sha256": "bb39e3dc3d4fb52f0c80d8360dbbb71d22c93caf5134b91f781a7d420646f1b3"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-009/raw/report.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-009/raw/report.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 9448,
+      "sha256": "1a8f23365359c872ede380ea145081d2af51a517afd154f922ad0f7a3d5e3cab",
+      "stored_sha256": "28b4d2aa14c7652ea2fab9908942bdcf23aa795303ee8d927da2370c19980df0"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-010/original-artifact-manifest.json.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-010/original-artifact-manifest.json.gz.gz",
+      "encoding": "gzip",
+      "bytes": 4186042,
+      "sha256": "6d6965526a3b2f288f602bdb069935026a6183df71721da7bef4ba80f6768ac1",
+      "stored_sha256": "30b9f537e9523458a6fd0fae6d9b0a6a7f5dec0dbf2bdc5bc8a4206d3d432d7b"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-010/raw/report.md.gz",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-010/raw/report.md.gz.gz",
+      "encoding": "gzip",
+      "bytes": 8266,
+      "sha256": "a1f93838efb0e8a285c2e63ec8e640a51ac4a05c00ea4cdddb45132c2b37211b",
+      "stored_sha256": "350b9f23b9f4886e2e84b052fa8edd2893f64ca83314447dd84b8639c112cd94"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-010/report.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-010/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 1709,
+      "sha256": "159ab62b00d2fa47f908faf719a3e916c4d0758e0e94312d072c7663c26ae638",
+      "stored_sha256": "1b0519c81dc384ddd0759440e01168602f56f1e7c35f9bef7d623282064fa0fc"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-010/stored-artifact-manifest.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/VAL-010/stored-artifact-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 89613,
+      "sha256": "04ff1e146734df8141b4c3c65efda6be2cefd09d9e324fa6dcf649b7a4a058cb",
+      "stored_sha256": "8b3e21e757b8c10906e7b35fa0ef40115cb9b5d7bade8138c85df6d26512efec"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md.gz",
+      "encoding": "gzip",
+      "bytes": 2621,
+      "sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "stored_sha256": "82a423d9bd5a72de962c812c7a3a214839dfaa34f89184edc6d8caaa4281cd99"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json.gz",
+      "encoding": "gzip",
+      "bytes": 116980,
+      "sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "stored_sha256": "bfd9cd0b6ba676c5cc3cb66a50536fea29fa6d529480285d4ae251675bdc9545"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-005-telem03-lint-disposition.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-005-telem03-lint-disposition.md.gz",
+      "encoding": "gzip",
+      "bytes": 2172,
+      "sha256": "73c54db5719f3f314db25ceb8759e3b3befb7f9105022125640bb0a2f1799ed8",
+      "stored_sha256": "997f8345ea8f0cee3b53ffb3ad777114f3d5c8a04f517ba96b42913b19cc49cc"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-005-telem03-lint-scope.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-005-telem03-lint-scope.json.gz",
+      "encoding": "gzip",
+      "bytes": 116994,
+      "sha256": "bc74c39d6823da40af3b087da3265379cdb85b249fe371b23c5760306fbab22a",
+      "stored_sha256": "8e4bca943c6b27189ed76771227c15cf949f6e141b8e3ff5207563899480790d"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-006-telem04-lint-disposition.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-006-telem04-lint-disposition.md.gz",
+      "encoding": "gzip",
+      "bytes": 1935,
+      "sha256": "0db78d23cad673d4c9382595bfa92d9ecfa44bac8fd8b835e48268a3819ddd52",
+      "stored_sha256": "20cfa8e1f0b496b621cb219277ffdef608bb85c94748ce21d6157e093b738dc1"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-006-telem04-lint-scope.json",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-006-telem04-lint-scope.json.gz",
+      "encoding": "gzip",
+      "bytes": 116972,
+      "sha256": "d690d3385ba4e2a73ec18f6d464ad19f7a725c38475082de4b04c3e8dddddd83",
+      "stored_sha256": "424a8a3f4b1fb80742a9f5ac1b9b248b0ca6385d22de3d74a06a1abbf394d699"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/verification-profile-REM-005.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/verification-profile-REM-005.md.gz",
+      "encoding": "gzip",
+      "bytes": 4321,
+      "sha256": "e293ccec48e57ac4e2b52a1806f532560727eec98096a59f8180a1a8ebc99eaf",
+      "stored_sha256": "7a593f158a99f81c67ff7b746e0e270dcfead421c60df4e53c1d0006a3921cb3"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md.gz",
+      "encoding": "gzip",
+      "bytes": 7741,
+      "sha256": "5a4f9fbf87401ed703cd819ccb65acba4f684315c2c486e895f4ff18a5c782bc",
+      "stored_sha256": "31346a69f3faf2b8ebca9bfaf1ce15e215c5bcbeb345062898f6402051515231"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-03.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-03.md.gz",
+      "encoding": "gzip",
+      "bytes": 8169,
+      "sha256": "7e1a9961ce2c01cde57192cd804202000fbf2a15572cf153800f6b10e5a5a60a",
+      "stored_sha256": "27a7e9ec545ea01de549953bcf9d9c6dd487e9f5b62f2bc2152088f317eb1891"
+    },
+    {
+      "original_path": "inputs/sources/docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-04.md",
+      "path": "artifacts/inputs/sources/docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-04.md.gz",
+      "encoding": "gzip",
+      "bytes": 7786,
+      "sha256": "fdda776093256701480a8e9e202fae73c2a0a2c8215b997fe920b985437ea080",
+      "stored_sha256": "fffc70f3df6beeade57e3a420a4d36f9a1f442c284505fb69f87a91725cfc7c8"
+    },
+    {
+      "original_path": "inputs/sources/docs/reference/policies/development-task-lifecycle.md",
+      "path": "artifacts/inputs/sources/docs/reference/policies/development-task-lifecycle.md.gz",
+      "encoding": "gzip",
+      "bytes": 6422,
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "stored_sha256": "c33353dddf28fe9cb91d0b674ac23e1b81164e9dc704451d4f0bee783cb43e9f"
+    },
+    {
+      "original_path": "inputs/sources/docs/reference/policies/independent-validation-policy.md",
+      "path": "artifacts/inputs/sources/docs/reference/policies/independent-validation-policy.md.gz",
+      "encoding": "gzip",
+      "bytes": 11956,
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "stored_sha256": "c83ebcd057d45d6fc71340bf4cf52346f07c49b1f5df6db78191eddbfc7e5845"
+    },
+    {
+      "original_path": "inputs/sources/docs/reference/policies/repository-engineering-policy.md",
+      "path": "artifacts/inputs/sources/docs/reference/policies/repository-engineering-policy.md.gz",
+      "encoding": "gzip",
+      "bytes": 8006,
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "stored_sha256": "fb9996f57ab5ee8666f8cd556f65b997bb2317a585b2bed369273aee75f53d45"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-agent/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-agent/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1230,
+      "sha256": "155343ffc1affe151e5a8b13c898d28f2bb1c23978487a6371fa56c02368aa26",
+      "stored_sha256": "74b114657a2d5a95d89aaf5b48a2d03da31f6c14e8872366abb3367ef9298dce"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-chat/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-chat/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 2524,
+      "sha256": "4fa72a6497d637920558b4ebe2cddd13e99fb1191c8a432cb2c7d031a0926de5",
+      "stored_sha256": "f22f79fcc7e199a1993a8d133c53749c51e268bca858ea7ff08bc6ee1086201b"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-chat/tests_chat/test_mcp_http_integration.py",
+      "path": "artifacts/inputs/sources/packages/friday-chat/tests_chat/test_mcp_http_integration.py.gz",
+      "encoding": "gzip",
+      "bytes": 16349,
+      "sha256": "5e088ac4d859349c1d849b5df9357ce37c300d81d2cb64cbc8fdb82e2e5941ac",
+      "stored_sha256": "ebcebdbbbf1bf715d1276afdff68de3449e292171884fcc4201e020373032dad"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-cli/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-cli/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1609,
+      "sha256": "19a2898a4716ba4f481f8396c7605b7deefa077e536b5b7c6ebb85bb06ca8a00",
+      "stored_sha256": "4da7139f8ca6216648f230878af25abe6a9d6e4f496c6285ac3975db63533dcb"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-core/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-core/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1269,
+      "sha256": "001b4d83e69969664d38c91f007d618df82674cc379c2acfa12767703eafa594",
+      "stored_sha256": "84de030593ca8b10eaab45d4a00cea8ff54d37cc32d41979c89f46556535dc81"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-finance/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-finance/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 948,
+      "sha256": "c410c9b183df854d6fb1be274cfafaf31d560b4b3faa4bb2c65052f78b711070",
+      "stored_sha256": "7a968878228f73cf589867ddc4092e5e7df2389637092a3d96015f5a1a0cabd0"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-llm/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-llm/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1230,
+      "sha256": "672f623315a1113e459cd481f3de4324c7c29767cf31aeb71eab34fa078960a4",
+      "stored_sha256": "b0a5199fbd79bb313adb2e31c41241e35292d94cb86ed7ebb46f8080adda38dd"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/README.md",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/README.md.gz",
+      "encoding": "gzip",
+      "bytes": 18524,
+      "sha256": "50657396a16dd3a4f70fae0ea046cbf6f5c0daadf1c3e413c638e4c24da408ac",
+      "stored_sha256": "07e619e8de54ac1367fda171c05df1e242574e9fcd8c4be9f194fe6cd2550125"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1870,
+      "sha256": "665eb50f54d283f23532c919db662fc64a376e0bf8155fd6ff6052913efd9a45",
+      "stored_sha256": "ff9157886c2e5084a0a6eecf9c0192c663c8e203e53679f828cdc274424301ea"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/src/friday_mcp/client/__init__.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/src/friday_mcp/client/__init__.py.gz",
+      "encoding": "gzip",
+      "bytes": 1417,
+      "sha256": "ce910cb5e76e7a8ccb16df2ce7774ae83e5ed031d789a457b4cc10d573c87610",
+      "stored_sha256": "0e87b72449c41e85c9ea5eb151eeca3d7970484d02396174b3593258d97bbe99"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/src/friday_mcp/client/adapter.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/src/friday_mcp/client/adapter.py.gz",
+      "encoding": "gzip",
+      "bytes": 12921,
+      "sha256": "7a7a184e7b4e1943a01869c6744e49b74717cb67348c5ac2fdeef7d839f06ff5",
+      "stored_sha256": "3581b00b9389e6e9988f6c845f506f71d3339cae5d7794f49fb2f6671f227a53"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/src/friday_mcp/client/base.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/src/friday_mcp/client/base.py.gz",
+      "encoding": "gzip",
+      "bytes": 29952,
+      "sha256": "968b783d101ae96fd84a41d508fe027846cfe3aab62a498f8eef8490f173ebdc",
+      "stored_sha256": "979f4537876451e12b34cfa336fa1a63907576837e960acd604321eab0c7e793"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/src/friday_mcp/client/catalog.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/src/friday_mcp/client/catalog.py.gz",
+      "encoding": "gzip",
+      "bytes": 2807,
+      "sha256": "8a91147fa7f7a6f0cfa8771f5a23f2feac778a51f34eea5821bce2b881dad5ac",
+      "stored_sha256": "c6b56a35da9ee39e37fe4bd9d26a863662ff9d9633598c64303062e2e29291d5"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/src/friday_mcp/client/http.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/src/friday_mcp/client/http.py.gz",
+      "encoding": "gzip",
+      "bytes": 32077,
+      "sha256": "6d5a9f8606bce2f633f27f17c497cc3abb680d6e7977085a3aeac9bab1dfecb6",
+      "stored_sha256": "e39cbbfa548d4ad629634a57e7222d54c7834fc8d76d1415cbd779b075027498"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/src/friday_mcp/client/protocol.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/src/friday_mcp/client/protocol.py.gz",
+      "encoding": "gzip",
+      "bytes": 41026,
+      "sha256": "7cdce94e2fa0db1b0098906b133534b7e69d3e313d310fd7e46c495d7ccad37f",
+      "stored_sha256": "2a99e7b6592dc4bcd7db02477f9da33400276f03302644832ce966b4b6661df8"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/tests_mcp/client/test_adapter.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/tests_mcp/client/test_adapter.py.gz",
+      "encoding": "gzip",
+      "bytes": 10239,
+      "sha256": "12b30dbc1c15023101bf7bed67408a54c6b596e099d6ae8c6258aeae85a0ab8d",
+      "stored_sha256": "9526a2227e8c09caebaf9feba2b616d34f289e35a171a652c6c59d6d0334c05a"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py.gz",
+      "encoding": "gzip",
+      "bytes": 46885,
+      "sha256": "625f015518a52968568d5b2655f4904cd7f174f13407d0bc09f96be294711797",
+      "stored_sha256": "734e71df9dcf2c7a846e1c360828241c141d1ed1a097d720e6b248c1ff655c89"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/tests_mcp/client/test_http_protocol.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/tests_mcp/client/test_http_protocol.py.gz",
+      "encoding": "gzip",
+      "bytes": 13429,
+      "sha256": "0ec3c23af14eae8b6bccf433101a18e31beb45545ac4bfac7d61605b03e2d6c7",
+      "stored_sha256": "3d6efca46e9e1a3da78db971189a37975fa3e996c6d158e782cfd934c8fe3fe1"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/tests_mcp/client/test_lifecycle.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/tests_mcp/client/test_lifecycle.py.gz",
+      "encoding": "gzip",
+      "bytes": 16247,
+      "sha256": "f3921e04d2ece03af6d26053fa7b2d52425868085211984e0abef0d1aab48d3d",
+      "stored_sha256": "fcc32ab41e408bf78ccf4b192447da4ce36103dd8a18194fc9f00854aeb20cf4"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/tests_mcp/client/test_modern_protocol.py.gz",
+      "encoding": "gzip",
+      "bytes": 34913,
+      "sha256": "f40a06fbfdcf5f30c14195044cd910ca84300fd42f7fdb402fe2f4be1ba99b55",
+      "stored_sha256": "b25bbe9654afe7a56223010a98c41bee2eee151fc7bc65b1d22d3a87692dc130"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/tests_mcp/client/test_result_refresh.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/tests_mcp/client/test_result_refresh.py.gz",
+      "encoding": "gzip",
+      "bytes": 45109,
+      "sha256": "163070b71cfa5cee51f99d78d4bf3dfcfc430892d794a5dbbff90af3b8c6460c",
+      "stored_sha256": "48e0529690b542bec2ba2745fffe625c199272c47f5b9f489b32cad4afaf9fb8"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/tests_mcp/client/test_result_refresh_interop.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/tests_mcp/client/test_result_refresh_interop.py.gz",
+      "encoding": "gzip",
+      "bytes": 3951,
+      "sha256": "3e6f587cef831cbfe51efb4f599be304a7f662fec66ede7dde312386e40e4c49",
+      "stored_sha256": "a15fecd50a5d851854e9483bed9049efc04cc263ebe2e28b9208cd8971c0c66a"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py.gz",
+      "encoding": "gzip",
+      "bytes": 7547,
+      "sha256": "bab26932a97bedbecca9b4d6e80b678d0c93390c2e566ec7bb95fd3374b3b61e",
+      "stored_sha256": "892cb4cfd0f67525919b8259bb22be7ff715ff164ae00ac41173c1b672af9bd1"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py.gz",
+      "encoding": "gzip",
+      "bytes": 4444,
+      "sha256": "8898696a9dd2068844389c54655e4d0cbfdbf155a99d7a6e0ce36010642d1175",
+      "stored_sha256": "3552b9a63836835e54f276e2d6afef4292f647de816754cb94d183de919a4953"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py",
+      "path": "artifacts/inputs/sources/packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py.gz",
+      "encoding": "gzip",
+      "bytes": 1802,
+      "sha256": "ebf33b8779d88dabc68bd5a53126797dcabef26a4b7f021d87d5d861349a59dd",
+      "stored_sha256": "2b1724b5d4a7124442dbadcf08a90902c55c4933c40cb2a387e59fda63690fa1"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-memory/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-memory/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1252,
+      "sha256": "0f0cfa552fdbd2127d5e186d8847db331a9aaef70175569e9cfe77098798c511",
+      "stored_sha256": "c76e39668ab1fc589ee1419f7b85df25b7a7df4c8041c8322c01b06af7754691"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-moltbook/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-moltbook/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1073,
+      "sha256": "136f6278e82471ebaae3a62bdb8379a6f8d7b6b4e4bef5cb78b196ff72886deb",
+      "stored_sha256": "c1ba27f427cbc731b609e6b75db025c3f1c0ae80eb44a42dc703bef86e91d035"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-optimization/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-optimization/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1076,
+      "sha256": "b89bdecd833287a1628c17c84bc61cb03ec8a3c4b7ea27f1476d9a2d997c9bb2",
+      "stored_sha256": "547812f813f5f9d5bce44d84907e1f7f72f8c5ac06e646fb7613ece48d274598"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-runtime/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-runtime/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1600,
+      "sha256": "cc426372026847a66dc8f8a43f135a498b1a2e3861b0b24ad14c639807eedbc1",
+      "stored_sha256": "b19cb6b84da2a086b12318a2aef502e7211c42f9d7a8fc4fb04b85a5ef83a356"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py",
+      "path": "artifacts/inputs/sources/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py.gz",
+      "encoding": "gzip",
+      "bytes": 37426,
+      "sha256": "e6789c8f7067952676ef2449b009ee3422781693bcf20a589db800ef4ce2b5d6",
+      "stored_sha256": "8374c2e14606574c4be4845fcba2999053c095f6a3bf5724904ac7e35b7c3623"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-sandbox/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-sandbox/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1226,
+      "sha256": "51c56051ccc351c58ef91aec0a325a643751d824697e0a9293040fe3624b7d25",
+      "stored_sha256": "8912ce4143a287a75a3e9970c528b2e2decec5c5e92c41804d872285c0dd6c0d"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-speech/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-speech/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1393,
+      "sha256": "0bf80e8501cce2e6c3161ac5ef942855269cefc88da2ee598b875de674487ff4",
+      "stored_sha256": "d540c014f2bd78f62611b17d0417336086f1c2fd514e0d8989b1b8b2d91ce918"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-telemetry/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-telemetry/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1109,
+      "sha256": "8b4a0abbbd8c2a76b81d2763176c934c9cf620b864e09e4e3b4663950218e5e9",
+      "stored_sha256": "28baff05d6f583ff1cc061a734325dc94acca1e50219048b5b5b08a350654cc7"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-tools/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-tools/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 2722,
+      "sha256": "1db7f0c87c7197b5b264e2f4e7f2fbd84e8febbdd040665edba9cd898e715326",
+      "stored_sha256": "9a91fa390b8fe31fd41c1565be7995e3a3b09b653a0609e955f768bae4790b20"
+    },
+    {
+      "original_path": "inputs/sources/packages/friday-transcript/pyproject.toml",
+      "path": "artifacts/inputs/sources/packages/friday-transcript/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 1071,
+      "sha256": "4a58596abafe3f7ca409084b1a0627f77164aabb48cefa2dcc217211b0ba1679",
+      "stored_sha256": "1ee41cf87b3ac86e37b1731c993ef64d59a20caa6866cf7831bb0e16d633669f"
+    },
+    {
+      "original_path": "inputs/sources/pyproject.toml",
+      "path": "artifacts/inputs/sources/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 4459,
+      "sha256": "b85b708def24f4f2045a12388f7026ce361bdf6c13490f0f160fdfe3176e3a77",
+      "stored_sha256": "7f21b60ec6e8f4c6c9927467cd0765b795f7282ba657233178a7aca024f187ab"
+    },
+    {
+      "original_path": "inputs/sources/tests/lab/pyproject.toml",
+      "path": "artifacts/inputs/sources/tests/lab/pyproject.toml.gz",
+      "encoding": "gzip",
+      "bytes": 969,
+      "sha256": "8532ff4a6e205c45efdfc41199facd687943b949fc2f253a3fcdad6275c8197f",
+      "stored_sha256": "023dceb9db8ac699c6a60f1999d3b06c05cb97277e7fad1b2300ce290650b5e9"
+    },
+    {
+      "original_path": "inputs/sources/uv.lock",
+      "path": "artifacts/inputs/sources/uv.lock.gz",
+      "encoding": "gzip",
+      "bytes": 691518,
+      "sha256": "5efcfafd68f3ed94a64ee943e6379fa57e603518ff2d215bb87710e25dc06759",
+      "stored_sha256": "dc2b69a669acde27666461a1df933fc663200e921b6f634be0557f251fa07576"
+    },
+    {
+      "original_path": "inputs/tooling/run_check.py",
+      "path": "artifacts/inputs/tooling/run_check.py.gz",
+      "encoding": "gzip",
+      "bytes": 2039,
+      "sha256": "ceec1b2316f4be3bce36fb778eb80b5d472561920d6d6fe35b8b30735e1776f0",
+      "stored_sha256": "a586771d37636a6301182213ef64b29ed9c079ffe5bd1c2c7a1eea5e344f4742"
+    },
+    {
+      "original_path": "inputs/tooling/run_check_UP04.py",
+      "path": "artifacts/inputs/tooling/run_check_UP04.py.gz",
+      "encoding": "gzip",
+      "bytes": 3089,
+      "sha256": "5e5c9901bf66117ee11669d32de857ea2087738add9eef3c7ae6aa6f3c8592a6",
+      "stored_sha256": "afa6a4b1b7c3655c1a4a08ebc582b25fb042969c79ba12143199dcd261b5d5e7"
+    },
+    {
+      "original_path": "inputs/tooling/sitecustomize.py",
+      "path": "artifacts/inputs/tooling/sitecustomize.py.gz",
+      "encoding": "gzip",
+      "bytes": 1407,
+      "sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "stored_sha256": "87ccda0b252e389d0635443f882558918c7d9df603494f67de8c3dfd91ce6c5e"
+    },
+    {
+      "original_path": "integrity_inspection.py",
+      "path": "artifacts/integrity_inspection.py.gz",
+      "encoding": "gzip",
+      "bytes": 3622,
+      "sha256": "c965120f323a3406255b32bfa61838b93bcae6f9d3ecf744450b1ef09731184d",
+      "stored_sha256": "0917a78cd9cccecacd4bfdc2cb474855888704cf41e8ff76d405ef8783b36ea3"
+    },
+    {
+      "original_path": "library-integrity.json",
+      "path": "artifacts/library-integrity.json.gz",
+      "encoding": "gzip",
+      "bytes": 17681,
+      "sha256": "028dd73d61a161062816ff146a2a482004bf3121a815901a1702fe9e7af999f1",
+      "stored_sha256": "c6b8b9a2a85aef50a58ca7c0f1c1d24a04a26205944e2296e549516b2f2d2719"
+    },
+    {
+      "original_path": "mypy-baseline-normalized.json",
+      "path": "artifacts/mypy-baseline-normalized.json.gz",
+      "encoding": "gzip",
+      "bytes": 991,
+      "sha256": "b5227e8aa0ce5d0544493d9b36acc5cce5268f9e5b991f6a80195d2f9282224c",
+      "stored_sha256": "0ef16ebd1200eaa94519eb81b6ccf58c2f40cc246ada0a5107d2a56b79a30969"
+    },
+    {
+      "original_path": "mypy-candidate-normalized.json",
+      "path": "artifacts/mypy-candidate-normalized.json.gz",
+      "encoding": "gzip",
+      "bytes": 991,
+      "sha256": "b5227e8aa0ce5d0544493d9b36acc5cce5268f9e5b991f6a80195d2f9282224c",
+      "stored_sha256": "0ef16ebd1200eaa94519eb81b6ccf58c2f40cc246ada0a5107d2a56b79a30969"
+    },
+    {
+      "original_path": "normative-audit.json",
+      "path": "artifacts/normative-audit.json.gz",
+      "encoding": "gzip",
+      "bytes": 13367,
+      "sha256": "bf06b431a70767db3c68fdb3f0fc6ad7d2c36d3e0c167f06386bf13fcf9b7f28",
+      "stored_sha256": "491879b12afd18aada31ede7bbb1d30f80dd6bd8cf19bff2a020530a3fddcdc5"
+    },
+    {
+      "original_path": "original-probe-integrity.json",
+      "path": "artifacts/original-probe-integrity.json.gz",
+      "encoding": "gzip",
+      "bytes": 675,
+      "sha256": "34bfdf8d84aeed89363a42cf9f38ec556b5642d7efa0cd85175c45ba6ccb0bcc",
+      "stored_sha256": "fdcb1b585ed984ed4f2fea9e85eb95339554d59ef62ebcdc5531daea3e6f7976"
+    },
+    {
+      "original_path": "probes/original/peer_helpers.py",
+      "path": "artifacts/probes/original/peer_helpers.py.gz",
+      "encoding": "gzip",
+      "bytes": 4214,
+      "sha256": "6882490a0a90852ae6ad133884ebe0228ad88c3223802fa10410b1529e746afa",
+      "stored_sha256": "eda24833dd23ad22df8fa00097e3a2bad98a27ab2097b3be01e3ae20a606ac9b"
+    },
+    {
+      "original_path": "probes/original/refresh_limit_constructor_probe.py",
+      "path": "artifacts/probes/original/refresh_limit_constructor_probe.py.gz",
+      "encoding": "gzip",
+      "bytes": 1466,
+      "sha256": "3c577d91a7e52f16fc7ceb748563e3f34146e9b5a91354fcaec0197446602db1",
+      "stored_sha256": "7b63620afdb7f894f987009a6f04e81e5bb4b7595f9a413b03d7fc817973fdce"
+    },
+    {
+      "original_path": "probes/original/refresh_limit_probe.py",
+      "path": "artifacts/probes/original/refresh_limit_probe.py.gz",
+      "encoding": "gzip",
+      "bytes": 1250,
+      "sha256": "f59e0d899c0ef31b4b1d7a37899d6d7331b2891ebf12b7b65f1ca26c2b9e09f5",
+      "stored_sha256": "0a5da7e6c46eae3bab06c7982be718809068b06648184b7ec696e864050f7425"
+    },
+    {
+      "original_path": "probes/original/supplemental_probe.py",
+      "path": "artifacts/probes/original/supplemental_probe.py.gz",
+      "encoding": "gzip",
+      "bytes": 4233,
+      "sha256": "3b4ac496cde6cd72c8f8bfdae200c72cd8173ce5a53a7c91b19ce8f6a28a93fe",
+      "stored_sha256": "cb29b05f2a69953ef817032c90fbbc534688e7f5a0750b7082c824ab5dcd7358"
+    },
+    {
+      "original_path": "probes/recovery_overlap.py",
+      "path": "artifacts/probes/recovery_overlap.py.gz",
+      "encoding": "gzip",
+      "bytes": 2234,
+      "sha256": "348895d836a960cb758f8d3ee0ba7b6cdc4695760f4b8741f6a4915a3f399d24",
+      "stored_sha256": "a34ab69908544e327e3d0750eb76518f8b668d365bd77b822bda651ab4f33362"
+    },
+    {
+      "original_path": "probes/recovery_overlap_budgets.py",
+      "path": "artifacts/probes/recovery_overlap_budgets.py.gz",
+      "encoding": "gzip",
+      "bytes": 2631,
+      "sha256": "fcecdc7a359fe55e617b0708368402acd2f1b4bc05e76dc1493c74a90559855e",
+      "stored_sha256": "3da5378f0248d3266f9ee54b8c0631112ae0867e18ab79224f97f0cad5396c68"
+    },
+    {
+      "original_path": "product-scope.json",
+      "path": "artifacts/product-scope.json.gz",
+      "encoding": "gzip",
+      "bytes": 10636,
+      "sha256": "833adad33b2a92079b51aae148e899051e71f9ec168d9f1d53bcb283fba649b7",
+      "stored_sha256": "4d388013792e3c2b830e58b9ce7b18d9d937f60664472cd63b5ab98ce69cb670"
+    },
+    {
+      "original_path": "profile-scheduling-stop.json",
+      "path": "artifacts/profile-scheduling-stop.json.gz",
+      "encoding": "gzip",
+      "bytes": 401,
+      "sha256": "b00ce244f13f58333861df6a355d811c673e010c279b93698693c12ba86b677f",
+      "stored_sha256": "96c7140be91042a5054d1f1204fbef46794c869e07629cd407d6fa68bcc01601"
+    },
+    {
+      "original_path": "profile_driver.py",
+      "path": "artifacts/profile_driver.py.gz",
+      "encoding": "gzip",
+      "bytes": 554,
+      "sha256": "196284ab6a32b037574a240fbcd4c7d55bcf593d15d6208a3a10f4bbd7eec844",
+      "stored_sha256": "c7221d2e5c5486f0177590c27857d4996ac5f95ca465cf724d4a409101f268f0"
+    },
+    {
+      "original_path": "remediator-archive-audit.json",
+      "path": "artifacts/remediator-archive-audit.json.gz",
+      "encoding": "gzip",
+      "bytes": 75378,
+      "sha256": "faa4f0f145fd342b22862063c30df85bc647847806677600a5f82f732f1e5485",
+      "stored_sha256": "43ae238bf8f00961b4eedacce381800c6ed1f959269e6bda33df059d9ad942c2"
+    },
+    {
+      "original_path": "report.md",
+      "path": "artifacts/report.md.gz",
+      "encoding": "gzip",
+      "bytes": 18207,
+      "sha256": "bb68a1ff03a47e30d9e1d7d1f39d6270a1b73b9be36ff1dd736001736fb79692",
+      "stored_sha256": "95b17420078288a81b94a9d59a322d1e44058234f13e81eedb0d48bdfb53c428"
+    },
+    {
+      "original_path": "ruff-baseline-normalized.json",
+      "path": "artifacts/ruff-baseline-normalized.json.gz",
+      "encoding": "gzip",
+      "bytes": 162090,
+      "sha256": "970c0709602959162e3ca1daf242ac96f81f41b82b7c015c4895d58a8cdb7894",
+      "stored_sha256": "c60b8dd1eeff77a5b3755cb15c415ef953cb3f8dd5b07c1caa2144a696594f03"
+    },
+    {
+      "original_path": "ruff-candidate-normalized.json",
+      "path": "artifacts/ruff-candidate-normalized.json.gz",
+      "encoding": "gzip",
+      "bytes": 162090,
+      "sha256": "970c0709602959162e3ca1daf242ac96f81f41b82b7c015c4895d58a8cdb7894",
+      "stored_sha256": "c60b8dd1eeff77a5b3755cb15c415ef953cb3f8dd5b07c1caa2144a696594f03"
+    },
+    {
+      "original_path": "run_check_UP04_review.py",
+      "path": "artifacts/run_check_UP04_review.py.gz",
+      "encoding": "gzip",
+      "bytes": 3222,
+      "sha256": "9e77249d56ad19846cc2ad64c0b96822e95e3e367d51d0e62e7ffc8394e514e5",
+      "stored_sha256": "114313cb84463aef32b8ff39ccfde8407ba4e7656c6b749ec837d7332e415f59"
+    },
+    {
+      "original_path": "runner-redirect.diff",
+      "path": "artifacts/runner-redirect.diff.gz",
+      "encoding": "gzip",
+      "bytes": 1882,
+      "sha256": "afc5dad4f547e0699d5cffd53d4ec894b12f730a6d54cf6b1350a56134ecb8ff",
+      "stored_sha256": "b7f3d9b7c12eb665a0cd8b826575d2cdbcf9352d0d81a2f4196218906bed621e"
+    },
+    {
+      "original_path": "sandbox-skips.json",
+      "path": "artifacts/sandbox-skips.json.gz",
+      "encoding": "gzip",
+      "bytes": 2538,
+      "sha256": "7838311567fd60d2e61f2c8750dfcf1840171581fcc794125be449aedbf324d2",
+      "stored_sha256": "3f62b1978c7756c9e8000b9b22f9507da2f2b106f3483db591c4299c5c0e331c"
+    },
+    {
+      "original_path": "sandbox-warning-baseline.txt",
+      "path": "artifacts/sandbox-warning-baseline.txt.gz",
+      "encoding": "gzip",
+      "bytes": 1812,
+      "sha256": "f7776a6eba6d458bfd052788e387317462de8e3d9b0739b625ccdb00cfec63ce",
+      "stored_sha256": "bdcf5b92740e1fb5bf5cd39a3538128886505f44d6a95669d6ce5e4ffab8a34e"
+    },
+    {
+      "original_path": "sandbox-warning-candidate.txt",
+      "path": "artifacts/sandbox-warning-candidate.txt.gz",
+      "encoding": "gzip",
+      "bytes": 1812,
+      "sha256": "f7776a6eba6d458bfd052788e387317462de8e3d9b0739b625ccdb00cfec63ce",
+      "stored_sha256": "bdcf5b92740e1fb5bf5cd39a3538128886505f44d6a95669d6ce5e4ffab8a34e"
+    },
+    {
+      "original_path": "evidence-manifest.json",
+      "path": "artifacts/evidence-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 92742,
+      "sha256": "c1f95ebfbefc701bcbf386ea4e8dc71577807488ef1c574f1eb9cb926d4930d5",
+      "stored_sha256": "9691edf98f86cb557e05cf06e92c5e0fc8402a06263280c1daf07bac6522d505"
+    }
+  ],
+  "boundary": "Exact original independent report and safe evidence retained losslessly. Original earlier review retained. No generated runtime/keyfiles."
+}

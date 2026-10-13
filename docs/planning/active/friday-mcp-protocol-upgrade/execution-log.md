@@ -381,3 +381,14 @@ report and safe evidence are retained losslessly with all20 controller checks,
 complete debt/skip/warning comparisons and private library integrity. The original
 CHANGES_REQUESTED report and controls remain immutable. Fresh delta followed by
 full UP-04 review is required; no completion, acceptance or publication inferred.
+
+
+## REM004 cycle1 independent CHANGES_REQUESTED; exact REM005 amendment
+
+Fresh review of 0fac03d69d0fb74eb52429970e5c0910b65922fe reproduced VAL-UP04-003: stalled2025
+read-only recovery can restore prior raw-call admission after newer failed/limited
+refresh invalidation, issuing one new mutating call. Original report/raw safe
+evidence are retained under validation/VAL-UP04-02. No VERIFIED or completion is
+claimed. REM-MCP-UP-005 binds HTTP source and scoped result-refresh tests only,
+all original20 checks and a fresh separate remediator/reviewer. This is cycle2;
+a second unsuccessful remediation review stops for maintainer disposition.
