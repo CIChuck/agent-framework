@@ -1367,5 +1367,6 @@
   ],
   "boundary": "Original independent BLOCKED report and every explicit safe entry preserved losslessly; no partial review represented as VERIFIED",
   "original_report_links_materialized": "Exact original safe artifacts; primary-capture index points to lossless archived bytes",
-  "linked_diff_encoding": "full-product.diff and up06-product.diff are relative symlinks to exact lossless gzip archive bytes; decode gzip before reading as a patch; navigation.md documents this"
+  "linked_diff_encoding": "full-product.diff and up06-product.diff are relative symlinks to exact lossless gzip archive bytes; decode gzip before reading as a patch; navigation.md documents this",
+  "linked_probe_encoding": "closure_probe.py is an evidence-data container; original.txt retains exact original source bytes and original archive gzip remains unchanged. No checker flags/exclusions or product code changed."
 }

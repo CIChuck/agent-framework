@@ -1,0 +1,9 @@
+{
+  "original_path": "closure_probe.py",
+  "role": "Archived reviewer source, stored as evidence data; not a product script or new test entry point",
+  "exact_source": "original.txt",
+  "lossless_gzip": "../artifacts/closure_probe.py.gz",
+  "original_bytes": 1899,
+  "original_sha256": "7b8b27f9189181764d8679dc7c859772656ac60324492ea8ea4f1519f3391a1b",
+  "original_report_and_manifest": "unchanged"
+}
