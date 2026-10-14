@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Implement exact CD-MCP-UP-006 seven-path migration/docs and aggregate tests; run24 checks and freeze for fresh whole-feature independent validation
+  next_gate: Approve AMEND-MCP-UP-006-001 one existing fixture catalog exception; then resume already-approved CD006, all24 checks and fresh whole-feature review
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1748,3 +1748,10 @@ events:
   action: approved exact CD-MCP-UP-006
   note: 'Exact statement: approved; seven paths,24 checks, fresh whole-feature independent review; no runtime source/dependency/publication authority'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T01:55:52+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: stopped UP06 at exact fixture-scope boundary
+  note: BUILD-UP06-001 named stdio catalog; one fixture exception proposed; original CD006 remains approved; product draft preserved; no runtime policy change
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-001-fixture-transport-catalog.md

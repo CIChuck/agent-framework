@@ -1,0 +1,25 @@
+{
+  "id": "BUILD-UP06-001",
+  "severity": "medium",
+  "classification": "named synthetic fixture catalog mismatch; pre-formal construction stop",
+  "affected_product": "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
+  "observed": "Actual Friday programmatic stdio/auto/TLSJSON/TLSSSE and cancel/timeout pairs:10 pass. Corrected Runtime YAML cases:HTTPSJSON/SSE pass, stdio rejects echo as invalid_schema then missing_include. Separate real Runtime and Chat loader/public registry diagnosis reproduces same fixed rejection with zero handlers and final active0.",
+  "cause": "Fixture populate emits text.x-mcp-header:Text for every transport. Accepted mcp_registration.py only validates/strips HTTP binding annotations for modern HTTP entries; stdio admission intentionally retains its strict schema policy.",
+  "source_locations": [
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
+      "symbol": "populate",
+      "requirement": "Produce a representative plain stdio tool and annotated HTTP tool without changing semantic echo/hold/fail behavior"
+    },
+    {
+      "path": "packages/friday-runtime/src/friday_runtime/mcp_registration.py",
+      "symbol": "_schema/sanitize_definition/prepare_registration",
+      "requirement": "Existing HTTP-only annotation admission stays unchanged"
+    }
+  ],
+  "required_mitigation": "Transport-specific text schema in this single fixture: plain type:string for ModernStdioMCPServer; same x-mcp-header:Text for StreamableHTTPMCPServer JSON/SSE. Preserve handlers/names/result/output schema/CLI modes/counters/ownership.",
+  "required_verification": "Update only the already-authorized new aggregate test expectations by transport; prove raw fixture catalogs and admitted Runtime/Chat stdio and HTTP tools, HTTP Unicode binding remains correct; repeat all24 and fresh whole-feature aggregate review.",
+  "no_runtime_defect_claim": "The accepted strict admission policy is behaving as designed; no production source, trust policy or schema/default relaxation proposed.",
+  "authority_boundary": "CD006 explicitly freezes existing fixtures and requires stopping for an extra fixture/path; exact maintainer exception needed before editing this eighth product path.",
+  "formal_verdict": "Not applicable; this is builder diagnostic evidence, no formal independent review/VERIFIED claim"
+}

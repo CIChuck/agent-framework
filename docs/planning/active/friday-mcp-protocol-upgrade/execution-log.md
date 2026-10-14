@@ -664,3 +664,18 @@ paths/12 aggregate and8 initiative criteria/24 checks/accepted private effects.
 Current unit enters implementation/not_ready/granted. Source/dependency/default
 changes, whole acceptance and publication remain outside this authority. Seven
 unrelated root paths and two-task/three-event overlay remain preserved.
+
+
+## UP-06 pre-formal fixture-scope construction stop
+
+BUILD-UP06-001 reproduces named stdio fixture HTTP annotation rejected by accepted
+Runtime/Chat admission.10 direct pair/lifecycle cases and2 RuntimeHTTPS cases pass;
+stdio required-tool assertion remains failing after public config harness fix.
+Independent diagnostic of both real loaders/public registries reproduces
+invalid_schema/missing_include with0 handlers/final active0. Original harness
+errors/raw reruns retained. No source/fixture edit or admission-policy relaxation.
+Approved CD006 explicitly stops at extra fixture path. Propose one existing fixture
+exception (7->8 paths;75->74 frozen earlier products;12+8 criteria/24 checks/effects
+unchanged). Controller-owned partial new test is retained intact private+archive;
+root receives process-only approval/plan/stop proposal. Whole MCP started/local;
+no formal verdict/remediation-cycle failure/completion/acceptance/publication.

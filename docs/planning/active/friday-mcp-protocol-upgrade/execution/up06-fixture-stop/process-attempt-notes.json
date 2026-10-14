@@ -1,0 +1,8 @@
+{
+  "initial_process_error": "Documentation lifecycle check caught report link to stored-manifest.json before that manifest was written. No product/control change.",
+  "fix": "Write provisional safe artifact index before lifecycle check; retain original incomplete attempt/failed child and complete fresh unique process checks; final index includes all originals",
+  "guarded_fixture_gap": "BUILD-UP06-001 unchanged; no runtime/schema policy relaxation or fixture edit",
+  "source_draft": "Moved intact controller-owned draft outside private product checkout for process-only commit; original and corrected source/probes preserved",
+  "second_process_error": "git diff --cached --check caught conventional diff-preview blank context lines as trailing whitespace in a text artifact",
+  "second_process_fix": "Retain original preview losslessly; same proposed source bytes represented by zero-context diff; read-only git apply check; no fixture edit"
+}
