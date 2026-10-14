@@ -689,3 +689,14 @@ Eight product paths/74 frozen products/19 metadata; implementation resumes.
 BUILD-UP06-001 remains pending actual transport catalog and integration proof.
 No whole acceptance/publication authority. Unrelated root files/board overlay
 remain preserved. Original controls, reports and failed attempts stay immutable.
+
+
+## UP-06 stable migration and aggregate candidate
+
+Product 72246581126d4c4d067cce927fee9406413c3ca6 implements exactly eight approved paths.
+Current full24 profile and exact accepted-baseline diagnostics/skip/warning
+comparisons, actual library integrity, full primary capture/role/field/assertion
+bindings and raw development attempts are archived losslessly. Construction
+fixture finding BUILD-UP06-001 is resolved; independent assessment remains
+pending. Whole feature stays started/local through fresh aggregate review.
+No whole acceptance/publication/Langfuse implementation authority inferred.

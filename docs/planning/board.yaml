@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Implement CD-MCP-UP-006 with approved AMEND001 eight-path scope; complete docs/aggregate tests/all24 checks and fresh whole-feature independent validation
+  next_gate: Fresh-context read-only whole-feature aggregate validation of all12 aggregate/all8 initiative criteria and all24 checks
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1762,3 +1762,10 @@ events:
   action: approved AMEND-MCP-UP-006-001
   note: 'Exact statement: approved continue; single synthetic fixture exception; parent24 checks and fresh aggregate review unchanged'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06-amendment-001.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T02:28:27+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze MCP-UP-06 whole-feature aggregate candidate
+  note: Eight approved paths; full24 checks and exact baseline comparison; fresh independent review required; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend1/report.md

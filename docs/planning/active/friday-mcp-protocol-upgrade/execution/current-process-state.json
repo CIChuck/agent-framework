@@ -1,10 +1,10 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-06",
-  "execution_phase": "implementation",
-  "validation_state": "not_ready",
-  "unit_completion": "not proposed; approved construction resumed",
-  "next_gate": "Implement CD-MCP-UP-006 with approved AMEND001 eight-path scope; complete docs/aggregate tests/all24 checks and fresh whole-feature independent validation",
+  "execution_phase": "validation",
+  "validation_state": "in_review",
+  "unit_completion": "not proposed; fresh whole-feature aggregate review pending",
+  "next_gate": "Fresh-context read-only whole-feature aggregate validation of all12 aggregate/all8 initiative criteria and all24 checks",
   "work_state": "started",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-006",
@@ -57,38 +57,21 @@
   "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-authority-manifest.json",
-  "note": "Direct pairs10 pass; RuntimeHTTPS2 pass; actual stdio fixture rejected by accepted Runtime/Chat schema policy. Original seven paths remain approved; construction stops for eighth fixture. Shared product bytes unchanged, draft retained safely.",
-  "open_findings": [
-    {
-      "id": "BUILD-UP06-001",
-      "severity": "medium",
-      "classification": "named synthetic fixture catalog mismatch; pre-formal construction stop",
-      "affected_product": "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
-      "observed": "Actual Friday programmatic stdio/auto/TLSJSON/TLSSSE and cancel/timeout pairs:10 pass. Corrected Runtime YAML cases:HTTPSJSON/SSE pass, stdio rejects echo as invalid_schema then missing_include. Separate real Runtime and Chat loader/public registry diagnosis reproduces same fixed rejection with zero handlers and final active0.",
-      "cause": "Fixture populate emits text.x-mcp-header:Text for every transport. Accepted mcp_registration.py only validates/strips HTTP binding annotations for modern HTTP entries; stdio admission intentionally retains its strict schema policy.",
-      "source_locations": [
-        {
-          "path": "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
-          "symbol": "populate",
-          "requirement": "Produce a representative plain stdio tool and annotated HTTP tool without changing semantic echo/hold/fail behavior"
-        },
-        {
-          "path": "packages/friday-runtime/src/friday_runtime/mcp_registration.py",
-          "symbol": "_schema/sanitize_definition/prepare_registration",
-          "requirement": "Existing HTTP-only annotation admission stays unchanged"
-        }
-      ],
-      "required_mitigation": "Transport-specific text schema in this single fixture: plain type:string for ModernStdioMCPServer; same x-mcp-header:Text for StreamableHTTPMCPServer JSON/SSE. Preserve handlers/names/result/output schema/CLI modes/counters/ownership.",
-      "required_verification": "Update only the already-authorized new aggregate test expectations by transport; prove raw fixture catalogs and admitted Runtime/Chat stdio and HTTP tools, HTTP Unicode binding remains correct; repeat all24 and fresh whole-feature aggregate review.",
-      "no_runtime_defect_claim": "The accepted strict admission policy is behaving as designed; no production source, trust policy or schema/default relaxation proposed.",
-      "authority_boundary": "CD006 explicitly freezes existing fixtures and requires stopping for an extra fixture/path; exact maintainer exception needed before editing this eighth product path.",
-      "formal_verdict": "Not applicable; this is builder diagnostic evidence, no formal independent review/VERIFIED claim"
-    }
-  ],
+  "note": "Approved fixture gap resolved by current49 tests and full24 profile; original diagnosis retained; independent whole-feature assessment pending",
+  "open_findings": [],
   "remediation_directive": null,
   "remediation_status": "not_applicable",
   "remediation_implementation_authority": "closed",
   "prior_unsuccessful_remediation_cycles": 0,
   "prior_finding_disposition": {},
-  "current_execution_authority": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-001.json"
+  "current_execution_authority": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-001.json",
+  "aggregate_product_candidate": "72246581126d4c4d067cce927fee9406413c3ca6",
+  "builder_finding_dispositions": {
+    "BUILD-UP06-001": "Candidate correction and current proof complete; no formal verdict inferred"
+  },
+  "builder_finding": {
+    "id": "BUILD-UP06-001",
+    "status": "resolved_by_approved_fixture_change_and_current_tests",
+    "independent_assessment": "pending"
+  }
 }
