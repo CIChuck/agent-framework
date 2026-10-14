@@ -514,11 +514,12 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: Independent repository-removal review; provider revocation/replacement pending
+  next_gate: Confirm provider rotation and old-key invalidation; maintainer acceptance; local delivery only
   delivery_state: local
   branch: security/remove-deprecated-credentials
   depends_on: []
-  validation: []
+  validation:
+  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md: VERIFIED bounded two-artifact removal only; provider actions pending'
   approved_by: Chuck Russell
   approved_at: '2026-10-14'
 events:
@@ -1840,3 +1841,10 @@ events:
   action: authorized bounded security removal and started local branch
   note: Current instruction selects this security cleanup; four-path directive includes necessary active compatibility migration; no provider effects or history rewrite yet
   evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority.json
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-14T13:20:53+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent bounded removal verification
+  note: Local deletion verified; provider rotation/revocation and broader cleanup remain pending; no push
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md

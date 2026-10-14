@@ -37,3 +37,10 @@ remaining tracked copies are disclosed, and the broader proposal remains deferre
 Config 17 passed; compatibility 30 passed; full Chat 828 passed, 5 skipped,
 1 warning. Ruff/Mypy/board/docs/render passed. Earlier harness failures retained
 and explained in validation evidence. Awaiting fresh independent unit review.
+
+## Independent review and local delivery
+
+Fresh read-only full unit review VAL-SEC-001: VERIFIED at a65f1366.
+Original bounded removal installed on local security/remove-deprecated-credentials
+branch, preserving all unrelated changes. Whole initiative remains started;
+provider rotation and disabling old keys pending confirmation. No publication.

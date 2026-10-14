@@ -1,7 +1,7 @@
 # Deprecated credential-bearing artifact removal
 
 Status: started. Implementation authority: granted for the bounded repository-removal unit.
-execution_phase: validation; validation_state: pending.
+execution_phase: closeout; validation_state: verified.
 
 Chuck Russell requested deletion of the deprecated credential-bearing files and
 revocation/replacement of previously used keys. The exact statement and four-path
@@ -23,5 +23,6 @@ provider-management sessions or account identifiers are available. Issuer-side
 rotation remains pending and must not be reported complete from file deletion or
 a passing scanner. History rewriting and public delivery are outside this unit.
 
-Next gate: independent review of the repository-removal unit; provider revocation
-confirmation and maintainer acceptance remain separate.
+Bounded removal independently VERIFIED at a65f1366.
+Next gate: provider rotation and old-key invalidation confirmation, then maintainer
+acceptance. Local commit only; no publication. See [review](validation/VAL-SEC-001/report.md).
