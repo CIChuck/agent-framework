@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Prepare exact CD-MCP-UP-006 migration and full-initiative aggregate verification proposal; later construction authority separate
+  next_gate: Review and approve exact CD-MCP-UP-006 seven-path migration/docs and cross-Friday aggregate tests;24 checks plus fresh full-initiative review; no new product authority yet
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1734,3 +1734,10 @@ events:
   action: accepted MCP-UP-05 modern server unit
   note: 'Exact statement: accepted, continue. UP-06 packet preparation next; exact construction approval separate; local only'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T00:43:56+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: prepared CD-MCP-UP-006 aggregate migration proposal
+  note: Seven paths/12 criteria/all8 initiative criteria/24 checks; source and dependencies frozen; exact construction approval pending
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md

@@ -639,3 +639,18 @@ finding-disposition text is reconciled to final VERIFIED (historical reports rem
 unchanged). Accepted server construction/remediation authority is closed. Whole MCP
 remains started/local; UP-06 planning is authorized, exact later construction
 approval/whole-initiative acceptance/publication remain separate. Langfuse queued.
+
+
+## UP-06 migration and whole-initiative aggregate proposal
+
+All five prior units are accepted. New exact CD006 proposes seven paths: five
+current docs, a migration guide and a cross-Friday client/server/real YAML test
+module.75 accepted products/all19 metadata frozen; no runtime source, dependency
+or default/role change.12 aggregate criteria map all8 initiative criteria;24
+exact commands include prior functional/typed/debt gates plus new aggregate and
+exact documented examples. Accepted-baseline sibling excludes267 protected paths
+before checkout; fresh new UP06 runner pins whole source/current controls under
+unchanged guard/private per-command context. Original five-unit reports and
+modern/older primary authority remain immutable. Whole-feature fresh independent
+VERIFIED precedes completion proposal; maintainer whole acceptance/publication
+are separate. Exact CD006 approval required before new docs/tests.
