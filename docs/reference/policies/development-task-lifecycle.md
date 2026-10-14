@@ -73,6 +73,45 @@ Packet location is derived from work state and condition:
 Moving a packet does not itself change its state. Repair backlinks, update the
 board, render the dashboard, and run validation in the same commit.
 
+## Immutable historical authority backing
+
+A completed or accepted task still has exactly one canonical `packet`: its
+review index or accepted archive index. When frozen approvals, directives or
+reports must remain at their original planning paths, that task may explicitly
+register `authority_backing_packets`. Retained backing is historical evidence;
+it is not another current task, an approval, or permission to generate code.
+Ordinary undeclared planning packets remain validation errors.
+
+Each entry contains `packet`, `manifest`, and `manifest_sha256`. `packet` names
+one original planning-lane directory. `manifest` is a repository-relative JSON
+file inside the owner's canonical review/archive directory; its SHA256 digest
+pins its exact bytes. The version1 manifest contains `version`, `owner` (task ID),
+`packet` (the same backing path), and `files`. Each file record has a repository-
+relative `path`, lowercase SHA256 `sha256`, and `kind`: `index`, `authority`,
+`approval`, `directive`, `report`, or additional `evidence`. The manifest must
+pin the original backing `README.md` as `index` and include authority, approval,
+directive and report records. File paths stay inside that backing directory.
+JSON is capped at1MiB and5..8192 unique file records; backing entries at1..64.
+
+Validation checks the owner, canonical lane, manifest and all declared file
+hashes before recognizing a backing packet. Missing/stale files, unknown fields,
+malformed digests, duplicate JSON keys/file paths/packet claims, directory aliases,
+absolute/traversal paths, and symlink escapes fail. No backing may be another
+task's current canonical packet or have multiple owners. Internal file aliases
+may refer only within their own backing directory. Started/approved/queued or
+non-normal tasks cannot use this declaration to exempt a current packet.
+
+Prepare the canonical index, manifest and explicit board entry as one closeout
+transaction; run the ordinary transition command or controller's validated board
+save for the final state. Read-only validation will reject an incomplete staging
+state. The transition command validates its resulting board before saving it.
+Maintainer acceptance remains required: move only the canonical review index to
+the archive, update its manifest reference and digest, and record acceptance.
+Original backing file bytes stay immutable. An agent cannot accept work through
+this metadata, and delivery state remains independent. Reopening requires an
+explicit valid current packet and authority reconciliation; historical backing
+never grants implementation authority.
+
 ## Initiative Packet
 
 Every current task has one packet `README.md`. Add supporting artifacts only
