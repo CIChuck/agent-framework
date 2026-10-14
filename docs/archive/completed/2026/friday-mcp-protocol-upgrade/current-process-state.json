@@ -4,9 +4,9 @@
   "execution_phase": "closeout",
   "validation_state": "verified",
   "unit_completion": "accepted by Chuck Russell; whole initiative accepted",
-  "next_gate": "Plan PR delivery of accepted MCP upgrade; Langfuse remains separately queued",
+  "next_gate": "Review PR #8 against master; merge remains a separate decision",
   "work_state": "accepted",
-  "delivery_state": "local",
+  "delivery_state": "pushed",
   "construction_directive": "CD-MCP-UP-006",
   "directive_status": "approved",
   "unit_implementation_authority": "closed",
@@ -65,7 +65,7 @@
   "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-authority-manifest.json",
-  "note": "Whole initiative maintainer acceptance recorded. Implementation authority remains closed; delivery local; original active authority backing stays immutable.",
+  "note": "Whole upgrade remains accepted; branch published and PR #8 submitted under explicit maintainer instruction; frozen source and historical evidence unchanged",
   "open_findings": [],
   "remediation_directive": null,
   "remediation_status": "not_applicable",
@@ -90,5 +90,7 @@
   "current_packet": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/",
   "accepted_by": "Chuck Russell",
   "accepted_at": "2026-10-14",
-  "acceptance_receipt": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/acceptance.json"
+  "acceptance_receipt": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/acceptance.json",
+  "pull_request": "https://github.com/CIChuck/agent-framework/pull/8",
+  "delivery_receipt": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/delivery.json"
 }

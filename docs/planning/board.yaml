@@ -460,8 +460,8 @@ tasks:
   condition: normal
   implementation_authority: closed
   packet: docs/archive/completed/2026/friday-mcp-protocol-upgrade/
-  next_gate: Plan PR delivery of accepted MCP upgrade; Langfuse remains separately queued
-  delivery_state: local
+  next_gate: 'Review PR #8 against master; merge remains a separate decision'
+  delivery_state: pushed
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
   - friday-mcp
@@ -1812,3 +1812,10 @@ events:
   action: transitioned completed -> accepted
   note: Maintainer explicitly stated accepted in response to VERIFIED whole-upgrade completion proposal
   evidence: docs/archive/completed/2026/friday-mcp-protocol-upgrade/acceptance.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T04:14:25+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> pushed
+  note: 'Explicit maintainer instruction to commit branch and submit PR to master; branch published, PR #8 open'
+  evidence: https://github.com/CIChuck/agent-framework/pull/8

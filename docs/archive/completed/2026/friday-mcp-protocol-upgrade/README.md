@@ -1,6 +1,6 @@
 # Friday MCP protocol upgrade — accepted
 
-Status: **accepted**. Validation: **VERIFIED**. Delivery: **local**.
+Status: **accepted**. Validation: **VERIFIED**. Delivery: **pushed**.
 
 Accepted by Chuck Russell on 2026-10-14. [Acceptance receipt](acceptance.json).
 
@@ -8,4 +8,4 @@ The declared client/server profiles target the pinned MCP 2026-07-28 specificati
 
 [Closeout and functional evidence](closeout.md). [Current process state](current-process-state.json). [Immutable historical authority manifest](historical-authority.json).
 
-Next gate: PR delivery planning. Langfuse remains separately queued.
+Next gate: review [PR #8](https://github.com/CIChuck/agent-framework/pull/8) against `master`. [Delivery receipt](delivery.json). Langfuse remains separately queued.
