@@ -679,3 +679,13 @@ exception (7->8 paths;75->74 frozen earlier products;12+8 criteria/24 checks/eff
 unchanged). Controller-owned partial new test is retained intact private+archive;
 root receives process-only approval/plan/stop proposal. Whole MCP started/local;
 no formal verdict/remediation-cycle failure/completion/acceptance/publication.
+
+
+## AMEND001 exact fixture exception approved
+
+Chuck Russell stated “approved continue”. Separate receipt pins the single
+synthetic fixture exception and unchanged parent criteria/checks/effects.
+Eight product paths/74 frozen products/19 metadata; implementation resumes.
+BUILD-UP06-001 remains pending actual transport catalog and integration proof.
+No whole acceptance/publication authority. Unrelated root files/board overlay
+remain preserved. Original controls, reports and failed attempts stay immutable.

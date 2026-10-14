@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Approve AMEND-MCP-UP-006-001 one existing fixture catalog exception; then resume already-approved CD006, all24 checks and fresh whole-feature review
+  next_gate: Implement CD-MCP-UP-006 with approved AMEND001 eight-path scope; complete docs/aggregate tests/all24 checks and fresh whole-feature independent validation
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1755,3 +1755,10 @@ events:
   action: stopped UP06 at exact fixture-scope boundary
   note: BUILD-UP06-001 named stdio catalog; one fixture exception proposed; original CD006 remains approved; product draft preserved; no runtime policy change
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-001-fixture-transport-catalog.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T02:08:03+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved AMEND-MCP-UP-006-001
+  note: 'Exact statement: approved continue; single synthetic fixture exception; parent24 checks and fresh aggregate review unchanged'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06-amendment-001.json

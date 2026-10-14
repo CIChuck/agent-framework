@@ -1,0 +1,71 @@
+{
+  "authority": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-001.json",
+    "sha256": "921906ac33ebc11a36bae21eddfbbb5f9d595da2b9cdacc50f9bb777d514c79a"
+  },
+  "recorded_before_product_edits": true,
+  "fixture_before_sha256": "a37be9de1c6e5f4068b7188b35712c3f200b41af05b65d158a31ed92ed69e139",
+  "draft_sha256": "ced554b6e095e786217a200d90443273adc11acaca18a0a9a605899b26cec273",
+  "expected": "Plain stdio raw catalog/admitted Runtime and Chat tool; HTTP Text annotation preserved; structured Unicode, error, cancel/timeout counters unchanged",
+  "sequence": [
+    "Restore retained new test and correct transport assertion",
+    "Apply exact approved fixture patch",
+    "Re-run actual pair and Runtime proof",
+    "Complete real Chat factory and documented example tests",
+    "Complete six documentation paths",
+    "Full24 checks and final actual maps",
+    "Stable commit and fresh independent full aggregate review"
+  ],
+  "parent_preconstruction_plan": "execution/up06/preconstruction-plan.json",
+  "scope": [
+    {
+      "path": "README.md",
+      "baseline_sha256": "b46dd9689de1a4579326a9598fa4fce3747731bd18dd60f0facc5bda003a41e3",
+      "change": "existing",
+      "kind": "documentation"
+    },
+    {
+      "path": "docs/guides/README.md",
+      "baseline_sha256": "620fab9db8faa6a3de756770d49070821538e9f4f3b7ee87f6bccb59e6ab6c63",
+      "change": "existing",
+      "kind": "documentation"
+    },
+    {
+      "path": "docs/guides/17-mcp-client.md",
+      "baseline_sha256": "075ee0e94f558b2fddfefb87596db7e1d27fc9702b57329e9c5349397bb8bf38",
+      "change": "existing",
+      "kind": "documentation"
+    },
+    {
+      "path": "docs/guides/18-mcp-server.md",
+      "baseline_sha256": "fd5ce94dbefb8eaef11e62e84a5e607633e34c0f66dc9c794d061158adcf0362",
+      "change": "existing",
+      "kind": "documentation"
+    },
+    {
+      "path": "docs/guides/19-mcp-migration.md",
+      "baseline_sha256": null,
+      "change": "new",
+      "kind": "documentation"
+    },
+    {
+      "path": "packages/friday-mcp/README.md",
+      "baseline_sha256": "622934cf74dc3d41b55ee33d9808d225b09833172f650fe16c6356f07d2da2a8",
+      "change": "existing",
+      "kind": "documentation"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "kind": "test"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
+      "baseline_sha256": "a37be9de1c6e5f4068b7188b35712c3f200b41af05b65d158a31ed92ed69e139",
+      "change": "existing",
+      "kind": "synthetic test fixture"
+    }
+  ],
+  "no_new_effects": true
+}

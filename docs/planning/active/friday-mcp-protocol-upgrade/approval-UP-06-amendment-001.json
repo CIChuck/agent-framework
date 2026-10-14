@@ -1,0 +1,39 @@
+{
+  "directive": "AMEND-MCP-UP-006-001",
+  "parent_directive": "CD-MCP-UP-006",
+  "work_unit": "MCP-UP-06",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "approved continue",
+  "statement_context": "Response to concrete single-fixture transport catalog exception; resume already approved aggregate unit",
+  "recorded_at_utc": "2026-10-14T02:08:03.749420+00:00",
+  "proposal_commit": "bcd0437c2f143adcd24bc698b1b85ccae7b95702",
+  "proposal": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-amendment-001.json",
+    "sha256": "f7632cf258d52ef1e1d3662c4e6cf795f398988a196643b5abc14152eea4c797"
+  },
+  "parent_authority": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06.json",
+    "sha256": "5fca5955d867e0807203647a735e9b69fff0f3927f3a2a4b916b1dbed5b050fa"
+  },
+  "parent_approval": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06.json",
+    "sha256": "7b4985913d8c490f6cd8843975a42f03821cc1490fe3e6a8cc990f53c58afa53"
+  },
+  "amendment_directive": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-001-fixture-transport-catalog.md",
+    "sha256": "39eafa308f45e71a18421bb671c7864bd8a81f964eaeb0b06883a2cd87204399"
+  },
+  "illustrative_patch": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-fixture-stop/proposed-fixture.patch",
+    "sha256": "07afe17c42400303f609c1c5c8a827ea6e65b28a4bf0ff8e6784b2030b80a8a1",
+    "status": "proposed bytes only; no fixture edited",
+    "format": "zero-context unified diff; git apply --check --unidiff-zero validates read-only"
+  },
+  "blocker_manifest": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-fixture-stop/stored-manifest.json",
+    "sha256": "585b764a48e557baede303e87db2b6caaad263a3743a30fd762389d4c7824097"
+  },
+  "scope": "Only eighth fixture path; parent12+8 criteria/full24 commands/effects unchanged;74 products/19 metadata frozen",
+  "later_acceptance_or_publication_authority": "not granted"
+}

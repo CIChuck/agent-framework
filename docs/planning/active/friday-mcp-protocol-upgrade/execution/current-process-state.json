@@ -1,10 +1,10 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-06",
-  "execution_phase": "planning",
+  "execution_phase": "implementation",
   "validation_state": "not_ready",
-  "unit_completion": "not proposed; aggregate construction stopped at fixture-scope boundary",
-  "next_gate": "Approve AMEND-MCP-UP-006-001 one existing fixture catalog exception; then resume already-approved CD006, all24 checks and fresh whole-feature review",
+  "unit_completion": "not proposed; approved construction resumed",
+  "next_gate": "Implement CD-MCP-UP-006 with approved AMEND001 eight-path scope; complete docs/aggregate tests/all24 checks and fresh whole-feature independent validation",
   "work_state": "started",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-006",
@@ -90,7 +90,5 @@
   "remediation_implementation_authority": "closed",
   "prior_unsuccessful_remediation_cycles": 0,
   "prior_finding_disposition": {},
-  "current_execution_authority": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06.json",
-  "pending_amendment": "docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-001-fixture-transport-catalog.md",
-  "construction_stop": "BUILD-UP06-001 requires one existing fixture path outside approved seven-path scope"
+  "current_execution_authority": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-001.json"
 }
