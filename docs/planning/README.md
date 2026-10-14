@@ -40,7 +40,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](active/friday-mcp-protocol-upgrade/) | normal | granted | local | Implement approved AMEND002 four-file governance change; verify functional MCP and actual board review/archive transitions/all27 checks/fresh independent full review |
+| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](active/friday-mcp-protocol-upgrade/) | normal | granted | local | Fresh-context read-only FULL whole-feature aggregate review including12 product paths/27 checks/current policy supersession/all12+8 criteria |
 | 26 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
 
 ## Completed

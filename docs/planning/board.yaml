@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Implement approved AMEND002 four-file governance change; verify functional MCP and actual board review/archive transitions/all27 checks/fresh independent full review
+  next_gate: Fresh-context read-only FULL whole-feature aggregate review including12 product paths/27 checks/current policy supersession/all12+8 criteria
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1784,3 +1784,10 @@ events:
   action: approved AMEND-MCP-UP-006-002
   note: 'Exact statement: approved - make sure this thing is functional; four governance paths/27 checks; whole acceptance separate'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06-amendment-002.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T03:35:09+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze functional MCP aggregate governance candidate
+  note: Four approved governance paths,all27 checks,54 board tests/actual26-task79-record rehearsal; full fresh independent review required
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/report.md

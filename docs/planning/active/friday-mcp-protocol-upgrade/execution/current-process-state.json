@@ -1,10 +1,10 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-06",
-  "execution_phase": "implementation",
-  "validation_state": "not_ready",
-  "unit_completion": "not proposed; approved four-file governance reconciliation in progress",
-  "next_gate": "Implement approved AMEND002 four-file governance change; verify functional MCP and actual board review/archive transitions/all27 checks/fresh independent full review",
+  "execution_phase": "validation",
+  "validation_state": "in_review",
+  "unit_completion": "not proposed; fresh whole-feature27-check independent review pending",
+  "next_gate": "Fresh-context read-only FULL whole-feature aggregate review including12 product paths/27 checks/current policy supersession/all12+8 criteria",
   "work_state": "started",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-006",
@@ -57,30 +57,18 @@
   "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-authority-manifest.json",
-  "note": "Original BLOCKED report immutable; exact functional reconciliation authority approved; no whole acceptance/publication",
-  "open_findings": [
-    {
-      "id": "BUILD-UP06-002",
-      "classification": "controlling closure representation conflict independently BLOCKED; no protocol runtime defect",
-      "requirement": "Canonical completed review index and original frozen active authority paths both retained",
-      "source": "scripts/friday-dev-board.py::_current_packet_paths/validate_board",
-      "observed": "Active canonical pointer violates completed lane; review canonical pointer leaves frozen active README packet absent from board",
-      "mitigation": "Exact proposed four-file optional typed historical authority backing recognition; preserve canonical/orphan/hash integrity and all approval/acceptance boundaries",
-      "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md",
-      "proposed_amendment": "docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-002-historical-authority-backing.md",
-      "formal_unsuccessful_remediation_cycles": 0,
-      "construction_authority_for_added_paths": "not granted"
-    }
-  ],
+  "note": "Four governance paths implemented; all27 checks; unchanged MCP candidate; original BLOCKED review retained as history",
+  "open_findings": [],
   "remediation_directive": null,
   "remediation_status": "not_applicable",
   "remediation_implementation_authority": "closed",
   "prior_unsuccessful_remediation_cycles": 0,
   "prior_finding_disposition": {},
   "current_execution_authority": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-002.json",
-  "aggregate_product_candidate": "72246581126d4c4d067cce927fee9406413c3ca6",
+  "aggregate_product_candidate": "30119a18f77a435cd40f84bfefb69c32ede54998",
   "builder_finding_dispositions": {
-    "BUILD-UP06-001": "Candidate correction and current proof complete; no formal verdict inferred"
+    "BUILD-UP06-001": "Approved fixture correction/current MCP tests retained",
+    "BUILD-UP06-002": "Approved explicit historical backing/current54 tests/actual26-task79-record closeout rehearsal complete; independent assessment pending"
   },
   "builder_finding": {
     "id": "BUILD-UP06-001",

@@ -724,3 +724,14 @@ MCP82 source hashes/74 accepted products/all19 package metadata stay frozen.
 Real MCP cross-peer/Runtime/Chat examples plus synthetic actual completed and
 accepted transitions must work before fresh whole-feature independent review.
 Original BLOCKED report remains immutable; no whole acceptance/publication.
+
+
+## AMEND002 functional reconciliation and stable aggregate candidate
+
+30119a18f77a435cd40f84bfefb69c32ede54998 changes exactly four approved governance paths.
+Current54 board tests and actual26-task/79-record closeout+acceptance rehearsal
+pass; current49 MCP cross-peer/loader/example and full27 profile meet contracts.
+Exact inherited debt/skip/warnings and actual source/control/library integrity
+are archived; MCP82 source hashes/19 metadata remain unchanged. Original policy
+bytes and BLOCKED report stay historical immutable. Fresh whole-feature FULL
+independent review is required before completion; no acceptance/publication.
