@@ -509,7 +509,7 @@ tasks:
   validation: []
 - id: friday-deprecated-credential-cleanup
   title: Remove deprecated credential-bearing files and rotate exposed credentials
-  priority: 27
+  priority: 28
   work_state: started
   condition: normal
   implementation_authority: granted
