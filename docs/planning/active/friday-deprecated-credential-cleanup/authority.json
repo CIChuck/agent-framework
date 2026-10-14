@@ -1,0 +1,28 @@
+{
+  "initiative": "friday-deprecated-credential-cleanup",
+  "work_unit": "SEC-001",
+  "maintainer": "Chuck Russell",
+  "maintainer_statement": "Maybe in the short run, since these files are actually deprecated and not in use, we can remove them from the repo and regenerate and invalidate all of the previously used api  keys.",
+  "recorded_at_utc": "2026-10-14T12:47:43.863102+00:00",
+  "authorization_basis": "Current explicit maintainer removal instruction; necessary mechanical migration of active compatibility references included to preserve functioning tests",
+  "base_commit": "0f5cf2c413092d3c12ae691c547defa22dc3dbc5",
+  "branch": "security/remove-deprecated-credentials",
+  "product_paths": [
+    "tests/integration/memory/config.yaml",
+    "tests/integration/memory/.friday/quarantine/tool_outputs.jsonl",
+    ".gitignore",
+    "packages/friday-chat/tests_chat/compat/test_config_compatibility.py"
+  ],
+  "baseline_product_sha256": {
+    "tests/integration/memory/config.yaml": "e0dc28ddcc4130dd1bf84737a39ffcf83bc9a546fc4a2b28188a3cd5cd87ffd6",
+    "tests/integration/memory/.friday/quarantine/tool_outputs.jsonl": "8caa7a30df85dc1b161859c6114be37674fa35401fdc46a991a5471bdbe7e0c6",
+    ".gitignore": "d5d8356c98b5c7dae0a6c85aca7eede0b0312455e86d322dabd6640d833aea26",
+    "packages/friday-chat/tests_chat/compat/test_config_compatibility.py": "acc85f438f2b4de365dedf18bffc932ac16edefb1edce238c144e27020813b51"
+  },
+  "directive": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md",
+  "directive_sha256": "fd36b32ae8b4f67a4ce4fdfa01584c6b3a0552b09ed3f1624718470fa47c0874",
+  "provider_rotation": "requested; external account access/information unavailable; pending",
+  "history_rewrite": "not authorized in short-term unit",
+  "source_runtime_changes": "none permitted",
+  "preservation_receipt": "/private/tmp/friday-mcp-upgrade/credential-cleanup/root-preservation/hashes.json"
+}

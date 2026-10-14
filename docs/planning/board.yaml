@@ -507,6 +507,20 @@ tasks:
   depends_on:
   - friday-mcp-protocol-upgrade
   validation: []
+- id: friday-deprecated-credential-cleanup
+  title: Remove deprecated credential-bearing files and rotate exposed credentials
+  priority: 27
+  work_state: started
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/friday-deprecated-credential-cleanup/
+  next_gate: Independent repository-removal review; provider revocation/replacement pending
+  delivery_state: local
+  branch: security/remove-deprecated-credentials
+  depends_on: []
+  validation: []
+  approved_by: Chuck Russell
+  approved_at: '2026-10-14'
 events:
 - task: documentation-governance
   at: '2026-09-03'
@@ -1819,3 +1833,10 @@ events:
   action: delivery local -> pushed
   note: 'Explicit maintainer instruction to commit branch and submit PR to master; branch published, PR #8 open'
   evidence: https://github.com/CIChuck/agent-framework/pull/8
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-14T12:47:43+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized bounded security removal and started local branch
+  note: Current instruction selects this security cleanup; four-path directive includes necessary active compatibility migration; no provider effects or history rewrite yet
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority.json

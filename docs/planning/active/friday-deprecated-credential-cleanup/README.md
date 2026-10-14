@@ -1,0 +1,27 @@
+# Deprecated credential-bearing artifact removal
+
+Status: started. Implementation authority: granted for the bounded repository-removal unit.
+execution_phase: implementation; validation_state: not_ready.
+
+Chuck Russell requested deletion of the deprecated credential-bearing files and
+revocation/replacement of previously used keys. The exact statement and four-path
+construction scope are in [authority.json](authority.json) and
+[CD-SEC-001](directives/CD-SEC-001-remove-deprecated-credential-artifacts.md).
+
+The active compatibility suite still loads the retired config twice. Preserve
+its existing sanitized fixture as the option-shape baseline; remove the comparison
+that only exists to compare that fixture to the retiring original. The current
+Chat application and shipped examples remain unchanged. The deprecated standalone
+script's default config is intentionally retired under the maintainer's direction.
+
+The normal board next command still selects queued Langfuse. This explicit current
+maintainer security instruction selects this bounded task without changing any
+other task's priority or implementation authority.
+
+Credential revocation and replacement are a separate external work unit. No
+provider-management sessions or account identifiers are available. Issuer-side
+rotation remains pending and must not be reported complete from file deletion or
+a passing scanner. History rewriting and public delivery are outside this unit.
+
+Next gate: independent review of the repository-removal unit; provider revocation
+confirmation and maintainer acceptance remain separate.
