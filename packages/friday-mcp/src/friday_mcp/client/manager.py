@@ -7,6 +7,8 @@ Manages multiple MCP client connections and provides unified tool access.
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable, Sequence
+from dataclasses import dataclass, field
 from types import TracebackType
 from typing import Any
 
@@ -18,6 +20,24 @@ from friday_mcp.config import MCPConfig, MCPServerConfig, TransportType
 from friday_mcp.protocols import ToolDefinition
 
 logger = logging.getLogger(__name__)
+
+
+@dataclass(frozen=True)
+class MCPManagedServer:
+    """Explicit typed connection factory; the manager owns its returned client."""
+
+    name: str
+    enabled: bool
+    factory: Callable[[], MCPClientBase] = field(repr=False)
+
+    def __post_init__(self) -> None:
+        if (
+            not isinstance(self.name, str)
+            or not self.name
+            or type(self.enabled) is not bool
+            or not callable(self.factory)
+        ):
+            raise ValueError("Invalid MCP managed server")
 
 
 class MCPClientManager:
@@ -48,7 +68,12 @@ class MCPClientManager:
             tools = await manager.get_all_tools()
     """
 
-    def __init__(self, config: MCPConfig) -> None:
+    def __init__(
+        self,
+        config: MCPConfig,
+        *,
+        managed_servers: Sequence[MCPManagedServer] | None = None,
+    ) -> None:
         """
         Initialize client manager.
 
@@ -56,6 +81,18 @@ class MCPClientManager:
             config: MCP configuration with server list
         """
         self.config = config
+        self._managed_servers = (
+            tuple(managed_servers) if managed_servers is not None else None
+        )
+        if self._managed_servers is not None:
+            if config.servers or any(
+                not isinstance(entry, MCPManagedServer)
+                for entry in self._managed_servers
+            ):
+                raise ValueError("Invalid MCP managed server configuration")
+            names = [entry.name for entry in self._managed_servers]
+            if len(set(names)) != len(names):
+                raise ValueError("Duplicate MCP managed server")
         self._clients: dict[str, MCPClientBase] = {}
         self._adapters: dict[str, MCPToolAdapter] = {}
 
@@ -68,7 +105,7 @@ class MCPClientManager:
         """
         results: dict[str, bool] = {}
 
-        for server_config in self.config.servers:
+        for server_config in self._entries:
             if not server_config.enabled:
                 logger.info("Skipping disabled MCP server")
                 results[server_config.name] = False
@@ -98,7 +135,7 @@ class MCPClientManager:
         Returns:
             True if connection successful
         """
-        if not any(server.name == server_name for server in self.config.servers):
+        if not any(server.name == server_name for server in self._entries):
             raise KeyError(f"Server not found in config: {server_name}")
         try:
             await self.connect_or_raise(server_name)
@@ -118,7 +155,7 @@ class MCPClientManager:
                 return
             await self.disconnect(server_name)
         server_config = None
-        for config in self.config.servers:
+        for config in self._entries:
             if config.name == server_name:
                 server_config = config
                 break
@@ -128,7 +165,13 @@ class MCPClientManager:
         if not server_config.enabled:
             raise ValueError("MCP server is disabled")
 
-        client = self._create_client(server_config)
+        client = (
+            server_config.factory()
+            if isinstance(server_config, MCPManagedServer)
+            else self._create_client(server_config)
+        )
+        if not isinstance(client, MCPClientBase) or client.name != server_name:
+            raise TypeError("Invalid MCP managed client")
         self._clients[server_name] = client
         try:
             await client.connect()
@@ -138,9 +181,20 @@ class MCPClientManager:
             )
 
         except BaseException:
-            await self.disconnect(server_name)
+            try:
+                await self.disconnect(server_name)
+            except BaseException:
+                logger.error("MCP client cleanup incomplete; retained by manager")
             raise
         logger.info("MCP connection established")
+
+    @property
+    def _entries(self) -> Sequence[MCPServerConfig] | tuple[MCPManagedServer, ...]:
+        return (
+            self.config.servers
+            if self._managed_servers is None
+            else self._managed_servers
+        )
 
     async def disconnect(self, server_name: str) -> None:
         """

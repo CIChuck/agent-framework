@@ -1,0 +1,17 @@
+{
+  "captured_at_utc": "2026-10-13T03:30:38.913020+00:00",
+  "sources": [
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks.md",
+      "resolved_url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks.md",
+      "content_type": "text/markdown; charset=utf-8",
+      "bytes": 35997,
+      "sha256": "c33da0b5b3912a4826d6e1d8a6a6fdcb3700d9af9f3e66dd4ee14d7440497fb6",
+      "artifact": "specification--2025-11-25--basic--utilities--tasks.md.gz",
+      "artifact_sha256": "decdfbda41a309110b6dbddccd5e4604c3b783170ced636a6da38250575fb992",
+      "revision": "2025-11-25",
+      "use": "Only non-task client exclusion and tool-level negotiation; no Tasks implementation authority"
+    }
+  ],
+  "capture_method": "Complete unauthenticated HTTPS Markdown with disabled environment proxies; original18 captures remain unchanged"
+}

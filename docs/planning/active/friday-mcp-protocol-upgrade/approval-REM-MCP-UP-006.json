@@ -1,0 +1,12 @@
+{
+  "directive": "REM-MCP-UP-006",
+  "work_unit": "MCP-UP-05",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "approved continue",
+  "recorded_at_utc": "2026-10-13T20:31:42.498243+00:00",
+  "proposal_commit": "742edf25168896637cb203fe5a9dcf17cb23ce41",
+  "proposal_manifest_sha256": "218ad1f74220768a25e6568d31a1f71fd5d55babf33bb47588dd6d0c685bc37b",
+  "scope": "Exact six existing product paths and four VAL-UP05 findings; unchanged full18-path/12-criterion/20-check validation profile and private fixture effects; separate remediator followed by fresh delta/full review",
+  "later_unit_or_delivery_authority": "not granted"
+}

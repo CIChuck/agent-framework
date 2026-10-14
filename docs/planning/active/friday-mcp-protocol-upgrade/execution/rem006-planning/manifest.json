@@ -1,0 +1,196 @@
+{
+  "status": "proposed/not_granted",
+  "proposal_sha256": "cb02a10526b855f0a03713c686bbdec96f18ac86a3307f94c6c51e291502ec90",
+  "product_hashes": {
+    "packages/friday-mcp/src/friday_mcp/server/__init__.py": "1cc8890e67abbdf500b38de3c62bc95aea5e66ad7207f35a186cb2dd4fdc32b7",
+    "packages/friday-mcp/src/friday_mcp/server/protocol.py": "431fc1dd937167e7a4fd4340f3626985c34158bd3306a044b0a0b445a6b00b90",
+    "packages/friday-mcp/src/friday_mcp/server/modern.py": "3d76f4f18da43c46edfc1037f497249c2f59d41b3c61834a77e703c11981e052",
+    "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py": "bbb49511b93ecfbf72587d506265f1a787a8118d83aa60672afee33ae11df057",
+    "packages/friday-mcp/src/friday_mcp/server/http.py": "f38ba480740a2c6bdb74d30a150ecb8bc00e52d6ffbbba70c71da021963deb5a",
+    "packages/friday-mcp/src/friday_mcp/server/registry.py": "1bf1902aefcf63263acc194690dd7811fbfa6dc047bfaf3b93282ca51262cd38",
+    "packages/friday-mcp/src/friday_mcp/server/http_policy.py": "e85ec5d1ede4f8ca9c2473c6affa1dba59fd5b7621a0c0ea94fd3d23a0ead27d",
+    "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py": "3b3d81eede1fdd8b16c138ab55f355c71748f586f19b5baebb30d3662e0b22bf",
+    "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py": "65d395426407ea49700a015051660da1bba337a97e59fdcb084f166104eb8493",
+    "packages/friday-mcp/tests_mcp/server/test_streamable_http.py": "ae3d44f957d3712e60e1f5b64341167e69f718f4ccfc06e94c5c5e32104ed807",
+    "packages/friday-mcp/tests_mcp/server/test_server_security.py": "d07217f8358fd2171c11f250eb97baafad7f68aa63900610647233224f9aade4",
+    "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py": "a6cb1fd0fbaf3b7b849b00cf6a355bbaad9b2b3391101a982c41b34c06b1e723",
+    "packages/friday-mcp/tests_mcp/server/test_registry.py": "2c4f44cd26b4ff15001d6e4685db0f41f4aa23b824c0f0061522b55de9745c93",
+    "packages/friday-mcp/tests_mcp/server/test_server_interop.py": "27dd165a0435f08817440f233474eb2cf3a9152c5cbe2133ae5f7d2a1fb14c8d",
+    "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py": "546898b92d067786cd1362389a3235e968265220ad53ab1e17a8c9c2ce8d372d",
+    "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py": "a37be9de1c6e5f4068b7188b35712c3f200b41af05b65d158a31ed92ed69e139",
+    "packages/friday-mcp/README.md": "622934cf74dc3d41b55ee33d9808d225b09833172f650fe16c6356f07d2da2a8",
+    "docs/guides/18-mcp-server.md": "607ed3eae5756fba2d7d37e1ea3f1b6e7470ceca991063752821fced8d40a872"
+  },
+  "original_report_sha256": "f582f81ca59b6e67d704d51dcbf3888b4d6aa086c4f342ddaa9417c1a10d58b7",
+  "entries": [
+    {
+      "path": "checks/board/preflight.json.gz",
+      "original_path": "rem006-planning-board/preflight.json",
+      "bytes": 17712,
+      "sha256": "a456dedae3331d7f7a31787f20d00ebbc12163519bb8266c1ea345124690c5ba",
+      "stored_sha256": "6d71b7b0b26f65f4ff455654952c4c62fd8a46a4d3a92d5c1ebad45b34eb5f48",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/board/receipt.json.gz",
+      "original_path": "rem006-planning-board/receipt.json",
+      "bytes": 2857,
+      "sha256": "0495c8695776a5188b7366289b3eb35beb2324dc75f1141bd89140a09860b786",
+      "stored_sha256": "078f377144d80a7949baab2d6c3415a5defae7d2394d8133d0173bebd5071c83",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/board/stdout.gz",
+      "original_path": "rem006-planning-board/stdout",
+      "bytes": 46,
+      "sha256": "f86479667ca73f712d72cac3ab0abf3e4e9e165dc7c65159298cfb8ce281a947",
+      "stored_sha256": "a8fe0ac655745a8f208c9bac35d6e3f1f21b43eaae46fc65ba4ac7784df9b202",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/board/stderr.gz",
+      "original_path": "rem006-planning-board/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/next/preflight.json.gz",
+      "original_path": "rem006-planning-next/preflight.json",
+      "bytes": 17702,
+      "sha256": "78e663f249d5fb64a80fd7c968d45c7a36cf09784f8d1be60e8ba126dbdeadab",
+      "stored_sha256": "e0cb7050842c6d4dd325552832bc64cef6913012b825559752f451d6f9d0b0c0",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/next/receipt.json.gz",
+      "original_path": "rem006-planning-next/receipt.json",
+      "bytes": 2847,
+      "sha256": "fdc6091cd71fc47ec0fae33ad014f89634e94d332fa3cbc0f25a428ee919a78a",
+      "stored_sha256": "528c56af82d8fcda5f574052284de97cffae9f20eada0638aca63afba45b9ea9",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/next/stdout.gz",
+      "original_path": "rem006-planning-next/stdout",
+      "bytes": 198,
+      "sha256": "d6db1ad53fff292c103466cf60d63b9ef278de603dd2732a85a0d0cc45531bbd",
+      "stored_sha256": "77d32f73a9d4a5f840113c536d13afad77f7c02fbe262b352f4284d1afb1961c",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/next/stderr.gz",
+      "original_path": "rem006-planning-next/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/show/preflight.json.gz",
+      "original_path": "rem006-planning-show/preflight.json",
+      "bytes": 17737,
+      "sha256": "9749b32eea02f2506f6e3f2a5b204fbd633412f3fcd4e417c513829845751e60",
+      "stored_sha256": "4eb5c4c32045ddadf9dce0ca404b31e7c2f38ec4aefe332f184bf1096c2f3556",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/show/receipt.json.gz",
+      "original_path": "rem006-planning-show/receipt.json",
+      "bytes": 2882,
+      "sha256": "d9e467eb0e4274af342257c79228be28bf13b0a4c3df50aee11c1dc3a599b882",
+      "stored_sha256": "a76f129cbb6934e5148b0c117f1072c0ff3f3be6c95d09a227e1aa62ec445466",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/show/stdout.gz",
+      "original_path": "rem006-planning-show/stdout",
+      "bytes": 2838,
+      "sha256": "8876b100e29e6aaf333b398ec7679a3ad156063709a31458c0d9b491dfb27821",
+      "stored_sha256": "82fa3511d1f71b8c93636b331825094cc8549ee7ca6342adacfc961f392221c5",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/show/stderr.gz",
+      "original_path": "rem006-planning-show/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/docs/preflight.json.gz",
+      "original_path": "rem006-planning-docs/preflight.json",
+      "bytes": 17703,
+      "sha256": "1854b34146e8c1d1605e87625909aaccfff86774e46d0460cf8be509b5f6d4c1",
+      "stored_sha256": "d6548e3bc5795fa6df277d7798e832dec06aba5664f5ed941fdd9a8322b6e3aa",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/docs/receipt.json.gz",
+      "original_path": "rem006-planning-docs/receipt.json",
+      "bytes": 2848,
+      "sha256": "eeb7e4a38427a46f25bfe49e81d8eba71ae94c8879034dab88d2388181326e35",
+      "stored_sha256": "5ea96abbcd15438bdadccb86d5349759870f1216977537774d6aa7c9e4cff18e",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/docs/stdout.gz",
+      "original_path": "rem006-planning-docs/stdout",
+      "bytes": 70,
+      "sha256": "dc4fa708628a65106e008aefc805f68763a82c03e8f1816ce9da02364c01a80e",
+      "stored_sha256": "31573c7863962d31201c857f3341b6103d8c04259e3432baef7209292a5735d9",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/docs/stderr.gz",
+      "original_path": "rem006-planning-docs/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/render/preflight.json.gz",
+      "original_path": "rem006-planning-render/preflight.json",
+      "bytes": 17731,
+      "sha256": "edad311457d84e1228d10a124cdf260942583846cf77032fc81204f72349a172",
+      "stored_sha256": "5619fd760e075a16296cb61db686c4712290aed9aa9b3e20013edcba03c74620",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/render/receipt.json.gz",
+      "original_path": "rem006-planning-render/receipt.json",
+      "bytes": 2876,
+      "sha256": "62f87fac20cd4907cce84a292b81eaf9cf746289ed6c7c68dc0430ec6ec51ed8",
+      "stored_sha256": "fd577cd02e7808971ae48e2a79f509496f1394c26228be8b11aa59717e8ded73",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/render/stdout.gz",
+      "original_path": "rem006-planning-render/stdout",
+      "bytes": 30,
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stored_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "encoding": "gzip"
+    },
+    {
+      "path": "checks/render/stderr.gz",
+      "original_path": "rem006-planning-render/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "encoding": "gzip"
+    },
+    {
+      "path": "prepare_rem006_packet.py.gz",
+      "original_path": "prepare_rem006_packet.py",
+      "bytes": 15641,
+      "sha256": "aaa3a93ae9db338d8988b8a6f24eb21c4bea13f7ec455f762d98f361d8605cdf",
+      "stored_sha256": "1236029f4b9d60181420a4f9aec8057d6eddd28303829d138d4a8bd88119c488",
+      "encoding": "gzip"
+    }
+  ],
+  "boundary": "Process-only proposal and five checks; no source changes or approval inferred"
+}

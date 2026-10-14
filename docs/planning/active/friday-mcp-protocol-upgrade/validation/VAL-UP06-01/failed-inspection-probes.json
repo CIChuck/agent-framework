@@ -1,0 +1,23 @@
+[
+  {
+    "command": "ps -eo pid,ppid,args | rg 'run_required.py|independent-UP06-001|run_check_UP06_amend1.py'",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "zsh:1: operation not permitted: ps\n",
+    "disposition": "Authorized escalation found only own runner identities; parent paused and settled after child completed."
+  },
+  {
+    "command": "rg --files .agents .codex | rg 'independent|validator|SKILL.md'",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "rg: .agents: No such file or directory (os error 2)\nrg: .codex: No such file or directory (os error 2)\n",
+    "disposition": "Read-only optional candidate-local skill lookup; no skill available in private checkout, no authority substitute inferred."
+  },
+  {
+    "command": "ls -l /private/tmp/friday-mcp-upgrade/checks/independent-UP06-001-mcp/receipt.json",
+    "exit_code": 2,
+    "stderr": "ls: /private/tmp/friday-mcp-upgrade/checks/independent-UP06-001-mcp/receipt.json: No such file or directory\n",
+    "occurrences": 1,
+    "disposition": "Read-only receipt existence probe while owned child still running; child later completed normally."
+  }
+]

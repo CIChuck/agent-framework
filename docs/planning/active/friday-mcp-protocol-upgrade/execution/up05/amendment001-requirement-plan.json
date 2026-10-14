@@ -1,0 +1,39 @@
+{
+  "status": "Frozen pre-edit amended field plan",
+  "parent_plan_sha256": "4bd5c166caca1ef7d1cb4843a08c5ccfdbe58a0d2a169ac3c69b42f899e12daf",
+  "amended_authority_sha256": "9c657566cafb54e402a0a3b845408a0cd18f8190f528f94835acc81e4ea2554e",
+  "required_fields": {
+    "DiscoverResult/CacheableResult.ttlMs": [
+      "present integer0",
+      "missing/null/string/negative rejected by pinned official wire decoder"
+    ],
+    "DiscoverResult/CacheableResult.cacheScope": [
+      "present private",
+      "missing/null/invalid value rejected by pinned official wire decoder"
+    ],
+    "ListToolsResult/CacheableResult.ttlMs": [
+      "integer0 in empty/nonempty/every page",
+      "missing/null/malformed wire decoder negatives"
+    ],
+    "ListToolsResult/CacheableResult.cacheScope": [
+      "private in empty/nonempty/every page",
+      "missing/null/malformed wire decoder negatives"
+    ]
+  },
+  "planned_tests": [
+    "test_discovery_empty_and_direct_call_no_session",
+    "test_catalog_atomic_deep_snapshots_and_stale_cursors",
+    "test_pagination_byte_partition_and_incompatible_limits_are_atomic",
+    "test_sdk_dated_cacheable_field_variants",
+    "test_official_client_230_real_stdio",
+    "test_official_client_230_real_verified_tls_json_sse"
+  ],
+  "verification": [
+    "server-focused",
+    "server-http",
+    "root",
+    "baseline-root"
+  ],
+  "no_cache_engine_or_RPC": true,
+  "call_tool_does_not_gain_cache_fields": true
+}

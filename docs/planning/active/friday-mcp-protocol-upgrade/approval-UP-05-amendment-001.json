@@ -1,0 +1,13 @@
+{
+  "amendment": "AMEND-MCP-UP-005-001",
+  "work_unit": "MCP-UP-05",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "approved",
+  "recorded_at_utc": "2026-10-13T18:21:25.808526+00:00",
+  "proposal_commit": "473ec5b13a4e66ac9948c87d10ddb569d3c701de",
+  "proposal_manifest_sha256": "cffe4d8b240d01c25a5208c98e9d3536da62b7ca17211ff90af2f9733096fd5e",
+  "override": "Only required ttlMs:0/cacheScope:private for complete server/discover and tools/list results. No cache engine/RPC/positive TTL/public scope. Tool-call results unchanged. Original controls immutable.",
+  "scope": "Original18 product paths/12 criteria/20 required commands and private effects unchanged",
+  "later_unit_or_remote_delivery_authority": "not granted"
+}

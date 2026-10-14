@@ -1,0 +1,82 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "unit": "MCP-UP-02B",
+  "directive": "REM-MCP-UP-002",
+  "status": "proposed",
+  "implementation_authority": "not_granted_by_proposal",
+  "baseline": "2a3cec520f20442515d3d9a5a1a33eb500bd8846",
+  "findings": [
+    "VAL-UP02B-001",
+    "VAL-UP02B-002",
+    "VAL-UP02B-003",
+    "VAL-UP02B-004"
+  ],
+  "controls": [
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-002-streamable-http.md",
+      "sha256": "bab8e478d5d2e73d3d79818c9984474e5a0ab136ae9230179718487f17197240"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-02B.json",
+      "sha256": "563969f358940e8af38433a64d4f13420658b9de619a337e4b307940d43e7ec1"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/validation-request-UP-02B.json",
+      "sha256": "8a8fb73d2a8d39dcada2ab18b5fee04f92fddfa9e7befb3d9da2c065ae95b399"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/stored-manifest.json",
+      "sha256": "c0a15a7eb2547da3e580cd05919d15006c729959bece3715fc09d85c478d3e76"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/artifacts/report.md.gz",
+      "sha256": "aa6a46ed2472a9775d7d8093b3fb4f0bcaeac39e91e8cf233b6b11f0ad377c1b"
+    }
+  ],
+  "prior_controls": "All controls referenced by authority-UP-02B and authority-manifest remain pinned and immutable",
+  "product_scope": [
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/http_protocol.py",
+      "baseline_sha256": "0319804e11c069a407735fbe3788f3677863d25edc3d45364bede66ce098f892"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/http.py",
+      "baseline_sha256": "cc14801c7b4df803f6bb4cd86aafe19546b03e9283d67ae4850451de99ae4e0f"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/protocol.py",
+      "baseline_sha256": "121bc142e960a945126cac7e1e154b3cdd7800877c650e3c2373a18cc6fc247e"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_http_protocol.py",
+      "baseline_sha256": "2ca41137d2e7b6e65b5df2e4a6f157dc76300107ee95ad1d0529e46486cf7d34"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py",
+      "baseline_sha256": "7a371e79bca1206747c06643036b8cc144738661dcc9da1b2b4fed48b0b8878d"
+    },
+    {
+      "path": "packages/friday-mcp/README.md",
+      "baseline_sha256": "caf5c4245e86849e604d9663eed6df0885d97b408ddc19c839bfc404dd5c01b6"
+    }
+  ],
+  "unchanged_original_products": {
+    "packages/friday-mcp/src/friday_mcp/client/base.py": "28c31aed4544203da38fb146958e07ec234a0c70811c2cad3ee18497ff14a570",
+    "packages/friday-mcp/src/friday_mcp/client/protocol.py": "121bc142e960a945126cac7e1e154b3cdd7800877c650e3c2373a18cc6fc247e",
+    "packages/friday-mcp/src/friday_mcp/client/__init__.py": "99a2ca88bc2161c78338d7855167256a6bda99e9b373561075b3942521e62c7e",
+    "packages/friday-mcp/README.md": "caf5c4245e86849e604d9663eed6df0885d97b408ddc19c839bfc404dd5c01b6",
+    "packages/friday-mcp/pyproject.toml": "665eb50f54d283f23532c919db662fc64a376e0bf8155fd6ff6052913efd9a45",
+    "uv.lock": "5efcfafd68f3ed94a64ee943e6379fa57e603518ff2d215bb87710e25dc06759",
+    "packages/friday-mcp/src/friday_mcp/client/http.py": "cc14801c7b4df803f6bb4cd86aafe19546b03e9283d67ae4850451de99ae4e0f",
+    "packages/friday-mcp/src/friday_mcp/client/http_protocol.py": "0319804e11c069a407735fbe3788f3677863d25edc3d45364bede66ce098f892",
+    "packages/friday-mcp/src/friday_mcp/client/http_policy.py": "624d9eaa4f9e38d17ccafc71dbfcfcb2bacf3497c67cb52c8478c9b9315a17b1",
+    "packages/friday-mcp/tests_mcp/client/test_http_protocol.py": "2ca41137d2e7b6e65b5df2e4a6f157dc76300107ee95ad1d0529e46486cf7d34",
+    "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py": "7a371e79bca1206747c06643036b8cc144738661dcc9da1b2b4fed48b0b8878d",
+    "packages/friday-mcp/tests_mcp/client/test_http_interop.py": "8ff9a66c6eec61d52b3510471782bec42cffc329713a6968efaf625c4ac54c07",
+    "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py": "3bdb11d929a8732f8a67845c707343d4e1fd8aa3f1fa13d7d7bc5969d0d0567f",
+    "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py": "bb7c48d90013a1f812039bef62b80e6c71591abe0bde3a5855bf01b29cd00464"
+  },
+  "required_review": "Fresh read-only finding delta followed by full original CD2 work-unit review",
+  "effects": "Unchanged original guarded isolated CD2 fixture profile; no publication",
+  "approval_gate": "Exact directive and this manifest must be authorized by maintainer before source edits"
+}

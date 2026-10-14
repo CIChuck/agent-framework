@@ -1,0 +1,406 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "work_unit": "MCP-UP-05",
+  "amendment": "AMEND-MCP-UP-005-002",
+  "status": "proposed",
+  "implementation_authority": "not_granted_for_amendment",
+  "parent_authority": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-05-amendment-001.json",
+    "sha256": "9c657566cafb54e402a0a3b845408a0cd18f8190f528f94835acc81e4ea2554e"
+  },
+  "amendment_document": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/amendments/AMEND-MCP-UP-005-002-modern-schema-and-version-errors.md",
+    "sha256": "71a67fc299ef3f4e22b24c6ce301aebbadff0b8b48441e87737b07bf8758399d"
+  },
+  "corrected_prospective_plan": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up05/prospective-modern-schema-replan.json",
+    "sha256": "1ba20b8ca818059b62aaeb1a906d36067ee15c4032ea518ab4c63a9cbd824853"
+  },
+  "checkpoint": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up05/amendment002-construction-checkpoint.json",
+    "sha256": "ae51d477d4e3c600c441cadf38c6a9a90c61ed1b265f4e4be7d2f338562342ef"
+  },
+  "normative_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+  "existing_unreviewed_product_candidate": "ed8f8cbdc27b469b389487dd931678b4777b13b9",
+  "override": "Unsupported version error data uses required supported/requested; bounded requested protocolVersion only in own wire error. Explicit prospective rebaseline replaces invalid historical2025-selected field plan for further construction; audit all modern fields before fresh review. AMEND001 and original other requirements remain.",
+  "product_paths": [
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+      "baseline_sha256": "c1e061ecc5b08baade3deca638fb9d0d29d4d26a4ef4df42173255e9a2ab1b9a",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/modern.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/http.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/registry.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_registry.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/README.md",
+      "baseline_sha256": "50657396a16dd3a4f70fae0ea046cbf6f5c0daadf1c3e413c638e4c24da408ac",
+      "change": "existing"
+    },
+    {
+      "path": "docs/guides/18-mcp-server.md",
+      "baseline_sha256": null,
+      "change": "new"
+    }
+  ],
+  "acceptance_criteria": {
+    "SRV-AC-01": "Typed2026-only per-request server role; complete bounded envelope/request/notification/metadata grammar with omitted/null cases, optional clientInfo, per-request required capabilities and exact fixed wire codes. No initialize/session-state trust or local-code leakage.",
+    "SRV-AC-02": "Honest empty/nonempty discover/tools capability, immutable complete catalog/definitions and bounded byte/count pagination, atomic filter/prefix/collision/schema registration. Invalid/obsolete/oversized cursors and definitions fail with zero handler I/O; old failures cannot mutate a newer catalog.",
+    "SRV-AC-03": "Captured definition/schema/handler, validated arguments before exactly one invocation; complete typed text/structured results (omitted/null/mixed/order), captured successful output validation and legitimate safe tool errors. Mutation during issued call preserves captured schema; malformed/unsafe output and unknown tools cannot cause replay.",
+    "SRV-AC-04": "Real newline stdio with clean stdout, responsive concurrent dispatch, owner-local cancellation, partial-line/UTF8/JSON/batch/duplicate-ID negatives, EOF/partial-start/pipe/stop/restart/SIGTERM cleanup. No stale owner reply or server cancellation outside unsupported subscription role.",
+    "SRV-AC-05": "Single stateless HTTP POST endpoint, JSON and request-scoped SSE, exact status/body/header grammar; protocol/method/name/custom parameter/header/body agreement, Base64 and null/absent/type cases, no handler before validation. GET/DELETE405, unsupported404/-32601, version400/-32022, HeaderMismatch400/-32020; no sessions/legacy split.",
+    "SRV-AC-06": "Explicit typed bind/path/Host/Origin/bearer/TLS access policy with pre-dispatch rejection/counter0, duplicate/query/Unicode/header-size negatives, token nonrepr/privacy, no clientInfo authorization. Static administrative gate does not claim optional OAuth conformance; all fixtures literal127 only, no live exposure.",
+    "SRV-AC-07": "Lower-only limits and original absolute deadlines, bounded admission/owners/body/header/schema/output/page work, request/connection-owned cancellation and retryable shutdown. Lower budgets1..4 and ignored cancellation retain truthful owners; no orphan process/task/stream, unrelated cancellation or mutating replay.",
+    "SRV-AC-08": "Declared public Core ToolRegistry/ToolDefinition integration using real public DefaultToolRegistry with synthetic tools; strict staged snapshots/filter/prefix/collision/unsupported schema negatives and distinct instances. No implicit agent/prompt/resource/memory/model loading or incidental private contracts.",
+    "SRV-AC-09": "New strict-typed exports preserve optional-dependency import behavior and all legacy imports/constructors/config/version/tool/agent/prompt/resource/SSE interfaces and readonly hashes. No modifications to accepted client/Runtime/Chat/Core/telemetry sources or config defaults.",
+    "SRV-AC-10": "Optional existing TelemetryInterface injection, one admitted-handler start/terminal observation, safe trusted labels and provider/state isolation; observer failure causes no duplicate invocation/replay. Credentials/raw arguments/results/schema/client IDs/URLs/trace state absent from logs/telemetry, no new provider/exporter/global state.",
+    "SRV-AC-11": "Official SDK2.3.0 Client against actual Friday server real subprocess stdio and private verified TLS HTTP JSON/SSE. Explicit2026 mode/cacheNone/no interactive extensions; actual discovery/version/metadata/wire counters, errors/cancel/disconnect/child exit. Deterministic/raw negatives complement SDK, no self-client-only or in-process shortcut proof.",
+    "SRV-AC-12": "Accurate programmatic modern/legacy guide/API examples and explicit unsupported OAuth/agent/extensions;18-path source budget,19 unchanged metadata, existing22009-library/192dist integrity, all19 captures and full server-role clause/field plan/final actual mapping; all20 required checks and exact inherited debt/skip/warning comparisons plus fresh independent full-unit VERIFIED before completion."
+  },
+  "required_checks": [
+    {
+      "id": "board",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "next",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "next"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "show",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "show",
+        "friday-mcp-protocol-upgrade"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "server-focused",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+        "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+        "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+        "packages/friday-mcp/tests_mcp/server/test_registry.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+        "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "server-http",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "original-clients",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/client",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "mcp",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "core-runtime-chat-telemetry",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-core/tests_core",
+        "packages/friday-runtime/tests_runtime",
+        "packages/friday-chat/tests_chat",
+        "packages/friday-telemetry/tests_telemetry",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "root",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-rs"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "baseline-root",
+      "snapshot": "up05-baseline",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-rs"
+      ],
+      "success": "exit0; full normalized skip reasons/locations and warnings equal; accepted history4744/14/15 is not a substitute for current baseline run"
+    },
+    {
+      "id": "ruff",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+        "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+        "packages/friday-mcp/src/friday_mcp/server/http.py",
+        "packages/friday-mcp/src/friday_mcp/server/registry.py",
+        "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
+        "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+        "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+        "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+        "packages/friday-mcp/tests_mcp/server/test_registry.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+        "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+        "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "root-ruff",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        ".",
+        "--output-format=json"
+      ],
+      "success": "retain raw exit1 only with exactly same327 complete normalized diagnostic/fix objects as accepted baseline"
+    },
+    {
+      "id": "baseline-root-ruff",
+      "snapshot": "up05-baseline",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        ".",
+        "--output-format=json"
+      ],
+      "success": "retain raw exit1 and all complete objects"
+    },
+    {
+      "id": "narrow-mypy",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+        "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+        "packages/friday-mcp/src/friday_mcp/server/http.py",
+        "packages/friday-mcp/src/friday_mcp/server/registry.py",
+        "packages/friday-mcp/src/friday_mcp/server/http_policy.py"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "mcp-mypy",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-mcp/src/friday_mcp"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "full-mypy",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-core/src/friday_core",
+        "packages/friday-mcp/src/friday_mcp",
+        "packages/friday-runtime/src/friday_runtime",
+        "packages/friday-chat/src/friday_chat"
+      ],
+      "success": "raw exit1 only with exact same4 inherited profiles.py diagnostics; compare complete path/line/column/severity/code/message; narrow source clean"
+    },
+    {
+      "id": "baseline-full-mypy",
+      "snapshot": "up05-baseline",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-core/src/friday_core",
+        "packages/friday-mcp/src/friday_mcp",
+        "packages/friday-runtime/src/friday_runtime",
+        "packages/friday-chat/src/friday_chat"
+      ],
+      "success": "repeat exact baseline4 with supplemental explicit columns"
+    },
+    {
+      "id": "docs",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "render",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "whitespace",
+      "snapshot": "work",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "f876603c74d8a90639fb5dc90d287d17ab523705",
+        "HEAD"
+      ],
+      "success": "exit0 plus uncommitted whitespace check"
+    }
+  ],
+  "permitted_effects": "Only new named tests_mcp/fixtures/friday_modern_tools_server.py synthetic Friday subprocess stdio and literal127.0.0.1 ephemeral verified TLS HTTP JSON/SSE, pinned official SDK Client, deterministic/ASGI peers, and retained approved client/cross/root fixture effects under original guard. Private synthetic TLS cert/key generation and counter files under private HOME/TMP; keys/runtime stores excluded from archive. No non-loopback bind/connect, public DNS, real tools/workspaces/providers/credentials, installs/sync, shared env writes or publication. Guarded loopback escalation allowed after exact approval; known prior OS bind rejection need not be repeated.",
+  "prior_incorrect_plan_retained": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up05/preconstruction-requirement-plan.json",
+    "sha256": "4bd5c166caca1ef7d1cb4843a08c5ccfdbe58a0d2a169ac3c69b42f899e12daf",
+    "selected_schema_sha256": "e74b56e73b2e37bdb595f74ba22e428ad7f07aa3519355ba661d681298ed38ac",
+    "cause": "plan_up05_requirements.py overwrote its schema variable on the later2025 capture;145 declarations/355 fields therefore described2025 rather than2026",
+    "disposition": "Retain immutable historical bytes; prior field mapping cannot supply2026 construction/conformance evidence"
+  },
+  "later_unit_or_delivery_authority": "not granted"
+}

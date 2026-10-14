@@ -1,0 +1,46 @@
+{
+  "directive": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-002-historical-authority-backing.md",
+    "sha256": "7583efeaa848fc77fb8284f52aa37801b16dfa92367988d03bce40285d702762"
+  },
+  "parent_directive": "CD-MCP-UP-006",
+  "work_unit": "MCP-UP-06",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "approved - make sure this thing is functional",
+  "statement_context": "Approval of concrete four-file governance reconciliation; functional MCP and actual board transition verification explicitly required",
+  "recorded_at_utc": "2026-10-14T03:02:56.718314+00:00",
+  "proposal_commit": "c2233262fb8ea4fc52bb06798ea9d36833901160",
+  "proposal": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-amendment-002.json",
+    "sha256": "819be525709a76dce37681ef4bf6e581f418dfd764dd360276285d744da23705"
+  },
+  "parent_authority": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-001.json",
+    "sha256": "921906ac33ebc11a36bae21eddfbbb5f9d595da2b9cdacc50f9bb777d514c79a"
+  },
+  "parent_approval": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06-amendment-001.json",
+    "sha256": "4e639d0dca35745f13459a531f8b7c99c63e1eb781af3a2b720a3c88d48c1f2e"
+  },
+  "independent_blocked_report": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md",
+    "sha256": "d945e78e7029777d07e0b7254163f9f9bb3ab03116d5556bf13123c274673179"
+  },
+  "scope": "Exactly four added governance paths;12 aggregate product paths/27 required checks;74 accepted MCP products/19 metadata frozen; original MCP candidate82 hashes frozen during governance construction",
+  "policy_supersession": {
+    "old_current_control": {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    "immutable_original": {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2-authority/prior-lifecycle-policy.md.gz",
+      "sha256": "c33353dddf28fe9cb91d0b674ac23e1b81164e9dc704451d4f0bee783cb43e9f",
+      "decoded_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "encoding": "gzip",
+      "role": "Immutable original policy bytes; maintainer-approved prospective supersession of current path"
+    },
+    "new_current_control": "Bound actual candidate policy SHA in frozen source and independent request before review"
+  },
+  "later_acceptance_or_publication_authority": "not granted"
+}

@@ -1,0 +1,742 @@
+# MCP upgrade execution log
+
+## 2026-10-12 — MCP-UP-01 preparation
+
+Maintainer direction: "lets move onto the mcp upgrade" following the proposed
+MCP-UP-01 preparation gate. Prepared current baseline, primary-source revision
+check, protocol/compatibility contract, SDK/dependency decision, build/tactical
+plans and exact twelve-path CD-MCP-UP-001 proposal. No product construction or
+implementation approval is inferred from this progression request.
+
+Baseline `46005353046553477417a730f05ff21ead64a00d` includes accepted core
+TELEM-01 through04. Checked fifteen accepted telemetry product hashes and the
+forty-six acceptance-control hashes. Preserve TelemetryInterface and queue
+Langfuse after MCP acceptance. Existing source core remains 2024-11-05; new
+revision/profile decisions are proposed, not implemented.
+
+Planning validation: board/dashboard consistency, documentation lifecycle,
+proposal control/source hash checks and diff whitespace checks. Existing
+client/base.py and client/stdio.py Ruff and Mypy checks pass. SDK/network
+interop, dependency resolution, product tests and independent product validation
+have not been executed. No source, tests, package metadata, lock or user config
+was edited; unrelated dirty/deleted/queued assets were preserved.
+
+Next gate: maintainer review of the build/protocol/tactical contract and
+CD-MCP-UP-001; then frozen approval/branch/start preparation and only the first
+approved construction slice. HTTP, remote YAML, server and Langfuse work retain
+their separately bounded scopes. Proposal remains queued/not_granted.
+
+## 2026-10-12 — approval and normative-source clarification
+
+Chuck Russell explicitly approved the contract and CD-MCP-UP-001, and asked
+whether the packet specifically matches the new MCP specification and is pegged
+to the appropriate research. Recorded the exact statement and original seventeen
+proposal-control hashes/twelve-path product scope in [approval.json](approval.json).
+Made official dated specification/schema conformance explicit and added
+[research-to-acceptance mapping](conformance-matrix.md). No product-scope or optional-feature expansion.
+
+Official latest still selects 2026-07-28. The TypeScript schema linked by that
+specification is normative; SDK 2.3.0 is counterpart evidence and Anthropic
+connector documentation is context. Complete normative-byte and SDK artifact
+hashes remain required before product edits. Board approval authorizes execution
+preparation and only CD-MCP-UP-001; later construction directives remain separate.
+
+Captured complete public normative bytes for nine dated documents and the
+TypeScript schema, archived losslessly with URL/size/content/artifact hashes.
+Schema upstream commit `271ecc9accafdd9b83a3c869fa67c22953b2af80` was fetched
+separately and its full bytes match SHA-256
+`742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd`.
+These inputs are research authority, not executed product-conformance evidence.
+
+
+## 2026-10-12 — approved first construction slice started
+
+MCP dedicated branch now derives from telemetry merge1302b5f and approved planning
+checkpoint `a3c0cbdc867ca3535f611c2461ff080a991de86c`. Original approved product hashes remain unchanged.
+Move packet to active, repair scheduling links, preserve original approval bytes
+and original queued-control hashes at that checkpoint, and hash active controls.
+Started/granted on feature/friday-mcp-protocol-upgrade for CD-MCP-UP-001 only.
+Construct and validate in an isolated sparse snapshot excluding protected state
+before checkout. No later-unit or delivery authority is added.
+
+
+## 2026-10-12 — SDK dependency conflict; A01 prepared for approval
+
+Two isolated sparse checkouts exclude267 protected paths before checkout; both
+use committed started/granted authority8f80463 without a dirty-work overlay.
+PyPI confirms SDK2.3.0 and exact artifact hashes. Default and minimum-httpx2
+resolutions require an existing IDNA update. Original no-churn resolver exits1:
+SDK2.3.0 -> httpx2>=2.10.0 -> idna>=3.18 conflicts with idna3.11.
+Prepared exact A01 proposal and full lock/metadata/registry/command receipts.
+Only IDNA changes among existing version sets; twelve new SDK transitive packages
+are individually inventoried. All other contexts still require formal preservation
+checks before execution. Restore isolated pyproject/lock to original bytes; no
+client/test edits, dependency install, SDK execution or product checks are claimed.
+Started/local; execution_phase planning; validation_state blocked. Approval of
+this bounded exception and renewed frozen controls is the next gate.
+
+
+## 2026-10-12 — A01 approved; dependency verification resumed
+
+Chuck Russell explicitly approved A01 and asked about regression risks. Recorded
+the exact statement and frozen original proposal/dependency evidence in a separate
+receipt; retained original CD-MCP-UP-001 approval bytes. The approved target is
+IDNA 3.20, rather than the distinct older 3.2 release. Permit only IDNA 3.11 to
+3.20 among existing versions. Resume isolated reproduction and supported-context
+comparison before locked installation. No product completion or independent
+validation is claimed.
+
+
+## 2026-10-12 — A01 dependency reproduction and offline comparison
+
+Reproduced exact approved lock hash from baseline, then verified offline lock
+consistency. All existing selections and edges across24 supported-context
+samples and all other existing artifact records are preserved. Ran352 offline
+IDNA operations per version:57 representative HTTP URL checks unchanged;12
+other semantic changes include stricter remapping/length rules and a rare
+Unicode-to-YARL URL mapping. Full results, raw outputs and script/hash receipts
+are retained in execution/idna-regression. Source construction and official
+SDK/full regression/independent validation remain pending. Shared IDNA3.11 and
+root twelve-path product baseline remain unchanged.
+
+
+## 2026-10-12 — client-core candidate frozen for independent review
+
+execution_phase: validation; validation_state: in_review. The twelve approved
+product paths are implemented. Final product gates and independently reproduced
+baseline debt are retained in execution/client-core/. Private installed-library
+reuse and pytest import resolution are disclosed in the implementation report.
+No live service, credential, shared state or later-unit changes occurred. The
+initiative remains started/local. Commit the stable candidate and issue a fresh
+read-only review; no self-VERIFIED or acceptance/delivery inference.
+
+
+## 2026-10-12 — independent findings and bounded remediation
+
+execution_phase: remediation; validation_state: changes_requested.
+VAL-UP02A-001 and002 are recorded exactly once in REM-MCP-UP-001. Preserve
+4f3574c and its full raw independent evidence. All automated gates pass; modern
+fallback/metadata conformance gaps prevent VERIFIED. Separate remediator follows
+existing approved criteria and exact paths. No new authority, waiver or delivery
+is inferred. Commit a corrected candidate and conduct fresh delta/full review.
+
+
+## 2026-10-12 — remediation candidate dispatched for fresh review
+
+execution_phase: validation; validation_state: in_review. Stable builder candidate
+9283146f10defcb8095270cd7a1b740aa2830112 corrects exactly VAL-UP02A-001/002 within original scope.
+Original failed review is retained; fresh delta and full work-unit review required.
+Current process-only transitions are separately recorded in current-process-state.json
+without revising the frozen index after dispatch. No acceptance/delivery inferred.
+
+
+## 2026-10-12 — corrected client-core independently VERIFIED
+
+execution_phase: closeout; validation_state: verified. Fresh independent
+VAL-UP02A-02 verifies reviewed candidate a36142fb41f59a743b72088d8cce749b71b32202.
+VAL-UP02A-001/002 are resolved and the full original unit profile passes. Propose
+MCP-UP-02A completion; maintainer acceptance remains pending. Whole initiative
+remains started/local because HTTP/runtime/server and aggregate units remain.
+Frozen authority/index/directive/product files remain byte-identical; only
+review evidence and the separately referenced process-only state/board are updated.
+
+
+## 2026-10-12 — maintainer accepted client-core; HTTP directive proposed
+
+Chuck Russell's explicit “accepted” closes CD-MCP-UP-001 / MCP-UP-02A only.
+acceptance/MCP-UP-02A.json records the reviewed candidate, immutable original
+independent report and product/control hashes. Whole initiative stays started/local.
+No delivery or later-unit approval is inferred.
+
+Prepared separate CD-MCP-UP-002 / MCP-UP-02B: fourteen exact product paths,
+2026-07-28 Streamable HTTP and explicit 2025-11-25 compatibility, bounded
+headers/SSE/session/cancellation, no mutating replay, endpoint/connect policy,
+synthetic real-wire fixtures, ten criteria and independent handoff. Captured and
+hashed additional complete dated sources/schema. Earlier authority/index/source
+bytes remain unchanged. Current next-unit state is planning/not_ready; source
+construction waits for exact directive/manifest approval. Runtime/YAML/server
+and aggregate units remain later gates; Langfuse remains queued after full MCP.
+
+
+## 2026-10-12 — exact HTTP construction directive approved
+
+Chuck Russell explicitly stated “approved” in response to CD-MCP-UP-002.
+Separate approval-UP-02B.json and authority-UP-02B.json pin the immutable draft
+and proposal manifest at 9e00288. Work unit MCP-UP-02B enters construction/not_ready
+on the existing feature branch. Fourteen exact product paths and fixture-only
+effects are authorized; prior frozen evidence and unrelated dirty root changes
+remain preserved. No Runtime/YAML/server or delivery authority is inferred.
+
+
+## 2026-10-12 — Streamable HTTP stable candidate review checkpoint
+
+execution_phase: validation; validation_state: in_review. CD-MCP-UP-002 products
+are frozen in execution/http/stable-check-freeze.json. All final deterministic
+gates pass; root Ruff has exactly the inherited 327 findings. The new client
+supports modern 2026-07-28 and separate explicit 2025-11-25 profiles within the
+fourteen approved paths. Builder evidence and full raw receipts are retained in
+execution/http/report.md and stored-manifest.json. Fresh independent review is
+required; whole initiative remains started/local and later units are unapproved.
+No original authority/index/directive/proposal/acceptance bytes are revised.
+
+
+## 2026-10-12 — HTTP independent review requests four corrections
+
+execution_phase: remediation; validation_state: changes_requested. Fresh full
+VAL-UP02B-01 reviewed candidate 2a3cec520f20442515d3d9a5a1a33eb500bd8846. Original report and
+raw probes/checks are preserved losslessly in validation/VAL-UP02B-01. All required
+checks pass, but four reproduced schema/header/metadata/session-concurrency defects
+prevent VERIFIED or unit completion. REM-MCP-UP-002 is a concrete six-path,
+four-finding proposal; source remediation awaits maintainer authorization.
+Original candidate, controls, approval/proposals and raw builder evidence remain
+unchanged. Whole initiative remains started/local; no acceptance/publication.
+
+
+## 2026-10-12 — bounded HTTP remediation approved
+
+Chuck Russell explicitly stated “approved” in response to REM-MCP-UP-002.
+Separate approval-REM-MCP-UP-002.json and authority-REM-MCP-UP-002.json pin the
+immutable six-path directive/proposal. execution_phase: remediation;
+validation_state: changes_requested until a new candidate reaches fresh review.
+A separate remediator is authorized to correct exactly VAL-UP02B-001..004 and
+run original CD2 gates in the same private guarded fixture profile. All prior
+controls/evidence and unrelated root work remain preserved. No acceptance or
+publication is inferred.
+
+
+## 2026-10-12 — corrected HTTP candidate dispatched for fresh review
+
+execution_phase: validation; validation_state: in_review. Separate remediator
+product commit 462fa7cf25b16e67d7a98267733b4d9f56274a93 addresses the exact four findings of
+REM-MCP-UP-002. Full raw builder evidence is archived separately under execution/
+remediation-UP02B-002-builder. Original authority/directive/proposal/approval/index
+and historical report/raw bytes remain unchanged. VAL-UP02B-01 is superseded only
+for decision on this new candidate. Fresh independent delta and full CD2 review
+required; whole initiative remains started/local and no completion is inferred.
+
+
+## 2026-10-12 — corrected Streamable HTTP unit independently VERIFIED
+
+execution_phase: closeout; validation_state: verified. Fresh VAL-UP02B-02
+finding-delta and full CD2 review verifies candidate 14dba178feff8789111db88d981f1d0e85e6a748.
+Exact REM-MCP-UP-002 findings VAL-UP02B-001..004 are resolved; original failed
+report and all frozen controls/products remain retained unchanged. Propose HTTP
+unit completion only. Maintainer acceptance and later MCP directives remain
+separate; whole initiative stays started/local and no publication is inferred.
+
+
+## 2026-10-12 — maintainer accepted corrected HTTP unit
+
+Chuck Russell's exact “accepted proceed” accepts CD-MCP-UP-002 / MCP-UP-02B
+and its approved REM-MCP-UP-002 fixes following fresh independent VERIFIED
+review. acceptance/MCP-UP-02B.json and the separate accepted-unit archive pin
+the candidate/report/product hashes. Frozen controls and historical raw evidence
+remain unchanged. Whole MCP remains started/local. Current phase planning /
+validation_state not_ready prepares separate CD-MCP-UP-003 Runtime/YAML/Chat
+authority; no later product edits or delivery authority is inferred.
+
+
+## 2026-10-12 — separate Runtime/YAML/Chat construction packet proposed
+
+execution_phase:planning; validation_state:not_ready. CD-MCP-UP-003 / MCP-UP-03
+is proposed with28 exact product paths, strict dated YAML/remote trust/credential
+and network policy, typed factory/lifecycle seam, header-aware safe model-schema
+admission, real Runtime/Chat execution and ten criteria. Private static baseline
+source checks pass; full four-package Mypy retains four exact inherited errors
+in untouched Core profiles. No product edits or new construction approval is
+claimed. Exact proposal/contract/profile hashes control the next approval gate.
+Prior controls, reports, artifacts and accepted product bytes remain unchanged.
+
+
+## 2026-10-12 — Runtime/YAML/Chat integration approved
+
+Chuck Russell stated “approved” in response to the exact CD-MCP-UP-003 packet.
+approval-UP-03.json and authority-UP-03.json bind the original directive,
+integration contract, verification profile and 28-path proposal without changing
+those proposed bytes. execution_phase: implementation; validation_state:
+not_ready. Required construction and full fresh-context validation proceed in
+the guarded private snapshot; source/credential/dependency/effect exclusions and
+unrelated root changes remain preserved. No acceptance or publication inferred.
+
+
+## 2026-10-12 — Runtime/YAML/Chat candidate frozen for independent review
+
+execution_phase: validation; validation_state: in_review. Product commit b604fe9f8988591dc8bb11712341e564d6d283fc
+implements the approved integration inside25 of28 authorized paths. All20 stable
+required checks and exact327/4 debt and14/15 skip/warning comparisons are archived
+under execution/up03. Complete dated clause/schema mapping is retained losslessly.
+Fresh independent full unit review must decide; no completion/acceptance or later
+unit/publication authority inferred. Original controls and unrelated root changes
+remain preserved.
+
+
+## 2026-10-12 — UP-03 review requests one documentation correction
+
+execution_phase: remediation; validation_state: changes_requested. Fresh full
+VAL-UP03-01 reviewed a897b3deaa9e007223c8ecbe7cfbfb4750ef10b7. All required checks and
+INT-AC-01..09 pass; INT-AC-10 requires correcting inaccurate address-policy wording.
+Original report/probes/raw evidence preserved losslessly. REM-MCP-UP-003 is a
+bounded mechanical one-guide correction implementing already-approved accurate
+docs, with no runtime or controlling-spec change. Separate remediator and fresh
+review required; no completion, acceptance or publication inferred.
+
+
+## 2026-10-12 — corrected guide candidate frozen for fresh UP-03 review
+
+execution_phase: validation; validation_state: in_review. Separate remediator
+implements exact VAL-UP03-001 one-guide correction in product 0220500aa8d236d74604f6011bee03a0b13081b7.
+Executable products, metadata and all controlling inputs remain unchanged;
+original review/failed narrow cache diagnostics retained. A new frozen request
+requires fresh finding delta and full original UP-03 review. No completion or
+acceptance proposed; whole MCP stays started/local.
+
+
+## 2026-10-12 — Runtime/YAML/Chat unit independently VERIFIED
+
+execution_phase: closeout; validation_state: verified. Fresh-context read-only
+VAL-UP03-02 finding-delta and full CD-MCP-UP-003 review verifies candidate 3473cad1ab9ad35577d809281c87ce242f545b2c.
+Original independent reports and reproducible evidence are retained losslessly.
+VAL-UP03-001 is resolved by the exact guide explanation correction; runtime
+products and accepted network policy remain byte-identical to the first review.
+Reviewed product, exact authority and accepted prior units remain unchanged.
+Propose MCP-UP-03 completion only, with maintainer acceptance pending. Whole
+initiative stays started/local; UP-04, UP-05 and UP-06 require later bounded
+directives. Langfuse remains queued after whole MCP acceptance.
+
+
+## UP-03 maintainer acceptance and UP-04 preparation
+
+Chuck Russell explicitly stated “accepted, continue”. acceptance/MCP-UP-03.json
+records acceptance of independently VERIFIED CD-MCP-UP-003 and the exact guide
+correction, with reviewed product/report/control hashes. Frozen original reports,
+prior authority and accepted product bytes are preserved. Whole MCP stays
+started/local. Proceed with separate UP-04 planning, without later construction
+or publication authority. Langfuse remains queued after whole MCP acceptance.
+
+
+## UP-04 exact result/manual-refresh packet prepared
+
+UP-03 acceptance is recorded separately. CD-MCP-UP-004 proposes20 product paths,
+ten RES-AC criteria, typed catalog generations, failure-safe manual refresh,
+same-generation output/header binding and complete dated result validation.
+2025 required-task tools are excluded; Tasks remains unsupported. No product
+edits or dependency changes. execution/up04-planning retains the no-network
+probe including its initial import failure and complete dated Tasks capture.
+The exact directive/contract/profile/proposal require approval before UP-04
+construction. Old reports/controls/accepted products are immutable; whole MCP
+stays started/local, UP-05/UP-06 and Langfuse remain later gates.
+
+
+## 2026-10-13 - exact UP-04 construction approved
+
+Chuck Russell explicitly stated “approved, continue” in response to the complete
+CD-MCP-UP-004 packet. Separate approval-UP-04.json and authority-UP-04.json pin
+the immutable20-path/10-criterion/20-check proposal. Current UP-04 enters
+construction/not_ready/granted. No dependency, later-unit or publication authority
+is inferred. Preserve accepted evidence and all unrelated root changes.
+
+
+## UP-04 stable candidate frozen for independent review
+
+Product 8170c26b541433dcd5b9107d44a1c7a4a92fdd83 implements the approved result/manual-refresh unit.
+All20 required checks and exact inherited-debt/skip/warning comparisons are archived
+under execution/up04, including all prior failed development/profile attempts.
+The typed optional contract preserves custom virtual methods and schema-bound2025
+raw recovery while retiring generation-bound wrappers. Fresh full-unit independent
+validation decides; no completion/acceptance/later-unit/publication is inferred.
+
+
+## 2026-10-13 - independent UP-04 changes requested; exact remediation proposed
+
+Fresh full-unit review returned CHANGES_REQUESTED for 138fb68e33b94d20c17bbaff79ec6be3c8bfc3fb.
+VAL-UP04-001 is high: a constructor lower-budget concurrent refresh can leave
+a prior wrapper callable after limit rejection. VAL-UP04-002 is medium: sampling
+input content and form-property schemas are misclassified. All20 commands were
+independently reproduced, with root3844/14/15 and exact inherited327/4 debt and
+skip/warning equality. Passing checks do not close these semantic findings.
+Original report and239 safe originals are retained in validation/VAL-UP04-01.
+The reviewed products, metadata and original controls remain unchanged.
+REM-MCP-UP-004 proposes exactly3 existing product paths, both fixes, constructor
+budgets1-4, stdio/HTTP parity, dependent-schema evidence and the full original
+profile. A separate security/architecture remediator and fresh delta/full review
+are mandatory. Exact remediation approval is pending; no corrective source edits
+have been made. Whole MCP remains started/local; no completion, acceptance or
+publication is inferred.
+
+
+## 2026-10-13 - exact REM-MCP-UP-004 approved
+
+Chuck Russell stated “approved , continue” in response to the complete three-file
+remediation packet. Separate approval and execution authority bind the immutable
+proposal/profile, both findings, a separate security remediator and fresh delta
+plus full-unit review. Original reports and controls remain retained. No later
+unit, dependency change or publication authority is inferred.
+
+
+## REM-MCP-UP-004 stable corrected candidate
+
+Separate remediator committed 2aeaeb780af6324ff934737ff453f3aff211017b within the exact three-file product
+scope. Its original preconstruction plan, dependent variant/field/test mapping,
+report and safe evidence are retained losslessly with all20 controller checks,
+complete debt/skip/warning comparisons and private library integrity. The original
+CHANGES_REQUESTED report and controls remain immutable. Fresh delta followed by
+full UP-04 review is required; no completion, acceptance or publication inferred.
+
+
+## REM004 cycle1 independent CHANGES_REQUESTED; exact REM005 amendment
+
+Fresh review of 0fac03d69d0fb74eb52429970e5c0910b65922fe reproduced VAL-UP04-003: stalled2025
+read-only recovery can restore prior raw-call admission after newer failed/limited
+refresh invalidation, issuing one new mutating call. Original report/raw safe
+evidence are retained under validation/VAL-UP04-02. No VERIFIED or completion is
+claimed. REM-MCP-UP-005 binds HTTP source and scoped result-refresh tests only,
+all original20 checks and a fresh separate remediator/reviewer. This is cycle2;
+a second unsuccessful remediation review stops for maintainer disposition.
+
+
+Chuck Russell explicitly stated “I'll approve that amendment without reservation,
+continue” after the two-file recovery correction and continued verification were
+described. The separate REM005 receipt and authority bind the concrete immutable
+proposal, two paths and unchanged original20-check profile. No additional approval
+is requested for this authorized correction. No dependency/later-unit/delivery
+authority is inferred.
+
+
+## REM-MCP-UP-005 stable corrected candidate
+
+Separate remediator committed a9c913e41cdbd5bd824f36fe7b15001e6c126e17 within the exact two-file product
+scope. Its original preconstruction plan, dependent variant/field/test mapping,
+report and safe evidence are retained losslessly with all20 controller checks,
+complete debt/skip/warning comparisons and private library integrity. The original
+CHANGES_REQUESTED report and controls remain immutable. Fresh delta followed by
+full UP-04 review is required; no completion, acceptance or publication inferred.
+
+
+## REM-MCP-UP-005 independent verification and UP-04 completion proposal
+
+Fresh-context read-only delta followed by full UP-04 validation returned VERIFIED
+for 47fcdb76035306c8aa7494ca1e1962049e984a3d. Original report and safe raw evidence are losslessly retained
+under validation/VAL-UP04-03; the unchanged prior report is superseded only for
+decision on this corrected candidate. All findings resolve, full required checks
+and all10 criteria verified. Current unit closeout/verified and completion proposed;
+maintainer acceptance remains separate. Whole MCP remains started/local; UP-05/06,
+Langfuse implementation and publication are later separate gates.
+
+
+## UP-04 maintainer acceptance and UP-05 preparation
+
+Chuck Russell stated “approved” following the independently VERIFIED UP-04
+completion proposal and explicit acceptance gate. The exact receipt records
+acceptance of CD-MCP-UP-004 and REM004/005, all39 reviewed product/metadata hashes
+and the unchanged original report. All three findings are resolved. Whole MCP
+remains started/local. Prepare UP-05 modern tools-only server controls; no later
+construction, dependency change or publication is inferred. Langfuse stays queued.
+
+
+## UP-05 exact modern tools-server proposal
+
+Accepted UP-04 baseline f876603c74d8a90639fb5dc90d287d17ab523705 anchors a parallel strict modern2026
+stdio/StreamableHTTP tools-only server. The18-path/12-criterion/20-command packet
+pins full official captures, current source/dependency hashes, declared registry
+and provider-neutral observation interfaces, private fixture effects and fresh
+independent full-unit validation. Legacy/config/client sources remain preserved.
+All19 captures match;29 server schema declarations and SDK Client options are
+planning references, not field/clause coverage or product verification. The new
+baseline omits267 protected paths before checkout. Full server-role preconstruction
+mapping remains mandatory. No product edits, fixtures, installs or remote effects
+occurred. Exact CD-MCP-UP-005 approval is the next construction gate.
+
+
+Final UP-05 planning reconciliation resets remediation-cycle counters for the new
+unit (UP-04 history remains in its accepted receipt/process snapshot) and fixes
+the modern handler contract to cooperative async registration only, with no
+thread/executor adaptation. Proposed controls are re-pinned before any approval.
+The reproducible initial planning command-count bookkeeping failure and script
+are retained losslessly; the corrected profile contains20 actual commands.
+
+
+## 2026-10-13 - exact UP-05 construction approved
+
+Chuck Russell explicitly stated “approved, continue” in response to the complete
+CD-MCP-UP-005 packet. Separate approval-UP-05.json and authority-UP-05.json pin
+the immutable18-path/12-criterion/20-check proposal. Current UP-05 enters
+construction/not_ready/granted. No dependency, later-unit or publication authority
+is inferred. Preserve accepted evidence and all unrelated root changes.
+
+
+## 2026-10-13 - UP-05 construction and normative cache-metadata stop
+
+Exact CD-MCP-UP-005 approval was recorded separately. All19 captures were parsed
+and a preconstruction plan froze316 normative paragraphs/560 keywords and145
+TypeScript declarations/355 field references. Those counts describe planning
+coverage, not completed conformance. Partial18-path implementation remains private.
+Development HTTP46, security/lifecycle47 and stdio/registry11 tests passed;
+strict seven-source Mypy passed. Original protocol run had200 passes/one malformed
+envelope-ID assertion failure; correction is unverified pending rerun. SDK run
+had3 failures/3 passes: the dated official wire models require missing ttlMs/
+cacheScope, contradicting the contract. TLS child signal cleanup assertions also
+remain unfinished under existing scope. Every original check/controller/partial
+source snapshot is retained, with no private keys/runtime stores in the archive.
+
+Stopped product edits on discovery of the contract/schema conflict. Proposed
+AMEND-MCP-UP-005-001 requires only immediately stale private discovery/list wire
+metadata, preserving18 paths, all20 checks, immutable controls and independent
+review. No full profile, stable candidate, VERIFIED or completion is claimed.
+No live fixture child remains. Original authority and earlier accepted units
+remain intact; no later-unit or remote delivery is authorized.
+
+
+## 2026-10-13 - UP-05 cache-metadata amendment approved
+
+Chuck Russell explicitly stated “approved” for AMEND-MCP-UP-005-001. Separate
+approval receipt and amended execution authority pin the exact correction.
+Construction resumes within the same18 paths/12 criteria/20 checks/private
+fixture effects. Parent controls remain unchanged. No later-unit, acceptance
+or publication authority is inferred.
+
+
+## 2026-10-13 - UP-05 draft verification and corrected-schema stop
+
+AMEND001 metadata was implemented within all18 scoped product paths. Stable
+draft product ed8f8cbdc27b469b389487dd931678b4777b13b9 passed381 focused tests,
+5125 root tests and all clean touched/MCP typing and lint checks. All20 commands
+completed; baseline4744/14/15, candidate5125/14/15, full327 Ruff diagnostic/fix
+objects and four Mypy diagnostics including columns match exactly. Both before
+and after22,009 libraries/192 distributions,19 metadata and60 protected products
+match. Raw commands, inherited-debt exits and comparisons are retained.
+
+During final schema audit the controller found a second immutable-contract
+conflict: UnsupportedProtocolVersionError requires supported/requested data,
+not the contract's supportedVersions. A guarded actual-wire audit fails with
+zero handlers/owners. Product edits stopped at discovery. The controller found
+the cause of missed fields: the preconstruction script overwrote the selected
+modern schema with a later2025 capture. Its145/355 field counts are historical
+2025 evidence only and do not fulfill modern preconstruction coverage. All
+original bytes remain unchanged. An explicit SHA-selected prospective plan now
+parses2026 separately (155 declarations/337 field references), with19 source
+captures checked and2025 isolated as historical compatibility evidence.
+
+Proposed AMEND-MCP-UP-005-002 corrects version-error data and explicitly
+rebaselines the unreviewed draft for a complete modern field audit before
+further construction. RequestState and emitted MetaObject format omissions
+remain to be enforced under existing complete-field criteria. No VERIFIED,
+completion, acceptance, formal remediation cycle or publication is claimed.
+AMEND001 remains approved; original18 paths/12 criteria/20 checks/private
+effects and every accepted older unit are protected. Next gate is exact
+amendment002 approval, then corrected construction/full profile/fresh review.
+
+
+## 2026-10-13 - exact AMEND002 and prospective rebaseline approved
+
+Chuck Russell explicitly stated “approved, continue” for AMEND-MCP-UP-005-002.
+Separate receipt/authority pin corrected2026 schema planning and exact
+supported/requested error data. Historical wrong2025-selected plan remains
+immutable and is not conformance evidence. All18 product paths,12 criteria,
+20 checks, private effects and accepted metadata/products remain controlling.
+Construction resumes; no later unit, acceptance or publication is inferred.
+
+
+## MCP-UP-05 amended stable candidate and independent review gate
+
+Approved AMEND002 construction is complete at 780a42e18b75dc30a61d12e6bab5d2b140b35435.
+Exact18 product paths,12 criteria and20 required checks retained. Corrected2026
+field/clause actual mapping and full raw checks archived losslessly under
+execution/up05/amendment002-final. Wrong historical plan/draft/failed attempts
+remain immutable and do not establish conformance. Full current-baseline debt,
+skip/warning and library comparisons passed. Fresh full-unit independent review
+is required; unit completion is not proposed and no acceptance/publication inferred.
+
+
+## MCP-UP-05 independent full-unit result
+
+Fresh-context read-only full work-unit review returned CHANGES_REQUESTED for
+b57c25d9fc4933059f64ed836783291f5753b9a8. Original report and explicit safe raw evidence are retained
+losslessly under validation/VAL-UP05-01. Process state and board next gate agree.
+No completion proposal or source repair authority is inferred; bounded disposition required.
+Whole MCP remains started/local; UP06 aggregate compatibility/migration closeout,
+Langfuse implementation and publication remain later separate gates.
+
+
+## REM-MCP-UP-006 bounded correction proposal
+
+Fresh UP05 CHANGES_REQUESTED findings are recorded exactly once in proposed
+REM-MCP-UP-006. Six existing product paths, unchanged original12 criteria/20 checks,
+existing private effects and original modern schema constraints. Security/lifecycle/
+architecture requires a separate remediator. No source change made or authority
+granted; exact maintainer approval is required. Original report/probes/controls
+remain immutable; acceptance/UP06/publication remain later gates.
+
+
+## REM-MCP-UP-006 approved and separate remediation authorized
+
+Chuck Russell stated “approved continue” for the concrete six-file correction
+packet covering VAL-UP05-001/002/003/004. Separate receipt and execution authority
+pin the immutable proposal and original controls, all12 criteria/20 checks and
+approved private fixture effects. A fresh separate remediator is authorized;
+no further approval is required for this exact correction. Fresh delta then full
+UP-05 review remains required before completion proposal; acceptance, UP06,
+Langfuse and publication remain separate. Remediation cycle1; stop after two
+unsuccessful formal remediation cycles under repository policy.
+
+
+## REM-MCP-UP-006 stable corrected candidate and fresh review gate
+
+Separate remediator committed e284ebaf1ec4b596c8e3edb9511a7012c6dfa133 within six authorized paths.
+Its original prospective plan/final mapping/report and safe raw attempts are
+retained losslessly with controller full20 checks, exact inherited debt/skip/
+warning comparisons and strict before/after library integrity. Original review
+and controls remain immutable. Fresh remediation delta followed by full UP-05
+review is required; no completion/acceptance/UP06/publication inferred.
+
+
+## REM-MCP-UP-006 independent delta and full UP-05 result
+
+Fresh-context read-only remediation delta then full work-unit review returned CHANGES_REQUESTED for
+2b536516068f9e946572d165636211a24a93638d. Original report and explicit safe raw evidence are retained
+losslessly under validation/VAL-UP05-02. Process state and board next gate agree.
+No completion proposal or source repair authority is inferred; bounded disposition required.
+Whole MCP remains started/local; UP06 aggregate compatibility/migration closeout,
+Langfuse implementation and publication remain later separate gates.
+
+
+## REM006 cycle1 result and bounded same-scope standard-header continuation
+
+Fresh report preserves64 passing original-finding cases and VAL-UP05-005: plain
+method/version headers with control/DEL/rawUnicode matching body choose incorrect
+wire errors. This is covered by original mandatory header grammar/all12 criteria
+and three of six already-approved files. REM006-R1 records a narrowed separate-
+remediator continuation, not a new maintainer decision or broader source authority.
+Original reports/control/approval bytes remain immutable. Cycle2; a second failed
+formal correction review stops for maintainer disposition.
+
+
+## REM-MCP-UP-006-R1 stable corrected candidate and fresh review gate
+
+Separate remediator committed a8ef5b78054f1d0008706cc09a265c50a58fc0ac within three authorized paths.
+Its original prospective plan/final mapping/report and safe raw attempts are
+retained losslessly with controller full20 checks, exact inherited debt/skip/
+warning comparisons and strict before/after library integrity. Original review
+and controls remain immutable. Fresh remediation delta followed by full UP-05
+review is required; no completion/acceptance/UP06/publication inferred.
+
+
+## REM-MCP-UP-006-R1 independent delta and full UP-05 result
+
+Fresh-context read-only remediation delta then full work-unit review returned VERIFIED for
+012430089bcd1b60b12c071b8c8220f20d2bac79. Original report and explicit safe raw evidence are retained
+losslessly under validation/VAL-UP05-03. Process state and board next gate agree.
+Unit completion proposed; maintainer acceptance remains separate.
+Whole MCP remains started/local; UP06 aggregate compatibility/migration closeout,
+Langfuse implementation and publication remain later separate gates.
+
+
+## UP-05 maintainer acceptance and UP-06 preparation
+
+Chuck Russell stated “accepted, continue” at the explicitly named UP-05 acceptance
+gate. The exact receipt records accepted CD005/REM006/R1 and all five resolved
+findings against unchanged final independent report and raw evidence. Prior current
+finding-disposition text is reconciled to final VERIFIED (historical reports remain
+unchanged). Accepted server construction/remediation authority is closed. Whole MCP
+remains started/local; UP-06 planning is authorized, exact later construction
+approval/whole-initiative acceptance/publication remain separate. Langfuse queued.
+
+
+## UP-06 migration and whole-initiative aggregate proposal
+
+All five prior units are accepted. New exact CD006 proposes seven paths: five
+current docs, a migration guide and a cross-Friday client/server/real YAML test
+module.75 accepted products/all19 metadata frozen; no runtime source, dependency
+or default/role change.12 aggregate criteria map all8 initiative criteria;24
+exact commands include prior functional/typed/debt gates plus new aggregate and
+exact documented examples. Accepted-baseline sibling excludes267 protected paths
+before checkout; fresh new UP06 runner pins whole source/current controls under
+unchanged guard/private per-command context. Original five-unit reports and
+modern/older primary authority remain immutable. Whole-feature fresh independent
+VERIFIED precedes completion proposal; maintainer whole acceptance/publication
+are separate. Exact CD006 approval required before new docs/tests.
+
+
+## Exact UP-06 construction approval
+
+Chuck Russell stated “approved” in response to the concrete CD006 directive and
+explicit approval question. Separate receipt/authority pin the immutable seven
+paths/12 aggregate and8 initiative criteria/24 checks/accepted private effects.
+Current unit enters implementation/not_ready/granted. Source/dependency/default
+changes, whole acceptance and publication remain outside this authority. Seven
+unrelated root paths and two-task/three-event overlay remain preserved.
+
+
+## UP-06 pre-formal fixture-scope construction stop
+
+BUILD-UP06-001 reproduces named stdio fixture HTTP annotation rejected by accepted
+Runtime/Chat admission.10 direct pair/lifecycle cases and2 RuntimeHTTPS cases pass;
+stdio required-tool assertion remains failing after public config harness fix.
+Independent diagnostic of both real loaders/public registries reproduces
+invalid_schema/missing_include with0 handlers/final active0. Original harness
+errors/raw reruns retained. No source/fixture edit or admission-policy relaxation.
+Approved CD006 explicitly stops at extra fixture path. Propose one existing fixture
+exception (7->8 paths;75->74 frozen earlier products;12+8 criteria/24 checks/effects
+unchanged). Controller-owned partial new test is retained intact private+archive;
+root receives process-only approval/plan/stop proposal. Whole MCP started/local;
+no formal verdict/remediation-cycle failure/completion/acceptance/publication.
+
+
+## AMEND001 exact fixture exception approved
+
+Chuck Russell stated “approved continue”. Separate receipt pins the single
+synthetic fixture exception and unchanged parent criteria/checks/effects.
+Eight product paths/74 frozen products/19 metadata; implementation resumes.
+BUILD-UP06-001 remains pending actual transport catalog and integration proof.
+No whole acceptance/publication authority. Unrelated root files/board overlay
+remain preserved. Original controls, reports and failed attempts stay immutable.
+
+
+## UP-06 stable migration and aggregate candidate
+
+Product 72246581126d4c4d067cce927fee9406413c3ca6 implements exactly eight approved paths.
+Current full24 profile and exact accepted-baseline diagnostics/skip/warning
+comparisons, actual library integrity, full primary capture/role/field/assertion
+bindings and raw development attempts are archived losslessly. Construction
+fixture finding BUILD-UP06-001 is resolved; independent assessment remains
+pending. Whole feature stays started/local through fresh aggregate review.
+No whole acceptance/publication/Langfuse implementation authority inferred.
+
+
+## UP-06 independent authority stop and concrete AMEND002 proposal
+
+Original fresh whole-feature review of 92c6f6742df9be84b7046a89a830a6dcc3f67dc8 is BLOCKED.
+Canonical completed/review index plus retained immutable active README cannot
+pass the current board registry within eight-path scope. Original report/safe
+manifest/partial checks are preserved; no whole conformance/acceptance inferred.
+All24 builder checks met contracts:5901 versus5852 accepted baseline passes,
+exact14 skips/15 warnings/327 Ruff diagnostic-fix objects/4 Mypy column objects,
+unchanged actual libraries. AMEND002 proposes exactly four governance paths and
+three added checks, totaling12 paths/27 checks, with all runtime/package metadata
+frozen. No source/checker/policy change before exact new approval.
+
+
+## AMEND002 construction approval and functional requirement
+
+Chuck Russell stated “approved - make sure this thing is functional”.
+Separate receipt pins exactly four additional governance paths and all27 checks.
+Original lifecycle policy bytes are archived before prospective supersession;
+MCP82 source hashes/74 accepted products/all19 package metadata stay frozen.
+Real MCP cross-peer/Runtime/Chat examples plus synthetic actual completed and
+accepted transitions must work before fresh whole-feature independent review.
+Original BLOCKED report remains immutable; no whole acceptance/publication.
+
+
+## AMEND002 functional reconciliation and stable aggregate candidate
+
+30119a18f77a435cd40f84bfefb69c32ede54998 changes exactly four approved governance paths.
+Current54 board tests and actual26-task/79-record closeout+acceptance rehearsal
+pass; current49 MCP cross-peer/loader/example and full27 profile meet contracts.
+Exact inherited debt/skip/warnings and actual source/control/library integrity
+are archived; MCP82 source hashes/19 metadata remain unchanged. Original policy
+bytes and BLOCKED report stay historical immutable. Fresh whole-feature FULL
+independent review is required before completion; no acceptance/publication.
+
+
+## Whole-feature independent verification and completion proposal
+
+VAL-UP06-02 independently VERIFIED candidate c9a8c210eedd85ed9f9418b13c53ac079ebec000. All27 checks and full declared MCP roles/criteria were assessed. The controller proposes completed/local with a canonical review index and immutable SHA-pinned historical active backing. All MCP/governance source and controlling bytes remain unchanged. Whole maintainer acceptance and publication remain separate.

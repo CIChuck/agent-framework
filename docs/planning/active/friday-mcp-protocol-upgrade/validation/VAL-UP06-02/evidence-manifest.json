@@ -1,0 +1,3286 @@
+{
+  "reviewer": "/root/mcp_up06_amend2_full_validator",
+  "outcome": "VERIFIED",
+  "candidate": "c9a8c210eedd85ed9f9418b13c53ac079ebec000",
+  "sealed_at_utc": "2026-10-14T04:03:12.173533+00:00",
+  "entry_count": 655,
+  "entries": [
+    {
+      "path": "authority-scope-audit.json",
+      "bytes": 1509019,
+      "sha256": "c205a08d4ef0477cb6a70f95368b7e68a11f0f4aca044d57442bb27812b43983"
+    },
+    {
+      "path": "board-rehearsal-first-attempt.txt",
+      "bytes": 7148,
+      "sha256": "76ba279001fbbf801ad72652e3155fea9615a0c52234d779cc61b77800479e27"
+    },
+    {
+      "path": "board-rehearsal-result.json",
+      "bytes": 23802,
+      "sha256": "5b11f990f54c9987ab31aa580944539b7eaafbec0a8144a016474b6aad5f6e99"
+    },
+    {
+      "path": "board-rehearsal.txt",
+      "bytes": 7243,
+      "sha256": "be6e11ed82a635f91c5994fbd7718a83822673b95d56450b0c5b4ae5b20b9e76"
+    },
+    {
+      "path": "builder-archive-integrity.json",
+      "bytes": 72281,
+      "sha256": "99ca76958b8ab57b1dc4266281d287194472fcec79fc400b5f2410bc90026a12"
+    },
+    {
+      "path": "capture-integrity.json",
+      "bytes": 8890,
+      "sha256": "8d55e26d1b00c1e6898277fdb726718c1293c6b14d0cc732e68417638ae56e20"
+    },
+    {
+      "path": "captures/research-sources--modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts.txt",
+      "bytes": 98426,
+      "sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd"
+    },
+    {
+      "path": "captures/research-sources--specification--2026-07-28--basic--authorization.md.txt",
+      "bytes": 25173,
+      "sha256": "93fd383906873fedb80119a636b342e25b166ed3f9bee4fa8ae1b3bcb4c2b8f7"
+    },
+    {
+      "path": "captures/research-sources--specification--2026-07-28--basic--index.md.txt",
+      "bytes": 24001,
+      "sha256": "67a62de95bdc816ff96e8d5c69b0fc19237191f42805846e2ec8f8d7063e123e"
+    },
+    {
+      "path": "captures/research-sources--specification--2026-07-28--basic--patterns--mrtr.md.txt",
+      "bytes": 13364,
+      "sha256": "cfbb4bf592fd0678d9b7e3fdeb5ebc3156c106146e583f55851b3a3c026dc6c9"
+    },
+    {
+      "path": "captures/research-sources--specification--2026-07-28--basic--transports--stdio.md.txt",
+      "bytes": 7352,
+      "sha256": "a021917cb77ecd936143aced4fd243e12dd7b5f9a9344546742df97a381277f5"
+    },
+    {
+      "path": "captures/research-sources--specification--2026-07-28--basic--transports--streamable-http.md.txt",
+      "bytes": 30407,
+      "sha256": "93daa4bb4e189f0bd51d866950b3b8a3b4e7d0b1e0e6eede5ba1998641d0b955"
+    },
+    {
+      "path": "captures/research-sources--specification--2026-07-28--basic--versioning.md.txt",
+      "bytes": 8410,
+      "sha256": "43b48c19cbc330410beed44da8cf441e100a05652a3654f39eb331bb94f46402"
+    },
+    {
+      "path": "captures/research-sources--specification--2026-07-28--index.md.txt",
+      "bytes": 5817,
+      "sha256": "f8df03767e5cbdd4921ae569d1d69e8da9e455e1629fadf4d0613cd658dd632f"
+    },
+    {
+      "path": "captures/research-sources--specification--2026-07-28--server--discover.md.txt",
+      "bytes": 3835,
+      "sha256": "331489cd2984399cfe4828357fdd5a23e062ef40f69f4815499b055b51e2b82c"
+    },
+    {
+      "path": "captures/research-sources--specification--2026-07-28--server--tools.md.txt",
+      "bytes": 24314,
+      "sha256": "09be49a064940ef288b47f8df09e95e6e3dc087c3f94e466acd60ec66dff25c3"
+    },
+    {
+      "path": "captures/up02b--modelcontextprotocol.io--specification--2025-11-25--basic--index.md.txt",
+      "bytes": 11194,
+      "sha256": "a504a34039368f1cb715096d664f234ce7e1af4511e6ad3fd41e901d8040b97e"
+    },
+    {
+      "path": "captures/up02b--modelcontextprotocol.io--specification--2025-11-25--basic--lifecycle.md.txt",
+      "bytes": 9217,
+      "sha256": "8c030bf50b74e562d244916b16baab1bfcd86ae03736d4e5b6e24ed58a913af9"
+    },
+    {
+      "path": "captures/up02b--modelcontextprotocol.io--specification--2025-11-25--basic--security_best_practices.md.txt",
+      "bytes": 37327,
+      "sha256": "27dfdc9c8fb0f29750e52d64797077bc1ba01f25a0d584e3189954f47a2601c7"
+    },
+    {
+      "path": "captures/up02b--modelcontextprotocol.io--specification--2025-11-25--basic--transports.md.txt",
+      "bytes": 16191,
+      "sha256": "5a86d66ae0ab08f29460229f3b7f56d504388d1f106e21097575621717fc0e7a"
+    },
+    {
+      "path": "captures/up02b--modelcontextprotocol.io--specification--2025-11-25--basic--utilities--cancellation.md.txt",
+      "bytes": 2921,
+      "sha256": "a52208278358eebe5d91061d78122247c8e0b348701547386393aa7fbbabdf2e"
+    },
+    {
+      "path": "captures/up02b--modelcontextprotocol.io--specification--2025-11-25--server--tools.md.txt",
+      "bytes": 14061,
+      "sha256": "b372c48eea58744850f5684b796438f32643402533b24084d82b49b580721aff"
+    },
+    {
+      "path": "captures/up02b--modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md.txt",
+      "bytes": 4627,
+      "sha256": "5ad380cae6ee6f29f63210694de90400c2aa84efaddc1c8f3f286ea3a36664a3"
+    },
+    {
+      "path": "captures/up02b--raw.githubusercontent.com--modelcontextprotocol--modelcontextprotocol--271ecc9accafdd9b83a3c869fa67c22953b2af80--schema--2025-11-25--schema.ts.txt",
+      "bytes": 66671,
+      "sha256": "e74b56e73b2e37bdb595f74ba22e428ad7f07aa3519355ba661d681298ed38ac"
+    },
+    {
+      "path": "captures/up04--specification--2025-11-25--basic--utilities--tasks.md.txt",
+      "bytes": 35997,
+      "sha256": "c33da0b5b3912a4826d6e1d8a6a6fdcb3700d9af9f3e66dd4ee14d7440497fb6"
+    },
+    {
+      "path": "checks/actual-board-rehearsal/preflight.json",
+      "bytes": 38811,
+      "sha256": "e4d898e1ade81ec83162da1d4a623ef27b529676b9f9a0c7eb2a61127fe0e47a"
+    },
+    {
+      "path": "checks/actual-board-rehearsal/receipt.json",
+      "bytes": 2992,
+      "sha256": "f9a0113737cd195d13f02f625be49553e5009f4774999dcd9a0e5ebcc8c36d7d"
+    },
+    {
+      "path": "checks/actual-board-rehearsal/stderr",
+      "bytes": 648,
+      "sha256": "0344d580e196017dadd57611418b5e46b41029558fe2c4aa3213044214db05af"
+    },
+    {
+      "path": "checks/actual-board-rehearsal/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/actual-board-rehearsal-2/preflight.json",
+      "bytes": 38825,
+      "sha256": "96af5ae740cbc7fdd96d3349c218e0a7117dfd4542334aeb2fadcaff141c40b7"
+    },
+    {
+      "path": "checks/actual-board-rehearsal-2/receipt.json",
+      "bytes": 3006,
+      "sha256": "93d5ef9e8064ab7c27586fdf6fb23d66a1184e939c5fba3371d4676d853d561b"
+    },
+    {
+      "path": "checks/actual-board-rehearsal-2/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/actual-board-rehearsal-2/stdout",
+      "bytes": 291,
+      "sha256": "e682948aedad84c478016322818698d61ed145658fba8406a82b3a8d2ff3d9ae"
+    },
+    {
+      "path": "checks/aggregate-examples/preflight.json",
+      "bytes": 38793,
+      "sha256": "a68b722e174e9c3e9869d8476abe6aa3215dc00b9f28e277ab8b7c8850a34d08"
+    },
+    {
+      "path": "checks/aggregate-examples/receipt.json",
+      "bytes": 2974,
+      "sha256": "46dcfc28352499f36912248252c452ffb570e390d46abe1537aad346bde54646"
+    },
+    {
+      "path": "checks/aggregate-examples/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/aggregate-examples/stdout",
+      "bytes": 100,
+      "sha256": "658b09a26a17ca074d5488ddf23e7aecde2d8b2644af84eb81e1066215ea02e3"
+    },
+    {
+      "path": "checks/baseline-full-mypy/preflight.json",
+      "bytes": 38927,
+      "sha256": "6e029e48ee064989d63a1b9f78697b0b516455ab0154c702e79f24a201e0c4e9"
+    },
+    {
+      "path": "checks/baseline-full-mypy/receipt.json",
+      "bytes": 3241,
+      "sha256": "d4614b67dc00d3aa0ab736bd8d9b89b1be6e47f76f7576ad8f5008d82fb4cdb5"
+    },
+    {
+      "path": "checks/baseline-full-mypy/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/baseline-full-mypy/stdout",
+      "bytes": 632,
+      "sha256": "39c9db55fff7a615da749fd38808310db0d2940fedd7477a3383f11d74d3efb8"
+    },
+    {
+      "path": "checks/baseline-full-mypy-columns/preflight.json",
+      "bytes": 39031,
+      "sha256": "c7ef791b3700611f50ec4f62ee67229b4168ab326f11534528ee1ba62505f45d"
+    },
+    {
+      "path": "checks/baseline-full-mypy-columns/receipt.json",
+      "bytes": 3345,
+      "sha256": "729c30298a685bcf051552a818eedb1cb56cd11f9c830ea07ce82207367e8f05"
+    },
+    {
+      "path": "checks/baseline-full-mypy-columns/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/baseline-full-mypy-columns/stdout",
+      "bytes": 640,
+      "sha256": "9dfdc2539da028146c709e40c919ff2319dd2c108eecf3bbeecdc14335964566"
+    },
+    {
+      "path": "checks/baseline-root/preflight.json",
+      "bytes": 38735,
+      "sha256": "3d0e5a17a242c6fa9361cc8233c03999f623b26435eda9b886c92707bd30dfd5"
+    },
+    {
+      "path": "checks/baseline-root/receipt.json",
+      "bytes": 3049,
+      "sha256": "f2720bed847747aab05b640e859f24e6153ae2b353363989f24785cb00368975"
+    },
+    {
+      "path": "checks/baseline-root/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/baseline-root/stdout",
+      "bytes": 11198,
+      "sha256": "e08e55f30925e713b64932da0bbbb2bb246fd4bcb15f36c94467332c7745a3b5"
+    },
+    {
+      "path": "checks/baseline-root-ruff/preflight.json",
+      "bytes": 38773,
+      "sha256": "5c7cf78a9139ef778461ec639640f028e3fb801eb3e9859ef25e9243c3239ef5"
+    },
+    {
+      "path": "checks/baseline-root-ruff/receipt.json",
+      "bytes": 3087,
+      "sha256": "a579f8ee9d19fc5dacfaf8c4508e497963e42141254435e365df48ec99b4b8f7"
+    },
+    {
+      "path": "checks/baseline-root-ruff/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/baseline-root-ruff/stdout",
+      "bytes": 173534,
+      "sha256": "f0f5fce49db90d7fde912e4566c378e702709a67110b57e56d8fcdc23c887a20"
+    },
+    {
+      "path": "checks/board/preflight.json",
+      "bytes": 38656,
+      "sha256": "1637acab94c7edf1d458cbfbf9227486628886f5fdbe7ce8543a3e028921ef35"
+    },
+    {
+      "path": "checks/board/receipt.json",
+      "bytes": 2837,
+      "sha256": "f1b3f418fb8bad76745451abb8e9612f6a3a61e8cb3c42579db47ad8eb2840b5"
+    },
+    {
+      "path": "checks/board/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/board/stdout",
+      "bytes": 46,
+      "sha256": "f86479667ca73f712d72cac3ab0abf3e4e9e165dc7c65159298cfb8ce281a947"
+    },
+    {
+      "path": "checks/board-focused/preflight.json",
+      "bytes": 38746,
+      "sha256": "a895729a73381c8fe1281f12f415098c415a0838b980a11270c5ae3b6028d670"
+    },
+    {
+      "path": "checks/board-focused/receipt.json",
+      "bytes": 2927,
+      "sha256": "99bbbd6b5a7c6b0472f453a1ffc99cd6be2d2e9c45cd0e6a942c33f9397900fa"
+    },
+    {
+      "path": "checks/board-focused/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/board-focused/stdout",
+      "bytes": 100,
+      "sha256": "2f0c21c572b95e667ef1c69a4a924c9f7d7b6b86cb3a6baa286b5f3b15e8bf81"
+    },
+    {
+      "path": "checks/board-mypy/preflight.json",
+      "bytes": 38748,
+      "sha256": "750dd7b4253b174af062ac3aaab20e36ae4d2fd2357c0279b7ff1626bc74f69b"
+    },
+    {
+      "path": "checks/board-mypy/receipt.json",
+      "bytes": 2929,
+      "sha256": "2a12a02cb797ec80f11ff96c2274e25ff258987078aa09b3e459373ddd0d6ec2"
+    },
+    {
+      "path": "checks/board-mypy/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/board-mypy/stdout",
+      "bytes": 43,
+      "sha256": "f9b031e5c45aa702cd4fef028d465551cb20a2c4698e0913c7b00766b20ac4d8"
+    },
+    {
+      "path": "checks/board-ruff/preflight.json",
+      "bytes": 38737,
+      "sha256": "2138fc66a940a496a01cad292185963e71360ba057c9b9e355796268b940b1d2"
+    },
+    {
+      "path": "checks/board-ruff/receipt.json",
+      "bytes": 2918,
+      "sha256": "0f6dd0bd5efa40a107d6fef6660401212afd2bf5ff4962de04325051525af342"
+    },
+    {
+      "path": "checks/board-ruff/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/board-ruff/stdout",
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "checks/capture-reference-audit/preflight.json",
+      "bytes": 38818,
+      "sha256": "316fb919cba41417a17c86b30af02d369accd26905b59898e6a505d03083fd26"
+    },
+    {
+      "path": "checks/capture-reference-audit/receipt.json",
+      "bytes": 2999,
+      "sha256": "7cbe54c62c1f8f17b137c32ebf7082124f47010d8f6d9850734df2ad574ca70c"
+    },
+    {
+      "path": "checks/capture-reference-audit/stderr",
+      "bytes": 602,
+      "sha256": "4700509c0f8cf34b628c93b3af1ba56fbcacc8172f53639d217831007dbafc1f"
+    },
+    {
+      "path": "checks/capture-reference-audit/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/capture-reference-audit-2/preflight.json",
+      "bytes": 38832,
+      "sha256": "4e8ed9dd85e7345f798ec7201da597d2d3045371958eadb6636e90f68d30a2c6"
+    },
+    {
+      "path": "checks/capture-reference-audit-2/receipt.json",
+      "bytes": 3013,
+      "sha256": "9bb29a62b6091ee48c57b0470c3e9c5133768bf68c5347049df694c0f906a876"
+    },
+    {
+      "path": "checks/capture-reference-audit-2/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/capture-reference-audit-2/stdout",
+      "bytes": 328,
+      "sha256": "b56cece5b075e8b537326d3742106e269c3f85d84e3e8249e4dee1a5313a2185"
+    },
+    {
+      "path": "checks/core-runtime-chat-telemetry/preflight.json",
+      "bytes": 38965,
+      "sha256": "038293be8fd317f652a900bfb012d1b9fb7f2a0cb2b9b52c55d44321ce71297c"
+    },
+    {
+      "path": "checks/core-runtime-chat-telemetry/receipt.json",
+      "bytes": 3146,
+      "sha256": "da36895445ed811cce557409aaebf7394209500fad2521a4144eea9a33d94ecf"
+    },
+    {
+      "path": "checks/core-runtime-chat-telemetry/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/core-runtime-chat-telemetry/stdout",
+      "bytes": 2325,
+      "sha256": "9baa1fdce57df0f861aa67911f0e5c832f8fca110ccb05086b587ed98706c958"
+    },
+    {
+      "path": "checks/diagnostic-comparison/preflight.json",
+      "bytes": 38803,
+      "sha256": "67d69a08c3ea08319a14478a7e7579f8354c603fc51f8a09635c7639daac5a2d"
+    },
+    {
+      "path": "checks/diagnostic-comparison/receipt.json",
+      "bytes": 2984,
+      "sha256": "da8ef106eb72e93be76e33dc17aa9603447cd39d25f5ed3ce6c8510db13ca790"
+    },
+    {
+      "path": "checks/diagnostic-comparison/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/diagnostic-comparison/stdout",
+      "bytes": 299,
+      "sha256": "b8c216f62b5637af38a3b9301f444ea4edae165609e142a1f2a943ee9bfcae78"
+    },
+    {
+      "path": "checks/docs/preflight.json",
+      "bytes": 38646,
+      "sha256": "096dccc6b153a99d7ff8f91721396fb19a2b06be3903cbfe6da277aad19f91bb"
+    },
+    {
+      "path": "checks/docs/receipt.json",
+      "bytes": 2827,
+      "sha256": "d19fabc96f97c9e224e221fd19338f059c6c841af1a0fe5738dda95cd0b38300"
+    },
+    {
+      "path": "checks/docs/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/docs/stdout",
+      "bytes": 70,
+      "sha256": "6c0966d2639712eb92e5e707bf82be4991e21d9d28ce0ebf50ad85f0875f70f6"
+    },
+    {
+      "path": "checks/documented-configs/preflight.json",
+      "bytes": 38821,
+      "sha256": "dbd246272fe634ef6062fda7ec6e5060bf8d0b1d20dfe9469dfdea5a4eae7432"
+    },
+    {
+      "path": "checks/documented-configs/receipt.json",
+      "bytes": 3002,
+      "sha256": "44e767c1e282ceee705e8c2e3f18abf57c5e4efbb71494539b8cfd2a3516ca2b"
+    },
+    {
+      "path": "checks/documented-configs/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/documented-configs/stdout",
+      "bytes": 114,
+      "sha256": "40823253fdc17d1c23ca7d4a4c1120f9b096c0b75f6073dd0b7d365a34f60d59"
+    },
+    {
+      "path": "checks/full-mypy/preflight.json",
+      "bytes": 38835,
+      "sha256": "00039a543cebfd587f55a5b5b8ca053693e806ec3514f4705ef0c70d5b635a3b"
+    },
+    {
+      "path": "checks/full-mypy/receipt.json",
+      "bytes": 3016,
+      "sha256": "8d29c215880a5371ad7a74a1ee5e425e00d839307878e50a55d5d314d1d0a49a"
+    },
+    {
+      "path": "checks/full-mypy/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/full-mypy/stdout",
+      "bytes": 632,
+      "sha256": "39c9db55fff7a615da749fd38808310db0d2940fedd7477a3383f11d74d3efb8"
+    },
+    {
+      "path": "checks/full-mypy-columns/preflight.json",
+      "bytes": 38939,
+      "sha256": "ad387c860eaca622b80fbca963a079bdbf696ab74feb1f1b041b1b1ce53d0969"
+    },
+    {
+      "path": "checks/full-mypy-columns/receipt.json",
+      "bytes": 3120,
+      "sha256": "7720fe7c98ca1af342b1e2e654457ca13aac0be0d9086b1847895878a3c5881d"
+    },
+    {
+      "path": "checks/full-mypy-columns/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/full-mypy-columns/stdout",
+      "bytes": 640,
+      "sha256": "9dfdc2539da028146c709e40c919ff2319dd2c108eecf3bbeecdc14335964566"
+    },
+    {
+      "path": "checks/mcp/preflight.json",
+      "bytes": 38662,
+      "sha256": "ce979e081b0edb4adff17ea6a26d779ffc199bbf3a209f828811cfed2bd94f14"
+    },
+    {
+      "path": "checks/mcp/receipt.json",
+      "bytes": 2843,
+      "sha256": "e34e301ab14e181df3a8a4a071fa8dc2f02d5a18f64377909f190bee9dc87de7"
+    },
+    {
+      "path": "checks/mcp/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/mcp/stdout",
+      "bytes": 3072,
+      "sha256": "b76e1bc08214e2c25929384605607bc147e56d3729c9296057ab3ff70d0f0ad5"
+    },
+    {
+      "path": "checks/mcp-mypy/preflight.json",
+      "bytes": 38690,
+      "sha256": "bdd7217848d2fb810bfc1f9e150733782fde89d8d838c33c1a9f1edb36210fb1"
+    },
+    {
+      "path": "checks/mcp-mypy/receipt.json",
+      "bytes": 2871,
+      "sha256": "55f20f14cb5367701f56982a05210c12dbb623ae130a3f30a551badb5bf31417"
+    },
+    {
+      "path": "checks/mcp-mypy/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/mcp-mypy/stdout",
+      "bytes": 44,
+      "sha256": "44323f12010ebbb5daa4cefef4cc4308006fe3b26ad3ced614a993eb79a8b535"
+    },
+    {
+      "path": "checks/narrow-mypy/preflight.json",
+      "bytes": 39097,
+      "sha256": "0339becd11f8b8f8874e5cb98f5b7949390a87a3799a3571fdab381cf0aff746"
+    },
+    {
+      "path": "checks/narrow-mypy/receipt.json",
+      "bytes": 3278,
+      "sha256": "b1a2e1948c0d9dfcbd51ef84b273fdca978b9c5e1e7232043c3c857644328f6a"
+    },
+    {
+      "path": "checks/narrow-mypy/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/narrow-mypy/stdout",
+      "bytes": 43,
+      "sha256": "050c52a2b0c61e8b681ef5c485e0bc03340b8d55148e0acef27d744c8be42033"
+    },
+    {
+      "path": "checks/next/preflight.json",
+      "bytes": 38645,
+      "sha256": "cbb31b8a0da9eb0b25b5945112405ff4cad8477765593d7852fefb95be77cd61"
+    },
+    {
+      "path": "checks/next/receipt.json",
+      "bytes": 2826,
+      "sha256": "84dc992ce7b8ad69b9380b86fc4dd664d2a520e567c3ed879616f60ececd8907"
+    },
+    {
+      "path": "checks/next/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/next/stdout",
+      "bytes": 182,
+      "sha256": "e623d465144a709150fcf3df4de0f19126133a995574a2825cddfc0c64398abd"
+    },
+    {
+      "path": "checks/original-clients/preflight.json",
+      "bytes": 38760,
+      "sha256": "85a904d7d48169a65cf1d305320f673ee1795ad82b55e53a292822558a7c9ebe"
+    },
+    {
+      "path": "checks/original-clients/receipt.json",
+      "bytes": 2941,
+      "sha256": "9599ba0ff862f436f53bd42d189223ecdaa8dfad24958d80f7cafe64fa2e4bfa"
+    },
+    {
+      "path": "checks/original-clients/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/original-clients/stdout",
+      "bytes": 1702,
+      "sha256": "71289e6a38461f1d4a136b9c3167cfbfc6949db8eb3375e25436e9affffb6d6b"
+    },
+    {
+      "path": "checks/record-semantic-ledger/preflight.json",
+      "bytes": 38819,
+      "sha256": "8bc9da62bdb79f1dddd8dda00b5d85e98dcda43d7b870f1ba13e47808341b91b"
+    },
+    {
+      "path": "checks/record-semantic-ledger/receipt.json",
+      "bytes": 3000,
+      "sha256": "19baa9bc4f7d87f5260fc04e4c6c1769018988b87d2d1bbbaffcc848ac4eb1d7"
+    },
+    {
+      "path": "checks/record-semantic-ledger/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/record-semantic-ledger/stdout",
+      "bytes": 82,
+      "sha256": "13e5cc4cbfb5a066ab3b439d2b0836200e6eb88ae902860e5a3568e4a4b55774"
+    },
+    {
+      "path": "checks/render/preflight.json",
+      "bytes": 38676,
+      "sha256": "5c1a0aa606ec75f10a878108ada123b82e02fe92f621164cc34a06bd4d10c74f"
+    },
+    {
+      "path": "checks/render/receipt.json",
+      "bytes": 2857,
+      "sha256": "4f8fbcd71bcc0e24661c11b4d1e4b78e5fe918bb49c2db4586b4b2512e0c94d8"
+    },
+    {
+      "path": "checks/render/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/render/stdout",
+      "bytes": 30,
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33"
+    },
+    {
+      "path": "checks/root/preflight.json",
+      "bytes": 38643,
+      "sha256": "02394a4f7be7d32becec9ad374903098ad512fc65024dc246d7350ac5268cb06"
+    },
+    {
+      "path": "checks/root/receipt.json",
+      "bytes": 2824,
+      "sha256": "1d77077134da34083959a5d7ba74d969b594dacbc216374336a33a37d0f389cc"
+    },
+    {
+      "path": "checks/root/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/root/stdout",
+      "bytes": 11242,
+      "sha256": "5ae005f42794657daae071720f77f493fad0a051f7d89a7045be2fdfb19649a2"
+    },
+    {
+      "path": "checks/root-ruff/preflight.json",
+      "bytes": 38681,
+      "sha256": "0c3546aee88d5ba3f1c43b81d1fa7949cd8aa0e9bc5e30b25c7ca45da9686376"
+    },
+    {
+      "path": "checks/root-ruff/receipt.json",
+      "bytes": 2862,
+      "sha256": "2b30e401fe85ad64e0fe043a0c8f45317a340be988b65e5436b161437d973681"
+    },
+    {
+      "path": "checks/root-ruff/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/root-ruff/stdout",
+      "bytes": 170591,
+      "sha256": "0c93bf5f06b18289815373ab38c786bcb506cd92b455e5bc79c5c04a1854b68b"
+    },
+    {
+      "path": "checks/ruff/preflight.json",
+      "bytes": 42092,
+      "sha256": "9f7e7be3790eda43c57bb501f7709d1ec18006b7343cfb14bfd1fb092fa24c37"
+    },
+    {
+      "path": "checks/ruff/receipt.json",
+      "bytes": 6273,
+      "sha256": "a342d0309fe2e887bcce496a893749f5eabfe8960195d8a98e026b373bf558ea"
+    },
+    {
+      "path": "checks/ruff/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/ruff/stdout",
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "checks/server-focused/preflight.json",
+      "bytes": 39241,
+      "sha256": "ea933eac1a4c4a213ed32181b2589bb8c189984b007826d5e81534816bb79f32"
+    },
+    {
+      "path": "checks/server-focused/receipt.json",
+      "bytes": 3422,
+      "sha256": "0e61960aa88806e207652c312dd9b710eed05fe39be91f6386101306b5300514"
+    },
+    {
+      "path": "checks/server-focused/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/server-focused/stdout",
+      "bytes": 1302,
+      "sha256": "4355797f162c89782c2eea543f708c03c831bb4333417a4deab78c1b601d5333"
+    },
+    {
+      "path": "checks/server-http/preflight.json",
+      "bytes": 38953,
+      "sha256": "bb33cbe5cfc5fda25e00a19c2d5b4a98fed1f3950451c4c8b2a815b72ca4b64b"
+    },
+    {
+      "path": "checks/server-http/receipt.json",
+      "bytes": 3134,
+      "sha256": "1cc7a15e184c1efd74a28dbf7d6b831f37a9dfbcaf3a132f21020d404565f08a"
+    },
+    {
+      "path": "checks/server-http/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/server-http/stdout",
+      "bytes": 821,
+      "sha256": "5484de120656949bb0d14759556934d49f82f0bc7a58f71a9bcfbc903d5e377a"
+    },
+    {
+      "path": "checks/show/preflight.json",
+      "bytes": 38680,
+      "sha256": "48edd2cae791cb3014b2edf8a03c981ed2247622e10ba3cecd586715649efecf"
+    },
+    {
+      "path": "checks/show/receipt.json",
+      "bytes": 2861,
+      "sha256": "006e1f2b2f587bf571f6c4f0c9bf53e1d88f84cd710f6918aae4deedc87879b0"
+    },
+    {
+      "path": "checks/show/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/show/stdout",
+      "bytes": 3384,
+      "sha256": "546ebc15ee17d4321ec2f36df4186c8033322527c0c7638abae02e9e0e74ad6e"
+    },
+    {
+      "path": "checks/whitespace/preflight.json",
+      "bytes": 38683,
+      "sha256": "80127e2a1d7db3d88904b0315235d51b0f7682a19022b413d80c337691bc2d30"
+    },
+    {
+      "path": "checks/whitespace/receipt.json",
+      "bytes": 2864,
+      "sha256": "0377a657a9b6c98126166cdf1273772f78cee3d222f92e50a71de4f780a7fdaa"
+    },
+    {
+      "path": "checks/whitespace/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/whitespace/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/whitespace-uncommitted/preflight.json",
+      "bytes": 38707,
+      "sha256": "0c78591720dbb30a37452fde71930528c42ba5d0729c7ffffa0775618fd9726b"
+    },
+    {
+      "path": "checks/whitespace-uncommitted/receipt.json",
+      "bytes": 2888,
+      "sha256": "aa9cec7ce9e3d94f40ae71e3c4fd7e732cdfa35d4a1d5382a6fcf437918319d0"
+    },
+    {
+      "path": "checks/whitespace-uncommitted/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/whitespace-uncommitted/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "command-ledger.json",
+      "bytes": 87130,
+      "sha256": "8de2aea6876ba91276624161e34d896b86ee1b2be79910ef90b8a60708878ff7"
+    },
+    {
+      "path": "compare-checks.txt",
+      "bytes": 3340,
+      "sha256": "335ee188a20030c515883657b3b1bb5126d3e37588bc8ab4c072482df51fd5be"
+    },
+    {
+      "path": "criterion-dispositions.json",
+      "bytes": 22643,
+      "sha256": "ba42ec36c2fc4bba7db6d8a80c2fc54d4a5a94ed1aa56059477d228d00f1fd34"
+    },
+    {
+      "path": "current-reference-audit.json",
+      "bytes": 328383,
+      "sha256": "c2d4bbe89492d49643f977b4d987585aa81ea42b432866e9d0e09aa7075aa271"
+    },
+    {
+      "path": "dependency-diff-complete.json",
+      "bytes": 80360,
+      "sha256": "cc84c7dbf61d87cdacbad31b10b40169f4fd8faf830ff0a486db851801664e11"
+    },
+    {
+      "path": "failed-probes.json",
+      "bytes": 614,
+      "sha256": "3778622acc3dfae40c6a557351e0a97f495d9ed86cff9aae4a352d308163c78b"
+    },
+    {
+      "path": "final-source-control-integrity.json",
+      "bytes": 230635,
+      "sha256": "dffc0dea9436fc7d3545cea8ebfefebe6dd48b0317b99e0780764d5ee1b3e680"
+    },
+    {
+      "path": "frozen-runner.txt",
+      "bytes": 4305,
+      "sha256": "846bbb42e7c44ed901efe10bc080576c08427b98c349c4a8a652bae110b09877"
+    },
+    {
+      "path": "full-product-diff.txt",
+      "bytes": 917899,
+      "sha256": "dbb70754a2c4c13d78bc2b5a516a0d30e23c6c16675e80756172fc22299e7480"
+    },
+    {
+      "path": "governance-current-navigation.json",
+      "bytes": 41567,
+      "sha256": "7862e0f2723e7b00c6144213aa59c134a1721d99ed50a62610262b40c9acc334"
+    },
+    {
+      "path": "guard-source.txt",
+      "bytes": 1407,
+      "sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8"
+    },
+    {
+      "path": "history/UP02A-report.txt",
+      "bytes": 20007,
+      "sha256": "ab45d0066927c6d19b842beeb6be9f2b806f942332a823c725fcad4d00020954"
+    },
+    {
+      "path": "history/UP02B-report.txt",
+      "bytes": 16986,
+      "sha256": "3d459bbb406a874ec4df0c3172312ca85af42eae2f275eef16f5bfd0ef04ae63"
+    },
+    {
+      "path": "history/UP03-report.txt",
+      "bytes": 18738,
+      "sha256": "58e116dbafaf9696bce02c5c0b5d83ca6a588d4d0a14a56aebfc361a35145196"
+    },
+    {
+      "path": "history/UP04-report.txt",
+      "bytes": 15615,
+      "sha256": "db8a4fa27eb677806933f7919817cfbcb0ba978cce35a1587a6dcdf7f034fe27"
+    },
+    {
+      "path": "history/UP05-report.txt",
+      "bytes": 19773,
+      "sha256": "e6d05f3eaa6518fc6efac1826a939d8d73f99440699108d4739e4c9aa7a97cd3"
+    },
+    {
+      "path": "independent-clause-ledger.json",
+      "bytes": 2656162,
+      "sha256": "0376e0da891725c97c98a4bfba1c8e315cde14f302de7dd0fbee2c364c085e3d"
+    },
+    {
+      "path": "independent-complete-normative-inventory.json",
+      "bytes": 376570,
+      "sha256": "c33b3695d087d1859717f22163692a08cbf3013341ad78b6403ccace9535f414"
+    },
+    {
+      "path": "independent-field-ledger.json",
+      "bytes": 3650744,
+      "sha256": "b11fffdf236639f4555e0de73898a5747e8c10ae4ee8d1d7233a5feb3e5be015"
+    },
+    {
+      "path": "independent-primary-mandatory-inventory.json",
+      "bytes": 152946,
+      "sha256": "a01dac8789e2cc3ae7ac5799c6328d7272660ffda2a64cfbf737779e8557e5f4"
+    },
+    {
+      "path": "inputs/AGENTS.md.txt",
+      "bytes": 11738,
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "inputs/README.md.txt",
+      "bytes": 13885,
+      "sha256": "d70b55e5dd9eea3dd91cafbaec249a72c157bc2e1e0b027df8806e029bd6c478"
+    },
+    {
+      "path": "inputs/docs/guides/10-configuration.md.txt",
+      "bytes": 118402,
+      "sha256": "5085a99de6fb7b9417a5eb7c3d19983070eba2ed14052d4e5c085410699056c0"
+    },
+    {
+      "path": "inputs/docs/guides/17-mcp-client.md.txt",
+      "bytes": 16085,
+      "sha256": "373d5ec99655f7d9b3bbb2a2e03e702ab8cdc0d4f13ca6de4c6892c6e6ff36d4"
+    },
+    {
+      "path": "inputs/docs/guides/18-mcp-server.md.txt",
+      "bytes": 12273,
+      "sha256": "2da4b65182f1371c6d3d38567d6fbaba9db0087057e30e6f2ae4b8c15e1b9ded"
+    },
+    {
+      "path": "inputs/docs/guides/19-mcp-migration.md.txt",
+      "bytes": 10460,
+      "sha256": "369982a1243779c5d2e4cb61bc53a8bc301ef9bdb92bc64debd76a2e4054e27e"
+    },
+    {
+      "path": "inputs/docs/guides/README.md.txt",
+      "bytes": 2879,
+      "sha256": "53b312ed5ecce8dd76452b7b750579790b5cd8c5d6fd791f1f4ec88614abdcc7"
+    },
+    {
+      "path": "inputs/docs/planning/README.md.txt",
+      "bytes": 6003,
+      "sha256": "aa3d437961123dbada780dd1ad26336673ac949dc6fac0d8347a7512e4a973fd"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/README.md.txt",
+      "bytes": 9502,
+      "sha256": "af1c1e6c9cc5a532a0d99cdab0674c449b7d8e689fbc9fed6f492c5d005d459b"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json.txt",
+      "bytes": 2839,
+      "sha256": "b77ef183c7ed1ffdf8a465cebfd293f1f9bdb97bc3deed6e20c4b4dd08a31184"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json.txt",
+      "bytes": 3571,
+      "sha256": "58744b5ec72aa8d29b95523e7dd9c154525d056b188a4a77ebad35a54dff6cb7"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json.txt",
+      "bytes": 7742,
+      "sha256": "a2ec13178c03889ec6d7db146851639f97f99c39d2e5273e83266988a2bd93d7"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-04.json.txt",
+      "bytes": 6396,
+      "sha256": "41993227986f2d1aa6f802b2faa56bbdb3def62610f11f7deda727869a17df1b"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json.txt",
+      "bytes": 14559,
+      "sha256": "63dc11f8607027caaa29a23d0f8d96660bfa6a652d7830c92273ce0b7e9f71a9"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/amendments/AMEND-MCP-UP-005-001-cacheable-results.md.txt",
+      "bytes": 4348,
+      "sha256": "b7433b385c1b82b3531f2eac440f5139451314c7d6b7bba6438297e255add4ae"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/amendments/AMEND-MCP-UP-005-002-modern-schema-and-version-errors.md.txt",
+      "bytes": 6615,
+      "sha256": "71a67fc299ef3f4e22b24c6ce301aebbadff0b8b48441e87737b07bf8758399d"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-006.json.txt",
+      "bytes": 665,
+      "sha256": "63f37b40cfab64f68c36c7754aa0055663e0a77a43ca4179a5fe0df568e5aab5"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05-amendment-001.json.txt",
+      "bytes": 764,
+      "sha256": "e95c71d355aa2b87332fab0ab8aa5b9f72605abe89ee9bceafe3a3c661cec728"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05-amendment-002.json.txt",
+      "bytes": 961,
+      "sha256": "a73d568ffc4c167f6c3ee434467ec1fc1dc7069b0906a34c9263c0af15da00fc"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05.json.txt",
+      "bytes": 596,
+      "sha256": "c8f4cc703cc0b433afd5860b315bfd61b85e6df39892ddd0ffc366ccc881db06"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06-amendment-001.json.txt",
+      "bytes": 2083,
+      "sha256": "4e639d0dca35745f13459a531f8b7c99c63e1eb781af3a2b720a3c88d48c1f2e"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06.json.txt",
+      "bytes": 758,
+      "sha256": "7b4985913d8c490f6cd8843975a42f03821cc1490fe3e6a8cc990f53c58afa53"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-002.json.txt",
+      "bytes": 5119,
+      "sha256": "da46b64374f63ddb937d1073baae241d6832264de5fa34e4f07ef47ad758a785"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-003.json.txt",
+      "bytes": 8561,
+      "sha256": "573fab0c6db1b85816b0627af5b680cd7bd0a69538943a7e5d30e32511d444a6"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-004.json.txt",
+      "bytes": 17244,
+      "sha256": "9836b2169582da7e90e6cd79bbb14104a09dbb8a66a8c8fd7a6580bfc8b3d422"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-005.json.txt",
+      "bytes": 17237,
+      "sha256": "1df83146e2974d1bcddd2de001fee92f04752abd6c63a3f4bc90ab7665bb8979"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-006-R1.json.txt",
+      "bytes": 42044,
+      "sha256": "4c9ad27e4469ad5c714a59e2883bc77f79ec7902cf65fc98011112781c553555"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-006.json.txt",
+      "bytes": 50914,
+      "sha256": "a6cbf66abdf8ff63a2e34f307ad4e277c89b933b49d9196afe8ba80706b2a907"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-02B.json.txt",
+      "bytes": 9871,
+      "sha256": "563969f358940e8af38433a64d4f13420658b9de619a337e4b307940d43e7ec1"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-03.json.txt",
+      "bytes": 21750,
+      "sha256": "acafd7e66b9125e6ff651c9b95a786eb5f17f8cce62a7327d4ccdb6c5ebe0037"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-04.json.txt",
+      "bytes": 18987,
+      "sha256": "a5799eb167c5ede63f9cc00a5e578bab2194d2e1f21f88e18338fd637b782329"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-05-amendment-001.json.txt",
+      "bytes": 32337,
+      "sha256": "9c657566cafb54e402a0a3b845408a0cd18f8190f528f94835acc81e4ea2554e"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-05-amendment-002.json.txt",
+      "bytes": 33860,
+      "sha256": "0d1ccb9a5a68fa8b3be25c728cb4de7b08d8cd9bf62265a36caee30fb062d13f"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-05.json.txt",
+      "bytes": 31156,
+      "sha256": "772ef191d7d842e670f2158a51458fb3d405b748121cda23aec1ee274c370b1a"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-001.json.txt",
+      "bytes": 71320,
+      "sha256": "921906ac33ebc11a36bae21eddfbbb5f9d595da2b9cdacc50f9bb777d514c79a"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-002.json.txt",
+      "bytes": 86961,
+      "sha256": "4653561c9a49c0fcb95a186aa02d645505052cc76e48b4d05eec42d571af91e6"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06.json.txt",
+      "bytes": 69487,
+      "sha256": "5fca5955d867e0807203647a735e9b69fff0f3927f3a2a4b916b1dbed5b050fa"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/authority-manifest.json.txt",
+      "bytes": 8292,
+      "sha256": "c202d2d8a3fe83e29187a2273faee7b743471bc0d528f1de8b06ca1b3b0775b2"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md.txt",
+      "bytes": 6972,
+      "sha256": "042dc7dac9093d11b5c120a417d89e49136ed577464aa1a4b175389ee1ebb571"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/conformance-matrix.md.txt",
+      "bytes": 5762,
+      "sha256": "e5c204aa63644eb8b798cd734a2a427bf9d1a7a2f48a2d468f15178846eff6b0"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-001-fixture-transport-catalog.md.txt",
+      "bytes": 3771,
+      "sha256": "39eafa308f45e71a18421bb671c7864bd8a81f964eaeb0b06883a2cd87204399"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-002-historical-authority-backing.md.txt",
+      "bytes": 6825,
+      "sha256": "7583efeaa848fc77fb8284f52aa37801b16dfa92367988d03bce40285d702762"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-005-modern-tools-server.md.txt",
+      "bytes": 9849,
+      "sha256": "4a26209cc060ad82444407c89e9046a0e9ee14942c58c54c1178438dcf753c7a"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md.txt",
+      "bytes": 9596,
+      "sha256": "cc622b88ac9c7a2448f646198bf4e240405a47d9e26ddeaea6d2da15123ce2b7"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/directives/REM-MCP-UP-006-R1-standard-header-byte-grammar.md.txt",
+      "bytes": 8853,
+      "sha256": "f32bb30e68bd8a10361c614fad3ade7a94d9389cf2dcd97e04de02403b60a250"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/directives/REM-MCP-UP-006-server-boundary-and-stdio-ownership.md.txt",
+      "bytes": 21617,
+      "sha256": "b824e83681d847795020a8d2c1bac112877d67caa02f18d9029af7d35ed1442f"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/execution/up05/prospective-modern-schema-replan.json.txt",
+      "bytes": 857275,
+      "sha256": "1ba20b8ca818059b62aaeb1a906d36067ee15c4032ea518ab4c63a9cbd824853"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/execution/up05-planning/baseline-snapshot.json.txt",
+      "bytes": 24284,
+      "sha256": "cbc273a73387c555e84afed07e07b9319546f31681caf08e91c4e3caacd77c4d"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/execution/up05-planning/criterion-plan.json.txt",
+      "bytes": 4457,
+      "sha256": "716677a5ef375c93b033365de6427dc6ccbaca568d1dc2b686c57e699e08725b"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/execution/up05-planning/sdk-client-options.json.txt",
+      "bytes": 680,
+      "sha256": "75f10df515531fa6f7f051261434ae66f7eea56581908e290833289a67668364"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/execution/up05-planning/selected-server-schema-references.json.txt",
+      "bytes": 11004,
+      "sha256": "a2620bb96c6d67b79926ab8c8e203443f2e5d1d9081f16660f6774c8a3303766"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/execution/up05-planning/source-capture-integrity.json.txt",
+      "bytes": 9267,
+      "sha256": "4c9fc8efbbdfce8cb869740b66f712fd8bc0fe63f6dc849e36164c79bebeb931"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2-authority/prior-lifecycle-policy.md.gz.txt",
+      "bytes": 2609,
+      "sha256": "c33353dddf28fe9cb91d0b674ac23e1b81164e9dc704451d4f0bee783cb43e9f"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-fixture-stop/proposed-fixture.patch.txt",
+      "bytes": 436,
+      "sha256": "07afe17c42400303f609c1c5c8a827ea6e65b28a4bf0ff8e6784b2030b80a8a1"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-planning/accepted-baseline.json.txt",
+      "bytes": 41315,
+      "sha256": "92da2bea9aac575632392abcbd19a73748ea38ceb465435c7e6eeb335325d262"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-planning/aggregate-branch-inventory.json.txt",
+      "bytes": 9108,
+      "sha256": "980eea6e5841de7350def5e62ac53d6769022b43710badd9f3bcab617e2f421e"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-planning/prospective-criterion-test-plan.json.txt",
+      "bytes": 12475,
+      "sha256": "d501749cd2d702f493d541018ba2f321ca18367ce7140326056539116214a17c"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/proposals/REM-MCP-UP-006-authority-manifest.json.txt",
+      "bytes": 50395,
+      "sha256": "218ad1f74220768a25e6568d31a1f71fd5d55babf33bb47588dd6d0c685bc37b"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-05-amendment-001-authority-manifest.json.txt",
+      "bytes": 13290,
+      "sha256": "cffe4d8b240d01c25a5208c98e9d3536da62b7ca17211ff90af2f9733096fd5e"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-05-amendment-002-authority-manifest.json.txt",
+      "bytes": 18122,
+      "sha256": "6c005ed4ccbf63c51f4f155b637455f2abc550128713e1413c2a2a5d9975daf3"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-05-authority-manifest.json.txt",
+      "bytes": 30701,
+      "sha256": "70f1d339aee14c72058fd198aabcb05b57ea3e24870aaeacb72323a1c8ff822c"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-amendment-001.json.txt",
+      "bytes": 32059,
+      "sha256": "f7632cf258d52ef1e1d3662c4e6cf795f398988a196643b5abc14152eea4c797"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-amendment-002.json.txt",
+      "bytes": 18810,
+      "sha256": "819be525709a76dce37681ef4bf6e581f418dfd764dd360276285d744da23705"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/protocol-contract.md.txt",
+      "bytes": 9803,
+      "sha256": "339390e41c4643c82d8421dd5eddffa619c123d345b7db84559e05e9b4c3d573"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json.txt",
+      "bytes": 6565,
+      "sha256": "6664e309b175da791930e1f026052b884e964dec0cdf200c185dd3bb1de99ad7"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/manifest.json.txt",
+      "bytes": 4933,
+      "sha256": "1f99847e978b50036c2b1b00ba08873ebd899b4f0e9d0d6680ccba035bd3d4b6"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up04/manifest.json.txt",
+      "bytes": 903,
+      "sha256": "3689fcc707ef6c833e46aba1e792182ed2284e19f46f3a9bf5523ee52f5c5603"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/research.md.txt",
+      "bytes": 7284,
+      "sha256": "3bedeed491b63fe4690263df9018e79ca4baf843da387b3861239d37beaf771b"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/tactical-plan.md.txt",
+      "bytes": 7207,
+      "sha256": "9e8bd734e695411698833a3285bb43a760a4d5d5812d919ec9b08f774adf7405"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/up03-integration-contract.md.txt",
+      "bytes": 13385,
+      "sha256": "3137b831da2475d3043d0e98f6787c016f3574e281a7a231864015ffcaeb366b"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/up04-results-refresh-contract.md.txt",
+      "bytes": 10683,
+      "sha256": "dc70e082544c61b01091a0a678ac57f9270b2a68eb7d11bd1601fce97ab68365"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/up05-server-contract.md.txt",
+      "bytes": 13084,
+      "sha256": "bc7e46522155aad5711b3df022a6bb05ab14795c9f3cfe977c1575bfffcbf2b5"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/up06-aggregate-contract.md.txt",
+      "bytes": 9586,
+      "sha256": "aafdf496b8a48a1e2dc75dd4f10a1914bb0a0e989f09c8eba395d45c0576be27"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-02/artifacts/report.md.gz.txt",
+      "bytes": 8474,
+      "sha256": "409a358dd240f2803d8461b75d0ff647b3ddb45c349eccc72099970dd425d994"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/artifacts/report.md.gz.txt",
+      "bytes": 7398,
+      "sha256": "0f90a9ab227e78405fd97ee4da77c3726971b59ab797d3aeea60cfb9bc568180"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-02/artifacts/report.md.gz.txt",
+      "bytes": 7640,
+      "sha256": "12dce95875853f952bc161f65597db6431a4c9d4e3472135ebf871b8402c1cfc"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-03/report.md.txt",
+      "bytes": 15615,
+      "sha256": "db8a4fa27eb677806933f7919817cfbcb0ba978cce35a1587a6dcdf7f034fe27"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-01/report.md.txt",
+      "bytes": 27448,
+      "sha256": "f582f81ca59b6e67d704d51dcbf3888b4d6aa086c4f342ddaa9417c1a10d58b7"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-01/stored-manifest.json.txt",
+      "bytes": 177735,
+      "sha256": "4ef67bf315153e54c09c66be94fab244d0f4d5c36c1845e94b2f6b278a89c3c3"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-02/report.md.txt",
+      "bytes": 13611,
+      "sha256": "7c38b79f1f0438b3fd59cb51efafecf6386cb336b028898a9957ef457918d0d9"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-02/stored-manifest.json.txt",
+      "bytes": 148431,
+      "sha256": "5a7df67b813be772d1357f2e628ca2b81aa3f851f13bccd6294ef79fefc6b305"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md.txt",
+      "bytes": 19773,
+      "sha256": "e6d05f3eaa6518fc6efac1826a939d8d73f99440699108d4739e4c9aa7a97cd3"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md.txt",
+      "bytes": 12968,
+      "sha256": "d945e78e7029777d07e0b7254163f9f9bb3ab03116d5556bf13123c274673179"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/validation-request-UP-06-amendment-002.json.txt",
+      "bytes": 80446,
+      "sha256": "3635e793d5bc8928dfba803b95bcfd0d6270ef19864e7b0b827068c0e34511d2"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/verification-profile-REM-MCP-UP-006.json.txt",
+      "bytes": 30343,
+      "sha256": "fb305dbfa8be99d5a4111b7af54433ebc52aebdd9deebfa75bb813e5f00d1d20"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/verification-profile-UP-05.json.txt",
+      "bytes": 12966,
+      "sha256": "d3b20928655cc9587eae4f5711586756bb17b8eff8b95b30f6f1af788565d1df"
+    },
+    {
+      "path": "inputs/docs/planning/active/friday-mcp-protocol-upgrade/verification-profile-UP-06.json.txt",
+      "bytes": 16530,
+      "sha256": "1edb5f2043ceed9120c077476b673f2f02a698b1e56a25a5e6a70f5ae6a81f8f"
+    },
+    {
+      "path": "inputs/docs/planning/board.schema.json.txt",
+      "bytes": 4433,
+      "sha256": "c0c7f22bc20bb40b2dfbdb066f7658f5de7518c2ece5e29870ec3e68f22eecbc"
+    },
+    {
+      "path": "inputs/docs/planning/board.yaml.txt",
+      "bytes": 98540,
+      "sha256": "d20a51081572792a92c31ecaafe4e655d4fc8f80e593abea2b24a523f7fe2db6"
+    },
+    {
+      "path": "inputs/docs/reference/policies/development-task-lifecycle.md.txt",
+      "bytes": 9016,
+      "sha256": "7087fb62381cc8a46128bc6745476d1aa08e1d577b4c73340760657ae834fe2a"
+    },
+    {
+      "path": "inputs/docs/reference/policies/independent-validation-policy.md.txt",
+      "bytes": 11956,
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "inputs/docs/reference/policies/repository-engineering-policy.md.txt",
+      "bytes": 8006,
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "inputs/packages/friday-chat/README.md.txt",
+      "bytes": 10272,
+      "sha256": "d09e601fac26d5e1f6dee2a2add053af08bdfaa96c78930ca4c7afccde469388"
+    },
+    {
+      "path": "inputs/packages/friday-chat/src/friday_chat/config.py.txt",
+      "bytes": 36680,
+      "sha256": "734559482073fa66b2197604136d4fde805fc8f9e4ce7078f33df57c4a3c52d1"
+    },
+    {
+      "path": "inputs/packages/friday-chat/src/friday_chat/config_templates/cli-config.example.yaml.txt",
+      "bytes": 3676,
+      "sha256": "4d513ca9e00fddc76f9cf037afe93b496d379b233c875e0c013d2d61ca953c69"
+    },
+    {
+      "path": "inputs/packages/friday-chat/src/friday_chat/config_templates/config.example.yaml.txt",
+      "bytes": 29996,
+      "sha256": "6fecbd23bb6b15dbe68d7bf4dbb8dfe14a431f74c68efa5379a545b13671c110"
+    },
+    {
+      "path": "inputs/packages/friday-chat/src/friday_chat/tools/mcp.py.txt",
+      "bytes": 7519,
+      "sha256": "3ac24fc406d84aa5d49b91bf79c2160dcdf4b982161a08d4d6557d08cf332aa7"
+    },
+    {
+      "path": "inputs/packages/friday-chat/tests_chat/test_mcp_chat_bridge.py.txt",
+      "bytes": 13843,
+      "sha256": "e3f834037ee55a123d2b2ba2c9f77e10d99837cb7923111d3703e9bb79d6e4e3"
+    },
+    {
+      "path": "inputs/packages/friday-chat/tests_chat/test_mcp_config_compatibility.py.txt",
+      "bytes": 9296,
+      "sha256": "4fa6555dc1144c08042ffa6a1f4b019d89cb2933118bbf8dd9f860b9c153197d"
+    },
+    {
+      "path": "inputs/packages/friday-chat/tests_chat/test_mcp_execution_security.py.txt",
+      "bytes": 21798,
+      "sha256": "c0863818cb4c44e8f08a4a85b53b587708c6e6c7f4795ee57bdb3449c3f2ca8f"
+    },
+    {
+      "path": "inputs/packages/friday-chat/tests_chat/test_mcp_http_integration.py.txt",
+      "bytes": 16349,
+      "sha256": "5e088ac4d859349c1d849b5df9357ce37c300d81d2cb64cbc8fdb82e2e5941ac"
+    },
+    {
+      "path": "inputs/packages/friday-core/src/friday_core/interfaces/tools.py.txt",
+      "bytes": 7713,
+      "sha256": "3bd33e99093bc3f544790ee8c236d622c0b4d9488b79a3cb65eb7c79292e6ff6"
+    },
+    {
+      "path": "inputs/packages/friday-core/src/friday_core/mcp.py.txt",
+      "bytes": 15939,
+      "sha256": "66419c6c67894d7f4b051384ff4bfaef1f45e693aa7ff2efef684900e46b8ace"
+    },
+    {
+      "path": "inputs/packages/friday-core/src/friday_core/telemetry.py.txt",
+      "bytes": 522,
+      "sha256": "92c85a318c6b52d8073dc370e1b0d9f62063e54d187805d4712e6e84ac8e97ec"
+    },
+    {
+      "path": "inputs/packages/friday-core/tests_core/test_mcp_contracts.py.txt",
+      "bytes": 18454,
+      "sha256": "c9f7746b5384e7f5a513b13b5d071f4de81a0a14957c4e5b4945514ef2d74e56"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/README.md.txt",
+      "bytes": 19508,
+      "sha256": "3fe8cee8a9bb43a8d438b9cd4245be4fd18b350d8b9ed95bb98eb1e6a5e078a0"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/pyproject.toml.txt",
+      "bytes": 1870,
+      "sha256": "665eb50f54d283f23532c919db662fc64a376e0bf8155fd6ff6052913efd9a45"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/__init__.py.txt",
+      "bytes": 2533,
+      "sha256": "0402d3f6014d2b295b001f345eb23775838316d293c2a3f3a464353324077f7a"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/client/__init__.py.txt",
+      "bytes": 1417,
+      "sha256": "ce910cb5e76e7a8ccb16df2ce7774ae83e5ed031d789a457b4cc10d573c87610"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/client/adapter.py.txt",
+      "bytes": 12921,
+      "sha256": "7a7a184e7b4e1943a01869c6744e49b74717cb67348c5ac2fdeef7d839f06ff5"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/client/base.py.txt",
+      "bytes": 29952,
+      "sha256": "968b783d101ae96fd84a41d508fe027846cfe3aab62a498f8eef8490f173ebdc"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/client/catalog.py.txt",
+      "bytes": 2807,
+      "sha256": "8a91147fa7f7a6f0cfa8771f5a23f2feac778a51f34eea5821bce2b881dad5ac"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/client/http.py.txt",
+      "bytes": 32743,
+      "sha256": "44e3905f17057f6a6bee632f8757da28923a7bc334968297601cb77d17b5b231"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/client/http_policy.py.txt",
+      "bytes": 15053,
+      "sha256": "624d9eaa4f9e38d17ccafc71dbfcfcb2bacf3497c67cb52c8478c9b9315a17b1"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/client/http_protocol.py.txt",
+      "bytes": 10248,
+      "sha256": "a94e13a5470ce3af3ec67b365c131ebcaea31d946850b84b881a1fb1a471330f"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/client/manager.py.txt",
+      "bytes": 10769,
+      "sha256": "d613e3cd2c677549085628a333408d36e7e1f56ac4aee7eb464ae974076b3cc7"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/client/protocol.py.txt",
+      "bytes": 41026,
+      "sha256": "7cdce94e2fa0db1b0098906b133534b7e69d3e313d310fd7e46c495d7ccad37f"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/client/stdio.py.txt",
+      "bytes": 14979,
+      "sha256": "5914eecad7c83c121888002ed77d0378157a41acdef213c056ab73b83e6d79eb"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/config.py.txt",
+      "bytes": 5171,
+      "sha256": "7a86bb7dad1f75b0bfa7c2d8101b1366f02d6da6e1c9e0d7d1b36ce42b73cc16"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/protocols.py.txt",
+      "bytes": 4922,
+      "sha256": "00fc02ccd4d694e30fafbee72cbb0944294d275961dc0631967612f30892d394"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/__init__.py.txt",
+      "bytes": 1375,
+      "sha256": "1cc8890e67abbdf500b38de3c62bc95aea5e66ad7207f35a186cb2dd4fdc32b7"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/agent_mode.py.txt",
+      "bytes": 6662,
+      "sha256": "b59bc4bc1e390889b764d199ecc83ed263362a4d550edd396998ada6320589b0"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/base.py.txt",
+      "bytes": 9607,
+      "sha256": "b2829bdd1873e5c92d44007b4f0bbd5c7f07e2e8502385f13cc50de8e6d72490"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/http.py.txt",
+      "bytes": 12228,
+      "sha256": "f38ba480740a2c6bdb74d30a150ecb8bc00e52d6ffbbba70c71da021963deb5a"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/http_policy.py.txt",
+      "bytes": 11973,
+      "sha256": "3ccba7ebfa47aa03429177afa2ce84646699daf7a0b3f638724174c12373c1ce"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/modern.py.txt",
+      "bytes": 14190,
+      "sha256": "3d76f4f18da43c46edfc1037f497249c2f59d41b3c61834a77e703c11981e052"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py.txt",
+      "bytes": 14543,
+      "sha256": "4469f7d8b80b930d1fae963f2f6f7af14ce6bcdac54ed272164b72aca16eed3a"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/protocol.py.txt",
+      "bytes": 28349,
+      "sha256": "431fc1dd937167e7a4fd4340f3626985c34158bd3306a044b0a0b445a6b00b90"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/registry.py.txt",
+      "bytes": 2347,
+      "sha256": "1bf1902aefcf63263acc194690dd7811fbfa6dc047bfaf3b93282ca51262cd38"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/sse.py.txt",
+      "bytes": 7014,
+      "sha256": "99971d8c0640bd2046e64c25a79de9719158342e4f68b84edfe5cae41c5228e6"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/stdio.py.txt",
+      "bytes": 3330,
+      "sha256": "fb91fe17317615f7b6b57477fa1619836aa3d37b02b53f33ffebe2c9b8f6b9b8"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/server/tools_mode.py.txt",
+      "bytes": 5192,
+      "sha256": "102b3dc523dd66905e82ac043d7cc3a110c4e8a1fd8fce8c4b385e832577fae5"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/src/friday_mcp/utils/schema.py.txt",
+      "bytes": 2286,
+      "sha256": "7eee15a2d57274fdfba8f32ea53cf9228df593e252ad47a22cb69dca90924a46"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/client/test_adapter.py.txt",
+      "bytes": 10239,
+      "sha256": "12b30dbc1c15023101bf7bed67408a54c6b596e099d6ae8c6258aeae85a0ab8d"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/client/test_execution.py.txt",
+      "bytes": 2872,
+      "sha256": "68101693092ac77e83cffec358d6085419e89913bad6254ae71c0150f435f3e3"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/client/test_http_interop.py.txt",
+      "bytes": 10425,
+      "sha256": "8ff9a66c6eec61d52b3510471782bec42cffc329713a6968efaf625c4ac54c07"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py.txt",
+      "bytes": 46885,
+      "sha256": "625f015518a52968568d5b2655f4904cd7f174f13407d0bc09f96be294711797"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/client/test_http_protocol.py.txt",
+      "bytes": 13429,
+      "sha256": "0ec3c23af14eae8b6bccf433101a18e31beb45545ac4bfac7d61605b03e2d6c7"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/client/test_lifecycle.py.txt",
+      "bytes": 16247,
+      "sha256": "f3921e04d2ece03af6d26053fa7b2d52425868085211984e0abef0d1aab48d3d"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/client/test_manager_profiles.py.txt",
+      "bytes": 4416,
+      "sha256": "ed4e93f52b7b744852e5fcd436577deeec23c81da868e06e5652eb0dcb6f8245"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/client/test_modern_protocol.py.txt",
+      "bytes": 34913,
+      "sha256": "f40a06fbfdcf5f30c14195044cd910ca84300fd42f7fdb402fe2f4be1ba99b55"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/client/test_result_refresh.py.txt",
+      "bytes": 65637,
+      "sha256": "e80cdb158aab6f1e74c1ac35d9c2855d689005aace81b9062d888ae9d6d5ea4c"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/client/test_result_refresh_interop.py.txt",
+      "bytes": 3951,
+      "sha256": "3e6f587cef831cbfe51efb4f599be304a7f662fec66ede7dde312386e40e4c49"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/client/test_stdio_interop.py.txt",
+      "bytes": 6539,
+      "sha256": "fc88f5d12b1f3a3dad682afd3e4cfb9762c1baa35cffeabfa7fcacf77cd3f418"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py.txt",
+      "bytes": 3655,
+      "sha256": "faaf068e2b83eaa6a5248b760bfd243a60a46b5506826cf67668de68393e3899"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py.txt",
+      "bytes": 7547,
+      "sha256": "bab26932a97bedbecca9b4d6e80b678d0c93390c2e566ec7bb95fd3374b3b61e"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py.txt",
+      "bytes": 4444,
+      "sha256": "8898696a9dd2068844389c54655e4d0cbfdbf155a99d7a6e0ce36010642d1175"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py.txt",
+      "bytes": 3214,
+      "sha256": "f2cfb56dba97bab9dffe5a4a1cb0f27f4c1faf4773a2e5057a0adff7b251a8ec"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py.txt",
+      "bytes": 1802,
+      "sha256": "ebf33b8779d88dabc68bd5a53126797dcabef26a4b7f021d87d5d861349a59dd"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py.txt",
+      "bytes": 3047,
+      "sha256": "546898b92d067786cd1362389a3235e968265220ad53ab1e17a8c9c2ce8d372d"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py.txt",
+      "bytes": 34853,
+      "sha256": "3b3d81eede1fdd8b16c138ab55f355c71748f586f19b5baebb30d3662e0b22bf"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py.txt",
+      "bytes": 17476,
+      "sha256": "9975a4f81e1a7119e8451ffea1075782d806458ae3af41ea3f9a049da29ab124"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/server/test_registry.py.txt",
+      "bytes": 4222,
+      "sha256": "2c4f44cd26b4ff15001d6e4685db0f41f4aa23b824c0f0061522b55de9745c93"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/server/test_server_interop.py.txt",
+      "bytes": 10086,
+      "sha256": "27dd165a0435f08817440f233474eb2cf3a9152c5cbe2133ae5f7d2a1fb14c8d"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py.txt",
+      "bytes": 25122,
+      "sha256": "4b6537dc31b2099f84ae10bb194108195d499dfd33f617454f6d9d58d887c08c"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/server/test_server_security.py.txt",
+      "bytes": 10070,
+      "sha256": "d07217f8358fd2171c11f250eb97baafad7f68aa63900610647233224f9aade4"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/server/test_streamable_http.py.txt",
+      "bytes": 28209,
+      "sha256": "294fec1d2d0b5af65418ed53b0bb1685b9eb4bff251c82f85cac6248b4a21fad"
+    },
+    {
+      "path": "inputs/packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py.txt",
+      "bytes": 27328,
+      "sha256": "daf66ab4ab01c73f683500b4c3596f35390bed572ae81014ea778ec342e35818"
+    },
+    {
+      "path": "inputs/packages/friday-runtime/README.md.txt",
+      "bytes": 2439,
+      "sha256": "d77889ced295841b991e162caec0a085788c6ad298532f0e5c7f3f3794d7823b"
+    },
+    {
+      "path": "inputs/packages/friday-runtime/src/friday_runtime/config.py.txt",
+      "bytes": 90443,
+      "sha256": "cc248bb8b8b4e713deede41d07f0729b699f341f7f05a38304e46b004ed72d0d"
+    },
+    {
+      "path": "inputs/packages/friday-runtime/src/friday_runtime/mcp_clients.py.txt",
+      "bytes": 4244,
+      "sha256": "99f202242b79ba263437f119cce1a918e3fe4f0c086a00517480915747812c95"
+    },
+    {
+      "path": "inputs/packages/friday-runtime/src/friday_runtime/mcp_loading.py.txt",
+      "bytes": 32106,
+      "sha256": "35a9728803d7bb774f5017ce58e938e61ddc4b37895864cea31fc24e07167c0d"
+    },
+    {
+      "path": "inputs/packages/friday-runtime/src/friday_runtime/mcp_registration.py.txt",
+      "bytes": 22141,
+      "sha256": "f18bfe62e06419bbcbe5cf61088c825f0fc3d171552f75d726034bfb31f88d80"
+    },
+    {
+      "path": "inputs/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py.txt",
+      "bytes": 37426,
+      "sha256": "e6789c8f7067952676ef2449b009ee3422781693bcf20a589db800ef4ce2b5d6"
+    },
+    {
+      "path": "inputs/packages/friday-runtime/tests_runtime/test_mcp_loading.py.txt",
+      "bytes": 42478,
+      "sha256": "27f46abff635f1bfc288d65afd1dff3564d3bc686a9d218455724599095e8bd6"
+    },
+    {
+      "path": "inputs/packages/friday-runtime/tests_runtime/test_mcp_registration.py.txt",
+      "bytes": 19146,
+      "sha256": "7590b9b2565563e37a2ad2acd24ecbfd53242225832d6d8149fdd8f4d07bdfa2"
+    },
+    {
+      "path": "inputs/packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py.txt",
+      "bytes": 15883,
+      "sha256": "38f053a03e329b6e1dbfc5e8db69500b4e01236991708eb93f9b378de072951e"
+    },
+    {
+      "path": "inputs/scripts/friday-dev-board.py.txt",
+      "bytes": 39138,
+      "sha256": "bca4051d664b5d69437c34347f15436bc45ab96ad781bfbaa740196cf5a6792c"
+    },
+    {
+      "path": "inputs/tests/integration/test_development_board.py.txt",
+      "bytes": 30828,
+      "sha256": "1930ffe38cd38fbaa2643cc02a9ef96e0886355b6670972174693111ab399598"
+    },
+    {
+      "path": "inputs/uv.lock.txt",
+      "bytes": 691518,
+      "sha256": "5efcfafd68f3ed94a64ee943e6379fa57e603518ff2d215bb87710e25dc06759"
+    },
+    {
+      "path": "integrity-chronology.json",
+      "bytes": 3553,
+      "sha256": "dfd6654d794e4736d9a37de5acc3a8afe3d7633686f00d92ef2e117443aaa150"
+    },
+    {
+      "path": "libraries-review002-after.json",
+      "bytes": 2607627,
+      "sha256": "98770d2300cfeebbb9783aa879efcd64bbab727d2851623fdcaf3fb6d02592c0"
+    },
+    {
+      "path": "libraries-review002-before.json",
+      "bytes": 2607628,
+      "sha256": "5e047b7ddfdc02fa0a6c19d24dfca3cbb73ae09ae28e379350b8e38614060125"
+    },
+    {
+      "path": "mcp-current-navigation.json",
+      "bytes": 11431464,
+      "sha256": "846b2b8bb48918b20f2bda9002807eb702f8f3c3baa90a2a08c4dc26d6646c2b"
+    },
+    {
+      "path": "mypy-columns-comparison.json",
+      "bytes": 1741,
+      "sha256": "7ad8d3fc69d539e7109915cc03184aca669a2072cb4137198a73cc6cd738d8d5"
+    },
+    {
+      "path": "mypy-comparison.json",
+      "bytes": 1653,
+      "sha256": "578faa4d4f0e53a6335e9bcd8a248e31a042afc0e9bb028db7a1f1a447600e25"
+    },
+    {
+      "path": "original-library-helper.txt",
+      "bytes": 1399,
+      "sha256": "b61c8cccef6d9b3de5e6492fee1934ffaa487e5c3bf3652091264ef9b0e0f2ac"
+    },
+    {
+      "path": "reconciled-clause-inputs.json",
+      "bytes": 2333932,
+      "sha256": "c89ea6d33b270d1d15094cbf5df6d0ab7f5dbab24511e8da8c23f83ad1950827"
+    },
+    {
+      "path": "reconciled-field-inputs.json",
+      "bytes": 2070009,
+      "sha256": "7c116e3875999a3186313d290d797a5066c008199f262cf6afff170992ac8077"
+    },
+    {
+      "path": "reconciled-interface-inputs.json",
+      "bytes": 915606,
+      "sha256": "535dd874f3659068983a1391ea6af50982f54d43fcd8717b5033b16f5d70c2a7"
+    },
+    {
+      "path": "reference-audit-first-attempt.txt",
+      "bytes": 6733,
+      "sha256": "029f137de1a833ec74653cae2a1783882f791374a44d489497cad1335a2526ff"
+    },
+    {
+      "path": "reference-audit-result.json",
+      "bytes": 327,
+      "sha256": "ed25396507eba8adcecc1efb79298471cacb1412e3039707f7c6e15d790bd1e2"
+    },
+    {
+      "path": "reference-audit.txt",
+      "bytes": 6826,
+      "sha256": "29c91fbbe473ff454782302c77498729d17f91263d47ba8d014218b75c62fce6"
+    },
+    {
+      "path": "reference-views/packages/friday-chat/tests_chat/test_mcp_config_compatibility.py--test_both_real_yaml_loaders_preserve_http_reference.txt",
+      "bytes": 2101,
+      "sha256": "a9e58673fb8cc43ec829046d4c9bf52102fa7d15d1ace68909bed0b84e58b8d6"
+    },
+    {
+      "path": "reference-views/packages/friday-chat/tests_chat/test_mcp_config_compatibility.py--test_chat_keeps_remote_fields_literal_and_does_not_expand_disabled_url.txt",
+      "bytes": 978,
+      "sha256": "652b7d6fad16c9bd3cf46ffc2ad08071b3f2e4ad4a3c52a642ad426783a82bab"
+    },
+    {
+      "path": "reference-views/packages/friday-chat/tests_chat/test_mcp_config_compatibility.py--test_chat_rejects_credential_interpolation_before_environment_access.txt",
+      "bytes": 1272,
+      "sha256": "6d36f00865ef6ec02bd0d842c459b19fe5af1d4ab454610dc24e8049a820c09a"
+    },
+    {
+      "path": "reference-views/packages/friday-chat/tests_chat/test_mcp_config_compatibility.py--test_chat_validates_remote_shape_before_any_interpolation.txt",
+      "bytes": 1469,
+      "sha256": "785043500a527926272e362f39d575b92c603f1b630c22afe581ce475c112cf3"
+    },
+    {
+      "path": "reference-views/packages/friday-chat/tests_chat/test_mcp_http_integration.py--test_real_chat_factory_required_failure_retains_public_owner.txt",
+      "bytes": 1150,
+      "sha256": "69cd595211c970871f3730f914a30a0a15eb58d4a59cece7144c7d292680fb93"
+    },
+    {
+      "path": "reference-views/packages/friday-chat/tests_chat/test_mcp_http_integration.py--test_real_chat_factory_safe_result_dispositions_never_continue_or_fetch.txt",
+      "bytes": 2949,
+      "sha256": "5a60c8757af1648af07ac83a6156b9fe0b9d4e8482b082de4a8853ff575b3603"
+    },
+    {
+      "path": "reference-views/packages/friday-chat/tests_chat/test_mcp_http_integration.py--test_real_chat_malicious_remote_output_rejected_and_not_ingested.txt",
+      "bytes": 1814,
+      "sha256": "2a8a9376e1aa5d3feaf50ed7dd266115e4a28fa07289a783000e3c0dbf59b076"
+    },
+    {
+      "path": "reference-views/packages/friday-chat/tests_chat/test_mcp_http_integration.py--test_real_chat_optional_failure_and_disabled_observations.txt",
+      "bytes": 814,
+      "sha256": "c5a1a1cccbc680c1a324c51caf21760b2cb296fb6fba4d2e2e6ffef987569450"
+    },
+    {
+      "path": "reference-views/packages/friday-chat/tests_chat/test_mcp_http_integration.py--test_real_chat_yaml_factory_selection_call_quarantine_transcript_memory.txt",
+      "bytes": 4339,
+      "sha256": "c75713ec6807ba52db206b625902f6877686ee6e0e63a9860185b7bacc85f177"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/http.py--__call__.txt",
+      "bytes": 6333,
+      "sha256": "e48196b1debb27c4be21716c1e63adde250e0cbd34d9366ac7f5d16c5b45aa0f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/http.py--_send.txt",
+      "bytes": 618,
+      "sha256": "e8a9589371848708676a75af71a87daf0caa13bf95859ea1e40f538211aee36b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/http.py--create_app.txt",
+      "bytes": 521,
+      "sha256": "ccf8eca2e9a561531cbbf6ab0605b821a251f4f1be907bd84e47e56f5c8ec165"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/http.py--serve.txt",
+      "bytes": 1803,
+      "sha256": "f391d33c6db9204d7159fcd98ce21fd489f650978c96eaf9c307f6010e89ac90"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/http_policy.py--HTTPServerPolicy.txt",
+      "bytes": 5044,
+      "sha256": "fa5b3e6df256e172639d0a1cd2d5cb7c5e14c854ffc2fe7031c4fd8f40bf6114"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/http_policy.py--decode_header.txt",
+      "bytes": 662,
+      "sha256": "b3c7ad40af85bbbbffcbb00a020107f2cdfa180367404dc59b5cb61d6b2f969c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/http_policy.py--validate.txt",
+      "bytes": 2862,
+      "sha256": "08512e5804057af399acd18b5a5ababd074b608bc8d69dd96f3f4846db363573"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/http_policy.py--validate_media_headers.txt",
+      "bytes": 1760,
+      "sha256": "269bb87e22da3235b317ee050a24bb9e74554ef80c68988be54b24185062d667"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/http_policy.py--validate_rpc_headers.txt",
+      "bytes": 2729,
+      "sha256": "ef99aa2885f4657e65fbced5054d2a0557f2fbc9f4b15fb604bfeaf13a08af1a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern.py--_execute.txt",
+      "bytes": 2398,
+      "sha256": "11ef1cee9d24ef6e0522add56c1c54ce8d24ba5d1be170b93d32ff8e88a537dc"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern.py--_page.txt",
+      "bytes": 375,
+      "sha256": "8729f27961dfce9a196a51a3c8fde4583eacd0f764c011866cc17a7fa7df66d4"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern.py--_result.txt",
+      "bytes": 218,
+      "sha256": "fd57041c0a41426b14b376f73f90433f7c1715248799878a1e205b08c6c3d240"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern.py--_stage.txt",
+      "bytes": 2949,
+      "sha256": "52a1dc98195ac6c1f7f45c86bd193f2a0fc0e28b67668e8a9e96cc6e701e6049"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern.py--dispatch.txt",
+      "bytes": 2444,
+      "sha256": "f65798a553344372e62fbc2974744781fbe7d97186e3524bd540a8892855d3c9"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern.py--replace_tools.txt",
+      "bytes": 109,
+      "sha256": "8d8ca80be2c840291e59fd93af333c3573f11306b8d2d32d31feffc0475072da"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern.py--run_owned.txt",
+      "bytes": 1401,
+      "sha256": "7afdc6af7cd4633afb4e9dc3a4bcb72a315c9d942a0eaaf2c7742482d620605c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern.py--start.txt",
+      "bytes": 149,
+      "sha256": "f798022a24f13e8e56d239583823f0b9fa2f7499e3eadd94a78c4cfb493af8a1"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern.py--stop.txt",
+      "bytes": 381,
+      "sha256": "1bc71c9555ad666f704fa938da638ffaf3860f7a4638b4f141a551faaccc8619"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--ModernStdioMCPServer.txt",
+      "bytes": 13450,
+      "sha256": "29c5c562c9c449b28ba14e9a631b1d893a1d23436a8b8142f3b2cd02d08c873e"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--_Connection.txt",
+      "bytes": 549,
+      "sha256": "8256f7442b2a05ca5669744bdfb922adb5aa5da7a2b3a2c5dad2ab90881d1074"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--_clear.txt",
+      "bytes": 542,
+      "sha256": "b23b1679210eb5333cf689183877a4e8e112a394b0e467e1656e6326cb729d89"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--_serve_connection.txt",
+      "bytes": 8325,
+      "sha256": "7b8583d9e2a8e88bd63dc3282b403636644c9103bae214e43b0a2022c53198db"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--_stop_connection.txt",
+      "bytes": 2352,
+      "sha256": "089d107a8bc0325b275c78b5a099b9dc8816f68fd356a545b2a6a28c77e3383c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--dispatch.txt",
+      "bytes": 534,
+      "sha256": "a6d6c6c5b5058fda9626176170a7764fe2658e069c28efca0c6a1505e2aa8d64"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--line.txt",
+      "bytes": 1410,
+      "sha256": "60305a7e3030fb9e205882920b1720dbead3bb2c51dfa6ef5196d141f4bf1039"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--reject.txt",
+      "bytes": 1023,
+      "sha256": "194949b26a85ee9a55fe7c2e7df736908acd693d15841e6632cd7c001f36b06f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--serve.txt",
+      "bytes": 1218,
+      "sha256": "75b49507a7436d194add9cdae5b902e47e37633b9cb2bf11583368dd90e64c7b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--serving_done.txt",
+      "bytes": 160,
+      "sha256": "21f5eb89766cfd33391241f4578fc3d6a30e78b627ced378703abb566d18ee78"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--start.txt",
+      "bytes": 164,
+      "sha256": "de024a90f41cfc1feec53157ebe6e8bcf18742c169cf687c11b8b931a9d48429"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--terminate.txt",
+      "bytes": 170,
+      "sha256": "6fe0a6a7efc5f89fcabd4422b23c03a7d9f5defc5089449994d5171b8f56db83"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/modern_stdio.py--write_response.txt",
+      "bytes": 1288,
+      "sha256": "18ba8c1bfa62e83ebc902c717f401bf9d7e0abc99419e730a9ed8ce10db1be98"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--RegisteredTool.txt",
+      "bytes": 2803,
+      "sha256": "621a9c24b20ad232a196d46af19c13ae1aaa2135e8211c6105420fcc272c0b63"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--ServerLimits.txt",
+      "bytes": 1636,
+      "sha256": "02cd7118b217d28bf9e8999002a01c5c00d0c9353a48d70f5d0454c35a100179"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--ServerRequest.txt",
+      "bytes": 1666,
+      "sha256": "07aa9d12dbab16c2e4fff38a2648a33e561a4b642ac44ac83527e5a9384bf4e5"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--ServerWireError.txt",
+      "bytes": 1976,
+      "sha256": "ebaeac96f2c2436a0843bb6837e05927f0ff07cc2b7b188e637a846acc89f5e7"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--ToolCallResult.txt",
+      "bytes": 3135,
+      "sha256": "28ecbd035845274918c42f3851bac4ad7ec6033abd41fa874d45f5c063713588"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--_trace_formats.txt",
+      "bytes": 3106,
+      "sha256": "4a97c8a0444cf83432336c3c8762d9f40eca7bb613dc75ed71abb1396085f9bd"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--bounded_json.txt",
+      "bytes": 1889,
+      "sha256": "5da9615a12be7c922915535de0633df1f955be699b2204824b359562bb1552ad"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--decode.txt",
+      "bytes": 602,
+      "sha256": "9a4388aa8c7c6d9385c64ae92b0b7b8a71b75e11147ffa8981ec1b4b8788694c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--identifier.txt",
+      "bytes": 314,
+      "sha256": "fcca85605dc3678a77be46b5d03a91af37070e2064e871a3c6f643bb080883d9"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--implementation.txt",
+      "bytes": 1002,
+      "sha256": "d27441fb8772d61ab71bf530be1b21b3dbe425573cd9554c6c64a37a2a54a8e3"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--metadata.txt",
+      "bytes": 2166,
+      "sha256": "c75bd15fba4c56d8955711ec7f262d37b11e9f9c0fb17094e46a29d8329c029d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--notification_envelope.txt",
+      "bytes": 434,
+      "sha256": "304a4ad3992e82650d98e627aac37f3a7ba195f561a7b40da5ab80bd59b80b93"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--parameter_id.txt",
+      "bytes": 197,
+      "sha256": "320b6b86d81da9d05470287261ccedb7a41def22ac59a6daa237908ab26df2e1"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--safe_error_id.txt",
+      "bytes": 371,
+      "sha256": "24e260cd76f8f8185f7df8409bf33dd992ab6204d4ab36d730a8d0397224563c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--schema_valid.txt",
+      "bytes": 724,
+      "sha256": "1bfb1796ee41002dee05a4ddee448b741d1840a14574b14c50ac5a3671cea021"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/protocol.py--validate_schema.txt",
+      "bytes": 2434,
+      "sha256": "737b391f6cbe9ad2fd460560a9b64f2d22660a089a201eb322200159b35c817e"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/registry.py--_handler.txt",
+      "bytes": 517,
+      "sha256": "012b4a528d66ecd60975d77e400381c09faad23f615aeca66ea57b9697bbc47c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/src/friday_mcp/server/registry.py--configure_modern_tools_mode.txt",
+      "bytes": 1360,
+      "sha256": "489be6a042a16fb07b0f07e299da398c84b6be28435ccdb02274529f5f746b95"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_interop.py--test_independent_2025_http_session_text_and_unsupported_request.txt",
+      "bytes": 855,
+      "sha256": "5f02996a327b2c7eedf6c06c4744ceddfb79e404643f353f84b34cbc3f929b50"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_interop.py--test_official_sdk_230_modern_real_http_headers_results_and_owned_cleanup.txt",
+      "bytes": 1002,
+      "sha256": "acd218c3c4db56279208409b81216cf50d810545c93b058f68019bc5c7eca8fc"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_interop.py--test_real_2025_session_expiry_reinitializes_but_first_call_still_fails.txt",
+      "bytes": 649,
+      "sha256": "fea30acfaef45aa94a5eed01c299f929dc8a93eccff5edba93119e9755254f90"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_interop.py--test_real_http_ambiguous_drop_executes_once_without_retry.txt",
+      "bytes": 544,
+      "sha256": "f5ab2e11edba0c786b6411deeb1221f67dbb91444e925204932adf2d819c89d9"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_interop.py--test_real_http_cancel_slow_request_closes_owners_without_replay.txt",
+      "bytes": 995,
+      "sha256": "beaff5ac2a06ac873d32145679d2cd4d57721e7269abb5fc36ce0534ebc832b6"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_interop.py--test_real_tls_wrong_hostname_fails_with_partial_streams_reaped.txt",
+      "bytes": 452,
+      "sha256": "a8d9d9c37beb539de6d93bfc158596853c7e11072e8f45cfb4f10c41883d217e"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_interop.py--test_real_verified_tls_hostname_and_owned_cleanup.txt",
+      "bytes": 638,
+      "sha256": "0ed77cef41c5de20c51900d9efc17d5ac376b62a8186a645d01498e8fde6f024"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_2025_session_404_reinitializes_once_without_replaying_mutation.txt",
+      "bytes": 804,
+      "sha256": "438e63b99ef0a7b9225696f08c2f42d0439bf95141e6d5e57986e0ef43abe262"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_bad_http_response_never_replays_or_leaks_peer_payload.txt",
+      "bytes": 2043,
+      "sha256": "be473afcc256a42b49ddad8d7f56c483fff177ba54486d170e4dbf8b691af965"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_call_output_schema_snapshot_survives_concurrent_catalog_invalidation.txt",
+      "bytes": 990,
+      "sha256": "6bcb0519b381b5c47ad20657af238637cb19f4e6d2ecebd0295bcf2b34c27919"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_cancellation_resistant_response_retains_capacity_then_reaps.txt",
+      "bytes": 939,
+      "sha256": "9ffaa4307881ec2592c04f975dc405da94349ae97da86dc655f6c0f872a62cc1"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_catalog_pages_fail_without_partial_or_stale_schemas.txt",
+      "bytes": 1171,
+      "sha256": "34a22d3ffbfd91048f6d52d1c1b1067e6544bf9b718e63935fa4235908f4c3dc"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_cleanup_resistant_owner_remains_observable_and_retryable.txt",
+      "bytes": 804,
+      "sha256": "f3e2e14273fec7db62908fec0b0933abb747decfd81183eb43314de2aa2e277c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_concurrent_streams_have_independent_owners_and_cancellation.txt",
+      "bytes": 1240,
+      "sha256": "29f136d66ebea7dba287123541f61319f227e7fd33f06e7710ef88e125a8ec7b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_connect_boundary_rejects_private_mixed_empty_dns_before_connector.txt",
+      "bytes": 311,
+      "sha256": "4d7a910af46ee97e79d158d9b1727c1915e8e6dc811817afbeb8d8dfb712df2d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_debug_header_logging_is_fail_closed_without_global_changes.txt",
+      "bytes": 604,
+      "sha256": "1261ebb9ec81925ca352782d0aa164687e05814805d3eb20891cae52c46dac61"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_dns_timeout_is_unissued_and_initialize_is_not_cancelled.txt",
+      "bytes": 480,
+      "sha256": "fbfa88dd81666e56d1be3d3004b4c55818e40268f54d8b58eaff4d3c101acb9f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_each_new_connection_revalidates_changed_dns_no_rebinding.txt",
+      "bytes": 363,
+      "sha256": "9162d96f4c9e0281f200b1b0a856a4bd8bfa6ed1aa98605112b92ec9f0df935c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_http_limits_at_wire_and_pre_io_boundaries.txt",
+      "bytes": 1151,
+      "sha256": "e47a709858f7d8de668f97a50fb416153d2e55540aa347a81d14000f7769bd0a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_http_result_dispositions_never_continue_or_replay.txt",
+      "bytes": 526,
+      "sha256": "85db4ff7153021a2a38267a59bd7998aa158265cf7b50722f634b960fdb6490b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_invalid_tools_excluded_and_bad_arguments_fail_before_io.txt",
+      "bytes": 755,
+      "sha256": "56412f8c12a5b253d2bc37376b8f086b75afe9169d8014e412efaccd0a897f9b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_modern_reserved_wire_error_status_relationship.txt",
+      "bytes": 533,
+      "sha256": "5bfaf9b36455b87f9c430f7fe969e8575425312c38bdbf0afb9b64ace4ef4278"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_modern_sse_notifications_chunked_utf8_and_response_isolation.txt",
+      "bytes": 1525,
+      "sha256": "b73c9c5389dde194ac7afa74a8ea508091dbe03a992086c3f934fe3faaaf2905"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_modern_structured_only_scalar_null_array_object_fidelity.txt",
+      "bytes": 446,
+      "sha256": "aa939c854f0563af3a1e672561447697459141c21047da28d6c0b2a8de18796f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_profiles_and_exact_wire_headers_tls_and_borrowed_connector.txt",
+      "bytes": 1831,
+      "sha256": "53670716f33042325510fab4b50275a16a7c38878c3fed9c9866b21a3c5799e1"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_public_call_cannot_issue_before_compatibility_handshake_completes.txt",
+      "bytes": 1273,
+      "sha256": "5395a2eec7549223bb1631851598d308e7a0e84824e4ba84ed6d22b112343523"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_single_catalog_deadline_includes_all_pages_without_progress_reset.txt",
+      "bytes": 770,
+      "sha256": "6ccc58c4d33b49f011094cd2b1ee2a4adc3273d305a6b6250da65b4bd1364bd8"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py--test_single_timeout_issued_cancellation_and_stream_owners.txt",
+      "bytes": 805,
+      "sha256": "fd6d9c8c39b2d9bf84477e2b268aeabe3d328ce19f0f2dbb02cd24d22e3919cd"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_2025_schema_restrictions_do_not_use_2024_permissive_defaults.txt",
+      "bytes": 191,
+      "sha256": "986625e6667c376c7b72497344c99fea168e1d5efdb889f82116b837a984b8ef"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_2025_structured_object_and_opaque_era_metadata.txt",
+      "bytes": 486,
+      "sha256": "a30797542af10a18bd74ff6864f6cb45cc5eb886834771211cc3f6318f21e68e"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_endpoint_rejection_is_pre_io_and_fixed.txt",
+      "bytes": 181,
+      "sha256": "e02a60435f5c155d8ccea2152506b5ffdf85cdeae2f74424f7a0815937e07740"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_exact_base64_utf8_header_values.txt",
+      "bytes": 155,
+      "sha256": "f26badebbafdb69a8efdb41d9ced1655a367269603d63a0e067807d2661296c4"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_invalid_annotation_name.txt",
+      "bytes": 170,
+      "sha256": "e4e9e12a7e5eca2ee39b6918ba59ee77608dbfe7f4f97a940f63d520309e8358"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_invalid_annotation_type.txt",
+      "bytes": 165,
+      "sha256": "d2ca0ec64b69fcbc55270ed2bc665d607a6041c02e78aef97047186d90ff7cce"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_invalid_supplied_header_argument.txt",
+      "bytes": 160,
+      "sha256": "d61d09bb482d17666a68dc27bc3911e5eda333a8791225642f2fc5dd73793be6"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_nested_exact_property_path_types.txt",
+      "bytes": 615,
+      "sha256": "23258992947f6412d3018c0ac7bdcc7e30748afcbc05b5da3f624cbd1a0d74cb"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_plain_header_values.txt",
+      "bytes": 86,
+      "sha256": "7fdf33a732baaa22324197178326ddeb2012b47c5a1e60d7c742c5232022c69f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_session_id_is_bounded_visible_ascii.txt",
+      "bytes": 120,
+      "sha256": "98cc9b957de36d20e207e3420ed81e9215d114d8b4f8499a1616134a4b8532f0"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_sse_chunk_utf8_multiline_comments_and_priming.txt",
+      "bytes": 636,
+      "sha256": "1c0ce027ac4c1664f4ae890af4f488678d1039d5d001ee95b42656bc850f2f2d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_sse_pre_retention_caps.txt",
+      "bytes": 193,
+      "sha256": "0e2b3b01c42746b685aee3fd8dc0c531c47223771af2d66d293c6cf4c58e5b98"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_sse_truncation_and_invalid_utf8.txt",
+      "bytes": 178,
+      "sha256": "6d2833d855091b71a1bbf874a8497daf4598cf18f0e03b0a1cb5bd35a811f806"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_unreachable_annotation_composition.txt",
+      "bytes": 218,
+      "sha256": "0e3aa010b398582e1394d55864fa2d154f33ea3dd2ff90ab0e351693bc65a530"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_unreachable_annotation_schema_child.txt",
+      "bytes": 217,
+      "sha256": "27caafd175d152003b22382d3cab53c3847ea0176e5e2078f73021e32519203d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_http_protocol.py--test_unreachable_defs_annotation_collision_root_and_opaque_examples.txt",
+      "bytes": 565,
+      "sha256": "33cb14fa833a73cb84121dd48bfec26cfc3e6afba1bef521303201760629be74"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_manager_profiles.py--test_ambiguous_duplicate_malformed_entries_reject_before_invocation.txt",
+      "bytes": 302,
+      "sha256": "ed7024e12f99a45f44f8572834b21a1cad045ba3553a45b5406e0090ed7cd90d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_manager_profiles.py--test_default_manager_keeps_legacy_stdio_and_sse_public_api.txt",
+      "bytes": 502,
+      "sha256": "20d35b46c6c244930f099ddad1b1a26739ff984da4eb260a9e45680d2b7db51c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_manager_profiles.py--test_managed_record_validates_shape.txt",
+      "bytes": 119,
+      "sha256": "86eba31c2fcd02c8b5260a88c0131c013f91287192d894f4352513282f31b96c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_manager_profiles.py--test_ordered_distinct_public_factories_and_exact_adapter_routing.txt",
+      "bytes": 1082,
+      "sha256": "9bf572539f1ffb0399faa9582eeb1476fb9a195761c8e82c708d453ce71cbea8"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_manager_profiles.py--test_partial_adoption_preserves_primary_and_retains_incomplete_owner.txt",
+      "bytes": 747,
+      "sha256": "e749f3e1b3cbe9dc260b4a2931ad77979d3ca7d908e1275c8e3a1c869937f5a4"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_modern_protocol.py--test_bad_envelopes_reject_without_peer_details.txt",
+      "bytes": 395,
+      "sha256": "b88047c7fad856716808cd7dfa7f85d7ded3807b07f9f80c3a96475467d04921"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_modern_protocol.py--test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features.txt",
+      "bytes": 221,
+      "sha256": "0365740a7b2208a79372c3806dcbce8821a1aa92587904b6341f99a72c25bbc0"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_modern_protocol.py--test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests.txt",
+      "bytes": 913,
+      "sha256": "910195f8bece9b24f98270f8855d18d04ec0159405327b2619b626872c44da1a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_2025_raw_call_recovery_keeps_schema_and_retires_wrappers.txt",
+      "bytes": 2287,
+      "sha256": "c5e9ac95648c64af4218d385c949e53153ef5943e00fc68093efe804a6ca60ca"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_2025_required_task_tools_excluded_without_enabling_tasks.txt",
+      "bytes": 1236,
+      "sha256": "1df035fafb2099265ac79c543a26a4e42f00617716ba62178999ab734e8c8d8d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_call_keeps_old_output_schema_across_successful_refresh.txt",
+      "bytes": 1810,
+      "sha256": "0ac0a4971e3d5e1f07aa260416907f2c64c9e712e5c9785ba5b27d2b1ced27a0"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_error_shape_validation_precedes_success_schema_and_error_disposition.txt",
+      "bytes": 845,
+      "sha256": "989e80bb4c028287b7874f8cd99b1394969d41b6d66ed6e843686adb0fb38385"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_malformed_error_content_is_invalid_before_error_disposition.txt",
+      "bytes": 432,
+      "sha256": "c914fd34e10768d14e243a3055dfc9fbb8fbd6e19aec1e8f534e3876203749c4"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_malformed_input_requests_and_unsolicited_task_results_are_never_promoted.txt",
+      "bytes": 194,
+      "sha256": "b62e7d5f32474f861ea7ec658f38dbbd5f759ca9d4e2ff619b31c044d1f2918f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_modern_http_headers_and_schema_are_captured_before_scheduling_exchange.txt",
+      "bytes": 1740,
+      "sha256": "27003fc874c7faea5c6d2353d82b6cab073309971183e357a303a20907f0956f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_modern_structured_values_and_2025_object_only_are_explicit.txt",
+      "bytes": 708,
+      "sha256": "26124662bb0b7f0b52434e0795ecf9f426f4d93b60bf4dee1bfa29268bcc425d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_reconnect_removed_tool_and_failed_schema_cannot_issue_calls.txt",
+      "bytes": 849,
+      "sha256": "e3caad55dc65fb97f0a6482afb40bd359fd9a97722b982102460911c130d7aff"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_refresh_wait_deadline_and_disconnect_settle_owned_tasks.txt",
+      "bytes": 1002,
+      "sha256": "3eb3a4c52fd4e9cd02e369397237ddc006d3cf738486f33f2f805af2dbbfbbb0"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_serial_refresh_returns_own_generation_after_failure.txt",
+      "bytes": 1152,
+      "sha256": "aa21b73c3cf6c9d0798df528a8b3a577dd546b058cd47ac140cd46df38776cc3"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_valid_input_requests_remain_unsupported_without_continuation.txt",
+      "bytes": 355,
+      "sha256": "463e657ac3d9ae58d1d6ac8f7becc4950300a0390dfdb94139416d3da5e2a9ea"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh.py--test_valid_unsupported_content_is_not_fetched_or_silently_dropped.txt",
+      "bytes": 587,
+      "sha256": "40b99a1ed5b7fe7590953235525c9c045ec6cc76ccba1bd3f7e98b0ea03edbb0"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh_interop.py--test_real_sdk_stdio_failed_removed_and_reconnected_catalog.txt",
+      "bytes": 842,
+      "sha256": "cd51e08d3c24c6cac9250d8521bdd4bfdf84bd9e0e76cf1ec2684f334b066c42"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/client/test_result_refresh_interop.py--test_real_tls_refresh_failure_removal_reconnect_no_stale_calls.txt",
+      "bytes": 998,
+      "sha256": "f9651df73053492ec8f692e96eab1fd7412e2df67ce6576ae593858b48497ae7"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py--test_http_dependencies_lazy_and_fixed_missing_error.txt",
+      "bytes": 834,
+      "sha256": "3ad01e0f515fd83bd013d3895e52556298780b3a441d0de8664bf4ec37007ece"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py--test_legacy_imports_constructors_defaults_unmodified.txt",
+      "bytes": 508,
+      "sha256": "ad51ff249db5030f34c5b743b034d9dbbdba40d8d3d1d7080a4509ab26a31f4e"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py--test_partial_stdio_output_pipe_start_failure_closes_input.txt",
+      "bytes": 816,
+      "sha256": "fb90fe3b01770f52530f25eae8dd72312d468b54a1049858f1a1178d06a0ee0b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py--test_partial_stdio_start_failure_settles_and_retry_is_possible.txt",
+      "bytes": 411,
+      "sha256": "ab3394c65e8e12b7fce0fc2cf428e90da5f12a05bcc2ba3c62295582388b8020"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_argument_validation_zero_invocations_and_fixed_failure_privacy.txt",
+      "bytes": 1067,
+      "sha256": "2941d3c27e99d76f620ce4f6b27b330882cc75bd3b1cdc7d247aa4154522cc07"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_capability_variants.txt",
+      "bytes": 343,
+      "sha256": "37057f70728dc51ceb029f4d492b69c8dc8c79dff72b6807d159ea4f1653028a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_captured_output_schema_during_replacement.txt",
+      "bytes": 740,
+      "sha256": "d46e9c7ff1e1a3036c4e709f494bbc493aeccc30b058c8f556eb97c585ee4540"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_catalog_atomic_deep_snapshots_and_stale_cursors.txt",
+      "bytes": 1202,
+      "sha256": "53854a45622cf345ba351dced165753d0aa1a72aa561561ae70b9239734317d4"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_complete_tool_optional_fields_are_immutable_and_preserved.txt",
+      "bytes": 899,
+      "sha256": "11bac4038b40ea211807cc2742f6013541d6dd916741d4b16094b1c6188c4475"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_discovery_empty_and_direct_call_no_session.txt",
+      "bytes": 784,
+      "sha256": "ca3640e44ab2552985e3b00d83886c6c493b5714eed6a2fbd79166cb6e3ad20a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_emitted_meta_reserved_trace_variants.txt",
+      "bytes": 492,
+      "sha256": "5c4578ae802a8ca7fed1284fe293800c0ea2f13e87939f75c724d8c4956d494b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_envelope_rejects_without_handlers.txt",
+      "bytes": 247,
+      "sha256": "30cebdde13554551a5e5fcd64cd7a2e838b2f527af9137e8ab3d2c1a6a3c886b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_every_emitted_error_variant_pinned_fields.txt",
+      "bytes": 1335,
+      "sha256": "47c703154a68e5bee82a9683d5b74880379166c923270831e495e3596dc18f07"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_inactive_error_variant_cannot_be_constructed.txt",
+      "bytes": 436,
+      "sha256": "00b164747a12c0eabf724d735c47f5615ce9038629f34a48b4d5612dca3f42e7"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_interactive_state_fields_rejected.txt",
+      "bytes": 548,
+      "sha256": "e5cc35546ff4fb8608fc88ee0bcb96a594b41403a09acc41b3c17ec0045aafe5"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_invalid_id_has_no_echo.txt",
+      "bytes": 182,
+      "sha256": "99f26452936e5facb0e1eb2b4be76df9dadfeffae98cca346c5d6ebea0d5b55c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_known_meta_dependent_field_null_malformed.txt",
+      "bytes": 303,
+      "sha256": "c6e779822ff68d871a84ba560faba68f91e28f5fe1c0c8474d8ea34dc17dadad"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_legitimate_tool_error_skips_success_schema_and_oversize_actual_wire.txt",
+      "bytes": 698,
+      "sha256": "2064fdfc793df60fc205cc06a886db8836505510907bf080021031978eb1418f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_limits_cannot_increase.txt",
+      "bytes": 141,
+      "sha256": "7dd14b5c64d4c5cdce5c09c88e93791301436ba1125dc82871d49c0815460bcc"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_log_level_enum_valid_but_no_logging_role.txt",
+      "bytes": 337,
+      "sha256": "fe7d912b5f28c8569523f05dfd883ff202f8bb802ec8f3abc49c7de28a2a1087"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_lower_only_limits_invalid_values.txt",
+      "bytes": 130,
+      "sha256": "a4e5c7479e4072611d8f4046626047bf8e88ed6c500ff12449bef5998923db02"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_malformed_or_schema_invalid_result_fixed_error.txt",
+      "bytes": 440,
+      "sha256": "c5df438b1ecfc7d0a22b279954992af57ec9716810a56cc2cace965382276306"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_malformed_request_known_id_echoes_only_own_error.txt",
+      "bytes": 226,
+      "sha256": "8cfcd44d1cc5625616cd2a4657feff179f9e9c50f2ba5ebb15ea7cba75be1e8b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_nonfinite_json_tokens_parse_error_zero_handler.txt",
+      "bytes": 312,
+      "sha256": "f3d1eb0f480e31fddcc6a003f53448c4e3fbc2ef1280bc6526a0c0f6a489715f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_notification_dependent_params_exact_invalid_params.txt",
+      "bytes": 325,
+      "sha256": "09e94add34516e2f4bac7e94d0fe897fd5d12d52fb1ca656c3037ab9bd4b48a6"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_notification_meta_separate_grammar.txt",
+      "bytes": 332,
+      "sha256": "ea65e14ca85d86192424296146f37d585f57202e1debf48c4d203a6a167fe3e0"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_notification_valid_without_request_metadata.txt",
+      "bytes": 582,
+      "sha256": "03b63fc9243c859a9dfed2dd5ba266778f09a81f282cfd1e7a90b016b46bb858"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_optional_implementation_extensions_and_per_request_caps.txt",
+      "bytes": 1324,
+      "sha256": "cf82680d99b2da75cfd81ae770520c7cfeca62c1cdbf2947eda93d025793d2da"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_optional_implementation_malformed.txt",
+      "bytes": 390,
+      "sha256": "3d028b7ff216949ac4a4293dcc46e06547ce0ef84e51c3009a887853aa7d95ea"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_optional_tool_field_null_and_malformed_variants.txt",
+      "bytes": 167,
+      "sha256": "c68f60e3aeb205caef52f62c4aae701e6c5815d20de62995314ee7fc7aa2ec1f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_page_worst_encoded_valid_id_and_low_catalog_count.txt",
+      "bytes": 604,
+      "sha256": "3f6e50df271afcf6a833227e9e07d796ec71433b7a457c7f2a1e123244c30644"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_pagination_byte_partition_and_incompatible_limits_are_atomic.txt",
+      "bytes": 1242,
+      "sha256": "e18da815f259f7acf5cde8c74effd39f00bb0a92387a41bb8b716530c2c1398a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_progress_token_number_or_string_accepted_without_notifications.txt",
+      "bytes": 300,
+      "sha256": "2e75eacde60effe35b8b0ea72f25bdb3323fb6d2a23c8535bdd39696d7e6a223"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_request_envelope_mandatory_field_omission_or_null.txt",
+      "bytes": 399,
+      "sha256": "c386c2c4da08eab95c3bd1fea1f455e89b92946cd8c0cd644165acf3a30d1863"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_required_meta_omission.txt",
+      "bytes": 252,
+      "sha256": "b7b3a75705938064c6be345ef44f6ef782ecc8eeafd62f31e98c279c2daf7d58"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_required_meta_types.txt",
+      "bytes": 383,
+      "sha256": "82be83e9a53d4177ad411a71a5698e30484f59d4cbf8dc67a2e5f7c92b6190e1"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_reserved_trace_fields_malformed_rejected_without_handler.txt",
+      "bytes": 324,
+      "sha256": "d93d18d705fe07292bf8ace09614b48e84d554f6a613c9e854fb411ff6eb4c4e"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_result_meta_preserved_with_fixed_server_identity.txt",
+      "bytes": 1001,
+      "sha256": "0df8cbfe8230f583d19b2519e8531fe6163c709949880fc62079280b990585a7"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_sdk_dated_cacheable_field_variants.txt",
+      "bytes": 655,
+      "sha256": "70c9e85bc258013b714e8f063245e746169976f08e608f16c4e02f8af02c3f89"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_structured_arbitrary_json_and_explicit_null.txt",
+      "bytes": 604,
+      "sha256": "8473c0a18442d7be563d2a71616207d399ea336c0a8656c412a391c46f3fd386"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_surrogate_object_key_rejected_before_handler.txt",
+      "bytes": 488,
+      "sha256": "1f77107ed0640451bba2f56c2e536dad235629da0b739ba8dd7772dc143130f2"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_sync_handler_rejected.txt",
+      "bytes": 207,
+      "sha256": "cf0e0bc3fc668eb9a7274d19bf967186f0c2bb2a6d6668b06531d37de732236a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_text_annotation_metadata_complete_and_input_required_rejected.txt",
+      "bytes": 698,
+      "sha256": "4e5ecea074837b8682f55b728f95d95852464b7b0453cb7a17a1f074374aacae"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_text_annotations_malformed_rejected.txt",
+      "bytes": 306,
+      "sha256": "df82db4ee94c4ef29ba81737de5687ba9718fa68e334fef9c00c942127cec748"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_text_metadata_omitted_null_and_invalid_key.txt",
+      "bytes": 334,
+      "sha256": "56a47fa7358f48cb16406aa85033f945a168b5fd6863f65b979706141ae165f1"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_unsupported_methods_exact_wire_code.txt",
+      "bytes": 260,
+      "sha256": "251cefea49216003f914d867e18963aba287ad6faee9128743f29d06cff321c7"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_unsupported_schema_rejected_without_registration.txt",
+      "bytes": 255,
+      "sha256": "890f35144e7f21aeb6d09a6ca85ec5a108897746630b606016b4afccef0f27dd"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_unsupported_version_safe_data.txt",
+      "bytes": 451,
+      "sha256": "50f0179796781d31d8f06b0c45f214d1b2c749c6ca2cc47f5629ab5e6d9b8bb1"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_valid_ids_echo_only_own_request.txt",
+      "bytes": 129,
+      "sha256": "b12bd60f6765a7edba7ad88b703979d18a63a095288049bd5d2403b715b2fa72"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_valid_trace_fields_never_forwarded_to_handler.txt",
+      "bytes": 614,
+      "sha256": "ba30a6b35d1eab94262c2fa00f9ce71fa3041ea674584f1e45727d7b83639fab"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_version_error_owner_privacy.txt",
+      "bytes": 934,
+      "sha256": "a0fadd476bb7a0f6eda9a3df499bfe91e9ec81bdda09bde1eac2ffd397446af0"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_protocol.py--test_version_error_required_data_sdk_model.txt",
+      "bytes": 1213,
+      "sha256": "837cf4fc27c7ea6c988e458247ae5fd74051733390ddbcdbfbb26e346e87be38"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_backpressured_rejections_keep_reader_responsive.txt",
+      "bytes": 2549,
+      "sha256": "372bedf55203aea0c7d83c3363f52fb57f19b10fe4e4f9651e24cd0efc7ea7cb"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_bad_stdio_lines_do_not_poison_next_frame.txt",
+      "bytes": 450,
+      "sha256": "d911dc5551126f72c7ee154989ad848cf3181511707fb94406493d9c2af96b4b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_eof_and_partial_line_cleanup.txt",
+      "bytes": 344,
+      "sha256": "872e021aa6b69422e5a904ab01b96188946238b3e5e72cda3cf11642afc04049"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_first_byte_deadline_expires_fragmented_frame_without_handler.txt",
+      "bytes": 1080,
+      "sha256": "706aa1e19330003671edaf23d49d09d362b4ee7217079edb98ce11bbd7568cc0"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_fragment_assembly_consumes_handler_and_output_deadline.txt",
+      "bytes": 1923,
+      "sha256": "46aa4f58debcfee67fd1625bab2b0204d6ca1d1c9f946f35d8ea057fc1daf822"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_idle_before_frame_does_not_consume_frame_budget.txt",
+      "bytes": 611,
+      "sha256": "556d512ef3d26583f314e813fb669af373e70c68f65e4485a66d89f9f14eb0cc"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_owned_stream_stop_restart_and_write_failure.txt",
+      "bytes": 1177,
+      "sha256": "48ed8c56cfac0be7b2071cc7468d0fb03cbb7d3d52a1529643091ecab2a46858"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_partial_eof_uses_frame_deadline_and_closes.txt",
+      "bytes": 756,
+      "sha256": "940f4425fbb33c71004362a4f20623e2fc31de1334a49d00f1f5192be5e5bacc"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_real_stdio_fragmented_frames_and_stdout_only_json.txt",
+      "bytes": 937,
+      "sha256": "08348207ed67d4f0e7a16a53c9de4c000eb2a305a4f12e4714026fbf103ce222"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_rejection_output_saturation_closes_without_unbounded_work.txt",
+      "bytes": 859,
+      "sha256": "21771e6fb000e4b5c9e23fd1499e08c28a3538e9e43f4e2979ebf203f6058b23"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_stdio_reader_cancel_and_duplicate_active_id_no_replay.txt",
+      "bytes": 1810,
+      "sha256": "58c4bcb6d9567ba5deec0aadb8bc62615e6763b79fc4f2ad56cec8523a6cd365"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_modern_stdio.py--test_unknown_completed_malformed_notifications_have_no_response.txt",
+      "bytes": 1163,
+      "sha256": "ab1ed4ba50d04a77e3dffd764d8bbc45e7bd9f7ec13a37287efb5f0f8f33e9ef"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_registry.py--test_actual_public_registry_filter_prefix_snapshot_and_instances.txt",
+      "bytes": 1188,
+      "sha256": "e734bdd6d4343dd1622bf3bd6acddd76b9ff1bf06b92b6a15b51443586171df5"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_registry.py--test_collision_staged_before_any_publication.txt",
+      "bytes": 485,
+      "sha256": "6f53e79bd70bcf3bc90c429635134a4cb47d079d5e315a9e20480632d3773f35"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_registry.py--test_registry_handler_reference_captured.txt",
+      "bytes": 671,
+      "sha256": "b328df7e6c757420fee91e2f2bec8e8e2936bab72767bc1e2dea8c4d85f6ab13"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_registry.py--test_unsupported_schema_bridge_preserves_old_catalog.txt",
+      "bytes": 481,
+      "sha256": "10a0b95dc8a275533a7cfd14de829115e90e5301785118399736f86a3fb33c28"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_interop.py--test_official_client_230_real_stdio.txt",
+      "bytes": 673,
+      "sha256": "12b4bd6dac55e441c7e3b21c7145f4dfa6f291d5da85c36613c457cd812c8603"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_interop.py--test_official_client_230_real_verified_tls_json_sse.txt",
+      "bytes": 1440,
+      "sha256": "090891fbb76adfa92f53c299863af9ead5a825a9807a9491521b56e81028df47"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_interop.py--test_official_stdio_cancel_owned_call_then_continue.txt",
+      "bytes": 1215,
+      "sha256": "fdd885a2a69c238aed8709ca97bec70d588f4552e977b4c0af580f036a52af2d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_interop.py--test_real_tls_disconnect_cancel_only_owned_call.txt",
+      "bytes": 1524,
+      "sha256": "1088d841ce84e1e3c07d8cd41c955f2a2a59976a41b665cacdc909191d66ea5f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_interop.py--test_real_tls_untrusted_certificate_zero_wire_requests.txt",
+      "bytes": 619,
+      "sha256": "46c2499d730813edb056d2b49670b4a1256e0fb9eab233d75530993f7615a2bc"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_bounded_admission_and_unrelated_cancellation.txt",
+      "bytes": 1343,
+      "sha256": "9e80b5f210834fd062a3d082d300f081d3ae9c349fc423af6440186c2afb78b7"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_cancelled_writer_cannot_emit_after_resistant_lock_release.txt",
+      "bytes": 1492,
+      "sha256": "9d0612eb21192c0b2b30f18400514ebbf03f8a917531dd0c8dbfd3a2b98407d9"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_close_wait_is_bounded_owned_and_retryable.txt",
+      "bytes": 1328,
+      "sha256": "14566c68a757d92c7d52a866860e8355c335c84d81e72c64fce4060a0fa5fd48"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_deadline_and_retry_shutdown_preserve_resistant_owner.txt",
+      "bytes": 1176,
+      "sha256": "0719a2e9dda493af6a1833f26280d804d2fedf176e2eb816670458985295ba97"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_expired_original_deadline_zero_invocations.txt",
+      "bytes": 472,
+      "sha256": "653e565d2ebc111846d88f81174d3641b54922385b283c93315d73e53c26603d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_http_blocked_send_remains_owned_until_deadline_without_replay.txt",
+      "bytes": 1245,
+      "sha256": "9d156051f62f78e3902562f6368c89225c741c65ba0745b6aec89ebf81c9026a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_http_body_wait_consumes_original_deadline.txt",
+      "bytes": 724,
+      "sha256": "dcd71419d1b5758fb2387ab28243ded41789346df586ff4592f9496a0120a309"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_http_disconnect_during_send_has_no_new_messages_or_orphan.txt",
+      "bytes": 1123,
+      "sha256": "a22c906d895043be86cd943feee47841051fc43dfe39b95063cee0550662092d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_http_disconnect_owns_only_one_operation.txt",
+      "bytes": 1391,
+      "sha256": "d7d3d24179b0ec1ddf1eecedc92b6f0c74aedcc552f94e961c1093211efeb302"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_invalid_public_deadline_no_owned_operation.txt",
+      "bytes": 230,
+      "sha256": "f8b2e351e753eeb24072ab77e1aa0c9e513a113582b6acc97fc399de55860c22"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_multiple_operation_writers_are_serialized_and_owned.txt",
+      "bytes": 1510,
+      "sha256": "29c4b617143234fcbe849be334856a3287e8870b9a5b1b777fb66a621b8634ab"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_partial_start_resistant_read_truthful_ownership.txt",
+      "bytes": 1815,
+      "sha256": "9916811c9ecc3a341aa9778e09d5397de9aadd0d94a89b2e4c1063f61c76227b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_public_later_deadline_cannot_extend_operation_budget.txt",
+      "bytes": 577,
+      "sha256": "12c6af550ae7e12c8942da64fd28fec28fd6bc7d9c41d3492345e9aae7857ae7"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_resistant_http_send_retains_owner_and_blocks_restart_until_drain.txt",
+      "bytes": 1516,
+      "sha256": "33bf0ec47755a5aca8c11503809a84d6094cbeec3199fbc297f2b68333416d64"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_resistant_native_partial_start_blocks_restart_and_closes_old_transport.txt",
+      "bytes": 1725,
+      "sha256": "5e0aef7d97b5b278698f5c898c0a1cc0d52b77f0f5b723cb0d23544c8492f97c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_resistant_output_shutdown_blocks_restart_until_settlement.txt",
+      "bytes": 2875,
+      "sha256": "51d85efec069bf02fd729859200b3db54796f8434dd51bd307909871bb4d125f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_stale_finalizer_and_signal_do_not_touch_replacement.txt",
+      "bytes": 2127,
+      "sha256": "c9969aa6daf61f0e7d37292611496db5f843bea929afd59fb9a58b5c76847ab3"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py--test_tool_start_rate_budget_is_instance_local_and_bounded.txt",
+      "bytes": 1233,
+      "sha256": "ba9afa916bc26e68e20a978213bf99c37964c7eb8d0e5af9008a2ca3555e2383"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_security.py--test_bearer_origin_positive_and_query_token_rejected.txt",
+      "bytes": 849,
+      "sha256": "8160951dbb32fa7315c6a7c2113e818a36afe6a1697613603dc54fccbe07cbf2"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_security.py--test_bearer_scheme_case_insensitive_credentials_case_sensitive.txt",
+      "bytes": 814,
+      "sha256": "2174f9b81e29724c6a307e05e3c0f3eb5457b3709d33a8f0598fa265208346a4"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_security.py--test_cancelled_observation_one_start_and_terminal.txt",
+      "bytes": 842,
+      "sha256": "3e7b16c9ceb1f7d41b4d90f684a6cd0d0b4d1deb6ee0a8d68b7a629cde1bf09c"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_security.py--test_duplicate_case_insensitive_headers_fail_closed.txt",
+      "bytes": 424,
+      "sha256": "d8dda139fccaa23946ad3d146866c50d725e410d4a95d4a91beee6786db9b916"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_security.py--test_explicit_nonlocal_policy_validates_without_binding_and_secret_nonrepr.txt",
+      "bytes": 364,
+      "sha256": "6acc43607eb2eb98306204953a18f5013c71b6ae8ba4a890e5cf7aa677784a4a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_security.py--test_header_and_request_body_byte_budgets_zero_handler.txt",
+      "bytes": 699,
+      "sha256": "1f22e4ee7fecaa877b22eca8c15e51ee85c0d33219a95dde8de2a3f07e190d38"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_security.py--test_host_origin_bearer_reject_before_dispatch.txt",
+      "bytes": 955,
+      "sha256": "4d60ec788836a604e820b4d037efa1c7505ef1b90a0a82d66e5c11b119cd60ca"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_security.py--test_invalid_exposure_configuration.txt",
+      "bytes": 122,
+      "sha256": "2c0a3b63c4dd81ee96c59b743438dd0c760dd3bb109ea759afc67fd36ba4ceff"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_security.py--test_invalid_origin_rejected_on_all_endpoint_methods.txt",
+      "bytes": 431,
+      "sha256": "d9bfdfd5a0c339add6c30ba47f311b36ac7a56fbd3c747771df70f20fdb83a6a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_security.py--test_policy_rejects_nonstring_bind_and_noncanonical_authorities.txt",
+      "bytes": 150,
+      "sha256": "e9e923b19c86fcebcb13e9832e22338d676f838dc78ca4050dedcf3daa268c37"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_server_security.py--test_provider_neutral_observer_privacy_and_no_replay.txt",
+      "bytes": 1471,
+      "sha256": "5357df9ef39cb76a83285a397cbe0286d6b458ecfe7a3379116682256b99cc84"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_access_failures_keep_exact_status_and_private_body.txt",
+      "bytes": 457,
+      "sha256": "dc92c800dbd93ee3725c87d245dfa1b51684766cf22a897a9e8b2aba932dd059"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_actual_sse_framing_budget_and_single_invocation.txt",
+      "bytes": 1397,
+      "sha256": "5dca65ce465c2ebcfff416e0533c6d71e2d8805592302c96f845ee394d7460bb"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_bad_base64_or_unencoded_whitespace_zero_calls.txt",
+      "bytes": 470,
+      "sha256": "d4311a352a68a8b3a3f452e98ff13df50cb6b3232107f65b4047b485bcf5441f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_content_negotiation_before_dispatch.txt",
+      "bytes": 433,
+      "sha256": "5daebf5491f2c05e9a8dfb71c60baee3534392334f220babcf1bb16904b90b75"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_custom_header_duplicate_exact_mismatch_before_body.txt",
+      "bytes": 577,
+      "sha256": "ed8aa7f857ea4ccf24e6a2d063b438f721812de777dde85da76fe884ceaa2bfb"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_custom_header_interior_tab_and_unknown_valid_header_preserved.txt",
+      "bytes": 667,
+      "sha256": "834a768dccbe99a91c5ea20645a4931b00b9c99d03c73c6ae89efc8102322ef9"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_custom_header_invalid_bytes_exact_mismatch_before_body.txt",
+      "bytes": 548,
+      "sha256": "c8f1c029ba88ae6d30c65f0451a3cafc57c8820016efbe4c8a2a455f6eba7fcf"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_custom_integer_safe_numeric_equality.txt",
+      "bytes": 644,
+      "sha256": "de6e7311a75a38b8063b0d21e7df6d18becf577a90b4ea78e9dbdbe5a89fae3d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_custom_nested_unicode_sentinel_uses_independent_base64_oracle.txt",
+      "bytes": 1270,
+      "sha256": "19df7e44423ee6e6e8d0f496102818c9de50e6430896d0063583630a2256a930"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_duplicate_standard_metadata_header_exact_header_mismatch.txt",
+      "bytes": 583,
+      "sha256": "48230c3f31a672fc0580f36a5b14e7a618a0ae3277ba069547236b08f1c68099"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_http_notifications_unsupported_no_id_no_handler.txt",
+      "bytes": 475,
+      "sha256": "58b00d3782d0eda394bceff5ed0a837b784192a2687b6d32b418520de831b510"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_http_unsupported_rpc_exact_404.txt",
+      "bytes": 394,
+      "sha256": "2d252541bec894b9ab3acaca79e65fb85b07fe5efd381b93d706e4641b20dc66"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_large_integer_header_does_not_round_mismatch_into_match.txt",
+      "bytes": 699,
+      "sha256": "0ce215612b91e22f3591785f645bedd132a3b2fd4b620361822e37b5ae343fbb"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_media_header_parameter_and_quality_failures_zero_handler.txt",
+      "bytes": 501,
+      "sha256": "412c41ea2af7801e16b395a48e580f42260b4ac299febcdab6c6802789cbd10d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_media_header_valid_parameters_and_unsupported_error_data.txt",
+      "bytes": 1270,
+      "sha256": "268ab80f3748a8befeceb53f56b70a3c6bc940ddd532ee9829ad4eb7e49e0eb9"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_missing_or_mismatched_required_headers_zero_calls.txt",
+      "bytes": 515,
+      "sha256": "195567a602a42ba726c86b5c3f6b8b4c3de26cd85c185437343dab90836642b0"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_null_absent_binding_header_omitted_and_unexpected_rejected.txt",
+      "bytes": 1073,
+      "sha256": "84943204ee9df0f5f25f5639857d54319a3e817e88bba6ac56c7361aaf2b9184"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_plain_standard_header_equality_does_not_normalize_or_decode.txt",
+      "bytes": 679,
+      "sha256": "755f0c4ec37fb4ea008dec85b949db7331e3c3d3aa7a6b68651d7f733a8016ec"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_plain_standard_header_invalid_byte_sweep_exact_mismatch.txt",
+      "bytes": 434,
+      "sha256": "25543b3f5a52653550178d3275e3aeab4108f0f1df0e9a8cecad1dedd269fd1b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_plain_standard_header_raw_utf8_matching_body_exact_mismatch.txt",
+      "bytes": 1105,
+      "sha256": "22f011e76805b26fda16d6c5d1ea768a4767498ae8613faeabd01407d68c8daa"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_plain_standard_header_valid_byte_sweep_keeps_routing_category.txt",
+      "bytes": 787,
+      "sha256": "40b5a9261d9496aaa92705a2a93972dac40308d7d13b44b6937790b8db41c620"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_real_tls_raw_utf8_standard_headers_exact_mismatch.txt",
+      "bytes": 1955,
+      "sha256": "02d910c2f11d2dc75369afaab56f1b91e726512cc35a6fa290d97108408dd88a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_recognized_custom_header_invalid_encoding_zero_handler.txt",
+      "bytes": 786,
+      "sha256": "ff809411d60d4a3a91cf3d0a59289e2b33f977a0375ea10a92be41722c8f059f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_single_post_stateless_json_and_sse.txt",
+      "bytes": 1228,
+      "sha256": "b29b9464e33f5003a27c31627819a9897a6f2a3c7a61ec95e84708f175624c73"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_unicode_tool_name_and_marker_safe_decoding.txt",
+      "bytes": 711,
+      "sha256": "538a03e39ffdb76e5eba35e76099fb4a272aba9051f16cf51c330cc841a33aca"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/server/test_streamable_http.py--test_version_header_vs_body_and_unsupported_version_distinct.txt",
+      "bytes": 862,
+      "sha256": "b8be9eee875f57cfceb59c3f9fb603c388922357f3759c53b59c0ecb09893f1d"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py--test_chat_real_yaml_factory_to_friday_peer.txt",
+      "bytes": 2886,
+      "sha256": "2b4ec2e9fe51725d94b58143e936b63d06b027f1a186acb4dfe168c3dc60345e"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py--test_cross_transport_cancel_and_parallel_call.txt",
+      "bytes": 1453,
+      "sha256": "aa71fe03804106da15afa352cb0ac20841b25bc938c715c0d4c934e842f53e98"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py--test_documented_disabled_real_assemblies_do_not_connect.txt",
+      "bytes": 1017,
+      "sha256": "5ec5737c12d5427f6d3c38598485465ee5224ff79ddf7b36d212bfbe5dbecc3a"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py--test_documented_invalid_config_rejected_without_io.txt",
+      "bytes": 1690,
+      "sha256": "52eff8c7b22c31bd9889203cc4d73d5b23f21985e88e63660fa455c9de9fc678"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py--test_documented_profiles_execute_named_peers.txt",
+      "bytes": 2329,
+      "sha256": "bd3d3db85e9be4c8626bbbdd44ee12adff4ac6b3dc025dd9c1e88d1ccb5993bb"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py--test_documented_python_compiles_public_exports_and_keywords.txt",
+      "bytes": 1036,
+      "sha256": "76c64508fdb4ecfd2a145933e88193fe1064bdf09bde9c59488e1f5e18b782c1"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py--test_documented_yaml_loads_both_public_schemas.txt",
+      "bytes": 2365,
+      "sha256": "5638092ddc9d5e016659efb8949dc9265be09a5d9388e65aa9bdb90e575e745f"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py--test_friday_client_to_friday_server.txt",
+      "bytes": 1643,
+      "sha256": "07c13c18c8dfbbf26559b5de2515f1f1e011d41cffc2ae0367ee43992ff9679b"
+    },
+    {
+      "path": "reference-views/packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py--test_runtime_yaml_to_friday_peer.txt",
+      "bytes": 2312,
+      "sha256": "2672eaddb75efe2150b5b931c464215f0308b60a2825c8ab52d4cb323f2ae798"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_2025_runtime_recovery_is_read_only_and_observed_once.txt",
+      "bytes": 1764,
+      "sha256": "ec27fe7c26d2d29594ed9815c41f5c5a527fb25c0c95411e21b690768364e1d0"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_bad_credential_has_no_chain_or_content.txt",
+      "bytes": 718,
+      "sha256": "ec9fb7f3af4343e6c6ada99779eb0a28d5a26a147db5597c4428a166b34312ae"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_credential_resolver_only_named_reference_reconnect_and_safe_resolver_failure.txt",
+      "bytes": 1407,
+      "sha256": "701de945c1d6f9bc3f1d14aff4bca2c6f08268b60f11e9421a6cd1a44318a8e1"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_disabled_http_never_resolves_or_constructs.txt",
+      "bytes": 980,
+      "sha256": "270c79fdbbd4042c0cd68eefb30c45de926e4fd6feb06c9d6d7777f21399a9c9"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_http_admission_filters_collision_and_raw_export_budgets.txt",
+      "bytes": 1855,
+      "sha256": "d59ea377a3f622939cc393e6a49d4a84b515283a0ff091da81ac5d32647f135e"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_http_complete_catalog_default_per_server_total_caps_and_mixed_peers.txt",
+      "bytes": 2052,
+      "sha256": "362cfc2a8f7a6ddd2d497d487872fe7c459a5e364ceb90198a16ddbbede411f7"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_http_registration_primary_safe_failure_and_retained_registry_owner.txt",
+      "bytes": 1902,
+      "sha256": "757651aa8697b44a9e5182f64cff0d3656d3b2e351e37ceac8ea5f28a03cf4af"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_http_runtime_retains_resistant_cleanup_and_never_replaces_owner.txt",
+      "bytes": 1841,
+      "sha256": "96f9b14fe23e110fd94293d58dd8391e7be140ec6490044f5e7d2b6b02418542"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_public_stdio_profile_factory_preserves_defaults_and_lower_limits.txt",
+      "bytes": 792,
+      "sha256": "88eaea3e46db4b071aac9fc90c9ab323674328b1c67fa8dfebcf802bd848d666"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_real_public_kernel_stdio_profiles_and_child_cleanup.txt",
+      "bytes": 1444,
+      "sha256": "522d4b3cac089d0913efe83bbdbff6f0a4e55a84b87b2703a82f5ea5c54a1087"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_real_tls_hostname_rejection_required_optional_and_no_outer_retry.txt",
+      "bytes": 1094,
+      "sha256": "97aa9973580b43a9eaee51a8fbf34e457e40703b36425721ce0c85a368e62347"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_real_yaml_kernel_tls_discovery_call_stop.txt",
+      "bytes": 3194,
+      "sha256": "76aa214034882f778f17ae3cc691de8938d8c50b40b4edf8a1dfe267ebc6e63d"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_runtime_actual_connect_policy_rechecks_dns_and_preserves_hostname.txt",
+      "bytes": 1303,
+      "sha256": "e1b0dba0a5eee93849a50a9d7e0daeb996ce1e99da09b47a9572c1cb3c1051cf"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_runtime_late_2025_404_preserves_healthy_recovered_session.txt",
+      "bytes": 2182,
+      "sha256": "10eecb2c141f84e2cd1d4f25b5a3e413cadf45e46918912cdb89ecfa931cfe87"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_runtime_modern_schema_additions_and_exact_original_header_catalog.txt",
+      "bytes": 3130,
+      "sha256": "48afe3c7bcede05617dffa11c09593475e5271330c40175aa75b0679294aaeec"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_runtime_new_profile_one_deadline_across_handshake_and_discovery.txt",
+      "bytes": 1290,
+      "sha256": "0061c04185e918ad99aa6f4ce20c0ed4fdcc3736996e596728fa98f66bd75149"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_http_integration.py--test_runtime_no_call_replay_on_real_ambiguous_drop_and_timeout.txt",
+      "bytes": 1017,
+      "sha256": "1897eecc1aeaf0edd08405ffbf3acbc6e1e836b72ad671eb705f349fc0e0850f"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py--test_http_union_rejects_bad_shapes_including_disabled_before_effects.txt",
+      "bytes": 519,
+      "sha256": "2fa19605f3404b111e115c0d22d0435136be9eb2063190470debad5a3121a9d0"
+    },
+    {
+      "path": "reference-views/packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py--test_remote_opt_in_and_local_union_defaults.txt",
+      "bytes": 771,
+      "sha256": "d88fa79b80d03f051a7379d682b65b26c46703b48594636aed89ebfcabcb2480"
+    },
+    {
+      "path": "rehash-helper.txt",
+      "bytes": 1474,
+      "sha256": "bcca459d677ad150b748ef32448b322846972883d8b24e827ea7395ef3e8e3e0"
+    },
+    {
+      "path": "report.md",
+      "bytes": 25433,
+      "sha256": "85419bf1971132a18d896f057ae53f350b2efc56ce9e8cb6549309447d1abe01"
+    },
+    {
+      "path": "ruff-baseline-complete-normalized.json",
+      "bytes": 162090,
+      "sha256": "22f40d7758b5424cf72c21f44058abc80521f1762670938f624845613905257d"
+    },
+    {
+      "path": "ruff-candidate-complete-normalized.json",
+      "bytes": 162090,
+      "sha256": "22f40d7758b5424cf72c21f44058abc80521f1762670938f624845613905257d"
+    },
+    {
+      "path": "run-required.txt",
+      "bytes": 532,
+      "sha256": "ea18d327819d86be23c974729629c62c3bb49021e0e2daafb07a0b1206d01f91"
+    },
+    {
+      "path": "seal-first-attempt.txt",
+      "bytes": 484,
+      "sha256": "c0c86f854984f69714dea27833a37c8e3ce3994c0a4623721f64b90bf4cba46c"
+    },
+    {
+      "path": "semantic-ledger-builder.txt",
+      "bytes": 12515,
+      "sha256": "751b91c21c689871fa5f5cdd3506c0e9e2ac9d1f74e15d296b67e4b8ddc58b04"
+    },
+    {
+      "path": "skip-warning-comparison.json",
+      "bytes": 9121,
+      "sha256": "a7f3b9e34f0da83c1ea7104940ba1f3e2a618636185bdd274e9a69549d4af248"
+    },
+    {
+      "path": "up06-product-diff.txt",
+      "bytes": 87215,
+      "sha256": "9833cf71288353f114ff671a70d5add78cb1678aad2626996541d52be699632b"
+    },
+    {
+      "path": "warnings-complete-normalized.txt",
+      "bytes": 3122,
+      "sha256": "ed2b028d7f78e98ed5e98b77541ac8032276f7b515d8c5f1c07b8bdd1af38a3e"
+    }
+  ],
+  "safe_boundary": "Only explicit listed original reviewer evidence; source/primary/probes stored as .txt data. Excludes runtime HOME/cache/TMP/stores/private TLS keys/.git/bytecode. Historical builder mappings labeled navigation, not inherited decisions.",
+  "self_entry": "Manifest excluded from its own recursive inventory; exact SHA256 reported out of band."
+}

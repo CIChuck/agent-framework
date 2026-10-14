@@ -9,15 +9,15 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-11
-next_gate: core TELEM-01–04 accepted and closed; optional TELEM-05 needs a separate decision/directive; MCP protocol upgrade remains first pending
+next_gate: core TELEM-01–04 accepted and closed; optional TELEM-05 is queued as friday-langfuse-integration after MCP upgrade acceptance; construction authority remains closed
 execution_phase: closeout
 validation_state: verified
 implementation_authority: closed
-delivery_state: pushed
+delivery_state: merged
 ---
 
-Current delivery: the accepted branch is pushed and [draft PR #7](https://github.com/CIChuck/agent-framework/pull/7)
-is open against master after explicit publication approval. No merge exists.
+Current delivery: [PR #7](https://github.com/CIChuck/agent-framework/pull/7) is merged
+into master as 1302b5f. The remote and local telemetry branches are retired.
 The parent started label retains historical evidence; construction is closed.
 
 Core telemetry is **accepted and closed** across TELEM-01–04. Chuck Russell
@@ -28,10 +28,13 @@ all five REM-005 repairs, full unit and complete aggregate. The
 [archive](../../../archive/completed/2026/friday-telemetry-rewire-telem-04/README.md)
 bind that exact decision, product,46 controls and original evidence hashes.
 
-The continuing initiative remains started/local for separately governed optional
-planning. Construction authority is closed. Optional TELEM-05 Langfuse compatibility
-does not gate core telemetry and needs its own decision/directive. No source work
-for that optional unit is authorized. MCP protocol upgrade is first pending.
+Optional TELEM-05 Langfuse implementation is now a separate
+[queued initiative](../../queued/friday-langfuse-integration/README.md), priority5,
+after MCP protocol upgrade acceptance. Chuck Russell explicitly set this order
+on2026-10-11. It does not gate accepted core telemetry. The continuing parent
+retains the historical started label with construction authority closed and delivery merged;
+Langfuse itself is queued/not_granted and needs its own contract/directive before
+product work. MCP remains first pending.
 
 WVR-006 expired at TELEM-04 acceptance under its existing terms, with no extension
 to any follow-up. All original approved controls/reports remain unchanged. Existing

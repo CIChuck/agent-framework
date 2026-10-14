@@ -1,0 +1,79 @@
+{
+  "status": "proposed research inputs; no construction authority",
+  "checked_date": "2026-10-12",
+  "schema_upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+  "sources": [
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/index.md",
+      "resolved_url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/index.md",
+      "content_type": "text/markdown; charset=utf-8",
+      "bytes": 11194,
+      "sha256": "a504a34039368f1cb715096d664f234ce7e1af4511e6ad3fd41e901d8040b97e",
+      "artifact": "modelcontextprotocol.io--specification--2025-11-25--basic--index.md.gz",
+      "artifact_sha256": "f03955e29f62198dc77c7123811c3bccc8f9431a68027d0984b7c7f9aee38aec"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle.md",
+      "resolved_url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle.md",
+      "content_type": "text/markdown; charset=utf-8",
+      "bytes": 9217,
+      "sha256": "8c030bf50b74e562d244916b16baab1bfcd86ae03736d4e5b6e24ed58a913af9",
+      "artifact": "modelcontextprotocol.io--specification--2025-11-25--basic--lifecycle.md.gz",
+      "artifact_sha256": "36168ffae11aadaf6622bc419ca4353ac09a392f0dc4ffd98cdf5d6ea865ec95"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports.md",
+      "resolved_url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports.md",
+      "content_type": "text/markdown; charset=utf-8",
+      "bytes": 16191,
+      "sha256": "5a86d66ae0ab08f29460229f3b7f56d504388d1f106e21097575621717fc0e7a",
+      "artifact": "modelcontextprotocol.io--specification--2025-11-25--basic--transports.md.gz",
+      "artifact_sha256": "edb24318788ee0dbb472ac8c62183d73ac5ec2e26b2f0f0acc12831be0660e52"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/cancellation.md",
+      "resolved_url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/cancellation.md",
+      "content_type": "text/markdown; charset=utf-8",
+      "bytes": 2921,
+      "sha256": "a52208278358eebe5d91061d78122247c8e0b348701547386393aa7fbbabdf2e",
+      "artifact": "modelcontextprotocol.io--specification--2025-11-25--basic--utilities--cancellation.md.gz",
+      "artifact_sha256": "ececcd5dac5a288f0b83e672a17c11a46e0d2eb2876afde5cbd34988be5f35a0"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices.md",
+      "resolved_url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices.md",
+      "content_type": "text/markdown; charset=utf-8",
+      "bytes": 37327,
+      "sha256": "27dfdc9c8fb0f29750e52d64797077bc1ba01f25a0d584e3189954f47a2601c7",
+      "artifact": "modelcontextprotocol.io--specification--2025-11-25--basic--security_best_practices.md.gz",
+      "artifact_sha256": "bf6804e4f57672d51aedd4dda0d513758578b0eb3a5f32a92b136ac58ad65958"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools.md",
+      "resolved_url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools.md",
+      "content_type": "text/markdown; charset=utf-8",
+      "bytes": 14061,
+      "sha256": "b372c48eea58744850f5684b796438f32643402533b24084d82b49b580721aff",
+      "artifact": "modelcontextprotocol.io--specification--2025-11-25--server--tools.md.gz",
+      "artifact_sha256": "80259cc4cb4b74248ea0591fa061b9cc11ed4592985f639d7a10fba84ad9b091"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/cancellation.md",
+      "resolved_url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/cancellation.md",
+      "content_type": "text/markdown; charset=utf-8",
+      "bytes": 4627,
+      "sha256": "5ad380cae6ee6f29f63210694de90400c2aa84efaddc1c8f3f286ea3a36664a3",
+      "artifact": "modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md.gz",
+      "artifact_sha256": "0ffcd169eacf5a97d37b5e13a52ebcbb2259977db0975b70766e429e7d1cc43d"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/271ecc9accafdd9b83a3c869fa67c22953b2af80/schema/2025-11-25/schema.ts",
+      "resolved_url": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/271ecc9accafdd9b83a3c869fa67c22953b2af80/schema/2025-11-25/schema.ts",
+      "content_type": "text/plain; charset=utf-8",
+      "bytes": 66671,
+      "sha256": "e74b56e73b2e37bdb595f74ba22e428ad7f07aa3519355ba661d681298ed38ac",
+      "artifact": "raw.githubusercontent.com--modelcontextprotocol--modelcontextprotocol--271ecc9accafdd9b83a3c869fa67c22953b2af80--schema--2025-11-25--schema.ts.gz",
+      "artifact_sha256": "967c04a3a2d7bff08a573ece66c9378aa3a580c7f523d7ef682e169b6c13b76f"
+    }
+  ]
+}

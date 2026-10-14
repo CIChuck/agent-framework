@@ -1,0 +1,37 @@
+{
+  "argv": [
+    "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+    "-m",
+    "pytest",
+    "packages/friday-mcp/tests_mcp",
+    "-q"
+  ],
+  "cwd": "/private/tmp/friday-mcp-upgrade/work",
+  "environment": {
+    "PATH": "/private/tmp/friday-mcp-upgrade/venv/bin:/opt/homebrew/bin:/usr/bin:/bin",
+    "HOME": "/private/tmp/friday-mcp-upgrade/homes/independent-UP06-001-mcp",
+    "TMPDIR": "/private/tmp/friday-mcp-upgrade/tmp/independent-UP06-001-mcp",
+    "PYTHONPATH": "/private/tmp/friday-mcp-upgrade/guard:/private/tmp/friday-mcp-upgrade/work/packages/friday-agent/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-chat/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-cli/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-core/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-finance/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-llm/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-memory/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-moltbook/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-optimization/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-runtime/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-sandbox/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-speech/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-telemetry/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-tools/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-transcript/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-chat/tests_chat",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0",
+    "PYTEST_ADDOPTS": "--import-mode=importlib -o cache_dir=/private/tmp/friday-mcp-upgrade/homes/independent-UP06-001-mcp/pytest",
+    "UV_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/cache",
+    "UV_NO_SYNC": "1",
+    "UV_OFFLINE": "1",
+    "UV_PROJECT_ENVIRONMENT": "/private/tmp/friday-mcp-upgrade/venv",
+    "VIRTUAL_ENV": "/private/tmp/friday-mcp-upgrade/venv",
+    "FRIDAY_TELEMETRY_ENABLED": "false",
+    "ANONYMIZED_TELEMETRY": "false",
+    "TOKENIZERS_PARALLELISM": "false",
+    "XDG_CACHE_HOME": "/private/tmp/friday-mcp-upgrade/homes/independent-UP06-001-mcp/.cache",
+    "MPLCONFIGDIR": "/private/tmp/friday-mcp-upgrade/homes/independent-UP06-001-mcp/mpl",
+    "MYPY_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/homes/independent-UP06-001-mcp/mypy",
+    "RUFF_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/homes/independent-UP06-001-mcp/ruff"
+  },
+  "started_utc": "2026-10-14T02:31:56.057950+00:00",
+  "finished_utc": "2026-10-14T02:33:05.737434+00:00",
+  "exit_code": 0,
+  "stdout_sha256": "0e545d41c9b9ef0d1393dab4f176c3973461d8495458fee4fc20ac266ee1f60c",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8"
+}

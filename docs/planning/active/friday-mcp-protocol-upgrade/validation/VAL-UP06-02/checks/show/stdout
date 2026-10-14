@@ -1,0 +1,55 @@
+id: friday-mcp-protocol-upgrade
+title: Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade
+priority: 4
+work_state: started
+condition: normal
+implementation_authority: granted
+packet: docs/planning/active/friday-mcp-protocol-upgrade/
+next_gate: Fresh-context read-only FULL whole-feature aggregate review including12
+  product paths/27 checks/current policy supersession/all12+8 criteria
+delivery_state: local
+branch: feature/friday-mcp-protocol-upgrade
+depends_on:
+- friday-mcp
+validation:
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-01/report.md:
+  CHANGES_REQUESTED'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-02/report.md:
+  VERIFIED client-core/stdio work unit only'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json: maintainer
+  acceptance of client-core/stdio unit only'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/report.md:
+  CHANGES_REQUESTED; four HTTP findings, original candidate retained'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md:
+  VERIFIED corrected Streamable HTTP work unit; maintainer acceptance pending'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json: maintainer
+  acceptance of corrected HTTP unit only'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-01/report.md:
+  CHANGES_REQUESTED; sole bounded guide-accuracy finding; runtime checks pass'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-02/report.md:
+  VERIFIED Runtime/YAML/Chat full work-unit review; maintainer acceptance pending'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json: maintainer
+  accepted independently VERIFIED Runtime/YAML/Chat unit'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/execution/up04-planning/report.md:
+  exact UP-04 planning packet; no product construction authority'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-01/report.md:
+  independent CHANGES_REQUESTED, high refresh-admission and medium input-grammar findings;
+  REM-MCP-UP-004 proposed'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-02/report.md:
+  independent corrected-candidate CHANGES_REQUESTED; VAL-UP04-003'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-03/report.md:
+  independent remediation delta and full UP-04 VERIFIED; acceptance pending'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-04.json: maintainer
+  accepted independently VERIFIED UP-04; all3 findings resolved'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-01/report.md:
+  independent full UP-05 CHANGES_REQUESTED'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-02/report.md:
+  independent full UP-05 CHANGES_REQUESTED'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md:
+  independent full UP-05 VERIFIED'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json: maintainer
+  accepted independently VERIFIED UP-05; all five findings resolved'
+- 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md:
+  BLOCKED closure authority; full aggregate review not completed'
+approved_by: Chuck Russell
+approved_at: '2026-10-12'

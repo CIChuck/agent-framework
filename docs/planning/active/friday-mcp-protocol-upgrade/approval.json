@@ -1,0 +1,99 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "work_unit": "MCP-UP-02A",
+  "directive": "CD-MCP-UP-001",
+  "status": "approved",
+  "maintainer": "Chuck Russell",
+  "date": "2026-10-12",
+  "recorded_at_utc": "2026-10-12T14:18:57.748352+00:00",
+  "explicit_statement": "approved - Is it complete enough and specifically saying that we're matching the new Anthropic MCP specification? Pegging it to the appropriate research",
+  "decision_context": "Approval in direct response to the MCP-UP-01 contract and exact CD-MCP-UP-001 twelve-path proposal. The accompanying question requests explicit dated-specification and research binding.",
+  "approved_product_scope": {
+    "packages/friday-mcp/src/friday_mcp/client/base.py": "6b31f3c8aa5bda67ef329c241e938fada69fbde3b3751bcf2136710fee007aa8",
+    "packages/friday-mcp/src/friday_mcp/client/stdio.py": "a9e29cbe264de08bea1dafdcfd0609b79093979a120f4ae6c37ceb04df69179a",
+    "packages/friday-mcp/tests_mcp/client/test_execution.py": "842e10a0acdd0d9a05018e44c87288631d690adc83024a1dd920cc9b6b73f6c8",
+    "packages/friday-mcp/tests_mcp/client/test_lifecycle.py": "d96e139e5495a83ceba66f187b186be452771bff4661e1c05f50384f9f14e169",
+    "packages/friday-mcp/pyproject.toml": "fa75cbf3de3ba00fb9f853419a6f9f7f1230c0435de8efbb247814224acdcef2",
+    "packages/friday-mcp/README.md": "196d54ecc718da8e565e1347312da39dd51a0ca534a8bc22e6c86a645bddd258",
+    "uv.lock": "f3ea7b35a63d258035efaee2deb8cc160d0e95a2f5eafbeb8a38c73bceaf106c",
+    "packages/friday-mcp/src/friday_mcp/client/protocol.py": null,
+    "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py": null,
+    "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py": null,
+    "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py": null,
+    "packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py": null
+  },
+  "approved_proposal_controls": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-00-contract-policy-foundation.md",
+      "sha256": "651eb15e072d567d33a044e09e746422ca49458c5f386cb39d2228b710cd3485"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-05-execution-provenance-transcript.md",
+      "sha256": "9d8a14ffa65a71643fe6a6d92b9c21499dfb88bdd5e62693d7c0859bc17e8e8c"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-06-memory-compatibility-ingestion.md",
+      "sha256": "332eba2e05c67675f9578e2d2f455ef69ab707462f3d3fd60c41bcefcade47be"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telem04-contract.md",
+      "sha256": "100a6c81bdf1875c9beaa0a127df93d4cc9b0f8641da11463f529eedd087d242"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json",
+      "sha256": "db6ffff278434cabdf688839ec988b09e10fff437e8aac6a5c1ead9fac140075"
+    },
+    {
+      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/build-plan.md",
+      "sha256": "cfbe50cc0b3959e71a6251ad4ed16dd898c3936d172bd65cb4f9d44f21ad82cc"
+    },
+    {
+      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/protocol-contract.md",
+      "sha256": "1cfc79bcc71e4049573279435ecd577a058387a39f6cf028bc16a252ad450e42"
+    },
+    {
+      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/tactical-plan.md",
+      "sha256": "77a8fb3dbc8bbe843e07bd3945e01c8c4af5bae2d56052bd48fe74840ba066a6"
+    },
+    {
+      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-client-core.md",
+      "sha256": "124e77427e370db6b61b254cca6fc9598f0868c7dbb1de2e6f123697fd75b46b"
+    },
+    {
+      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/research.md",
+      "sha256": "37ab0ecce1e6de05c404e85c2bc6ca9d0d589b5e9444d4d7a3ec51df7199f367"
+    },
+    {
+      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/baseline.json",
+      "sha256": "52b22d13a059fed099355406d77c947310fcec3762a2d90a0bcc1570386ad9a8"
+    }
+  ],
+  "clarification": "Make normative specification/schema precedence and source-to-test mapping explicit without changing product paths, adding optional features, or authorizing later construction directives.",
+  "implementation_status": "execution preparation; no product edits",
+  "later_units": "not granted by this first-directive approval",
+  "delivery_authority": "no push, merge, release or deployment"
+}

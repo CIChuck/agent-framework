@@ -1,0 +1,15 @@
+Using CPython 3.13.10 interpreter at: /Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python
+Resolved 213 packages in 57ms
+Added cffi v2.1.1
+Added cryptography v50.0.2
+Added httpcore2 v2.13.1
+Added httpx2 v2.13.1
+Added httpx2-jsfetch v1.0
+Updated idna v3.11 -> v3.20
+Added mcp v2.3.0
+Added mcp-types v2.3.0
+Added pycparser v3.11
+Added pyjwt v2.15.1
+Added python-multipart v0.0.32
+Added sse-starlette v3.5.0
+Added truststore v0.10.4

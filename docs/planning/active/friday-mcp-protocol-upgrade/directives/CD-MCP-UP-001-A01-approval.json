@@ -1,0 +1,29 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "directive": "CD-MCP-UP-001",
+  "amendment": "CD-MCP-UP-001-A01",
+  "status": "approved",
+  "maintainer": "Chuck Russell",
+  "date": "2026-10-12",
+  "recorded_at_utc": "2026-10-12T16:11:44.521914+00:00",
+  "explicit_statement": "approved -  what is the regression issues associted with moving to idna 3.2",
+  "decision_context": "Explicit approval in direct response to the bounded A01 proposal. The question abbreviates the proposed target as 3.2; the concrete approved target is IDNA 3.20, not the distinct 2021 release 3.2. Record the regression assessment separately.",
+  "approved_proposal_commit": "d86dfd07bbb5d9b092dfc8f10077a5cea6ad9756",
+  "approved_amendment_proposal": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-sdk-dependency.md",
+    "sha256": "d40dce55c89afc252e2b34f768bcfcfeab4869e5c19cfd235fc39860f9b101e5"
+  },
+  "approved_dependency_proposal": {
+    "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/report.json": "61bb44f1eeae33013ea71a8d3b45067c19fe92e09971d28c6503c614b643b187",
+    "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-uv.lock.gz": "46da8d70f22930ec8b65182aba5ebd6b568c2b0d3c8d65c7d5c87ce9650246f8",
+    "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-mcp-pyproject.toml.gz": "8fed981ee2777ab00a7d41aa4d4cdcf4b0e9efc2fd093991236b36ca72ad146d",
+    "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/idna-3.20-pypi.json": "e7cbd26e23ce60f6cb3a151d2adf3b1b087bb8f10ac2d9d6db70fdccbf3bb041",
+    "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/mcp-2.3.0-pypi.json": "d9348a2813cdf05df82f7852afb9f13d8a8035d62c3a5e07fb9657bc5382aad7"
+  },
+  "existing_version_exception": {
+    "package": "idna",
+    "from": "3.11",
+    "to": "3.20"
+  },
+  "limits": "Every other existing version and supported resolution-context selection remains frozen; original twelve product paths and eight criteria unchanged; no delivery authority."
+}

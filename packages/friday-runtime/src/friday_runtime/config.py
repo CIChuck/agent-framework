@@ -8,12 +8,13 @@ dual-source loading helpers.
 
 from __future__ import annotations
 
+import ipaddress
 import os
 import re
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Literal, cast
+from typing import Annotated, Any, Literal, cast
 
 import yaml
 from friday_core.mcp import (
@@ -33,6 +34,7 @@ from friday_llm import (
     resolve_chat_service,
     resolve_embedding_service,
 )
+from friday_mcp.client import HTTPEndpoint, HTTPEndpointPolicy
 from friday_mcp.config import MCPConfig
 from pydantic import (
     BaseModel,
@@ -134,6 +136,7 @@ class MCPRuntimeServerConfig(BaseModel):
     enabled: bool = True
     required: bool = False
     transport: Literal["stdio"] = "stdio"
+    protocol_profile: Literal["legacy", "modern", "auto"] = "legacy"
     command: str | None = Field(default=None, repr=False)
     args: tuple[str, ...] = Field(default=(), repr=False)
     env: dict[str, str] = Field(default_factory=dict, repr=False)
@@ -176,6 +179,102 @@ class MCPRuntimeServerConfig(BaseModel):
             raise ValueError("MCP cwd must be under runtime_paths.workspace_root")
 
 
+class MCPHTTPNetworkConfig(BaseModel):
+    """Exact per-peer IP/port permissions, validated even for disabled peers."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+    allowed_addresses: tuple[str, ...] = ()
+    allowed_ports: tuple[int, ...] = (443,)
+
+    @field_validator("allowed_addresses", "allowed_ports", mode="before")
+    @classmethod
+    def _tuple_lists(cls, value: object) -> object:
+        return tuple(value) if isinstance(value, list) else value
+
+    @model_validator(mode="after")
+    def _check_network(self) -> MCPHTTPNetworkConfig:
+        if (
+            not 0 <= len(self.allowed_addresses) <= 16
+            or not 1 <= len(self.allowed_ports) <= 16
+        ):
+            raise ValueError("Invalid MCP HTTP network policy")
+        if len(set(self.allowed_addresses)) != len(self.allowed_addresses) or len(
+            set(self.allowed_ports)
+        ) != len(self.allowed_ports):
+            raise ValueError("Duplicate MCP HTTP network permission")
+        invalid = False
+        for value in self.allowed_addresses:
+            try:
+                address = ipaddress.ip_address(value)
+                invalid |= "%" in value or str(address) != value or (
+                    isinstance(address, ipaddress.IPv6Address)
+                    and address.ipv4_mapped is not None
+                )
+            except ValueError:
+                invalid = True
+        if invalid or any(not 0 < port < 65536 for port in self.allowed_ports):
+            raise ValueError("Invalid MCP HTTP network permission")
+        return self
+
+    def endpoint_policy(self) -> HTTPEndpointPolicy:
+        return HTTPEndpointPolicy(self.allowed_addresses, self.allowed_ports, False)
+
+
+class MCPRuntimeHTTPServerConfig(BaseModel):
+    """Explicit remote shape; never a permissive legacy process/SSE config."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+    name: MCPSafeIdentifier
+    enabled: bool = True
+    required: bool = False
+    transport: Literal["streamable_http"]
+    protocol_version: Literal["2026-07-28", "2025-11-25"]
+    trust_level: Literal["remote"]
+    url: str = Field(min_length=1, max_length=4096, repr=False)
+    auth: Literal["none", "bearer_env"] = "none"
+    credential_env: str | None = Field(default=None, repr=False)
+    network: MCPHTTPNetworkConfig = Field(default_factory=MCPHTTPNetworkConfig)
+    timeout_seconds: int = Field(default=30, gt=0)
+    tool_timeout_seconds: int = Field(default=60, gt=0)
+    retry_attempts: Literal[0] = 0
+
+    @field_validator("retry_attempts", mode="before")
+    @classmethod
+    def _zero_retry(cls, value: object) -> object:
+        if type(value) is not int or value != 0:
+            raise ValueError("MCP HTTP retries must be zero")
+        return value
+
+    @model_validator(mode="after")
+    def _check_remote(self) -> MCPRuntimeHTTPServerConfig:
+        if self.required and not self.enabled:
+            raise ValueError("required MCP server cannot be disabled")
+        if self.auth == "bearer_env":
+            if (
+                self.credential_env is None
+                or re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]{0,127}", self.credential_env)
+                is None
+            ):
+                raise ValueError(
+                    "MCP credential_env requires a literal environment identifier"
+                )
+        elif (
+            self.credential_env is not None or "credential_env" in self.model_fields_set
+        ):
+            raise ValueError("MCP credential_env is forbidden for auth none")
+        HTTPEndpoint.parse(self.url, self.network.endpoint_policy())
+        return self
+
+    def validate_workspace(self, workspace_root: str) -> None:
+        """Remote entries have no process cwd or workspace path fields."""
+
+
+MCPRuntimeConnectionConfig = Annotated[
+    MCPRuntimeServerConfig | MCPRuntimeHTTPServerConfig,
+    Field(discriminator="transport"),
+]
+
+
 class MCPRuntimeClientConfig(BaseModel):
     """Canonical nested MCP config consumed by later runtime workstreams."""
 
@@ -187,12 +286,17 @@ class MCPRuntimeClientConfig(BaseModel):
     limits: MCPClientLimits = Field(default_factory=MCPClientLimits)
     security: MCPClientSecurityPolicy = Field(default_factory=MCPClientSecurityPolicy)
     ingestion: MCPIngestionPolicy = Field(default_factory=MCPIngestionPolicy)
-    servers: tuple[MCPRuntimeServerConfig, ...] = ()
+    servers: tuple[MCPRuntimeConnectionConfig, ...] = ()
 
     @field_validator("servers", mode="before")
     @classmethod
     def _tuple_servers(cls, value: object) -> object:
-        return tuple(value) if isinstance(value, list) else value
+        if not isinstance(value, (list, tuple)):
+            return value
+        return tuple(
+            {"transport": "stdio", **server} if isinstance(server, Mapping) else server
+            for server in value
+        )
 
     @field_validator("security", "ingestion", mode="before")
     @classmethod
@@ -215,6 +319,14 @@ class MCPRuntimeClientConfig(BaseModel):
             raise ValueError("MCP server count exceeds max_servers")
         canonical_ids: set[str] = set()
         for server in self.servers:
+            if (
+                isinstance(server, MCPRuntimeHTTPServerConfig)
+                and server.enabled
+                and self.security.trust_posture != "explicit_remote"
+            ):
+                raise ValueError(
+                    "Enabled MCP HTTP server requires explicit remote security policy"
+                )
             canonical = normalize_mcp_tool_name(server.name, "probe")
             if canonical in canonical_ids:
                 raise ValueError("duplicate canonical MCP server identifier")
@@ -236,12 +348,20 @@ def _safe_mcp_validation_error(error: ValidationError) -> ValueError:
         MCPClientSecurityPolicy.model_fields
     )
     known |= set(MCPDiscoveryPolicy.model_fields) | set(MCPIngestionPolicy.model_fields)
+    known |= set(MCPRuntimeHTTPServerConfig.model_fields) | set(
+        MCPHTTPNetworkConfig.model_fields
+    )
     location = ".".join(
         str(part) if isinstance(part, int) or part in known else "<unknown>"
         for part in issue["loc"]
     )
+    message = (
+        "Invalid MCP transport discriminator"
+        if issue["type"].startswith("union_tag")
+        else issue["msg"]
+    )
     return ValueError(
-        f"Invalid tools.providers.mcp.config at {location or 'config'}: {issue['msg']}"
+        f"Invalid tools.providers.mcp.config at {location or 'config'}: {message}"
     )
 
 
@@ -366,10 +486,13 @@ class MCPToolProviderConfig:
                 raise ValueError(
                     "tools.providers.mcp.config_file is reserved for MCP-WS-09"
                 )
+            validation_failure: ValueError | None = None
             try:
                 mcp_config = MCPRuntimeClientConfig.model_validate(normalized_config)
             except ValidationError as error:
-                raise _safe_mcp_validation_error(error) from None
+                validation_failure = _safe_mcp_validation_error(error)
+            if validation_failure is not None:
+                raise validation_failure
         else:
             raise ValueError("tools.providers.mcp.config must be an object")
 

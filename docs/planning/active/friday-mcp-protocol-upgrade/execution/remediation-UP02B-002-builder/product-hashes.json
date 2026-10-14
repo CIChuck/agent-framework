@@ -1,0 +1,16 @@
+{
+  "packages/friday-mcp/src/friday_mcp/client/base.py": "28c31aed4544203da38fb146958e07ec234a0c70811c2cad3ee18497ff14a570",
+  "packages/friday-mcp/src/friday_mcp/client/protocol.py": "ad5e06fdfd4eab5e40a58eebe75f92436be6af63d85aa1e4240293aeefca9c6f",
+  "packages/friday-mcp/src/friday_mcp/client/__init__.py": "99a2ca88bc2161c78338d7855167256a6bda99e9b373561075b3942521e62c7e",
+  "packages/friday-mcp/README.md": "7e23c5e76917bb411e37cf20993faaa3fe06ef964de56ae4c4fdd53b865f9d23",
+  "packages/friday-mcp/pyproject.toml": "665eb50f54d283f23532c919db662fc64a376e0bf8155fd6ff6052913efd9a45",
+  "uv.lock": "5efcfafd68f3ed94a64ee943e6379fa57e603518ff2d215bb87710e25dc06759",
+  "packages/friday-mcp/src/friday_mcp/client/http.py": "5b1eaf77b631f4a6cb18300164688b2b1e08f83a5c525d8e236ef79a8d5aa3c3",
+  "packages/friday-mcp/src/friday_mcp/client/http_protocol.py": "a94e13a5470ce3af3ec67b365c131ebcaea31d946850b84b881a1fb1a471330f",
+  "packages/friday-mcp/src/friday_mcp/client/http_policy.py": "624d9eaa4f9e38d17ccafc71dbfcfcb2bacf3497c67cb52c8478c9b9315a17b1",
+  "packages/friday-mcp/tests_mcp/client/test_http_protocol.py": "0ec3c23af14eae8b6bccf433101a18e31beb45545ac4bfac7d61605b03e2d6c7",
+  "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py": "625f015518a52968568d5b2655f4904cd7f174f13407d0bc09f96be294711797",
+  "packages/friday-mcp/tests_mcp/client/test_http_interop.py": "8ff9a66c6eec61d52b3510471782bec42cffc329713a6968efaf625c4ac54c07",
+  "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py": "3bdb11d929a8732f8a67845c707343d4e1fd8aa3f1fa13d7d7bc5969d0d0567f",
+  "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py": "bb7c48d90013a1f812039bef62b80e6c71591abe0bde3a5855bf01b29cd00464"
+}

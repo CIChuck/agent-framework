@@ -1,0 +1,156 @@
+{
+  "product_sha256": {
+    "packages/friday-mcp/src/friday_mcp/client/base.py": "28c31aed4544203da38fb146958e07ec234a0c70811c2cad3ee18497ff14a570",
+    "packages/friday-mcp/src/friday_mcp/client/protocol.py": "121bc142e960a945126cac7e1e154b3cdd7800877c650e3c2373a18cc6fc247e",
+    "packages/friday-mcp/src/friday_mcp/client/__init__.py": "99a2ca88bc2161c78338d7855167256a6bda99e9b373561075b3942521e62c7e",
+    "packages/friday-mcp/README.md": "caf5c4245e86849e604d9663eed6df0885d97b408ddc19c839bfc404dd5c01b6",
+    "packages/friday-mcp/pyproject.toml": "665eb50f54d283f23532c919db662fc64a376e0bf8155fd6ff6052913efd9a45",
+    "uv.lock": "5efcfafd68f3ed94a64ee943e6379fa57e603518ff2d215bb87710e25dc06759",
+    "packages/friday-mcp/src/friday_mcp/client/http.py": "cc14801c7b4df803f6bb4cd86aafe19546b03e9283d67ae4850451de99ae4e0f",
+    "packages/friday-mcp/src/friday_mcp/client/http_protocol.py": "0319804e11c069a407735fbe3788f3677863d25edc3d45364bede66ce098f892",
+    "packages/friday-mcp/src/friday_mcp/client/http_policy.py": "624d9eaa4f9e38d17ccafc71dbfcfcb2bacf3497c67cb52c8478c9b9315a17b1",
+    "packages/friday-mcp/tests_mcp/client/test_http_protocol.py": "2ca41137d2e7b6e65b5df2e4a6f157dc76300107ee95ad1d0529e46486cf7d34",
+    "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py": "7a371e79bca1206747c06643036b8cc144738661dcc9da1b2b4fed48b0b8878d",
+    "packages/friday-mcp/tests_mcp/client/test_http_interop.py": "8ff9a66c6eec61d52b3510471782bec42cffc329713a6968efaf625c4ac54c07",
+    "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py": "3bdb11d929a8732f8a67845c707343d4e1fd8aa3f1fa13d7d7bc5969d0d0567f",
+    "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py": "bb7c48d90013a1f812039bef62b80e6c71591abe0bde3a5855bf01b29cd00464"
+  },
+  "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+  "authority_sha256": "563969f358940e8af38433a64d4f13420658b9de619a337e4b307940d43e7ec1",
+  "commands": {
+    "http": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-mcp/tests_mcp/client/test_http_protocol.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_interop.py",
+      "-q"
+    ],
+    "original": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+      "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py",
+      "packages/friday-mcp/tests_mcp/client/test_execution.py",
+      "packages/friday-mcp/tests_mcp/client/test_lifecycle.py",
+      "-q"
+    ],
+    "package": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-mcp/tests_mcp",
+      "-q"
+    ],
+    "cross": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-runtime/tests_runtime",
+      "packages/friday-chat/tests_chat",
+      "packages/friday-telemetry/tests_telemetry",
+      "-q"
+    ],
+    "root": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "-q"
+    ],
+    "ruff": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+      "check",
+      "packages/friday-mcp/src/friday_mcp/client/base.py",
+      "packages/friday-mcp/src/friday_mcp/client/protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/__init__.py",
+      "packages/friday-mcp/src/friday_mcp/client/http.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_policy.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_protocol.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_interop.py",
+      "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py",
+      "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py"
+    ],
+    "root-ruff": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+      "check",
+      ".",
+      "--output-format=json"
+    ],
+    "mypy": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "mypy",
+      "packages/friday-mcp/src/friday_mcp/client/base.py",
+      "packages/friday-mcp/src/friday_mcp/client/protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/__init__.py",
+      "packages/friday-mcp/src/friday_mcp/client/http.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_policy.py"
+    ],
+    "full-mypy": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "mypy",
+      "packages/friday-mcp/src/friday_mcp"
+    ],
+    "board": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "next": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "next"
+    ],
+    "show": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "show",
+      "friday-mcp-protocol-upgrade"
+    ],
+    "docs": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    "render": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "whitespace": [
+      "git",
+      "diff",
+      "--check"
+    ]
+  },
+  "environment_template": {
+    "PATH": "/private/tmp/friday-mcp-upgrade/venv/bin:/opt/homebrew/bin:/usr/bin:/bin",
+    "HOME": "/private/tmp/friday-mcp-upgrade/homes/up02b-http-final",
+    "TMPDIR": "/private/tmp/friday-mcp-upgrade/tmp",
+    "PYTHONPATH": "/private/tmp/friday-mcp-upgrade/guard:/private/tmp/friday-mcp-upgrade/work/packages/friday-agent/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-chat/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-cli/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-core/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-finance/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-llm/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-memory/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-moltbook/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-optimization/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-runtime/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-sandbox/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-speech/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-telemetry/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-tools/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-transcript/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-chat/tests_chat",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0",
+    "PYTEST_ADDOPTS": "--import-mode=importlib",
+    "UV_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/cache",
+    "UV_NO_SYNC": "1",
+    "UV_OFFLINE": "1",
+    "UV_PROJECT_ENVIRONMENT": "/private/tmp/friday-mcp-upgrade/venv",
+    "VIRTUAL_ENV": "/private/tmp/friday-mcp-upgrade/venv",
+    "FRIDAY_TELEMETRY_ENABLED": "false",
+    "ANONYMIZED_TELEMETRY": "false",
+    "TOKENIZERS_PARALLELISM": "false",
+    "XDG_CACHE_HOME": "/private/tmp/friday-mcp-upgrade/homes/up02b-http-final/.cache",
+    "MPLCONFIGDIR": "/private/tmp/friday-mcp-upgrade/homes/up02b-http-final/mpl"
+  },
+  "label_rule": "stable-up02b-<key>; HOME and cache subpaths use this label",
+  "runner_sha256": "ceec1b2316f4be3bce36fb778eb80b5d472561920d6d6fe35b8b30735e1776f0",
+  "versions_artifacts_preserved": true,
+  "lock_edge_changes": 2,
+  "frozen_controls_verified": 41
+}

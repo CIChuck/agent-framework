@@ -1,0 +1,5700 @@
+[
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 21,
+      "row": 5
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-collision-repro.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import asyncio\nimport contextlib\nimport io\nimport json\n\nimport val008_probes\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 7
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 1,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "SIM115",
+    "end_location": {
+      "column": 25,
+      "row": 8
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-peer.py",
+    "fix": null,
+    "location": {
+      "column": 21,
+      "row": 8
+    },
+    "message": "Use a context manager for opening files",
+    "noqa_row": 8,
+    "url": "https://docs.astral.sh/ruff/rules/open-file-with-context-handler"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 62,
+      "row": 25
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import asyncio\nimport contextlib\nimport copy\nimport io\nimport json\nimport logging\nimport pathlib\nimport sys\nimport tempfile\nimport time\nimport traceback\nfrom unittest.mock import AsyncMock, patch\n\nfrom friday_agent import DefaultToolRegistry\nfrom friday_core.interfaces.tools import ToolDefinition\nfrom friday_core.mcp import MCPClientLimits\nfrom friday_core.profiles import MemoryProfile\nfrom friday_mcp.client.adapter import MCPToolWrapper\nfrom friday_mcp.client.base import MCPClientBase\nfrom friday_mcp.client.stdio import StdioMCPClient, StdioTransport\nfrom friday_runtime.config import MCPToolProviderConfig, RuntimeConfig, ToolsConfig\nfrom friday_runtime.kernel import RuntimeKernel\nfrom friday_runtime.mcp_loading import MCPDiscoveredTool, RuntimeMCPProvider\nfrom friday_runtime.mcp_registration import (\n    MCPRegistrationError,\n    prepare_registration,\n    sanitize_definition,\n)\nfrom friday_runtime.tool_loading import ToolProviderLoadError\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 27
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 1,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 44,
+      "row": 16
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 17
+          },
+          "location": {
+            "column": 1,
+            "row": 16
+          }
+        }
+      ],
+      "message": "Remove unused import: `friday_core.mcp.MCPClientLimits`"
+    },
+    "location": {
+      "column": 29,
+      "row": 16
+    },
+    "message": "`friday_core.mcp.MCPClientLimits` imported but unused",
+    "noqa_row": 16,
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 53,
+      "row": 18
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 19
+          },
+          "location": {
+            "column": 1,
+            "row": 18
+          }
+        }
+      ],
+      "message": "Remove unused import: `friday_mcp.client.adapter.MCPToolWrapper`"
+    },
+    "location": {
+      "column": 39,
+      "row": 18
+    },
+    "message": "`friday_mcp.client.adapter.MCPToolWrapper` imported but unused",
+    "noqa_row": 18,
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 24,
+      "row": 59
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 23,
+      "row": 59
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 59,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 9,
+      "row": 61
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 8,
+      "row": 61
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 61,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 23,
+      "row": 62
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 22,
+      "row": 62
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 62,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 10,
+      "row": 63
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 63
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 63,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 9,
+      "row": 66
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 8,
+      "row": 66
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 66,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 23,
+      "row": 67
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 22,
+      "row": 67
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 67,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 10,
+      "row": 68
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 68
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 68,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 18,
+      "row": 69
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 69,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 50,
+      "row": 69
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 49,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 69,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 68,
+      "row": 69
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 67,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 69,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 30,
+      "row": 71
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 71
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 71,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 28,
+      "row": 72
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 27,
+      "row": 72
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 72,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 92,
+      "row": 72
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 91,
+      "row": 72
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 72,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 13,
+      "row": 83
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 12,
+      "row": 83
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 83,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 42,
+      "row": 84
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 41,
+      "row": 84
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 84,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 14,
+      "row": 85
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 85
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 85,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 9,
+      "row": 86
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 8,
+      "row": 86
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 86,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 38,
+      "row": 87
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 37,
+      "row": 87
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 87,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 10,
+      "row": 88
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 88
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 88,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 13,
+      "row": 90
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 12,
+      "row": 90
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 90,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 42,
+      "row": 91
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 41,
+      "row": 91
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 91,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 14,
+      "row": 92
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 92
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 92,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 21,
+      "row": 93
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 20,
+      "row": 93
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 93,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 33,
+      "row": 106
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 32,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 106,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 49,
+      "row": 106
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 48,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 106,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 66,
+      "row": 106
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 65,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 106,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 95,
+      "row": 106
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 94,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 106,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 23,
+      "row": 110
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 22,
+      "row": 110
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 110,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 22,
+      "row": 111
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 21,
+      "row": 111
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 111,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 32,
+      "row": 118
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 31,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 118,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 67,
+      "row": 118
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 66,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 118,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 88,
+      "row": 118
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 87,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 118,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 106,
+      "row": 118
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 105,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 118,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 27,
+      "row": 123
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 26,
+      "row": 123
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 123,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 23,
+      "row": 128
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 22,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 128,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 47,
+      "row": 128
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 46,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 128,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 60,
+      "row": 128
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 59,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 128,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 72,
+      "row": 128
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 71,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 128,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 39,
+      "row": 131
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 38,
+      "row": 131
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 131,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 28,
+      "row": 132
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 27,
+      "row": 132
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 132,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 44,
+      "row": 135
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 43,
+      "row": 135
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 135,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 24,
+      "row": 137
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 23,
+      "row": 137
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 137,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 64,
+      "row": 145
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 63,
+      "row": 145
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 145,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "B023",
+    "end_location": {
+      "column": 71,
+      "row": 145
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 64,
+      "row": 145
+    },
+    "message": "Function definition does not bind loop variable `clients`",
+    "noqa_row": 145,
+    "url": "https://docs.astral.sh/ruff/rules/function-uses-loop-variable"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 82,
+      "row": 145
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 81,
+      "row": 145
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 145,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 22,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 21,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 87,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 86,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 110,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 109,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 134,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 133,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 161,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 160,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 177,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 176,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 191,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 190,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 21,
+      "row": 153
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 20,
+      "row": 153
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 153,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 43,
+      "row": 154
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 42,
+      "row": 154
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 154,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 31,
+      "row": 166
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 30,
+      "row": 166
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 166,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 30,
+      "row": 172
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 172,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 61,
+      "row": 172
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 60,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 172,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 93,
+      "row": 172
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 92,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 172,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 30,
+      "row": 174
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 174
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 174,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 55,
+      "row": 179
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 54,
+      "row": 179
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 179,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 73,
+      "row": 179
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 72,
+      "row": 179
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 179,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 44,
+      "row": 180
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 43,
+      "row": 180
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 180,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 68,
+      "row": 180
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 67,
+      "row": 180
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 180,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 29,
+      "row": 184
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 28,
+      "row": 184
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 184,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 55,
+      "row": 184
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 54,
+      "row": 184
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 184,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 17,
+      "row": 186
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 186
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 186,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 42,
+      "row": 187
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 41,
+      "row": 187
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 187,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 18,
+      "row": 188
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 188
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 188,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 17,
+      "row": 191
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 191
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 191,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 42,
+      "row": 192
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 41,
+      "row": 192
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 192,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 18,
+      "row": 193
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 193
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 193,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 29,
+      "row": 196
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 28,
+      "row": 196
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 196,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 48,
+      "row": 199
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 47,
+      "row": 199
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 199,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 99,
+      "row": 199
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 98,
+      "row": 199
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 199,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 17,
+      "row": 202
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 202
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 202,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 43,
+      "row": 203
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 42,
+      "row": 203
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 203,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 18,
+      "row": 204
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 204
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 204,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 55,
+      "row": 206
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 54,
+      "row": 206
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 206,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 28,
+      "row": 207
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 27,
+      "row": 207
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 207,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 210
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 210,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 57,
+      "row": 210
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 56,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 210,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 89,
+      "row": 210
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 88,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 210,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 37,
+      "row": 211
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 36,
+      "row": 211
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 211,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 51,
+      "row": 211
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 50,
+      "row": 211
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 211,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 213
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 213
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 213,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 55,
+      "row": 217
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 54,
+      "row": 217
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 217,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 73,
+      "row": 217
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 72,
+      "row": 217
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 217,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 122,
+      "row": 218
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 121,
+      "row": 218
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 218,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 29,
+      "row": 221
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 28,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 221,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 50,
+      "row": 221
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 49,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 221,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 72,
+      "row": 221
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 71,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 221,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 17,
+      "row": 224
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 224
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 224,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 42,
+      "row": 225
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 41,
+      "row": 225
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 225,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 18,
+      "row": 226
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 226
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 226,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 239
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 239,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 57,
+      "row": 239
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 56,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 239,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 89,
+      "row": 239
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 88,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 239,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 241
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 241
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 241,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 48,
+      "row": 244
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 47,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 244,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 64,
+      "row": 244
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 63,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 244,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 74,
+      "row": 244
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 73,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 244,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 96,
+      "row": 244
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 95,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 244,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 24,
+      "row": 246
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 23,
+      "row": 246
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 246,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 145,
+      "row": 249
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 144,
+      "row": 249
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 249,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 32,
+      "row": 252
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 31,
+      "row": 252
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 252,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 52,
+      "row": 257
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 51,
+      "row": 257
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 257,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 39,
+      "row": 262
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 38,
+      "row": 262
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 262,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 14,
+      "row": 265
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 265,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 28,
+      "row": 265
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 27,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 265,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 60,
+      "row": 265
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 59,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 265,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 97,
+      "row": 265
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 96,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 265,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 128,
+      "row": 265
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 127,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 265,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 76,
+      "row": 266
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 75,
+      "row": 266
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 266,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 92,
+      "row": 266
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 91,
+      "row": 266
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 266,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 56,
+      "row": 267
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 55,
+      "row": 267
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 267,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 24,
+      "row": 268
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 23,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 268,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 60,
+      "row": 268
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 59,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 268,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 92,
+      "row": 268
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 91,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 268,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 120,
+      "row": 268
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 119,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 268,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 152,
+      "row": 268
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 151,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 268,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 24,
+      "row": 269
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 23,
+      "row": 269
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 269,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 69,
+      "row": 271
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 68,
+      "row": 271
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 271,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 88,
+      "row": 271
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 87,
+      "row": 271
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 271,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 71,
+      "row": 273
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 70,
+      "row": 273
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 273,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 131,
+      "row": 273
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 130,
+      "row": 273
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 273,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 31,
+      "row": 275
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 30,
+      "row": 275
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 275,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 64,
+      "row": 276
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 63,
+      "row": 276
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 276,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 63,
+      "row": 278
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 62,
+      "row": 278
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 278,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 162,
+      "row": 279
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 161,
+      "row": 279
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 279,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 68,
+      "row": 283
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 67,
+      "row": 283
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 283,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 33,
+      "row": 286
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 32,
+      "row": 286
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 286,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 72,
+      "row": 288
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 71,
+      "row": 288
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 288,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 46,
+      "row": 289
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 45,
+      "row": 289
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 289,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 10,
+      "row": 291
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 291
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 291,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 17,
+      "row": 296
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 296
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 296,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 35,
+      "row": 297
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 34,
+      "row": 297
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 297,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 30,
+      "row": 298
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 298
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 298,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 54,
+      "row": 301
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 53,
+      "row": 301
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 301,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 61,
+      "row": 302
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 60,
+      "row": 302
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 302,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 25,
+      "row": 316
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 316
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 316,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 38,
+      "row": 317
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 37,
+      "row": 317
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 317,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 318
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 318
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 318,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 48,
+      "row": 322
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 47,
+      "row": 322
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 322,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 96,
+      "row": 329
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 95,
+      "row": 329
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 329,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 48,
+      "row": 333
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 47,
+      "row": 333
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 333,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 25,
+      "row": 337
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 337
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 337,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 51,
+      "row": 338
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 50,
+      "row": 338
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 338,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 339
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 339
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 339,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 45,
+      "row": 349
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 44,
+      "row": 349
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 349,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 63,
+      "row": 349
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 62,
+      "row": 349
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 349,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 45,
+      "row": 350
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 44,
+      "row": 350
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 350,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 49,
+      "row": 352
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 48,
+      "row": 352
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 352,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 28,
+      "row": 354
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 27,
+      "row": 354
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 354,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 22,
+      "row": 355
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 21,
+      "row": 355
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 355,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 62,
+      "row": 358
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 61,
+      "row": 358
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 358,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 44,
+      "row": 361
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 43,
+      "row": 361
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 361,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 44,
+      "row": 369
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 43,
+      "row": 369
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 369,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 29,
+      "row": 373
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 28,
+      "row": 373
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 373,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 52,
+      "row": 377
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "fix": null,
+    "location": {
+      "column": 51,
+      "row": 377
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 377,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 62,
+      "row": 25
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import asyncio\nimport contextlib\nimport copy\nimport io\nimport json\nimport logging\nimport pathlib\nimport sys\nimport tempfile\nimport time\nimport traceback\nfrom unittest.mock import AsyncMock, patch\n\nfrom friday_agent import DefaultToolRegistry\nfrom friday_core.interfaces.tools import ToolDefinition\nfrom friday_core.mcp import MCPClientLimits\nfrom friday_core.profiles import MemoryProfile\nfrom friday_mcp.client.adapter import MCPToolWrapper\nfrom friday_mcp.client.base import MCPClientBase\nfrom friday_mcp.client.stdio import StdioMCPClient, StdioTransport\nfrom friday_runtime.config import MCPToolProviderConfig, RuntimeConfig, ToolsConfig\nfrom friday_runtime.kernel import RuntimeKernel\nfrom friday_runtime.mcp_loading import MCPDiscoveredTool, RuntimeMCPProvider\nfrom friday_runtime.mcp_registration import (\n    MCPRegistrationError,\n    prepare_registration,\n    sanitize_definition,\n)\nfrom friday_runtime.tool_loading import ToolProviderLoadError\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 27
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 1,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 44,
+      "row": 16
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 17
+          },
+          "location": {
+            "column": 1,
+            "row": 16
+          }
+        }
+      ],
+      "message": "Remove unused import: `friday_core.mcp.MCPClientLimits`"
+    },
+    "location": {
+      "column": 29,
+      "row": 16
+    },
+    "message": "`friday_core.mcp.MCPClientLimits` imported but unused",
+    "noqa_row": 16,
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 53,
+      "row": 18
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 19
+          },
+          "location": {
+            "column": 1,
+            "row": 18
+          }
+        }
+      ],
+      "message": "Remove unused import: `friday_mcp.client.adapter.MCPToolWrapper`"
+    },
+    "location": {
+      "column": 39,
+      "row": 18
+    },
+    "message": "`friday_mcp.client.adapter.MCPToolWrapper` imported but unused",
+    "noqa_row": 18,
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 24,
+      "row": 59
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 23,
+      "row": 59
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 59,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 9,
+      "row": 61
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 8,
+      "row": 61
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 61,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 23,
+      "row": 62
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 22,
+      "row": 62
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 62,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 10,
+      "row": 63
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 63
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 63,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 9,
+      "row": 66
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 8,
+      "row": 66
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 66,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 23,
+      "row": 67
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 22,
+      "row": 67
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 67,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 10,
+      "row": 68
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 68
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 68,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 18,
+      "row": 69
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 69,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 50,
+      "row": 69
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 49,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 69,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 68,
+      "row": 69
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 67,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 69,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 30,
+      "row": 71
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 71
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 71,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 28,
+      "row": 72
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 27,
+      "row": 72
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 72,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 92,
+      "row": 72
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 91,
+      "row": 72
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 72,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 13,
+      "row": 83
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 12,
+      "row": 83
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 83,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 42,
+      "row": 84
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 41,
+      "row": 84
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 84,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 14,
+      "row": 85
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 85
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 85,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 9,
+      "row": 86
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 8,
+      "row": 86
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 86,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 38,
+      "row": 87
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 37,
+      "row": 87
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 87,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 10,
+      "row": 88
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 88
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 88,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 13,
+      "row": 90
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 12,
+      "row": 90
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 90,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 42,
+      "row": 91
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 41,
+      "row": 91
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 91,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 14,
+      "row": 92
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 92
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 92,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 21,
+      "row": 93
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 20,
+      "row": 93
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 93,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 33,
+      "row": 106
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 32,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 106,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 49,
+      "row": 106
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 48,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 106,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 66,
+      "row": 106
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 65,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 106,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 95,
+      "row": 106
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 94,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 106,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 23,
+      "row": 110
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 22,
+      "row": 110
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 110,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 22,
+      "row": 111
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 21,
+      "row": 111
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 111,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 32,
+      "row": 118
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 31,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 118,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 67,
+      "row": 118
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 66,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 118,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 88,
+      "row": 118
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 87,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 118,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 106,
+      "row": 118
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 105,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 118,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 27,
+      "row": 123
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 26,
+      "row": 123
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 123,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 23,
+      "row": 128
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 22,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 128,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 47,
+      "row": 128
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 46,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 128,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 60,
+      "row": 128
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 59,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 128,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 72,
+      "row": 128
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 71,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 128,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 39,
+      "row": 131
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 38,
+      "row": 131
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 131,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 28,
+      "row": 132
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 27,
+      "row": 132
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 132,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 44,
+      "row": 135
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 43,
+      "row": 135
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 135,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 24,
+      "row": 137
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 23,
+      "row": 137
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 137,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 64,
+      "row": 145
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 63,
+      "row": 145
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 145,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "B023",
+    "end_location": {
+      "column": 71,
+      "row": 145
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 64,
+      "row": 145
+    },
+    "message": "Function definition does not bind loop variable `clients`",
+    "noqa_row": 145,
+    "url": "https://docs.astral.sh/ruff/rules/function-uses-loop-variable"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 82,
+      "row": 145
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 81,
+      "row": 145
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 145,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 22,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 21,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 87,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 86,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 110,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 109,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 134,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 133,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 161,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 160,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 177,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 176,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 191,
+      "row": 146
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 190,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 146,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 21,
+      "row": 153
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 20,
+      "row": 153
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 153,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 43,
+      "row": 154
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 42,
+      "row": 154
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 154,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 31,
+      "row": 166
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 30,
+      "row": 166
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 166,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 30,
+      "row": 172
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 172,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 61,
+      "row": 172
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 60,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 172,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 93,
+      "row": 172
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 92,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 172,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 30,
+      "row": 174
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 174
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 174,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 55,
+      "row": 179
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 54,
+      "row": 179
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 179,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 73,
+      "row": 179
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 72,
+      "row": 179
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 179,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 44,
+      "row": 180
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 43,
+      "row": 180
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 180,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 68,
+      "row": 180
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 67,
+      "row": 180
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 180,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 29,
+      "row": 184
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 28,
+      "row": 184
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 184,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 55,
+      "row": 184
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 54,
+      "row": 184
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 184,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 17,
+      "row": 186
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 186
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 186,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 42,
+      "row": 187
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 41,
+      "row": 187
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 187,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 18,
+      "row": 188
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 188
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 188,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 17,
+      "row": 191
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 191
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 191,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 42,
+      "row": 192
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 41,
+      "row": 192
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 192,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 18,
+      "row": 193
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 193
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 193,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 29,
+      "row": 196
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 28,
+      "row": 196
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 196,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 48,
+      "row": 199
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 47,
+      "row": 199
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 199,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 99,
+      "row": 199
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 98,
+      "row": 199
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 199,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 17,
+      "row": 202
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 202
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 202,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 43,
+      "row": 203
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 42,
+      "row": 203
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 203,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 18,
+      "row": 204
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 204
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 204,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 55,
+      "row": 206
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 54,
+      "row": 206
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 206,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 28,
+      "row": 207
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 27,
+      "row": 207
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 207,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 210
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 210,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 57,
+      "row": 210
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 56,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 210,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 89,
+      "row": 210
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 88,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 210,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 37,
+      "row": 211
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 36,
+      "row": 211
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 211,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 51,
+      "row": 211
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 50,
+      "row": 211
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 211,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 213
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 213
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 213,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 55,
+      "row": 217
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 54,
+      "row": 217
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 217,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 73,
+      "row": 217
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 72,
+      "row": 217
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 217,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 122,
+      "row": 218
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 121,
+      "row": 218
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 218,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 29,
+      "row": 221
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 28,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 221,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 50,
+      "row": 221
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 49,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 221,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 72,
+      "row": 221
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 71,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 221,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 17,
+      "row": 224
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 224
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 224,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 42,
+      "row": 225
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 41,
+      "row": 225
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 225,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 18,
+      "row": 226
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 226
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 226,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 239
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 239,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 57,
+      "row": 239
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 56,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 239,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 89,
+      "row": 239
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 88,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 239,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 241
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 241
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 241,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 48,
+      "row": 244
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 47,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 244,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 64,
+      "row": 244
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 63,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 244,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 74,
+      "row": 244
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 73,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 244,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 96,
+      "row": 244
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 95,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 244,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 24,
+      "row": 246
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 23,
+      "row": 246
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 246,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 145,
+      "row": 249
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 144,
+      "row": 249
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 249,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 32,
+      "row": 252
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 31,
+      "row": 252
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 252,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 52,
+      "row": 257
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 51,
+      "row": 257
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 257,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 39,
+      "row": 262
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 38,
+      "row": 262
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 262,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 14,
+      "row": 265
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 265,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 28,
+      "row": 265
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 27,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 265,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 60,
+      "row": 265
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 59,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 265,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 97,
+      "row": 265
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 96,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 265,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 128,
+      "row": 265
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 127,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 265,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 76,
+      "row": 266
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 75,
+      "row": 266
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 266,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 92,
+      "row": 266
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 91,
+      "row": 266
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 266,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 56,
+      "row": 267
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 55,
+      "row": 267
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 267,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 24,
+      "row": 268
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 23,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 268,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 60,
+      "row": 268
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 59,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 268,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 92,
+      "row": 268
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 91,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 268,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 120,
+      "row": 268
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 119,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 268,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 152,
+      "row": 268
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 151,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 268,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 24,
+      "row": 269
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 23,
+      "row": 269
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 269,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 69,
+      "row": 271
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 68,
+      "row": 271
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 271,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 88,
+      "row": 271
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 87,
+      "row": 271
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 271,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 71,
+      "row": 273
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 70,
+      "row": 273
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 273,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 131,
+      "row": 273
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 130,
+      "row": 273
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 273,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 31,
+      "row": 275
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 30,
+      "row": 275
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 275,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 64,
+      "row": 276
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 63,
+      "row": 276
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 276,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 63,
+      "row": 278
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 62,
+      "row": 278
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 278,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 162,
+      "row": 279
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 161,
+      "row": 279
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 279,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 68,
+      "row": 283
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 67,
+      "row": 283
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 283,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 33,
+      "row": 286
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 32,
+      "row": 286
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 286,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 72,
+      "row": 288
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 71,
+      "row": 288
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 288,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 46,
+      "row": 289
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 45,
+      "row": 289
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 289,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 10,
+      "row": 291
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 291
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 291,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 17,
+      "row": 296
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 296
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 296,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 35,
+      "row": 297
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 34,
+      "row": 297
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 297,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 30,
+      "row": 298
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 298
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 298,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 54,
+      "row": 301
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 53,
+      "row": 301
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 301,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 61,
+      "row": 302
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 60,
+      "row": 302
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 302,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 25,
+      "row": 316
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 316
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 316,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 38,
+      "row": 317
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 37,
+      "row": 317
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 317,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 318
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 318
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 318,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 48,
+      "row": 322
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 47,
+      "row": 322
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 322,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 96,
+      "row": 329
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 95,
+      "row": 329
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 329,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 48,
+      "row": 333
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 47,
+      "row": 333
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 333,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 25,
+      "row": 337
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 337
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 337,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 51,
+      "row": 338
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 50,
+      "row": 338
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 338,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 26,
+      "row": 339
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 25,
+      "row": 339
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 339,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 45,
+      "row": 349
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 44,
+      "row": 349
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 349,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 63,
+      "row": 349
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 62,
+      "row": 349
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 349,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 45,
+      "row": 350
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 44,
+      "row": 350
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 350,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 49,
+      "row": 352
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 48,
+      "row": 352
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 352,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 28,
+      "row": 354
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 27,
+      "row": 354
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 354,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 22,
+      "row": 355
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 21,
+      "row": 355
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 355,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 62,
+      "row": 358
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 61,
+      "row": 358
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 358,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 44,
+      "row": 361
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 43,
+      "row": 361
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 361,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 44,
+      "row": 369
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 43,
+      "row": 369
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 369,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "E702",
+    "end_location": {
+      "column": 29,
+      "row": 373
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 28,
+      "row": 373
+    },
+    "message": "Multiple statements on one line (semicolon)",
+    "noqa_row": 373,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-semicolon"
+  },
+  {
+    "cell": null,
+    "code": "E701",
+    "end_location": {
+      "column": 52,
+      "row": 377
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "fix": null,
+    "location": {
+      "column": 51,
+      "row": 377
+    },
+    "message": "Multiple statements on one line (colon)",
+    "noqa_row": 377,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-statements-on-one-line-colon"
+  },
+  {
+    "cell": null,
+    "code": "UP046",
+    "end_location": {
+      "column": 33,
+      "row": 74
+    },
+    "filename": "/private/tmp/friday-mcp-upgrade/up06-baseline/packages/friday-cli/src/friday_cli/commands.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "[T]",
+          "end_location": {
+            "column": 22,
+            "row": 74
+          },
+          "location": {
+            "column": 22,
+            "row": 74
+          }
+        },
+        {
+          "content": "",
+          "end_location": {
+            "column": 34,
+            "row": 74
+          },
+          "location": {
+            "column": 22,
+            "row": 74
+          }
+        }
+      ],
+      "message": "Use type parameters"
+    },
+    "location": {
+      "column": 23,
+      "row": 74
+    },
+    "message": "Generic class `CommandRegistry` uses `Generic` subclass instead of type parameters",
+    "noqa_row": 74,
+    "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+  }
+]

@@ -1,0 +1,16 @@
+Using CPython 3.13.10 interpreter at: /Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python
+  × No solution found when resolving dependencies for split (markers:
+  │ python_full_version >= '3.13.4' and python_full_version < '3.14'):
+  ╰─▶ Because httpx2>=2.10.0 depends on idna>=3.18 and idna==3.11, we can
+      conclude that httpx2>=2.10.0 cannot be used.
+      And because only the following versions of httpx2 are available:
+          httpx2<=2.10.0
+          httpx2==2.11.0
+          httpx2==2.12.0
+          httpx2==2.13.0
+          httpx2==2.13.1
+      and mcp==2.3.0 depends on httpx2>=2.10.0, we can conclude that
+      mcp==2.3.0 cannot be used.
+      And because friday-framework-mcp[dev] depends on mcp==2.3.0 and your
+      workspace requires friday-framework-mcp[dev], we can conclude that your
+      workspace's requirements are unsatisfiable.

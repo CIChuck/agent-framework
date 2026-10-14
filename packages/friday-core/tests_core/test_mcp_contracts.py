@@ -406,36 +406,94 @@ def test_discovery_tracks_bounded_per_server_state() -> None:
 
 
 def test_execution_provenance_optional_sizes_and_fixed_failure_roundtrip() -> None:
-    old = MCPToolCallProvenance(tool=_metadata(), status='succeeded')
+    old = MCPToolCallProvenance(tool=_metadata(), status="succeeded")
     assert old.result_size_bytes is None and old.model_result_size_bytes is None
     assert old.failure_code is None
     for status, code, state in [
-        ('succeeded', None, 'sanitized'), ('failed', 'tool_error', 'sanitized'),
-        ('failed', 'invalid_result', 'sanitized'), ('failed', 'execution_error', 'sanitized'),
-        ('failed', 'timeout', 'sanitized'), ('blocked', 'output_rejected', 'rejected'),
+        ("succeeded", None, "sanitized"),
+        ("failed", "tool_error", "sanitized"),
+        ("failed", "invalid_result", "sanitized"),
+        ("failed", "execution_error", "sanitized"),
+        ("failed", "timeout", "sanitized"),
+        ("blocked", "output_rejected", "rejected"),
     ]:
-        facts = MCPToolCallProvenance.model_validate({
-            'tool': _metadata(), 'status': status, 'failure_code': code,
-            'output_sanitization_state': state, 'result_size_bytes': 42,
-            'model_result_size_bytes': 64,
-        })
-        assert MCPToolCallProvenance.model_validate_json(facts.model_dump_json()) == facts
-        assert facts.ingestion_decision == 'disabled' and not facts.memory_ingested
+        facts = MCPToolCallProvenance.model_validate(
+            {
+                "tool": _metadata(),
+                "status": status,
+                "failure_code": code,
+                "output_sanitization_state": state,
+                "result_size_bytes": 42,
+                "model_result_size_bytes": 64,
+            }
+        )
+        assert (
+            MCPToolCallProvenance.model_validate_json(facts.model_dump_json()) == facts
+        )
+        assert facts.ingestion_decision == "disabled" and not facts.memory_ingested
 
 
-@pytest.mark.parametrize('invalid', [
-    {'result_size_bytes': -1}, {'model_result_size_bytes': -1},
-    {'result_size_bytes': True}, {'failure_code': 'raw secret exception'},
-    {'failure_code': 'tool_error'},
-    {'status': 'failed', 'failure_code': 'output_rejected'},
-    {'status': 'blocked', 'failure_code': 'output_rejected', 'output_sanitization_state': 'sanitized'},
-    {'status': 'blocked', 'failure_code': 'timeout'}, {'arguments_hash': 'hash'},
-])
-def test_execution_provenance_rejects_bad_sizes_status_codes_and_hashes(invalid) -> None:
+@pytest.mark.parametrize(
+    "invalid",
+    [
+        {"result_size_bytes": -1},
+        {"model_result_size_bytes": -1},
+        {"result_size_bytes": True},
+        {"failure_code": "raw secret exception"},
+        {"failure_code": "tool_error"},
+        {"status": "failed", "failure_code": "output_rejected"},
+        {
+            "status": "blocked",
+            "failure_code": "output_rejected",
+            "output_sanitization_state": "sanitized",
+        },
+        {"status": "blocked", "failure_code": "timeout"},
+        {"arguments_hash": "hash"},
+    ],
+)
+def test_execution_provenance_rejects_bad_sizes_status_codes_and_hashes(
+    invalid,
+) -> None:
     with pytest.raises(ValidationError):
-        MCPToolCallProvenance.model_validate({'tool': _metadata(), 'status': 'succeeded', **invalid})
+        MCPToolCallProvenance.model_validate(
+            {"tool": _metadata(), "status": "succeeded", **invalid}
+        )
 
 
 def test_rejected_output_cannot_claim_success_without_failure_code():
     with pytest.raises(ValidationError):
-        MCPToolCallProvenance(tool=_metadata(), status="succeeded", output_sanitization_state="rejected")
+        MCPToolCallProvenance(
+            tool=_metadata(), status="succeeded", output_sanitization_state="rejected"
+        )
+
+
+@pytest.mark.parametrize(
+    "transport,posture,valid",
+    [
+        ("stdio_only", "local_stdio_only", True),
+        ("stdio_and_streamable_http", "explicit_remote", True),
+        ("stdio_only", "explicit_remote", False),
+        ("stdio_and_streamable_http", "local_stdio_only", False),
+    ],
+)
+def test_explicit_remote_policy_requires_matching_pair(transport, posture, valid):
+    if valid:
+        policy = MCPClientSecurityPolicy(
+            integrated_transport=transport, trust_posture=posture
+        )
+        assert policy.redact_headers and not policy.store_raw_tool_results
+    else:
+        with pytest.raises(ValidationError, match="matching pair"):
+            MCPClientSecurityPolicy(
+                integrated_transport=transport, trust_posture=posture
+            )
+    assert MCPServerRuntimePolicy().transport == "stdio"
+
+
+def test_streamable_http_provenance_is_additive():
+    item = _metadata().model_copy(
+        update={"transport": "streamable_http", "trust_level": "remote"}
+    )
+    assert (
+        MCPToolMetadata.model_validate(item.model_dump()).transport == "streamable_http"
+    )

@@ -1,0 +1,16 @@
+{
+  "baseline_revision": "9e00288b4b36632bb82b98955a88dec0545efb47",
+  "baseline_summary": [
+    "3331",
+    "14",
+    "15"
+  ],
+  "candidate_summary": [
+    "3529",
+    "14",
+    "15"
+  ],
+  "new_tests": 198,
+  "warning_skip_counts_unchanged": true,
+  "note": "Baseline uses same private pinned environment and accepted source; live-service skips remain separate from deterministic acceptance. Raw warning and suite outputs retained for independent comparison."
+}

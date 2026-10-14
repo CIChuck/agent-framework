@@ -1,0 +1,10 @@
+--- a/packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py
++++ b/packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py
+@@ -24,0 +25,4 @@
++    text_schema = {"type": "string"}
++    if isinstance(server, StreamableHTTPMCPServer):
++        text_schema["x-mcp-header"] = "Text"
++
+@@ -43 +47 @@
+-                    "text": {"type": "string", "x-mcp-header": "Text"},
++                    "text": text_schema,

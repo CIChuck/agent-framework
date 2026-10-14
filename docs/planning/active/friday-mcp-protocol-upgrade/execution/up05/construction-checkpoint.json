@@ -1,0 +1,262 @@
+{
+  "status": "Incomplete construction; no stable candidate, full profile or independent review",
+  "head": "68c477bd2c94ccf08c703cc342ab53ec3cc1b80b",
+  "product_paths": [
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+      "baseline_sha256": "c1e061ecc5b08baade3deca638fb9d0d29d4d26a4ef4df42173255e9a2ab1b9a",
+      "change": "existing",
+      "current_sha256": "0344e43f48aa5bdf49365649a968bbbc607b745dcaa1c3f2c1ac43503a836834"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "37512eb812b24201edb70ec0a23527f01ecebd8660cd04deb3a193a55bed2613"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/modern.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "ee9d60934dcb5b31ccde84481faaedcd0e0b863c642d3fa46b191665602079c9"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "91b419950b393b352d686160f979f8ae228f82c30f667fdf402b1357455664ae"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/http.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "46b6d4727a5850315e61deb32a9ceaa25741e8b5684aab1b3c0926dfcafa28d4"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/registry.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "79b226deb40618f15d96a2ad71d9cc77f6404ebae6f6d9b73664f68e36ec17e3"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "2e9a36a6cb9fab06e49529d4a44d339244357e9fa0b0a10051182d1a68d785bc"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "12febef3d9bd4035bb8df35dac46ea3efe07763aae6288564c27a9184ba0cb00"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "cbf9d13af181a822ce24bfd99fb3a9d54512842d4c328287ee4516d7a2fe53cc"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "77e9204e1bd23605f3238e880d73b5046ccb3325841dc9d068f35f936d60d35b"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "dbed0d990ea13dc2c2192332307f0e1c142d7cf99ff9296aeb3804d5d461ba21"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "18771f29fecb89c11eb3cd4a50692c42549dd353e5a6327f93756fc5672a3d50"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_registry.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "d722daf24728a10a99d6afb3deaf33f65ec6d5b839b5e8471b7e29ec88ae68b5"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "aec4306818ff54d35517da64d3b0a696487533e48faaca6bdfa0cecbab081c5c"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "2cff997bf9a250af616b37ca8aacc5d8f6887f1a5385a9b33971648aa25a7239"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": "bb81821512a7f93d44279669aec4e41f688f03e2cb63a2bc9540bf8993807ca0"
+    },
+    {
+      "path": "packages/friday-mcp/README.md",
+      "baseline_sha256": "50657396a16dd3a4f70fae0ea046cbf6f5c0daadf1c3e413c638e4c24da408ac",
+      "change": "existing",
+      "current_sha256": "50657396a16dd3a4f70fae0ea046cbf6f5c0daadf1c3e413c638e4c24da408ac"
+    },
+    {
+      "path": "docs/guides/18-mcp-server.md",
+      "baseline_sha256": null,
+      "change": "new",
+      "current_sha256": null
+    }
+  ],
+  "checks": [
+    {
+      "label": "up05-approved-board",
+      "exit_code": 0,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ]
+    },
+    {
+      "label": "up05-approved-next",
+      "exit_code": 0,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "next"
+      ]
+    },
+    {
+      "label": "up05-approved-show",
+      "exit_code": 0,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "show",
+        "friday-mcp-protocol-upgrade"
+      ]
+    },
+    {
+      "label": "up05-approved-docs",
+      "exit_code": 0,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/check-documentation-lifecycle.py"
+      ]
+    },
+    {
+      "label": "up05-approved-render",
+      "exit_code": 0,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ]
+    },
+    {
+      "label": "up05-dev-source-mypy-01",
+      "exit_code": 1,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+        "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+        "packages/friday-mcp/src/friday_mcp/server/http.py",
+        "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
+        "packages/friday-mcp/src/friday_mcp/server/registry.py"
+      ]
+    },
+    {
+      "label": "up05-dev-source-mypy-02",
+      "exit_code": 0,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+        "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+        "packages/friday-mcp/src/friday_mcp/server/http.py",
+        "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
+        "packages/friday-mcp/src/friday_mcp/server/registry.py"
+      ]
+    },
+    {
+      "label": "up05-dev-protocol-01",
+      "exit_code": 1,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+        "-q"
+      ]
+    },
+    {
+      "label": "up05-dev-http-01",
+      "exit_code": 0,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+        "-q"
+      ]
+    },
+    {
+      "label": "up05-dev-security-lifecycle-01",
+      "exit_code": 0,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+        "-q"
+      ]
+    },
+    {
+      "label": "up05-dev-stdio-registry-01",
+      "exit_code": 0,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+        "packages/friday-mcp/tests_mcp/server/test_registry.py",
+        "-q"
+      ]
+    },
+    {
+      "label": "up05-dev-sdk-01",
+      "exit_code": 1,
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+        "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+        "-q"
+      ]
+    }
+  ],
+  "blocking_conflict": "up05-server-contract.md forbids cache TTL/cacheScope, but pinned TypeScript CacheableResult requires ttlMs/cacheScope and DiscoverResult/ListToolsResult inherit it; official SDK dated wire decoder rejects missing fields",
+  "additional_observation": "TLS fixture child SIGTERM returns -15 because public Uvicorn serve restores/re-raises captured signal; successful cleanup/exit assertions still require routine fixture correction under existing scope. No child remains alive. No checker/library change is proposed.",
+  "formal_remediation_cycles": 0,
+  "source_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+  "sdk_dated_wire_model_sha256": "4f8286444b1108c62705fe72bc426e3e7fe6ea275b6d137914650f2601785a93",
+  "scope_integrity": {
+    "metadata19": true,
+    "preserved_products60": true
+  },
+  "created_utc": "2026-10-13T18:16:02.936634+00:00"
+}

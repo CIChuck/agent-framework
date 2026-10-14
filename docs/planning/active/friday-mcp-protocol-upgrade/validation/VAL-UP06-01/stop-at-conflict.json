@@ -1,0 +1,43 @@
+{
+  "reason": "Parent directs finish current owned check and stop additional required checks at controlling closure authority conflict",
+  "controller_pid": 24348,
+  "current_check": "mcp",
+  "current_runner_pid": 25179,
+  "action": "SIGSTOP outer profile controller only; child frozen runner remains active to finish normally",
+  "failed_probe": {
+    "command": "ps -eo pid,ppid,args | rg run_required.py...",
+    "exit": 1,
+    "stderr": "zsh:1: operation not permitted: ps",
+    "disposition": "Exact own-process inventory then obtained under authorized private validation escalation"
+  },
+  "settled_current_check_exit": 0,
+  "completed_required_ids": [
+    "board",
+    "next",
+    "show",
+    "aggregate-examples",
+    "documented-configs",
+    "server-focused",
+    "server-http",
+    "original-clients",
+    "mcp"
+  ],
+  "not_run_required_ids": [
+    "core-runtime-chat-telemetry",
+    "root",
+    "baseline-root",
+    "ruff",
+    "root-ruff",
+    "baseline-root-ruff",
+    "narrow-mypy",
+    "mcp-mypy",
+    "full-mypy",
+    "baseline-full-mypy",
+    "docs",
+    "render",
+    "whitespace",
+    "full-mypy-columns",
+    "baseline-full-mypy-columns"
+  ],
+  "controller_termination": "After MCP receipt completed, SIGTERM then SIGCONT delivered to paused outer controller; no child check interrupted"
+}

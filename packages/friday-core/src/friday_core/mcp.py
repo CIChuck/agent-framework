@@ -21,7 +21,13 @@ MAX_MCP_TOOL_NAME_LENGTH = 64
 _CANONICAL_TOOL_NAME = re.compile(r"^[a-z][a-z0-9_]*$")
 _NON_ASCII_IDENTIFIER = re.compile(r"[^a-z0-9]+")
 MCPSafeIdentifier = Annotated[
-    str, StringConstraints(strict=True, min_length=1, max_length=64, pattern=r"^[A-Za-z0-9][A-Za-z0-9_.-]*$")
+    str,
+    StringConstraints(
+        strict=True,
+        min_length=1,
+        max_length=64,
+        pattern=r"^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+    ),
 ]
 
 MCPDiagnosticCode = Literal[
@@ -71,8 +77,10 @@ class MCPClientSecurityPolicy(_MCPContract):
     own configuration and enforcement.
     """
 
-    integrated_transport: Literal["stdio_only"] = "stdio_only"
-    trust_posture: Literal["local_stdio_only"] = "local_stdio_only"
+    integrated_transport: Literal["stdio_only", "stdio_and_streamable_http"] = (
+        "stdio_only"
+    )
+    trust_posture: Literal["local_stdio_only", "explicit_remote"] = "local_stdio_only"
     path_scope: Literal["workspace_only"] = "workspace_only"
     allowed_workspace_ids: tuple[MCPSafeIdentifier, ...] = ()
     require_explicit_stdio_command: bool = True
@@ -84,6 +92,10 @@ class MCPClientSecurityPolicy(_MCPContract):
 
     @model_validator(mode="after")
     def _reject_unsafe_policy(self) -> MCPClientSecurityPolicy:
+        if (self.integrated_transport == "stdio_only") != (
+            self.trust_posture == "local_stdio_only"
+        ):
+            raise ValueError("MCP transport and trust posture must be a matching pair")
         if not self.require_explicit_stdio_command:
             raise ValueError("MCP stdio commands must be explicit")
         if not (
@@ -112,7 +124,9 @@ class MCPIngestionPolicy(_MCPContract):
     def _require_sanitization(self) -> MCPIngestionPolicy:
         if not self.require_sanitized_content:
             raise ValueError("MCP ingestion requires sanitized content")
-        if any(not _CANONICAL_TOOL_NAME.fullmatch(name) for name in self.opted_in_tools):
+        if any(
+            not _CANONICAL_TOOL_NAME.fullmatch(name) for name in self.opted_in_tools
+        ):
             raise ValueError("MCP tool opt-ins require canonical tool names")
         if self.long_term_memory_enabled and not (
             self.opted_in_servers or self.opted_in_tools
@@ -152,7 +166,7 @@ class MCPToolMetadata(_MCPContract):
     server_name: str = Field(min_length=1, max_length=256)
     original_name: str = Field(min_length=1, max_length=256, repr=False)
     tool_name_prefix: str = "mcp_"
-    transport: Literal["stdio", "sse"]
+    transport: Literal["stdio", "sse", "streamable_http"]
     trust_level: Literal["local", "remote"]
     provider: Literal["mcp"] = "mcp"
     schema_token_estimate: int | None = Field(default=None, ge=0)
@@ -252,7 +266,10 @@ class MCPServerDiscoveryState(_MCPContract):
 
     @model_validator(mode="after")
     def _require_aware_cache_timestamp(self) -> MCPServerDiscoveryState:
-        if self.cache_timestamp is not None and self.cache_timestamp.utcoffset() is None:
+        if (
+            self.cache_timestamp is not None
+            and self.cache_timestamp.utcoffset() is None
+        ):
             raise ValueError("MCP cache timestamp must include a timezone")
         return self
 
@@ -340,9 +357,13 @@ def _safe_source_label(value: str) -> str:
     """Identify an untrusted name by bounded shape/fingerprint, without echoing it."""
 
     shape = "".join(
-        "a" if char.isascii() and char.isalpha() else
-        "0" if char.isascii() and char.isdigit() else
-        char if char in "-_." else "?"
+        "a"
+        if char.isascii() and char.isalpha()
+        else "0"
+        if char.isascii() and char.isdigit()
+        else char
+        if char in "-_."
+        else "?"
         for char in value[:24]
     )
     fingerprint = sha256(value.encode("utf-8")).hexdigest()[:12]

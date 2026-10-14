@@ -29,10 +29,11 @@ from typing import Any, Literal, Protocol
 
 from friday_core.mcp import MCPDiagnosticCode, MCPToolMetadata, normalize_mcp_tool_name
 from friday_core.security import InjectionPatternLibrary
+from friday_mcp.client import header_bindings
 from friday_mcp.client.adapter import MCPToolWrapper, MCPValidatedDefinition
 from friday_mcp.protocols import MCPClient
 
-from friday_runtime.config import MCPToolProviderConfig
+from friday_runtime.config import MCPRuntimeHTTPServerConfig, MCPToolProviderConfig
 
 _KEYWORDS = frozenset(
     [
@@ -166,9 +167,13 @@ class MCPNameCollision:
 def _mcp_collision_source(server_id: str, original: str) -> MCPCollisionSource:
     # Called only after complete handoff size/JSON/normalization admission.
     shape = "".join(
-        "a" if char.isascii() and char.isalpha() else
-        "0" if char.isascii() and char.isdigit() else
-        char if char in "-_." else "?"
+        "a"
+        if char.isascii() and char.isalpha()
+        else "0"
+        if char.isascii() and char.isdigit()
+        else char
+        if char in "-_."
+        else "?"
         for char in original[:24]
     )
     return MCPCollisionSource(
@@ -324,14 +329,26 @@ def _semantic(value: Any) -> None:
             _semantic(child)
 
 
-def _schema(value: Any) -> Any:
+def _schema(value: Any, *, root: bool = False, http_headers: bool = False) -> Any:
     if isinstance(value, bool):
         return value
-    if not isinstance(value, dict) or not set(value) <= _KEYWORDS:
+    allowed = (
+        _KEYWORDS
+        | ({"$schema"} if root else set())
+        | ({"x-mcp-header"} if http_headers else set())
+    )
+    if not isinstance(value, dict) or not set(value) <= allowed:
         raise ValueError("Unsupported MCP schema")
     result: dict[str, Any] = {}
     for key, child in value.items():
         _semantic_text(key)
+        if key == "$schema":
+            if child != "https://json-schema.org/draft/2020-12/schema":
+                raise ValueError("Unsupported MCP schema dialect")
+            continue
+        if key == "x-mcp-header":
+            # Whole schema was validated by the accepted helper before stripping.
+            continue
         if key in {"title", "description"}:
             if not isinstance(child, str):
                 raise ValueError("Invalid MCP annotation")
@@ -342,13 +359,13 @@ def _schema(value: Any) -> Any:
             result[key] = {}
             for name, sub in child.items():
                 _semantic_text(name)
-                result[key][name] = _schema(sub)
+                result[key][name] = _schema(sub, http_headers=http_headers)
         elif key in {"items", "additionalProperties", "not"}:
-            result[key] = _schema(child)
+            result[key] = _schema(child, http_headers=http_headers)
         elif key in {"allOf", "anyOf", "oneOf"}:
             if not isinstance(child, list) or not child:
                 raise ValueError("Invalid MCP combinator")
-            result[key] = [_schema(sub) for sub in child]
+            result[key] = [_schema(sub, http_headers=http_headers) for sub in child]
         else:
             _semantic(child)
             if key == "type":
@@ -405,7 +422,7 @@ def _schema(value: Any) -> Any:
 
 
 def sanitize_definition(
-    raw: Mapping[str, Any], max_bytes: int
+    raw: Mapping[str, Any], max_bytes: int, *, http_headers: bool = False
 ) -> tuple[MCPValidatedDefinition, Literal["unchanged", "sanitized"]]:
     """Validate complete bounded JSON, redact annotations, preserve safe semantics."""
     if len(_encode(raw).encode("utf-8")) > max_bytes:
@@ -430,7 +447,9 @@ def sanitize_definition(
         if key not in {"description", "inputSchema"}:
             _semantic(child)
     clean_description = _annotation(description)
-    clean_parameters = _schema(parameters)
+    if http_headers:
+        header_bindings(parameters)
+    clean_parameters = _schema(parameters, root=True, http_headers=http_headers)
     changed = clean_description != description or clean_parameters != parameters
     return MCPValidatedDefinition(
         clean_description, _encode(clean_parameters)
@@ -491,7 +510,10 @@ def prepare_registration(
             first = seen[name] if name in seen else MCPCollisionSource("native")
             decisions.append(
                 MCPRegistrationDecision(
-                    name, entry.server_id, "rejected", "name_collision",
+                    name,
+                    entry.server_id,
+                    "rejected",
+                    "name_collision",
                     MCPNameCollision(name, first, source),
                 )
             )
@@ -505,9 +527,13 @@ def prepare_registration(
     cost = 0
     server_configs = {server.name: server for server in config.config.servers}
     for server_id, name, raw in contenders:
+        server = server_configs.get(server_id)
         try:
             definition, state = sanitize_definition(
-                raw, limits.max_schema_bytes_per_tool
+                raw,
+                limits.max_schema_bytes_per_tool,
+                http_headers=isinstance(server, MCPRuntimeHTTPServerConfig)
+                and server.protocol_version == "2026-07-28",
             )
         except (ValueError, TypeError, UnicodeError, RecursionError, OverflowError):
             decisions.append(
@@ -541,7 +567,7 @@ def prepare_registration(
             server_name=server_id,
             original_name=raw["name"],
             tool_name_prefix=prefix,
-            transport="stdio",
+            transport=server.transport,
             trust_level=server.trust_level,
             discovery_state="discovered",
             schema_sanitization_state=state,

@@ -5,22 +5,37 @@ MCP Client implementations.
 Provides clients for connecting to external MCP servers:
 - StdioMCPClient: Connect via subprocess stdio
 - SSEMCPClient: Connect via HTTP Server-Sent Events
+- StreamableHTTPMCPClient: Explicit modern or 2025 Streamable HTTP profile
 - MCPClientManager: Manage multiple server connections
 - MCPToolAdapter: Adapt MCP tools to Friday's ToolDefinition
 """
 
 from friday_mcp.client.adapter import MCPToolAdapter, MCPToolWrapper
 from friday_mcp.client.base import MCPClientBase, MCPError
-from friday_mcp.client.manager import MCPClientManager
+from friday_mcp.client.catalog import MCPCatalogSnapshot, MCPRefreshClient
+from friday_mcp.client.http import StreamableHTTPMCPClient
+from friday_mcp.client.http_policy import HTTPEndpoint, HTTPEndpointPolicy
+from friday_mcp.client.http_protocol import HTTPLimits, header_bindings
+from friday_mcp.client.manager import MCPClientManager, MCPManagedServer
+from friday_mcp.client.protocol import ProtocolLimits
 from friday_mcp.client.sse import SSEMCPClient
 from friday_mcp.client.stdio import StdioMCPClient
 
 __all__ = [
     "MCPClientBase",
+    "MCPCatalogSnapshot",
+    "MCPRefreshClient",
     "MCPError",
     "StdioMCPClient",
     "SSEMCPClient",
+    "StreamableHTTPMCPClient",
+    "HTTPEndpointPolicy",
+    "HTTPEndpoint",
+    "HTTPLimits",
+    "header_bindings",
+    "ProtocolLimits",
     "MCPClientManager",
+    "MCPManagedServer",
     "MCPToolAdapter",
     "MCPToolWrapper",
 ]

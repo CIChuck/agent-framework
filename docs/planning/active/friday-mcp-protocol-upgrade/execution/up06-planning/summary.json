@@ -1,0 +1,27 @@
+{
+  "status": "Planning checks only; no product source/docs/tests edited, no conformance result",
+  "product_baseline": "c90ed023a053943b63d085b70452bbbb11dd28e9",
+  "aggregate_branch_base": "1302b5fe3091304c08d1df77ea5fb1d2a4ec3666",
+  "accepted_units": 5,
+  "product_budget": 7,
+  "existing_docs": 5,
+  "new_docs": 1,
+  "new_test_modules": 1,
+  "aggregate_criteria": 12,
+  "initiative_criteria": 8,
+  "required_commands": 24,
+  "accepted_product_inventory": 78,
+  "accepted_products_frozen": 75,
+  "metadata_frozen": 19,
+  "protected_paths_omitted_before_baseline_checkout": 267,
+  "new_runner_sha256": "c4174e94f6dc21a432f7495964da92f5e619b36852aea92b967f23072edd5a2a",
+  "original_guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+  "planned_diagnostics": {
+    "Ruff": 327,
+    "Mypy": 4,
+    "skips": 14,
+    "warnings": 15
+  },
+  "proposal_sha256": "1b1dfeb186aef8968936a117b28b799489b964debc117719f8c7ebfbef76be13",
+  "product_edits": 0
+}

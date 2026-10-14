@@ -1,0 +1,433 @@
+[
+  {
+    "id": "board",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "success": "child exit0 required",
+    "executed": true,
+    "receipt": "checks/board/receipt.json",
+    "disposition": "OBSERVED_EXIT_ZERO"
+  },
+  {
+    "id": "next",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "next"
+    ],
+    "success": "child exit0 required",
+    "executed": true,
+    "receipt": "checks/next/receipt.json",
+    "disposition": "OBSERVED_EXIT_ZERO"
+  },
+  {
+    "id": "show",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "show",
+      "friday-mcp-protocol-upgrade"
+    ],
+    "success": "child exit0 required",
+    "executed": true,
+    "receipt": "checks/show/receipt.json",
+    "disposition": "OBSERVED_EXIT_ZERO"
+  },
+  {
+    "id": "aggregate-examples",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "-q"
+    ],
+    "success": "exit0, required real Friday-to-Friday transports/public integration evidence; no infrastructure skips",
+    "executed": true,
+    "receipt": "checks/aggregate-examples/receipt.json",
+    "disposition": "OBSERVED_EXIT_ZERO"
+  },
+  {
+    "id": "documented-configs",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "-k",
+      "documented",
+      "-q"
+    ],
+    "success": "exit0 with nonempty documentation-example selection; excerpts/provenance maps and actual load/compile/fixture proof",
+    "executed": true,
+    "receipt": "checks/documented-configs/receipt.json",
+    "disposition": "OBSERVED_EXIT_ZERO"
+  },
+  {
+    "id": "server-focused",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+      "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+      "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+      "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+      "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+      "packages/friday-mcp/tests_mcp/server/test_registry.py",
+      "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+      "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+      "-q"
+    ],
+    "success": "child exit0 required",
+    "executed": true,
+    "receipt": "checks/server-focused/receipt.json",
+    "disposition": "OBSERVED_EXIT_ZERO"
+  },
+  {
+    "id": "server-http",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+      "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+      "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+      "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+      "-q"
+    ],
+    "success": "child exit0 required",
+    "executed": true,
+    "receipt": "checks/server-http/receipt.json",
+    "disposition": "OBSERVED_EXIT_ZERO"
+  },
+  {
+    "id": "original-clients",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-mcp/tests_mcp/client",
+      "-q"
+    ],
+    "success": "child exit0 required",
+    "executed": true,
+    "receipt": "checks/original-clients/receipt.json",
+    "disposition": "OBSERVED_EXIT_ZERO"
+  },
+  {
+    "id": "mcp",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-mcp/tests_mcp",
+      "-q"
+    ],
+    "success": "child exit0 required",
+    "executed": true,
+    "receipt": "checks/mcp/receipt.json",
+    "disposition": "OBSERVED_EXIT_ZERO"
+  },
+  {
+    "id": "core-runtime-chat-telemetry",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-core/tests_core",
+      "packages/friday-runtime/tests_runtime",
+      "packages/friday-chat/tests_chat",
+      "packages/friday-telemetry/tests_telemetry",
+      "-q"
+    ],
+    "success": "child exit0 required",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "root",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-rs"
+    ],
+    "success": "child exit0 required",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "baseline-root",
+    "snapshot": "up06-baseline",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-rs"
+    ],
+    "success": "exit0; fresh accepted baseline5852 tests expected, complete skip location/reason and warning equality required",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "ruff",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+      "check",
+      "packages/friday-chat/src/friday_chat/config.py",
+      "packages/friday-chat/src/friday_chat/tools/mcp.py",
+      "packages/friday-chat/tests_chat/test_mcp_config_compatibility.py",
+      "packages/friday-chat/tests_chat/test_mcp_http_integration.py",
+      "packages/friday-core/src/friday_core/mcp.py",
+      "packages/friday-core/tests_core/test_mcp_contracts.py",
+      "packages/friday-mcp/src/friday_mcp/client/__init__.py",
+      "packages/friday-mcp/src/friday_mcp/client/adapter.py",
+      "packages/friday-mcp/src/friday_mcp/client/base.py",
+      "packages/friday-mcp/src/friday_mcp/client/catalog.py",
+      "packages/friday-mcp/src/friday_mcp/client/http.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_policy.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/manager.py",
+      "packages/friday-mcp/src/friday_mcp/client/protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/stdio.py",
+      "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+      "packages/friday-mcp/src/friday_mcp/server/http.py",
+      "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
+      "packages/friday-mcp/src/friday_mcp/server/modern.py",
+      "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+      "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+      "packages/friday-mcp/src/friday_mcp/server/registry.py",
+      "packages/friday-mcp/tests_mcp/client/test_execution.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_interop.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_protocol.py",
+      "packages/friday-mcp/tests_mcp/client/test_lifecycle.py",
+      "packages/friday-mcp/tests_mcp/client/test_manager_profiles.py",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+      "packages/friday-mcp/tests_mcp/client/test_result_refresh.py",
+      "packages/friday-mcp/tests_mcp/client/test_result_refresh_interop.py",
+      "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py",
+      "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
+      "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py",
+      "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py",
+      "packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py",
+      "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py",
+      "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+      "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+      "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+      "packages/friday-mcp/tests_mcp/server/test_registry.py",
+      "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+      "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+      "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+      "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+      "packages/friday-runtime/src/friday_runtime/config.py",
+      "packages/friday-runtime/src/friday_runtime/mcp_clients.py",
+      "packages/friday-runtime/src/friday_runtime/mcp_loading.py",
+      "packages/friday-runtime/src/friday_runtime/mcp_registration.py",
+      "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py",
+      "packages/friday-runtime/tests_runtime/test_mcp_loading.py",
+      "packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py",
+      "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py"
+    ],
+    "success": "child exit0 required",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "root-ruff",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+      "check",
+      ".",
+      "--output-format=json"
+    ],
+    "success": "raw exit1; exactly equal complete327 normalized diagnostic/fix objects versus current accepted baseline",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "baseline-root-ruff",
+    "snapshot": "up06-baseline",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+      "check",
+      ".",
+      "--output-format=json"
+    ],
+    "success": "raw exit1; exactly equal complete327 normalized diagnostic/fix objects versus current accepted baseline",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "narrow-mypy",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "mypy",
+      "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+      "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+      "packages/friday-mcp/src/friday_mcp/server/modern.py",
+      "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+      "packages/friday-mcp/src/friday_mcp/server/http.py",
+      "packages/friday-mcp/src/friday_mcp/server/registry.py",
+      "packages/friday-mcp/src/friday_mcp/server/http_policy.py"
+    ],
+    "success": "child exit0 required",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "mcp-mypy",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "mypy",
+      "packages/friday-mcp/src/friday_mcp"
+    ],
+    "success": "child exit0 required",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "full-mypy",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "mypy",
+      "packages/friday-core/src/friday_core",
+      "packages/friday-mcp/src/friday_mcp",
+      "packages/friday-runtime/src/friday_runtime",
+      "packages/friday-chat/src/friday_chat"
+    ],
+    "success": "raw exit1; compare complete4 diagnostics plus explicit-column counterparts without checker weakening",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "baseline-full-mypy",
+    "snapshot": "up06-baseline",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "mypy",
+      "packages/friday-core/src/friday_core",
+      "packages/friday-mcp/src/friday_mcp",
+      "packages/friday-runtime/src/friday_runtime",
+      "packages/friday-chat/src/friday_chat"
+    ],
+    "success": "raw exit1; compare complete4 diagnostics plus explicit-column counterparts without checker weakening",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "docs",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    "success": "child exit0 required",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "render",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "success": "child exit0 required",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "whitespace",
+    "snapshot": "work",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "1302b5fe3091304c08d1df77ea5fb1d2a4ec3666",
+      "HEAD"
+    ],
+    "success": "exit0 plus uncommitted whitespace check",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "full-mypy-columns",
+    "snapshot": "work",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "mypy",
+      "packages/friday-core/src/friday_core",
+      "packages/friday-mcp/src/friday_mcp",
+      "packages/friday-runtime/src/friday_runtime",
+      "packages/friday-chat/src/friday_chat",
+      "--show-column-numbers",
+      "--no-pretty"
+    ],
+    "success": "raw exit1; complete4 inherited path/line/column/severity/code/message objects must equal accepted baseline",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  },
+  {
+    "id": "baseline-full-mypy-columns",
+    "snapshot": "up06-baseline",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "mypy",
+      "packages/friday-core/src/friday_core",
+      "packages/friday-mcp/src/friday_mcp",
+      "packages/friday-runtime/src/friday_runtime",
+      "packages/friday-chat/src/friday_chat",
+      "--show-column-numbers",
+      "--no-pretty"
+    ],
+    "success": "raw exit1; complete4 inherited path/line/column/severity/code/message objects must equal accepted baseline",
+    "executed": false,
+    "receipt": null,
+    "disposition": "NOT_RUN_AUTHORITY_STOP"
+  }
+]

@@ -6,11 +6,14 @@ from __future__ import annotations
 import argparse
 import copy
 import datetime as dt
+import hashlib
 import json
 import re
 import sys
 import tempfile
-from pathlib import Path
+from collections.abc import Iterable
+from dataclasses import dataclass
+from pathlib import Path, PurePosixPath
 from typing import Any, cast
 
 import yaml
@@ -64,6 +67,7 @@ OPTIONAL_TASK_FIELDS = {
     "approved_at",
     "accepted_by",
     "accepted_at",
+    "authority_backing_packets",
 }
 REQUIRED_EVENT_FIELDS = {"task", "at", "actor", "actor_role", "action", "note"}
 OPTIONAL_EVENT_FIELDS = {"evidence"}
@@ -159,8 +163,14 @@ def _validate_declared_schema(root: Path) -> list[str]:
         task = schema["$defs"]["task"]
         event = schema["$defs"]["event"]
         checks = {
-            "work states": (set(task["properties"]["work_state"]["enum"]), set(WORK_STATES)),
-            "conditions": (set(task["properties"]["condition"]["enum"]), set(CONDITIONS)),
+            "work states": (
+                set(task["properties"]["work_state"]["enum"]),
+                set(WORK_STATES),
+            ),
+            "conditions": (
+                set(task["properties"]["condition"]["enum"]),
+                set(CONDITIONS),
+            ),
             "delivery states": (
                 set(task["properties"]["delivery_state"]["enum"]),
                 set(DELIVERY_STATES),
@@ -198,6 +208,221 @@ def _current_packet_paths(root: Path) -> set[str]:
             if packet.is_dir() and (packet / "README.md").exists():
                 paths.add(f"{packet.relative_to(root).as_posix()}/")
     return paths
+
+
+@dataclass(frozen=True)
+class AuthorityBacking:
+    """An explicit immutable packet owned by one closed task."""
+
+    packet: str
+    manifest: str
+    manifest_sha256: str
+
+
+def _backing_record(value: object, fields: set[str], label: str) -> dict[str, object]:
+    # YAML/JSON is the dynamic boundary; all subsequent values are validated.
+    if not isinstance(value, dict) or set(value) != fields:
+        raise BoardError(f"{label} must contain exactly the declared fields")
+    return {name: value[name] for name in fields}
+
+
+def _backing_string(value: object, label: str) -> str:
+    if not isinstance(value, str) or not value or len(value) > 1024:
+        raise BoardError(f"{label} must be a bounded non-empty string")
+    return value
+
+
+def _backing_digest(value: object, label: str) -> str:
+    if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value):
+        raise BoardError(f"{label} must be a lowercase SHA256 digest")
+    return value
+
+
+def _backing_relative_path(value: object, label: str, *, directory: bool) -> str:
+    text = _backing_string(value, label)
+    path = text[:-1] if directory and text.endswith("/") else text
+    parts = path.split("/")
+    if (
+        (directory and not text.endswith("/"))
+        or PurePosixPath(path).is_absolute()
+        or any(part in {"", ".", ".."} for part in parts)
+        or "\\" in text
+        or any(ord(character) < 32 for character in text)
+    ):
+        raise BoardError(f"{label} must be a canonical repository-relative path")
+    return text
+
+
+def _backing_file(root: Path, relative: str, boundary: Path, label: str) -> Path:
+    path = root / relative
+    try:
+        resolved = path.resolve()
+        if (
+            not path.is_relative_to(boundary)
+            or not resolved.is_relative_to(boundary)
+            or not resolved.is_file()
+        ):
+            raise BoardError(f"{label} is missing or escapes its owning packet")
+    except (OSError, RuntimeError):
+        raise BoardError(
+            f"{label} cannot be resolved inside its owning packet"
+        ) from None
+    return resolved
+
+
+def _unique_json_record(pairs: list[tuple[str, object]]) -> dict[str, object]:
+    result: dict[str, object] = {}
+    for key, value in pairs:
+        if key in result:
+            raise BoardError("authority backing manifest has duplicate JSON fields")
+        result[key] = value
+    return result
+
+
+def _validate_backing_manifest(
+    entry: AuthorityBacking, owner: str, canonical: str, root: Path, label: str
+) -> None:
+    base = root.resolve()
+    packet = base / entry.packet
+    canonical_path = base / canonical
+    try:
+        if packet.resolve() != packet or not packet.is_dir():
+            raise BoardError(f"{label}.packet is missing or aliases another directory")
+        if canonical_path.resolve() != canonical_path or not canonical_path.is_dir():
+            raise BoardError(f"{label} has no canonical owning packet")
+        manifest_path = _backing_file(
+            base, entry.manifest, canonical_path, f"{label}.manifest"
+        )
+        # Bound JSON allocation before parsing; no external schema lookup.
+        with manifest_path.open("rb") as stream:
+            raw = stream.read(1024 * 1024 + 1)
+        if len(raw) > 1024 * 1024:
+            raise BoardError(f"{label}.manifest exceeds 1 MiB")
+        if hashlib.sha256(raw).hexdigest() != entry.manifest_sha256:
+            raise BoardError(f"{label}.manifest SHA256 mismatch")
+        decoded: object = json.loads(raw, object_pairs_hook=_unique_json_record)
+        manifest = _backing_record(
+            decoded, {"version", "owner", "packet", "files"}, f"{label}.manifest"
+        )
+        if type(manifest["version"]) is not int or manifest["version"] != 1:
+            raise BoardError(f"{label}.manifest version must equal 1")
+        if manifest["owner"] != owner or manifest["packet"] != entry.packet:
+            raise BoardError(f"{label}.manifest owner or packet mismatch")
+        files = manifest["files"]
+        if not isinstance(files, list) or not 5 <= len(files) <= 8192:
+            raise BoardError(f"{label}.manifest files must contain 5..8192 records")
+        kinds: set[str] = set()
+        paths: set[str] = set()
+        for index, value in enumerate(files):
+            file_label = f"{label}.manifest.files[{index}]"
+            record = _backing_record(value, {"path", "sha256", "kind"}, file_label)
+            relative = _backing_relative_path(
+                record["path"], file_label + ".path", directory=False
+            )
+            digest = _backing_digest(record["sha256"], file_label + ".sha256")
+            kind = _backing_string(record["kind"], file_label + ".kind")
+            if kind not in {
+                "index",
+                "authority",
+                "approval",
+                "directive",
+                "report",
+                "evidence",
+            }:
+                raise BoardError(f"{file_label}.kind is invalid")
+            if relative in paths:
+                raise BoardError(f"{file_label} duplicates an immutable file")
+            paths.add(relative)
+            if kind == "index" and relative != entry.packet + "README.md":
+                raise BoardError(f"{file_label} must pin the original packet README")
+            source = _backing_file(base, relative, packet, file_label)
+            with source.open("rb") as stream:
+                actual = hashlib.file_digest(stream, "sha256").hexdigest()
+            if actual != digest:
+                raise BoardError(f"{file_label} immutable file SHA256 mismatch")
+            kinds.add(kind)
+        if not {"index", "authority", "approval", "directive", "report"} <= kinds:
+            raise BoardError(f"{label}.manifest lacks required historical record kinds")
+    except BoardError:
+        raise
+    except (OSError, UnicodeError, ValueError, RuntimeError):
+        raise BoardError(f"{label}.manifest cannot be read as bounded JSON") from None
+
+
+def _authority_backings(
+    tasks: Iterable[object], root: Path, canonical_packets: set[str], errors: list[str]
+) -> set[str]:
+    records: list[tuple[AuthorityBacking, str, str, str]] = []
+    claims: dict[str, int] = {}
+    for index, task in enumerate(tasks):
+        if not isinstance(task, dict) or "authority_backing_packets" not in task:
+            continue
+        label = f"tasks[{index}].authority_backing_packets"
+        try:
+            owner = _backing_string(task.get("id"), label + ".owner")
+            canonical = _backing_relative_path(
+                task.get("packet"), label + ".canonical", directory=True
+            )
+            state = task.get("work_state")
+            expected = (
+                "docs/planning/review/"
+                if state == "completed"
+                else "docs/archive/completed/"
+            )
+            if (
+                not isinstance(state, str)
+                or state not in {"completed", "accepted"}
+                or task.get("condition") != "normal"
+                or not canonical.startswith(expected)
+            ):
+                raise BoardError(
+                    f"{label} requires a completed/review or accepted/archive owner"
+                )
+            entries = task["authority_backing_packets"]
+            if not isinstance(entries, list) or not 1 <= len(entries) <= 64:
+                raise BoardError(f"{label} must contain 1..64 entries")
+            for number, value in enumerate(entries):
+                item_label = f"{label}[{number}]"
+                record = _backing_record(
+                    value, {"packet", "manifest", "manifest_sha256"}, item_label
+                )
+                packet = _backing_relative_path(
+                    record["packet"], item_label + ".packet", directory=True
+                )
+                parts = PurePosixPath(packet).parts
+                if (
+                    len(parts) != 4
+                    or parts[:2] != ("docs", "planning")
+                    or parts[2] not in CURRENT_LANES
+                ):
+                    raise BoardError(
+                        f"{item_label}.packet must identify one planning packet"
+                    )
+                entry = AuthorityBacking(
+                    packet,
+                    _backing_relative_path(
+                        record["manifest"], item_label + ".manifest", directory=False
+                    ),
+                    _backing_digest(
+                        record["manifest_sha256"], item_label + ".manifest_sha256"
+                    ),
+                )
+                records.append((entry, owner, canonical, item_label))
+                claims[packet] = claims.get(packet, 0) + 1
+        except BoardError as exc:
+            errors.append(str(exc))
+    validated: set[str] = set()
+    for entry, owner, canonical, label in records:
+        try:
+            if claims[entry.packet] != 1:
+                raise BoardError(f"{label} duplicates a backing packet or owner claim")
+            if entry.packet in canonical_packets:
+                raise BoardError(f"{label} conflicts with a current canonical packet")
+            _validate_backing_manifest(entry, owner, canonical, root, label)
+            validated.add(entry.packet)
+        except BoardError as exc:
+            errors.append(str(exc))
+    return validated
 
 
 def validate_board(board: dict[str, Any], root: Path) -> list[str]:
@@ -271,7 +496,11 @@ def validate_board(board: dict[str, Any], root: Path) -> list[str]:
             errors.append(f"{label}.delivery_state is invalid: {delivery!r}")
         if authority not in AUTHORITIES:
             errors.append(f"{label}.implementation_authority is invalid: {authority!r}")
-        if not packet.endswith("/") or packet.startswith("/") or ".." in Path(packet).parts:
+        if (
+            not packet.endswith("/")
+            or packet.startswith("/")
+            or ".." in Path(packet).parts
+        ):
             errors.append(f"{label}.packet must be a repository-relative directory")
         elif state in WORK_STATES and condition in CONDITIONS:
             expected = _expected_packet_prefix(task)
@@ -336,7 +565,9 @@ def validate_board(board: dict[str, Any], root: Path) -> list[str]:
                 errors.append(f"tasks[{index}] cannot depend on itself")
             elif task.get("work_state") in {"started", "completed", "accepted"}:
                 dependency_task = next(
-                    candidate for candidate in tasks if candidate.get("id") == dependency
+                    candidate
+                    for candidate in tasks
+                    if candidate.get("id") == dependency
                 )
                 if dependency_task.get("work_state") != "accepted":
                     errors.append(
@@ -351,7 +582,8 @@ def validate_board(board: dict[str, Any], root: Path) -> list[str]:
         and isinstance(task.get("packet"), str)
         and task["packet"].startswith("docs/planning/")
     }
-    for path in sorted(current_packets - current_board_packets):
+    authority_backings = _authority_backings(tasks, root, board_packets, errors)
+    for path in sorted(current_packets - current_board_packets - authority_backings):
         errors.append(f"current planning packet is absent from board: {path}")
     for path in sorted(current_board_packets - current_packets):
         errors.append(f"board references a non-current planning packet: {path}")
@@ -365,9 +597,7 @@ def validate_board(board: dict[str, Any], root: Path) -> list[str]:
             missing = REQUIRED_EVENT_FIELDS - event.keys()
             unexpected = event.keys() - REQUIRED_EVENT_FIELDS - OPTIONAL_EVENT_FIELDS
             if missing:
-                errors.append(
-                    f"{label} missing fields: {', '.join(sorted(missing))}"
-                )
+                errors.append(f"{label} missing fields: {', '.join(sorted(missing))}")
             if unexpected:
                 errors.append(
                     f"{label} has unexpected fields: {', '.join(sorted(unexpected))}"
@@ -680,7 +910,9 @@ def _command_delivery(
     elif new_delivery == "unknown":
         raise BoardError("delivery state cannot transition to unknown")
     elif DELIVERY_ORDER[new_delivery] < DELIVERY_ORDER[old_delivery]:
-        raise BoardError(f"delivery cannot move backward: {old_delivery} -> {new_delivery}")
+        raise BoardError(
+            f"delivery cannot move backward: {old_delivery} -> {new_delivery}"
+        )
     if new_delivery in {"merged", "released"} and not args.evidence:
         raise BoardError(f"{new_delivery} delivery requires --evidence")
     task["delivery_state"] = new_delivery

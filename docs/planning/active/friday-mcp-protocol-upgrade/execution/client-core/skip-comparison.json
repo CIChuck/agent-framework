@@ -1,0 +1,25 @@
+{
+  "baseline": [
+    "SKIPPED [2] packages/friday-chat/tests_chat/test_live_lmstudio.py:96: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+    "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:109: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+    "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:124: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+    "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:154: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+    "SKIPPED [5] packages/friday-llm/tests_llm/test_live_lmstudio.py:66: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+    "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:88: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+    "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:144: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+    "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:156: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+    "SKIPPED [1] packages/friday-memory/tests_memory/test_adapters/test_graph.py:250: could not import 'scipy': No module named 'scipy'"
+  ],
+  "candidate": [
+    "SKIPPED [2] packages/friday-chat/tests_chat/test_live_lmstudio.py:96: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+    "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:109: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+    "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:124: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+    "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:154: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+    "SKIPPED [5] packages/friday-llm/tests_llm/test_live_lmstudio.py:66: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+    "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:88: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+    "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:144: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+    "SKIPPED [1] packages/friday-llm/tests_llm/test_live_lmstudio.py:156: set FRIDAY_LLM_LIVE=1 to authorize local LM Studio requests",
+    "SKIPPED [1] packages/friday-memory/tests_memory/test_adapters/test_graph.py:250: could not import 'scipy': No module named 'scipy'"
+  ],
+  "identical": true
+}

@@ -1,0 +1,682 @@
+[
+  {
+    "path": "execution/client-core/checks/baseline-root-pytest/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/baseline-root-pytest/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/baseline-root-pytest/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/baseline-root-pytest-02/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/baseline-root-pytest-02/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/baseline-root-pytest-02/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/baseline-root-pytest-03/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/baseline-root-pytest-03/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/baseline-root-pytest-03/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/baseline-root-ruff/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/baseline-root-ruff/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/baseline-root-ruff/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/candidate-root-ruff-01/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/candidate-root-ruff-01/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/candidate-root-ruff-01/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/candidate-root-ruff-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/candidate-root-ruff-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/candidate-root-ruff-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/candidate-root-ruff-final-02/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/candidate-root-ruff-final-02/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/candidate-root-ruff-final-02/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-01/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-01/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-01/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-02/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-02/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-02/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-final-02/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-final-02/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/cross-package-final-02/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-01/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-01/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-01/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-final-02/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-final-02/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-final-02/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-final-03/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-final-03/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/focused-final-03/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/mypy-01/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/mypy-01/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/mypy-01/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/mypy-02/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/mypy-02/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/mypy-02/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-01/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-01/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-01/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-final-02/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-final-02/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-final-02/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-mypy-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-mypy-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-mypy-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-mypy-final-02/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-mypy-final-02/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/package-mypy-final-02/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-02/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-02/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-02/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-03/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-03/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-03/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-final-04/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-final-04/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-final-04/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-final-05/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-final-05/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/root-pytest-final-05/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-mypy-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-mypy-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-mypy-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-mypy-final-02/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-mypy-final-02/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-mypy-final-02/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-mypy-final-03/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-mypy-final-03/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-mypy-final-03/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-ruff-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-ruff-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-ruff-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-ruff-final-02/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-ruff-final-02/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-ruff-final-02/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-ruff-final-03/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-ruff-final-03/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/scope-ruff-final-03/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/run_check.py.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/prepare_environment.py.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/complete_validation_libraries.py.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/prepare_baseline_environment.py.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/compress_process_evidence.py.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/reused-library-manifest.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/additional-validation-libraries.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/baseline-library-manifest.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/work-snapshot.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/baseline-snapshot.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/validation-requirements.txt.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/new-validation-requirements.txt.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/export.stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/export.stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/install.stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/install.stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/install-new.stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/install-new.stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/approved-lock-reproduction.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/approved-lock-reproduction.stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/approved-lock-reproduction.stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/approved-lock-check.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/approved-lock-check.stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/approved-lock-check.stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/environment/sitecustomize.py.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/board-validate-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/board-validate-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/board-validate-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/board-next-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/board-next-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/board-next-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/board-show-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/board-show-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/board-show-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/documentation-final/receipt.json.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/documentation-final/stderr.gz",
+    "stored_match": true,
+    "content_match": true
+  },
+  {
+    "path": "execution/client-core/checks/documentation-final/stdout.gz",
+    "stored_match": true,
+    "content_match": true
+  }
+]

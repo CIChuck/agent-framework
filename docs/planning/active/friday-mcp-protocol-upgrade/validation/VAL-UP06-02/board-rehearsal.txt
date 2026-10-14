@@ -1,0 +1,83 @@
+"""Independent current-board-only synthetic closeout; candidate stays untouched."""
+import copy, hashlib, importlib.util, json, os, shutil, subprocess, sys, tempfile
+from pathlib import Path
+import yaml
+W=Path('/private/tmp/friday-mcp-upgrade/work')
+P='docs/planning/active/friday-mcp-protocol-upgrade/'
+R=Path('/private/tmp/friday-mcp-upgrade/independent-review-UP06-002')
+root=Path(tempfile.mkdtemp(prefix='independent-current-board-',dir=os.environ['TMPDIR']))
+def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def cp(path):
+ target=root/path;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(W/path,target)
+ return target
+spec=importlib.util.spec_from_file_location('review002_board',W/'scripts/friday-dev-board.py')
+module=importlib.util.module_from_spec(spec);sys.modules[spec.name]=module;spec.loader.exec_module(module)
+board=yaml.safe_load((W/'docs/planning/board.yaml').read_text())
+original_board=copy.deepcopy(board)
+for lane in module.CURRENT_LANES:(root/'docs/planning'/lane).mkdir(parents=True,exist_ok=True)
+for task in board['tasks']:
+ cp(task['packet']+'README.md')
+cp('docs/planning/board.schema.json')
+a=json.loads((W/P/'authority-UP-06-amendment-002.json').read_text())
+expected={x['path']:x['sha256'] for x in a['controls']+a['prior_frozen_manifests'] if x['path'].startswith(P)}
+for path in [P+'authority-UP-06-amendment-002.json',P+'approval-UP-06-amendment-002.json']:expected[path]=h(W/path)
+records=[]
+for path,digest in sorted(expected.items()):
+ cp(path)
+ assert h(root/path)==digest
+ rel=path[len(P):]
+ kind=('index' if rel=='README.md' else 'authority' if rel.startswith('authority') else 'approval' if rel.startswith('approval') else 'directive' if rel.startswith(('directives/','amendments/')) else 'report' if rel.startswith('validation/') and 'report.' in rel else 'evidence')
+ records.append({'path':path,'sha256':digest,'kind':kind})
+assert len(records)==79
+assert not module.validate_board(board,root)
+owner=next(t for t in board['tasks'] if t['id']=='friday-mcp-protocol-upgrade')
+original_other=[copy.deepcopy(t) for t in board['tasks'] if t is not owner]
+review='docs/planning/review/friday-mcp-protocol-upgrade/'
+archive='docs/archive/completed/2026/friday-mcp-protocol-upgrade/'
+(root/review).mkdir(parents=True)
+(root/review/'README.md').write_text('# Synthetic independent closeout index\n')
+manifest={'version':1,'owner':owner['id'],'packet':P,'files':records}
+mp=root/review/'historical-authority.json';mp.write_text(json.dumps(manifest,indent=2)+'\n')
+owner['authority_backing_packets']=[{'packet':P,'manifest':review+'historical-authority.json','manifest_sha256':h(mp)}]
+boardpath=root/'docs/planning/board.yaml'
+boardpath.write_text(yaml.safe_dump(board,sort_keys=False))
+outputs=[]
+def cli(*args):
+ p=subprocess.run([sys.executable,str(W/'scripts/friday-dev-board.py'),'--root',str(root),*args],capture_output=True,text=True)
+ outputs.append({'argv':p.args,'exit_code':p.returncode,'stdout':p.stdout,'stderr':p.stderr})
+ return p
+c=cli('transition',owner['id'],'completed','--packet',review,'--actor','Independent synthetic controller','--actor-role','agent','--note','Synthetic functional rehearsal only','--next-gate','synthetic maintainer acceptance','--evidence','synthetic fresh independent VERIFIED')
+assert c.returncode==0,c.stderr
+assert cli('validate').returncode==0
+assert cli('render','--check').returncode==0
+b=yaml.safe_load(boardpath.read_text());current=next(t for t in b['tasks'] if t['id']==owner['id'])
+assert current['packet']==review and current['work_state']=='completed' and current['delivery_state']=='local'
+assert current['implementation_authority']=='closed'
+# Direct negative variants with actual owner and all real records.
+negatives={}
+def rejected(label,changed):
+ errors=module.validate_board(changed,root)
+ assert errors,label
+ negatives[label]=errors
+bad=copy.deepcopy(b);next(t for t in bad['tasks'] if t['id']==owner['id']).pop('authority_backing_packets');rejected('undeclared-retained-active',bad)
+bad=copy.deepcopy(b);next(t for t in bad['tasks'] if t['id']==owner['id'])['authority_backing_packets'][0]['manifest_sha256']='0'*64;rejected('stale-manifest',bad)
+manifest_bytes=mp.read_bytes();manifest['files'][1]['sha256']='0'*64;mp.write_text(json.dumps(manifest));bad=copy.deepcopy(b);next(t for t in bad['tasks'] if t['id']==owner['id'])['authority_backing_packets'][0]['manifest_sha256']=h(mp);rejected('stale-real-historical-file',bad);mp.write_bytes(manifest_bytes)
+# Internal aliases remain contained; external aliases are rejected, no network.
+index=root/P/'README.md';raw=index.read_bytes();index.unlink();outside=root/'outside-index.txt';outside.write_bytes(raw);index.symlink_to(outside);rejected('index-symlink-escape',b);index.unlink();index.write_bytes(raw)
+# Retained backing cannot have another owner.
+bad=copy.deepcopy(b);extra=copy.deepcopy(current);extra.update(id='synthetic-duplicate-owner',priority=999,packet='docs/planning/review/synthetic-duplicate-owner/');(root/extra['packet']).mkdir();(root/extra['packet']/'README.md').write_text('# Synthetic duplicate\n');bad['tasks'].append(extra);rejected('duplicate-owner',bad);shutil.rmtree(root/extra['packet'])
+(root/archive).parent.mkdir(parents=True,exist_ok=True);(root/review).rename(root/archive)
+b=yaml.safe_load(boardpath.read_text());next(t for t in b['tasks'] if t['id']==owner['id'])['authority_backing_packets'][0]['manifest']=archive+'historical-authority.json';boardpath.write_text(yaml.safe_dump(b,sort_keys=False));staged=boardpath.read_bytes()
+args=['transition',owner['id'],'accepted','--packet',archive,'--actor','Synthetic maintainer','--note','Synthetic acceptance rehearsal only','--next-gate','none']
+denied=cli(*args,'--actor-role','agent');assert denied.returncode==1 and 'only a maintainer' in denied.stderr;assert boardpath.read_bytes()==staged
+accepted=cli(*args,'--actor-role','maintainer');assert accepted.returncode==0,accepted.stderr
+assert cli('validate').returncode==0
+assert cli('render','--check').returncode==0
+final=yaml.safe_load(boardpath.read_text());finalowner=next(t for t in final['tasks'] if t['id']==owner['id'])
+assert finalowner['work_state']=='accepted' and finalowner['packet']==archive and finalowner['delivery_state']=='local'
+assert [t for t in final['tasks'] if t['id']!=owner['id']]==original_other
+assert all(h(root/path)==digest and h(W/path)==digest for path,digest in expected.items())
+assert yaml.safe_load((W/'docs/planning/board.yaml').read_text())==original_board
+result={'scope':'Synthetic private full-current-board transaction; no actual completion or acceptance','tasks':len(board['tasks']),'historical_records':records,'negative_cases':negatives,'commands':outputs,'candidate_board_unchanged':True,'other_tasks_unchanged':True,'retained_historical_hashes_unchanged':True,'canonical_review':review,'canonical_archive':archive,'fixture_root':str(root)}
+(R/'board-rehearsal-result.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'tasks':len(board['tasks']),'records':len(records),'negative_cases':list(negatives),'completed_exit':c.returncode,'agent_acceptance_exit':denied.returncode,'maintainer_acceptance_exit':accepted.returncode,'all_original_hashes_unchanged':True}))

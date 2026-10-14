@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-10-12'
+updated: '2026-10-14'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -109,7 +109,7 @@ tasks:
   accepted_at: '2026-09-29'
 - id: memory-v2
   title: Friday Memory V2
-  priority: 4
+  priority: 6
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -122,7 +122,7 @@ tasks:
   legacy_import: true
 - id: tool-governance
   title: Tool governance
-  priority: 5
+  priority: 7
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -135,7 +135,7 @@ tasks:
   legacy_import: true
 - id: framework-validation-and-contracts
   title: Framework validation and contracts
-  priority: 6
+  priority: 8
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -148,7 +148,7 @@ tasks:
   legacy_import: true
 - id: prompt-injection-mitigation
   title: Prompt-injection mitigation
-  priority: 7
+  priority: 9
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -162,7 +162,7 @@ tasks:
   legacy_import: true
 - id: claude-agent-sdk-tools
   title: Claude Agent SDK tools
-  priority: 8
+  priority: 10
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -176,7 +176,7 @@ tasks:
   legacy_import: true
 - id: friday-startup-context
   title: Friday startup context
-  priority: 9
+  priority: 11
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -189,7 +189,7 @@ tasks:
   legacy_import: true
 - id: friday-web-chat
   title: Friday Web Chat
-  priority: 10
+  priority: 12
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -202,7 +202,7 @@ tasks:
   legacy_import: true
 - id: friday-api
   title: Friday API
-  priority: 11
+  priority: 13
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -215,7 +215,7 @@ tasks:
   legacy_import: true
 - id: friday-tui
   title: Friday TUI
-  priority: 12
+  priority: 14
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -228,7 +228,7 @@ tasks:
   legacy_import: true
 - id: friday-speech
   title: Friday Speech
-  priority: 13
+  priority: 15
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -241,7 +241,7 @@ tasks:
   legacy_import: true
 - id: self-evolving-knowledge-graph
   title: Self-Evolving Knowledge Graph
-  priority: 14
+  priority: 16
   work_state: approved
   condition: normal
   implementation_authority: design_only
@@ -254,7 +254,7 @@ tasks:
   legacy_import: true
 - id: nonblocking-chat-input
   title: Nonblocking Friday Chat input
-  priority: 15
+  priority: 17
   work_state: completed
   condition: blocked
   implementation_authority: closed
@@ -268,7 +268,7 @@ tasks:
   legacy_import: true
 - id: human-in-the-loop
   title: Human in the Loop
-  priority: 16
+  priority: 18
   work_state: queued
   condition: blocked
   implementation_authority: not_granted
@@ -281,7 +281,7 @@ tasks:
   legacy_import: true
 - id: model-aware-reasoning-control
   title: Model-aware reasoning control
-  priority: 17
+  priority: 19
   work_state: queued
   condition: deferred
   implementation_authority: not_granted
@@ -294,7 +294,7 @@ tasks:
   legacy_import: true
 - id: agent-scoped-memory-context
   title: Agent-scoped memory context
-  priority: 18
+  priority: 20
   work_state: queued
   condition: backlog
   implementation_authority: not_granted
@@ -308,7 +308,7 @@ tasks:
   legacy_import: true
 - id: friday-chat-framework-followups
   title: Friday Chat framework follow-ups
-  priority: 19
+  priority: 21
   work_state: queued
   condition: backlog
   implementation_authority: not_granted
@@ -321,7 +321,7 @@ tasks:
   legacy_import: true
 - id: strategic-roadmap
   title: Strategic roadmap notes
-  priority: 20
+  priority: 22
   work_state: queued
   condition: backlog
   implementation_authority: not_granted
@@ -334,7 +334,7 @@ tasks:
   legacy_import: true
 - id: tool-capabilities
   title: Tool capability notes
-  priority: 21
+  priority: 23
   work_state: queued
   condition: backlog
   implementation_authority: not_granted
@@ -348,7 +348,7 @@ tasks:
   legacy_import: true
 - id: documentation-governance
   title: Documentation information architecture
-  priority: 22
+  priority: 24
   work_state: accepted
   condition: normal
   implementation_authority: closed
@@ -367,7 +367,7 @@ tasks:
   accepted_at: '2026-09-03'
 - id: friday-runtime-skills
   title: Friday runtime skills
-  priority: 23
+  priority: 25
   work_state: queued
   condition: backlog
   implementation_authority: not_granted
@@ -379,13 +379,13 @@ tasks:
   validation: []
 - id: friday-telemetry-rewire
   title: Friday-telemetry-rewire
-  priority: 25
+  priority: 26
   work_state: started
   condition: normal
   implementation_authority: closed
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: 'core TELEM-01–04 accepted and construction closed; draft PR #7 open against master; review before any merge; preserve frozen evidence paths; MCP preparation remains authorized'
-  delivery_state: pushed
+  next_gate: 'core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths'
+  delivery_state: merged
   branch: feature/friday-telemetry-rewire
   depends_on: []
   validation:
@@ -453,6 +453,60 @@ tasks:
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json
   approved_by: repository maintainer
   approved_at: '2026-10-04'
+- id: friday-mcp-protocol-upgrade
+  title: Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade
+  priority: 4
+  work_state: accepted
+  condition: normal
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/friday-mcp-protocol-upgrade/
+  next_gate: 'Review PR #8 against master; merge remains a separate decision'
+  delivery_state: pushed
+  branch: feature/friday-mcp-protocol-upgrade
+  depends_on:
+  - friday-mcp
+  validation:
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-01/report.md: CHANGES_REQUESTED'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-02/report.md: VERIFIED client-core/stdio work unit only'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json: maintainer acceptance of client-core/stdio unit only'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/report.md: CHANGES_REQUESTED; four HTTP findings, original candidate retained'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md: VERIFIED corrected Streamable HTTP work unit; maintainer acceptance pending'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json: maintainer acceptance of corrected HTTP unit only'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-01/report.md: CHANGES_REQUESTED; sole bounded guide-accuracy finding; runtime checks pass'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-02/report.md: VERIFIED Runtime/YAML/Chat full work-unit review; maintainer acceptance pending'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json: maintainer accepted independently VERIFIED Runtime/YAML/Chat unit'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/execution/up04-planning/report.md: exact UP-04 planning packet; no product construction authority'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-01/report.md: independent CHANGES_REQUESTED, high refresh-admission and medium input-grammar findings; REM-MCP-UP-004 proposed'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-02/report.md: independent corrected-candidate CHANGES_REQUESTED; VAL-UP04-003'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-03/report.md: independent remediation delta and full UP-04 VERIFIED; acceptance pending'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-04.json: maintainer accepted independently VERIFIED UP-04; all3 findings resolved'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-01/report.md: independent full UP-05 CHANGES_REQUESTED'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-02/report.md: independent full UP-05 CHANGES_REQUESTED'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md: independent full UP-05 VERIFIED'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json: maintainer accepted independently VERIFIED UP-05; all five findings resolved'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md: BLOCKED closure authority; full aggregate review not completed'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-02/report.md: VERIFIED fresh whole-feature27-check review; acceptance pending'
+  approved_by: Chuck Russell
+  approved_at: '2026-10-12'
+  authority_backing_packets:
+  - packet: docs/planning/active/friday-mcp-protocol-upgrade/
+    manifest: docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical-authority.json
+    manifest_sha256: 190b1fd6b5a919fe0131b01fd858e6b35d8c1decf87c6d577aeef3fec4b82dfd
+  accepted_by: Chuck Russell
+  accepted_at: '2026-10-14'
+- id: friday-langfuse-integration
+  title: Friday Langfuse implementation
+  priority: 5
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-langfuse-integration/
+  next_gate: after MCP upgrade acceptance, prepare and approve the Langfuse integration contract and exact construction directive
+  delivery_state: not_started
+  branch: null
+  depends_on:
+  - friday-mcp-protocol-upgrade
+  validation: []
 events:
 - task: documentation-governance
   at: '2026-09-03'
@@ -1241,6 +1295,20 @@ events:
   action: recorded VAL-009 changes requested and proposed REM-005
   note: Fresh independent full unit/aggregate review requires five numbered fixes despite passing required suites. Candidate1547fae and original controls unchanged; all original evidence retained. Exact15 targets within original29; no extra effect/waiver. Remediation awaits maintainer preauthorization, separate remediator and fresh full review. Started/local, no acceptance.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-009/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-11'
+  actor: Codex
+  actor_role: agent
+  action: queued
+  note: Chuck Russell requested a detailed MCP implementation upgrade and earliest scheduling. Queue modern protocol, Streamable HTTP, remote YAML/security, compatibility, result handling, server migration and independent interoperability validation; product construction remains unauthorized.
+  evidence: docs/planning/queued/friday-mcp-protocol-upgrade/README.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-11'
+  actor: Codex
+  actor_role: agent
+  action: prioritized
+  note: Set priority 4 as the first pending initiative per the maintainer request to move as soon as possible. Increment existing priorities 4 and above by one, preserving their relative order and all state, authority and historical events. Telemetry remains started pending REM-005 and fresh validation.
+  evidence: docs/planning/queued/friday-mcp-protocol-upgrade/README.md
 - task: friday-telemetry-rewire
   at: '2026-10-11'
   actor: Chuck Russell
@@ -1276,6 +1344,27 @@ events:
   action: TELEM-04 accepted
   note: Explicit response accepted to verified TELEM-04 completion. Core01–04 accepted/closed; WVR-006 expired. Optional05 separately governed; current construction authority closed; local delivery unchanged.
   evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json
+- task: friday-langfuse-integration
+  at: '2026-10-11'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: queued after MCP upgrade
+  note: Explicitly requested Langfuse implementation on the board, to follow MCP. Priority5 and dependency on MCP acceptance; other priorities5+ shift by one preserving order. This is planning/scheduling authority, not product construction approval.
+  evidence: docs/planning/queued/friday-langfuse-integration/README.md
+- task: friday-telemetry-rewire
+  at: '2026-10-11'
+  actor: Codex
+  actor_role: agent
+  action: linked optional TELEM-05 queue item
+  note: Optional Langfuse scope tracked in separate priority5 initiative after MCP. Core01–04 remain accepted/closed and all frozen controls/evidence unchanged; parent construction authority stays closed.
+  evidence: docs/planning/queued/friday-langfuse-integration/README.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T14:19:52+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transitioned queued -> approved
+  note: Approved MCP-UP-01 contract and exact twelve-path CD-MCP-UP-001; clarified dated normative specification/schema and research mapping. Later directives remain separately scoped.
+  evidence: docs/planning/queued/friday-mcp-protocol-upgrade/approval.json
 - task: friday-telemetry-rewire
   at: '2026-10-12T15:08:11+00:00'
   actor: Codex
@@ -1290,3 +1379,443 @@ events:
   action: draft telemetry delivery PR created
   note: 'Chuck Russell explicitly approved GitHub draft PR publication with yes approved. Created PR #7 against master; verified OPEN and draft. No merge. Core acceptance and closed construction authority unchanged.'
   evidence: https://github.com/CIChuck/agent-framework/pull/7
+- task: friday-telemetry-rewire
+  at: '2026-10-12T15:19:02+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery pushed -> merged
+  note: 'Chuck Russell merged PR #7 and deleted the remote telemetry branch. GitHub confirms mergedBy CIChuck at 2026-10-12T15:16:04Z; merged exact candidate c5b79ba into master as 1302b5fe3091304c08d1df77ea5fb1d2a4ec3666. MCP branch now uses that merged baseline. Core construction remains closed.'
+  evidence: https://github.com/CIChuck/agent-framework/pull/7
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T15:52:06+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned approved -> started
+  note: Start exact approved CD-MCP-UP-001 after telemetry merge, committed approval and preserved product/control hashes; use isolated sparse construction snapshot.
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12'
+  actor: Codex
+  actor_role: agent
+  action: dependency preparation stop; bounded amendment proposed
+  note: Original no-churn resolution cannot satisfy SDK2.3.0 because httpx2>=2.10 requires idna>=3.18 while existing lock pins3.11. Propose only IDNA3.20; restore isolated product bytes. No source build or install.
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-sdk-dependency.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T16:11:44.521914+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved bounded SDK dependency amendment A01
+  note: Permit only IDNA 3.11 to 3.20 among existing versions. Original exact scope, validation and no-delivery boundary unchanged; resume isolated verification and construction.
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-approval.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T16:18:46.546380+00:00'
+  actor: Codex
+  actor_role: agent
+  action: approved dependency reproduction and bounded offline comparison recorded
+  note: Exact lock reproduced; 24 static contexts preserve other existing selections/artifacts; 57 representative HTTP URL checks unchanged. Concrete stricter/mapping differences retained. Full product construction and validation pending.
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/idna-regression-assessment.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T17:16:33+00:00'
+  actor: Codex
+  actor_role: agent
+  action: client-core candidate prepared
+  note: MCP-UP-02A evidence frozen for independent review; started/local retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/client-core-implementation.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T17:32:31+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent changes requested
+  note: Two conformance findings converted to bounded existing-scope remediation; started/local retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-01/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T17:45:39+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded corrected candidate
+  note: Bounded findings fixed by separate remediator; fresh review required; started/local retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/remediation-01-builder/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T17:57:17+00:00'
+  actor: Codex
+  actor_role: agent
+  action: proposed verified client-core unit completion
+  note: Fresh independent review resolves two findings; maintainer unit acceptance and later directives remain separate; initiative started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-02/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T18:10:39+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted CD-MCP-UP-001 client-core/stdio unit
+  note: 'Exact statement: accepted. Scope MCP-UP-02A only; whole initiative remains started/local; later-unit approval separate'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T18:10:39+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared separate CD-MCP-UP-002 proposal
+  note: Fourteen product paths; dated modern/2025 HTTP profiles and ten criteria; no next-unit construction authority
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-002-streamable-http.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T18:32:34+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact CD-MCP-UP-002
+  note: 'Exact statement: approved. Fourteen product paths; HTTP unit only; no delivery authority'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-02B.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T19:26:52+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze Streamable HTTP candidate
+  note: Fourteen-path approved implementation and stable checks ready for independent review; started/local retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/http/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T19:43:39+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded HTTP changes requested and remediation proposal
+  note: Independent full review finds four bounded defects; exact REM-MCP-UP-002 approval required before corrections; started/local retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-002-streamable-http.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T19:51:00+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved bounded HTTP remediation
+  note: 'Exact statement: approved. REM-MCP-UP-002 six-path/four-finding scope; separate builder and fresh reviewer; initiative started/local'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-002.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T20:07:25+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze corrected HTTP candidate for independent review
+  note: Separate bounded remediation complete; four findings require fresh delta/full independent verification; original failed report retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/remediation-UP02B-002-builder/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T20:20:54+00:00'
+  actor: Codex
+  actor_role: agent
+  action: proposed verified HTTP unit completion
+  note: Fresh independent delta/full review resolves all four approved findings; unit acceptance and later MCP directives remain separate
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T20:40:09+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted corrected MCP HTTP unit
+  note: 'Exact statement: accepted proceed. HTTP unit accepted; prepare next Runtime/YAML/Chat directive; initiative remains started/local'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T20:47:51+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared separate MCP-UP-03 construction proposal
+  note: 28 product paths and10 criteria; dated YAML/remote policy/typed factory/real Chat integration; planning only, next-unit construction pending
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-003-runtime-yaml-chat.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T01:35:16+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved Runtime YAML Chat integration
+  note: 'Exact statement: approved. CD-MCP-UP-003 28 paths; full profile and fresh independent review; started/local.'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-03.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T02:29:52+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze Runtime YAML Chat candidate for independent review
+  note: Approved exact CD-MCP-UP-003 scope; full frozen checks complete; fresh review required, started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up03/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T02:58:37+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded UP03 documentation finding and bounded correction
+  note: Original independent evidence retained; one guide correction within approved INT-AC-10; no runtime scope expansion
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-003-guide-accuracy.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T03:05:29+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze corrected UP03 guide candidate for fresh review
+  note: Exact one-guide correction; executable products unchanged; original independent report retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation-request-REM-MCP-UP-003.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T03:18:35+00:00'
+  actor: Codex
+  actor_role: agent
+  action: proposed verified Runtime YAML Chat unit completion
+  note: Fresh-context independent full UP-03 review; unit acceptance and later MCP directives remain separate
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-02/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T03:25:59+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted CD-MCP-UP-003 Runtime YAML Chat unit
+  note: 'Exact statement: accepted, continue. UP-03 only; UP-04 packet preparation authorized, later construction separate'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T03:44:33+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared CD-MCP-UP-004 result manual refresh packet
+  note: 20 exact product paths,10 criteria,20 full checks; UP-03 accepted; UP-04 construction awaits exact approval
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-004-results-manual-refresh.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T12:35:51+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact CD-MCP-UP-004
+  note: 'Exact statement: approved, continue. Exact20-path UP-04 scope, full checks and independent review; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-04.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T13:15:44+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze UP-04 candidate for independent review
+  note: Exact approved scope and full20-check profile; original evidence/debt preserved; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up04/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T13:42:05+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: recorded UP-04 independent findings and proposed exact remediation
+  note: Original report preserved.3-file REM-MCP-UP-004 approval required; separate security remediator; source unchanged after review
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-004-refresh-input-validation.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T14:07:38+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact REM-MCP-UP-004
+  note: 'Exact statement: approved , continue. Three product files; separate security remediator; full checks and fresh independent review; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-004.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T14:33:56+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze REM-MCP-UP-004 corrected candidate
+  note: Separate three-file remediation; full20 checks archived; fresh delta plus full-unit validation required; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/rem004/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T14:50:11+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: recorded REM004 CHANGES_REQUESTED and exact REM005 amendment
+  note: Original review retained; one unsuccessful remediation cycle; two product paths, local only
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-02/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T14:50:11+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact REM-MCP-UP-005 two-file amendment
+  note: 'Exact statement: I''ll approve that amendment without reservation, continue. Two paths; fresh security remediator; full checks and fresh independent review; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-005.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T15:07:13+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze REM-MCP-UP-005 corrected candidate
+  note: Separate two-file remediation; full20 checks archived; fresh delta plus full-unit validation required; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/rem005/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T15:25:18+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: recorded independently VERIFIED corrected UP-04 completion proposal
+  note: Fresh delta plus full review; historical report retained; no acceptance or publication inferred; whole MCP started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-03/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T16:10:22+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted MCP-UP-04 result and refresh unit
+  note: 'Exact statement: approved. Acceptance gate explicit; UP-05 planning next, construction separate; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-04.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T16:38:51+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: prepared exact MCP-UP-05 modern tools-server construction packet
+  note: 18 paths/12 criteria/20 commands; planning only, no product edit or server publication; exact approval gate
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-005-modern-tools-server.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T17:56:24+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact CD-MCP-UP-005
+  note: 'Exact statement: approved, continue. Exact18-path UP-05 scope, full checks and independent review; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T18:16:02+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared exact UP-05 cache-metadata amendment
+  note: Pinned schema and official SDK require fields forbidden by approved contract; construction stopped.18 paths/20 checks unchanged, local only
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/amendments/AMEND-MCP-UP-005-001-cacheable-results.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T18:21:25+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact AMEND-MCP-UP-005-001
+  note: 'Exact statement: approved. Required immediately stale private discovery/list wire metadata; original construction scope unchanged, local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05-amendment-001.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T18:45:18+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared exact UP-05 schema and version-error amendment
+  note: Draft profile completed; frozen error-data conflict and invalid historical schema selection prevent conformance. Exact prospective rebaseline proposed; source edits stopped, local only
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/amendments/AMEND-MCP-UP-005-002-modern-schema-and-version-errors.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T18:57:32+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact AMEND-MCP-UP-005-002
+  note: 'Exact statement: approved, continue. Correct wire version-error fields and prospective modern-field rebaseline; original scope unchanged, local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05-amendment-002.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T19:59:45+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze amended MCP-UP-05 candidate
+  note: Exact18 paths/12 criteria/20 checks; corrected modern schema mapping; fresh independent full review required; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up05/amendment002-final/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T20:25:24+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: recorded independent full MCP-UP-05 CHANGES_REQUESTED
+  note: Original fresh report/evidence retained; no acceptance/publication inferred; whole MCP started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-01/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T20:25:30+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: prepared exact REM-MCP-UP-006 proposal
+  note: Six-path correction of independent UP05 findings; separate remediator required; implementation not granted; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/REM-MCP-UP-006-server-boundary-and-stdio-ownership.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T20:31:42+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact REM-MCP-UP-006 six-file correction
+  note: 'Exact statement: approved continue. Four findings; separate remediator and fresh delta/full review; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-006.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T20:55:06+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze REM-MCP-UP-006 corrected server candidate
+  note: Separate six-path correction; full20 checks; fresh delta/full review required; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/rem006/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T21:20:58+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: recorded independent full MCP-UP-05 CHANGES_REQUESTED
+  note: Original fresh report/evidence retained; no acceptance/publication inferred; whole MCP started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-02/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T21:21:06+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: bounded REM006 continuation within existing approved header scope
+  note: New standard-header case under original mandatory grammar; three of six files; no new maintainer approval claimed; cycle2 stop applies
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/REM-MCP-UP-006-R1-standard-header-byte-grammar.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T21:37:15+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze REM-MCP-UP-006-R1 corrected server candidate
+  note: Separate three-path correction; full20 checks; fresh delta/full review required; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/rem006-r1/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T21:56:58+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: recorded independent full MCP-UP-05 VERIFIED
+  note: Original fresh report/evidence retained; no acceptance/publication inferred; whole MCP started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T00:33:18+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted MCP-UP-05 modern server unit
+  note: 'Exact statement: accepted, continue. UP-06 packet preparation next; exact construction approval separate; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T00:43:56+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: prepared CD-MCP-UP-006 aggregate migration proposal
+  note: Seven paths/12 criteria/all8 initiative criteria/24 checks; source and dependencies frozen; exact construction approval pending
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T01:32:07+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact CD-MCP-UP-006
+  note: 'Exact statement: approved; seven paths,24 checks, fresh whole-feature independent review; no runtime source/dependency/publication authority'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T01:55:52+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: stopped UP06 at exact fixture-scope boundary
+  note: BUILD-UP06-001 named stdio catalog; one fixture exception proposed; original CD006 remains approved; product draft preserved; no runtime policy change
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-001-fixture-transport-catalog.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T02:08:03+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved AMEND-MCP-UP-006-001
+  note: 'Exact statement: approved continue; single synthetic fixture exception; parent24 checks and fresh aggregate review unchanged'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06-amendment-001.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T02:28:27+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze MCP-UP-06 whole-feature aggregate candidate
+  note: Eight approved paths; full24 checks and exact baseline comparison; fresh independent review required; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend1/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T02:39:35+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: recorded independent UP06 authority BLOCKED and proposed AMEND002
+  note: No protocol defect; immutable active backing/canonical review index conflict; four governance paths and3 extra checks proposed, not granted
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T03:02:56+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved AMEND-MCP-UP-006-002
+  note: 'Exact statement: approved - make sure this thing is functional; four governance paths/27 checks; whole acceptance separate'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06-amendment-002.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T03:35:09+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze functional MCP aggregate governance candidate
+  note: Four approved governance paths,all27 checks,54 board tests/actual26-task79-record rehearsal; full fresh independent review required
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T04:03:36+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Fresh independent FULL whole-feature VERIFIED; completed/local proposal with immutable authority backing; maintainer acceptance pending
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-02/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T04:08:25+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Maintainer explicitly stated accepted in response to VERIFIED whole-upgrade completion proposal
+  evidence: docs/archive/completed/2026/friday-mcp-protocol-upgrade/acceptance.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T04:14:25+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> pushed
+  note: 'Explicit maintainer instruction to commit branch and submit PR to master; branch published, PR #8 open'
+  evidence: https://github.com/CIChuck/agent-framework/pull/8

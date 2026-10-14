@@ -24,6 +24,8 @@ class Client(MCPClientBase):
     "result, expected",
     [
         ({"content": []}, ""),
+        ({"content": [], "structuredContent": None}, "null"),
+        ({"content": [], "structuredContent": [1, 2]}, "[1,2]"),
         (
             {"content": [{"type": "text", "text": "success"}], "isError": False},
             "success",
@@ -60,6 +62,19 @@ async def test_valid_successful_string_api_and_exact_original_routing(result, ex
         ({}, "invalid_result"),
         ({"content": "WS05_SECRET"}, "invalid_result"),
         ({"content": [42]}, "invalid_result"),
+        (
+            {"content": [{"type": "image", "data": "WS05_SECRET"}]},
+            "unsupported_content",
+        ),
+        (
+            {
+                "content": [
+                    {"type": "image", "data": "WS05_SECRET"},
+                    {"type": "text", "text": ""},
+                ]
+            },
+            "unsupported_content",
+        ),
         (
             {"content": [{"type": "text", "text": {"secret": "WS05_SECRET"}}]},
             "invalid_result",

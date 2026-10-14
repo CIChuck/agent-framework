@@ -1,0 +1,5 @@
+Original seal assembly failure: the forbidden-directory condition inspected absolute Path.parts, so the authorized /private/tmp parent matched 'tmp'. No manifest was written and no candidate byte changed.
+Exact failing expression:
+assert p.suffix not in ['.py','.pyc','.key','.pem'] and not any(x in p.parts for x in ['.git','__pycache__','runtime','homes','cache','tmp'])
+Traceback: File <stdin>, line 12, AssertionError
+Corrected assembly checks the relative evidence path's parts.

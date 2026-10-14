@@ -1,0 +1,35 @@
+packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_basic_run
+packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_session_initialization
+packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_context_assembly
+packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_tool_execution
+packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_max_iterations
+packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_turn_archiving
+packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_conversation_history
+packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_clear_history
+  <snapshot>/packages/friday-agent/tests_agent/test_copilot.py:115: DeprecationWarning: CopilotAgent is deprecated in Phase 4; use InteractiveAgent instead.
+    return CopilotAgent(
+
+packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_basic_run
+  <snapshot>/packages/friday-agent/src/friday_agent/repl_base.py:95: DeprecationWarning: Legacy Agent LLM injection is deprecated; provide a TypedLLMClient
+    response = await complete_agent_request(
+
+packages/friday-agent/tests_agent/test_copilot.py::TestCopilotAgent::test_telemetry_integration
+  <snapshot>/packages/friday-agent/tests_agent/test_copilot.py:209: DeprecationWarning: CopilotAgent is deprecated in Phase 4; use InteractiveAgent instead.
+    agent = CopilotAgent(
+
+packages/friday-chat/tests_chat/test_reorganization_mutation.py::test_litellm_provider_supplies_schema_and_parses_noisy_json
+  <snapshot>/packages/friday-chat/src/friday_chat/reorganization/mutation.py:245: DeprecationWarning: Legacy Memory LLM injection is deprecated; provide a TypedLLMClient
+    response = await complete_memory_request(
+
+packages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields
+packages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields
+  /private/tmp/friday-mcp-upgrade/venv/lib/python3.13/site-packages/litellm/litellm_core_utils/model_response_utils.py:18: PydanticDeprecatedSince211: Accessing the 'model_computed_fields' attribute on the instance is deprecated. Instead, you should access this attribute from the model class. Deprecated in Pydantic V2.11 to be removed in V3.0.
+    attribute: Final[_AttributeView] = {"value": getattr(source, name)}
+
+packages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields
+packages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields
+  /private/tmp/friday-mcp-upgrade/venv/lib/python3.13/site-packages/litellm/litellm_core_utils/model_response_utils.py:18: PydanticDeprecatedSince211: Accessing the 'model_fields' attribute on the instance is deprecated. Instead, you should access this attribute from the model class. Deprecated in Pydantic V2.11 to be removed in V3.0.
+    attribute: Final[_AttributeView] = {"value": getattr(source, name)}
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+===========================

@@ -1,0 +1,1095 @@
+{
+  "revision": "2026-07-28",
+  "clauses": [
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 18,
+      "paragraph": "All implementations **MUST** support the base protocol, versioning,\nand the message patterns. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 28,
+      "paragraph": "All messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 47,
+      "paragraph": "* Requests **MUST** include a string or integer ID.\n* Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n* The request ID **MUST NOT** match the ID of any other request the sender has issued and\n  not yet received a response for.",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 71,
+      "paragraph": "* Result responses **MUST** include the same ID as the request they correspond to.\n* Result responses **MUST** include a `result` field.\n* The `result` **MAY** follow any JSON object structure.\n* The `result` **MUST** include a `resultType` field to indicate the type of the result.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 82,
+      "paragraph": "* A `resultType` of `\"complete\"` indicates the request completed successfully and the result contains the final content.\n* A `resultType` of `\"input_required\"` indicates the request is incomplete and more information is needed to process the request. The result contains an [`InputRequiredResult`](/specification/2026-07-28/basic/patterns/mrtr#inputrequiredresult) object with additional information needed.\n* Extensions **MAY** add additional `ResultType` values. The set of supported `ResultType` values **MUST** be created from the set defined in the core protocol and include any additional values of supported extensions that are advertised via capabilities.\n* A `resultType` of any value unrecognized by the client **MUST** be considered invalid.\n* For backward compatibility with servers implementing earlier protocol versions, which do not include `resultType`, clients **MUST** treat an absent `resultType` as `\"complete\"`.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 104,
+      "paragraph": "* Error responses **MUST** include the same ID as the request they correspond to (except in error cases where the ID could not be read due a malformed request).\n* Error responses **MUST** include an `error` field with a `code` and `message`.\n* Error codes **MUST** be integers.\n* Error responses **MAY** include a `data` member with additional information of any type, such\n  as nested errors.",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 118,
+      "paragraph": "* **`-32000` to `-32019` \u2014 legacy.** Codes in this sub-range were allocated by\n  implementations before this policy was introduced. New codes **MUST NOT** be\n  allocated in this sub-range, and new implementations **SHOULD NOT** use codes\n  from this sub-range at all. Apart from `-32002` (see below), receivers\n  **MUST NOT** assume any specific meaning for these codes.\n* **`-32020` to `-32099` \u2014 reserved for the MCP specification.** Error codes\n  in this sub-range are defined exclusively by the MCP specification and\n  recorded in the [schema](/specification/2026-07-28/schema). Implementations\n  **MUST NOT** emit any code from this sub-range that is not defined by this\n  specification and **MUST** use defined codes only with their specified\n  meanings.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 138,
+      "paragraph": "Codes defined by earlier protocol versions remain reserved and will not be\nreused. Implementations of this protocol version **MUST NOT** emit these codes:",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 160,
+      "paragraph": "[Notifications](/specification/2026-07-28/schema#jsonrpcnotification) are sent from the client to the server or vice versa, as a one-way message.\nThe receiver **MUST NOT** send a response.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 173,
+      "paragraph": "* Notifications **MUST NOT** include an ID.",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 192,
+      "paragraph": "* Servers **MUST NOT** rely on prior requests over the same connection to\n  establish context (e.g., capabilities, protocol version, client identity).\n  Every request supplies this metadata in its [`_meta`](#_meta) field.\n* Servers **SHOULD** be prepared to handle requests associated with multiple\n  tasks, threads, or conversations.\n* Servers **SHOULD NOT** require that a client reuse the same connection or process to\n  perform related operations.\n* Clients **SHOULD NOT** use an individual task, thread, or conversation as the\n  lifetime boundary for the stdio process.\n* State that needs to span multiple requests (e.g., long-running tasks,\n  application-level handles) **MUST** be referenced by an explicit identifier\n  the client passes on each request.",
+      "criteria": [
+        "CD-AC-02"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 256,
+      "paragraph": "1. **Default dialect**: When a schema does not include a `$schema` field, it defaults to [JSON Schema 2020-12](https://json-schema.org/draft/2020-12/schema)\n2. **Explicit dialect**: Schemas MAY include a `$schema` field to specify a different dialect\n3. **Supported dialects**: Implementations MUST support at least 2020-12 and SHOULD document which additional dialects they support\n4. **Recommendation**: Implementors are RECOMMENDED to use JSON Schema 2020-12.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 292,
+      "paragraph": "* Clients and servers **MUST** support JSON Schema 2020-12 for schemas without an explicit `$schema` field\n* Clients and servers **MUST** validate schemas according to their declared or default dialect. They **MUST** handle unsupported dialects gracefully by returning an appropriate error indicating the dialect is not supported.\n* Clients and servers **SHOULD** document which schema dialects they support",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 298,
+      "paragraph": "* Schemas **MUST** be valid according to their declared or default dialect",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 302,
+      "paragraph": "JSON Schema 2020-12 permits `$ref` to point at an absolute URI. Implementations **MUST NOT**\nautomatically dereference `$ref` values that resolve to a network URI.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 305,
+      "paragraph": "Implementations **MAY** offer an opt-in mode that fetches non-local `$ref`s but it\n**MUST** be disabled by default and **SHOULD** enforce an allowlist of hosts or at\nminimum reject loopback, link-local, and private network addresses, apply timeouts and\nsize limits, and log dereferenced URIs.",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 328,
+      "paragraph": "Certain key names are reserved by MCP for protocol-level metadata, as specified below;\nimplementations **MUST NOT** make assumptions about values at these keys.",
+      "criteria": [
+        "CD-AC-02"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 335,
+      "paragraph": "* If specified, MUST be a series of labels separated by dots (`.`), followed by a slash (`/`).\n  * Labels MUST start with a letter and end with a letter or digit; interior characters can be letters, digits, or hyphens (`-`).\n  * Implementations SHOULD use reverse DNS notation (e.g., `com.example/` rather than `example.com/`).\n* Any prefix where the second label is `modelcontextprotocol` or `mcp` is **reserved** for MCP use.\n  * For example: `io.modelcontextprotocol/`, `dev.mcp/`, `org.modelcontextprotocol.api/`, and `com.mcp.tools/` are all reserved.\n  * However, `com.example.mcp/` is NOT reserved, as the second label is `example`.",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 344,
+      "paragraph": "* Unless empty, MUST begin and end with an alphanumeric character (`[a-z0-9A-Z]`).\n* MAY contain hyphens (`-`), underscores (`_`), dots (`.`), and alphanumerics in between.",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 368,
+      "paragraph": "Client requests carry the following `io.modelcontextprotocol/*` fields in `_meta`;\nfields marked as required **MUST** be included on every request. Servers use these\nto identify the protocol version and capabilities in use without relying on any\nprior connection state. See\n[Versioning and Compatibility][lifecycle] for version negotiation rules.",
+      "criteria": [
+        "CD-AC-02"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 381,
+      "paragraph": "A request missing any required field is malformed; the server **MUST** reject it with\nJSON-RPC error code `-32602` (Invalid params). On HTTP, the response status **MUST** be\n`400 Bad Request`.",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 388,
+      "paragraph": "A server **MUST NOT** rely on capabilities the client has not declared. If\nprocessing a request requires a capability the client did not include in\n`io.modelcontextprotocol/clientCapabilities`, the server **MUST** return a\n[`MissingRequiredClientCapabilityError`](/specification/2026-07-28/schema#missingrequiredclientcapabilityerror)\n(`-32021`) whose `data.requiredCapabilities` lists the missing capabilities. On\nHTTP, the response status **MUST** be `400 Bad Request`.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 413,
+      "paragraph": "On notifications delivered via a [`subscriptions/listen`][subscriptions-listen] stream,\nthe server **MUST** include `io.modelcontextprotocol/subscriptionId` in `_meta` so the\nclient can correlate the notification with the originating subscription request.",
+      "criteria": [
+        "CD-AC-02"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 423,
+      "paragraph": "As an exception to the prefix requirement above, the keys `traceparent`, `tracestate`, and\n`baggage` are reserved for [OpenTelemetry](https://opentelemetry.io/) trace context propagation.\nWhen present, their values MUST follow [W3C Trace Context](https://www.w3.org/TR/trace-context/)\nand [W3C Baggage](https://www.w3.org/TR/baggage/) formats respectively.",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 465,
+      "paragraph": "Clients that support rendering icons **MUST** support at least the following MIME types:",
+      "criteria": [
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 477,
+      "paragraph": "Consumers of icon metadata **MUST** take appropriate security precautions when handling icons to prevent compromise:",
+      "criteria": [
+        "CD-AC-02"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 479,
+      "paragraph": "* Treat icon metadata and icon bytes as untrusted inputs and defend against network, privacy, and parsing risks.\n* Ensure that the icon URI is either a HTTPS or `data:` URI. Clients **MUST** reject icon URIs that use unsafe schemes and redirects, such as `javascript:`, `file:`, `ftp:`, `ws:`, or local app URI schemes.\n  * Disallow scheme changes and redirects to hosts on different origins.\n* Be resilient against resource exhaustion attacks stemming from oversized images, large dimensions, or excessive frames (e.g., in GIFs).\n  * Consumers **MAY** set limits for image and content size.\n* Fetch icons without credentials. Do not send cookies, `Authorization` headers, or client credentials.\n* Verify that icon URIs are from the same origin as the server. This minimizes the risk of exposing data or tracking information to third-parties.\n* Exercise caution when fetching and rendering icons as the payload **MAY** contain executable content (e.g., SVG with [embedded JavaScript](https://www.w3.org/TR/SVG11/script.html) or [extended capabilities](https://www.w3.org/TR/SVG11/extend.html)).\n  * Consumers **MAY** choose to disallow specific file types or otherwise sanitize icon files before rendering.\n* Validate MIME types and file contents before rendering. Treat the MIME type information as advisory. Detect content type via magic bytes; reject on mismatch or unknown types.\n  * Maintain a strict allowlist of image types.",
+      "criteria": [
+        "CD-AC-02"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--versioning.md",
+      "line": 49,
+      "paragraph": "If the server does not implement the requested version (whether the version\nis unknown to the server, or is a known version the server has chosen not to\nsupport), it **MUST** respond with an\n[`UnsupportedProtocolVersionError`](/specification/2026-07-28/schema#unsupportedprotocolversionerror)\nlisting the versions it does support:",
+      "criteria": [
+        "CD-AC-02",
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--versioning.md",
+      "line": 74,
+      "paragraph": "Servers **MUST** implement\n[`server/discover`](/specification/2026-07-28/server/discover). Clients\n**MAY** call it before sending any other requests to learn the server's\nsupported versions up front, but are not required to: a client is free to\ninvoke any RPC inline and handle `UnsupportedProtocolVersionError` if its\npreferred version is not supported.",
+      "criteria": [
+        "CD-AC-02",
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--versioning.md",
+      "line": 83,
+      "paragraph": "Clients and servers can negotiate support for optional\n[extensions](/docs/extensions/overview) beyond the core protocol. Extensions\nare advertised in the `extensions` field of capabilities, which is a map of\nextension identifiers to per-extension settings objects. Extension identifiers\n**MUST** follow the [`_meta` key naming rules](/specification/2026-07-28/basic/index#meta),\nwith a mandatory prefix.",
+      "criteria": [
+        "CD-AC-02",
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--versioning.md",
+      "line": 122,
+      "paragraph": "If one party supports an extension but the other does not, the supporting\nparty **MUST** either revert to core protocol behavior or reject the request\nwith an appropriate error. Extensions **SHOULD** document their expected\nfallback behavior.",
+      "criteria": [
+        "CD-AC-02",
+        "CD-AC-03"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 11,
+      "paragraph": "* The server reads JSON-RPC messages from `stdin` and writes JSON-RPC messages to\n  `stdout`.\n* Each message is a single JSON-RPC request, notification, or response.\n* Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n* The server **MAY** write UTF-8 strings to `stderr` for any logging purposes\n  including informational, debug, and error messages.\n* The client **MAY** capture, forward, or ignore the server's `stderr` output and\n  **SHOULD NOT** assume `stderr` output indicates error conditions.\n* The server **MUST NOT** write anything to its `stdout` that is not a valid MCP\n  message.\n* The client **MUST NOT** write anything to the server's `stdin` that is not a\n  valid MCP message.",
+      "criteria": [
+        "CD-AC-06",
+        "CD-AC-07",
+        "CD-AC-08"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_timeout_reserves_legacy_budget_and_late_id_cannot_settle_it",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_cancel_resistant_send_is_bounded_and_retained_for_cleanup_retry",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_pages_share_one_deadline",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_concurrency_bound_checked_before_allocating_another_waiter",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_connect_deadline_includes_spawn_and_reserves_fallback_budget",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_context_primary_failure_survives_cleanup_failure_with_owner_retained",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_decoder_checks_bytes_depth_duplicate_keys_nonfinite_and_repr_privacy",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_expired_preparation_deadline_issues_no_request",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_unknown_server_request_gets_fixed_method_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_server_request_fails_without_emitting_client_response",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_outgoing_limit_precedes_send_and_waiter_allocation",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_primary_handshake_failure_survives_retryable_cleanup_failure",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_stalled_send_is_in_request_deadline_and_unissued_request_not_cancelled",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_ambiguous_call_executes_once_with_no_mutation_replay",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_bad_legacy_version_partial_connection_is_released",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_exact_legacy_revision_text_api_and_bounded_auto_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_issued_stdio_call_cancel_or_timeout_notifies_and_reaps",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_official_sdk_230_real_stdio_catalog_text_structured_and_reaping",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_oversized_frame_rejected_before_json_decode_then_reaped"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 36,
+      "paragraph": "The client sends messages by writing JSON-RPC *requests* and *notifications*\nto the server's `stdin`, one message per line. The client **MUST NOT** write\nJSON-RPC *responses*.",
+      "criteria": [
+        "CD-AC-06",
+        "CD-AC-07",
+        "CD-AC-08"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_timeout_reserves_legacy_budget_and_late_id_cannot_settle_it",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_cancel_resistant_send_is_bounded_and_retained_for_cleanup_retry",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_pages_share_one_deadline",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_concurrency_bound_checked_before_allocating_another_waiter",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_connect_deadline_includes_spawn_and_reserves_fallback_budget",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_context_primary_failure_survives_cleanup_failure_with_owner_retained",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_decoder_checks_bytes_depth_duplicate_keys_nonfinite_and_repr_privacy",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_expired_preparation_deadline_issues_no_request",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_unknown_server_request_gets_fixed_method_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_server_request_fails_without_emitting_client_response",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_outgoing_limit_precedes_send_and_waiter_allocation",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_primary_handshake_failure_survives_retryable_cleanup_failure",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_stalled_send_is_in_request_deadline_and_unissued_request_not_cancelled",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_ambiguous_call_executes_once_with_no_mutation_replay",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_bad_legacy_version_partial_connection_is_released",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_exact_legacy_revision_text_api_and_bounded_auto_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_issued_stdio_call_cancel_or_timeout_notifies_and_reaps",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_official_sdk_230_real_stdio_catalog_text_structured_and_reaping",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_oversized_frame_rejected_before_json_decode_then_reaped"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 47,
+      "paragraph": "1. *Responses* to client requests, correlated by JSON-RPC `id`.\n2. *Notifications* that relate to an in-flight request, such as\n   `notifications/progress` and `notifications/message`.\n3. *Notifications* delivered for an active\n   [`subscriptions/listen`][subscriptions-listen] request. Clients **MUST**\n   correlate these using the `io.modelcontextprotocol/subscriptionId` field\n   in `_meta`; see\n   [`SubscriptionsListenRequest`][subscriptions-listen-request].",
+      "criteria": [
+        "CD-AC-06",
+        "CD-AC-07",
+        "CD-AC-08"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_timeout_reserves_legacy_budget_and_late_id_cannot_settle_it",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_cancel_resistant_send_is_bounded_and_retained_for_cleanup_retry",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_pages_share_one_deadline",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_concurrency_bound_checked_before_allocating_another_waiter",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_connect_deadline_includes_spawn_and_reserves_fallback_budget",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_context_primary_failure_survives_cleanup_failure_with_owner_retained",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_decoder_checks_bytes_depth_duplicate_keys_nonfinite_and_repr_privacy",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_expired_preparation_deadline_issues_no_request",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_unknown_server_request_gets_fixed_method_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_server_request_fails_without_emitting_client_response",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_outgoing_limit_precedes_send_and_waiter_allocation",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_primary_handshake_failure_survives_retryable_cleanup_failure",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_stalled_send_is_in_request_deadline_and_unissued_request_not_cancelled",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_ambiguous_call_executes_once_with_no_mutation_replay",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_bad_legacy_version_partial_connection_is_released",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_exact_legacy_revision_text_api_and_bounded_auto_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_issued_stdio_call_cancel_or_timeout_notifies_and_reaps",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_official_sdk_230_real_stdio_catalog_text_structured_and_reaping",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_oversized_frame_rejected_before_json_decode_then_reaped"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 56,
+      "paragraph": "The server **MUST NOT** write JSON-RPC *requests* to `stdout`.\nServer-to-client interactions are carried in\n[`InputRequiredResult`][mrtr-input-required] replies; see\n[Multi Round-Trip Requests][mrtr].",
+      "criteria": [
+        "CD-AC-06",
+        "CD-AC-07",
+        "CD-AC-08"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_timeout_reserves_legacy_budget_and_late_id_cannot_settle_it",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_cancel_resistant_send_is_bounded_and_retained_for_cleanup_retry",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_pages_share_one_deadline",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_concurrency_bound_checked_before_allocating_another_waiter",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_connect_deadline_includes_spawn_and_reserves_fallback_budget",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_context_primary_failure_survives_cleanup_failure_with_owner_retained",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_decoder_checks_bytes_depth_duplicate_keys_nonfinite_and_repr_privacy",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_expired_preparation_deadline_issues_no_request",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_unknown_server_request_gets_fixed_method_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_server_request_fails_without_emitting_client_response",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_outgoing_limit_precedes_send_and_waiter_allocation",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_primary_handshake_failure_survives_retryable_cleanup_failure",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_stalled_send_is_in_request_deadline_and_unissued_request_not_cancelled",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_ambiguous_call_executes_once_with_no_mutation_replay",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_bad_legacy_version_partial_connection_is_released",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_exact_legacy_revision_text_api_and_bounded_auto_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_issued_stdio_call_cancel_or_timeout_notifies_and_reaps",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_official_sdk_230_real_stdio_catalog_text_structured_and_reaping",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_oversized_frame_rejected_before_json_decode_then_reaped"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 82,
+      "paragraph": "To cancel an in-flight request, the client **MUST** send a\n`notifications/cancelled` notification referencing the request's ID. Because\nstdio is a single shared bidirectional channel, there is no per-request stream\nto close. Servers **SHOULD** stop work on a cancelled request as soon as\npractical and **MUST NOT** send any further messages for it. See\n[Cancellation][cancellation] for the full rules.",
+      "criteria": [
+        "CD-AC-06",
+        "CD-AC-07",
+        "CD-AC-08"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_timeout_reserves_legacy_budget_and_late_id_cannot_settle_it",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_cancel_resistant_send_is_bounded_and_retained_for_cleanup_retry",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_pages_share_one_deadline",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_concurrency_bound_checked_before_allocating_another_waiter",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_connect_deadline_includes_spawn_and_reserves_fallback_budget",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_context_primary_failure_survives_cleanup_failure_with_owner_retained",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_decoder_checks_bytes_depth_duplicate_keys_nonfinite_and_repr_privacy",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_expired_preparation_deadline_issues_no_request",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_unknown_server_request_gets_fixed_method_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_server_request_fails_without_emitting_client_response",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_outgoing_limit_precedes_send_and_waiter_allocation",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_primary_handshake_failure_survives_retryable_cleanup_failure",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_stalled_send_is_in_request_deadline_and_unissued_request_not_cancelled",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_ambiguous_call_executes_once_with_no_mutation_replay",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_bad_legacy_version_partial_connection_is_released",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_exact_legacy_revision_text_api_and_bounded_auto_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_issued_stdio_call_cancel_or_timeout_notifies_and_reaps",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_official_sdk_230_real_stdio_catalog_text_structured_and_reaping",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_oversized_frame_rejected_before_json_decode_then_reaped"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 145,
+      "paragraph": "The fallback **MUST NOT** be keyed to one specific error code: legacy servers\nrespond to unknown pre-`initialize` requests with implementation-defined\nerrors (commonly `-32601` or `-32602`) or not at all.",
+      "criteria": [
+        "CD-AC-06",
+        "CD-AC-07",
+        "CD-AC-08"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_timeout_reserves_legacy_budget_and_late_id_cannot_settle_it",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_cancel_resistant_send_is_bounded_and_retained_for_cleanup_retry",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_pages_share_one_deadline",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_concurrency_bound_checked_before_allocating_another_waiter",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_connect_deadline_includes_spawn_and_reserves_fallback_budget",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_context_primary_failure_survives_cleanup_failure_with_owner_retained",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_decoder_checks_bytes_depth_duplicate_keys_nonfinite_and_repr_privacy",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_expired_preparation_deadline_issues_no_request",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_unknown_server_request_gets_fixed_method_error",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_server_request_fails_without_emitting_client_response",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_outgoing_limit_precedes_send_and_waiter_allocation",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_primary_handshake_failure_survives_retryable_cleanup_failure",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_stalled_send_is_in_request_deadline_and_unissued_request_not_cancelled",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_ambiguous_call_executes_once_with_no_mutation_replay",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_bad_legacy_version_partial_connection_is_released",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_exact_legacy_revision_text_api_and_bounded_auto_fallback",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_issued_stdio_call_cancel_or_timeout_notifies_and_reaps",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_official_sdk_230_real_stdio_catalog_text_structured_and_reaping",
+        "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_oversized_frame_rejected_before_json_decode_then_reaped"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--server--discover.md",
+      "line": 8,
+      "paragraph": "`server/discover` lets a client query a server's supported protocol versions,\ncapabilities, and identity before sending any other requests. Servers **MUST**\nimplement it.",
+      "criteria": [
+        "CD-AC-02"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 13,
+      "paragraph": "<Note>\n  For brevity, the request examples on this page omit the `_meta` request\n  metadata (`io.modelcontextprotocol/protocolVersion`,\n  `io.modelcontextprotocol/clientInfo`, and\n  `io.modelcontextprotocol/clientCapabilities`). Every request **MUST** include\n  the required `_meta` fields; see\n  [`_meta`](/specification/2026-07-28/basic/index#meta).\n</Note>",
+      "criteria": [
+        "CD-AC-04",
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_accounts_wire_whitespace_and_envelope_bytes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_failures_never_retain_a_successful_partial_list",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_pagination_complete_fresh_catalog_and_retained_output_schema",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 46,
+      "paragraph": "Servers that support tools **MUST** declare the `tools` capability:",
+      "criteria": [
+        "CD-AC-04",
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_accounts_wire_whitespace_and_envelope_bytes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_failures_never_retain_a_successful_partial_list",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_pagination_complete_fresh_catalog_and_retained_output_schema",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 61,
+      "paragraph": "Servers that declare the `tools` capability **MUST** respond to `tools/list` requests\nwith the set of tools currently available to the requesting client. This set **MAY** be\nempty and **MAY** change over time (see\n[List Changed Notification](#list-changed-notification)), but **MUST NOT** vary\nper-connection or as a side effect of other requests on the connection. The set\n**MAY** vary by the authorization presented on the request \u2014 for example, returning\nonly the tools the caller's granted scopes permit \u2014 since credentials are\nper-request input, not connection state.",
+      "criteria": [
+        "CD-AC-04",
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_accounts_wire_whitespace_and_envelope_bytes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_failures_never_retain_a_successful_partial_list",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_pagination_complete_fresh_catalog_and_retained_output_schema",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 233,
+      "paragraph": "Note that the JSON-RPC `id` **MUST** be different between the initial request and the retry.",
+      "criteria": [
+        "CD-AC-04",
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_accounts_wire_whitespace_and_envelope_bytes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_failures_never_retain_a_successful_partial_list",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_pagination_complete_fresh_catalog_and_retained_output_schema",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 285,
+      "paragraph": "* `name`: Unique identifier for the tool\n* `title`: Optional human-readable name of the tool for display purposes.\n* `description`: Human-readable description of functionality\n* `icons`: Optional array of icons for display in user interfaces\n* `inputSchema`: JSON Schema defining expected parameters\n  * Follows the [JSON Schema usage guidelines](/specification/2026-07-28/basic#json-schema-usage)\n  * Defaults to 2020-12 if no `$schema` field is present\n  * **MUST** be a valid JSON Schema object (not `null`)\n  * For tools with no parameters, use one of these valid approaches:\n    * `{ \"type\": \"object\", \"additionalProperties\": false }` - **Recommended**: explicitly accepts only empty objects\n    * `{ \"type\": \"object\" }` - accepts any object (including with properties)\n  * Properties **MAY** include an [`x-mcp-header`](#x-mcp-header) annotation to expose\n    parameter values as HTTP headers\n* `outputSchema`: Optional JSON Schema defining expected output structure\n  * Follows the [JSON Schema usage guidelines](/specification/2026-07-28/basic#json-schema-usage)\n  * Defaults to 2020-12 if no `$schema` field is present\n* `annotations`: Optional properties describing tool behavior",
+      "criteria": [
+        "CD-AC-04",
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_accounts_wire_whitespace_and_envelope_bytes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_failures_never_retain_a_successful_partial_list",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_pagination_complete_fresh_catalog_and_retained_output_schema",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 303,
+      "paragraph": "<Warning>\n  For trust & safety and security, clients **MUST** consider tool annotations to\n  be untrusted unless they come from trusted servers.\n</Warning>",
+      "criteria": [
+        "CD-AC-04",
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_accounts_wire_whitespace_and_envelope_bytes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_failures_never_retain_a_successful_partial_list",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_pagination_complete_fresh_catalog_and_retained_output_schema",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 345,
+      "paragraph": "* **MUST NOT** be empty\n* **MUST** match HTTP field-name token syntax (`1*tchar`, [RFC 9110 Section 5.1](https://datatracker.ietf.org/doc/html/rfc9110#section-5.1))\n* **MUST NOT** contain control characters, including carriage return (CR, `\\r`) or\n  line feed (LF, `\\n`)\n* **MUST** be case-insensitively unique among all `x-mcp-header` values in the\n  `inputSchema`\n* **MUST** only be applied to parameters with primitive types (integer, string, boolean).\n  Parameters with type `number` are not permitted. Integer values **MUST** be within the\n  safe range for integers represented using IEEE754 double-precision floating point numbers (\u22122<sup>53</sup>+1 to 2<sup>53</sup>\u22121)\n* **MUST** only be applied to properties that are *statically reachable* from the schema\n  root, as defined in\n  [Custom Headers from Tool Parameters](/specification/2026-07-28/basic/transports/streamable-http#custom-headers-from-tool-parameters),\n  which also defines how header values are extracted from call arguments",
+      "criteria": [
+        "CD-AC-04",
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_accounts_wire_whitespace_and_envelope_bytes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_failures_never_retain_a_successful_partial_list",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_pagination_complete_fresh_catalog_and_retained_output_schema",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 359,
+      "paragraph": "Clients using the Streamable HTTP transport **MUST** reject tool definitions where any\n`x-mcp-header` value violates these constraints. Rejection means the client **MUST**\nexclude the invalid tool from the result of `tools/list`. Clients **SHOULD** log a\nwarning when rejecting a tool definition, including the tool name and the reason for\nrejection. This ensures that a single malformed tool definition does not prevent other\nvalid tools from being used. Clients using other transports (e.g., stdio) **MAY** ignore\n`x-mcp-header` annotations entirely.",
+      "criteria": [
+        "CD-AC-04",
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_accounts_wire_whitespace_and_envelope_bytes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_failures_never_retain_a_successful_partial_list",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_pagination_complete_fresh_catalog_and_retained_output_schema",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 507,
+      "paragraph": "* Servers **MUST** provide structured results that conform to this schema.\n* Clients **SHOULD** validate structured results against this schema.",
+      "criteria": [
+        "CD-AC-04",
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_accounts_wire_whitespace_and_envelope_bytes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_failures_never_retain_a_successful_partial_list",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_pagination_complete_fresh_catalog_and_retained_output_schema",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 782,
+      "paragraph": "1. Servers **MUST**:\n   * Validate all tool inputs\n   * Implement proper access controls\n   * Rate limit tool invocations\n   * Sanitize tool outputs",
+      "criteria": [
+        "CD-AC-04",
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_accounts_wire_whitespace_and_envelope_bytes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_failures_never_retain_a_successful_partial_list",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_pagination_complete_fresh_catalog_and_retained_output_schema",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 8,
+      "paragraph": "<Note>\n  Multi Round-Trip Requests (MRTR) was introduced in this version of the MCP\n  specification. This replaces the previous approach of sending server-initiated\n  requests. Servers **MUST** send server-to-client requests (such as\n  `roots/list`, `sampling/createMessage`, or `elicitation/create`) using the\n  MRTR pattern. The previous pattern of server-initiated requests is no longer\n  supported. This is a breaking change.\n</Note>",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 17,
+      "paragraph": "<Note>\n  For brevity, the request examples on this page omit the `_meta` request\n  metadata (`io.modelcontextprotocol/protocolVersion`,\n  `io.modelcontextprotocol/clientInfo`, and\n  `io.modelcontextprotocol/clientCapabilities`). Every request **MUST** include\n  the required `_meta` fields; see\n  [`_meta`](/specification/2026-07-28/basic/index#meta).\n</Note>",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 130,
+      "paragraph": "* `inputRequests` *(optional)*: An [`InputRequests`](/specification/2026-07-28/schema#inputrequests) map of server-initiated requests that the client must fulfill.\n* `requestState` *(optional)*: An opaque string meaningful only to the server. Clients **MUST NOT** inspect, parse, modify, or make any assumptions about its contents.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 193,
+      "paragraph": "Servers **MUST NOT** send `InputRequiredResult` responses on any other client requests.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 229,
+      "paragraph": "2. The `InputRequiredResult` **MAY** include an `inputRequests` field.\n   * `inputRequests` keys are server assigned identifiers and **MUST** be unique within the scope of the request.\n   * `inputRequests` values are request objects that **MUST** be one of [`ElicitRequest`](/specification/2026-07-28/schema#elicitrequest), [`CreateMessageRequest`](/specification/2026-07-28/schema#createmessagerequest), or [`ListRootsRequest`](/specification/2026-07-28/schema#listrootsrequest)",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 235,
+      "paragraph": "4. If a client request contains a `requestState` field, servers **MUST** treat `requestState` as an attacker-controlled input. If `requestState` influences authorization, resource access, or business logic, servers **MUST** protect its integrity (e.g. HMAC or AEAD)\n   and **MUST** reject state that fails verification. Integrity protection **MAY** be omitted only when tampering can cause nothing worse than request failure.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 238,
+      "paragraph": "5. To prevent replay, servers **SHOULD** include the following inside the integrity-protected `requestState` payload and verify each on receipt:\n   * the authenticated principal, rejecting state presented by a different principal.\n   * a short expiry (TTL), rejecting state presented after it lapses;\n   * an identifier for the originating request, e.g. the method name and a digest of its salient parameters, rejecting state presented on a request that does not match.\n     <Warning>\n       Note that these measures bound the replay window and prevent cross-user\n       and cross-request reuse, but do not by themselves guarantee single-use.\n       Servers for which a given `requestState` must be consumed at most once\n       (e.g., one-time redemptions) **MUST** enforce that invariant server-side.\n     </Warning>",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 249,
+      "paragraph": "6. Servers **MUST** include at least one of `inputRequests` or `requestState` in every `InputRequiredResult` response.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 251,
+      "paragraph": "7. Servers **MUST NOT** send an `inputRequests` that the client has not declared support for in its capabilities. For example, if a client does not declare support for `elicitation`, the server **MUST NOT** include any `elicitation/create` requests in the `inputRequests` field.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 253,
+      "paragraph": "8. Servers **MUST NOT** assume that clients will fulfill the `inputRequests` or retry the original request. Servers **MAY** choose to return an `InputRequiredResult` on multiple attempts at the same request if they want to repeatedly prompt the user for information until they have what they need to complete the request.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 257,
+      "paragraph": "1. If a client receives an `InputRequiredResult` that contains the `inputRequests` field, the client **MUST** construct the requested\n   inputs before retrying the original request. If the `InputRequiredResult` does *not* contain the `inputRequests` field,\n   the client **MAY** retry the original request immediately.\n2. If an `InputRequiredResult` contains the `requestState` field, the client **MUST** echo back the exact value of that field when retrying the original request.\n   Clients **MUST NOT** inspect, parse, modify, or make any assumptions about the `requestState` contents. If the `InputRequiredResult` does not contain a `requestState` field, the client **MUST NOT** include one in the retry.\n3. The JSON-RPC `id` **MUST** be different between the initial request and the retry, as they are independent requests.\n4. Both the `inputRequests` and `requestState` fields affect only the client's retry of the original request. They **MUST NOT** be used for any other request that the client may be sending in parallel.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    },
+    {
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 277,
+      "paragraph": "Because `requestState` passes through the client, malicious or compromised clients could attempt to modify it to alter server behavior,\nbypass authorization checks, or corrupt server logic. Servers **MUST** validate request state as described in the [server requirements](#server-requirements-basic-workflow) above.",
+      "criteria": [
+        "CD-AC-05"
+      ],
+      "applicability": "Reviewer must classify client/stdio obligation versus server, HTTP, optional subscription/icon/extension or unimplemented MRTR continuation. Server-only and deferred features are not implemented by this unit.",
+      "tests": [
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation"
+      ]
+    }
+  ],
+  "schema": {
+    "revision": "2026-07-28",
+    "manifest": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json",
+    "schema_upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+    "schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+    "complete_captured_sources": 10
+  },
+  "scope": "Modern client core and stdio, explicit legacy compatibility; no claim of HTTP/runtime/server or full MRTR conformance."
+}

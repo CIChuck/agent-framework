@@ -1,0 +1,86 @@
+[
+  {
+    "criterion": "CD-AC-01",
+    "tests": [
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_limits_are_positive_validated_and_can_only_lower_caps"
+    ],
+    "review_required": true
+  },
+  {
+    "criterion": "CD-AC-02",
+    "tests": [
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_discovery_metadata_identity_and_capabilities_are_honest",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_discovery_versions_capabilities_and_cache_hints_are_validated",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_default_initializes_and_checks_negotiated_version"
+    ],
+    "review_required": true
+  },
+  {
+    "criterion": "CD-AC-03",
+    "tests": [
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bad_envelopes_reject_without_peer_details",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_wrong_integer_and_duplicate_ids_do_not_cross_settle_requests",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_recognized_modern_version_error_and_no_intersection_do_not_fallback",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_falls_back_once_for_any_non_modern_error"
+    ],
+    "review_required": true
+  },
+  {
+    "criterion": "CD-AC-04",
+    "tests": [
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_pagination_complete_fresh_catalog_and_retained_output_schema",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_failures_never_retain_a_successful_partial_list",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_accounts_wire_whitespace_and_envelope_bytes"
+    ],
+    "review_required": true
+  },
+  {
+    "criterion": "CD-AC-05",
+    "tests": [
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_structured_scalar_array_null_preservation",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_result_tags_and_content_have_safe_no_replay_outcomes",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_bounded_output_schema_profile_accepts_2020_12_objects_arrays_local_refs",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_schema_resource_profile_refuses_external_cycles_regex_and_unbounded_features",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_registry_default_refuses_external_retrieval"
+    ],
+    "review_required": true
+  },
+  {
+    "criterion": "CD-AC-06",
+    "tests": [
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_concurrency_bound_checked_before_allocating_another_waiter",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_stalled_send_is_in_request_deadline_and_unissued_request_not_cancelled",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_cancel_resistant_send_is_bounded_and_retained_for_cleanup_retry",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_catalog_pages_share_one_deadline",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_connect_deadline_includes_spawn_and_reserves_fallback_budget",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_expired_preparation_deadline_issues_no_request",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_outgoing_limit_precedes_send_and_waiter_allocation",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_auto_timeout_reserves_legacy_budget_and_late_id_cannot_settle_it"
+    ],
+    "review_required": true
+  },
+  {
+    "criterion": "CD-AC-07",
+    "tests": [
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_primary_handshake_failure_survives_retryable_cleanup_failure",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_context_primary_failure_survives_cleanup_failure_with_owner_retained",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_decoder_checks_bytes_depth_duplicate_keys_nonfinite_and_repr_privacy",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_modern_server_request_fails_without_emitting_client_response",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py::test_legacy_unknown_server_request_gets_fixed_method_error"
+    ],
+    "review_required": true
+  },
+  {
+    "criterion": "CD-AC-08",
+    "tests": [
+      "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_official_sdk_230_real_stdio_catalog_text_structured_and_reaping",
+      "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_exact_legacy_revision_text_api_and_bounded_auto_fallback",
+      "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_ambiguous_call_executes_once_with_no_mutation_replay",
+      "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_issued_stdio_call_cancel_or_timeout_notifies_and_reaps",
+      "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_oversized_frame_rejected_before_json_decode_then_reaped",
+      "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_bad_legacy_version_partial_connection_is_released"
+    ],
+    "review_required": true
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "directive": "REM-MCP-UP-004",
+  "work_unit": "MCP-UP-04",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "approved , continue",
+  "recorded_at_utc": "2026-10-13T14:07:38.415775+00:00",
+  "proposal_commit": "6ac560af176c50d432761c53204e765985348066",
+  "proposal_manifest_sha256": "9e09270af12fc464c1fcd62b0a2a3fbc39754d86bd772f913fb098db2c70e8a4",
+  "scope": "Exact three product files, both independent findings, bound full20-check profile, separate security remediator and fresh delta plus full-unit independent review",
+  "later_unit_or_delivery_authority": "not granted"
+}

@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/opt/homebrew/bin/uv",
+    "lock",
+    "--python",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+    "--default-index",
+    "https://pypi.org/simple",
+    "--upgrade-package",
+    "idna==3.11"
+  ],
+  "cwd": "/private/tmp/friday-mcp-upgrade/work",
+  "environment": {
+    "PATH": "/opt/homebrew/bin:/usr/bin:/bin",
+    "UV_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/cache",
+    "UV_PYTHON_DOWNLOADS": "never"
+  },
+  "exit": 1,
+  "seconds": 0.3166468143463135,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "831e80ad318294ef1b673d06e373762826d9ee852379a42e9f7686684b90507a"
+}

@@ -35,6 +35,13 @@
         "depends_on",
         "validation"
       ],
+      "allOf": [{
+        "if": {"required": ["authority_backing_packets"]},
+        "then": {"properties": {
+          "work_state": {"enum": ["completed", "accepted"]},
+          "condition": {"const": "normal"}
+        }}
+      }],
       "properties": {
         "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
         "title": {"type": "string", "minLength": 1},
@@ -58,7 +65,40 @@
         "approved_by": {"type": "string"},
         "approved_at": {"type": "string", "format": "date"},
         "accepted_by": {"type": "string"},
-        "accepted_at": {"type": "string", "format": "date"}
+        "accepted_at": {"type": "string", "format": "date"},
+        "authority_backing_packets": {
+          "type": "array", "minItems": 1, "maxItems": 64,
+          "items": {"$ref": "#/$defs/authorityBacking"}
+        }
+      }
+    },
+    "authorityBacking": {
+      "type": "object", "additionalProperties": false,
+      "required": ["packet", "manifest", "manifest_sha256"],
+      "properties": {
+        "packet": {"type": "string", "maxLength": 1024, "pattern": "^docs/planning/(active|queued|review|blocked|deferred|backlog)/[^/]+/$"},
+        "manifest": {"type": "string", "minLength": 1, "maxLength": 1024},
+        "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "authorityBackingManifest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["version", "owner", "packet", "files"],
+      "properties": {
+        "version": {"type": "integer", "const": 1},
+        "owner": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "packet": {"type": "string", "maxLength": 1024},
+        "files": {"type": "array", "minItems": 5, "maxItems": 8192,
+          "items": {"$ref": "#/$defs/authorityBackingFile"}}
+      }
+    },
+    "authorityBackingFile": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256", "kind"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1, "maxLength": 1024},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "kind": {"enum": ["index", "authority", "approval", "directive", "report", "evidence"]}
       }
     },
     "event": {

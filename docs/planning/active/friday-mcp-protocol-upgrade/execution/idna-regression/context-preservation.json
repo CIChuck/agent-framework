@@ -1,0 +1,879 @@
+{
+  "status": "passed",
+  "baseline_lock_sha256": "f3ea7b35a63d258035efaee2deb8cc160d0e95a2f5eafbeb8a38c73bceaf106c",
+  "approved_lock_sha256": "aab33ed773dcdb50a65dd86af84bd1e6e26dc3486da7b04588082d72a7b18ce2",
+  "existing_version_exception": {
+    "idna": [
+      "3.11",
+      "3.20"
+    ]
+  },
+  "contexts": [
+    {
+      "python": "3.13.4",
+      "platform": "darwin",
+      "architecture": "x86_64",
+      "existing_selected_packages": 200,
+      "existing_edges": 505,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.13.4",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "existing_selected_packages": 200,
+      "existing_edges": 504,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.13.4",
+      "platform": "linux",
+      "architecture": "x86_64",
+      "existing_selected_packages": 200,
+      "existing_edges": 505,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.13.4",
+      "platform": "linux",
+      "architecture": "aarch64",
+      "existing_selected_packages": 200,
+      "existing_edges": 505,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.13.4",
+      "platform": "win32",
+      "architecture": "AMD64",
+      "existing_selected_packages": 200,
+      "existing_edges": 512,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.13.4",
+      "platform": "win32",
+      "architecture": "arm64",
+      "existing_selected_packages": 200,
+      "existing_edges": 511,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.13.10",
+      "platform": "darwin",
+      "architecture": "x86_64",
+      "existing_selected_packages": 200,
+      "existing_edges": 505,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.13.10",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "existing_selected_packages": 200,
+      "existing_edges": 504,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.13.10",
+      "platform": "linux",
+      "architecture": "x86_64",
+      "existing_selected_packages": 200,
+      "existing_edges": 505,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.13.10",
+      "platform": "linux",
+      "architecture": "aarch64",
+      "existing_selected_packages": 200,
+      "existing_edges": 505,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.13.10",
+      "platform": "win32",
+      "architecture": "AMD64",
+      "existing_selected_packages": 200,
+      "existing_edges": 512,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.13.10",
+      "platform": "win32",
+      "architecture": "arm64",
+      "existing_selected_packages": 200,
+      "existing_edges": 511,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.14.0",
+      "platform": "darwin",
+      "architecture": "x86_64",
+      "existing_selected_packages": 200,
+      "existing_edges": 506,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.14.0",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "existing_selected_packages": 200,
+      "existing_edges": 505,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.14.0",
+      "platform": "linux",
+      "architecture": "x86_64",
+      "existing_selected_packages": 200,
+      "existing_edges": 506,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.14.0",
+      "platform": "linux",
+      "architecture": "aarch64",
+      "existing_selected_packages": 200,
+      "existing_edges": 506,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.14.0",
+      "platform": "win32",
+      "architecture": "AMD64",
+      "existing_selected_packages": 200,
+      "existing_edges": 513,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.14.0",
+      "platform": "win32",
+      "architecture": "arm64",
+      "existing_selected_packages": 200,
+      "existing_edges": 512,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.15.0",
+      "platform": "darwin",
+      "architecture": "x86_64",
+      "existing_selected_packages": 200,
+      "existing_edges": 506,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.15.0",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "existing_selected_packages": 200,
+      "existing_edges": 505,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.15.0",
+      "platform": "linux",
+      "architecture": "x86_64",
+      "existing_selected_packages": 200,
+      "existing_edges": 506,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.15.0",
+      "platform": "linux",
+      "architecture": "aarch64",
+      "existing_selected_packages": 200,
+      "existing_edges": 506,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.15.0",
+      "platform": "win32",
+      "architecture": "AMD64",
+      "existing_selected_packages": 200,
+      "existing_edges": 513,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    },
+    {
+      "python": "3.15.0",
+      "platform": "win32",
+      "architecture": "arm64",
+      "existing_selected_packages": 200,
+      "existing_edges": 512,
+      "permitted_direct_edges": [
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "jsonschema",
+              "4.25.1",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        },
+        {
+          "from": "friday-framework-mcp",
+          "edge": [
+            "runtime",
+            "",
+            [
+              "referencing",
+              "0.37.0",
+              "{\"registry\": \"https://pypi.org/simple\"}"
+            ],
+            []
+          ]
+        }
+      ],
+      "preserved": true
+    }
+  ],
+  "all_other_existing_artifacts_preserved": true,
+  "limits": "Static lock/marker/edge selection checks; not a runtime test on 24 machines. All original package selections and their existing runtime/extra/development edges are compared. New SDK packages are additional."
+}

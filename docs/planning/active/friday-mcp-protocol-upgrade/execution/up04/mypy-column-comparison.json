@@ -1,0 +1,9 @@
+{
+  "exact_path_line_column_code_message_equal": true,
+  "diagnostics": [
+    "packages/friday-core/src/friday_core/profiles.py:77:9: error: Returning Any from function declared to return \"VectorStoreAdapter\"  [no-any-return]",
+    "packages/friday-core/src/friday_core/profiles.py:82:9: error: Returning Any from function declared to return \"VectorStoreAdapter\"  [no-any-return]",
+    "packages/friday-core/src/friday_core/profiles.py:110:9: error: Returning Any from function declared to return \"GraphStoreAdapter\"  [no-any-return]",
+    "packages/friday-core/src/friday_core/profiles.py:115:9: error: Returning Any from function declared to return \"GraphStoreAdapter\"  [no-any-return]"
+  ]
+}

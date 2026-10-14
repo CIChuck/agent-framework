@@ -539,7 +539,7 @@ smart_file:
       ]\n}}\n"
 tools:
   enabled: true
-  # Integrated MCP starts disabled. See docs/guides/17-mcp-client.md for stdio setup.
+  # Integrated MCP starts disabled. See docs/guides/17-mcp-client.md for stdio/HTTPS setup.
   providers:
     mcp:
       enabled: false
@@ -736,3 +736,12 @@ speech:
     enabled: true
     max_chars: 1800
     boundary: sentence
+
+# MCP profile choices (see docs/guides/17-mcp-client.md):
+# Local stdio: command/args; protocol_profile defaults to legacy, or modern/auto.
+# HTTPS: transport: streamable_http; protocol_version: '2026-07-28' or '2025-11-25';
+# trust_level: remote, plus security integrated_transport: stdio_and_streamable_http
+# and trust_posture: explicit_remote. Default network ports: [443], public IPs.
+# auth: bearer_env uses a literal credential_env name, never ${...} or inline tokens.
+# Enabled connections resolve the reference; disabled/auto_connect:false do not.
+# No TLS bypass, remote process fields, external config includes or HTTP retries.

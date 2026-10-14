@@ -1,0 +1,344 @@
+# History
+
+## 3.20 (2026-09-17)
+
+- Update to Unicode 18.0.0.
+- Better enforcement of the domain length limit in the incremental
+  codec.
+- Add support for Python 3.15.
+
+## 3.19 (2026-08-18)
+
+- Restore the `std3_rules` option, which had no effect since changes
+  to UTS #46 processing in Unicode 16. Note that `uts46_remap()`
+  defaults to enabling STD3 rules, so direct callers will see input
+  containing non-LDH ASCII characters rejected again.
+- Performance improvements to UTS #46 mapping, particularly for
+  ASCII-only domains.
+- Test on free-threaded CPython with the GIL disabled and document
+  thread safety.
+- Expose the Unicode version of the generated tables as
+  `idna.unicode_version`, and show it in `idna --version`.
+- Add `code`, `text`, `codepoint` and `position` attributes to
+  `IDNAError` so that the failed rule and the offending character can
+  be identified without parsing the exception message.
+- The deprecated `transitional` argument to `encode()` and
+  `uts46_remap()` is now completely ignored, and gives a deprecation warning
+  for the latter.
+- Reject A-labels that are not the canonical Punycode encoding of
+  their U-label.
+- Fix CONTEXTJ violations raising `IDNAError` instead of
+  `InvalidCodepointContext`.
+- Consistently raise `IDNAError` for empty labels and non-ASCII bytes
+  passed to label helper functions and the incremental codec.
+- Add property-based tests, extended fuzzing targets, coverage
+  measurement, and CI checks that the data tables match the generator
+  output.
+- Various code quality and tooling improvements.
+
+Thanks to stefan6419846, LouieLuNZ, and Salvatore Corvaglia for
+contributions to this release.
+
+## 3.18 (2026-06-02)
+
+- When decoding a domain, add a `display` argument that will pass
+  through invalid labels rather than raising an exception.
+
+## 3.17 (2026-05-28)
+
+- Substantial 75% reduction in memory usage through new data
+  structures and some optimization in processing speed.
+- Added a general 1024-character input length cap to the public
+  validation, conversion, and codec entry points. This is well above
+  any legitimate domain or label and guards against pathological
+  inputs.
+
+## 3.16 (2026-05-22)
+
+- Add a command-line interface (`python -m idna`, also available as
+  the `idna` script). Encodes or decodes one or more domains supplied
+  as arguments or on standard input, with options to select A-label
+  or U-label output and control error handling.
+- Raise the minimum supported Python version to 3.9
+- Various code quality improvements
+
+## 3.15 (2026-05-12)
+
+- Enforce DNS-length cap on individual labels early in `check_label`,
+  short-circuiting contextual-rule processing for oversized input
+  while staying compatible with UTS 46 usage.
+- Tidy core helpers: hoist bidi category sets to module-level
+  frozensets (avoiding per-codepoint list construction), simplify
+  length checks, and reuse the shared `_unicode_dots_re` from
+  `idna.core` in the codec module.
+- Use `raise ... from err` for proper exception chaining and
+  switch internal string formatting to f-strings.
+- Allow `flit_core` 4.x in the build backend.
+- Expand the ruff lint set (flake8-bugbear, flake8-simplify,
+  pyupgrade, perflint) and apply the surfaced fixes; pin lint CI
+  to Python 3.14.
+- Add Dependabot configuration for GitHub Actions.
+- Convert README and HISTORY from reStructuredText to Markdown.
+- Reference CVE-2026-45409 for the 3.14 advisory in place of the
+  initial GHSA identifier.
+
+Thanks to Felix Yan, Stan Ulbrych, and metsw24-max for
+contributions to this release.
+
+## 3.14 (2026-05-10)
+
+- Removed opportunity to process long inputs into quadratic
+  time by rejecting oversize inputs up-front. Closes a bypass
+  of the CVE-2024-3651 mitigation. [CVE-2026-45409]
+
+Thanks to Stan Ulbrych for reporting the issue.
+
+## 3.13 (2026-04-22)
+
+- Correct classification error for codepoint U+A7F1
+
+## 3.12 (2026-04-21)
+
+- Update to Unicode 17.0.0.
+- Issue a deprecation warning for the transitional argument.
+- Added lazy-loading to provide some performance improvements.
+- Removed vestiges of code related to Python 2 support, including
+  segmentation of data structures specific to Jython.
+
+Thanks to Rodrigo Nogueira for contributions to this release.
+
+## 3.11 (2025-10-12)
+
+- Update to Unicode 16.0.0, including significant changes to UTS46
+  processing. As a result of Unicode ending support for it, transitional
+  processing no longer has an effect and returns the same result.
+- Add support for Python 3.14, lowest supported version is Python 3.8.
+- Various updates to packaging, including PEP 740 support.
+
+## 3.10 (2024-09-15)
+
+- Reverted to Unicode 15.1.0 data. Unicode 16 has some significant changes
+  to UTS46 processing that will require more work to properly implement.
+
+## 3.9 (2024-09-13)
+
+- Update to Unicode 16.0.0
+- Deprecate setup.cfg in favour of pyproject.toml
+- Use ruff for code formatting
+
+Thanks to Waket Zheng for contributions to this release.
+
+## 3.8 (2024-08-23)
+
+- Fix regression where IDNAError exception was not being produced for
+  certain inputs.
+- Add support for Python 3.13, drop support for Python 3.5 as it is no
+  longer testable.
+- Documentation improvements
+- Updates to package testing using Github actions
+
+Thanks to Hugo van Kemenade for contributions to this release.
+
+## 3.7 (2024-04-11)
+
+- Fix issue where specially crafted inputs to encode() could
+  take exceptionally long amount of time to process. [CVE-2024-3651]
+
+Thanks to Guido Vranken for reporting the issue.
+
+## 3.6 (2023-11-25)
+
+- Fix regression to include tests in source distribution.
+
+## 3.5 (2023-11-24)
+
+- Update to Unicode 15.1.0
+- String codec name is now "idna2008" as overriding the system codec
+  "idna" was not working.
+- Fix typing error for codec encoding
+- "setup.cfg" has been added for this release due to some downstream
+  lack of adherence to PEP 517. Should be removed in a future release
+  so please prepare accordingly.
+- Removed reliance on a symlink for the "idna-data" tool to comport
+  with PEP 517 and the Python Packaging User Guide for sdist archives.
+- Added security reporting protocol for project
+
+Thanks Jon Ribbens, Diogo Teles Sant'Anna, Wu Tingfeng for contributions
+to this release.
+
+## 3.4 (2022-09-14)
+
+- Update to Unicode 15.0.0
+- Migrate to pyproject.toml for build information (PEP 621)
+- Correct another instance where generic exception was raised instead of
+  IDNAError for malformed input
+- Source distribution uses zeroized file ownership for improved
+  reproducibility
+
+Thanks to Seth Michael Larson for contributions to this release.
+
+## 3.3 (2021-10-13)
+
+- Update to Unicode 14.0.0
+- Update to in-line type annotations
+- Throw IDNAError exception correctly for some malformed input
+- Advertise support for Python 3.10
+- Improve testing regime on Github
+- Fix Russian typo in documentation
+
+Thanks to Jon Defresne, Hugo van Kemenade, Seth Michael Larson,
+Patrick Ventuzelo and Boris Verhovsky for contributions to this
+release.
+
+## 3.2 (2021-05-29)
+
+- Add type hints (Thanks, Seth Michael Larson!)
+- Remove support for Python 3.4
+
+## 3.1 (2021-01-04)
+
+- Ensure license is included in package (Thanks, Julien Schueller)
+- No longer mark wheel has universal (Thanks, Matthieu Darbois)
+- Test on PowerPC using Travis CI
+
+## 3.0 (2021-01-01)
+
+- Python 2 is no longer supported (the 2.x branch supports Python 2,
+  use "idna<3" in your requirements file if you need Python 2 support)
+- Support for V2 UTS 46 test vectors.
+
+## 2.10 (2020-06-27)
+
+- Update to Unicode 13.0.0.
+- Throws a more specific exception if "xn--" is provided as a label.
+- This is expected to be the last version that supports Python 2.
+
+## 2.9 (2020-02-16)
+
+- Update to Unicode 12.1.0.
+- Prohibit A-labels ending with a hyphen (Thanks, Julien Bernard!)
+- Future-proofing: Test on Python 3.7 and 3.8, don't immediately
+  fail should Python 4 come along.
+- Made BSD 3-clause license clearer
+
+## 2.8 (2018-12-04)
+
+- Update to Unicode 11.0.0.
+- Provide more specific exceptions for some malformed labels.
+
+## 2.7 (2018-06-10)
+
+- Update to Unicode 10.0.0.
+- No longer accepts dot-prefixed domains (e.g. ".example") as valid.
+  This is to be more conformant with the UTS 46 spec. Users should
+  strip dot prefixes from domains before processing.
+
+## 2.6 (2017-08-08)
+
+- Allows generation of IDNA and UTS 46 table data for different
+  versions of Unicode, by deriving properties directly from
+  Unicode data.
+- Ability to generate RFC 5892/IANA-style table data
+- Diagnostic output of IDNA-related Unicode properties and
+  derived calculations for a given codepoint
+- Support for idna.__version__ to report version
+- Support for idna.idnadata.__version__ and
+  idna.uts46data.__version__ to report Unicode version of
+  underlying IDNA and UTS 46 data respectively.
+
+## 2.5 (2017-03-07)
+
+- Fix bug with Katakana middle dot context-rule (Thanks, Greg
+  Shikhman.)
+
+## 2.4 (2017-03-01)
+
+- Restore IDNAError to be a subclass of UnicodeError, as some users of
+  this library are only looking for the latter to catch invalid strings.
+
+## 2.3 (2017-02-28)
+
+- Fix bugs relating to deriving IDNAError from UnicodeError.
+- More memory footprint improvements (Thanks, Alex Gaynor)
+
+## 2.2 (2016-12-21)
+
+- Made some changes to the UTS 46 data that should allow Jython to get around
+  64kb Java class limits. (Thanks, John A. Booth and Marcin Płonka.)
+- In Python 2.6, skip two tests that rely on data not present in that
+  Python version's unicodedata module.
+- Use relative imports to help downstream users.
+
+## 2.1 (2016-03-20)
+
+- Memory consumption optimizations. The library should consume significantly
+  less memory through smarter data structures being used to represent
+  relevant Unicode properties. Many thanks to Shivaram Lingamneni for this
+  patch.
+- Patches to make library work better with Python 2.6. The core library
+  currently works however the unit testing does not. (Thanks, Robert
+  Buchholz)
+- Better affix all Unicode codepoint properties to a specific version.
+
+## 2.0 (2015-05-18)
+
+- Added support for Unicode IDNA Compatibility Processing (aka Unicode
+  Technical Standard #46). Big thanks to Jon Ribbens who contributed this
+  functionality.
+
+## 1.1 (2015-01-27)
+
+- Use IDNA properties from Unicode 6.3.0. Internet Architecture Board (IAB)
+  issued statement recommending against the use of Unicode 7.0.0 until
+  issues relating to U+08A1 codepoint are resolved. See http://goo.gl/Ed1n0K
+- Identify some cases when label would be too longer to be a legal DNS name
+  and raise an exception. (Thanks, Ed Lewis)
+
+## 1.0 (2014-10-12)
+
+- Update IDNA properties for Unicode 7.0.0.
+
+## 0.9 (2014-07-18)
+
+- Fix issue with non-UTF-8 environments reading the README file
+  now that it contains non-ASCII. (Thanks, Tom Prince)
+- Codec functions are useful, so they are separated into their own
+  module, rather than just existing for compatibility reasons.
+- Add LICENSE file.
+
+## 0.8 (2014-07-09)
+
+- Added MANIFEST.in for correct source distribution compilation.
+
+## 0.7 (2014-07-09)
+
+- Filled out missing tests for various functions.
+- Fix bug in CONTEXTO validation for Greek lower numeral sign (U+0375)
+- Fix bug in CONTEXTO validation for Japanese middle dot (U+30FB)
+- Improved documentation
+- Move designation to Stable
+
+## 0.6 (2014-04-29)
+
+- Minor improvements to Python 3 support, tests (Thanks, Derek Wilson)
+
+## 0.5 (2014-02-05)
+
+- Update IDNA properties for Unicode 6.3.0.
+
+## 0.4 (2014-01-07)
+
+- Fix trove classifier for Python 3. (Thanks, Hynek Schlawack)
+
+## 0.3 (2013-07-18)
+
+- Ported to Python 3.
+
+## 0.2 (2013-07-16)
+
+- Improve packaging.
+- More conformant, passes all relevant tests in the Unicode TR46 test suite.
+
+## 0.1 (2013-05-27)
+
+- First proof-of-concept version.

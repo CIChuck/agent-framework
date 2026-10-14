@@ -2154,7 +2154,18 @@ FRIDAY_MEMORY__VECTOR__MIGRATION__AUTO_MIGRATE="true"
 The canonical inline location for both headless RuntimeConfig and Friday Chat
 compatibility is `tools.providers.mcp`. Copy the disabled example from the
 Friday Chat runtime template, then use the
-[MCP client guide](17-mcp-client.md) to configure a trusted local stdio peer.
+[MCP client guide](17-mcp-client.md) to configure local stdio or an explicitly
+admitted HTTPS Streamable HTTP peer. Stdio defaults to legacy; select
+`protocol_profile: modern` or `auto` explicitly. HTTP requires dated
+`protocol_version: '2026-07-28'` or `'2025-11-25'`, `trust_level: remote`,
+and the matching global remote security pair. Use `auth: bearer_env` with a
+literal `credential_env` identifier, resolved only at enabled connection assembly;
+`${...}` interpolation and inline HTTP tokens are rejected. The default network
+policy permits eligible public addresses on HTTPS port443. `allowed_addresses`
+adds exact per-peer address permissions alongside eligible public destinations;
+it does not restrict public addresses to that list. `allowed_ports` selects the
+permitted peer ports. There is no TLS relaxation, HTTP startup retry or tool-call
+replay.
 The provider defaults to `enabled: false` and `mode: selected`; selected mode
 can admit canonical names through `include_tools` or a category through
 `include_categories: [mcp]`. Server `required: true` makes

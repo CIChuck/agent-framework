@@ -1,0 +1,26 @@
+{
+  "candidate_head": "92c6f6742df9be84b7046a89a830a6dcc3f67dc8",
+  "baseline_head": "c90ed023a053943b63d085b70452bbbb11dd28e9",
+  "candidate_status": "",
+  "baseline_status": "",
+  "whole_diff_paths": 9186,
+  "whole_diff_paths_by_prefix": {
+    "product": 67,
+    "governance/evidence": 9119
+  },
+  "up06_product_paths": [
+    "README.md",
+    "docs/guides/17-mcp-client.md",
+    "docs/guides/18-mcp-server.md",
+    "docs/guides/19-mcp-migration.md",
+    "docs/guides/README.md",
+    "packages/friday-mcp/README.md",
+    "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
+    "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py"
+  ],
+  "exact_up06_product_budget_match": true,
+  "product_diff_hash": "a626458dafcf37ff613abaa9bb4da97d6d5688b3269070bc73a6f36021c9a2c0",
+  "unit_diff_hash": "a620450a6a2b98e4192b1e31e5cf55eef1899b29d51db067ab06022d9350e675",
+  "builder_evidence_archive_verified_entries": 235,
+  "builder_evidence_use": "Navigation/integrity only; no verdict inherited"
+}

@@ -1,0 +1,595 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "work_unit": "MCP-UP-05",
+  "directive": "CD-MCP-UP-005",
+  "status": "approved_execution_with_two_amendments",
+  "implementation_authority": "granted",
+  "approval": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05.json",
+    "sha256": "c8f4cc703cc0b433afd5860b315bfd61b85e6df39892ddd0ffc366ccc881db06"
+  },
+  "branch": "feature/friday-mcp-protocol-upgrade",
+  "product_baseline": "f876603c74d8a90639fb5dc90d287d17ab523705",
+  "product_paths": [
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+      "baseline_sha256": "c1e061ecc5b08baade3deca638fb9d0d29d4d26a4ef4df42173255e9a2ab1b9a",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/modern.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/http.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/registry.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_registry.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/README.md",
+      "baseline_sha256": "50657396a16dd3a4f70fae0ea046cbf6f5c0daadf1c3e413c638e4c24da408ac",
+      "change": "existing"
+    },
+    {
+      "path": "docs/guides/18-mcp-server.md",
+      "baseline_sha256": null,
+      "change": "new"
+    }
+  ],
+  "preserved_product_hashes": {
+    "packages/friday-mcp/src/friday_mcp/client/base.py": "968b783d101ae96fd84a41d508fe027846cfe3aab62a498f8eef8490f173ebdc",
+    "packages/friday-mcp/src/friday_mcp/client/stdio.py": "5914eecad7c83c121888002ed77d0378157a41acdef213c056ab73b83e6d79eb",
+    "packages/friday-mcp/tests_mcp/client/test_execution.py": "68101693092ac77e83cffec358d6085419e89913bad6254ae71c0150f435f3e3",
+    "packages/friday-mcp/tests_mcp/client/test_lifecycle.py": "f3921e04d2ece03af6d26053fa7b2d52425868085211984e0abef0d1aab48d3d",
+    "packages/friday-mcp/pyproject.toml": "665eb50f54d283f23532c919db662fc64a376e0bf8155fd6ff6052913efd9a45",
+    "uv.lock": "5efcfafd68f3ed94a64ee943e6379fa57e603518ff2d215bb87710e25dc06759",
+    "packages/friday-mcp/src/friday_mcp/client/protocol.py": "7cdce94e2fa0db1b0098906b133534b7e69d3e313d310fd7e46c495d7ccad37f",
+    "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py": "f40a06fbfdcf5f30c14195044cd910ca84300fd42f7fdb402fe2f4be1ba99b55",
+    "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py": "fc88f5d12b1f3a3dad682afd3e4cfb9762c1baa35cffeabfa7fcacf77cd3f418",
+    "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py": "ebf33b8779d88dabc68bd5a53126797dcabef26a4b7f021d87d5d861349a59dd",
+    "packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py": "f2cfb56dba97bab9dffe5a4a1cb0f27f4c1faf4773a2e5057a0adff7b251a8ec",
+    "packages/friday-mcp/src/friday_mcp/client/__init__.py": "ce910cb5e76e7a8ccb16df2ce7774ae83e5ed031d789a457b4cc10d573c87610",
+    "packages/friday-mcp/src/friday_mcp/client/http.py": "44e3905f17057f6a6bee632f8757da28923a7bc334968297601cb77d17b5b231",
+    "packages/friday-mcp/src/friday_mcp/client/http_protocol.py": "a94e13a5470ce3af3ec67b365c131ebcaea31d946850b84b881a1fb1a471330f",
+    "packages/friday-mcp/src/friday_mcp/client/http_policy.py": "624d9eaa4f9e38d17ccafc71dbfcfcb2bacf3497c67cb52c8478c9b9315a17b1",
+    "packages/friday-mcp/tests_mcp/client/test_http_protocol.py": "0ec3c23af14eae8b6bccf433101a18e31beb45545ac4bfac7d61605b03e2d6c7",
+    "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py": "625f015518a52968568d5b2655f4904cd7f174f13407d0bc09f96be294711797",
+    "packages/friday-mcp/tests_mcp/client/test_http_interop.py": "8ff9a66c6eec61d52b3510471782bec42cffc329713a6968efaf625c4ac54c07",
+    "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py": "8898696a9dd2068844389c54655e4d0cbfdbf155a99d7a6e0ce36010642d1175",
+    "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py": "bab26932a97bedbecca9b4d6e80b678d0c93390c2e566ec7bb95fd3374b3b61e",
+    "packages/friday-core/src/friday_core/mcp.py": "66419c6c67894d7f4b051384ff4bfaef1f45e693aa7ff2efef684900e46b8ace",
+    "packages/friday-core/tests_core/test_mcp_contracts.py": "c9f7746b5384e7f5a513b13b5d071f4de81a0a14957c4e5b4945514ef2d74e56",
+    "packages/friday-mcp/src/friday_mcp/client/manager.py": "d613e3cd2c677549085628a333408d36e7e1f56ac4aee7eb464ae974076b3cc7",
+    "packages/friday-runtime/src/friday_runtime/config.py": "cc248bb8b8b4e713deede41d07f0729b699f341f7f05a38304e46b004ed72d0d",
+    "packages/friday-runtime/src/friday_runtime/mcp_loading.py": "35a9728803d7bb774f5017ce58e938e61ddc4b37895864cea31fc24e07167c0d",
+    "packages/friday-runtime/src/friday_runtime/mcp_registration.py": "f18bfe62e06419bbcbe5cf61088c825f0fc3d171552f75d726034bfb31f88d80",
+    "packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py": "38f053a03e329b6e1dbfc5e8db69500b4e01236991708eb93f9b378de072951e",
+    "packages/friday-runtime/tests_runtime/test_mcp_loading.py": "27f46abff635f1bfc288d65afd1dff3564d3bc686a9d218455724599095e8bd6",
+    "packages/friday-runtime/tests_runtime/test_mcp_registration.py": "7590b9b2565563e37a2ad2acd24ecbfd53242225832d6d8149fdd8f4d07bdfa2",
+    "packages/friday-runtime/README.md": "d77889ced295841b991e162caec0a085788c6ad298532f0e5c7f3f3794d7823b",
+    "packages/friday-chat/src/friday_chat/config.py": "734559482073fa66b2197604136d4fde805fc8f9e4ce7078f33df57c4a3c52d1",
+    "packages/friday-chat/src/friday_chat/tools/mcp.py": "3ac24fc406d84aa5d49b91bf79c2160dcdf4b982161a08d4d6557d08cf332aa7",
+    "packages/friday-chat/tests_chat/test_mcp_config_compatibility.py": "4fa6555dc1144c08042ffa6a1f4b019d89cb2933118bbf8dd9f860b9c153197d",
+    "packages/friday-chat/tests_chat/test_mcp_chat_bridge.py": "e3f834037ee55a123d2b2ba2c9f77e10d99837cb7923111d3703e9bb79d6e4e3",
+    "packages/friday-chat/tests_chat/test_mcp_execution_security.py": "c0863818cb4c44e8f08a4a85b53b587708c6e6c7f4795ee57bdb3449c3f2ca8f",
+    "packages/friday-chat/README.md": "d09e601fac26d5e1f6dee2a2add053af08bdfaa96c78930ca4c7afccde469388",
+    "packages/friday-chat/src/friday_chat/config_templates/config.example.yaml": "6fecbd23bb6b15dbe68d7bf4dbb8dfe14a431f74c68efa5379a545b13671c110",
+    "packages/friday-chat/src/friday_chat/config_templates/cli-config.example.yaml": "4d513ca9e00fddc76f9cf037afe93b496d379b233c875e0c013d2d61ca953c69",
+    "docs/guides/10-configuration.md": "5085a99de6fb7b9417a5eb7c3d19983070eba2ed14052d4e5c085410699056c0",
+    "docs/guides/17-mcp-client.md": "075ee0e94f558b2fddfefb87596db7e1d27fc9702b57329e9c5349397bb8bf38",
+    "packages/friday-runtime/src/friday_runtime/mcp_clients.py": "99f202242b79ba263437f119cce1a918e3fe4f0c086a00517480915747812c95",
+    "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py": "e6789c8f7067952676ef2449b009ee3422781693bcf20a589db800ef4ce2b5d6",
+    "packages/friday-chat/tests_chat/test_mcp_http_integration.py": "5e088ac4d859349c1d849b5df9357ce37c300d81d2cb64cbc8fdb82e2e5941ac",
+    "packages/friday-mcp/tests_mcp/client/test_manager_profiles.py": "ed4e93f52b7b744852e5fcd436577deeec23c81da868e06e5652eb0dcb6f8245",
+    "packages/friday-mcp/src/friday_mcp/client/adapter.py": "7a7a184e7b4e1943a01869c6744e49b74717cb67348c5ac2fdeef7d839f06ff5",
+    "packages/friday-mcp/src/friday_mcp/client/catalog.py": "8a91147fa7f7a6f0cfa8771f5a23f2feac778a51f34eea5821bce2b881dad5ac",
+    "packages/friday-mcp/tests_mcp/client/test_adapter.py": "12b30dbc1c15023101bf7bed67408a54c6b596e099d6ae8c6258aeae85a0ab8d",
+    "packages/friday-mcp/tests_mcp/client/test_result_refresh.py": "e80cdb158aab6f1e74c1ac35d9c2855d689005aace81b9062d888ae9d6d5ea4c",
+    "packages/friday-mcp/tests_mcp/client/test_result_refresh_interop.py": "3e6f587cef831cbfe51efb4f599be304a7f662fec66ede7dde312386e40e4c49",
+    "packages/friday-mcp/src/friday_mcp/server/base.py": "b2829bdd1873e5c92d44007b4f0bbd5c7f07e2e8502385f13cc50de8e6d72490",
+    "packages/friday-mcp/src/friday_mcp/server/stdio.py": "fb91fe17317615f7b6b57477fa1619836aa3d37b02b53f33ffebe2c9b8f6b9b8",
+    "packages/friday-mcp/src/friday_mcp/server/sse.py": "99971d8c0640bd2046e64c25a79de9719158342e4f68b84edfe5cae41c5228e6",
+    "packages/friday-mcp/src/friday_mcp/server/agent_mode.py": "b59bc4bc1e390889b764d199ecc83ed263362a4d550edd396998ada6320589b0",
+    "packages/friday-mcp/src/friday_mcp/server/tools_mode.py": "102b3dc523dd66905e82ac043d7cc3a110c4e8a1fd8fce8c4b385e832577fae5",
+    "packages/friday-mcp/src/friday_mcp/__init__.py": "0402d3f6014d2b295b001f345eb23775838316d293c2a3f3a464353324077f7a",
+    "packages/friday-mcp/src/friday_mcp/config.py": "7a86bb7dad1f75b0bfa7c2d8101b1366f02d6da6e1c9e0d7d1b36ce42b73cc16",
+    "packages/friday-mcp/src/friday_mcp/protocols.py": "00fc02ccd4d694e30fafbee72cbb0944294d275961dc0631967612f30892d394",
+    "packages/friday-mcp/src/friday_mcp/utils/schema.py": "7eee15a2d57274fdfba8f32ea53cf9228df593e252ad47a22cb69dca90924a46",
+    "packages/friday-core/src/friday_core/interfaces/tools.py": "3bd33e99093bc3f544790ee8c236d622c0b4d9488b79a3cb65eb7c79292e6ff6",
+    "packages/friday-core/src/friday_core/telemetry.py": "92c85a318c6b52d8073dc370e1b0d9f62063e54d187805d4712e6e84ac8e97ec"
+  },
+  "metadata_hashes": {
+    "packages/friday-agent/pyproject.toml": "155343ffc1affe151e5a8b13c898d28f2bb1c23978487a6371fa56c02368aa26",
+    "packages/friday-chat/pyproject.toml": "4fa72a6497d637920558b4ebe2cddd13e99fb1191c8a432cb2c7d031a0926de5",
+    "packages/friday-cli/pyproject.toml": "19a2898a4716ba4f481f8396c7605b7deefa077e536b5b7c6ebb85bb06ca8a00",
+    "packages/friday-core/pyproject.toml": "001b4d83e69969664d38c91f007d618df82674cc379c2acfa12767703eafa594",
+    "packages/friday-finance/pyproject.toml": "c410c9b183df854d6fb1be274cfafaf31d560b4b3faa4bb2c65052f78b711070",
+    "packages/friday-llm/pyproject.toml": "672f623315a1113e459cd481f3de4324c7c29767cf31aeb71eab34fa078960a4",
+    "packages/friday-mcp/pyproject.toml": "665eb50f54d283f23532c919db662fc64a376e0bf8155fd6ff6052913efd9a45",
+    "packages/friday-memory/pyproject.toml": "0f0cfa552fdbd2127d5e186d8847db331a9aaef70175569e9cfe77098798c511",
+    "packages/friday-moltbook/pyproject.toml": "136f6278e82471ebaae3a62bdb8379a6f8d7b6b4e4bef5cb78b196ff72886deb",
+    "packages/friday-optimization/pyproject.toml": "b89bdecd833287a1628c17c84bc61cb03ec8a3c4b7ea27f1476d9a2d997c9bb2",
+    "packages/friday-runtime/pyproject.toml": "cc426372026847a66dc8f8a43f135a498b1a2e3861b0b24ad14c639807eedbc1",
+    "packages/friday-sandbox/pyproject.toml": "51c56051ccc351c58ef91aec0a325a643751d824697e0a9293040fe3624b7d25",
+    "packages/friday-speech/pyproject.toml": "0bf80e8501cce2e6c3161ac5ef942855269cefc88da2ee598b875de674487ff4",
+    "packages/friday-telemetry/pyproject.toml": "8b4a0abbbd8c2a76b81d2763176c934c9cf620b864e09e4e3b4663950218e5e9",
+    "packages/friday-tools/pyproject.toml": "1db7f0c87c7197b5b264e2f4e7f2fbd84e8febbdd040665edba9cd898e715326",
+    "packages/friday-transcript/pyproject.toml": "4a58596abafe3f7ca409084b1a0627f77164aabb48cefa2dcc217211b0ba1679",
+    "pyproject.toml": "b85b708def24f4f2045a12388f7026ce361bdf6c13490f0f160fdfe3176e3a77",
+    "tests/lab/pyproject.toml": "8532ff4a6e205c45efdfc41199facd687943b949fc2f253a3fcdad6275c8197f",
+    "uv.lock": "5efcfafd68f3ed94a64ee943e6379fa57e603518ff2d215bb87710e25dc06759"
+  },
+  "controls": [
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-005-modern-tools-server.md",
+      "sha256": "4a26209cc060ad82444407c89e9046a0e9ee14942c58c54c1178438dcf753c7a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/up05-server-contract.md",
+      "sha256": "bc7e46522155aad5711b3df022a6bb05ab14795c9f3cfe977c1575bfffcbf2b5"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/verification-profile-UP-05.json",
+      "sha256": "d3b20928655cc9587eae4f5711586756bb17b8eff8b95b30f6f1af788565d1df"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-04.json",
+      "sha256": "41993227986f2d1aa6f802b2faa56bbdb3def62610f11f7deda727869a17df1b"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-03/report.md",
+      "sha256": "db8a4fa27eb677806933f7919817cfbcb0ba978cce35a1587a6dcdf7f034fe27"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json",
+      "sha256": "6664e309b175da791930e1f026052b884e964dec0cdf200c185dd3bb1de99ad7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/manifest.json",
+      "sha256": "1f99847e978b50036c2b1b00ba08873ebd899b4f0e9d0d6680ccba035bd3d4b6"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up04/manifest.json",
+      "sha256": "3689fcc707ef6c833e46aba1e792182ed2284e19f46f3a9bf5523ee52f5c5603"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up05-planning/source-capture-integrity.json",
+      "sha256": "4c9fc8efbbdfce8cb869740b66f712fd8bc0fe63f6dc849e36164c79bebeb931"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up05-planning/selected-server-schema-references.json",
+      "sha256": "a2620bb96c6d67b79926ab8c8e203443f2e5d1d9081f16660f6774c8a3303766"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up05-planning/sdk-client-options.json",
+      "sha256": "75f10df515531fa6f7f051261434ae66f7eea56581908e290833289a67668364"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up05-planning/baseline-snapshot.json",
+      "sha256": "cbc273a73387c555e84afed07e07b9319546f31681caf08e91c4e3caacd77c4d"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up05-planning/criterion-plan.json",
+      "sha256": "716677a5ef375c93b033365de6427dc6ccbaca568d1dc2b686c57e699e08725b"
+    }
+  ],
+  "prior_frozen_manifests": [
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-04.json",
+      "sha256": "a5799eb167c5ede63f9cc00a5e578bab2194d2e1f21f88e18338fd637b782329"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-004.json",
+      "sha256": "9836b2169582da7e90e6cd79bbb14104a09dbb8a66a8c8fd7a6580bfc8b3d422"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-REM-MCP-UP-005.json",
+      "sha256": "1df83146e2974d1bcddd2de001fee92f04752abd6c63a3f4bc90ab7665bb8979"
+    }
+  ],
+  "acceptance_criteria": {
+    "SRV-AC-01": "Typed2026-only per-request server role; complete bounded envelope/request/notification/metadata grammar with omitted/null cases, optional clientInfo, per-request required capabilities and exact fixed wire codes. No initialize/session-state trust or local-code leakage.",
+    "SRV-AC-02": "Honest empty/nonempty discover/tools capability, immutable complete catalog/definitions and bounded byte/count pagination, atomic filter/prefix/collision/schema registration. Invalid/obsolete/oversized cursors and definitions fail with zero handler I/O; old failures cannot mutate a newer catalog.",
+    "SRV-AC-03": "Captured definition/schema/handler, validated arguments before exactly one invocation; complete typed text/structured results (omitted/null/mixed/order), captured successful output validation and legitimate safe tool errors. Mutation during issued call preserves captured schema; malformed/unsafe output and unknown tools cannot cause replay.",
+    "SRV-AC-04": "Real newline stdio with clean stdout, responsive concurrent dispatch, owner-local cancellation, partial-line/UTF8/JSON/batch/duplicate-ID negatives, EOF/partial-start/pipe/stop/restart/SIGTERM cleanup. No stale owner reply or server cancellation outside unsupported subscription role.",
+    "SRV-AC-05": "Single stateless HTTP POST endpoint, JSON and request-scoped SSE, exact status/body/header grammar; protocol/method/name/custom parameter/header/body agreement, Base64 and null/absent/type cases, no handler before validation. GET/DELETE405, unsupported404/-32601, version400/-32022, HeaderMismatch400/-32020; no sessions/legacy split.",
+    "SRV-AC-06": "Explicit typed bind/path/Host/Origin/bearer/TLS access policy with pre-dispatch rejection/counter0, duplicate/query/Unicode/header-size negatives, token nonrepr/privacy, no clientInfo authorization. Static administrative gate does not claim optional OAuth conformance; all fixtures literal127 only, no live exposure.",
+    "SRV-AC-07": "Lower-only limits and original absolute deadlines, bounded admission/owners/body/header/schema/output/page work, request/connection-owned cancellation and retryable shutdown. Lower budgets1..4 and ignored cancellation retain truthful owners; no orphan process/task/stream, unrelated cancellation or mutating replay.",
+    "SRV-AC-08": "Declared public Core ToolRegistry/ToolDefinition integration using real public DefaultToolRegistry with synthetic tools; strict staged snapshots/filter/prefix/collision/unsupported schema negatives and distinct instances. No implicit agent/prompt/resource/memory/model loading or incidental private contracts.",
+    "SRV-AC-09": "New strict-typed exports preserve optional-dependency import behavior and all legacy imports/constructors/config/version/tool/agent/prompt/resource/SSE interfaces and readonly hashes. No modifications to accepted client/Runtime/Chat/Core/telemetry sources or config defaults.",
+    "SRV-AC-10": "Optional existing TelemetryInterface injection, one admitted-handler start/terminal observation, safe trusted labels and provider/state isolation; observer failure causes no duplicate invocation/replay. Credentials/raw arguments/results/schema/client IDs/URLs/trace state absent from logs/telemetry, no new provider/exporter/global state.",
+    "SRV-AC-11": "Official SDK2.3.0 Client against actual Friday server real subprocess stdio and private verified TLS HTTP JSON/SSE. Explicit2026 mode/cacheNone/no interactive extensions; actual discovery/version/metadata/wire counters, errors/cancel/disconnect/child exit. Deterministic/raw negatives complement SDK, no self-client-only or in-process shortcut proof.",
+    "SRV-AC-12": "Accurate programmatic modern/legacy guide/API examples and explicit unsupported OAuth/agent/extensions;18-path source budget,19 unchanged metadata, existing22009-library/192dist integrity, all19 captures and full server-role clause/field plan/final actual mapping; all20 required checks and exact inherited debt/skip/warning comparisons plus fresh independent full-unit VERIFIED before completion."
+  },
+  "required_checks": [
+    {
+      "id": "board",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "next",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "next"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "show",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "show",
+        "friday-mcp-protocol-upgrade"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "server-focused",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+        "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+        "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+        "packages/friday-mcp/tests_mcp/server/test_registry.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+        "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "server-http",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "original-clients",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp/client",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "mcp",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "core-runtime-chat-telemetry",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-core/tests_core",
+        "packages/friday-runtime/tests_runtime",
+        "packages/friday-chat/tests_chat",
+        "packages/friday-telemetry/tests_telemetry",
+        "-q"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "root",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-rs"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "baseline-root",
+      "snapshot": "up05-baseline",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-rs"
+      ],
+      "success": "exit0; full normalized skip reasons/locations and warnings equal; accepted history4744/14/15 is not a substitute for current baseline run"
+    },
+    {
+      "id": "ruff",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+        "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+        "packages/friday-mcp/src/friday_mcp/server/http.py",
+        "packages/friday-mcp/src/friday_mcp/server/registry.py",
+        "packages/friday-mcp/src/friday_mcp/server/http_policy.py",
+        "packages/friday-mcp/tests_mcp/server/test_modern_protocol.py",
+        "packages/friday-mcp/tests_mcp/server/test_modern_stdio.py",
+        "packages/friday-mcp/tests_mcp/server/test_streamable_http.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_security.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_lifecycle.py",
+        "packages/friday-mcp/tests_mcp/server/test_registry.py",
+        "packages/friday-mcp/tests_mcp/server/test_server_interop.py",
+        "packages/friday-mcp/tests_mcp/server/test_legacy_compatibility.py",
+        "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "root-ruff",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        ".",
+        "--output-format=json"
+      ],
+      "success": "retain raw exit1 only with exactly same327 complete normalized diagnostic/fix objects as accepted baseline"
+    },
+    {
+      "id": "baseline-root-ruff",
+      "snapshot": "up05-baseline",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        ".",
+        "--output-format=json"
+      ],
+      "success": "retain raw exit1 and all complete objects"
+    },
+    {
+      "id": "narrow-mypy",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+        "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern.py",
+        "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+        "packages/friday-mcp/src/friday_mcp/server/http.py",
+        "packages/friday-mcp/src/friday_mcp/server/registry.py",
+        "packages/friday-mcp/src/friday_mcp/server/http_policy.py"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "mcp-mypy",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-mcp/src/friday_mcp"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "full-mypy",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-core/src/friday_core",
+        "packages/friday-mcp/src/friday_mcp",
+        "packages/friday-runtime/src/friday_runtime",
+        "packages/friday-chat/src/friday_chat"
+      ],
+      "success": "raw exit1 only with exact same4 inherited profiles.py diagnostics; compare complete path/line/column/severity/code/message; narrow source clean"
+    },
+    {
+      "id": "baseline-full-mypy",
+      "snapshot": "up05-baseline",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-core/src/friday_core",
+        "packages/friday-mcp/src/friday_mcp",
+        "packages/friday-runtime/src/friday_runtime",
+        "packages/friday-chat/src/friday_chat"
+      ],
+      "success": "repeat exact baseline4 with supplemental explicit columns"
+    },
+    {
+      "id": "docs",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "render",
+      "snapshot": "work",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "success": "child exit0 required"
+    },
+    {
+      "id": "whitespace",
+      "snapshot": "work",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "f876603c74d8a90639fb5dc90d287d17ab523705",
+        "HEAD"
+      ],
+      "success": "exit0 plus uncommitted whitespace check"
+    }
+  ],
+  "guard": {
+    "path": "/private/tmp/friday-mcp-upgrade/guard/sitecustomize.py",
+    "sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8"
+  },
+  "runner": {
+    "original_path": "/private/tmp/friday-mcp-upgrade/run_check_UP04.py",
+    "original_sha256": "5e5c9901bf66117ee11669d32de857ea2087738add9eef3c7ae6aa6f3c8592a6",
+    "UP05_path": "/private/tmp/friday-mcp-upgrade/run_check_UP05.py",
+    "rule": "Same guarded allowlisted environment, fresh per-command HOME/checker/pytest caches; UP05-only source/current-control/metadata/preserved-product freeze before every child. Reviewer copies redirect only own private destinations.",
+    "UP05_sha256": "e302adaef56d824be9ee962ee6c648624330f0d0d6aa1c992f5b0dbeced8e017"
+  },
+  "counterpart": "mcp==2.3.0 official Client; current private validated192-distribution environment; no dependency change",
+  "permitted_effects": "Only new named tests_mcp/fixtures/friday_modern_tools_server.py synthetic Friday subprocess stdio and literal127.0.0.1 ephemeral verified TLS HTTP JSON/SSE, pinned official SDK Client, deterministic/ASGI peers, and retained approved client/cross/root fixture effects under original guard. Private synthetic TLS cert/key generation and counter files under private HOME/TMP; keys/runtime stores excluded from archive. No non-loopback bind/connect, public DNS, real tools/workspaces/providers/credentials, installs/sync, shared env writes or publication. Guarded loopback escalation allowed after exact approval; known prior OS bind rejection need not be repeated.",
+  "non_goals": "Modern2026 tools-only; legacy unchanged. No2025 server/agent/resources/prompts/input/Tasks/subscriptions/OAuth/global providers/YAML expansion/publication",
+  "review": "Stable candidate and fresh read-only full work-unit independent validation, not self-verification; bounded remediation separately authorized when required; VERIFIED before completion proposal; maintainer acceptance separate",
+  "stop_gate": "Exact CD-MCP-UP-005/directive/contract/profile/manifest approval before any product edit. Separate approval receipt/authority; no remote delivery authority",
+  "approved_proposal": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-05-authority-manifest.json",
+    "sha256": "70f1d339aee14c72058fd198aabcb05b57ea3e24870aaeacb72323a1c8ff822c"
+  },
+  "execution_baseline": "11e36b87f0e752f6df9894d46f22ef1b00669578",
+  "amendment_approval": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05-amendment-002.json",
+    "sha256": "a73d568ffc4c167f6c3ee434467ec1fc1dc7069b0906a34c9263c0af15da00fc"
+  },
+  "approved_amendment": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-05-amendment-002-authority-manifest.json",
+    "sha256": "6c005ed4ccbf63c51f4f155b637455f2abc550128713e1413c2a2a5d9975daf3"
+  },
+  "amendment_document": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/amendments/AMEND-MCP-UP-005-002-modern-schema-and-version-errors.md",
+    "sha256": "71a67fc299ef3f4e22b24c6ce301aebbadff0b8b48441e87737b07bf8758399d"
+  },
+  "amendment_override": "Unsupported version error data uses required supported/requested; bounded requested protocolVersion only in own wire error. Explicit prospective rebaseline replaces invalid historical2025-selected field plan for further construction; audit all modern fields before fresh review. AMEND001 and original other requirements remain.",
+  "amended_execution_baseline": "a3f4e1b107b413313d393a120c2fcbf4f6ffed67",
+  "parent_authority": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-05.json",
+    "sha256": "772ef191d7d842e670f2158a51458fb3d405b748121cda23aec1ee274c370b1a"
+  },
+  "prior_amendment_authority": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-05-amendment-001.json",
+    "sha256": "9c657566cafb54e402a0a3b845408a0cd18f8190f528f94835acc81e4ea2554e"
+  },
+  "prior_amendment_approval": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05-amendment-001.json",
+    "sha256": "e95c71d355aa2b87332fab0ab8aa5b9f72605abe89ee9bceafe3a3c661cec728"
+  },
+  "prior_approved_amendment": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-05-amendment-001-authority-manifest.json",
+    "sha256": "cffe4d8b240d01c25a5208c98e9d3536da62b7ca17211ff90af2f9733096fd5e"
+  },
+  "prior_amendment_document": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/amendments/AMEND-MCP-UP-005-001-cacheable-results.md",
+    "sha256": "b7433b385c1b82b3531f2eac440f5139451314c7d6b7bba6438297e255add4ae"
+  },
+  "prior_amendment_override": "Only required ttlMs:0/cacheScope:private for complete server/discover and tools/list results. No cache engine/RPC/positive TTL/public scope. Tool-call results unchanged. Original controls immutable.",
+  "corrected_prospective_plan": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up05/prospective-modern-schema-replan.json",
+    "sha256": "1ba20b8ca818059b62aaeb1a906d36067ee15c4032ea518ab4c63a9cbd824853"
+  }
+}

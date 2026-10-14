@@ -18,6 +18,8 @@ from typing import Any, Literal
 from friday_core.interfaces.tools import SchemaFormat
 from friday_core.mcp import MCPToolMetadata
 
+from friday_mcp.client.base import MCPClientBase
+from friday_mcp.client.catalog import MCPCatalogSnapshot, MCPRefreshClient
 from friday_mcp.protocols import MCPClient, ToolDefinition
 from friday_mcp.utils.schema import mcp_to_friday_schema
 
@@ -26,6 +28,12 @@ logger = logging.getLogger(__name__)
 MCPCallPhase = Literal["start", "finish", "failure"]
 MCPCallOutcome = Literal["success", "timeout", "cancelled", "execution_error"]
 MCPCallObserver = Callable[[MCPCallPhase, str, MCPCallOutcome | None], None]
+
+
+def _refresh_client(client: MCPClient) -> MCPRefreshClient | None:
+    if isinstance(client, MCPClientBase) and not client.supports_catalog_refresh:
+        return None
+    return client if isinstance(client, MCPRefreshClient) else None
 
 
 @dataclass(frozen=True)
@@ -59,6 +67,8 @@ class MCPToolWrapper:
         client: MCPClient,
         tool_def: dict[str, Any],
         name_prefix: str = "",
+        *,
+        catalog_snapshot: MCPCatalogSnapshot | None = None,
     ) -> None:
         """
         Initialize MCP tool wrapper.
@@ -69,6 +79,11 @@ class MCPToolWrapper:
             name_prefix: Optional prefix for tool name
         """
         self._client = client
+        self._refresh_client: MCPRefreshClient | None = _refresh_client(client)
+        snapshot = catalog_snapshot
+        if snapshot is None and self._refresh_client is not None:
+            snapshot = self._refresh_client.current_catalog_snapshot
+        self._catalog_generation = snapshot.generation if snapshot is not None else None
         self._tool_def = json.loads(json.dumps(tool_def, allow_nan=False))
         self._name_prefix = name_prefix
         original = tool_def.get("name", "unknown")
@@ -109,6 +124,10 @@ class MCPToolWrapper:
             raise ValueError("MCP registration requires admitted metadata")
         definition.parameters()
         wrapper = cls(client, {"name": metadata.original_name})
+        if wrapper._refresh_client is not None and wrapper._catalog_generation is None:
+            # A checked definition assembled during an invalid catalog must never
+            # become callable after a later refresh supplies different wire data.
+            wrapper._catalog_generation = 0
         wrapper._canonical_name = metadata.canonical_name
         wrapper._validated = definition
         return wrapper
@@ -163,7 +182,15 @@ class MCPToolWrapper:
         """Execute the tool via MCP client."""
         self._observe("start", None)
         try:
-            result = await self._client.call_tool(self._original_name, kwargs)
+            if (
+                self._refresh_client is not None
+                and self._catalog_generation is not None
+            ):
+                result = await self._refresh_client.call_tool_at_generation(
+                    self._original_name, kwargs, self._catalog_generation
+                )
+            else:
+                result = await self._client.call_tool(self._original_name, kwargs)
         except asyncio.CancelledError:
             self._observe("failure", "cancelled")
             raise
@@ -238,6 +265,8 @@ class MCPToolAdapter:
         self._client = client
         self._prefix = prefix
         self._tools_cache: list[MCPToolWrapper] | None = None
+        self._cache_generation: int | None = None
+        self._refresh_client: MCPRefreshClient | None = _refresh_client(client)
 
     async def get_tools(self, refresh: bool = False) -> list[ToolDefinition]:
         """
@@ -249,18 +278,43 @@ class MCPToolAdapter:
         Returns:
             List of wrapped tools implementing ToolDefinition protocol.
         """
+        current = (
+            self._refresh_client.current_catalog_snapshot
+            if self._refresh_client is not None
+            else None
+        )
+        if self._refresh_client is not None and (
+            current is None or current.generation != self._cache_generation
+        ):
+            self._tools_cache = None
         if self._tools_cache is not None and not refresh:
             return list(self._tools_cache)
-
-        mcp_tools = await self._client.list_tools()
-        self._tools_cache = [
-            MCPToolWrapper(self._client, tool_def, self._prefix)
+        self._tools_cache = None
+        self._cache_generation = None
+        if self._refresh_client is not None:
+            snapshot = await self._refresh_client.refresh_tool_catalog()
+            mcp_tools = snapshot.tools()
+        else:
+            snapshot = None
+            mcp_tools = await self._client.list_tools()
+        wrappers = [
+            MCPToolWrapper(
+                self._client, tool_def, self._prefix, catalog_snapshot=snapshot
+            )
             for tool_def in mcp_tools
         ]
-
-        logger.debug("Adapted %d MCP tools", len(self._tools_cache))
-
-        return list(self._tools_cache)
+        if self._refresh_client is not None:
+            current = self._refresh_client.current_catalog_snapshot
+            if (
+                current is None
+                or snapshot is None
+                or current.generation != snapshot.generation
+            ):
+                return []
+        self._tools_cache = wrappers
+        self._cache_generation = snapshot.generation if snapshot is not None else None
+        logger.debug("Adapted %d MCP tools", len(wrappers))
+        return list(wrappers)
 
     async def get_tool(self, name: str) -> ToolDefinition | None:
         """

@@ -1,0 +1,1 @@
+{"tasks": 26, "records": 79, "negative_cases": ["undeclared-retained-active", "stale-manifest", "stale-real-historical-file", "index-symlink-escape", "duplicate-owner"], "completed_exit": 0, "agent_acceptance_exit": 1, "maintainer_acceptance_exit": 0, "all_original_hashes_unchanged": true}

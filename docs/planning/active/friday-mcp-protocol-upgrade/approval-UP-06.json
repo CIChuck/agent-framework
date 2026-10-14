@@ -1,0 +1,13 @@
+{
+  "directive": "CD-MCP-UP-006",
+  "work_unit": "MCP-UP-06",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "approved",
+  "statement_context": "Response to concrete CD006 seven-path/12-criterion/24-check proposal and explicit approval question",
+  "recorded_at_utc": "2026-10-14T01:32:07.807213+00:00",
+  "proposal_commit": "5e5da4c346b5991ba9dfcf7ad19a7e06e1ae7484",
+  "proposal_manifest_sha256": "1b1dfeb186aef8968936a117b28b799489b964debc117719f8c7ebfbef76be13",
+  "scope": "Exactly seven documentation/test paths,12 aggregate and8 initiative criteria,24 checks and existing bounded private fixture effects; runtime source/dependencies/defaults frozen",
+  "later_acceptance_or_publication_authority": "not granted"
+}

@@ -1,0 +1,49 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "work_unit": "MCP-UP-02B",
+  "directive": "CD-MCP-UP-002",
+  "remediation": "REM-MCP-UP-002",
+  "status": "accepted",
+  "accepted_by": "Chuck Russell",
+  "recorded_at_utc": "2026-10-12T20:40:09.164144+00:00",
+  "maintainer_statement": "accepted proceed",
+  "statement_context": "Response to independently VERIFIED corrected HTTP unit completion proposal and next Runtime/YAML/Chat planning gate",
+  "scope": "Streamable HTTP client work unit only, including four independently verified bounded remediation findings",
+  "reviewed_candidate": "14dba178feff8789111db88d981f1d0e85e6a748",
+  "closeout_commit": "4dfc2c69eedef3017d7af42daa3341de1ad55038",
+  "independent_verdict": "VERIFIED",
+  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/artifacts/report.md.gz",
+  "independent_report_uncompressed_sha256": "3d459bbb406a874ec4df0c3172312ca85af42eae2f275eef16f5bfd0ef04ae63",
+  "independent_report_stored_sha256": "0f90a9ab227e78405fd97ee4da77c3726971b59ab797d3aeea60cfb9bc568180",
+  "accepted_product_hashes": {
+    "packages/friday-mcp/src/friday_mcp/client/base.py": "28c31aed4544203da38fb146958e07ec234a0c70811c2cad3ee18497ff14a570",
+    "packages/friday-mcp/src/friday_mcp/client/protocol.py": "ad5e06fdfd4eab5e40a58eebe75f92436be6af63d85aa1e4240293aeefca9c6f",
+    "packages/friday-mcp/src/friday_mcp/client/__init__.py": "99a2ca88bc2161c78338d7855167256a6bda99e9b373561075b3942521e62c7e",
+    "packages/friday-mcp/README.md": "7e23c5e76917bb411e37cf20993faaa3fe06ef964de56ae4c4fdd53b865f9d23",
+    "packages/friday-mcp/pyproject.toml": "665eb50f54d283f23532c919db662fc64a376e0bf8155fd6ff6052913efd9a45",
+    "uv.lock": "5efcfafd68f3ed94a64ee943e6379fa57e603518ff2d215bb87710e25dc06759",
+    "packages/friday-mcp/src/friday_mcp/client/http.py": "5b1eaf77b631f4a6cb18300164688b2b1e08f83a5c525d8e236ef79a8d5aa3c3",
+    "packages/friday-mcp/src/friday_mcp/client/http_protocol.py": "a94e13a5470ce3af3ec67b365c131ebcaea31d946850b84b881a1fb1a471330f",
+    "packages/friday-mcp/src/friday_mcp/client/http_policy.py": "624d9eaa4f9e38d17ccafc71dbfcfcb2bacf3497c67cb52c8478c9b9315a17b1",
+    "packages/friday-mcp/tests_mcp/client/test_http_protocol.py": "0ec3c23af14eae8b6bccf433101a18e31beb45545ac4bfac7d61605b03e2d6c7",
+    "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py": "625f015518a52968568d5b2655f4904cd7f174f13407d0bc09f96be294711797",
+    "packages/friday-mcp/tests_mcp/client/test_http_interop.py": "8ff9a66c6eec61d52b3510471782bec42cffc329713a6968efaf625c4ac54c07",
+    "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py": "3bdb11d929a8732f8a67845c707343d4e1fd8aa3f1fa13d7d7bc5969d0d0567f",
+    "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py": "bb7c48d90013a1f812039bef62b80e6c71591abe0bde3a5855bf01b29cd00464"
+  },
+  "controlling_manifests": {
+    "authority-manifest.json": "c202d2d8a3fe83e29187a2273faee7b743471bc0d528f1de8b06ca1b3b0775b2",
+    "authority-UP-02B.json": "563969f358940e8af38433a64d4f13420658b9de619a337e4b307940d43e7ec1",
+    "authority-REM-MCP-UP-002.json": "da46b64374f63ddb937d1073baae241d6832264de5fa34e4f07ef47ad758a785"
+  },
+  "resolved_findings": [
+    "VAL-UP02B-001",
+    "VAL-UP02B-002",
+    "VAL-UP02B-003",
+    "VAL-UP02B-004"
+  ],
+  "initiative_state": "started",
+  "delivery_state": "local",
+  "next_authorized_action": "Prepare a separate exact UP-03 Runtime/YAML/Chat directive and proposal for review",
+  "later_construction_authority": "not granted; exact later directive approval required"
+}

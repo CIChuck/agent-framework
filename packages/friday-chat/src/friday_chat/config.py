@@ -708,6 +708,7 @@ def load_friday_py_config(
     config_path = Path(path)
     environment = env if env is not None else os.environ
     data = _load_yaml_mapping(config_path)
+    _validate_mcp_credential_references(data)
     interpolated = _interpolate_env(data, environment)
     if not isinstance(interpolated, dict):
         raise FridayChatConfigError("Config root must be a mapping.")
@@ -717,10 +718,13 @@ def load_friday_py_config(
     normalized = {key: value for key, value in interpolated.items() if key in allowed}
     normalized["diagnostics"] = diagnostics
 
+    failure: FridayChatConfigError | None = None
     try:
         config = FridayChatConfig.model_validate(normalized)
     except ValidationError as exc:
-        raise FridayChatConfigError(_format_validation_error(exc)) from exc
+        failure = FridayChatConfigError(_format_validation_error(exc))
+    if failure is not None:
+        raise failure
 
     canonical_sections = (
         config.model_library,
@@ -779,13 +783,59 @@ def _load_yaml_mapping(path: Path) -> dict[str, Any]:
     return raw
 
 
-def _interpolate_env(value: Any, env: Mapping[str, str]) -> Any:
+def _validate_mcp_credential_references(data: Mapping[str, Any]) -> None:
+    """Reject reference interpolation before any generic environment lookup."""
+    node: object = data
+    for key in ("tools", "providers"):
+        node = node.get(key, {}) if isinstance(node, Mapping) else {}
+    if not isinstance(node, Mapping) or "mcp" not in node:
+        return
+    raw = node["mcp"]
+    if not isinstance(raw, Mapping):
+        raise FridayChatConfigError("MCP provider must be an object")
+    failure: FridayChatConfigError | None = None
+    try:
+        MCPToolProviderConfig.from_dict(raw)
+    except ValueError as error:
+        failure = FridayChatConfigError(str(error))
+    if failure is not None:
+        raise failure
+    node = raw.get("config", {})
+    servers = node.get("servers", ()) if isinstance(node, Mapping) else ()
+    if isinstance(servers, (list, tuple)):
+        for server in servers:
+            if isinstance(server, Mapping) and "credential_env" in server:
+                reference = server["credential_env"]
+                if (
+                    not isinstance(reference, str)
+                    or re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]{0,127}", reference) is None
+                ):
+                    raise FridayChatConfigError("Invalid MCP credential reference")
+
+
+def _interpolate_env(
+    value: Any, env: Mapping[str, str], path: tuple[str | int, ...] = ()
+) -> Any:
     if isinstance(value, str):
         return _interpolate_string(value, env)
     if isinstance(value, list):
-        return [_interpolate_env(item, env) for item in value]
+        return [
+            _interpolate_env(item, env, (*path, index))
+            for index, item in enumerate(value)
+        ]
     if isinstance(value, dict):
-        return {key: _interpolate_env(item, env) for key, item in value.items()}
+        if (
+            path[:5] == ("tools", "providers", "mcp", "config", "servers")
+            and len(path) == 6
+            and value.get("transport") == "streamable_http"
+        ):
+            # Remote fields are literal configuration. Only the named credential
+            # resolver may consult environment, at enabled connection assembly.
+            return dict(value)
+        return {
+            key: _interpolate_env(item, env, (*path, key))
+            for key, item in value.items()
+        }
     return value
 
 
@@ -913,6 +963,11 @@ def _format_validation_error(error: ValidationError) -> str:
     details: list[str] = []
     for item in error.errors(include_input=False, include_url=False):
         location = ".".join(str(part) for part in item.get("loc", ())) or "config"
+        if location.startswith("tools.providers"):
+            details.append(
+                f"tools.providers.mcp: {item.get('msg', 'invalid MCP configuration')}"
+            )
+            continue
         if location.startswith("telemetry.") and location not in {
             "telemetry.enabled",
             "telemetry.provider",

@@ -1018,6 +1018,20 @@ closed; execution_phase closeout; validation_state verified. MCP remains first
 pending. No product or delivery actions; unrelated work and board history preserved.
 
 
+## 2026-10-11 — Optional TELEM-05 queued after MCP
+
+Chuck Russell requested Langfuse implementation as a board item after the MCP
+upgrade. The separate friday-langfuse-integration packet is queued at priority5,
+depends on friday-mcp-protocol-upgrade acceptance, and retains not_granted source
+authority. Other tasks5+ shift by one without changing their relative order or
+nonpriority fields. Accepted core01–04, original controls/evidence and closed
+parent construction authority remain unchanged. Packet covers SDK/bridge decision,
+strict config activation, safe causal export, duplicate prevention, ownership/
+shutdown, failure isolation, migration and independent verification. Planning-only
+scope is new packet, board/dashboard and this scheduling index/log; no runtime
+behavior can change. No product/dependency/credential/live/delivery actions.
+
+
 ## 2026-10-12 — accepted telemetry branch published; draft PR approval pending
 
 Published exact bb83dc0d0ff1b88ed9db54329cd39c7fca49650a to origin/feature/friday-telemetry-rewire.
@@ -1035,3 +1049,14 @@ question. Created https://github.com/CIChuck/agent-framework/pull/7 against mast
 and independently queried GitHub to confirm OPEN/draft with head bb83dc0.
 No merge, release or renewed construction authority. Preserve unrelated local
 work and frozen evidence; review is the remaining delivery gate.
+
+
+## 2026-10-12 — PR #7 merged; telemetry branches retired
+
+GitHub confirms Chuck Russell merged exact c5b79ba through PR #7 at
+2026-10-12T15:16:04Z, producing 1302b5fe3091304c08d1df77ea5fb1d2a4ec3666.
+The maintainer confirmed remote branch deletion. Local master and the dedicated
+MCP branch were fast-forwarded to that merge; identical-tree and all34 local-file
+preservation checks passed before switching the checkout. The fully merged
+local telemetry branch was then deleted without force. Delivery is merged;
+construction remains closed. Original evidence stays at pinned paths.

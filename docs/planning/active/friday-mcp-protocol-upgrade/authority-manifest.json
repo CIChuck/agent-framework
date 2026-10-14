@@ -1,0 +1,164 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "work_unit": "MCP-UP-02A",
+  "directive": "CD-MCP-UP-001",
+  "status": "approved_execution",
+  "approval": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/approval.json",
+    "sha256": "44210f5108c60626efa51e450d2853b6e502cd0711f7c0b11936d24c298d7b2e"
+  },
+  "product_baseline": "46005353046553477417a730f05ff21ead64a00d",
+  "planned_branch": "feature/friday-mcp-protocol-upgrade",
+  "controls": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-00-contract-policy-foundation.md",
+      "sha256": "651eb15e072d567d33a044e09e746422ca49458c5f386cb39d2228b710cd3485"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-05-execution-provenance-transcript.md",
+      "sha256": "9d8a14ffa65a71643fe6a6d92b9c21499dfb88bdd5e62693d7c0859bc17e8e8c"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-06-memory-compatibility-ingestion.md",
+      "sha256": "332eba2e05c67675f9578e2d2f455ef69ab707462f3d3fd60c41bcefcade47be"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telem04-contract.md",
+      "sha256": "100a6c81bdf1875c9beaa0a127df93d4cc9b0f8641da11463f529eedd087d242"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json",
+      "sha256": "db6ffff278434cabdf688839ec988b09e10fff437e8aac6a5c1ead9fac140075"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md",
+      "sha256": "042dc7dac9093d11b5c120a417d89e49136ed577464aa1a4b175389ee1ebb571"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/protocol-contract.md",
+      "sha256": "339390e41c4643c82d8421dd5eddffa619c123d345b7db84559e05e9b4c3d573"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/tactical-plan.md",
+      "sha256": "9e8bd734e695411698833a3285bb43a760a4d5d5812d919ec9b08f774adf7405"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-client-core.md",
+      "sha256": "06839e00eecdb1c7e40e76562d32a3f53c7c1aea1095f508d767ef57d198e964"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research.md",
+      "sha256": "3bedeed491b63fe4690263df9018e79ca4baf843da387b3861239d37beaf771b"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/baseline.json",
+      "sha256": "52b22d13a059fed099355406d77c947310fcec3762a2d90a0bcc1570386ad9a8"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/conformance-matrix.md",
+      "sha256": "e5c204aa63644eb8b798cd734a2a427bf9d1a7a2f48a2d468f15178846eff6b0"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/approval.json",
+      "sha256": "44210f5108c60626efa51e450d2853b6e502cd0711f7c0b11936d24c298d7b2e"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json",
+      "sha256": "6664e309b175da791930e1f026052b884e964dec0cdf200c185dd3bb1de99ad7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-sdk-dependency.md",
+      "sha256": "f3118e48a9c2e80756b39c410db3ecca7f63c7f141cd704f29aaa574386e5e19"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-approval.json",
+      "sha256": "cb1b25e5f8bd694c815c5e525216b6aaa33e7e337024e527a75e1490524d53f0"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/README.md",
+      "sha256": "af1c1e6c9cc5a532a0d99cdab0674c449b7d8e689fbc9fed6f492c5d005d459b"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/report.json",
+      "sha256": "61bb44f1eeae33013ea71a8d3b45067c19fe92e09971d28c6503c614b643b187"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-uv.lock.gz",
+      "sha256": "46da8d70f22930ec8b65182aba5ebd6b568c2b0d3c8d65c7d5c87ce9650246f8"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-mcp-pyproject.toml.gz",
+      "sha256": "8fed981ee2777ab00a7d41aa4d4cdcf4b0e9efc2fd093991236b36ca72ad146d"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/idna-3.20-pypi.json",
+      "sha256": "e7cbd26e23ce60f6cb3a151d2adf3b1b087bb8f10ac2d9d6db70fdccbf3bb041"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/mcp-2.3.0-pypi.json",
+      "sha256": "d9348a2813cdf05df82f7852afb9f13d8a8035d62c3a5e07fb9657bc5382aad7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-001.md",
+      "sha256": "1b7299c05bf63877075ea55b6764b93efdf66267b42eeb3fc7a39b424fa08024"
+    }
+  ],
+  "product_scope": {
+    "packages/friday-mcp/src/friday_mcp/client/base.py": "6b31f3c8aa5bda67ef329c241e938fada69fbde3b3751bcf2136710fee007aa8",
+    "packages/friday-mcp/src/friday_mcp/client/stdio.py": "a9e29cbe264de08bea1dafdcfd0609b79093979a120f4ae6c37ceb04df69179a",
+    "packages/friday-mcp/tests_mcp/client/test_execution.py": "842e10a0acdd0d9a05018e44c87288631d690adc83024a1dd920cc9b6b73f6c8",
+    "packages/friday-mcp/tests_mcp/client/test_lifecycle.py": "d96e139e5495a83ceba66f187b186be452771bff4661e1c05f50384f9f14e169",
+    "packages/friday-mcp/pyproject.toml": "fa75cbf3de3ba00fb9f853419a6f9f7f1230c0435de8efbb247814224acdcef2",
+    "packages/friday-mcp/README.md": "196d54ecc718da8e565e1347312da39dd51a0ca534a8bc22e6c86a645bddd258",
+    "uv.lock": "f3ea7b35a63d258035efaee2deb8cc160d0e95a2f5eafbeb8a38c73bceaf106c",
+    "packages/friday-mcp/src/friday_mcp/client/protocol.py": null,
+    "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py": null,
+    "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py": null,
+    "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py": null,
+    "packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py": null
+  },
+  "note": "Original approved proposal hashes are retained in approval.json. Clarification does not expand twelve product paths. Complete normative sources/schema are captured and hashed. Commit active controls and record named branch/started board state before product edits. Later units remain unapproved.",
+  "normative_sources": {
+    "revision": "2026-07-28",
+    "manifest": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json",
+    "schema_upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+    "schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+    "complete_captured_sources": 10
+  },
+  "approved_proposal_commit": "a3c0cbdc867ca3535f611c2461ff080a991de86c",
+  "execution_preparation_commit": "a3c0cbdc867ca3535f611c2461ff080a991de86c",
+  "amendments": [
+    {
+      "directive": "CD-MCP-UP-001-A01",
+      "status": "approved",
+      "approval": {
+        "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-approval.json",
+        "sha256": "cb1b25e5f8bd694c815c5e525216b6aaa33e7e337024e527a75e1490524d53f0"
+      }
+    }
+  ]
+}

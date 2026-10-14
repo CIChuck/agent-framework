@@ -1,0 +1,83 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "unit": "MCP-UP-06",
+  "execution_phase": "closeout",
+  "validation_state": "verified",
+  "unit_completion": "proposed; whole initiative maintainer acceptance pending",
+  "next_gate": "Maintainer acceptance of the whole MCP upgrade; then delivery planning and separately queued Langfuse",
+  "work_state": "completed",
+  "delivery_state": "local",
+  "construction_directive": "CD-MCP-UP-006",
+  "directive_status": "approved",
+  "unit_implementation_authority": "closed",
+  "accepted_units": [
+    {
+      "unit": "MCP-UP-02A",
+      "directive": "CD-MCP-UP-001",
+      "status": "accepted",
+      "validation_state": "verified",
+      "reviewed_candidate": "a36142fb41f59a743b72088d8cce749b71b32202",
+      "receipt": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json"
+    },
+    {
+      "unit": "MCP-UP-02B",
+      "directive": "CD-MCP-UP-002",
+      "status": "accepted",
+      "validation_state": "verified",
+      "reviewed_candidate": "14dba178feff8789111db88d981f1d0e85e6a748",
+      "receipt": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json"
+    },
+    {
+      "unit": "MCP-UP-03",
+      "directive": "CD-MCP-UP-003",
+      "status": "accepted",
+      "validation_state": "verified",
+      "reviewed_candidate": "3473cad1ab9ad35577d809281c87ce242f545b2c",
+      "receipt": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json"
+    },
+    {
+      "unit": "MCP-UP-04",
+      "directive": "CD-MCP-UP-004",
+      "status": "accepted",
+      "validation_state": "verified",
+      "reviewed_candidate": "47fcdb76035306c8aa7494ca1e1962049e984a3d",
+      "receipt": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-04.json"
+    },
+    {
+      "unit": "MCP-UP-05",
+      "directive": "CD-MCP-UP-005",
+      "status": "accepted",
+      "validation_state": "verified",
+      "reviewed_candidate": "012430089bcd1b60b12c071b8c8220f20d2bac79",
+      "receipt": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json"
+    }
+  ],
+  "prior_unit_reviewed_candidate": "012430089bcd1b60b12c071b8c8220f20d2bac79",
+  "prior_unit_independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md",
+  "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json",
+  "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+  "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-authority-manifest.json",
+  "note": "Whole-feature fresh independent FULL review VERIFIED; controller completion proposal only; acceptance and publication remain separate",
+  "open_findings": [],
+  "remediation_directive": null,
+  "remediation_status": "not_applicable",
+  "remediation_implementation_authority": "closed",
+  "prior_unsuccessful_remediation_cycles": 0,
+  "prior_finding_disposition": {},
+  "current_execution_authority": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-002.json",
+  "aggregate_product_candidate": "30119a18f77a435cd40f84bfefb69c32ede54998",
+  "builder_finding_dispositions": {
+    "BUILD-UP06-001": "Resolved; independently verified",
+    "BUILD-UP06-002": "Resolved; independently verified with real full-current-board rehearsal"
+  },
+  "builder_finding": {
+    "id": "BUILD-UP06-001",
+    "status": "resolved_by_approved_fixture_change_and_current_tests",
+    "independent_assessment": "verified"
+  },
+  "reviewed_candidate": "c9a8c210eedd85ed9f9418b13c53ac079ebec000",
+  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-02/report.md",
+  "independent_report_sha256": "85419bf1971132a18d896f057ae53f350b2efc56ce9e8cb6549309447d1abe01",
+  "independent_manifest_sha256": "84385ea8214479993ad4f42e5d16683741ac7db6d363fe890d2cb25d4476a894",
+  "current_packet": "docs/planning/review/friday-mcp-protocol-upgrade/"
+}

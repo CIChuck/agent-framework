@@ -1,0 +1,13 @@
+{
+  "directive": "REM-MCP-UP-002",
+  "work_unit": "MCP-UP-02B",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "approved",
+  "recorded_at_utc": "2026-10-12T19:51:00.714543+00:00",
+  "proposal_commit": "30378f7874613fda05eb07e2334e656280051fb6",
+  "directive_sha256": "bab8e478d5d2e73d3d79818c9984474e5a0ab136ae9230179718487f17197240",
+  "proposal_manifest_sha256": "45a40aa7d241b44b68021ab1d7a0e1dae461bec8350bb3c05627123b706c7873",
+  "scope": "Four numbered findings VAL-UP02B-001..004, exact six product paths, original full CD2 checks/effects and fresh independent delta/full review",
+  "note": "Immutable proposed directive/manifest retained; separate exact approval supplies bounded remediation authority. No acceptance/publication/later-unit authority."
+}

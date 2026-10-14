@@ -1,0 +1,254 @@
+{
+  "status": "prospective only before any product edit",
+  "criteria": {
+    "AGG-AC-01": {
+      "required_behavior": "All five accepted units and original reports/controls remain immutable. Current full branch scope, all eight initiative criteria and every applicable pinned2026 client/server and explicit2025 client clause/field/variant have evidence. Historical wrong-schema/excluded-role labels are not current proof.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    },
+    "AGG-AC-02": {
+      "required_behavior": "Actual Friday client to actual Friday server through named subprocess stdio and private verified TLS HTTP JSON and SSE. Assert2026 discovery/metadata, complete catalog, Unicode custom header, captured output schema and structured result, exactly-once handler counts and terminal cleanup. Preserve independent official SDK counterparts.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    },
+    "AGG-AC-03": {
+      "required_behavior": "Actual YAML loaders to Runtime provider and real Chat MCP registry, using explicitly selected modern stdio and HTTPS JSON/SSE Friday peers. Assert canonical names, include/category filters, per-turn budgets, required/optional admission, ordinary call result/provenance and terminal cleanup without invoking a model/provider.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    },
+    "AGG-AC-04": {
+      "required_behavior": "Test exact published disabled/local legacy/local modern-auto/HTTPS2026/HTTPS2025 YAML excerpts through real Runtime and Chat loaders. Replace only explicitly listed synthetic fixture placeholders; assert disabled/invalid/mixed-field/default/no-I/O behavior, secret-reference privacy and no schema/default change. Every executable fence is compiled/loaded or linked to actual fixture execution.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    },
+    "AGG-AC-05": {
+      "required_behavior": "Accurate role/revision/transport and migration matrix:2024 stdio remains default; modern/auto explicit; HTTPS2026 and explicit2025 client compatibility;2026-only new server; retained separate legacy programmatic SSE. No new integrated SSE/OAuth/agent/interactive capability, auto-HTTP fallback, sessions in2026 or inferred modern YAML server enum.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    },
+    "AGG-AC-06": {
+      "required_behavior": "Combined-client/server call, concurrent unrelated request, cancellation/timeout/disconnect/shutdown with real owned fixtures has exactly-once handler/terminal counters and no replay/orphan. All five server mitigation regressions and accepted client resistant-owner/deadline/session-recovery tests remain required; limits1..4 and fixed safe errors preserved.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    },
+    "AGG-AC-07": {
+      "required_behavior": "Provider-neutral TelemetryInterface injection/borrowed lifetimes, one observation per owned layer, no raw argument/result/schema/token/URL/trace propagation or global provider/exporter change. Existing server-spy tests remain server observation proof; new cross tests may use client/Runtime/Chat spies without modifying the frozen fixture.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    },
+    "AGG-AC-08": {
+      "required_behavior": "Complete bounded catalogs and result fidelity survive real client/server and registry adaptation: structured JSON/Unicode and safe tool error, captured schemas/generations, accepted sanitization/provenance/quarantine/memory opt-in and budget/filter behavior. No peer instructions become authority; no implicit content/URL fetch or storage migration.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    },
+    "AGG-AC-09": {
+      "required_behavior": "README/index/client/server/migration guide agree with current public APIs/YAML and pinned profiles. Correct earlier legacy-only HTTP/interim unit text, link actual modern server and migration guidance, explain controlled upgrade/rollback and dependency choice, distinguish fixture evidence from deployment; do not rewrite immutable planning/control history.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    },
+    "AGG-AC-10": {
+      "required_behavior": "Exactly24 declared commands plus full scope/authority/library inspections. Narrow/changed Ruff and MCP typing clean; root/raw inherited327 Ruff and4 Mypy diagnostics retain exact objects/columns; full skip/warning sections equal fresh accepted UP06 baseline. Current78 accepted products (75 frozen during this unit), all19 metadata and22009 reference/21992 unique path/192dist actual libraries protected.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    },
+    "AGG-AC-11": {
+      "required_behavior": "Stable candidate and fresh-context read-only whole-feature aggregate review from accepted telemetry merge1302b5f, covering all five unit interactions, seven new paths, all eight initiative and12 aggregate criteria, current controls and primary captures; outcome must be VERIFIED before completion proposal. Unit acceptance is not aggregate evidence.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    },
+    "AGG-AC-12": {
+      "required_behavior": "Explicit safe original evidence/manifest, full final actual requirement/field/test/command ledger, scopes/debt/effects/residual risks and accurate migration closeout. After VERIFIED controller may propose initiative completed/local with a review-packet index and preserved frozen historical backing. Whole acceptance/archive/push/merge/release/Langfuse remain separate maintainer gates.",
+      "prospective_test_module": "packages/friday-mcp/tests_mcp/test_upgrade_aggregate.py",
+      "commands": [
+        "aggregate-examples",
+        "documented-configs",
+        "server-focused",
+        "original-clients",
+        "mcp",
+        "core-runtime-chat-telemetry",
+        "root"
+      ],
+      "evidence_rule": "Actual current source/exact assertion/wire or loader/privacy/bounds/command receipts; accepted reports only historical inputs"
+    }
+  },
+  "initiative_to_aggregate_criteria": {
+    "UP-AC-01": [
+      "AGG-AC-01",
+      "AGG-AC-02",
+      "AGG-AC-05"
+    ],
+    "UP-AC-02": [
+      "AGG-AC-02",
+      "AGG-AC-03",
+      "AGG-AC-05",
+      "AGG-AC-06"
+    ],
+    "UP-AC-03": [
+      "AGG-AC-03",
+      "AGG-AC-04",
+      "AGG-AC-05"
+    ],
+    "UP-AC-04": [
+      "AGG-AC-01",
+      "AGG-AC-02",
+      "AGG-AC-08"
+    ],
+    "UP-AC-05": [
+      "AGG-AC-03",
+      "AGG-AC-04",
+      "AGG-AC-08"
+    ],
+    "UP-AC-06": [
+      "AGG-AC-06",
+      "AGG-AC-07",
+      "AGG-AC-10"
+    ],
+    "UP-AC-07": [
+      "AGG-AC-01",
+      "AGG-AC-02",
+      "AGG-AC-05",
+      "AGG-AC-06"
+    ],
+    "UP-AC-08": [
+      "AGG-AC-04",
+      "AGG-AC-09",
+      "AGG-AC-10",
+      "AGG-AC-11",
+      "AGG-AC-12"
+    ]
+  },
+  "prospective_new_test_names": [
+    "test_friday_client_to_friday_stdio",
+    "test_friday_client_to_friday_http",
+    "test_runtime_yaml_to_friday_peer",
+    "test_chat_yaml_to_friday_peer",
+    "test_cross_transport_cancel_and_parallel_call",
+    "test_documented_yaml_profiles",
+    "test_documented_invalid_config_no_io",
+    "test_documented_public_api_fences",
+    "test_documented_profile_and_scope_matrix"
+  ],
+  "required_variants": {
+    "transport": [
+      "2026stdio",
+      "2026HTTPSJSON",
+      "2026HTTPSSSE"
+    ],
+    "loaders": [
+      "RuntimeConfig.from_sources",
+      "real Friday Chat configuration/registry"
+    ],
+    "yaml": [
+      "disabled",
+      "legacydefault",
+      "modernstdio",
+      "autostdio",
+      "HTTPS2026",
+      "explicitHTTPS2025",
+      "mixedfieldsinvalid",
+      "secretinterpolationinvalid",
+      "unsupportedtransport/profile"
+    ],
+    "privacy": "synthetic sentinels absent from observer/diagnostics; handler counters and terminal ownership; no real state/model/provider"
+  },
+  "before_product_edits": "Builder must expand complete applicable client/server/2025 field/paragraph variants and actual snippet-to-assertion provenance; historical wrong-schema plan remains unchanged"
+}

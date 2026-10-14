@@ -1,0 +1,62 @@
+{
+  "directive": "CD-MCP-UP-003",
+  "work_unit": "MCP-UP-03",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "approved",
+  "recorded_at_utc": "2026-10-13T01:35:00.478018+00:00",
+  "proposal_commit": "51f8f5f86b3e6cf5c5b5be07a2087b53955fb88a",
+  "proposal_manifest_sha256": "aba491e2419d1fdb0e5e76f02cef92d128909b6844443239cc88a6f6654add45",
+  "controls": [
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-003-runtime-yaml-chat.md",
+      "sha256": "3576560f3076584d3bbd0ec69d5f7565481f0a1e50aba5e0c2d332c692bc1147"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/up03-integration-contract.md",
+      "sha256": "3137b831da2475d3043d0e98f6787c016f3574e281a7a231864015ffcaeb366b"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/verification-profile-UP-03.json",
+      "sha256": "fde7ebc7eea09422d59f0e1939fa434fce12cfa50d4145d88152bd2236dc1105"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json",
+      "sha256": "58744b5ec72aa8d29b95523e7dd9c154525d056b188a4a77ebad35a54dff6cb7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.md",
+      "sha256": "3227978e66825995a22435e32c312b39e5a25c28f4075bf7ccb2aed2afab9878"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade-up-02b/README.md",
+      "sha256": "3fb995f681792d2a49f736f1960e7331bf1ed13d56db0cdb0719ce1a4e0f40bf"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade-up-02b/acceptance-evidence.json",
+      "sha256": "58744b5ec72aa8d29b95523e7dd9c154525d056b188a4a77ebad35a54dff6cb7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md",
+      "sha256": "c360460f8ea1380a49bc24e049953d79edbd6723663fee50639c2923f7c1734b"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/stored-manifest.json",
+      "sha256": "76c359d05e1b0a354beec8467e9a311984d06c40233765bcd771b6f693ac06cc"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/artifacts/report.md.gz",
+      "sha256": "0f90a9ab227e78405fd97ee4da77c3726971b59ab797d3aeea60cfb9bc568180"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up03-planning/baseline-static.json",
+      "sha256": "4a35a5d03f322637ec0ff0591a164bdd016e977a778d2402d414ff7439d86f5d"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up03-planning/stored-manifest.json",
+      "sha256": "a893556e2dfd4d34041907cab8aa44f692feaedea36ba6b38ddfc782027eeedb"
+    }
+  ],
+  "scope": "Exact 28 product paths; Runtime/YAML/Chat integration contract, INT-AC-01..10, full UP-03 verification/effects and fresh independent full review",
+  "boundary": "No later unit, acceptance, publication or dependency change authority; proposed controls retained byte-for-byte."
+}

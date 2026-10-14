@@ -9,7 +9,6 @@ import pytest
 from friday_agent import DefaultToolRegistry
 from friday_core.profiles import MemoryProfile
 from friday_mcp.client.base import MCPClientBase
-from friday_mcp.client.manager import MCPClientManager
 from friday_runtime.config import MCPToolProviderConfig, RuntimeConfig, ToolsConfig
 from friday_runtime.kernel import RuntimeKernel
 from friday_runtime.mcp_loading import RuntimeMCPProvider
@@ -111,7 +110,7 @@ async def fake_clients(monkeypatch):
     catalogs = {}
     tracker = {"active": 0, "peak": 0, "discovery_active": 0, "discovery_peak": 0}
 
-    def create(self, config):
+    def create(config, limits, workspace_root, credential_resolver):
         mode = modes.get(config.name, "good")
         if isinstance(mode, list):
             mode = mode.pop(0)
@@ -126,7 +125,7 @@ async def fake_clients(monkeypatch):
         clients.append(client)
         return client
 
-    monkeypatch.setattr(MCPClientManager, "_create_client", create)
+    monkeypatch.setattr("friday_runtime.mcp_clients.create_mcp_client", create)
     try:
         yield clients, modes, catalogs, tracker
     finally:
@@ -247,9 +246,7 @@ async def test_registration_collision_and_schema_cap_keep_typed_reasons(
     tmp_path, fake_clients
 ) -> None:
     _, _, catalogs, _ = fake_clients
-    catalogs["fake"] = [
-        {"name": "probe", "inputSchema": {"type": "object"}}
-    ]
+    catalogs["fake"] = [{"name": "probe", "inputSchema": {"type": "object"}}]
     recorder = DebugTelemetryRecorder()
     collision = RuntimeMCPProvider(
         MCPToolProviderConfig.from_dict(
@@ -263,9 +260,7 @@ async def test_registration_collision_and_schema_cap_keep_typed_reasons(
         telemetry=recorder,
     )
     registry = DefaultToolRegistry()
-    registry.register(
-        name="mcp_fake_probe", func=lambda: "native", category="native"
-    )
+    registry.register(name="mcp_fake_probe", func=lambda: "native", category="native")
     await collision.start()
     with pytest.raises(ToolProviderLoadError, match="name_collision"):
         await collision.register_tools(registry)
@@ -334,9 +329,7 @@ async def test_registration_failure_never_emits_success_for_rolled_back_tool(
         await provider.start()
         with pytest.raises(ToolProviderLoadError):
             await provider.register_tools(registry)
-        assert not any(
-            event.name == "mcp.tool_registered" for event in recorder.events
-        )
+        assert not any(event.name == "mcp.tool_registered" for event in recorder.events)
         skipped = recorder.get_all_events("mcp.tool_skipped")
         assert len(skipped) == 2
         assert all(event["reason"] == "registration_failed" for event in skipped)
@@ -833,7 +826,9 @@ async def test_provider_retry_retains_manager_until_cleanup_and_recovers(
     servers = [server("good"), server("bad")] if with_peer else [server("bad")]
     provider = RuntimeMCPProvider(provider_config(servers), str(tmp_path))
     with caplog.at_level(logging.DEBUG):
-        with pytest.raises(ToolProviderLoadError, match="MCP shutdown incomplete"):
+        with pytest.raises(
+            ToolProviderLoadError, match="MCP client cleanup incomplete"
+        ):
             await provider.start()
         manager = provider.manager
         original_clients = tuple(clients)
@@ -942,7 +937,7 @@ async def test_cancellation_during_retry_cleanup_preserves_owner_for_public_stop
     clients, modes, _, _ = fake_clients
     modes["fake"] = "discovery_cleanup_failed"
     provider = RuntimeMCPProvider(provider_config([server()]), str(tmp_path))
-    with pytest.raises(ToolProviderLoadError, match="MCP shutdown incomplete"):
+    with pytest.raises(ToolProviderLoadError, match="MCP client cleanup incomplete"):
         await provider.start()
     manager = provider.manager
     client = manager.get_client("fake")
@@ -1003,7 +998,7 @@ async def test_failed_commit_with_failed_rollback_retains_exact_public_owner(
     )
     try:
         await provider.start()
-        with pytest.raises(ToolProviderLoadError, match="registry cleanup incomplete"):
+        with pytest.raises(ToolProviderLoadError, match="MCP registration failed"):
             await provider.register_tools(registry)
         assert provider.registration_registry is registry
         assert provider.owned_tool_names == ("mcp_fake_first",)
@@ -1067,7 +1062,9 @@ async def test_collision_evidence_retained_until_new_discovery_and_retry(
     registry = DefaultToolRegistry()
     registry.register(name="native", func=lambda: "native", category="native")
     if native:
-        registry.register(name="mcp_fake_read_file", func=lambda: "native", category="native")
+        registry.register(
+            name="mcp_fake_read_file", func=lambda: "native", category="native"
+        )
     snapshot = {name: registry.get(name) for name in registry.list_names()}
     try:
         with caplog.at_level(logging.DEBUG):
@@ -1082,13 +1079,21 @@ async def test_collision_evidence_retained_until_new_discovery_and_retry(
             assert provider.diagnostics.rejected_tools == 1
             assert provider.discovery.discovered_tools == (1 if native else 2)
             assert provider.discovery.selected_tools == 0
-            assert provider.diagnostics.registered_tools == provider.diagnostics.filtered_tools == 0
+            assert (
+                provider.diagnostics.registered_tools
+                == provider.diagnostics.filtered_tools
+                == 0
+            )
             assert {name: registry.get(name) for name in snapshot} == snapshot
             assert all(registry.get(name) is value for name, value in snapshot.items())
             assert registry.list_names() == list(snapshot)
             assert not provider.prepared_tools and not provider.tool_metadata
-            assert provider.registration_registry is None and not provider.owned_tool_names
-            assert provider.manager is not None and not provider.manager.connected_servers
+            assert (
+                provider.registration_registry is None and not provider.owned_tool_names
+            )
+            assert (
+                provider.manager is not None and not provider.manager.connected_servers
+            )
             assert all(not client.transport.is_connected for client in clients)
             await provider.stop()
             await provider.stop()
@@ -1097,7 +1102,9 @@ async def test_collision_evidence_retained_until_new_discovery_and_retry(
             # Obstructed prior cleanup does not erase history or replace its owner.
             manager = provider.manager
             disconnect = manager.disconnect_all
-            manager.disconnect_all = AsyncMock(side_effect=RuntimeError("SENTINEL-RETRY"))
+            manager.disconnect_all = AsyncMock(
+                side_effect=RuntimeError("SENTINEL-RETRY")
+            )
             try:
                 with pytest.raises(ToolProviderLoadError, match="shutdown incomplete"):
                     await provider.start()
@@ -1116,7 +1123,10 @@ async def test_collision_evidence_retained_until_new_discovery_and_retry(
             catalogs["fake"] = [{"name": "probe", "inputSchema": {"type": "object"}}]
             await provider.start()
             await provider.register_tools(registry)
-            assert all(decision.collision is None for decision in provider.registration_decisions)
+            assert all(
+                decision.collision is None
+                for decision in provider.registration_decisions
+            )
             assert provider.diagnostics.registered_tools == 0  # default selected mode
             assert tracker["list_calls"] == 2
             await provider.stop()

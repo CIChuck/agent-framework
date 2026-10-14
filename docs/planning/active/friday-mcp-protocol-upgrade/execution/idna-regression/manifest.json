@@ -1,0 +1,176 @@
+{
+  "assessment": "../idna-regression-assessment.md",
+  "status": "bounded_dependency_preparation_passed",
+  "files": [
+    {
+      "path": "dependency_contexts.py.gz",
+      "sha256": "ac28bcb142b4a42ec7ab6ab73d9a94f37a7b9ffc84d3ec78d1d658093eb10fda",
+      "bytes": 1988,
+      "original_sha256": "112a69900fe5e08b66ac9a675391f1be62760ba807e44600f29612c59af6d2ec",
+      "original_bytes": 5061,
+      "encoding": "gzip"
+    },
+    {
+      "path": "context-preservation.json",
+      "sha256": "cdb56c1d20030726c5befd0463651a5b52b90b687ca5e51629c155aff69cb25c",
+      "bytes": 20157,
+      "original_sha256": "cdb56c1d20030726c5befd0463651a5b52b90b687ca5e51629c155aff69cb25c",
+      "original_bytes": 20157,
+      "encoding": "identity"
+    },
+    {
+      "path": "reproduce_dependency.py.gz",
+      "sha256": "be38c2a219bb205b033478daba79118694eac5aef76d061481907b75be25d307",
+      "bytes": 889,
+      "original_sha256": "d300dd4376336640e70f6c742815c0b521f17e68a5f2328f8c80d999304da557",
+      "original_bytes": 1738,
+      "encoding": "gzip"
+    },
+    {
+      "path": "reproduce_offline.py.gz",
+      "sha256": "7da7855778db512a39697f6412d210fdb60a5031ff731ca799427e86067ec3bd",
+      "bytes": 779,
+      "original_sha256": "5120072b9b25ef02e300e414b93ffc02f2f00a2a2d617f7ef62c3ae412ec6cac",
+      "original_bytes": 1508,
+      "encoding": "gzip"
+    },
+    {
+      "path": "approved-lock-check.json",
+      "sha256": "5ee69d01af9fdce9f38b4921f884696964b0bc2c989c736094118c2a5698f8f1",
+      "bytes": 805,
+      "original_sha256": "5ee69d01af9fdce9f38b4921f884696964b0bc2c989c736094118c2a5698f8f1",
+      "original_bytes": 805,
+      "encoding": "identity"
+    },
+    {
+      "path": "approved-lock-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "encoding": "identity"
+    },
+    {
+      "path": "approved-lock-check.stderr",
+      "sha256": "f91def425df0daecfb31b304fab034ac591462f2f5761dfb3593237f1f29cc9a",
+      "bytes": 132,
+      "original_sha256": "f91def425df0daecfb31b304fab034ac591462f2f5761dfb3593237f1f29cc9a",
+      "original_bytes": 132,
+      "encoding": "identity"
+    },
+    {
+      "path": "approved-lock-reproduction.json",
+      "sha256": "cd473f92f045ad7238e4b5862d16d986dfe9adef2f97010900edffcfde961ee0",
+      "bytes": 833,
+      "original_sha256": "cd473f92f045ad7238e4b5862d16d986dfe9adef2f97010900edffcfde961ee0",
+      "original_bytes": 833,
+      "encoding": "identity"
+    },
+    {
+      "path": "approved-lock-reproduction.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "encoding": "identity"
+    },
+    {
+      "path": "approved-lock-reproduction.stderr",
+      "sha256": "5202bc40649850fe763f24d70334757c0af9d1518ef7080440b12b061e229b74",
+      "bytes": 441,
+      "original_sha256": "5202bc40649850fe763f24d70334757c0af9d1518ef7080440b12b061e229b74",
+      "original_bytes": 441,
+      "encoding": "identity"
+    },
+    {
+      "path": "fetch_idna_probe.py.gz",
+      "sha256": "233aa40718a16597b5d7a425b8a61a78862d84a1f06207677d1411d5c0205b12",
+      "bytes": 923,
+      "original_sha256": "8895482faa55e6791505ef78731ac6592ad58a5646f860336bb5ac83bef29ff4",
+      "original_bytes": 1798,
+      "encoding": "gzip"
+    },
+    {
+      "path": "idna_probe.py.gz",
+      "sha256": "87727ed6a552e7f2098ecb5ec220964ac23e45c7067c2ccf5cec272d75a954fa",
+      "bytes": 2324,
+      "original_sha256": "022a299c827692db7bb5f4dfc9e76647601f46db2e27f858f8be02e1678686c0",
+      "original_bytes": 5987,
+      "encoding": "gzip"
+    },
+    {
+      "path": "3.11-results.json.gz",
+      "sha256": "d844e3dcf8c42b2e5f62be6b26e474891c4844d1c7ebc1d8810d8cbb402a69b6",
+      "bytes": 4076,
+      "original_sha256": "1b0ccf31e9c4e6fbed5c4f3ed4d44fddf3d875b7d2c47eb107f66357b417bd92",
+      "original_bytes": 106573,
+      "encoding": "gzip"
+    },
+    {
+      "path": "3.11.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "encoding": "identity"
+    },
+    {
+      "path": "3.11.stdout",
+      "sha256": "a564a754cd6911cf16a31631b7f700d333807fd1d46b8f5d2d76f3aa5139ed32",
+      "bytes": 57,
+      "original_sha256": "a564a754cd6911cf16a31631b7f700d333807fd1d46b8f5d2d76f3aa5139ed32",
+      "original_bytes": 57,
+      "encoding": "identity"
+    },
+    {
+      "path": "3.20-results.json.gz",
+      "sha256": "a75db5865d4b449f1da7344ec03189e36eb0a06f2221125a594a859a311d0ef8",
+      "bytes": 4026,
+      "original_sha256": "4b832e7b886ac8dfcf435b3a1ed2ab4477e83c122b105fc2e5aa0526f45e2a14",
+      "original_bytes": 103352,
+      "encoding": "gzip"
+    },
+    {
+      "path": "3.20.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "encoding": "identity"
+    },
+    {
+      "path": "3.20.stdout",
+      "sha256": "c502de378599da0c86a1b65d00eb6faadb03912409b69da3fbf4222d22daf210",
+      "bytes": 57,
+      "original_sha256": "c502de378599da0c86a1b65d00eb6faadb03912409b69da3fbf4222d22daf210",
+      "original_bytes": 57,
+      "encoding": "identity"
+    },
+    {
+      "path": "HISTORY-3.20.md",
+      "sha256": "7951de26eb3e8f3c6299c63205cf3b8b0ebff0d5160fd71cfadc5c39d05eb2b0",
+      "bytes": 11688,
+      "original_sha256": "7951de26eb3e8f3c6299c63205cf3b8b0ebff0d5160fd71cfadc5c39d05eb2b0",
+      "original_bytes": 11688,
+      "encoding": "identity"
+    },
+    {
+      "path": "artifact-receipt.json",
+      "sha256": "8ed5e4acdc5446a32701c9db9a18fbde8664ed658a8f04827dafa9bbd8c510a0",
+      "bytes": 572,
+      "original_sha256": "8ed5e4acdc5446a32701c9db9a18fbde8664ed658a8f04827dafa9bbd8c510a0",
+      "original_bytes": 572,
+      "encoding": "identity"
+    },
+    {
+      "path": "comparison.json.gz",
+      "sha256": "366cffb24eae1b5470c1a71b0c1582730786e8836f2c5d4ae55d4340efdab1e7",
+      "bytes": 1407,
+      "original_sha256": "ca964daf27e4091e6cd608c3ee9299f40cd7dfa7332c55e6719ca3a8322cc11a",
+      "original_bytes": 34402,
+      "encoding": "gzip"
+    }
+  ],
+  "product_validation": "pending; no independent verdict",
+  "storage_note": "Lossless compression of original executed process-script evidence, preserving original bytes and SHA256. Archived evidence is not executable repository source; no raw script rewriting or lint waiver."
+}

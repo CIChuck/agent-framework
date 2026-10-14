@@ -1,0 +1,4 @@
+Immutable original full binary diff is retained losslessly in artifacts/full.diff.gz.
+Original SHA256: dba405dab9ed93aa1a70809c153c6a386a028d9c772c8848fb47df81dbd77b24
+This file is an archive navigation pointer, not the original raw diff.
+See stored-manifest.json for the original and compressed artifact hashes.

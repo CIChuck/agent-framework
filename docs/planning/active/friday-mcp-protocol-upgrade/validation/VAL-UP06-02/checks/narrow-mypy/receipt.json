@@ -1,0 +1,42 @@
+{
+  "argv": [
+    "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+    "-m",
+    "mypy",
+    "packages/friday-mcp/src/friday_mcp/server/__init__.py",
+    "packages/friday-mcp/src/friday_mcp/server/protocol.py",
+    "packages/friday-mcp/src/friday_mcp/server/modern.py",
+    "packages/friday-mcp/src/friday_mcp/server/modern_stdio.py",
+    "packages/friday-mcp/src/friday_mcp/server/http.py",
+    "packages/friday-mcp/src/friday_mcp/server/registry.py",
+    "packages/friday-mcp/src/friday_mcp/server/http_policy.py"
+  ],
+  "cwd": "/private/tmp/friday-mcp-upgrade/work",
+  "environment": {
+    "PATH": "/private/tmp/friday-mcp-upgrade/venv/bin:/opt/homebrew/bin:/usr/bin:/bin",
+    "HOME": "/private/tmp/friday-mcp-upgrade/homes/review002-narrow-mypy",
+    "TMPDIR": "/private/tmp/friday-mcp-upgrade/tmp/review002-narrow-mypy",
+    "PYTHONPATH": "/private/tmp/friday-mcp-upgrade/guard:/private/tmp/friday-mcp-upgrade/work/packages/friday-agent/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-chat/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-cli/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-core/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-finance/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-llm/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-mcp/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-memory/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-moltbook/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-optimization/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-runtime/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-sandbox/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-speech/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-telemetry/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-tools/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-transcript/src:/private/tmp/friday-mcp-upgrade/work/packages/friday-chat/tests_chat",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0",
+    "PYTEST_ADDOPTS": "--import-mode=importlib -o cache_dir=/private/tmp/friday-mcp-upgrade/homes/review002-narrow-mypy/pytest",
+    "UV_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/cache",
+    "UV_NO_SYNC": "1",
+    "UV_OFFLINE": "1",
+    "UV_PROJECT_ENVIRONMENT": "/private/tmp/friday-mcp-upgrade/venv",
+    "VIRTUAL_ENV": "/private/tmp/friday-mcp-upgrade/venv",
+    "FRIDAY_TELEMETRY_ENABLED": "false",
+    "ANONYMIZED_TELEMETRY": "false",
+    "TOKENIZERS_PARALLELISM": "false",
+    "XDG_CACHE_HOME": "/private/tmp/friday-mcp-upgrade/homes/review002-narrow-mypy/.cache",
+    "MPLCONFIGDIR": "/private/tmp/friday-mcp-upgrade/homes/review002-narrow-mypy/mpl",
+    "MYPY_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/homes/review002-narrow-mypy/mypy",
+    "RUFF_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/homes/review002-narrow-mypy/ruff"
+  },
+  "started_utc": "2026-10-14T03:45:49.041195+00:00",
+  "finished_utc": "2026-10-14T03:45:51.851114+00:00",
+  "exit_code": 0,
+  "stdout_sha256": "050c52a2b0c61e8b681ef5c485e0bc03340b8d55148e0acef27d744c8be42033",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8"
+}

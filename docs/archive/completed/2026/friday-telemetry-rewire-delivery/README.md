@@ -1,6 +1,6 @@
 # Accepted telemetry delivery handoff
 
-Status: branch pushed; draft PR #7 open against master;
+Status: PR #7 merged into master; remote and local telemetry branches retired;
 core TELEM-01–04 accepted and construction closed.
 
 The accepted telemetry branch is `feature/friday-telemetry-rewire`. Its accepted
@@ -15,8 +15,12 @@ The subsequent push published exact commit
 `origin/feature/friday-telemetry-rewire`. Automatic approval review rejected draft
 PR creation because publication of the description and repository links to GitHub
 was not clearly authorized. Chuck Russell subsequently approved this specific publication with "yes approved".
-[Draft PR #7](https://github.com/CIChuck/agent-framework/pull/7) is now open against
-`master`; GitHub confirms draft status. No merge is recorded.
+[PR #7](https://github.com/CIChuck/agent-framework/pull/7) was opened as a draft.
+Chuck Russell subsequently merged it into `master` at 2026-10-12T15:16:04Z as
+`1302b5fe3091304c08d1df77ea5fb1d2a4ec3666` and deleted the remote branch.
+After verifying ancestry and preserving local files, the checkout moved to
+`feature/friday-mcp-protocol-upgrade` at that merged baseline, and the fully merged
+local telemetry branch was retired.
 
 ## Delivery sequence
 

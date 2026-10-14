@@ -1,0 +1,20 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "maintainer": "Chuck Russell",
+  "maintainer_statement": "I think we should commit the local branch, Submit PR to master.",
+  "recorded_at_utc": "2026-10-14T04:14:25.375020+00:00",
+  "authorized_actions": [
+    "Commit MCP delivery metadata",
+    "Push feature/friday-mcp-protocol-upgrade",
+    "Submit pull request to master"
+  ],
+  "delivery_state": "pushed",
+  "pull_request": "https://github.com/CIChuck/agent-framework/pull/8",
+  "base_branch": "master",
+  "base_commit": "1302b5fe3091304c08d1df77ea5fb1d2a4ec3666",
+  "head_branch": "feature/friday-mcp-protocol-upgrade",
+  "initial_published_commit": "6dca42e8333a0e7c9f1ff68c4d1930500509c48e",
+  "source_changes": 0,
+  "acceptance_receipt_sha256": "cb00381070362d211d700c753271eae90db54d2a220d172086dd06305d90069e",
+  "historical_authority_manifest_sha256": "190b1fd6b5a919fe0131b01fd858e6b35d8c1decf87c6d577aeef3fec4b82dfd"
+}
