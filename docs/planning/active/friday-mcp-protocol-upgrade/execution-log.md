@@ -654,3 +654,13 @@ unchanged guard/private per-command context. Original five-unit reports and
 modern/older primary authority remain immutable. Whole-feature fresh independent
 VERIFIED precedes completion proposal; maintainer whole acceptance/publication
 are separate. Exact CD006 approval required before new docs/tests.
+
+
+## Exact UP-06 construction approval
+
+Chuck Russell stated “approved” in response to the concrete CD006 directive and
+explicit approval question. Separate receipt/authority pin the immutable seven
+paths/12 aggregate and8 initiative criteria/24 checks/accepted private effects.
+Current unit enters implementation/not_ready/granted. Source/dependency/default
+changes, whole acceptance and publication remain outside this authority. Seven
+unrelated root paths and two-task/three-event overlay remain preserved.

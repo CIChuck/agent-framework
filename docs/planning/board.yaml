@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Review and approve exact CD-MCP-UP-006 seven-path migration/docs and cross-Friday aggregate tests;24 checks plus fresh full-initiative review; no new product authority yet
+  next_gate: Implement exact CD-MCP-UP-006 seven-path migration/docs and aggregate tests; run24 checks and freeze for fresh whole-feature independent validation
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1741,3 +1741,10 @@ events:
   action: prepared CD-MCP-UP-006 aggregate migration proposal
   note: Seven paths/12 criteria/all8 initiative criteria/24 checks; source and dependencies frozen; exact construction approval pending
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T01:32:07+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact CD-MCP-UP-006
+  note: 'Exact statement: approved; seven paths,24 checks, fresh whole-feature independent review; no runtime source/dependency/publication authority'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06.json

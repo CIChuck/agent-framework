@@ -1,15 +1,15 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-06",
-  "execution_phase": "planning",
+  "execution_phase": "implementation",
   "validation_state": "not_ready",
-  "unit_completion": "not proposed; exact CD006 construction approval pending",
-  "next_gate": "Review and approve exact CD-MCP-UP-006 seven-path migration/docs and cross-Friday aggregate tests;24 checks plus fresh full-initiative review; no new product authority yet",
+  "unit_completion": "not proposed; approved construction in progress",
+  "next_gate": "Implement exact CD-MCP-UP-006 seven-path migration/docs and aggregate tests; run24 checks and freeze for fresh whole-feature independent validation",
   "work_state": "started",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-006",
-  "directive_status": "proposed",
-  "unit_implementation_authority": "not_granted",
+  "directive_status": "approved",
+  "unit_implementation_authority": "granted",
   "accepted_units": [
     {
       "unit": "MCP-UP-02A",
@@ -64,5 +64,5 @@
   "remediation_implementation_authority": "closed",
   "prior_unsuccessful_remediation_cycles": 0,
   "prior_finding_disposition": {},
-  "current_execution_authority": null
+  "current_execution_authority": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06.json"
 }
