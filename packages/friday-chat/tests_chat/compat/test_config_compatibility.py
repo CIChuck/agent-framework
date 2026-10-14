@@ -26,7 +26,6 @@ EXAMPLE_MODEL_LIBRARY = Path("packages/friday-chat/models-config.example.yaml")
 PACKAGED_EXAMPLE_MODEL_LIBRARY = Path(
     "packages/friday-chat/src/friday_chat/config_templates/models-config.example.yaml"
 )
-FRIDAY_PY_CONFIG = Path("tests/integration/memory/config.yaml")
 
 TOP_LEVEL_SECTIONS = set(TOP_LEVEL_CONFIG_SECTIONS)
 LEGACY_TOP_LEVEL_SECTIONS = TOP_LEVEL_SECTIONS - {
@@ -81,15 +80,8 @@ def test_sanitized_config_fixture_has_required_top_level_sections() -> None:
     assert LEGACY_TOP_LEVEL_SECTIONS - set(data) == set()
 
 
-def test_sanitized_config_fixture_matches_friday_py_option_shape() -> None:
-    source = _load_mapping(FRIDAY_PY_CONFIG)
-    fixture = _load_fixture()
-
-    assert _config_paths(fixture) == _config_paths(source)
-
-
-def test_example_config_matches_friday_py_option_shape() -> None:
-    source = _load_mapping(FRIDAY_PY_CONFIG)
+def test_example_config_matches_sanitized_legacy_option_shape() -> None:
+    source = _load_fixture()
     example = _load_mapping(EXAMPLE_CONFIG)
 
     behavior_sections = set(source) - {"llm", "extraction", "embedding"}

@@ -1,0 +1,338 @@
+{
+  "id": "AMEND-SEC-001-001",
+  "status": "proposed; maintainer scope decision pending",
+  "cause": "Exact-value scanning includes binary/archives and finds54 additional current tracked paths; prior pattern scan ignored binary content and classified an uppercase real Massive key as an identifier",
+  "additional_paths": [
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-013-evidence.tar.gz",
+      "blob": "424bdebb2c3bfd9b6d7e80afc7abf61a27720b94",
+      "bytes": 19882780,
+      "proposed_action": "sanitize tar members and retain a security-redaction provenance receipt"
+    },
+    {
+      "path": "packages/friday-finance/tests/test_integration_massive.py",
+      "blob": "22461d4b87f885c16162283df9a431cb31022484",
+      "bytes": 5211,
+      "proposed_action": "replace literal key with explicit environment reference and live-test opt-in"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260301_145839_3d1579b6/chroma.sqlite3",
+      "blob": "6ce149c8dab666f6ef1818283a8d981f22c51c74",
+      "bytes": 15486976,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260301_145839_3d1579b6/transcript.db",
+      "blob": "39293bfd6bd06710bc1c27cfda2b33902ef568c5",
+      "bytes": 26980352,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260302_170542_199d7aab/chroma.sqlite3",
+      "blob": "0dcdfa2875fc9218adc172c0735c5810288fbe46",
+      "bytes": 15532032,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260302_170542_199d7aab/transcript.db",
+      "blob": "1e8cb4fe0926ab2ec7f717937bff9dee6930b884",
+      "bytes": 30367744,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260302_182034_d410f01a/chroma.sqlite3",
+      "blob": "5daa86e6b98cda1883137bf28abc8b4fcd14124d",
+      "bytes": 15859712,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260302_182034_d410f01a/transcript.db",
+      "blob": "0460212dd31aa48f27bbf2a16b2f49c8ae73d5ed",
+      "bytes": 30826496,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260304_081507_f0ab7925/chroma.sqlite3",
+      "blob": "36db2d0f0d5d7f37df5223f64500967ba91b63fc",
+      "bytes": 17420288,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260304_081507_f0ab7925/transcript.db",
+      "blob": "1ef1d1dd8357a3a8c7c9b55b11d0211dd4a41ef6",
+      "bytes": 32468992,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260304_104526_c2dd80be/chroma.sqlite3",
+      "blob": "636c64592bff143f78d78e107cc4762d20d0f3b2",
+      "bytes": 17612800,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260304_104526_c2dd80be/transcript.db",
+      "blob": "aa3619a0af80f9e3509dce86ccf0980013c008df",
+      "bytes": 32899072,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260304_143613_fc67372a/chroma.sqlite3",
+      "blob": "866495ec42abe47670c44e7f76c898a0cfdae498",
+      "bytes": 19599360,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260304_143613_fc67372a/transcript.db",
+      "blob": "75b22b1e91462e4b11d0b3d7c3b226d3b6aa54dd",
+      "bytes": 33705984,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260307_211457_91841f90/chroma.sqlite3",
+      "blob": "e9052c5d693e384d50cff133e98565dceab08875",
+      "bytes": 19599360,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260307_211457_91841f90/transcript.db",
+      "blob": "853a40115b49a754af64f013604855ec5e176b93",
+      "bytes": 34803712,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260308_103135_82cb1b1a/chroma.sqlite3",
+      "blob": "972ae22dc6382c4468df62e83c95520a91bb206f",
+      "bytes": 19599360,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260308_103135_82cb1b1a/transcript.db",
+      "blob": "0fa242c49c0f369fe0b21e805a3f13659bd7f7fe",
+      "bytes": 34979840,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260308_145033_9fb0e698/chroma.sqlite3",
+      "blob": "500c2ad0661e1aa9db358096b26f04724907e543",
+      "bytes": 19599360,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260308_145033_9fb0e698/transcript.db",
+      "blob": "9f1d6a3ae84abf2e1d0290a171998957fff253f3",
+      "bytes": 35057664,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260318_103148_6c383230/chroma.sqlite3",
+      "blob": "3acf28ac9812643f46eb1a4993ae9abab9dba38b",
+      "bytes": 20668416,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260318_103148_6c383230/transcript.db",
+      "blob": "8db7f8c909e13157941249b0815d8ee636371b3c",
+      "bytes": 36294656,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260326_134213_176f7f8d/chroma.sqlite3",
+      "blob": "4253c7755f350c3e3b58b51a961d76ccbe9b76f9",
+      "bytes": 20971520,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260326_134213_176f7f8d/transcript.db",
+      "blob": "db26c69498a913ec218ae31ce629234d158c0f6a",
+      "bytes": 39731200,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260326_135041_a62a2397/chroma.sqlite3",
+      "blob": "fe12610acb70f0878ecb58299cea2871a1cd60fb",
+      "bytes": 22114304,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260326_135041_a62a2397/transcript.db",
+      "blob": "3d27c9ddda960ae212fd390cb6063ac79e7195f9",
+      "bytes": 39825408,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260326_135639_85416eda/chroma.sqlite3",
+      "blob": "f6d5592ecd4fa4e338a7c6a243dc0d0b04329706",
+      "bytes": 22114304,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260326_135639_85416eda/transcript.db",
+      "blob": "7d1c49147fc10bda2bd91b3fe04e7361c15a96d6",
+      "bytes": 39829504,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260326_202740_68d27636/chroma.sqlite3",
+      "blob": "e8b62034c954834f5344bc3b7b02581fc00e0791",
+      "bytes": 22114304,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260326_202740_68d27636/transcript.db",
+      "blob": "b2374d6fc513005dbe39c2a4fb2618a4c49e9fd0",
+      "bytes": 42098688,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260327_141344_32b9ab00/chroma.sqlite3",
+      "blob": "7c6a1b4135badcab31e97aef67fef716498041c3",
+      "bytes": 22114304,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260327_141344_32b9ab00/transcript.db",
+      "blob": "9d21e34c6548a7859256d8eabf5f418f9d41137a",
+      "bytes": 42762240,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260327_150146_12a0ed0a/chroma.sqlite3",
+      "blob": "552ace558654dfb3907295d390b400f0237c6d54",
+      "bytes": 44662784,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260327_150146_12a0ed0a/transcript.db",
+      "blob": "6257f463d2e1db7e8e2639ede90bd674782c9732",
+      "bytes": 49143808,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260327_172142_298488c4/chroma.sqlite3",
+      "blob": "ffe9a57d4efa763c5970a5b74acfe330656db95e",
+      "bytes": 46878720,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260327_172142_298488c4/transcript.db",
+      "blob": "aaadfadb736b49e431db68c51cf022f4a9d58595",
+      "bytes": 49971200,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_162913_d38e1ee1/chroma.sqlite3",
+      "blob": "f7a34d654ef9cf2754366a04637383558362f5a1",
+      "bytes": 47947776,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_162913_d38e1ee1/transcript.db",
+      "blob": "c734efc73afb55a3f6fe2ceb2310c49e652177b8",
+      "bytes": 51630080,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_163459_d849d704/chroma.sqlite3",
+      "blob": "43ecf07302435f8ef5473c765ab45ce6d13aaf2c",
+      "bytes": 47947776,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_163459_d849d704/transcript.db",
+      "blob": "de6cd6c1e89e1193c70b8e74d428054f05b095a3",
+      "bytes": 51769344,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_165155_045d2404/chroma.sqlite3",
+      "blob": "7632c54616e5032cd4bf1518840b596a2d9ec4f2",
+      "bytes": 47947776,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_165155_045d2404/transcript.db",
+      "blob": "87d61999dce9552e6cc467421ecf5130e0c29f0d",
+      "bytes": 51937280,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_165628_e050f97d/chroma.sqlite3",
+      "blob": "7bdd3b13445f0753f879015dc6386ca80065a35a",
+      "bytes": 47947776,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_165628_e050f97d/transcript.db",
+      "blob": "93ae5308905637aaf8587bb3049213046340d060",
+      "bytes": 51941376,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_171803_71757ddd/chroma.sqlite3",
+      "blob": "c43a36aaca2efdc765a10d04317d5588abfec9c6",
+      "bytes": 47947776,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_171803_71757ddd/transcript.db",
+      "blob": "1fc801a3767b2576866668c466b0a46ca14c0f9d",
+      "bytes": 52346880,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_172653_f505cd34/chroma.sqlite3",
+      "blob": "fdd3b0d15052ffb0caad26903d3c1b2e0b5e22bd",
+      "bytes": 47947776,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_172653_f505cd34/transcript.db",
+      "blob": "495dca0a0425788e0c88105e394184ae6d09098e",
+      "bytes": 52633600,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_174812_7481055d/chroma.sqlite3",
+      "blob": "49a494e022303569020b73987033b1a9a19200c2",
+      "bytes": 47947776,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_174812_7481055d/transcript.db",
+      "blob": "cfd5bc36c6d0538fe3223bbc790cca2f327cfd76",
+      "bytes": 52748288,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_175740_534eeb9a/chroma.sqlite3",
+      "blob": "6117bcfdeadf966256b6b97ecf00de2df442a793",
+      "bytes": 47947776,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/backups/20260328_175740_534eeb9a/transcript.db",
+      "blob": "35f1ccb2e1ffcc1187403853eaf8096da6c035c5",
+      "bytes": 52842496,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/chroma.sqlite3",
+      "blob": "8cc94d983a701f9721c7cad9465cf71f00b27573",
+      "bytes": 47947776,
+      "proposed_action": "untrack while retaining local data"
+    },
+    {
+      "path": "tests/integration/memory/vector_bak/transcript.db",
+      "blob": "cedd74cb5ede6f1be5e8f77bbbc47827996a8cae",
+      "bytes": 52842496,
+      "proposed_action": "untrack while retaining local data"
+    }
+  ],
+  "existing_product_paths_unchanged": 4,
+  "total_product_paths_if_approved": 58,
+  "provider_key_values": "never included",
+  "database_handling": "Remove52 known credential-bearing database/backup paths only from Git tracking; preserve working local copies. No other cache/store cleanup. Add ignore rules to prevent re-add.",
+  "archive_handling": "Replace only exposed literals in affected archive members; preserve all other contents and original sealed report bytes. Record original/replacement archive and member hashes plus explicit security-redaction supersession, never present replacement as original byte-exact evidence. No history rewrite.",
+  "tests": "Existing compatibility suite and changed-file/static checks plus finance integration collection/default disabled behavior, exact byte scan of all candidate blobs including binaries/tar/gzip. No live issuer calls. Whole Chat baseline/process/PTY discrepancy still under diagnosis; no waiver inferred.",
+  "external_key_rotation": "Await provider account access or maintainer confirmation; cannot infer from file deletion"
+}

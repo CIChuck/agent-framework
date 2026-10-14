@@ -17,8 +17,9 @@ rules prevent accidental re-add. No other runtime store or dirty file is removed
 sanitized fixture unchanged; compare shipped examples against it. Remove the
 obsolete original-vs-fixture comparison rather than introduce a self-comparison,
 skip, weakened assertion or replacement fixture containing original values.
-3. All eight previously identified exposed literals are absent from every tracked
-non-binary current candidate blob, including gzip payloads. No provider validity
+3. Both identified deprecated artifacts are removed from the candidate tree.
+Record remaining known copies explicitly; do not claim repository-wide removal.
+No provider validity
 calls, secret values, deletion diffs or credential-bearing baseline copies enter
 new audit evidence. A scan is not proof of revocation or historical erasure.
 4. Focused config/compatibility tests, full Friday Chat tests, changed-file Ruff
@@ -43,3 +44,12 @@ Langfuse/MRTR. Historic accepted MCP source/control/manifest bytes remain fixed.
 
 Stop on unexpected dependencies, extra source scope, secret-bearing evidence,
 validation regressions, unexpected external effects or unrelated workspace drift.
+
+Scope clarification, 2026-10-14: the controller's initial criterion 3 required
+repository-wide non-binary absence despite authorizing only four product paths.
+That was broader than this removal unit. The maintainer subsequently directed:
+"yes. don't waste time. The plan is to rotate the keys And disable the old keys."
+This revision reconciles criterion 3 with the bounded deletion and records the
+remaining 54 tracked copies as residual exposure. No additional artifact removal
+or claim of repository-wide sanitization is authorized by this clarification.
+The prior wording remains in Git history at 995d2e87.

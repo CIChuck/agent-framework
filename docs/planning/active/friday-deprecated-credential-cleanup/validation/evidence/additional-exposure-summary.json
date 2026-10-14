@@ -1,0 +1,14 @@
+{
+  "remaining_unique_paths": 54,
+  "categories": {
+    "validation archive": 1,
+    "active integration test": 1,
+    "legacy SQLite/backups": 52
+  },
+  "non_store_paths": [
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-013-evidence.tar.gz",
+    "packages/friday-finance/tests/test_integration_massive.py"
+  ],
+  "known_values_remaining": 8,
+  "decode_errors": []
+}

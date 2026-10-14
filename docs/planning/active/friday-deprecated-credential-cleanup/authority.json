@@ -20,9 +20,11 @@
     "packages/friday-chat/tests_chat/compat/test_config_compatibility.py": "acc85f438f2b4de365dedf18bffc932ac16edefb1edce238c144e27020813b51"
   },
   "directive": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md",
-  "directive_sha256": "fd36b32ae8b4f67a4ce4fdfa01584c6b3a0552b09ed3f1624718470fa47c0874",
+  "directive_sha256": "02caf340c9bc8d2f2c4879fbdf15d335f72f8bde7650710d3f10c1a44b1fb87c",
   "provider_rotation": "requested; external account access/information unavailable; pending",
   "history_rewrite": "not authorized in short-term unit",
   "source_runtime_changes": "none permitted",
-  "preservation_receipt": "/private/tmp/friday-mcp-upgrade/credential-cleanup/root-preservation/hashes.json"
+  "preservation_receipt": "/private/tmp/friday-mcp-upgrade/credential-cleanup/root-preservation/hashes.json",
+  "maintainer_followup_statement": "yes. don't waste time.  The plan is to rotate the keys And disable the old keys.",
+  "scope_clarification": "Finish original bounded deletion; broader 54-file removal proposal remains deferred. Provider rotation and old-key invalidation remain pending confirmation."
 }

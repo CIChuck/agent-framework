@@ -1,16 +1,16 @@
 # Deprecated credential-bearing artifact removal
 
 Status: started. Implementation authority: granted for the bounded repository-removal unit.
-execution_phase: implementation; validation_state: not_ready.
+execution_phase: validation; validation_state: pending.
 
 Chuck Russell requested deletion of the deprecated credential-bearing files and
 revocation/replacement of previously used keys. The exact statement and four-path
 construction scope are in [authority.json](authority.json) and
 [CD-SEC-001](directives/CD-SEC-001-remove-deprecated-credential-artifacts.md).
 
-The active compatibility suite still loads the retired config twice. Preserve
-its existing sanitized fixture as the option-shape baseline; remove the comparison
-that only exists to compare that fixture to the retiring original. The current
+The active compatibility suite now uses its existing sanitized fixture as the
+option-shape baseline. The comparison between that fixture and the retiring
+original was removed. The current
 Chat application and shipped examples remain unchanged. The deprecated standalone
 script's default config is intentionally retired under the maintainer's direction.
 
