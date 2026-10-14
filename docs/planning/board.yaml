@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Maintainer acceptance of independently VERIFIED MCP-UP-05/CD-MCP-UP-005; then prepare MCP-UP-06 aggregate compatibility and migration closeout
+  next_gate: Prepare exact CD-MCP-UP-006 migration and full-initiative aggregate verification proposal; later construction authority separate
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -483,6 +483,7 @@ tasks:
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-01/report.md: independent full UP-05 CHANGES_REQUESTED'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-02/report.md: independent full UP-05 CHANGES_REQUESTED'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md: independent full UP-05 VERIFIED'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json: maintainer accepted independently VERIFIED UP-05; all five findings resolved'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
 - id: friday-langfuse-integration
@@ -1726,3 +1727,10 @@ events:
   action: recorded independent full MCP-UP-05 VERIFIED
   note: Original fresh report/evidence retained; no acceptance/publication inferred; whole MCP started/local
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T00:33:18+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted MCP-UP-05 modern server unit
+  note: 'Exact statement: accepted, continue. UP-06 packet preparation next; exact construction approval separate; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json
