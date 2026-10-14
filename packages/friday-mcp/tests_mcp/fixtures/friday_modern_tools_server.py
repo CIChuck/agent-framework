@@ -22,6 +22,10 @@ def record(path, item):
 
 
 def populate(server, counter):
+    text_schema = {"type": "string"}
+    if isinstance(server, StreamableHTTPMCPServer):
+        text_schema["x-mcp-header"] = "Text"
+
     async def echo(arguments):
         record(counter, {"event": "handler_start"})
         try:
@@ -40,7 +44,7 @@ def populate(server, counter):
             "inputSchema": {
                 "type": "object",
                 "properties": {
-                    "text": {"type": "string", "x-mcp-header": "Text"},
+                    "text": text_schema,
                     "hold": {"type": "boolean"},
                     "fail": {"type": "boolean"},
                 },

@@ -89,9 +89,9 @@ tools:
 With this category-based example, a failed optional peer leaves other
 providers available; when it connects, **all** valid discovered MCP tools
 may be registered, so use it only when that broader admission is intended.
-A required server cannot also be disabled. Discovery is
-startup-only; changing a peer's catalog requires a new runtime start. There
-is no live refresh or Chat MCP health command in this pass.
+A required server cannot also be disabled. Integrated discovery happens at
+startup/reconnect; use public stop/start to rediscover a changed catalog.
+Programmatic manual refresh is described below. No Chat MCP health command is added.
 
 ### Secrets and paths
 
@@ -315,3 +315,7 @@ keep their virtual APIs. `supports_catalog_refresh` defaults to false for these
 subclasses; they may explicitly opt in when their optional refresh/generation
 methods implement this contract. Other custom clients can implement the declared
 MCPRefreshClient protocol directly.
+
+For dated transport choices, exact configuration examples and rollback, see
+[MCP migration](19-mcp-migration.md). To expose explicitly owned tools through
+Friday, use the separate [modern server APIs](18-mcp-server.md).

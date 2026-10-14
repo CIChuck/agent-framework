@@ -5,7 +5,11 @@ through `friday_mcp.server`. Choose newline stdio for a local subprocess or a
 single Streamable HTTP POST endpoint with JSON or request-scoped SSE responses.
 These programmatic APIs are separate from the legacy `2024-11-05` server APIs.
 Existing server YAML defaults and the `stdio`/`sse` config enum remain unchanged.
-For configuring Friday as a client, see [MCP client setup](17-mcp-client.md).
+For configuring Friday as a client, see [MCP client setup](17-mcp-client.md)
+and [MCP migration](19-mcp-migration.md). These APIs implement the pinned
+2026-07-28 tools server profile; 2025 HTTP compatibility belongs to the client.
+Private fixture interoperability is separate from public deployment or whole
+initiative acceptance.
 
 ## Register an async tool and serve stdio
 

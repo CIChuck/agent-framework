@@ -93,7 +93,7 @@ lives under `packages/`.
 | `friday-cli` | Terminal display/input/session components and server hooks | The declared `friday` console entry point is still under development in this checkout. |
 | `friday-tools` | General and integration tool catalog | Includes filesystem, shell, web, git, data, document, code, memory, finance, and integration tools. |
 | `friday-sandbox` | Workspace and subprocess/Docker sandbox support | Used by execution-related tools and runtime isolation work. |
-| `friday-mcp` | Model Context Protocol client/server integration | Supports stdio/SSE-oriented MCP components. |
+| `friday-mcp` | Model Context Protocol client/server integration | Supports dated stdio and Streamable HTTP tools profiles; retained legacy SSE. |
 | `friday-speech` | Speech service interfaces, selection, chunking, playback, adapters | Optional Picovoice and ElevenLabs extras are defined. |
 | `friday-finance` | Financial data provider integration | Includes a `friday-finance-demo` script. |
 | `friday-moltbook` | Moltbook API client and Pydantic models | Used by Moltbook integration tools. |
@@ -387,3 +387,5 @@ Pull requests should include:
 ## License
 
 The root project metadata declares the project as MIT licensed.
+
+See [MCP client setup](docs/guides/17-mcp-client.md), [modern server APIs](docs/guides/18-mcp-server.md) and [MCP migration](docs/guides/19-mcp-migration.md) for explicit protocol choices and YAML configuration.

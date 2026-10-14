@@ -95,9 +95,10 @@ ambiguous failure. Modern stdio rejects server requests without sending a
 forbidden client response; legacy unknown requests receive MethodNotFound.
 
 Streamable HTTP and remote YAML admission are available through the Runtime
-provider described below. A modern Friday server remains a separate construction
-unit. Existing programmatic HTTP+SSE remains legacy. Client integration does not
-claim whole-initiative or optional-feature conformance.
+provider described below. The modern Friday
+server APIs are available separately from client YAML admission. The retained
+HTTP+SSE client remains a legacy transport. Dated tools-profile implementation
+does not claim every optional role or whole-initiative acceptance.
 
 ### Resource and result behavior
 
@@ -345,3 +346,6 @@ provides registration and lifecycle examples, limits, schema restrictions and
 optional TelemetryInterface injection. Discovery/list responses are immediately
 stale (`ttlMs: 0`, `cacheScope: "private"`); there is no cache engine or OAuth
 login. These programmatic APIs preserve existing2024 server names and YAML defaults.
+
+See the [migration guide](../../docs/guides/19-mcp-migration.md) for the role/revision
+matrix, complete MCP YAML stanzas, dependency choices and controlled rollback.
