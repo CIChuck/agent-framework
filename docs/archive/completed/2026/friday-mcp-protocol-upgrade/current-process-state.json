@@ -3,9 +3,9 @@
   "unit": "MCP-UP-06",
   "execution_phase": "closeout",
   "validation_state": "verified",
-  "unit_completion": "proposed; whole initiative maintainer acceptance pending",
-  "next_gate": "Maintainer acceptance of the whole MCP upgrade; then delivery planning and separately queued Langfuse",
-  "work_state": "completed",
+  "unit_completion": "accepted by Chuck Russell; whole initiative accepted",
+  "next_gate": "Plan PR delivery of accepted MCP upgrade; Langfuse remains separately queued",
+  "work_state": "accepted",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-006",
   "directive_status": "approved",
@@ -50,6 +50,14 @@
       "validation_state": "verified",
       "reviewed_candidate": "012430089bcd1b60b12c071b8c8220f20d2bac79",
       "receipt": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json"
+    },
+    {
+      "unit": "MCP-UP-06",
+      "directive": "CD-MCP-UP-006",
+      "status": "accepted",
+      "validation_state": "verified",
+      "reviewed_candidate": "c9a8c210eedd85ed9f9418b13c53ac079ebec000",
+      "receipt": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/acceptance.json"
     }
   ],
   "prior_unit_reviewed_candidate": "012430089bcd1b60b12c071b8c8220f20d2bac79",
@@ -57,7 +65,7 @@
   "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-authority-manifest.json",
-  "note": "Whole-feature fresh independent FULL review VERIFIED; controller completion proposal only; acceptance and publication remain separate",
+  "note": "Whole initiative maintainer acceptance recorded. Implementation authority remains closed; delivery local; original active authority backing stays immutable.",
   "open_findings": [],
   "remediation_directive": null,
   "remediation_status": "not_applicable",
@@ -79,5 +87,8 @@
   "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-02/report.md",
   "independent_report_sha256": "85419bf1971132a18d896f057ae53f350b2efc56ce9e8cb6549309447d1abe01",
   "independent_manifest_sha256": "84385ea8214479993ad4f42e5d16683741ac7db6d363fe890d2cb25d4476a894",
-  "current_packet": "docs/planning/review/friday-mcp-protocol-upgrade/"
+  "current_packet": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/",
+  "accepted_by": "Chuck Russell",
+  "accepted_at": "2026-10-14",
+  "acceptance_receipt": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/acceptance.json"
 }
