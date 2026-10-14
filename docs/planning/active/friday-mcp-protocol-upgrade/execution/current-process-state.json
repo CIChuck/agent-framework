@@ -1,10 +1,10 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-06",
-  "execution_phase": "validation",
-  "validation_state": "in_review",
-  "unit_completion": "not proposed; fresh whole-feature aggregate review pending",
-  "next_gate": "Fresh-context read-only whole-feature aggregate validation of all12 aggregate/all8 initiative criteria and all24 checks",
+  "execution_phase": "planning",
+  "validation_state": "blocked",
+  "unit_completion": "not proposed; current independent review BLOCKED at closure authority conflict",
+  "next_gate": "Exact maintainer AMEND-MCP-UP-006-002 four-file historical-authority-backing approval; then bounded governance implementation/all27 checks/fresh whole-feature independent review",
   "work_state": "started",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-006",
@@ -57,8 +57,21 @@
   "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-authority-manifest.json",
-  "note": "Approved fixture gap resolved by current49 tests and full24 profile; original diagnosis retained; independent whole-feature assessment pending",
-  "open_findings": [],
+  "note": "All24 builder checks satisfy contracts and49 new tests pass; independent review deliberately stops at mandatory closure conflict, no full conformance verdict",
+  "open_findings": [
+    {
+      "id": "BUILD-UP06-002",
+      "classification": "controlling closure representation conflict independently BLOCKED; no protocol runtime defect",
+      "requirement": "Canonical completed review index and original frozen active authority paths both retained",
+      "source": "scripts/friday-dev-board.py::_current_packet_paths/validate_board",
+      "observed": "Active canonical pointer violates completed lane; review canonical pointer leaves frozen active README packet absent from board",
+      "mitigation": "Exact proposed four-file optional typed historical authority backing recognition; preserve canonical/orphan/hash integrity and all approval/acceptance boundaries",
+      "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md",
+      "proposed_amendment": "docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-002-historical-authority-backing.md",
+      "formal_unsuccessful_remediation_cycles": 0,
+      "construction_authority_for_added_paths": "not granted"
+    }
+  ],
   "remediation_directive": null,
   "remediation_status": "not_applicable",
   "remediation_implementation_authority": "closed",
@@ -73,5 +86,10 @@
     "id": "BUILD-UP06-001",
     "status": "resolved_by_approved_fixture_change_and_current_tests",
     "independent_assessment": "pending"
-  }
+  },
+  "reviewed_candidate": "92c6f6742df9be84b7046a89a830a6dcc3f67dc8",
+  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md",
+  "independent_report_sha256": "d945e78e7029777d07e0b7254163f9f9bb3ab03116d5556bf13123c274673179",
+  "construction_stop": "Extra governance checker/schema/test/policy paths outside current eight-path authority; exact AMEND002 approval required",
+  "pending_amendment": "docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-002-historical-authority-backing.md"
 }

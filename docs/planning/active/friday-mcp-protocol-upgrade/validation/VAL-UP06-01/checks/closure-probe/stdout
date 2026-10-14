@@ -1,0 +1,17 @@
+{
+  "probe": "in-memory only, original checker logic; no candidate writes or board transition",
+  "current_board_errors": [],
+  "active_frozen_packet_in_actual_inventory": true,
+  "completed_retaining_active_packet_errors": [
+    "tasks[24].packet must be under docs/planning/review/ for state=completed, condition=normal"
+  ],
+  "completed_with_review_index_errors": [
+    "tasks[24].packet does not exist: docs/planning/review/friday-mcp-protocol-upgrade/",
+    "current planning packet is absent from board: docs/planning/active/friday-mcp-protocol-upgrade/"
+  ],
+  "hypothetical_inventory_minus_board": [
+    "docs/planning/active/friday-mcp-protocol-upgrade/"
+  ],
+  "expected_completed_prefix": "docs/planning/review/",
+  "review_packet_absence_is_simulation_artifact": "packet does not exist error is expected because probe does not write hypothetical review README; orphan active error persists even if review is created"
+}

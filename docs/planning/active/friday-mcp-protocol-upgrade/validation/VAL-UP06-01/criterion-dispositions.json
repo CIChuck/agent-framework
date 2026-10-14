@@ -1,0 +1,310 @@
+[
+  {
+    "criterion": "AGG-AC-01",
+    "requirement": "All five accepted units and original reports/controls remain immutable. Current full branch scope, all eight initiative criteria and every applicable pinned2026 client/server and explicit2025 client clause/field/variant have evidence. Historical wrong-schema/excluded-role labels are not current proof.",
+    "disposition": "NOT_DETERMINED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "AGG-AC-02",
+    "requirement": "Actual Friday client to actual Friday server through named subprocess stdio and private verified TLS HTTP JSON and SSE. Assert2026 discovery/metadata, complete catalog, Unicode custom header, captured output schema and structured result, exactly-once handler counts and terminal cleanup. Preserve independent official SDK counterparts.",
+    "disposition": "NOT_DETERMINED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "AGG-AC-03",
+    "requirement": "Actual YAML loaders to Runtime provider and real Chat MCP registry, using explicitly selected modern stdio and HTTPS JSON/SSE Friday peers. Assert canonical names, include/category filters, per-turn budgets, required/optional admission, ordinary call result/provenance and terminal cleanup without invoking a model/provider.",
+    "disposition": "NOT_DETERMINED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "AGG-AC-04",
+    "requirement": "Test exact published disabled/local legacy/local modern-auto/HTTPS2026/HTTPS2025 YAML excerpts through real Runtime and Chat loaders. Replace only explicitly listed synthetic fixture placeholders; assert disabled/invalid/mixed-field/default/no-I/O behavior, secret-reference privacy and no schema/default change. Every executable fence is compiled/loaded or linked to actual fixture execution.",
+    "disposition": "NOT_DETERMINED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "AGG-AC-05",
+    "requirement": "Accurate role/revision/transport and migration matrix:2024 stdio remains default; modern/auto explicit; HTTPS2026 and explicit2025 client compatibility;2026-only new server; retained separate legacy programmatic SSE. No new integrated SSE/OAuth/agent/interactive capability, auto-HTTP fallback, sessions in2026 or inferred modern YAML server enum.",
+    "disposition": "NOT_DETERMINED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "AGG-AC-06",
+    "requirement": "Combined-client/server call, concurrent unrelated request, cancellation/timeout/disconnect/shutdown with real owned fixtures has exactly-once handler/terminal counters and no replay/orphan. All five server mitigation regressions and accepted client resistant-owner/deadline/session-recovery tests remain required; limits1..4 and fixed safe errors preserved.",
+    "disposition": "NOT_DETERMINED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "AGG-AC-07",
+    "requirement": "Provider-neutral TelemetryInterface injection/borrowed lifetimes, one observation per owned layer, no raw argument/result/schema/token/URL/trace propagation or global provider/exporter change. Existing server-spy tests remain server observation proof; new cross tests may use client/Runtime/Chat spies without modifying the frozen fixture.",
+    "disposition": "NOT_DETERMINED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "AGG-AC-08",
+    "requirement": "Complete bounded catalogs and result fidelity survive real client/server and registry adaptation: structured JSON/Unicode and safe tool error, captured schemas/generations, accepted sanitization/provenance/quarantine/memory opt-in and budget/filter behavior. No peer instructions become authority; no implicit content/URL fetch or storage migration.",
+    "disposition": "NOT_DETERMINED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "AGG-AC-09",
+    "requirement": "README/index/client/server/migration guide agree with current public APIs/YAML and pinned profiles. Correct earlier legacy-only HTTP/interim unit text, link actual modern server and migration guidance, explain controlled upgrade/rollback and dependency choice, distinguish fixture evidence from deployment; do not rewrite immutable planning/control history.",
+    "disposition": "NOT_DETERMINED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "AGG-AC-10",
+    "requirement": "Exactly24 declared commands plus full scope/authority/library inspections. Narrow/changed Ruff and MCP typing clean; root/raw inherited327 Ruff and4 Mypy diagnostics retain exact objects/columns; full skip/warning sections equal fresh accepted UP06 baseline. Current78 accepted products (75 frozen during this unit), all19 metadata and22009 reference/21992 unique path/192dist actual libraries protected.",
+    "disposition": "NOT_DETERMINED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "AGG-AC-11",
+    "requirement": "Stable candidate and fresh-context read-only whole-feature aggregate review from accepted telemetry merge1302b5f, covering all five unit interactions, seven new paths, all eight initiative and12 aggregate criteria, current controls and primary captures; outcome must be VERIFIED before completion proposal. Unit acceptance is not aggregate evidence.",
+    "disposition": "BLOCKED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "AGG-AC-12",
+    "requirement": "Explicit safe original evidence/manifest, full final actual requirement/field/test/command ledger, scopes/debt/effects/residual risks and accurate migration closeout. After VERIFIED controller may propose initiative completed/local with a review-packet index and preserved frozen historical backing. Whole acceptance/archive/push/merge/release/Langfuse remain separate maintainer gates.",
+    "disposition": "BLOCKED",
+    "reason": "Controlling frozen closeout authority conflicts with canonical lifecycle/checker; full independent aggregate gate stopped. Observed subset checks are not complete criterion conformance.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
+    "fresh_evidence": [
+      "checks/board/receipt.json",
+      "checks/next/receipt.json",
+      "checks/show/receipt.json",
+      "checks/aggregate-examples/receipt.json",
+      "checks/documented-configs/receipt.json",
+      "checks/server-focused/receipt.json",
+      "checks/server-http/receipt.json",
+      "checks/original-clients/receipt.json",
+      "checks/mcp/receipt.json"
+    ]
+  },
+  {
+    "criterion": "UP-AC-01",
+    "aggregate_dependencies": [
+      "AGG-AC-01",
+      "AGG-AC-02",
+      "AGG-AC-05"
+    ],
+    "disposition": "NOT_DETERMINED",
+    "reason": "Full initiative conformance cannot be inferred from accepted units or9 passed subset commands; whole aggregate authority gate remains blocked.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md:Requirements and acceptance"
+  },
+  {
+    "criterion": "UP-AC-02",
+    "aggregate_dependencies": [
+      "AGG-AC-02",
+      "AGG-AC-03",
+      "AGG-AC-05",
+      "AGG-AC-06"
+    ],
+    "disposition": "NOT_DETERMINED",
+    "reason": "Full initiative conformance cannot be inferred from accepted units or9 passed subset commands; whole aggregate authority gate remains blocked.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md:Requirements and acceptance"
+  },
+  {
+    "criterion": "UP-AC-03",
+    "aggregate_dependencies": [
+      "AGG-AC-03",
+      "AGG-AC-04",
+      "AGG-AC-05"
+    ],
+    "disposition": "NOT_DETERMINED",
+    "reason": "Full initiative conformance cannot be inferred from accepted units or9 passed subset commands; whole aggregate authority gate remains blocked.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md:Requirements and acceptance"
+  },
+  {
+    "criterion": "UP-AC-04",
+    "aggregate_dependencies": [
+      "AGG-AC-01",
+      "AGG-AC-02",
+      "AGG-AC-08"
+    ],
+    "disposition": "NOT_DETERMINED",
+    "reason": "Full initiative conformance cannot be inferred from accepted units or9 passed subset commands; whole aggregate authority gate remains blocked.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md:Requirements and acceptance"
+  },
+  {
+    "criterion": "UP-AC-05",
+    "aggregate_dependencies": [
+      "AGG-AC-03",
+      "AGG-AC-04",
+      "AGG-AC-08"
+    ],
+    "disposition": "NOT_DETERMINED",
+    "reason": "Full initiative conformance cannot be inferred from accepted units or9 passed subset commands; whole aggregate authority gate remains blocked.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md:Requirements and acceptance"
+  },
+  {
+    "criterion": "UP-AC-06",
+    "aggregate_dependencies": [
+      "AGG-AC-06",
+      "AGG-AC-07",
+      "AGG-AC-10"
+    ],
+    "disposition": "NOT_DETERMINED",
+    "reason": "Full initiative conformance cannot be inferred from accepted units or9 passed subset commands; whole aggregate authority gate remains blocked.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md:Requirements and acceptance"
+  },
+  {
+    "criterion": "UP-AC-07",
+    "aggregate_dependencies": [
+      "AGG-AC-01",
+      "AGG-AC-02",
+      "AGG-AC-05",
+      "AGG-AC-06"
+    ],
+    "disposition": "NOT_DETERMINED",
+    "reason": "Full initiative conformance cannot be inferred from accepted units or9 passed subset commands; whole aggregate authority gate remains blocked.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md:Requirements and acceptance"
+  },
+  {
+    "criterion": "UP-AC-08",
+    "aggregate_dependencies": [
+      "AGG-AC-04",
+      "AGG-AC-09",
+      "AGG-AC-10",
+      "AGG-AC-11",
+      "AGG-AC-12"
+    ],
+    "disposition": "BLOCKED",
+    "reason": "Full initiative conformance cannot be inferred from accepted units or9 passed subset commands; whole aggregate authority gate remains blocked.",
+    "source": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md:Requirements and acceptance"
+  }
+]

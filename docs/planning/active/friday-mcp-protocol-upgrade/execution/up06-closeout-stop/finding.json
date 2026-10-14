@@ -1,0 +1,12 @@
+{
+  "id": "BUILD-UP06-002",
+  "classification": "controlling closure representation conflict independently BLOCKED; no protocol runtime defect",
+  "requirement": "Canonical completed review index and original frozen active authority paths both retained",
+  "source": "scripts/friday-dev-board.py::_current_packet_paths/validate_board",
+  "observed": "Active canonical pointer violates completed lane; review canonical pointer leaves frozen active README packet absent from board",
+  "mitigation": "Exact proposed four-file optional typed historical authority backing recognition; preserve canonical/orphan/hash integrity and all approval/acceptance boundaries",
+  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md",
+  "proposed_amendment": "docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-002-historical-authority-backing.md",
+  "formal_unsuccessful_remediation_cycles": 0,
+  "construction_authority_for_added_paths": "not granted"
+}

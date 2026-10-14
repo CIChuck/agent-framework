@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Fresh-context read-only whole-feature aggregate validation of all12 aggregate/all8 initiative criteria and all24 checks
+  next_gate: Exact maintainer AMEND-MCP-UP-006-002 four-file historical-authority-backing approval; then bounded governance implementation/all27 checks/fresh whole-feature independent review
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -484,6 +484,7 @@ tasks:
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-02/report.md: independent full UP-05 CHANGES_REQUESTED'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md: independent full UP-05 VERIFIED'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json: maintainer accepted independently VERIFIED UP-05; all five findings resolved'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md: BLOCKED closure authority; full aggregate review not completed'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
 - id: friday-langfuse-integration
@@ -1769,3 +1770,10 @@ events:
   action: froze MCP-UP-06 whole-feature aggregate candidate
   note: Eight approved paths; full24 checks and exact baseline comparison; fresh independent review required; started/local
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend1/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T02:39:35+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: recorded independent UP06 authority BLOCKED and proposed AMEND002
+  note: No protocol defect; immutable active backing/canonical review index conflict; four governance paths and3 extra checks proposed, not granted
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md

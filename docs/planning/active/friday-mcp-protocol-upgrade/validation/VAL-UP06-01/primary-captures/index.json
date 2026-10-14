@@ -1,0 +1,99 @@
+{
+  "original_captures": [
+    {
+      "original_path": "primary-captures/01-specification--2026-07-28--index.md",
+      "lossless_gzip": "../artifacts/primary-captures/01-specification--2026-07-28--index.md.gz",
+      "sha256": "f8df03767e5cbdd4921ae569d1d69e8da9e455e1629fadf4d0613cd658dd632f"
+    },
+    {
+      "original_path": "primary-captures/02-specification--2026-07-28--basic--index.md",
+      "lossless_gzip": "../artifacts/primary-captures/02-specification--2026-07-28--basic--index.md.gz",
+      "sha256": "67a62de95bdc816ff96e8d5c69b0fc19237191f42805846e2ec8f8d7063e123e"
+    },
+    {
+      "original_path": "primary-captures/03-specification--2026-07-28--basic--versioning.md",
+      "lossless_gzip": "../artifacts/primary-captures/03-specification--2026-07-28--basic--versioning.md.gz",
+      "sha256": "43b48c19cbc330410beed44da8cf441e100a05652a3654f39eb331bb94f46402"
+    },
+    {
+      "original_path": "primary-captures/04-specification--2026-07-28--server--discover.md",
+      "lossless_gzip": "../artifacts/primary-captures/04-specification--2026-07-28--server--discover.md.gz",
+      "sha256": "331489cd2984399cfe4828357fdd5a23e062ef40f69f4815499b055b51e2b82c"
+    },
+    {
+      "original_path": "primary-captures/05-specification--2026-07-28--basic--transports--stdio.md",
+      "lossless_gzip": "../artifacts/primary-captures/05-specification--2026-07-28--basic--transports--stdio.md.gz",
+      "sha256": "a021917cb77ecd936143aced4fd243e12dd7b5f9a9344546742df97a381277f5"
+    },
+    {
+      "original_path": "primary-captures/06-specification--2026-07-28--basic--transports--streamable-http.md",
+      "lossless_gzip": "../artifacts/primary-captures/06-specification--2026-07-28--basic--transports--streamable-http.md.gz",
+      "sha256": "93daa4bb4e189f0bd51d866950b3b8a3b4e7d0b1e0e6eede5ba1998641d0b955"
+    },
+    {
+      "original_path": "primary-captures/07-specification--2026-07-28--server--tools.md",
+      "lossless_gzip": "../artifacts/primary-captures/07-specification--2026-07-28--server--tools.md.gz",
+      "sha256": "09be49a064940ef288b47f8df09e95e6e3dc087c3f94e466acd60ec66dff25c3"
+    },
+    {
+      "original_path": "primary-captures/08-specification--2026-07-28--basic--patterns--mrtr.md",
+      "lossless_gzip": "../artifacts/primary-captures/08-specification--2026-07-28--basic--patterns--mrtr.md.gz",
+      "sha256": "cfbb4bf592fd0678d9b7e3fdeb5ebc3156c106146e583f55851b3a3c026dc6c9"
+    },
+    {
+      "original_path": "primary-captures/09-specification--2026-07-28--basic--authorization.md",
+      "lossless_gzip": "../artifacts/primary-captures/09-specification--2026-07-28--basic--authorization.md.gz",
+      "sha256": "93fd383906873fedb80119a636b342e25b166ed3f9bee4fa8ae1b3bcb4c2b8f7"
+    },
+    {
+      "original_path": "primary-captures/10-modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "lossless_gzip": "../artifacts/primary-captures/10-modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts.gz",
+      "sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd"
+    },
+    {
+      "original_path": "primary-captures/11-modelcontextprotocol.io--specification--2025-11-25--basic--index.md",
+      "lossless_gzip": "../artifacts/primary-captures/11-modelcontextprotocol.io--specification--2025-11-25--basic--index.md.gz",
+      "sha256": "a504a34039368f1cb715096d664f234ce7e1af4511e6ad3fd41e901d8040b97e"
+    },
+    {
+      "original_path": "primary-captures/12-modelcontextprotocol.io--specification--2025-11-25--basic--lifecycle.md",
+      "lossless_gzip": "../artifacts/primary-captures/12-modelcontextprotocol.io--specification--2025-11-25--basic--lifecycle.md.gz",
+      "sha256": "8c030bf50b74e562d244916b16baab1bfcd86ae03736d4e5b6e24ed58a913af9"
+    },
+    {
+      "original_path": "primary-captures/13-modelcontextprotocol.io--specification--2025-11-25--basic--transports.md",
+      "lossless_gzip": "../artifacts/primary-captures/13-modelcontextprotocol.io--specification--2025-11-25--basic--transports.md.gz",
+      "sha256": "5a86d66ae0ab08f29460229f3b7f56d504388d1f106e21097575621717fc0e7a"
+    },
+    {
+      "original_path": "primary-captures/14-modelcontextprotocol.io--specification--2025-11-25--basic--utilities--cancellation.md",
+      "lossless_gzip": "../artifacts/primary-captures/14-modelcontextprotocol.io--specification--2025-11-25--basic--utilities--cancellation.md.gz",
+      "sha256": "a52208278358eebe5d91061d78122247c8e0b348701547386393aa7fbbabdf2e"
+    },
+    {
+      "original_path": "primary-captures/15-modelcontextprotocol.io--specification--2025-11-25--basic--security_best_practices.md",
+      "lossless_gzip": "../artifacts/primary-captures/15-modelcontextprotocol.io--specification--2025-11-25--basic--security_best_practices.md.gz",
+      "sha256": "27dfdc9c8fb0f29750e52d64797077bc1ba01f25a0d584e3189954f47a2601c7"
+    },
+    {
+      "original_path": "primary-captures/16-modelcontextprotocol.io--specification--2025-11-25--server--tools.md",
+      "lossless_gzip": "../artifacts/primary-captures/16-modelcontextprotocol.io--specification--2025-11-25--server--tools.md.gz",
+      "sha256": "b372c48eea58744850f5684b796438f32643402533b24084d82b49b580721aff"
+    },
+    {
+      "original_path": "primary-captures/17-modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md",
+      "lossless_gzip": "../artifacts/primary-captures/17-modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md.gz",
+      "sha256": "5ad380cae6ee6f29f63210694de90400c2aa84efaddc1c8f3f286ea3a36664a3"
+    },
+    {
+      "original_path": "primary-captures/18-raw.githubusercontent.com--modelcontextprotocol--modelcontextprotocol--271ecc9accafdd9b83a3c869fa67c22953b2af80--schema--2025-11-25--schema.ts",
+      "lossless_gzip": "../artifacts/primary-captures/18-raw.githubusercontent.com--modelcontextprotocol--modelcontextprotocol--271ecc9accafdd9b83a3c869fa67c22953b2af80--schema--2025-11-25--schema.ts.gz",
+      "sha256": "e74b56e73b2e37bdb595f74ba22e428ad7f07aa3519355ba661d681298ed38ac"
+    },
+    {
+      "original_path": "primary-captures/19-specification--2025-11-25--basic--utilities--tasks.md",
+      "lossless_gzip": "../artifacts/primary-captures/19-specification--2025-11-25--basic--utilities--tasks.md.gz",
+      "sha256": "c33da0b5b3912a4826d6e1d8a6a6fdcb3700d9af9f3e66dd4ee14d7440497fb6"
+    }
+  ]
+}
