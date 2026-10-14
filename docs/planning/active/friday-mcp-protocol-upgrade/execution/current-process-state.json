@@ -1,10 +1,10 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-06",
-  "execution_phase": "planning",
-  "validation_state": "blocked",
-  "unit_completion": "not proposed; current independent review BLOCKED at closure authority conflict",
-  "next_gate": "Exact maintainer AMEND-MCP-UP-006-002 four-file historical-authority-backing approval; then bounded governance implementation/all27 checks/fresh whole-feature independent review",
+  "execution_phase": "implementation",
+  "validation_state": "not_ready",
+  "unit_completion": "not proposed; approved four-file governance reconciliation in progress",
+  "next_gate": "Implement approved AMEND002 four-file governance change; verify functional MCP and actual board review/archive transitions/all27 checks/fresh independent full review",
   "work_state": "started",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-006",
@@ -57,7 +57,7 @@
   "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-authority-manifest.json",
-  "note": "All24 builder checks satisfy contracts and49 new tests pass; independent review deliberately stops at mandatory closure conflict, no full conformance verdict",
+  "note": "Original BLOCKED report immutable; exact functional reconciliation authority approved; no whole acceptance/publication",
   "open_findings": [
     {
       "id": "BUILD-UP06-002",
@@ -77,7 +77,7 @@
   "remediation_implementation_authority": "closed",
   "prior_unsuccessful_remediation_cycles": 0,
   "prior_finding_disposition": {},
-  "current_execution_authority": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-001.json",
+  "current_execution_authority": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-002.json",
   "aggregate_product_candidate": "72246581126d4c4d067cce927fee9406413c3ca6",
   "builder_finding_dispositions": {
     "BUILD-UP06-001": "Candidate correction and current proof complete; no formal verdict inferred"
@@ -89,7 +89,5 @@
   },
   "reviewed_candidate": "92c6f6742df9be84b7046a89a830a6dcc3f67dc8",
   "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md",
-  "independent_report_sha256": "d945e78e7029777d07e0b7254163f9f9bb3ab03116d5556bf13123c274673179",
-  "construction_stop": "Extra governance checker/schema/test/policy paths outside current eight-path authority; exact AMEND002 approval required",
-  "pending_amendment": "docs/planning/active/friday-mcp-protocol-upgrade/directives/AMEND-MCP-UP-006-002-historical-authority-backing.md"
+  "independent_report_sha256": "d945e78e7029777d07e0b7254163f9f9bb3ab03116d5556bf13123c274673179"
 }

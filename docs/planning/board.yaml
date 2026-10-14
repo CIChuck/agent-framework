@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Exact maintainer AMEND-MCP-UP-006-002 four-file historical-authority-backing approval; then bounded governance implementation/all27 checks/fresh whole-feature independent review
+  next_gate: Implement approved AMEND002 four-file governance change; verify functional MCP and actual board review/archive transitions/all27 checks/fresh independent full review
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1777,3 +1777,10 @@ events:
   action: recorded independent UP06 authority BLOCKED and proposed AMEND002
   note: No protocol defect; immutable active backing/canonical review index conflict; four governance paths and3 extra checks proposed, not granted
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T03:02:56+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved AMEND-MCP-UP-006-002
+  note: 'Exact statement: approved - make sure this thing is functional; four governance paths/27 checks; whole acceptance separate'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-06-amendment-002.json

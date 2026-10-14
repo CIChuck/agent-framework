@@ -713,3 +713,14 @@ exact14 skips/15 warnings/327 Ruff diagnostic-fix objects/4 Mypy column objects,
 unchanged actual libraries. AMEND002 proposes exactly four governance paths and
 three added checks, totaling12 paths/27 checks, with all runtime/package metadata
 frozen. No source/checker/policy change before exact new approval.
+
+
+## AMEND002 construction approval and functional requirement
+
+Chuck Russell stated “approved - make sure this thing is functional”.
+Separate receipt pins exactly four additional governance paths and all27 checks.
+Original lifecycle policy bytes are archived before prospective supersession;
+MCP82 source hashes/74 accepted products/all19 package metadata stay frozen.
+Real MCP cross-peer/Runtime/Chat examples plus synthetic actual completed and
+accepted transitions must work before fresh whole-feature independent review.
+Original BLOCKED report remains immutable; no whole acceptance/publication.
