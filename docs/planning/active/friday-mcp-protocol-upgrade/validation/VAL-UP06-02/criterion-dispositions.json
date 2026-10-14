@@ -1,0 +1,270 @@
+{
+  "aggregate": [
+    {
+      "id": "AGG-AC-01",
+      "requirement": "All five accepted units and original reports/controls remain immutable. Current full branch scope, all eight initiative criteria and every applicable pinned2026 client/server and explicit2025 client clause/field/variant have evidence. Historical wrong-schema/excluded-role labels are not current proof.",
+      "result": "PASS",
+      "independent_evidence": "Independent current clause/field/interface reconciliation and full19 capture hashes;269 current pins, five accepted report/receipt bytes, current modern155/337 distinct from historical2025 schema. All five unit interactions reviewed in current source and aggregate suites.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    },
+    {
+      "id": "AGG-AC-02",
+      "requirement": "Actual Friday client to actual Friday server through named subprocess stdio and private verified TLS HTTP JSON and SSE. Assert2026 discovery/metadata, complete catalog, Unicode custom header, captured output schema and structured result, exactly-once handler counts and terminal cleanup. Preserve independent official SDK counterparts.",
+      "result": "PASS",
+      "independent_evidence": "Actual Friday StdioMCPClient -> ModernStdioMCPServer modern/auto and StreamableHTTPMCPClient -> StreamableHTTPMCPServer verified TLS JSON/SSE: catalog, metadata, Unicode header sentinel, structured/output-schema fidelity,3 exact handler calls/terminals, no tasks. Official SDK peers repeated in1108 server and1505 client checks.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    },
+    {
+      "id": "AGG-AC-03",
+      "requirement": "Actual YAML loaders to Runtime provider and real Chat MCP registry, using explicitly selected modern stdio and HTTPS JSON/SSE Friday peers. Assert canonical names, include/category filters, per-turn budgets, required/optional admission, ordinary call result/provenance and terminal cleanup without invoking a model/provider.",
+      "result": "PASS",
+      "independent_evidence": "Actual RuntimeConfig and Chat loaders/build_runtime(fake=False)/MCPChatRegistry, modern stdio/JSON/SSE; canonical selection/filter/count/schema budgets, required/optional admission, call/provenance and public stop. Only non-MCP model/storage services inert; no provider invocation.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    },
+    {
+      "id": "AGG-AC-04",
+      "requirement": "Test exact published disabled/local legacy/local modern-auto/HTTPS2026/HTTPS2025 YAML excerpts through real Runtime and Chat loaders. Replace only explicitly listed synthetic fixture placeholders; assert disabled/invalid/mixed-field/default/no-I/O behavior, secret-reference privacy and no schema/default change. Every executable fence is compiled/loaded or linked to actual fixture execution.",
+      "result": "PASS",
+      "independent_evidence": "19 exact published Python/YAML fences independently bound to bytes;33 documented tests load both schemas, compile/public imports/signatures and execute all migration profiles via named retained peers; disabled/invalid/mixed/default/no-I/O and literal secret-reference privacy.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    },
+    {
+      "id": "AGG-AC-05",
+      "requirement": "Accurate role/revision/transport and migration matrix:2024 stdio remains default; modern/auto explicit; HTTPS2026 and explicit2025 client compatibility;2026-only new server; retained separate legacy programmatic SSE. No new integrated SSE/OAuth/agent/interactive capability, auto-HTTP fallback, sessions in2026 or inferred modern YAML server enum.",
+      "result": "PASS",
+      "independent_evidence": "Current guides/public constructors/defaults retain2024 legacy stdio, explicit modern/auto and HTTPS2026/2025 client; new server2026 only; legacySSE separate. No integratedSSE, OAuth, agent/interactive/subscriptions or automaticHTTP fallback/session2026.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    },
+    {
+      "id": "AGG-AC-06",
+      "requirement": "Combined-client/server call, concurrent unrelated request, cancellation/timeout/disconnect/shutdown with real owned fixtures has exactly-once handler/terminal counters and no replay/orphan. All five server mitigation regressions and accepted client resistant-owner/deadline/session-recovery tests remain required; limits1..4 and fixed safe errors preserved.",
+      "result": "PASS",
+      "independent_evidence": "Real held/concurrent calls under cancel/timeout execute twice total, each one terminal. Current absolute deadlines, resistant owner retention and all5 server mitigations rerun through focused/MCP/root; capacities1..4, fixed errors, request/connection generations and no replay.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    },
+    {
+      "id": "AGG-AC-07",
+      "requirement": "Provider-neutral TelemetryInterface injection/borrowed lifetimes, one observation per owned layer, no raw argument/result/schema/token/URL/trace propagation or global provider/exporter change. Existing server-spy tests remain server observation proof; new cross tests may use client/Runtime/Chat spies without modifying the frozen fixture.",
+      "result": "PASS",
+      "independent_evidence": "Current injected TelemetryInterface/MCPTelemetryHelper and spies: one owned call start/terminal, safe fixed labels/hash, no raw arguments/results/schema/token/URL/trace data/global providers. Borrowed recorders survive repeated stop. Server-spy tests remain separate server proof.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    },
+    {
+      "id": "AGG-AC-08",
+      "requirement": "Complete bounded catalogs and result fidelity survive real client/server and registry adaptation: structured JSON/Unicode and safe tool error, captured schemas/generations, accepted sanitization/provenance/quarantine/memory opt-in and budget/filter behavior. No peer instructions become authority; no implicit content/URL fetch or storage migration.",
+      "result": "PASS",
+      "independent_evidence": "Complete bounded snapshots/epoch retirement, issued schema/header capture, structured scalar/array/object/null/mixed preservation and valid tool error distinction;760 dependent-input public cases with no continuation. Real registry sanitization/provenance/quarantine/memory default-off/opt-in, filter/budget and no URL/storage migration.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    },
+    {
+      "id": "AGG-AC-09",
+      "requirement": "README/index/client/server/migration guide agree with current public APIs/YAML and pinned profiles. Correct earlier legacy-only HTTP/interim unit text, link actual modern server and migration guidance, explain controlled upgrade/rollback and dependency choice, distinguish fixture evidence from deployment; do not rewrite immutable planning/control history.",
+      "result": "PASS",
+      "independent_evidence": "Root/index/MCP README/client/server/migration guidance reconciled with public exports and exact YAML; profiles/dependency provisioning/controlled rollback, cooperative handlers and synthetic fixture limits accurate. Historical frozen proposals/reports unchanged.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    },
+    {
+      "id": "AGG-AC-10",
+      "requirement": "Exactly24 declared commands plus full scope/authority/library inspections. Narrow/changed Ruff and MCP typing clean; root/raw inherited327 Ruff and4 Mypy diagnostics retain exact objects/columns; full skip/warning sections equal fresh accepted UP06 baseline. Current78 accepted products (75 frozen during this unit), all19 metadata and22009 reference/21992 unique path/192dist actual libraries protected.",
+      "result": "PASS",
+      "independent_evidence": "All27 exact commands and successful supplements;327 complete Ruff objects and4 column Mypy errors identical; full15 warnings/9 skip groups equal5852 baseline;5901 candidate passes.86 sources/81 controls/19 metadata/74 frozen accepted products and22009 references21992paths192distributions protected before/after.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    },
+    {
+      "id": "AGG-AC-11",
+      "requirement": "Stable candidate and fresh-context read-only whole-feature aggregate review from accepted telemetry merge1302b5f, covering all five unit interactions, seven new paths, all eight initiative and12 aggregate criteria, current controls and primary captures; outcome must be VERIFIED before completion proposal. Unit acceptance is not aggregate evidence.",
+      "result": "PASS",
+      "independent_evidence": "This separate fresh read-only whole-feature review of c9a8c210 from1302b5f covers complete scope, all five units/current interactions and all12+8 criteria. No candidate/board mutation; exact commands/hash/source references preserved.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    },
+    {
+      "id": "AGG-AC-12",
+      "requirement": "Explicit safe original evidence/manifest, full final actual requirement/field/test/command ledger, scopes/debt/effects/residual risks and accurate migration closeout. After VERIFIED controller may propose initiative completed/local with a review-packet index and preserved frozen historical backing. Whole acceptance/archive/push/merge/release/Langfuse remain separate maintainer gates.",
+      "result": "PASS",
+      "independent_evidence": "Safe explicit evidence and independent final ledger; actual26-task79-record private rehearsal proves review/archive canonical closeout, immutable historical backing, manifest integrity and owner/path/orphan checks. Current candidate stays started/local; no actual completion/acceptance/publication recorded.",
+      "source_and_assertion_index": "current-reference-audit.json",
+      "primary_ledgers": [
+        "independent-clause-ledger.json",
+        "independent-field-ledger.json"
+      ],
+      "command_ledger": "command-ledger.json"
+    }
+  ],
+  "initiative": {
+    "UP-AC-01": {
+      "requirement": "Revision-aware metadata, discovery, honest capabilities and safe version errors",
+      "aggregate_criteria": [
+        "AGG-AC-01",
+        "AGG-AC-02",
+        "AGG-AC-05"
+      ],
+      "result": "PASS",
+      "evidence": [
+        "Independent current clause/field/interface reconciliation and full19 capture hashes;269 current pins, five accepted report/receipt bytes, current modern155/337 distinct from historical2025 schema. All five unit interactions reviewed in current source and aggregate suites.",
+        "Actual Friday StdioMCPClient -> ModernStdioMCPServer modern/auto and StreamableHTTPMCPClient -> StreamableHTTPMCPServer verified TLS JSON/SSE: catalog, metadata, Unicode header sentinel, structured/output-schema fidelity,3 exact handler calls/terminals, no tasks. Official SDK peers repeated in1108 server and1505 client checks.",
+        "Current guides/public constructors/defaults retain2024 legacy stdio, explicit modern/auto and HTTPS2026/2025 client; new server2026 only; legacySSE separate. No integratedSSE, OAuth, agent/interactive/subscriptions or automaticHTTP fallback/session2026."
+      ]
+    },
+    "UP-AC-02": {
+      "requirement": "POST-based Streamable HTTP, JSON/SSE framing, metadata headers and isolated cancellation",
+      "aggregate_criteria": [
+        "AGG-AC-02",
+        "AGG-AC-03",
+        "AGG-AC-05",
+        "AGG-AC-06"
+      ],
+      "result": "PASS",
+      "evidence": [
+        "Actual Friday StdioMCPClient -> ModernStdioMCPServer modern/auto and StreamableHTTPMCPClient -> StreamableHTTPMCPServer verified TLS JSON/SSE: catalog, metadata, Unicode header sentinel, structured/output-schema fidelity,3 exact handler calls/terminals, no tasks. Official SDK peers repeated in1108 server and1505 client checks.",
+        "Actual RuntimeConfig and Chat loaders/build_runtime(fake=False)/MCPChatRegistry, modern stdio/JSON/SSE; canonical selection/filter/count/schema budgets, required/optional admission, call/provenance and public stop. Only non-MCP model/storage services inert; no provider invocation.",
+        "Current guides/public constructors/defaults retain2024 legacy stdio, explicit modern/auto and HTTPS2026/2025 client; new server2026 only; legacySSE separate. No integratedSSE, OAuth, agent/interactive/subscriptions or automaticHTTP fallback/session2026.",
+        "Real held/concurrent calls under cancel/timeout execute twice total, each one terminal. Current absolute deadlines, resistant owner retention and all5 server mitigations rerun through focused/MCP/root; capacities1..4, fixed errors, request/connection generations and no replay."
+      ]
+    },
+    "UP-AC-03": {
+      "requirement": "Strict transport-specific YAML, credential references and remote trust policy",
+      "aggregate_criteria": [
+        "AGG-AC-03",
+        "AGG-AC-04",
+        "AGG-AC-05"
+      ],
+      "result": "PASS",
+      "evidence": [
+        "Actual RuntimeConfig and Chat loaders/build_runtime(fake=False)/MCPChatRegistry, modern stdio/JSON/SSE; canonical selection/filter/count/schema budgets, required/optional admission, call/provenance and public stop. Only non-MCP model/storage services inert; no provider invocation.",
+        "19 exact published Python/YAML fences independently bound to bytes;33 documented tests load both schemas, compile/public imports/signatures and execute all migration profiles via named retained peers; disabled/invalid/mixed/default/no-I/O and literal secret-reference privacy.",
+        "Current guides/public constructors/defaults retain2024 legacy stdio, explicit modern/auto and HTTPS2026/2025 client; new server2026 only; legacySSE separate. No integratedSSE, OAuth, agent/interactive/subscriptions or automaticHTTP fallback/session2026."
+      ]
+    },
+    "UP-AC-04": {
+      "requirement": "Complete bounded discovery, result fidelity and explicit interim/unsupported result disposition",
+      "aggregate_criteria": [
+        "AGG-AC-01",
+        "AGG-AC-02",
+        "AGG-AC-08"
+      ],
+      "result": "PASS",
+      "evidence": [
+        "Independent current clause/field/interface reconciliation and full19 capture hashes;269 current pins, five accepted report/receipt bytes, current modern155/337 distinct from historical2025 schema. All five unit interactions reviewed in current source and aggregate suites.",
+        "Actual Friday StdioMCPClient -> ModernStdioMCPServer modern/auto and StreamableHTTPMCPClient -> StreamableHTTPMCPServer verified TLS JSON/SSE: catalog, metadata, Unicode header sentinel, structured/output-schema fidelity,3 exact handler calls/terminals, no tasks. Official SDK peers repeated in1108 server and1505 client checks.",
+        "Complete bounded snapshots/epoch retirement, issued schema/header capture, structured scalar/array/object/null/mixed preservation and valid tool error distinction;760 dependent-input public cases with no continuation. Real registry sanitization/provenance/quarantine/memory default-off/opt-in, filter/budget and no URL/storage migration."
+      ]
+    },
+    "UP-AC-05": {
+      "requirement": "Preserve canonical naming, filters, admission, provenance, sanitization, quarantine and memory opt-in",
+      "aggregate_criteria": [
+        "AGG-AC-03",
+        "AGG-AC-04",
+        "AGG-AC-08"
+      ],
+      "result": "PASS",
+      "evidence": [
+        "Actual RuntimeConfig and Chat loaders/build_runtime(fake=False)/MCPChatRegistry, modern stdio/JSON/SSE; canonical selection/filter/count/schema budgets, required/optional admission, call/provenance and public stop. Only non-MCP model/storage services inert; no provider invocation.",
+        "19 exact published Python/YAML fences independently bound to bytes;33 documented tests load both schemas, compile/public imports/signatures and execute all migration profiles via named retained peers; disabled/invalid/mixed/default/no-I/O and literal secret-reference privacy.",
+        "Complete bounded snapshots/epoch retirement, issued schema/header capture, structured scalar/array/object/null/mixed preservation and valid tool error distinction;760 dependent-input public cases with no continuation. Real registry sanitization/provenance/quarantine/memory default-off/opt-in, filter/budget and no URL/storage migration."
+      ]
+    },
+    "UP-AC-06": {
+      "requirement": "Preserve provider-neutral telemetry and owned lifecycle semantics",
+      "aggregate_criteria": [
+        "AGG-AC-06",
+        "AGG-AC-07",
+        "AGG-AC-10"
+      ],
+      "result": "PASS",
+      "evidence": [
+        "Real held/concurrent calls under cancel/timeout execute twice total, each one terminal. Current absolute deadlines, resistant owner retention and all5 server mitigations rerun through focused/MCP/root; capacities1..4, fixed errors, request/connection generations and no replay.",
+        "Current injected TelemetryInterface/MCPTelemetryHelper and spies: one owned call start/terminal, safe fixed labels/hash, no raw arguments/results/schema/token/URL/trace data/global providers. Borrowed recorders survive repeated stop. Server-spy tests remain separate server proof.",
+        "All27 exact commands and successful supplements;327 complete Ruff objects and4 column Mypy errors identical; full15 warnings/9 skip groups equal5852 baseline;5901 candidate passes.86 sources/81 controls/19 metadata/74 frozen accepted products and22009 references21992paths192distributions protected before/after."
+      ]
+    },
+    "UP-AC-07": {
+      "requirement": "Modern server tools profile with safe HTTP origin/auth/bind rules",
+      "aggregate_criteria": [
+        "AGG-AC-01",
+        "AGG-AC-02",
+        "AGG-AC-05",
+        "AGG-AC-06"
+      ],
+      "result": "PASS",
+      "evidence": [
+        "Independent current clause/field/interface reconciliation and full19 capture hashes;269 current pins, five accepted report/receipt bytes, current modern155/337 distinct from historical2025 schema. All five unit interactions reviewed in current source and aggregate suites.",
+        "Actual Friday StdioMCPClient -> ModernStdioMCPServer modern/auto and StreamableHTTPMCPClient -> StreamableHTTPMCPServer verified TLS JSON/SSE: catalog, metadata, Unicode header sentinel, structured/output-schema fidelity,3 exact handler calls/terminals, no tasks. Official SDK peers repeated in1108 server and1505 client checks.",
+        "Current guides/public constructors/defaults retain2024 legacy stdio, explicit modern/auto and HTTPS2026/2025 client; new server2026 only; legacySSE separate. No integratedSSE, OAuth, agent/interactive/subscriptions or automaticHTTP fallback/session2026.",
+        "Real held/concurrent calls under cancel/timeout execute twice total, each one terminal. Current absolute deadlines, resistant owner retention and all5 server mitigations rerun through focused/MCP/root; capacities1..4, fixed errors, request/connection generations and no replay."
+      ]
+    },
+    "UP-AC-08": {
+      "requirement": "Accurate configuration/migration documentation and aggregate verification",
+      "aggregate_criteria": [
+        "AGG-AC-04",
+        "AGG-AC-09",
+        "AGG-AC-10",
+        "AGG-AC-11",
+        "AGG-AC-12"
+      ],
+      "result": "PASS",
+      "evidence": [
+        "19 exact published Python/YAML fences independently bound to bytes;33 documented tests load both schemas, compile/public imports/signatures and execute all migration profiles via named retained peers; disabled/invalid/mixed/default/no-I/O and literal secret-reference privacy.",
+        "Root/index/MCP README/client/server/migration guidance reconciled with public exports and exact YAML; profiles/dependency provisioning/controlled rollback, cooperative handlers and synthetic fixture limits accurate. Historical frozen proposals/reports unchanged.",
+        "All27 exact commands and successful supplements;327 complete Ruff objects and4 column Mypy errors identical; full15 warnings/9 skip groups equal5852 baseline;5901 candidate passes.86 sources/81 controls/19 metadata/74 frozen accepted products and22009 references21992paths192distributions protected before/after.",
+        "This separate fresh read-only whole-feature review of c9a8c210 from1302b5f covers complete scope, all five units/current interactions and all12+8 criteria. No candidate/board mutation; exact commands/hash/source references preserved.",
+        "Safe explicit evidence and independent final ledger; actual26-task79-record private rehearsal proves review/archive canonical closeout, immutable historical backing, manifest integrity and owner/path/orphan checks. Current candidate stays started/local; no actual completion/acceptance/publication recorded."
+      ]
+    }
+  }
+}

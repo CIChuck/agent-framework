@@ -1,0 +1,1 @@
+artifacts/up06-product-diff.txt.gz

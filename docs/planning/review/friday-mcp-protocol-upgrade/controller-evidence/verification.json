@@ -1,0 +1,21 @@
+{
+  "checks": {
+    "up06-amend2-completion-board": 0,
+    "up06-amend2-completion-corrected-docs": 0,
+    "up06-amend2-completion-docs": 1,
+    "up06-amend2-completion-next": 0,
+    "up06-amend2-completion-render": 0,
+    "up06-amend2-completion-root-ruff": 1,
+    "up06-amend2-completion-show": 0,
+    "up06-amend2-completion-whitespace": 0
+  },
+  "new_source_changes": 0,
+  "source_paths": 86,
+  "original_safe_entries_verified": 655,
+  "root_ruff_complete_objects_identical": 327,
+  "controller_correction": "New canonical README needed literal Status: label for existing documentation checker; failed receipt retained, current metadata fixed; no source/report/control edits",
+  "work_state": "completed",
+  "delivery_state": "local",
+  "whole_acceptance": "pending",
+  "publication": "none"
+}

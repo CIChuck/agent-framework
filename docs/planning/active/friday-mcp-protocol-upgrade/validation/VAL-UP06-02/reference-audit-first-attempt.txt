@@ -1,0 +1,59 @@
+"""Independent byte/AST reconciliation; navigation labels are never verdicts."""
+import ast,hashlib,json,re,gzip,tomllib,subprocess
+from pathlib import Path
+W=Path('/private/tmp/friday-mcp-upgrade/work');R=Path('/private/tmp/friday-mcp-upgrade/independent-review-UP06-002')
+D=json.loads((R/'mcp-current-navigation.json').read_text());captures=json.loads((R/'capture-integrity.json').read_text());byhash={x['sha256']:x for x in captures};texts={h:(R/x['view']).read_text() for h,x in byhash.items()}
+def digest(b):return hashlib.sha256(b).hexdigest()
+references={}
+for rid,row in D['current_reference_index'].items():
+ source=(W/row['path']).read_text();lines=source.splitlines();assert digest(source.encode())==row['sha256'];body='\n'.join(lines[row['line']-1:row['end_line']]);assert digest(body.encode())==row['current_body_sha256']
+ node=next((n for n in ast.walk(ast.parse(source)) if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef,ast.ClassDef)) and n.lineno==row['line'] and n.end_lineno==row['end_line']),None);assert node is not None,rid
+ asserts=[]
+ for assertion in row['assertions']:
+  n=next((n for n in ast.walk(node) if isinstance(n,ast.Assert) and n.lineno==assertion['line']),None);assert n is not None,(rid,assertion);assert ast.get_source_segment(source,n)==assertion['text'];asserts.append(assertion)
+ for deco in row['decorators']:
+  assert any(ast.get_source_segment(source,n)==deco for n in getattr(node,'decorator_list',[])),(rid,deco)
+ dest=R/'reference-views'/(row['path']+'--'+row['symbol'].replace('.','_')+'.txt');dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(body+'\n')
+ references[rid]={'path':row['path'],'symbol':row['symbol'],'line':row['line'],'end_line':row['end_line'],'sha256':row['sha256'],'body_sha256':digest(body.encode()),'assertions':asserts,'decorators':row['decorators'],'view':dest.relative_to(R).as_posix()}
+(R/'current-reference-audit.json').write_text(json.dumps(references,indent=2)+'\n')
+clauses=[]
+for rolekey in ['client_clauses','server_clauses']:
+ for row in D[rolekey]:
+  anchor=row['capture_anchor'];text=texts[anchor['capture_sha256']];part=anchor['complete_paragraph'];assert part in text,(rolekey,row.get('aggregate_id'));assert digest(part.encode())==anchor['paragraph_sha256'];line=text[:text.index(part)].count('\n')+1
+  refs=row.get('current_reference_ids',[]);assert all(x in references for x in refs)
+  clauses.append({'id':row['aggregate_id'],'role':row['role'],'source':anchor['source'],'capture_sha256':anchor['capture_sha256'],'capture_view':byhash[anchor['capture_sha256']]['view'],'actual_line':line,'complete_paragraph':part,'reference_ids':refs})
+fields=[]
+modern=next(x for x in captures if '2026-07-28--schema.ts' in x['view']);moderntext=(R/modern['view']).read_text()
+for row in D['client_fields']:
+ text=texts[row['source_sha256']];field=row['field'];assert field['declaration'] in text.splitlines()[field['line']-1];fields.append({'role':'client '+('2025-11-25' if '2025-11-25' in row['source'] else '2026-07-28'),'interface':row['interface'],'line':field['line'],'declaration':field['declaration'],'source_sha256':row['source_sha256'],'capture_view':byhash[row['source_sha256']]['view'],'reference_ids':row['current_reference_ids']})
+for row in D['server_fields']:
+ assert row['field'] in moderntext.splitlines()[row['schema_line']-1];fields.append({'role':'server 2026-07-28','interface':row['declaration'],'line':row['schema_line'],'declaration':row['field'],'source_sha256':modern['sha256'],'capture_view':modern['view'],'reference_ids':row['current_reference_ids']})
+for f in fields:assert all(x in references for x in f['reference_ids'])
+interfaces=[]
+for x in D['client_interfaces']:
+ assert x['definition'] in texts[x['source_sha256']];interfaces.append({'role':'client','type':x['type'],'line':x['line'],'definition':x['definition'],'source_sha256':x['source_sha256'],'reference_ids':x['current_reference_ids']})
+modernnames=list(re.finditer(r'^export (?:interface|type|const) ([A-Za-z0-9_]+)',moderntext,re.M));names={m[1]:m for m in modernnames}
+for row in D['server_declarations']:
+ assert row['name'] in names;assert moderntext[:names[row['name']].start()].count('\n')+1==row['schema_line'];interfaces.append({'role':'server 2026-07-28','type':row['name'],'line':row['schema_line'],'reference_ids':row['current_reference_ids']})
+# Fresh full-capture inventory, including EOF paragraphs, all recommended terms.
+inventory=[];normative_lines=[]
+for x in captures:
+ t=(R/x['view']).read_text();section='';part=[];start=0
+ def add():
+  p='\n'.join(part)
+  if re.search(r'\b(?:MUST|SHALL|REQUIRED|SHOULD|RECOMMENDED|MAY|OPTIONAL)\b',p):inventory.append({'capture_view':x['view'],'sha256':x['sha256'],'line':start,'section':section,'complete_paragraph':p})
+ for n,line in enumerate(t.splitlines(),1):
+  if line.startswith('#'):section=line
+  if re.search(r'\b(?:MUST|SHALL|REQUIRED)\b',line):normative_lines.append({'capture_view':x['view'],'line':n,'text':line})
+  if line.strip():
+   if not part:start=n
+   part.append(line)
+  elif part:add();part=[]
+ if part:add()
+(R/'independent-complete-normative-inventory.json').write_text(json.dumps({'paragraphs':inventory,'mandatory_lines':normative_lines},indent=2)+'\n')
+(R/'reconciled-clause-inputs.json').write_text(json.dumps(clauses,indent=2)+'\n');(R/'reconciled-field-inputs.json').write_text(json.dumps(fields,indent=2)+'\n');(R/'reconciled-interface-inputs.json').write_text(json.dumps(interfaces,indent=2)+'\n')
+# Complete permitted lock identity against the approved A01 proposal; only UP02 direct httpcore edge.
+p=W/'docs/planning/active/friday-mcp-protocol-upgrade';proposal=gzip.decompress((p/'execution/dependency-conflict/proposed-uv.lock.gz').read_bytes());prior=tomllib.loads(proposal.decode());cur=tomllib.loads((W/'uv.lock').read_text())
+package=next(x for x in cur['package'] if x['name']=='friday-framework-mcp');package['dependencies']=[x for x in package['dependencies'] if x['name']!='httpcore'];package['metadata']['requires-dist']=[x for x in package['metadata']['requires-dist'] if x['name']!='httpcore'];assert prior==cur
+(R/'reference-audit-result.json').write_text(json.dumps({'references':len(references),'assertions':sum(len(v['assertions']) for v in references.values()),'client_clauses':len(D['client_clauses']),'server_clauses':len(D['server_clauses']),'client_fields':len(D['client_fields']),'server_fields':len(D['server_fields']),'client_interfaces':len(D['client_interfaces']),'server_declarations':len(D['server_declarations']),'full_capture_mandatory_lines':len(normative_lines),'normative_paragraphs':len(inventory),'complete_A01_lock_plus_UP02_httpcore_equality':True},indent=2)+'\n')
+print((R/'reference-audit-result.json').read_text())

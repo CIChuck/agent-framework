@@ -1,0 +1,5 @@
+packages/friday-core/src/friday_core/profiles.py:77: error: Returning Any from function declared to return "VectorStoreAdapter"  [no-any-return]
+packages/friday-core/src/friday_core/profiles.py:82: error: Returning Any from function declared to return "VectorStoreAdapter"  [no-any-return]
+packages/friday-core/src/friday_core/profiles.py:110: error: Returning Any from function declared to return "GraphStoreAdapter"  [no-any-return]
+packages/friday-core/src/friday_core/profiles.py:115: error: Returning Any from function declared to return "GraphStoreAdapter"  [no-any-return]
+Found 4 errors in 1 file (checked 117 source files)

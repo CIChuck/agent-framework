@@ -1,0 +1,63 @@
+{
+  "candidate": [
+    [
+      "packages/friday-core/src/friday_core/profiles.py",
+      "77",
+      "error",
+      "Returning Any from function declared to return \"VectorStoreAdapter\"",
+      "no-any-return"
+    ],
+    [
+      "packages/friday-core/src/friday_core/profiles.py",
+      "82",
+      "error",
+      "Returning Any from function declared to return \"VectorStoreAdapter\"",
+      "no-any-return"
+    ],
+    [
+      "packages/friday-core/src/friday_core/profiles.py",
+      "110",
+      "error",
+      "Returning Any from function declared to return \"GraphStoreAdapter\"",
+      "no-any-return"
+    ],
+    [
+      "packages/friday-core/src/friday_core/profiles.py",
+      "115",
+      "error",
+      "Returning Any from function declared to return \"GraphStoreAdapter\"",
+      "no-any-return"
+    ]
+  ],
+  "baseline": [
+    [
+      "packages/friday-core/src/friday_core/profiles.py",
+      "77",
+      "error",
+      "Returning Any from function declared to return \"VectorStoreAdapter\"",
+      "no-any-return"
+    ],
+    [
+      "packages/friday-core/src/friday_core/profiles.py",
+      "82",
+      "error",
+      "Returning Any from function declared to return \"VectorStoreAdapter\"",
+      "no-any-return"
+    ],
+    [
+      "packages/friday-core/src/friday_core/profiles.py",
+      "110",
+      "error",
+      "Returning Any from function declared to return \"GraphStoreAdapter\"",
+      "no-any-return"
+    ],
+    [
+      "packages/friday-core/src/friday_core/profiles.py",
+      "115",
+      "error",
+      "Returning Any from function declared to return \"GraphStoreAdapter\"",
+      "no-any-return"
+    ]
+  ],
+  "equal": true
+}

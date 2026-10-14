@@ -1,0 +1,14 @@
+[
+  {
+    "label": "actual-board-rehearsal",
+    "exit": 1,
+    "classification": "Reviewer synthetic-fixture setup error: missing empty planning/review lane; corrected fresh label creates all canonical lanes. No candidate change.",
+    "source": "board-rehearsal-first-attempt.txt"
+  },
+  {
+    "label": "capture-reference-audit",
+    "exit": 1,
+    "classification": "Reviewer excerpt-hash reconstruction included first-line method indentation; corrected fresh label uses exact AST source segments and supports whole-file references. No candidate drift.",
+    "source": "reference-audit-first-attempt.txt"
+  }
+]

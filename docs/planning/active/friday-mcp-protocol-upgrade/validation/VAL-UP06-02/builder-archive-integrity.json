@@ -1,0 +1,1721 @@
+{
+  "rows": [
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/mcp-current/current-binding-integrity.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/mcp-current/final-actual-mapping.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/mcp-current/published-excerpts.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/governance-current/development-before-dashboard-fixture-correction.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/governance-current/final-governance-mapping.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-board/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-board/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-board/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-board/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-docs/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-docs/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-docs/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-docs/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-next/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-next/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-next/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-next/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-render/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-render/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-render/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-render/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-show/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-show/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-show/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-approved-show/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-corrected-docs/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-corrected-docs/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-corrected-docs/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-corrected-docs/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-corrected-root-ruff/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-corrected-root-ruff/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-corrected-root-ruff/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-corrected-root-ruff/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-001-type/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-001-type/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-001-type/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-001-type/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-002-board/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-002-board/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-002-board/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-002-board/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-003-ruff/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-003-ruff/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-003-ruff/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-003-ruff/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-004-type/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-004-type/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-004-type/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-004-type/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-005-format/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-005-format/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-005-format/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-005-format/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-006-board/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-006-board/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-006-board/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-006-board/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-007-format/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-007-format/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-007-format/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-007-format/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-008-type/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-008-type/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-008-type/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-008-type/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-009-board/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-009-board/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-009-board/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-009-board/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-010-ruff/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-010-ruff/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-010-ruff/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-development-010-ruff/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-aggregate-examples/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-aggregate-examples/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-aggregate-examples/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-aggregate-examples/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-full-mypy/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-full-mypy/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-full-mypy/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-full-mypy/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-full-mypy-columns/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-full-mypy-columns/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-full-mypy-columns/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-full-mypy-columns/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-root/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-root/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-root/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-root/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-root-ruff/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-root-ruff/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-root-ruff/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-baseline-root-ruff/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-focused/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-focused/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-focused/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-focused/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-mypy/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-mypy/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-mypy/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-mypy/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-ruff/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-ruff/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-ruff/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-board-ruff/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-core-runtime-chat-telemetry/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-core-runtime-chat-telemetry/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-core-runtime-chat-telemetry/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-core-runtime-chat-telemetry/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-docs/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-docs/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-docs/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-docs/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-documented-configs/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-documented-configs/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-documented-configs/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-documented-configs/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-full-mypy/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-full-mypy/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-full-mypy/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-full-mypy/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-full-mypy-columns/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-full-mypy-columns/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-full-mypy-columns/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-full-mypy-columns/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-mcp/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-mcp/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-mcp/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-mcp/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-mcp-mypy/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-mcp-mypy/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-mcp-mypy/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-mcp-mypy/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-narrow-mypy/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-narrow-mypy/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-narrow-mypy/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-narrow-mypy/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-next/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-next/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-next/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-next/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-original-clients/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-original-clients/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-original-clients/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-original-clients/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-render/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-render/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-render/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-render/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-root/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-root/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-root/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-root/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-root-ruff/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-root-ruff/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-root-ruff/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-root-ruff/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-ruff/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-ruff/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-ruff/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-ruff/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-server-focused/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-server-focused/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-server-focused/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-server-focused/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-server-http/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-server-http/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-server-http/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-server-http/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-show/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-show/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-show/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-show/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-whitespace/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-whitespace/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-whitespace/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-full-whitespace/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-board/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-board/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-board/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-board/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-docs/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-docs/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-docs/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-docs/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-board/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-board/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-board/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-board/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-docs/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-docs/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-docs/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-docs/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-next/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-next/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-next/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-next/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-render/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-render/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-render/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-render/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-show/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-show/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-show/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-final-show/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-board/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-board/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-board/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-board/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-docs/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-docs/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-docs/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-docs/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-next/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-next/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-next/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-next/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-render/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-render/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-render/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-render/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-show/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-show/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-show/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-linked-show/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-next/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-next/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-next/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-next/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-show/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-show/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-show/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-proposal-show/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-supplement-actual-closeout/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-supplement-actual-closeout/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-supplement-actual-closeout/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-supplement-actual-closeout/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-supplement-symlink-storage/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-supplement-symlink-storage/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-supplement-symlink-storage/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-checks/up06-amend2-supplement-symlink-storage/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/approve_up06_amendment002.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/run_check_UP06_amend2.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/run_up06_amend2_profile.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/compare_up06_amend2_checks.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/build_up06_amend2_actual_mapping.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/build_up06_amend2_governance_mapping.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/probe_up06_actual_board_closeout.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/freeze_up06_amend2_candidate.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/rehash_up06_amend2_libraries.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/up06-library-amend2-development-before.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/up06-library-amend2-development-after.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/up06-library-amend2-profile-before.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/up06-library-amend2-profile-after.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/up06-library-amend2-corrected-after.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/rehash_up06_amend2_corrected_libraries.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/store_up06_probe_as_evidence_data.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/up06-amend2-profile-results.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/install_local_mcp_amend2.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/guard-sitecustomize.py.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/governance-product.diff.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/board/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/board/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/board/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/board/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/next/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/next/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/next/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/next/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/show/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/show/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/show/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/show/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/docs/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/docs/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/docs/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/docs/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/render/preflight.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/render/receipt.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/render/stdout.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-freeze/render/stderr.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/artifacts/controller-inputs/up06-library-amend2-freeze-after.json.gz",
+      "stored_match": true,
+      "decoded_match": true,
+      "size_match": true
+    }
+  ],
+  "bad": []
+}

@@ -1,0 +1,242 @@
+{
+  "artifacts": [
+    {
+      "original_path": "controller-inputs/prepare_up06_verified_completion.py",
+      "path": "artifacts/controller-inputs/prepare_up06_verified_completion.py.gz",
+      "bytes": 12663,
+      "sha256": "ae7cbc7b4237ebb165efbae3d29928158c1c8b7c61c085b112615d61a913ca25",
+      "stored_sha256": "7ef137b7f4e33188a91cbde92a365843a43a542659694d2cc669756f0ba0e325"
+    },
+    {
+      "original_path": "controller-inputs/finalize_up06_completed_metadata.py",
+      "path": "artifacts/controller-inputs/finalize_up06_completed_metadata.py.gz",
+      "bytes": 4146,
+      "sha256": "1db6545d5c5b6ed89ae2a98814f8d3bc7fabb044673bc6a9d91957347ba97260",
+      "stored_sha256": "57342d07fd9b0149c6c43f6063f2b1fa286f6564ebae3578593a4addf137b090"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-board/preflight.json",
+      "path": "artifacts/checks/up06-amend2-completion-board/preflight.json.gz",
+      "bytes": 38747,
+      "sha256": "3c87e2ae10e75c022ec6181884cc0a2b31b33cc2aab825900e4c58b30187d3e0",
+      "stored_sha256": "c6754d9ebc107e1b9d9bf0f93d73a746317008be0f9e2c50d008f913eaa36466"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-board/receipt.json",
+      "path": "artifacts/checks/up06-amend2-completion-board/receipt.json.gz",
+      "bytes": 2928,
+      "sha256": "642773ce42ad0320de6ba36c58369de94b4318e28b145b8b5fb83c49e1f175bd",
+      "stored_sha256": "87be3cd681244f65bd0a1042812bf6d8acfe299c588688a7596f87f307619c3a"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-board/stdout",
+      "path": "artifacts/checks/up06-amend2-completion-board/stdout.gz",
+      "bytes": 46,
+      "sha256": "f86479667ca73f712d72cac3ab0abf3e4e9e165dc7c65159298cfb8ce281a947",
+      "stored_sha256": "a8fe0ac655745a8f208c9bac35d6e3f1f21b43eaae46fc65ba4ac7784df9b202"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-board/stderr",
+      "path": "artifacts/checks/up06-amend2-completion-board/stderr.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-corrected-docs/preflight.json",
+      "path": "artifacts/checks/up06-amend2-completion-corrected-docs/preflight.json.gz",
+      "bytes": 38807,
+      "sha256": "93908d4801fd4e0734f8596165ff619ec2e94450cf24ad8c27327904c418130e",
+      "stored_sha256": "50c4fed6325a69849d9098a0dd0e3e29b38807f38e00a08d414d9639e9705ac6"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-corrected-docs/receipt.json",
+      "path": "artifacts/checks/up06-amend2-completion-corrected-docs/receipt.json.gz",
+      "bytes": 2988,
+      "sha256": "0c628bfd163dc70a3d125d8728ec62f19d96f5dbf5bdc4362fa29587d17838dd",
+      "stored_sha256": "75cdaf43602a528eb5a2413f9a1cdddb60c32e6f11c893acf1e7d26ad1498dd2"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-corrected-docs/stdout",
+      "path": "artifacts/checks/up06-amend2-completion-corrected-docs/stdout.gz",
+      "bytes": 70,
+      "sha256": "29b6a8f128ca3642e5f26e314cfe5a84dd815fcab7f6449159d5a69a284a1032",
+      "stored_sha256": "3bbd5d4a7d6795164525457846d4b80d1326c13bfa9b19041f2c7fabdd2b2c42"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-corrected-docs/stderr",
+      "path": "artifacts/checks/up06-amend2-completion-corrected-docs/stderr.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-docs/preflight.json",
+      "path": "artifacts/checks/up06-amend2-completion-docs/preflight.json.gz",
+      "bytes": 38737,
+      "sha256": "0dd73c1fccaf1bf01de40380f09d643402e46d9b604ea38eea5ff91dac4a1fc6",
+      "stored_sha256": "ef54ae5360a79a8d06303ee6f567e0b92625e497d3fbcfba80e13cfdf7294cf9"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-docs/receipt.json",
+      "path": "artifacts/checks/up06-amend2-completion-docs/receipt.json.gz",
+      "bytes": 2918,
+      "sha256": "5a28f4114e9219ecbf0234703ebcda25b137b2932948d6c4985d15eeed824cc3",
+      "stored_sha256": "d572eb16c550bd12968f0d7a3f321b620bc75243a0fcb9ec181026f8091bf1aa"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-docs/stdout",
+      "path": "artifacts/checks/up06-amend2-completion-docs/stdout.gz",
+      "bytes": 127,
+      "sha256": "4391f2807055d7649914450cbd03051d3dc506d7a6ea3b3dbcef319e4d38b915",
+      "stored_sha256": "1bdd0d60a3d34bbea4a19a08d9790e9ce184e6500da0493bf2590b086c36ab18"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-docs/stderr",
+      "path": "artifacts/checks/up06-amend2-completion-docs/stderr.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-next/preflight.json",
+      "path": "artifacts/checks/up06-amend2-completion-next/preflight.json.gz",
+      "bytes": 38736,
+      "sha256": "64d69eb2af2ba470062f684d5cfec05da2992d06d21125ab0ac789c3f3772c58",
+      "stored_sha256": "8a16c5c833252930e4e7ca0f924c965cabc345b05bce09ed46ac087d275d51a9"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-next/receipt.json",
+      "path": "artifacts/checks/up06-amend2-completion-next/receipt.json.gz",
+      "bytes": 2917,
+      "sha256": "d7f8a3adaded67dc86aff5acf1ea6ec42867796d6b63a33e23b404792d45a389",
+      "stored_sha256": "d5812fa070a0d920474e6d9e6ac329c525fb9dea5821b18143fa1162507ee4e7"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-next/stdout",
+      "path": "artifacts/checks/up06-amend2-completion-next/stdout.gz",
+      "bytes": 151,
+      "sha256": "d94c26d09395425bec9fde4aec717cc76e3e6f3db77fd3df32a411ccd15936b5",
+      "stored_sha256": "828be6cf3b93c8b4646f58cf8ef3885c885b63330168c0e98482b7e5acaedee7"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-next/stderr",
+      "path": "artifacts/checks/up06-amend2-completion-next/stderr.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-render/preflight.json",
+      "path": "artifacts/checks/up06-amend2-completion-render/preflight.json.gz",
+      "bytes": 38767,
+      "sha256": "ea133e2020eb23aab1ce588aa531423f5e96dc2064551f5b1f7e38e60d7000a3",
+      "stored_sha256": "2ecb0abc3ca276590e571b715d33b253a53868a11db71f02083b7ae63b3d9ee4"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-render/receipt.json",
+      "path": "artifacts/checks/up06-amend2-completion-render/receipt.json.gz",
+      "bytes": 2948,
+      "sha256": "13ae0941df223158287f32e153811cd6edc53fbf4943bcdef9292231b9975460",
+      "stored_sha256": "db73672f7173cfd3fcb491ce36263a293d54851651b0f6a4488d4e23a1a950d0"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-render/stdout",
+      "path": "artifacts/checks/up06-amend2-completion-render/stdout.gz",
+      "bytes": 30,
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stored_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-render/stderr",
+      "path": "artifacts/checks/up06-amend2-completion-render/stderr.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-root-ruff/preflight.json",
+      "path": "artifacts/checks/up06-amend2-completion-root-ruff/preflight.json.gz",
+      "bytes": 38772,
+      "sha256": "dc93c3ded69a2f6e90d62f1bf2c73d318c595335ecf14093c162eaa7b202b301",
+      "stored_sha256": "ecb95ae601da5b5de1a32573c9ce1f07d195a2c9b68493182b2ed4f0bd4e0fe1"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-root-ruff/receipt.json",
+      "path": "artifacts/checks/up06-amend2-completion-root-ruff/receipt.json.gz",
+      "bytes": 2953,
+      "sha256": "e3995d8e158df9e9c63b404277b0bcbfca1c099fe3eb67d9be0222d6df346125",
+      "stored_sha256": "f2a95a6fd4173ad2f7f85a622e9557957a0de78a9ec898625d7f8c3eae5f9ed4"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-root-ruff/stdout",
+      "path": "artifacts/checks/up06-amend2-completion-root-ruff/stdout.gz",
+      "bytes": 170591,
+      "sha256": "0c93bf5f06b18289815373ab38c786bcb506cd92b455e5bc79c5c04a1854b68b",
+      "stored_sha256": "f5316562999344fb8876255d4f6057ea6b158cacd0aa34dfdfdb51657c7460ce"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-root-ruff/stderr",
+      "path": "artifacts/checks/up06-amend2-completion-root-ruff/stderr.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-show/preflight.json",
+      "path": "artifacts/checks/up06-amend2-completion-show/preflight.json.gz",
+      "bytes": 38771,
+      "sha256": "72e198759b06c098ca57dc0049e925b8da893741038c24f7f0196a9bf12ee4ab",
+      "stored_sha256": "b8350975d45570606259e7525894791c19e8d66ab2721c1cfa95f6847427487b"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-show/receipt.json",
+      "path": "artifacts/checks/up06-amend2-completion-show/receipt.json.gz",
+      "bytes": 2952,
+      "sha256": "090b360b86898083fd30518532186a9c40dba62d9b47843f8743dde7d3490f9d",
+      "stored_sha256": "42da2cc80719442146bbb9cc749d6f1409431cf09647fdaafc0b832da5fa7f85"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-show/stdout",
+      "path": "artifacts/checks/up06-amend2-completion-show/stdout.gz",
+      "bytes": 3757,
+      "sha256": "7f78e4b5cb5fb06169ca048fa76c34581bfb2cf2f34830c191f4958cd36df398",
+      "stored_sha256": "7f2d8d5de0e71285e97ca0f9c7a1e48adb07d72853e33271ad1d0805112e44da"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-show/stderr",
+      "path": "artifacts/checks/up06-amend2-completion-show/stderr.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-whitespace/preflight.json",
+      "path": "artifacts/checks/up06-amend2-completion-whitespace/preflight.json.gz",
+      "bytes": 38714,
+      "sha256": "2c3789ee38bed38b7878f76f3abbc321f0864064a8fad362d7023f361c5cf99d",
+      "stored_sha256": "2551b7e285b7ef07736398500c5265834996ace3c692513b3e7ddda876af5dfb"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-whitespace/receipt.json",
+      "path": "artifacts/checks/up06-amend2-completion-whitespace/receipt.json.gz",
+      "bytes": 2895,
+      "sha256": "3febb899e0d5e2f4de22bfed7e63653a72470c7f82d6b44f0cd36f5e15a60d01",
+      "stored_sha256": "b04e4b6aaba573d34013b1d8d88218c257b37c33e9f22643ddace24db97b7ea4"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-whitespace/stdout",
+      "path": "artifacts/checks/up06-amend2-completion-whitespace/stdout.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original_path": "checks/up06-amend2-completion-whitespace/stderr",
+      "path": "artifacts/checks/up06-amend2-completion-whitespace/stderr.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    }
+  ]
+}

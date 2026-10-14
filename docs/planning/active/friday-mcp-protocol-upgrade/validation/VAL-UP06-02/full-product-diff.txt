@@ -1,0 +1,1 @@
+artifacts/full-product-diff.txt.gz

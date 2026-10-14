@@ -40,13 +40,13 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](active/friday-mcp-protocol-upgrade/) | normal | granted | local | Fresh-context read-only FULL whole-feature aggregate review including12 product paths/27 checks/current policy supersession/all12+8 criteria |
 | 26 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
 
 ## Completed
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
+| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](review/friday-mcp-protocol-upgrade/) | normal | closed | local | Maintainer acceptance of the whole MCP upgrade; then delivery planning and separately queued Langfuse |
 | 17 | [Nonblocking Friday Chat input](blocked/nonblocking-chat-input/) | blocked | closed | unknown | complete or waive provider-backed idle-maintenance validation |
 
 ## Accepted

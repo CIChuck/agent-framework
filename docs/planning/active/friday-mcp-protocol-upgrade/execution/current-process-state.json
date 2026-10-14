@@ -1,15 +1,15 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-06",
-  "execution_phase": "validation",
-  "validation_state": "in_review",
-  "unit_completion": "not proposed; fresh whole-feature27-check independent review pending",
-  "next_gate": "Fresh-context read-only FULL whole-feature aggregate review including12 product paths/27 checks/current policy supersession/all12+8 criteria",
-  "work_state": "started",
+  "execution_phase": "closeout",
+  "validation_state": "verified",
+  "unit_completion": "proposed; whole initiative maintainer acceptance pending",
+  "next_gate": "Maintainer acceptance of the whole MCP upgrade; then delivery planning and separately queued Langfuse",
+  "work_state": "completed",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-006",
   "directive_status": "approved",
-  "unit_implementation_authority": "granted",
+  "unit_implementation_authority": "closed",
   "accepted_units": [
     {
       "unit": "MCP-UP-02A",
@@ -57,7 +57,7 @@
   "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-006-aggregate-migration-closeout.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-06-authority-manifest.json",
-  "note": "Four governance paths implemented; all27 checks; unchanged MCP candidate; original BLOCKED review retained as history",
+  "note": "Whole-feature fresh independent FULL review VERIFIED; controller completion proposal only; acceptance and publication remain separate",
   "open_findings": [],
   "remediation_directive": null,
   "remediation_status": "not_applicable",
@@ -67,15 +67,17 @@
   "current_execution_authority": "docs/planning/active/friday-mcp-protocol-upgrade/authority-UP-06-amendment-002.json",
   "aggregate_product_candidate": "30119a18f77a435cd40f84bfefb69c32ede54998",
   "builder_finding_dispositions": {
-    "BUILD-UP06-001": "Approved fixture correction/current MCP tests retained",
-    "BUILD-UP06-002": "Approved explicit historical backing/current54 tests/actual26-task79-record closeout rehearsal complete; independent assessment pending"
+    "BUILD-UP06-001": "Resolved; independently verified",
+    "BUILD-UP06-002": "Resolved; independently verified with real full-current-board rehearsal"
   },
   "builder_finding": {
     "id": "BUILD-UP06-001",
     "status": "resolved_by_approved_fixture_change_and_current_tests",
-    "independent_assessment": "pending"
+    "independent_assessment": "verified"
   },
-  "reviewed_candidate": "92c6f6742df9be84b7046a89a830a6dcc3f67dc8",
-  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md",
-  "independent_report_sha256": "d945e78e7029777d07e0b7254163f9f9bb3ab03116d5556bf13123c274673179"
+  "reviewed_candidate": "c9a8c210eedd85ed9f9418b13c53ac079ebec000",
+  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-02/report.md",
+  "independent_report_sha256": "85419bf1971132a18d896f057ae53f350b2efc56ce9e8cb6549309447d1abe01",
+  "independent_manifest_sha256": "84385ea8214479993ad4f42e5d16683741ac7db6d363fe890d2cb25d4476a894",
+  "current_packet": "docs/planning/review/friday-mcp-protocol-upgrade/"
 }

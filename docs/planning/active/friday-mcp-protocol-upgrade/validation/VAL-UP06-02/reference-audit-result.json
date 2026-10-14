@@ -1,0 +1,13 @@
+{
+  "references": 349,
+  "assertions": 674,
+  "client_clauses": 241,
+  "server_clauses": 316,
+  "client_fields": 231,
+  "server_fields": 337,
+  "client_interfaces": 98,
+  "server_declarations": 155,
+  "full_capture_mandatory_lines": 377,
+  "normative_paragraphs": 394,
+  "complete_A01_lock_plus_UP02_httpcore_equality": true
+}

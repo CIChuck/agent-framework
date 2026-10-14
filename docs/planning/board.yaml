@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-10-13'
+updated: '2026-10-14'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -456,11 +456,11 @@ tasks:
 - id: friday-mcp-protocol-upgrade
   title: Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade
   priority: 4
-  work_state: started
+  work_state: completed
   condition: normal
-  implementation_authority: granted
-  packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Fresh-context read-only FULL whole-feature aggregate review including12 product paths/27 checks/current policy supersession/all12+8 criteria
+  implementation_authority: closed
+  packet: docs/planning/review/friday-mcp-protocol-upgrade/
+  next_gate: Maintainer acceptance of the whole MCP upgrade; then delivery planning and separately queued Langfuse
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -485,8 +485,13 @@ tasks:
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md: independent full UP-05 VERIFIED'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json: maintainer accepted independently VERIFIED UP-05; all five findings resolved'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md: BLOCKED closure authority; full aggregate review not completed'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-02/report.md: VERIFIED fresh whole-feature27-check review; acceptance pending'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
+  authority_backing_packets:
+  - packet: docs/planning/active/friday-mcp-protocol-upgrade/
+    manifest: docs/planning/review/friday-mcp-protocol-upgrade/historical-authority.json
+    manifest_sha256: 190b1fd6b5a919fe0131b01fd858e6b35d8c1decf87c6d577aeef3fec4b82dfd
 - id: friday-langfuse-integration
   title: Friday Langfuse implementation
   priority: 5
@@ -1791,3 +1796,10 @@ events:
   action: froze functional MCP aggregate governance candidate
   note: Four approved governance paths,all27 checks,54 board tests/actual26-task79-record rehearsal; full fresh independent review required
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up06-amend2/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T04:03:36+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Fresh independent FULL whole-feature VERIFIED; completed/local proposal with immutable authority backing; maintainer acceptance pending
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-02/report.md
