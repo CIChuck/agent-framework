@@ -1,0 +1,143 @@
+"""Publish only frozen, validated alpha3 files to the authorized production index."""
+import concurrent.futures
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import time
+import urllib.error
+import urllib.request
+from datetime import datetime, timezone
+
+B = Path('/private/tmp/friday-alpha3-pypi')
+W = Path('/private/tmp/friday-mcp-upgrade/credential-cleanup/work')
+manifest = json.loads((B / 'artifact-sha256.json').read_text())
+assert len(manifest) == 34
+for filename, digest in manifest.items():
+    assert hashlib.sha256((B / 'dist' / filename).read_bytes()).hexdigest() == digest
+assert 'VERIFIED' in (B / 'helper-review.md').read_text().splitlines()
+assert all(r['exit_code'] == 0 for r in json.loads((B / 'local-smoke-results-v2.json').read_text()))
+assert set(json.loads((B / 'local-installed-versions.json').read_text()).values()) == {'0.1.0a3'}
+changed_after_review = subprocess.check_output(['git', 'diff', '--name-only', '72f06012437ae5b82ade9255dcc2a0c0119ea898', 'HEAD'], cwd=W, text=True).splitlines()
+assert all(path.startswith('docs/planning/') for path in changed_after_review)
+assert not subprocess.check_output(['git', 'status', '--porcelain'], cwd=W, text=True).strip()
+
+# Read the existing local upload credential without executing its shell helper.
+credential = next((os.environ[n] for n in ('UV_PUBLISH_TOKEN', 'TWINE_PASSWORD', 'PYPI_TOKEN', 'PYPI_API_TOKEN') if os.environ.get(n)), None)
+if credential is None:
+    values = set(re.findall(r'pypi-[A-Za-z0-9_-]{20,}', Path('/Users/chuckrussell/Dev/gendev/agent-framework/scripts/pypi.sh').read_text()))
+    if len(values) != 1:
+        raise RuntimeError('A single PyPI upload credential is required')
+    credential = values.pop()
+
+env = {'PATH': '/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin', 'HOME': str(B / 'upload-home'), 'UV_CACHE_DIR': str(B / 'cache'), 'UV_PUBLISH_TOKEN': credential, 'UV_NO_PROGRESS': '1', 'UV_NO_CONFIG': '1'}
+Path(env['HOME']).mkdir(exist_ok=True)
+# Previous production release dependency order, with dependencies first.
+layers = [
+ ['telemetry', 'transcript', 'sandbox', 'moltbook'], ['core'],
+ ['finance', 'llm', 'speech'], ['memory'], ['agent', 'optimization', 'tools'],
+ ['mcp'], ['runtime'], ['cli'], ['chat'], ['root'],
+]
+def project(short):
+    return 'friday-chat' if short == 'chat' else 'friday-framework' if short == 'root' else 'friday-framework-' + short
+
+def registry(name):
+    try:
+        with urllib.request.urlopen('https://pypi.org/pypi/' + name + '/0.1.0a3/json', timeout=30) as response:
+            data = json.load(response)
+        return {f['filename']: f['digests']['sha256'] for f in data['urls']}
+    except urllib.error.HTTPError as error:
+        if error.code == 404:
+            return {}
+        raise
+
+def verify(name, expected):
+    for attempt in range(7):
+        actual = registry(name)
+        if actual == expected:
+            return actual
+        if any(filename not in expected or expected[filename] != digest for filename, digest in actual.items()):
+            raise RuntimeError('Published filename/hash conflict: ' + name)
+        if attempt < 6:
+            time.sleep(10)
+    raise RuntimeError('PyPI registry verification pending: ' + name)
+
+
+def upload_file(filename):
+    print('Uploading ' + filename, flush=True)
+    path = B / 'dist' / filename
+    if hashlib.sha256(path.read_bytes()).hexdigest() != manifest[filename]:
+        raise RuntimeError('Frozen artifact changed: ' + filename)
+    argv = ['/opt/homebrew/bin/uv', 'publish', '--no-config', '--trusted-publishing', 'never', '--publish-url', 'https://upload.pypi.org/legacy/', str(path)]
+    for attempt in range(3):
+        run = subprocess.run(argv, cwd=B, env=env, capture_output=True, text=True)
+        output = (run.stdout + run.stderr).replace(credential, '[REDACTED]')
+        output = re.sub(r'pypi-[A-Za-z0-9_-]{20,}', '[REDACTED]', output)
+        (B / ('upload-v4-' + filename + '-' + str(attempt) + '.log')).write_text(output)
+        if run.returncode == 0:
+            return
+        transient = any('status code ' + str(code) in output for code in (429, 500, 502, 503, 504)) or 'Too Many Requests' in output
+        if transient:
+            name = filename.split('-0.1.0a3')[0].replace('_', '-')
+            existing = registry(name)
+            if filename in existing:
+                if existing[filename] != manifest[filename]:
+                    raise RuntimeError('Published hash conflict: ' + filename)
+                return
+            if attempt < 2:
+                delay = 30 if '429' in output or 'Too Many Requests' in output else 10
+                print('Transient registry error; retrying ' + filename + ' in ' + str(delay) + ' seconds', flush=True)
+                time.sleep(delay)
+                continue
+        print(output[-1600:], flush=True)
+        raise RuntimeError('Upload failed: ' + filename)
+
+# The earlier controller is paused. Let its existing child finish, then stop
+# only that controller before checking the registry and resuming without races.
+paused_path = B / 'paused-uploader.json'
+if paused_path.exists():
+    paused = json.loads(paused_path.read_text())
+    for child in paused['children']:
+        for attempt in range(100):
+            state = subprocess.run(['/bin/ps', '-o', 'stat=', '-p', str(child)], capture_output=True, text=True)
+            if state.returncode != 0 or not state.stdout.strip() or state.stdout.strip().startswith('Z'):
+                break
+            time.sleep(2)
+        else:
+            raise RuntimeError('Previous upload still running; will not race it')
+    import signal
+    try:
+        os.kill(paused['parent'], signal.SIGTERM)
+        os.kill(paused['parent'], signal.SIGCONT)
+    except ProcessLookupError:
+        pass
+    paused_path.rename(B / 'previous-uploader-finished.json')
+    print('Previous in-flight upload finished; resuming with concurrency1', flush=True)
+
+results = []
+for layer in layers:
+    expected_by_project = {}
+    missing = []
+    for short in layer:
+        name = project(short)
+        base = name.replace('-', '_')
+        expected = {n: h for n, h in manifest.items() if n.startswith(base + '-0.1.0a3')}
+        if len(expected) != 2:
+            raise RuntimeError('Expected exactly two files: ' + name)
+        existing = registry(name)
+        if any(f not in expected or expected[f] != h for f, h in existing.items()):
+            raise RuntimeError('Immutable existing-release conflict: ' + name)
+        missing.extend(f for f in expected if f not in existing)
+        expected_by_project[name] = expected
+    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
+        list(pool.map(upload_file, missing))
+    for name, expected in expected_by_project.items():
+        actual = verify(name, expected)
+        results.append({'project': name, 'version': '0.1.0a3', 'verified_at': datetime.now(timezone.utc).isoformat(), 'files': actual})
+        (B / 'published-files.json').write_text(json.dumps(results, indent=2) + '\n')
+        print('Verified ' + name + ': both published SHA256 hashes match', flush=True)
+if len(results) != 17:
+    raise RuntimeError('Incomplete cohort')
+print('Published and hash-verified all17 distributions /34 files', flush=True)

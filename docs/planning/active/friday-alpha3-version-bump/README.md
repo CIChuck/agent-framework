@@ -10,6 +10,6 @@ records and third-party dependency resolutions. [Authority](authority.json),
 
 Independent review: [VERIFIED source candidate 8b85bd91](validation/report.md).
 191 focused tests and all ten required checks passed.
-Production publication is now explicitly authorized. [Release readiness](validation/publication/release-readiness.md): artifact/install checks pass; upload is blocked by an invalid PyPI token.
-Next gate: configure a valid credential, upload the frozen artifacts, then verify registry hashes and a production-only install.
+Production publication completed: all 17 distributions / 34 files are live on PyPI, hashes match, and the clean production-only install and smoke checks pass. See [release evidence](../../../reference/releases/friday-package-cohort-0.1.0a3-release-evidence.md).
+Next gate: maintainer lifecycle closeout; PyPI delivery is released and verified.
 The original version-only unit remains independently verified. Publication authority is recorded separately in [publication-authority.json](publication-authority.json); no GitHub release or source push is included.

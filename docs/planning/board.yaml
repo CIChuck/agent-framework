@@ -544,8 +544,8 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-alpha3-version-bump/
-  next_gate: Valid PyPI credential required; upload frozen34 artifacts then verify registry hashes and production install
-  delivery_state: local
+  next_gate: Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified
+  delivery_state: released
   branch: release/0.1.0a3
   depends_on: []
   validation:
@@ -553,6 +553,9 @@ tasks:
   - docs/planning/active/friday-alpha3-version-bump/validation/reviewer-checks.json
   - docs/planning/active/friday-alpha3-version-bump/validation/publication/helper-review.md
   - docs/planning/active/friday-alpha3-version-bump/validation/publication/release-readiness.md
+  - docs/reference/releases/friday-package-cohort-0.1.0a3-release-evidence.md
+  - docs/planning/active/friday-alpha3-version-bump/validation/publication/published-files.json
+  - docs/planning/active/friday-alpha3-version-bump/validation/publication/production-install-results.json
   approved_by: Chuck Russell
   approved_at: '2026-10-14'
 events:
@@ -1972,3 +1975,10 @@ events:
   action: authorized production PyPI publication
   note: publish this release to pypi
   evidence: docs/planning/active/friday-alpha3-version-bump/publication-authority.json
+- task: friday-alpha3-version-bump
+  at: '2026-10-15T02:38:27.309040+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> released
+  note: Maintainer-authorized PyPI alpha3 cohort published; 34 registry hashes match; clean production-only install passed; lifecycle acceptance not inferred
+  evidence: docs/reference/releases/friday-package-cohort-0.1.0a3-release-evidence.md

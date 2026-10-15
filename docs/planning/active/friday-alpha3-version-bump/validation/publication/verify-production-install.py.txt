@@ -1,0 +1,44 @@
+"""Fresh production-only install and offline installed-artifact smoke verification."""
+import hashlib
+import importlib.metadata
+import json
+import os
+from pathlib import Path
+import subprocess
+from datetime import datetime, timezone
+
+B = Path('/private/tmp/friday-alpha3-pypi')
+records = json.loads((B / 'published-files.json').read_text())
+assert len(records) == 17
+frozen = json.loads((B / 'artifact-sha256.json').read_text())
+assert {name: digest for record in records for name, digest in record['files'].items()} == frozen
+home = B / 'production-home'
+tmp = B / 'production-tmp'
+home.mkdir(exist_ok=True)
+tmp.mkdir(exist_ok=True)
+env = {'PATH': '/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin', 'HOME': str(home), 'TMPDIR': str(tmp), 'UV_NO_CONFIG': '1', 'LANG': 'en_US.UTF-8'}
+venv = B / 'production-install'
+results = []
+def run(name, argv, extra=None):
+    result = subprocess.run(argv, cwd=B, env=env | (extra or {}), capture_output=True, text=True)
+    (B / (name + '.stdout')).write_text(result.stdout)
+    (B / (name + '.stderr')).write_text(result.stderr)
+    results.append({'name': name, 'argv': argv, 'exit_code': result.returncode, 'finished_at': datetime.now(timezone.utc).isoformat()})
+    (B / 'production-install-results.json').write_text(json.dumps(results, indent=2) + '\n')
+    print(name + ': exit ' + str(result.returncode), flush=True)
+    if result.returncode:
+        print((result.stdout + result.stderr)[-2500:], flush=True)
+        raise RuntimeError(name + ' failed')
+run('production-create-venv', ['/opt/homebrew/bin/uv', 'venv', '--seed', '--no-cache', str(venv), '--python', '/private/tmp/friday-mcp-upgrade/venv/bin/python', '--no-python-downloads'])
+python = str(venv / 'bin/python')
+run('production-pypi-install', ['/opt/homebrew/bin/uv', 'pip', 'install', '--no-config', '--no-cache', '--python', python, '--index-url', 'https://pypi.org/simple', 'friday-framework[all]==0.1.0a3', 'friday-chat==0.1.0a3'])
+offline = {'PYTHONPATH': str(B / 'guard'), 'FRIDAY_TELEMETRY_ENABLED': 'false', 'LITELLM_LOCAL_MODEL_COST_MAP': 'True', 'HF_HUB_DISABLE_TELEMETRY': '1', 'OTEL_SDK_DISABLED': 'true'}
+run('production-pip-check', [python, '-m', 'pip', 'check'], offline)
+version_code = "import importlib.metadata,json;from pathlib import Path;b=Path('/private/tmp/friday-alpha3-pypi');a=json.loads((b/'publication-authority.json').read_text());v={n:importlib.metadata.version(n) for n in a['projects']};assert len(v)==17 and set(v.values())=={'0.1.0a3'};(b/'production-installed-versions.json').write_text(json.dumps(v,indent=2)+'\\n');print('All17 Friday distributions installed at0.1.0a3')"
+run('production-cohort-versions', [python, '-c', version_code], offline)
+run('production-imports', [python, '-c', "import friday_core,friday_telemetry,friday_llm,friday_transcript,friday_memory,friday_agent,friday_runtime,friday_cli,friday_tools,friday_mcp,friday_chat;print('Framework, Runtime, MCP, Agent and Chat imports OK')"], offline)
+run('production-llm-smoke', [python, str(B / 'installed-helper-smoke.py')], offline | {'FRIDAY_SMOKE_DISTRIBUTION': 'friday-framework-llm', 'FRIDAY_SMOKE_IMPORT': 'friday_llm'})
+run('production-chat-smoke', [python, str(B / 'installed-helper-smoke.py')], offline | {'FRIDAY_SMOKE_DISTRIBUTION': 'friday-chat', 'FRIDAY_SMOKE_IMPORT': 'friday_chat'})
+run('production-chat-version', [str(venv / 'bin/friday-chat'), '--version'], offline)
+run('production-chat-help', [str(venv / 'bin/friday-chat'), '--help'], offline)
+print('Fresh production-only installation and all smoke checks passed', flush=True)
