@@ -610,6 +610,19 @@ tasks:
   approved_by: Chuck Russell
   approved_at: '2026-10-15'
 
+- id: friday-board-delivery-reconciliation
+  title: Board validation and GitHub delivery reconciliation
+  priority: 33
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-board-delivery-reconciliation/
+  next_gate: Review and approve delivery-evidence contract, migration and bounded construction directive
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+
 events:
 - task: documentation-governance
   at: '2026-09-03'
@@ -2062,3 +2075,10 @@ events:
   action: delivery local -> merged
   note: 'Reconciled stale local delivery: GitHub confirms PR #9 merged at 2026-10-15T01:55:15Z as a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad; source branch is deleted. Maintainer acceptance remains separate.'
   evidence: https://github.com/CIChuck/agent-framework/pull/9; merge a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad; docs/planning/active/friday-deprecated-credential-cleanup/delivery-evidence.json
+- task: friday-board-delivery-reconciliation
+  at: '2026-10-15T19:46:20+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: requested queued board validation remediation
+  note: Add the remediation for board validation to the board. Queue it up. Implementation remains unapproved.
+  evidence: docs/planning/queued/friday-board-delivery-reconciliation/README.md

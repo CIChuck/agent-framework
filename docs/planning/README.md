@@ -30,6 +30,7 @@ Directory placement does not grant implementation authority.
 | 23 | [Tool capability notes](backlog/tool-capabilities/) | backlog | not_granted | not_started | reconcile requirements with tool governance |
 | 25 | [Friday runtime skills](backlog/friday-runtime-skills/) | backlog | not_granted | not_started | review the draft definition and promote a bounded first phase |
 | 26 | [Friday tool manifest continuity remediation](queued/friday-tool-manifest-continuity/) | normal | not_granted | not_started | validate the native-tool trial and review discovery-aware MCP remediation tasks |
+| 33 | [Board validation and GitHub delivery reconciliation](queued/friday-board-delivery-reconciliation/) | normal | not_granted | not_started | Review and approve delivery-evidence contract, migration and bounded construction directive |
 
 ## Approved
 
