@@ -1,0 +1,95 @@
+from pathlib import Path
+import base64
+import hashlib
+import io
+import json
+import os
+import re
+import subprocess
+import sys
+
+W = Path('/private/tmp/friday-chat-quick-start')
+O = Path('/private/tmp/friday-quick-start-intro-review')
+C = '847b5c34acc1f7da14630f209cef053994d8cbf6'
+D = '09bb1a4b91fbcc0e876ef11d677ccfac88b83d4b'
+A = '316749cc1584d5bff1ef8ae4358766ca0acecaac'
+R = '6a83ad509b9f0cc43838e405a03610b16c74e7c1'
+P = '/private/tmp/friday-mcp-upgrade/venv/bin/python'
+M = '/private/tmp/friday-alpha3-pypi/tools/bin/python'
+packet = 'docs/planning/active/friday-chat-quick-start/'
+guide = 'docs/guides/quick-start.md'
+E = {'reviewer': '/root/quick_start_intro_delta_review', 'model': 'GPT-6 family; exact backend build not exposed', 'date': '2026-10-15', 'mode': 'fresh-context read-only delta', 'shared_context_exceptions': [], 'candidate': C, 'delta_base': D, 'aggregate_base': A, 'prior_reviewed_candidate': R, 'commands': [], 'checks': {}}
+(O / 'bin').mkdir(exist_ok=True)
+(O / 'home').mkdir(exist_ok=True)
+(O / 'tmp').mkdir(exist_ok=True)
+shim = O / 'bin/uv'
+shim.write_text('#!/bin/bash\nset -euo pipefail\nif [[ "$#" != 4 || "$1" != run || "$2" != python || "$3" != scripts/friday-dev-board.py || "$4" != validate ]]; then exit 99; fi\nexec ' + P + ' scripts/friday-dev-board.py validate\n')
+shim.chmod(0o700)
+env = {'PATH': str(O / 'bin') + ':/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin', 'PYTHONDONTWRITEBYTECODE': '1', 'HOME': str(O / 'home'), 'TMPDIR': str(O / 'tmp'), 'LANG': 'en_US.UTF-8'}
+def cmd(argv):
+    r = subprocess.run(argv, cwd=W, env=env, text=True, capture_output=True, timeout=60)
+    E['commands'].append({'argv': argv, 'cwd': str(W), 'exit_code': r.returncode, 'stdout': r.stdout, 'stderr': r.stderr})
+    if r.returncode:
+        raise RuntimeError(E['commands'][-1])
+    return r.stdout
+def check(name, condition, detail):
+    E['checks'][name] = {'pass': bool(condition), 'detail': detail}
+    if not condition:
+        raise RuntimeError(name)
+def sha(b):
+    return hashlib.sha256(b).hexdigest()
+check('candidate', cmd(['git', 'rev-parse', 'HEAD']).strip() == C, C)
+check('branch', cmd(['git', 'branch', '--show-current']).strip() == 'docs/chat-quick-start', 'docs/chat-quick-start')
+check('clean_before', not cmd(['git', 'status', '--porcelain=v1']), 'empty git status')
+request = json.loads((W / packet / Path('validation/independent-review/review-request.json')).read_text())
+E['authority_sha256'] = {p: sha((W / p).read_bytes()) for p in request['authority_sha256']}
+check('authority_unchanged', E['authority_sha256'] == request['authority_sha256'], 'All six prior request-pinned authority hashes match current candidate')
+E['authority_revision'] = C
+prior = W / packet / Path('validation/independent-review/report.md')
+E['prior_report_sha256'] = sha(prior.read_bytes())
+check('prior_report_hash', E['prior_report_sha256'] == (prior.parent / 'report.sha256').read_text().split()[0], E['prior_report_sha256'])
+retained = cmd(['git', 'diff', '--name-only', D, C, '--', packet + 'validation/independent-review']).splitlines()
+check('prior_review_retained', not retained, 'Prior independent review/report/request/evidence unchanged from delta base, where the pinned prior review was recorded')
+paths = cmd(['git', 'diff', '--name-only', D, C]).splitlines()
+aggregate_paths = cmd(['git', 'diff', '--name-only', A, C]).splitlines()
+E['delta_paths'] = paths
+E['aggregate_paths'] = aggregate_paths
+expected = {guide, 'docs/planning/README.md', 'docs/planning/board.yaml', packet + 'README.md', packet + 'execution-log.md', packet + 'validation/prose-correction-checks.json'}
+check('delta_scope', set(paths) == expected, paths)
+allowed = {guide, 'docs/guides/README.md', 'docs/planning/README.md', 'docs/planning/board.yaml'}
+check('aggregate_scope', all(p in allowed or p.startswith(packet) for p in aggregate_paths), aggregate_paths)
+delta = cmd(['git', 'diff', '--no-ext-diff', '--binary', D, C])
+E['delta_diff_sha256'] = sha(delta.encode())
+E['delta_diff_utf8_base64'] = base64.b64encode(delta.encode()).decode()
+cmd(['git', 'diff', '--check', D, C])
+cmd(['git', 'diff', '--check', A, C])
+doc = (W / guide).read_text()
+fence = re.compile(r'^(`{3,}|~{3,})[^\n]*\n.*?^\1\s*$', re.M | re.S)
+blocks = fence.findall(doc)
+# Include complete fenced blocks, including info strings and delimiters.
+fenced = [m.group(0) for m in fence.finditer(doc)]
+for base in (D, R):
+    old = cmd(['git', 'show', base + ':' + guide])
+    old_blocks = [m.group(0) for m in fence.finditer(old)]
+    check('fences_unchanged_from_' + base[:8], fenced == old_blocks, {'fence_count': len(fenced), 'sha256': sha('\n'.join(fenced).encode())})
+uc1 = doc.index('## UC1: install from a clone')
+uc2 = doc.index('## UC2: install from PyPI')
+repo_link = '../../scripts/run-friday-chat-example.sh'
+check('repository_launcher_uc1_only', doc.count(repo_link) == 1 and uc1 < doc.index(repo_link) < uc2, 'Only occurrence at guide line 95 inside UC1')
+check('shared_intro_self_contained', '[Bash launcher provided below](#save-run-friday-chatsh)' in doc[:uc1] and 'PyPI users can follow it without\ncloning the repository.' in doc[:uc1], 'Intro links complete guide-local launcher and explicitly states no clone is needed')
+check('anchor_target', '### Save run-friday-chat.sh\n' in doc, {'fragment': 'save-run-friday-chatsh', 'heading': 'Save run-friday-chat.sh', 'line': 811})
+check('repository_link_target', (W / 'docs/guides' / repo_link).resolve().is_file(), 'UC1 repository example launcher exists')
+E['guide_sha256'] = sha((W / guide).read_bytes())
+render_code = '''import io,json,re,sys\nfrom readme_renderer.markdown import render\nfrom pathlib import Path\np=Path(sys.argv[1]); text=p.read_text(); body=text.split('---',2)[2]; warnings=io.StringIO(); result=render(body,stream=warnings)\nassert result and not warnings.getvalue(), warnings.getvalue()\nassert 'href="#user-content-save-run-friday-chatsh"' in result\nassert '<h3 id="user-content-save-run-friday-chatsh">Save run-friday-chat.sh' in result\nPath(sys.argv[2]).write_text(result)\nprint('Markdown rendered without warnings; launcher href and heading present')\n'''
+cmd([M, '-c', render_code, str(W / guide), str(O / 'quick-start.html')])
+for args in (['validate'], ['next'], ['show', 'friday-chat-quick-start'], ['render', '--check']):
+    cmd([P, 'scripts/friday-dev-board.py', *args])
+cmd([P, 'scripts/check-documentation-lifecycle.py'])
+E['documentation_gate_note'] = 'Exact lifecycle checker executed; its sole uv run python scripts/friday-dev-board.py validate call was narrowly redirected to existing Python by external shim; no install/sync/network.'
+check('clean_after', not cmd(['git', 'status', '--porcelain=v1']), 'empty git status')
+check('candidate_after', cmd(['git', 'rev-parse', 'HEAD']).strip() == C, C)
+E['limitations'] = ['Delta review retains prior full source/example/runtime evidence at its pinned candidate; unchanged suite not rerun.', 'No network/install/sync/providers/downloads/hardware/shared stores; no candidate edits, commits, delegation, acceptance or delivery.']
+E['helper_correction'] = 'Initial external helper compared retained review artifacts against the source candidate before the artifacts were recorded. Corrected comparison to delta base 09bb1a4b; then updated renderer assertions for readme_renderer user-content anchor normalization; no candidate defect or change.'
+E['outcome'] = 'VERIFIED'
+(O / 'evidence.json').write_text(json.dumps(E, indent=2) + '\n')
+print(json.dumps({'outcome': E['outcome'], 'checks': len(E['checks']), 'commands': len(E['commands']), 'guide_sha256': E['guide_sha256'], 'evidence_sha256': sha((O / 'evidence.json').read_bytes())}, indent=2))

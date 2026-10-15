@@ -598,12 +598,13 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-chat-quick-start/
-  next_gate: Validate self-contained PyPI introduction correction; examples unchanged
+  next_gate: VERIFIED quick start including PyPI introduction correction; maintainer review and separate delivery
   delivery_state: local
   branch: docs/chat-quick-start
   depends_on: []
   validation:
   - docs/planning/active/friday-chat-quick-start/validation/independent-review/report.md
+  - docs/planning/active/friday-chat-quick-start/validation/intro-review/report.md
   - docs/planning/active/friday-chat-quick-start/implementation-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-15'
