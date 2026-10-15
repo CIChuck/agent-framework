@@ -537,6 +537,20 @@ tasks:
   branch: null
   depends_on: []
   validation: []
+- id: friday-alpha3-version-bump
+  title: Friday 0.1.0a3 repository version bump
+  priority: 29
+  work_state: started
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/friday-alpha3-version-bump/
+  next_gate: Focused version/metadata/lock validation and independent review; local only
+  delivery_state: local
+  branch: release/0.1.0a3
+  depends_on: []
+  validation: []
+  approved_by: Chuck Russell
+  approved_at: '2026-10-14'
 events:
 - task: documentation-governance
   at: '2026-09-03'
@@ -1933,3 +1947,10 @@ events:
   action: recorded aggregate verification for authorized publication
   note: Source candidate526688e3 verified; delivery authorized by maintainer; known limits disclosed; acceptance not inferred
   evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/sec004-aggregate/report.md
+- task: friday-alpha3-version-bump
+  at: '2026-10-15T02:05:37+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized lockstep alpha3 repository version bump
+  note: I'd like to bump the current repository version to 0.1.0a3 - alpha3.
+  evidence: docs/planning/active/friday-alpha3-version-bump/authority.json
