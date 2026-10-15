@@ -11,3 +11,10 @@ metadata, loaders and handlers reconciled; legacy examples removed. Builder
 checks recorded in validation/, including24 offline scenarios and non-started
 real Chat assembly with synthetic credentials/private state.
 execution_phase: validation; validation_state: pending.
+
+2026-10-15: Initial fresh-context review of6691aa24 returned CHANGES_REQUESTED.
+GUIDE-001: required tools remain in manual schema selection. GUIDE-002:
+web_screenshot is an explicit stub. REM-GUIDE-001 records preauthorized bounded
+documentation corrections in exactly four guides. Guarded reviewer probes pass;
+other21 guides and all code fences remain byte-identical.
+execution_phase: validation; validation_state: pending.

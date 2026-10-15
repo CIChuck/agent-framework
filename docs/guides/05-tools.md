@@ -145,7 +145,10 @@ Chat selects a model-facing schema set each turn. `tools.context.max_tools` and
 Required names must resolve and fit policy. MCP has additional discovery/result
 limits and a minimum memory retrieval floor.
 
-`/inject-tools name ...` sets the exact manual schema set for later turns;
+`/inject-tools name ...` replaces the manual selection for later turns. The
+policy retains `tools.context.required_tools` alongside the requested names
+and suppresses optional automatic choices. The union of required and manually
+selected names must fit the same admission, count and schema-budget limits.
 `/clear-tools` restores automatic selection. Unknown names or over-budget
 required/manual choices can fail selection. `/recommend-tools <query>` gives
 recommendations, not a permission grant. `/run-tool` directly executes an

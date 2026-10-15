@@ -76,7 +76,7 @@ fields and return/error behavior.
 
 “Implementation present” means code is present, **not** that credentials,
 dependencies, runtime registration, live operation or safe isolation were
-validated. A “stub” contains an explicit unimplemented operation. Runtime
+validated. A “stub” raises or returns an explicit unimplemented outcome. Runtime
 membership is shown by `/tools`; MCP tools are dynamically discovered and
 are not part of this static table.
 
@@ -215,7 +215,7 @@ are not part of this static table.
 | utility | `get_current_datetime` | [GetCurrentDateTimeTool](../../packages/friday-tools/src/friday_tools/utility/datetime.py); timezone_name, format | implementation present |
 | utility | `echo` | [EchoTool](../../packages/friday-tools/src/friday_tools/utility/echo.py); message | implementation present |
 | web | `web_fetch` | [WebFetchTool](../../packages/friday-tools/src/friday_tools/web/fetch.py); see schema/source | implementation present |
-| web | `web_screenshot` | [WebScreenshotTool](../../packages/friday-tools/src/friday_tools/web/fetch.py); see schema/source | implementation present |
+| web | `web_screenshot` | [WebScreenshotTool](../../packages/friday-tools/src/friday_tools/web/fetch.py); see schema/source | stub |
 | web | `web_extract_links` | [WebExtractLinksTool](../../packages/friday-tools/src/friday_tools/web/fetch.py); see schema/source | implementation present |
 | web | `web_extract_text` | [WebExtractTextTool](../../packages/friday-tools/src/friday_tools/web/fetch.py); see schema/source | implementation present |
 | web | `http_get` | [HttpGetTool](../../packages/friday-tools/src/friday_tools/web/http.py); see schema/source | implementation present |

@@ -121,8 +121,10 @@ effects uncertain even when a final response is missing.
 
 Inspect `/tools`, `/recommend-tools <query>` and `/tool-budget`. Confirm an actual
 implementation exists, its dependencies are installed, its constructor is
-configured and its canonical name matches selection. `/inject-tools` sets an
-exact manual set; `/clear-tools` restores automatic selection.
+configured and its canonical name matches selection. `/inject-tools` replaces the
+manual names but retains configured `tools.context.required_tools`, suppressing
+optional automatic choices. The union of required and manually selected names
+must fit admission, count and schema budgets; `/clear-tools` restores automatic selection.
 
 Unknown names, missing required tools and schema/token caps can reject a set.
 A registered tool may remain unselected. A selected schema is not permission to

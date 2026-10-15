@@ -581,7 +581,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-guides-refresh/
-  next_gate: Frozen guide candidate ready for independent read-only validation
+  next_gate: GUIDE-001 and GUIDE-002 corrected; freeze amended candidate and obtain fresh independent validation
   delivery_state: local
   branch: docs/guides-refresh
   depends_on: []

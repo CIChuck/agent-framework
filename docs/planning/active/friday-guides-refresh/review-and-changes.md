@@ -1,6 +1,6 @@
 # Guide review and changes
 
-Status: implementation candidate; independent validation pending.
+Status: initial review CHANGES_REQUESTED; bounded corrections applied; fresh validation pending.
 Review date: 2026-10-15. Framework basis: published0.1.0a3, source base123d9ed9.
 
 All25 original documents were inventoried by complete-file parsing: header,
@@ -92,3 +92,13 @@ Checked primary sources for conceptual/install reference on2026-10-15:
 [Python Packaging installation](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/).
 Friday support remains pinned to its bounded dated implementation/accepted
 contract; external documentation does not imply every optional role is present.
+
+## Independent findings and bounded corrections
+
+[Initial review](validation/initial-review/report.md) found GUIDE-001 and GUIDE-002.
+[REM-GUIDE-001](directives/REM-GUIDE-001.md) corrects four manual-selection
+descriptions across Tools, CLI and Troubleshooting and marks the screenshot
+operation as a stub. The [guarded probe](validation/remediation/probes.log)
+reproduces the existing required/manual union and unimplemented screenshot
+result; [scope evidence](validation/remediation/scope.json) proves other21
+guides and all code fences unchanged. A new candidate needs fresh review.

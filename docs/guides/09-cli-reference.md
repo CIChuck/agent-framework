@@ -84,7 +84,7 @@ services; appearance in help is not proof that a backend is real or available.
 | `/speech [on\|off\|config\|mode <live\|file>\|voice <name>\|provider <elevenlabs\|picovoice>]` | speech | Configure speech settings. |
 | `/speech-test [once\|loop]` | speech | Run the speech validation harness. |
 | `/clear-tools` | tools | Clear the pending manual set and restore automatic tool selection. |
-| `/inject-tools <name> [name ...]` | tools | Set the exact manual tool schema set for subsequent turns. |
+| `/inject-tools <name> [name ...]` | tools | Set manual tool names; configured `tools.context.required_tools` remain included. |
 | `/recommend-tools <query>` | tools | Recommend tools for a query. |
 | `/run-tool <name> [json]` | tools | Execute a named tool. |
 | `/tool-budget` | tools | Inspect authoritative tool selection and schema-budget state. |
@@ -136,7 +136,11 @@ neither is a safe retry mechanism for uncertain mutations.
 ## Tool commands
 
 `/tools` inspects registered tools; `/recommend-tools` recommends candidates.
-`/inject-tools` sets the exact manual schema set for subsequent turns and
+`/inject-tools` replaces the manually requested names for subsequent turns;
+`tools.context.required_tools` remain included. Manual mode suppresses optional
+automatic choices. The union of required and manually selected names must fit
+admission, count and schema budgets. These are Chat context settings, separate
+from agent-profile `required_tools`.
 `/clear-tools` restores automatic selection. Inspect `/tool-budget` after changing
 that set. A required/manual set can fail when names or budgets are invalid.
 

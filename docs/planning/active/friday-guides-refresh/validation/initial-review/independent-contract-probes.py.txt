@@ -1,0 +1,44 @@
+import asyncio
+from friday_chat.config import FridayChatConfig
+from friday_chat.tools.schemas import ToolDefinition
+from friday_chat.tools.selection import ToolSelectionState
+from friday_tools.web.fetch import WebScreenshotTool
+
+config = FridayChatConfig.model_validate({
+    'llm': {'model': 'openai/offline-demo'},
+    'tools': {'enabled': True, 'context': {'required_tools': ['required_tool'], 'max_tools': 5}},
+})
+tools = tuple(ToolDefinition(name=name, description='Synthetic offline tool', input_schema={'type':'object','properties':{}})
+              for name in ('required_tool', 'manual_tool', 'optional_tool'))
+state = ToolSelectionState(config, tools)
+preview = state.inject_manual(['manual_tool'])
+selected = state.select_for_turn('synthetic input')
+print('manual_names:', state.manual_names)
+print('preview_selected:', preview.selected_names)
+print('turn_selected:', tuple(tool.name for tool in selected.definitions))
+assert tuple(tool.name for tool in selected.definitions) == ('required_tool','manual_tool')
+result = asyncio.run(WebScreenshotTool().execute(url='https://example.invalid'))
+print('screenshot_result:', result)
+assert 'not yet implemented' in result
+
+import pathlib, re, yaml
+from friday_chat.commands.registry import build_default_registry
+from friday_chat.config import load_friday_py_config
+w = pathlib.Path('/private/tmp/friday-guides-refresh')
+config_text = (w/'docs/guides/10-configuration.md').read_text()
+fences = re.findall(r'^```yaml\n(.*?)^```', config_text, re.M|re.S)
+main = yaml.safe_load(fences[1]); main['llm_pool']['services']['extraction'] = yaml.safe_load(fences[2])['extraction']
+work = pathlib.Path('/private/tmp/friday-guides-independent-review/replay/independent-config')
+work.mkdir(exist_ok=True)
+(work/'models.yaml').write_text(fences[0]); (work/'config.yaml').write_text(yaml.safe_dump(main))
+loaded = load_friday_py_config(work/'config.yaml', env={'FRIDAY_LOCAL_MODEL_KEY':'local-example-placeholder'})
+print('role_override_load:', loaded.llm_pool.default_service)
+names = {'/' + name for name in build_default_registry().canonical_names()}
+reference = (w/'docs/guides/09-cli-reference.md').read_text()
+listed = set(re.findall(r'^\| `(/[-\w]+)',reference,re.M))
+print('registered_canonical_commands:',len(names))
+print('guide_table_commands:',len(listed))
+print('commands_not_in_table:', sorted(names-listed))
+print('table_commands_not_registered:', sorted(listed-names))
+assert names-listed == {'/help','/exit'}
+assert not listed-names
