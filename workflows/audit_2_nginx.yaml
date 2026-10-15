@@ -1,0 +1,195 @@
+# Audit #2 — nginx web target
+# Authored by: friday (LLM-authored — requires human approval before first execution)
+#
+# Grounding notes (verified at authoring time):
+#   - nmap/nuclei/zap are NOT installed on host; no scanner images cached.
+#     Scanners therefore run as containers (docker is available).
+#   - No target is listening on localhost:8080; this workflow provisions it.
+#   - Dockerfile.audit (friday-sandbox) is a sandbox-runtime audit and is
+#     unrelated to this web-target audit.
+#
+# Scope policy:
+#   Targets:   friday-audit2-nginx (container on friday-audit2-net) and
+#              127.0.0.1:8080 from host. NOTHING else.
+#   Boundary:  friday-audit2-net is an INTERNAL docker bridge (no egress).
+#              All scan traffic is confined to that network.
+#   Evidence:  all scanner output lands in ./exports/audit2/
+
+id: audit_2_nginx
+name: "Audit #2 — nginx target"
+description: "Provision a containerized nginx target, run nmap/nuclei/ZAP baseline against it under network confinement, and produce a findings report."
+version: "1.0.0"
+author: "friday"
+tags: ["security", "audit", "nginx"]
+
+tasks:
+  - id: preflight
+    name: "Preflight: tooling and environment"
+    description: |
+      Fail fast if the environment can't support the audit.
+
+      Steps:
+      1. `docker info` — daemon reachable.
+      2. Pull scanner images (requires internet; this is the ONLY
+         internet-dependent step):
+           docker pull instrumentisto/nmap
+           docker pull projectdiscovery/nuclei
+           docker pull zaproxy/zap-stable
+           docker pull nginx
+      3. Record provenance for the audit log:
+           docker images --digests
+      4. Verify host port 127.0.0.1:8080 is free.
+      5. `mkdir -p exports/audit2`
+
+      Abort the workflow if any step fails.
+    agent: coder
+    inputs: {}
+    outputs:
+      - preflight_report
+    requires_approval: false
+
+  - id: provision_target
+    name: "Provision nginx target on internal network"
+    description: |
+      1. Create the confined network (no egress):
+           docker network create --internal friday-audit2-net
+      2. Start the target:
+           docker run -d --name friday-audit2-nginx \
+             --network friday-audit2-net \
+             -p 127.0.0.1:8080:80 \
+             nginx
+      3. Verify via http_get http://127.0.0.1:8080/ — expect the nginx
+         welcome page and Server: nginx header. Retry a few seconds if
+         the container is still starting.
+    agent: coder
+    inputs:
+      preflight: "$preflight_report"
+    outputs:
+      - target_status
+    depends_on:
+      - preflight
+    requires_approval: false
+
+  - id: approve_scan
+    name: "HITL gate: approve active scanning"
+    description: |
+      Show the human: target status, pulled image digests, and the scope
+      statement (target container + 127.0.0.1:8080 only, internal network,
+      no egress). Do NOT scan until approved.
+    agent: coder
+    inputs:
+      target: "$target_status"
+    outputs:
+      - scan_approval
+    depends_on:
+      - provision_target
+    requires_approval: true
+
+  - id: recon_nmap
+    name: "Recon: nmap service scan"
+    description: |
+      Run nmap inside the confined network:
+        docker run --rm --network friday-audit2-net \
+          -v "$PWD/exports/audit2:/out" \
+          instrumentisto/nmap -sV -sC --top-ports 1000 \
+          -oX /out/nmap.xml friday-audit2-nginx
+
+      Summarize open ports/services/versions from nmap.xml.
+    agent: coder
+    inputs:
+      approval: "$scan_approval"
+    outputs:
+      - nmap_results
+    depends_on:
+      - approve_scan
+    requires_approval: false
+
+  - id: vuln_nuclei
+    name: "Vuln scan: nuclei"
+    description: |
+      Run nuclei inside the confined network:
+        docker run --rm --network friday-audit2-net \
+          -v "$PWD/exports/audit2:/out" \
+          projectdiscovery/nuclei \
+          -u http://friday-audit2-nginx \
+          -disable-update-check \
+          -o /out/nuclei.txt
+
+      Template updates are disabled: the internal network has no egress,
+      so the scan uses the templates baked into the image (provenance
+      recorded in preflight). Summarize findings by severity.
+    agent: coder
+    inputs:
+      approval: "$scan_approval"
+    outputs:
+      - nuclei_results
+    depends_on:
+      - approve_scan
+    requires_approval: false
+
+  - id: web_zap_baseline
+    name: "Web scan: ZAP baseline"
+    description: |
+      Run the OWASP ZAP baseline (spider + passive scan) inside the
+      confined network:
+        docker run --rm --network friday-audit2-net \
+          -v "$PWD/exports/audit2:/out" \
+          zaproxy/zap-stable zap-baseline.py \
+          -t http://friday-audit2-nginx \
+          -r /out/zap_baseline.html
+
+      Summarize alerts by risk level. Baseline is non-intrusive; no
+      active attack plugins.
+    agent: coder
+    inputs:
+      approval: "$scan_approval"
+    outputs:
+      - zap_results
+    depends_on:
+      - approve_scan
+    requires_approval: false
+
+  - id: report
+    name: "Report: collate findings"
+    description: |
+      Write exports/audit2/report.md containing:
+      - Scope statement and image digests (from preflight)
+      - nmap: attack surface (ports/services/versions)
+      - nuclei: findings by severity
+      - ZAP: alerts by risk
+      - Cross-tool deltas (findings only one tool saw)
+      - Recommended remediations, ordered by severity
+      Reference the raw artifacts (nmap.xml, nuclei.txt,
+      zap_baseline.html) rather than duplicating them.
+    agent: coder
+    inputs:
+      nmap: "$nmap_results"
+      nuclei: "$nuclei_results"
+      zap: "$zap_results"
+    outputs:
+      - audit_report
+    depends_on:
+      - recon_nmap
+      - vuln_nuclei
+      - web_zap_baseline
+    requires_approval: false
+
+  - id: teardown
+    name: "Teardown: remove target and network"
+    description: |
+      1. docker stop friday-audit2-nginx && docker rm friday-audit2-nginx
+      2. docker network rm friday-audit2-net
+      3. Confirm 127.0.0.1:8080 no longer responds.
+      Scanner images are kept for rerun speed; note this in the report
+      tail. Artifacts in exports/audit2/ are NOT touched.
+    agent: coder
+    inputs:
+      report: "$audit_report"
+    outputs:
+      - teardown_status
+    depends_on:
+      - report
+    requires_approval: false
+
+timeout_seconds: 5400
+max_retries: 1

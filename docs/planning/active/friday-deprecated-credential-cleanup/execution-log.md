@@ -97,3 +97,8 @@ execution_phase: implementation; validation_state: not_ready.
 All pending intentional workspace changes adopted under the current instruction;
 Finder state and local audit outputs excluded. Push/PR/manual merge/remote-delete
 authorized after aggregate checks. Live scanning is not authorized.
+
+SEC-004 implementation frozen: all adopted source/deletion/configuration changes
+packaged, root Finder metadata untracked but retained, Docker Bench pinned as a
+proper submodule with untracked audit outputs excluded. Docker daemon unavailable;
+no build/scan execution claimed. execution_phase: validation; validation_state: pending.

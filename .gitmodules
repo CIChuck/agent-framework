@@ -1,0 +1,4 @@
+[submodule "docker-bench-security"]
+	path = docker-bench-security
+	url = https://github.com/docker/docker-bench-security.git
+	ignore = untracked

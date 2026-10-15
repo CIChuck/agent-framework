@@ -514,7 +514,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: SEC-004 aggregate validation and review; then authorized push, PR, manual merge and remote-branch deletion
+  next_gate: SEC-004 aggregate independent review, then authorized PR/manual merge/remote deletion
   delivery_state: local
   branch: security/remove-deprecated-credentials
   depends_on: []

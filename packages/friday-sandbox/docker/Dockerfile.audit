@@ -1,0 +1,87 @@
+# syntax=docker/dockerfile:1
+#
+# friday-sandbox audit image
+#
+# Purpose: white-hat audit of the hardened sandbox runtime (Step 2).
+# amicontained and deepce are baked in at BUILD time because the target
+# runtime config uses --network none; they cannot be fetched at runtime.
+#
+# Build (from this directory):
+#   docker build -f Dockerfile.audit -t friday-sandbox-audit .
+#
+# Run against the hardened config (seccomp flag omitted intentionally --
+# Docker 29 rejects seccomp=default; the default profile applies anyway):
+#   docker run --rm -it \
+#     --cap-drop ALL \
+#     --security-opt no-new-privileges \
+#     --read-only \
+#     --tmpfs /tmp:rw,noexec,nosuid,size=64m \
+#     --network none \
+#     --pids-limit 64 --memory 512m --cpus 1 \
+#     friday-sandbox-audit
+#
+# Interactive poking: append `bash` to the run command.
+
+ARG UBUNTU_VERSION=24.04
+
+# ---- fetch stage: pull audit tools while network still exists ----
+FROM ubuntu:${UBUNTU_VERSION} AS fetch
+
+# Pinned versions. Verify before building:
+#   https://github.com/genuinetools/amicontained/releases  (stale project,
+#   v0.4.9 is the last release I can confirm -- still valid for cap/seccomp
+#   reporting)
+#   https://github.com/stealthcopter/deepce
+ARG AMICONTAINED_VERSION=v0.4.9
+ARG DEEPCE_REF=main
+
+# buildx sets this automatically: amd64 or arm64. Matches amicontained's
+# release asset naming, so the same file works on Intel and Apple Silicon.
+ARG TARGETARCH
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      ca-certificates curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# amicontained: reports runtime, seccomp mode, effective capabilities.
+RUN curl -fsSL \
+      "https://github.com/genuinetools/amicontained/releases/download/${AMICONTAINED_VERSION}/amicontained-linux-${TARGETARCH}" \
+      -o /usr/local/bin/amicontained \
+    && chmod +x /usr/local/bin/amicontained
+
+# deepce: enumerates escape vectors -- exposed sockets, writable /proc,
+# host mounts, dangerous caps.
+RUN curl -fsSL \
+      "https://raw.githubusercontent.com/stealthcopter/deepce/${DEEPCE_REF}/deepce.sh" \
+      -o /usr/local/bin/deepce.sh \
+    && chmod +x /usr/local/bin/deepce.sh
+
+# ---- final stage: minimal audit runtime ----
+FROM ubuntu:${UBUNTU_VERSION}
+
+# Only what deepce's enumeration needs. No curl/wget here on purpose:
+# if the sandbox is misconfigured and network leaks through, this image
+# shouldn't hand the tester an exfil path.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      bash iproute2 procps \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=fetch /usr/local/bin/amicontained /usr/local/bin/amicontained
+COPY --from=fetch /usr/local/bin/deepce.sh /usr/local/bin/deepce.sh
+
+# Default action: run both tools and print labeled sections.
+# Tools live on the read-only rootfs, which is fine -- noexec applies only
+# to the /tmp tmpfs in the hardened config.
+COPY <<'EOF' /usr/local/bin/audit
+#!/bin/bash
+echo "=== amicontained ==="
+amicontained
+echo
+echo "=== deepce ==="
+deepce.sh
+EOF
+RUN chmod +x /usr/local/bin/audit
+
+# Root inside on purpose: the sandbox runs agents as root, and part of the
+# audit is proving root-with-zero-capabilities is harmless.
+CMD ["audit"]

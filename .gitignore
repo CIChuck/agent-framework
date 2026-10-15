@@ -26,3 +26,6 @@ scripts/pypi.sh
 
 # Deprecated integration app and local data; retain only outside Git tracking.
 /tests/integration/memory/
+
+# Finder metadata is machine-local.
+.DS_Store

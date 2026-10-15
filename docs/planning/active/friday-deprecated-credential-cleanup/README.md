@@ -1,7 +1,7 @@
 # Deprecated credential-bearing artifact removal
 
 Status: started. Implementation authority: granted for authorized bounded units.
-execution_phase: implementation; validation_state: not_ready.
+execution_phase: validation; validation_state: pending.
 
 Current branch: security/remove-deprecated-credentials; delivery: local only.
 
@@ -25,4 +25,4 @@ Next gate: maintainer acceptance and delivery decision for the bounded cleanup.
 No local data deletion, push, merge or publication is inferred.
 
 SEC-004: maintainer requested publication of all intentional pending workspace
-changes. Next gate: aggregate validation, then authorized GitHub delivery.
+changes. Next gate: aggregate independent review, then authorized GitHub delivery.
