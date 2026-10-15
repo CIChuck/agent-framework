@@ -42,7 +42,7 @@ asyncio.run(main())
 
 `MassiveAgentClient` accepts an explicit `api_key` or reads `MASSIVE_API_KEY`. Set `tier` to your actual account tier. Its governor controls calls issued through `execute_query`; direct use of `client.sdk` bypasses that governor. `probe_tier()` is a placeholder and does not detect your plan.
 
-`equities`, `crypto` and `indicators` expose the provider modules. Data freshness and availability depend on endpoint, market and entitlement; a wrapper does not guarantee real-time data. Weekend rollback in equity date selection is not a complete exchange-holiday calendar. Handle typed authentication, rate-limit, timeout and not-found errors at the application boundary.
+`equities`, `crypto` and `indicators` expose the provider modules. Data freshness and availability depend on endpoint, market and entitlement; a wrapper does not guarantee real-time data. Weekend rollback in equity date selection is not a complete exchange-holiday calendar. Missing credentials raise `MassiveAuthError`. `execute_query()` maps exceptions whose message contains `429` to `MassiveRateLimitError`; other SDK/transport exceptions propagate unchanged, including remote authentication, timeout and not-found failures. The declared Friday timeout/not-found classes are not currently used to normalize those failures; handle the underlying provider exceptions as well.
 
 ## Development
 

@@ -1,0 +1,6 @@
+{
+  "finding": "DOC-001",
+  "all22_code_fences_byte_unchanged": true,
+  "all17_readmes_rendered": true,
+  "only_product_path_changed_since_initial_review": "packages/friday-finance/README.md"
+}
