@@ -544,13 +544,15 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-alpha3-version-bump/
-  next_gate: Production publication authorized; correct stale release checker and verify install/artifact gates
+  next_gate: Valid PyPI credential required; upload frozen34 artifacts then verify registry hashes and production install
   delivery_state: local
   branch: release/0.1.0a3
   depends_on: []
   validation:
   - docs/planning/active/friday-alpha3-version-bump/validation/report.md
   - docs/planning/active/friday-alpha3-version-bump/validation/reviewer-checks.json
+  - docs/planning/active/friday-alpha3-version-bump/validation/publication/helper-review.md
+  - docs/planning/active/friday-alpha3-version-bump/validation/publication/release-readiness.md
   approved_by: Chuck Russell
   approved_at: '2026-10-14'
 events:

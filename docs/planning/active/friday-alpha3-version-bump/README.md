@@ -10,5 +10,6 @@ records and third-party dependency resolutions. [Authority](authority.json),
 
 Independent review: [VERIFIED source candidate 8b85bd91](validation/report.md).
 191 focused tests and all ten required checks passed.
-Next gate: maintainer acceptance of the repository version bump; any publication is a separate release task.
-Local branch only; no upload, tag, push or publication is authorized by this unit.
+Production publication is now explicitly authorized. [Release readiness](validation/publication/release-readiness.md): artifact/install checks pass; upload is blocked by an invalid PyPI token.
+Next gate: configure a valid credential, upload the frozen artifacts, then verify registry hashes and a production-only install.
+The original version-only unit remains independently verified. Publication authority is recorded separately in [publication-authority.json](publication-authority.json); no GitHub release or source push is included.

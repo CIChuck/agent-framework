@@ -1,0 +1,214 @@
+[
+  {
+    "candidate": "72f06012437ae5b82ade9255dcc2a0c0119ea898",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/check-package-artifacts.py",
+      "/private/tmp/friday-alpha3-pypi/dist"
+    ],
+    "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+    "started_at": "2026-10-15T02:16:34.810638+00:00",
+    "finished_at": "2026-10-15T02:16:34.993510+00:00",
+    "exit_code": 0,
+    "redacted_known_secret_occurrences": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "af07a18c77fc4dcde2a545be77be6090c2fc6db490097d0f89c8b5f2b07feff7",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "a3pub-review-artifacts",
+    "stdout": "Validated 17 wheels and 17 sdists in /private/tmp/friday-alpha3-pypi/dist\n",
+    "stderr": ""
+  },
+  {
+    "candidate": "72f06012437ae5b82ade9255dcc2a0c0119ea898",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "/private/tmp/friday-alpha3-pypi/helper-review-audit.py"
+    ],
+    "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+    "started_at": "2026-10-15T02:17:11.633909+00:00",
+    "finished_at": "2026-10-15T02:17:12.056024+00:00",
+    "exit_code": 0,
+    "redacted_known_secret_occurrences": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "d01e2cfe4cf19c8bb302daed26552debf99dd7c7050b8e7d6d96377c973c860d",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "a3pub-review-audit",
+    "stdout": "{\n  \"candidate\": \"72f06012437ae5b82ade9255dcc2a0c0119ea898\",\n  \"base\": \"40d7d38c7b38670db9c8d0b92b8b2bd100301b50\",\n  \"changed_paths\": [\n    \"docs/planning/README.md\",\n    \"docs/planning/active/friday-alpha3-version-bump/directives/CD-REL-A3-002-publication.md\",\n    \"docs/planning/active/friday-alpha3-version-bump/publication-authority.json\",\n    \"docs/planning/board.yaml\",\n    \"scripts/check-package-artifacts.py\"\n  ],\n  \"exact_literal_only\": true,\n  \"negative_checks_unchanged\": true,\n  \"source_lock_wheel_litellm\": \"1.100.1\",\n  \"artifact_count\": 34,\n  \"artifact_digests_unchanged\": true,\n  \"rejections\": {\n    \"stale\": [\n      \"friday_framework_llm-0.1.0a3-py3-none-any.whl: missing exact dependency litellm==1.100.1\"\n    ],\n    \"wrong\": [\n      \"friday_framework_llm-0.1.0a3-py3-none-any.whl: missing exact dependency litellm==1.100.1\"\n    ],\n    \"missing\": [\n      \"friday_framework_llm-0.1.0a3-py3-none-any.whl: expected markdown description content type\",\n      \"friday_framework_llm-0.1.0a3-py3-none-any.whl: missing exact dependency litellm==1.100.1\"\n    ]\n  },\n  \"authority_sha256\": \"5902c8f4ccc30592b6982d05dcb6e046516215aaa52b2076b73a0d2d9f70f353\",\n  \"directive_sha256\": \"4a7f7ce1facec98784cddc83fa12c80a478ab2dc9c314c648a3cd73ea030cbde\",\n  \"helper_sha256\": \"549a599921caa6052f02d7890f47b9bf14b4210c23595eab01c29d4c64033c9e\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "candidate": "72f06012437ae5b82ade9255dcc2a0c0119ea898",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "/private/tmp/friday-alpha3-pypi/helper-review-audit.py"
+    ],
+    "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+    "started_at": "2026-10-15T02:17:33.426844+00:00",
+    "finished_at": "2026-10-15T02:17:33.839122+00:00",
+    "exit_code": 0,
+    "redacted_known_secret_occurrences": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "c3239d55021c009775eba7b67ed08e2b2176d9943c6e2372a448b622dffd21dd",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "a3pub-review-audit-v2",
+    "stdout": "{\n  \"candidate\": \"72f06012437ae5b82ade9255dcc2a0c0119ea898\",\n  \"base\": \"40d7d38c7b38670db9c8d0b92b8b2bd100301b50\",\n  \"changed_paths\": [\n    \"docs/planning/README.md\",\n    \"docs/planning/active/friday-alpha3-version-bump/directives/CD-REL-A3-002-publication.md\",\n    \"docs/planning/active/friday-alpha3-version-bump/publication-authority.json\",\n    \"docs/planning/board.yaml\",\n    \"scripts/check-package-artifacts.py\"\n  ],\n  \"exact_literal_only\": true,\n  \"negative_checks_unchanged\": true,\n  \"source_lock_wheel_litellm\": \"1.100.1\",\n  \"artifact_count\": 34,\n  \"artifact_digests_unchanged\": true,\n  \"rejections\": {\n    \"stale\": [\n      \"friday_framework_llm-0.1.0a3-py3-none-any.whl: missing exact dependency litellm==1.100.1\"\n    ],\n    \"wrong\": [\n      \"friday_framework_llm-0.1.0a3-py3-none-any.whl: missing exact dependency litellm==1.100.1\"\n    ],\n    \"missing\": [\n      \"friday_framework_llm-0.1.0a3-py3-none-any.whl: missing exact dependency litellm==1.100.1\"\n    ]\n  },\n  \"authority_sha256\": \"5902c8f4ccc30592b6982d05dcb6e046516215aaa52b2076b73a0d2d9f70f353\",\n  \"directive_sha256\": \"4a7f7ce1facec98784cddc83fa12c80a478ab2dc9c314c648a3cd73ea030cbde\",\n  \"helper_sha256\": \"549a599921caa6052f02d7890f47b9bf14b4210c23595eab01c29d4c64033c9e\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "candidate": "72f06012437ae5b82ade9255dcc2a0c0119ea898",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+    "started_at": "2026-10-15T02:16:34.816151+00:00",
+    "finished_at": "2026-10-15T02:16:34.935621+00:00",
+    "exit_code": 0,
+    "redacted_known_secret_occurrences": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "e6517dbbf799257576a862a42a5b50482ca37da43830d9839c7988f1f1a233a9",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "a3pub-review-board",
+    "stdout": "Development board validation passed: 29 tasks\n",
+    "stderr": ""
+  },
+  {
+    "candidate": "72f06012437ae5b82ade9255dcc2a0c0119ea898",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "tests/integration/test_package_cohort_metadata.py",
+      "packages/friday-chat/tests_chat/test_release_helpers.py",
+      "-q"
+    ],
+    "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+    "started_at": "2026-10-15T02:16:34.810698+00:00",
+    "finished_at": "2026-10-15T02:16:35.680728+00:00",
+    "exit_code": 0,
+    "redacted_known_secret_occurrences": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "54d62a0149f447ee2867b9e102287fade45e0a057ff3b969489678c98884e9ae",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "a3pub-review-cohort-helpers",
+    "stdout": "........                                                                 [100%]\n8 passed in 0.04s\n",
+    "stderr": ""
+  },
+  {
+    "candidate": "72f06012437ae5b82ade9255dcc2a0c0119ea898",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+    "started_at": "2026-10-15T02:16:34.816222+00:00",
+    "finished_at": "2026-10-15T02:16:35.406495+00:00",
+    "exit_code": 0,
+    "redacted_known_secret_occurrences": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "3605df7ec9e0bcc8025059bfb5ec9e59c0b025fe620b76f05d6094f675589278",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "a3pub-review-docs",
+    "stdout": "Documentation lifecycle validation passed: 596 Markdown files checked\n",
+    "stderr": ""
+  },
+  {
+    "candidate": "72f06012437ae5b82ade9255dcc2a0c0119ea898",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/check-package-metadata.py"
+    ],
+    "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+    "started_at": "2026-10-15T02:16:34.814192+00:00",
+    "finished_at": "2026-10-15T02:16:34.856583+00:00",
+    "exit_code": 0,
+    "redacted_known_secret_occurrences": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "f8d6fca602cb9f52cb26655c104c83f670736fd10f36890cff0c90b3e5ff60f8",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "a3pub-review-metadata",
+    "stdout": "Validated 17 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+    "stderr": ""
+  },
+  {
+    "candidate": "72f06012437ae5b82ade9255dcc2a0c0119ea898",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+    "started_at": "2026-10-15T02:16:34.815880+00:00",
+    "finished_at": "2026-10-15T02:16:34.935682+00:00",
+    "exit_code": 0,
+    "redacted_known_secret_occurrences": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "a3pub-review-render",
+    "stdout": "Planning dashboard is current\n",
+    "stderr": ""
+  },
+  {
+    "candidate": "72f06012437ae5b82ade9255dcc2a0c0119ea898",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+      "check",
+      "scripts/check-package-artifacts.py"
+    ],
+    "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+    "started_at": "2026-10-15T02:16:34.817444+00:00",
+    "finished_at": "2026-10-15T02:16:34.835448+00:00",
+    "exit_code": 0,
+    "redacted_known_secret_occurrences": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "a3pub-review-ruff",
+    "stdout": "All checks passed!\n",
+    "stderr": ""
+  },
+  {
+    "candidate": "72f06012437ae5b82ade9255dcc2a0c0119ea898",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "show",
+      "friday-alpha3-version-bump"
+    ],
+    "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+    "started_at": "2026-10-15T02:16:34.824046+00:00",
+    "finished_at": "2026-10-15T02:16:34.939355+00:00",
+    "exit_code": 0,
+    "redacted_known_secret_occurrences": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "10528a66d808f0a563946ad65c3730aed2445d9ae293201835bf4ff697d6c54a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "a3pub-review-show",
+    "stdout": "id: friday-alpha3-version-bump\ntitle: Friday 0.1.0a3 repository version bump\npriority: 29\nwork_state: started\ncondition: normal\nimplementation_authority: granted\npacket: docs/planning/active/friday-alpha3-version-bump/\nnext_gate: Production publication authorized; correct stale release checker and verify\n  install/artifact gates\ndelivery_state: local\nbranch: release/0.1.0a3\ndepends_on: []\nvalidation:\n- docs/planning/active/friday-alpha3-version-bump/validation/report.md\n- docs/planning/active/friday-alpha3-version-bump/validation/reviewer-checks.json\napproved_by: Chuck Russell\napproved_at: '2026-10-14'\n",
+    "stderr": ""
+  },
+  {
+    "candidate": "72f06012437ae5b82ade9255dcc2a0c0119ea898",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "40d7d38c7b38670db9c8d0b92b8b2bd100301b50",
+      "72f06012437ae5b82ade9255dcc2a0c0119ea898"
+    ],
+    "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+    "started_at": "2026-10-15T02:16:34.824675+00:00",
+    "finished_at": "2026-10-15T02:16:34.842434+00:00",
+    "exit_code": 0,
+    "redacted_known_secret_occurrences": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "a3pub-review-whitespace",
+    "stdout": "",
+    "stderr": ""
+  }
+]

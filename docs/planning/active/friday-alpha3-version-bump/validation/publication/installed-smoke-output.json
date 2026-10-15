@@ -1,0 +1,22 @@
+{
+  "pip-check": {
+    "stdout": "No broken requirements found.\n",
+    "stderr": ""
+  },
+  "llm-smoke": {
+    "stdout": "friday-framework-llm==0.1.0a3 import OK\ntyped fake-transport and legacy constructor smokes OK\n",
+    "stderr": ""
+  },
+  "chat-smoke": {
+    "stdout": "friday-chat==0.1.0a3 import OK\npackaged config and typed Friday Chat fake-transport smokes OK\n",
+    "stderr": ""
+  },
+  "chat-version": {
+    "stdout": "friday-chat 0.1.0a3\n",
+    "stderr": ""
+  },
+  "chat-help": {
+    "stdout": "                                                                                \n Usage: friday-chat [OPTIONS] COMMAND [ARGS]...                                 \n                                                                                \n FridayV2 chat application. Runtime features are implemented incrementally from \n the FridayV2 planning packet.                                                  \n                                                                                \n\u256d\u2500 Options \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 --version                           Show the FridayV2 package version and    \u2502\n\u2502                                     exit.                                    \u2502\n\u2502 --replay                    <path>  Replay an exported transcript CSV and    \u2502\n\u2502                                     exit.                                    \u2502\n\u2502 --replay-delay              <str>   Delay in seconds between replayed user   \u2502\n\u2502                                     turns.                                   \u2502\n\u2502 --config                    <path>  Load Friday-py-style YAML config and     \u2502\n\u2502                                     start the interactive chat.              \u2502\n\u2502 --cli-config                <path>  Load Friday CLI display configuration.   \u2502\n\u2502 --runtime                   <str>   Runtime mode for --config startup: fake  \u2502\n\u2502                                     or real.                                 \u2502\n\u2502                                     [default: fake]                          \u2502\n\u2502 --install-completion                Install completion for the current       \u2502\n\u2502                                     shell.                                   \u2502\n\u2502 --show-completion                   Show completion for the current shell,   \u2502\n\u2502                                     to copy it or customize the              \u2502\n\u2502                                     installation.                            \u2502\n\u2502 --help                              Show this message and exit.              \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
+    "stderr": ""
+  }
+}

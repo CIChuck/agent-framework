@@ -1,0 +1,44 @@
+[
+  {
+    "name": "pip-check",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/local-install/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "llm-smoke",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/local-install/bin/python",
+      "/private/tmp/friday-alpha3-pypi/installed-helper-smoke.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "chat-smoke",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/local-install/bin/python",
+      "/private/tmp/friday-alpha3-pypi/installed-helper-smoke.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "chat-version",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/local-install/bin/friday-chat",
+      "--version"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "chat-help",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/local-install/bin/friday-chat",
+      "--help"
+    ],
+    "exit_code": 0
+  }
+]
