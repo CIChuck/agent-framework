@@ -598,13 +598,14 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-chat-quick-start/
-  next_gate: Hosted/local OpenAI guide checks pass; freeze and obtain fresh UC1/UC2 independent validation
+  next_gate: VERIFIED hosted/local OpenAI quick start; maintainer review and separately authorized delivery
   delivery_state: local
   branch: docs/chat-quick-start
   depends_on: []
   validation:
   - docs/planning/active/friday-chat-quick-start/validation/independent-review/report.md
   - docs/planning/active/friday-chat-quick-start/validation/intro-review/report.md
+  - docs/planning/active/friday-chat-quick-start/validation/hosted-review/report.md
   - docs/planning/active/friday-chat-quick-start/implementation-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-15'

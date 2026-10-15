@@ -34,3 +34,11 @@ and fake UI checks do not certify account access, hosted service availability or
 retrieval quality. Model/credential/cost/data limits and user-run live checks are
 explicit. Old independent reports stay unchanged and apply to their exact
 candidates. A new frozen candidate requires fresh hosted delta/aggregate review.
+
+## Independent result
+
+[Hosted independent review](validation/hosted-review/report.md): VERIFIED89ad03a7
+with no findings. Both installation paths, all three libraries, mixed endpoints,
+key precedence and guarded examples pass. Its exact commands, official-source
+checks and no-live-call limits are retained. Guide bytes remain unchanged.
+Maintainer acceptance and delivery remain separate.
