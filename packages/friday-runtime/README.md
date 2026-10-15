@@ -1,56 +1,93 @@
-# Friday Framework Runtime
+# Friday Runtime
 
-Headless runtime assembly package for the Friday Framework.
+Headless composition and lifecycle for Friday services. `RuntimeConfig` describes the application; `RuntimeKernel` assembles LLM, embeddings, memory, tools, transcripts, agents and telemetry.
 
-This package provides the runtime kernel and dependency-injection surface used
-to compose memory, LLM, telemetry, transcript, agent, and tool services.
+**Distribution:** [friday-framework-runtime](https://pypi.org/project/friday-framework-runtime/) · **Import:** `friday_runtime`
+**Python:** 3.13.4+ · **Status:** alpha · **License:** MIT
 
-## Install
+## Installation
 
 ```bash
-pip install friday-framework-runtime
+python -m pip install "friday-framework-runtime==0.1.0a3"
 ```
 
-## Import Package
+Friday distributions use the same release version; keep internal Friday dependencies aligned.
+
+## Quick start: inspect configuration without starting services
 
 ```python
-import friday_runtime
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from friday_core import MemoryProfile
+from friday_runtime import RuntimeConfig, RuntimeKernel
+
+with TemporaryDirectory() as directory:
+    root = Path(directory)
+    (root / "install").mkdir()
+    (root / "workspace").mkdir()
+    config = RuntimeConfig.from_sources(
+        env={},
+        overrides={
+            "install_root": str(root / "install"),
+            "workspace_root": str(root / "workspace"),
+            "runtime_data_root": str(root / "state"),
+            "cache_root": str(root / "cache"),
+            "telemetry_enabled": False,
+        },
+    )
+    kernel = RuntimeKernel(config=config, memory_profile=MemoryProfile.EPHEMERAL)
+    print(kernel.memory_profile.value)
 ```
 
-## MCP client provider
+Expected output: `ephemeral`. Construction is not startup: this example does not connect to providers or open persistent stores. An ephemeral memory profile does not make a subsequently started runtime network-free; configured chat and embedding services can still call providers.
 
-`RuntimeConfig.tools.providers.mcp` is the canonical headless MCP client
-configuration. It is disabled by default. Enabling it connects to explicit
-local stdio or explicitly opted-in HTTPS Streamable HTTP servers at startup
-and registers only tools admitted by the
-provider's selected-mode filters, schema checks and caps. An optional server
-connection failure remains in typed diagnostics, but a pinned missing
-`include_tools` name still fails registration with `missing_include`; a
-required server failure stops startup.
-The external `config_file` key is reserved and rejected.
+## Start a real application
 
-`RuntimeKernel.mcp_provider` retains the runtime owner, including after a
-failed start. Its public `operational_diagnostics` snapshot covers discovery,
-server lifecycle, registration/collision decisions, budget skips, truncation
-and ingestion outcomes. Optional telemetry exports only closed redacted MCP
-events. The [MCP client guide](../../docs/guides/17-mcp-client.md) contains a
-stdio and both dated HTTP examples, the Friday Chat compatibility shape, security
-defaults and troubleshooting steps.
+Prepare a Runtime YAML file, model/embedding bindings, credential environment variables, writable state paths and any agent profiles. This complete lifecycle example reads **your** configuration and starts the configured services:
+
+```python
+import asyncio
+from friday_runtime import RuntimeConfig, RuntimeKernel
+
+async def main() -> None:
+    kernel = RuntimeKernel(config=RuntimeConfig.from_yaml("runtime.yaml"))
+    await kernel.start()
+    try:
+        print(kernel.list_agents())
+    finally:
+        await kernel.stop()
+
+asyncio.run(main())
+```
+
+It does not create a default agent profile. `spawn_agent(name)` requires a registered profile and valid model/tool bindings; use a name returned by `list_agents()`. Runtime YAML and Friday Chat YAML have distinct application parsers; share only documented canonical sections.
+
+## Configuration and ownership
+
+- Canonical `model_library.path`, `llm_pool` and `embedding_pool` bindings resolve through Friday LLM. Relative model-library paths are resolved from the Runtime YAML file.
+- Source precedence is defaults, YAML, allowed environment overrides, then explicit overrides. YAML environment override behavior is controlled by `config_policy`.
+- Persistent memory/transcript/artifact locations are application-owned. Workspace and runtime-data roots must not overlap; install/workspace roots and writable state parents must exist. Configure isolated paths for experiments; shutdown is awaited.
+- `MemoryProfile.FULL`, `VECTOR_ONLY`, `EPHEMERAL` and `TESTING` choose storage combinations; they do not disable every model-dependent operation.
+
+## MCP client tools
+
+`tools.providers.mcp` is disabled by default. Integrated clients admit explicitly configured stdio or opted-in HTTPS Streamable HTTP peers. Stdio defaults to legacy compatibility; modern/auto is explicit. HTTP requires a dated protocol version, global remote opt-ins and per-peer remote trust. Bearer authentication resolves a credential environment-variable **name**, not a token embedded in YAML.
+
+Discovery, filters, schema/token budgets and startup registration are Runtime-owned. A pinned missing `include_tools` name can stop registration even when the server itself is optional. `kernel.mcp_provider.operational_diagnostics` exposes typed outcomes. Integrated rediscovery uses public stop/start; no in-place YAML refresh switch exists. External MCP `config_file` includes are rejected. See the client guide for complete valid configurations and limits.
+
+## Development
+
+Work from the monorepo root after the [shared contributor setup](https://github.com/CIChuck/agent-framework/blob/master/README.md#development).
+Run the focused suite:
+
+```bash
+uv run --no-sync pytest packages/friday-runtime/tests_runtime -q
+```
+
+## Documentation and support
+
+[Model library](https://github.com/CIChuck/agent-framework/blob/master/docs/reference/llm/model-library-technical-spec.md) · [MCP setup](https://github.com/CIChuck/agent-framework/blob/master/docs/guides/17-mcp-client.md) · [Runtime schema](https://github.com/CIChuck/agent-framework/tree/master/packages/friday-runtime/src/friday_runtime/config.py) · [Source](https://github.com/CIChuck/agent-framework/tree/master/packages/friday-runtime/src/friday_runtime) · [Issues](https://github.com/CIChuck/agent-framework/issues) · [Contributing](https://github.com/CIChuck/agent-framework/blob/master/docs/guides/15-contributing.md)
 
 ## License
 
-MIT
-
-
-Stdio omits `protocol_profile` for legacy compatibility or explicitly uses modern/
-auto. HTTP requires `transport: streamable_http`, explicit `protocol_version`
-2026-07-28 or2025-11-25 and `trust_level: remote`; enabled entries also require
-security.integrated_transport: stdio_and_streamable_http and trust_posture:
-explicit_remote. Only verified HTTPS is configurable. Per-peer network lists
-permit exact canonical IPs/ports; DNS policy is enforced at every actual connection.
-`auth: bearer_env` names a literal credential_env identifier, resolved only at
-connection assembly by the typed MCPCredentialResolver. No OAuth or automatic
-refresh occurs. Disabled peers/providers and auto_connect:false perform no
-credential lookup. New-profile startup has one capped30-second deadline across
-handshake and complete discovery; call budgets are lower-only. HTTP never retries
-startup or replays a tool call. Borrowed telemetry/network providers remain open.
+[MIT](https://github.com/CIChuck/agent-framework/blob/master/LICENSE).

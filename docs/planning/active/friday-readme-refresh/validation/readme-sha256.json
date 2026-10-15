@@ -1,0 +1,19 @@
+{
+  "README.md": "cb716bafb0be1b7c653ca6d10d74b272654fb9c98d40001bdf1609b752b82998",
+  "packages/friday-agent/README.md": "46443ba706b849268b846b1c7383922eaab39d63d32e98f556da88cc2ffdfd1a",
+  "packages/friday-chat/README.md": "9e9a7588da84b924918dca5744153701de09992900a62c876c326cc33f532d77",
+  "packages/friday-cli/README.md": "b3fa79e05f5ffa11c1a6dd8000b334381ba79a6e7c3069a50d23dd4d0144d61e",
+  "packages/friday-core/README.md": "ce6df76edddd2cbffb2acc901e97fb6333ab25c4b3559c015308524f552fbdad",
+  "packages/friday-finance/README.md": "ea579f320a525dc55a24f717d655ddcc6b5130ccf0cead01ca1c1e57d04c6c01",
+  "packages/friday-llm/README.md": "2bc0bbf440d5aeb925b7b5b39010044d82a0edb301af03a04782e24d98d42ee4",
+  "packages/friday-mcp/README.md": "406335132fc4235ab5ddcbce4852735065e91531458c1aedc19c48a637a5c220",
+  "packages/friday-memory/README.md": "fc6858ebfc6431dfc47aba4e3b09ba8d22735713abaa7fbb670b59c319dfa016",
+  "packages/friday-moltbook/README.md": "ef7ee666d26521ea9d1caef3a93f26ded401fefd10e93431b2ba64270d9f5952",
+  "packages/friday-optimization/README.md": "e67d5f63086365c9c8ba8e74c70211a9a491497ef470a6ce360783a259c5a07a",
+  "packages/friday-runtime/README.md": "4a8ff588051b9b0ddf82cf6bad308a79392c878c53bc8299b027d091e1b4ea6d",
+  "packages/friday-sandbox/README.md": "f16a1309307bbcd9d04762692fd7fcffef60106d81e890bae5f01f30924fd84f",
+  "packages/friday-speech/README.md": "25d7caf9427eaf6abe7fc9aec3c223b19bab7d92960480f971737e50d5b6e878",
+  "packages/friday-telemetry/README.md": "253ebd30cc3c1ba125d7f1e1484b15edffefed137d365997e5c0ac763e9e9088",
+  "packages/friday-tools/README.md": "07801df1f95d866d970cca9fa3f29fba8ada16420d7a00fe32267765ca202990",
+  "packages/friday-transcript/README.md": "fa6ecf1a236c77dbc39fd21012ee73147a5b63c709b0e32e142cb5620b7bba5f"
+}

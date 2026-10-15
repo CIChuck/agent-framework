@@ -1,180 +1,88 @@
-# Friday Framework Telemetry
+# Friday Telemetry
 
-Telemetry package for the Friday Framework.
+Provider-neutral event/span contracts, local recorders, validated instrumentation helpers and optional owned OpenTelemetry exporters. Applications select providers and control their lifetime.
 
-This package provides telemetry records, interfaces, provider helpers, and
-debug/OpenTelemetry-oriented instrumentation support used across Friday
-packages.
+**Distribution:** [friday-framework-telemetry](https://pypi.org/project/friday-framework-telemetry/) · **Import:** `friday_telemetry`
+**Python:** 3.13.4+ · **Status:** alpha · **License:** MIT
 
-## Install
+## Installation
 
 ```bash
-pip install friday-framework-telemetry
+python -m pip install "friday-framework-telemetry==0.1.0a3"
 ```
 
-## Import Package
+Friday distributions use the same release version; keep internal Friday dependencies aligned.
+
+## Quick start: record an event locally
 
 ```python
-import friday_telemetry
+from friday_telemetry import DebugTelemetryRecorder
+
+recorder = DebugTelemetryRecorder()
+span = recorder.start_span("example.operation")
+recorder.capture_event("example.completed", {"count": 1})
+recorder.end_span(span, {"outcome": "succeeded"})
+print(recorder.get_event("example.completed"))
 ```
+
+The event data includes `count: 1`. This recorder retains data in process memory; it is a debugging/test facility, not a durable or bounded production exporter. Never pass secrets or raw application content assuming the recorder will redact them.
+
+## Providers and lifecycle
+
+| API | Responsibility |
+| --- | --- |
+| `TelemetryInterface` | Injectable event/span contract |
+| `DebugTelemetryRecorder` | Local white-box inspection |
+| `CompositeProvider` | Fan-out while preserving child span ownership |
+| `create_telemetry`, `ManagedTelemetry` | Explicit owned provider construction, flush and shutdown |
+| `OpenTelemetryProvider` | Optional SDK-backed tracing |
+| `SafeLLMTelemetry`, `MCPEvent`, `ExecutionEvent` | Closed validated instrumentation families |
+
+A managed local provider needs no exporter SDK:
+
+```python
+from friday_telemetry import TelemetryFactoryConfig, create_telemetry
+
+with create_telemetry(TelemetryFactoryConfig(provider="debug")) as owned:
+    owned.telemetry.capture_event("example.completed", {"count": 1})
+    result = owned.flush(1000)
+    print(result.status)
+```
+
+The factory defaults to disabled. Callers close handles they create; consumers borrowing `TelemetryInterface` must not close the caller's provider. Composite membership and each child's span identity are captured when a span starts. Unknown/repeated ends are no-ops; fan-out failures are reported after attempting children. Composite public IDs stay reserved for its lifetime, so that reservation set grows across completed spans; use a defined provider lifetime.
+
+## OpenTelemetry
+
+```bash
+python -m pip install "friday-framework-telemetry[otel]==0.1.0a3"
+```
+
+Use `TelemetryFactoryConfig(provider="otel", otel=OTelConfig(...))` to choose an exporter explicitly. The owned provider does not install a global tracer. Missing requested SDK/exporter support fails explicitly; installing the extra alone does not enable an exporter or wire Runtime/Chat automatically.
+
+The validated SDK/API profile is 1.39.1; broader metadata lower bounds do not assert compatibility with every SDK version. The exporter supports console and explicitly configured OTLP/gRPC destinations. Remote collection requires verified TLS; insecure collection is restricted to explicit literal-loopback endpoints. Inherited OTEL/GRPC, proxy and certificate overrides are rejected by the owned factory. No HTTP exporter, custom credential headers, automatic instrumentation or ambient context bridge is promised. `snapshot()`, `flush()` and `shutdown()` report categorical failures/timeouts rather than treating attempted delivery as success. Shutdown/flush budgets are capped at five seconds.
+
+## Content and integration boundaries
+
+- Closed LLM/MCP/execution payloads contain bounded counts, timings, categories and generated opaque correlation identifiers. Raw prompts, responses, reasoning, schemas, tool payloads and credentials are excluded from those schemas.
+- Generic `capture_event` values are caller data; string validation is not redaction. Historical LLM/memory helpers retain raw-content compatibility behavior and are outside the closed-schema guarantee.
+- Friday Chat has separate default-disabled YAML assembly, safe local diagnostics, turn correlation and caller-owned injection. Headless adoption of the newer factory/correlation path is separate work.
+- Langfuse integration remains separately queued. Legacy LLM callback support and the `langfuse` extra do not constitute a completed provider-neutral Langfuse backend.
+
+For full limits and trust contracts, consult the factory, lifecycle and event-model source linked below.
+
+## Development
+
+Work from the monorepo root after the [shared contributor setup](https://github.com/CIChuck/agent-framework/blob/master/README.md#development).
+Run the focused suite:
+
+```bash
+uv run --no-sync pytest packages/friday-telemetry/tests_telemetry -q
+```
+
+## Documentation and support
+
+[Chat telemetry](https://github.com/CIChuck/agent-framework/blob/master/packages/friday-chat/README.md) · [Owned provider factory](https://github.com/CIChuck/agent-framework/tree/master/packages/friday-telemetry/src/friday_telemetry/factory.py) · [Lifecycle contracts](https://github.com/CIChuck/agent-framework/tree/master/packages/friday-telemetry/src/friday_telemetry/lifecycle.py) · [Source](https://github.com/CIChuck/agent-framework/tree/master/packages/friday-telemetry/src/friday_telemetry) · [Issues](https://github.com/CIChuck/agent-framework/issues) · [Contributing](https://github.com/CIChuck/agent-framework/blob/master/docs/guides/15-contributing.md)
 
 ## License
 
-MIT
-
-### Composite span ownership
-
-`CompositeProvider` retains each child's own span ID and translates nested
-parent IDs per provider. A first child's ID remains public when this composite
-has never published it. Reused child IDs and empty composites receive a fresh
-opaque composite-owned ID; each child still receives its own ID on end.
-Membership is captured when a span starts, so
-removing a provider does not strand its span and adding one does not send it a
-foreign end. A newly added child receives no parent for a span it never started.
-Unknown or repeated ends are no-ops. Event and end payloads are copied per sink.
-
-Published IDs remain reserved for the composite instance's lifetime, including
-after a span ends. This prevents a stale end from closing a later span when a
-replacement provider reuses an ID. Reservation retains only strings, growing
-with the total number of published spans; completed child/provider references
-and payloads are released. Use composite instances with a defined runtime
-lifetime when cumulative ID retention matters.
-
-Fan-out attempts every child even if another fails, then raises a content-free
-aggregate delivery error. A partially failed start closes the children that
-opened before raising. An end is attempted once per recorded child; failure is
-reported rather than silently treated as success. Exporter retry, OTel context,
-and lifecycle behavior are separate contracts.
-
-## Owned programmatic telemetry
-
-```python
-from friday_telemetry import OTelConfig, TelemetryFactoryConfig, create_telemetry
-
-settings = TelemetryFactoryConfig(
-    provider="otel",
-    otel=OTelConfig(exporter="console", service_name="example"),
-)
-with create_telemetry(settings) as handle:
-    span = handle.telemetry.start_span("example.operation")
-    handle.telemetry.capture_event("example.event", {"count": 1, "complete": True})
-    handle.telemetry.end_span(span, {"outcome": "succeeded"})
-    result = handle.flush(1000)
-```
-
-The additive factory defaults to `disabled`; `debug` creates a local recorder.
-Both avoid optional SDK imports, workers and channels. Existing `TelemetryConfig`
-and default-disabled Chat configuration retain their defaults. This factory is a
-programmatic API; Chat YAML/CLI and headless DI do not adopt it automatically.
-Embedding callers may inject `handle.telemetry` into `build_runtime(telemetry=...)`
-and must close the handle themselves. Chat never closes a borrowed provider.
-
-`OpenTelemetryProvider(service_name, endpoint=None)` preserves its constructor.
-Each provider now owns its SDK tracer and explicitly releases resources through
-`shutdown(timeout_millis=5000)`. No global tracer is registered and no SDK atexit
-handler owns the console stream. A service-only constructor without SDK support
-remains a no-op with unavailable diagnostics; explicit factory OTel or endpoint
-selection fails with a content-free `TelemetryInitializationError`. A missing
-requested exporter never silently falls back to console. Invalid settings fail
-before channel construction; an outage after construction is visible in lifecycle
-results and retained counters.
-
-The validated optional SDK/API/encoder boundary is **1.39.1**, with grpcio 1.67.1
-and protobuf 6.33.2 in this verification environment. Older versions permitted by
-package metadata are not a compatibility claim; incompatible SDK versions fail
-explicitly. No dependency update or HTTP exporter is included in this change.
-
-Parent IDs must identify a live span in the same provider. Omitted parents use the
-caller's provider-local task/thread context; otherwise a root uses an empty SDK
-context. This deliberately avoids the application's ambient SDK span. Standalone
-events create one ended event span. Context stacks are immutable, with stale entries
-pruned after out-of-order or cross-context end; unknown/repeated ends are no-ops.
-At most 128 spans may remain active. Shutdown marks outstanding spans cancelled.
-Native auto-instrumentation and ambient context bridges are deferred.
-
-Generic names and keys use `[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}`. Each attribute set
-contains at most 64 scalars: booleans, signed 64-bit integers, finite floats, or
-strings of at most 1024 UTF-8 bytes. Invalid Unicode, nested objects and unsupported
-values are rejected without calling `str` or SDK warning logs. Arbitrary scalar
-strings supplied by callers are not promised content-safe. Chat injection retains
-its accepted closed observer/MCP payload boundary; raw LLM/memory hooks stay deferred.
-
-`snapshot()`, `flush()` and `shutdown()` expose immutable categorical results and
-cumulative actual export/failure/drop/cancellation counts. Positive integer budgets
-default to and are capped at five seconds. Queue/batch defaults and maxima are
-512/128, flush interval 200 ms and gRPC request deadline one second. Flush waits use
-a monotonic deadline, and export success is observed at the actual exporter result.
-Timeout cannot be relabeled success. Shutdown closes admission, drains, cancels
-owned I/O and joins within the same budget; unreaped workers remain explicit in the
-result. Repeated shutdown returns its retained result. Arbitrary Python exporter or
-writer code cannot be forcibly killed; the factory provides only its owned built-ins.
-Console writer failure becomes a categorical export failure and never closes the
-caller's stream.
-
-## Destination and trust boundary
-
-The gRPC exporter requires an explicit `http://literal-loopback:port` destination
-for insecure local collection or `https://host:port` for TLS. Paths, queries,
-fragments, userinfo, unsupported protocols and implicit endpoints are rejected.
-Before SDK/channel construction, inherited OTEL/GRPC, proxy and certificate override
-key names are rejected without reading their values or changing the environment.
-There are no headers, client credentials, provider plugins or custom trust files.
-Resource attributes contain only `service.name`; sampling and span limits are explicit.
-Channel options are fixed: `grpc.enable_http_proxy=0`, `grpc.enable_retries=0` and
-4 MiB send/receive message limits. Native retry disable includes transparent retries;
-the exporter makes one public RPC invocation per batch, with no application retry loop.
-
-HTTPS uses public `grpc.ssl_channel_credentials` with root_certificates, private_key
-and certificate_chain all None, ordinary hostname verification and the native gRPC
-runtime-selected bundled/system public trust roots. This permitted default trust
-store is the sole certificate-resolution exception. No custom roots, credential
-plugins, authority override or plaintext fallback is provided. Missing roots produce
-safe initialization failure or degraded export status when observed.
-
-The verification profile mocks HTTPS credentials/channels and exercises native
-gRPC only against two synthetic ephemeral 127.0.0.1 collector tests. These mocks do
-not prove native filesystem behavior, real TLS handshakes or public connectivity.
-Python socket guards cannot intercept all native gRPC I/O; explicit target/options
-and fixture cleanup evidence are required. Real remote/TLS activation, credentials,
-certificate provisioning and live providers require a later explicit profile.
-
-## Safe LLM event boundary
-
-`LLMEvent` and `SafeLLMTelemetry` provide immutable, runtime-validated version-one
-`llm.request_start`, `llm.attempt_finish`, `llm.batch_finish` and
-`llm.request_finish` events through the unchanged `TelemetryInterface.capture_event`.
-Payloads contain only bounded counts, finite timing/cost values, closed categories
-and generated opaque identifiers. Missing values are omitted. The helper borrows
-its sink, creates no spans or exporter, and retains at most 256 content-free
-failure diagnostics in its typed `snapshot()`.
-
-Each logical invocation has its own request state. Actual provider dispatches and
-embedding batches get separate IDs; no ambient span is held across stream yields.
-Ordinary sink failures cannot replace application results, exceptions or cancellation.
-The standalone legacy `LLMTelemetryHelper` and its exports remain available for
-compatibility and retain their historical raw-content behavior. They are outside
-this safety guarantee and are no longer used by the instrumented LiteLLM services.
-
-## Correlated execution events
-
-`ExecutionEvent` adds a strict, content-free execution family without changing
-`TelemetryInterface` or accepted LLM/MCP payloads. `ExecutionContext` and
-`CorrelationScope` provide instance-owned task-local opaque lineage; foreign-owner
-bindings fail validation and expired inherited scopes cannot remain current.
-Friday Chat owns turn/operation spans around awaited work, closes them on every
-exit, and leaves public generator yields without a new ambient span.
-
-Operational counters/histograms are a bounded provider-neutral local snapshot;
-there is no new OTel Meter, global registration, exporter or vendor callback.
-LLM/MCP links never contribute duplicate execution counters. Raw historical memory
-and LLM helpers remain outside this safety claim. Headless assembly and Langfuse
-adoption require separate work.
-
-
-Execution schema_version accepts actual integer1 only; bool, float, string and
-forged-instance versions are rejected before recording, sink delivery or metrics.
-Chat delivery contexts are private active-frame state, never exported lineage.
-Independent frames and copied active child contexts keep provider stack bindings
-isolated while explicit owned parents preserve legitimate nesting. Per-item absent
-origins remain session-only. Close-capable upstream iterators are awaited through
-Chat's stream wrapper chain before terminal return, preserving primary exceptions.
+[MIT](https://github.com/CIChuck/agent-framework/blob/master/LICENSE).

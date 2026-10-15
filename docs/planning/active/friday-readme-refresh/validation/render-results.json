@@ -1,0 +1,87 @@
+[
+  {
+    "path": "README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-agent/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-chat/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-cli/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-core/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-finance/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-llm/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-mcp/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-memory/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-moltbook/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-optimization/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-runtime/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-sandbox/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-speech/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-telemetry/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-tools/README.md",
+    "rendered": true,
+    "warnings": ""
+  },
+  {
+    "path": "packages/friday-transcript/README.md",
+    "rendered": true,
+    "warnings": ""
+  }
+]

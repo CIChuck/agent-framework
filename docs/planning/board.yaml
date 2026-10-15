@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: closed
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: "core TELEM-01\u201304 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths"
+  next_gate: 'core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths'
   delivery_state: merged
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -612,8 +612,7 @@ events:
   actor_role: agent
   action: transitioned started -> completed
   note: Canonical AGENTS.md planning and code-generation authority completed and validated
-  evidence: 'AGENTS.md canonical code-generation authority assertions passed; tests/integration: 17 passed after authority update; focused mypy and Ruff passed after authority update; documentation lifecycle
-    and guide-boundary checks passed'
+  evidence: 'AGENTS.md canonical code-generation authority assertions passed; tests/integration: 17 passed after authority update; focused mypy and Ruff passed after authority update; documentation lifecycle and guide-boundary checks passed'
 - task: development-kanban-governance
   at: '2026-09-03T21:00:41+00:00'
   actor: Codex
@@ -668,8 +667,7 @@ events:
   actor_role: agent
   action: transitioned started -> completed
   note: Independent aggregate validation verified the completed governance implementation
-  evidence: 'VAL-004 VERIFIED aggregate candidate c185c4e; tests/integration: 24 passed; focused board tests: 11 passed; board validation: 22 tasks; documentation lifecycle: 298 Markdown files; focused
-    Ruff and Python 3.13 mypy passed'
+  evidence: 'VAL-004 VERIFIED aggregate candidate c185c4e; tests/integration: 24 passed; focused board tests: 11 passed; board validation: 22 tasks; documentation lifecycle: 298 Markdown files; focused Ruff and Python 3.13 mypy passed'
 - task: friday-chat-client-lifecycle
   at: '2026-09-14T19:15:40+00:00'
   actor: repository maintainer
@@ -836,8 +834,7 @@ events:
   actor: Codex
   actor_role: agent
   action: recorded REM-002 dependency stop condition
-  note: Separate remediator stopped before edits because the required runtime-package test would import downstream Friday Chat across an undeclared reverse dependency; maintainer test-location decision
-    required.
+  note: Separate remediator stopped before edits because the required runtime-package test would import downstream Friday Chat across an undeclared reverse dependency; maintainer test-location decision required.
   evidence: docs/planning/active/friday-mcp/remediation/REM-002-directive.md; docs/planning/active/friday-mcp/execution-log.md
 - task: friday-mcp
   at: '2026-09-27'
@@ -879,32 +876,28 @@ events:
   actor: Codex
   actor_role: agent
   action: recorded WS-02 readiness scope stop
-  note: Created feature/friday-mcp-ws02-lifecycle from accepted WS-01 checkpoint a64e423; fake-transport probe reproduced partial-handshake cleanup loss, and stdio raw logs require two source files outside
-    the directive. No product code changed; narrow amendment awaits maintainer approval.
+  note: Created feature/friday-mcp-ws02-lifecycle from accepted WS-01 checkpoint a64e423; fake-transport probe reproduced partial-handshake cleanup loss, and stdio raw logs require two source files outside the directive. No product code changed; narrow amendment awaits maintainer approval.
   evidence: docs/planning/active/friday-mcp/execution/WS-02-readiness-checkpoint.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: repository maintainer
   actor_role: maintainer
   action: approved WS-02 cleanup amendment
-  note: Maintainer said continue next steps after the two-file amendment request and defect explanation; bounded base/stdio cleanup and redaction may proceed, registry insertion stays WS-03, and no external
-    effects or delivery are approved.
+  note: Maintainer said continue next steps after the two-file amendment request and defect explanation; bounded base/stdio cleanup and redaction may proceed, registry insertion stays WS-03, and no external effects or delivery are approved.
   evidence: docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: prepared WS-02 lifecycle candidate
-  note: Runtime-owned stdio lifecycle, bounded discovery handoff, failure diagnostics, and partial-startup cleanup are implemented under the approved amendment; registry insertion remains WS-03. Independent
-    validation is pending.
+  note: Runtime-owned stdio lifecycle, bounded discovery handoff, failure diagnostics, and partial-startup cleanup are implemented under the approved amendment; registry insertion remains WS-03. Independent validation is pending.
   evidence: docs/planning/active/friday-mcp/execution/WS-02-implementation-report.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: recorded WS-02 validation changes requested
-  note: Fresh independent VAL-005 confirmed checks but found high F-001 startup-retry ownership loss after cleanup failure; bounded REM-003 awaits authorization of a separate remediator. Candidate remains
-    frozen and no corrective source edits occurred.
+  note: Fresh independent VAL-005 confirmed checks but found high F-001 startup-retry ownership loss after cleanup failure; bounded REM-003 awaits authorization of a separate remediator. Candidate remains frozen and no corrective source edits occurred.
   evidence: docs/planning/active/friday-mcp/validation/VAL-005-report.md; docs/planning/active/friday-mcp/remediation/REM-003-directive.md
 - task: friday-mcp
   at: '2026-09-27'
@@ -918,72 +911,63 @@ events:
   actor: Codex
   actor_role: agent
   action: froze REM-003 candidate for fresh review
-  note: Separate remediator committed 26f4d7d within the five permitted paths; VAL-005 is superseded for decision purposes only. Fresh VAL-006 delta and complete WS-02 aggregate review are required; initiative
-    remains started and local.
+  note: Separate remediator committed 26f4d7d within the five permitted paths; VAL-005 is superseded for decision purposes only. Fresh VAL-006 delta and complete WS-02 aggregate review are required; initiative remains started and local.
   evidence: docs/planning/active/friday-mcp/validation/VAL-006-request.yaml
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: recorded verified ownership delta and WS-02 aggregate cleanup finding
-  note: Fresh VAL-006 verifies REM-003 but requests aggregate changes for high F-001 paused-stdout post-kill shutdown hang. Draft REM-004 bounds transport source/tests/report remediation and awaits separate
-    maintainer authorization; no corrective product changes or new remediator dispatch occurred.
+  note: Fresh VAL-006 verifies REM-003 but requests aggregate changes for high F-001 paused-stdout post-kill shutdown hang. Draft REM-004 bounds transport source/tests/report remediation and awaits separate maintainer authorization; no corrective product changes or new remediator dispatch occurred.
   evidence: docs/planning/active/friday-mcp/validation/VAL-006-report.md; docs/planning/active/friday-mcp/remediation/REM-004-directive.md
 - task: friday-mcp
   at: '2026-09-28'
   actor: repository maintainer
   actor_role: maintainer
   action: approved bounded REM-004 and separate remediator
-  note: Maintainer said aproved... make a list of next steps in our task queue in reply to the REM-004 authorization request. Approval covers only the exact transport correction and fresh review; this turn
-    records approval and the queue without product edits or remediator dispatch.
+  note: Maintainer said aproved... make a list of next steps in our task queue in reply to the REM-004 authorization request. Approval covers only the exact transport correction and fresh review; this turn records approval and the queue without product edits or remediator dispatch.
   evidence: docs/planning/active/friday-mcp/remediation/REM-004-directive.md; docs/planning/active/friday-mcp/task-queue.md
 - task: friday-mcp
   at: '2026-09-28'
   actor: Codex
   actor_role: agent
   action: recorded REM-004 agent dispatch capacity stop
-  note: Maintainer said proceed after readiness audit. New separate-remediator dispatch and prior-remediator resumption both failed with agent thread limit reached. No product edits or agent dispatch occurred;
-    approval remains valid, and execution needs available separate-remediator and fresh-validator capacity.
+  note: Maintainer said proceed after readiness audit. New separate-remediator dispatch and prior-remediator resumption both failed with agent thread limit reached. No product edits or agent dispatch occurred; approval remains valid, and execution needs available separate-remediator and fresh-validator capacity.
   evidence: docs/planning/active/friday-mcp/execution-log.md; docs/planning/active/friday-mcp/task-queue.md
 - task: friday-mcp
   at: '2026-09-28'
   actor: Codex
   actor_role: agent
   action: prepared existing agent for separate REM-004 remediation
-  note: Existing historical WS-01 reviewer mcp_ws01_val004 confirmed availability and no WS-02 builder/remediator conflict. It may be reassigned solely as the approved separate remediator and must not validate
-    its resulting work. Fresh independent review remains required and its capacity is not yet established.
+  note: Existing historical WS-01 reviewer mcp_ws01_val004 confirmed availability and no WS-02 builder/remediator conflict. It may be reassigned solely as the approved separate remediator and must not validate its resulting work. Fresh independent review remains required and its capacity is not yet established.
   evidence: docs/planning/active/friday-mcp/execution-log.md; docs/planning/active/friday-mcp/task-queue.md
 - task: friday-mcp
   at: '2026-09-28T14:24:07+00:00'
   actor: Codex
   actor_role: agent
   action: condition blocked -> blocked
-  note: Fresh-context VAL-008 completed with CHANGES_REQUESTED for one medium collision diagnostic finding. Archive unchanged review evidence and prepare bounded REM-005; the old capacity stop is resolved,
-    and explicit remediation approval is the current gate. No product fixes or remediator dispatch.
+  note: Fresh-context VAL-008 completed with CHANGES_REQUESTED for one medium collision diagnostic finding. Archive unchanged review evidence and prepare bounded REM-005; the old capacity stop is resolved, and explicit remediation approval is the current gate. No product fixes or remediator dispatch.
   evidence: docs/planning/active/friday-mcp/remediation/REM-005-directive.md
 - task: friday-mcp
   at: '2026-09-28T15:38:09+00:00'
   actor: Codex
   actor_role: agent
   action: condition blocked -> normal
-  note: Maintainer explicitly approved REM-005 and its separate remediator with Thats approved. Proceed. Clear the resolved approval condition, restore active packet and authorize only bounded F-001 execution
-    and fresh review; no later-slice or delivery authority.
+  note: Maintainer explicitly approved REM-005 and its separate remediator with Thats approved. Proceed. Clear the resolved approval condition, restore active packet and authorize only bounded F-001 execution and fresh review; no later-slice or delivery authority.
   evidence: docs/planning/active/friday-mcp/remediation/REM-005-directive.md
 - task: friday-mcp
   at: '2026-09-28T16:02:49+00:00'
   actor: Codex
   actor_role: agent
   action: condition normal -> normal
-  note: Separate approved REM-005 remediator committed exact eight-path candidate d395acd. Pin fresh VAL-009 delta/full work-unit review and retain historical VAL-008 unchanged; request preparation is not
-    dispatch or verification.
+  note: Separate approved REM-005 remediator committed exact eight-path candidate d395acd. Pin fresh VAL-009 delta/full work-unit review and retain historical VAL-008 unchanged; request preparation is not dispatch or verification.
   evidence: docs/planning/active/friday-mcp/validation/VAL-009-request.yaml
 - task: friday-mcp
   at: '2026-09-28T16:04:35+00:00'
   actor: Codex
   actor_role: agent
   action: condition normal -> normal
-  note: New fresh-context read-only mcp_ws03_val009 successfully spawned with fork_turns none. Formal review starts after stable dispatch metadata and controller GO; candidate/request/22 authorities/reports
-    remain frozen. No verdict or acceptance exists.
+  note: New fresh-context read-only mcp_ws03_val009 successfully spawned with fork_turns none. Formal review starts after stable dispatch metadata and controller GO; candidate/request/22 authorities/reports remain frozen. No verdict or acceptance exists.
   evidence: docs/planning/active/friday-mcp/validation/VAL-009-request.yaml
 - task: friday-mcp
   at: '2026-09-28T16:35:53+00:00'
@@ -997,8 +981,7 @@ events:
   actor: Codex
   actor_role: agent
   action: condition normal -> normal
-  note: 'Record explicit maintainer WS-03 acceptance: accepted - Summarize WS-03.; candidate d395acd and fresh VAL-009 verified. Wider initiative remains started; next is WS-04 planning before separate
-    approval.'
+  note: 'Record explicit maintainer WS-03 acceptance: accepted - Summarize WS-03.; candidate d395acd and fresh VAL-009 verified. Wider initiative remains started; next is WS-04 planning before separate approval.'
   evidence: docs/planning/active/friday-mcp/execution/WS-03-closeout.md
 - task: friday-mcp
   at: '2026-09-28T17:34:10+00:00'
@@ -1026,24 +1009,21 @@ events:
   actor: controller
   actor_role: agent
   action: note
-  note: Fresh read-only VAL-010 verified complete WS-04 aggregate with no findings; full independent report/evidence archived and work-unit closeout prepared. Explicit acceptance pending, initiative remains
-    started/local.
+  note: Fresh read-only VAL-010 verified complete WS-04 aggregate with no findings; full independent report/evidence archived and work-unit closeout prepared. Explicit acceptance pending, initiative remains started/local.
   evidence: docs/planning/active/friday-mcp/validation/VAL-010-report.md; docs/planning/active/friday-mcp/execution/WS-04-closeout.md
 - task: friday-mcp
   at: '2026-09-28'
   actor: repository maintainer
   actor_role: maintainer
   action: note
-  note: 'Explicit WS-04 acceptance: accepted; verified candidate 53d76d4 and complete fresh VAL-010, no findings. Wider initiative remains started/local; next is WS-05 directive/readiness reconciliation
-    before separate approval.'
+  note: 'Explicit WS-04 acceptance: accepted; verified candidate 53d76d4 and complete fresh VAL-010, no findings. Wider initiative remains started/local; next is WS-05 directive/readiness reconciliation before separate approval.'
   evidence: docs/planning/active/friday-mcp/execution/WS-04-closeout.md
 - task: friday-mcp
   at: '2026-09-28T19:06:15+00:00'
   actor: controller
   actor_role: agent
   action: condition normal -> normal
-  note: 'WS-05 planning reconciliation complete after proceed: exact 23-path draft, eight tasks/ten criteria and reproducible local readiness evidence. Explicit directive approval pending; no product edit
-    or WS-05 branch/agent dispatch.'
+  note: 'WS-05 planning reconciliation complete after proceed: exact 23-path draft, eight tasks/ten criteria and reproducible local readiness evidence. Explicit directive approval pending; no product edit or WS-05 branch/agent dispatch.'
   evidence: docs/planning/active/friday-mcp/execution/WS-05-readiness-checkpoint.md
 - task: friday-mcp
   at: '2026-09-28T22:06:28.963975+00:00'
@@ -1119,8 +1099,7 @@ events:
   actor: Codex
   actor_role: agent
   action: recorded VAL-001 CHANGES_REQUESTED
-  note: Fresh read-only review found VAL-001-F01 provider-local span-ID collision; baseline PTY timing also requires passing evidence or maintainer exception. REM-001 and WVR-001 are proposed; no remediation,
-    completion or acceptance is authorized.
+  note: Fresh read-only review found VAL-001-F01 provider-local span-ID collision; baseline PTY timing also requires passing evidence or maintainer exception. REM-001 and WVR-001 are proposed; no remediation, completion or acceptance is authorized.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md
 - task: friday-telemetry-rewire
   at: '2026-10-05'
@@ -1155,8 +1134,7 @@ events:
   actor: Codex
   actor_role: agent
   action: recorded VAL-002 CHANGES_REQUESTED
-  note: Independent review supports REM-001 collision fix and AC-01 through AC-05. VAL-002-F01 aggregate gates remain unresolved. REM-002 is proposed; WVR-001 remains unapproved. No source VERIFIED, completion
-    or acceptance.
+  note: Independent review supports REM-001 collision fix and AC-01 through AC-05. VAL-002-F01 aggregate gates remain unresolved. REM-002 is proposed; WVR-001 remains unapproved. No source VERIFIED, completion or acceptance.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-002/report.md
 - task: friday-telemetry-rewire
   at: '2026-10-05'
@@ -1177,16 +1155,14 @@ events:
   actor: Codex
   actor_role: agent
   action: REM-002 verification reruns prepared for independent review
-  note: CDR-005 READY; root collection succeeds, exact permitted localhost nodes pass. Broad failures match baseline; locked3.10 LiteLLM import incompatible. No waiver, dependency/product edit, completion
-    or acceptance.
+  note: CDR-005 READY; root collection succeeds, exact permitted localhost nodes pass. Broad failures match baseline; locked3.10 LiteLLM import incompatible. No waiver, dependency/product edit, completion or acceptance.
   evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-002-implementation-report.md
 - task: friday-telemetry-rewire
   at: '2026-10-05'
   actor: Codex
   actor_role: agent
   action: recorded VAL-003 CHANGES_REQUESTED and REM-002 execution closeout
-  note: Approved tasks performed. Root collection and three localhost nodes pass; Composite3.10 passes. Unwaived root/package/lint gates and frozen Chat dependency incompatibility remain. No completion,
-    acceptance or waiver.
+  note: Approved tasks performed. Root collection and three localhost nodes pass; Composite3.10 passes. Unwaived root/package/lint gates and frozen Chat dependency incompatibility remain. No completion, acceptance or waiver.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-003/report.md
 - task: friday-telemetry-rewire
   at: '2026-10-05'
@@ -1270,8 +1246,7 @@ events:
   actor: Codex
   actor_role: agent
   action: recorded independently verified TELEM-01 delta and aggregate closeout
-  note: REM-004 complete at frozen 8aedd87; all mandatory gates pass with exact approved WVR-002/WVR-003 lint disposition. Initiative stays started; maintainer acceptance and later-unit authority remain
-    separate.
+  note: REM-004 complete at frozen 8aedd87; all mandatory gates pass with exact approved WVR-002/WVR-003 lint disposition. Initiative stays started; maintainer acceptance and later-unit authority remain separate.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-006/report.md
 - task: friday-telemetry-rewire
   at: '2026-10-06'
@@ -1285,32 +1260,28 @@ events:
   actor: Codex
   actor_role: agent
   action: prepared TELEM-02 directive and separate lint-disposition proposals
-  note: Maintainer authorized preparation and independent review; no product construction or WVR-004 approval. Byte-preserving closeout script packaging corrects added lint debt; accepted TELEM-01 and original
-    dirty work preserved.
+  note: Maintainer authorized preparation and independent review; no product construction or WVR-004 approval. Byte-preserving closeout script packaging corrects added lint debt; accepted TELEM-01 and original dirty work preserved.
   evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md
 - task: friday-telemetry-rewire
   at: '2026-10-06'
   actor: Codex
   actor_role: agent
   action: recorded independent corrected TELEM-02 proposal readiness
-  note: CDR-013 READY for CD-002 and separately WVR-004; R02-01 closed. Explicit maintainer construction and lint decisions pending; not product VERIFIED or approval. Accepted TELEM-01 and unrelated dirty
-    work preserved.
+  note: CDR-013 READY for CD-002 and separately WVR-004; R02-01 closed. Explicit maintainer construction and lint decisions pending; not product VERIFIED or approval. Accepted TELEM-01 and unrelated dirty work preserved.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-013/report.md
 - task: friday-telemetry-rewire
   at: '2026-10-06'
   actor: Chuck Russell
   actor_role: maintainer
   action: approved CD-002 and separately WVR-004
-  note: Explicit approved response to both concrete decisions after CDR-013 READY; exact reviewed TELEM-02 scope and13 synthetic loopback effects plus327 temporary lint identities. Fresh approved-authority
-    readiness and baselines precede construction; no remote activation or acceptance.
+  note: Explicit approved response to both concrete decisions after CDR-013 READY; exact reviewed TELEM-02 scope and13 synthetic loopback effects plus327 temporary lint identities. Fresh approved-authority readiness and baselines precede construction; no remote activation or acceptance.
   evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md
 - task: friday-telemetry-rewire
   at: '2026-10-06'
   actor: Codex
   actor_role: agent
   action: released approved TELEM-02 construction after readiness and baselines
-  note: CDR-015 READY closes A02-01; frozen fake-only true pre-build source/API baseline. Exact CD-002 and WVR-004 approved; product checks and fresh delta plus aggregate validation pending. Delivery local
-    and TELEM-01 acceptance retained.
+  note: CDR-015 READY closes A02-01; frozen fake-only true pre-build source/API baseline. Exact CD-002 and WVR-004 approved; product checks and fresh delta plus aggregate validation pending. Delivery local and TELEM-01 acceptance retained.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-015/report.md
 - task: friday-telemetry-rewire
   at: '2026-10-06'
@@ -1324,16 +1295,14 @@ events:
   actor: Codex
   actor_role: agent
   action: proposed TELEM-02 completion after independent verification
-  note: VAL-007 VERIFIED full unit and complete2155a0f aggregate at45f3114; no findings. Root2891, Chat828 and owning2873passed; exact raw327 lint disposition retained. Acceptance pending, initiative started,
-    delivery local, later units separately governed.
+  note: VAL-007 VERIFIED full unit and complete2155a0f aggregate at45f3114; no findings. Root2891, Chat828 and owning2873passed; exact raw327 lint disposition retained. Acceptance pending, initiative started, delivery local, later units separately governed.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-007/report.md
 - task: friday-telemetry-rewire
   at: '2026-10-06'
   actor: Chuck Russell
   actor_role: maintainer
   action: accepted TELEM-02
-  note: "Explicit accepted response after VAL-007 VERIFIED at45f3114. WVR-004 expired under existing terms; historical authority unchanged. Initiative stays started/local for TELEM-03\u201305; next gate\
-    \ is TELEM-03 directive preparation, with separate implementation approval."
+  note: Explicit accepted response after VAL-007 VERIFIED at45f3114. WVR-004 expired under existing terms; historical authority unchanged. Initiative stays started/local for TELEM-03–05; next gate is TELEM-03 directive preparation, with separate implementation approval.
   evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md
 - task: friday-telemetry-rewire
   at: '2026-10-06'
@@ -1382,88 +1351,77 @@ events:
   actor: controller
   actor_role: agent
   action: freezing TELEM-04 candidate for independent review
-  note: Approved CD-004 construction and mandatory builder gates complete; authority unchanged. Started/local, pending fresh-context product review. Independent verification and maintainer acceptance remain
-    separate.
+  note: Approved CD-004 construction and mandatory builder gates complete; authority unchanged. Started/local, pending fresh-context product review. Independent verification and maintainer acceptance remain separate.
   evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-004-correlated-execution.md
 - task: friday-telemetry-rewire
   at: '2026-10-09T14:54:15+00:00'
   actor: controller
   actor_role: agent
   action: recorded VAL-009 changes requested and proposed REM-005
-  note: Fresh independent full unit/aggregate review requires five numbered fixes despite passing required suites. Candidate1547fae and original controls unchanged; all original evidence retained. Exact15
-    targets within original29; no extra effect/waiver. Remediation awaits maintainer preauthorization, separate remediator and fresh full review. Started/local, no acceptance.
+  note: Fresh independent full unit/aggregate review requires five numbered fixes despite passing required suites. Candidate1547fae and original controls unchanged; all original evidence retained. Exact15 targets within original29; no extra effect/waiver. Remediation awaits maintainer preauthorization, separate remediator and fresh full review. Started/local, no acceptance.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-009/report.md
 - task: friday-mcp-protocol-upgrade
   at: '2026-10-11'
   actor: Codex
   actor_role: agent
   action: queued
-  note: Chuck Russell requested a detailed MCP implementation upgrade and earliest scheduling. Queue modern protocol, Streamable HTTP, remote YAML/security, compatibility, result handling, server migration
-    and independent interoperability validation; product construction remains unauthorized.
+  note: Chuck Russell requested a detailed MCP implementation upgrade and earliest scheduling. Queue modern protocol, Streamable HTTP, remote YAML/security, compatibility, result handling, server migration and independent interoperability validation; product construction remains unauthorized.
   evidence: docs/planning/queued/friday-mcp-protocol-upgrade/README.md
 - task: friday-mcp-protocol-upgrade
   at: '2026-10-11'
   actor: Codex
   actor_role: agent
   action: prioritized
-  note: Set priority 4 as the first pending initiative per the maintainer request to move as soon as possible. Increment existing priorities 4 and above by one, preserving their relative order and all state,
-    authority and historical events. Telemetry remains started pending REM-005 and fresh validation.
+  note: Set priority 4 as the first pending initiative per the maintainer request to move as soon as possible. Increment existing priorities 4 and above by one, preserving their relative order and all state, authority and historical events. Telemetry remains started pending REM-005 and fresh validation.
   evidence: docs/planning/queued/friday-mcp-protocol-upgrade/README.md
 - task: friday-telemetry-rewire
   at: '2026-10-11'
   actor: Chuck Russell
   actor_role: maintainer
   action: remediation_approved
-  note: 'Explicitly approved REM-005 specification: i approve rem-005 spec. Resume exact five-finding/15-target remediation with separate remediator and full fresh validation; no scope/effect/waiver expansion
-    or acceptance. Preserve MCP pending priority.'
+  note: 'Explicitly approved REM-005 specification: i approve rem-005 spec. Resume exact five-finding/15-target remediation with separate remediator and full fresh validation; no scope/effect/waiver expansion or acceptance. Preserve MCP pending priority.'
   evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-record.md
 - task: friday-telemetry-rewire
   at: '2026-10-11'
   actor: Codex
   actor_role: agent
   action: remediation_released
-  note: CDR-020 READY plus true reproduction of all five findings precedes source release for approved15-target REM-005. Preserve queued work and original findings; require stable candidate and fresh full
-    independent validation.
+  note: CDR-020 READY plus true reproduction of all five findings precedes source release for approved15-target REM-005. Preserve queued work and original findings; require stable candidate and fresh full independent validation.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-020/report.md
 - task: friday-telemetry-rewire
   at: '2026-10-11'
   actor: Codex controller
   actor_role: agent
   action: frozen approved REM-005 candidate for fresh full independent review
-  note: Exact15-path unverified candidate; builder final evidence pending. Require fresh VAL-010 REM/full-unit/aggregate review before proposing completion. Preserve earlier findings, queued work and local
-    delivery.
+  note: Exact15-path unverified candidate; builder final evidence pending. Require fresh VAL-010 REM/full-unit/aggregate review before proposing completion. Preserve earlier findings, queued work and local delivery.
   evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-005-candidate/report.md
 - task: friday-telemetry-rewire
   at: '2026-10-11'
   actor: Codex controller
   actor_role: agent
   action: TELEM-04 completion proposed
-  note: Fresh VAL-010 VERIFIED exact5c3a0e6 REM/full-unit/aggregate. Allfive findings resolved,19 gates and supplemental contracts reviewed. Core telemetry completion proposed; maintainer acceptance pending;
-    optional Langfuse does not gate core. Preserve queued priority and local delivery.
+  note: Fresh VAL-010 VERIFIED exact5c3a0e6 REM/full-unit/aggregate. Allfive findings resolved,19 gates and supplemental contracts reviewed. Core telemetry completion proposed; maintainer acceptance pending; optional Langfuse does not gate core. Preserve queued priority and local delivery.
   evidence: docs/planning/active/friday-telemetry-rewire/closeout-TELEM-04.md
 - task: friday-telemetry-rewire
   at: '2026-10-11'
   actor: Chuck Russell
   actor_role: maintainer
   action: TELEM-04 accepted
-  note: "Explicit response accepted to verified TELEM-04 completion. Core01\u201304 accepted/closed; WVR-006 expired. Optional05 separately governed; current construction authority closed; local delivery\
-    \ unchanged."
+  note: Explicit response accepted to verified TELEM-04 completion. Core01–04 accepted/closed; WVR-006 expired. Optional05 separately governed; current construction authority closed; local delivery unchanged.
   evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json
 - task: friday-langfuse-integration
   at: '2026-10-11'
   actor: Chuck Russell
   actor_role: maintainer
   action: queued after MCP upgrade
-  note: Explicitly requested Langfuse implementation on the board, to follow MCP. Priority5 and dependency on MCP acceptance; other priorities5+ shift by one preserving order. This is planning/scheduling
-    authority, not product construction approval.
+  note: Explicitly requested Langfuse implementation on the board, to follow MCP. Priority5 and dependency on MCP acceptance; other priorities5+ shift by one preserving order. This is planning/scheduling authority, not product construction approval.
   evidence: docs/planning/queued/friday-langfuse-integration/README.md
 - task: friday-telemetry-rewire
   at: '2026-10-11'
   actor: Codex
   actor_role: agent
   action: linked optional TELEM-05 queue item
-  note: "Optional Langfuse scope tracked in separate priority5 initiative after MCP. Core01\u201304 remain accepted/closed and all frozen controls/evidence unchanged; parent construction authority stays\
-    \ closed."
+  note: Optional Langfuse scope tracked in separate priority5 initiative after MCP. Core01–04 remain accepted/closed and all frozen controls/evidence unchanged; parent construction authority stays closed.
   evidence: docs/planning/queued/friday-langfuse-integration/README.md
 - task: friday-mcp-protocol-upgrade
   at: '2026-10-12T14:19:52+00:00'
@@ -1477,24 +1435,21 @@ events:
   actor: Codex
   actor_role: agent
   action: delivery local -> pushed
-  note: Published exact committed telemetry branch bb83dc0d0ff1b88ed9db54329cd39c7fca49650a; core remains accepted and construction closed. Draft PR creation was rejected by automatic approval review pending
-    explicit GitHub publication approval. No merge.
+  note: Published exact committed telemetry branch bb83dc0d0ff1b88ed9db54329cd39c7fca49650a; core remains accepted and construction closed. Draft PR creation was rejected by automatic approval review pending explicit GitHub publication approval. No merge.
   evidence: https://github.com/CIChuck/agent-framework/tree/feature/friday-telemetry-rewire
 - task: friday-telemetry-rewire
   at: '2026-10-12'
   actor: Codex
   actor_role: agent
   action: draft telemetry delivery PR created
-  note: 'Chuck Russell explicitly approved GitHub draft PR publication with yes approved. Created PR #7 against master; verified OPEN and draft. No merge. Core acceptance and closed construction authority
-    unchanged.'
+  note: 'Chuck Russell explicitly approved GitHub draft PR publication with yes approved. Created PR #7 against master; verified OPEN and draft. No merge. Core acceptance and closed construction authority unchanged.'
   evidence: https://github.com/CIChuck/agent-framework/pull/7
 - task: friday-telemetry-rewire
   at: '2026-10-12T15:19:02+00:00'
   actor: Codex
   actor_role: agent
   action: delivery pushed -> merged
-  note: 'Chuck Russell merged PR #7 and deleted the remote telemetry branch. GitHub confirms mergedBy CIChuck at 2026-10-12T15:16:04Z; merged exact candidate c5b79ba into master as 1302b5fe3091304c08d1df77ea5fb1d2a4ec3666.
-    MCP branch now uses that merged baseline. Core construction remains closed.'
+  note: 'Chuck Russell merged PR #7 and deleted the remote telemetry branch. GitHub confirms mergedBy CIChuck at 2026-10-12T15:16:04Z; merged exact candidate c5b79ba into master as 1302b5fe3091304c08d1df77ea5fb1d2a4ec3666. MCP branch now uses that merged baseline. Core construction remains closed.'
   evidence: https://github.com/CIChuck/agent-framework/pull/7
 - task: friday-mcp-protocol-upgrade
   at: '2026-10-12T15:52:06+00:00'
@@ -1507,8 +1462,7 @@ events:
   actor: Codex
   actor_role: agent
   action: dependency preparation stop; bounded amendment proposed
-  note: Original no-churn resolution cannot satisfy SDK2.3.0 because httpx2>=2.10 requires idna>=3.18 while existing lock pins3.11. Propose only IDNA3.20; restore isolated product bytes. No source build
-    or install.
+  note: Original no-churn resolution cannot satisfy SDK2.3.0 because httpx2>=2.10 requires idna>=3.18 while existing lock pins3.11. Propose only IDNA3.20; restore isolated product bytes. No source build or install.
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-sdk-dependency.md
 - task: friday-mcp-protocol-upgrade
   at: '2026-10-12T16:11:44.521914+00:00'
@@ -1522,8 +1476,7 @@ events:
   actor: Codex
   actor_role: agent
   action: approved dependency reproduction and bounded offline comparison recorded
-  note: Exact lock reproduced; 24 static contexts preserve other existing selections/artifacts; 57 representative HTTP URL checks unchanged. Concrete stricter/mapping differences retained. Full product
-    construction and validation pending.
+  note: Exact lock reproduced; 24 static contexts preserve other existing selections/artifacts; 57 representative HTTP URL checks unchanged. Concrete stricter/mapping differences retained. Full product construction and validation pending.
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/idna-regression-assessment.md
 - task: friday-mcp-protocol-upgrade
   at: '2026-10-12T17:16:33+00:00'
@@ -1950,7 +1903,7 @@ events:
   actor: Chuck Russell
   actor_role: maintainer
   action: authorized SEC-002 command-reference migration
-  note: "replace the two tests\u2019 legacy command reference for that folder. it is fully deprecated"
+  note: replace the two tests’ legacy command reference for that folder. it is fully deprecated
   evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority-sec002.json
 - task: friday-deprecated-credential-cleanup
   at: '2026-10-15T01:10:16+00:00'
@@ -1978,24 +1931,21 @@ events:
   actor: Codex
   actor_role: agent
   action: created queued remediation proposal
-  note: Maintainer requested a new planning unit to review tool-manifest movement across conversation turns. Read-only transcript and source inspection confirm per-turn selection changes; implementation
-    remains unapproved.
+  note: Maintainer requested a new planning unit to review tool-manifest movement across conversation turns. Read-only transcript and source inspection confirm per-turn selection changes; implementation remains unapproved.
   evidence: docs/planning/queued/friday-tool-manifest-continuity/README.md
 - task: friday-tool-manifest-continuity
   at: '2026-09-30'
   actor: Codex
   actor_role: agent
   action: recorded config-only trial
-  note: Maintainer explicitly requested all currently declared registry tools under tools.context.required_tools in the repository example. The pre-existing removal of three finance entries was preserved.
-    Broader runtime remediation remains unapproved.
+  note: Maintainer explicitly requested all currently declared registry tools under tools.context.required_tools in the repository example. The pre-existing removal of three finance entries was preserved. Broader runtime remediation remains unapproved.
   evidence: packages/friday-chat/config.example.yaml; docs/planning/queued/friday-tool-manifest-continuity/README.md
 - task: friday-tool-manifest-continuity
   at: '2026-09-30'
   actor: Codex
   actor_role: agent
   action: added discovery-aware MCP remediation tasks
-  note: Maintainer identified that static required tool names cannot pin tools discovered from an MCP peer at runtime. Proposed baseline, policy, budget, implementation, and validation tasks; implementation
-    authority remains not granted.
+  note: Maintainer identified that static required tool names cannot pin tools discovered from an MCP peer at runtime. Proposed baseline, policy, budget, implementation, and validation tasks; implementation authority remains not granted.
   evidence: docs/planning/queued/friday-tool-manifest-continuity/remediation-tasks.md
 - task: friday-mcp-protocol-upgrade
   at: '2026-10-14T04:21:06+00:00'
