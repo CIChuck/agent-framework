@@ -177,7 +177,7 @@ def validate_wheel(
         required_fragments = (
             f"friday-framework-core=={expected_version}",
             f"friday-framework-telemetry=={expected_version}",
-            "litellm==1.94.1",
+            "litellm==1.100.1",
         )
         for fragment in required_fragments:
             if not any(requirement.startswith(fragment) for requirement in requirements):
