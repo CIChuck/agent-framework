@@ -1,0 +1,19 @@
+{
+  "baseline_findings": 327,
+  "candidate_findings": 534,
+  "added_findings": 207,
+  "removed_findings": 0,
+  "added_by_path": {
+    "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/verify_metadata.py": 40,
+    "docs/planning/active/friday-deprecated-credential-cleanup/validation/install_untracking.py": 42,
+    "docs/planning/active/friday-deprecated-credential-cleanup/validation/run_sec003_checks.py": 27,
+    "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/sitecustomize.py": 1,
+    "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002_review_checks.py": 23,
+    "docs/planning/active/friday-deprecated-credential-cleanup/validation/run_sec002_final_checks.py": 27,
+    "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/run_check_importable_tests.py": 26,
+    "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/run_independent_checks.py": 21
+  },
+  "added_outside_documentation": 0,
+  "suppressions_added": false,
+  "classification": "Broad Ruff is not passing. Added style diagnostics are retained historical validator/evidence program snapshots under docs; active changed test files pass focused Ruff. No lint setting was weakened."
+}

@@ -1,0 +1,3360 @@
+{
+  "date_utc": "2026-10-15T01:50:30.353067+00:00",
+  "candidate": "526688e352660be003e6001df0de7366b31acd2f",
+  "base": "0f5cf2c413092d3c12ae691c547defa22dc3dbc5",
+  "request_sha256": "c45ffa86b05e77f8e13923b66a3e4f55cc50fa7c102829e2df1e07ec7ea79270",
+  "authority_sha256": {
+    "AGENTS.md": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/active/friday-deprecated-credential-cleanup/authority-sec004.json": "2308a7b9c1784616d93376b7fa2fe9cc803cffe50fefcda32927855f36b3e558",
+    "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-004-workspace-publication.md": "7d2035d45bab547780e051b754dc0db6dbe8e53d3b2fd7b5f8257b93722c814d",
+    "docs/planning/active/friday-deprecated-credential-cleanup/authority.json": "b08f9f348c3560587efdf29b57fe1bd037e3a79c2280761ca6becbea2b397741",
+    "docs/planning/active/friday-deprecated-credential-cleanup/authority-sec003.json": "4493d3d312ae5082cd1a7daf0c0db7f7139e1b59ecf25ead5de9ad7837b4a100",
+    "docs/planning/active/friday-deprecated-credential-cleanup/authority-sec002.json": "08ae8eabb7f7556f6c0603971396694fbcfb6985b426b654559a5d5c0e35a382",
+    "docs/reference/policies/development-task-lifecycle.md": "7087fb62381cc8a46128bc6745476d1aa08e1d577b4c73340760657ae834fe2a",
+    "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md": "02caf340c9bc8d2f2c4879fbdf15d335f72f8bde7650710d3f10c1a44b1fb87c",
+    "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-003-untrack-deprecated-memory.md": "6814bf5fcd2125c4c133a2fefb31bc8df6d014c0b786f60141d93279a092648d",
+    "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-002-retire-legacy-command-reference.md": "15cfd03737fe2a06eed0193a24950e7b1b98d1304dcce15291202dd90d328bc6"
+  },
+  "all_changed_paths": [
+    [
+      "D",
+      ".DS_Store"
+    ],
+    [
+      "M",
+      ".gitignore"
+    ],
+    [
+      "A",
+      ".gitmodules"
+    ],
+    [
+      "D",
+      "CLAUDE.md"
+    ],
+    [
+      "D",
+      "GEMINI.md"
+    ],
+    [
+      "A",
+      "docker-bench-security"
+    ],
+    [
+      "M",
+      "docs/archive/completed/2026/friday-mcp-protocol-upgrade/README.md"
+    ],
+    [
+      "M",
+      "docs/archive/completed/2026/friday-mcp-protocol-upgrade/closeout.md"
+    ],
+    [
+      "M",
+      "docs/archive/completed/2026/friday-mcp-protocol-upgrade/current-process-state.json"
+    ],
+    [
+      "A",
+      "docs/archive/completed/2026/friday-mcp-protocol-upgrade/merge.json"
+    ],
+    [
+      "M",
+      "docs/planning/README.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/README.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/authority-sec002.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/authority-sec003.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/authority-sec004.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/authority.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/command-baseline-provenance.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/credential-rotation-confirmation.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-002-retire-legacy-command-reference.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-003-untrack-deprecated-memory.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-004-workspace-publication.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/execution-log.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/implementation-sec002.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/implementation-sec003.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/pre-removal-option-shape.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/proposals/AMEND-SEC-001-001.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/audit.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/board.stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/board.stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/commands.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/compat.stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/compat.stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/docs.stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/docs.stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-docs/preflight.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-docs/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-docs/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-docs/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-render/preflight.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-render/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-render/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-render/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/guard.stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/guard.stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/ignore.stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/ignore.stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/link-correction.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/mypy.stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/mypy.stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/render.stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/render.stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.original.txt"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/ruff.stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/ruff.stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/whitespace.stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/whitespace.stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/additional-exposure-summary.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-board/preflight.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-board/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-board/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-board/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-docs/preflight.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-docs/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-docs/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-docs/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-mypy/preflight.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-mypy/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-mypy/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-mypy/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-render/preflight.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-render/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-render/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-render/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-ruff/preflight.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-ruff/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-ruff/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-ruff/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-chat-full/preflight.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-chat-full/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-chat-full/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-chat-full/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-compat/preflight.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-compat/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-compat/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-compat/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-config/preflight.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-config/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-config/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-config/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/earlier-harness-results.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/run_check_importable_tests.py"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/sitecustomize.py"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/sparse-checkout-correction.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/implementation-report.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/install_untracking.py"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/run_sec002_final_checks.py"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/run_sec003_checks.py"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/board/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/board/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/board/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/compat-without-legacy/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/compat-without-legacy/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/compat-without-legacy/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/docs/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/docs/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/docs/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/mypy/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/mypy/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/mypy/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/render/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/render/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/render/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/ruff/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/ruff/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/ruff/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/whitespace/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/whitespace/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/whitespace/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/board/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/board/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/board/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/compat/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/compat/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/compat/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/docs/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/docs/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/docs/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/mypy/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/mypy/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/mypy/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/render/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/render/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/render/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/report.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/ruff/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/ruff/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/ruff/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/static-evidence.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/whitespace/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/whitespace/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/whitespace/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002_review_checks.py"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/board/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/board/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/board/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/compat-without-legacy/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/compat-without-legacy/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/compat-without-legacy/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/docs/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/docs/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/docs/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/render/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/render/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/render/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/whitespace/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/whitespace/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/whitespace/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-install-receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-local-memory-baseline.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/authority-hashes.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/board/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/board/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/board/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/compat-protected/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/compat-protected/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/compat-protected/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/docs/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/docs/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/docs/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/metadata.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/render/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/render/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/render/stdout"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/report.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/run_independent_checks.py"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/verify_metadata.py"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/whitespace/receipt.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/whitespace/stderr"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/whitespace/stdout"
+    ],
+    [
+      "M",
+      "docs/planning/board.yaml"
+    ],
+    [
+      "A",
+      "docs/planning/queued/friday-tool-manifest-continuity/README.md"
+    ],
+    [
+      "A",
+      "docs/planning/queued/friday-tool-manifest-continuity/remediation-tasks.md"
+    ],
+    [
+      "D",
+      "family-tree.md"
+    ],
+    [
+      "M",
+      "packages/friday-chat/config.example.yaml"
+    ],
+    [
+      "A",
+      "packages/friday-chat/tests_chat/compat/fixtures/legacy_command_names.yaml"
+    ],
+    [
+      "M",
+      "packages/friday-chat/tests_chat/compat/test_command_surface_parity.py"
+    ],
+    [
+      "M",
+      "packages/friday-chat/tests_chat/compat/test_config_compatibility.py"
+    ],
+    [
+      "M",
+      "packages/friday-chat/tests_chat/test_command_disposable_uat.py"
+    ],
+    [
+      "A",
+      "packages/friday-sandbox/docker/Dockerfile.audit"
+    ],
+    [
+      "A",
+      "packages/friday-sandbox/docker/README.audit.md"
+    ],
+    [
+      "D",
+      "scaffold.sh"
+    ],
+    [
+      "A",
+      "scripts/scaffold.sh"
+    ],
+    [
+      "D",
+      "task"
+    ],
+    [
+      "D",
+      "tests/integration/memory/.DS_Store"
+    ],
+    [
+      "D",
+      "tests/integration/memory/.dolt/sql-server.info"
+    ],
+    [
+      "D",
+      "tests/integration/memory/.doltcfg/privileges.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/.friday/quarantine/tool_outputs.jsonl"
+    ],
+    [
+      "D",
+      "tests/integration/memory/cli-config.yaml"
+    ],
+    [
+      "D",
+      "tests/integration/memory/code-backup/memory-chat-v2.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/code-backup/memory-chat-v3.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/code-backup/memory-chat.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/config.yaml"
+    ],
+    [
+      "D",
+      "tests/integration/memory/exports/.DS_Store"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/__init__.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/commands/__init__.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/commands/file_cmds.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/commands/maintenance_cmds.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/commands/memory_cmds.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/commands/orchestration_cmds.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/commands/session_cmds.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/commands/tools_cmds.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/commands/transcript_cmds.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/commands/workflow_cmds.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/config.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/models.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/processing.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/friday_chat/tools.py"
+    ],
+    [
+      "D",
+      "tests/integration/memory/scratchpad/.DS_Store"
+    ],
+    [
+      "D",
+      "tests/integration/memory/scratchpad/PRD_HIL_Beads_Dolt_Integration.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/speech/orca_params_en_female.pv"
+    ],
+    [
+      "D",
+      "tests/integration/memory/speech/orca_params_en_male.pv"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/.friday_history"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260716_155924_7428297a/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260716_155924_7428297a/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260716_155924_7428297a/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260716_155924_7428297a/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260717_145621_6bbe84cb/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260717_145621_6bbe84cb/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260717_145621_6bbe84cb/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260717_145621_6bbe84cb/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260717_161934_fcd0c239/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260717_161934_fcd0c239/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260717_161934_fcd0c239/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/backups/20260717_161934_fcd0c239/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/dbae62a2-8a65-4286-9046-8135ed49cc62/data_level0.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/dbae62a2-8a65-4286-9046-8135ed49cc62/header.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/dbae62a2-8a65-4286-9046-8135ed49cc62/length.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/dbae62a2-8a65-4286-9046-8135ed49cc62/link_lists.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/extraction_rejections.log"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/reorganization_logs/reorganization_20260716_155924.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/reorganization_logs/reorganization_20260717_145621.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/reorganization_logs/reorganization_20260717_161934.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/.friday_history"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/06e6e6f9-3a17-48fd-8b71-fd31eccb5b6f/data_level0.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/06e6e6f9-3a17-48fd-8b71-fd31eccb5b6f/header.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/06e6e6f9-3a17-48fd-8b71-fd31eccb5b6f/index_metadata.pickle"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/06e6e6f9-3a17-48fd-8b71-fd31eccb5b6f/length.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/06e6e6f9-3a17-48fd-8b71-fd31eccb5b6f/link_lists.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/a50d43bd-c988-4a65-bfc8-0ab718a707e7/data_level0.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/a50d43bd-c988-4a65-bfc8-0ab718a707e7/header.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/a50d43bd-c988-4a65-bfc8-0ab718a707e7/length.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/a50d43bd-c988-4a65-bfc8-0ab718a707e7/link_lists.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185411_1146ae15/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185411_1146ae15/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185411_1146ae15/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185411_1146ae15/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185613_c73a62e9/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185613_c73a62e9/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185613_c73a62e9/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185613_c73a62e9/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185628_ef493103/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185628_ef493103/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185628_ef493103/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_185628_ef493103/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_225135_f9b1661b/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_225135_f9b1661b/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_225135_f9b1661b/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260403_225135_f9b1661b/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260405_215524_eda4badf/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260405_215524_eda4badf/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260405_215524_eda4badf/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260405_215524_eda4badf/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_142941_575b81e3/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_142941_575b81e3/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_142941_575b81e3/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_142941_575b81e3/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_143632_b6a9b248/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_143632_b6a9b248/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_143632_b6a9b248/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_143632_b6a9b248/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_144625_c460a46b/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_144625_c460a46b/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_144625_c460a46b/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_144625_c460a46b/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_145121_112d2b6e/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_145121_112d2b6e/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_145121_112d2b6e/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_145121_112d2b6e/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_145550_de24cdb3/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_145550_de24cdb3/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_145550_de24cdb3/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/backups/20260716_145550_de24cdb3/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/e3fee632-923b-458f-b501-a1c8255eddc0/data_level0.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/e3fee632-923b-458f-b501-a1c8255eddc0/header.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/e3fee632-923b-458f-b501-a1c8255eddc0/length.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/e3fee632-923b-458f-b501-a1c8255eddc0/link_lists.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/extraction_rejections.log"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260403_185411.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260403_185613.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260403_185628.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260403_225135.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260405_215524.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260716_142941.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260716_143632.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260716_144625.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260716_145121.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260716_145550.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector2_bak/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/.DS_Store"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/.friday_history"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/255206a5-1d4b-43c0-9719-bc3c7bbaae9d/data_level0.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/255206a5-1d4b-43c0-9719-bc3c7bbaae9d/header.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/255206a5-1d4b-43c0-9719-bc3c7bbaae9d/length.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/255206a5-1d4b-43c0-9719-bc3c7bbaae9d/link_lists.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/68b3d841-6ccb-41c0-bd1e-cbe5df9e0a43/data_level0.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/68b3d841-6ccb-41c0-bd1e-cbe5df9e0a43/header.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/68b3d841-6ccb-41c0-bd1e-cbe5df9e0a43/index_metadata.pickle"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/68b3d841-6ccb-41c0-bd1e-cbe5df9e0a43/length.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/68b3d841-6ccb-41c0-bd1e-cbe5df9e0a43/link_lists.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/.DS_Store"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260301_145839_3d1579b6/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260301_145839_3d1579b6/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260301_145839_3d1579b6/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260301_145839_3d1579b6/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260302_170542_199d7aab/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260302_170542_199d7aab/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260302_170542_199d7aab/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260302_170542_199d7aab/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260302_182034_d410f01a/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260302_182034_d410f01a/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260302_182034_d410f01a/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260302_182034_d410f01a/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_081507_f0ab7925/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_081507_f0ab7925/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_081507_f0ab7925/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_081507_f0ab7925/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_104526_c2dd80be/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_104526_c2dd80be/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_104526_c2dd80be/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_104526_c2dd80be/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_143613_fc67372a/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_143613_fc67372a/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_143613_fc67372a/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260304_143613_fc67372a/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260307_211457_91841f90/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260307_211457_91841f90/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260307_211457_91841f90/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260307_211457_91841f90/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260308_103135_82cb1b1a/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260308_103135_82cb1b1a/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260308_103135_82cb1b1a/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260308_103135_82cb1b1a/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260308_145033_9fb0e698/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260308_145033_9fb0e698/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260308_145033_9fb0e698/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260308_145033_9fb0e698/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260318_103148_6c383230/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260318_103148_6c383230/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260318_103148_6c383230/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260318_103148_6c383230/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_134213_176f7f8d/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_134213_176f7f8d/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_134213_176f7f8d/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_134213_176f7f8d/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_135041_a62a2397/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_135041_a62a2397/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_135041_a62a2397/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_135041_a62a2397/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_135639_85416eda/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_135639_85416eda/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_135639_85416eda/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_135639_85416eda/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_202740_68d27636/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_202740_68d27636/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_202740_68d27636/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260326_202740_68d27636/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_141344_32b9ab00/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_141344_32b9ab00/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_141344_32b9ab00/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_141344_32b9ab00/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_150146_12a0ed0a/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_150146_12a0ed0a/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_150146_12a0ed0a/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_150146_12a0ed0a/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_172142_298488c4/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_172142_298488c4/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_172142_298488c4/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260327_172142_298488c4/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_162913_d38e1ee1/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_162913_d38e1ee1/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_162913_d38e1ee1/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_162913_d38e1ee1/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_163459_d849d704/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_163459_d849d704/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_163459_d849d704/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_163459_d849d704/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_165155_045d2404/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_165155_045d2404/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_165155_045d2404/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_165155_045d2404/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_165628_e050f97d/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_165628_e050f97d/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_165628_e050f97d/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_165628_e050f97d/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_171803_71757ddd/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_171803_71757ddd/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_171803_71757ddd/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_171803_71757ddd/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_172653_f505cd34/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_172653_f505cd34/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_172653_f505cd34/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_172653_f505cd34/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_174812_7481055d/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_174812_7481055d/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_174812_7481055d/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_174812_7481055d/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_175740_534eeb9a/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_175740_534eeb9a/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_175740_534eeb9a/manifest.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/backups/20260328_175740_534eeb9a/transcript.db"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/chroma.sqlite3"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/extraction_rejections.log"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/f41d6224-bc21-4db4-b82f-8571551e890f/data_level0.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/f41d6224-bc21-4db4-b82f-8571551e890f/header.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/f41d6224-bc21-4db4-b82f-8571551e890f/index_metadata.pickle"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/f41d6224-bc21-4db4-b82f-8571551e890f/length.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/f41d6224-bc21-4db4-b82f-8571551e890f/link_lists.bin"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/graph.json"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260210_115324.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260210_131843.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260210_151642.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260211_110142.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260211_144420.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260211_150726.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260211_162751.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_084941.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_085936.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_091859.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_101732.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_125001.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_130700.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_132154.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_135039.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_153159.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_154233.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260213_200632.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260213_230911.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260217_230317.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260218_193808.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260218_194959.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260301_145839.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260302_170542.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260302_182034.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260304_081507.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260304_104526.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260304_143613.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260307_211457.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260308_103135.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260308_145033.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260318_103148.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260326_134213.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260326_135041.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260326_135639.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260326_202740.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260327_141344.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260327_150146.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260327_172142.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_162913.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_163459.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_165155.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_165628.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_171803.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_172653.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_174812.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_175740.md"
+    ],
+    [
+      "D",
+      "tests/integration/memory/vector_bak/transcript.db"
+    ],
+    [
+      "A",
+      "workflows/audit_2_nginx.yaml"
+    ]
+  ],
+  "changed_status_counts": {
+    "D": 295,
+    "M": 10,
+    "A": 180
+  },
+  "memory_removal_count": 289,
+  "sec003_exact_count": 287,
+  "scaffold_mode_and_blob": "100755 blob 0b53441411f856628297d43bf22d4de611979095",
+  "gitlinks": [
+    "docker-bench-security"
+  ],
+  "known_value_count": 9,
+  "added_modified_blobs_checked": 189,
+  "known_value_matches": [],
+  "changed_blob_inventory": [
+    {
+      "path": ".gitignore",
+      "blob": "17097581c0c41856cd863799752aa87573eecd6d",
+      "sha256": "50f7e6f765ee4b338aae6c4d86b586fcd8a1d83a549f9d3183c1d388b0ca4c4d",
+      "bytes": 659
+    },
+    {
+      "path": ".gitmodules",
+      "blob": "939ba3fa9b7945d70e8b7d107a547bf6339592c7",
+      "sha256": "8b344c0b3e61fe21d4ef24e9f9547de25ba2c1ccd9cb59af4d8aad5c318a9ed0",
+      "bytes": 145
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/README.md",
+      "blob": "0440ae2ce373ab5f5dae968b5853d07c44fa065b",
+      "sha256": "1ae0475bb20fcfe883a38861e43e075786dc9bf5371e2beaf77409d7280d51e0",
+      "bytes": 926
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/closeout.md",
+      "blob": "7df205cd011b1b3ccda147128e5bf729f9bb0dfb",
+      "sha256": "7ace461294a39ced6475378f1ccae4dbfa4c63a27410534e9f410420d0dffdaa",
+      "bytes": 1244
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/current-process-state.json",
+      "blob": "815366680392231b72cf52146f8c509eef4e65d2",
+      "sha256": "68581110594a7ab60a88269384fe256ee3f51fbacf7df9657397501888524b5a",
+      "bytes": 4785
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/merge.json",
+      "blob": "16bf7389f6bbb2cfc889757a344e86fd34534ee4",
+      "sha256": "8480ce2ce87f38379fb25cc85ccb77a4bd57a7dec772f65751c4bae7063927fc",
+      "bytes": 1015
+    },
+    {
+      "path": "docs/planning/README.md",
+      "blob": "5cb65b6e9572e406c7cfb16bd2fc9fbc47a403d2",
+      "sha256": "4a04f5d0e5465a0f9f519a0e67927e03fd583695e2ce2eff41db6cefb77d3823",
+      "bytes": 6440
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/README.md",
+      "blob": "5676896c1e90bd33c6f4666d7a19620f1237687d",
+      "sha256": "6f7c682c9bdd16ee6f6aa682bdbc454eecbd4a707fc3d9ab1c662f65195baee1",
+      "bytes": 1601
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/authority-sec002.json",
+      "blob": "9d77946b2069731ea871f2d18c866f3564265c22",
+      "sha256": "08ae8eabb7f7556f6c0603971396694fbcfb6985b426b654559a5d5c0e35a382",
+      "bytes": 761
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/authority-sec003.json",
+      "blob": "3ef7814e4d8b7c33ed2b835d348c908d1cdf8d91",
+      "sha256": "4493d3d312ae5082cd1a7daf0c0db7f7139e1b59ecf25ead5de9ad7837b4a100",
+      "bytes": 25759
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/authority-sec004.json",
+      "blob": "db0ca39064e4b33e1686eafc646c827efb8eee7d",
+      "sha256": "2308a7b9c1784616d93376b7fa2fe9cc803cffe50fefcda32927855f36b3e558",
+      "bytes": 3129
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/authority.json",
+      "blob": "44053bf3e159316eec3e67caa832d93c47055fd9",
+      "sha256": "b08f9f348c3560587efdf29b57fe1bd037e3a79c2280761ca6becbea2b397741",
+      "bytes": 2272
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/command-baseline-provenance.json",
+      "blob": "8d8c92652a0d87d4622bf5ea5b245d103d2b30a1",
+      "sha256": "c84d048f2ce0f8ad193021910c1e2bed26982e60db24833f818a08977482a78a",
+      "bytes": 713
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/credential-rotation-confirmation.json",
+      "blob": "1e474190d6a4effa2969d790698e500f5b663c44",
+      "sha256": "ffdacca6b69e49678b56b422c911646a0f0aebfac30d9194e6b8985fe60d1205",
+      "bytes": 279
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md",
+      "blob": "c6dcd06981e5f6cb31b496e653725e6fff3862de",
+      "sha256": "02caf340c9bc8d2f2c4879fbdf15d335f72f8bde7650710d3f10c1a44b1fb87c",
+      "bytes": 3674
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-002-retire-legacy-command-reference.md",
+      "blob": "5888fbd45c6ffabfa9d353bac1527183dd16d308",
+      "sha256": "15cfd03737fe2a06eed0193a24950e7b1b98d1304dcce15291202dd90d328bc6",
+      "bytes": 3528
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-003-untrack-deprecated-memory.md",
+      "blob": "f0be4e4bbf45d8d914312b351079cf2fc70c0848",
+      "sha256": "6814bf5fcd2125c4c133a2fefb31bc8df6d014c0b786f60141d93279a092648d",
+      "bytes": 2395
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-004-workspace-publication.md",
+      "blob": "5347659480936fb770c9d6d095e32633d2b3f318",
+      "sha256": "7d2035d45bab547780e051b754dc0db6dbe8e53d3b2fd7b5f8257b93722c814d",
+      "bytes": 4292
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/execution-log.md",
+      "blob": "9aed884645819b7268741958840a8110d203e8d5",
+      "sha256": "d9786857c8e82bd07b89e8efb329cad48b538c5b2e8aef4af0ce2cdb1601fa7c",
+      "bytes": 5302
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/implementation-sec002.md",
+      "blob": "11efc236e38138fb8d3f7a718bd21b7c37844190",
+      "sha256": "a1582e1730f30dd33e2c4bce22f6417d94f8c1c1b160bd50cf8b330ccc82574c",
+      "bytes": 1003
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/implementation-sec003.md",
+      "blob": "be458559612503bbb25f16a88ee9dcbaacd49363",
+      "sha256": "f5cfdba38cadd986eb9acb30fb36d1d486dab9afe27f298d8ae0fc093814da6a",
+      "bytes": 780
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/pre-removal-option-shape.json",
+      "blob": "984d11e3457ca98347a25f2f7059d9056cebd314",
+      "sha256": "a7a4335ec8da833868444932d1c61c5b4c749d7b861f0fee429091acd9f967f8",
+      "bytes": 15947
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/proposals/AMEND-SEC-001-001.json",
+      "blob": "2541a92bfbe46fb14c8a096ba6a037f7ae190939",
+      "sha256": "5d24fa2f813e20dcfe3c4e6ebd2810595dacdb27280457afe362d65b997ee0a0",
+      "bytes": 15350
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/audit.json",
+      "blob": "c5e032b80137ea88c388e27809ef35a8fd923dde",
+      "sha256": "4903655c6d32091853698ae76463b51630d479367e5ab5fc74d2026d1fc2ea3b",
+      "bytes": 29986
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/board.stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/board.stdout",
+      "blob": "03ce135068d6dc70ff40d6a971d26afadf20b0e6",
+      "sha256": "3c562e52f61dba0fc719e1c22e5ddf2ae98d80a0ad113028568f0cd40fa77b29",
+      "bytes": 46
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/commands.json",
+      "blob": "449a6c98134fef454e140754c231179ac242206a",
+      "sha256": "eecc0eaaac1df9c3d6a699bcacfc5d9010a6fddedea94a73629814426cb9f6b2",
+      "bytes": 8874
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/compat.stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/compat.stdout",
+      "blob": "da55cda235a38dc045a01eb521a2eed856b88483",
+      "sha256": "78e7746a61524090bd4dcc42c1122d74837d41a1ae47589fe6270f315e503d93",
+      "bytes": 99
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/docs.stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/docs.stdout",
+      "blob": "2360a52fd2661872794d4448ceb81f652664bb6c",
+      "sha256": "dd9ac844f529fee18f75c130c94507e6403890a98278f0354b9a73f6cdc63b86",
+      "bytes": 70
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-docs/preflight.json",
+      "blob": "4e12757991c114f018c1513beb70f02737694bbb",
+      "sha256": "0765f4e6d3e37aaee3e974a3bc153a68a8c647fd95952caccc94af9e9b345334",
+      "bytes": 3637
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-docs/receipt.json",
+      "blob": "0bf2a05b044f64efea46e16e2c4c4166563b2223",
+      "sha256": "55bf1f2b18cfa5bbedb7ebaaab96f80ac6bce7a710eab8e1450a83b2a4f65124",
+      "bytes": 916
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-docs/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-docs/stdout",
+      "blob": "2360a52fd2661872794d4448ceb81f652664bb6c",
+      "sha256": "dd9ac844f529fee18f75c130c94507e6403890a98278f0354b9a73f6cdc63b86",
+      "bytes": 70
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-render/preflight.json",
+      "blob": "919acb6643c0799feb396b916a01e6ac7abae0c6",
+      "sha256": "afd589d219e36727015820ad519204a900738518e8900de003e5c9d5605734a7",
+      "bytes": 3669
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-render/receipt.json",
+      "blob": "8169658471d16c0883c55bfc4b626b49cf55da2e",
+      "sha256": "14b0cb60c72dca31895fcd5e0b4bf98697ca9f75ca238a6e472baa9eafb5991e",
+      "bytes": 932
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-render/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/final-render/stdout",
+      "blob": "4498f150fae904e1dd91c62d0ec677c44babcee7",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "bytes": 30
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/guard.stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/guard.stdout",
+      "blob": "ba473f1b57fdce03d6e8dd6fe4889b678abd130d",
+      "sha256": "551d765307e8ca2bccc5c96115770f4c523a85a38d058e2939c21e1be180bd5d",
+      "bytes": 89
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/ignore.stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/ignore.stdout",
+      "blob": "3cf3d3aee2bde0625e5f913ecd85298daa92d542",
+      "sha256": "07a25c4c5565bc12a7126e6001b4a959502c0dc186472c4b5e4cc1206904d6dc",
+      "bytes": 175
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/link-correction.json",
+      "blob": "28ee961f979c0b97f4a88060e61571d48aa76682",
+      "sha256": "e0564b968c6e03768ac74a1064e7b20445da97b145ccdabe8bef884ddd1b636e",
+      "bytes": 3292
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/mypy.stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/mypy.stdout",
+      "blob": "8539cd2ed98cd05e81db9dc93832e897c1d2a470",
+      "sha256": "5d4b6d285b77932e3d08212c3b4974d0a803f98ec60408ac6ccf6a063fa6c19e",
+      "bytes": 42
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/render.stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/render.stdout",
+      "blob": "4498f150fae904e1dd91c62d0ec677c44babcee7",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "bytes": 30
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md",
+      "blob": "8bcdf0a5b889188719cf123fcfdcc544ae0c0aed",
+      "sha256": "33fe3b3649b5a2da8017ff986b8a0003d6d392316662c69a4db2b0aee3567a3f",
+      "bytes": 15189
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.original.txt",
+      "blob": "10ad25ef912f63ceb989a446ab3011404dcee49d",
+      "sha256": "bd623d74b8a98e4a876a3c667dc51aadaa00897bd67a0d54a851dafa3e59aebf",
+      "bytes": 15247
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/ruff.stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/ruff.stdout",
+      "blob": "1f5f344d054fae10f39140fb7199c99321d9190a",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "bytes": 19
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/whitespace.stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/whitespace.stdout",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/additional-exposure-summary.json",
+      "blob": "13319e98f4f2f27e665827aeb10a408631c27fa6",
+      "sha256": "da9f07488953f5b7fafab22a0c2c488b58c08eff013d21a634636d9846bcdb26",
+      "bytes": 380
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-board/preflight.json",
+      "blob": "85e3e21109dc7ae757823c1fc09fc4332a5fd0cb",
+      "sha256": "86ef86e1791d73dd4541a6fbd5898b23353fdf60c15050bb63629ca2194195c5",
+      "bytes": 3603
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-board/receipt.json",
+      "blob": "3d3fcc1c584fa5b7bbfcea5faa861b21c50c14dd",
+      "sha256": "ca7369068bde559a16161abec5f44fde1babbfaa53148f347e733ffe072b2f46",
+      "bytes": 919
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-board/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-board/stdout",
+      "blob": "03ce135068d6dc70ff40d6a971d26afadf20b0e6",
+      "sha256": "3c562e52f61dba0fc719e1c22e5ddf2ae98d80a0ad113028568f0cd40fa77b29",
+      "bytes": 46
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-docs/preflight.json",
+      "blob": "db12a86e75dd46088131f2279cb840a739887103",
+      "sha256": "b3a548e5d59de43c8ff6c32f866d2f0899942017ef09d276baba123e26600fa8",
+      "bytes": 3592
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-docs/receipt.json",
+      "blob": "fc6987c3d11531822c44d0fbfe1eac45f3e6b26d",
+      "sha256": "409b8d3fa17f4fcd851c914c7cbae96322dc29022a47642adeb8c7adb965dd38",
+      "bytes": 916
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-docs/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-docs/stdout",
+      "blob": "41ed0c8f6f64c47d2df7e5b353c97b024508bfbe",
+      "sha256": "7a22ff6b7308ed5a390c3018105ff4e7cc80d1c3031cfc3fd729787ae8033926",
+      "bytes": 70
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-mypy/preflight.json",
+      "blob": "478362768c4a772ed0e7d35b570392c8513b6198",
+      "sha256": "bfc00d1269b3dafeae79dd724253e5f338726fe87590aa97bf3abe30e4525a4b",
+      "bytes": 3641
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-mypy/receipt.json",
+      "blob": "8bf161bab9363b54582c82db4dd591c0742dfc87",
+      "sha256": "73c72648be3705eba5076e05ff28ad911565554046ff5a9a47cd4a3f5c8a788f",
+      "bytes": 965
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-mypy/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-mypy/stdout",
+      "blob": "8539cd2ed98cd05e81db9dc93832e897c1d2a470",
+      "sha256": "5d4b6d285b77932e3d08212c3b4974d0a803f98ec60408ac6ccf6a063fa6c19e",
+      "bytes": 42
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-render/preflight.json",
+      "blob": "5bb6db947efd49558cbf1f3708cede562cf7b9e8",
+      "sha256": "e6b30161bd63196b6ee64daf099fa1a4a5cbb7e9b11dc8441f562ca68033f6f7",
+      "bytes": 3624
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-render/receipt.json",
+      "blob": "ae774c246827bcf224616ec8d2c0e2bf6d9f7f01",
+      "sha256": "7517c5c51f693fb7c36201411999bbf3eec4e2d5aebeac98fb0c25cfb7399e43",
+      "bytes": 932
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-render/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-render/stdout",
+      "blob": "4498f150fae904e1dd91c62d0ec677c44babcee7",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "bytes": 30
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-ruff/preflight.json",
+      "blob": "f853414d416eb61f4ff252b10ee0279f2611e49d",
+      "sha256": "76efe049b622d9865418f24bbc5cb92b8a8dcc800204d5b336938fbd8da89a31",
+      "bytes": 3630
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-ruff/receipt.json",
+      "blob": "6f2b86b5efc5123ab99f8a1e81db946a16a197bb",
+      "sha256": "d88b142200fb5955f4d28bbfd0d243fd1c2ffb3a4bdf84b2023ccaff2d2f55a1",
+      "bytes": 954
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-ruff/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/candidate-ruff/stdout",
+      "blob": "1f5f344d054fae10f39140fb7199c99321d9190a",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "bytes": 19
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-chat-full/preflight.json",
+      "blob": "ed1966815ed231ac1bff42722cc6f852ec4fc049",
+      "sha256": "8528f7d2645ce718a46389a7cc8ee4cb0481f829b30b9efe123059579c1e3c8f",
+      "bytes": 3734
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-chat-full/receipt.json",
+      "blob": "59f1accc821fe7b1d2f70f466bcce3802db2d6b7",
+      "sha256": "b9efd44f806681b57bc6a707d566ca355281c6adc37e61efe5cbe744f0d989d3",
+      "bytes": 941
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-chat-full/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-chat-full/stdout",
+      "blob": "c87968f72a9fb41b820f7efdb29518aa6b81d69e",
+      "sha256": "39bfe0077d54a34d9b3daf20b7cd6d2e8ac061303ed230f7f02e8fc8bbebbddf",
+      "bytes": 1522
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-compat/preflight.json",
+      "blob": "7c275e02754c242ac9bd795993773bfc29c8cf64",
+      "sha256": "a41bbf131e9b11b90d38406d5431450ea38ff3551cd32a7e383283940368e428",
+      "bytes": 3640
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-compat/receipt.json",
+      "blob": "4868243cd25ad8cd9fe964bb39d6e2a3bd951081",
+      "sha256": "9ed283dbc8be534a8709edf63aad764bc416c5d17675d9e3ff076ed2c611c77e",
+      "bytes": 948
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-compat/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-compat/stdout",
+      "blob": "6c26ceb31c5bd1a500f3496442a5f7c5e8d4c20a",
+      "sha256": "f06bcef729b0ed84ba197c7ccae937ffd55fb9ae891d7e36238d3e760365a9ad",
+      "bytes": 99
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-config/preflight.json",
+      "blob": "ea8ee4ce2c56b0e4d62009abc6cd425d9a9c4697",
+      "sha256": "9f73eed26fbadebaf0b10eac64d6c9963439b2b3559a1648a502562c77638286",
+      "bytes": 3669
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-config/receipt.json",
+      "blob": "0978c898ba30e54cfdaa6bffb1647d5530b139ce",
+      "sha256": "066649de5f712bdb1f8c64c093f537c7aa6ce0a4a296eb107352e59027cae2af",
+      "bytes": 977
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-config/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/corrected-config/stdout",
+      "blob": "fc93a5822be0c6c001a8fe6e1fbfafe176a13524",
+      "sha256": "e095bc1ec9da03a9dbb58d5937837373355ae7ec254df31e150cdbc93935c9aa",
+      "bytes": 99
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/earlier-harness-results.json",
+      "blob": "29033d478e81479bc1e2c2600e60688a9daa8b17",
+      "sha256": "a17e917876d1e4a48b2faa2c1831539f90a018c294cdc2faf2ad6c7dd14621a7",
+      "bytes": 1813
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/run_check_importable_tests.py",
+      "blob": "814e83e10e1abd9a5033edc0173373a734e48b4e",
+      "sha256": "b15692f77d8061dcc7aad1aad231e32d1b775896bdf9f8ad0a1956ac6c80edf7",
+      "bytes": 2949
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/sitecustomize.py",
+      "blob": "d57cd005c102ec50f91cf22864150974b8835fda",
+      "sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "bytes": 1407
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/sparse-checkout-correction.json",
+      "blob": "4483d56d3db803e19159ac50e142636d7f2fb249",
+      "sha256": "b604409de8d8ef468eb4166f55ead6b3a80c56232e0fbbde24298c37883a4932",
+      "bytes": 254
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/implementation-report.md",
+      "blob": "74d80e5b8d423296203f2b8064163d021f433e05",
+      "sha256": "e8b11b3ca6d3a8446e9cf7e710b77e8153bcef7861d032d7301634c78f21d3ea",
+      "bytes": 1212
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/install_untracking.py",
+      "blob": "92ab9b7dff9b18eee5bd18eaee6f75d17f468d6f",
+      "sha256": "7ff99102911315c239718cb187652cfaffdc6fc60cc81b30a0a290e6d00bbd83",
+      "bytes": 4679
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/run_sec002_final_checks.py",
+      "blob": "a0508bf44fd448b30586a7b055d365b471066082",
+      "sha256": "d907f8fcc4f36089a69367047e6655e87321e3fa852c5c780c03bbf9e65a738a",
+      "bytes": 2982
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/run_sec003_checks.py",
+      "blob": "e769e37dbe4dd05330edc1d8d8557a688bf2a2cb",
+      "sha256": "0fc0aaac5bfc56c7c1b34fd05a7b04f09067bcfc042c1291348f2dc797f44afb",
+      "bytes": 2635
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/board/receipt.json",
+      "blob": "667532f6e45d4e9c5a68319b22380a911d516d02",
+      "sha256": "efe27a5b8724a9e0efed8235e905165f2d89549695be4c7f1ee34c4f1dea6e17",
+      "bytes": 4263
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/board/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/board/stdout",
+      "blob": "03ce135068d6dc70ff40d6a971d26afadf20b0e6",
+      "sha256": "3c562e52f61dba0fc719e1c22e5ddf2ae98d80a0ad113028568f0cd40fa77b29",
+      "bytes": 46
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/compat-without-legacy/receipt.json",
+      "blob": "9b5cfa6e41414d4b2780926c210cd792860f6136",
+      "sha256": "5b1e5ea4dd1a2a3d72808439c8a0f1d10bd680e3e8373cf9cb3b4ca638843175",
+      "bytes": 4435
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/compat-without-legacy/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/compat-without-legacy/stdout",
+      "blob": "7f337960e1a65c36f232614bcb28f937cc4f56f9",
+      "sha256": "9e81be6c78f8a14f18f144303c3a55382223c3c7006c9ecc8d40338d871b2b61",
+      "bytes": 99
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/docs/receipt.json",
+      "blob": "9dbb44863864c6d2525eaf3bb3b104ca37564ece",
+      "sha256": "b2531002c2629487e885bdef1666b5c2a6cf957a2358b760452fdb8eced31a6c",
+      "bytes": 4251
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/docs/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/docs/stdout",
+      "blob": "3d6d82d1a15a246377a8c0dd0a657ea285266638",
+      "sha256": "881ba829d3f266f0f7487421afdca9788719f955b36a0368ed012a072b6311aa",
+      "bytes": 515
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/mypy/receipt.json",
+      "blob": "1e38644928ed85b60e23bf72c5ddf6fa484b399f",
+      "sha256": "a71318a8fd971eecf32eca2088228a570269d1cd2fdbf3d98db1aaa8191c222e",
+      "bytes": 4302
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/mypy/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/mypy/stdout",
+      "blob": "8539cd2ed98cd05e81db9dc93832e897c1d2a470",
+      "sha256": "5d4b6d285b77932e3d08212c3b4974d0a803f98ec60408ac6ccf6a063fa6c19e",
+      "bytes": 42
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/render/receipt.json",
+      "blob": "7e1bce0273f7ba2fc5b675d80369ec9ccccc9c8a",
+      "sha256": "2dd097675105bdcee85397c4d683941268bdcb0f59ecc456db5a051e2b8756e6",
+      "bytes": 4285
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/render/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/render/stdout",
+      "blob": "4498f150fae904e1dd91c62d0ec677c44babcee7",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "bytes": 30
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/ruff/receipt.json",
+      "blob": "9b21221a163f900a6810fa265379152aca8de94b",
+      "sha256": "ad055aff830c24721f097da54ea664d63c4467b8bef541b25a4f9fdce4becf56",
+      "bytes": 4291
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/ruff/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/ruff/stdout",
+      "blob": "1f5f344d054fae10f39140fb7199c99321d9190a",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "bytes": 19
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/whitespace/receipt.json",
+      "blob": "836dda484206e60440053bbef4a1af0079354eb0",
+      "sha256": "d40822aa9c89a31deb9e57518032a811649bdc3985ba9ac83f2cb72a4f9e025b",
+      "bytes": 4294
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/whitespace/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-final-checks/whitespace/stdout",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/board/receipt.json",
+      "blob": "2af8c1716f41ec7d2734952d2bf0e53856caa28d",
+      "sha256": "bd069a747f0aa30c04b8e9c3d7f00b53131ef0474339204633fca2aa3c822322",
+      "bytes": 3423
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/board/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/board/stdout",
+      "blob": "03ce135068d6dc70ff40d6a971d26afadf20b0e6",
+      "sha256": "3c562e52f61dba0fc719e1c22e5ddf2ae98d80a0ad113028568f0cd40fa77b29",
+      "bytes": 46
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/compat/receipt.json",
+      "blob": "92dfd1bff7a3f1b1d9d3798bbf80f6ad61c91dfc",
+      "sha256": "c60d242a4b315449b9a1cde8e22e99b40717e32057982c626b205cd498f05d7e",
+      "bytes": 3460
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/compat/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/compat/stdout",
+      "blob": "da55cda235a38dc045a01eb521a2eed856b88483",
+      "sha256": "78e7746a61524090bd4dcc42c1122d74837d41a1ae47589fe6270f315e503d93",
+      "bytes": 99
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/docs/receipt.json",
+      "blob": "137a8da10bd9857b3b668ab31b7a88039da209e1",
+      "sha256": "ff1a35d4835b80d5ab13fee940a87cf88f0cabcf9524f05301e5e89265792e59",
+      "bytes": 3412
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/docs/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/docs/stdout",
+      "blob": "3d6d82d1a15a246377a8c0dd0a657ea285266638",
+      "sha256": "881ba829d3f266f0f7487421afdca9788719f955b36a0368ed012a072b6311aa",
+      "bytes": 515
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/mypy/receipt.json",
+      "blob": "ea49bd15ca7f9fc4770f18987834a6ef311c7609",
+      "sha256": "055ac3b9775709ba800ed1a8eef1a6a600134456e72544be82023a1d0ec5f717",
+      "bytes": 3463
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/mypy/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/mypy/stdout",
+      "blob": "8539cd2ed98cd05e81db9dc93832e897c1d2a470",
+      "sha256": "5d4b6d285b77932e3d08212c3b4974d0a803f98ec60408ac6ccf6a063fa6c19e",
+      "bytes": 42
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/render/receipt.json",
+      "blob": "1af5e51f5867c9825334ed7749cbdb6842bf2c36",
+      "sha256": "2aada3c7cea3a3437e9a6cb9abe61f5273f9c373efcc877dd33775dfd9b0d633",
+      "bytes": 3444
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/render/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/render/stdout",
+      "blob": "4498f150fae904e1dd91c62d0ec677c44babcee7",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "bytes": 30
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/report.md",
+      "blob": "19ad0b394aaa6a2c5fa4a8d44998f070a1acc51c",
+      "sha256": "29981f7425d1de6b0a9599f176e654ca592c7b6bf32ffd82479bf6f2c895855a",
+      "bytes": 8209
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/ruff/receipt.json",
+      "blob": "6b064e77157eb611dc09029a214558e45daf180c",
+      "sha256": "38a603ef1d66d61b60216df4f5f36af5f7b6bb1c598f5bd1b6ee04788de4a9a7",
+      "bytes": 3452
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/ruff/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/ruff/stdout",
+      "blob": "1f5f344d054fae10f39140fb7199c99321d9190a",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "bytes": 19
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/static-evidence.json",
+      "blob": "be75537ffbc383dd243bf81a0777beffc986d6a9",
+      "sha256": "7bd6a04315d81924bc2c2aa51f0c4112518cf529ce9159d0b76d45a8115435b4",
+      "bytes": 2486
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/whitespace/receipt.json",
+      "blob": "625280cb138a55aefa6e4e77c9c9e4924b7db061",
+      "sha256": "11f23dcca24e18d22ae0f0ba49857640328523eb4a410cc4f285e2bf091153f2",
+      "bytes": 3485
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/whitespace/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/whitespace/stdout",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002_review_checks.py",
+      "blob": "a5865f691b26e292560ad4c790482832011f6ed2",
+      "sha256": "8196e870fedd36cad19154b3c1e298947d440d3797e0fb1f4e4fbf7875aaaeb2",
+      "bytes": 5710
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/board/receipt.json",
+      "blob": "ee597a7263ad89ec257b5fa84ebe89f468168394",
+      "sha256": "b017986981d3e5f616eef3f62f5e0eda433d587725531975a72603e55c2cebd7",
+      "bytes": 3798
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/board/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/board/stdout",
+      "blob": "03ce135068d6dc70ff40d6a971d26afadf20b0e6",
+      "sha256": "3c562e52f61dba0fc719e1c22e5ddf2ae98d80a0ad113028568f0cd40fa77b29",
+      "bytes": 46
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/compat-without-legacy/receipt.json",
+      "blob": "9f91c769d93bf25f5f5355067295d28a4301cf11",
+      "sha256": "918a2d318916d31e47facdec330deab2b6aa399d87e16cbe86c83c68da415c00",
+      "bytes": 3971
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/compat-without-legacy/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/compat-without-legacy/stdout",
+      "blob": "a3e18c3fe97d630c0d62f3a581480e72f50316f9",
+      "sha256": "362c8edba1398a70fded6276e3c1e37ed47ade3f83846fcf718fbe8864d2930a",
+      "bytes": 99
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/docs/receipt.json",
+      "blob": "b1a83a2932c655ce31ee6049eb56829afd9e4e12",
+      "sha256": "e959c5c940756dd8bfb8c851683eb9218f9c6bf03fad4ddc27b6259238f16e13",
+      "bytes": 3786
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/docs/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/docs/stdout",
+      "blob": "4034d9f9937635864463e9f6db1824da0f2d67f5",
+      "sha256": "e25c0822bf65c5f4317d595ea26ca8582725dd1ead6994185e5dc6c93175b59f",
+      "bytes": 70
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/render/receipt.json",
+      "blob": "d6cb37630f1ae220394a3c1e8d81c78c3ea490dd",
+      "sha256": "7b44426e83645bf0e6f4dfae3276d753aaecd2c8256f3fa58facb3ccb8bc396e",
+      "bytes": 3820
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/render/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/render/stdout",
+      "blob": "4498f150fae904e1dd91c62d0ec677c44babcee7",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "bytes": 30
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/whitespace/receipt.json",
+      "blob": "6299935e2c5bb896ed47fea3dad6a1ed4e8a5913",
+      "sha256": "7738d52c0138b8bf5e2befa31b6703b0ed4b288a768c1c6899ab5cfb0ab44d21",
+      "bytes": 3829
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/whitespace/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-checks/whitespace/stdout",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-install-receipt.json",
+      "blob": "3d25000aaf1fa99a1391ace50d985de0d49fe60b",
+      "sha256": "2eba04b6755510db56c2d4444452117408308ac053f141c39e4fe19e3c545b74",
+      "bytes": 410
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-local-memory-baseline.json",
+      "blob": "2b482c28326d6fec0c899a488f03c460ce092c3b",
+      "sha256": "be65caf14003adc7b7d93714fbee1a7d2751f50323bdfc47adecd85a782279a6",
+      "bytes": 54426
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/authority-hashes.json",
+      "blob": "d1e81d52f69decb0794ba731c3e9f868d8893b99",
+      "sha256": "cf4148a4233eef7224be987a3260f451536b6f7487ec6cde42cbf3e2608c56c4",
+      "bytes": 800
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/board/receipt.json",
+      "blob": "38440be684577a531832f944d4138083cf1fa5c5",
+      "sha256": "bf461d6abafb526d7347f6e048da07d971a37e76b7b046c94586bcaf8640cae6",
+      "bytes": 3504
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/board/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/board/stdout",
+      "blob": "03ce135068d6dc70ff40d6a971d26afadf20b0e6",
+      "sha256": "3c562e52f61dba0fc719e1c22e5ddf2ae98d80a0ad113028568f0cd40fa77b29",
+      "bytes": 46
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/compat-protected/receipt.json",
+      "blob": "141cd8632bb5fafcd565ffa5ee5544867a62163b",
+      "sha256": "40cc0dd25202ed3771e383bee9281d57e54f6daa1fb17940c617e4bd6fd3618c",
+      "bytes": 4062
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/compat-protected/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/compat-protected/stdout",
+      "blob": "07a206f454b5acba92d6eb76f105ebd839b231e3",
+      "sha256": "37444d8a497ac8d7126b3f98dad11db4e57cb6a62fb97a46c3e6aaf471e1c5e8",
+      "bytes": 99
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/docs/receipt.json",
+      "blob": "c6339a6ba06de43630a561c69443f65cc57bafa3",
+      "sha256": "a79cddeaf9a87c3bd5ca2425d5da00b40421f7fdf8816436fc92d0b671f2f5fe",
+      "bytes": 3493
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/docs/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/docs/stdout",
+      "blob": "4034d9f9937635864463e9f6db1824da0f2d67f5",
+      "sha256": "e25c0822bf65c5f4317d595ea26ca8582725dd1ead6994185e5dc6c93175b59f",
+      "bytes": 70
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/metadata.json",
+      "blob": "11dc695a7a8b8bdcac86450db131e2c13172b23c",
+      "sha256": "3426a57d7632849475bf30e52e8a60cbb388706e6cc6bf47ea7d3e5a3bd5202d",
+      "bytes": 2684
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/render/receipt.json",
+      "blob": "4f09e277b4925e2b5edc896baaddde0b4e510d8d",
+      "sha256": "c85d3d6264b6c4777cb774d8eeac44d72b792bad7b46ab795a7dd1deb99cc611",
+      "bytes": 3525
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/render/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/render/stdout",
+      "blob": "4498f150fae904e1dd91c62d0ec677c44babcee7",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "bytes": 30
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/report.md",
+      "blob": "86ebde8636baa0ebccc80a146f0a6c3839856be4",
+      "sha256": "63667deab47d32c738379529691570bd703ffbcf8beaaf04df880ca6e8d01ded",
+      "bytes": 8240
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/run_independent_checks.py",
+      "blob": "c43358f218ac76bd91f3d54f6ab01840cae7df33",
+      "sha256": "5fd3d46cf5ee3d4602b5c74eb8a0cfa3e83333a1176b971b70736512e5201548",
+      "bytes": 2398
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/verify_metadata.py",
+      "blob": "deec96a132d52cde1ea2c142c2d0fc7395a1aef5",
+      "sha256": "14a1c96de11917b97b528b254e600575d62c1f5fceb6711b7b103f8174aef26c",
+      "bytes": 5362
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/whitespace/receipt.json",
+      "blob": "6053969be98f62af66aebd388bc8cc1af9cd2661",
+      "sha256": "80633980ef7630b91acda361f289b5a6fcc9eb1d8a444b8d99b64837af0c0a3b",
+      "bytes": 3566
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/whitespace/stderr",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/whitespace/stdout",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/planning/board.yaml",
+      "blob": "cb4f5b3dc28d14bd16e7418647f80cdb8b809fab",
+      "sha256": "47aaf02035f8e81a1b031f351bb195813c0551073072be8f31a1401681effb8e",
+      "bytes": 106215
+    },
+    {
+      "path": "docs/planning/queued/friday-tool-manifest-continuity/README.md",
+      "blob": "6413187e31e6830a8c59a48f0454cdacb2c1af12",
+      "sha256": "beae0d6907bbaef18736fb0ef4e69bb6c20bd8fcfd5f59a4b14ffda2eff98c17",
+      "bytes": 7203
+    },
+    {
+      "path": "docs/planning/queued/friday-tool-manifest-continuity/remediation-tasks.md",
+      "blob": "cf02e61328b4078b1196ea7120d1c7c31391c992",
+      "sha256": "84b73ba5ae15a39d91bd31604472bed213eb5866268fcec25951a9d98e7339ea",
+      "bytes": 5501
+    },
+    {
+      "path": "packages/friday-chat/config.example.yaml",
+      "blob": "6d61113a53e02f0a8b41942041fd6b080f385707",
+      "sha256": "2e1db3a47a38076cbda7627265cf8b28ac2a9da96387b3f6788da1dc8bb2932f",
+      "bytes": 29549
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/compat/fixtures/legacy_command_names.yaml",
+      "blob": "6e3e6e233f80ac5809a62fb67e2611aaa43de6ad",
+      "sha256": "1b71daaee05e176236fabe58ac8f850e8429391f050ba87a6e0321cf24f93c27",
+      "bytes": 848
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/compat/test_command_surface_parity.py",
+      "blob": "a79e394081f4c614dbbe9ff23eeb33caad5dd6c4",
+      "sha256": "48ba35d60bc3fd7a2161a3bb047f35a53c95e19cc97176b998954c3965e0872e",
+      "bytes": 1952
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/compat/test_config_compatibility.py",
+      "blob": "7440b429cd5a89dbbe1fa4eedb135b649d27e672",
+      "sha256": "8e4412ebf1a5fc0a69f13dbcbaaeb8aaa9694a1a299400660966a44a394deb21",
+      "bytes": 9876
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+      "blob": "0616600600e3c159da3fa9a073679d005ee3e6c8",
+      "sha256": "4bd3701f2e3858f794283424c7140e5adbe62001600c440dc7e2575d4a49b36b",
+      "bytes": 23264
+    },
+    {
+      "path": "packages/friday-sandbox/docker/Dockerfile.audit",
+      "blob": "d8455ea83431142dcf3fa46d5cbee7be795504b5",
+      "sha256": "ae21cdfd3737897ecb4d9909445c5cc992c7d3ecc472e1b3755e62b39e311f33",
+      "bytes": 3190
+    },
+    {
+      "path": "packages/friday-sandbox/docker/README.audit.md",
+      "blob": "a9d42816c5777f846b9942d1ba8a094729ba5e7b",
+      "sha256": "3d1f41c8293d490b052a964518be93524d0546856de3d0d1eb62633725295364",
+      "bytes": 1593
+    },
+    {
+      "path": "scripts/scaffold.sh",
+      "blob": "0b53441411f856628297d43bf22d4de611979095",
+      "sha256": "414a9f43ef9abc60fc610b5e52c2ea646a7f91d8fddaa4f66a931cb35aca2042",
+      "bytes": 11564
+    },
+    {
+      "path": "workflows/audit_2_nginx.yaml",
+      "blob": "3c4f2f19dfb5bd6685e3fffb73e060a7e81817f3",
+      "sha256": "aae448798edcb4f018355099370f4c7314a9007e1ebd02b602967fdf34aa4f2a",
+      "bytes": 6370
+    }
+  ],
+  "historical_command_names": 52,
+  "legacy_command_source_sha256": "e452126b6f19f24fea918ce00a5fef66a212ba8ce6f639cbf36905520eeba990",
+  "legacy_fixture_sha256": "1b71daaee05e176236fabe58ac8f850e8429391f050ba87a6e0321cf24f93c27",
+  "local_memory_metadata_preserved": 287,
+  "pending_paths_preserved": 18,
+  "baseline_tree": "366485e57ad0153ceed0e1fb7de0aa5b951adab3",
+  "receipts": [
+    {
+      "label": "assets",
+      "receipt_sha256": "4a8f304a05eb36c60ba112e70a73282cf3807e6ad0268195b97b72df41ecab9e",
+      "candidate": "5f68507a7683fedbe818fb2fdea420f417269f4b",
+      "exit_code": 0,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "/private/tmp/friday-mcp-upgrade/credential-cleanup/publication/validate_assets.py"
+      ]
+    },
+    {
+      "label": "base-broad-ruff",
+      "receipt_sha256": "3340102edbf81ac4053b62f821a08c04d73cf8ee0a80dd7970eba87ecd5b6e70",
+      "candidate": "f4ba9bc37152ecc208af06e073ce82b28839bb33",
+      "exit_code": 1,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        ".",
+        "--output-format",
+        "json"
+      ]
+    },
+    {
+      "label": "base-integration-timeouts",
+      "receipt_sha256": "09ce31e60861cba39b26fb980c35593535bb824d3a05be32428c7bf152132b34",
+      "candidate": "f4ba9bc37152ecc208af06e073ce82b28839bb33",
+      "exit_code": 1,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/integration/test_mcp_runtime_lifecycle.py",
+        "-q",
+        "-k",
+        "noisy_partial_start_cleanup and noisy_handshake"
+      ]
+    },
+    {
+      "label": "broad-ruff",
+      "receipt_sha256": "2896667164f716ee9c2f94ce1b960feb69b5864ccaa9f409b1b7c8acd22c4533",
+      "candidate": "5f68507a7683fedbe818fb2fdea420f417269f4b",
+      "exit_code": 1,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        ".",
+        "--output-format",
+        "json"
+      ]
+    },
+    {
+      "label": "changed-mypy",
+      "receipt_sha256": "d76f89c9b115c48af9caacb7fd6e37fc06295b11d964754899df3ec5afc64039",
+      "candidate": "5f68507a7683fedbe818fb2fdea420f417269f4b",
+      "exit_code": 0,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-chat/tests_chat/compat/test_config_compatibility.py",
+        "packages/friday-chat/tests_chat/compat/test_command_surface_parity.py"
+      ]
+    },
+    {
+      "label": "changed-ruff",
+      "receipt_sha256": "573ead80919337be06407fcf214f8841b40310ef135303f6f484d31d4feb00db",
+      "candidate": "5f68507a7683fedbe818fb2fdea420f417269f4b",
+      "exit_code": 0,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        "packages/friday-chat/tests_chat/compat/test_config_compatibility.py",
+        "packages/friday-chat/tests_chat/compat/test_command_surface_parity.py"
+      ]
+    },
+    {
+      "label": "chat-full",
+      "receipt_sha256": "c6b9d47fadfec97c7bd1f860efafff39a8cfa4c8ca4c35153e868e4690d5eeec",
+      "candidate": "5f68507a7683fedbe818fb2fdea420f417269f4b",
+      "exit_code": 1,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-chat/tests_chat",
+        "-q"
+      ]
+    },
+    {
+      "label": "corrected-chat-full",
+      "receipt_sha256": "5c5924adc56539ae77568d30776487a5143932878bcb0565f74a7225fb0c68f8",
+      "candidate": "526688e352660be003e6001df0de7366b31acd2f",
+      "exit_code": 0,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-chat/tests_chat",
+        "-q"
+      ]
+    },
+    {
+      "label": "docs",
+      "receipt_sha256": "1c6e524933c812ada964b84f4a7e5843770d89d1d0633fef57e4526da83680e1",
+      "candidate": "5f68507a7683fedbe818fb2fdea420f417269f4b",
+      "exit_code": 0,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/check-documentation-lifecycle.py"
+      ]
+    },
+    {
+      "label": "integration-workflows",
+      "receipt_sha256": "8d578285fdcac4583aee7014c5292220b192a27188f1fc5af264e5b2948ef6c0",
+      "candidate": "5f68507a7683fedbe818fb2fdea420f417269f4b",
+      "exit_code": 1,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/integration",
+        "packages/friday-agent/tests_agent/test_workflows.py",
+        "-q"
+      ]
+    },
+    {
+      "label": "isolated-integration-timeouts",
+      "receipt_sha256": "b735dd8598d1d6d36ac135bd5e124a67c37bc0e6345b2295b8b27d8ce91cb4cb",
+      "candidate": "5f68507a7683fedbe818fb2fdea420f417269f4b",
+      "exit_code": 1,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/integration/test_mcp_runtime_lifecycle.py",
+        "-q",
+        "-k",
+        "noisy_partial_start_cleanup and noisy_handshake"
+      ]
+    },
+    {
+      "label": "mcp-runtime",
+      "receipt_sha256": "c11c5e93dbd9accb983fb02615b3189610e2c6c34ae48babc6e12b056e4fdb23",
+      "candidate": "5f68507a7683fedbe818fb2fdea420f417269f4b",
+      "exit_code": 0,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-mcp/tests_mcp",
+        "packages/friday-runtime/tests_runtime",
+        "-q"
+      ]
+    },
+    {
+      "label": "uat-mypy",
+      "receipt_sha256": "b8ac4bbef1777693f68db1184466c07f666d6a2c3586037702dec441aedf795c",
+      "candidate": "526688e352660be003e6001df0de7366b31acd2f",
+      "exit_code": 0,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-chat/tests_chat/test_command_disposable_uat.py"
+      ]
+    },
+    {
+      "label": "uat-ruff",
+      "receipt_sha256": "389706c1d9f4514656a4afc7ce2461b7472751bbc79ab15509926e0231e37756",
+      "candidate": "526688e352660be003e6001df0de7366b31acd2f",
+      "exit_code": 0,
+      "output_hashes_verified": true,
+      "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        "packages/friday-chat/tests_chat/test_command_disposable_uat.py"
+      ]
+    }
+  ],
+  "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+  "adopted_pending_paths_exact_except_planning_overlays_and_finder": [
+    "CLAUDE.md",
+    "GEMINI.md",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade/README.md",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade/closeout.md",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade/current-process-state.json",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade/merge.json",
+    "docs/planning/queued/friday-tool-manifest-continuity/README.md",
+    "docs/planning/queued/friday-tool-manifest-continuity/remediation-tasks.md",
+    "family-tree.md",
+    "packages/friday-chat/config.example.yaml",
+    "packages/friday-sandbox/docker/Dockerfile.audit",
+    "scaffold.sh",
+    "scripts/scaffold.sh",
+    "task",
+    "workflows/audit_2_nginx.yaml"
+  ],
+  "lint": {
+    "baseline_diagnostics": 327,
+    "candidate_diagnostics": 534,
+    "new_diagnostics": 207,
+    "removed_baseline_diagnostics": 0,
+    "new_diagnostics_paths": {
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/run_check_importable_tests.py": 26,
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/evidence/sitecustomize.py": 1,
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/install_untracking.py": 42,
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/run_sec002_final_checks.py": 27,
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/run_sec003_checks.py": 27,
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002_review_checks.py": 23,
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/run_independent_checks.py": 21,
+      "docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/verify_metadata.py": 40
+    }
+  }
+}

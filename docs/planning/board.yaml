@@ -514,7 +514,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: SEC-004 aggregate independent review, then authorized PR/manual merge/remote deletion
+  next_gate: Aggregate VERIFIED; execute authorized GitHub PR/manual merge and remote deletion; acceptance remains separate
   delivery_state: local
   branch: security/remove-deprecated-credentials
   depends_on: []
@@ -522,6 +522,7 @@ tasks:
   - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md: VERIFIED bounded two-artifact removal only; provider actions pending'
   - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/report.md: VERIFIED exact command-fixture migration only; pre-existing docs debt recorded'
   - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/report.md: VERIFIED exact untracking and local-file preservation; all bounded checks pass'
+  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec004-aggregate/report.md: VERIFIED full aggregate526688e3; limits and baseline debt disclosed'
   approved_by: Chuck Russell
   approved_at: '2026-10-14'
 - id: friday-tool-manifest-continuity
@@ -1925,3 +1926,10 @@ events:
   action: authorized full pending-work publication and manual merge
   note: We've made significant changes to the Friday repo. Let's commit all changes, push the branch, and submit a PR. Manually merge and then delete the remote branch.
   evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority-sec004.json
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T01:53:39+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded aggregate verification for authorized publication
+  note: Source candidate526688e3 verified; delivery authorized by maintainer; known limits disclosed; acceptance not inferred
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/sec004-aggregate/report.md

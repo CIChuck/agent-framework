@@ -1,0 +1,1 @@
+{"workflow_tasks": 8, "graph_and_scan_approval": "valid", "native_tools_required": 14, "scaffold_shell_syntax": "valid", "audit_entrypoint_shell_syntax": "valid", "docker_build_and_scans": "not executed; daemon unavailable"}

@@ -1,0 +1,19 @@
+{
+  "outcome": "VERIFIED",
+  "reviewer": "/root/sec004_aggregate_publication_review",
+  "candidate": "526688e352660be003e6001df0de7366b31acd2f",
+  "clean_status": true,
+  "report_sha256": "e75251b6818f336d56673c0b242160ce19edadaf721293f114face3d1210a219",
+  "metadata_sha256": "84957d8c6fc4d991b6cf327945923798f8bc43f8af29cc6890697be63fd4a320",
+  "fresh_checks": {
+    "ruff": 0,
+    "board": 0,
+    "render": 0,
+    "docs": 0,
+    "mypy": 0,
+    "whitespace": 0,
+    "guard": 0,
+    "compat-governance-workflow": 0,
+    "assets": 0
+  }
+}

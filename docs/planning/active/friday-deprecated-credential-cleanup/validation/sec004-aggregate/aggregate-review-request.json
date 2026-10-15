@@ -1,0 +1,17 @@
+{
+  "base": "0f5cf2c413092d3c12ae691c547defa22dc3dbc5",
+  "candidate": "526688e352660be003e6001df0de7366b31acd2f",
+  "diff_range": "0f5cf2c413092d3c12ae691c547defa22dc3dbc5..526688e352660be003e6001df0de7366b31acd2f",
+  "mode": "full aggregate branch review",
+  "authority_sha256": {
+    "AGENTS.md": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/active/friday-deprecated-credential-cleanup/authority-sec004.json": "2308a7b9c1784616d93376b7fa2fe9cc803cffe50fefcda32927855f36b3e558",
+    "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-004-workspace-publication.md": "7d2035d45bab547780e051b754dc0db6dbe8e53d3b2fd7b5f8257b93722c814d"
+  },
+  "check_profile": "SEC-004 acceptance criteria; Docker runtime/build skipped with unavailable daemon; no new regressions; disclose known broad-lint and master-reproduced timeout debt",
+  "credential_policy": "synthetic only; no issuer/provider/scanner requests; GitHub publication separately authorized",
+  "unmodified_baseline_tree": "366485e57ad0153ceed0e1fb7de0aa5b951adab3",
+  "evidence_root": "/private/tmp/friday-mcp-upgrade/credential-cleanup/publication/checks"
+}
