@@ -379,7 +379,7 @@ tasks:
   validation: []
 - id: friday-telemetry-rewire
   title: Friday-telemetry-rewire
-  priority: 26
+  priority: 27
   work_state: started
   condition: normal
   implementation_authority: closed
@@ -460,8 +460,8 @@ tasks:
   condition: normal
   implementation_authority: closed
   packet: docs/archive/completed/2026/friday-mcp-protocol-upgrade/
-  next_gate: 'Review PR #8 against master; merge remains a separate decision'
-  delivery_state: pushed
+  next_gate: MCP delivery closed; next queued work is Langfuse contract and construction-directive preparation
+  delivery_state: merged
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
   - friday-mcp
@@ -506,6 +506,36 @@ tasks:
   branch: null
   depends_on:
   - friday-mcp-protocol-upgrade
+  validation: []
+- id: friday-deprecated-credential-cleanup
+  title: Remove deprecated credential-bearing files and rotate exposed credentials
+  priority: 28
+  work_state: started
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/friday-deprecated-credential-cleanup/
+  next_gate: Aggregate VERIFIED; execute authorized GitHub PR/manual merge and remote deletion; acceptance remains separate
+  delivery_state: local
+  branch: security/remove-deprecated-credentials
+  depends_on: []
+  validation:
+  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md: VERIFIED bounded two-artifact removal only; provider actions pending'
+  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/report.md: VERIFIED exact command-fixture migration only; pre-existing docs debt recorded'
+  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/report.md: VERIFIED exact untracking and local-file preservation; all bounded checks pass'
+  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec004-aggregate/report.md: VERIFIED full aggregate526688e3; limits and baseline debt disclosed'
+  approved_by: Chuck Russell
+  approved_at: '2026-10-14'
+- id: friday-tool-manifest-continuity
+  title: Friday tool manifest continuity remediation
+  priority: 26
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-tool-manifest-continuity/
+  next_gate: validate the native-tool trial and review discovery-aware MCP remediation tasks
+  delivery_state: not_started
+  branch: null
+  depends_on: []
   validation: []
 events:
 - task: documentation-governance
@@ -1819,3 +1849,87 @@ events:
   action: delivery local -> pushed
   note: 'Explicit maintainer instruction to commit branch and submit PR to master; branch published, PR #8 open'
   evidence: https://github.com/CIChuck/agent-framework/pull/8
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-14T12:47:43+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized bounded security removal and started local branch
+  note: Current instruction selects this security cleanup; four-path directive includes necessary active compatibility migration; no provider effects or history rewrite yet
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority.json
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-14T13:20:53+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent bounded removal verification
+  note: Local deletion verified; provider rotation/revocation and broader cleanup remain pending; no push
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T01:05:30+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized SEC-002 command-reference migration
+  note: replace the two tests’ legacy command reference for that folder. it is fully deprecated
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority-sec002.json
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T01:10:16+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independently verified command-reference migration
+  note: 30 compatibility tests pass including deprecated-directory-unavailable run; no folder deletion; provider actions pending
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/report.md
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T01:26:22+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized untracking with local-data retention
+  note: Let's do that. Track memory and add it to .gitignore. I'll Remove it at my leisure.
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority-sec003.json
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T01:31:23+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded verified index-only retirement with local data retained
+  note: 287 files untracked and ignored; local files and unrelated work retained; credentials retired per maintainer; no publication
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/report.md
+- task: friday-tool-manifest-continuity
+  at: '2026-09-30'
+  actor: Codex
+  actor_role: agent
+  action: created queued remediation proposal
+  note: Maintainer requested a new planning unit to review tool-manifest movement across conversation turns. Read-only transcript and source inspection confirm per-turn selection changes; implementation remains unapproved.
+  evidence: docs/planning/queued/friday-tool-manifest-continuity/README.md
+- task: friday-tool-manifest-continuity
+  at: '2026-09-30'
+  actor: Codex
+  actor_role: agent
+  action: recorded config-only trial
+  note: Maintainer explicitly requested all currently declared registry tools under tools.context.required_tools in the repository example. The pre-existing removal of three finance entries was preserved. Broader runtime remediation remains unapproved.
+  evidence: packages/friday-chat/config.example.yaml; docs/planning/queued/friday-tool-manifest-continuity/README.md
+- task: friday-tool-manifest-continuity
+  at: '2026-09-30'
+  actor: Codex
+  actor_role: agent
+  action: added discovery-aware MCP remediation tasks
+  note: Maintainer identified that static required tool names cannot pin tools discovered from an MCP peer at runtime. Proposed baseline, policy, budget, implementation, and validation tasks; implementation authority remains not granted.
+  evidence: docs/planning/queued/friday-tool-manifest-continuity/remediation-tasks.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-14T04:21:06+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery pushed -> merged
+  note: Maintainer reported PR merge and remote branch deletion; independently verified GitHub MERGED state and identical merge tree
+  evidence: https://github.com/CIChuck/agent-framework/pull/8; merge 0f5cf2c413092d3c12ae691c547defa22dc3dbc5
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T01:40:38+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized full pending-work publication and manual merge
+  note: We've made significant changes to the Friday repo. Let's commit all changes, push the branch, and submit a PR. Manually merge and then delete the remote branch.
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority-sec004.json
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T01:53:39+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded aggregate verification for authorized publication
+  note: Source candidate526688e3 verified; delivery authorized by maintainer; known limits disclosed; acceptance not inferred
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/sec004-aggregate/report.md

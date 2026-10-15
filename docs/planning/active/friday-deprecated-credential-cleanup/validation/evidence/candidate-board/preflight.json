@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+    "scripts/friday-dev-board.py",
+    "validate"
+  ],
+  "candidate": "995d2e875204c010639e9ce74b8f9229f7e59c64",
+  "authority_sha256": "d71e8f2d4d83d1105aadfff5ac14aadc287fd4a24b9e07ae3f716fa94404b47b",
+  "directive_sha256": "fd36b32ae8b4f67a4ce4fdfa01584c6b3a0552b09ed3f1624718470fa47c0874",
+  "product_sha256": {
+    "tests/integration/memory/config.yaml": null,
+    "tests/integration/memory/.friday/quarantine/tool_outputs.jsonl": null,
+    ".gitignore": "2184230fb2705df9f557e1646b00b13cbba251b8cfa4c567e78c31062113472b",
+    "packages/friday-chat/tests_chat/compat/test_config_compatibility.py": "8e4412ebf1a5fc0a69f13dbcbaaeb8aaa9694a1a299400660966a44a394deb21"
+  },
+  "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+  "environment": {
+    "PATH": "/private/tmp/friday-mcp-upgrade/venv/bin:/opt/homebrew/bin:/usr/bin:/bin",
+    "HOME": "/private/tmp/friday-mcp-upgrade/credential-cleanup/homes/candidate-board",
+    "TMPDIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/tmp/candidate-board",
+    "PYTHONPATH": "/private/tmp/friday-mcp-upgrade/guard:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-agent/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-chat/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-cli/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-core/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-finance/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-llm/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-mcp/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-memory/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-moltbook/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-optimization/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-runtime/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-sandbox/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-speech/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-telemetry/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-tools/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-transcript/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-chat/tests_chat",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0",
+    "PYTEST_ADDOPTS": "--import-mode=importlib -o cache_dir=/private/tmp/friday-mcp-upgrade/credential-cleanup/homes/candidate-board/pytest",
+    "UV_NO_SYNC": "1",
+    "UV_OFFLINE": "1",
+    "UV_PROJECT_ENVIRONMENT": "/private/tmp/friday-mcp-upgrade/venv",
+    "UV_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/homes/candidate-board/uv",
+    "VIRTUAL_ENV": "/private/tmp/friday-mcp-upgrade/venv",
+    "MYPY_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/homes/candidate-board/mypy",
+    "RUFF_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/homes/candidate-board/ruff",
+    "FRIDAY_TELEMETRY_ENABLED": "false",
+    "ANONYMIZED_TELEMETRY": "false",
+    "TOKENIZERS_PARALLELISM": "false",
+    "XDG_CACHE_HOME": "/private/tmp/friday-mcp-upgrade/credential-cleanup/homes/candidate-board/.cache",
+    "MPLCONFIGDIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/homes/candidate-board/mpl"
+  }
+}

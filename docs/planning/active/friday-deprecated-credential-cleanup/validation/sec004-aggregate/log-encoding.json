@@ -1,0 +1,145 @@
+{
+  "note": "Publication-checks raw stdout/stderr are losslessly gzip-compressed. Receipt output SHA256 values refer to decoded bytes. No log content or hashes were edited.",
+  "files": {
+    "publication-checks/isolated-integration-timeouts/stdout": {
+      "stored_as": "publication-checks/isolated-integration-timeouts/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "de287626402f6d0df81cd027a0075a0dd54feade8fe6b7019ecd4455b1f747c9"
+    },
+    "publication-checks/isolated-integration-timeouts/stderr": {
+      "stored_as": "publication-checks/isolated-integration-timeouts/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/base-integration-timeouts/stdout": {
+      "stored_as": "publication-checks/base-integration-timeouts/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "7d0cb3774809fac6fdc966a356b5d0ac88e0b731fad2d8122246db5754000da8"
+    },
+    "publication-checks/base-integration-timeouts/stderr": {
+      "stored_as": "publication-checks/base-integration-timeouts/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/broad-ruff/stdout": {
+      "stored_as": "publication-checks/broad-ruff/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "c2421415f527c7bbde4ed88aa61094e324a20d94b9a669c4fa819b2857cec9ef"
+    },
+    "publication-checks/broad-ruff/stderr": {
+      "stored_as": "publication-checks/broad-ruff/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/changed-mypy/stdout": {
+      "stored_as": "publication-checks/changed-mypy/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "f9b031e5c45aa702cd4fef028d465551cb20a2c4698e0913c7b00766b20ac4d8"
+    },
+    "publication-checks/changed-mypy/stderr": {
+      "stored_as": "publication-checks/changed-mypy/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/integration-workflows/stdout": {
+      "stored_as": "publication-checks/integration-workflows/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "4c76131f61fbe05720b82ec4b4544a31667cb77020e2f21a027aeca9d94035f3"
+    },
+    "publication-checks/integration-workflows/stderr": {
+      "stored_as": "publication-checks/integration-workflows/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/corrected-chat-full/stdout": {
+      "stored_as": "publication-checks/corrected-chat-full/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "17d6543016262b892f73ab542a6003507a41cdb92963c882f0ba0f45a54bda1a"
+    },
+    "publication-checks/corrected-chat-full/stderr": {
+      "stored_as": "publication-checks/corrected-chat-full/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/uat-mypy/stdout": {
+      "stored_as": "publication-checks/uat-mypy/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "5d4b6d285b77932e3d08212c3b4974d0a803f98ec60408ac6ccf6a063fa6c19e"
+    },
+    "publication-checks/uat-mypy/stderr": {
+      "stored_as": "publication-checks/uat-mypy/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/mcp-runtime/stdout": {
+      "stored_as": "publication-checks/mcp-runtime/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "5ddf72add8198f1b0a47193dbd0667c636bae4ea10680bdab4952a8f1931274d"
+    },
+    "publication-checks/mcp-runtime/stderr": {
+      "stored_as": "publication-checks/mcp-runtime/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/docs/stdout": {
+      "stored_as": "publication-checks/docs/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "f4c7c3223b1652a29907361b5e74c2a9fe5d34b2b0d0753c651ce42116f85d83"
+    },
+    "publication-checks/docs/stderr": {
+      "stored_as": "publication-checks/docs/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/base-broad-ruff/stdout": {
+      "stored_as": "publication-checks/base-broad-ruff/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "0c93bf5f06b18289815373ab38c786bcb506cd92b455e5bc79c5c04a1854b68b"
+    },
+    "publication-checks/base-broad-ruff/stderr": {
+      "stored_as": "publication-checks/base-broad-ruff/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/changed-ruff/stdout": {
+      "stored_as": "publication-checks/changed-ruff/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    "publication-checks/changed-ruff/stderr": {
+      "stored_as": "publication-checks/changed-ruff/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/chat-full/stdout": {
+      "stored_as": "publication-checks/chat-full/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "cdb87245effda3027cf4bc5261d50199c03107a993df94ce4bae42c2f2bb41cc"
+    },
+    "publication-checks/chat-full/stderr": {
+      "stored_as": "publication-checks/chat-full/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-checks/assets/stdout": {
+      "stored_as": "publication-checks/assets/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "d245c36fc2faf0519673b56358e6f7dce09a740b644fc6165ee1071d4205737d"
+    },
+    "publication-checks/assets/stderr": {
+      "stored_as": "publication-checks/assets/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "5807f590f3520279e305fb039c9f5e7c515d6fb83f7b967290e218b4ac353bf0"
+    },
+    "publication-checks/uat-ruff/stdout": {
+      "stored_as": "publication-checks/uat-ruff/stdout.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    "publication-checks/uat-ruff/stderr": {
+      "stored_as": "publication-checks/uat-ruff/stderr.gz",
+      "encoding": "gzip",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

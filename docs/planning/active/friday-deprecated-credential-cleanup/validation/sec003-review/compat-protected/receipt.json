@@ -1,0 +1,37 @@
+{
+  "argv": [
+    "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+    "-c",
+    "import sys,os; protected=os.path.abspath('tests/integration/memory'); sys.addaudithook(lambda event,args: (_ for _ in ()).throw(RuntimeError('Deprecated memory open prohibited by SEC-003 independent review')) if event=='open' and isinstance(args[0],(str,bytes,os.PathLike)) and (os.path.abspath(os.fsdecode(args[0]))==protected or os.path.abspath(os.fsdecode(args[0])).startswith(protected+os.sep)) else None); import pytest; raise SystemExit(pytest.main(['packages/friday-chat/tests_chat/compat','-q']))"
+  ],
+  "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+  "environment": {
+    "PATH": "/private/tmp/friday-mcp-upgrade/venv/bin:/opt/homebrew/bin:/usr/bin:/bin",
+    "HOME": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec003-review/compat-protected/home",
+    "TMPDIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec003-review/compat-protected/tmp",
+    "PYTHONPATH": "/private/tmp/friday-mcp-upgrade/guard:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-agent/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-chat/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-cli/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-core/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-finance/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-llm/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-mcp/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-memory/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-moltbook/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-optimization/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-runtime/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-sandbox/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-speech/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-telemetry/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-tools/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-transcript/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-chat:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-chat/tests_chat",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0",
+    "PYTEST_ADDOPTS": "--import-mode=importlib -o cache_dir=/private/tmp/friday-mcp-upgrade/credential-cleanup/sec003-review/compat-protected/home/pytest",
+    "UV_NO_SYNC": "1",
+    "UV_OFFLINE": "1",
+    "UV_PROJECT_ENVIRONMENT": "/private/tmp/friday-mcp-upgrade/venv",
+    "UV_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec003-review/compat-protected/home/uv",
+    "VIRTUAL_ENV": "/private/tmp/friday-mcp-upgrade/venv",
+    "MYPY_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec003-review/compat-protected/home/mypy",
+    "RUFF_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec003-review/compat-protected/home/ruff",
+    "FRIDAY_TELEMETRY_ENABLED": "false",
+    "ANONYMIZED_TELEMETRY": "false",
+    "TOKENIZERS_PARALLELISM": "false",
+    "XDG_CACHE_HOME": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec003-review/compat-protected/home/.cache",
+    "MPLCONFIGDIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec003-review/compat-protected/home/mpl"
+  },
+  "started_at": "2026-10-15T01:29:35.726406+00:00",
+  "finished_at": "2026-10-15T01:29:40.229098+00:00",
+  "exit_code": 0,
+  "candidate": "494febf7d3eb128ec26b9f777428324cd939ce8e",
+  "stdout_sha256": "37444d8a497ac8d7126b3f98dad11db4e57cb6a62fb97a46c3e6aaf471e1c5e8",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "no_directory_moves": true,
+  "deprecated_private_memory_reads_denied": true
+}

@@ -1,0 +1,3 @@
+Documentation lifecycle validation failed:
+- docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md:21: broken link '/private/tmp/friday-mcp-upgrade/credential-cleanup/work/docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md:13'
+- docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md:21: broken link '/private/tmp/friday-mcp-upgrade/credential-cleanup/work/AGENTS.md:46'

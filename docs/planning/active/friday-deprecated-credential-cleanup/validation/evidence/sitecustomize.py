@@ -1,0 +1,28 @@
+"""Deterministic MCP checks: only fixture loopback, private writes, no secrets."""
+
+import os
+import sys
+
+_ROOT = '/Users/chuckrussell/Dev/gendev/agent-framework'
+_PRIVATE = '/private/tmp/friday-mcp-upgrade'
+
+
+def guard(event, arguments):
+    if event == 'socket.getaddrinfo' and arguments[0] not in (None, 'localhost', '127.0.0.1', b'127.0.0.1'):
+        raise RuntimeError('External DNS prohibited by deterministic MCP profile')
+    if event in ('socket.connect', 'socket.sendto'):
+        address = arguments[1] if event == 'socket.connect' else arguments[-1]
+        if isinstance(address, tuple) and address[0] not in ('127.0.0.1', b'127.0.0.1'):
+            raise RuntimeError('External transport prohibited by deterministic MCP profile')
+    if event == 'open' and isinstance(arguments[0], (str, bytes, os.PathLike)):
+        path = os.path.abspath(os.fsdecode(arguments[0]))
+        parts = path.split('/')
+        if path.startswith(_ROOT + '/') and not path.startswith(_ROOT + '/.venv/'):
+            raise RuntimeError('Shared checkout access prohibited during isolated validation')
+        if '.env' in parts or any(part.startswith('vector') for part in parts):
+            # Synthetic private fixture stores are allowed; shared stores are not.
+            if not path.startswith(_PRIVATE + '/'):
+                raise RuntimeError('Protected state access prohibited')
+
+
+sys.addaudithook(guard)

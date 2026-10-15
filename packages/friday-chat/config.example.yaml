@@ -617,16 +617,22 @@ tools:
   - name: command_execute
     module: friday_tools.shell.command
     class: CommandExecuteTool
-  - name: get_market_data
-    module: friday_tools.finance
-    class: GetMarketDataTool
-  - name: get_crypto_data
-    module: friday_tools.finance
-    class: GetCryptoDataTool
-  - name: get_technical_analysis
-    module: friday_tools.finance
-    class: GetTechnicalAnalysisTool
   context:
+    required_tools:
+      - get_current_datetime
+      - echo
+      - directory_list
+      - file_write
+      - file_read
+      - serper_search
+      - web_reader
+      - http_get
+      - http_post
+      - http_put
+      - http_delete
+      - http_download
+      - http_upload
+      - command_execute
     max_tools: 50
     max_budget_ratio: 0.25
     recommendation_threshold: 0.5

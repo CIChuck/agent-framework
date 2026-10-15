@@ -1,0 +1,12 @@
+{
+  "base_commit": "85f14f249f5fffaf73659aec2a344efa05743c08",
+  "legacy_source_path": "tests/integration/memory/friday.py",
+  "legacy_source_sha256": "e452126b6f19f24fea918ce00a5fef66a212ba8ce6f639cbf36905520eeba990",
+  "legacy_source_blob": "26570d7be8d88448a3842257ff9c33b5adcc87d7",
+  "fixture": "packages/friday-chat/tests_chat/compat/fixtures/legacy_command_names.yaml",
+  "fixture_sha256": "1b71daaee05e176236fabe58ac8f850e8429391f050ba87a6e0321cf24f93c27",
+  "extraction": "Unmodified pre-change _extract_registered_commands AST function plus two fallback-only commands; no import or execution of legacy program",
+  "registered_names": 50,
+  "command_and_alias_count": 52,
+  "exact_set_preserved": true
+}

@@ -1,0 +1,20 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "delivery_state": "merged",
+  "pull_request": "https://github.com/CIChuck/agent-framework/pull/8",
+  "pull_request_state": "MERGED",
+  "base_branch": "master",
+  "merge_commit": "0f5cf2c413092d3c12ae691c547defa22dc3dbc5",
+  "merged_at_utc": "2026-10-14T04:17:58Z",
+  "head_commit": "f4ba9bc37152ecc208af06e073ce82b28839bb33",
+  "remote_feature_branch_deleted": true,
+  "local_branch": "master",
+  "local_master_equals_origin_master": true,
+  "merge_tree_equals_verified_feature": true,
+  "maintainer_statement": "PR was merged, and the remote branch was deleted.",
+  "recorded_at_utc": "2026-10-14T04:21:05.925792+00:00",
+  "source_changes": 0,
+  "acceptance_receipt_sha256": "cb00381070362d211d700c753271eae90db54d2a220d172086dd06305d90069e",
+  "historical_authority_manifest_sha256": "190b1fd6b5a919fe0131b01fd858e6b35d8c1decf87c6d577aeef3fec4b82dfd",
+  "original_publication_receipt_sha256": "0f4bd95273fa604ff1f2885cd50d4b7f2a6044b2b24431eac352b2e67c4ab814"
+}

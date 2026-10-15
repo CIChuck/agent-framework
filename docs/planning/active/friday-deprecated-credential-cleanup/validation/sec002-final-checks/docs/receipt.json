@@ -1,0 +1,46 @@
+{
+  "label": "docs",
+  "candidate": "e5a3066c34d53214ab0b406fc9cfb638d2276244",
+  "argv": [
+    "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+    "scripts/check-documentation-lifecycle.py"
+  ],
+  "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+  "environment": {
+    "PATH": "/private/tmp/friday-mcp-upgrade/venv/bin:/opt/homebrew/bin:/usr/bin:/bin",
+    "HOME": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec002-final-checks/docs/home",
+    "TMPDIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec002-final-checks/docs/tmp",
+    "PYTHONPATH": "/private/tmp/friday-mcp-upgrade/guard:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-agent/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-chat/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-cli/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-core/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-finance/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-llm/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-mcp/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-memory/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-moltbook/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-optimization/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-runtime/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-sandbox/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-speech/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-telemetry/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-tools/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-transcript/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-chat:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-chat/tests_chat",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0",
+    "PYTEST_ADDOPTS": "--import-mode=importlib -o cache_dir=/private/tmp/friday-mcp-upgrade/credential-cleanup/sec002-final-checks/docs/home/pytest",
+    "UV_NO_SYNC": "1",
+    "UV_OFFLINE": "1",
+    "UV_PROJECT_ENVIRONMENT": "/private/tmp/friday-mcp-upgrade/venv",
+    "UV_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec002-final-checks/docs/home/uv",
+    "VIRTUAL_ENV": "/private/tmp/friday-mcp-upgrade/venv",
+    "MYPY_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec002-final-checks/docs/home/mypy",
+    "RUFF_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec002-final-checks/docs/home/ruff",
+    "FRIDAY_TELEMETRY_ENABLED": "false",
+    "ANONYMIZED_TELEMETRY": "false",
+    "TOKENIZERS_PARALLELISM": "false",
+    "XDG_CACHE_HOME": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec002-final-checks/docs/home/.cache",
+    "MPLCONFIGDIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/sec002-final-checks/docs/home/mpl"
+  },
+  "started_at": "2026-10-15T01:07:24.478167+00:00",
+  "finished_at": "2026-10-15T01:07:24.966349+00:00",
+  "exit_code": 1,
+  "private_legacy_directory_unavailable_during_test": false,
+  "private_directory_restored": true,
+  "main_checkout_touched": false,
+  "product_before": {
+    "packages/friday-chat/tests_chat/compat/test_command_surface_parity.py": "48ba35d60bc3fd7a2161a3bb047f35a53c95e19cc97176b998954c3965e0872e",
+    "packages/friday-chat/tests_chat/compat/fixtures/legacy_command_names.yaml": "1b71daaee05e176236fabe58ac8f850e8429391f050ba87a6e0321cf24f93c27"
+  },
+  "product_after": {
+    "packages/friday-chat/tests_chat/compat/test_command_surface_parity.py": "48ba35d60bc3fd7a2161a3bb047f35a53c95e19cc97176b998954c3965e0872e",
+    "packages/friday-chat/tests_chat/compat/fixtures/legacy_command_names.yaml": "1b71daaee05e176236fabe58ac8f850e8429391f050ba87a6e0321cf24f93c27"
+  },
+  "stdout_sha256": "881ba829d3f266f0f7487421afdca9788719f955b36a0368ed012a072b6311aa",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

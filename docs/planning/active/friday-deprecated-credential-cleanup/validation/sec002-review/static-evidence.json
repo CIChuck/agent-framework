@@ -1,0 +1,62 @@
+{
+  "candidate": "e5a3066c34d53214ab0b406fc9cfb638d2276244",
+  "base": "85f14f249f5fffaf73659aec2a344efa05743c08",
+  "directive_sha256": "15cfd03737fe2a06eed0193a24950e7b1b98d1304dcce15291202dd90d328bc6",
+  "legacy_sha256": "e452126b6f19f24fea918ce00a5fef66a212ba8ce6f639cbf36905520eeba990",
+  "legacy_blob": "26570d7be8d88448a3842257ff9c33b5adcc87d7",
+  "registered_names": 50,
+  "fixture_names": 52,
+  "fixture_sha256": "1b71daaee05e176236fabe58ac8f850e8429391f050ba87a6e0321cf24f93c27",
+  "exact_set_equal": true,
+  "deprecated_directory_unchanged": true,
+  "sec001_report_sha256": "bd623d74b8a98e4a876a3c667dc51aadaa00897bd67a0d54a851dafa3e59aebf",
+  "sec001_report_and_checker_unchanged": true,
+  "baseline_broken_links": [
+    "/private/tmp/friday-mcp-upgrade/credential-cleanup/work/docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md:13",
+    "/private/tmp/friday-mcp-upgrade/credential-cleanup/work/AGENTS.md:46"
+  ],
+  "final_receipts_verified": [
+    {
+      "check": "board",
+      "exit_code": 0,
+      "stdout": "Development board validation passed: 27 tasks",
+      "stderr": ""
+    },
+    {
+      "check": "compat-without-legacy",
+      "exit_code": 0,
+      "stdout": "..............................                                           [100%]\n30 passed in 3.16s",
+      "stderr": ""
+    },
+    {
+      "check": "docs",
+      "exit_code": 1,
+      "stdout": "Documentation lifecycle validation failed:\n- docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md:21: broken link '/private/tmp/friday-mcp-upgrade/credential-cleanup/work/docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md:13'\n- docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md:21: broken link '/private/tmp/friday-mcp-upgrade/credential-cleanup/work/AGENTS.md:46'",
+      "stderr": ""
+    },
+    {
+      "check": "mypy",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file",
+      "stderr": ""
+    },
+    {
+      "check": "render",
+      "exit_code": 0,
+      "stdout": "Planning dashboard is current",
+      "stderr": ""
+    },
+    {
+      "check": "ruff",
+      "exit_code": 0,
+      "stdout": "All checks passed!",
+      "stderr": ""
+    },
+    {
+      "check": "whitespace",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

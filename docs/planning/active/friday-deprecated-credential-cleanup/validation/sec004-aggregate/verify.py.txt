@@ -1,0 +1,87 @@
+from pathlib import Path
+import ast, collections, gzip, hashlib, json, re, subprocess
+from datetime import datetime, timezone
+w=Path('/private/tmp/friday-mcp-upgrade/credential-cleanup/work')
+out=w.parent/'publication/aggregate-review'
+b='0f5cf2c413092d3c12ae691c547defa22dc3dbc5'; c='526688e352660be003e6001df0de7366b31acd2f'
+def git(*a): return subprocess.check_output(['git',*a],cwd=w)
+def sha(x): return hashlib.sha256(x).hexdigest()
+def require(v,m):
+    if not v: raise RuntimeError(m)
+require(git('rev-parse','HEAD').decode().strip()==c,'candidate drift')
+require(git('rev-parse','origin/master').decode().strip()==b,'base drift')
+require(not git('status','--porcelain'),'dirty candidate')
+req=json.loads((out.parent/'aggregate-review-request.json').read_text())
+authorities={}
+for p,h in req['authority_sha256'].items():
+    actual=sha((w/p).read_bytes());require(actual==h,'authority mismatch '+p);authorities[p]=actual
+packet=w/'docs/planning/active/friday-deprecated-credential-cleanup'
+for p in list(packet.glob('authority*.json'))+[w/'docs/reference/policies/development-task-lifecycle.md']:
+    authorities[str(p.relative_to(w))]=sha(p.read_bytes())
+for p in packet.glob('authority*.json'):
+    d=json.loads(p.read_text()); require(sha((w/d['directive']).read_bytes())==d['directive_sha256'],'directive mismatch');authorities[d['directive']]=d['directive_sha256']
+changes=[x.split('\t') for x in git('diff','--name-status','--no-renames',b,c).decode().splitlines()]
+removed={p for s,p in changes if s=='D'}
+mem={p for p in removed if p.startswith('tests/integration/memory/')}
+d3=json.loads((packet/'authority-sec003.json').read_text())
+require(mem==set(d3['allowed_index_removals'])|{'tests/integration/memory/config.yaml','tests/integration/memory/.friday/quarantine/tool_outputs.jsonl'},'memory removal mismatch')
+require(not git('ls-tree','-r','--name-only',c,'--','tests/integration/memory'),'memory still tracked')
+require(removed-mem=={'.DS_Store','CLAUDE.md','GEMINI.md','family-tree.md','scaffold.sh','task'},'unexpected removal')
+scaf_old=git('ls-tree',b,'--','scaffold.sh').decode().split('\t')[0]
+scaf_new=git('ls-tree',c,'--','scripts/scaffold.sh').decode().split('\t')[0]
+require(scaf_old==scaf_new,'scaffold mode/blob changed')
+require(git('ls-tree',c,'--','docker-bench-security').decode().startswith('160000 commit 154869da6418089decf7e1ab0cfca0e1cdfc5c49\t'),'gitlink mismatch')
+sub=(w/'.gitmodules').read_text();require('https://github.com/docker/docker-bench-security.git' in sub and 'ignore = untracked' in sub,'submodule metadata')
+# Inspect retired YAML solely in memory; never persist or print values.
+raw=git('show',b+':tests/integration/memory/config.yaml').splitlines();values=[]
+for n in [66,77,104,120,2221,2237,2265,2384,2389]:
+    m=re.search(rb'(?:api_key|secret_key|access_key)\s*:\s*[\"\']?([^\s\"\'#]+)',raw[n-1]);require(bool(m),'known value unavailable');values.append(m.group(1))
+require(len(values)==9,'known-value count')
+scanned=[];hits=[]; gitlinks=[]
+for s,p in changes:
+    if s=='D': continue
+    meta=git('ls-tree',c,'--',p).decode().split('\t')[0].split()
+    if meta[0]=='160000':gitlinks.append(p);continue
+    data=git('show',c+':'+p);scanned.append({'path':p,'blob':meta[2],'sha256':sha(data),'bytes':len(data)})
+    payloads=[data]
+    if data.startswith(b'\x1f\x8b'): payloads.append(gzip.decompress(data))
+    if any(value in payload for value in values for payload in payloads):hits.append(p)
+require(not hits,'known credential found in new blob (values withheld)')
+# Recover only command names through the original parser semantics, no import.
+source=git('show','85f14f249f5fffaf73659aec2a344efa05743c08:tests/integration/memory/friday.py')
+tree=ast.parse(source);names=set()
+for node in ast.walk(tree):
+    if not(isinstance(node,ast.Call) and isinstance(node.func,ast.Attribute) and node.func.attr=='register'):continue
+    if node.args and isinstance(node.args[0],ast.Constant) and isinstance(node.args[0].value,str):names.add(node.args[0].value)
+    for kw in node.keywords:
+        if kw.arg=='aliases' and isinstance(kw.value,ast.List):
+            names.update(x.value for x in kw.value.elts if isinstance(x,ast.Constant) and isinstance(x.value,str))
+fixture=w/'packages/friday-chat/tests_chat/compat/fixtures/legacy_command_names.yaml'
+fixture_names={x[2:].strip() for x in fixture.read_text().splitlines() if x.startswith('- ')}
+require(names|{'debug-retrieval','list-ingested'}==fixture_names and len(fixture_names)==52,'command fixture mismatch')
+prov=json.loads((packet/'command-baseline-provenance.json').read_text())
+# Current root local data preservation, metadata only.
+root=Path('/Users/chuckrussell/Dev/gendev/agent-framework');pres=w.parent/'root-preservation-sec003/local-memory-files.json'
+local=json.loads(pres.read_text());drift=[]
+for p,e in local.items():
+    s=(root/p).stat();a={'inode':s.st_ino,'size':s.st_size,'mtime_ns':s.st_mtime_ns,'mode':s.st_mode}
+    if a!=e:drift.append(p)
+require(not drift,'local memory drift')
+pending=json.loads((out.parent/'pending-work-preservation.json').read_text()); pending_drift=[]
+for p,h in pending.items():
+    actual=sha((root/p).read_bytes()) if (root/p).is_file() else None
+    if actual!=h:pending_drift.append(p)
+require(not pending_drift,'pending work drift')
+receipts=[]
+for p in sorted((out.parent/'checks').glob('*/receipt.json')):
+    d=json.loads(p.read_text());valid=all(sha((p.parent/n).read_bytes())==d[n+'_sha256'] for n in ['stdout','stderr']);require(valid,'receipt hash mismatch')
+    receipts.append({'label':p.parent.name,'receipt_sha256':sha(p.read_bytes()),'candidate':d['candidate'],'exit_code':d['exit_code'],'output_hashes_verified':valid,'guard_sha256':d['guard_sha256'],'argv':d['argv']})
+# Verify baseline tree and unchanged runtime/check inputs.
+bw=Path('/private/tmp/friday-mcp-upgrade/work');bt=subprocess.check_output(['git','rev-parse','HEAD^{tree}'],cwd=bw).decode().strip()
+require(bt==git('rev-parse',b+'^{tree}').decode().strip(),'baseline not master-equivalent')
+prior='5f68507a7683fedbe818fb2fdea420f417269f4b'
+require(set(git('diff','--name-only',prior,c).decode().splitlines())=={'docs/planning/active/friday-deprecated-credential-cleanup/authority-sec004.json','docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-004-workspace-publication.md','packages/friday-chat/tests_chat/test_command_disposable_uat.py'},'prior checks scope changed')
+require(not git('diff','--name-only',b,c,'--','packages/*/src','packages/friday-mcp','packages/friday-runtime','tests/integration/test_mcp_runtime_lifecycle.py'),'runtime/MCP product changed')
+record={'date_utc':datetime.now(timezone.utc).isoformat(),'candidate':c,'base':b,'request_sha256':sha((out.parent/'aggregate-review-request.json').read_bytes()),'authority_sha256':authorities,'all_changed_paths':changes,'changed_status_counts':dict(collections.Counter(s for s,p in changes)),'memory_removal_count':len(mem),'sec003_exact_count':len(d3['allowed_index_removals']),'scaffold_mode_and_blob':scaf_new,'gitlinks':gitlinks,'known_value_count':len(values),'added_modified_blobs_checked':len(scanned),'known_value_matches':hits,'changed_blob_inventory':scanned,'historical_command_names':len(fixture_names),'legacy_command_source_sha256':sha(source),'legacy_fixture_sha256':sha(fixture.read_bytes()),'local_memory_metadata_preserved':len(local),'pending_paths_preserved':len(pending),'baseline_tree':bt,'receipts':receipts,'guard_sha256':sha(Path('/private/tmp/friday-mcp-upgrade/guard/sitecustomize.py').read_bytes())}
+(out/'metadata.json').write_text(json.dumps(record,indent=2)+'\n')
+print(json.dumps({k:v for k,v in record.items() if k in ['candidate','base','changed_status_counts','memory_removal_count','added_modified_blobs_checked','known_value_count','known_value_matches','historical_command_names','local_memory_metadata_preserved','pending_paths_preserved','baseline_tree']}))

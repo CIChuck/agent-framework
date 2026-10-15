@@ -1,0 +1,6 @@
+{
+  "cause": "Initial broad vector prefix exclusion hid product vector_metadata.py; narrowed to legacy integration-store directory paths",
+  "product_source_restored": true,
+  "protected_paths_excluded": 262,
+  "candidate_product_edits_changed": false
+}

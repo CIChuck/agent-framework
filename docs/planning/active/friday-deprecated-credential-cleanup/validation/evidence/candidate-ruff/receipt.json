@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+    "check",
+    "packages/friday-chat/tests_chat/compat/test_config_compatibility.py"
+  ],
+  "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+  "started_at": "2026-10-14T12:50:13.600269+00:00",
+  "finished_at": "2026-10-14T12:50:13.661728+00:00",
+  "exit_code": 0,
+  "redacted_known_secret_occurrences": 0,
+  "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "product_sha256_after": {
+    "tests/integration/memory/config.yaml": null,
+    "tests/integration/memory/.friday/quarantine/tool_outputs.jsonl": null,
+    ".gitignore": "2184230fb2705df9f557e1646b00b13cbba251b8cfa4c567e78c31062113472b",
+    "packages/friday-chat/tests_chat/compat/test_config_compatibility.py": "8e4412ebf1a5fc0a69f13dbcbaaeb8aaa9694a1a299400660966a44a394deb21"
+  }
+}

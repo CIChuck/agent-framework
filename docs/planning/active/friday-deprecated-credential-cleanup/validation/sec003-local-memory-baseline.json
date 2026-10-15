@@ -1,0 +1,1724 @@
+{
+  "tests/integration/memory/.DS_Store": {
+    "inode": 14207929,
+    "size": 10244,
+    "mtime_ns": 1784224873916968273,
+    "mode": 33188
+  },
+  "tests/integration/memory/.dolt/sql-server.info": {
+    "inode": 22546346,
+    "size": 47,
+    "mtime_ns": 1774206213870125959,
+    "mode": 33152
+  },
+  "tests/integration/memory/.doltcfg/privileges.db": {
+    "inode": 22541696,
+    "size": 776,
+    "mtime_ns": 1774205386724648117,
+    "mode": 33152
+  },
+  "tests/integration/memory/cli-config.yaml": {
+    "inode": 14207933,
+    "size": 4176,
+    "mtime_ns": 1770577557462126086,
+    "mode": 33188
+  },
+  "tests/integration/memory/code-backup/memory-chat-v2.py": {
+    "inode": 14207935,
+    "size": 247888,
+    "mtime_ns": 1771462109352072134,
+    "mode": 33188
+  },
+  "tests/integration/memory/code-backup/memory-chat-v3.py": {
+    "inode": 14207936,
+    "size": 230225,
+    "mtime_ns": 1771462109352250217,
+    "mode": 33188
+  },
+  "tests/integration/memory/code-backup/memory-chat.py": {
+    "inode": 14207937,
+    "size": 136130,
+    "mtime_ns": 1771462109349530466,
+    "mode": 33188
+  },
+  "tests/integration/memory/exports/.DS_Store": {
+    "inode": 14207941,
+    "size": 6148,
+    "mtime_ns": 1774735159380166393,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday.py": {
+    "inode": 14935847,
+    "size": 323825,
+    "mtime_ns": 1791296850109864103,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/__init__.py": {
+    "inode": 14207945,
+    "size": 1186,
+    "mtime_ns": 1771462022662945982,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/commands/__init__.py": {
+    "inode": 14207947,
+    "size": 1761,
+    "mtime_ns": 1771462022657205438,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/commands/file_cmds.py": {
+    "inode": 14207948,
+    "size": 1242,
+    "mtime_ns": 1771462022657800605,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/commands/maintenance_cmds.py": {
+    "inode": 14207949,
+    "size": 3888,
+    "mtime_ns": 1771462022658325147,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/commands/memory_cmds.py": {
+    "inode": 14207950,
+    "size": 3940,
+    "mtime_ns": 1771462022658057230,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/commands/orchestration_cmds.py": {
+    "inode": 14207951,
+    "size": 2278,
+    "mtime_ns": 1771462022658739772,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/commands/session_cmds.py": {
+    "inode": 14207952,
+    "size": 1387,
+    "mtime_ns": 1771462022659145939,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/commands/tools_cmds.py": {
+    "inode": 14207953,
+    "size": 2649,
+    "mtime_ns": 1771462022659561397,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/commands/transcript_cmds.py": {
+    "inode": 14207954,
+    "size": 2438,
+    "mtime_ns": 1771462022658066147,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/commands/workflow_cmds.py": {
+    "inode": 14207955,
+    "size": 1130,
+    "mtime_ns": 1771462022658464897,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/config.py": {
+    "inode": 14207956,
+    "size": 7339,
+    "mtime_ns": 1771462022658952439,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/models.py": {
+    "inode": 14207957,
+    "size": 3932,
+    "mtime_ns": 1771462022659674856,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/processing.py": {
+    "inode": 14207958,
+    "size": 3261,
+    "mtime_ns": 1771462022660257439,
+    "mode": 33188
+  },
+  "tests/integration/memory/friday_chat/tools.py": {
+    "inode": 14217696,
+    "size": 14569,
+    "mtime_ns": 1771462022660916731,
+    "mode": 33188
+  },
+  "tests/integration/memory/scratchpad/.DS_Store": {
+    "inode": 14207961,
+    "size": 10244,
+    "mtime_ns": 1784224824783131731,
+    "mode": 33188
+  },
+  "tests/integration/memory/scratchpad/PRD_HIL_Beads_Dolt_Integration.md": {
+    "inode": 24378328,
+    "size": 13975,
+    "mtime_ns": 1774753648042497101,
+    "mode": 33188
+  },
+  "tests/integration/memory/speech/orca_params_en_female.pv": {
+    "inode": 14207968,
+    "size": 7095301,
+    "mtime_ns": 1770577557497073941,
+    "mode": 33188
+  },
+  "tests/integration/memory/speech/orca_params_en_male.pv": {
+    "inode": 14207969,
+    "size": 7095677,
+    "mtime_ns": 1770577557524390431,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/.friday_history": {
+    "inode": 58182149,
+    "size": 3060,
+    "mtime_ns": 1784332629448478108,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260716_155924_7428297a/chroma.sqlite3": {
+    "inode": 58193006,
+    "size": 2519040,
+    "mtime_ns": 1784231964176215695,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260716_155924_7428297a/graph.json": {
+    "inode": 58193004,
+    "size": 26857,
+    "mtime_ns": 1784231930978607025,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260716_155924_7428297a/manifest.json": {
+    "inode": 58193007,
+    "size": 1624,
+    "mtime_ns": 1784231964187135139,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260716_155924_7428297a/transcript.db": {
+    "inode": 58193005,
+    "size": 397312,
+    "mtime_ns": 1784231900571386453,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260717_145621_6bbe84cb/chroma.sqlite3": {
+    "inode": 58392436,
+    "size": 2826240,
+    "mtime_ns": 1784314581279300333,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260717_145621_6bbe84cb/graph.json": {
+    "inode": 58392434,
+    "size": 267806,
+    "mtime_ns": 1784314581041657100,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260717_145621_6bbe84cb/manifest.json": {
+    "inode": 58392437,
+    "size": 1628,
+    "mtime_ns": 1784314581320137899,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260717_145621_6bbe84cb/transcript.db": {
+    "inode": 58392435,
+    "size": 1114112,
+    "mtime_ns": 1784300987060215879,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260717_161934_fcd0c239/chroma.sqlite3": {
+    "inode": 58412104,
+    "size": 3313664,
+    "mtime_ns": 1784319574211219395,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260717_161934_fcd0c239/graph.json": {
+    "inode": 58412102,
+    "size": 589110,
+    "mtime_ns": 1784318932732425303,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260717_161934_fcd0c239/manifest.json": {
+    "inode": 58412105,
+    "size": 1628,
+    "mtime_ns": 1784319574257762811,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/backups/20260717_161934_fcd0c239/transcript.db": {
+    "inode": 58412103,
+    "size": 2719744,
+    "mtime_ns": 1784319088967647864,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/chroma.sqlite3": {
+    "inode": 58674509,
+    "size": 3670016,
+    "mtime_ns": 1784416749681421661,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/dbae62a2-8a65-4286-9046-8135ed49cc62/data_level0.bin": {
+    "inode": 58182348,
+    "size": 321200,
+    "mtime_ns": 1784330981313394833,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/dbae62a2-8a65-4286-9046-8135ed49cc62/header.bin": {
+    "inode": 58182347,
+    "size": 100,
+    "mtime_ns": 1784330981313258208,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/dbae62a2-8a65-4286-9046-8135ed49cc62/length.bin": {
+    "inode": 58182349,
+    "size": 400,
+    "mtime_ns": 1784330981313401208,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/dbae62a2-8a65-4286-9046-8135ed49cc62/link_lists.bin": {
+    "inode": 58182350,
+    "size": 0,
+    "mtime_ns": 1784330981313244458,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/extraction_rejections.log": {
+    "inode": 58182133,
+    "size": 0,
+    "mtime_ns": 1784228248823353070,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/graph.json": {
+    "inode": 58674510,
+    "size": 811372,
+    "mtime_ns": 1784416749684389476,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/reorganization_logs/reorganization_20260716_155924.md": {
+    "inode": 58193014,
+    "size": 2207,
+    "mtime_ns": 1784231964192120738,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/reorganization_logs/reorganization_20260717_145621.md": {
+    "inode": 58392443,
+    "size": 3768,
+    "mtime_ns": 1784314581397731408,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/reorganization_logs/reorganization_20260717_161934.md": {
+    "inode": 58412110,
+    "size": 1191,
+    "mtime_ns": 1784319574313846269,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector/transcript.db": {
+    "inode": 58674511,
+    "size": 4177920,
+    "mtime_ns": 1784416749689843769,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/.friday_history": {
+    "inode": 24364008,
+    "size": 15519,
+    "mtime_ns": 1784228124427635126,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/06e6e6f9-3a17-48fd-8b71-fd31eccb5b6f/data_level0.bin": {
+    "inode": 24364182,
+    "size": 1827628,
+    "mtime_ns": 1784227585594693017,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/06e6e6f9-3a17-48fd-8b71-fd31eccb5b6f/header.bin": {
+    "inode": 24364181,
+    "size": 100,
+    "mtime_ns": 1784227585593760142,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/06e6e6f9-3a17-48fd-8b71-fd31eccb5b6f/index_metadata.pickle": {
+    "inode": 58180431,
+    "size": 21160,
+    "mtime_ns": 1784227585595789434,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/06e6e6f9-3a17-48fd-8b71-fd31eccb5b6f/length.bin": {
+    "inode": 24364183,
+    "size": 2276,
+    "mtime_ns": 1784227585595669392,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/06e6e6f9-3a17-48fd-8b71-fd31eccb5b6f/link_lists.bin": {
+    "inode": 24364184,
+    "size": 4928,
+    "mtime_ns": 1784227585595692600,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/a50d43bd-c988-4a65-bfc8-0ab718a707e7/data_level0.bin": {
+    "inode": 25457151,
+    "size": 321200,
+    "mtime_ns": 1784227897680246915,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/a50d43bd-c988-4a65-bfc8-0ab718a707e7/header.bin": {
+    "inode": 25457150,
+    "size": 100,
+    "mtime_ns": 1784227897680073791,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/a50d43bd-c988-4a65-bfc8-0ab718a707e7/length.bin": {
+    "inode": 25457152,
+    "size": 400,
+    "mtime_ns": 1784227897680255874,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/a50d43bd-c988-4a65-bfc8-0ab718a707e7/link_lists.bin": {
+    "inode": 25457153,
+    "size": 0,
+    "mtime_ns": 1784227897680053166,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185411_1146ae15/chroma.sqlite3": {
+    "inode": 25434641,
+    "size": 8564736,
+    "mtime_ns": 1775256851175446382,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185411_1146ae15/graph.json": {
+    "inode": 25434639,
+    "size": 3594245,
+    "mtime_ns": 1775256838266639300,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185411_1146ae15/manifest.json": {
+    "inode": 25434642,
+    "size": 1631,
+    "mtime_ns": 1775256851372556721,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185411_1146ae15/transcript.db": {
+    "inode": 25434640,
+    "size": 5586944,
+    "mtime_ns": 1775256842312714471,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185613_c73a62e9/chroma.sqlite3": {
+    "inode": 25434994,
+    "size": 8613888,
+    "mtime_ns": 1775256973525839425,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185613_c73a62e9/graph.json": {
+    "inode": 25434992,
+    "size": 3503335,
+    "mtime_ns": 1775256851841142600,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185613_c73a62e9/manifest.json": {
+    "inode": 25434995,
+    "size": 1631,
+    "mtime_ns": 1775256973600181918,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185613_c73a62e9/transcript.db": {
+    "inode": 25434993,
+    "size": 5591040,
+    "mtime_ns": 1775256967461715429,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185628_ef493103/chroma.sqlite3": {
+    "inode": 25435039,
+    "size": 8613888,
+    "mtime_ns": 1775256988736777607,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185628_ef493103/graph.json": {
+    "inode": 25435037,
+    "size": 3502562,
+    "mtime_ns": 1775256973933789175,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185628_ef493103/manifest.json": {
+    "inode": 25435040,
+    "size": 1631,
+    "mtime_ns": 1775256988809124887,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_185628_ef493103/transcript.db": {
+    "inode": 25435038,
+    "size": 5595136,
+    "mtime_ns": 1775256983896362859,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_225135_f9b1661b/chroma.sqlite3": {
+    "inode": 25457167,
+    "size": 8613888,
+    "mtime_ns": 1775271095267044466,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_225135_f9b1661b/graph.json": {
+    "inode": 25457165,
+    "size": 3813308,
+    "mtime_ns": 1775271059400146580,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_225135_f9b1661b/manifest.json": {
+    "inode": 25457168,
+    "size": 1631,
+    "mtime_ns": 1775271095360791792,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260403_225135_f9b1661b/transcript.db": {
+    "inode": 25457166,
+    "size": 5971968,
+    "mtime_ns": 1775258482527206483,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260405_215524_eda4badf/chroma.sqlite3": {
+    "inode": 25566831,
+    "size": 9330688,
+    "mtime_ns": 1775440524621107268,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260405_215524_eda4badf/graph.json": {
+    "inode": 25566829,
+    "size": 3882415,
+    "mtime_ns": 1775440524429170421,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260405_215524_eda4badf/manifest.json": {
+    "inode": 25566832,
+    "size": 1631,
+    "mtime_ns": 1775440524730787776,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260405_215524_eda4badf/transcript.db": {
+    "inode": 25566830,
+    "size": 6545408,
+    "mtime_ns": 1775340791150056216,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_142941_575b81e3/chroma.sqlite3": {
+    "inode": 58177748,
+    "size": 9330688,
+    "mtime_ns": 1784226581144813112,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_142941_575b81e3/graph.json": {
+    "inode": 58177746,
+    "size": 3876999,
+    "mtime_ns": 1775440525062251914,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_142941_575b81e3/manifest.json": {
+    "inode": 58177749,
+    "size": 1631,
+    "mtime_ns": 1784226581318101714,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_142941_575b81e3/transcript.db": {
+    "inode": 58177747,
+    "size": 6549504,
+    "mtime_ns": 1784226569535430669,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_143632_b6a9b248/chroma.sqlite3": {
+    "inode": 58178557,
+    "size": 9330688,
+    "mtime_ns": 1784226992846341906,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_143632_b6a9b248/graph.json": {
+    "inode": 58178555,
+    "size": 3910861,
+    "mtime_ns": 1784226992643148967,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_143632_b6a9b248/manifest.json": {
+    "inode": 58178558,
+    "size": 1631,
+    "mtime_ns": 1784226992987190130,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_143632_b6a9b248/transcript.db": {
+    "inode": 58178556,
+    "size": 6606848,
+    "mtime_ns": 1784226744308447296,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_144625_c460a46b/chroma.sqlite3": {
+    "inode": 58180467,
+    "size": 9330688,
+    "mtime_ns": 1784227585841189669,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_144625_c460a46b/graph.json": {
+    "inode": 58180465,
+    "size": 3929174,
+    "mtime_ns": 1784227585266150606,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_144625_c460a46b/manifest.json": {
+    "inode": 58180468,
+    "size": 1631,
+    "mtime_ns": 1784227585884706507,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_144625_c460a46b/transcript.db": {
+    "inode": 58180466,
+    "size": 6627328,
+    "mtime_ns": 1784227438606623194,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_145121_112d2b6e/chroma.sqlite3": {
+    "inode": 58180927,
+    "size": 9330688,
+    "mtime_ns": 1784227875356016128,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_145121_112d2b6e/graph.json": {
+    "inode": 58180925,
+    "size": 259901,
+    "mtime_ns": 1784227875234376564,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_145121_112d2b6e/manifest.json": {
+    "inode": 58180928,
+    "size": 1628,
+    "mtime_ns": 1784227881121591709,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_145121_112d2b6e/transcript.db": {
+    "inode": 58180926,
+    "size": 6688768,
+    "mtime_ns": 1784227869970626830,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_145550_de24cdb3/chroma.sqlite3": {
+    "inode": 58182044,
+    "size": 9330688,
+    "mtime_ns": 1784228150523827862,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_145550_de24cdb3/graph.json": {
+    "inode": 58182042,
+    "size": 374052,
+    "mtime_ns": 1784228150463816877,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_145550_de24cdb3/manifest.json": {
+    "inode": 58182045,
+    "size": 1628,
+    "mtime_ns": 1784228150537862108,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/backups/20260716_145550_de24cdb3/transcript.db": {
+    "inode": 58182043,
+    "size": 6705152,
+    "mtime_ns": 1784227932590295258,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/chroma.sqlite3": {
+    "inode": 24363983,
+    "size": 9330688,
+    "mtime_ns": 1784228150549994980,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/e3fee632-923b-458f-b501-a1c8255eddc0/data_level0.bin": {
+    "inode": 58177732,
+    "size": 321200,
+    "mtime_ns": 1784227869965820337,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/e3fee632-923b-458f-b501-a1c8255eddc0/header.bin": {
+    "inode": 58177731,
+    "size": 100,
+    "mtime_ns": 1784227869965640881,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/e3fee632-923b-458f-b501-a1c8255eddc0/length.bin": {
+    "inode": 58177733,
+    "size": 400,
+    "mtime_ns": 1784227869965826962,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/e3fee632-923b-458f-b501-a1c8255eddc0/link_lists.bin": {
+    "inode": 58177734,
+    "size": 0,
+    "mtime_ns": 1784227869965621423,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/extraction_rejections.log": {
+    "inode": 24363994,
+    "size": 1722,
+    "mtime_ns": 1775227806283926337,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/graph.json": {
+    "inode": 58182052,
+    "size": 249113,
+    "mtime_ns": 1784228150557166645,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260403_185411.md": {
+    "inode": 25434651,
+    "size": 93792,
+    "mtime_ns": 1775256851842006977,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260403_185613.md": {
+    "inode": 25435003,
+    "size": 2023,
+    "mtime_ns": 1775256973934144592,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260403_185628.md": {
+    "inode": 25435045,
+    "size": 1194,
+    "mtime_ns": 1775256989084051602,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260403_225135.md": {
+    "inode": 25457176,
+    "size": 17300,
+    "mtime_ns": 1775271095820054598,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260405_215524.md": {
+    "inode": 25566864,
+    "size": 4826,
+    "mtime_ns": 1775440525062780120,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260716_142941.md": {
+    "inode": 58177756,
+    "size": 21020,
+    "mtime_ns": 1784226581701393298,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260716_143632.md": {
+    "inode": 58178566,
+    "size": 8224,
+    "mtime_ns": 1784226993445339180,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260716_144625.md": {
+    "inode": 58180476,
+    "size": 4067,
+    "mtime_ns": 1784227586325952472,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260716_145121.md": {
+    "inode": 58180934,
+    "size": 8325,
+    "mtime_ns": 1784227881139313743,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/reorganization_logs/reorganization_20260716_145550.md": {
+    "inode": 58182053,
+    "size": 5555,
+    "mtime_ns": 1784228150557562062,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector2_bak/transcript.db": {
+    "inode": 24363995,
+    "size": 6705152,
+    "mtime_ns": 1784228150560907894,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/.DS_Store": {
+    "inode": 23465627,
+    "size": 6148,
+    "mtime_ns": 1774616293543202629,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/.friday_history": {
+    "inode": 14355572,
+    "size": 147373,
+    "mtime_ns": 1774735042381968026,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/255206a5-1d4b-43c0-9719-bc3c7bbaae9d/data_level0.bin": {
+    "inode": 16171124,
+    "size": 321200,
+    "mtime_ns": 1774735042686391576,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/255206a5-1d4b-43c0-9719-bc3c7bbaae9d/header.bin": {
+    "inode": 16171123,
+    "size": 100,
+    "mtime_ns": 1774735042686224367,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/255206a5-1d4b-43c0-9719-bc3c7bbaae9d/length.bin": {
+    "inode": 16171125,
+    "size": 400,
+    "mtime_ns": 1774735042686397034,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/255206a5-1d4b-43c0-9719-bc3c7bbaae9d/link_lists.bin": {
+    "inode": 16171126,
+    "size": 0,
+    "mtime_ns": 1774735042686211701,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/68b3d841-6ccb-41c0-bd1e-cbe5df9e0a43/data_level0.bin": {
+    "inode": 15304531,
+    "size": 629552,
+    "mtime_ns": 1773844301241574435,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/68b3d841-6ccb-41c0-bd1e-cbe5df9e0a43/header.bin": {
+    "inode": 15304530,
+    "size": 100,
+    "mtime_ns": 1773844301240113434,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/68b3d841-6ccb-41c0-bd1e-cbe5df9e0a43/index_metadata.pickle": {
+    "inode": 21689960,
+    "size": 1228,
+    "mtime_ns": 1773844301242313351,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/68b3d841-6ccb-41c0-bd1e-cbe5df9e0a43/length.bin": {
+    "inode": 15304532,
+    "size": 784,
+    "mtime_ns": 1773844301242024310,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/68b3d841-6ccb-41c0-bd1e-cbe5df9e0a43/link_lists.bin": {
+    "inode": 15304533,
+    "size": 1736,
+    "mtime_ns": 1773844301242042851,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/.DS_Store": {
+    "inode": 23465692,
+    "size": 6148,
+    "mtime_ns": 1774548165457618749,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260301_145839_3d1579b6/chroma.sqlite3": {
+    "inode": 18128633,
+    "size": 15486976,
+    "mtime_ns": 1772395118996090272,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260301_145839_3d1579b6/graph.json": {
+    "inode": 18128631,
+    "size": 12285345,
+    "mtime_ns": 1772395115565952086,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260301_145839_3d1579b6/manifest.json": {
+    "inode": 18128634,
+    "size": 1634,
+    "mtime_ns": 1772395119243839592,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260301_145839_3d1579b6/transcript.db": {
+    "inode": 18128632,
+    "size": 26980352,
+    "mtime_ns": 1772395054754330089,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260302_170542_199d7aab/chroma.sqlite3": {
+    "inode": 18284632,
+    "size": 15532032,
+    "mtime_ns": 1772489142130143543,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260302_170542_199d7aab/graph.json": {
+    "inode": 18284630,
+    "size": 15098311,
+    "mtime_ns": 1772486063983190984,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260302_170542_199d7aab/manifest.json": {
+    "inode": 18284633,
+    "size": 1634,
+    "mtime_ns": 1772489142551166020,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260302_170542_199d7aab/transcript.db": {
+    "inode": 18284631,
+    "size": 30367744,
+    "mtime_ns": 1772485960849003653,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260302_182034_d410f01a/chroma.sqlite3": {
+    "inode": 18295191,
+    "size": 15859712,
+    "mtime_ns": 1772493456867896117,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260302_182034_d410f01a/graph.json": {
+    "inode": 18295189,
+    "size": 14968343,
+    "mtime_ns": 1772493396340171915,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260302_182034_d410f01a/manifest.json": {
+    "inode": 18295192,
+    "size": 1634,
+    "mtime_ns": 1772493634855507485,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260302_182034_d410f01a/transcript.db": {
+    "inode": 18295190,
+    "size": 30826496,
+    "mtime_ns": 1772493247808045389,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_081507_f0ab7925/chroma.sqlite3": {
+    "inode": 18728129,
+    "size": 17420288,
+    "mtime_ns": 1772630106758174491,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_081507_f0ab7925/graph.json": {
+    "inode": 18728127,
+    "size": 15679840,
+    "mtime_ns": 1772629821447641490,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_081507_f0ab7925/manifest.json": {
+    "inode": 18728130,
+    "size": 1634,
+    "mtime_ns": 1772630107493266559,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_081507_f0ab7925/transcript.db": {
+    "inode": 18728128,
+    "size": 32468992,
+    "mtime_ns": 1772630078948676745,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_104526_c2dd80be/chroma.sqlite3": {
+    "inode": 18748391,
+    "size": 17612800,
+    "mtime_ns": 1772639126128056449,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_104526_c2dd80be/graph.json": {
+    "inode": 18748389,
+    "size": 16183206,
+    "mtime_ns": 1772639088111581267,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_104526_c2dd80be/manifest.json": {
+    "inode": 18748392,
+    "size": 1634,
+    "mtime_ns": 1772639127139255807,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_104526_c2dd80be/transcript.db": {
+    "inode": 18748390,
+    "size": 32899072,
+    "mtime_ns": 1772638957209781065,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_143613_fc67372a/chroma.sqlite3": {
+    "inode": 18795044,
+    "size": 19599360,
+    "mtime_ns": 1772652972839267047,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_143613_fc67372a/graph.json": {
+    "inode": 18795042,
+    "size": 16688693,
+    "mtime_ns": 1772652967560422906,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_143613_fc67372a/manifest.json": {
+    "inode": 18795045,
+    "size": 1634,
+    "mtime_ns": 1772652974037761960,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260304_143613_fc67372a/transcript.db": {
+    "inode": 18795043,
+    "size": 33705984,
+    "mtime_ns": 1772643742650048679,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260307_211457_91841f90/chroma.sqlite3": {
+    "inode": 19522062,
+    "size": 19599360,
+    "mtime_ns": 1772936096556446539,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260307_211457_91841f90/graph.json": {
+    "inode": 19522060,
+    "size": 16953149,
+    "mtime_ns": 1772936090981978322,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260307_211457_91841f90/manifest.json": {
+    "inode": 19522063,
+    "size": 1634,
+    "mtime_ns": 1772936097841435519,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260307_211457_91841f90/transcript.db": {
+    "inode": 19522061,
+    "size": 34803712,
+    "mtime_ns": 1772935869016095604,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260308_103135_82cb1b1a/chroma.sqlite3": {
+    "inode": 19643187,
+    "size": 19599360,
+    "mtime_ns": 1772980294508329688,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260308_103135_82cb1b1a/graph.json": {
+    "inode": 19643185,
+    "size": 17119237,
+    "mtime_ns": 1772980289256665811,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260308_103135_82cb1b1a/manifest.json": {
+    "inode": 19643188,
+    "size": 1634,
+    "mtime_ns": 1772980295785243624,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260308_103135_82cb1b1a/transcript.db": {
+    "inode": 19643186,
+    "size": 34979840,
+    "mtime_ns": 1772936563608925378,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260308_145033_9fb0e698/chroma.sqlite3": {
+    "inode": 19691029,
+    "size": 19599360,
+    "mtime_ns": 1772995830407960427,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260308_145033_9fb0e698/graph.json": {
+    "inode": 19691027,
+    "size": 17268902,
+    "mtime_ns": 1772995827682065545,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260308_145033_9fb0e698/manifest.json": {
+    "inode": 19691030,
+    "size": 1634,
+    "mtime_ns": 1772995833547868420,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260308_145033_9fb0e698/transcript.db": {
+    "inode": 19691028,
+    "size": 35057664,
+    "mtime_ns": 1772980481758570335,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260318_103148_6c383230/chroma.sqlite3": {
+    "inode": 21690165,
+    "size": 20668416,
+    "mtime_ns": 1773844307639996432,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260318_103148_6c383230/graph.json": {
+    "inode": 21690163,
+    "size": 19565674,
+    "mtime_ns": 1773844297517128404,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260318_103148_6c383230/manifest.json": {
+    "inode": 21690166,
+    "size": 1635,
+    "mtime_ns": 1773844309173751293,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260318_103148_6c383230/transcript.db": {
+    "inode": 21690164,
+    "size": 36294656,
+    "mtime_ns": 1773711550728427306,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_134213_176f7f8d/chroma.sqlite3": {
+    "inode": 23455425,
+    "size": 20971520,
+    "mtime_ns": 1774546828947915074,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_134213_176f7f8d/graph.json": {
+    "inode": 23455423,
+    "size": 21707671,
+    "mtime_ns": 1774546828864575946,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_134213_176f7f8d/manifest.json": {
+    "inode": 23455426,
+    "size": 1635,
+    "mtime_ns": 1774546934131169230,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_134213_176f7f8d/transcript.db": {
+    "inode": 23455424,
+    "size": 39731200,
+    "mtime_ns": 1774546812496555974,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_135041_a62a2397/chroma.sqlite3": {
+    "inode": 23461837,
+    "size": 22114304,
+    "mtime_ns": 1774547441743222149,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_135041_a62a2397/graph.json": {
+    "inode": 23461835,
+    "size": 21780446,
+    "mtime_ns": 1774547430024449045,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_135041_a62a2397/manifest.json": {
+    "inode": 23461838,
+    "size": 1635,
+    "mtime_ns": 1774547442164659585,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_135041_a62a2397/transcript.db": {
+    "inode": 23461836,
+    "size": 39825408,
+    "mtime_ns": 1774547384740600952,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_135639_85416eda/chroma.sqlite3": {
+    "inode": 23465200,
+    "size": 22114304,
+    "mtime_ns": 1774547796815657261,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_135639_85416eda/graph.json": {
+    "inode": 23465198,
+    "size": 21782001,
+    "mtime_ns": 1774547451937029815,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_135639_85416eda/manifest.json": {
+    "inode": 23465201,
+    "size": 1635,
+    "mtime_ns": 1774547799299188453,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_135639_85416eda/transcript.db": {
+    "inode": 23465199,
+    "size": 39829504,
+    "mtime_ns": 1774547785919974550,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_202740_68d27636/chroma.sqlite3": {
+    "inode": 23616853,
+    "size": 22114304,
+    "mtime_ns": 1774571259799866770,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_202740_68d27636/graph.json": {
+    "inode": 23616851,
+    "size": 23026127,
+    "mtime_ns": 1774571240738210344,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_202740_68d27636/manifest.json": {
+    "inode": 23616854,
+    "size": 1635,
+    "mtime_ns": 1774571260242965781,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260326_202740_68d27636/transcript.db": {
+    "inode": 23616852,
+    "size": 42098688,
+    "mtime_ns": 1774571051171114952,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_141344_32b9ab00/chroma.sqlite3": {
+    "inode": 23795054,
+    "size": 22114304,
+    "mtime_ns": 1774635219856110682,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_141344_32b9ab00/graph.json": {
+    "inode": 23795052,
+    "size": 23576906,
+    "mtime_ns": 1774635214199081791,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_141344_32b9ab00/manifest.json": {
+    "inode": 23795055,
+    "size": 1635,
+    "mtime_ns": 1774635224424361884,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_141344_32b9ab00/transcript.db": {
+    "inode": 23795053,
+    "size": 42762240,
+    "mtime_ns": 1774573295273477766,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_150146_12a0ed0a/chroma.sqlite3": {
+    "inode": 23804248,
+    "size": 44662784,
+    "mtime_ns": 1774638105110484908,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_150146_12a0ed0a/graph.json": {
+    "inode": 23804246,
+    "size": 24278087,
+    "mtime_ns": 1774637473616711656,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_150146_12a0ed0a/manifest.json": {
+    "inode": 23804249,
+    "size": 1635,
+    "mtime_ns": 1774638106421948848,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_150146_12a0ed0a/transcript.db": {
+    "inode": 23804247,
+    "size": 49143808,
+    "mtime_ns": 1774637483939386069,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_172142_298488c4/chroma.sqlite3": {
+    "inode": 23834557,
+    "size": 46878720,
+    "mtime_ns": 1774646501017609197,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_172142_298488c4/graph.json": {
+    "inode": 23834555,
+    "size": 24633466,
+    "mtime_ns": 1774646128686105056,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_172142_298488c4/manifest.json": {
+    "inode": 23834558,
+    "size": 1636,
+    "mtime_ns": 1774646502401613518,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260327_172142_298488c4/transcript.db": {
+    "inode": 23834556,
+    "size": 49971200,
+    "mtime_ns": 1774646026079883215,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_162913_d38e1ee1/chroma.sqlite3": {
+    "inode": 24241625,
+    "size": 47947776,
+    "mtime_ns": 1774729749500725466,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_162913_d38e1ee1/graph.json": {
+    "inode": 24241623,
+    "size": 25147568,
+    "mtime_ns": 1774729726867704059,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_162913_d38e1ee1/manifest.json": {
+    "inode": 24241626,
+    "size": 1636,
+    "mtime_ns": 1774729753448701874,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_162913_d38e1ee1/transcript.db": {
+    "inode": 24241624,
+    "size": 51630080,
+    "mtime_ns": 1774729680304353156,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_163459_d849d704/chroma.sqlite3": {
+    "inode": 24242168,
+    "size": 47947776,
+    "mtime_ns": 1774730092222149205,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_163459_d849d704/graph.json": {
+    "inode": 24242166,
+    "size": 25109866,
+    "mtime_ns": 1774730071233395277,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_163459_d849d704/manifest.json": {
+    "inode": 24242169,
+    "size": 1636,
+    "mtime_ns": 1774730099619500018,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_163459_d849d704/transcript.db": {
+    "inode": 24242167,
+    "size": 51769344,
+    "mtime_ns": 1774730030739997430,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_165155_045d2404/chroma.sqlite3": {
+    "inode": 24243314,
+    "size": 47947776,
+    "mtime_ns": 1774731110849608406,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_165155_045d2404/graph.json": {
+    "inode": 24243312,
+    "size": 25210324,
+    "mtime_ns": 1774731102002849554,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_165155_045d2404/manifest.json": {
+    "inode": 24243315,
+    "size": 1636,
+    "mtime_ns": 1774731115861519908,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_165155_045d2404/transcript.db": {
+    "inode": 24243313,
+    "size": 51937280,
+    "mtime_ns": 1774730817873166895,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_165628_e050f97d/chroma.sqlite3": {
+    "inode": 24243730,
+    "size": 47947776,
+    "mtime_ns": 1774731382880321093,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_165628_e050f97d/graph.json": {
+    "inode": 24243728,
+    "size": 25204139,
+    "mtime_ns": 1774731216500973365,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_165628_e050f97d/manifest.json": {
+    "inode": 24243731,
+    "size": 1636,
+    "mtime_ns": 1774731388981381301,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_165628_e050f97d/transcript.db": {
+    "inode": 24243729,
+    "size": 51941376,
+    "mtime_ns": 1774731201064854126,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_171803_71757ddd/chroma.sqlite3": {
+    "inode": 24358967,
+    "size": 47947776,
+    "mtime_ns": 1774732679493373901,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_171803_71757ddd/graph.json": {
+    "inode": 24358964,
+    "size": 25609571,
+    "mtime_ns": 1774732633066097150,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_171803_71757ddd/manifest.json": {
+    "inode": 24358969,
+    "size": 1636,
+    "mtime_ns": 1774732683965468931,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_171803_71757ddd/transcript.db": {
+    "inode": 24358966,
+    "size": 52346880,
+    "mtime_ns": 1774732530793481063,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_172653_f505cd34/chroma.sqlite3": {
+    "inode": 24361833,
+    "size": 47947776,
+    "mtime_ns": 1774733202895171076,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_172653_f505cd34/graph.json": {
+    "inode": 24361831,
+    "size": 25718108,
+    "mtime_ns": 1774733199699917546,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_172653_f505cd34/manifest.json": {
+    "inode": 24361834,
+    "size": 1636,
+    "mtime_ns": 1774733213939759243,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_172653_f505cd34/transcript.db": {
+    "inode": 24361832,
+    "size": 52633600,
+    "mtime_ns": 1774733119754055515,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_174812_7481055d/chroma.sqlite3": {
+    "inode": 24362491,
+    "size": 47947776,
+    "mtime_ns": 1774734483306758043,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_174812_7481055d/graph.json": {
+    "inode": 24362489,
+    "size": 25689006,
+    "mtime_ns": 1774734478903327963,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_174812_7481055d/manifest.json": {
+    "inode": 24362492,
+    "size": 1636,
+    "mtime_ns": 1774734492840495021,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_174812_7481055d/transcript.db": {
+    "inode": 24362490,
+    "size": 52748288,
+    "mtime_ns": 1774734405115476212,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_175740_534eeb9a/chroma.sqlite3": {
+    "inode": 24363176,
+    "size": 47947776,
+    "mtime_ns": 1774735049384261980,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_175740_534eeb9a/graph.json": {
+    "inode": 24363174,
+    "size": 25640748,
+    "mtime_ns": 1774735038691676236,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_175740_534eeb9a/manifest.json": {
+    "inode": 24363177,
+    "size": 1636,
+    "mtime_ns": 1774735061036637020,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/backups/20260328_175740_534eeb9a/transcript.db": {
+    "inode": 24363175,
+    "size": 52842496,
+    "mtime_ns": 1774735014665157337,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/chroma.sqlite3": {
+    "inode": 14355477,
+    "size": 47947776,
+    "mtime_ns": 1774735066042142222,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/extraction_rejections.log": {
+    "inode": 14355488,
+    "size": 11944,
+    "mtime_ns": 1774636867989624704,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/f41d6224-bc21-4db4-b82f-8571551e890f/data_level0.bin": {
+    "inode": 14355669,
+    "size": 11055704,
+    "mtime_ns": 1774729739572369844,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/f41d6224-bc21-4db4-b82f-8571551e890f/header.bin": {
+    "inode": 14355668,
+    "size": 100,
+    "mtime_ns": 1774729739546010552,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/f41d6224-bc21-4db4-b82f-8571551e890f/index_metadata.pickle": {
+    "inode": 14749995,
+    "size": 282920,
+    "mtime_ns": 1774729739576573773,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/f41d6224-bc21-4db4-b82f-8571551e890f/length.bin": {
+    "inode": 14355670,
+    "size": 13768,
+    "mtime_ns": 1774729739574555892,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/f41d6224-bc21-4db4-b82f-8571551e890f/link_lists.bin": {
+    "inode": 14355671,
+    "size": 29884,
+    "mtime_ns": 1774729739575936480,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/graph.json": {
+    "inode": 24363220,
+    "size": 25642304,
+    "mtime_ns": 1774735072292864971,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260210_115324.md": {
+    "inode": 14438172,
+    "size": 100946,
+    "mtime_ns": 1770742406062839000,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260210_131843.md": {
+    "inode": 14447222,
+    "size": 60476,
+    "mtime_ns": 1770747525552920579,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260210_151642.md": {
+    "inode": 14684100,
+    "size": 37281,
+    "mtime_ns": 1770754605255043011,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260211_110142.md": {
+    "inode": 14820285,
+    "size": 45226,
+    "mtime_ns": 1770825703171626527,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260211_144420.md": {
+    "inode": 14851245,
+    "size": 62096,
+    "mtime_ns": 1784302235551569882,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260211_150726.md": {
+    "inode": 14854278,
+    "size": 1751,
+    "mtime_ns": 1770840447448162209,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260211_162751.md": {
+    "inode": 14871697,
+    "size": 43729,
+    "mtime_ns": 1784302235552285093,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_084941.md": {
+    "inode": 14930369,
+    "size": 182947,
+    "mtime_ns": 1770904192762746721,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_085936.md": {
+    "inode": 14931810,
+    "size": 4318,
+    "mtime_ns": 1770904782916396121,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_091859.md": {
+    "inode": 14938481,
+    "size": 1196,
+    "mtime_ns": 1770905945431028009,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_101732.md": {
+    "inode": 14947163,
+    "size": 1186,
+    "mtime_ns": 1770909452729536833,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_125001.md": {
+    "inode": 14964714,
+    "size": 19992,
+    "mtime_ns": 1770918601620397551,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_130700.md": {
+    "inode": 14967461,
+    "size": 6888,
+    "mtime_ns": 1770919620231190770,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_132154.md": {
+    "inode": 14968528,
+    "size": 6308,
+    "mtime_ns": 1770920515172035301,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_135039.md": {
+    "inode": 14971076,
+    "size": 12410,
+    "mtime_ns": 1770922239970598297,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_153159.md": {
+    "inode": 14997606,
+    "size": 2223,
+    "mtime_ns": 1770928320202655768,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260212_154233.md": {
+    "inode": 14998689,
+    "size": 2750,
+    "mtime_ns": 1770928953952927686,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260213_200632.md": {
+    "inode": 15304608,
+    "size": 10101,
+    "mtime_ns": 1771031192935125824,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260213_230911.md": {
+    "inode": 15467368,
+    "size": 8042,
+    "mtime_ns": 1771042152251358534,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260217_230317.md": {
+    "inode": 16171558,
+    "size": 54496,
+    "mtime_ns": 1771387398250266995,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260218_193808.md": {
+    "inode": 16298736,
+    "size": 11674,
+    "mtime_ns": 1771461489769307050,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260218_194959.md": {
+    "inode": 16301503,
+    "size": 2224,
+    "mtime_ns": 1771462199839101780,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260301_145839.md": {
+    "inode": 18128648,
+    "size": 84219,
+    "mtime_ns": 1772395122868751941,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260302_170542.md": {
+    "inode": 18284644,
+    "size": 62721,
+    "mtime_ns": 1772489147617021167,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260302_182034.md": {
+    "inode": 18300670,
+    "size": 204680,
+    "mtime_ns": 1772494447836688539,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260304_081507.md": {
+    "inode": 18728143,
+    "size": 24621,
+    "mtime_ns": 1772630112811190643,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260304_104526.md": {
+    "inode": 18748424,
+    "size": 17403,
+    "mtime_ns": 1772639132704805585,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260304_143613.md": {
+    "inode": 18795055,
+    "size": 13311,
+    "mtime_ns": 1772652979535030786,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260307_211457.md": {
+    "inode": 19522076,
+    "size": 11237,
+    "mtime_ns": 1772936103536095554,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260308_103135.md": {
+    "inode": 19643196,
+    "size": 6884,
+    "mtime_ns": 1772980301467731029,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260308_145033.md": {
+    "inode": 19691036,
+    "size": 6684,
+    "mtime_ns": 1772995839205823468,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260318_103148.md": {
+    "inode": 21690177,
+    "size": 56788,
+    "mtime_ns": 1773844316907584588,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260326_134213.md": {
+    "inode": 23461410,
+    "size": 191809,
+    "mtime_ns": 1774547275147435948,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260326_135041.md": {
+    "inode": 23461850,
+    "size": 44177,
+    "mtime_ns": 1774547451259262995,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260326_135639.md": {
+    "inode": 23465233,
+    "size": 43454,
+    "mtime_ns": 1774547807830475897,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260326_202740.md": {
+    "inode": 23616866,
+    "size": 36108,
+    "mtime_ns": 1774571269219427460,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260327_141344.md": {
+    "inode": 23795067,
+    "size": 18156,
+    "mtime_ns": 1774635233755535509,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260327_150146.md": {
+    "inode": 23804256,
+    "size": 15997,
+    "mtime_ns": 1774638116057051026,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260327_172142.md": {
+    "inode": 23834566,
+    "size": 13383,
+    "mtime_ns": 1774646511588093159,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_162913.md": {
+    "inode": 24241634,
+    "size": 13719,
+    "mtime_ns": 1774729763181674918,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_163459.md": {
+    "inode": 24242182,
+    "size": 3320,
+    "mtime_ns": 1774730109370336068,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_165155.md": {
+    "inode": 24243324,
+    "size": 6139,
+    "mtime_ns": 1774731125681654207,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_165628.md": {
+    "inode": 24243742,
+    "size": 1731,
+    "mtime_ns": 1774731397971967387,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_171803.md": {
+    "inode": 24359347,
+    "size": 12734,
+    "mtime_ns": 1774732694105453776,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_172653.md": {
+    "inode": 24361846,
+    "size": 6903,
+    "mtime_ns": 1774733223733232149,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_174812.md": {
+    "inode": 24362500,
+    "size": 3028,
+    "mtime_ns": 1774734503029444033,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/reorganization_logs/reorganization_20260328_175740.md": {
+    "inode": 24363215,
+    "size": 2031,
+    "mtime_ns": 1774735071491022327,
+    "mode": 33188
+  },
+  "tests/integration/memory/vector_bak/transcript.db": {
+    "inode": 14355489,
+    "size": 52842496,
+    "mtime_ns": 1774735072298171015,
+    "mode": 33188
+  }
+}

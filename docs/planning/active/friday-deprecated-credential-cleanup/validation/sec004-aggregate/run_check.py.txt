@@ -1,0 +1,14 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import os,json,hashlib,subprocess,sys,re
+b=Path('/private/tmp/friday-mcp-upgrade/credential-cleanup');w=b/'work';label,*argv=sys.argv[1:];folder=b/'publication/checks'/label;folder.mkdir(parents=True);home=folder/'home';tmp=folder/'tmp';home.mkdir();tmp.mkdir();env=json.loads((b/'sec003-checks/docs/receipt.json').read_text())['environment'];env.update({'HOME':str(home),'TMPDIR':str(tmp),'UV_CACHE_DIR':str(home/'uv'),'MYPY_CACHE_DIR':str(home/'mypy'),'RUFF_CACHE_DIR':str(home/'ruff'),'XDG_CACHE_HOME':str(home/'.cache'),'MPLCONFIGDIR':str(home/'mpl'),'PYTEST_ADDOPTS':'--import-mode=importlib -o cache_dir='+str(home/'pytest')})
+# Secret values remain only in memory, solely to redact unexpected test output.
+original=subprocess.check_output(['git','show','0f5cf2c413092d3c12ae691c547defa22dc3dbc5:tests/integration/memory/config.yaml'],cwd=w).splitlines();secrets=[]
+for n in [66,77,104,120,2221,2237,2265,2384,2389]:
+ m=re.search(rb'(?:api_key|secret_key|access_key)\s*:\s*[\"\']?([^\s\"\'#]+)',original[n-1])
+ if m:secrets.append(m.group(1))
+start=datetime.now(timezone.utc).isoformat();head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=w,text=True).strip();run=subprocess.run(argv,cwd=w,env=env,capture_output=True);redacted=0
+for name,data in [('stdout',run.stdout),('stderr',run.stderr)]:
+ for value in secrets:redacted+=data.count(value);data=data.replace(value,b'[REDACTED]')
+ (folder/name).write_bytes(data)
+receipt={'candidate':head,'argv':argv,'cwd':str(w),'environment':env,'started_at':start,'finished_at':datetime.now(timezone.utc).isoformat(),'exit_code':run.returncode,'redacted_known_secret_occurrences':redacted,'guard_sha256':hashlib.sha256(Path('/private/tmp/friday-mcp-upgrade/guard/sitecustomize.py').read_bytes()).hexdigest(),'stdout_sha256':hashlib.sha256((folder/'stdout').read_bytes()).hexdigest(),'stderr_sha256':hashlib.sha256((folder/'stderr').read_bytes()).hexdigest()};(folder/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps({'check':label,'exit_code':run.returncode,'redacted':redacted,'evidence':str(folder)}))

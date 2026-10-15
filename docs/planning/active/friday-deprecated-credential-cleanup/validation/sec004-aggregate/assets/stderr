@@ -1,0 +1,1 @@
+21:51:10 - LiteLLM:WARNING: get_model_cost_map.py:454 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: External DNS prohibited by deterministic MCP profile. Falling back to local backup.

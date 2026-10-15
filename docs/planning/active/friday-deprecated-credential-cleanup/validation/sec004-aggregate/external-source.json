@@ -1,0 +1,16 @@
+{
+  "command": [
+    "gh",
+    "api",
+    "repos/docker/docker-bench-security/commits/154869da6418089decf7e1ab0cfca0e1cdfc5c49",
+    "--jq",
+    "{sha: .sha, html_url: .html_url}"
+  ],
+  "initial_sandbox_attempt": "exit 1; API network unavailable",
+  "read_only_escalated_attempt": "exit 0",
+  "result": {
+    "html_url": "https://github.com/docker/docker-bench-security/commit/154869da6418089decf7e1ab0cfca0e1cdfc5c49",
+    "sha": "154869da6418089decf7e1ab0cfca0e1cdfc5c49"
+  },
+  "provider_or_scan_calls": 0
+}

@@ -1,0 +1,25 @@
+{
+  "candidate": "526688e352660be003e6001df0de7366b31acd2f",
+  "chat": {
+    "passed": 828,
+    "skipped": 5,
+    "warnings": 1
+  },
+  "mcp_runtime": {
+    "passed": 2994
+  },
+  "integration_workflows": {
+    "passed": 185,
+    "failed": 2,
+    "classification": "same two connection_timeout-vs-connection_failed assertions fail on identical master-equivalent base tree"
+  },
+  "changed_test_ruff_mypy": "all three changed test files pass",
+  "assets": "workflow 8 tasks, gated scanner dependencies, 14 required native tools and shell syntax valid",
+  "broad_ruff": {
+    "base": 327,
+    "candidate": 534,
+    "candidate_package_diagnostics": 1,
+    "new_diagnostics": "207 style findings in retained evidence scripts; no changed package-source/test lint findings"
+  },
+  "docker": "daemon unavailable; no build/run/scan claimed"
+}

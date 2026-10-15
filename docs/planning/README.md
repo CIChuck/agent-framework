@@ -29,6 +29,7 @@ Directory placement does not grant implementation authority.
 | 22 | [Strategic roadmap notes](backlog/strategic-roadmap/) | backlog | not_granted | not_started | promote one bounded initiative into planning |
 | 23 | [Tool capability notes](backlog/tool-capabilities/) | backlog | not_granted | not_started | reconcile requirements with tool governance |
 | 25 | [Friday runtime skills](backlog/friday-runtime-skills/) | backlog | not_granted | not_started | review the draft definition and promote a bounded first phase |
+| 26 | [Friday tool manifest continuity remediation](queued/friday-tool-manifest-continuity/) | normal | not_granted | not_started | validate the native-tool trial and review discovery-aware MCP remediation tasks |
 
 ## Approved
 
@@ -40,7 +41,8 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 26 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
+| 27 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
+| 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](active/friday-deprecated-credential-cleanup/) | normal | granted | local | Aggregate VERIFIED; execute authorized GitHub PR/manual merge and remote deletion; acceptance remains separate |
 
 ## Completed
 
@@ -55,7 +57,7 @@ Directory placement does not grant implementation authority.
 | 1 | [Development Kanban governance](../archive/completed/2026/development-kanban-governance/) | normal | closed | local | none; accepted, delivery remains local |
 | 2 | [Friday Chat client-session shutdown](../archive/completed/2026/friday-chat-client-lifecycle/) | normal | closed | local | none; accepted, delivery remains local |
 | 3 | [Friday MCP client enhancement](../archive/completed/2026/friday-mcp/) | normal | closed | merged | none; pull request 6 merged, optional WS-09 and later delivery require separate authority |
-| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](../archive/completed/2026/friday-mcp-protocol-upgrade/) | normal | closed | pushed | Review PR #8 against master; merge remains a separate decision |
+| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](../archive/completed/2026/friday-mcp-protocol-upgrade/) | normal | closed | merged | MCP delivery closed; next queued work is Langfuse contract and construction-directive preparation |
 | 24 | [Documentation information architecture](../archive/completed/2026/documentation-governance/) | normal | closed | merged | none; accepted and merged |
 
 ## Operating Rules

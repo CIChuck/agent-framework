@@ -1,0 +1,44 @@
+[
+  {
+    "label": "baseline-config",
+    "exit_code": 2,
+    "receipt_sha256": "c8a31b238292115c2f15f828afd2ec2f1eeec50f4d0bb35db1654196bd119c2b",
+    "retained_evidence": "/private/tmp/friday-mcp-upgrade/credential-cleanup/checks/baseline-config"
+  },
+  {
+    "label": "candidate-compat",
+    "exit_code": 2,
+    "receipt_sha256": "5ae748218f2bf268efcdf0c3026bf83477f041661f118bda029d6f64ff3dac52",
+    "retained_evidence": "/private/tmp/friday-mcp-upgrade/credential-cleanup/checks/candidate-compat"
+  },
+  {
+    "label": "candidate-config",
+    "exit_code": 2,
+    "receipt_sha256": "9a30d65f9d6e883214e359e4bd2d10513a9ee45934d1339a35e7ef364efc0c97",
+    "retained_evidence": "/private/tmp/friday-mcp-upgrade/credential-cleanup/checks/candidate-config"
+  },
+  {
+    "label": "chat-full",
+    "exit_code": 1,
+    "receipt_sha256": "aa552844e702642ae1ec23fcd65fe64d78f453402c5583f97ffb0f5b98b7f70e",
+    "retained_evidence": "/private/tmp/friday-mcp-upgrade/credential-cleanup/checks/chat-full"
+  },
+  {
+    "label": "chat-full-permitted-loopback",
+    "exit_code": 1,
+    "receipt_sha256": "d6fb94cf7c34ad4cd9e7a53c23690dcae223dfdfe1349455b7d0877918c4533d",
+    "retained_evidence": "/private/tmp/friday-mcp-upgrade/credential-cleanup/checks/chat-full-permitted-loopback"
+  },
+  {
+    "label": "isolated-process-pty",
+    "exit_code": 1,
+    "receipt_sha256": "667cc6360b77b5917e85d336667ee023a98c093227b1cb3c4a4516f40b97dd64",
+    "retained_evidence": "/private/tmp/friday-mcp-upgrade/credential-cleanup/checks/isolated-process-pty"
+  },
+  {
+    "label": "unchanged-base-chat-full",
+    "exit_code": 1,
+    "receipt_sha256": "7ae688a22356ea81846d1f121acf91217df1dfdefd1c961b854d8e83af24efd2",
+    "retained_evidence": "/private/tmp/friday-mcp-upgrade/credential-cleanup/checks/unchanged-base-chat-full"
+  }
+]

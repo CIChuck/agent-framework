@@ -1,0 +1,168 @@
+{
+  "environment": {
+    "PATH": "/private/tmp/friday-mcp-upgrade/venv/bin:/opt/homebrew/bin:/usr/bin:/bin",
+    "HOME": "/private/tmp/friday-mcp-upgrade/credential-cleanup/review/home/home",
+    "TMPDIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/review/tmp",
+    "PYTHONPATH": "/private/tmp/friday-mcp-upgrade/guard:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-agent/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-chat/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-cli/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-core/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-finance/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-llm/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-mcp/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-memory/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-moltbook/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-optimization/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-runtime/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-sandbox/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-speech/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-telemetry/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-tools/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-transcript/src:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-chat:/private/tmp/friday-mcp-upgrade/credential-cleanup/work/packages/friday-chat/tests_chat",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0",
+    "PYTEST_ADDOPTS": "--import-mode=importlib -o cache_dir=/private/tmp/friday-mcp-upgrade/credential-cleanup/review/home/pytest",
+    "UV_NO_SYNC": "1",
+    "UV_OFFLINE": "1",
+    "UV_PROJECT_ENVIRONMENT": "/private/tmp/friday-mcp-upgrade/venv",
+    "UV_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/review/home/uv_cache_dir",
+    "VIRTUAL_ENV": "/private/tmp/friday-mcp-upgrade/venv",
+    "MYPY_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/review/home/mypy_cache_dir",
+    "RUFF_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/review/home/ruff_cache_dir",
+    "FRIDAY_TELEMETRY_ENABLED": "false",
+    "ANONYMIZED_TELEMETRY": "false",
+    "TOKENIZERS_PARALLELISM": "false",
+    "XDG_CACHE_HOME": "/private/tmp/friday-mcp-upgrade/credential-cleanup/review/home/xdg_cache_home",
+    "MPLCONFIGDIR": "/private/tmp/friday-mcp-upgrade/credential-cleanup/review/home/mplconfigdir"
+  },
+  "candidate": "a65f1366fcb0baf4cbd1198f75933fe72ad68641",
+  "results": [
+    {
+      "label": "guard",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-c",
+        "import sitecustomize,socket; print('guard loaded:',sitecustomize.__file__);\ntry: socket.getaddrinfo('guard-denial.invalid',80)\nexcept RuntimeError: print('external DNS denied');\nelse: raise SystemExit('guard did not deny DNS')"
+      ],
+      "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+      "started_at": "2026-10-14T13:17:38.702525+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "551d765307e8ca2bccc5c96115770f4c523a85a38d058e2939c21e1be180bd5d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "guard loaded: /private/tmp/friday-mcp-upgrade/guard/sitecustomize.py\nexternal DNS denied\n",
+      "stderr": ""
+    },
+    {
+      "label": "compat",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "pytest",
+        "packages/friday-chat/tests_chat/compat",
+        "-q"
+      ],
+      "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+      "started_at": "2026-10-14T13:17:38.724655+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "78e7746a61524090bd4dcc42c1122d74837d41a1ae47589fe6270f315e503d93",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "..............................                                           [100%]\n30 passed in 3.03s\n",
+      "stderr": ""
+    },
+    {
+      "label": "ruff",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/ruff",
+        "check",
+        "packages/friday-chat/tests_chat/compat/test_config_compatibility.py"
+      ],
+      "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+      "started_at": "2026-10-14T13:17:43.070912+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "label": "mypy",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "-m",
+        "mypy",
+        "packages/friday-chat/tests_chat/compat/test_config_compatibility.py"
+      ],
+      "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+      "started_at": "2026-10-14T13:17:43.122271+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "5d4b6d285b77932e3d08212c3b4974d0a803f98ec60408ac6ccf6a063fa6c19e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    },
+    {
+      "label": "board",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+      "started_at": "2026-10-14T13:17:45.541573+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "3c562e52f61dba0fc719e1c22e5ddf2ae98d80a0ad113028568f0cd40fa77b29",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Development board validation passed: 27 tasks\n",
+      "stderr": ""
+    },
+    {
+      "label": "docs",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+      "started_at": "2026-10-14T13:17:45.649673+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "dd9ac844f529fee18f75c130c94507e6403890a98278f0354b9a73f6cdc63b86",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Documentation lifecycle validation passed: 580 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "label": "render",
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+      "started_at": "2026-10-14T13:17:46.144971+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "label": "whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "0f5cf2c413092d3c12ae691c547defa22dc3dbc5..a65f1366fcb0baf4cbd1198f75933fe72ad68641"
+      ],
+      "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+      "started_at": "2026-10-14T13:17:46.244781+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "ignore",
+      "argv": [
+        "git",
+        "check-ignore",
+        "--no-index",
+        "-v",
+        "tests/integration/memory/config.yaml",
+        "tests/integration/memory/.friday/quarantine/tool_outputs.jsonl"
+      ],
+      "cwd": "/private/tmp/friday-mcp-upgrade/credential-cleanup/work",
+      "started_at": "2026-10-14T13:17:46.259968+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "07a25c4c5565bc12a7126e6001b4a959502c0dc186472c4b5e4cc1206904d6dc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": ".gitignore:28:/tests/integration/memory/config.yaml\ttests/integration/memory/config.yaml\n.gitignore:12:.friday/\ttests/integration/memory/.friday/quarantine/tool_outputs.jsonl\n",
+      "stderr": ""
+    }
+  ]
+}
