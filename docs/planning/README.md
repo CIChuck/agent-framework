@@ -46,6 +46,7 @@ Directory placement does not grant implementation authority.
 | 29 | [Friday 0.1.0a3 repository version bump](active/friday-alpha3-version-bump/) | normal | granted | released | Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified |
 | 30 | [Precise Python monorepo and package READMEs](active/friday-readme-refresh/) | normal | granted | local | All17 README rewrites VERIFIED; maintainer acceptance and requested source delivery next |
 | 31 | [Current technical end-user guides for alpha3](active/friday-guides-refresh/) | normal | granted | local | VERIFIED guides; maintainer review, completion/acceptance and separately requested source delivery |
+| 32 | [Friday Chat quick start for clone and PyPI users](active/friday-chat-quick-start/) | normal | granted | local | Guide and offline checks ready; freeze candidate and obtain independent UC1/UC2 new-user review |
 
 ## Completed
 

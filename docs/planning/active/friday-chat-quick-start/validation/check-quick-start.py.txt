@@ -1,0 +1,175 @@
+from pathlib import Path
+import hashlib,io,json,os,re,subprocess,tempfile,tomllib,unicodedata
+from urllib.parse import urlsplit,unquote
+import yaml
+W=Path(os.environ.get('QS_CHECKOUT','/private/tmp/friday-chat-quick-start'));B=Path(os.environ.get('QS_OUTPUT','/private/tmp/friday-chat-quick-start-validation')); B.mkdir(exist_ok=True)
+P='/private/tmp/friday-alpha3-pypi/production-install/bin/python';R='/private/tmp/friday-alpha3-pypi/tools/bin/python'
+G=B/'guard';G.mkdir(exist_ok=True)
+guard='''import os,sys
+PRIVATE=REPLACE_PRIVATE
+ROOT='/Users/chuckrussell/Dev/gendev/agent-framework'
+def guard(event,args):
+ if event in ('socket.getaddrinfo','socket.connect','socket.sendto'):raise RuntimeError('Network prohibited')
+ if event=='open' and isinstance(args[0],(str,bytes,os.PathLike)):
+  path=os.path.abspath(os.fsdecode(args[0]))
+  if path==ROOT or path.startswith(ROOT+'/'):raise RuntimeError('Shared checkout access prohibited')
+  if '.env' in path.split('/') or path.endswith('/scripts/pypi.sh'):raise RuntimeError('Credential file access prohibited')
+  flags=args[2] if len(args)>2 and isinstance(args[2],int) else 0
+  mode=args[1] if len(args)>1 and isinstance(args[1],str) else ''
+  if (flags & (os.O_WRONLY|os.O_RDWR|os.O_CREAT|os.O_TRUNC|os.O_APPEND) or any(v in mode for v in 'wax+')) and not path.startswith(PRIVATE) and path!='/dev/null':raise RuntimeError('Write outside private validation '+path)
+sys.addaudithook(guard)
+'''.replace('REPLACE_PRIVATE',repr(str(B.resolve())+'/'))
+(G/'sitecustomize.py').write_text(guard)
+envbase={'PATH':str(Path(P).parent)+':/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin','PYTHONPATH':str(G),'PYTHONDONTWRITEBYTECODE':'1','LITELLM_LOCAL_MODEL_COST_MAP':'True','ANONYMIZED_TELEMETRY':'False','HF_HUB_DISABLE_TELEMETRY':'1','OTEL_SDK_DISABLED':'true','FRIDAY_TELEMETRY_ENABLED':'false','LANG':'en_US.UTF-8'}
+results=[];errors=[];fences=[]
+doc=W/'docs/guides/quick-start.md';text=doc.read_text();header,body=text[4:].split('\n---\n',1);meta=yaml.safe_load(header)
+if set(meta)!={'title','description','framework_version','last_reviewed','status','audience','doc_type'} or meta['framework_version']!='0.1.0a3' or str(meta['last_reviewed'])!='2026-10-15':raise ValueError('metadata')
+for match in re.finditer(r'^```([^\n]*)\n(.*?)^```\s*$',body,re.M|re.S):
+ lang,code=match.groups();lang=lang.strip();fences.append({'lang':lang,'code':code})
+ if lang=='python':compile(code,'quick-start.md','exec')
+ if lang=='yaml':yaml.safe_load(code)
+ if lang=='bash':
+  x=subprocess.run(['/bin/bash','-n'],input=code,text=True,capture_output=True)
+  if x.returncode:raise ValueError(x.stderr)
+get=lambda lang:[x['code'] for x in fences if x['lang']==lang]
+yamls=get('yaml');bash=get('bash');py=get('python')+re.findall(r"python - <<'PY'\n(.*?)^PY$",body,re.M|re.S)
+for index,code in enumerate(py):compile(code,'embedded-python-'+str(index),'exec')
+if len(yamls)!=4 or len(py)!=3:raise ValueError('fence structure changed')
+launcher=next(x for x in bash if x.startswith('#!/usr/bin/env bash'))
+generator=next(x for x in bash if 'import sysconfig' in x)
+
+def run(label,code,files=None,expected=(),python=P):
+ d=Path(tempfile.mkdtemp(prefix=label+'-',dir=B))
+ for name,content in (files or {}).items():
+  f=d/name;f.parent.mkdir(parents=True,exist_ok=True);f.write_text(content)
+ env={**envbase,'HOME':str(d/'home'),'TMPDIR':str(d/'tmp'),'FRIDAY_LOCAL_MODEL_KEY':'local-only','CLIENT_DIR':str(d)}
+ Path(env['HOME']).mkdir(exist_ok=True);Path(env['TMPDIR']).mkdir(exist_ok=True)
+ x=subprocess.run([python,'-c',code],cwd=d,env=env,text=True,capture_output=True,timeout=90)
+ receipt={'label':label,'exit_code':x.returncode,'stdout':x.stdout,'stderr':x.stderr};results.append(receipt)
+ if x.returncode or any(v not in x.stdout for v in expected):errors.append(label+': '+x.stderr[-1500:]+' '+x.stdout[-500:])
+ print(label,x.returncode,flush=True)
+
+assembly='''import asyncio,json
+from pathlib import Path
+from friday_chat.config import load_friday_py_config
+from friday_chat.runtime import build_runtime
+from friday_memory import SupportingContextConfig
+from friday_memory.models.budget import CompactionConfig
+from friday_cli import CLIConfig
+config=load_friday_py_config(Path('config.yml'))
+assert not config.diagnostics,config.diagnostics
+assert set(config.llm_service_specs)=={'chat','extraction','synthesizer','classifier','researcher','judge','compaction','passage_router','smart_file_summarizer','smart_file_synthesizer'}
+assert set(config.embedding_service_specs)=={'memory','maintenance'}
+SupportingContextConfig.model_validate(config.memory.supporting_context)
+CompactionConfig.model_validate({k:v for k,v in config.memory.compaction.items() if k!='llm_service'})
+runtime=build_runtime(config,fake=False)
+assert runtime.maintenance.extractor is not None
+assert runtime.maintenance.compactor is not None
+assert not runtime.diagnostics.framework_upgrade_gaps,runtime.diagnostics.framework_upgrade_gaps
+assert runtime.memory.controller.graph.__class__.__name__=='ElementXGraphStore'
+assert runtime.orchestrator.__class__.__name__=='FakeOrchestrator'
+assert runtime.speech.__class__.__name__=='FakeSpeechAdapter'
+assert runtime.maintenance_layout.captured_process_cwd==Path.cwd()
+assert runtime.maintenance_layout.vector_directory==Path.cwd()/'data/vector'
+assert runtime.maintenance_layout.transcript_database_path==Path.cwd()/'data/transcripts/friday_transcripts.sqlite'
+asyncio.run(runtime.async_clients.close())
+print('Complete canonical real assembly without startup or model calls; ten chat/two embedding roles; no adapter gaps')
+'''
+for i,name in enumerate(['ollama','lmstudio']):
+ files={'models.yml':yamls[i],'config.yml':yamls[2],'cli.yml':yamls[3]}
+ run(name+'-schema-and-assembly',assembly+'\n'+py[1],files,expected=('no adapter gaps','Display source: explicit'))
+ # Execute live recipe with synthetic LiteLLM transport only, never a socket.
+ mock='''import litellm
+from types import SimpleNamespace
+calls=[]
+async def completion(**kwargs):
+ calls.append(('chat',kwargs['model'],kwargs.get('api_base')))
+ return litellm.ModelResponse(model=kwargs['model'],choices=[{'index':0,'message':{'role':'assistant','content':'Hello from a synthetic response.'},'finish_reason':'stop'}],usage={'prompt_tokens':5,'completion_tokens':5,'total_tokens':10})
+async def embedding(**kwargs):
+ calls.append(('embedding',kwargs['model'],kwargs.get('api_base')))
+ return SimpleNamespace(data=[{'embedding':[0.1,0.2,0.3]} for value in kwargs['input']],usage=SimpleNamespace(prompt_tokens=5,total_tokens=5))
+litellm.acompletion=completion
+litellm.aembedding=embedding
+'''
+ run(name+'-preflight-mocked-transport',mock+py[2]+"\nassert len(calls)==2,calls\nprint('Transport routes',calls)\n",files,expected=('Embedding vector length: 3','Transport routes'))
+ negative='''from pathlib import Path
+import yaml
+from friday_chat.config import load_friday_py_config,FridayChatConfigError
+from friday_chat.runtime import build_runtime
+original=Path('config.yml').read_text()
+try:load_friday_py_config('config.yml',env={})
+except FridayChatConfigError:print('Missing credential rejected')
+else:raise AssertionError('Missing credential accepted')
+data=yaml.safe_load(original);data['llm_pool']['services']['extraction']['profile']='missing'
+Path('bad.yml').write_text(yaml.safe_dump(data))
+try:load_friday_py_config('bad.yml')
+except FridayChatConfigError:print('Unknown profile rejected')
+else:raise AssertionError('Unknown profile accepted')
+data=yaml.safe_load(original);del data['llm_pool']['services']['judge'];Path('bad.yml').write_text(yaml.safe_dump(data));cfg=load_friday_py_config('bad.yml')
+try:build_runtime(cfg,fake=False)
+except ValueError as e:
+ assert 'judge' in str(e);print('Missing maintenance role rejected')
+else:raise AssertionError('Missing maintenance role accepted')
+'''
+ run(name+'-negative-contracts',negative,files,expected=('Missing credential rejected','Unknown profile rejected','Missing maintenance role rejected'))
+ # Complete shell-generated env + subprocess launcher, not just syntax.
+ launchcheck='''import os,subprocess,json,stat
+from pathlib import Path
+setup=Path('generator.sh');setup.write_text(GENERATOR)
+x=subprocess.run(['/bin/bash',str(setup)],text=True,capture_output=True)
+assert x.returncode==0,(x.stdout,x.stderr)
+assert stat.S_IMODE(Path('friday.env').stat().st_mode)==0o600
+x=subprocess.run(['/bin/bash',str(setup)],text=True,capture_output=True)
+assert x.returncode!=0,'setup must refuse overwrite'
+script=Path('run-friday-chat.sh').resolve();script.write_text(LAUNCHER);script.chmod(0o700)
+# Exercise actual installed CLI as a fake session under guarded network/state.
+x=subprocess.run([str(script),'fake'],input='hello\\n/q\\n',text=True,capture_output=True,env={**os.environ,'FRIDAY_CHAT_RUNTIME':'real'},timeout=30)
+assert x.returncode==0,(x.stdout,x.stderr)
+print('Actual installed launcher fake session passed')
+# Stub captures cwd/args/environment for real/default/negative launch contracts.
+stub=Path('fake chat bin').resolve();stub.write_text('#!/usr/bin/env bash\\nprintf "%s\\n" "$PWD" "$FRIDAY_CHAT_RUNTIME" "$@"\\n');stub.chmod(0o700)
+Path('friday.env').write_text('export FRIDAY_CHAT_BIN='+__import__('shlex').quote(str(stub))+'\\nexport FRIDAY_LOCAL_MODEL_KEY=local-only\\n')
+for args,mode in [([], 'real'),(['fake'],'fake'),(['real'],'real')]:
+ x=subprocess.run([str(script),*args],cwd=Path.cwd().parent,text=True,capture_output=True,env={**os.environ,'FRIDAY_CHAT_RUNTIME':'opposite'})
+ assert x.returncode==0,(x.stdout,x.stderr)
+ lines=x.stdout.splitlines();assert lines[0]==str(Path.cwd()) and lines[1]==mode,lines
+ assert lines[2:]==['--runtime',mode,'--config',str(Path.cwd()/'config.yml'),'--cli-config',str(Path.cwd()/'cli.yml')],lines
+for args in [['wrong'],['fake','extra']]:
+ x=subprocess.run([str(script),*args],text=True,capture_output=True);assert x.returncode==2
+Path('models.yml').rename('saved-models.yml')
+x=subprocess.run([str(script),'fake'],text=True,capture_output=True);assert x.returncode==1 and 'Missing client file' in x.stderr
+print('Environment generation, existing-file refusal, cwd-independent mode/path selection, and missing-file/invalid-argument checks passed')
+'''.replace('GENERATOR',repr(generator)).replace('LAUNCHER',repr(launcher))
+ run(name+'-launcher with spaces',launchcheck,files,expected=('Actual installed launcher fake session passed','missing-file/invalid-argument checks passed'))
+
+# Markdown render through same renderer used for guide refresh.
+render='''import io,json
+from readme_renderer.markdown import render
+from pathlib import Path
+for name,body in json.loads(Path('documents.json').read_text()).items():
+ warnings=io.StringIO();result=render(body,stream=warnings)
+ assert result and not warnings.getvalue(),(name,warnings.getvalue())
+print('Both guide bodies rendered without warnings')
+'''
+documents={p.name:p.read_text()[4:].split('\n---\n',1)[1] for p in [doc,W/'docs/guides/README.md']}
+run('render',render,{'documents.json':json.dumps(documents)},expected=('Both guide bodies rendered',),python=R)
+
+def anchors(path):
+ s=path.read_text();s=re.sub(r'^```.*?^```\s*$','',s,flags=re.M|re.S);found=set();counts={}
+ for title in re.findall(r'^#{1,6} (.+)$',s,re.M):
+  title=title.replace('`','').lower();key=''.join(c for c in title if c in ' -_' or unicodedata.category(c)[0] in 'LN').replace(' ','-');n=counts.get(key,0);counts[key]=n+1;found.add(key if not n else key+'-'+str(n))
+ return found
+links=0;local=0
+for path in [doc,W/'docs/guides/README.md']:
+ prose=re.sub(r'^```.*?^```\s*$','',path.read_text(),flags=re.M|re.S)
+ for target in re.findall(r'(?<!!)\[[^\]]+\]\(([^)]+)\)',prose):
+  links+=1;u=urlsplit(target)
+  if u.scheme:continue
+  local+=1;dest=path.parent/unquote(u.path) if u.path else path
+  if not dest.exists():errors.append('Missing '+target)
+  elif u.fragment and dest.suffix=='.md' and unquote(u.fragment) not in anchors(dest):errors.append('Missing anchor '+target)
+root=tomllib.loads((W/'pyproject.toml').read_text());assert root['project']['version']=='0.1.0a3' and 'friday-chat==0.1.0a3' in root['project']['dependencies'] and 'all' in root['project']['optional-dependencies']
+summary={'candidate_worktree':str(W),'guide_sha256':hashlib.sha256(doc.read_bytes()).hexdigest(),'framework_version':'0.1.0a3','python_fences_compiled':len(py),'yaml_examples_parsed':len(yamls),'bash_fences_syntax_checked':len(bash),'links_enumerated':links,'local_links_and_anchors_checked':local,'results':results,'errors':errors,'limits':['No install/sync, downloads or real provider/model calls','Live preflight executed only with mocked transport; not model-quality or retrieval evidence','Both model libraries exercised against installed production alpha3 with private paths/network/write guard','Installed/source package inventory verified by previous guide review; no source changes in this task']}
+(B/'results.json').write_text(json.dumps(summary,indent=2)+'\n'); print('SUMMARY',len(results),'checks',len(errors),'errors',flush=True)
+if errors:
+ print('\n'.join(errors));raise SystemExit(1)

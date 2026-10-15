@@ -591,6 +591,21 @@ tasks:
   approved_by: Chuck Russell
   approved_at: '2026-10-15'
 
+- id: friday-chat-quick-start
+  title: Friday Chat quick start for clone and PyPI users
+  priority: 32
+  work_state: started
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/friday-chat-quick-start/
+  next_gate: Guide and offline checks ready; freeze candidate and obtain independent UC1/UC2 new-user review
+  delivery_state: local
+  branch: docs/chat-quick-start
+  depends_on: []
+  validation: []
+  approved_by: Chuck Russell
+  approved_at: '2026-10-15'
+
 events:
 - task: documentation-governance
   at: '2026-09-03'
