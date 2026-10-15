@@ -1,0 +1,67 @@
+from pathlib import Path
+import ast,hashlib,json,os,re,subprocess,tomllib,tempfile
+from urllib.parse import urlparse,unquote
+W=Path('/private/tmp/friday-readme-refresh');B=Path('/private/tmp/friday-readme-validation/final-review');P='/private/tmp/friday-alpha3-pypi/production-install/bin/python'
+A=json.loads((W/'docs/planning/active/friday-readme-refresh/authority.json').read_text());paths=A['scope'];results=[];errors=[]
+g=B/'guard';g.mkdir(exist_ok=True)
+guard=Path('/private/tmp/friday-alpha3-pypi/guard/sitecustomize.py').read_text().replace("if not path.startswith(_PRIVATE + '/'):","if not path.startswith((_PRIVATE + '/', '/private/tmp/friday-readme')):")
+(g/'sitecustomize.py').write_text(guard)
+base={'PATH':'/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin','PYTHONPATH':str(g),'LITELLM_LOCAL_MODEL_COST_MAP':'True','FRIDAY_TELEMETRY_ENABLED':'false','OTEL_SDK_DISABLED':'true','HF_HUB_DISABLE_TELEMETRY':'1','LANG':'en_US.UTF-8'}
+blocks={};fence_count=0;links=0
+for filename in paths:
+ p=W/filename;t=p.read_text();parts=re.findall(r'^```([^\n]*)\n(.*?)^```\s*$',t,re.M|re.S);blocks[filename]=[body for lang,body in parts if lang=='python']
+ for i,body in enumerate(blocks[filename]):
+  fence_count+=1
+  try:compile(body,filename+':'+str(i),'exec')
+  except SyntaxError as e:errors.append(str(e))
+ for target in re.findall(r'(?<!!)\[[^\]]+\]\(([^)]+)\)',t):
+  links+=1;u=urlparse(target)
+  if target.startswith(('https://github.com/CIChuck/agent-framework/blob/master/','https://github.com/CIChuck/agent-framework/tree/master/')):
+   rel=unquote(re.split(r'/(?:blob|tree)/master/',u.path,maxsplit=1)[1]);q=W/rel
+   if not q.exists():errors.append(filename+': missing '+rel)
+  elif not u.scheme and not target.startswith('#'):
+   if not (p.parent/unquote(u.path)).exists():errors.append(filename+': broken '+target)
+ m=tomllib.loads((p.parent/'pyproject.toml').read_text())['project']
+ if m['name'] not in t:errors.append(filename+': missing distribution name')
+ if '3.13.4' not in t:errors.append(filename+': missing Python floor')
+ if '## Development' not in t:errors.append(filename+': missing contributor entry')
+ # All pinned installation examples must match a real distribution and extra.
+ known={tomllib.loads((W/f).parent.joinpath('pyproject.toml').read_text())['project']['name']:tomllib.loads((W/f).parent.joinpath('pyproject.toml').read_text())['project'] for f in paths}
+ for dist,extras,version in re.findall(r'(friday-(?:framework(?:-[a-z]+)?|chat))(?:\[([^\]]+)\])?==([0-9a-z.]+)',t):
+  if dist not in known or version!='0.1.0a3':errors.append(filename+': invalid install '+dist)
+  elif extras and any(x not in known[dist].get('optional-dependencies',{}) for x in extras.split(',')):errors.append(filename+': invalid extra '+extras)
+
+def execute(label,body,argv=None,extra_files=None):
+ (B/'runs').mkdir(exist_ok=True);d=Path(tempfile.mkdtemp(prefix=label+'-',dir=B/'runs'));home=d/'home';home.mkdir(exist_ok=True);tmp=d/'tmp';tmp.mkdir(exist_ok=True)
+ file=d/'example.py';file.write_text(body)
+ for name,contents in (extra_files or {}).items():(d/name).write_text(contents)
+ env=base|{'HOME':str(home),'TMPDIR':str(tmp)}
+ r=subprocess.run(argv or [P,str(file)],cwd=d,env=env,capture_output=True,text=True,timeout=45)
+ (d/'stdout').write_text(r.stdout);(d/'stderr').write_text(r.stderr)
+ results.append({'example':label,'argv':argv or [P,str(file)],'exit_code':r.returncode,'stdout':r.stdout,'stderr':r.stderr,'guard_sha256':hashlib.sha256((g/'sitecustomize.py').read_bytes()).hexdigest()})
+ print(label,r.returncode,r.stdout[-180:].replace('\n',' | '),flush=True)
+ if r.returncode:errors.append(label+': '+r.stderr[-1600:])
+
+for filename,bs in blocks.items():
+ short=Path(filename).parent.name if filename!='README.md' else 'root'
+ if short=='friday-mcp':
+  execute('mcp-stdio',bs[1],extra_files={'server.py':bs[0],'client.py':bs[1]},argv=[P,'client.py']);continue
+ for i,body in enumerate(bs):
+  if short in ['friday-finance','friday-moltbook','friday-llm','friday-runtime'] and i==1:continue
+  execute(short+'-'+str(i),body)
+# Exercise exact documented demo config and real CLI callback, with synthetic input.
+chat=(W/'packages/friday-chat/README.md').read_text();yaml_text=re.findall(r'^```yaml\n(.*?)^```',chat,re.M|re.S)[0]
+cli='''from unittest.mock import patch
+from typer.testing import CliRunner
+from friday_chat.app import ListInputSource
+from friday_chat.cli import app
+with patch('friday_chat.cli.FridayCliInputSource', lambda prompt: ListInputSource(['hello','/q'])):
+    result=CliRunner().invoke(app,['--config','demo.yaml','--runtime','fake'])
+if result.exit_code:
+    raise RuntimeError(result.output) from result.exception
+print('Documented fake CLI configuration completed hello and /q')
+'''
+execute('chat-fake-cli',cli,extra_files={'demo.yaml':yaml_text})
+(B/'results.json').write_text(json.dumps({'python_fences_compiled':fence_count,'links_checked':links,'results':results,'errors':errors},indent=2)+'\n')
+for error in errors:print('ERROR',error,flush=True)
+raise SystemExit(bool(errors))

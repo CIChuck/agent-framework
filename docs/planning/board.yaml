@@ -565,11 +565,13 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-readme-refresh/
-  next_gate: Validate all17 README examples, metadata and links; independent documentation review
+  next_gate: All17 README rewrites VERIFIED; maintainer acceptance and requested source delivery next
   delivery_state: local
   branch: docs/readme-refresh
   depends_on: []
-  validation: []
+  validation:
+  - docs/planning/active/friday-readme-refresh/validation/final-review/report.md
+  - docs/planning/active/friday-readme-refresh/review-and-standard.md
   approved_by: Chuck Russell
   approved_at: '2026-10-15'
 events:
@@ -2003,3 +2005,10 @@ events:
   action: authorized review and rewrite for both audiences
   note: "Both audiences equally; Yes\u2014review and rewrite all READMEs"
   evidence: docs/planning/active/friday-readme-refresh/authority.json
+- task: friday-readme-refresh
+  at: '2026-10-15T03:10:19.161317+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent README verification
+  note: Candidate74e6ce61 VERIFIED; all17 READMEs rewritten for both audiences; DOC-001 resolved; local only
+  evidence: docs/planning/active/friday-readme-refresh/validation/final-review/report.md
