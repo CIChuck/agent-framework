@@ -49,3 +49,11 @@ changed. No push, PR, merge or publication is authorized by this work.
 
 Next: frozen candidate and fresh-context read-only reviewer walking both UC1 and
 UC2 as a new user, including copy/paste order, exact roles and file/path behavior.
+
+## Independent review
+
+[Independent new-user report](validation/independent-review/report.md): VERIFIED
+candidate6a83ad509b9f0cc43838e405a03610b16c74e7c1. The report records the UC1/UC2 walkthrough, exact checks
+and live/install limits. Final guide/index bytes remain identical to the reviewed
+candidate; added closeout records are process evidence only. Local delivery,
+not maintainer acceptance or publication.

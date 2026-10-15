@@ -1,0 +1,122 @@
+"""Read-only frozen-candidate checks. No installs, network, or provider calls."""
+from pathlib import Path
+import base64
+import hashlib
+import importlib.metadata as metadata
+import json
+import os
+import re
+import subprocess
+import sys
+import tomllib
+
+W = Path('/private/tmp/friday-chat-quick-start')
+B = Path('/private/tmp/friday-chat-quick-start-independent-review')
+P = '/private/tmp/friday-alpha3-pypi/production-install/bin/python'
+REQUEST = Path('/private/tmp/friday-chat-quick-start-review-request.json')
+request = json.loads(REQUEST.read_text())
+for name in ('packet-replay/home', 'packet-replay/tmp', 'bin'):
+    (B / name).mkdir(exist_ok=True)
+shim = B / 'bin/uv'
+shim.write_text('''#!/bin/bash
+set -euo pipefail
+if [[ "${1:-}" != run || "${2:-}" != python ]]; then exit 99; fi
+shift 2
+exec /private/tmp/friday-alpha3-pypi/production-install/bin/python "$@"
+''')
+shim.chmod(0o700)
+env = {
+    'PATH': str(B / 'bin') + ':' + str(Path(P).parent) + ':/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin',
+    'HOME': str(B / 'packet-replay/home'), 'TMPDIR': str(B / 'packet-replay/tmp'),
+    'PYTHONDONTWRITEBYTECODE': '1',
+    'PYTHONPATH': str(B / 'packet-replay/guard'),
+    'FRIDAY_TELEMETRY_ENABLED': 'false', 'OTEL_SDK_DISABLED': 'true',
+    'ANONYMIZED_TELEMETRY': 'False', 'LITELLM_LOCAL_MODEL_COST_MAP': 'True',
+    'HF_HUB_DISABLE_TELEMETRY': '1', 'LANG': 'en_US.UTF-8',
+}
+checks = []
+
+def command(args, *, cwd=W, input=None):
+    result = subprocess.run(args, cwd=cwd, env=env, input=input,
+                            text=True, capture_output=True, timeout=60)
+    receipt = {'argv': args, 'cwd': str(cwd), 'exit_code': result.returncode,
+               'stdout': result.stdout, 'stderr': result.stderr}
+    checks.append(receipt)
+    (B / 'independent-command-receipts.json').write_text(json.dumps(checks, indent=2) + '\n')
+    print(args[-1], result.returncode, flush=True)
+    if result.returncode:
+        raise RuntimeError(receipt)
+    return result.stdout
+
+hashes = {path: hashlib.sha256((W / path).read_bytes()).hexdigest()
+          for path in request['authority_sha256']}
+assert hashes == request['authority_sha256'], hashes
+assert command(['git', 'rev-parse', 'HEAD']).strip() == request['candidate']
+assert command(['git', 'branch', '--show-current']).strip() == 'docs/chat-quick-start'
+assert not command(['git', 'status', '--porcelain=v1'])
+changed = command(['git', 'diff', '--name-only', request['diff']]).splitlines()
+allowed = set(request['deliverables'] + ['docs/planning/README.md', 'docs/planning/board.yaml'])
+assert all(p in allowed or p.startswith('docs/planning/active/friday-chat-quick-start/') for p in changed)
+full_diff = command(['git', 'diff', '--no-ext-diff', '--binary', request['diff']])
+(B / 'candidate-diff.json').write_text(json.dumps({'diff_utf8_base64': base64.b64encode(full_diff.encode()).decode()}, indent=2) + '\n')
+command(['git', 'diff', '--check', request['diff']])
+for args in (['validate'], ['next'], ['show', request['initiative']], ['render', '--check']):
+    command([P, 'scripts/friday-dev-board.py', *args])
+command([P, 'scripts/check-documentation-lifecycle.py'])
+uv_version = command(['/opt/homebrew/bin/uv', '--version'])
+add_help = command(['/opt/homebrew/bin/uv', 'add', '--help'])
+sync_help = command(['/opt/homebrew/bin/uv', 'sync', '--help'])
+assert '--active' in add_help
+assert all(flag in sync_help for flag in ('--all-packages', '--all-extras', '--locked', '--python'))
+
+root = tomllib.loads((W / 'pyproject.toml').read_text())
+chat = tomllib.loads((W / 'packages/friday-chat/pyproject.toml').read_text())
+assert root['project']['requires-python'] == '>=3.13.4'
+assert root['project']['version'] == '0.1.0a3'
+assert 'friday-chat==0.1.0a3' in root['project']['dependencies']
+assert chat['project']['scripts']['friday-chat'] == 'friday_chat.cli:app'
+assert 'all' in root['project']['optional-dependencies']
+installed = metadata.distribution('friday-framework')
+assert installed.version == '0.1.0a3'
+assert set(root['project']['optional-dependencies']) <= set(installed.metadata.get_all('Provides-Extra'))
+comparison = []
+source_files = {
+    'friday-chat': ['config.py', 'runtime.py', 'display.py', 'cli.py', 'adapters.py', 'background.py', 'app.py', 'reorganization/assembly.py'],
+    'friday-llm': ['model_library.py'],
+    'friday-runtime': ['model_library.py'],
+}
+for package, files in source_files.items():
+    module = package.replace('-', '_')
+    dist_name = 'friday-chat' if package == 'friday-chat' else package.replace('friday-', 'friday-framework-')
+    dist = metadata.distribution(dist_name)
+    for rel in files:
+        source = W / 'packages' / package / 'src' / module / rel
+        wheel = Path(dist.locate_file(module + '/' + rel))
+        source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
+        wheel_hash = hashlib.sha256(wheel.read_bytes()).hexdigest()
+        comparison.append({'source': str(source.relative_to(W)), 'installed': str(wheel), 'source_sha256': source_hash, 'installed_sha256': wheel_hash, 'equal': source_hash == wheel_hash})
+assert all(item['equal'] for item in comparison), comparison
+
+# A separate actual fake session uses real newline input and verifies response and /q.
+launcher_case = next((B / 'packet-replay').glob('ollama-launcher with spaces-*'))
+fake_case = B / 'packet-replay' / 'independent fake session'
+fake_case.mkdir(exist_ok=True)
+for name in ['config.yml', 'cli.yml', 'saved-models.yml', 'run-friday-chat.sh']:
+    target = 'models.yml' if name == 'saved-models.yml' else name
+    (fake_case / target).write_bytes((launcher_case / name).read_bytes())
+(fake_case / 'run-friday-chat.sh').chmod(0o700)
+(fake_case / 'friday.env').write_text('export FRIDAY_CHAT_BIN=/private/tmp/friday-alpha3-pypi/production-install/bin/friday-chat\nexport FRIDAY_LOCAL_MODEL_KEY=local-only\n')
+out = command([str(fake_case / 'run-friday-chat.sh'), 'fake'], cwd=B,
+              input='Hello from the independent newcomer.\n/q\n')
+assert 'Hello from the independent newcomer.' in out
+assert 'Goodbye' in out or 'Session ended' in out or 'session' in out.lower(), out
+assert not command(['git', 'status', '--porcelain=v1'])
+summary = {'reviewer': '/root/chat_quick_start_new_user_review', 'python': sys.version,
+           'request_sha256': hashlib.sha256(REQUEST.read_bytes()).hexdigest(),
+           'base': request['base'], 'candidate': request['candidate'],
+           'diff': request['diff'], 'authority_sha256': hashes,
+           'changed_paths': changed, 'commands': checks,
+           'installed_source_comparison': comparison,
+           'uv_version': uv_version, 'errors': []}
+(B / 'independent-results.json').write_text(json.dumps(summary, indent=2) + '\n')
+print('Independent repository and newcomer replay checks passed', flush=True)

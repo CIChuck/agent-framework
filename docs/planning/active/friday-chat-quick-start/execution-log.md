@@ -11,3 +11,9 @@ pass against installed alpha3; both provider configurations, offline validation,
 non-started assembly, mocked preflight, negative contracts and actual fake CLI
 launcher sessions pass. No live model/install/shared-state operations.
 execution_phase: validation; validation_state: pending.
+
+2026-10-15: Fresh-context independent UC1/UC2 new-user review returned VERIFIED
+for candidate6a83ad509b9f0cc43838e405a03610b16c74e7c1. Report retained unchanged with evidence hashes.
+Closeout adds review evidence/process metadata only; guide/index bytes remain
+unchanged. Maintainer acceptance and external delivery remain separate.
+execution_phase: closeout; validation_state: verified.

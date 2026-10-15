@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-chat-quick-start",
+  "unit": "CD-QS-001",
+  "base": "316749cc1584d5bff1ef8ae4358766ca0acecaac",
+  "candidate": "6a83ad509b9f0cc43838e405a03610b16c74e7c1",
+  "diff": "316749cc1584d5bff1ef8ae4358766ca0acecaac..6a83ad509b9f0cc43838e405a03610b16c74e7c1",
+  "authority_sha256": {
+    "AGENTS.md": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/development-task-lifecycle.md": "7087fb62381cc8a46128bc6745476d1aa08e1d577b4c73340760657ae834fe2a",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/active/friday-chat-quick-start/authority.json": "6dd8c733f71595b136f91cbef62184169fbfd306c3bb48c974e2bb147782fc4b",
+    "docs/planning/active/friday-chat-quick-start/directives/CD-QS-001.md": "0885fea33c042b734b2e4804207a4c521f9b9d97627ffd3cf1449e5e37b6b5d5"
+  },
+  "deliverables": [
+    "docs/guides/quick-start.md",
+    "docs/guides/README.md"
+  ],
+  "acceptance": "All CD-QS-001 criteria; independent newcomer walkthrough of UC1 full clone install and UC2 full framework pip / uv-add install, then complete local model/runtime/CLI files and shell launch. Evaluate executable correctness and clarity, model roles/embeddings, path/env semantics, no duplicated command catalog.",
+  "required_checks": [
+    "Read current source/metadata and exact candidate diff",
+    "Review as new user for BOTH UC1 and UC2, both Ollama and LM Studio choices; no missing configuration/activation/file-creation step",
+    "Parse complete YAML with owning schema, compile heredoc Python and Bash syntax; guarded offline replay and launcher/negative/mocked-preflight checks",
+    "Install commands/extras/entrypoint match metadata and uv flags; scope, links/anchors, rendering, front matter, board/render/docs, FULL base..candidate whitespace"
+  ],
+  "environment": {
+    "python": "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+    "installed_alpha3": "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+    "markdown_python": "/private/tmp/friday-alpha3-pypi/tools/bin/python"
+  },
+  "evidence": "docs/planning/active/friday-chat-quick-start/validation/",
+  "exclusions": [
+    "No network/install/sync/downloads/real model or provider calls",
+    "No secrets/hardware/Docker/shared user stores",
+    "Candidate read-only; write output outside checkout only"
+  ],
+  "review_mode": "Fresh-context independent read-only; VERIFIED or CHANGES_REQUESTED or BLOCKED; exact hashes, commands, UC1/UC2 walkthrough findings and limitations; no edits/remediation/delegation/push/publication"
+}
