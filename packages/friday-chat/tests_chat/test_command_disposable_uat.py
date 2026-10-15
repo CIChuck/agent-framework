@@ -440,6 +440,8 @@ def _config_derived_from_example(state_root: Path) -> FridayChatConfig:
     ]
     _section(tools, "context").update(
         {
+            # This fixture replaces the example's native registry with only echo.
+            "required_tools": [],
             "include_in_context": True,
             "max_tools": 1,
             "max_budget_ratio": 0.25,
