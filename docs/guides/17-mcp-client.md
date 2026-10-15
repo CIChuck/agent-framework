@@ -1,11 +1,29 @@
+---
+title: MCP client setup and operation
+description: Configure dated local/HTTPS tools clients, admission, results, refresh and lifecycle without implicit optional roles.
+framework_version: 0.1.0a3
+last_reviewed: '2026-10-15'
+status: current
+audience: Technical end users and application integrators
+doc_type: guide
+---
+
 # MCP client setup and operation
 
 This guide covers the integrated MCP **client** in the Friday runtime and
 Friday Chat. It connects to local stdio and explicitly admitted HTTPS Streamable
 HTTP servers, discovers their tools at
 startup, and registers only tools admitted by Friday's filters and limits.
-MCP is off by default. For a repository-checkout test, the local peer below
-needs no network or credentials.
+MCP is off by default. The owned local server example below needs no network or credentials.
+
+## Install and choose a profile
+
+Install `friday-framework-mcp==0.1.0a3` for programmatic use, or use the aligned
+Chat/Runtime environment that owns the integration. Python 3.13.4+ is required.
+The official MCP SDK is a development interoperability counterpart; Friday owns
+the production protocol implementation. Modern examples here select the dated
+2026-07-28 tools profile explicitly. See [the migration matrix](19-mcp-migration.md)
+for legacy/default and 2025 HTTP behavior.
 
 ## Configure a local server
 
@@ -21,24 +39,27 @@ tools:
     mcp:
       enabled: true
       mode: selected
-      include_tools: [mcp_demo_probe]
+      include_tools: [mcp_demo_echo]
       config:
         servers:
           - name: demo
             transport: stdio
             command: python
-            args: [-u, tests/integration/mcp_fake_server.py, good]
+            protocol_profile: modern
+            args: [-u, mcp_echo_server.py]
             cwd: .
             required: false
             retry_attempts: 0
 ```
 
-This example runs from the repository root with the local test peer included
-in the checkout. `python` must be on `PATH`; for an installed Friday, replace
-the `command`/`args` with your own installed, trusted local MCP server. Run
+Save the complete stdio server from [the server guide](18-mcp-server.md#register-an-async-tool-and-serve-stdio)
+as `mcp_echo_server.py` in your workspace and launch Chat from that directory.
+`python` must resolve to the environment containing Friday MCP; use an absolute
+interpreter path when launch environments differ. Replace command/args only
+with your own trusted local server. Run
 Friday Chat with `friday-chat --config /path/to/config.yaml --runtime real` and
 the model/embedding configuration required by that application. The server's
-discovered `probe` tool is named `mcp_demo_probe`: Friday normalizes the server
+discovered `echo` tool is named `mcp_demo_echo`: Friday normalizes the server
 and original tool names with the default `mcp_` prefix. The default provider
 mode is `selected`, so a newly discovered tool is not registered until its
 canonical name appears in `include_tools` (or another explicit selection rule
@@ -61,7 +82,7 @@ tools:
 Set `required: true` on an enabled server only when Friday must fail startup
 if that server cannot connect or list tools. The default `required: false`
 records a diagnostic when an optional server fails. The first example also
-pins `include_tools: [mcp_demo_probe]`: that is a separate **required tool**
+pins `include_tools: [mcp_demo_echo]`: that is a separate **required tool**
 selection. If the optional peer is down, registration fails with
 `missing_include` and startup stops despite `required: false`.
 
@@ -80,7 +101,8 @@ tools:
         servers:
           - name: demo
             command: python
-            args: [-u, tests/integration/mcp_fake_server.py, good]
+            protocol_profile: modern
+            args: [-u, mcp_echo_server.py]
             cwd: .
             required: false
             retry_attempts: 0
@@ -106,19 +128,20 @@ tools:
     mcp:
       enabled: true
       mode: selected
-      include_tools: [mcp_demo_probe]
+      include_tools: [mcp_demo_echo]
       config:
         servers:
           - name: demo
             command: python
-            args: [-u, tests/integration/mcp_fake_server.py, good]
+            protocol_profile: modern
+            args: [-u, mcp_echo_server.py]
             env:
               EXAMPLE_API_KEY: ${EXAMPLE_API_KEY}
 ```
 
 For a headless RuntimeConfig caller, provide the server `env` mapping from
-your application's secret source. Local stdio defaults to legacy2024 behavior;
-`protocol_profile: modern` selects2026-07-28, while `auto` uses bounded read-only
+your application's secret source. Local stdio defaults to legacy 2024 behavior;
+`protocol_profile: modern` selects 2026-07-28, while `auto` uses bounded read-only
 discovery/fallback. Programmatic `friday-mcp` transport/server APIs are separate and
 do not make remote SSE an integrated runtime option. The reserved
 `tools.providers.mcp.config_file` key is **rejected**; external includes belong
@@ -210,12 +233,12 @@ through loading/model_dump; only an enabled connection looks it up. `auth: none`
 omits credential_env. Explicit compatibility uses protocol_version:'2025-11-25'.
 No default/auto HTTP version, legacy SSE fallback, OAuth discovery/login/refresh,
 GET subscriptions, resources/prompts or server exposure is configured here.
-The target is the pinned MCP2026-07-28 tools/transport specification plus the
-explicit2025-11-25 compatibility profile, not every optional MCP feature.
+The target is the pinned MCP 2026-07-28 tools/transport specification plus the
+explicit 2025-11-25 compatibility profile, not every optional MCP feature.
 
 Endpoints are ASCII HTTPS without userinfo, query, fragment or escaped host.
 TLS verifies the original hostname; no YAML flag changes trust or verification.
-Default port443 and public addresses apply. Private destinations/non443 ports
+Default port 443 and public addresses apply. Private destinations/non 443 ports
 need exact per-peer allowed_addresses/allowed_ports; hostnames/CIDR/wildcards and
 mapped IPv6 opt-ins are rejected. All DNS candidates are checked for each new
 connection before a validated numeric address is passed to the connector; mixed
@@ -231,14 +254,14 @@ an explicit new invocation. Modern HTTP cancellation closes the owned request
 stream; modern stdio/2025 use their dated accepted cancellation behavior.
 
 For modern/auto stdio and HTTP, handshake plus full discovery share
-min(server timeout, global connection timeout,30 seconds). Calls use
-min(server tool timeout, global tool timeout,30 seconds), at most four concurrent
-requests and at most64KiB protocol results. Legacy stdio retains its existing
+min(server timeout, global connection timeout, 30 seconds). Calls use
+min(server tool timeout, global tool timeout, 30 seconds), at most four concurrent
+requests and at most 64 KiB protocol results. Legacy stdio retains its existing
 budgets/retries. Runtime admission and Chat per-turn count/schema/result budgets
 still apply. Remote metadata accurately reports streamable_http/remote; peer
 instructions and annotations never grant policy or enter prompts automatically.
 
-The model-facing inline schema admits the canonical root2020-12 declaration and
+The model-facing inline schema admits the canonical root 2020-12 declaration and
 validated modern HTTP x-mcp-header annotations, then removes those protocol fields.
 The client retains its original catalog/wire bindings, including exact Unicode
 Base64 header encoding. Unsupported references/dialects/keywords remain rejected.
@@ -257,12 +280,17 @@ while refresh is in progress or after failure. Exported tool dictionaries are
 independent copies. A generation identifies wire definitions, output schemas
 and HTTP argument-header bindings; it does not grant tool admission.
 
+This **API fragment** receives an adapter over an already connected,
+explicitly configured client. Calling it performs discovery/refresh; it is not
+an independent connection example:
+
 ```python
 from friday_mcp.client import MCPToolAdapter
 
-adapter = MCPToolAdapter(client)  # connected, explicitly configured client
-tools = await adapter.get_tools()
-fresh_tools = await adapter.get_tools(refresh=True)
+async def refresh_tools(adapter: MCPToolAdapter) -> None:
+    tools = await adapter.get_tools()
+    fresh_tools = await adapter.get_tools(refresh=True)
+    print(len(tools), len(fresh_tools))
 ```
 
 A failed refresh clears usable cached definitions. Previously created wrappers
@@ -281,7 +309,7 @@ explicit memory opt-in and injected provider-neutral telemetry remain controllin
 
 ### Dated tool results and optional features
 
-Modern MCP2026-07-28 preserves ordered text and structured JSON values, including
+Modern MCP 2026-07-28 preserves ordered text and structured JSON values, including
 null, scalars and arrays; omitted structured content remains distinct from null.
 Mixed text/structured results use the bounded deterministic JSON envelope. Explicit
 2025-11-25 HTTP structured content remains object-only. Both dated profiles validate
@@ -295,7 +323,7 @@ malformed variants are invalid results. No media decoding, URL retrieval or reso
 fetch occurs. Valid modern input requests return `input_required_unsupported`,
 with no callback, opaque-state forwarding or interactive continuation.
 
-Friday advertises no Tasks capability. In the explicit2025 profile, tools declaring
+Friday advertises no Tasks capability. In the explicit 2025 profile, tools declaring
 `execution.taskSupport: required` are excluded; attempts to call an observed
 excluded tool return `unsupported_task` before I/O. Absent, forbidden and optional
 task support remain ordinary tool candidates. This dated field does not enable a
@@ -303,7 +331,7 @@ modern extension. No Tasks RPC, polling, persistence, subscriptions, automatic
 refresh, cross-call result cache or outgoing trace/baggage is added. This tools-client
 profile and SDK fixture interoperability do not claim whole MCP conformance.
 
-The accepted2025 raw `call_tool` API permits a later explicit call after session
+The accepted 2025 raw `call_tool` API permits a later explicit call after session
 recovery, without replaying the failed call. It retains the prior output schema
 for that raw call; generation-bound wrappers stay invalid and current catalog
 snapshot stays unavailable until explicit rediscovery. Manual refresh failure or
@@ -319,3 +347,42 @@ MCPRefreshClient protocol directly.
 For dated transport choices, exact configuration examples and rollback, see
 [MCP migration](19-mcp-migration.md). To expose explicitly owned tools through
 Friday, use the separate [modern server APIs](18-mcp-server.md).
+
+## Offline programmatic round trip
+
+After saving `mcp_echo_server.py` from the server guide, save this beside it as
+`mcp_echo_client.py`. This **offline Python example** owns a local subprocess;
+it needs no LLM, network service, credentials or persistent memory:
+
+```python
+import asyncio
+from pathlib import Path
+import sys
+from friday_mcp.client.stdio import StdioMCPClient
+
+async def main() -> None:
+    async with StdioMCPClient(
+        name="demo", command=sys.executable,
+        args=["-u", str(Path(__file__).with_name("mcp_echo_server.py"))],
+        protocol_profile="modern",
+    ) as client:
+        await client.list_tools()
+        print(await client.call_tool("echo", {"text": "Hello from MCP"}))
+
+asyncio.run(main())
+```
+
+Run `python mcp_echo_client.py`; expected output is `Hello from MCP`. Programmatic
+calls use the peer's raw name `echo`; integrated registry selection uses
+`mcp_demo_echo`. Await client context exit so the owned process is stopped.
+This validates a tools-profile exchange, not whole-protocol conformance.
+
+## Implementation references
+
+- [Runtime MCP configuration](../../packages/friday-runtime/src/friday_runtime/config.py)
+- [Client package](../../packages/friday-mcp/src/friday_mcp/client)
+- [Chat MCP registry](../../packages/friday-chat/src/friday_chat/tools/mcp.py)
+- [Checked results](../../packages/friday-chat/src/friday_chat/tools/output.py)
+- [Long-term ingestion](../../packages/friday-chat/src/friday_chat/memory_mcp.py)
+
+[Guide index](README.md) · [Capability status](FRIDAY-FEATURES.md)

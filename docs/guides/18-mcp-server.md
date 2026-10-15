@@ -1,3 +1,13 @@
+---
+title: Modern MCP tools server
+description: Expose explicitly owned async tools through bounded modern stdio or HTTP server APIs.
+framework_version: 0.1.0a3
+last_reviewed: '2026-10-15'
+status: current
+audience: Technical end users and application integrators
+doc_type: guide
+---
+
 # Modern MCP tools server
 
 Friday exposes explicitly registered async tools as an MCP `2026-07-28` server
@@ -11,7 +21,18 @@ and [MCP migration](19-mcp-migration.md). These APIs implement the pinned
 Private fixture interoperability is separate from public deployment or whole
 initiative acceptance.
 
+## Installation
+
+For stdio, install `friday-framework-mcp==0.1.0a3`. For HTTP app/listener support,
+install `friday-framework-mcp[server]==0.1.0a3`. Both require Python 3.13.4+.
+Installing dependencies does not expose a listener or load application tools.
+
 ## Register an async tool and serve stdio
+
+Save this as `mcp_echo_server.py`. It is the server half of the
+[offline client/server round trip](17-mcp-client.md#offline-programmatic-round-trip).
+Running it waits on its owned stdio connection; use the client example to
+exercise and stop it.
 
 ```python
 import asyncio
@@ -22,7 +43,7 @@ from friday_mcp.client.protocol import JSONValue
 server = ModernStdioMCPServer()
 
 async def echo(arguments: dict[str, JSONValue]) -> ToolCallResult:
-    return ToolCallResult.structured(arguments)
+    return ToolCallResult.text(str(arguments["text"]))
 
 server.register_tool(
     {
@@ -60,7 +81,7 @@ There is no implicit registry loading, refresh, resource listing or agent assemb
 `replace_tools(...)` accepts immutable `RegisteredTool` models; exports are copies.
 An issued call retains its definition, handler and output schema during catalog changes.
 
-The supported JSON Schema subset is draft2020-12, regex-free and reference-free:
+The supported JSON Schema subset is draft 2020-12, regex-free and reference-free:
 primitive/object/array types, properties/required/additionalProperties, items/
 prefixItems, bounds, numeric constraints and scalar enum/const, plus ordinary
 schema metadata. Remote or recursive references, regex, composition/conditionals
@@ -73,31 +94,31 @@ Install the declared optional server dependencies when provisioning the applicat
 Imports of legacy and modern stdio exports do not require FastAPI/uvicorn;
 HTTP app construction reports a fixed missing-dependency error if unavailable.
 
+This **API fragment** constructs a server with a caller-supplied token; it
+does not bind a port or serve a request. Provision certificates, token and
+deployment policy explicitly before using the returned object's live `serve()`.
+
 ```python
 from friday_mcp.server import HTTPServerPolicy, StreamableHTTPMCPServer
 
-http_server = StreamableHTTPMCPServer(
-    policy=HTTPServerPolicy(
-        path="/mcp",
-        bind_host="127.0.0.1",
-        port=8443,
-        allowed_hosts=("127.0.0.1:8443",),
-        allowed_origins=("https://127.0.0.1:8443",),
-        bearer_token=admin_token,  # supplied explicitly by your application
-        require_tls=True,
-    ),
-    response_mode="sse",  # alternatively "json"
-)
-# Register the application's explicitly selected tools here.
-# In an async application:
-# await http_server.serve(certificate=certificate_path, private_key=key_path)
+def build_http_server(admin_token: str) -> StreamableHTTPMCPServer:
+    return StreamableHTTPMCPServer(
+        policy=HTTPServerPolicy(
+            path="/mcp", bind_host="127.0.0.1", port=8443,
+            allowed_hosts=("127.0.0.1:8443",),
+            allowed_origins=("https://127.0.0.1:8443",),
+            bearer_token=admin_token,
+            require_tls=True,
+        ),
+        response_mode="sse",  # alternatively "json"
+    )
 ```
 
 `create_app()` returns an application with one exact POST path and lifecycle
 shutdown. `serve(...)` owns its listener and shutdown. The TLS certificate/key
 paths and in-memory administrative token are explicit caller inputs; Friday does
 not discover credentials in files or environment variables. The default bind is
-literal127.0.0.1, port8000; allowed Origins default to none, so a supplied Origin
+literal 127.0.0.1, port 8000; allowed Origins default to none, so a supplied Origin
 must be explicitly allowed. Absent Origin is permitted. Configure exact Host
 and Origin values, including ports. Query strings, ambiguous/duplicate headers,
 invalid Host/Origin, wrong bearer credentials and TLS-policy violations fail
@@ -117,7 +138,7 @@ HTTP requests include `Content-Type: application/json`, Accept listing both JSON
 and event-stream, `MCP-Protocol-Version`, `Mcp-Method`, and `Mcp-Name` for calls.
 Static primitive `x-mcp-header` bindings, including nested property paths, must
 match the body. Unicode/unsafe ASCII values use the dated Base64 sentinel.
-HeaderMismatch (`-32020`) is an HTTP400 failure before any handler runs.
+HeaderMismatch (`-32020`) is an HTTP 400 failure before any handler runs.
 Malformed or case-insensitive duplicate mirrored parameter headers use this
 fixed error as well; pre-body rejection omits the request ID and header values.
 Mcp-Method and MCP-Protocol-Version are plain field values: visible ASCII,
@@ -125,8 +146,8 @@ space and horizontal tab are permitted and compared exactly with the body.
 Other controls, DEL and raw non-ASCII bytes fail with HeaderMismatch before
 body parsing or RPC routing. These two fields do not use Base64 decoding;
 Mcp-Name and Mcp-Param values retain their separate sentinel encoding rules. Unknown
-methods return HTTP404/`-32601`; unsupported versions HTTP400/`-32022` with bounded
-supported/requested data. GET/DELETE return405. There are no protocol sessions,
+methods return HTTP 404/`-32601`; unsupported versions HTTP 400/`-32022` with bounded
+supported/requested data. GET/DELETE return 405. There are no protocol sessions,
 GET event streams, session cookies/IDs, `/message` split endpoints or redirects.
 
 ## Discovery, limits and lifecycle
@@ -136,19 +157,19 @@ page include required `ttlMs: 0` and `cacheScope: "private"`: immediately stale
 and confined to the authorization context. There is no result-cache storage,
 reuse or caching RPC. tools/call results do not carry those cacheable-only fields.
 Calls require no prior discovery or initialize handshake. Tool names remain
-case-sensitive and unique. ASCII names of1–128 characters are recommended;
+case-sensitive and unique. ASCII names of 1–128 characters are recommended;
 bounded Unicode names are accepted deliberately and mirrored with sentinel
 encoding rather than silently rewritten.
 
-`ServerLimits` provides lower-only bounds: request/result wire64KiB, depth32,
-nodes8192, catalog1MiB/256 tools/16 pages/64 tools per page,32 active operations,
-headers16KiB, IDs/protocol-version strings256 bytes, cursors256 bytes,30s operation timeout and0.5s shutdown
-settlement. Individual schemas are additionally capped at8KiB/256 schema nodes,
+`ServerLimits` provides lower-only bounds: request/result wire 64 KiB, depth 32,
+nodes 8192, catalog 1 MiB/256 tools/16 pages/64 tools per page, 32 active operations,
+headers 16 KiB, IDs/protocol-version strings 256 bytes, cursors 256 bytes, 30 s operation timeout and 0.5 s shutdown
+settlement. Individual schemas are additionally capped at 8 KiB/256 schema nodes,
 with bounded instance-validation work. Lower incompatible bounds fail before
 publishing a partial catalog. Catalog pages account for the actual encoded wire
 and worst permitted ID; opaque cursors expire when the catalog changes.
 Admission bounds simultaneous invocations and tool starts per second, both
-to active_requests (default32). The per-instance rolling one-second start window
+to active_requests (default 32). The per-instance rolling one-second start window
 persists across restart; denied starts have no handler span. Deployment-wide
 policy remains an application responsibility. Deadlines include body/admission/handler/delivery work.
 For stdio, the first frame byte starts the absolute deadline. Fragments and
@@ -173,7 +194,7 @@ one handler span with fixed method/outcome and a bounded hash of the registered
 tool identity, without raw IDs, tool names,
 arguments/results/schemas, credentials, URLs or client trace data. Observer failure
 cannot replay a handler. No provider/exporter is created and Langfuse is optional
-future work. Unsupported server profiles include2025 compatibility, prompts,
+future work. Unsupported server profiles include 2025 compatibility, prompts,
 resources/media, agent mode, Tasks, subscriptions, input_required/MRTR callbacks,
 sampling/roots/elicitation, logging RPCs and OAuth. Existing legacy APIs remain
 available through their original names and semantics.
@@ -194,7 +215,7 @@ explicit tool owner; this server never loads arbitrary application tools.
 Do not annotate sensitive parameters with x-mcp-header: intermediaries see them.
 
 Unsupported-version errors carry exactly `data.supported` and `data.requested`
-according to the pinned2026 error schema; discovery separately uses
+according to the pinned 2026 error schema; discovery separately uses
 `supportedVersions`. The bounded requested version appears only in its own wire
 error data, with a fixed diagnostic message and no telemetry label. The server
 refuses requestState/inputResponses and cannot construct the inactive missing-
@@ -209,3 +230,12 @@ timeout rejection may use only the remaining shutdown-settlement window measured
 from that original deadline; it cannot restart a handler or extend its deadline.
 If a response write already started, timeout closes that operation without a
 second response. Cooperative cancellation is required of the ASGI transport.
+
+## Implementation references
+
+- [Modern tools registry/server](../../packages/friday-mcp/src/friday_mcp/server/modern.py)
+- [Stdio transport](../../packages/friday-mcp/src/friday_mcp/server/modern_stdio.py)
+- [HTTP server](../../packages/friday-mcp/src/friday_mcp/server/http.py) and [policy](../../packages/friday-mcp/src/friday_mcp/server/http_policy.py)
+- [Registered-tool/result/limit models](../../packages/friday-mcp/src/friday_mcp/server/protocol.py)
+
+[Guide index](README.md) · [Capability status](FRIDAY-FEATURES.md)

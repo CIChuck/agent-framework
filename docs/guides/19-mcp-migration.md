@@ -1,8 +1,18 @@
+---
+title: MCP upgrade and migration
+description: Dated transport/role matrix, explicit configuration, admission and rollback for the bounded tools profile.
+framework_version: 0.1.0a3
+last_reviewed: '2026-10-15'
+status: current
+audience: Technical end users and application integrators
+doc_type: guide
+---
+
 # MCP upgrade and migration
 
 Friday targets the dated [MCP 2026-07-28 specification](https://modelcontextprotocol.io/specification/2026-07-28/),
 with explicit [2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)
-HTTP client compatibility. The implementation implements a bounded tools profile.
+HTTP client compatibility. Friday implements a bounded tools profile.
 The dated specification, captured schema and role-specific requirements in the
 [upgrade contract](../planning/active/friday-mcp-protocol-upgrade/protocol-contract.md)
 control this upgrade. This is not a moving “latest” version selector or a claim
@@ -171,7 +181,7 @@ perform no client-factory invocation or credential lookup.
 
 TLS verification has no YAML disable flag. Endpoints must be ASCII HTTPS without
 userinfo/query/fragment. Every DNS answer is checked before a numeric connection;
-private addresses/non443 ports require exact per-peer address and port grants.
+private addresses/non 443 ports require exact per-peer address and port grants.
 No proxies, redirects, ambient cookies or wildcard/CIDR grants are enabled. Tests
 substitute only private literal loopback, ephemeral port and a verifying synthetic
 CA; that testing seam does not change production TLS policy.
@@ -206,8 +216,8 @@ responsibility and is not granted by client network admission.
 
 Telemetry uses injected, provider-neutral `TelemetryInterface` observers. Borrowed
 observers remain open. No MCP trace/baggage propagation, raw arguments/results,
-credentials, schema or endpoint labels are added. The telemetry upgrade is accepted;
-Langfuse remains queued as an optional provider after MCP acceptance.
+credentials, schema or endpoint labels are added. The telemetry rewire and optional Langfuse backend have separate scope;
+Langfuse remains queued on the [development board](../planning/README.md).
 
 ## Upgrade and rollback
 
@@ -233,3 +243,27 @@ provider operation. Resources/prompts, agent mode, Tasks, interactive continuati
 OAuth discovery/login/refresh and subscription roles remain outside this profile.
 Whole-initiative independent validation, maintainer acceptance and publication are
 separate gates; unit acceptance or a successful SDK exchange is not full conformance.
+
+## Alpha3 application checks
+
+Install the aligned 0.1.0a3 application/package cohort rather than manually
+substituting protocol dependencies. Before migrating a real peer, exercise the
+[owned local round trip](17-mcp-client.md#offline-programmatic-round-trip), load
+your intended MCP stanza without connecting, and inspect canonical selection.
+Then test the actual peer in your controlled environment with explicit network,
+credential and mutation policy. No public peer, collector or live provider was
+needed for the local example.
+
+Current optional-role exclusions include MRTR: valid modern input-required
+requests return `input_required_unsupported` without callbacks, continuation or
+opaque-state forwarding. Do not route that failure into an automatic tool-call
+retry. Adding MRTR requires a separate interaction, state and security design.
+
+## Implementation references
+
+- [Pinned protocol contract](../planning/active/friday-mcp-protocol-upgrade/protocol-contract.md)
+- [Package metadata](../../packages/friday-mcp/pyproject.toml)
+- [Client transports](../../packages/friday-mcp/src/friday_mcp/client)
+- [Server profile](../../packages/friday-mcp/src/friday_mcp/server)
+
+[Guide index](README.md) · [Capability status](FRIDAY-FEATURES.md)
