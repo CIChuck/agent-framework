@@ -10,5 +10,5 @@
     "packages/friday-chat/tests_chat/compat/fixtures/legacy_command_names.yaml"
   ],
   "directive": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-002-retire-legacy-command-reference.md",
-  "directive_sha256": "a5ea2b13ab0727563fc0cd11c4fc1153a86a8330d4741b56665baedc4c4005b9"
+  "directive_sha256": "15cfd03737fe2a06eed0193a24950e7b1b98d1304dcce15291202dd90d328bc6"
 }

@@ -58,3 +58,9 @@ Static fixture preserves exactly 50 registered commands/aliases plus both
 fallback-only names (52 total). Both existing checks load it; all original
 count, required-name and registry-subset assertions remain. No legacy folder
 or runtime changes. Awaiting focused checks and independent review.
+
+SEC-002 focused compatibility: 30 passed with legacy folder unavailable; Ruff,
+Mypy and board passed. Documentation checker reports two existing broken
+colon-line links in unchanged SEC-001 report. SHA256 bd623d74b8a98e4a876a3c667dc51aadaa00897bd67a0d54a851dafa3e59aebf.
+Criterion 4 clarified before formal review to report baseline debt under AGENTS.md;
+prior report remains byte-identical. No product changes after these checks.
