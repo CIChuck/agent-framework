@@ -1,0 +1,93 @@
+"""Read-only, bounded alpha3 candidate audit."""
+import ast
+import hashlib
+import json
+import re
+import subprocess
+import tomllib
+from pathlib import Path
+from packaging.requirements import Requirement
+
+BASE = 'a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad'
+CANDIDATE = '8b85bd9169c00025e562c8db74afa81af873ec37'
+ROOT = Path.cwd()
+PACKET = 'docs/planning/active/friday-alpha3-version-bump/'
+
+def need(condition, reason):
+    if not condition:
+        raise RuntimeError(reason)
+
+def git(*args):
+    return subprocess.check_output(['git', *args])
+
+authority_bytes = (ROOT / PACKET / 'authority.json').read_bytes()
+authority = json.loads(authority_bytes)
+need(git('rev-parse', 'HEAD').decode().strip() == CANDIDATE, 'HEAD drift')
+need(git('status', '--porcelain') == b'', 'worktree dirty')
+need(git('branch', '--show-current').decode().strip() == authority['branch'], 'branch drift')
+need(authority['base_commit'] == BASE, 'base mismatch')
+directive = (ROOT / authority['directive']).read_bytes()
+need(hashlib.sha256(directive).hexdigest() == '23c794dd3798216790e2bee48e907cf520afc0b3f42f0be40f1f01df0c9446fb' == authority['directive_sha256'], 'directive hash mismatch')
+paths = authority['product_paths']
+need(len(paths) == len(set(paths)) == 37, 'product scope not 37')
+changed = set(git('diff', '--name-only', BASE, CANDIDATE).decode().splitlines())
+governance = {PACKET + p for p in ['README.md', 'authority.json', 'directives/CD-REL-A3-001-version-bump.md', 'execution-log.md', 'version-change-summary.json']} | {'docs/planning/README.md', 'docs/planning/board.yaml'}
+need(changed == set(paths) | governance, 'changed path set mismatch')
+for path in paths:
+    before = git('show', BASE + ':' + path)
+    need(hashlib.sha256(before).hexdigest() == authority['baseline_sha256'][path], 'baseline hash mismatch: ' + path)
+    after = (ROOT / path).read_bytes()
+    if path != 'packages/friday-llm/README.md':
+        need(before.replace(b'0.1.0a2', b'0.1.0a3') == after, 'nonliteral change: ' + path)
+    need(before.count(b'0.1.0a0') == after.count(b'0.1.0a0'), 'negative/history a0 drift: ' + path)
+llm = (ROOT / 'packages/friday-llm/README.md').read_text()
+llm_before = git('show', BASE + ':packages/friday-llm/README.md').decode()
+expected = llm_before.replace('Version `0.1.0a2` adds provider-neutral reasoning and sampling contracts while', 'Version `0.1.0a3` retains the provider-neutral reasoning and sampling contracts\nintroduced in `0.1.0a2`, while').replace('friday-framework-llm==0.1.0a2', 'friday-framework-llm==0.1.0a3').replace('| `0.1.0a2` behavior |', '| `0.1.0a3` behavior |')
+need(llm == expected, 'LLM README unexpected drift')
+metadata = [p for p in paths if p.endswith('pyproject.toml')]
+need(len(metadata) == 17, 'metadata count')
+names = set()
+pins = 0
+for path in metadata:
+    project = tomllib.loads((ROOT / path).read_text())['project']
+    names.add(project['name'])
+    need(project['version'] == '0.1.0a3', 'project version: ' + path)
+    dependencies = list(project.get('dependencies', []))
+    for group in project.get('optional-dependencies', {}).values():
+        dependencies.extend(group)
+    for dependency in dependencies:
+        requirement = Requirement(dependency)
+        if requirement.name == 'friday-chat' or requirement.name.startswith('friday-framework'):
+            need(str(requirement.specifier) == '==0.1.0a3', 'internal pin: ' + dependency)
+            pins += 1
+constants = [p for p in paths if p.endswith('/__init__.py')]
+need(len(constants) == 8, 'constants count')
+for path in constants:
+    nodes = ast.parse((ROOT / path).read_text()).body
+    values = [node.value.value for node in nodes if isinstance(node, ast.Assign) and isinstance(node.value, ast.Constant) and any(isinstance(target, ast.Name) and target.id == '__version__' for target in node.targets)]
+    need(values == ['0.1.0a3'], 'constant mismatch: ' + path)
+for path, argument in [('packages/friday-chat/src/friday_chat/app.py', 'version'), ('packages/friday-chat/src/friday_chat/reorganization/coordinator.py', 'application_version')]:
+    nodes = ast.walk(ast.parse((ROOT / path).read_text()))
+    values = [default.value for node in nodes if isinstance(node, ast.FunctionDef) and node.name == '__init__' for arg, default in list(zip(node.args.args[-len(node.args.defaults):], node.args.defaults)) + list(zip(node.args.kwonlyargs, node.args.kw_defaults)) if arg.arg == argument and isinstance(default, ast.Constant)]
+    need(values == ['0.1.0a3'], 'Chat default mismatch: ' + path)
+old_lock = git('show', BASE + ':uv.lock').decode()
+new_lock = (ROOT / 'uv.lock').read_text()
+old_packages = tomllib.loads(old_lock)['package']
+new_packages = tomllib.loads(new_lock)['package']
+old_external = [p for p in old_packages if p['name'] not in names]
+new_external = [p for p in new_packages if p['name'] not in names]
+need(old_external == new_external, 'third-party parsed lock drift')
+old_blocks = re.split(r'(?=^\[\[package\]\]$)', old_lock, flags=re.M)
+new_blocks = re.split(r'(?=^\[\[package\]\]$)', new_lock, flags=re.M)
+def external_blocks(blocks):
+    return [block for block in blocks if not block.startswith('[[package]]') or tomllib.loads(block)['package'][0]['name'] not in names]
+need(external_blocks(old_blocks) == external_blocks(new_blocks), 'third-party raw lock drift')
+workspace = [p for p in new_packages if p['name'] in names]
+need(len(workspace) == 17 and all(p['version'] == '0.1.0a3' for p in workspace), 'workspace lock mismatch')
+for name in ['metadata', 'cohort-helpers', 'modern-protocol', 'lock', 'ruff', 'board', 'render', 'shell', 'whitespace', 'docs']:
+    folder = Path('/private/tmp/friday-mcp-upgrade/credential-cleanup/publication/checks') / ('alpha3-review-' + name)
+    receipt = json.loads((folder / 'receipt.json').read_text())
+    need(receipt['candidate'] == CANDIDATE and receipt['exit_code'] == 0, 'receipt candidate/result: ' + name)
+    for stream in ['stdout', 'stderr']:
+        need(hashlib.sha256((folder / stream).read_bytes()).hexdigest() == receipt[stream + '_sha256'], 'evidence hash drift: ' + name)
+print(json.dumps({'candidate': CANDIDATE, 'changed_paths': len(changed), 'product_paths': len(paths), 'governance_paths': len(governance), 'projects': len(metadata), 'internal_exact_pins': pins, 'exported_constants': len(constants), 'chat_defaults': 2, 'workspace_lock_records': len(workspace), 'external_lock_records_byte_and_structure_unchanged': len(new_external), 'negative_a0_preserved': True, 'historical_llm_a2_retained': True, 'authority_sha256': hashlib.sha256(authority_bytes).hexdigest(), 'directive_sha256': hashlib.sha256(directive).hexdigest(), 'review_receipt_integrity': '10 passed'}, indent=2))

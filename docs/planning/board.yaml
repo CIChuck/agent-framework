@@ -544,11 +544,13 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-alpha3-version-bump/
-  next_gate: Focused version/metadata/lock validation and independent review; local only
+  next_gate: Source bump VERIFIED; maintainer acceptance next; artifact release and publication separate
   delivery_state: local
   branch: release/0.1.0a3
   depends_on: []
-  validation: []
+  validation:
+  - docs/planning/active/friday-alpha3-version-bump/validation/report.md
+  - docs/planning/active/friday-alpha3-version-bump/validation/reviewer-checks.json
   approved_by: Chuck Russell
   approved_at: '2026-10-14'
 events:
@@ -1954,3 +1956,10 @@ events:
   action: authorized lockstep alpha3 repository version bump
   note: I'd like to bump the current repository version to 0.1.0a3 - alpha3.
   evidence: docs/planning/active/friday-alpha3-version-bump/authority.json
+- task: friday-alpha3-version-bump
+  at: '2026-10-15T02:11:18.147728+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent source-version verification
+  note: Candidate 8b85bd91 VERIFIED; 191 focused tests passed; external dependencies unchanged; local only
+  evidence: docs/planning/active/friday-alpha3-version-bump/validation/report.md

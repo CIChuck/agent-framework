@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | ---: | --- | --- | --- | --- | --- |
 | 27 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
 | 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](active/friday-deprecated-credential-cleanup/) | normal | granted | local | Aggregate VERIFIED; execute authorized GitHub PR/manual merge and remote deletion; acceptance remains separate |
-| 29 | [Friday 0.1.0a3 repository version bump](active/friday-alpha3-version-bump/) | normal | granted | local | Focused version/metadata/lock validation and independent review; local only |
+| 29 | [Friday 0.1.0a3 repository version bump](active/friday-alpha3-version-bump/) | normal | granted | local | Source bump VERIFIED; maintainer acceptance next; artifact release and publication separate |
 
 ## Completed
 
