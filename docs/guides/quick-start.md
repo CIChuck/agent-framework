@@ -41,13 +41,14 @@ Before a real session, you need:
 
 1. **Python 3.13.4 or newer**, an isolated virtual environment, and pip or uv.
    Check the patch version with `python --version`. UC1 also needs Git and uv.
-2. **A running chat-model server and an embedding-model server.** One Ollama
-   or LM Studio installation can serve both. Friday does not download or start
-   those models for you. Choose local models your machine can run concurrently
-   or accept the extra load/unload latency.
-3. **Exact server model identifiers**, available context sizes, and any required
-   credentials. A model's repository/download name can differ from its API ID.
-   Use the server's model listing rather than guessing.
+2. **Access to chat and embedding endpoints.** Use hosted APIs, local servers,
+   or a mixture. Hosted services require an account, model access and credentials;
+   local serving requires you to run the models yourself. The
+   [OpenAI example](#complete-hosted-openai-model-library) needs no local model
+   server. Ollama and LM Studio are optional local alternatives.
+3. **Exact API model identifiers**, supported context sizes, and the selected
+   provider's credentials. For local serving, a download name can differ from
+   its API ID. Confirm model access and identifiers with your provider/server.
 4. **A writable client directory** for configuration, transcripts, vector data,
    graph data and recovery records. Keep it stable between launches.
 5. **A model-role plan.** At minimum, real canonical startup needs the primary
@@ -200,12 +201,36 @@ There is no implicit discovery of this runtime file and no `init` or `doctor`
 subcommand in alpha3. A headless `RuntimeConfig` file has a different schema;
 use the **Chat** schema shown here.
 
-## Prepare local model serving
+## Choose hosted APIs or local model serving
 
-Choose **Ollama or LM Studio**. Start the server before the live preflight and
-real Chat launch. All examples use the **OpenAI-compatible** interface; Friday
-stores the base address in `api_base`, even though the OpenAI SDK calls its
-corresponding setting `base_url`.
+Friday can use hosted model APIs, local servers, or different providers for
+different roles. Its LiteLLM-backed LLM layer supports routes such as OpenAI,
+Anthropic and OpenRouter. Model availability, supported controls and embedding
+capability depend on the chosen route. A chat API does not automatically supply
+an embedding model; configure both roles explicitly.
+
+| Setup | What you operate or obtain | Next step |
+| --- | --- | --- |
+| Hosted OpenAI chat and embeddings | OpenAI API project, credentials, model access and API usage allowance | [Complete OpenAI model library](#complete-hosted-openai-model-library) |
+| Local Ollama | Running Ollama server with chat and embedding models | [Ollama setup](#ollama) |
+| Local LM Studio | Running LM Studio server with chat and embedding models | [LM Studio setup](#lm-studio) |
+| Mixed providers | A compatible endpoint and credential for each selected chat/embedding role | Define separate endpoint/profile entries and bind each role |
+
+For **hosted OpenAI**, skip the local-server instructions below. You do not need
+to download model weights, start Ollama/LM Studio or size a local GPU. Requests
+go to the configured HTTPS API and use your provider's quotas/billing. Memory
+files remain at your configured local paths, while text sent for chat, extraction
+or embeddings is processed by the selected API provider.
+
+For **local serving**, start Ollama or LM Studio before the live preflight and
+real Chat launch. Friday does not download or start those models. Choose models
+your machine can run together or allow for load/unload latency.
+
+All three complete examples below use **OpenAI Chat Completions and embeddings
+interfaces**, directly or through a compatible server. Friday stores the base
+address in `api_base`; the OpenAI SDK calls its corresponding setting `base_url`.
+Other providers need their own LiteLLM route/model and compatible settings;
+changing only the URL in the OpenAI example is not a complete Anthropic setup.
 
 ### Ollama
 
@@ -257,7 +282,7 @@ and [embedding endpoint](https://lmstudio.ai/docs/developer/openai-compat/embedd
 Do not substitute LM Studio's separate native REST address/route into these
 OpenAI-compatible profiles.
 
-For either server, listing IDs is a **live local request**:
+For either **local** server, listing IDs is a **live local request**:
 
 ```bash
 # Ollama; change 11434 to 1234 for an unauthenticated LM Studio server.
@@ -271,9 +296,90 @@ A downloaded file by itself is not proof of an available API route.
 ## Write models.yml: endpoints and model profiles
 
 Save **one** of the following complete examples as `$CLIENT_DIR/models.yml`.
-They expose the same two profile names, so `config.yml` works with either.
+All three expose the same two profile names, so the shared `config.yml` works
+with any one of them.
 A profile is a reusable model definition; a service is a runtime role bound to
-that definition. Ten services can share two profiles without ten model downloads.
+that definition. The roles below share one chat profile and one embedding
+profile; hosted users access those models through the API instead of downloading them.
+
+### Complete hosted OpenAI model library
+
+Use this option for **both UC1 and UC2** if you want hosted chat and embeddings.
+You need an OpenAI API project/key with access to the selected models and enough
+API usage allowance. Obtain the key from your OpenAI API project, then export it
+as `OPENAI_API_KEY` using the [environment setup below](#supply-the-openai-api-key).
+The local-only placeholder used by Ollama is not an OpenAI credential. See the
+[official authentication reference](https://developers.openai.com/api/reference/overview#authentication).
+
+Save this complete alternative as `$CLIENT_DIR/models.yml`:
+
+```yaml
+schema: friday.model-library/v1
+credentials:
+  openai:
+    env: OPENAI_API_KEY
+endpoints:
+  openai:
+    api_base: https://api.openai.com/v1
+    provider: openai
+    serving_engine: openai
+    default_credential: openai
+    resilience:
+      max_retries: 2
+      timeout_seconds: 120
+profiles:
+  chat_model:
+    kind: chat
+    endpoint: openai
+    dialect: openai_chat_completions
+    model: openai/gpt-5.4-mini-2026-03-17
+    model_target:
+      model_id: gpt-5.4-mini-2026-03-17
+      family: gpt_5_4
+      revision: gpt-5.4-mini-2026-03-17
+    generation:
+      sampling:
+        temperature: 0.2
+      max_tokens: 2048
+  memory_embedding:
+    kind: embedding
+    endpoint: openai
+    dialect: openai_embeddings
+    model: openai/text-embedding-3-small
+    model_target:
+      model_id: text-embedding-3-small
+      family: text_embedding_3
+      revision: openai-api-alias-text-embedding-3-small
+    embedding_options:
+      batch_size: 16
+      cache_size: 100
+```
+
+The chat profile uses a documented [GPT-5.4 mini snapshot](https://developers.openai.com/api/docs/models/gpt-5.4-mini)
+and its Chat Completions route. This example leaves reasoning controls unset;
+the model's documented default effort is `none`. Check parameter support before
+switching model families or adding reasoning controls, especially when retaining
+the runtime's temperature overrides. The installed LiteLLM adapter maps Friday's
+`max_tokens` cap to the OpenAI request's appropriate completion-token field.
+
+The embedding profile uses [text-embedding-3-small](https://developers.openai.com/api/docs/models/text-embedding-3-small).
+Its `revision` records the API alias, not a pinned dated embedding snapshot.
+Keep that model choice consistent with existing collections and validate any
+provider/model change as described in the embedding section below.
+
+The profile keys `chat_model` and `memory_embedding` are application labels;
+all runtime role bindings below already refer to them. **Keep the shared
+`config.yml`, `cli.yml` and launcher unchanged** when selecting this complete
+model library. Supply `OPENAI_API_KEY` instead of a local server credential.
+The same key reference serves chat and embeddings in this example. Access and
+limits depend on your API project; the live preflight below checks your actual
+routes rather than promising account access.
+
+To combine hosted chat with local embeddings, retain both endpoint definitions,
+point `chat_model.endpoint` to OpenAI and `memory_embedding.endpoint` to your
+local server, and declare/export the credential reference for each. All roles
+using a profile follow that profile's endpoint. A hosted chat choice alone does
+not redirect embeddings or maintenance to the same provider.
 
 ### Complete Ollama model library
 
@@ -292,7 +398,7 @@ endpoints:
       max_retries: 2
       timeout_seconds: 120
 profiles:
-  local_chat:
+  chat_model:
     kind: chat
     endpoint: local
     dialect: openai_chat_completions
@@ -305,7 +411,7 @@ profiles:
       sampling:
         temperature: 0.2
       max_tokens: 2048
-  local_embedding:
+  memory_embedding:
     kind: embedding
     endpoint: local
     dialect: openai_embeddings
@@ -351,7 +457,7 @@ endpoints:
       max_retries: 2
       timeout_seconds: 120
 profiles:
-  local_chat:
+  chat_model:
     kind: chat
     endpoint: local
     dialect: openai_chat_completions
@@ -364,7 +470,7 @@ profiles:
       sampling:
         temperature: 0.2
       max_tokens: 2048
-  local_embedding:
+  memory_embedding:
     kind: embedding
     endpoint: local
     dialect: openai_embeddings
@@ -382,7 +488,7 @@ profiles:
 
 | Setting | Meaning and setup rule |
 | --- | --- |
-| `credentials.local.env` | **Name** of a process variable, never the token itself; the launcher exports its value |
+| `credentials.<name>.env` | **Name** of a process variable, never the token itself; the launcher exports its value |
 | `api_base` | Full compatible base including `/v1`; use a separate endpoint definition if embeddings are hosted elsewhere |
 | `provider`, `serving_engine`, `dialect` | Transport/capability identity; keep the values consistent with the route you selected |
 | `model` / `model_target` | Routing model plus exact served identity, family and recorded revision; an arbitrary friendly label does not load a server model |
@@ -395,14 +501,15 @@ Canonical model-library schemas reject unknown fields. Add only supported
 provider/generation controls; copying a provider's native JSON options into a
 profile can fail validation or exceed that route's capabilities. The examples
 omit reasoning controls to avoid assuming a particular model's reasoning API.
-For other hosted/mixed endpoints, see [configuration reference](10-configuration.md).
+For additional provider/role arrangements, see [configuration reference](10-configuration.md).
 
 ## Write config.yml: runtime, roles and memory
 
 Save this **complete Chat configuration** as `$CLIENT_DIR/config.yml`.
-It works with either model library above after your model IDs are correct.
-It binds all documented model roles explicitly; the first session needs only
-one actual chat model plus one actual embedding model.
+It works with any of the three model libraries above after model IDs and
+credentials are correct.
+It binds all documented model roles explicitly; the first session needs access to
+one chat model plus one embedding model.
 
 ```yaml
 model_library:
@@ -412,53 +519,53 @@ llm_pool:
   default_service: chat
   services:
     chat:
-      profile: local_chat
+      profile: chat_model
     extraction:
-      profile: local_chat
+      profile: chat_model
       generation_overrides:
         sampling:
           temperature: 0.0
         max_tokens: 2048
     synthesizer:
-      profile: local_chat
+      profile: chat_model
       generation_overrides:
         sampling:
           temperature: 0.0
     classifier:
-      profile: local_chat
+      profile: chat_model
       generation_overrides:
         sampling:
           temperature: 0.0
     researcher:
-      profile: local_chat
+      profile: chat_model
     judge:
-      profile: local_chat
+      profile: chat_model
       generation_overrides:
         sampling:
           temperature: 0.0
     compaction:
-      profile: local_chat
+      profile: chat_model
       generation_overrides:
         sampling:
           temperature: 0.0
     passage_router:
-      profile: local_chat
+      profile: chat_model
       generation_overrides:
         sampling:
           temperature: 0.0
         max_tokens: 512
     smart_file_summarizer:
-      profile: local_chat
+      profile: chat_model
     smart_file_synthesizer:
-      profile: local_chat
+      profile: chat_model
 
 embedding_pool:
   default_service: memory
   services:
     memory:
-      profile: local_embedding
+      profile: memory_embedding
     maintenance:
-      profile: local_embedding
+      profile: memory_embedding
 
 llm:
   max_retries: 0
@@ -598,7 +705,7 @@ langfuse:
 | Embedding `maintenance` | Explicit reorganization embedding provider | Selected by `maintenance.embedding.embedding_service`; kept compatible with `memory` |
 
 These service names are local configuration keys, not models you must download
-separately. `local_chat` and `local_embedding` are the reusable profile keys in
+separately. `chat_model` and `memory_embedding` are the reusable profile keys in
 `models.yml`. To use a different extraction model, add a second **chat** profile
 there and change only `llm_pool.services.extraction.profile`. Do the same for any
 role requiring a larger/faster model or a different endpoint. Change a role's
@@ -658,14 +765,23 @@ after the first working session.
 The chat model generates text; an embedding model converts text into a numeric
 vector so memory can find related records. Installing Chroma or choosing an
 embedding-looking name does not provide that model. It must be available at an
-endpoint that actually implements embeddings.
+endpoint that actually implements embeddings, whether hosted or local.
+
+With the OpenAI library, both regular memory and maintenance use
+`text-embedding-3-small` through `https://api.openai.com/v1`. OpenAI's
+[embedding guide](https://developers.openai.com/api/docs/guides/embeddings)
+documents its default vector length as **1536**. Friday alpha3 uses that model's
+default output dimensions here; its canonical options do not expose OpenAI's
+`dimensions` parameter. Text submitted for storage/query embedding leaves the
+client machine and can incur API usage. The Chroma files themselves remain in
+`memory.persist_directory`; hosted embeddings do not move that database to OpenAI.
 
 The examples make the route explicit:
 
 ```text
-models.yml: profiles.local_embedding
+models.yml: profiles.memory_embedding
     ↓
-config.yml: embedding_pool.services.memory.profile = local_embedding
+config.yml: embedding_pool.services.memory.profile = memory_embedding
     ↓
 config.yml: embedding_pool.default_service = memory
     ↓
@@ -788,7 +904,7 @@ print(f"Created {env_file}; executable: {executable}")
 PY
 ```
 
-The resulting shell file resembles:
+For the local-server variants, the resulting shell file resembles:
 
 ```bash
 export FRIDAY_CHAT_BIN='/absolute/path/to/your/environment/bin/friday-chat'
@@ -800,6 +916,9 @@ key. For an authenticated LM Studio/server route, edit that value privately to
 its real token. `credentials.local.env` in `models.yml` names this variable;
 it does not embed its value. Avoid publishing the file or displaying real tokens
 in diagnostics. Recreate/update the executable path if you move the environment.
+For the hosted OpenAI model library, this generated local placeholder is unused;
+follow the next step to supply `OPENAI_API_KEY`. You may remove the unused
+`FRIDAY_LOCAL_MODEL_KEY` line from `friday.env`.
 
 Chat does **not automatically load `.env` files**. The launcher deliberately
 sources `friday.env`. Ordinary `${VARIABLE}` strings in runtime YAML are expanded
@@ -807,6 +926,37 @@ before validation, including strings in disabled sections; every such variable
 must be supplied. The canonical credential `env:` value above is a literal
 reference resolved for each declared service. CLI display YAML is not the place
 for environment-variable substitution or provider secrets.
+
+### Supply the OpenAI API key
+
+**OpenAI users:** after creating `friday.env`, run the following in the Bash
+terminal that will launch Chat. It prompts without echoing the key or putting
+its value into a command in shell history:
+
+```bash
+read -r -s -p "OpenAI API key: " OPENAI_API_KEY
+printf '\n'
+export OPENAI_API_KEY
+```
+
+This export is inherited by the launcher and both configured API services. Keep
+it available for the offline configuration/fake checks too: those checks resolve
+the credential reference even though they make no API call. For a purely offline
+fake check, a synthetic nonempty value can satisfy the reference; a real session
+requires a valid project credential.
+
+In a new terminal, supply the key again or inject it through your secret manager.
+For a persistent local launcher setup, you can instead add an
+`export OPENAI_API_KEY=...` assignment privately to your mode-0600 `friday.env`.
+Use a correctly shell-quoted value; never commit that file or put the key into
+`models.yml`, `config.yml`, `cli.yml` or the script itself. Avoid adding an empty
+or placeholder assignment to `friday.env` that would overwrite a valid exported
+key. The launcher sources this file, so assignments there take precedence over
+its inherited environment.
+
+The shared launcher needs no provider-specific flag. The selected `models.yml`
+chooses the API endpoint, model and `OPENAI_API_KEY` credential reference. Its
+`FRIDAY_LOCAL_MODEL_KEY` setting has no effect on the OpenAI profiles.
 
 ### Save run-friday-chat.sh
 
@@ -901,9 +1051,11 @@ is not proof of persistence or semantic recall.
 
 ### Live preflight for chat and embeddings
 
-After starting your local server, run this **live local check** from the client
-directory and activated environment. It reads the selected profiles rather than
-hardcoding a different model or endpoint. It sends synthetic text to both APIs:
+For OpenAI, ensure `OPENAI_API_KEY` is available. For local serving, start the
+configured server. Run this **live check** from the client directory and activated
+environment. It reads the selected profiles rather than hardcoding a different
+model/endpoint, and sends synthetic text to both APIs. Hosted profiles make real
+provider requests and consume API usage:
 
 ```bash
 cd "$CLIENT_DIR"
@@ -949,7 +1101,8 @@ profiles it becomes a provider call with that provider's data/cost implications.
 
 ## Start and verify real sessions
 
-Launch with the configured local models running:
+Launch with your selected endpoints ready: OpenAI credentials/model access for
+the hosted path, or the configured model server for the local path:
 
 ```bash
 "$CLIENT_DIR/run-friday-chat.sh" real
@@ -992,14 +1145,16 @@ setup terminal; it is not automatically preserved in a new shell.
 | --- | --- |
 | Installation | Correct `friday-chat` version and intended environment path |
 | Runtime/model files | All ten chat bindings and two embedding bindings resolve; real mode selected |
-| Chat | A live response from the intended server/model |
+| Chat | A live response from the intended provider/server and model |
 | Memory | Successful extraction and nonempty stored records; no adapter-gap/extraction failures |
 | Restart | Earlier transcript/records accessible with the same data paths |
 | Retrieval | The relevant record appears in selected context, not just somewhere in storage |
 | Shutdown | Background extraction/write work settles without lifecycle errors |
 
-If an endpoint is unreachable, check its server process, port, `/v1` base and
-exact model ID. A 401 usually means its selected credential is wrong or absent.
+If an endpoint is unreachable, check Internet/API access for hosted services or
+the server process/port for local serving, then the `/v1` base and exact model ID.
+A 401 usually means its selected credential is wrong or absent; hosted quota,
+billing or rate-limit failures need their provider/project checks.
 An unknown service/profile means the role keys do not match. A schema error can
 mean a legacy/headless setting was placed in Chat YAML. A new empty store often
 means you changed cwd, a directory or a collection name. Do not delete live

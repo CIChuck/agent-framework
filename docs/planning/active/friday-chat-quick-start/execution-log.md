@@ -26,3 +26,14 @@ execution_phase: validation; validation_state: pending.
 2026-10-15: Fresh-context prose delta and aggregate checks VERIFIED847b5c34.
 Report/evidence retained; unchanged examples and launcher anchor confirmed.
 execution_phase: closeout; validation_state: verified.
+
+2026-10-15: Maintainer corrects local-only framing and requests hosted OpenAI
+example. ADD-QS-001 records exact documentation expansion. Hosted/local/mixed
+prerequisites, OpenAI chat/embedding library, neutral profile keys and key export
+flow authored without using credentials or making provider calls.
+execution_phase: implementation; validation_state: not_ready.
+
+2026-10-15: All15 hosted/local/mixed offline scenario groups pass, including
+synthetic secret input, request-parameter mapping and actual fake launcher
+sessions. Hosted amendment report and reproducible evidence retained.
+execution_phase: validation; validation_state: pending.

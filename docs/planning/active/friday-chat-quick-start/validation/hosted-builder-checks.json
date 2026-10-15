@@ -1,0 +1,109 @@
+{
+  "candidate_worktree": "/private/tmp/friday-chat-quick-start",
+  "guide_sha256": "eedd970411de3cd3233d02427357b2ffb8fa9e97005b01c09f500cf714d26f5a",
+  "framework_version": "0.1.0a3",
+  "python_fences_compiled": 3,
+  "yaml_examples_parsed": 5,
+  "bash_fences_syntax_checked": 17,
+  "links_enumerated": 85,
+  "local_links_and_anchors_checked": 70,
+  "results": [
+    {
+      "label": "openai-schema-and-assembly",
+      "exit_code": 0,
+      "stdout": "Complete canonical real assembly without startup or model calls; ten chat/two embedding roles; no adapter gaps\nChat services: chat, extraction, synthesizer, classifier, researcher, judge, compaction, passage_router, smart_file_summarizer, smart_file_synthesizer\nEmbedding services: memory, maintenance\nDisplay source: explicit\nConfiguration parsed and model bindings resolved; no model call made.\n",
+      "stderr": ""
+    },
+    {
+      "label": "openai-preflight-mocked-transport",
+      "exit_code": 0,
+      "stdout": "Chat reply: Hello from a synthetic response.\nEmbedding vector length: 3\nTransport routes [('chat', 'openai/gpt-5.4-mini-2026-03-17', 'https://api.openai.com/v1'), ('embedding', 'openai/text-embedding-3-small', 'https://api.openai.com/v1')]\n",
+      "stderr": ""
+    },
+    {
+      "label": "openai-negative-contracts",
+      "exit_code": 0,
+      "stdout": "Missing credential rejected\nUnknown profile rejected\nMissing maintenance role rejected\n",
+      "stderr": ""
+    },
+    {
+      "label": "openai-launcher with spaces",
+      "exit_code": 0,
+      "stdout": "Actual installed launcher fake session passed\nEnvironment generation, existing-file refusal, cwd-independent mode/path selection, and missing-file/invalid-argument checks passed\n",
+      "stderr": ""
+    },
+    {
+      "label": "ollama-schema-and-assembly",
+      "exit_code": 0,
+      "stdout": "Complete canonical real assembly without startup or model calls; ten chat/two embedding roles; no adapter gaps\nChat services: chat, extraction, synthesizer, classifier, researcher, judge, compaction, passage_router, smart_file_summarizer, smart_file_synthesizer\nEmbedding services: memory, maintenance\nDisplay source: explicit\nConfiguration parsed and model bindings resolved; no model call made.\n",
+      "stderr": ""
+    },
+    {
+      "label": "ollama-preflight-mocked-transport",
+      "exit_code": 0,
+      "stdout": "Chat reply: Hello from a synthetic response.\nEmbedding vector length: 3\nTransport routes [('chat', 'openai/qwen2.5:7b', 'http://127.0.0.1:11434/v1'), ('embedding', 'openai/nomic-embed-text', 'http://127.0.0.1:11434/v1')]\n",
+      "stderr": ""
+    },
+    {
+      "label": "ollama-negative-contracts",
+      "exit_code": 0,
+      "stdout": "Missing credential rejected\nUnknown profile rejected\nMissing maintenance role rejected\n",
+      "stderr": ""
+    },
+    {
+      "label": "ollama-launcher with spaces",
+      "exit_code": 0,
+      "stdout": "Actual installed launcher fake session passed\nEnvironment generation, existing-file refusal, cwd-independent mode/path selection, and missing-file/invalid-argument checks passed\n",
+      "stderr": ""
+    },
+    {
+      "label": "lmstudio-schema-and-assembly",
+      "exit_code": 0,
+      "stdout": "Complete canonical real assembly without startup or model calls; ten chat/two embedding roles; no adapter gaps\nChat services: chat, extraction, synthesizer, classifier, researcher, judge, compaction, passage_router, smart_file_summarizer, smart_file_synthesizer\nEmbedding services: memory, maintenance\nDisplay source: explicit\nConfiguration parsed and model bindings resolved; no model call made.\n",
+      "stderr": ""
+    },
+    {
+      "label": "lmstudio-preflight-mocked-transport",
+      "exit_code": 0,
+      "stdout": "Chat reply: Hello from a synthetic response.\nEmbedding vector length: 3\nTransport routes [('chat', 'openai/qwen2.5-7b-instruct', 'http://127.0.0.1:1234/v1'), ('embedding', 'openai/text-embedding-nomic-embed-text-v1.5', 'http://127.0.0.1:1234/v1')]\n",
+      "stderr": ""
+    },
+    {
+      "label": "lmstudio-negative-contracts",
+      "exit_code": 0,
+      "stdout": "Missing credential rejected\nUnknown profile rejected\nMissing maintenance role rejected\n",
+      "stderr": ""
+    },
+    {
+      "label": "lmstudio-launcher with spaces",
+      "exit_code": 0,
+      "stdout": "Actual installed launcher fake session passed\nEnvironment generation, existing-file refusal, cwd-independent mode/path selection, and missing-file/invalid-argument checks passed\n",
+      "stderr": ""
+    },
+    {
+      "label": "mixed-openai-chat-local-embedding",
+      "exit_code": 0,
+      "stdout": "Complete canonical real assembly without startup or model calls; ten chat/two embedding roles; no adapter gaps\nMixed routes resolved\n",
+      "stderr": ""
+    },
+    {
+      "label": "hosted-key-and-openai-parameter-mapping",
+      "exit_code": 0,
+      "stdout": "Synthetic hidden key input/export and installed OpenAI token mapping passed\n",
+      "stderr": ""
+    },
+    {
+      "label": "render",
+      "exit_code": 0,
+      "stdout": "Both guide bodies rendered without warnings\n",
+      "stderr": ""
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "No install/sync, downloads or real provider/model calls",
+    "Live preflight executed only with mocked transport; not model-quality or retrieval evidence",
+    "All three model libraries exercised against installed production alpha3 with private paths/network/write guard",
+    "Installed/source package inventory verified by previous guide review; no source changes in this task"
+  ]
+}
