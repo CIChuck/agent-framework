@@ -514,7 +514,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: SEC-002 verified; confirm provider rotation and old-key invalidation; maintainer acceptance; local delivery only
+  next_gate: SEC-003 untracking verification and independent review; credential rotation/retirement maintainer-confirmed
   delivery_state: local
   branch: security/remove-deprecated-credentials
   depends_on: []
@@ -1863,3 +1863,10 @@ events:
   action: recorded independently verified command-reference migration
   note: 30 compatibility tests pass including deprecated-directory-unavailable run; no folder deletion; provider actions pending
   evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/report.md
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T01:26:22+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized untracking with local-data retention
+  note: Let's do that. Track memory and add it to .gitignore. I'll Remove it at my leisure.
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority-sec003.json

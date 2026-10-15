@@ -72,3 +72,9 @@ Fresh full unit review VERIFIED at e5a3066c; exact 52-name baseline independentl
 confirmed. Compatibility 30 passed; Ruff/Mypy/board/render/whitespace pass.
 Documentation checker retains only two pre-existing links in untouched SEC-001
 report. Folder remains untouched; provider actions pending; local delivery only.
+
+## SEC-003 authorized
+
+execution_phase: implementation; validation_state: not_ready.
+Untrack and ignore exact deprecated subtree, retain all main-checkout local files.
+Maintainer has now confirmed credential rotation and retirement. No issuer calls.

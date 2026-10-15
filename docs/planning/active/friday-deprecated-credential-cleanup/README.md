@@ -1,7 +1,7 @@
 # Deprecated credential-bearing artifact removal
 
 Status: started. Implementation authority: granted for the bounded repository-removal unit.
-execution_phase: closeout; validation_state: verified.
+execution_phase: implementation; validation_state: not_ready.
 
 Chuck Russell requested deletion of the deprecated credential-bearing files and
 revocation/replacement of previously used keys. The exact statement and four-path
@@ -19,9 +19,9 @@ maintainer security instruction selects this bounded task without changing any
 other task's priority or implementation authority.
 
 Credential revocation and replacement are a separate external work unit. No
-provider-management sessions or account identifiers are available. Issuer-side
-rotation remains pending and must not be reported complete from file deletion or
-a passing scanner. History rewriting and public delivery are outside this unit.
+provider-management sessions or account identifiers are available. The maintainer has confirmed rotation and retirement; see
+[confirmation](credential-rotation-confirmation.json). No issuer-side validation
+was performed. History rewriting and public delivery are outside this unit.
 
 Bounded removal independently VERIFIED at a65f1366.
 Next gate: provider rotation and old-key invalidation confirmation, then maintainer
@@ -34,3 +34,6 @@ frozen fixture and pass with the deprecated folder unavailable in the private
 checkout. See [review](validation/sec002-review/report.md).
 Next gate: confirm provider rotation/revocation; maintainer acceptance and local
 delivery remain separate. No deprecated directory was deleted.
+
+SEC-003: authorized Git untracking and whole-folder ignore rule; all local files
+must remain intact. Next gate: SEC-003 verification and independent review.
