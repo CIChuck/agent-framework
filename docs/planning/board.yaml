@@ -514,8 +514,8 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: Aggregate VERIFIED; execute authorized GitHub PR/manual merge and remote deletion; acceptance remains separate
-  delivery_state: local
+  next_gate: PR 9 merged and remote branch deleted; maintainer lifecycle closeout/acceptance remains
+  delivery_state: merged
   branch: security/remove-deprecated-credentials
   depends_on: []
   validation:
@@ -2055,3 +2055,10 @@ events:
   action: authorized all-guide review and improvements
   note: View all of the documents in docs/guides. Review each document for consistency, clarity, and accuracy. Identify and fix areas for improvement. These are guides for end users that give a deep, more technical overview of the Friday agent framework. Ensure that the front matter in the documentation is up to date.
   evidence: docs/planning/active/friday-guides-refresh/authority.json
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T19:27:19+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> merged
+  note: 'Reconciled stale local delivery: GitHub confirms PR #9 merged at 2026-10-15T01:55:15Z as a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad; source branch is deleted. Maintainer acceptance remains separate.'
+  evidence: https://github.com/CIChuck/agent-framework/pull/9; merge a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad; docs/planning/active/friday-deprecated-credential-cleanup/delivery-evidence.json

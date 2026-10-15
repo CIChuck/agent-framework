@@ -3,7 +3,10 @@
 Status: started. Implementation authority: granted for authorized bounded units.
 execution_phase: closeout; validation_state: verified.
 
-Current branch: security/remove-deprecated-credentials; delivery: local only.
+Delivery branch: security/remove-deprecated-credentials (remote deleted).
+Delivery: merged into master through [PR #9](https://github.com/CIChuck/agent-framework/pull/9)
+at 2026-10-15T01:55:15Z, merge a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad.
+[GitHub delivery evidence](delivery-evidence.json) records the merge and branch check.
 
 - SEC-001: two credential-bearing artifacts retired and config compatibility
   reference migrated. [Review](validation/VAL-SEC-001/report.md). Original review
@@ -21,11 +24,12 @@ The current user instructions selected these bounded security units without
 changing other tasks' priorities or granting Langfuse implementation authority.
 Original authorities/directives and prior evidence remain retained in this packet.
 
-Next gate: maintainer acceptance and delivery decision for the bounded cleanup.
-No local data deletion, push, merge or publication is inferred.
+Next gate: maintainer lifecycle closeout/acceptance for the bounded cleanup.
+Delivery is evidenced separately; no maintainer acceptance or history rewrite is inferred.
 
 SEC-004: maintainer requested publication of all intentional pending workspace
 changes. Aggregate independently VERIFIED at 526688e3; see [full review](validation/sec004-aggregate/report.md).
-Next gate: authorized GitHub push/PR/manual merge/remote deletion, after actual
-installation preservation and remote checks. Known baseline failures and new
-evidence-only Ruff style debt are disclosed in the review.
+PR #9 delivery and remote branch deletion are now independently confirmed in
+[delivery evidence](delivery-evidence.json). The prior aggregate review's known
+baseline failures and evidence-only Ruff style debt remain disclosed; this
+recording step does not change its frozen source or verification limits.
