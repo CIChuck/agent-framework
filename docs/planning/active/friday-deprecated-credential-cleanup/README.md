@@ -1,7 +1,7 @@
 # Deprecated credential-bearing artifact removal
 
 Status: started. Implementation authority: granted for the bounded repository-removal unit.
-execution_phase: implementation; validation_state: not_ready.
+execution_phase: validation; validation_state: pending.
 
 Chuck Russell requested deletion of the deprecated credential-bearing files and
 revocation/replacement of previously used keys. The exact statement and four-path
@@ -29,4 +29,4 @@ acceptance. Local commit only; no publication. See [review](validation/VAL-SEC-0
 
 SEC-002: current explicit instruction authorizes replacing the deprecated command
 reference under [CD-SEC-002](directives/CD-SEC-002-retire-legacy-command-reference.md).
-Next gate: SEC-002 implementation and fresh independent review; provider actions pending.
+Next gate: SEC-002 independent review; provider actions pending.

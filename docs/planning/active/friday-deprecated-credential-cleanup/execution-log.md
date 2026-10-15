@@ -50,3 +50,11 @@ provider rotation and disabling old keys pending confirmation. No publication.
 execution_phase: implementation; validation_state: not_ready.
 Current instruction selects the two-file test-reference migration; frozen
 52-command fixture, no deprecated-folder deletion and no runtime changes.
+
+## SEC-002 implementation
+
+execution_phase: validation; validation_state: pending.
+Static fixture preserves exactly 50 registered commands/aliases plus both
+fallback-only names (52 total). Both existing checks load it; all original
+count, required-name and registry-subset assertions remain. No legacy folder
+or runtime changes. Awaiting focused checks and independent review.

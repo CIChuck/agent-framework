@@ -514,7 +514,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: SEC-002 command-reference migration and independent review; provider rotation/revocation pending
+  next_gate: SEC-002 independent command-reference review; provider rotation/revocation pending
   delivery_state: local
   branch: security/remove-deprecated-credentials
   depends_on: []

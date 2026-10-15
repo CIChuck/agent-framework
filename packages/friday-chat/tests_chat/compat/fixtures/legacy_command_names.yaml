@@ -1,0 +1,56 @@
+# Frozen command and alias baseline from the deprecated legacy Friday CLI.
+# Includes fallback-only debug-retrieval and list-ingested commands.
+# Source revision: 85f14f249f5fffaf73659aec2a344efa05743c08
+# Source SHA256: e452126b6f19f24fea918ce00a5fef66a212ba8ce6f639cbf36905520eeba990
+- agent
+- agents
+- clear
+- clear-tools
+- clearscreen
+- cls
+- compact
+- context
+- debug
+- debug-budget
+- debug-retrieval
+- delegate
+- entities
+- exit
+- export
+- export-prompts
+- history
+- ingest
+- inject-payload
+- inject-tools
+- insights
+- lifecycle
+- list-ingested
+- memory
+- meta
+- migrate
+- prime
+- prompt
+- q
+- quit
+- read
+- recommend-tools
+- reorganize
+- replay
+- reset
+- run-tool
+- security
+- security-config
+- security-test
+- sessions
+- set
+- speech
+- speech-test
+- status
+- summaries
+- switch
+- timing
+- tool-budget
+- tools
+- transcript
+- vars
+- workflow
