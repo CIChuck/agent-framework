@@ -514,12 +514,13 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: SEC-002 independent command-reference review; provider rotation/revocation pending
+  next_gate: SEC-002 verified; confirm provider rotation and old-key invalidation; maintainer acceptance; local delivery only
   delivery_state: local
   branch: security/remove-deprecated-credentials
   depends_on: []
   validation:
   - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md: VERIFIED bounded two-artifact removal only; provider actions pending'
+  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/report.md: VERIFIED exact command-fixture migration only; pre-existing docs debt recorded'
   approved_by: Chuck Russell
   approved_at: '2026-10-14'
 events:
@@ -1855,3 +1856,10 @@ events:
   action: authorized SEC-002 command-reference migration
   note: replace the two tests’ legacy command reference for that folder. it is fully deprecated
   evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority-sec002.json
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T01:10:16+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independently verified command-reference migration
+  note: 30 compatibility tests pass including deprecated-directory-unavailable run; no folder deletion; provider actions pending
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/report.md
