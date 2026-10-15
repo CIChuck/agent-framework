@@ -1,0 +1,48 @@
+{
+  "initiative": "friday-deprecated-credential-cleanup",
+  "work_unit": "SEC-004",
+  "maintainer": "Chuck Russell",
+  "instruction": "We've made significant changes to the Friday repo. Let's commit all changes, push the branch, and submit a PR. Manually merge and then delete the remote branch.",
+  "base_commit": "71bd6e76afeebd0fa23dff98730e681efb2bb81b",
+  "aggregate_base_commit": "0f5cf2c413092d3c12ae691c547defa22dc3dbc5",
+  "branch": "security/remove-deprecated-credentials",
+  "pending_paths_sha256": {
+    ".DS_Store": "338332ef17121fe252e57d395d63e5dc82911aa165465d77fc6d4a21ab0a6a96",
+    "CLAUDE.md": null,
+    "GEMINI.md": null,
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade/README.md": "1ae0475bb20fcfe883a38861e43e075786dc9bf5371e2beaf77409d7280d51e0",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade/closeout.md": "7ace461294a39ced6475378f1ccae4dbfa4c63a27410534e9f410420d0dffdaa",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade/current-process-state.json": "68581110594a7ab60a88269384fe256ee3f51fbacf7df9657397501888524b5a",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade/merge.json": "8480ce2ce87f38379fb25cc85ccb77a4bd57a7dec772f65751c4bae7063927fc",
+    "docs/planning/README.md": "aa96435af6dcc2b4f9489af3d2b913d72a05176fb7592a6ae71d64f0daeca7b9",
+    "docs/planning/board.yaml": "18daf37fc850853763ef3155c1d977680f35b7ee3d8332ade7316051293765f6",
+    "docs/planning/queued/friday-tool-manifest-continuity/README.md": "beae0d6907bbaef18736fb0ef4e69bb6c20bd8fcfd5f59a4b14ffda2eff98c17",
+    "docs/planning/queued/friday-tool-manifest-continuity/remediation-tasks.md": "84b73ba5ae15a39d91bd31604472bed213eb5866268fcec25951a9d98e7339ea",
+    "family-tree.md": null,
+    "packages/friday-chat/config.example.yaml": "2e1db3a47a38076cbda7627265cf8b28ac2a9da96387b3f6788da1dc8bb2932f",
+    "packages/friday-sandbox/docker/Dockerfile.audit": "ae21cdfd3737897ecb4d9909445c5cc992c7d3ecc472e1b3755e62b39e311f33",
+    "scaffold.sh": null,
+    "scripts/scaffold.sh": "414a9f43ef9abc60fc610b5e52c2ea646a7f91d8fddaa4f66a931cb35aca2042",
+    "task": null,
+    "workflows/audit_2_nginx.yaml": "aae448798edcb4f018355099370f4c7314a9007e1ebd02b602967fdf34aa4f2a"
+  },
+  "directive": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-004-workspace-publication.md",
+  "directive_sha256": "15cd0bd3969d2d7ad9337ea5fd71740a941b6bab3ec8fc9777b95fa3ba4a6931",
+  "docker_bench": {
+    "url": "https://github.com/docker/docker-bench-security.git",
+    "commit": "154869da6418089decf7e1ab0cfca0e1cdfc5c49",
+    "local_reports_excluded": [
+      "bench.txt",
+      "bench.txt.json",
+      "log/"
+    ]
+  },
+  "external_authority": [
+    "push feature branch",
+    "create PR to master",
+    "manual merge after gates",
+    "delete remote feature branch"
+  ],
+  "live_audits_authorized": false,
+  "maintainer_acceptance": "not inferred from publication instruction"
+}

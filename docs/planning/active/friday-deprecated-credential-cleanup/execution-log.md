@@ -90,3 +90,10 @@ whole-folder ignore independently confirmed; all287 local metadata records
 retained, unrelated work preserved. Compatibility30, board/docs/render/whitespace
 pass. Credential rotation/retirement is maintainer-confirmed. Local delivery only;
 no user data deleted, no provider calls, no publication or acceptance inferred.
+
+## SEC-004 publication authorized
+
+execution_phase: implementation; validation_state: not_ready.
+All pending intentional workspace changes adopted under the current instruction;
+Finder state and local audit outputs excluded. Push/PR/manual merge/remote-delete
+authorized after aggregate checks. Live scanning is not authorized.
