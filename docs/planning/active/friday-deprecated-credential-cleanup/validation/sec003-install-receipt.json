@@ -1,0 +1,16 @@
+{
+  "base": "53df04a94d1085aa4f3b6de8dba0db254879c29c",
+  "installed_candidate": "494febf7d3eb128ec26b9f777428324cd939ce8e",
+  "local_memory_files_preserved": 287,
+  "verified_metadata": [
+    "inode",
+    "size",
+    "mtime_ns",
+    "mode"
+  ],
+  "unrelated_paths_preserved": 18,
+  "tracked_memory_files": 0,
+  "memory_folder_ignored": true,
+  "publication": "none",
+  "working_tree_deletion_operations": 0
+}

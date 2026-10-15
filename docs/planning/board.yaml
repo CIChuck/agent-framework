@@ -514,13 +514,14 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: SEC-003 independent review; local-file preservation required; credential rotation maintainer-confirmed
+  next_gate: SEC-003 verified; maintainer acceptance and local delivery decision; credential rotation/retirement confirmed
   delivery_state: local
   branch: security/remove-deprecated-credentials
   depends_on: []
   validation:
   - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md: VERIFIED bounded two-artifact removal only; provider actions pending'
   - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/report.md: VERIFIED exact command-fixture migration only; pre-existing docs debt recorded'
+  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/report.md: VERIFIED exact untracking and local-file preservation; all bounded checks pass'
   approved_by: Chuck Russell
   approved_at: '2026-10-14'
 events:
@@ -1870,3 +1871,10 @@ events:
   action: authorized untracking with local-data retention
   note: Let's do that. Track memory and add it to .gitignore. I'll Remove it at my leisure.
   evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority-sec003.json
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T01:31:23+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded verified index-only retirement with local data retained
+  note: 287 files untracked and ignored; local files and unrelated work retained; credentials retired per maintainer; no publication
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/report.md

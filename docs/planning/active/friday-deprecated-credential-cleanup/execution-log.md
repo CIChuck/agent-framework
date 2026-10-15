@@ -81,3 +81,12 @@ Maintainer has now confirmed credential rotation and retirement. No issuer calls
 
 SEC-003 isolated index removal prepared: 287 entries retired, no working-tree
 removal operation. execution_phase: validation; validation_state: pending.
+
+## SEC-003 independently verified and installed locally
+
+execution_phase: closeout; validation_state: verified.
+Fresh full-unit review VERIFIED at 494febf7. Exact287 tracking removals and
+whole-folder ignore independently confirmed; all287 local metadata records
+retained, unrelated work preserved. Compatibility30, board/docs/render/whitespace
+pass. Credential rotation/retirement is maintainer-confirmed. Local delivery only;
+no user data deleted, no provider calls, no publication or acceptance inferred.

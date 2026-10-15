@@ -1,39 +1,25 @@
 # Deprecated credential-bearing artifact removal
 
-Status: started. Implementation authority: granted for the bounded repository-removal unit.
-execution_phase: validation; validation_state: pending.
+Status: started. Implementation authority: granted for authorized bounded units.
+execution_phase: closeout; validation_state: verified.
 
-Chuck Russell requested deletion of the deprecated credential-bearing files and
-revocation/replacement of previously used keys. The exact statement and four-path
-construction scope are in [authority.json](authority.json) and
-[CD-SEC-001](directives/CD-SEC-001-remove-deprecated-credential-artifacts.md).
+Current branch: security/remove-deprecated-credentials; delivery: local only.
 
-The active compatibility suite now uses its existing sanitized fixture as the
-option-shape baseline. The comparison between that fixture and the retiring
-original was removed. The current
-Chat application and shipped examples remain unchanged. The deprecated standalone
-script's default config is intentionally retired under the maintainer's direction.
+- SEC-001: two credential-bearing artifacts retired and config compatibility
+  reference migrated. [Review](validation/VAL-SEC-001/report.md). Original review
+  bytes preserved alongside the corrected link presentation.
+- SEC-002: command parity uses an independent frozen 52-name fixture.
+  [Review](validation/sec002-review/report.md).
+- SEC-003: all 287 deprecated integration memory files untracked; the whole folder
+  is ignored and every local file retained. [Review](validation/sec003-review/report.md).
 
-The normal board next command still selects queued Langfuse. This explicit current
-maintainer security instruction selects this bounded task without changing any
-other task's priority or implementation authority.
+Credential rotation and old-key retirement are [maintainer-confirmed](credential-rotation-confirmation.json).
+No issuer-side checks were performed. Historical credential copies and additional
+tracked artifacts outside the deprecated subtree were not rewritten or sanitized.
 
-Credential revocation and replacement are a separate external work unit. No
-provider-management sessions or account identifiers are available. The maintainer has confirmed rotation and retirement; see
-[confirmation](credential-rotation-confirmation.json). No issuer-side validation
-was performed. History rewriting and public delivery are outside this unit.
+The current user instructions selected these bounded security units without
+changing other tasks' priorities or granting Langfuse implementation authority.
+Original authorities/directives and prior evidence remain retained in this packet.
 
-Bounded removal independently VERIFIED at a65f1366.
-Next gate: provider rotation and old-key invalidation confirmation, then maintainer
-acceptance. Local commit only; no publication. See [review](validation/VAL-SEC-001/report.md).
-
-SEC-002: current explicit instruction authorizes replacing the deprecated command
-reference under [CD-SEC-002](directives/CD-SEC-002-retire-legacy-command-reference.md).
-SEC-002 independently VERIFIED at e5a3066c. Both command parity tests use the
-frozen fixture and pass with the deprecated folder unavailable in the private
-checkout. See [review](validation/sec002-review/report.md).
-Next gate: confirm provider rotation/revocation; maintainer acceptance and local
-delivery remain separate. No deprecated directory was deleted.
-
-SEC-003: authorized Git untracking and whole-folder ignore rule; all local files
-must remain intact. Next gate: SEC-003 independent review.
+Next gate: maintainer acceptance and delivery decision for the bounded cleanup.
+No local data deletion, push, merge or publication is inferred.

@@ -1,0 +1,81 @@
+{
+  "checked_at": "2026-10-15T01:29:52.313412+00:00",
+  "base": "53df04a94d1085aa4f3b6de8dba0db254879c29c",
+  "candidate": "494febf7d3eb128ec26b9f777428324cd939ce8e",
+  "authority_sha256": "4493d3d312ae5082cd1a7daf0c0db7f7139e1b59ecf25ead5de9ad7837b4a100",
+  "directive_sha256": "6814bf5fcd2125c4c133a2fefb31bc8df6d014c0b786f60141d93279a092648d",
+  "gitignore_sha256": "acfd352bf2ea81e8bd6459f95e1460c868406bbc7d763e101ca435f98f9cfaef",
+  "exact_index_removals": 287,
+  "other_changes": [
+    [
+      "M",
+      ".gitignore"
+    ],
+    [
+      "M",
+      "docs/planning/README.md"
+    ],
+    [
+      "M",
+      "docs/planning/active/friday-deprecated-credential-cleanup/README.md"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/authority-sec003.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/credential-rotation-confirmation.json"
+    ],
+    [
+      "A",
+      "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-003-untrack-deprecated-memory.md"
+    ],
+    [
+      "M",
+      "docs/planning/active/friday-deprecated-credential-cleanup/execution-log.md"
+    ],
+    [
+      "M",
+      "docs/planning/board.yaml"
+    ]
+  ],
+  "local_metadata_preserved": 287,
+  "unrelated_hashes_preserved": 16,
+  "intentional_board_readme_overlays_preserved": true,
+  "builder_receipts_verified": [
+    {
+      "label": "compat-without-legacy",
+      "receipt_sha256": "918a2d318916d31e47facdec330deab2b6aa399d87e16cbe86c83c68da415c00",
+      "exit_code": 0,
+      "stdout": "..............................                                           [100%]\n30 passed in 3.60s\n"
+    },
+    {
+      "label": "board",
+      "receipt_sha256": "b017986981d3e5f616eef3f62f5e0eda433d587725531975a72603e55c2cebd7",
+      "exit_code": 0,
+      "stdout": "Development board validation passed: 27 tasks\n"
+    },
+    {
+      "label": "docs",
+      "receipt_sha256": "e959c5c940756dd8bfb8c851683eb9218f9c6bf03fad4ddc27b6259238f16e13",
+      "exit_code": 0,
+      "stdout": "Documentation lifecycle validation passed: 585 Markdown files checked\n"
+    },
+    {
+      "label": "render",
+      "receipt_sha256": "7b44426e83645bf0e6f4dfae3276d753aaecd2c8256f3fa58facb3ccb8bc396e",
+      "exit_code": 0,
+      "stdout": "Planning dashboard is current\n"
+    },
+    {
+      "label": "whitespace",
+      "receipt_sha256": "7738d52c0138b8bf5e2befa31b6703b0ed4b288a768c1c6899ab5cfb0ab44d21",
+      "exit_code": 0,
+      "stdout": ""
+    }
+  ],
+  "candidate_clean": true,
+  "root_unrelated_dirty_expected": true,
+  "network_guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8"
+}
