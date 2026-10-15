@@ -1,6 +1,6 @@
 # Guide review and changes
 
-Status: initial review CHANGES_REQUESTED; bounded corrections applied; fresh validation pending.
+Status: final independent validation VERIFIED; ready for maintainer review.
 Review date: 2026-10-15. Framework basis: published0.1.0a3, source base123d9ed9.
 
 All25 original documents were inventoried by complete-file parsing: header,
@@ -102,3 +102,18 @@ operation as a stub. The [guarded probe](validation/remediation/probes.log)
 reproduces the existing required/manual union and unimplemented screenshot
 result; [scope evidence](validation/remediation/scope.json) proves other21
 guides and all code fences unchanged. A new candidate needs fresh review.
+
+## Final validation and evidence correction
+
+The [second review](validation/second-review/report.md) verified GUIDE-001/002
+and all guide checks, then identified GUIDE-003: a retained historical log had
+trailing spaces. [REM-GUIDE-002](directives/REM-GUIDE-002.md) corrects its readable
+representation while retaining original bytes as base64 JSON and pinning both
+hashes. No guide or example changed in this correction.
+
+The [final fresh-context review](validation/final-review/report.md) returns
+VERIFIED for candidate07e6e65b. It records delta and aggregate coverage, exact
+commands, inputs and limits. Both earlier reports remain immutable historical
+evidence; their decisions are superseded by this final result. Builder working-
+diff checks alone did not cover the committed evidence addition; the final gate
+checks the entire base123d9ed9..candidate range. See [closeout](closeout.md).

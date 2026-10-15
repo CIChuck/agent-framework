@@ -1,0 +1,51 @@
+[
+  {
+    "case": "required_manual_union",
+    "manual": [
+      "manual_tool"
+    ],
+    "preview": [
+      "required_tool",
+      "manual_tool"
+    ],
+    "selected": [
+      "required_tool",
+      "manual_tool"
+    ]
+  },
+  {
+    "case": "manual_replaces_previous",
+    "selected": [
+      "required_tool",
+      "optional_tool"
+    ]
+  },
+  {
+    "case": "dedup_and_clear",
+    "manual": []
+  },
+  {
+    "case": "count",
+    "rejection": "count_limit",
+    "manual_unchanged": true
+  },
+  {
+    "case": "tokens",
+    "rejection": "token_limit",
+    "manual_unchanged": true
+  },
+  {
+    "case": "unknown_manual",
+    "rejection": "unknown_tool",
+    "manual_unchanged": true
+  },
+  {
+    "case": "unknown_required",
+    "rejection": "unknown_tool",
+    "manual_unchanged": true
+  },
+  {
+    "case": "screenshot_stub_no_client",
+    "result": "Error: web_screenshot is not yet implemented. This feature requires a headless browser (e.g., Playwright)."
+  }
+]

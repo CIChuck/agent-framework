@@ -581,11 +581,13 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-guides-refresh/
-  next_gate: Guide findings resolved; GUIDE-003 evidence corrected; freeze and obtain fresh independent validation
+  next_gate: VERIFIED guides; maintainer review, completion/acceptance and separately requested source delivery
   delivery_state: local
   branch: docs/guides-refresh
   depends_on: []
-  validation: []
+  validation:
+  - docs/planning/active/friday-guides-refresh/validation/final-review/report.md
+  - docs/planning/active/friday-guides-refresh/review-and-changes.md
   approved_by: Chuck Russell
   approved_at: '2026-10-15'
 

@@ -1,0 +1,55 @@
+from pathlib import Path
+import base64,hashlib,json,re,subprocess
+W=Path('/private/tmp/friday-guides-refresh');O=Path('/private/tmp/friday-guides-evidence-independent-review')
+R=json.loads((O/'request.json').read_bytes()); P=W/'docs/planning/active/friday-guides-refresh'; V=P/'validation'
+def sha(b):return hashlib.sha256(b).hexdigest()
+def git(*args):return subprocess.check_output(['git',*args],cwd=W)
+def blob(rev,p):return git('show',rev+':'+str(p))
+def check(v):
+ if not v:raise RuntimeError('Independent audit requirement failed')
+def strip(b):return re.sub(rb'[ \t]+(?=\r?$)',b'',b,flags=re.M)
+check(git('rev-parse','HEAD').decode().strip()==R['candidate']);check(not git('status','--porcelain=v1'))
+authorities={p:{'expected':h,'actual':sha((W/p).read_bytes())} for p,h in R['authority_sha256'].items()}
+for p,h in R['authority_sha256'].items():check(sha((W/p).read_bytes())==h)
+extra_authority={str(p.relative_to(W)):sha(p.read_bytes()) for p in [P/'directives/REM-GUIDE-002.md']}
+a=json.loads((P/'authority.json').read_bytes());baseline={p:sha(blob(R['base'],p))==h for p,h in a['baseline_sha256'].items()};check(all(baseline.values()))
+check(sorted(R['scope'])==sorted(str(p.relative_to(W)) for p in (W/'docs/guides').glob('*.md')))
+guides=[]
+for p in R['scope']:
+ b=(W/p).read_bytes();old=blob(R['remediation_base'],p);fences=re.findall(rb'^```[^\n]*\n.*?^```\s*$',b,re.M|re.S)
+ check(b==old);guides.append({'path':p,'sha256':sha(b),'identical_to_second_review':True,'fences':len(fences),'fences_sha256':sha(b'\0'.join(fences))})
+retention={}
+for name,original_dir in [('initial-review','friday-guides-independent-review'),('second-review','friday-guides-final-independent-review')]:
+ d=V/name;m=json.loads((d/'retained-evidence.json').read_bytes());hashes={p:sha((d/p).read_bytes())==h for p,h in m['files'].items()};check(all(hashes.values()));check(sha((d/'report.md').read_bytes())==m['report_sha256'])
+ historical=Path('/private/tmp')/original_dir;provenance={}
+ for filename,record in m.get('provenance',{}).items():
+  encoded=json.loads((d/record['lossless_original']).read_bytes());raw=base64.b64decode(encoded['content'],validate=True);check(encoded['encoding']=='base64');check(encoded['original_name']==filename);check(sha(raw)==record['original_sha256']==encoded['original_sha256']);check(strip(raw)==(d/filename).read_bytes())
+  check(raw==(historical/filename).read_bytes())
+  if name=='initial-review':check(raw==blob(R['remediation_base'],str((d/filename).relative_to(W))))
+  provenance[filename]={'original_sha256':sha(raw),'bytes':len(raw),'decoded_matches_original_review_output':True,'display_only_trailing_ascii_whitespace_removed':True}
+ original_hashes={}
+ if 'original_files' in m:
+  original_manifest=json.loads(blob(R['remediation_base'],str((d/'retained-evidence.json').relative_to(W))))
+  check(m['original_files']==original_manifest['files'])
+  for p,h in m['original_files'].items():
+   raw=base64.b64decode(json.loads((d/m['provenance'][p]['lossless_original']).read_bytes())['content'],validate=True) if p in m.get('provenance',{}) else (d/p).read_bytes()
+   original_hashes[p]=sha(raw)==h;check(original_hashes[p])
+ # All retained reviewer-original files (excluding generated retention wrappers) reconcile with independent originals.
+ originals={}
+ for p in m['files']:
+  if p.endswith('.raw.json') or p=='replay.raw.json':continue
+  op='replay/results.json' if p in ['guide-checks.json','reviewer-checks.json'] else p[:-4] if p.endswith('.txt') and p not in ['diff-numstat.txt','guide-diff-structure.txt'] else p
+  if p in m.get('provenance',{}):continue
+  q=historical/op
+  check(q.is_file() or (_ for _ in ()).throw(RuntimeError(str(q))));originals[p]=q.read_bytes()==(d/p).read_bytes();check(originals[p])
+ retention[name]={'manifest_sha256':sha((d/'retained-evidence.json').read_bytes()),'report_sha256':m['report_sha256'],'all_file_hashes':hashes,'all_retained_originals_identical':originals,'original_file_manifest_preserved':original_hashes,'provenance':provenance}
+check((V/'initial-review/report.md').read_bytes()==blob(R['remediation_base'],str((V/'initial-review/report.md').relative_to(W))))
+changed=git('diff','--name-only',R['diff']).decode().splitlines();delta=git('diff','--name-only',R['remediation_diff']).decode().splitlines()
+check(all(p in R['scope'] or p in ['docs/planning/board.yaml','docs/planning/README.md'] or p.startswith(str(P.relative_to(W))+'/') for p in changed))
+check(all(p not in R['scope'] and (p in ['docs/planning/board.yaml','docs/planning/README.md'] or p.startswith(str(P.relative_to(W))+'/')) for p in delta))
+outline=(W/'docs/guides/OUTLINE.md').read_text();matches=re.findall(r'^### \[[^]]+\]\(([^)]+)\)\n(.*?)(?=^### |^## |\Z)',outline,re.M|re.S);outlinechecks={p:re.findall(r'^- (.+)$',b,re.M)==re.findall(r'^## (.+)$',(W/'docs/guides'/p).read_text(),re.M) for p,b in matches};check(len(outlinechecks)==19 and all(outlinechecks.values()))
+commands={}
+for name,args in [('aggregate-whitespace',['git','diff','--check',R['diff']]),('delta-whitespace',['git','diff','--check',R['remediation_diff']]),('working-whitespace',['git','diff','--check']),('staged-whitespace',['git','diff','--cached','--check'])]:
+ p=subprocess.run(args,cwd=W,capture_output=True);commands[name]={'argv':args,'exit':p.returncode,'stdout':p.stdout.decode(),'stderr':p.stderr.decode()};check(p.returncode==0)
+result={'candidate':R['candidate'],'base':R['base'],'remediation_base':R['remediation_base'],'request_sha256':sha((O/'request.json').read_bytes()),'authority':authorities,'authority_added':extra_authority,'all_authority_request_hashes_match':True,'baseline':baseline,'guide_comparison':guides,'retention':retention,'aggregate_changed_paths':changed,'delta_changed_paths':delta,'outline_headings_match':outlinechecks,'whitespace':commands,'initial_and_final_status':git('status','--porcelain=v1').decode()}
+(O/'audit.json').write_text(json.dumps(result,indent=2)+'\n');print('PASS authorities',len(R['authority_sha256']),'original-guide-hashes',len(baseline),'unchanged-guides',len(guides),'unchanged-fences',sum(g['fences'] for g in guides),'aggregate-files',len(changed),'delta-files',len(delta),'retained-hashes',sum(len(v['all_file_hashes']) for v in retention.values()),'decoded-originals',sum(len(v['provenance']) for v in retention.values()),'whitespace',len(commands))
