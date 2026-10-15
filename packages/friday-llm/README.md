@@ -1,13 +1,14 @@
 # Friday Framework LLM
 
 `friday-framework-llm` is Friday's LiteLLM-backed chat and embedding package.
-Version `0.1.0a2` adds provider-neutral reasoning and sampling contracts while
+Version `0.1.0a3` retains the provider-neutral reasoning and sampling contracts
+introduced in `0.1.0a2`, while
 keeping the `0.1.0a0` completion APIs compatible for one deprecation window.
 
 ## Install
 
 ```bash
-pip install friday-framework-llm==0.1.0a2
+pip install friday-framework-llm==0.1.0a3
 ```
 
 The import package is `friday_llm`. This alpha pins `litellm==1.94.1` because
@@ -139,7 +140,7 @@ grant Friday permission to persist or log reasoning.
 current signatures and return shapes. The legacy default still disables
 thinking and still supplies `temperature=0.7`.
 
-| Old input | `0.1.0a2` behavior | Migration |
+| Old input | `0.1.0a3` behavior | Migration |
 | --- | --- | --- |
 | `thinking_enabled` omitted | legacy disabled behavior | move new callers to `ReasoningMode.AUTO` or an explicit mode |
 | `thinking_enabled=False` | disabled plus `DeprecationWarning` | use `ReasoningConfig(mode="disabled")` |

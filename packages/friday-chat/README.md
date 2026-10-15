@@ -31,7 +31,7 @@ are deferred.
 ## Install
 
 ```bash
-pip install friday-chat==0.1.0a2
+pip install friday-chat==0.1.0a3
 ```
 
 ## Run
@@ -48,7 +48,7 @@ import friday_chat
 
 ## Model Library Configuration
 
-Friday Chat `0.1.0a2` uses one provider-independent model library for primary
+Friday Chat `0.1.0a3` uses one provider-independent model library for primary
 chat, extraction, passage routing, compaction, maintenance, embeddings, and
 smart-file processing. Copy both packaged examples into the same directory,
 rename the model library if desired, and keep its path relative to the runtime
