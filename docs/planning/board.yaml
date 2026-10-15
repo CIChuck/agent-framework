@@ -544,7 +544,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-alpha3-version-bump/
-  next_gate: Source bump VERIFIED; maintainer acceptance next; artifact release and publication separate
+  next_gate: Production publication authorized; correct stale release checker and verify install/artifact gates
   delivery_state: local
   branch: release/0.1.0a3
   depends_on: []
@@ -1963,3 +1963,10 @@ events:
   action: recorded independent source-version verification
   note: Candidate 8b85bd91 VERIFIED; 191 focused tests passed; external dependencies unchanged; local only
   evidence: docs/planning/active/friday-alpha3-version-bump/validation/report.md
+- task: friday-alpha3-version-bump
+  at: '2026-10-15T02:13:56.809934+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized production PyPI publication
+  note: publish this release to pypi
+  evidence: docs/planning/active/friday-alpha3-version-bump/publication-authority.json
