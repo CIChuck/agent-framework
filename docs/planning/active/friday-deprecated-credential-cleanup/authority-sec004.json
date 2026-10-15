@@ -27,7 +27,7 @@
     "workflows/audit_2_nginx.yaml": "aae448798edcb4f018355099370f4c7314a9007e1ebd02b602967fdf34aa4f2a"
   },
   "directive": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-004-workspace-publication.md",
-  "directive_sha256": "15cd0bd3969d2d7ad9337ea5fd71740a941b6bab3ec8fc9777b95fa3ba4a6931",
+  "directive_sha256": "7d2035d45bab547780e051b754dc0db6dbe8e53d3b2fd7b5f8257b93722c814d",
   "docker_bench": {
     "url": "https://github.com/docker/docker-bench-security.git",
     "commit": "154869da6418089decf7e1ab0cfca0e1cdfc5c49",
@@ -44,5 +44,6 @@
     "delete remote feature branch"
   ],
   "live_audits_authorized": false,
-  "maintainer_acceptance": "not inferred from publication instruction"
+  "maintainer_acceptance": "not inferred from publication instruction",
+  "necessary_fixture_adaptation": "packages/friday-chat/tests_chat/test_command_disposable_uat.py: clear inherited native required_tools when replacing the registry with synthetic echo"
 }
