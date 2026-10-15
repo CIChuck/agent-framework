@@ -1,0 +1,57 @@
+{
+  "initiative": "friday-readme-refresh",
+  "base_commit": "25bf721cdac21e6cb05bbcae79c6cdba3b1b2065",
+  "branch": "docs/readme-refresh",
+  "maintainer": "Chuck Russell",
+  "instructions": [
+    "Review Each package's README.md file Including the repo home README.md file",
+    "Both audiences equally",
+    "Yes\u2014review and rewrite all READMEs"
+  ],
+  "scope": [
+    "README.md",
+    "packages/friday-agent/README.md",
+    "packages/friday-chat/README.md",
+    "packages/friday-cli/README.md",
+    "packages/friday-core/README.md",
+    "packages/friday-finance/README.md",
+    "packages/friday-llm/README.md",
+    "packages/friday-mcp/README.md",
+    "packages/friday-memory/README.md",
+    "packages/friday-moltbook/README.md",
+    "packages/friday-optimization/README.md",
+    "packages/friday-runtime/README.md",
+    "packages/friday-sandbox/README.md",
+    "packages/friday-speech/README.md",
+    "packages/friday-telemetry/README.md",
+    "packages/friday-tools/README.md",
+    "packages/friday-transcript/README.md"
+  ],
+  "baseline_sha256": {
+    "README.md": "d70b55e5dd9eea3dd91cafbaec249a72c157bc2e1e0b027df8806e029bd6c478",
+    "packages/friday-agent/README.md": "5accd8693b5f09e99d8eed9802e695ca9409f8b739781742727e20de1300271b",
+    "packages/friday-chat/README.md": "08dcf6054a8d1e9f1462fd6b7f79f44509a8cbfded9b22f41cd937c70fd96997",
+    "packages/friday-cli/README.md": "8a1f678237d7e46b84961693d9e3fea46da0f62b966bd3f79f42e0ecfe7a58f0",
+    "packages/friday-core/README.md": "d8636871cb9ff52864cdeaf024b5613c74e0891700b2d681e84983d58cf49188",
+    "packages/friday-finance/README.md": "8814fdfcebd614207bb26fe3eef0eba74475f83e81747b9036d1dcff29fb842e",
+    "packages/friday-llm/README.md": "c8772a4bbb97edaa5d9d9fb75bb733aeb80fec1b6ca2180fd894a0400b03e2f3",
+    "packages/friday-mcp/README.md": "3fe8cee8a9bb43a8d438b9cd4245be4fd18b350d8b9ed95bb98eb1e6a5e078a0",
+    "packages/friday-memory/README.md": "cbe98a8709514e0bce56f0ce51c5b37abcdf17e87fec2130b7fc92ede860d370",
+    "packages/friday-moltbook/README.md": "696bdfe02d5fbc2abf847ff825f1cadc294a7772c3982c09c5bdbc5c57d0ae7b",
+    "packages/friday-optimization/README.md": "feedaced324ec257968277130baa89a33a76fb69b2cce8e7a30e13f48aac5691",
+    "packages/friday-runtime/README.md": "d77889ced295841b991e162caec0a085788c6ad298532f0e5c7f3f3794d7823b",
+    "packages/friday-sandbox/README.md": "ce4d8c79b295ac4dfabc4bb294e920ddc546cc5aa159af82c2b384a47105c665",
+    "packages/friday-speech/README.md": "de77476a08573d8322f8f85a8323d932fe6c3ba07b09ff09181d2d22a85b1e9b",
+    "packages/friday-telemetry/README.md": "f5462f5784082faec1d25ade197aaf1844d09335018dfce78f5b28b4b09466c4",
+    "packages/friday-tools/README.md": "0f3cdb83cf9186096974dd05611bed3199e0f4f5221512e7be9f08d3e5dbde3c",
+    "packages/friday-transcript/README.md": "8d72cddeb0940be558e077ce65c7fe9d3d88178c486e7a43bd5a081776bd13d4"
+  },
+  "non_goals": [
+    "No source/API/dependency/version changes",
+    "No PyPI upload or artifact rebuild",
+    "No source push, PR or merge",
+    "Do not rewrite historical plans or nested examples README"
+  ],
+  "directive": "docs/planning/active/friday-readme-refresh/directives/CD-DOC-001-readme-refresh.md",
+  "directive_sha256": "73a398a1ac03290817323c20fd06f4e7e831562ab1c5b6de8f045db023984f5c"
+}
