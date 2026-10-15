@@ -2,6 +2,8 @@ VERIFIED
 
 # VAL-SEC-001 — independent full work-unit review
 
+Link-only correction: repository-relative source links replace temporary checkout paths. The original review bytes are preserved in [report.original.txt](report.original.txt); prior hashes refer to that original. See [correction provenance](link-correction.json). Review findings, candidate, and verdict are unchanged.
+
 ## Candidate and review identity
 
 - Initiative: `friday-deprecated-credential-cleanup`; work unit: `SEC-001`.
@@ -18,7 +20,7 @@ VERIFIED
 
 The current authority manifest records the original removal instruction and final maintainer direction verbatim: “yes. don't waste time.  The plan is to rotate the keys And disable the old keys.” The controlling directive reconciles the bounded four-path removal with the 54 additional disclosed tracked copies. Its latest criterion 3 governs; the earlier repository-wide absence criterion and deferred expansion proposal do not enlarge this unit.
 
-Sources: [docs/planning/active/friday-deprecated-credential-cleanup/authority.json](/private/tmp/friday-mcp-upgrade/credential-cleanup/work/docs/planning/active/friday-deprecated-credential-cleanup/authority.json); [docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md](/private/tmp/friday-mcp-upgrade/credential-cleanup/work/docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md:13); [AGENTS.md](/private/tmp/friday-mcp-upgrade/credential-cleanup/work/AGENTS.md:46); [docs/reference/policies/independent-validation-policy.md](/private/tmp/friday-mcp-upgrade/credential-cleanup/work/docs/reference/policies/independent-validation-policy.md); [docs/reference/policies/repository-engineering-policy.md](/private/tmp/friday-mcp-upgrade/credential-cleanup/work/docs/reference/policies/repository-engineering-policy.md); [docs/guides/security-configuration-guidelines.md](/private/tmp/friday-mcp-upgrade/credential-cleanup/work/docs/guides/security-configuration-guidelines.md).
+Sources: [docs/planning/active/friday-deprecated-credential-cleanup/authority.json](../../authority.json); [docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md](../../directives/CD-SEC-001-remove-deprecated-credential-artifacts.md) (line 13); [AGENTS.md](../../../../../../AGENTS.md) (line 46); [docs/reference/policies/independent-validation-policy.md](../../../../../reference/policies/independent-validation-policy.md); [docs/reference/policies/repository-engineering-policy.md](../../../../../reference/policies/repository-engineering-policy.md); [docs/guides/security-configuration-guidelines.md](../../../../../guides/security-configuration-guidelines.md).
 
 Verified SHA256 pins:
 

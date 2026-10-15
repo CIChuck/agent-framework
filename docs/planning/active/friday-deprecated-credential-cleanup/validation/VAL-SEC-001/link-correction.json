@@ -1,0 +1,66 @@
+{
+  "maintainer": "Chuck Russell",
+  "maintainer_instruction": "can we fix the broken links? what are they referencing?",
+  "date": "2026-10-14",
+  "scope": "Documentation-only correction of six source-navigation links in one review report; two previously broken colon-line links, four nonportable temporary-checkout links",
+  "lightweight_change_exemption": "Explicit maintainer request authorizes this documentation-only link repair; no runtime behavior, code, tests, authority, review verdict or source changes",
+  "base_commit": "24fe60670fa714501be4509ffc15d25eb9083a11",
+  "original_report_sha256": "bd623d74b8a98e4a876a3c667dc51aadaa00897bd67a0d54a851dafa3e59aebf",
+  "preserved_original": "report.original.txt",
+  "corrected_report_sha256": "33fe3b3649b5a2da8017ff986b8a0003d6d392316662c69a4db2b0aee3567a3f",
+  "replacements": [
+    {
+      "original_target": "docs/planning/active/friday-deprecated-credential-cleanup/authority.json",
+      "repository_target": "docs/planning/active/friday-deprecated-credential-cleanup/authority.json",
+      "corrected_target": "../../authority.json",
+      "original_line_reference": null
+    },
+    {
+      "original_target": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md:13",
+      "repository_target": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-001-remove-deprecated-credential-artifacts.md",
+      "corrected_target": "../../directives/CD-SEC-001-remove-deprecated-credential-artifacts.md",
+      "original_line_reference": 13
+    },
+    {
+      "original_target": "AGENTS.md:46",
+      "repository_target": "AGENTS.md",
+      "corrected_target": "../../../../../../AGENTS.md",
+      "original_line_reference": 46
+    },
+    {
+      "original_target": "docs/reference/policies/independent-validation-policy.md",
+      "repository_target": "docs/reference/policies/independent-validation-policy.md",
+      "corrected_target": "../../../../../reference/policies/independent-validation-policy.md",
+      "original_line_reference": null
+    },
+    {
+      "original_target": "docs/reference/policies/repository-engineering-policy.md",
+      "repository_target": "docs/reference/policies/repository-engineering-policy.md",
+      "corrected_target": "../../../../../reference/policies/repository-engineering-policy.md",
+      "original_line_reference": null
+    },
+    {
+      "original_target": "docs/guides/security-configuration-guidelines.md",
+      "repository_target": "docs/guides/security-configuration-guidelines.md",
+      "corrected_target": "../../../../../guides/security-configuration-guidelines.md",
+      "original_line_reference": null
+    }
+  ],
+  "verification": [
+    "all six repository targets exist",
+    "preserved original hash matches prior review records",
+    "guarded documentation lifecycle validation",
+    "git diff --check"
+  ],
+  "historical_records": "Prior reports/receipts remain unchanged; their original-report hashes refer to report.original.txt and pre-correction Git revisions",
+  "verification_results": {
+    "documentation_lifecycle": {
+      "exit_code": 0,
+      "markdown_files_checked": 584
+    },
+    "whitespace": {
+      "exit_code": 0
+    },
+    "original_hash_preserved": true
+  }
+}
