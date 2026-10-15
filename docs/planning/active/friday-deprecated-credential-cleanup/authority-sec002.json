@@ -1,0 +1,14 @@
+{
+  "initiative": "friday-deprecated-credential-cleanup",
+  "work_unit": "SEC-002",
+  "base_commit": "85f14f249f5fffaf73659aec2a344efa05743c08",
+  "branch": "security/remove-deprecated-credentials",
+  "maintainer": "Chuck Russell",
+  "maintainer_statement": "replace the two tests\u2019 legacy command reference for that folder. it is fully deprecated",
+  "product_paths": [
+    "packages/friday-chat/tests_chat/compat/test_command_surface_parity.py",
+    "packages/friday-chat/tests_chat/compat/fixtures/legacy_command_names.yaml"
+  ],
+  "directive": "docs/planning/active/friday-deprecated-credential-cleanup/directives/CD-SEC-002-retire-legacy-command-reference.md",
+  "directive_sha256": "a5ea2b13ab0727563fc0cd11c4fc1153a86a8330d4741b56665baedc4c4005b9"
+}

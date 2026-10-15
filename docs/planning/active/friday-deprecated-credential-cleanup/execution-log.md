@@ -44,3 +44,9 @@ Fresh read-only full unit review VAL-SEC-001: VERIFIED at a65f1366.
 Original bounded removal installed on local security/remove-deprecated-credentials
 branch, preserving all unrelated changes. Whole initiative remains started;
 provider rotation and disabling old keys pending confirmation. No publication.
+
+## SEC-002 authorized
+
+execution_phase: implementation; validation_state: not_ready.
+Current instruction selects the two-file test-reference migration; frozen
+52-command fixture, no deprecated-folder deletion and no runtime changes.

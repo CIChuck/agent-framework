@@ -514,7 +514,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: Confirm provider rotation and old-key invalidation; maintainer acceptance; local delivery only
+  next_gate: SEC-002 command-reference migration and independent review; provider rotation/revocation pending
   delivery_state: local
   branch: security/remove-deprecated-credentials
   depends_on: []
@@ -1848,3 +1848,10 @@ events:
   action: recorded independent bounded removal verification
   note: Local deletion verified; provider rotation/revocation and broader cleanup remain pending; no push
   evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T01:05:30+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized SEC-002 command-reference migration
+  note: replace the two tests’ legacy command reference for that folder. it is fully deprecated
+  evidence: docs/planning/active/friday-deprecated-credential-cleanup/authority-sec002.json
