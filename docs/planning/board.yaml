@@ -598,7 +598,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-chat-quick-start/
-  next_gate: VERIFIED quick start; maintainer review, completion/acceptance and separately requested delivery
+  next_gate: Validate self-contained PyPI introduction correction; examples unchanged
   delivery_state: local
   branch: docs/chat-quick-start
   depends_on: []

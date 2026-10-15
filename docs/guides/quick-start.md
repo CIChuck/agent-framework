@@ -19,8 +19,10 @@ path, then follow the shared configuration steps:
 | **UC1** | You cloned this repository and want the complete local workspace | [Install from a clone](#uc1-install-from-a-clone) |
 | **UC2** | You want the published framework in an existing Python environment/project | [Install from PyPI](#uc2-install-from-pypi) |
 
-Both paths finish with the same three `.yml` files and a Bash launcher modeled
-on [`scripts/run-friday-chat-example.sh`](../../scripts/run-friday-chat-example.sh).
+Both paths create the same three `.yml` files and the
+[Bash launcher provided below](#save-run-friday-chatsh). This guide includes the
+complete configuration and script contents; PyPI users can follow it without
+cloning the repository.
 The maintained interactive executable is **`friday-chat`**, supplied by the
 `friday-chat` distribution and imported as `friday_chat`. The separate `friday`
 entry point in `friday-framework-cli` is a placeholder in this release; use
@@ -90,7 +92,8 @@ installation in that environment. See [uv workspace behavior](https://docs.astra
 
 Keep the terminal at the repository root for the next step. The client files
 will live inside `.friday/chat-client/`, which this repository already ignores.
-The existing repository example launcher points to broad example configuration
+The repository's [example launcher](../../scripts/run-friday-chat-example.sh)
+points to broad example configuration
 and a machine-local environment file. It is useful as a pattern; the dedicated
 launcher below uses your own files and avoids editing distributed templates.
 

@@ -17,3 +17,8 @@ for candidate6a83ad509b9f0cc43838e405a03610b16c74e7c1. Report retained unchanged
 Closeout adds review evidence/process metadata only; guide/index bytes remain
 unchanged. Maintainer acceptance and external delivery remain separate.
 execution_phase: closeout; validation_state: verified.
+
+2026-10-15: Maintainer identified a repository-only launcher reference in the
+shared introduction. Moved that reference into UC1 and linked the shared intro
+to the complete launcher included in this guide. No examples/code changed.
+execution_phase: validation; validation_state: pending.
