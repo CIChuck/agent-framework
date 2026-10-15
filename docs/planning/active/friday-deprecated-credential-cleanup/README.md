@@ -1,7 +1,7 @@
 # Deprecated credential-bearing artifact removal
 
 Status: started. Implementation authority: granted for the bounded repository-removal unit.
-execution_phase: implementation; validation_state: not_ready.
+execution_phase: validation; validation_state: pending.
 
 Chuck Russell requested deletion of the deprecated credential-bearing files and
 revocation/replacement of previously used keys. The exact statement and four-path
@@ -36,4 +36,4 @@ Next gate: confirm provider rotation/revocation; maintainer acceptance and local
 delivery remain separate. No deprecated directory was deleted.
 
 SEC-003: authorized Git untracking and whole-folder ignore rule; all local files
-must remain intact. Next gate: SEC-003 verification and independent review.
+must remain intact. Next gate: SEC-003 independent review.

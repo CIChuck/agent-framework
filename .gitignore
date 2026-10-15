@@ -24,5 +24,5 @@ scripts/source-friday-chat-example-env.sh
 scripts/pypi.sh
 /docs/reference/PyPI-Recovery-Codes-cichuck-2026-07-20T15_36_49.709334.txt
 
-# Retired configuration contained provider credentials.
-/tests/integration/memory/config.yaml
+# Deprecated integration app and local data; retain only outside Git tracking.
+/tests/integration/memory/

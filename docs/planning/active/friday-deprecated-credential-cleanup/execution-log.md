@@ -78,3 +78,6 @@ report. Folder remains untouched; provider actions pending; local delivery only.
 execution_phase: implementation; validation_state: not_ready.
 Untrack and ignore exact deprecated subtree, retain all main-checkout local files.
 Maintainer has now confirmed credential rotation and retirement. No issuer calls.
+
+SEC-003 isolated index removal prepared: 287 entries retired, no working-tree
+removal operation. execution_phase: validation; validation_state: pending.

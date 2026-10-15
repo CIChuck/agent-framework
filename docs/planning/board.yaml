@@ -514,7 +514,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: SEC-003 untracking verification and independent review; credential rotation/retirement maintainer-confirmed
+  next_gate: SEC-003 independent review; local-file preservation required; credential rotation maintainer-confirmed
   delivery_state: local
   branch: security/remove-deprecated-credentials
   depends_on: []
