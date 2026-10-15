@@ -1,0 +1,56 @@
+{
+  "all_25_guides_unchanged_from": "6fb53e00877214d813656b204f950c8a0b725d05",
+  "retained_hashes_and_decoded_originals": "pass",
+  "commands": [
+    {
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "render"
+      ],
+      "exit_code": 0,
+      "stdout": "Rendered docs/planning/README.md\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stdout": "Development board validation passed: 31 tasks\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Documentation lifecycle validation passed: 614 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

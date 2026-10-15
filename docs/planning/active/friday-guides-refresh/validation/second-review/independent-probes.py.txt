@@ -1,0 +1,41 @@
+import asyncio,json
+from pathlib import Path
+from unittest.mock import patch
+from friday_chat.config import FridayChatConfig
+from friday_chat.tools.schemas import ToolDefinition
+from friday_chat.tools.selection import ToolSelectionState,ToolSelectionError
+from friday_tools.web.fetch import WebScreenshotTool
+
+out=[]
+def config(required=('required_tool',),max_tools=5,ratio=.2):
+ return FridayChatConfig.model_validate({'llm':{'model':'openai/offline-demo'},'tools':{'enabled':True,'context':{'required_tools':list(required),'max_tools':max_tools,'max_budget_ratio':ratio}}})
+def definition(name):return ToolDefinition(name=name,description='Synthetic offline operation',input_schema={'type':'object','properties':{}})
+tools=tuple(definition(n) for n in ('required_tool','manual_tool','optional_tool'))
+s=ToolSelectionState(config(),tools)
+preview=s.inject_manual(['manual_tool']);turn=s.select_for_turn('optional_tool synthetic')
+assert s.manual_names==('manual_tool',)
+assert preview.selected_names==('required_tool','manual_tool')
+assert tuple(t.name for t in turn.definitions)==('required_tool','manual_tool')
+out.append({'case':'required_manual_union','manual':s.manual_names,'preview':preview.selected_names,'selected':tuple(t.name for t in turn.definitions)})
+s.inject_manual(['optional_tool'])
+assert tuple(t.name for t in s.select_for_turn('synthetic').definitions)==('required_tool','optional_tool')
+out.append({'case':'manual_replaces_previous','selected':tuple(t.name for t in s.select_for_turn('synthetic').definitions)})
+s.inject_manual(['required_tool','required_tool'])
+assert tuple(t.name for t in s.select_for_turn('synthetic').definitions)==('required_tool',)
+assert s.clear_manual()
+assert s.manual_names == () and s.mode.value == "automatic"
+assert 'required_tool' in tuple(t.name for t in s.select_for_turn('synthetic').definitions)
+out.append({'case':'dedup_and_clear','manual':s.manual_names})
+for label,cfg,names in [('count',config(max_tools=1),['manual_tool']),('tokens',config(ratio=0),['manual_tool']),('unknown_manual',config(),['missing_tool']),('unknown_required',config(required=('missing_tool',)),['manual_tool'])]:
+ state=ToolSelectionState(cfg,tools)
+ try:state.inject_manual(names)
+ except ToolSelectionError as e:
+  assert state.manual_names == () and state.mode.value == "automatic"
+  out.append({'case':label,'rejection':e.reason.value,'manual_unchanged':True})
+ else:raise AssertionError(label+' unexpectedly admitted')
+# An inert URL cannot be fetched: both HTTP clients reject construction.
+with patch('httpx.AsyncClient',side_effect=AssertionError('HTTP client must not be created')),patch('httpx.Client',side_effect=AssertionError('HTTP client must not be created')):
+ result=asyncio.run(WebScreenshotTool().execute(url='https://example.invalid'))
+assert result.startswith('Error:') and 'not yet implemented' in result
+out.append({'case':'screenshot_stub_no_client','result':result})
+print(json.dumps(out,indent=2))

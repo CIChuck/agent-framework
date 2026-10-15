@@ -14,8 +14,32 @@
     "independent-contract-probes.py.txt": "b1a1492fc06c97ed969c2d4ac574e9b14191d48ed54a84e316267884201add74",
     "static-review.py.txt": "0b0a2852e5e3691359e428c6a75ace350f1becd433f93d69521892bef5eda7ec",
     "documentation-lifecycle.log": "697fc6a2af71d327b86bcf51948f4be8032a9765f3e9b151ef685099aa5a9b88",
+    "replay.log": "d6e747484b83c51c20d8fe4cdef4c0d28463e70d0cb1fb2d2bfb89ab2402beca",
+    "static-review.json": "9c56ab3067bc82031f68848bef957bda9940f4038b8d38e0db8dd65b71cb2c75",
+    "board-render.log": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+    "replay.raw.json": "743936d82cb50cc685f07abdc3e60ceb766dc6b818ef16d51f47e3e2c69d6d29"
+  },
+  "original_files": {
+    "evidence.json": "481b0a11b1fc34f1d04001c3586d2aab8cca985d542f7b312d93aec154ead524",
+    "independent-contract-probes.log": "c22093437f13b84780739f955d9133e243653abba952d170e7adf991d46243ec",
+    "reproduce.sh.txt": "20352303f7fdfeb12dcffc89a15c10d130351b9ee29b6ce2d79f5c06ac7d6572",
+    "board-validate.log": "c13c382896bdfdacab5f77ed969a62f70b2a7a5654a148c0309e4c2175e91ad2",
+    "reviewer-checks.json": "c8b5fb7ac66fa432bb381658db0a782cc0137c0eb2a5a3aa5fd4fc2e77a87465",
+    "authority-check.json": "d70bd8408fadc20fe80da5505fb17d74981c5ec5e59877e8b302473c636afcee",
+    "static-review.log": "02bc5a31faacb35f5ed4af4e89b9fcb7b19595ccb1386a98fc6e5108206301e0",
+    "report.md": "f0149d02d0ab700730f4d685740e8877b8caee90564e582b225394b67f594088",
+    "independent-contract-probes.py.txt": "b1a1492fc06c97ed969c2d4ac574e9b14191d48ed54a84e316267884201add74",
+    "static-review.py.txt": "0b0a2852e5e3691359e428c6a75ace350f1becd433f93d69521892bef5eda7ec",
+    "documentation-lifecycle.log": "697fc6a2af71d327b86bcf51948f4be8032a9765f3e9b151ef685099aa5a9b88",
     "replay.log": "1c0e55f9863cdbdc32d313b5b4bc6352a18a4169aca086d865081c61aaa6b398",
     "static-review.json": "9c56ab3067bc82031f68848bef957bda9940f4038b8d38e0db8dd65b71cb2c75",
     "board-render.log": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33"
+  },
+  "provenance": {
+    "replay.log": {
+      "original_sha256": "1c0e55f9863cdbdc32d313b5b4bc6352a18a4169aca086d865081c61aaa6b398",
+      "lossless_original": "replay.raw.json",
+      "display_transformation": "Remove trailing ASCII spaces and tabs at line endings only; original bytes preserved in base64."
+    }
   }
 }

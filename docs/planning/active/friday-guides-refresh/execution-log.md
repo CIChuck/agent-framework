@@ -18,3 +18,10 @@ web_screenshot is an explicit stub. REM-GUIDE-001 records preauthorized bounded
 documentation corrections in exactly four guides. Guarded reviewer probes pass;
 other21 guides and all code fences remain byte-identical.
 execution_phase: validation; validation_state: pending.
+
+2026-10-15: Second review of6fb53e00 confirms all guide corrections and checks,
+except GUIDE-003: trailing spaces in a retained replay log fail the full committed
+range whitespace gate. Builder had checked only the working diff. REM-GUIDE-002
+corrects evidence representation, retains original bytes and historical reports,
+and requires aggregate range checking. All25 guides remain byte-identical.
+execution_phase: validation; validation_state: pending.

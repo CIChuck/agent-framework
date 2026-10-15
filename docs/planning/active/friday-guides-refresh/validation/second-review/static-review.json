@@ -1,0 +1,1335 @@
+{
+  "packages": [
+    {
+      "directory": "friday-agent",
+      "distribution": "friday-framework-agent",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev"
+      ],
+      "wheel_packages": [
+        "src/friday_agent"
+      ]
+    },
+    {
+      "directory": "friday-chat",
+      "distribution": "friday-chat",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev",
+        "finance",
+        "full",
+        "moltbook",
+        "sandbox",
+        "speech"
+      ],
+      "wheel_packages": [
+        "src/friday_chat"
+      ]
+    },
+    {
+      "directory": "friday-cli",
+      "distribution": "friday-framework-cli",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev"
+      ],
+      "wheel_packages": [
+        "src/friday_cli"
+      ]
+    },
+    {
+      "directory": "friday-core",
+      "distribution": "friday-framework-core",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev",
+        "telemetry"
+      ],
+      "wheel_packages": [
+        "src/friday_core"
+      ]
+    },
+    {
+      "directory": "friday-finance",
+      "distribution": "friday-framework-finance",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [],
+      "wheel_packages": [
+        "src/friday_finance"
+      ]
+    },
+    {
+      "directory": "friday-llm",
+      "distribution": "friday-framework-llm",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev",
+        "langfuse"
+      ],
+      "wheel_packages": [
+        "src/friday_llm"
+      ]
+    },
+    {
+      "directory": "friday-mcp",
+      "distribution": "friday-framework-mcp",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev",
+        "full",
+        "server"
+      ],
+      "wheel_packages": [
+        "src/friday_mcp"
+      ]
+    },
+    {
+      "directory": "friday-memory",
+      "distribution": "friday-framework-memory",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev"
+      ],
+      "wheel_packages": [
+        "src/friday_memory"
+      ]
+    },
+    {
+      "directory": "friday-moltbook",
+      "distribution": "friday-framework-moltbook",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev"
+      ],
+      "wheel_packages": [
+        "src/friday_moltbook"
+      ]
+    },
+    {
+      "directory": "friday-optimization",
+      "distribution": "friday-framework-optimization",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev"
+      ],
+      "wheel_packages": [
+        "src/friday_opt"
+      ]
+    },
+    {
+      "directory": "friday-runtime",
+      "distribution": "friday-framework-runtime",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev"
+      ],
+      "wheel_packages": [
+        "src/friday_runtime"
+      ]
+    },
+    {
+      "directory": "friday-sandbox",
+      "distribution": "friday-framework-sandbox",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev"
+      ],
+      "wheel_packages": [
+        "src/friday_sandbox"
+      ]
+    },
+    {
+      "directory": "friday-speech",
+      "distribution": "friday-framework-speech",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev",
+        "elevenlabs",
+        "picovoice"
+      ],
+      "wheel_packages": [
+        "src/friday_speech"
+      ]
+    },
+    {
+      "directory": "friday-telemetry",
+      "distribution": "friday-framework-telemetry",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev",
+        "otel"
+      ],
+      "wheel_packages": [
+        "src/friday_telemetry"
+      ]
+    },
+    {
+      "directory": "friday-tools",
+      "distribution": "friday-framework-tools",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "all-adapters",
+        "all-formats",
+        "anthropic",
+        "dev",
+        "documents",
+        "finance",
+        "langchain",
+        "llm",
+        "moltbook",
+        "openai",
+        "sandbox",
+        "spreadsheets"
+      ],
+      "wheel_packages": [
+        "src/friday_tools"
+      ]
+    },
+    {
+      "directory": "friday-transcript",
+      "distribution": "friday-framework-transcript",
+      "version": "0.1.0a3",
+      "installed_version": "0.1.0a3",
+      "python": ">=3.13.4",
+      "extras": [
+        "dev"
+      ],
+      "wheel_packages": [
+        "src/friday_transcript"
+      ]
+    }
+  ],
+  "source_comparison": [
+    {
+      "package": "friday-framework-agent",
+      "files_compared": 22,
+      "mismatches": []
+    },
+    {
+      "package": "friday-chat",
+      "files_compared": 60,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-cli",
+      "files_compared": 13,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-core",
+      "files_compared": 23,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-finance",
+      "files_compared": 12,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-llm",
+      "files_compared": 21,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-mcp",
+      "files_compared": 28,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-memory",
+      "files_compared": 75,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-moltbook",
+      "files_compared": 15,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-optimization",
+      "files_compared": 4,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-runtime",
+      "files_compared": 9,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-sandbox",
+      "files_compared": 9,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-speech",
+      "files_compared": 12,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-telemetry",
+      "files_compared": 26,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-tools",
+      "files_compared": 87,
+      "mismatches": []
+    },
+    {
+      "package": "friday-framework-transcript",
+      "files_compared": 13,
+      "mismatches": []
+    }
+  ],
+  "tool_inventory": [
+    {
+      "class": "ArchiveCreateTool",
+      "name": "archive_create",
+      "path": "packages/friday-tools/src/friday_tools/archive/archive.py",
+      "line": 15,
+      "stub": false
+    },
+    {
+      "class": "ArchiveExtractTool",
+      "name": "archive_extract",
+      "path": "packages/friday-tools/src/friday_tools/archive/archive.py",
+      "line": 59,
+      "stub": false
+    },
+    {
+      "class": "ArchiveListTool",
+      "name": "archive_list",
+      "path": "packages/friday-tools/src/friday_tools/archive/archive.py",
+      "line": 97,
+      "stub": false
+    },
+    {
+      "class": "CodeParseAstTool",
+      "name": "code_parse_ast",
+      "path": "packages/friday-tools/src/friday_tools/code/analyze.py",
+      "line": 17,
+      "stub": false
+    },
+    {
+      "class": "CodeExtractSymbolsTool",
+      "name": "code_extract_symbols",
+      "path": "packages/friday-tools/src/friday_tools/code/analyze.py",
+      "line": 55,
+      "stub": false
+    },
+    {
+      "class": "CodeFormatTool",
+      "name": "code_format",
+      "path": "packages/friday-tools/src/friday_tools/code/format.py",
+      "line": 17,
+      "stub": false
+    },
+    {
+      "class": "CodeLintTool",
+      "name": "code_lint",
+      "path": "packages/friday-tools/src/friday_tools/code/format.py",
+      "line": 88,
+      "stub": false
+    },
+    {
+      "class": "CodeGenerationTool",
+      "name": "code_generate",
+      "path": "packages/friday-tools/src/friday_tools/codegen/tool.py",
+      "line": 30,
+      "stub": false
+    },
+    {
+      "class": "CsvReadTool",
+      "name": "csv_read",
+      "path": "packages/friday-tools/src/friday_tools/data/csv_tools.py",
+      "line": 18,
+      "stub": false
+    },
+    {
+      "class": "CsvWriteTool",
+      "name": "csv_write",
+      "path": "packages/friday-tools/src/friday_tools/data/csv_tools.py",
+      "line": 94,
+      "stub": false
+    },
+    {
+      "class": "JsonReadTool",
+      "name": "json_read",
+      "path": "packages/friday-tools/src/friday_tools/data/json_tools.py",
+      "line": 19,
+      "stub": false
+    },
+    {
+      "class": "JsonWriteTool",
+      "name": "json_write",
+      "path": "packages/friday-tools/src/friday_tools/data/json_tools.py",
+      "line": 63,
+      "stub": false
+    },
+    {
+      "class": "JsonQueryTool",
+      "name": "json_query",
+      "path": "packages/friday-tools/src/friday_tools/data/json_tools.py",
+      "line": 114,
+      "stub": false
+    },
+    {
+      "class": "TomlReadTool",
+      "name": "toml_read",
+      "path": "packages/friday-tools/src/friday_tools/data/toml_tools.py",
+      "line": 27,
+      "stub": false
+    },
+    {
+      "class": "TomlWriteTool",
+      "name": "toml_write",
+      "path": "packages/friday-tools/src/friday_tools/data/toml_tools.py",
+      "line": 69,
+      "stub": false
+    },
+    {
+      "class": "XmlReadTool",
+      "name": "xml_read",
+      "path": "packages/friday-tools/src/friday_tools/data/xml_tools.py",
+      "line": 18,
+      "stub": false
+    },
+    {
+      "class": "XmlQueryTool",
+      "name": "xml_query",
+      "path": "packages/friday-tools/src/friday_tools/data/xml_tools.py",
+      "line": 71,
+      "stub": false
+    },
+    {
+      "class": "YamlReadTool",
+      "name": "yaml_read",
+      "path": "packages/friday-tools/src/friday_tools/data/yaml_tools.py",
+      "line": 19,
+      "stub": false
+    },
+    {
+      "class": "YamlWriteTool",
+      "name": "yaml_write",
+      "path": "packages/friday-tools/src/friday_tools/data/yaml_tools.py",
+      "line": 63,
+      "stub": false
+    },
+    {
+      "class": "Base64EncodeTool",
+      "name": "base64_encode",
+      "path": "packages/friday-tools/src/friday_tools/encoding/encoding.py",
+      "line": 15,
+      "stub": false
+    },
+    {
+      "class": "Base64DecodeTool",
+      "name": "base64_decode",
+      "path": "packages/friday-tools/src/friday_tools/encoding/encoding.py",
+      "line": 36,
+      "stub": false
+    },
+    {
+      "class": "HashComputeTool",
+      "name": "hash_compute",
+      "path": "packages/friday-tools/src/friday_tools/encoding/encoding.py",
+      "line": 60,
+      "stub": false
+    },
+    {
+      "class": "UuidGenerateTool",
+      "name": "uuid_generate",
+      "path": "packages/friday-tools/src/friday_tools/encoding/encoding.py",
+      "line": 91,
+      "stub": false
+    },
+    {
+      "class": "UrlEncodeTool",
+      "name": "url_encode",
+      "path": "packages/friday-tools/src/friday_tools/encoding/encoding.py",
+      "line": 112,
+      "stub": false
+    },
+    {
+      "class": "UrlDecodeTool",
+      "name": "url_decode",
+      "path": "packages/friday-tools/src/friday_tools/encoding/encoding.py",
+      "line": 133,
+      "stub": false
+    },
+    {
+      "class": "PythonExecuteTool",
+      "name": "python_execute",
+      "path": "packages/friday-tools/src/friday_tools/execution/python.py",
+      "line": 11,
+      "stub": false
+    },
+    {
+      "class": "UnsandboxedPythonExecuteTool",
+      "name": "python_execute_unsandboxed",
+      "path": "packages/friday-tools/src/friday_tools/execution/unsandboxed_python.py",
+      "line": 19,
+      "stub": false
+    },
+    {
+      "class": "DirectoryListTool",
+      "name": "directory_list",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/directory.py",
+      "line": 30,
+      "stub": false
+    },
+    {
+      "class": "DirectoryListToolLegacy",
+      "name": "directory_list",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/directory.py",
+      "line": 133,
+      "stub": false
+    },
+    {
+      "class": "DirectoryTreeTool",
+      "name": "directory_tree",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/directory.py",
+      "line": 228,
+      "stub": false
+    },
+    {
+      "class": "DirectoryCreateTool",
+      "name": "directory_create",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/directory.py",
+      "line": 342,
+      "stub": false
+    },
+    {
+      "class": "FileSearchTool",
+      "name": "file_search",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/directory.py",
+      "line": 396,
+      "stub": false
+    },
+    {
+      "class": "FileCopyTool",
+      "name": "file_copy",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/operations.py",
+      "line": 18,
+      "stub": false
+    },
+    {
+      "class": "FileMoveTool",
+      "name": "file_move",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/operations.py",
+      "line": 83,
+      "stub": false
+    },
+    {
+      "class": "FileDeleteTool",
+      "name": "file_delete",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/operations.py",
+      "line": 148,
+      "stub": false
+    },
+    {
+      "class": "FileChmodTool",
+      "name": "file_chmod",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/operations.py",
+      "line": 208,
+      "stub": false
+    },
+    {
+      "class": "FileReadTool",
+      "name": "file_read",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/read.py",
+      "line": 26,
+      "stub": false
+    },
+    {
+      "class": "FileReadLinesTool",
+      "name": "file_read_lines",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/read.py",
+      "line": 152,
+      "stub": false
+    },
+    {
+      "class": "FileInfoTool",
+      "name": "file_info",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/read.py",
+      "line": 228,
+      "stub": false
+    },
+    {
+      "class": "FileGrepTool",
+      "name": "file_grep",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/read.py",
+      "line": 306,
+      "stub": false
+    },
+    {
+      "class": "SmartFileReadTool",
+      "name": "smart_read",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/smart_read.py",
+      "line": 126,
+      "stub": false
+    },
+    {
+      "class": "FileWriteTool",
+      "name": "file_write",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/write.py",
+      "line": 21,
+      "stub": false
+    },
+    {
+      "class": "FileAppendTool",
+      "name": "file_append",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/write.py",
+      "line": 286,
+      "stub": false
+    },
+    {
+      "class": "FileInsertTool",
+      "name": "file_insert",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/write.py",
+      "line": 341,
+      "stub": false
+    },
+    {
+      "class": "FileReplaceTool",
+      "name": "file_replace",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/write.py",
+      "line": 415,
+      "stub": false
+    },
+    {
+      "class": "FilePatchTool",
+      "name": "file_patch",
+      "path": "packages/friday-tools/src/friday_tools/filesystem/write.py",
+      "line": 511,
+      "stub": false
+    },
+    {
+      "class": "GetMarketDataTool",
+      "name": "get_market_data",
+      "path": "packages/friday-tools/src/friday_tools/finance/massive.py",
+      "line": 46,
+      "stub": false
+    },
+    {
+      "class": "GetCryptoDataTool",
+      "name": "get_crypto_data",
+      "path": "packages/friday-tools/src/friday_tools/finance/massive.py",
+      "line": 136,
+      "stub": false
+    },
+    {
+      "class": "GetTechnicalAnalysisTool",
+      "name": "get_technical_analysis",
+      "path": "packages/friday-tools/src/friday_tools/finance/massive.py",
+      "line": 216,
+      "stub": false
+    },
+    {
+      "class": "GitBranchListTool",
+      "name": "git_branch_list",
+      "path": "packages/friday-tools/src/friday_tools/git/branches.py",
+      "line": 18,
+      "stub": false
+    },
+    {
+      "class": "GitBranchCreateTool",
+      "name": "git_branch_create",
+      "path": "packages/friday-tools/src/friday_tools/git/branches.py",
+      "line": 63,
+      "stub": false
+    },
+    {
+      "class": "GitCheckoutTool",
+      "name": "git_checkout",
+      "path": "packages/friday-tools/src/friday_tools/git/branches.py",
+      "line": 112,
+      "stub": false
+    },
+    {
+      "class": "GitAddTool",
+      "name": "git_add",
+      "path": "packages/friday-tools/src/friday_tools/git/staging.py",
+      "line": 18,
+      "stub": false
+    },
+    {
+      "class": "GitCommitTool",
+      "name": "git_commit",
+      "path": "packages/friday-tools/src/friday_tools/git/staging.py",
+      "line": 75,
+      "stub": false
+    },
+    {
+      "class": "GitStashTool",
+      "name": "git_stash",
+      "path": "packages/friday-tools/src/friday_tools/git/staging.py",
+      "line": 116,
+      "stub": false
+    },
+    {
+      "class": "GitStatusTool",
+      "name": "git_status",
+      "path": "packages/friday-tools/src/friday_tools/git/status.py",
+      "line": 18,
+      "stub": false
+    },
+    {
+      "class": "GitDiffTool",
+      "name": "git_diff",
+      "path": "packages/friday-tools/src/friday_tools/git/status.py",
+      "line": 59,
+      "stub": false
+    },
+    {
+      "class": "GitLogTool",
+      "name": "git_log",
+      "path": "packages/friday-tools/src/friday_tools/git/status.py",
+      "line": 111,
+      "stub": false
+    },
+    {
+      "class": "GitShowTool",
+      "name": "git_show",
+      "path": "packages/friday-tools/src/friday_tools/git/status.py",
+      "line": 160,
+      "stub": false
+    },
+    {
+      "class": "CalendarCreateEventTool",
+      "name": "calendar_create_event",
+      "path": "packages/friday-tools/src/friday_tools/integrations/calendar.py",
+      "line": 9,
+      "stub": true
+    },
+    {
+      "class": "CalendarListEventsTool",
+      "name": "calendar_list_events",
+      "path": "packages/friday-tools/src/friday_tools/integrations/calendar.py",
+      "line": 34,
+      "stub": true
+    },
+    {
+      "class": "DatabaseQueryTool",
+      "name": "database_query",
+      "path": "packages/friday-tools/src/friday_tools/integrations/database.py",
+      "line": 9,
+      "stub": true
+    },
+    {
+      "class": "EmailSendTool",
+      "name": "email_send",
+      "path": "packages/friday-tools/src/friday_tools/integrations/email.py",
+      "line": 9,
+      "stub": true
+    },
+    {
+      "class": "MoltbookRegisterAgentTool",
+      "name": "moltbook_register_agent",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 250,
+      "stub": false
+    },
+    {
+      "class": "MoltbookGetMyProfileTool",
+      "name": "moltbook_get_my_profile",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 257,
+      "stub": false
+    },
+    {
+      "class": "MoltbookGetClaimStatusTool",
+      "name": "moltbook_get_claim_status",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 264,
+      "stub": false
+    },
+    {
+      "class": "MoltbookUpdateProfileTool",
+      "name": "moltbook_update_profile",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 271,
+      "stub": false
+    },
+    {
+      "class": "MoltbookUploadAvatarTool",
+      "name": "moltbook_upload_avatar",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 278,
+      "stub": false
+    },
+    {
+      "class": "MoltbookDeleteAvatarTool",
+      "name": "moltbook_delete_avatar",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 285,
+      "stub": false
+    },
+    {
+      "class": "MoltbookGetAgentProfileTool",
+      "name": "moltbook_get_agent_profile",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 292,
+      "stub": false
+    },
+    {
+      "class": "MoltbookCreatePostTool",
+      "name": "moltbook_create_post",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 299,
+      "stub": false
+    },
+    {
+      "class": "MoltbookCreateLinkPostTool",
+      "name": "moltbook_create_link_post",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 306,
+      "stub": false
+    },
+    {
+      "class": "MoltbookGetFeedTool",
+      "name": "moltbook_get_feed",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 313,
+      "stub": false
+    },
+    {
+      "class": "MoltbookGetSubmoltPostsTool",
+      "name": "moltbook_get_submolt_posts",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 320,
+      "stub": false
+    },
+    {
+      "class": "MoltbookGetSubmoltFeedTool",
+      "name": "moltbook_get_submolt_feed",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 327,
+      "stub": false
+    },
+    {
+      "class": "MoltbookGetPostTool",
+      "name": "moltbook_get_post",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 334,
+      "stub": false
+    },
+    {
+      "class": "MoltbookDeletePostTool",
+      "name": "moltbook_delete_post",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 341,
+      "stub": false
+    },
+    {
+      "class": "MoltbookAddCommentTool",
+      "name": "moltbook_add_comment",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 348,
+      "stub": false
+    },
+    {
+      "class": "MoltbookReplyToCommentTool",
+      "name": "moltbook_reply_to_comment",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 355,
+      "stub": false
+    },
+    {
+      "class": "MoltbookGetCommentsTool",
+      "name": "moltbook_get_comments",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 362,
+      "stub": false
+    },
+    {
+      "class": "MoltbookUpvotePostTool",
+      "name": "moltbook_upvote_post",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 369,
+      "stub": false
+    },
+    {
+      "class": "MoltbookDownvotePostTool",
+      "name": "moltbook_downvote_post",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 376,
+      "stub": false
+    },
+    {
+      "class": "MoltbookUpvoteCommentTool",
+      "name": "moltbook_upvote_comment",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 383,
+      "stub": false
+    },
+    {
+      "class": "MoltbookCreateSubmoltTool",
+      "name": "moltbook_create_submolt",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 390,
+      "stub": false
+    },
+    {
+      "class": "MoltbookListSubmoltsTool",
+      "name": "moltbook_list_submolts",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 397,
+      "stub": false
+    },
+    {
+      "class": "MoltbookGetSubmoltTool",
+      "name": "moltbook_get_submolt",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 404,
+      "stub": false
+    },
+    {
+      "class": "MoltbookSubscribeSubmoltTool",
+      "name": "moltbook_subscribe_submolt",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 411,
+      "stub": false
+    },
+    {
+      "class": "MoltbookUnsubscribeSubmoltTool",
+      "name": "moltbook_unsubscribe_submolt",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 418,
+      "stub": false
+    },
+    {
+      "class": "MoltbookFollowAgentTool",
+      "name": "moltbook_follow_agent",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 425,
+      "stub": false
+    },
+    {
+      "class": "MoltbookUnfollowAgentTool",
+      "name": "moltbook_unfollow_agent",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 432,
+      "stub": false
+    },
+    {
+      "class": "MoltbookGetPersonalFeedTool",
+      "name": "moltbook_get_personal_feed",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 439,
+      "stub": false
+    },
+    {
+      "class": "MoltbookSearchTool",
+      "name": "moltbook_search",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 446,
+      "stub": false
+    },
+    {
+      "class": "MoltbookPinPostTool",
+      "name": "moltbook_pin_post",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 453,
+      "stub": false
+    },
+    {
+      "class": "MoltbookUnpinPostTool",
+      "name": "moltbook_unpin_post",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 460,
+      "stub": false
+    },
+    {
+      "class": "MoltbookUpdateSubmoltSettingsTool",
+      "name": "moltbook_update_submolt_settings",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 467,
+      "stub": false
+    },
+    {
+      "class": "MoltbookUploadSubmoltAvatarTool",
+      "name": "moltbook_upload_submolt_avatar",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 474,
+      "stub": false
+    },
+    {
+      "class": "MoltbookUploadSubmoltBannerTool",
+      "name": "moltbook_upload_submolt_banner",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 481,
+      "stub": false
+    },
+    {
+      "class": "MoltbookAddModeratorTool",
+      "name": "moltbook_add_moderator",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 488,
+      "stub": false
+    },
+    {
+      "class": "MoltbookRemoveModeratorTool",
+      "name": "moltbook_remove_moderator",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 495,
+      "stub": false
+    },
+    {
+      "class": "MoltbookListModeratorsTool",
+      "name": "moltbook_list_moderators",
+      "path": "packages/friday-tools/src/friday_tools/integrations/moltbook.py",
+      "line": 502,
+      "stub": false
+    },
+    {
+      "class": "SlackSendTool",
+      "name": "slack_send",
+      "path": "packages/friday-tools/src/friday_tools/integrations/slack.py",
+      "line": 9,
+      "stub": true
+    },
+    {
+      "class": "WebhookCallTool",
+      "name": "webhook_call",
+      "path": "packages/friday-tools/src/friday_tools/integrations/webhook.py",
+      "line": 9,
+      "stub": true
+    },
+    {
+      "class": "CalculatorTool",
+      "name": "calculator",
+      "path": "packages/friday-tools/src/friday_tools/math/math.py",
+      "line": 38,
+      "stub": false
+    },
+    {
+      "class": "UnitConvertTool",
+      "name": "unit_convert",
+      "path": "packages/friday-tools/src/friday_tools/math/math.py",
+      "line": 62,
+      "stub": false
+    },
+    {
+      "class": "DateParseTool",
+      "name": "date_parse",
+      "path": "packages/friday-tools/src/friday_tools/math/math.py",
+      "line": 103,
+      "stub": false
+    },
+    {
+      "class": "DateFormatTool",
+      "name": "date_format",
+      "path": "packages/friday-tools/src/friday_tools/math/math.py",
+      "line": 128,
+      "stub": false
+    },
+    {
+      "class": "DateCalculateTool",
+      "name": "date_calculate",
+      "path": "packages/friday-tools/src/friday_tools/math/math.py",
+      "line": 156,
+      "stub": false
+    },
+    {
+      "class": "MemoryStatsTool",
+      "name": "memory_stats",
+      "path": "packages/friday-tools/src/friday_tools/memory/inspection.py",
+      "line": 12,
+      "stub": false
+    },
+    {
+      "class": "GraphInspectionTool",
+      "name": "graph_inspect",
+      "path": "packages/friday-tools/src/friday_tools/memory/inspection.py",
+      "line": 54,
+      "stub": false
+    },
+    {
+      "class": "VectorInspectionTool",
+      "name": "vector_inspect",
+      "path": "packages/friday-tools/src/friday_tools/memory/inspection.py",
+      "line": 108,
+      "stub": false
+    },
+    {
+      "class": "LifecycleTool",
+      "name": "memory_lifecycle",
+      "path": "packages/friday-tools/src/friday_tools/memory/lifecycle.py",
+      "line": 10,
+      "stub": false
+    },
+    {
+      "class": "MemoryMaintenanceTool",
+      "name": "memory_maintain",
+      "path": "packages/friday-tools/src/friday_tools/memory/maintenance.py",
+      "line": 13,
+      "stub": false
+    },
+    {
+      "class": "MemoryResetTool",
+      "name": "memory_reset",
+      "path": "packages/friday-tools/src/friday_tools/memory/maintenance.py",
+      "line": 88,
+      "stub": false
+    },
+    {
+      "class": "CommandExecuteTool",
+      "name": "command_execute",
+      "path": "packages/friday-tools/src/friday_tools/shell/command.py",
+      "line": 272,
+      "stub": false
+    },
+    {
+      "class": "ShellExecuteTool",
+      "name": "shell_execute",
+      "path": "packages/friday-tools/src/friday_tools/shell/execute.py",
+      "line": 18,
+      "stub": false
+    },
+    {
+      "class": "ShellScriptTool",
+      "name": "shell_script",
+      "path": "packages/friday-tools/src/friday_tools/shell/execute.py",
+      "line": 109,
+      "stub": false
+    },
+    {
+      "class": "ProcessListTool",
+      "name": "process_list",
+      "path": "packages/friday-tools/src/friday_tools/shell/system.py",
+      "line": 18,
+      "stub": false
+    },
+    {
+      "class": "ProcessKillTool",
+      "name": "process_kill",
+      "path": "packages/friday-tools/src/friday_tools/shell/system.py",
+      "line": 135,
+      "stub": false
+    },
+    {
+      "class": "EnvironmentGetTool",
+      "name": "environment_get",
+      "path": "packages/friday-tools/src/friday_tools/shell/system.py",
+      "line": 194,
+      "stub": false
+    },
+    {
+      "class": "SystemInfoTool",
+      "name": "system_info",
+      "path": "packages/friday-tools/src/friday_tools/shell/system.py",
+      "line": 240,
+      "stub": false
+    },
+    {
+      "class": "SystemHealthTool",
+      "name": "system_health",
+      "path": "packages/friday-tools/src/friday_tools/system/health.py",
+      "line": 10,
+      "stub": false
+    },
+    {
+      "class": "TranscriptTool",
+      "name": "transcript_tool",
+      "path": "packages/friday-tools/src/friday_tools/system/transcript.py",
+      "line": 17,
+      "stub": false
+    },
+    {
+      "class": "MarkdownToTextTool",
+      "name": "markdown_to_text",
+      "path": "packages/friday-tools/src/friday_tools/text/convert.py",
+      "line": 19,
+      "stub": false
+    },
+    {
+      "class": "HtmlToMarkdownTool",
+      "name": "html_to_markdown",
+      "path": "packages/friday-tools/src/friday_tools/text/convert.py",
+      "line": 71,
+      "stub": false
+    },
+    {
+      "class": "TextSearchTool",
+      "name": "text_search",
+      "path": "packages/friday-tools/src/friday_tools/text/search.py",
+      "line": 16,
+      "stub": false
+    },
+    {
+      "class": "TextExtractTool",
+      "name": "text_extract",
+      "path": "packages/friday-tools/src/friday_tools/text/search.py",
+      "line": 57,
+      "stub": false
+    },
+    {
+      "class": "TextReplaceTool",
+      "name": "text_replace",
+      "path": "packages/friday-tools/src/friday_tools/text/transform.py",
+      "line": 19,
+      "stub": false
+    },
+    {
+      "class": "TextSplitTool",
+      "name": "text_split",
+      "path": "packages/friday-tools/src/friday_tools/text/transform.py",
+      "line": 49,
+      "stub": false
+    },
+    {
+      "class": "TextJoinTool",
+      "name": "text_join",
+      "path": "packages/friday-tools/src/friday_tools/text/transform.py",
+      "line": 84,
+      "stub": false
+    },
+    {
+      "class": "TextTemplateTool",
+      "name": "text_template",
+      "path": "packages/friday-tools/src/friday_tools/text/transform.py",
+      "line": 112,
+      "stub": false
+    },
+    {
+      "class": "GetCurrentDateTimeTool",
+      "name": "get_current_datetime",
+      "path": "packages/friday-tools/src/friday_tools/utility/datetime.py",
+      "line": 44,
+      "stub": false
+    },
+    {
+      "class": "EchoTool",
+      "name": "echo",
+      "path": "packages/friday-tools/src/friday_tools/utility/echo.py",
+      "line": 16,
+      "stub": false
+    },
+    {
+      "class": "WebFetchTool",
+      "name": "web_fetch",
+      "path": "packages/friday-tools/src/friday_tools/web/fetch.py",
+      "line": 20,
+      "stub": false
+    },
+    {
+      "class": "WebScreenshotTool",
+      "name": "web_screenshot",
+      "path": "packages/friday-tools/src/friday_tools/web/fetch.py",
+      "line": 111,
+      "stub": true
+    },
+    {
+      "class": "WebExtractLinksTool",
+      "name": "web_extract_links",
+      "path": "packages/friday-tools/src/friday_tools/web/fetch.py",
+      "line": 158,
+      "stub": false
+    },
+    {
+      "class": "WebExtractTextTool",
+      "name": "web_extract_text",
+      "path": "packages/friday-tools/src/friday_tools/web/fetch.py",
+      "line": 265,
+      "stub": false
+    },
+    {
+      "class": "HttpGetTool",
+      "name": "http_get",
+      "path": "packages/friday-tools/src/friday_tools/web/http.py",
+      "line": 26,
+      "stub": false
+    },
+    {
+      "class": "HttpPostTool",
+      "name": "http_post",
+      "path": "packages/friday-tools/src/friday_tools/web/http.py",
+      "line": 131,
+      "stub": false
+    },
+    {
+      "class": "HttpPutTool",
+      "name": "http_put",
+      "path": "packages/friday-tools/src/friday_tools/web/http.py",
+      "line": 241,
+      "stub": false
+    },
+    {
+      "class": "HttpDeleteTool",
+      "name": "http_delete",
+      "path": "packages/friday-tools/src/friday_tools/web/http.py",
+      "line": 340,
+      "stub": false
+    },
+    {
+      "class": "HttpDownloadTool",
+      "name": "http_download",
+      "path": "packages/friday-tools/src/friday_tools/web/http.py",
+      "line": 429,
+      "stub": false
+    },
+    {
+      "class": "HttpUploadTool",
+      "name": "http_upload",
+      "path": "packages/friday-tools/src/friday_tools/web/http.py",
+      "line": 544,
+      "stub": false
+    },
+    {
+      "class": "WebReaderTool",
+      "name": "web_reader",
+      "path": "packages/friday-tools/src/friday_tools/web/reader.py",
+      "line": 62,
+      "stub": false
+    },
+    {
+      "class": "WebSearchTool",
+      "name": "web_search",
+      "path": "packages/friday-tools/src/friday_tools/web/search.py",
+      "line": 30,
+      "stub": false
+    },
+    {
+      "class": "SerperSearchTool",
+      "name": "serper_search",
+      "path": "packages/friday-tools/src/friday_tools/web/serper.py",
+      "line": 37,
+      "stub": false
+    }
+  ],
+  "catalog_rows": 145,
+  "catalog_missing": [],
+  "stub_status_mismatches": []
+}

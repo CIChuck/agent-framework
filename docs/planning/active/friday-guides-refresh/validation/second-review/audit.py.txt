@@ -1,0 +1,41 @@
+from pathlib import Path
+import hashlib,json,re,subprocess
+W=Path('/private/tmp/friday-guides-refresh');O=Path('/private/tmp/friday-guides-final-independent-review')
+r=json.loads((O/'request.json').read_text())
+def git(*a):return subprocess.check_output(['git',*a],cwd=W)
+def digest(b):return hashlib.sha256(b).hexdigest()
+assert git('rev-parse','HEAD').decode().strip()==r['candidate']
+assert git('branch','--show-current').decode().strip()=='docs/guides-refresh'
+assert not git('status','--porcelain=v1')
+authority={p:{'expected':h,'actual':digest((W/p).read_bytes())} for p,h in r['authority_sha256'].items()}
+a=json.loads((W/'docs/planning/active/friday-guides-refresh/authority.json').read_text())
+baseline={p:{'expected':h,'actual':digest(git('show',r['base']+':'+p))} for p,h in a['baseline_sha256'].items()}
+assert all(x['expected']==x['actual'] for x in [*authority.values(),*baseline.values()])
+assert sorted(r['scope'])==sorted(str(p.relative_to(W)) for p in (W/'docs/guides').glob('*.md'))
+files=[]
+for p in r['scope']:
+ old=git('show',r['remediation_base']+':'+p);new=(W/p).read_bytes()
+ def blocks(b):return [m.group(0) for m in re.finditer(rb'^(```|~~~)[^\n]*\n.*?^\1\s*$',b,re.M|re.S)]
+ files.append({'path':p,'prior_sha256':digest(old),'candidate_sha256':digest(new),'identical':old==new,'all_fences_identical':blocks(old)==blocks(new),'fences':len(blocks(new))})
+changed={f['path'] for f in files if not f['identical']}
+assert changed=={'docs/guides/'+n for n in ['05-tools.md','09-cli-reference.md','13-troubleshooting.md','14-appendices.md']}
+assert all(f['all_fences_identical'] for f in files)
+all_changed=git('diff','--name-only',r['diff']).decode().splitlines()
+assert all(p in r['scope'] or p in ['docs/planning/board.yaml','docs/planning/README.md'] or p.startswith('docs/planning/active/friday-guides-refresh/') for p in all_changed)
+prior=W/'docs/planning/active/friday-guides-refresh/validation/initial-review';manifest=json.loads((prior/'retained-evidence.json').read_text())
+retained={p:digest((prior/p).read_bytes())==h for p,h in manifest['files'].items()}
+assert all(retained.values())
+outline=(W/'docs/guides/OUTLINE.md').read_text();sections=re.findall(r'^### \[[^]]+\]\(([^)]+)\)\n(.*?)(?=^### |^## |\Z)',outline,re.M|re.S)
+outline_checks={}
+for name,body in sections:
+ listed=re.findall(r'^- (.+)$',body,re.M);headings=re.findall(r'^## (.+)$',(W/'docs/guides'/name).read_text(),re.M)
+ outline_checks[name]=listed==headings
+assert len(outline_checks)==19 and all(outline_checks.values())
+for label,args in [('aggregate.patch',('diff',r['diff'])),('remediation.patch',('diff',r['remediation_diff'])),('diff-numstat.txt',('diff','--numstat',r['diff']))]: (O/label).write_bytes(git(*args))
+diff=git('diff','--unified=0',r['diff'],'--','docs/guides').decode()
+(O/'guide-diff-structure.txt').write_text('\n'.join(l for l in diff.splitlines() if l.startswith(('diff --git','@@','+#','-#')))+'\n')
+whitespace=subprocess.run(['git','diff','--check',r['diff']],cwd=W,capture_output=True,text=True)
+(O/'whitespace.log').write_text(whitespace.stdout+whitespace.stderr)
+result={'candidate':r['candidate'],'base':r['base'],'remediation_base':r['remediation_base'],'head':git('rev-parse','HEAD').decode().strip(),'branch':git('branch','--show-current').decode().strip(),'status':git('status','--porcelain=v1').decode(),'authority':authority,'baseline':baseline,'guide_comparison':files,'aggregate_changed_paths':all_changed,'initial_evidence_hashes':retained,'outline_headings_exact_match':outline_checks,'whitespace_exit_code':whitespace.returncode,'whitespace_affected_files':sorted(set(re.findall(r'^([^\n]+?):[0-9]+: trailing whitespace',whitespace.stdout,re.M)))}
+(O/'authority-scope-check.json').write_text(json.dumps(result,indent=2)+'\n')
+print('authority',len(authority),'baseline',len(baseline),'guides',len(files),'unchanged',sum(f['identical'] for f in files),'fences',sum(f['fences'] for f in files),'retained_hashes',len(retained),'outline_exact',len(outline_checks),'aggregate_files',len(all_changed),'scope/clean PASS','whitespace exit',whitespace.returncode)

@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "/private/tmp/friday-guides-final-independent-review/independent-probes.py", line 7, in <module>
+    from friday_tools.web.fetch import WebScreenshotTool
+  File "/private/tmp/friday-alpha3-pypi/production-install/lib/python3.13/site-packages/friday_tools/__init__.py", line 16, in <module>
+    from .filesystem.smart_read import SmartFileReadTool
+  File "/private/tmp/friday-alpha3-pypi/production-install/lib/python3.13/site-packages/friday_tools/filesystem/__init__.py", line 19, in <module>
+    from .directory import (
+    ...<5 lines>...
+    )
+  File "/private/tmp/friday-alpha3-pypi/production-install/lib/python3.13/site-packages/friday_tools/filesystem/directory.py", line 484, in <module>
+    directory_list = DirectoryListTool()
+  File "/private/tmp/friday-alpha3-pypi/production-install/lib/python3.13/site-packages/friday_tools/filesystem/directory.py", line 56, in __init__
+    self._sandbox = sandbox or FilesystemSandbox()
+                               ~~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/friday-alpha3-pypi/production-install/lib/python3.13/site-packages/friday_tools/sandbox.py", line 127, in __init__
+    self.allowed_paths.append(Path(tempfile.gettempdir()).resolve())
+                                   ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/tempfile.py", line 316, in gettempdir
+    return _os.fsdecode(_gettempdir())
+                        ~~~~~~~~~~~^^
+  File "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/tempfile.py", line 309, in _gettempdir
+    tempdir = _get_default_tempdir()
+  File "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/tempfile.py", line 204, in _get_default_tempdir
+    fd = _os.open(filename, _bin_openflags, 0o600)
+  File "/private/tmp/friday-guides-final-independent-review/replay/guard/sitecustomize.py", line 16, in guard
+    raise RuntimeError('Write outside isolated guide validation prohibited: '+p)
+RuntimeError: Write outside isolated guide validation prohibited: /private/tmp/friday-guides-final-independent-review/probe-tmp/uvwqq6oq

@@ -1,0 +1,71 @@
+{
+  "initiative": "friday-guides-refresh",
+  "unit": "CD-GUIDE-001",
+  "base": "123d9ed943519c4e68bf9249705e55d1a1ebf8b8",
+  "candidate": "6fb53e00877214d813656b204f950c8a0b725d05",
+  "diff": "123d9ed943519c4e68bf9249705e55d1a1ebf8b8..6fb53e00877214d813656b204f950c8a0b725d05",
+  "authority_sha256": {
+    "AGENTS.md": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/development-task-lifecycle.md": "7087fb62381cc8a46128bc6745476d1aa08e1d577b4c73340760657ae834fe2a",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/active/friday-guides-refresh/authority.json": "573a1c4148a4321ca4cb06b7f8d2421dc662588c653e12935fc286fe9d668ac2",
+    "docs/planning/active/friday-guides-refresh/directives/CD-GUIDE-001-guides-refresh.md": "0c064f647a47c0d2ac82b34e83bf9a3ee9a812c1d3ce13b650b9c203f4b7d3ee",
+    "docs/planning/active/friday-guides-refresh/directives/REM-GUIDE-001.md": "af275dd018b798f0ff9b768962a2529b9f8cc18b99e301de0eae5326c8641e76",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/report.md": "f0149d02d0ab700730f4d685740e8877b8caee90564e582b225394b67f594088"
+  },
+  "scope": [
+    "docs/guides/01-executive-summary.md",
+    "docs/guides/02-getting-started.md",
+    "docs/guides/03-core-concepts.md",
+    "docs/guides/04-adaptive-memory.md",
+    "docs/guides/05-tools.md",
+    "docs/guides/06-agents.md",
+    "docs/guides/07-multi-agent.md",
+    "docs/guides/08-workflows.md",
+    "docs/guides/09-cli-reference.md",
+    "docs/guides/10-configuration.md",
+    "docs/guides/11-advanced-topics.md",
+    "docs/guides/12-use-cases.md",
+    "docs/guides/13-troubleshooting.md",
+    "docs/guides/14-appendices.md",
+    "docs/guides/15-contributing.md",
+    "docs/guides/16-desktop-deployment.md",
+    "docs/guides/17-mcp-client.md",
+    "docs/guides/18-mcp-server.md",
+    "docs/guides/19-mcp-migration.md",
+    "docs/guides/FRIDAY-FEATURES.md",
+    "docs/guides/OUTLINE.md",
+    "docs/guides/README.md",
+    "docs/guides/memory-management-guidelines.md",
+    "docs/guides/security-configuration-guidelines.md",
+    "docs/guides/speech.md"
+  ],
+  "required_checks": [
+    "All25 guides reviewed against current source and metadata; current versus placeholder/queued/application limits accurate",
+    "Metadata release/date/title/description/status/audience/type coherent",
+    "Deep technical content preserved through validated contracts/recipes/reference and working navigation",
+    "Python examples compile; complete offline scenarios replay under network/shared-state/credential guard",
+    "YAML through owning schemas; current CLI and package distribution/import/extra names",
+    "Links/anchors, Markdown render, board validation, documentation lifecycle, whitespace; no product scope drift"
+  ],
+  "environment": {
+    "python": "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+    "alpha3_python": "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+    "markdown_python": "/private/tmp/friday-alpha3-pypi/tools/bin/python"
+  },
+  "exclusions": [
+    "No external network/provider/audio/Docker/production state/credentials",
+    "No full product suite for docs-only changes",
+    "Two live Python snippets and two callable API fragments compile only; stdio server runs with paired client",
+    "Read-only frozen candidate; evidence outside checkout allowed"
+  ],
+  "review_mode": "fresh-context read-only; VERIFIED or CHANGES_REQUESTED or BLOCKED with reproducible findings; no edits, push or publication",
+  "remediation_base": "6691aa2428b81ed96fd8d404f6b3f5a0f1e82f13",
+  "remediation_diff": "6691aa2428b81ed96fd8d404f6b3f5a0f1e82f13..6fb53e00877214d813656b204f950c8a0b725d05",
+  "findings_to_validate": [
+    "GUIDE-001",
+    "GUIDE-002"
+  ],
+  "initial_report": "docs/planning/active/friday-guides-refresh/validation/initial-review/report.md"
+}

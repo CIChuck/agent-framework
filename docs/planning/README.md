@@ -45,7 +45,7 @@ Directory placement does not grant implementation authority.
 | 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](active/friday-deprecated-credential-cleanup/) | normal | granted | local | Aggregate VERIFIED; execute authorized GitHub PR/manual merge and remote deletion; acceptance remains separate |
 | 29 | [Friday 0.1.0a3 repository version bump](active/friday-alpha3-version-bump/) | normal | granted | released | Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified |
 | 30 | [Precise Python monorepo and package READMEs](active/friday-readme-refresh/) | normal | granted | local | All17 README rewrites VERIFIED; maintainer acceptance and requested source delivery next |
-| 31 | [Current technical end-user guides for alpha3](active/friday-guides-refresh/) | normal | granted | local | GUIDE-001 and GUIDE-002 corrected; freeze amended candidate and obtain fresh independent validation |
+| 31 | [Current technical end-user guides for alpha3](active/friday-guides-refresh/) | normal | granted | local | Guide findings resolved; GUIDE-003 evidence corrected; freeze and obtain fresh independent validation |
 
 ## Completed
 

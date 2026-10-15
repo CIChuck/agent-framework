@@ -1,0 +1,3158 @@
+diff --git a/docs/guides/01-executive-summary.md b/docs/guides/01-executive-summary.md
+@@ -1,263 +0,0 @@
+-# Friday Agent Framework
+-## Executive Summary: Why Friday Exists
+-## The Problem: AI Agents That Forget
+-## The Facts: What Friday Is
+-## The Difference: Why Friday
+-### 1. **Memory That Actually Works**
+-### 2. **True Multi-Agent Collaboration**
+-### 3. **Provider-Agnostic Architecture**
+-### 4. **Production-Ready Observability**
+-### 5. **Hybrid Cloud-Local Architecture**
+-## The Vision: What Friday Enables
+-### The Future of Human-AI Collaboration
+-### Multi-Agent Systems That Actually Work
+-### Enterprise-Grade AI Infrastructure
+-### Democratizing Advanced AI Capabilities
+-### The Path Forward
+-## Why Now
+-## Who Friday Is For
+-## How To Use This Guide
+@@ -265,15 +2,7 @@ The fastest path to understanding Friday: **Read sections 1-3, then build your f
+-## The Bottom Line
+@@ -282,5 +11,94 @@ Welcome to Friday.
++# Friday framework overview
++## What Friday provides
++## How a conversation uses the framework
++## Three memory roles
++## Choose an adoption path
++## Deployment and trust boundaries
+diff --git a/docs/guides/02-getting-started.md b/docs/guides/02-getting-started.md
+@@ -1,7 +0,0 @@
+-# Friday Agent Framework
+-## Getting Started: Your First Friday Agent
+@@ -9,13 +2,7 @@
+-## Overview
+@@ -24,4 +11 @@ By the end, you'll have a working Friday agent that remembers conversations, lea
+-## Prerequisites
+-### System Requirements
++# Getting started
+@@ -29,3 +13,3 @@ By the end, you'll have a working Friday agent that remembers conversations, lea
+@@ -33,25 +17 @@ The minimum patch version is 3.13.4.
+-### Required Knowledge
+-### LLM Provider Options
++## Prerequisites and installation
+@@ -59 +19,2 @@ You'll need **at least one** of the following:
+-## Installation
+@@ -61,21 +21,0 @@ You'll need **at least one** of the following:
+-### Option 1: Install from PyPI (Recommended)
+-# Using pip
+-# Or using uv (faster, recommended)
+@@ -83,5 +23,5 @@ This installs all core Friday packages:
+-# For MCP (Model Context Protocol) support
+-# For sandbox isolation (Docker-based, Phase 5)
+-# pip install friday-sandbox  # Coming soon
+@@ -90,8 +30,4 @@ pip install friday-mcp
+-### Option 2: Install from Source (Development)
+-# Clone the repository (requires access)
+@@ -99,9 +35,4 @@ cd friday-agent-framework
+-# Install uv if not already installed
+-# Install all dependencies (uses uv workspaces)
+-# Verify installation
+@@ -109 +40 @@ uv run python -c "from friday_agent import CopilotAgent; print('Friday installed
++## Run an offline Chat session
+@@ -111,44 +42 @@ uv run python -c "from friday_agent import CopilotAgent; print('Friday installed
+-### Verify Installation
+-## Quick Start: First Agent in 5 Minutes
+-### Step 1: Set Your API Key
+-# OpenAI
+-# Anthropic
+-# Google
+-# OpenRouter (access to 100+ models)
+-# Ollama (local, no key needed)
+-# Just ensure Ollama is running: ollama serve
+-### Step 2: Create a Basic Configuration
+@@ -157 +44,0 @@ Create a file `config.yaml` in your project directory:
+-# Minimal Friday configuration
+@@ -159,18 +46 @@ llm:
+@@ -178,139 +48 @@ chat:
+-# Basic logging
+-### Step 3: Create Your First Agent Script
+-#!/usr/bin/env python3
+@@ -319 +51 @@ if __name__ == "__main__":
+-### Step 4: Run Your First Agent
+@@ -322,5 +54 @@ if __name__ == "__main__":
+-# Make the script executable
+-# Run it
+@@ -329,29 +57,4 @@ python my_first_agent.py
+@@ -359 +62,4 @@ interested in backend development.
+@@ -361 +67 @@ interested in backend development.
+-### Step 5: Verify Memory Persistence
++## Prepare a real session
+@@ -363 +69,3 @@ interested in backend development.
+@@ -366,292 +74,2 @@ interested in backend development.
+-# Modify the conversation in my_first_agent.py to test memory:
+-### Step 6: Inspect the Memory Stores
+-# Vector store (ChromaDB)
+-# Graph store (NetworkX + JSON)
+-# Transcript store (SQLite)
+-## Interactive CLI: The Full Experience
+-### Run the Reference CLI
+-# If installed from source
+-# Or create your own based on the template
+-### Essential Commands
+-# Memory inspection
+-# Session management
+-# Configuration
+-# Help
+-### Example Interactive Session
+-## What Just Happened?
+-### 1. **Conversation Processing**
+-### 2. **Memory Extraction** (Background)
+-### 3. **Knowledge Graph Building**
+-### 4. **Transcript Logging**
+-### 5. **Context Priming** (Next Session)
+-## Next Steps: Expanding Your Agent
+-### 1. Add Tools
+-# Register tools with the agent
+-### 2. Configure Multi-Agent Orchestration
+-# Define agent profiles
+-# Create orchestrator
+-# Delegate tasks
+-### 3. Create YAML Workflows
+-# workflow.yaml
+-### 4. Use Local Models for Privacy
+-# config.yaml
+@@ -659,3 +77,7 @@ llm:
+@@ -664,15 +86,2 @@ embedding:
+-### 5. Customize Memory Lifecycle
+-# config.yaml
+@@ -680 +89,16 @@ memory:
+@@ -682 +106,4 @@ memory:
+-## Common Issues & Solutions
+@@ -684 +111 @@ memory:
+-### Issue: "ImportError: No module named 'friday_agent'"
+@@ -686 +112,0 @@ memory:
+@@ -688,5 +114 @@ memory:
+-# Verify installation
+-# Reinstall if needed
+@@ -695,9 +117,2 @@ pip install --upgrade friday-agent
+-### Issue: "API key not found" or "Authentication failed"
+-# Verify environment variable is set
+-# Re-export with correct key
+@@ -705,3 +120 @@ export OPENAI_API_KEY="sk-..."
+-# Check the key is visible to Python
++## Check persistence without relying on model recollection
+@@ -709 +122,4 @@ python -c "import os; print(os.getenv('OPENAI_API_KEY'))"
+-### Issue: "Context length exceeded"
+@@ -711,7 +127 @@ python -c "import os; print(os.getenv('OPENAI_API_KEY'))"
+@@ -719 +129,6 @@ memory:
+-### Issue: "ChromaDB SQLite error" or "Database locked"
+@@ -721,4 +136,4 @@ memory:
+-# Remove ChromaDB lock file
+@@ -726,2 +141 @@ rm -rf ./friday_data/vector/*.sqlite3-*
+-# Restart the agent
++## Use a component without Chat
+@@ -729 +143 @@ rm -rf ./friday_data/vector/*.sqlite3-*
+-### Issue: Memory not persisting across sessions
+@@ -731 +144,0 @@ rm -rf ./friday_data/vector/*.sqlite3-*
+@@ -733,154 +146,2 @@ rm -rf ./friday_data/vector/*.sqlite3-*
+-# Use absolute paths
+-# Check the path exists and has write permissions
+-## Understanding the Code
+-### LLM Initialization
+-### Memory Stores
+-### Memory Controller
+-### Context Engineering
+-### Agent Execution
+-## Configuration Deep Dive
+-### LLM Configuration
+-### Memory Configuration
+-### Lifecycle Configuration
+-### Extraction Configuration
+-## What's Next?
+-## Quick Reference
+-### Minimal Agent (10 lines)
+@@ -888,2 +149,9 @@ agent = CopilotAgent(llm, controller, assembler, architect, "session_1", "user_1
+@@ -891,7 +159 @@ response = await agent.chat("Hello Friday!")
+-### Essential CLI Commands
+@@ -900,5 +162,3 @@ response = await agent.chat("Hello Friday!")
+-### Essential Config Sections
+@@ -906,4 +166 @@ llm:
++## Where to go next
+@@ -911 +168,5 @@ memory:
+@@ -913 +174,3 @@ memory:
+@@ -915,2 +178 @@ memory:
+diff --git a/docs/guides/03-core-concepts.md b/docs/guides/03-core-concepts.md
+@@ -1,402 +0,0 @@
+-# Friday Agent Framework
+-## Core Concepts & Architecture
+-## Overview
+-## 3.1 The Intelligence Plane & Control Plane Architecture
+-### Conceptual Model
+-### Architecture Diagram
+-### Data Flow: A Single Turn
+-### Why This Separation Matters
+-## 3.2 Protocol-First Design Philosophy
+-### The Problem: Vendor Lock-In
+-### How Protocols Work
+-### Friday's Core Protocols
+-### Real-World Example: Swapping Vector Stores
+-### Implementing Custom Protocols
+-### Benefits: Strategic & Tactical
+@@ -404,448 +2,7 @@ controller = MemoryController(
+-## 3.3 Monorepo Package Structure
+-### The Fifteen Packages
+-### Dependency Flow
+-### Package Management with uv
+-#### What is uv?
+-#### Why Friday Uses uv
+-#### uv Workspace Configuration
+-#### Common uv Commands
+-# Install all workspace dependencies (one command for entire Friday framework)
+-# Add a dependency to a specific package
+-# Run tests across all packages
+-# Update dependencies
+-# Create a new virtual environment
+-# Install from PyPI (pip-compatible)
+-#### Comparison to Other Tools
+-#### Using uv with Friday
+-# Clone repository
+-# Single command to set up entire development environment
+-# All packages are now installed in editable mode
+-# Changes in friday-memory immediately visible to friday-agent
+-# Run tests
+-# Format code
+-# Type check
+-# Install Friday from PyPI (uv is pip-compatible)
+-# Or specify version
+-# Or install from lock file for reproducibility
+-#### Migration from pip/Poetry
+-# Instead of:
+-# Use:
+-# Or for workspace development:
+-# Instead of:
+-# Use:
+-#### Performance Benchmarks
+-### Package Details
+-#### friday-core
+-#### friday-memory
+-#### friday-llm
+-#### friday-agent
+-#### friday-tools
+-#### friday-transcript
+-#### friday-mcp
+-#### friday-optimization
+-### Installation Patterns
+-# Using pip (traditional)
+-# Or using uv (10-100x faster)
+-# Using pip
+-# Or using uv
+-# Using pip
+-# Or using uv
+-# Clone repository
+-# Install uv if not already installed
+-# One command installs all packages in editable mode (seconds, not minutes)
+-# Verify installation
+-### Practical Implications
+@@ -854,98 +11,69 @@ uv run python -c "from friday_agent import CopilotAgent; print('✓ Ready')"
+-## 3.4 The Memory Loop: Context → Action → Learning
+-### The Cognitive Cycle
+-### Phase 1: Context Assembly
+-# User asks: "What was that library I mentioned for web APIs?"
+-# Context assembly retrieves:
+-# - Episodic: Last 10 conversation turns (includes mention of FastAPI)
+-# - Semantic: Insights about "web API", "Python libraries"
+-# - Associative: Entity "FastAPI" with relationship: User MENTIONED FastAPI
+-# Result: LLM has context to answer accurately without guessing
+-### Phase 2: Action Generation
++# Core concepts and architecture
++## Architecture layers
++## Protocols and concrete implementations
++## Runtime composition and ownership
+@@ -953,16 +80,0 @@ Friday agents operate in a continuous loop that mimics human learning:
+@@ -970,70 +82,26 @@ Friday agents operate in a continuous loop that mimics human learning:
+-# User asks: "What's in my config.yaml file?"
+-# Action generation:
+-# 1. LLM decides to call read_file tool
+-# 2. Tool executes: read_file(file_path="config.yaml")
+-# 3. Tool returns file contents
+-# 4. LLM receives contents, generates summary
+-# 5. Response: "Your config.yaml contains LLM settings (gpt-4o-mini),
+-#              memory configuration (8000 token budget), and..."
+-### Phase 3: Learning (Memory Storage)
+@@ -1041,3 +108,0 @@ Friday agents operate in a continuous loop that mimics human learning:
+@@ -1045,166 +110,76 @@ Friday agents operate in a continuous loop that mimics human learning:
+-# After user says: "I prefer FastAPI over Flask for web development"
+-# Learning phase extracts:
+-# Entities: FastAPI, Flask (both Technology)
+-# Relationships: User PREFERS FastAPI OVER Flask
+-# Insights: "User has strong preference for FastAPI" (confidence: 0.9)
+-# Next time user asks about web frameworks, this preference
+-# is retrieved from memory and influences the response
+-### The Full Cycle in Action
+-### Why the Loop Matters
+-## Putting It All Together
+-## What's Next?
+-## Quick Reference
+-### Architecture Layers
+-### Core Protocols
+-### Memory Loop Phases
+-### Package Dependencies
++## A turn is a sequence of distinct operations
++## Memory, orchestration and workflow state
++## Observation and resource ownership
++## Implementation references
+diff --git a/docs/guides/04-adaptive-memory.md b/docs/guides/04-adaptive-memory.md
+@@ -1,1380 +0,0 @@
+-# Friday Agent Framework
+-## Adaptive Memory: The Heart of Friday
+-## Overview
+-## 4.1 Three-Tier Memory Architecture
+-### Cognitive Science Foundation
+-### The Three Stores
+-### 4.1.1 Episodic Memory: The Conversation Log
+-# Get last N turns for context
+-### 4.1.2 Semantic Memory: The Knowledge Vault
+-# Find relevant insights for current query
+-### 4.1.3 Associative Memory: The Knowledge Graph
+-# Every time an entity is accessed (retrieved for context, mentioned in conversation)
+-# Over time, frequently-accessed entities naturally become more "important"
+-# High hit_count → Higher retrieval priority
+-# Get all information about an entity
+-# Returns: type, description, hit_count, all relationships
+-# What technologies does Alice use?
+-# Returns: ["Python", "FastAPI", "Git"]
+-# Find projects that use Python (2-hop: Project → USES → Technology)
+-# Returns: All projects connected to Python via USES relationship
+-# Load most important entities by Hebbian hit_count
+-# Used to prime context at session start
+-# Multi-condition query
+-# Bidirectional relationship
+-# Typed relationship query
+-### How the Three Stores Work Together
+-## 4.2 Memory Lifecycle Management
+-### The Four Stages: A Memory's Journey
+-### Stage Definitions
+-### Promotion: Short-Term → Long-Term
+-### Decay: Long-Term → Decayed
+-# config.yaml
+-### Reactivation: Decayed → Long-Term
+-### Lifecycle Operations
+-# Run full lifecycle cycle manually
+-# Individual operations
+-### Tuning Lifecycle for Your Use Case
+-## 4.3 Context Engineering & Token Budgeting
+-### The Challenge: Limited Context Windows
+-### The Knapsack Problem
+-### Token Budget Allocation
+-# If query is short, reallocate to context
+-# If history is minimal (early conversation), reallocate to context
+-### Context Assembly Algorithm
+-# Episodic: Recent turns
+-# Semantic: Similar insights
+-# Associative: Related entities
+-# Calculate cost for each memory
+-# Result: Subset of memories that maximizes relevance within budget
+-### Lost-in-the-Middle Mitigation
+-### Context Payload Structure
+-### Context Formats
+@@ -1382,407 +2,7 @@ memory:
+-## 4.4 Memory Extraction Pipeline
+-### From Conversation to Structured Knowledge
+-### Extraction LLM Configuration
+-### Entity Extraction
+-# When extracting entity "FastAPI"
+-### Relationship Extraction
+-### Insight Generation
+-### Extraction Execution
+-### Extraction Quality Monitoring
+-# View recent extractions
+-# Check extraction confidence distribution
+-# Review low-confidence extractions
+-# See entity extraction results
+@@ -1791,128 +11 @@ Extraction Latency:
+-## 4.5 Session Priming & Cross-Session Continuity
+-### The Cold Start Problem
+-### Automatic Context Priming
+-### Priming in Action
+-### Memory Namespaces
++# Adaptive memory
+@@ -1920,9 +13,3 @@ Friday: "Given your FastAPI project and preference for its automatic documentati
+-# Each user gets isolated memory
+-# Alice's memories don't mix with Bob's memories
+@@ -1930,6 +17 @@ user_id = "alice"  # All memories tagged with user_id
+-# Isolate memories per project
++## Stores and controllers
+@@ -1937,2 +19,9 @@ namespace = "project:webapi"
+-# Alice's webapi memories separate from her mobile app memories
+@@ -1940,6 +29,4 @@ namespace = "project:webapi"
+-# Shared memory across team members
+@@ -1947,2 +34,5 @@ namespace = "team:alpha"
+-# Alice and Bob share memories (knowledge base accumulation)
+@@ -1950 +40 @@ namespace = "team:alpha"
++## Durable transcripts
+@@ -1952 +42,2 @@ namespace = "team:alpha"
+@@ -1955,27 +46,4 @@ Namespaces are metadata filters on queries:
+-# Store with namespace
+-# Retrieve with namespace filter
+-### Priming Strategies for Different Use Cases
+@@ -1983,11 +51,12 @@ memory:
+@@ -1995,9 +64 @@ memory:
+@@ -2005 +65,0 @@ memory:
+@@ -2007,11 +67,4 @@ memory:
+@@ -2019 +72 @@ memory:
+-### Priming Performance
++## Semantic search without a provider
+@@ -2021,4 +74,3 @@ memory:
+@@ -2026 +77,0 @@ memory:
+@@ -2028,74 +79,2 @@ memory:
+-# Parallel priming queries
+-## Putting It All Together: The Complete Memory System
+@@ -2103,4 +82,3 @@ You now understand all five components of Friday's adaptive memory:
+@@ -2108,4 +86,2 @@ You now understand all five components of Friday's adaptive memory:
+@@ -2113,52 +89,17 @@ You now understand all five components of Friday's adaptive memory:
+-## Quick Reference: Memory System
+-### Key Commands
+-# Inspection
+-# Lifecycle
+-# Context
+-# Maintenance
+-### Configuration Essentials
+@@ -2166,7 +107,6 @@ memory:
++## From a turn to reusable memory
+@@ -2174,9 +114,8 @@ extraction:
+-### Performance Targets
+@@ -2184 +123,6 @@ extraction:
++## Recall and cross-session priming
+@@ -2186 +130,12 @@ extraction:
+-## What's Next?
+@@ -2188 +143,91 @@ extraction:
++## Context engineering
++## Lifecycle stages and collection movement
++## Provenance and namespace-aware memory
++## Maintenance, backups and recovery
+@@ -2190,5 +235,3 @@ With adaptive memory mastered, you're ready to explore how Friday uses this memo
+@@ -2196,3 +239 @@ With adaptive memory mastered, you're ready to explore how Friday uses this memo
++## Implementation references
+@@ -2200 +241,6 @@ With adaptive memory mastered, you're ready to explore how Friday uses this memo
+@@ -2202 +248 @@ With adaptive memory mastered, you're ready to explore how Friday uses this memo
+diff --git a/docs/guides/05-tools.md b/docs/guides/05-tools.md
+@@ -1,1578 +0,0 @@
+-# Friday Agent Framework
+-## Section 5: Tools - Friday's Connection to the World
+-## Overview
+-### MCP client tools in the current runtime
+-## 5.1 Tool Architecture & Design
+-### 5.1.1 The BaseTool Protocol
+-### 5.1.2 Tool Schemas for LLMs
+-### 5.1.3 Tool Result Standardization
+-## 5.2 Built-in Tool Catalog (50+ Tools)
+-### 5.2.1 Filesystem Tools
+-#### **`file_read`** - Read File Contents
+-# Read entire file
+-# Read lines 50-100
+-# Force specific encoding
+-#### **`file_write`** - Write File Contents
+-# Write a new file
+-# Write YAML config
+-#### **`file_append`** - Append to File
+-# Append to log file
+-#### **`directory_list`** - List Directory Contents
+-# List Python files recursively
+-# List current directory
+-#### **`directory_create`** - Create Directory
+-#### **`file_delete`** - Delete File or Directory
+-# Delete single file
+-# Delete directory recursively
+-#### **`file_move`** - Move or Rename File
+-# Rename file
+-# Move to different directory
+-#### **`file_info`** - Get File Metadata
+-# Output includes:
+-# - Type (file/directory/symlink)
+-# - Size in bytes
+-# - Permissions (e.g., "-rw-r--r--")
+-# - Owner UID/GID
+-# - Modified/created/accessed timestamps
+-#### **`file_grep`** - Search File Contents
+-# Find all TODO comments in a file
+-# Case-insensitive search for error messages
+-### 5.2.2 Shell & System Tools
+-#### **`execute_command`** - Execute Shell Command
+-# Run build command
+-# Check disk usage
+-#### **`system_info`** - Get System Information
+-### 5.2.3 Web & Network Tools
+-#### **`http_get`** - HTTP GET Request
+-# Simple GET request
+-# With headers and parameters
+-#### **`http_post`** - HTTP POST Request
+-# POST JSON data
+-# POST form data
+-#### **`http_put`**, **`http_delete`** - Other HTTP Methods
+-# Update resource
+-# Delete resource
+-#### **`http_download`** - Download File from URL
+-#### **`http_upload`** - Upload File to URL
+-#### **`web_search`** - Web Search Integration
+-#### **`scrape_page`** - Web Page Scraping
+-# Scrape entire page
+-# Extract specific section
+-### 5.2.4 Git Tools
+-#### **`git_status`** - Git Repository Status
+-#### **`git_diff`** - Show Git Diff
+-# Show unstaged changes
+-# Show staged changes
+-# Diff specific file
+-#### **`git_log`** - Show Commit Log
+-# Recent commits (one-line)
+-# Detailed commits
+-#### **`git_commit`** - Create Commit
+-# Commit all changes
+-# Commit specific files
+-#### **`git_push`**, **`git_pull`** - Remote Operations
+-# Push to origin
+-# Pull from origin
+-# Push to specific remote/branch
+-#### **`git_checkout`** - Switch Branches
+-# Switch to existing branch
+-# Create and switch to new branch
+-#### **`git_branches`** - List Branches
+-# List local branches
+-# List remote branches
+-### 5.2.5 Data Manipulation Tools
+-#### **`json_parse`** - Parse JSON
+-#### **`json_query`** - Query JSON with JSONPath
+-# Extract all book titles
+-# Returns: ["Book 1", "Book 2"]
+-#### **`yaml_parse`**, **`yaml_dump`** - YAML Operations
+-# Parse YAML
+-# Dump to YAML
+-#### **`csv_read`**, **`csv_write`** - CSV Operations
+-# Read CSV with header
+-# Read TSV without header
+-#### **`xml_parse`**, **`xml_query`** - XML Operations
+-# Parse XML
+-# XPath query
+-#### **`toml_parse`** - TOML Operations
+-### 5.2.6 Text Processing Tools
+-#### **`regex_search`** - Regular Expression Search
+-# Extract email addresses
+-# Extract with capture groups
+-# Returns: match with groups ["1", "2", "3"]
+-#### **`regex_replace`** - Regular Expression Replace
+-# Replace dates from MM/DD/YYYY to YYYY-MM-DD
+-# Returns: "The date is 2024-12-25"
+-#### **`text_transform`** - Text Transformations
+-# Convert to uppercase
+-# Remove empty lines and sort
+-# Then sort
+-#### **`format_text`** - Text Formatting
+-# Pretty-print JSON
+-# Indent code
+-### 5.2.7 Code Execution Tools
+-#### **`python_execute`** - Execute Python Code
+-# Simple calculation
+-# Data processing
+-#### **`code_format`** - Format Code
+-# Format Python code
+-# Returns: "def foo(x, y):\n    return x + y\n"
+-#### **`code_analyze`** - Static Code Analysis
+-# Reports: unused variable 'y', unused function
+-### Summary: Built-in Tool Catalog
+@@ -1580,133 +2,7 @@ def unused_function():
+-## 5.3 Creating Custom Tools
+-### 5.3.1 Function-Based Tools (@tool Decorator)
+-# Usage by agent:
+-# result = await get_weather.execute(city="San Francisco", units="imperial")
+@@ -1715,20 +11 @@ async def get_weather(city: str, units: str = "metric") -> str:
+-### 5.3.2 Class-Based Tools (BaseTool Subclass)
++# Tools and execution
+@@ -1736,3 +13,4 @@ class CalculatorTool(BaseTool):
+@@ -1740,3 +18 @@ class CalculatorTool(BaseTool):
++## Two implementation surfaces
+@@ -1744,21 +20,5 @@ class CalculatorTool(BaseTool):
+@@ -1766,5 +26,3 @@ class CalculatorTool(BaseTool):
+@@ -1772,12 +30 @@ class CalculatorTool(BaseTool):
++## Register an isolated function tool
+@@ -1785,9 +32 @@ class CalculatorTool(BaseTool):
+-# Register manually
+@@ -1796,113 +34,0 @@ registry.register(CalculatorTool())
+-# Initialize and register
+@@ -1909,0 +36 @@ import asyncio
+@@ -1911,179 +38,3 @@ import asyncio
+-### 5.3.3 Tool Categories & Discovery
+-# Function tool
+-# Class tool
+-# Get all filesystem tools
+-# Get schemas for web tools (for LLM context)
+-# Query by tags
+-# Returns tools with ANY of the specified tags
+-# Returns tools that are read-only (safe for untrusted agents)
+-### 5.3.4 Tool Registration & Lifecycle
+-# Automatically registered with default registry
+-# Explicitly register
+-# Create isolated registry
+-# Use this registry with specific agents
+@@ -2091,13 +42,6 @@ agent = CopilotAgent(
+-# List all tools
+-# Get specific tool
+-# Check if tool exists
+@@ -2105,3 +49 @@ if "http_get" in registry:
+-# Get executable
+@@ -2110 +52,3 @@ result = await callable_tool(path="/tmp/test.txt")
+@@ -2112,12 +56,4 @@ result = await callable_tool(path="/tmp/test.txt")
+-# Unregister old version
+-# Register new version
+@@ -2125 +61 @@ async def my_tool_v2(...):
++## A typed tool
+@@ -2127 +63 @@ async def my_tool_v2(...):
+@@ -2130,128 +66,3 @@ In future versions, Friday will support tool versioning:
+-# Agents can request specific versions
+-## 5.4 Dynamic Tool Selection & Context Injection
+-### 5.4.1 Context-Aware Tool Recommendations
+-# In agent YAML profile
+-### 5.4.2 Tool Token Budget Management
+@@ -2259 +70,5 @@ Typical tool schema sizes:
+@@ -2261,7 +76,2 @@ Typical tool schema sizes:
+@@ -2269 +79,3 @@ context:
+@@ -2271,19 +83,5 @@ context:
+@@ -2291,7 +89 @@ context:
+@@ -2300,5 +92,5 @@ context:
+@@ -2306 +98 @@ Compact format saves ~40% tokens with minor description quality loss.
++## Discovery and schema inspection
+@@ -2308,3 +100,4 @@ Compact format saves ~40% tokens with minor description quality loss.
+-### 5.4.3 Per-Task Tool Injection
+@@ -2312 +105,4 @@ Compact format saves ~40% tokens with minor description quality loss.
+@@ -2314 +110,4 @@ For specific workflows or agent types, you can explicitly inject tools into cont
+@@ -2316,4 +115 @@ For specific workflows or agent types, you can explicitly inject tools into cont
++## Configure Chat tool admission
+@@ -2321 +117 @@ For specific workflows or agent types, you can explicitly inject tools into cont
+@@ -2323 +118,0 @@ For specific workflows or agent types, you can explicitly inject tools into cont
+@@ -2325,2 +119,0 @@ For specific workflows or agent types, you can explicitly inject tools into cont
+@@ -2328,89 +121,79 @@ tools:
+-# In workflow YAML
+-# Inject tools for this session
+-# Revert to dynamic selection
+-# In memory-chat-v2.py
+-# Query tools in context
+-## Conclusion: Tools as Friday's Capabilities
++## Selection and context budgets
++## Filesystem and shell policy
++## External tools and outputs
++## Implementation references
+diff --git a/docs/guides/06-agents.md b/docs/guides/06-agents.md
+@@ -1,2021 +0,0 @@
+-# Friday Agent Framework
+-## Section 6: Agents - Configuration & Capabilities
+-## Overview
+-## 6.1 Agent Types & Patterns
+-### 6.1.1 CopilotAgent: Interactive Re-Act Pattern
+-# From packages/friday-agent/src/friday_agent/copilot.py
+-### 6.1.2 AutonomousAgent: Event-Driven Execution (Planned)
+-# From packages/friday-agent/src/friday_agent/autonomous.py
+-### 6.1.3 Comparison: When to Use Which Agent
+-## 6.2 Agent Configuration with YAML
+-### 6.2.1 Agent Profile Schema (Complete Reference)
+-# ==============================================================================
+-# IDENTITY: Who is this agent?
+-# ==============================================================================
+-# System prompt with template variables
+-# ==============================================================================
+-# CAPABILITIES: What can this agent do?
+-# ==============================================================================
+-# ==============================================================================
+-# MODEL CONFIGURATION: How does this agent think?
+-# ==============================================================================
+-# ==============================================================================
+-# MEMORY CONFIGURATION: What does this agent remember?
+-# ==============================================================================
+-# ==============================================================================
+-# REGISTRY INTEGRATION: How is this agent discovered?
+-# ==============================================================================
+-# ==============================================================================
+-# METADATA: Additional information
+-# ==============================================================================
+-# Template rendering
+-# From packages/friday-agent/src/friday_agent/loader.py
+-### 6.2.2 Tool Permission Management
+-#### Explicit Allowlist (Manual Mode)
+-#### Category-Based Selection
+-#### Wildcard Patterns
+-# Read-only filesystem
+-# Safe web access (no downloads)
+-# Analysis only (no execution)
+-#### Tool Autonomy Modes
+-# From packages/friday-agent/src/friday_agent/base.py
+-#### Security Best Practices
+-# LOW RISK: Data analysis agent
+-# MEDIUM RISK: Content creator agent
+-# HIGH RISK: DevOps agent
+-# From transcript
+-### 6.2.3 Model Selection Per Agent
+-# Option 1: Specify in agent YAML (not yet supported, use global config)
+-# Option 2: Configure globally, override programmatically
+-# Current approach: Set in config.yaml, all agents share
+-# Create specialized LLM clients
+-# Inject different LLM per agent
+-# Factual tasks: Low temperature
+-# Use case: Data extraction, classification, fact checking
+-# Balanced tasks: Medium temperature
+-# Use case: General conversation, Q&A, analysis
+-# Creative tasks: High temperature
+-# Use case: Story writing, brainstorming, idea generation
+-# Match context strategy to model capabilities
+-# vs.
+-# Configure hybrid LLM routing
+-### 6.2.4 Memory Mode Configuration
+-# FULL MODE: All memory stores enabled (default)
+-# VECTOR ONLY: Semantic search, no graph
+-# GRAPH ONLY: Entity/relationship focus
+-# EPISODIC ONLY: Recent conversation only
+-# STATELESS: No memory (each turn independent)
+-#### Full Mode (Default)
+-#### Vector Only Mode
+-#### Graph Only Mode
+-#### Episodic Only Mode
+-#### Stateless Mode
+-# No namespace: Global shared memory
+-# Team namespace: Share memory within team
+-# Agent namespace: Private memory
+-# Agent profile template
+-# Runtime instantiation with customer context
+-## 6.3 Agent Lifecycle & State Management
+-### 6.3.1 Agent Initialization & Loading
+-# Initialize loader
+-# Load single agent
+-# Reads agents/researcher.yaml, validates, returns AgentProfile
+-# Load all agents in directory
+-# Returns: {"researcher": AgentProfile, "coder": AgentProfile, ...}
+-# List available agents without loading
+-# Returns: ["researcher", "coder", "reviewer"]
+-# From packages/friday-agent/src/friday_agent/loader.py
+-# Create registry
+-# Auto-load all agents from directory
+-# Loads all YAML files, registers profiles
+-# Manual registration
+-# Query registry
+-# Find agents with specific capability
+-# Returns: [researcher_profile, analyst_profile]
+-# Find agents with multiple capabilities
+-# List all capabilities
+-# Returns: ["research", "coding", "testing", "analysis", ...]
+-# Configure factory (typically done by dependency injection container)
+-# Create agent instance
+-# Returns: CopilotAgent instance with researcher profile
+-# Registration: Fast, no agent instances created
+-# Instantiation: Only when needed
+-# Other 8 agents still not instantiated (saves memory)
+-# Initialize session
+-# What happens:
+-# 1. Memory controller sets author to agent name (provenance tracking)
+-# 2. Context engine initializes session state
+-# 3. Priming (if configured): Load top entities, recent insights
+-# 4. Conversation history cleared for new session
+-# Session state returned
+-# Same session ID loads prior context
+-# Context engine loads:
+-# - Recent turns from this session (episodic memory)
+-# - Entities/insights from prior turns (graph/vector memory)
+-# - Session-scoped variables
+-# Single turn
+-# Multiple turns (maintains conversation state)
+-# Clear conversation history (keeps long-term memory)
+-# Archive session before shutdown
+-# (Automatically happens after each turn via _archive_turn)
+-# Release agent instance
+-### 6.3.2 Session Management & Checkpointing
+-# From packages/friday-memory/src/friday_memory/models.py
+-# New session (generates ID automatically)
+-# agent.session_id = "550e8400-e29b-41d4-a716-446655440000"
+-# Or provide explicit session ID
+-# Application restart
+-# Reinitialize agent with same session ID
+-# Context engine automatically loads:
+-# - Recent turns from this session
+-# - Entities mentioned in prior turns
+-# - Insights learned during session
+-# Session A
+-# Session B (different context)
+-# Back to Session A
+-# Response: "Your favorite color is blue" (remembers Session A context)
+-# After each agent.run() call:
+-# Explicit cleanup
+-# Note: Episodic memory persists in database
+-# Or let session expire naturally
+-# Sessions remain in database indefinitely unless purged
+-# Set session variable
+-# Use in system prompt
+-# User A session
+-# User B session (different agent instance or same agent, different session)
+-# Memory isolation via namespace
+-# CLI commands (memory-chat-v2.py)
+-# Programmatic access
+-### 6.3.3 Agent Registry & Discovery
+-# Initialize registry with loader
+-# Load all agents from directory
+-# Registration (manual)
+-# Lookup by name
+-# Check existence
+-# List all agents
+-# Returns: ["researcher", "coder", "reviewer", "analyst"]
+-# Find agents with specific capability
+-# Returns: [researcher_profile, analyst_profile]
+-# Find agents with multiple capabilities (ANY match)
+-# Find agents with ALL required capabilities
+-# List all available capabilities
+-# Returns: ["research", "coding", "testing", "analysis", "review", ...]
+-# Get capability statistics
+-# Returns: {"research": 2, "coding": 3, "testing": 2, ...}
+-# Configure factory (dependency injection)
+-# Create agent instance
+-# Returns: CopilotAgent with researcher profile and all dependencies injected
+-# Startup: Load all agents
+-# Runtime: Query and instantiate as needed
+-# Shutdown: Clear registry (if needed)
+-# Create orchestrator with registry
+-# Orchestrator uses registry for:
+-# 1. Agent lookup by name
+-# 2. Agent instantiation via factory
+-# 3. Capability-based routing (future feature)
+-# Explicit routing
+-# Registry looks up "researcher", instantiates via factory, runs query
+-# Agent switching
+-# Load agent YAML at runtime
+-# Immediately available
+-# Unregister
+-# Export to dict
+-# Returns: {"researcher": {...}, "coder": {...}, ...}
+-# Save to JSON
+-# Reload (reconstruct from saved state)
+-# Note: AgentProfile.from_dict() required for full deserialization
+@@ -2023,104 +2,7 @@ with open("registry_state.json", "w") as f:
+-## 6.4 Real-World Configuration Examples
+-### Example 1: Research Assistant Agent
+-# agents/research_assistant.yaml
+-# Multi-turn research workflow
+-# Agent searches web, reads multiple sources, synthesizes findings
+-# Agent remembers context from Turn 1, searches for company info
+-# Agent cross-references prior findings, provides cited comparison
+@@ -2129,74 +11 @@ response3 = await agent.run(
+-### Example 2: Code Generation Agent
+-# agents/code_generator.yaml
++# Agent profiles and lifecycle
+@@ -2204,11 +13,3 @@ metadata:
+@@ -2216 +17 @@ metadata:
++## Agent types
+@@ -2218,3 +19,7 @@ metadata:
+@@ -2222,10 +27,3 @@ await agent.initialize_session(user_id="developer")
+-# Agent reads existing code, writes new function, generates tests
+@@ -2233 +31 @@ Implement a user authentication function that:
++## A complete profile
+@@ -2235 +33 @@ Implement a user authentication function that:
+-### Example 3: Customer Support Agent
+@@ -2238,30 +36,7 @@ Implement a user authentication function that:
+-# agents/customer_support.yaml
+@@ -2269,47 +43,0 @@ context_strategy: standard
+-### Example 4: Stateless Classification Agent
+-# agents/classifier.yaml
+@@ -2317,102 +45,8 @@ tool_autonomy: manual
+-# Stateless agent: No session initialization needed
+-# Classify 1000 items in parallel
+-## 6.5 Best Practices & Patterns
+-### Configuration Best Practices
+-# Good: Minimal tools
+-# Avoid: Broad access
+-# agents/dev/researcher.yaml
+-# agents/prod/researcher.yaml
+-# Multi-tenant: One agent, isolated memory per customer
+-# Multi-project: Share memory within project team
+@@ -2420,65 +54 @@ metadata:
+-### Common Pitfalls
+-# Pitfall: Giving every agent every tool
+-# Solution: Grant only necessary tools
+-# Pitfall: High temperature for factual tasks
+-# Solution: Match temperature to task
+-# Pitfall: Full memory for ephemeral agents
+-# Solution: Stateless for ephemeral agents
+-# Pitfall: Shared memory in multi-tenant deployment
+-# Solution: Isolate per customer
+-# Pitfall: Extended context for simple tasks
+-# Solution: Minimal for simple tasks
+@@ -2487,5 +57,4 @@ context_strategy: minimal
+-## Summary
+@@ -2493 +62,3 @@ Friday's agent system provides a flexible, configuration-driven architecture for
+@@ -2495 +66 @@ Friday's agent system provides a flexible, configuration-driven architecture for
+@@ -2497,45 +68,110 @@ Friday's agent system provides a flexible, configuration-driven architecture for
++## Profile fields and validation
++## Registry and factories
++## Tool autonomy and permissions
++## Model and memory binding
++## Lifecycle and failures
++## Troubleshooting profiles
++## Implementation references
+diff --git a/docs/guides/07-multi-agent.md b/docs/guides/07-multi-agent.md
+@@ -1,2160 +0,0 @@
+-# Friday Agent Framework
+-## Section 7: Multi-Agent Orchestration - Team Collaboration
+-## Overview
+-## 7.1 The "Shared Intelligence Plane, Multiple Control Planes" Architecture
+-### 7.1.1 Shared Memory Model Explained
+-### 7.1.2 Provenance Tracking for Attribution
+-# Entity created by researcher agent
+-# Relationship created by coder agent
+-# Insight created by reviewer agent
+-# Query graph for "Python" entity
+-# Check provenance
+-# Output might reveal:
+-# Entity: Python
+-#   Type: ANIMAL
+-#   Created by: researcher  (Wrong context from web search)
+-#   Confidence: 0.6
+-#   Turn: turn_10
+-# Entity: Python
+-#   Type: TECHNOLOGY
+-#   Created by: coder  (Correct context from code analysis)
+-#   Confidence: 0.95
+-#   Turn: turn_15
+-# Solution: Use confidence and context to prefer the coder's version
+-### 7.1.3 Benefits vs. Isolated-Memory Architectures
+-# Each agent has its own memory store
+-# Explicit handoff required
+-# Both agents use same MemoryController
+-# No explicit handoff needed
+-# Coder automatically retrieves researcher's findings through normal memory recall
+-## 7.2 Agent Orchestrator
+-### 7.2.1 Explicit Routing with @mentions
+-# Pattern: @agent_name followed by space and message
+-# Examples of valid routing:
+-# Invalid (no routing):
+-# Setup
+-# Initialize with shared memory (happens in agent factory)
+-# Explicit routing examples
+-# → Routes to researcher agent
+-# → Routes to coder agent (which sees researcher's findings in memory)
+-# → Routes to reviewer agent (which sees both researcher and coder's work)
+-# After routing to @researcher above...
+-# No @mention → uses active agent (researcher) from previous turn
+-# User explicitly switches
+-# Active agent is now: coder
+-# Next message continues with coder
+-# Still coder (no explicit routing, uses active agent)
+-# User switches again
+-# Active agent is now: reviewer (coder remains cached)
+-### 7.2.2 Task Delegation & Return Patterns
+-# Inside a custom tool or agent logic
+-# Coder is active
+-# Temporarily delegate to researcher
+-# Coder is active again
+-# Start with researcher
+-# Delegate to coder and stay there
+-# Coder is now active
+-# Continue with coder
+-# Wrong approach (not needed in Friday):
+-# Friday approach (context automatically available):
+-# Coder automatically retrieves researcher's findings from shared memory ✓
+-### 7.2.3 Agent State Aggregation: Sequential, Parallel, Hierarchical
+-# User submits complex task
+-# Coordinator breaks it down:
+-# Coordinator executes plan
+-# Final synthesis
+-## 7.3 Multi-Agent Workflows & Patterns
+-### 7.3.1 Research → Analysis → Reporting Pipeline
+-### 7.3.2 Peer Review & Validation Patterns
+-### 7.3.3 Specialist vs. Generalist Agent Strategies
+-# Specialist Team Registry
+-# Orchestration with specialists
+-# Generalist Team Registry
+-# Orchestration with generalists
+-# Hybrid Team Registry
+-# Generalists
+-# Specialists
+-# Orchestration: Generalist handles most work, specialists for expertise
+-# 12 specialist agents
+-# 3 generalist agents
+-# 5 agents (3 generalists + 2 specialists)
+-## 7.4 Advanced Multi-Agent Patterns
+-### 7.4.1 Capability-Based Auto-Routing (Future)
+-# User doesn't specify agent
+-# Orchestrator analyzes task
+-# → Detected capabilities: research, summarization
+-# → Detected keywords: papers, research
+-# Query registry for agents with matching capabilities
+-# → Returns: [researcher agent]
+-# Auto-route to best match
+-# Agents advertise capabilities
+-# Registry indexes capabilities
+-# Query by capability
+-# → [researcher_profile]
+-# → [coder_profile]
+-### 7.4.2 Agent Handoff with Context Pruning
+-### 7.4.3 Agent Pools for Load Balancing
+-# Usage
+-# Parallel requests
+-## 7.5 Configuration & Deployment
+-### 7.5.1 Agent Team Configuration Files
+-# Shared configuration
+-# Load team configuration
+-# Initialize orchestrator with team
+-# Use team
+-### 7.5.2 Multi-Agent Observability
+-# Get all turns handled by researcher
+-# Get agent usage statistics
+-# → {
+-#     "researcher": {"turns": 5, "tokens": 12000},
+-#     "coder": {"turns": 3, "tokens": 8000},
+-#     "reviewer": {"turns": 2, "tokens": 4000},
+-# }
+-# Metrics for monitoring
+@@ -2162,57 +2,7 @@ async def process_with_tracing(user_input: str):
+-## 7.6 Best Practices & Pitfalls
+-### Best Practices
+-### Common Pitfalls
+@@ -2221,24 +11 @@ async def process_with_tracing(user_input: str):
+-## 7.7 Practical Examples
+-### Example 1: Complete Software Feature Development
+-# Stage 1: Research (auto-routes to default researcher)
+-# Stage 2: Architecture
++# Multi-agent orchestration
+@@ -2246,7 +13,6 @@ You: @architect design the authentication system
++## Framework and Chat surfaces
+@@ -2254,2 +20,6 @@ Architect: Based on the research findings, here's the architecture:
+-# Stage 3: Implementation
+@@ -2257,4 +27,5 @@ You: @coder implement the authentication API
+@@ -2262,5 +33 @@ Coder: I'll implement based on the architecture.
++## Profiles, factories and session identity
+@@ -2268,2 +35,4 @@ Implementation complete. Files created:
+-# Stage 4: Security Review
+@@ -2271,3 +40,4 @@ You: @reviewer check for security issues
+@@ -2275,72 +45,2 @@ Reviewer: Running security analysis...
+-# Stage 5: Fix Issues
+-# Stage 6: Testing
+-# Complete
+-# (Orchestrator delegates to coder for git operations)
+-# Graph entities created
+-# Relationships
+-# Insights
+-### Example 2: Multi-Agent Research Report
+@@ -2349,69 +49 @@ Insight(
+-# Orchestration script
+@@ -2419,2 +51,2 @@ async def generate_healthcare_ai_report():
+@@ -2422,6 +54,10 @@ async def generate_healthcare_ai_report():
+-# Execute
+-# Save report
+@@ -2430,25 +66,3 @@ with open("healthcare_ai_report_2025.md", "w") as f:
+-## 7.8 Troubleshooting Multi-Agent Issues
+-### Issue: Agents Not Seeing Each Other's Work
+-# Check memory retrieval
+-# Check retrieved entities
+@@ -2456,5 +70 @@ for entity in context.loaded_entities:
+-# Check retrieved insights
++## Routing and delegation
+@@ -2462 +72,4 @@ for insight in context.retrieved_insights:
+@@ -2464,4 +77,9 @@ for insight in context.retrieved_insights:
+@@ -2469 +87,5 @@ for insight in context.retrieved_insights:
+@@ -2471,3 +93 @@ for insight in context.retrieved_insights:
+-# Force manual extraction if automatic failed
++## Explicit handoffs
+@@ -2475,2 +95,5 @@ from friday_memory import MemoryExtractor
+@@ -2478,2 +101,4 @@ await extractor.extract_from_turn(turn_id="turn_where_researcher_ran")
+-# Lower retrieval threshold temporarily
+@@ -2481,3 +106,3 @@ memory_controller.config.retrieval_threshold = 0.5  # From 0.7
+-# Check namespace isolation
+@@ -2485 +110 @@ assert coder_agent.namespace == researcher_agent.namespace
+-### Issue: Delegation Timeout
++## Namespace-aware memory
+@@ -2487 +112,4 @@ assert coder_agent.namespace == researcher_agent.namespace
+@@ -2489 +117 @@ assert coder_agent.namespace == researcher_agent.namespace
+@@ -2492,6 +119,0 @@ assert coder_agent.namespace == researcher_agent.namespace
+-# Check orchestrator status
+-# Check if delegate agent is stuck
+@@ -2499,12 +121 @@ import asyncio
+@@ -2512,3 +123,5 @@ except asyncio.TimeoutError:
+@@ -2516,29 +129 @@ except asyncio.TimeoutError:
+-# Add timeout to delegation
+-### Issue: Agent Personality Drift
+-# Check agent configuration
+-# Check temperature setting
+@@ -2547 +132 @@ grep temperature agents/researcher.yaml
+@@ -2549,3 +134,6 @@ grep temperature agents/researcher.yaml
+@@ -2553 +141,5 @@ grep temperature agents/researcher.yaml
+@@ -2555,4 +147 @@ grep temperature agents/researcher.yaml
+-# researcher.yaml
++## Sequential, parallel and hierarchical designs
+@@ -2560,2 +149,5 @@ temperature: 0.3  # Lower for consistency
+@@ -2563,5 +155,4 @@ system_prompt: |
+@@ -2569,9 +160 @@ system_prompt: |
+-## Summary
++## Operational checks
+@@ -2579 +162,6 @@ system_prompt: |
+@@ -2581 +169 @@ Friday's multi-agent orchestration layer transforms isolated agents into collabo
++## Implementation references
+@@ -2583,13 +171,5 @@ Friday's multi-agent orchestration layer transforms isolated agents into collabo
+@@ -2597,6 +177 @@ Friday's multi-agent orchestration layer transforms isolated agents into collabo
+diff --git a/docs/guides/08-workflows.md b/docs/guides/08-workflows.md
+@@ -1,7 +0,0 @@
+-# Friday Agent Framework
+-## Section 8: Workflows - Task Graphs & Automation
+@@ -9,19 +2,7 @@
+-## Overview
+@@ -30,57 +11 @@ Friday's workflow system uses declarative YAML definitions to describe directed
+-## 8.1 Workflow Engine Architecture
+-### 8.1.1 Task Graphs & Dependencies (DAGs)
++# Workflows and task graphs
+@@ -88 +13,4 @@ Directed acyclic graphs provide:
+@@ -90 +18 @@ Directed acyclic graphs provide:
++## Choose the correct surface
+@@ -92,7 +20,5 @@ Friday uses Kahn's algorithm to determine execution order:
+-# Conceptual algorithm (from models.py)
+@@ -100,3 +26,5 @@ def get_task_order(self) -> list[str]:
+@@ -104,6 +32,4 @@ def get_task_order(self) -> list[str]:
+@@ -111,2 +37 @@ def get_task_order(self) -> list[str]:
++## Canonical bundle layout
+@@ -114 +39,7 @@ def get_task_order(self) -> list[str]:
+@@ -117,3 +48,2 @@ def get_task_order(self) -> list[str]:
+@@ -121,18 +51,9 @@ This produces execution order: `["research", "review_research", "write_draft", "
+@@ -141,15 +62 @@ Multiple tasks can depend on the same task (diamond pattern):
+-### 8.1.2 Variable Passing with $var Syntax
+@@ -157,0 +65,10 @@ Tasks communicate via **workflow variables** using the `$var` syntax. This creat
+@@ -159,236 +76,35 @@ tasks:
+-# Workflow execution state
+-# Task definition
+-# Resolved inputs passed to agent
+-# Task references $missing_var but it doesn't exist
+-### 8.1.3 Workflow Status Tracking
+@@ -397,3 +113 @@ def record_task(self, task: TaskNode) -> None:
+@@ -402,27 +116 @@ The workflow engine provides a status query method:
+@@ -430,40 +118,5 @@ def get_workflow_status(
+@@ -472,22 +125,4 @@ def get_workflow_status(
+-## 8.2 YAML Workflow Definitions
+-### 8.2.1 Workflow Schema Reference
+-# Required fields
+@@ -495,7 +130 @@ tasks: [TaskNode]            # Array of task definitions (min: 1)
+-# Optional fields
++## Canonical contracts
+@@ -503 +132,3 @@ tags: [string]               # Tags for organization and filtering
+@@ -505,6 +136,5 @@ tags: [string]               # Tags for organization and filtering
+-# Required fields
+@@ -512,7 +142,4 @@ agent: string                 # Agent name to execute this task
+-# Optional fields
+@@ -520,4 +147,4 @@ outputs: [string]            # Output variable names (default: [])
+@@ -525,8 +152 @@ max_retries: integer         # Maximum retry attempts on failure (default: 0)
+-# Runtime fields (automatically set during execution)
++## Flat compatibility workflow
+@@ -534 +154 @@ completed_at: datetime       # Execution end timestamp
+@@ -537,16 +157,4 @@ completed_at: datetime       # Execution end timestamp
+-# Newsletter Generation Workflow
+-# Researches a topic, writes a newsletter, and requires human approval
+-# Global settings
+@@ -554,29 +162,3 @@ tasks:
+@@ -585,44 +167,6 @@ tasks:
+@@ -629,0 +174 @@ tasks:
+@@ -631,304 +176,4 @@ tasks:
+-### 8.2.2 Task Configuration Options
+-# Workflow-level timeout (applies to entire execution)
+-# Future: Conditional task execution based on prior results
+-# Future: Error handling modes
+-# Future: Priority for task scheduling (when parallelizing)
+-### 8.2.3 Human-in-the-Loop Approval Gates
+-# Create engine with callback
+-# Start workflow
+-# Workflow executes until approval gate
+-# User reviews and approves
+@@ -937,9 +182,2 @@ Friday> /workflow approve
+-# Approve a waiting task
+@@ -947,7 +185,5 @@ execution = await engine.approve_task(
+-# Skip a waiting task
+@@ -955 +191 @@ execution = await engine.skip_task(
+@@ -958,49 +194 @@ execution = await engine.skip_task(
+@@ -1008,5 +196,3 @@ async def _handle_approval(self, task: TaskNode, execution: WorkflowExecution) -
+@@ -1015,6 +201 @@ async def _handle_approval(self, task: TaskNode, execution: WorkflowExecution) -
+@@ -1022 +203 @@ async def _handle_approval(self, task: TaskNode, execution: WorkflowExecution) -
++## Execution, approval and failure
+@@ -1024,5 +205,4 @@ async def _handle_approval(self, task: TaskNode, execution: WorkflowExecution) -
+@@ -1030 +210,5 @@ When a task is skipped (approval denied):
+@@ -1032 +216,4 @@ When a task is skipped (approval denied):
+@@ -1034,4 +221,4 @@ Workflows can have multiple approval gates:
+@@ -1039,3 +226 @@ tasks:
++## Chat commands
+@@ -1043,3 +228 @@ tasks:
+@@ -1047,3 +230,5 @@ tasks:
+@@ -1052,7 +237,5 @@ tasks:
+@@ -1060,1354 +243 @@ Workflow execution pauses at each gate until approved.
+-## 8.3 Workflow Loader & Execution
+-### 8.3.1 Loading Workflows from YAML
+-# Initialize loader (defaults to ./workflows/ directory)
+-# Or specify custom directory
+-# Load specific workflow
+-# Load all workflows
+-# List available workflows
+-# Missing required fields
+-# Invalid YAML syntax
+-# Duplicate task IDs
+-# Undefined dependencies
+-# Circular dependencies
+-# First load: reads from disk and parses
+-# Second load: returns cached instance
+-# Same object reference
+-# Force reload (bypass cache)
+-# Clear entire cache
+-### 8.3.2 Executing Workflows via CLI
+-# Without initial inputs (if workflow doesn't require any)
+-# With initial inputs (key=value pairs)
+-# Multiple inputs
+-# String values with spaces (use quotes)
+-# User reviews content and decides to approve
+-# User reviews final draft
+-# User decides not to approve final review
+-# Task fails
+-# Retry exhausted
+-### 8.3.3 Workflow Engine Internals
+-## 8.4 Example Workflows & Templates
+-### 8.4.1 Newsletter Generation Workflow
+-# Newsletter Generation Workflow
+-# Researches a topic and generates a newsletter article
+-# Variation: Skip human review for internal drafts
+-# Variation: Add SEO optimization task
+-# Variation: Add fact-checking task
+-### 8.4.2 Code Review Workflow
+-### 8.4.3 Research & Report Workflow
+-# Future enhancement: Parallel execution
+-## Conclusion: Workflows for Production Automation
++## Implementation references
+@@ -2415 +245,4 @@ Workflows transform Friday from an interactive assistant into a production autom
+@@ -2417 +250 @@ Workflows transform Friday from an interactive assistant into a production autom
+diff --git a/docs/guides/09-cli-reference.md b/docs/guides/09-cli-reference.md
+@@ -1,3766 +0,0 @@
+-# Friday Agent Framework
+-## Section 9: CLI Reference - memory-chat-v2.py
+-## Overview
+-# From project root
+-# With custom config
+-## 9.1 Session Management Commands
+-### `/exit`, `/quit`
+-### `/clear`
+-### `/reset`
+-## 9.2 Memory Inspection Commands
+-### `/memory`
+-### `/context [--debug]`
+-### `/prompt`
+-### `/prime`
+-### `/debug`
+-## 9.3 Memory Store Queries
+-### `/entities [--limit N]`
+-### `/facts [--type TYPE]`
+-### `/insights`
+-### `/summaries`
+-### `/meta`
+-## 9.4 Transcript Management
+-### `/sessions`
+-### `/transcript [id]`
+-### `/transcript export`
+-### `/export [format]`
+-# Friday Conversation Transcript
+-## Turn 1
+-## Turn 2
+-## 9.5 Advanced Memory Operations
+-### `/reorganize [options]`
+-# Add to crontab for weekly reorganization
+-### `/migrate [options]`
+-### `/lifecycle [options]`
+-## 9.6 Tool Management Commands
+-### `/tools [category]`
+-### `/run-tool <name> [json]`
+-### `/inject-tools <names>`
+-### `/clear-tools`
+-### `/recommend-tools <query>`
+-# Test 1: File operations
+-# Verify read_file is top recommendation
+-# Test 2: Web operations
+-# Verify web_search is top recommendation
+-# Test 3: Git operations
+-# Verify git_status and git_commit are recommended
+-### `/tool-budget`
+-# Only include filesystem and git tools
+-## 9.7 Agent Orchestration Commands (Phase 3)
+-### `/switch [agent]`
+-# Session 1
+-# Session 2 (later)
+-### `/agents`
+-### `/agent [name]`
+-### `/delegate <agent> <task>`
+-### `/status`
+-### `@agent_name <message>`
+-## 9.8 Workflow Commands (Phase 4)
+-### `/workflow list`
+-### `/workflow run <name> [inputs]`
+-### `/workflow status`
+-### `/workflow approve`
+-### `/workflow skip`
+-## 9.9 Configuration & Utility Commands
+-### `/vars`
+-### `/set <key> <value>`
+-### `/read <path>`
+-### `/ingest <path>`
+-### `/help [command]`
+-## Command Reference Summary
+-### Quick Reference Table
+-## Configuration File Reference
+-### Session Configuration
+-### Memory Configuration
+-### Tool Configuration
+-## Tips & Best Practices
+-### For Developers
+-### For Technical Executives
+-# Show learning capability
+-# Show memory persistence
+-# Show multi-agent
+-### For AI Practitioners
+-# Baseline
+-# Adjust priming
+-# Edit config.yaml: top_n_entities: 5
+-# Test tool budgeting
+-# Check current state
+-# Force operations
+-# Verify results
+@@ -3768,47 +2,7 @@ tools:
+-## Troubleshooting Guide
+-### Common Issues
+@@ -3817,12 +11 @@ Solution: Verify file path and permissions
+-## Appendix: Command Aliases
++# Friday Chat CLI reference
+@@ -3830 +13,3 @@ Some commands support aliases for convenience:
+-## Appendix: Environment Variables
+@@ -3832 +17 @@ Some commands support aliases for convenience:
++## Process options
+@@ -3835,43 +20,191 @@ CLI behavior can be modified via environment variables:
+-# Logging
+-# Config
+-# Memory
+-# API Keys (required)
+-## Conclusion
++## Slash commands
++## Session and inspection behavior
++## Transcripts, exports and replay
++## Tool commands
++## Commands that change memory
++## Orchestration and workflow limits
++## Speech and security commands
++## Implementation references
+diff --git a/docs/guides/10-configuration.md b/docs/guides/10-configuration.md
+@@ -1,9 +0,0 @@
+-# Friday Agent Framework
+-## Section 10: Configuration Guide
+@@ -11,32 +2,7 @@
+-## Table of Contents
+@@ -45,49 +11,134 @@
+-## 10.1 Configuration Architecture
+-### 10.1.1 Hierarchical Config Merging
+-# config.yaml - Base configuration
+-# Environment override for production
+-# Runtime override for specific agent
+-# Override max_retries for this specific use case
+-# config.yaml
++# Configuration reference
++## Files and loaders
++## Canonical model library
++## Bind models to Chat roles
+@@ -96,447 +147,35 @@ memory:
+-# Override just the top_entities value
+-# Other priming settings remain unchanged
+-# Project structure
+-# Load environment-specific config
+-### 10.1.2 Configuration Validation
+-# INVALID - temperature must be a float
+-# VALID - automatic type coercion
+-# INVALID - temperature must be 0.0-2.0
+-# INVALID - max_retries must be 0-10
+-# INVALID - unknown sandbox type
+-# VALID
+-# INVALID - circuit breaker requires failure_threshold when enabled
+-# From ResilienceConfig
+-# Test your config before running
+-### 10.1.3 Environment Variable Mapping
+-# Top-level core settings
+-# LLM configuration
+-# Nested configuration (double underscore)
+-# Memory configuration
+-# Sandbox configuration
+-# Boolean values (case-insensitive)
+-# Numeric values
+-# Lists (comma-separated)
+-# Application environment
+-# Default model for components that need it
+-# API keys
+-# Model selection
+-# Retry and resilience
+-# Circuit breaker
+-# Context window
+-# Priming
+-# Lifecycle
+-# Sandbox type
+-# Docker configuration
+-# Workspace configuration
+-# .env file
+-# Automatically loaded on import
+-# Friday Agent Framework Configuration
+-# Copy to .env and fill in your values
+-# Required: API Keys
+-# Optional: Model Configuration
+-# Optional: Memory Configuration
+-# Optional: Logging
+-## 10.2 LLM Configuration
+-### 10.2.1 Provider Setup
+-# config.yaml
+-# .env
+-# Specify organization in environment
+-# .env
+-# .env
+@@ -545,54 +184 @@ Some Claude features require beta headers:
+-# For tool use (function calling)
+-# .env
+-# macOS
+-# Linux
+@@ -600,2 +186,5 @@ curl -fsSL https://ollama.com/install.sh | sh
+-# Start the service
+@@ -604 +193,3 @@ ollama serve
+@@ -607,18 +198 @@ ollama serve
+-# Download models
+-# List downloaded models
+@@ -627,13 +201 @@ llm:
++## Role-specific overrides and generation controls
+@@ -641,8 +203,2 @@ LM Studio provides a GUI for running local models with OpenAI-compatible API.
+@@ -651,32 +207,130 @@ LM Studio provides a GUI for running local models with OpenAI-compatible API.
+-### 10.2.2 OpenRouter for Multi-Model Access
++## Chat sections and responsibilities
++## Secrets and environment precedence
++## Headless Runtime configuration
++## MCP configuration
++## Telemetry configuration and Langfuse
+@@ -685,8 +339,3 @@ OpenRouter provides unified API access to 100+ models from multiple providers, e
+-# .env
+@@ -695,16 +344,4 @@ OPENROUTER_API_KEY=sk-or-v1-your-openrouter-key
+-# Anthropic models
+-# OpenAI models
+-# Google models
+@@ -712,3 +349,4 @@ model: "openrouter/google/gemini-1.5-pro"
+-# Meta models
+@@ -716,8 +354,3 @@ model: "openrouter/meta-llama/llama-3.1-405b-instruct"
+-# Mistral models
+-# Open source models
+@@ -725,4358 +358 @@ model: "openrouter/qwen/qwen-2.5-72b-instruct"
+-### 10.2.3 Model-Specific Settings
+-# config.yaml - Production configuration
+-### 10.2.4 Resilience & Retry Configuration
+-# max_retries=5, timeout=60s, circuit_breaker enabled
+-# max_retries=0, timeout=600s, no circuit breaker
+-# Override resilience settings
+-# Load from environment
+-# config.yaml - Production resilience configuration
+-# Fallback to cheaper model on extended outage
+-# Access resilience metrics (future feature)
+-# After some operations
+-## 10.3 Memory Configuration
+-### 10.3.1 Context Window & Token Budgeting
+-## Supporting Context
+-### Entities
+-### Relationships
+-### Insights
+-### 10.3.2 Priming Configuration
+-# config.yaml - Comprehensive priming configuration
+-# Enable/disable priming
+-# Entity selection
+-# Budget
+-# Recency
+-### 10.3.3 Lifecycle Settings
+-# Very slow decay - Long-term projects
+-# Slow decay - General purpose
+-# Medium decay - Default balanced setting
+-# Fast decay - Short-term tasks
+-# Very fast decay - Single-session focus
+-# config.yaml - Comprehensive lifecycle configuration
+-# Enable lifecycle
+-# Decay settings
+-# Thresholds
+-# Promotion
+-# Cleanup
+-### 10.3.4 Collection Configuration
+-# config.yaml - Multi-collection configuration
+-# Multi-collection mode
+-# Collection names
+-# Retrieval
+-# Migration
+-## 10.4 Tool Configuration
+-### Integrated MCP client configuration (current behavior)
+-### 10.4.1 Tool Registry Setup
+-# Initialize with all built-in tools
+-# Available categories:
+-# - filesystem (read_file, write_file, directory_list, etc.)
+-# - shell (shell_execute, shell_background)
+-# - web (web_fetch, web_search, web_scrape)
+-# - git (git_status, git_commit, git_diff, etc.)
+-# - data (json_parse, csv_parse, xml_parse)
+-# - text (text_search, text_replace, regex_match)
+-# - code (python_execute, code_analyze)
+-# Register custom tool
+-# config.yaml - Tool registry configuration
+-# Registry mode
+-# Load built-ins
+-# Categories (comma-separated)
+-# Custom paths (comma-separated)
+-### 10.4.2 Security & Sandboxing
+-# Friday Sandbox Image
+-# Create non-root user
+-# Install common dependencies
+-# Set up workspace
+-# Switch to non-root user
+-# No CMD - container receives code at runtime
+-# config.yaml - Comprehensive security configuration
+-# Sandbox type
+-# Docker settings
+-# Workspace
+-### 10.4.3 Tool Allowlists and Blocklists
+-# Start with minimal tools
+-# Expand after user confirms
+-# Revoke after task complete
+-# config.yaml - Comprehensive allowlist configuration
+-## 10.5 Extraction Configuration
+-### 10.5.1 Extraction LLM Selection
+-# config.yaml - Extraction LLM configuration
+-# Extraction model
+-# Retry
+-# Batching
+-### 10.5.2 Extraction Prompts & Rules
+-# config.yaml - Comprehensive extraction configuration
+-### 10.5.3 Entity Types and Relationship Verbs
+-# config.yaml - Entity types and relationship verbs
+-## 10.6 Transcript Configuration
+-### 10.6.1 Storage Settings
+-# config.yaml - Comprehensive transcript storage
+-### 10.6.2 Export Formats
+-# config.yaml - Comprehensive export configuration
+-# Storage backend
+-# Export
+-## 10.7 Telemetry & Observability
+-### 10.7.1 Logging Configuration
+-# config.yaml - Comprehensive logging configuration
+-### 10.7.2 Telemetry Integration
+-# config.yaml - Comprehensive telemetry configuration
+-# Telemetry
+-# OpenTelemetry
+-# DataDog
+-# Prometheus
+-## Summary
++## Validate configuration changes
+@@ -5084 +360,5 @@ With these configuration options, you can tailor Friday to your specific use cas
+@@ -5086,3 +366 @@ With these configuration options, you can tailor Friday to your specific use cas
+diff --git a/docs/guides/11-advanced-topics.md b/docs/guides/11-advanced-topics.md
+@@ -1,7 +0,0 @@
+-# Friday Agent Framework
+-## Advanced Topics
+@@ -9,38 +2,7 @@
+-## Overview
+-### MCP client lifecycle and trust boundary
+@@ -49,25 +11 @@ the local synthetic peer example.
+-## 11.1 Hybrid Cloud-Local Architecture
+-### The Cost-Performance Dilemma
+-### 11.1.1 Cost Optimization Strategies
++# Advanced integration and operations
+@@ -75 +13,4 @@ Running AI agents in production presents a fundamental tradeoff:
+-#### Strategy 1: Reasoning-in-Cloud, Execution-Local
+@@ -77 +18 @@ Running AI agents in production presents a fundamental tradeoff:
++## Route models by service role
+@@ -79,7 +20,5 @@ Running AI agents in production presents a fundamental tradeoff:
+-# config.yaml
+@@ -87,4 +26,5 @@ agents:
+@@ -92,8 +32,4 @@ agents:
+@@ -101,7 +37 @@ memory:
++## Typed model requests and streaming
+@@ -109,3 +39 @@ memory:
+@@ -114,5 +42 @@ memory:
+-# Cloud LLM for main reasoning
+@@ -120,13 +44,3 @@ cloud_llm = LiteLLMService(model="gpt-4o", temperature=0.7)
+-# Local LLM for extraction
+-# Memory controller with local extraction
+-# Agent uses cloud for reasoning, local for background tasks
+@@ -134,359 +48,40 @@ agent = CopilotAgent(
+-#### Strategy 2: Tiered Agent Model
+-# Executive agent delegates to cheaper specialists
+-#### Strategy 3: Embeddings Local, Reasoning Cloud
+-# Install LM Studio for local embeddings
+-# Download nomic-embed-text-v1.5 (768-dim, 0.5GB)
+-# Start local server: http://127.0.0.1:1234
+-#### Strategy 4: Smart Routing by Complexity
+-### 11.1.2 Privacy & Data Residency
+-#### Compliance Requirements
+-#### Air-Gapped Deployment
+-# config-airgapped.yaml
+-# Install Ollama (supports GPU acceleration)
+-# Pull models (do this once, models cached locally)
+-# Verify models
+-# Start server (runs on http://localhost:11434)
+-#### Encryption at Rest
+-# Use LUKS encryption for data directory
+-# Friday stores will be encrypted automatically
+-# Transcripts, vectors, graph, all encrypted
+-### 11.1.3 Latency vs. Capability Tradeoffs
+-#### Latency Analysis
+-#### Capability Comparison
++## Implement an adapter deliberately
+@@ -494,4 +89 @@ task_model_map = {
++## Performance measurement
+@@ -499,217 +91,5 @@ task_model_map = {
+-#### Hybrid Routing Implementation
+-## 11.2 Memory Optimization Techniques
+-### 11.2.1 Advanced Lifecycle Tuning
+-#### Hot-Cold Memory Tiers
+-# config-advanced.yaml
+-#### Topic-Based Decay Rates
+-#### Access-Based Reactivation Tuning
+-# Example:
+-# Memory with access_count=3: threshold = 0.80 - 0.06 = 0.74
+-# Memory with access_count=8: threshold = 0.80 - 0.15 = 0.65 (minimum)
+-### 11.2.2 Graph Pruning Strategies
+-#### Strategy 1: Weak Edge Removal
+-# Run weekly via cron
+-# friday-cli memory prune-edges --min-hits 3 --min-confidence 0.6
+-#### Strategy 2: Orphan Node Cleanup
+@@ -717,134 +97 @@ async def prune_weak_edges(graph_store, min_hit_count=3, min_confidence=0.6):
+-#### Strategy 3: Entity Deduplication
+-#### Strategy 4: Subgraph Extraction
+@@ -852,63 +99,15 @@ async def extract_subgraph(
+-### 11.2.3 Vector Store Compaction
+-#### Reindexing for Performance
+-#### Embedding Model Upgrades
++## Telemetry ownership and exporters
+@@ -916,3 +115,70 @@ async def migrate_embeddings(
++## Execution backends
+@@ -920,16 +186 @@ async def migrate_embeddings(
+@@ -938,3 +189,5 @@ async def migrate_embeddings(
+-#### Vector Quantization
+@@ -942,18 +195 @@ async def migrate_embeddings(
++## Deployment profiles and durable state
+@@ -961,2 +197,3 @@ async def quantize_embeddings(
+@@ -964,3 +201,4 @@ async def quantize_embeddings(
+@@ -968,6 +206,5 @@ async def quantize_embeddings(
+@@ -975,7 +212 @@ async def quantize_embeddings(
++## MCP lifecycle and trust
+@@ -983,1593 +214,5 @@ async def quantize_embeddings(
+-## 11.3 Custom Protocol Implementations
+-### 11.3.1 Implementing Custom LLM Clients
+-#### LLMClient Protocol
+-# From friday-core
+-#### Example: Hugging Face Inference API Client
+-# Use custom HuggingFace client
+-#### Example: vLLM Self-Hosted Client
+-# Install vLLM
+-# Start vLLM server
+-### 11.3.2 Implementing Custom Memory Stores
+-#### VectorStoreAdapter Protocol
+-# From friday-memory
+-#### Example: Pinecone Adapter
+-# Use Pinecone instead of ChromaDB
+-#### Example: Neo4j Graph Store
+-### 11.3.3 Custom Tool Protocols & Wrappers
+-#### Wrapping External APIs as Tools
+-# Register tool
+-#### Streaming Tools
+-## 11.4 Performance Optimization
+-### 11.4.1 Context Assembly Optimization
+-#### Parallel Store Retrieval
+-#### Context Caching
+-# Invalidate cache when memory updated
+-#### Lazy Entity Loading
+-# Context assembly only loads entity names initially
+-# Details loaded only if agent accesses them
+-### 11.4.2 Memory Store Indexing
+-#### Database Indexing Strategy
+-# Tune HNSW index parameters
+-# Pre-compute frequently-used subgraphs
+-# Index entities by type for fast filtering
+-### 11.4.3 Token Budget Optimization
+-#### Compression Strategies
+-# Before: ~150 tokens per tool (with descriptions)
+-# After: ~30 tokens per tool (parameters only)
+-# Savings: 80%
+-#### Dynamic Budget Reallocation
+-## 11.5 Deployment Patterns
+-### 11.5.1 Docker Deployment
+-#### Multi-Stage Dockerfile
+-# Stage 1: Build dependencies
+-# Install uv (fast Python package manager)
+-# Copy dependency files
+-# Install dependencies to /app/.venv
+-# Stage 2: Runtime image
+-# Copy virtual environment from builder
+-# Copy application code
+-# Create data directories
+-# Use virtual environment
+-# Non-root user
+-# Healthcheck
+-# Expose port (if running API server)
+-# Entry point
+-# Build image
+-# Run with volume mounts for persistence
+-#### Docker Compose Stack
+-# docker-compose.yml
+-# Start all services
+-# Pull Ollama models
+-# Check logs
+-# Stop stack
+-### 11.5.2 Kubernetes Deployment
+-#### Deployment Manifest
+-# friday-deployment.yaml
+-#### ConfigMap & Secrets
+-# friday-config.yaml
+-# Create namespace
+-# Apply configs
+-# Check status
+-# Scale replicas
+-#### Horizontal Pod Autoscaling
+-# friday-hpa.yaml
+-### 11.5.3 Serverless Deployment (AWS Lambda)
+-#### Minimal Context Priming
+-# config-lambda.yaml
+-#### Lambda Handler
+-# lambda_handler.py
+-# Initialize outside handler (reused across invocations)
+-#### Deployment Package
+-# Install dependencies to package directory
+-# Copy Friday code
+-# Create deployment ZIP
+-# Upload to Lambda
+-#### API Gateway Integration
+-# serverless.yml (using Serverless Framework)
+-## Summary: Advanced Topics
+@@ -2577 +220,7 @@ You've now mastered Friday's advanced capabilities:
+diff --git a/docs/guides/12-use-cases.md b/docs/guides/12-use-cases.md
+@@ -1,646 +0,0 @@
+-# Friday Agent Framework
+-## Section 12: Use Cases & Examples
+-## Overview
+-## 12.1 Personal Assistant Use Cases
+-### 12.1.1 Research Assistant with Cross-Session Continuity
+-# Research Assistant Agent Configuration
+-# Specializes in finding and synthesizing information across multiple sessions
+-# Use GPT-4 for high-quality reasoning
+-# Extended context for deep research
+-# Research Assistant Configuration
+-# Lifecycle tuned for long-term research memory
+-# Research Paper Analysis Workflow
+-# /workflows/research_paper.yaml
+-# Start research assistant
+-# Run with researcher agent
+-# Or execute research workflow
+@@ -648,471 +2,7 @@ python memory-chat-v2.py
+-### 12.1.2 Code Review & Development Assistant (Multi-Agent)
+-# Coder Agent Configuration
+-# Specializes in writing code with consistent style
+-# Reviewer Agent Configuration
+-# Specializes in code review and quality analysis
+-# Tester Agent Configuration
+-# Specializes in test generation and execution
+-# Feature Implementation Workflow
+-# Complete cycle: Code → Review → Test → Commit
+@@ -1121,3 +11 @@ Starting multi-agent workflow...
++# Application patterns and examples
+@@ -1125,2 +13,3 @@ I'll implement JWT-based authentication. Let me check existing patterns first.
+@@ -1128 +17 @@ I'll implement JWT-based authentication. Let me check existing patterns first.
++## A complete offline component composition
+@@ -1130,3 +19,4 @@ Creating authentication module...
+@@ -1135,43 +25,126 @@ I've implemented JWT authentication with:
+-# src/auth/jwt_auth.py
++## Research assistant with cross-session context
++## Code assistance and review
++## Document analysis and question answering
++## Project and team knowledge
++## Support and operations assistance
+@@ -1179 +152 @@ class JWTAuth:
++## Finance data assistance
+@@ -1181,2 +154,22 @@ class JWTAuth:
++## Sensitive-domain applications
+@@ -1184,5735 +177,4 @@ class JWTAuth:
+-# Security improvements
+-# tests/test_jwt_auth.py
+-# Fixtures
+-# Tests
+-### 12.1.3 Project Management Assistant with Entity Graph Tracking
+-# Project Manager Agent Configuration
+-# Tracks projects, tasks, and team status through conversation
+-# Weekly Status Report Generation
+-# Analyzes project memory and generates comprehensive report
+-# Weekly Status Report
+-## Period: January 20-24, 2026
+-## Executive Summary
+-## Project Status
+-### Authentication System
+-## Blockers and Risks
+-### Critical Blockers
+-### Recently Resolved
+-### Risks
+-## Team Capacity
+-## Metrics
+-## Action Items for Next Week
+-# Run PM assistant
+-# Generate status report
+-# Check project entities
+-# View project insights
+-# Export project data
+-## 12.2 Enterprise Use Cases
+-### 12.2.1 Customer Support Agent with CRM Integration
+-# Customer Support Agent Configuration
+-# Enterprise-grade support with CRM integration and namespace isolation
+-# Enterprise Support Configuration with Namespace Isolation
+-# PII and compliance
+-# SLA monitoring
+-# Rate limiting (prevent abuse)
+-# Support Ticket Lifecycle Workflow
+-# Handles ticket creation, knowledge base search, and escalation
+-# Post-workflow actions
+-# Run support agent with customer context
+-# Or via API (for web widget integration)
+-# Namespace cleanup (GDPR deletion request)
+-# Generate support metrics report
+-# View aggregate trends (admin only)
+-### 12.2.2 Document Analysis & QA Agent with Corpus Ingestion
+-# Document Analysis & QA Agent Configuration
+-# Specialized in analyzing document corpora with source citations
+-# Document Corpus Ingestion Workflow
+-# Batch processing for adding documents to knowledge base
+-# Company Policies Corpus - Ingestion Report
+-## Statistics
+-## Document Types
+-## Date Range
+-## Coverage Analysis
+-## Query Readiness
+-## Recommendations
+-# Ingest document corpus
+-# Query corpus
+-# Generate compliance report
+-# Export document graph
+-# Search for specific clause
+-### 12.2.3 DevOps & Monitoring Agent for Infrastructure Automation
+-# DevOps & Monitoring Agent Configuration
+-# Automated incident response and infrastructure management
+-# Automated Incident Response Workflow
+-# Handles alert triage, remediation, and documentation
+-# Run DevOps agent
+-# Respond to alert (via webhook)
+-# Manual incident response
+-# Capacity planning analysis
+-# View incident history
+-# Export runbooks
+-## 12.3 Specialized Domain Examples
+-### 12.3.1 Medical History Assistant (PHI-Compliant, Local LLMs)
+-# Medical History Assistant Configuration
+-# HIPAA-compliant, local LLM, PHI-safe
+-# Local LLM configuration (on-premises)
+-# HIPAA compliance configuration
+-# Deploy local LLM inference server (Llama 3 70B Medical fine-tuned)
+-# Deploy Friday Medical Assistant (air-gapped)
+-# Run with medical agent configuration
+-# Access patient record (requires authentication)
+-# Export anonymized data for research (admin only)
+-### 12.3.2 Legal Research Assistant with Case Law & Citation Tracking
+-# Legal Research Assistant Configuration
+-# Specialized in case law analysis and legal research
+-### 12.3.3 Financial Analysis Agent with Market Data & Portfolio Tracking
+-## 12.4 Educational Use Cases
+-### 12.4.1 Language Learning Tutor with Adaptive Difficulty
+-### 12.4.2 Study Assistant with Quiz Generation & Knowledge Gap Detection
+-## Conclusion
+-# Copy a use case configuration
+-# Edit for your specific needs
+-# Run your customized agent
+@@ -6920,4 +182,11 @@ python memory-chat-v2.py --agent my_agent
++## Speech and social integrations
+@@ -6925 +194,9 @@ For questions or custom use case development, see:
++## Evaluate the application you actually assembled
+diff --git a/docs/guides/13-troubleshooting.md b/docs/guides/13-troubleshooting.md
+@@ -1,2613 +0,0 @@
+-# Friday Agent Framework
+-## Section 13: Troubleshooting & FAQ
+-## Table of Contents
+-## Introduction
+-## 13.1 Common Issues & Solutions
+-### Integrated MCP client checks
+-### 13.1.1 Memory Issues
+-#### Problem: Agent Doesn't Remember Previous Conversations
+-# Check if memory files are being created
+-# Expected files:
+-# - chroma.sqlite3 (ChromaDB vector store)
+-# - graph.json (NetworkX graph store)
+-# - transcript.db (SQLite episodic store)
+-# Explicitly set memory directory in config
+-# Enable detailed memory logging
+-# Run your agent
+-# Look for log messages like:
+-# - "Saving interaction turn to episodic store"
+-# - "Extracting entities and relationships"
+-# - "Adding insight to vector store"
+-# IMPORTANT: Initialize session before first interaction
+-# Check session state
+-# After a conversation, manually query memory
+-# In your agent configuration
+-# Verify extraction is happening after turns
+-# Check logs for "Running memory extraction pipeline"
+-# Manually trigger extraction to test pipeline
+-# Extract from a conversation turn
+-# Verify extraction results
+-# Dump entire memory state for inspection
+-# Get all entities
+-# Get all insights from vector store
+-# Check episodic memory (transcript)
+-#### Problem: Agent Retrieves Irrelevant or Outdated Memories
+-# Apply decay to outdated memories
+-# Promote recent, valuable memories
+-# Enable context payload inspection
+-# Examine what was retrieved
+-# Use a better embedding model
+-# Re-embed all existing memories
+-# Remove low-value memories that have fully decayed
+-#### Problem: Memory Retrieval is Extremely Slow
+-# Use ChromaDB's HNSW index for faster similarity search
+-# Use cached controller
+-# For large graphs, switch to Neo4j for indexed queries
+-# Neo4j provides native indexing on entity names and types
+-# Much faster for large graphs (10k+ nodes)
+-# Check current disk I/O
+-# or
+-# Move to SSD if on HDD
+-# Or use tmpfs for extreme speed (data lost on reboot)
+-### 13.1.2 LLM Issues
+-#### Problem: "API Key Not Found" or Authentication Errors
+-# Check if API key is in environment
+-# Should print: sk-proj-...
+-# If empty, set it
+-# Make persistent in shell profile
+-# Create .env file in project root
+-# Load .env in Python
+-# Check for common issues
+-# Test with LiteLLM directly
+-# Override environment variable
+-#### Problem: Tool Calls Not Working or Being Ignored
+-# Check what tools are available
+-# Verify specific tool exists
+-# Models that support tool calling:
+-# Models that DON'T support tools:
+-# Should return a tool call
+-# Enable detailed tool execution logging
+-# Run agent and check logs for:
+-# - "Tool schemas generated: 15 tools"
+-# - "LLM requested tool call: read_file"
+-# - "Executing tool: read_file with params: {...}"
+-# - "Tool execution result: ..."
+-#### Problem: Rate Limiting or Quota Exceeded Errors
+-# Common rate limits (as of 2026)
+-# OpenAI (Free Tier)
+-# - 3 requests per minute (RPM)
+-# - 200 requests per day (RPD)
+-# OpenAI (Tier 1 - $5+ spent)
+-# - 500 RPM
+-# - 10,000 RPD
+-# - 100,000 tokens per minute (TPM)
+-# Anthropic (Free Tier)
+-# - 5 RPM
+-# - 50 RPD
+-# Anthropic (Pro)
+-# - 50 RPM
+-# - 1,000 RPD
+-# Check your current tier
+-# Visit: https://platform.openai.com/account/limits
+-# Use with LLM service
+-# Wrap LLM calls
+-# Instead of individual requests, batch multiple queries
+-### 13.1.3 Context Window Issues
+-#### Problem: "Context Length Exceeded" Errors
+-# Context windows by model (as of 2026)
+-# Friday automatically calculates available budget
+-# Calculate remaining budget after system prompt and tools
+-# Uses this budget for memory retrieval
+-# Only register essential tools
+-# Option 1: Allowlist specific tools
+-# Option 2: Remove verbose tools
+-# Configure history truncation
+-# Context engine will automatically truncate
+-# Summarize old conversation turns
+-### 13.1.4 Tool Execution Issues
+-#### Problem: Tools Fail with Permission or Access Errors
+-# Check permissions on target files/directories
+-# Grant read/write permissions
+-# Change ownership if needed
+-# BAD: Relative paths can break
+-# GOOD: Use absolute paths
+-# Or set explicit working directory
+-# Check if required binaries exist
+-# Verify env vars are available to tools
+-#### Problem: Tool Execution Timeouts
+-# Global task registry
+-### 13.1.5 Agent Communication Issues
+-#### Problem: Agents Not Receiving Messages from Each Other
+-# Register all agents
+-# Verify registration
+-# Should print: ['agent_a', 'agent_b']
+-# Log all message passing
+-# Logs should show:
+-# "Agent agent_a sending message to agent_b"
+-# "Agent agent_b received message from agent_a"
+-# "Message content: ..."
+-# Test without orchestrator
+-# Complex objects might not serialize
+-# Use serializable types
+-# Test serialization
+-## 13.2 Debugging Strategies
+-### 13.2.1 Logging & Telemetry
+-#### Comprehensive Logging Configuration
+-# Configure root logger
+-# Configure Friday package loggers
+-# Memory operations (retrieval, storage, lifecycle)
+-# LLM calls (requests, responses, token counts)
+-# Agent execution (Re-Act loop, tool calls)
+-# Tool execution details
+-# Apply formatter
+-# Use extra parameter to add context
+-# Use adapters for automatic context
+-# Use adapter
+-# Use in code
+-# Logs: "context_assembly completed" with duration_ms
+-#### Log Analysis Techniques
+-# Find all logs for a specific session
+-# Trace a specific request
+-# Output:
+-# 2026-01-24 10:15:23 [INFO] friday_agent: Query received
+-# 2026-01-24 10:15:23 [DEBUG] friday_memory: Assembling context
+-# 2026-01-24 10:15:24 [DEBUG] friday_memory: Retrieved 5 insights
+-# 2026-01-24 10:15:24 [DEBUG] friday_llm: Calling LLM with 1523 tokens
+-# 2026-01-24 10:15:26 [INFO] friday_agent: Response generated
+-# Extract duration metrics
+-# Output: slowest operations
+-# "context_assembly",3456.7
+-# "llm_call",2890.3
+-# "memory_retrieval",1234.5
+-# All errors
+-# Error types
+-# Stack traces
+-# Total tokens used
+-# Average tokens per request
+-# Highest token requests
+-#### Telemetry Integration
+-# Configure OpenTelemetry
+-# Export to Jaeger
+-# Use in Friday agent
+-# Define metrics
+-# Use metrics
+-# Expose metrics endpoint
+-### 13.2.2 Interactive Debugging
+-#### Using Friday CLI Debug Mode
+-# Start CLI in debug mode
+-# Available debug commands
+-# Example: Inspect memory
+-#### Python Debugger Integration
+-# Set breakpoint in agent code
+-#### Remote Debugging with VS Code
+-### 13.2.3 Transcript Analysis
+-#### Exporting Transcripts
+-# Export to JSONL for analysis
+-# Export to Markdown for human review
+-#### Analyzing Conversation Patterns
+-# Load transcript
+-# Analyze tool usage
+-# Analyze token usage over time
+-#### Detecting Failure Patterns
+-# Find failed turns
+-# Group by error type
+-## 13.3 Performance Tuning
+-### 13.3.1 Latency Optimization
+-#### Target Benchmarks
+-#### Profiling Agent Performance
+-# Profile agent run
+-# Run agent
+-# Analyze results
+-# Output shows where time is spent:
+-# ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+-#    1    0.001    0.001    2.456    2.456 copilot.py:50(run)
+-#    1    0.123    0.123    1.234    1.234 context.py:100(assemble_context)
+-#    1    0.045    0.045    0.890    0.890 service.py:200(chat_completion)
+-#### Optimization: Parallel Memory Retrieval
+-# SLOW: Sequential retrieval
+-# FAST: Parallel retrieval
+-# Reduces latency from 600ms to 200ms (fastest of three)
+-#### Optimization: Streaming Responses
+-# Instead of waiting for complete response
+-# Stream response as it's generated
+-#### Optimization: Caching
+-#### Optimization: Reduce Context Size
+-# Smaller context = faster LLM calls
+-# Trade-off: Less context but faster responses
+-### 13.3.2 Cost Optimization
+-#### Understanding Costs
+-# Typical agent query
+-# GPT-4o cost
+-# GPT-4o-mini cost
+-# Savings: 94%
+-#### Strategy 1: Use Cheaper Models for Extraction
+-# Main agent uses high-quality model
+-# Extraction uses cheap model
+-# Configure memory to use cheap model for extraction
+-# Savings: Extraction is 30-40% of total token usage
+-#### Strategy 2: Token Budget Optimization
+-# Monitor token usage
+-# Set aggressive budget limits
+-# Reduces input tokens by 50% = 50% cost reduction
+-#### Strategy 3: Caching for Repeated Queries
+-# Enable prompt caching (supported by some providers)
+-# For repeated queries with same context:
+-# - First call: Full price
+-# - Subsequent calls: 10% input price (90% savings on cached portion)
+-#### Strategy 4: Local Models for Development
+-# Install Ollama
+-# Pull model (free)
+-# Use local model (zero cost)
+-# Use local model in development
+-#### Strategy 5: Monitor and Alert on Usage
+-# Use monitor
+-### 13.3.3 Memory Optimization
+-#### Problem: Large Memory Stores Slow Down Over Time
+-# Run weekly maintenance
+-# Schedule with cron or systemd timer
+-# Instead of single shared vector store
+-# Use per-user collections
+-# Benefits:
+-# - Smaller per-user stores (faster queries)
+-# - Can archive inactive users
+-# - Better privacy isolation
+-# For >100K memories, switch to enterprise solutions
+-# Neo4j for graph (scales to billions of nodes)
+-# Pinecone for vectors (managed, auto-scaling)
+-# Benefits:
+-# - Professional indexing and optimization
+-# - Horizontal scaling
+-# - Managed backups
+-# Use with short TTL for chat (30 days) vs long TTL for knowledge base (365 days)
+-# Summarize old conversation turns to save space
+-# Summarize turns older than 30 days
+-## 13.4 FAQ
+-### General Questions
+-# Install Ollama
+-# Pull model
+-# Configure Friday to use local model
+@@ -2615,227 +2,7 @@ A: Cost depends entirely on your LLM provider and usage:
+-# LangChain code
+-# Friday equivalent
+-# Other systems call HTTP endpoint
+-# Connect to RabbitMQ
+-# Friday agent A
+-# Non-Friday agent B (custom implementation)
+@@ -2844,17 +11 @@ class CustomAgent:
+-#!/bin/bash
+-# backup-friday-memory.sh
+-# Backup all memory files
++# Troubleshooting and diagnostics
+@@ -2862,3 +13,4 @@ cp "$MEMORY_DIR/transcript.db" "$BACKUP_DIR/"
+-# Compress
+@@ -2866,7 +18 @@ rm -rf "$BACKUP_DIR"
+-# Optional: Upload to S3
+-# aws s3 cp "$BACKUP_DIR.tar.gz" s3://my-bucket/friday-backups/
++## Establish the baseline
+@@ -2875,62 +21,4 @@ echo "Backup created: $BACKUP_DIR.tar.gz"
+-#!/bin/bash
+-# restore-friday-memory.sh
+-# Stop Friday agent first!
+-# systemctl stop friday-agent
+-# Extract backup
+-# Restore files
+-# Cleanup
+-# Restart agent
+-# systemctl start friday-agent
+-# Export to JSON
+-# Import from JSON
+@@ -2939,7 +27,3 @@ async def import_memory(memory: MemoryController, input_path: str):
+@@ -2948,15 +32 @@ A: Yes, but you lose the main value proposition. Friday's memory is what makes i
+-# Just LLM + tools
+-# Manual Re-Act loop
+@@ -2964,77 +34,3 @@ while True:
+-# Just LLM client
+-# Just tools
+-# Just memory (for your own agent)
+-# Fork repository
+-# Install in development mode
+-# Run tests
+-# Lint and format
+-# Create feature branch
+-# Make changes, commit
+-# Push and create PR
+@@ -3043,10 +39,3 @@ git push origin feature/my-new-feature
+-## Conclusion
+@@ -3054 +43 @@ git push origin feature/my-new-feature
++## Installation and startup
+@@ -3056,4 +45,10 @@ This troubleshooting guide covered the most common Friday Framework issues, debu
+@@ -3061,5 +56,3 @@ This troubleshooting guide covered the most common Friday Framework issues, debu
+@@ -3067,5 +60 @@ This troubleshooting guide covered the most common Friday Framework issues, debu
++## Configuration loading
+@@ -3073,7 +62,145 @@ For additional support:
++## Models, reasoning and timeouts
++## Memory and persistence
++## Native tools and selection
++## Integrated MCP diagnostics
++## Agents and workflows
++## Telemetry, logs and shutdown
++## Report a reproducible issue
+diff --git a/docs/guides/14-appendices.md b/docs/guides/14-appendices.md
+@@ -1,3023 +0,0 @@
+-# Friday Agent Framework
+-## Section 14: Appendices - Technical Reference
+-## Table of Contents
+-## Appendix A: Complete Configuration Reference
+-### A.1 Full Annotated config.yaml
+-# =============================================================================
+-# Friday Agent Framework - Complete Configuration Template
+-# Version: v0.1.0
+-# =============================================================================
+-# -----------------------------------------------------------------------------
+-# Application Settings
+-# -----------------------------------------------------------------------------
+-# -----------------------------------------------------------------------------
+-# LLM Configuration
+-# -----------------------------------------------------------------------------
+-# -----------------------------------------------------------------------------
+-# Memory Configuration
+-# -----------------------------------------------------------------------------
+-# -----------------------------------------------------------------------------
+-# Extraction Configuration
+-# -----------------------------------------------------------------------------
+-# -----------------------------------------------------------------------------
+-# Tool Configuration
+-# -----------------------------------------------------------------------------
+-# -----------------------------------------------------------------------------
+-# Agent Configuration
+-# -----------------------------------------------------------------------------
+-# -----------------------------------------------------------------------------
+-# Workflow Configuration
+-# -----------------------------------------------------------------------------
+-# -----------------------------------------------------------------------------
+-# Transcript Configuration
+-# -----------------------------------------------------------------------------
+-# -----------------------------------------------------------------------------
+-# MCP (Model Context Protocol) Configuration
+-# -----------------------------------------------------------------------------
+-# -----------------------------------------------------------------------------
+-# Security Configuration
+-# -----------------------------------------------------------------------------
+-# -----------------------------------------------------------------------------
+-# Performance Configuration
+-# -----------------------------------------------------------------------------
+-# -----------------------------------------------------------------------------
+-# Development & Debugging
+-# -----------------------------------------------------------------------------
+-### A.2 Environment Variable Mappings
+-# Basic LLM configuration
+-# Memory configuration
+-# Security configuration
+-# Production environment
+-### A.3 Configuration Schema Reference
+-## Appendix B: Tool Catalog
+-### B.1 Complete Tool List
+-#### B.1.1 Filesystem Tools (13 tools)
+-#### B.1.2 Shell Tools (6 tools)
+-#### B.1.3 Web Tools (11 tools)
+-#### B.1.4 Git Tools (4 tools)
+-#### B.1.5 Code Tools (5 tools)
+-#### B.1.6 Data Tools (5 tools)
+-#### B.1.7 Text Tools (4 tools)
+-#### B.1.8 Encoding Tools (6 tools)
+-#### B.1.9 Math & Utility Tools (5 tools)
+-#### B.1.10 Memory Tools (6 tools)
+-#### B.1.11 Archive Tools (3 tools)
+-#### B.1.12 Integration Tools (3 tools)
+-### B.2 Tool Quick Reference Table
+-### B.3 Tool Categories
+-## Appendix C: API Reference
+-### C.1 Core Agent Classes
+-#### CopilotAgent
+-# Initialize components
+-# Create agent
+-# Use agent
+-#### AutonomousAgent
+-#### AgentProfile
+-### C.2 Memory System API
+-#### MemoryController
+-#### ContextAssembler
+-### C.3 Tool System API
+-#### DefaultToolRegistry
+-#### BaseTool
+-# Register tool
+-### C.4 LLM Client API
+-#### LiteLLMService
+-# Initialize with resilience
+-# Chat completion
+-# With tools
+-## Appendix D: Protocol Specifications
+-### D.1 ToolDefinition Protocol
+-### D.2 LLMClient Protocol
+-### D.3 Storage Adapter Protocols
+-#### VectorStoreAdapter
+-#### GraphStoreAdapter
+-#### EpisodicStoreAdapter
+-### D.4 ToolRegistry Protocol
+-## Appendix E: Migration Guides
+-### E.1 Version History
+-### E.2 Breaking Changes
+-### E.3 Migration Scripts
+-#### Future: v0.1.x to v0.2.0 (Planned)
+-# Backup existing data
+-# Upgrade Friday
+-# Run migration script
+-# Verify migration
+-# v0.1.0 config
+-# v0.2.0 config (expected)
+@@ -3025,164 +2,7 @@ Migration scripts will be provided with each release to handle:
+-## Appendix F: Glossary
+-### F.1 Core Concepts
+-### F.2 Memory Systems
+-### F.3 Agent Patterns
+-### F.4 Technical Terms
+@@ -3191,29 +11,277 @@ Migration scripts will be provided with each release to handle:
+-## Conclusion
++# Package, API and terminology reference
++## Package map
++## Public API entry points
++## Native tool source catalog
++## Configuration and example conventions
++## Migration reference
++## Glossary
+diff --git a/docs/guides/15-contributing.md b/docs/guides/15-contributing.md
+@@ -1,1050 +0,0 @@
+-# Friday Agent Framework
+-## Section 15: Contributing & Community
+-## Introduction: Join the Friday Community
+-## 15.1 Development Setup
+-### 15.1.1 Prerequisites
+-### 15.1.2 Installing uv (Package Manager)
+-# macOS/Linux
+-# Windows (PowerShell)
+-# Or via pip
+-# Verify installation
+-### 15.1.3 Cloning the Repository
+-# Clone Friday Framework repository
+-# Verify structure
+-### 15.1.4 Installing Dependencies
+-# Install all dependencies (development + runtime)
+-# This installs:
+-# - All Friday packages in editable mode
+-# - Runtime dependencies (litellm, chromadb, networkx, etc.)
+-# - Development dependencies (pytest, ruff, mypy)
+-# Activate virtual environment (optional with uv)
+-# Verify Friday packages
+-# Should see three success messages
+-### 15.1.5 Running Tests
+-# Run full test suite (takes 2-5 minutes)
+-# Run with verbose output
+-# Run tests for a specific package
+-# Run a single test file
+-# Run tests matching a pattern
+-# Run with coverage report
+-# Fast smoke test (core functionality only)
+-# Memory system tests
+-# Agent tests (requires API key or Ollama)
+-# Tool tests (filesystem, shell, web)
+-# Skip slow tests during development
+-# Copy example environment
+-# Edit with your test API keys
+-# Add test keys (use test/development accounts if possible)
+-# Install Ollama (one-time setup)
+-# Visit: https://ollama.ai or use package manager
+-# Pull test model
+-# Start Ollama server
+-# Run tests with local model (no API costs)
+-### 15.1.6 Code Style & Linting
+-# Check code style (shows issues, doesn't modify)
+-# Check with detailed explanations
+-# Auto-fix issues where possible
+-# Format code (modifies files)
+-# Check specific package
+-# Before committing, always run:
+-### 15.1.7 Type Checking with mypy
+-# Check specific package (recommended during development)
+-# Check all packages (slower)
+-# Check with detailed output
+-# Good - Full type hints
+-# Bad - Missing types
+-### 15.1.8 Commit Conventions
+-# Feature addition
+-# Bug fix
+-# Documentation
+-# Refactoring
+-# Tests
+-# 1. Format and lint
+-# 2. Run type checking (for changed packages)
+-# 3. Run relevant tests
+-# 4. Stage changes
+-# 5. Commit with conventional format
+-### 15.1.9 Development Workflow Summary
+-# 1. Create feature branch
+-# 2. Make changes with your editor
+-# 3. Run linting
+-# 4. Run tests
+-# 5. Commit changes
+-# 6. Push to remote
+-# 7. Open pull request (instructions in section 15.2.2)
+-## 15.2 Contributing Guidelines
+-### 15.2.1 How to Contribute
+-### 15.2.2 Pull Request Process
+-# Ensure you're on master and up-to-date
+-# Create feature branch
+-# Make your changes, commit regularly
+-# Run full validation before PR
+-# Push to your fork
+-# Create PR using GitHub CLI (recommended)
+-## Changes
+-## Testing
+-## Related Issues
+-# Or create PR through GitHub web interface
+-### 15.2.3 Code of Conduct
+-### 15.2.4 Testing Requirements
+-# packages/friday-memory/tests_memory/test_controller.py
+-# tests/integration/memory/test_memory_lifecycle.py
+-# tests/integration/agent/test_agent_workflow.py
+-# Generate coverage report
+-# Open report
+-### 15.2.5 Documentation Requirements
+-## 15.3 Architecture Decision Records (ADRs)
+-### 15.3.1 What are ADRs?
+-# ADR-NNN: [Decision Title]
+-## Context
+-## Decision
+-## Alternatives Considered
+-### Option 1: [Name]
+-### Option 2: [Name]
+-## Consequences
+-## References
+-### 15.3.2 Key Architecture Decisions
+@@ -1052,25 +2,7 @@ Links to specs, research papers, related ADRs
+@@ -1079 +11 @@ Links to specs, research papers, related ADRs
+-### 15.3.3 Finding ADRs
++# Contributing and maintaining guides
+@@ -1081 +13,5 @@ Links to specs, research papers, related ADRs
+@@ -1083,4 +19 @@ ADRs are documented in several places:
++## Set up a development checkout
+@@ -1088 +21,2 @@ ADRs are documented in several places:
+@@ -1091,326 +25,5 @@ ADRs are documented in several places:
+-# Search for ADR references in specs
+-# Find architecture decisions in guides
+-# Find code implementing specific ADR
+-### 15.3.4 Proposing New ADRs
+-## 15.4 Roadmap
+-### 15.4.1 Release History
+-### 15.4.2 Current Development Priorities (Q1-Q2 2026)
+-### 15.4.3 Phase 6: Intelligence Enhancement (Q2-Q3 2026)
+-### 15.4.4 Phase 7: Future Ecosystem Integration (Q3-Q4 2026)
+-### 15.4.5 Phase 8: Production Hardening (Q4 2026 - Q1 2027)
+-### 15.4.6 Version 1.0 Goals (Q1 2027)
+-### 15.4.7 How to Influence the Roadmap
+-# Feature Request Template
+@@ -1419,5 +32,4 @@ Show what the feature would look like in practice (code, CLI commands, config).
+-## 15.5 Community Resources
+-### 15.5.1 GitHub Repository
+@@ -1425 +37,4 @@ Show what the feature would look like in practice (code, CLI commands, config).
+@@ -1427 +42 @@ Show what the feature would look like in practice (code, CLI commands, config).
++## Make a focused change
+@@ -1429 +44,3 @@ Show what the feature would look like in practice (code, CLI commands, config).
+@@ -1431 +48,4 @@ Show what the feature would look like in practice (code, CLI commands, config).
+@@ -1433,6 +53 @@ Show what the feature would look like in practice (code, CLI commands, config).
++## Run appropriate checks
+@@ -1440 +55 @@ Show what the feature would look like in practice (code, CLI commands, config).
+@@ -1442 +56,0 @@ Show what the feature would look like in practice (code, CLI commands, config).
+@@ -1444,64 +58,8 @@ Show what the feature would look like in practice (code, CLI commands, config).
+-# Create issue
+-# List issues
+-# Search issues
+-# Add labels
+-### 15.5.2 Issue Tracker
+-## Bug Description
+-## Expected Behavior
+-## Actual Behavior
+-## Reproduction Steps
+-## Environment
+-## Logs/Screenshots
+-## Minimal Reproducible Example
+@@ -1510,25 +68,5 @@ What actually happens?
+@@ -1536 +74,5 @@ What actually happens?
+-### 15.5.3 Documentation Site
+@@ -1538 +80 @@ What actually happens?
++## Authority and review
+@@ -1540,4 +82,2 @@ What actually happens?
+@@ -1545,3 +84,0 @@ What actually happens?
+@@ -1549,193 +86,2 @@ Found unclear documentation? Please contribute:
+-# Edit the guide section
+-# Commit and push
+-# Create PR
+-### 15.5.4 Community Discussions
+-### 15.5.5 How to Get Help
+-## 15.6 Acknowledgments
+-### 15.6.1 Contributors
+-### 15.6.2 Inspirations & Prior Art
+-### 15.6.3 Technologies Used
+-### 15.6.4 License
+@@ -1743 +88,0 @@ contribution is provided under the project's MIT License.
+@@ -1745 +90,4 @@ MIT License
+@@ -1747,6 +95,6 @@ Copyright (c) 2026 Friday Framework Contributors
+@@ -1754,2 +102 @@ furnished to do so, subject to the following conditions:
++## Maintain end-user documentation
+@@ -1757,33 +104,5 @@ copies or substantial portions of the Software.
+-## Summary: Contributing to Friday
+@@ -1791,38 +110 @@ While not required, we appreciate:
+@@ -1830 +112,12 @@ Join us. Build memory-persistent agents that genuinely learn and grow.
+@@ -1832 +125,5 @@ Join us. Build memory-persistent agents that genuinely learn and grow.
+@@ -1834 +131,15 @@ Join us. Build memory-persistent agents that genuinely learn and grow.
++## Submit useful review evidence
+diff --git a/docs/guides/16-desktop-deployment.md b/docs/guides/16-desktop-deployment.md
+@@ -1,7 +0,0 @@
+-# Friday Agent Framework
+-## Desktop Deployment With uv
+@@ -9,24 +2,7 @@
+-## Overview
+@@ -35 +11 @@ caches inside the installed package or temporary tool environment.
+-## Recommended Paths
++# Desktop deployment with uv
+@@ -37,3 +13,4 @@ caches inside the installed package or temporary tool environment.
+@@ -40,0 +18 @@ environment.
++## Choose an installation mode
+@@ -42 +20 @@ environment.
+@@ -44,17 +22,3 @@ environment.
+@@ -62 +26,4 @@ Recommended user data subfolders:
+@@ -64,118 +31,2 @@ Recommendation:
+-## Config Template Baseline
+-## Step 1: Install uv
+@@ -185,466 +36,3 @@ uv --version
+-## Step 2: Create Config Directories
+-## Step 3: Configure API Keys
+-## Step 4: Create `config.yaml`
+-# Friday Chat desktop configuration.
+-# Keep secrets in environment variables, not in this file.
+-## Step 5: Create `cli-config.yaml`
+-## Step 6: Install The Friday Chat Executable
+@@ -655,140 +43,2 @@ friday-chat --help
+-## Step 7: Create A Wrapper Launcher For `uvx`
+-#!/usr/bin/env bash
+-## Step 8: Planned First-Run Flow
+@@ -796,13 +46 @@ Implementation requirements for this planned flow:
++## Stable paths
+@@ -810 +48 @@ Implementation requirements for this planned flow:
+-## Step 9: Verify The Deployment
+@@ -812 +50,5 @@ Implementation requirements for this planned flow:
+@@ -814,4 +56,4 @@ Check the executable:
+@@ -819 +61 @@ friday-chat --help
++## Copy and edit configuration
+@@ -821 +63,5 @@ Check required environment variables without printing their values:
+@@ -824 +70 @@ macOS and Linux:
+@@ -827,13 +73,4 @@ test -n "${FRIDAY_LLM_API_KEY:-}" && echo "FRIDAY_LLM_API_KEY is set"
+@@ -841 +78,5 @@ friday-chat --config ~/.config/friday/config.yaml --runtime real
+@@ -843,3 +84,2 @@ Windows PowerShell:
+@@ -847 +87 @@ friday-chat --config "$env:APPDATA\Friday\config.yaml" --runtime real
++## Launch explicitly
+@@ -849 +89,2 @@ Run through the `uvx` launcher:
+@@ -852 +93 @@ macOS and Linux:
+@@ -858,28 +99 @@ Windows PowerShell:
+-## Troubleshooting
+-### `uv` or `uvx` is not found
+-### `friday-chat` is not found after `uv tool install`
+@@ -888,3 +102,4 @@ uv tool update-shell
+-### The app exits with config errors
+@@ -892 +107,5 @@ Restart the terminal and try again.
+@@ -894 +113 @@ Confirm the config path exists:
++## Verify the installation in stages
+@@ -896,3 +115,6 @@ macOS and Linux:
+@@ -900 +122,3 @@ ls -l ~/.config/friday/config.yaml
+@@ -902,3 +126 @@ Windows PowerShell:
++## Upgrade and rollback
+@@ -906 +128,4 @@ Test-Path "$env:APPDATA\Friday\config.yaml"
+@@ -908,3 +133,3 @@ Then run with an explicit config path:
+@@ -912 +137 @@ friday-chat --config /path/to/config.yaml --runtime real
+-### Environment placeholders fail to resolve
++## Troubleshooting launch problems
+@@ -914,17 +139,8 @@ friday-chat --config /path/to/config.yaml --runtime real
+-### `uvx friday-chat` downloads packages every time
+@@ -932 +148 @@ persistent Friday command installed.
+@@ -934,12 +150 @@ persistent Friday command installed.
+-## References
+diff --git a/docs/guides/17-mcp-client.md b/docs/guides/17-mcp-client.md
+@@ -0,0 +1,10 @@
+@@ -7,2 +17,10 @@ startup, and registers only tools admitted by Friday's filters and limits.
++## Install and choose a profile
+@@ -24 +42 @@ tools:
+@@ -30 +48,2 @@ tools:
+@@ -36,3 +55,5 @@ tools:
+@@ -41 +62 @@ the model/embedding configuration required by that application. The server's
+@@ -64 +85 @@ records a diagnostic when an optional server fails. The first example also
+@@ -83 +104,2 @@ tools:
+@@ -109 +131 @@ tools:
+@@ -114 +136,2 @@ tools:
+@@ -120,2 +143,2 @@ For a headless RuntimeConfig caller, provide the server `env` mapping from
+@@ -213,2 +236,2 @@ GET subscriptions, resources/prompts or server exposure is configured here.
+@@ -218 +241 @@ TLS verifies the original hostname; no YAML flag changes trust or verification.
+@@ -234,3 +257,3 @@ For modern/auto stdio and HTTP, handshake plus full discovery share
+@@ -241 +264 @@ instructions and annotations never grant policy or enter prompts automatically.
+@@ -259,0 +283,4 @@ and HTTP argument-header bindings; it does not grant tool admission.
+@@ -263,3 +290,4 @@ from friday_mcp.client import MCPToolAdapter
+@@ -284 +312 @@ explicit memory opt-in and injected provider-neutral telemetry remain controllin
+@@ -298 +326 @@ with no callback, opaque-state forwarding or interactive continuation.
+@@ -306 +334 @@ profile and SDK fixture interoperability do not claim whole MCP conformance.
+@@ -321,0 +350,39 @@ Friday, use the separate [modern server APIs](18-mcp-server.md).
++## Offline programmatic round trip
++## Implementation references
+diff --git a/docs/guides/18-mcp-server.md b/docs/guides/18-mcp-server.md
+@@ -0,0 +1,10 @@
+@@ -13,0 +24,6 @@ initiative acceptance.
++## Installation
+@@ -15,0 +32,5 @@ initiative acceptance.
+@@ -25 +46 @@ async def echo(arguments: dict[str, JSONValue]) -> ToolCallResult:
+@@ -63 +84 @@ An issued call retains its definition, handler and output schema during catalog
+@@ -75,0 +97,4 @@ HTTP app construction reports a fixed missing-dependency error if unavailable.
+@@ -79,15 +104,11 @@ from friday_mcp.server import HTTPServerPolicy, StreamableHTTPMCPServer
+-# Register the application's explicitly selected tools here.
+-# In an async application:
+-# await http_server.serve(certificate=certificate_path, private_key=key_path)
+@@ -100 +121 @@ not discover credentials in files or environment variables. The default bind is
+@@ -120 +141 @@ match the body. Unicode/unsafe ASCII values use the dated Base64 sentinel.
+@@ -128,2 +149,2 @@ Mcp-Name and Mcp-Param values retain their separate sentinel encoding rules. Unk
+@@ -139 +160 @@ Calls require no prior discovery or initialize handshake. Tool names remain
+@@ -143,4 +164,4 @@ encoding rather than silently rewritten.
+@@ -151 +172 @@ Admission bounds simultaneous invocations and tool starts per second, both
+@@ -176 +197 @@ cannot replay a handler. No provider/exporter is created and Langfuse is optiona
+@@ -197 +218 @@ Unsupported-version errors carry exactly `data.supported` and `data.requested`
+@@ -211,0 +233,9 @@ second response. Cooperative cancellation is required of the ASGI transport.
++## Implementation references
+diff --git a/docs/guides/19-mcp-migration.md b/docs/guides/19-mcp-migration.md
+@@ -0,0 +1,10 @@
+@@ -5 +15 @@ with explicit [2025-11-25](https://modelcontextprotocol.io/specification/2025-11
+@@ -174 +184 @@ userinfo/query/fragment. Every DNS answer is checked before a numeric connection
+@@ -209,2 +219,2 @@ observers remain open. No MCP trace/baggage propagation, raw arguments/results,
+@@ -235,0 +246,24 @@ separate gates; unit acceptance or a successful SDK exchange is not full conform
++## Alpha3 application checks
++## Implementation references
+diff --git a/docs/guides/FRIDAY-FEATURES.md b/docs/guides/FRIDAY-FEATURES.md
+@@ -1,389 +0,0 @@
+-# Friday Framework - Feature Definition
+-## Executive Summary
+-### For Technology Leaders
+-#### Key Value Propositions
+-#### Architecture at a Glance
+-#### Investment Considerations
+-## Package Reference Guide
+-### For Developers & Power Users
+-### friday-core
+-#### Overview
+-#### Key Components
+-#### Usage Example
+-# Use the debug recorder for development
+-# All adapters implement the protocol
+-### friday-memory
+-#### Overview
+-#### Memory Architecture
+-#### Key Components
+-#### Configuration Options
+-#### Usage Example
+-# Initialize stores
+-# Create controller
+-# Recall context for a query
+-### friday-llm
+-#### Overview
+-#### Supported Providers
+-#### Key Components
+-#### Error Handling
+-#### Usage Example
+-# Streaming response
+-### friday-agent
+-#### Overview
+-#### Key Components
+-#### Agent Loop
+-#### Usage Example
+@@ -391,418 +2,93 @@ response = await agent.run(
+-### friday-tools
+-#### Overview
+-#### Tool Categories
+-#### Key Components
+-#### Usage Example
+-# Get tool instances
+-# Execute a tool
+-### friday-sandbox
+-#### Overview
+-#### Execution Modes
+-#### Key Components
+-#### Usage Example
+-### friday-transcript
+-#### Overview
+-#### Key Components
+-#### Usage Example
+-# Export session as markdown
+-### friday-mcp
+-#### Overview
+-#### Key Components
+-### friday-optimization (friday-opt)
+-#### Overview
+-#### Key Components
+-## New Features
+-### Development Log
+-#### Configurable Context Format Output
+-#### Context Priming on Startup
+-#### Dynamic Context Loading
+-#### Context Layout Restructuring (Tail Injection)
+-#### Supporting Context Prompt Integration Fix
+-#### Memory Lifecycle Management (Staging & Decay)
++# Friday capability status
++## Application and composition
++## Models and memory
++## Agents, workflows and tools
++## MCP and observability
++## Optional domain/audio integrations
++## Interpreting status
+diff --git a/docs/guides/OUTLINE.md b/docs/guides/OUTLINE.md
+@@ -1,1007 +0,0 @@
+-# Friday Agent Framework - Comprehensive User Guide
+-## Outline & Section Descriptions
+-## 1. EXECUTIVE SUMMARY: Why Friday Exists
+-## 2. GETTING STARTED
+-### 2.1 Prerequisites & Installation
+-### 2.2 Quick Start: Your First Friday Agent
+-### 2.3 Configuration Basics
+-## 3. CORE CONCEPTS & ARCHITECTURE
+-### 3.1 The Intelligence Plane & Control Plane Architecture
+-### 3.2 Protocol-First Design Philosophy
+-### 3.3 Monorepo Package Structure
+-### 3.4 The Memory Loop: Context → Action → Learning
+-## 4. ADAPTIVE MEMORY: The Heart of Friday
+-### 4.1 Three-Tier Memory Architecture
+-#### 4.1.1 Episodic Memory (Conversation History)
+-#### 4.1.2 Semantic Memory (Vector Store)
+-#### 4.1.3 Associative Memory (Knowledge Graph)
+-### 4.2 Memory Lifecycle Management
+-#### 4.2.1 The Four Stages: Episodic → Short-Term → Long-Term → Decayed
+-#### 4.2.2 Promotion: Short-Term → Long-Term
+-#### 4.2.3 Decay: Long-Term → Decayed
+-#### 4.2.4 Reactivation: Decayed → Long-Term
+-### 4.3 Context Engineering & Token Budgeting
+-#### 4.3.1 The Knapsack Problem: Optimal Memory Packing
+-#### 4.3.2 Lost-in-the-Middle Mitigation
+-#### 4.3.3 Context Payload Structure
+-### 4.4 Memory Extraction Pipeline
+-#### 4.4.1 Entity & Relationship Extraction
+-#### 4.4.2 Insight Generation
+-#### 4.4.3 Configurable Extraction Models
+-### 4.5 Session Priming & Cross-Session Continuity
+-#### 4.5.1 Automatic Context Priming
+-#### 4.5.2 Memory Namespaces (Multi-User/Multi-Project)
+-## 5. TOOLS: Friday's Connection to the World
+-### 5.1 Tool Architecture & Design
+-#### 5.1.1 The BaseTool Protocol
+-#### 5.1.2 Tool Schemas for LLMs
+-#### 5.1.3 Tool Result Standardization
+-### 5.2 Built-in Tool Catalog (50+ Tools)
+-#### 5.2.1 Filesystem Tools
+-#### 5.2.2 Shell & System Tools
+-#### 5.2.3 Web & Network Tools
+-#### 5.2.4 Git Tools
+-#### 5.2.5 Data Manipulation Tools
+-#### 5.2.6 Text Processing Tools
+-#### 5.2.7 Code Execution Tools
+-### 5.3 Creating Custom Tools
+-#### 5.3.1 Function-Based Tools (@tool Decorator)
+-#### 5.3.2 Class-Based Tools (BaseTool Subclass)
+-#### 5.3.3 Tool Categories & Discovery
+-#### 5.3.4 Tool Registration & Lifecycle
+-### 5.4 Dynamic Tool Selection & Context Injection
+-#### 5.4.1 Context-Aware Tool Recommendations
+-#### 5.4.2 Tool Token Budget Management
+-#### 5.4.3 Per-Task Tool Injection
+-## 6. AGENTS: Configuration & Capabilities
+-### 6.1 Agent Types & Patterns
+-#### 6.1.1 CopilotAgent: Interactive Re-Act Pattern
+-#### 6.1.2 AutonomousAgent: Event-Driven Execution (Planned)
+-### 6.2 Agent Configuration with YAML
+-#### 6.2.1 Agent Profile Schema
+-#### 6.2.2 Tool Permission Management
+-#### 6.2.3 Model Selection Per Agent
+-#### 6.2.4 Memory Mode Configuration
+-### 6.3 Agent Lifecycle & State Management
+-#### 6.3.1 Agent Initialization & Loading
+-#### 6.3.2 Session Management & Checkpointing
+-#### 6.3.3 Agent Registry & Discovery
+-## 7. MULTI-AGENT ORCHESTRATION: Team Collaboration
+-### 7.1 The "Shared Intelligence Plane, Multiple Control Planes" Architecture
+-#### 7.1.1 Shared Memory Model
+-#### 7.1.2 Provenance Tracking
+-### 7.2 Agent Orchestrator
+-#### 7.2.1 Explicit Routing with @mentions
+-#### 7.2.2 Task Delegation & Return
+-#### 7.2.3 Agent State Aggregation
+-### 7.3 Multi-Agent Workflows & Patterns
+-#### 7.3.1 Research → Analysis → Reporting Pipeline
+-#### 7.3.2 Peer Review & Validation Patterns
+-#### 7.3.3 Specialist vs. Generalist Agent Strategies
+-## 8. WORKFLOWS: Task Graphs & Automation
+-### 8.1 Workflow Engine Architecture
+-#### 8.1.1 Task Graphs & Dependencies
+-#### 8.1.2 Variable Passing with $var Syntax
+-#### 8.1.3 Workflow Status Tracking
+-### 8.2 YAML Workflow Definitions
+-#### 8.2.1 Workflow Schema Reference
+-#### 8.2.2 Task Configuration Options
+-#### 8.2.3 Human-in-the-Loop Approval Gates
+-### 8.3 Workflow Loader & Execution
+-#### 8.3.1 Loading Workflows from YAML
+-#### 8.3.2 Executing Workflows via CLI
+-#### 8.3.3 Workflow Engine Internals
+-### 8.4 Example Workflows & Templates
+-#### 8.4.1 Newsletter Generation Workflow
+-#### 8.4.2 Code Review Workflow
+-#### 8.4.3 Research & Report Workflow
+-## 9. CLI REFERENCE: memory-chat-v2.py
+-### 9.1 Session Management Commands
+-#### /exit, /quit
+-#### /clear
+-#### /reset
+-### 9.2 Memory Inspection Commands
+-#### /memory
+-#### /context [--debug]
+-#### /prompt
+-#### /prime
+-#### /debug
+-### 9.3 Memory Store Queries
+-#### /entities [--limit N]
+-#### /facts [--type TYPE]
+-#### /insights
+-#### /summaries
+-#### /meta
+-### 9.4 Transcript Management
+-#### /sessions
+-#### /transcript [id]
+-#### /transcript export
+-#### /export [format]
+-### 9.5 Advanced Memory Operations
+-#### /reorganize [options]
+-#### /migrate [options]
+-#### /lifecycle [options]
+-### 9.6 Tool Management Commands
+-#### /tools [category]
+-#### /run-tool <name> [json]
+-#### /inject-tools <names>
+-#### /clear-tools
+-#### /recommend-tools <query>
+-#### /tool-budget
+-### 9.7 Agent Orchestration Commands (Phase 3)
+-#### /switch [agent]
+-#### /agents
+-#### /agent [name]
+-#### /delegate <agent> <task>
+-#### /status
+-#### @agent_name <message>
+-### 9.8 Workflow Commands (Phase 4)
+-#### /workflow list
+-#### /workflow run <name> [inputs]
+-#### /workflow status
+-#### /workflow approve
+-#### /workflow skip
+-### 9.9 Configuration & Utility Commands
+-#### /vars
+-#### /set <key> <value>
+-#### /read <path>
+-#### /ingest <path>
+-#### /help [command]
+-## 10. CONFIGURATION GUIDE
+-### 10.1 Configuration Architecture
+-#### 10.1.1 Hierarchical Config Merging
+-#### 10.1.2 Configuration Validation
+-#### 10.1.3 Environment Variable Mapping
+-### 10.2 LLM Configuration
+-#### 10.2.1 Provider Setup (OpenAI, Anthropic, Google, Local)
+-#### 10.2.2 OpenRouter for Multi-Model Access
+-#### 10.2.3 Model-Specific Settings
+-#### 10.2.4 Resilience & Retry Configuration
+-### 10.3 Memory Configuration
+-#### 10.3.1 Context Window & Token Budgeting
+-#### 10.3.2 Priming Configuration
+-#### 10.3.3 Lifecycle Settings (Decay, Promotion)
+-#### 10.3.4 Collection Configuration (Multi-Collection Vector Store)
+-### 10.4 Tool Configuration
+-#### 10.4.1 Tool Registry Setup
+-#### 10.4.2 Security & Sandboxing
+-### 10.5 Extraction Configuration
+-#### 10.5.1 Extraction LLM Selection
+-#### 10.5.2 Extraction Prompts & Rules
+-### 10.6 Transcript Configuration
+-#### 10.6.1 Storage Settings
+-#### 10.6.2 Export Formats
+-### 10.7 Telemetry & Observability
+-#### 10.7.1 Logging Configuration
+-#### 10.7.2 Telemetry Integration
+-## 11. ADVANCED TOPICS
+-### 11.1 Hybrid Cloud-Local Architecture
+-#### 11.1.1 Cost Optimization Strategies
+-#### 11.1.2 Privacy & Data Residency
+-#### 11.1.3 Latency vs. Capability Tradeoffs
+-### 11.2 Memory Optimization Techniques
+-#### 11.2.1 Advanced Lifecycle Tuning
+-#### 11.2.2 Graph Pruning Strategies
+-#### 11.2.3 Vector Store Compaction
+-### 11.3 Custom Protocol Implementations
+-#### 11.3.1 Implementing Custom LLM Clients
+-#### 11.3.2 Implementing Custom Memory Stores
+-#### 11.3.3 Custom Tool Protocols & Wrappers
+-### 11.4 Performance Optimization
+-#### 11.4.1 Context Assembly Optimization
+-#### 11.4.2 Memory Store Indexing
+-#### 11.4.3 Token Budget Optimization
+-### 11.5 Deployment Patterns
+-#### 11.5.1 Docker Deployment
+-#### 11.5.2 Kubernetes Deployment
+-#### 11.5.3 Serverless Deployment
+-## 12. USE CASES & EXAMPLES
+-### 12.1 Personal Assistant Use Cases
+-#### 12.1.1 Research Assistant
+-#### 12.1.2 Code Review & Development Assistant
+-#### 12.1.3 Project Management Assistant
+-### 12.2 Enterprise Use Cases
+-#### 12.2.1 Customer Support Agent
+-#### 12.2.2 Document Analysis & QA Agent
+-#### 12.2.3 DevOps & Monitoring Agent
+-### 12.3 Specialized Domain Examples
+-#### 12.3.1 Medical History Assistant (PHI-Compliant)
+-#### 12.3.2 Legal Research Assistant
+-#### 12.3.3 Financial Analysis Agent
+-### 12.4 Educational Use Cases
+-#### 12.4.1 Language Learning Tutor
+-#### 12.4.2 Study Assistant
+-## 13. TROUBLESHOOTING & FAQ
+-### 13.1 Common Issues & Solutions
+-#### 13.1.1 Memory Issues
+-#### 13.1.2 LLM Issues
+-#### 13.1.3 Context Window Issues
+-### 13.2 Debugging Strategies
+-#### 13.2.1 Logging & Telemetry
+-#### 13.2.2 Interactive Debugging
+-#### 13.2.3 Transcript Analysis
+-# Analyze with jq, grep, or custom scripts
+-### 13.3 Performance Tuning
+-#### 13.3.1 Latency Optimization
+-#### 13.3.2 Cost Optimization
+-# Total tokens across all turns
+-### 13.4 FAQ
+-## 14. APPENDICES
+-### Appendix A: Complete Configuration Reference
+-### Appendix B: Tool Catalog
+-### Appendix C: API Reference
+-### Appendix D: Protocol Specifications
+-### Appendix E: Migration Guides
+-### Appendix F: Glossary
+@@ -1009,15 +2,7 @@ A: Friday focuses on production-ready architecture with enterprise observability
+-## 15. CONTRIBUTING & COMMUNITY
+-### 15.1 Development Setup
+-### 15.2 Architecture Decision Records
+-### 15.3 Roadmap
+-### 15.4 Community Resources
+@@ -1026,5 +11,254 @@ Links to: GitHub repository, Discord/Slack community, issue tracker, documentati
++# Guide outline and subject ownership
++## Series and subject ownership
++## Detailed section map
++### [Framework overview](01-executive-summary.md)
++### [Getting started](02-getting-started.md)
++### [Core concepts](03-core-concepts.md)
++### [Adaptive memory](04-adaptive-memory.md)
++### [Tools](05-tools.md)
++### [Agents](06-agents.md)
++### [Multi-agent orchestration](07-multi-agent.md)
++### [Workflows](08-workflows.md)
++### [CLI reference](09-cli-reference.md)
++### [Configuration](10-configuration.md)
++### [Advanced integration](11-advanced-topics.md)
++### [Application patterns](12-use-cases.md)
++### [Troubleshooting](13-troubleshooting.md)
++### [Reference](14-appendices.md)
++### [Contributing](15-contributing.md)
++### [Desktop deployment](16-desktop-deployment.md)
++### [MCP client](17-mcp-client.md)
++### [MCP server](18-mcp-server.md)
++### [MCP migration](19-mcp-migration.md)
++## Supplement ownership
++## Maintenance rules
+diff --git a/docs/guides/README.md b/docs/guides/README.md
+@@ -1,48 +1,80 @@
+-# Friday Agent Framework — Guides
+-## Numbered Series
+-## Supplementary Documents
+-## Where to Start
++# Friday technical guides
++## Reading paths
++## Numbered series
++## Supplementary guides
++## How to interpret examples and metadata
+diff --git a/docs/guides/memory-management-guidelines.md b/docs/guides/memory-management-guidelines.md
+@@ -1,6 +1,8 @@
+-# Friday Agent Framework
+-## Memory Management Guidelines
+@@ -9,3 +11 @@
+-## Overview
++# Memory budgeting and maintenance
+@@ -13 +13,4 @@ This document describes how Friday-Memory manages context size, token budgets, a
+@@ -15 +18 @@ Friday-Memory uses a multi-stage memory architecture with automatic pruning to s
+-## Token Budget Architecture
++## Budget accounting
+@@ -17 +20,3 @@ Friday-Memory uses a multi-stage memory architecture with automatic pruning to s
+-### Budget Calculation
+@@ -18,0 +24,4 @@ Friday-Memory uses a multi-stage memory architecture with automatic pruning to s
+@@ -20 +28,0 @@ Friday-Memory uses a multi-stage memory architecture with automatic pruning to s
+@@ -22,5 +30,11 @@ Available Budget = Context Window - Output Buffer - Fixed Costs
+@@ -28 +42 @@ Where:
+-### Budget Allocation
++## Supporting context section names
+@@ -30 +44 @@ Where:
+@@ -32,7 +46,9 @@ The context assembler allocates budget across components:
+@@ -40 +56,5 @@ The context assembler allocates budget across components:
+-## Configuration Reference
+@@ -42 +62,2 @@ The context assembler allocates budget across components:
+-### Key Settings (config.yaml)
+@@ -46,12 +67,3 @@ memory:
+@@ -59,14 +71,7 @@ memory:
+@@ -74,2 +78,0 @@ memory:
+@@ -78,90 +81,48 @@ memory:
+-### Recommended Budget Configuration
+-## Pruning Cascade
+-### Drop Order
+-### Conditional Exclusions
+-## Context Engineering Budget Configuration
+-### The Two-Phase Budget Problem
+-### What Gets Added After Budget Checks
+-### Supporting Context Budget Configuration
++## Current pruning cascade
++## Automatic compaction is opt-in in Chat
+@@ -171,231 +132,40 @@ memory:
+-### Budget Calculation Walkthrough
+-### Aligning Priming with Supporting Context
+-# PROBLEMATIC: Priming retrieves more than formatting allows
+-# ALIGNED: Priming respects formatting budget
+-### Prior History: The Hidden Budget Consumer
+-# Prior history eats into the history_budget, not supporting_context_budget
+-# With history_budget = 25,900 and prior_history = 4,000
+-# Only 21,900 tokens remain for current session history
+-### Configuration Recommendations by Context Window
+-### Debugging Budget Issues
+-# Warning logged when prompt exceeds budget:
+-# Debug log showing budget allocation:
+-## Memory Lifecycle Stages
+-### Stage Thresholds
+-### Promotion Score Weights
+-### Decay Formula
+-# Default decay_rate: 0.01/hour
+-# After 24h: 79% of original score
+-# After 1 week: 37% of original score
+-## Hebbian Learning (Graph Memory)
+-### When Access is Recorded
+-### Key Insight: Extraction Reinforcement
+-# In add_node() when duplicate detected:
+-# In add_edge() when duplicate detected:
+-### Priming Priority
+-# Sorted by hit_count DESC, then last_accessed DESC (tiebreaker)
+-## Retrieval Scoring
+-### Inclusion Score
++### Trigger and severity details
+@@ -404,114 +174,71 @@ Determines which memories make it into context:
+-# 24h → 0.89, 72h → 0.70, 168h → 0.43
+-# hit=0 → 1.0, hit=5 → 1.18, hit=20 → 1.30
+-### Minimum Similarity Thresholds
+-## Maintenance Operations
+-### Automatic (on session exit)
+-### Manual Commands
+-## Diagnosing Bloated Prompts
+-### Symptoms
+-### Diagnostic Steps
+-### Common Causes
+-## Best Practices
+-## File References
++## Lifecycle scoring is a different mechanism
++## Maintenance and recovery
++## Diagnose missing or oversized context
++## Implementation references
+diff --git a/docs/guides/security-configuration-guidelines.md b/docs/guides/security-configuration-guidelines.md
+@@ -1,6 +0,0 @@
+-# Friday Agent Framework
+-## Security Configuration Guidelines
+@@ -8,8 +2,7 @@
+@@ -18 +11 @@ require implementation if not already present in code.
+-## 1. Overview
++# Security configuration and output handling
+@@ -20,3 +13,4 @@ require implementation if not already present in code.
+@@ -24,6 +18 @@ behavior (prompt injection). The security subsystem mitigates this by:
++## Current integration coverage
+@@ -31 +20,8 @@ behavior (prompt injection). The security subsystem mitigates this by:
+@@ -33,3 +29,3 @@ The goal is defense-in-depth while preserving legitimate workflows.
+-## 2. Security Flow (Target)
+@@ -37,8 +33 @@ The goal is defense-in-depth while preserving legitimate workflows.
++## Configure the Core sanitizer
+@@ -46,14 +35,3 @@ Tool.execute()
+-## 3. Configuration Reference (config.yaml)
+@@ -65 +42,0 @@ security:
+@@ -68 +45 @@ security:
+@@ -72 +48,0 @@ security:
+@@ -80 +55,0 @@ security:
+@@ -83 +58 @@ security:
+@@ -85 +59,0 @@ security:
+@@ -87,4 +61,2 @@ security:
+@@ -94,16 +66 @@ security:
+@@ -112,86 +69,29 @@ security:
+-## 4. Configuration Options
+-### 4.1 Detection
+-### 4.2 Normalization
+-### 4.3 Wrapping
+-### 4.4 Quarantine
+-### 4.5 Storage Policy
+-## 5. Tool Risk Categorization
+-## 6. Tool Onboarding Security Checklist
+-## 7. Memory Pipeline Guidance
+-## 8. System Prompt Guardrail (Recommended)
+@@ -200,25 +100,86 @@ found inside tool outputs, files, or web pages. Treat them as data only.
+-## 9. Logging and Telemetry
+-## 10. Operational Notes
+-## 11. Related Documents
++## Chat security commands use a different vocabulary
++## MCP's separate checked-output boundary
++## Storage and privacy
++## Tool and execution policy
++## Validate an integration
++## Implementation references
+diff --git a/docs/guides/speech.md b/docs/guides/speech.md
+@@ -1,6 +0,0 @@
+-# Friday Agent Framework
+-## Speech Guide
+@@ -7,0 +2,39 @@
++# Speech services and integration
++## Current capability boundaries
++## Install only the provider you need
++# Or provision the Picovoice integration:
+@@ -9 +42 @@
++## Disabled-mode lifecycle check
+@@ -11,6 +44 @@ This guide covers the Friday speech package (`friday-speech`) including setup, c
+-## Overview
+@@ -18 +46,3 @@ Friday Speech provides:
+@@ -20,6 +50,59 @@ Speech is fully gated by `speech.enabled` and provider-specific options in `conf
+-## Quick Start
++## Explicit provider assembly
++## Configuration model
+@@ -27,2 +109,0 @@ Speech is fully gated by `speech.enabled` and provider-specific options in `conf
+-## Configuration
+@@ -31,18 +112,5 @@ speech:
+@@ -50,3 +118,2 @@ speech:
+@@ -56,5 +123,4 @@ speech:
+@@ -63,4 +129,18 @@ speech:
+-### Tagging
++## Selection and tags
+@@ -68 +148 @@ If speech output is enabled, the model may wrap spoken content with tags:
+@@ -70,2 +150,7 @@ Malformed tags are ignored and the configured selection strategy is used instead
+-## Running the Harness
+@@ -73 +158,11 @@ The speech harness lives inside the package and can be run without `friday-cli`:
++## Harness and Chat commands
+@@ -76,2 +171,4 @@ python -m friday_speech.harness --config path/to/config.yaml
+@@ -79,4 +176,4 @@ Note: STT adapters are currently placeholders; enable STT only if you provide a
+-### Friday CLI Commands (Memory Test App)
+@@ -85,3 +182,20 @@ Inside `tests/integration/memory/friday.py`:
++## Implementation references
