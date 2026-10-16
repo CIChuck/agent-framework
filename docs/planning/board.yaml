@@ -628,14 +628,17 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-alpha4-release/
-  next_gate: VERIFIED alpha4 candidate; execute authorized release PR merge and production PyPI publication
-  delivery_state: local
+  next_gate: Maintainer lifecycle closeout; alpha4 source merged, all 17 PyPI projects and fresh production install verified
+  delivery_state: released
   branch: release/0.1.0a4
   depends_on: []
   validation:
   - Fresh independent full release VERIFIED e965917a
   - 191 focused source tests; 6 installed Chat import checks; Ruff/Mypy/lock/metadata passed
   - 34 frozen artifacts and clean local cohort installation verified
+  - docs/reference/releases/friday-package-cohort-0.1.0a4-release-evidence.md
+  - docs/planning/active/friday-alpha4-release/validation/publication/published-files.json
+  - docs/planning/active/friday-alpha4-release/validation/publication/production-install-results.json
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 events:
@@ -2139,3 +2142,10 @@ events:
   action: started
   note: 'Started authorized release branch from confirmed PR #10 merge.'
   evidence: 465c5643b855c76a3584c393e96fb7bd1c855396
+- task: friday-alpha4-release
+  at: '2026-10-16T20:27:20+00:00'
+  actor: Codex
+  actor_role: agent
+  action: set_delivery
+  note: Alpha4 source PR merged, remote branch retired, complete production PyPI cohort and fresh production-only installation verified; acceptance remains distinct.
+  evidence: 'PR #11 https://github.com/CIChuck/agent-framework/pull/11 merge 489aed28bbf14cb5c312e207a56d973d241c293d; 17 projects/34 hashes verified at 0.1.0a4; docs/reference/releases/friday-package-cohort-0.1.0a4-release-evidence.md'

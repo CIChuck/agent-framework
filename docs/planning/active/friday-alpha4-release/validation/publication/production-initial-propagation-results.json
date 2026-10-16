@@ -1,0 +1,32 @@
+[
+  {
+    "check": "create-venv",
+    "command": [
+      "/opt/homebrew/bin/uv",
+      "venv",
+      "--seed",
+      "--python",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/production-install"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-16T20:25:41.830219+00:00"
+  },
+  {
+    "check": "install-cohort",
+    "command": [
+      "/opt/homebrew/bin/uv",
+      "pip",
+      "install",
+      "--python",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/production-install/bin/python",
+      "--index-url",
+      "https://pypi.org/simple",
+      "--no-cache",
+      "friday-framework[all]==0.1.0a4",
+      "friday-chat==0.1.0a4"
+    ],
+    "exit_code": 1,
+    "finished_at": "2026-10-16T20:25:41.944090+00:00"
+  }
+]

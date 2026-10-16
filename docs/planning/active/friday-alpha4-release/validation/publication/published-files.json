@@ -1,0 +1,172 @@
+[
+  {
+    "project": "friday-framework-telemetry",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:23:37.057940+00:00",
+    "files": {
+      "friday_framework_telemetry-0.1.0a4-py3-none-any.whl": "36a61c779ab93c9b1d3a1f20dbfd6c80981de3c38087816235031ed2bd79e1fe",
+      "friday_framework_telemetry-0.1.0a4.tar.gz": "d4a8db4244f9cb602ae4a632a4d7d3c6ea9c2da1c91e4ca8576de07f123a506d"
+    }
+  },
+  {
+    "project": "friday-framework-transcript",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:23:44.695307+00:00",
+    "files": {
+      "friday_framework_transcript-0.1.0a4-py3-none-any.whl": "4c23e780c134f6ccfec6a5561053c0c13253a9261bf5477a3d38ad363ef88e67",
+      "friday_framework_transcript-0.1.0a4.tar.gz": "7477141f7e012044e55e5bed5409f78937cafd8636813577aff4af401165d344"
+    }
+  },
+  {
+    "project": "friday-framework-sandbox",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:23:51.880396+00:00",
+    "files": {
+      "friday_framework_sandbox-0.1.0a4-py3-none-any.whl": "4381ed3e37853db84afee3db05ef3e4b1a8f980963b9a86965e4e19b2d5b8178",
+      "friday_framework_sandbox-0.1.0a4.tar.gz": "58ee8c2c5dbec5c27656e630c8eabd3f7208154a78eb151138639e5a77bd931c"
+    }
+  },
+  {
+    "project": "friday-framework-moltbook",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:23:59.273890+00:00",
+    "files": {
+      "friday_framework_moltbook-0.1.0a4-py3-none-any.whl": "74a292b78926096235f622624055d5706d157daff047904ddf1c5995929ec6e2",
+      "friday_framework_moltbook-0.1.0a4.tar.gz": "108b04d4fbf2a68203dd18b58164adfc06fd7afc514d73a84362e30116846b79"
+    }
+  },
+  {
+    "project": "friday-framework-core",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:24:06.923814+00:00",
+    "files": {
+      "friday_framework_core-0.1.0a4-py3-none-any.whl": "f3a455c134e4582b23c72dd170e8b4ddfcd3f89f76947233d71272487b51b460",
+      "friday_framework_core-0.1.0a4.tar.gz": "00ba4cf036bc006504269e0d8b9ec25461754626541d639bd9e973f20d039bcb"
+    }
+  },
+  {
+    "project": "friday-framework-finance",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:24:14.426293+00:00",
+    "files": {
+      "friday_framework_finance-0.1.0a4-py3-none-any.whl": "ffa8f5f8690d30e429e7c8e57624d7ea988fd132b279423faedf3ee61dc71600",
+      "friday_framework_finance-0.1.0a4.tar.gz": "7643b9e5019f3610af039deed05da00a3c2ea3973a1effb724e36d24f1b93526"
+    }
+  },
+  {
+    "project": "friday-framework-llm",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:24:21.975167+00:00",
+    "files": {
+      "friday_framework_llm-0.1.0a4-py3-none-any.whl": "20e1dcfce55d127a973bc5877241ac7f24b4db5e293154f9e62126f25dd19012",
+      "friday_framework_llm-0.1.0a4.tar.gz": "e66a3945c352d229cb5b43f1c04c6366ba65b94b85bc924abf8e15eda74a705d"
+    }
+  },
+  {
+    "project": "friday-framework-speech",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:24:29.193730+00:00",
+    "files": {
+      "friday_framework_speech-0.1.0a4-py3-none-any.whl": "0e688d49d27fc67b8620473fbc83bbe65cb554a81a363c6f42769cf3272af89e",
+      "friday_framework_speech-0.1.0a4.tar.gz": "80df55ec59000c4162a021814c3dfd709ecb29e6dbdb500a7173b7c49479a59e"
+    }
+  },
+  {
+    "project": "friday-framework-memory",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:24:37.128286+00:00",
+    "files": {
+      "friday_framework_memory-0.1.0a4-py3-none-any.whl": "72d68f2532d09451b56589f41f9493b85113d190a2fcda1b2131d30599c7db4f",
+      "friday_framework_memory-0.1.0a4.tar.gz": "912c5205e12f580b44f209d63ec80d021a2533e586b4b1fd2c94f87f332daa98"
+    }
+  },
+  {
+    "project": "friday-framework-agent",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:24:44.560478+00:00",
+    "files": {
+      "friday_framework_agent-0.1.0a4-py3-none-any.whl": "f7897ebd49284802571899f3f0ce9da77aefd80f904f56a8737e7c0d7acc694f",
+      "friday_framework_agent-0.1.0a4.tar.gz": "866a4f44051c4aeadfe7b7415fbdbfff316a8d8568a5f34b4be562830fc7d938"
+    }
+  },
+  {
+    "project": "friday-framework-optimization",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:24:51.947842+00:00",
+    "files": {
+      "friday_framework_optimization-0.1.0a4-py3-none-any.whl": "826a889053d2f2a80855f26294a483077b3158cfec7a2e218e0ecedf1ddbf9a8",
+      "friday_framework_optimization-0.1.0a4.tar.gz": "870a3badaf3f8052a7f60e8468996137cc1fbdd26fa88b6b7ca3ae4e54e2c1b1"
+    }
+  },
+  {
+    "project": "friday-framework-tools",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:24:59.703438+00:00",
+    "files": {
+      "friday_framework_tools-0.1.0a4-py3-none-any.whl": "498daf87da69462fc648b6565cb16650d5028c2905377f048de917885fc47ba0",
+      "friday_framework_tools-0.1.0a4.tar.gz": "89dc527229830e687ce9ccde7e44ffae07cf5cdf7aa1e3e79a526f40928354bb"
+    }
+  },
+  {
+    "project": "friday-framework-mcp",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:25:07.595745+00:00",
+    "files": {
+      "friday_framework_mcp-0.1.0a4-py3-none-any.whl": "3bfcb48e2c8479e1a16a8f50441b4fd980604bb7cfcd7bc940f5fc8e0eebf83e",
+      "friday_framework_mcp-0.1.0a4.tar.gz": "1b06b0cb67a2f722b55cc09315dd5a81d216861da3aa7f4a0aaf9b293d376293"
+    }
+  },
+  {
+    "project": "friday-framework-runtime",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:25:15.073253+00:00",
+    "files": {
+      "friday_framework_runtime-0.1.0a4-py3-none-any.whl": "35292867782731c4751d5c07c26d1e1c4fdf8b3473576a4d136debe4aa66377f",
+      "friday_framework_runtime-0.1.0a4.tar.gz": "1bff3f83d548152772ad071efdf335f5bfc8d10f84d7e1f70bfa86c68cb477db"
+    }
+  },
+  {
+    "project": "friday-framework-cli",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:25:22.518855+00:00",
+    "files": {
+      "friday_framework_cli-0.1.0a4-py3-none-any.whl": "9b0e3bc2deac50a49a841d2a9c779979c6e1847e83a7b9072b192d3d9e117ee3",
+      "friday_framework_cli-0.1.0a4.tar.gz": "3721be1c8c88f4d02dcea339de20331bf3c6f92b014bafbc60510a2b426a6514"
+    }
+  },
+  {
+    "project": "friday-chat",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:25:30.681732+00:00",
+    "files": {
+      "friday_chat-0.1.0a4-py3-none-any.whl": "8aed7a20a5166682a00c2be751fa6906bc1a226dc6fd6553e51ad1e7039744de",
+      "friday_chat-0.1.0a4.tar.gz": "152a73dd172c212a15e02c152ca1cb1fa9a6215edeff77f455fd24e9d10e6862"
+    }
+  },
+  {
+    "project": "friday-framework",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "verified_at": "2026-10-16T20:25:37.755465+00:00",
+    "files": {
+      "friday_framework-0.1.0a4-py3-none-any.whl": "63b233f1ec42b072afbb2569e675dea6fbc2468d39872f70919be88ad2810a44",
+      "friday_framework-0.1.0a4.tar.gz": "719b3f88d3cfd92411451848fb4cd1b05d66c92ea48ec61676139148f231fd39"
+    }
+  }
+]

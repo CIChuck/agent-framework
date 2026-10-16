@@ -19,3 +19,15 @@ artifact hashes, metadata/URLs, source/resource correspondence, clean installed
 cohort, fake transports, packaged templates and CLI checks pass. Review and
 artifact manifests retained unchanged. Production publication remains next.
 execution_phase: closeout; validation_state: verified.
+
+2026-10-16: PR #11 merged as 489aed28; release/0.1.0a4 remote branch deleted.
+All 17 projects / 34 frozen artifacts published to production PyPI. Registry
+filenames, SHA256 hashes, versions and canonical Documentation URLs verified.
+The initial version API propagation discrepancy was reconciled against the
+matching project record without duplicate uploads or artifact changes.
+Fresh production-index-only, no-cache installation passed dependency consistency,
+17 versions/URLs, imports, fake transports, packaged resources and CLI checks.
+Bounded initial installation attempts encountered index propagation and uv's
+transitive prerelease selection; the final command explicitly allows prereleases.
+Evidence and replay tools retained. No live provider calls or acceptance inferred.
+execution_phase: closeout; validation_state: verified.

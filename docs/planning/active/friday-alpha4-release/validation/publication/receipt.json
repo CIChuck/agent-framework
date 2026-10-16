@@ -1,0 +1,21 @@
+{
+  "recorded_at": "2026-10-16T20:27:20.478520+00:00",
+  "version": "0.1.0a4",
+  "documentation": "https://gendevx.com/friday/",
+  "projects": 17,
+  "files": 34,
+  "registry_hashes_match_frozen_manifest": true,
+  "artifact_manifest_sha256": "b4b0180dccb2cb1c6393ba78d07dd353143d042b3d5480f22712f4f35284bfaa",
+  "production_only_install_checks": 9,
+  "source_prs": [
+    10,
+    11
+  ],
+  "remote_branches_deleted": [
+    "docs/chat-quick-start",
+    "release/0.1.0a4"
+  ],
+  "installation_retry_note": "The first production install saw the new root version before index propagation. The next attempt required explicit prerelease selection for transitive alpha pins. Final production installation uses --prerelease allow, with no cache or local artifact links.",
+  "lifecycle_acceptance": "not_inferred",
+  "registry_propagation_note": "After successful first upload, the version-specific JSON API returned 404 while the project JSON record already exposed alpha4. Verification uses the project record only when its version exactly equals 0.1.0a4; hashes and Documentation URL must match."
+}

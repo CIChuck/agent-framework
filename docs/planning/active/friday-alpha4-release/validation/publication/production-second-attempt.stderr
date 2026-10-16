@@ -1,0 +1,11 @@
+Using Python 3.13.10 environment at: production-install
+  × No solution found when resolving dependencies:
+  ╰─▶ Because there is no version of friday-framework-agent==0.1.0a4 and
+      friday-framework==0.1.0a4 depends on friday-framework-agent==0.1.0a4, we
+      can conclude that friday-framework==0.1.0a4 cannot be used.
+      And because you require friday-framework[all]==0.1.0a4, we can conclude
+      that your requirements are unsatisfiable.
+
+      hint: `friday-framework-agent` was requested with a pre-release marker
+      (e.g., friday-framework-agent==0.1.0a4), but pre-releases weren't
+      enabled (try: `--prerelease=allow`)
