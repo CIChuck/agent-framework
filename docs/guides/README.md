@@ -20,7 +20,7 @@ component entry points.
 
 | Your task | Read next |
 | --- | --- |
-| Install the full framework and configure Chat from a clone or PyPI | [Chat client quick start](quick-start.md) |
+| Install the full framework and configure Chat from a clone or PyPI | [Chat client quick start](00-quick-start.md) |
 | Try Friday without keys or real stores | [Offline Chat](02-getting-started.md#run-an-offline-chat-session) |
 | Configure real models/memory | [Configuration](10-configuration.md), then [memory](04-adaptive-memory.md) |
 | Embed the framework | [Core concepts](03-core-concepts.md) and the relevant package README |
@@ -58,7 +58,7 @@ component entry points.
 
 ## Supplementary guides
 
-- [Friday Chat client quick start: clone and PyPI installation](quick-start.md)
+- [Friday Chat client quick start: clone and PyPI installation](00-quick-start.md)
 - [Memory budgeting and maintenance](memory-management-guidelines.md)
 - [Security configuration and output handling](security-configuration-guidelines.md)
 - [Speech services and current Chat limits](speech.md)

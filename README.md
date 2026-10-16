@@ -129,7 +129,7 @@ Before implementation, read [AGENTS.md](https://github.com/CIChuck/agent-framewo
 
 ## Documentation, support and contributions
 
-- [Documentation index](https://github.com/CIChuck/agent-framework/blob/master/docs/guides/README.md): guides and deeper topics; consult current package READMEs and metadata for entry points.
+- [Documentation index](https://gendevx.com/friday/): guides and deeper topics; consult current package READMEs and metadata for entry points.
 - [Model library](https://github.com/CIChuck/agent-framework/blob/master/docs/reference/llm/model-library-technical-spec.md), [MCP client](https://github.com/CIChuck/agent-framework/blob/master/docs/guides/17-mcp-client.md), [MCP server](https://github.com/CIChuck/agent-framework/blob/master/docs/guides/18-mcp-server.md), [MCP migration](https://github.com/CIChuck/agent-framework/blob/master/docs/guides/19-mcp-migration.md), [speech](https://github.com/CIChuck/agent-framework/blob/master/docs/guides/speech.md).
 - [Report issues or request features](https://github.com/CIChuck/agent-framework/issues): include the Friday/Python versions, affected package, minimal reproduction and sanitized diagnostics.
 - [Contributing guide](https://github.com/CIChuck/agent-framework/blob/master/docs/guides/15-contributing.md): read alongside current repository policy. Keep pull requests scoped and include validation and migration implications.

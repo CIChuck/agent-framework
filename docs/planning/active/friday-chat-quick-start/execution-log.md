@@ -42,3 +42,9 @@ execution_phase: validation; validation_state: pending.
 no findings. All15 scenario groups and independent source/key/path/board/doc
 checks pass. Retained report/evidence unchanged. No guide edits in closeout.
 execution_phase: closeout; validation_state: verified.
+
+2026-10-16: Maintainer explicitly authorizes current-branch commit/push/PR/merge/remote
+branch deletion followed by the 0.1.0a4 cohort release. ADD-QS-002 bounds the initial
+delivery delta. Preserve the existing quick-start rename, repair navigation,
+set canonical Documentation URL in all 17 metadata files and its checker.
+execution_phase: validation; validation_state: pending.

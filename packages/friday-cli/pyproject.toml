@@ -24,7 +24,7 @@ dependencies = [
 Homepage = "https://github.com/CIChuck/agent-framework"
 Repository = "https://github.com/CIChuck/agent-framework"
 Issues = "https://github.com/CIChuck/agent-framework/issues"
-Documentation = "https://github.com/CIChuck/agent-framework/tree/main/docs"
+Documentation = "https://gendevx.com/friday/"
 Source = "https://github.com/CIChuck/agent-framework/tree/main/packages/friday-cli"
 
 [project.optional-dependencies]
