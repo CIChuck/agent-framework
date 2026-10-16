@@ -8,7 +8,7 @@ Tool definitions, registries, schema adapters, and a catalog of native and integ
 ## Installation
 
 ```bash
-python -m pip install "friday-framework-tools==0.1.0a3"
+python -m pip install "friday-framework-tools==0.1.0a4"
 ```
 
 Friday distributions use the same release version; keep internal Friday dependencies aligned.
@@ -47,7 +47,7 @@ Native categories include filesystem, shell, web, git, text, data, code and memo
 | `documents`, `spreadsheets`, `all-formats` | Optional file-format dependencies |
 | `llm`, `langchain`, `anthropic`, `openai`, `all-adapters` | Schema/provider adapter dependencies |
 
-For example: `python -m pip install "friday-framework-tools[documents]==0.1.0a3"`. Extras install dependencies; applications still configure and admit tools explicitly. `FunctionTool` and the typed `FridayTool`/`ToolResult` surface have different result contracts; choose the one your caller expects.
+For example: `python -m pip install "friday-framework-tools[documents]==0.1.0a4"`. Extras install dependencies; applications still configure and admit tools explicitly. `FunctionTool` and the typed `FridayTool`/`ToolResult` surface have different result contracts; choose the one your caller expects.
 
 ## Execution boundary
 

@@ -8,7 +8,7 @@ A reserved experimental namespace for future DSPy-based memory and context optim
 ## Installation
 
 ```bash
-python -m pip install "friday-framework-optimization==0.1.0a3"
+python -m pip install "friday-framework-optimization==0.1.0a4"
 ```
 
 Friday distributions use the same release version; keep internal Friday dependencies aligned.

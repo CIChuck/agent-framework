@@ -565,8 +565,8 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-readme-refresh/
-  next_gate: All17 README rewrites VERIFIED; maintainer acceptance and requested source delivery next
-  delivery_state: local
+  next_gate: 'Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains'
+  delivery_state: merged
   branch: docs/readme-refresh
   depends_on: []
   validation:
@@ -581,8 +581,8 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-guides-refresh/
-  next_gate: VERIFIED guides; maintainer review, completion/acceptance and separately requested source delivery
-  delivery_state: local
+  next_gate: 'Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains'
+  delivery_state: merged
   branch: docs/guides-refresh
   depends_on: []
   validation:
@@ -597,8 +597,8 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-chat-quick-start/
-  next_gate: VERIFIED delivery candidate; execute authorized push/PR/merge and remote branch deletion; alpha4 release follows
-  delivery_state: local
+  next_gate: 'Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains'
+  delivery_state: merged
   branch: docs/chat-quick-start
   depends_on: []
   validation:
@@ -621,6 +621,20 @@ tasks:
   branch: null
   depends_on: []
   validation: []
+- id: friday-alpha4-release
+  title: Friday 0.1.0a4 coordinated release
+  priority: 34
+  work_state: started
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/friday-alpha4-release/
+  next_gate: Frozen alpha4 source independent review and artifact/clean-install checks before authorized source and PyPI delivery
+  delivery_state: local
+  branch: release/0.1.0a4
+  depends_on: []
+  validation: []
+  approved_by: Chuck Russell
+  approved_at: '2026-10-16'
 events:
 - task: documentation-governance
   at: '2026-09-03'
@@ -2087,3 +2101,38 @@ events:
   action: delivery_authorized
   note: Explicit eight-step delivery and alpha4 publication request; ADD-QS-002 binds current-branch scope; no acceptance inferred.
   evidence: docs/planning/active/friday-chat-quick-start/directives/ADD-QS-002-delivery.md
+- task: friday-readme-refresh
+  at: '2026-10-16T20:10:28+00:00'
+  actor: Codex
+  actor_role: agent
+  action: set_delivery
+  note: 'Observed PR #10 merged; remote docs/chat-quick-start deleted. No acceptance inferred.'
+  evidence: https://github.com/CIChuck/agent-framework/pull/10
+- task: friday-guides-refresh
+  at: '2026-10-16T20:10:28+00:00'
+  actor: Codex
+  actor_role: agent
+  action: set_delivery
+  note: 'Observed PR #10 merged; remote docs/chat-quick-start deleted. No acceptance inferred.'
+  evidence: https://github.com/CIChuck/agent-framework/pull/10
+- task: friday-chat-quick-start
+  at: '2026-10-16T20:10:28+00:00'
+  actor: Codex
+  actor_role: agent
+  action: set_delivery
+  note: 'Observed PR #10 merged; remote docs/chat-quick-start deleted. No acceptance inferred.'
+  evidence: https://github.com/CIChuck/agent-framework/pull/10
+- task: friday-alpha4-release
+  at: '2026-10-16T20:10:28+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved
+  note: Explicit request to commit/push/PR/merge/delete current branch, bump release to 0.1.0a4, ensure documentation metadata, and update all PyPI packages; proceed without questions.
+  evidence: docs/planning/active/friday-alpha4-release/authority.json
+- task: friday-alpha4-release
+  at: '2026-10-16T20:10:28+00:00'
+  actor: Codex
+  actor_role: agent
+  action: started
+  note: 'Started authorized release branch from confirmed PR #10 merge.'
+  evidence: 465c5643b855c76a3584c393e96fb7bd1c855396

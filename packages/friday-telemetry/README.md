@@ -8,7 +8,7 @@ Provider-neutral event/span contracts, local recorders, validated instrumentatio
 ## Installation
 
 ```bash
-python -m pip install "friday-framework-telemetry==0.1.0a3"
+python -m pip install "friday-framework-telemetry==0.1.0a4"
 ```
 
 Friday distributions use the same release version; keep internal Friday dependencies aligned.
@@ -54,7 +54,7 @@ The factory defaults to disabled. Callers close handles they create; consumers b
 ## OpenTelemetry
 
 ```bash
-python -m pip install "friday-framework-telemetry[otel]==0.1.0a3"
+python -m pip install "friday-framework-telemetry[otel]==0.1.0a4"
 ```
 
 Use `TelemetryFactoryConfig(provider="otel", otel=OTelConfig(...))` to choose an exporter explicitly. The owned provider does not install a global tracer. Missing requested SDK/exporter support fails explicitly; installing the extra alone does not enable an exporter or wire Runtime/Chat automatically.

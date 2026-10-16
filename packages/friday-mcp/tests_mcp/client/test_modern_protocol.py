@@ -137,7 +137,7 @@ async def test_modern_discovery_metadata_identity_and_capabilities_are_honest():
         assert message["params"]["_meta"] == {
             META_PREFIX + "protocolVersion": MODERN_VERSION,
             META_PREFIX + "clientCapabilities": {},
-            META_PREFIX + "clientInfo": {"name": "friday-mcp", "version": "0.1.0a3"},
+            META_PREFIX + "clientInfo": {"name": "friday-mcp", "version": "0.1.0a4"},
         }
     snapshot = client.server_capabilities
     snapshot["tools"]["unsafe"] = True

@@ -11,7 +11,7 @@ import tarfile
 import zipfile
 from pathlib import Path
 
-DEFAULT_VERSION = "0.1.0a3"
+DEFAULT_VERSION = "0.1.0a4"
 INTERNAL_DEP_RE = re.compile(
     r"^friday-(?:chat|framework(?:-[A-Za-z0-9_.-]+)?)(?:\[[^]]+\])?"
 )
@@ -69,7 +69,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "artifact_dir",
         nargs="?",
-        default="dist/friday-package-cohort-0.1.0a3",
+        default="dist/friday-package-cohort-0.1.0a4",
         help="Directory containing wheel and sdist artifacts.",
     )
     parser.add_argument(
