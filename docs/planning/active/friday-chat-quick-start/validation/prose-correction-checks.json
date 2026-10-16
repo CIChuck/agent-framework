@@ -1,0 +1,48 @@
+{
+  "base": "09bb1a4b91fbcc0e876ef11d677ccfac88b83d4b",
+  "fences_unchanged": true,
+  "launcher_anchor_present": true,
+  "repository_link_uc1_only": true,
+  "markdown_render": "pass",
+  "checks": [
+    {
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "render"
+      ],
+      "exit_code": 0,
+      "stdout": "Rendered docs/planning/README.md\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stdout": "Development board validation passed: 32 tasks\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Documentation lifecycle validation passed: 622 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

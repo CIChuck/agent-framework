@@ -1,0 +1,44 @@
+{
+  "source_commit": "40d7d38c7b38670db9c8d0b92b8b2bd100301b50",
+  "source_branch": "release/0.1.0a3",
+  "maintainer_instruction": "publish this release to pypi",
+  "recorded_at": "2026-10-15T02:13:56.809934+00:00",
+  "version": "0.1.0a3",
+  "projects": [
+    "friday-framework",
+    "friday-framework-agent",
+    "friday-chat",
+    "friday-framework-cli",
+    "friday-framework-core",
+    "friday-framework-finance",
+    "friday-framework-llm",
+    "friday-framework-mcp",
+    "friday-framework-memory",
+    "friday-framework-moltbook",
+    "friday-framework-optimization",
+    "friday-framework-runtime",
+    "friday-framework-sandbox",
+    "friday-framework-speech",
+    "friday-framework-telemetry",
+    "friday-framework-tools",
+    "friday-framework-transcript"
+  ],
+  "registry": "https://pypi.org",
+  "upload_endpoint": "https://upload.pypi.org/legacy/",
+  "required_checks": [
+    "metadata",
+    "artifact metadata/resources/sensitive-content",
+    "twine check",
+    "clean local artifact install and import/CLI",
+    "published filename and SHA256 equality",
+    "clean production-index install"
+  ],
+  "scope": "Build and publish the verified 17-distribution alpha3 cohort; preserve source and local data; no source changes, GitHub release, or provider calls.",
+  "work_unit": "REL-A3-002",
+  "code_scope": [
+    "scripts/check-package-artifacts.py"
+  ],
+  "reason": "Stale checker requires LiteLLM1.94.1 while verified source, lock and built metadata require1.100.1. Publication authorizes this necessary mechanical release-helper correction; no package dependency change.",
+  "directive": "docs/planning/active/friday-alpha3-version-bump/directives/CD-REL-A3-002-publication.md",
+  "directive_sha256": "4a7f7ce1facec98784cddc83fa12c80a478ab2dc9c314c648a3cd73ea030cbde"
+}

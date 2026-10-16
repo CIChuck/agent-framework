@@ -1,0 +1,196 @@
+from pathlib import Path
+import ast, hashlib, io, json, os, re, subprocess, tempfile, tomllib, unicodedata
+from urllib.parse import unquote, urlsplit
+import yaml
+
+W=Path(os.environ.get('FRIDAY_GUIDES_CHECKOUT','/private/tmp/friday-guides-refresh'))
+B=Path(os.environ.get('FRIDAY_GUIDES_VALIDATION','/private/tmp/friday-guides-validation'))
+P='/private/tmp/friday-alpha3-pypi/production-install/bin/python'
+R='/private/tmp/friday-alpha3-pypi/tools/bin/python'
+B.mkdir(exist_ok=True)
+G=B/'guard';G.mkdir(exist_ok=True)
+guard='''import os, sys
+ROOT='/Users/chuckrussell/Dev/gendev/agent-framework'
+PRIVATE='/private/tmp/friday-guides-validation/'
+def guard(event,args):
+    if event in ('socket.getaddrinfo','socket.connect','socket.sendto'):
+        raise RuntimeError('Network prohibited by guide example validation')
+    if event=='open' and isinstance(args[0],(str,bytes,os.PathLike)):
+        p=os.path.abspath(os.fsdecode(args[0]))
+        if p==ROOT or p.startswith(ROOT+'/'):
+            raise RuntimeError('Shared checkout access prohibited')
+        if '.env' in p.split('/') or p.endswith('/scripts/pypi.sh'):
+            raise RuntimeError('Credential file access prohibited')
+        flags=args[2] if len(args)>2 and isinstance(args[2],int) else 0
+        mode=args[1] if len(args)>1 and isinstance(args[1],str) else ''
+        if (flags & (os.O_WRONLY|os.O_RDWR|os.O_CREAT|os.O_TRUNC|os.O_APPEND) or any(x in mode for x in 'wax+')) and not p.startswith(PRIVATE) and p!='/dev/null':
+            raise RuntimeError('Write outside isolated guide validation prohibited: '+p)
+sys.addaudithook(guard)
+'''
+guard=guard.replace("PRIVATE='/private/tmp/friday-guides-validation/'", 'PRIVATE='+repr(str(B.resolve())+'/'))
+(G/'sitecustomize.py').write_text(guard)
+envbase={'PATH':'/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin','PYTHONPATH':str(G),'PYTHONDONTWRITEBYTECODE':'1','LITELLM_LOCAL_MODEL_COST_MAP':'True','FRIDAY_TELEMETRY_ENABLED':'false','OTEL_SDK_DISABLED':'true','HF_HUB_DISABLE_TELEMETRY':'1','ANONYMIZED_TELEMETRY':'False','LANG':'en_US.UTF-8'}
+errors=[]; results=[]; blocks={}; docs=[]; links=0; anchors_checked=0; shells=0; compiled=0
+
+def slug(s):
+    s=re.sub(r'<[^>]+>','',s).replace('`','').lower()
+    s=''.join(c for c in s if c in ' -_' or unicodedata.category(c)[0] in 'LN')
+    return s.replace(' ','-')
+
+def anchors(p):
+    s=p.read_text(); fence=False; found=set(); counts={}
+    for l in s.splitlines():
+        if l.startswith(('```','~~~')):fence=not fence
+        if not fence and re.match(r'^#{1,6} ',l):
+            key=slug(l.split(' ',1)[1]);n=counts.get(key,0);counts[key]=n+1
+            found.add(key if n==0 else key+'-'+str(n))
+    found.update(re.findall(r'<a\s+(?:id|name)=["\']([^"\']+)',s))
+    return found
+
+for p in sorted((W/'docs/guides').glob('*.md')):
+    s=p.read_text();name=p.name
+    if not s.startswith('---\n'):errors.append(name+': no front matter');continue
+    header,body=s[4:].split('\n---\n',1);meta=yaml.safe_load(header)
+    if set(meta)!={'title','description','framework_version','last_reviewed','status','audience','doc_type'}:errors.append(name+': metadata keys')
+    if meta['framework_version']!='0.1.0a3' or meta['last_reviewed']!='2026-10-15' or meta['status']!='current':errors.append(name+': metadata basis')
+    if body.splitlines()[1]!='# '+meta['title']:errors.append(name+': H1 metadata mismatch')
+    blocks[name]=[]
+    for match in re.finditer(r'^```([^\n]*)\n(.*?)^```\s*$',body,re.M|re.S):
+        lang,code=match.groups();lang=lang.strip()
+        if lang in ('python','py'):
+            compiled+=1
+            try:compile(code,name+':'+str(compiled),'exec')
+            except SyntaxError as e:errors.append(str(e))
+        if lang in ('yaml','yml'):
+            try:yaml.safe_load(code)
+            except yaml.YAMLError as e:errors.append(name+': '+str(e))
+        if lang=='bash':
+            shells+=1
+            check=subprocess.run(['/bin/bash','-n'],input=code,text=True,capture_output=True)
+            if check.returncode:errors.append(name+': '+check.stderr)
+        blocks[name].append({'lang':lang,'code':code})
+    prose=re.sub(r'^```.*?^```\s*$','',body,flags=re.M|re.S)
+    for target in re.findall(r'(?<!!)\[[^\]]+\]\(([^)]+)\)',prose):
+        u=urlsplit(target);links+=1
+        if u.scheme:continue
+        q=(p.parent/unquote(u.path)).resolve() if u.path else p
+        if not q.exists():errors.append(name+': missing '+target)
+        elif u.fragment and q.suffix=='.md':
+            anchors_checked+=1
+            if unquote(u.fragment) not in anchors(q):errors.append(name+': missing anchor '+target)
+    docs.append({'path':str(p.relative_to(W)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'lines':len(s.splitlines()),'metadata':meta,'python_fences':sum(x['lang']=='python' for x in blocks[name]),'yaml_fences':sum(x['lang']=='yaml' for x in blocks[name])})
+
+def get(name,lang,index):return [x['code'] for x in blocks[name] if x['lang']==lang][index-1]
+
+def execute(label,code,files=None,expected=(),input=None,argv=None,python=P,guarded=True):
+    d=Path(tempfile.mkdtemp(prefix=label+'-',dir=B));(d/'home').mkdir();(d/'tmp').mkdir()
+    for name,content in (files or {}).items():
+        p=d/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(content)
+    p=d/'example.py';p.write_text(code)
+    env=envbase|{'HOME':str(d/'home'),'TMPDIR':str(d/'tmp')}
+    if not guarded:env.pop('PYTHONPATH',None)
+    try:
+        proc=subprocess.run(argv or [python,str(p)],cwd=d,env=env,capture_output=True,text=True,input=input,timeout=45)
+        r={'label':label,'exit_code':proc.returncode,'stdout':proc.stdout,'stderr':proc.stderr,'expected':list(expected)}
+        if proc.returncode or any(x not in proc.stdout for x in expected):errors.append(label+': '+str(proc.returncode)+' '+proc.stdout[-500:]+' '+proc.stderr[-1500:])
+    except subprocess.TimeoutExpired:r={'label':label,'exit_code':'timeout'};errors.append(label+': timeout')
+    results.append(r);print(label,r['exit_code'],str(r.get('stdout',''))[-120:].replace('\n',' | '),flush=True)
+
+# Every complete offline example. Prerequisite files are exact guide fences.
+cases=[('02-getting-started.md',1,('friday-config',)),('02-getting-started.md',2,('The project is Friday.',)),('03-core-concepts.md',1,('ephemeral',)),('04-adaptive-memory.md',1,('Friday',)),('04-adaptive-memory.md',2,('python',)),('04-adaptive-memory.md',3,('24 0.787','72 0.487','168 0.186')),('05-tools.md',1,('Hello, Ada',)),('05-tools.md',2,('8',)),('06-agents.md',1,("['researcher']",)),('07-multi-agent.md',1,('researcher explicit Review the supplied source',)),('07-multi-agent.md',2,('True\nFalse\nFalse',)),('08-workflows.md',1,("['collect', 'review']",'collect []','review []')),('08-workflows.md',2,("['draft', 'review']",'[]')),('10-configuration.md',1,('chat',"['maintenance', 'memory']")),('11-advanced-topics.md',1,('0.3',)),('11-advanced-topics.md',2,('success',)),('11-advanced-topics.md',3,('fixture result',)),('12-use-cases.md',1,('The count is 3.',)),('13-troubleshooting.md',1,('friday-chat 0.1.0a3',)),('memory-management-guidelines.md',1,('True\nFalse',)),('security-configuration-guidelines.md',1,('True\nTrue',)),('speech.md',1,('False',)),('speech.md',3,('Speak this.',))]
+for name,index,expected in cases:
+    files={}
+    if name=='06-agents.md':files['agents/researcher.yaml']=get(name,'yaml',1)
+    if name=='08-workflows.md':
+        for i,path in enumerate(['workflows/research/workflow.yaml','workflows/research/pipelines/collect.yaml','workflows/research/pipelines/review.yaml','workflows/draft_review.yaml'],1):files[path]=get(name,'yaml',i)
+    if name=='10-configuration.md':files={'models.yaml':get(name,'yaml',1),'config.yaml':get(name,'yaml',2)}
+    execute(name.removesuffix('.md')+'-'+str(index),get(name,'python',index),files=files,expected=expected)
+execute('mcp-stdio-roundtrip',get('17-mcp-client.md','python',2),files={'mcp_echo_server.py':get('18-mcp-server.md','python',1)},expected=('Hello from MCP',))
+
+# Validate each owning schema without constructing services or reading secrets.
+configs={name:[yaml.safe_load(x['code']) for x in bs if x['lang']=='yaml'] for name,bs in blocks.items()}
+schema_check='''import json
+from pathlib import Path
+from friday_chat.config import FridayChatConfig
+from friday_runtime.config import MCPToolProviderConfig
+from friday_memory import SupportingContextConfig
+from friday_memory.models.budget import CompactionConfig
+from friday_core.security import SanitizationConfig
+from friday_speech import SpeechConfig
+data=json.loads(Path('yaml.json').read_text()); count=0
+for name,examples in data.items():
+    for example in examples:
+        if not isinstance(example,dict): continue
+        if isinstance(example.get('tools'),dict):
+            tools=example['tools']; FridayChatConfig.model_validate({'llm':{'model':'openai/offline-demo'},'tools':tools}); count+=1
+            if 'mcp' in tools.get('providers',{}):
+                MCPToolProviderConfig.from_dict(tools['providers']['mcp']);count+=1
+        if 'memory' in example:
+            memory=example['memory'];FridayChatConfig.model_validate({'llm':{'model':'openai/offline-demo'},'memory':memory});count+=1
+            if 'supporting_context' in memory:SupportingContextConfig.model_validate(memory['supporting_context']);count+=1
+            if 'compaction' in memory:CompactionConfig.model_validate(memory['compaction']);count+=1
+        if 'security' in example:SanitizationConfig.from_dict(example['security']['sanitization']);count+=1
+        if 'speech' in example:SpeechConfig.from_dict(example['speech']);count+=1
+print('schema_checks',count)
+'''
+execute('configuration-schemas',schema_check,files={'yaml.json':json.dumps(configs)},expected=('schema_checks',))
+runtime_schema='''from pathlib import Path
+from friday_runtime import RuntimeConfig
+for name in ('install','workspace'):
+    Path(name).mkdir()
+root=Path.cwd()
+config=RuntimeConfig.from_sources(yaml_path='runtime.yaml',env={},overrides={
+    'install_root':str(root/'install'), 'workspace_root':str(root/'workspace'),
+    'runtime_data_root':str(root/'state'), 'cache_root':str(root/'cache'),
+})
+print(config.workflow_mode,config.allow_env_override)
+'''
+execute('headless-config-fragment',runtime_schema,files={'runtime.yaml':get('10-configuration.md','yaml',4)},expected=('canonical False',))
+assembly='''import asyncio
+from friday_chat.config import load_friday_py_config
+from friday_chat.runtime import build_runtime
+config=load_friday_py_config('config.yaml',env={'FRIDAY_LOCAL_MODEL_KEY':'local-example-placeholder'})
+runtime=build_runtime(config,fake=False)
+print(type(runtime.chat_llm).__name__,type(runtime.memory).__name__)
+print(type(runtime.orchestrator).__name__,type(runtime.speech).__name__)
+asyncio.run(runtime.async_clients.close())
+'''
+execute('canonical-chat-real-assembly-no-start',assembly,files={'models.yaml':get('10-configuration.md','yaml',1),'config.yaml':get('10-configuration.md','yaml',2)},expected=('FrameworkChatModel','FakeOrchestrator FakeSpeechAdapter'))
+cli_check='''from unittest.mock import patch
+from typer.testing import CliRunner
+from friday_chat.app import ListInputSource
+from friday_chat.cli import app
+from friday_chat.commands.registry import build_default_registry
+for args in (['--help'],['--version']):
+    result=CliRunner().invoke(app,args)
+    if result.exit_code: raise RuntimeError(result.output) from result.exception
+registry=build_default_registry()
+print('commands',len(registry.canonical_names()))
+with patch('friday_chat.cli.FridayCliInputSource',lambda prompt:ListInputSource(['hello','/help','/history','/q'])):
+    result=CliRunner().invoke(app,['--config','demo.yaml','--runtime','fake'])
+if result.exit_code: raise RuntimeError(result.output) from result.exception
+print('fake Chat completed hello/help/history/q')
+'''
+execute('chat-cli',cli_check,files={'demo.yaml':get('02-getting-started.md','yaml',1)},expected=('fake Chat completed',))
+
+render_code='''from pathlib import Path
+import io,json
+from readme_renderer.markdown import render
+docs=json.loads(Path('docs.json').read_text())
+for name,text in docs.items():
+    stream=io.StringIO();html=render(text,stream=stream)
+    if html is None or stream.getvalue():raise RuntimeError(name+': '+stream.getvalue())
+print('rendered',len(docs))
+'''
+render_docs={p.name:p.read_text().split('\n---\n',1)[1] for p in (W/'docs/guides').glob('*.md')}
+execute('markdown-render',render_code,files={'docs.json':json.dumps(render_docs)},expected=('rendered 25',),python=R)
+
+changed=subprocess.check_output(['git','diff','--name-only','123d9ed943519c4e68bf9249705e55d1a1ebf8b8'],cwd=W,text=True).splitlines()
+allowed=[str(p.relative_to(W)) for p in (W/'docs/guides').glob('*.md')]+['docs/planning/board.yaml','docs/planning/README.md']
+if any(p not in allowed and not p.startswith('docs/planning/active/friday-guides-refresh/') for p in changed):errors.append('scope drift')
+excluded=[{'path':'03-core-concepts.md','python_fence':2,'reason':'Live Runtime startup requires operator models/configuration and opens stores'},{'path':'speech.md','python_fence':2,'reason':'Live ElevenLabs call requires credentials and creates audio'},{'path':'17-mcp-client.md','python_fence':1,'reason':'API fragment needs a connected adapter; compiled only'},{'path':'18-mcp-server.md','python_fence':2,'reason':'HTTP construction API fragment needs explicit caller policy/token; compiled only'}]
+summary={'framework_version':'0.1.0a3','date':'2026-10-15','documents':docs,'documents_checked':len(docs),'python_fences_compiled':compiled,'bash_fences_syntax_checked':shells,'links_checked':links,'local_anchors_checked':anchors_checked,'complete_offline_examples_executed':len(cases)+1,'additional_checks':len(results)-len(cases)-1,'guard_sha256':hashlib.sha256((G/'sitecustomize.py').read_bytes()).hexdigest(),'results':results,'excluded':excluded,'errors':errors}
+(B/'results.json').write_text(json.dumps(summary,indent=2)+'\n')
+print('SUMMARY',len(docs),'docs',compiled,'Python fences',links,'links',anchors_checked,'anchors',len(errors),'errors',flush=True)
+for error in errors:print('ERROR',error,flush=True)
+raise SystemExit(bool(errors))

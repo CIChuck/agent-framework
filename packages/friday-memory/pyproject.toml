@@ -1,14 +1,14 @@
 [project]
 name = "friday-framework-memory"
-version = "0.1.0a2"
+version = "0.1.0a3"
 description = "Intelligence layer: Storage, Retrieval, and Context Engineering"
 readme = "README.md"
 requires-python = ">=3.13.4"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
 dependencies = [
-    "friday-framework-core==0.1.0a2",
-    "friday-framework-llm==0.1.0a2",
+    "friday-framework-core==0.1.0a3",
+    "friday-framework-llm==0.1.0a3",
     "chromadb>=0.4.0",
     "networkx>=3.0",
     "numpy>=1.24.0",
@@ -19,7 +19,7 @@ dependencies = [
 Homepage = "https://github.com/CIChuck/agent-framework"
 Repository = "https://github.com/CIChuck/agent-framework"
 Issues = "https://github.com/CIChuck/agent-framework/issues"
-Documentation = "https://github.com/CIChuck/agent-framework/tree/main/docs"
+Documentation = "https://gendevx.com/friday/"
 Source = "https://github.com/CIChuck/agent-framework/tree/main/packages/friday-memory"
 
 [project.optional-dependencies]

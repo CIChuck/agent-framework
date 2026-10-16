@@ -1,0 +1,102 @@
+[
+  {
+    "name": "production-create-venv",
+    "argv": [
+      "/opt/homebrew/bin/uv",
+      "venv",
+      "--seed",
+      "--no-cache",
+      "/private/tmp/friday-alpha3-pypi/production-install",
+      "--python",
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "--no-python-downloads"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-15T02:37:07.327981+00:00"
+  },
+  {
+    "name": "production-pypi-install",
+    "argv": [
+      "/opt/homebrew/bin/uv",
+      "pip",
+      "install",
+      "--no-config",
+      "--no-cache",
+      "--python",
+      "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+      "--index-url",
+      "https://pypi.org/simple",
+      "friday-framework[all]==0.1.0a3",
+      "friday-chat==0.1.0a3"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-15T02:37:29.426151+00:00"
+  },
+  {
+    "name": "production-pip-check",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-15T02:37:29.817526+00:00"
+  },
+  {
+    "name": "production-cohort-versions",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+      "-c",
+      "import importlib.metadata,json;from pathlib import Path;b=Path('/private/tmp/friday-alpha3-pypi');a=json.loads((b/'publication-authority.json').read_text());v={n:importlib.metadata.version(n) for n in a['projects']};assert len(v)==17 and set(v.values())=={'0.1.0a3'};(b/'production-installed-versions.json').write_text(json.dumps(v,indent=2)+'\\n');print('All17 Friday distributions installed at0.1.0a3')"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-15T02:37:29.858812+00:00"
+  },
+  {
+    "name": "production-imports",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+      "-c",
+      "import friday_core,friday_telemetry,friday_llm,friday_transcript,friday_memory,friday_agent,friday_runtime,friday_cli,friday_tools,friday_mcp,friday_chat;print('Framework, Runtime, MCP, Agent and Chat imports OK')"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-15T02:37:36.571364+00:00"
+  },
+  {
+    "name": "production-llm-smoke",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+      "/private/tmp/friday-alpha3-pypi/installed-helper-smoke.py"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-15T02:37:37.582839+00:00"
+  },
+  {
+    "name": "production-chat-smoke",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+      "/private/tmp/friday-alpha3-pypi/installed-helper-smoke.py"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-15T02:37:39.120161+00:00"
+  },
+  {
+    "name": "production-chat-version",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/production-install/bin/friday-chat",
+      "--version"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-15T02:37:40.746484+00:00"
+  },
+  {
+    "name": "production-chat-help",
+    "argv": [
+      "/private/tmp/friday-alpha3-pypi/production-install/bin/friday-chat",
+      "--help"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-15T02:37:42.303140+00:00"
+  }
+]

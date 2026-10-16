@@ -112,3 +112,16 @@ reproduce on unchanged master. Broad Ruff534 includes327 baseline plus207 new
 retained evidence-script style diagnostics; no new product-source diagnostics.
 Docker unavailable; no image build or audit execution claimed. Explicit current
 maintainer delivery authority remains in force; acceptance is not inferred.
+
+## PR #9 merged delivery reconciliation
+
+2026-10-15: Maintainer requested correction of the stale delivery record.
+Read-only GitHub metadata confirms PR #9 merged into master at
+2026-10-15T01:55:15Z as a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad.
+A successful matching-refs query returns no source-branch ref, confirming remote
+branch deletion. The same merge is an ancestor of the current documentation HEAD.
+[Delivery receipt](delivery-evidence.json) retains the exact observed metadata.
+Board delivery reconciled from local to merged; next gate is maintainer lifecycle
+closeout/acceptance. No source or frozen review evidence changed, and no external
+mutation, credential action or maintainer acceptance was performed.
+execution_phase: closeout; validation_state: verified.

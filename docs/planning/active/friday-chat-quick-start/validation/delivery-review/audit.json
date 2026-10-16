@@ -1,0 +1,582 @@
+{
+  "reviewer": "/root/docs_delivery_review",
+  "model": "Codex GPT-6 family; exact backend build not exposed",
+  "mode": "fresh-context read-only delta and aggregate",
+  "date": "2026-10-16T20:07:23.613478+00:00",
+  "candidate": "ed88901be55003d905d913ee6f029945b30cf1dc",
+  "base": "a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad",
+  "delta_base": "3504c93a631da7b4b216057f47db330434124b6a",
+  "checks": {
+    "metadata": {
+      "projects": 17,
+      "exact_url": "https://gendevx.com/friday/",
+      "only_Documentation_changed_since_reviewed_alpha3": true
+    },
+    "url_rule_probes": {
+      "cases": 28,
+      "results": [
+        {
+          "key": "Homepage",
+          "value": null,
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Homepage must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Homepage",
+          "value": 31,
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Homepage must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Homepage",
+          "value": [],
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Homepage must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Homepage",
+          "value": "https://example.invalid/",
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Homepage must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Homepage",
+          "value": "https://github.com/CIChuck/agent-framework",
+          "errors": []
+        },
+        {
+          "key": "Repository",
+          "value": null,
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Repository must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Repository",
+          "value": 31,
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Repository must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Repository",
+          "value": [],
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Repository must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Repository",
+          "value": "https://example.invalid/",
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Repository must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Repository",
+          "value": "https://github.com/CIChuck/agent-framework",
+          "errors": []
+        },
+        {
+          "key": "Issues",
+          "value": null,
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Issues must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Issues",
+          "value": 31,
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Issues must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Issues",
+          "value": [],
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Issues must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Issues",
+          "value": "https://example.invalid/",
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Issues must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Issues",
+          "value": "https://github.com/CIChuck/agent-framework/issues",
+          "errors": []
+        },
+        {
+          "key": "Documentation",
+          "value": null,
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Documentation must be https://gendevx.com/friday/"
+          ]
+        },
+        {
+          "key": "Documentation",
+          "value": 31,
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Documentation must be https://gendevx.com/friday/"
+          ]
+        },
+        {
+          "key": "Documentation",
+          "value": [],
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Documentation must be https://gendevx.com/friday/"
+          ]
+        },
+        {
+          "key": "Documentation",
+          "value": "https://example.invalid/",
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Documentation must be https://gendevx.com/friday/"
+          ]
+        },
+        {
+          "key": "Documentation",
+          "value": "https://gendevx.com/friday/",
+          "errors": []
+        },
+        {
+          "key": "Source",
+          "value": null,
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Source must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Source",
+          "value": 31,
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Source must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Source",
+          "value": [],
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Source must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Source",
+          "value": "https://example.invalid/",
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Source must start with https://github.com/CIChuck/agent-framework"
+          ]
+        },
+        {
+          "key": "Source",
+          "value": "https://github.com/CIChuck/agent-framework",
+          "errors": []
+        },
+        {
+          "key": "Documentation",
+          "value": "https://github.com/CIChuck/agent-framework/tree/main/docs",
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Documentation must be https://gendevx.com/friday/"
+          ]
+        },
+        {
+          "key": "Documentation",
+          "value": "https://gendevx.com/friday",
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Documentation must be https://gendevx.com/friday/"
+          ]
+        },
+        {
+          "key": "Documentation",
+          "value": "https://gendevx.com/friday/extra",
+          "errors": [
+            "synthetic-pyproject.toml: project.urls.Documentation must be https://gendevx.com/friday/"
+          ]
+        }
+      ]
+    },
+    "quick_start": {
+      "sha256": "eedd970411de3cd3233d02427357b2ffb8fa9e97005b01c09f500cf714d26f5a",
+      "rename_exact": true,
+      "navigation_links": 2,
+      "root_canonical_link_only": true
+    },
+    "prior_unit_mapping": {
+      "package_READMEs_unchanged": 16,
+      "guides_unchanged": 24,
+      "quick_start_unchanged": true,
+      "runtime_and_tests_unchanged_since": "8b85bd9169c00025e562c8db74afa81af873ec37",
+      "third_party_lock_records_byte_identical_to_base": 196
+    },
+    "retained_artifact_hashes_verified": 86,
+    "retained_reports": {
+      "docs/planning/active/friday-alpha3-version-bump/validation/report.md": {
+        "introduced": "40d7d38c7b38670db9c8d0b92b8b2bd100301b50",
+        "sha256": "47c034e68b875a6230f6ce5badfbaa05d593d54588106639ab0e0836f4cd3e3c",
+        "unchanged": true
+      },
+      "docs/planning/active/friday-alpha3-version-bump/validation/publication/helper-review.md": {
+        "introduced": "643722cae820975ff0723853ee00daebbecbb542",
+        "sha256": "b6e9a8c65065b46a8687562e0aadcd88ab37e10ce2c8e9a6e08f2fb486ec9661",
+        "unchanged": true
+      },
+      "docs/planning/active/friday-readme-refresh/validation/final-review/report.md": {
+        "introduced": "123d9ed943519c4e68bf9249705e55d1a1ebf8b8",
+        "sha256": "593a083c0887e0d2c0a69b110e7a1ac73890876e9a696fa026c4369f1024f057",
+        "unchanged": true
+      },
+      "docs/planning/active/friday-guides-refresh/validation/final-review/report.md": {
+        "introduced": "316749cc1584d5bff1ef8ae4358766ca0acecaac",
+        "sha256": "14a50c72aa2f031cd2ceb0d266d1d4d54692041583fe68a553fa87db13ffa359",
+        "unchanged": true
+      },
+      "docs/planning/active/friday-chat-quick-start/validation/hosted-review/report.md": {
+        "introduced": "da2c1fdae9d2c87b54e21061582c72248cb8c55d",
+        "sha256": "53ca8530d0fc60f7a06db6fcc2e724db814b99669ff5486d41836495b4ee0238",
+        "unchanged": true
+      }
+    },
+    "documentation": {
+      "markdown_inventory": 628,
+      "changed_Markdown_files": 82,
+      "changed_local_links_errors": [],
+      "baseline_report_sha256": "7f59d23203f78e1696d040cc87c29e53e7051dcc0f4da7166cd7ea6e02b08c9b",
+      "baseline_report_identical_to_origin_master": true,
+      "only_global_link_errors": [
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/packages/friday-telemetry/src/friday_telemetry/providers/composite.py'",
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/packages/friday-telemetry/src/friday_telemetry/providers/composite.py'",
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md'",
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md'",
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:98: broken link '/private/tmp/telem-01/review/packages/friday-chat/tests_chat/test_reorganization_terminal.py'",
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:100: broken link '/private/tmp/telem-01/review/docs/reference/policies/independent-validation-policy.md'"
+      ]
+    },
+    "scope": {
+      "delta_paths": [
+        "README.md",
+        "docs/guides/00-quick-start.md",
+        "docs/guides/README.md",
+        "docs/planning/README.md",
+        "docs/planning/active/friday-chat-quick-start/README.md",
+        "docs/planning/active/friday-chat-quick-start/directives/ADD-QS-002-delivery.md",
+        "docs/planning/active/friday-chat-quick-start/execution-log.md",
+        "docs/planning/active/friday-chat-quick-start/validation/delivery-builder.json",
+        "docs/planning/board.yaml",
+        "packages/friday-agent/pyproject.toml",
+        "packages/friday-chat/pyproject.toml",
+        "packages/friday-cli/pyproject.toml",
+        "packages/friday-core/pyproject.toml",
+        "packages/friday-finance/pyproject.toml",
+        "packages/friday-llm/pyproject.toml",
+        "packages/friday-mcp/pyproject.toml",
+        "packages/friday-memory/pyproject.toml",
+        "packages/friday-moltbook/pyproject.toml",
+        "packages/friday-optimization/pyproject.toml",
+        "packages/friday-runtime/pyproject.toml",
+        "packages/friday-sandbox/pyproject.toml",
+        "packages/friday-speech/pyproject.toml",
+        "packages/friday-telemetry/pyproject.toml",
+        "packages/friday-tools/pyproject.toml",
+        "packages/friday-transcript/pyproject.toml",
+        "pyproject.toml",
+        "scripts/check-package-metadata.py"
+      ],
+      "aggregate_paths": [
+        "README.md",
+        "docs/guides/00-quick-start.md",
+        "docs/guides/01-executive-summary.md",
+        "docs/guides/02-getting-started.md",
+        "docs/guides/03-core-concepts.md",
+        "docs/guides/04-adaptive-memory.md",
+        "docs/guides/05-tools.md",
+        "docs/guides/06-agents.md",
+        "docs/guides/07-multi-agent.md",
+        "docs/guides/08-workflows.md",
+        "docs/guides/09-cli-reference.md",
+        "docs/guides/10-configuration.md",
+        "docs/guides/11-advanced-topics.md",
+        "docs/guides/12-use-cases.md",
+        "docs/guides/13-troubleshooting.md",
+        "docs/guides/14-appendices.md",
+        "docs/guides/15-contributing.md",
+        "docs/guides/16-desktop-deployment.md",
+        "docs/guides/17-mcp-client.md",
+        "docs/guides/18-mcp-server.md",
+        "docs/guides/19-mcp-migration.md",
+        "docs/guides/FRIDAY-FEATURES.md",
+        "docs/guides/OUTLINE.md",
+        "docs/guides/README.md",
+        "docs/guides/memory-management-guidelines.md",
+        "docs/guides/security-configuration-guidelines.md",
+        "docs/guides/speech.md",
+        "docs/planning/README.md",
+        "docs/planning/active/friday-alpha3-version-bump/README.md",
+        "docs/planning/active/friday-alpha3-version-bump/authority.json",
+        "docs/planning/active/friday-alpha3-version-bump/directives/CD-REL-A3-001-version-bump.md",
+        "docs/planning/active/friday-alpha3-version-bump/directives/CD-REL-A3-002-publication.md",
+        "docs/planning/active/friday-alpha3-version-bump/execution-log.md",
+        "docs/planning/active/friday-alpha3-version-bump/publication-authority.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/builder-checks.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/artifact-check.txt",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/artifact-sha256.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/helper-review-checks.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/helper-review.md",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/installed-smoke-output.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/local-installed-versions.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/local-smoke-results.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/metadata-check.txt",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/production-environment-versions.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/production-install-output.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/production-install-results.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/production-installed-versions.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/publish-cohort.py.txt",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/published-files.json",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/release-readiness.md",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/twine-check.txt",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/upload-attempt.txt",
+        "docs/planning/active/friday-alpha3-version-bump/validation/publication/verify-production-install.py.txt",
+        "docs/planning/active/friday-alpha3-version-bump/validation/report.md",
+        "docs/planning/active/friday-alpha3-version-bump/validation/review-audit.py.txt",
+        "docs/planning/active/friday-alpha3-version-bump/validation/reviewer-checks.json",
+        "docs/planning/active/friday-alpha3-version-bump/version-change-summary.json",
+        "docs/planning/active/friday-chat-quick-start/README.md",
+        "docs/planning/active/friday-chat-quick-start/authority.json",
+        "docs/planning/active/friday-chat-quick-start/directives/ADD-QS-001-hosted-openai.md",
+        "docs/planning/active/friday-chat-quick-start/directives/ADD-QS-002-delivery.md",
+        "docs/planning/active/friday-chat-quick-start/directives/CD-QS-001.md",
+        "docs/planning/active/friday-chat-quick-start/execution-log.md",
+        "docs/planning/active/friday-chat-quick-start/hosted-amendment-report.md",
+        "docs/planning/active/friday-chat-quick-start/implementation-report.md",
+        "docs/planning/active/friday-chat-quick-start/validation/builder-checks.json",
+        "docs/planning/active/friday-chat-quick-start/validation/check-hosted-guide.py.txt",
+        "docs/planning/active/friday-chat-quick-start/validation/check-quick-start.py.txt",
+        "docs/planning/active/friday-chat-quick-start/validation/closeout-checks.json",
+        "docs/planning/active/friday-chat-quick-start/validation/delivery-builder.json",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-builder-checks.json",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-closeout-checks.json",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-network-and-state-guard.py.txt",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-repository-checks.json",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-review/artifact-sha256.json",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-review/delta-diff.json",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-review/evidence.json",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-review/independent-checks.py.txt",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-review/replay-hosted.py.txt",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-review/replay/results.json",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-review/report.md",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-review/report.sha256",
+        "docs/planning/active/friday-chat-quick-start/validation/hosted-review/retained-evidence.json",
+        "docs/planning/active/friday-chat-quick-start/validation/independent-review/artifact-sha256.json",
+        "docs/planning/active/friday-chat-quick-start/validation/independent-review/candidate-diff.json",
+        "docs/planning/active/friday-chat-quick-start/validation/independent-review/independent-checks.py.txt",
+        "docs/planning/active/friday-chat-quick-start/validation/independent-review/independent-command-receipts.json",
+        "docs/planning/active/friday-chat-quick-start/validation/independent-review/independent-results.json",
+        "docs/planning/active/friday-chat-quick-start/validation/independent-review/packet-replay/results.json",
+        "docs/planning/active/friday-chat-quick-start/validation/independent-review/replay-packet.py.txt",
+        "docs/planning/active/friday-chat-quick-start/validation/independent-review/report.md",
+        "docs/planning/active/friday-chat-quick-start/validation/independent-review/report.sha256",
+        "docs/planning/active/friday-chat-quick-start/validation/independent-review/retained-evidence.json",
+        "docs/planning/active/friday-chat-quick-start/validation/independent-review/review-request.json",
+        "docs/planning/active/friday-chat-quick-start/validation/intro-review/evidence.json",
+        "docs/planning/active/friday-chat-quick-start/validation/intro-review/report.md",
+        "docs/planning/active/friday-chat-quick-start/validation/intro-review/retained-evidence.json",
+        "docs/planning/active/friday-chat-quick-start/validation/intro-review/review.py.txt",
+        "docs/planning/active/friday-chat-quick-start/validation/network-and-state-guard.py.txt",
+        "docs/planning/active/friday-chat-quick-start/validation/prose-correction-checks.json",
+        "docs/planning/active/friday-chat-quick-start/validation/repository-checks.json",
+        "docs/planning/active/friday-deprecated-credential-cleanup/README.md",
+        "docs/planning/active/friday-deprecated-credential-cleanup/delivery-evidence.json",
+        "docs/planning/active/friday-deprecated-credential-cleanup/execution-log.md",
+        "docs/planning/active/friday-guides-refresh/README.md",
+        "docs/planning/active/friday-guides-refresh/authority.json",
+        "docs/planning/active/friday-guides-refresh/closeout.md",
+        "docs/planning/active/friday-guides-refresh/directives/CD-GUIDE-001-guides-refresh.md",
+        "docs/planning/active/friday-guides-refresh/directives/REM-GUIDE-001.md",
+        "docs/planning/active/friday-guides-refresh/directives/REM-GUIDE-002.md",
+        "docs/planning/active/friday-guides-refresh/execution-log.md",
+        "docs/planning/active/friday-guides-refresh/review-and-changes.md",
+        "docs/planning/active/friday-guides-refresh/validation/baseline-audit.json",
+        "docs/planning/active/friday-guides-refresh/validation/builder-checks.json",
+        "docs/planning/active/friday-guides-refresh/validation/check-guides.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/closeout-checks.json",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/audit.json",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/audit.log",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/audit.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/board-render.log",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/board-validate.log",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/check-guides.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/documentation-lifecycle.log",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/evidence.json",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/final-status.log",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/independent-probes.log",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/independent-probes.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/normalize-logs.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/replay.log",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/replay.log.raw.json",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/replay/results.json",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/report.md",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/reproduce.sh.txt",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/request.json",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/retained-contract-replay.log",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/retained-contract-replay.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/retained-evidence.json",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/static-review.json",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/static-review.log",
+        "docs/planning/active/friday-guides-refresh/validation/final-review/static-review.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/authority-check.json",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/board-render.log",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/board-validate.log",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/documentation-lifecycle.log",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/evidence.json",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/independent-contract-probes.log",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/independent-contract-probes.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/replay.log",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/replay.raw.json",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/report.md",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/reproduce.sh.txt",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/retained-evidence.json",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/reviewer-checks.json",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/static-review.json",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/static-review.log",
+        "docs/planning/active/friday-guides-refresh/validation/initial-review/static-review.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/network-and-state-guard.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/published-source-comparison.json",
+        "docs/planning/active/friday-guides-refresh/validation/remediation/evidence-repair-checks.json",
+        "docs/planning/active/friday-guides-refresh/validation/remediation/guide-checks.json",
+        "docs/planning/active/friday-guides-refresh/validation/remediation/network-and-state-guard.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/remediation/probes.log",
+        "docs/planning/active/friday-guides-refresh/validation/remediation/probes.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/remediation/repository-checks.json",
+        "docs/planning/active/friday-guides-refresh/validation/remediation/scope.json",
+        "docs/planning/active/friday-guides-refresh/validation/repository-checks.json",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/audit.log",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/audit.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/authority-scope-check.json",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/board-render.log",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/board-validate.log",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/check-guides.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/diff-numstat.txt",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/documentation-lifecycle.log",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/evidence.json",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/guide-checks.json",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/guide-diff-structure.txt",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/independent-probes.harness-attempt.log",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/independent-probes.log",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/independent-probes.property-attempt.log",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/independent-probes.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/replay.log",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/replay.log.raw.json",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/report.md",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/reproduce.sh.txt",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/request.json",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/retained-contract-replay.log",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/retained-contract-replay.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/retained-evidence.json",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/static-review.json",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/static-review.log",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/static-review.py.txt",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/whitespace.log",
+        "docs/planning/active/friday-guides-refresh/validation/second-review/whitespace.log.raw.json",
+        "docs/planning/active/friday-readme-refresh/README.md",
+        "docs/planning/active/friday-readme-refresh/authority.json",
+        "docs/planning/active/friday-readme-refresh/directives/CD-DOC-001-readme-refresh.md",
+        "docs/planning/active/friday-readme-refresh/directives/REM-DOC-001-finance-exceptions.md",
+        "docs/planning/active/friday-readme-refresh/execution-log.md",
+        "docs/planning/active/friday-readme-refresh/review-and-standard.md",
+        "docs/planning/active/friday-readme-refresh/validation/documentation-checks.json",
+        "docs/planning/active/friday-readme-refresh/validation/example-checker.py.txt",
+        "docs/planning/active/friday-readme-refresh/validation/example-guard.py.txt",
+        "docs/planning/active/friday-readme-refresh/validation/final-review/audit-results.json",
+        "docs/planning/active/friday-readme-refresh/validation/final-review/audit.py.txt",
+        "docs/planning/active/friday-readme-refresh/validation/final-review/check.py.txt",
+        "docs/planning/active/friday-readme-refresh/validation/final-review/contracts-results.json",
+        "docs/planning/active/friday-readme-refresh/validation/final-review/contracts.py.txt",
+        "docs/planning/active/friday-readme-refresh/validation/final-review/final-integrity.json",
+        "docs/planning/active/friday-readme-refresh/validation/final-review/guard.py.txt",
+        "docs/planning/active/friday-readme-refresh/validation/final-review/report.md",
+        "docs/planning/active/friday-readme-refresh/validation/final-review/results.json",
+        "docs/planning/active/friday-readme-refresh/validation/final-review/run-contracts.sh.txt",
+        "docs/planning/active/friday-readme-refresh/validation/initial-review/audit-results.json",
+        "docs/planning/active/friday-readme-refresh/validation/initial-review/audit.py.txt",
+        "docs/planning/active/friday-readme-refresh/validation/initial-review/contracts-results.json",
+        "docs/planning/active/friday-readme-refresh/validation/initial-review/contracts.py.txt",
+        "docs/planning/active/friday-readme-refresh/validation/initial-review/report.md",
+        "docs/planning/active/friday-readme-refresh/validation/offline-examples.json",
+        "docs/planning/active/friday-readme-refresh/validation/readme-sha256.json",
+        "docs/planning/active/friday-readme-refresh/validation/remediation-checks.json",
+        "docs/planning/active/friday-readme-refresh/validation/render-results.json",
+        "docs/planning/board.yaml",
+        "docs/planning/queued/friday-board-delivery-reconciliation/README.md",
+        "docs/reference/releases/friday-package-cohort-0.1.0a3-release-evidence.md",
+        "packages/friday-agent/README.md",
+        "packages/friday-agent/pyproject.toml",
+        "packages/friday-chat/README.md",
+        "packages/friday-chat/pyproject.toml",
+        "packages/friday-chat/src/friday_chat/__init__.py",
+        "packages/friday-chat/src/friday_chat/app.py",
+        "packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+        "packages/friday-chat/tests_chat/test_imports.py",
+        "packages/friday-chat/tests_chat/test_release_helpers.py",
+        "packages/friday-cli/README.md",
+        "packages/friday-cli/pyproject.toml",
+        "packages/friday-cli/src/friday_cli/__init__.py",
+        "packages/friday-core/README.md",
+        "packages/friday-core/pyproject.toml",
+        "packages/friday-core/src/friday_core/__init__.py",
+        "packages/friday-finance/README.md",
+        "packages/friday-finance/pyproject.toml",
+        "packages/friday-llm/README.md",
+        "packages/friday-llm/pyproject.toml",
+        "packages/friday-mcp/README.md",
+        "packages/friday-mcp/pyproject.toml",
+        "packages/friday-mcp/src/friday_mcp/__init__.py",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+        "packages/friday-memory/README.md",
+        "packages/friday-memory/pyproject.toml",
+        "packages/friday-moltbook/README.md",
+        "packages/friday-moltbook/pyproject.toml",
+        "packages/friday-moltbook/src/friday_moltbook/__init__.py",
+        "packages/friday-optimization/README.md",
+        "packages/friday-optimization/pyproject.toml",
+        "packages/friday-runtime/README.md",
+        "packages/friday-runtime/pyproject.toml",
+        "packages/friday-sandbox/README.md",
+        "packages/friday-sandbox/pyproject.toml",
+        "packages/friday-sandbox/src/friday_sandbox/__init__.py",
+        "packages/friday-speech/README.md",
+        "packages/friday-speech/pyproject.toml",
+        "packages/friday-telemetry/README.md",
+        "packages/friday-telemetry/pyproject.toml",
+        "packages/friday-telemetry/src/friday_telemetry/__init__.py",
+        "packages/friday-tools/README.md",
+        "packages/friday-tools/pyproject.toml",
+        "packages/friday-tools/src/friday_tools/__init__.py",
+        "packages/friday-transcript/README.md",
+        "packages/friday-transcript/pyproject.toml",
+        "pyproject.toml",
+        "scripts/check-package-artifacts.py",
+        "scripts/check-package-metadata.py",
+        "scripts/smoke-install-artifacts.sh",
+        "tests/integration/test_package_cohort_metadata.py",
+        "uv.lock"
+      ]
+    }
+  },
+  "authority_at_candidate": {
+    "AGENTS.md": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/development-task-lifecycle.md": "7087fb62381cc8a46128bc6745476d1aa08e1d577b4c73340760657ae834fe2a",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/active/friday-chat-quick-start/authority.json": "6dd8c733f71595b136f91cbef62184169fbfd306c3bb48c974e2bb147782fc4b",
+    "docs/planning/active/friday-chat-quick-start/directives/CD-QS-001.md": "0885fea33c042b734b2e4804207a4c521f9b9d97627ffd3cf1449e5e37b6b5d5",
+    "docs/planning/active/friday-chat-quick-start/directives/ADD-QS-001-hosted-openai.md": "2cd25ec2dc7247e304aaa29852949cac7cf8bf88b59ecb8dbd2d0ae949373ad8",
+    "docs/planning/active/friday-chat-quick-start/directives/ADD-QS-002-delivery.md": "6a740ac1a6ca41d0cbabd0746b0da69a6c833e3cda68f8adf209a951aa6ed558"
+  }
+}

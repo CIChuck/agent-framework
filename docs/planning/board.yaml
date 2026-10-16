@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-10-14'
+updated: '2026-10-16'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -514,8 +514,8 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: Aggregate VERIFIED; execute authorized GitHub PR/manual merge and remote deletion; acceptance remains separate
-  delivery_state: local
+  next_gate: PR 9 merged and remote branch deleted; maintainer lifecycle closeout/acceptance remains
+  delivery_state: merged
   branch: security/remove-deprecated-credentials
   depends_on: []
   validation:
@@ -533,6 +533,90 @@ tasks:
   implementation_authority: not_granted
   packet: docs/planning/queued/friday-tool-manifest-continuity/
   next_gate: validate the native-tool trial and review discovery-aware MCP remediation tasks
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+- id: friday-alpha3-version-bump
+  title: Friday 0.1.0a3 repository version bump
+  priority: 29
+  work_state: started
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/friday-alpha3-version-bump/
+  next_gate: Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified
+  delivery_state: released
+  branch: release/0.1.0a3
+  depends_on: []
+  validation:
+  - docs/planning/active/friday-alpha3-version-bump/validation/report.md
+  - docs/planning/active/friday-alpha3-version-bump/validation/reviewer-checks.json
+  - docs/planning/active/friday-alpha3-version-bump/validation/publication/helper-review.md
+  - docs/planning/active/friday-alpha3-version-bump/validation/publication/release-readiness.md
+  - docs/reference/releases/friday-package-cohort-0.1.0a3-release-evidence.md
+  - docs/planning/active/friday-alpha3-version-bump/validation/publication/published-files.json
+  - docs/planning/active/friday-alpha3-version-bump/validation/publication/production-install-results.json
+  approved_by: Chuck Russell
+  approved_at: '2026-10-14'
+- id: friday-readme-refresh
+  title: Precise Python monorepo and package READMEs
+  priority: 30
+  work_state: started
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/friday-readme-refresh/
+  next_gate: All17 README rewrites VERIFIED; maintainer acceptance and requested source delivery next
+  delivery_state: local
+  branch: docs/readme-refresh
+  depends_on: []
+  validation:
+  - docs/planning/active/friday-readme-refresh/validation/final-review/report.md
+  - docs/planning/active/friday-readme-refresh/review-and-standard.md
+  approved_by: Chuck Russell
+  approved_at: '2026-10-15'
+- id: friday-guides-refresh
+  title: Current technical end-user guides for alpha3
+  priority: 31
+  work_state: started
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/friday-guides-refresh/
+  next_gate: VERIFIED guides; maintainer review, completion/acceptance and separately requested source delivery
+  delivery_state: local
+  branch: docs/guides-refresh
+  depends_on: []
+  validation:
+  - docs/planning/active/friday-guides-refresh/validation/final-review/report.md
+  - docs/planning/active/friday-guides-refresh/review-and-changes.md
+  approved_by: Chuck Russell
+  approved_at: '2026-10-15'
+- id: friday-chat-quick-start
+  title: Friday Chat quick start for clone and PyPI users
+  priority: 32
+  work_state: started
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/friday-chat-quick-start/
+  next_gate: VERIFIED delivery candidate; execute authorized push/PR/merge and remote branch deletion; alpha4 release follows
+  delivery_state: local
+  branch: docs/chat-quick-start
+  depends_on: []
+  validation:
+  - docs/planning/active/friday-chat-quick-start/validation/independent-review/report.md
+  - docs/planning/active/friday-chat-quick-start/validation/intro-review/report.md
+  - docs/planning/active/friday-chat-quick-start/validation/hosted-review/report.md
+  - docs/planning/active/friday-chat-quick-start/implementation-report.md
+  - Fresh delivery delta and aggregate VERIFIED ed88901b; validation/delivery-review/report.md
+  approved_by: Chuck Russell
+  approved_at: '2026-10-15'
+- id: friday-board-delivery-reconciliation
+  title: Board validation and GitHub delivery reconciliation
+  priority: 33
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-board-delivery-reconciliation/
+  next_gate: Review and approve delivery-evidence contract, migration and bounded construction directive
   delivery_state: not_started
   branch: null
   depends_on: []
@@ -1933,3 +2017,73 @@ events:
   action: recorded aggregate verification for authorized publication
   note: Source candidate526688e3 verified; delivery authorized by maintainer; known limits disclosed; acceptance not inferred
   evidence: docs/planning/active/friday-deprecated-credential-cleanup/validation/sec004-aggregate/report.md
+- task: friday-alpha3-version-bump
+  at: '2026-10-15T02:05:37+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized lockstep alpha3 repository version bump
+  note: I'd like to bump the current repository version to 0.1.0a3 - alpha3.
+  evidence: docs/planning/active/friday-alpha3-version-bump/authority.json
+- task: friday-alpha3-version-bump
+  at: '2026-10-15T02:11:18.147728+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent source-version verification
+  note: Candidate 8b85bd91 VERIFIED; 191 focused tests passed; external dependencies unchanged; local only
+  evidence: docs/planning/active/friday-alpha3-version-bump/validation/report.md
+- task: friday-alpha3-version-bump
+  at: '2026-10-15T02:13:56.809934+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized production PyPI publication
+  note: publish this release to pypi
+  evidence: docs/planning/active/friday-alpha3-version-bump/publication-authority.json
+- task: friday-alpha3-version-bump
+  at: '2026-10-15T02:38:27.309040+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> released
+  note: Maintainer-authorized PyPI alpha3 cohort published; 34 registry hashes match; clean production-only install passed; lifecycle acceptance not inferred
+  evidence: docs/reference/releases/friday-package-cohort-0.1.0a3-release-evidence.md
+- task: friday-readme-refresh
+  at: '2026-10-15T02:47:40.107229+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized review and rewrite for both audiences
+  note: Both audiences equally; Yes—review and rewrite all READMEs
+  evidence: docs/planning/active/friday-readme-refresh/authority.json
+- task: friday-readme-refresh
+  at: '2026-10-15T03:10:19.161317+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent README verification
+  note: Candidate74e6ce61 VERIFIED; all17 READMEs rewritten for both audiences; DOC-001 resolved; local only
+  evidence: docs/planning/active/friday-readme-refresh/validation/final-review/report.md
+- task: friday-guides-refresh
+  at: '2026-10-15T04:11:24.713378+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized all-guide review and improvements
+  note: View all of the documents in docs/guides. Review each document for consistency, clarity, and accuracy. Identify and fix areas for improvement. These are guides for end users that give a deep, more technical overview of the Friday agent framework. Ensure that the front matter in the documentation is up to date.
+  evidence: docs/planning/active/friday-guides-refresh/authority.json
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-15T19:27:19+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> merged
+  note: 'Reconciled stale local delivery: GitHub confirms PR #9 merged at 2026-10-15T01:55:15Z as a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad; source branch is deleted. Maintainer acceptance remains separate.'
+  evidence: https://github.com/CIChuck/agent-framework/pull/9; merge a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad; docs/planning/active/friday-deprecated-credential-cleanup/delivery-evidence.json
+- task: friday-board-delivery-reconciliation
+  at: '2026-10-15T19:46:20+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: requested queued board validation remediation
+  note: Add the remediation for board validation to the board. Queue it up. Implementation remains unapproved.
+  evidence: docs/planning/queued/friday-board-delivery-reconciliation/README.md
+- task: friday-chat-quick-start
+  at: '2026-10-16T20:04:00+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: delivery_authorized
+  note: Explicit eight-step delivery and alpha4 publication request; ADD-QS-002 binds current-branch scope; no acceptance inferred.
+  evidence: docs/planning/active/friday-chat-quick-start/directives/ADD-QS-002-delivery.md

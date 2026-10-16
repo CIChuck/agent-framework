@@ -1,0 +1,9 @@
+# Alpha3 publication readiness
+
+Source version candidate8b85bd91 was independently VERIFIED. Build source40d7d38c produced17 wheels and17 sdists. Release-helper candidate72f06012 was independently VERIFIED; its one-line correction is outside all distribution contents. All34 frozen files passed current artifact metadata/resource/sensitive-path/content validation and strict Twine checks. See the adjacent filename/SHA256 manifest and review evidence.
+
+A fresh Python3.13.10 environment installed the local alpha3 artifacts with production PyPI dependencies. All17 Friday distributions report0.1.0a3; pip check passes. Existing installed-artifact smoke code passed LLM typed fake transport, legacy constructor, Chat packaged configuration/templates, fake transport, and console help/version. No live provider calls were made. The first smoke attempt used a guard configured for a different temporary root and rejected ordinary vector module imports; the guard was correctly bound to this release's isolated directory, and all checks then passed without package edits.
+
+Production publication is authorized by the maintainer. The first file upload to https://upload.pypi.org/legacy/ returned403 Invalid or non-existent authentication information. The upload stopped immediately; no distribution was uploaded. Credential values remain outside this packet and Git. The maintainer replaced the local credential and replied ready. The retry succeeded; all 17 distributions / 34 files are now published and hash-verified.
+
+Post-publication checks passed in a fresh production-only, cache-disabled Python 3.13.10 environment: all 17 versions, pip check, imports, typed fake transport, packaged templates, and Chat help/version. Transient PyPI HTTP 500 errors during concurrent uploads were recovered by bounded retries and serialization of remaining uploads; existing matching artifacts were skipped. No release tag, GitHub release, or source push occurred.

@@ -1,0 +1,9 @@
+manual_names: ('manual_tool',)
+preview_selected: ('required_tool', 'manual_tool')
+turn_selected: ('required_tool', 'manual_tool')
+screenshot_result: Error: web_screenshot is not yet implemented. This feature requires a headless browser (e.g., Playwright).
+role_override_load: chat
+registered_canonical_commands: 50
+guide_table_commands: 48
+commands_not_in_table: ['/exit', '/help']
+table_commands_not_registered: []

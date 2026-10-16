@@ -1,0 +1,7 @@
+from pathlib import Path
+import base64,hashlib,json,re
+O=Path('/private/tmp/friday-guides-evidence-independent-review')
+for p in O.glob('*.log'):
+ raw=p.read_bytes();clean=re.sub(rb'[ \t]+(?=\r?$)',b'',raw,flags=re.M)
+ if raw!=clean:
+  (O/(p.name+'.raw.json')).write_text(json.dumps({'encoding':'base64','original_name':p.name,'original_sha256':hashlib.sha256(raw).hexdigest(),'content':base64.b64encode(raw).decode()},indent=2)+'\n');p.write_bytes(clean)

@@ -1,0 +1,107 @@
+{
+  "AGENTS.md": {
+    "expected": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "actual": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "match": true
+  },
+  "docs/reference/policies/repository-engineering-policy.md": {
+    "expected": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "actual": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "match": true
+  },
+  "docs/reference/policies/development-task-lifecycle.md": {
+    "expected": "7087fb62381cc8a46128bc6745476d1aa08e1d577b4c73340760657ae834fe2a",
+    "actual": "7087fb62381cc8a46128bc6745476d1aa08e1d577b4c73340760657ae834fe2a",
+    "match": true
+  },
+  "docs/reference/policies/independent-validation-policy.md": {
+    "expected": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "actual": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "match": true
+  },
+  "docs/planning/active/friday-guides-refresh/authority.json": {
+    "expected": "573a1c4148a4321ca4cb06b7f8d2421dc662588c653e12935fc286fe9d668ac2",
+    "actual": "573a1c4148a4321ca4cb06b7f8d2421dc662588c653e12935fc286fe9d668ac2",
+    "match": true
+  },
+  "docs/planning/active/friday-guides-refresh/directives/CD-GUIDE-001-guides-refresh.md": {
+    "expected": "0c064f647a47c0d2ac82b34e83bf9a3ee9a812c1d3ce13b650b9c203f4b7d3ee",
+    "actual": "0c064f647a47c0d2ac82b34e83bf9a3ee9a812c1d3ce13b650b9c203f4b7d3ee",
+    "match": true
+  },
+  "base:docs/guides/01-executive-summary.md": {
+    "match": true
+  },
+  "base:docs/guides/02-getting-started.md": {
+    "match": true
+  },
+  "base:docs/guides/03-core-concepts.md": {
+    "match": true
+  },
+  "base:docs/guides/04-adaptive-memory.md": {
+    "match": true
+  },
+  "base:docs/guides/05-tools.md": {
+    "match": true
+  },
+  "base:docs/guides/06-agents.md": {
+    "match": true
+  },
+  "base:docs/guides/07-multi-agent.md": {
+    "match": true
+  },
+  "base:docs/guides/08-workflows.md": {
+    "match": true
+  },
+  "base:docs/guides/09-cli-reference.md": {
+    "match": true
+  },
+  "base:docs/guides/10-configuration.md": {
+    "match": true
+  },
+  "base:docs/guides/11-advanced-topics.md": {
+    "match": true
+  },
+  "base:docs/guides/12-use-cases.md": {
+    "match": true
+  },
+  "base:docs/guides/13-troubleshooting.md": {
+    "match": true
+  },
+  "base:docs/guides/14-appendices.md": {
+    "match": true
+  },
+  "base:docs/guides/15-contributing.md": {
+    "match": true
+  },
+  "base:docs/guides/16-desktop-deployment.md": {
+    "match": true
+  },
+  "base:docs/guides/17-mcp-client.md": {
+    "match": true
+  },
+  "base:docs/guides/18-mcp-server.md": {
+    "match": true
+  },
+  "base:docs/guides/19-mcp-migration.md": {
+    "match": true
+  },
+  "base:docs/guides/FRIDAY-FEATURES.md": {
+    "match": true
+  },
+  "base:docs/guides/OUTLINE.md": {
+    "match": true
+  },
+  "base:docs/guides/README.md": {
+    "match": true
+  },
+  "base:docs/guides/memory-management-guidelines.md": {
+    "match": true
+  },
+  "base:docs/guides/security-configuration-guidelines.md": {
+    "match": true
+  },
+  "base:docs/guides/speech.md": {
+    "match": true
+  }
+}

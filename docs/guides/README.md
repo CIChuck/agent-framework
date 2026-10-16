@@ -1,48 +1,82 @@
-# Friday Agent Framework — Guides
+---
+title: Friday technical guides
+description: Navigation and reading paths for the reviewed alpha3 technical end-user documentation.
+framework_version: 0.1.0a3
+last_reviewed: '2026-10-15'
+status: current
+audience: Technical end users and application integrators
+doc_type: navigation
+---
 
-User-facing, operator-facing, and contributor-facing documentation for the Friday Agent Framework.
-This folder answers how to install, configure, use, operate, troubleshoot, and contribute to Friday.
+# Friday technical guides
 
-## Numbered Series
+These 26 documents explain the current **Friday 0.1.0a3** implementation for
+technical end users and application integrators. They require Python 3.13.4+.
+Start with the task you want to complete, then follow the deeper reference.
+The [repository/package READMEs](../../README.md) remain the installation and
+component entry points.
 
-Read in order for a full walkthrough; jump directly for reference.
+## Reading paths
 
-| # | Guide | Contents |
-|---|-------|----------|
-| 1 | [Executive Summary](01-executive-summary.md) | Why Friday exists; the memory loop; package overview |
-| 2 | [Getting Started](02-getting-started.md) | Install, configure, run your first agent |
-| 3 | [Core Concepts & Architecture](03-core-concepts.md) | Mind/Body architecture; 13 framework + 2 application packages |
-| 4 | [Adaptive Memory](04-adaptive-memory.md) | Three-tier memory, Hebbian learning, lifecycle management |
-| 5 | [Tools](05-tools.md) | 50+ built-in tools; tool protocols |
-| 6 | [Agents](06-agents.md) | Agent configuration and capabilities |
-| 7 | [Multi-Agent Orchestration](07-multi-agent.md) | Agent teams and collaboration |
-| 8 | [Workflows](08-workflows.md) | YAML task graphs and automation |
-| 9 | [CLI Reference](09-cli-reference.md) | memory-chat-v2.py commands and options |
-| 10 | [Configuration](10-configuration.md) | Full configuration reference |
-| 11 | [Advanced Topics](11-advanced-topics.md) | Scaling, deployment, custom protocols |
-| 12 | [Use Cases & Examples](12-use-cases.md) | Real-world applications |
-| 13 | [Troubleshooting & FAQ](13-troubleshooting.md) | Common problems and fixes |
-| 14 | [Appendices](14-appendices.md) | Technical reference, protocol specifications |
-| 15 | [Contributing & Community](15-contributing.md) | How to contribute |
-| 17 | [MCP Client](17-mcp-client.md) | Stdio and explicit HTTPS peers, filters, budgets, memory defaults, diagnostics |
+| Your task | Read next |
+| --- | --- |
+| Install the full framework and configure Chat from a clone or PyPI | [Chat client quick start](00-quick-start.md) |
+| Try Friday without keys or real stores | [Offline Chat](02-getting-started.md#run-an-offline-chat-session) |
+| Configure real models/memory | [Configuration](10-configuration.md), then [memory](04-adaptive-memory.md) |
+| Embed the framework | [Core concepts](03-core-concepts.md) and the relevant package README |
+| Add native tools | [Tools](05-tools.md), [security](security-configuration-guidelines.md) |
+| Design agents/workflows | [Agents](06-agents.md), [orchestration](07-multi-agent.md), [workflows](08-workflows.md) |
+| Connect or expose MCP tools | [Client](17-mcp-client.md), [server](18-mcp-server.md), [migration](19-mcp-migration.md) |
+| Tune context | [Memory management](memory-management-guidelines.md) |
+| Operate/debug | [Desktop setup](16-desktop-deployment.md), [CLI](09-cli-reference.md), [troubleshooting](13-troubleshooting.md) |
+| Check whether a feature actually ships | [Capability status](FRIDAY-FEATURES.md) |
 
-| 18 | [MCP Server](18-mcp-server.md) | Modern programmatic stdio/HTTP tools, policy and ownership |
-| 19 | [MCP Migration](19-mcp-migration.md) | Dated profiles, exact YAML choices, upgrade and rollback |
+## Numbered series
 
-## Supplementary Documents
+| Guide | Technical coverage |
+| --- | --- |
+| [Framework overview](01-executive-summary.md) | Scope, adoption choices, architecture and alpha boundaries |
+| [Getting started](02-getting-started.md) | Installation, offline Chat and real-session preparation |
+| [Core concepts](03-core-concepts.md) | Package contracts, composition, turn flow and ownership |
+| [Adaptive memory](04-adaptive-memory.md) | Stores, extraction, recall, scoring and recovery |
+| [Tools](05-tools.md) | Function/class APIs, registries, selection and execution |
+| [Agents](06-agents.md) | Validated profiles, factories, model/tool bindings and lifecycle |
+| [Multi-agent orchestration](07-multi-agent.md) | Framework routing, handoffs, namespace policy and Chat limits |
+| [Workflows](08-workflows.md) | Canonical bundles, flat compatibility, approval and dispatch |
+| [CLI reference](09-cli-reference.md) | Current process options, slash commands and side effects |
+| [Configuration](10-configuration.md) | Chat versus Runtime schemas, canonical models and integrations |
+| [Advanced integration](11-advanced-topics.md) | Adapters, performance, telemetry, backends and deployment |
+| [Application patterns](12-use-cases.md) | Practical designs with explicit evidence and acceptance checks |
+| [Troubleshooting](13-troubleshooting.md) | Boundary-specific diagnosis without deleting state |
+| [Reference](14-appendices.md) | Distribution/import map, static tool catalog, APIs and glossary |
+| [Contributing](15-contributing.md) | Workspace checks, governance and guide maintenance |
+| [Desktop deployment](16-desktop-deployment.md) | Pinned uv install, persistent config/state and launch paths |
+| [MCP client](17-mcp-client.md) | Dated peer config, admission, results, refresh and lifecycle |
+| [MCP server](18-mcp-server.md) | Explicit modern tools registration and stdio/HTTP server policy |
+| [MCP migration](19-mcp-migration.md) | Transport/profile matrix, explicit upgrades and rollback |
 
-| Document | Contents |
-|----------|----------|
-| [FRIDAY-FEATURES.md](FRIDAY-FEATURES.md) | Feature definition for the Friday framework |
-| [Memory Management Guidelines](memory-management-guidelines.md) | Memory budgets and lifecycle guidance |
-| [Security Configuration Guidelines](security-configuration-guidelines.md) | Security posture and configuration |
-| [Speech Guide](speech.md) | Voice I/O via `friday-speech` |
-| [Desktop Deployment With uv](16-desktop-deployment.md) | Desktop install and launch paths for `friday-chat` with `uv`, `uvx`, config, and API keys |
-| [OUTLINE.md](OUTLINE.md) | Detailed outline and section descriptions of the full guide |
 
-## Where to Start
+## Supplementary guides
 
-- **New to Friday:** 01 → 02 → 03
-- **Building an agent:** 06 → 05 → 04
-- **Operating in production:** 10 → 11 → 13
-- **Contributing:** 15 → 03
+- [Friday Chat client quick start: clone and PyPI installation](00-quick-start.md)
+- [Memory budgeting and maintenance](memory-management-guidelines.md)
+- [Security configuration and output handling](security-configuration-guidelines.md)
+- [Speech services and current Chat limits](speech.md)
+- [Capability status](FRIDAY-FEATURES.md)
+- [Detailed outline and subject ownership](OUTLINE.md)
+
+## How to interpret examples and metadata
+
+Complete offline examples use synthetic data and temporary/explicit paths. Live
+examples identify credentials/endpoints/hardware and can incur provider calls
+or write state. Configuration fragments name their owning schema. Fake adapters
+validate control flow, not real provider behavior.
+
+Every document records its framework version and actual review date in front
+matter. `status: current` refers to the guide's implementation basis, not
+production certification or maintainer acceptance. Shipped limitations and
+queued features remain explicit. Current source/accepted contracts control over
+historical plans. The guide upgrade does not change package behavior or republish
+existing PyPI artifacts.
+
+[Guide index](README.md) · [Capability status](FRIDAY-FEATURES.md)

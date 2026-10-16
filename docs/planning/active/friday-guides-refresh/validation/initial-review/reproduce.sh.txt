@@ -1,0 +1,15 @@
+#!/bin/bash
+set -eu
+review=/private/tmp/friday-guides-independent-review
+checkout=/private/tmp/friday-guides-refresh
+cd "$checkout"
+FRIDAY_GUIDES_CHECKOUT="$checkout" FRIDAY_GUIDES_VALIDATION="$review/replay" /private/tmp/friday-mcp-upgrade/venv/bin/python "$review/check-guides.py" > "$review/replay.log" 2>&1
+env -i HOME="$review/home" PATH=/opt/homebrew/bin:/usr/bin:/bin PYTHONDONTWRITEBYTECODE=1 /private/tmp/friday-alpha3-pypi/production-install/bin/python "$review/static-review.py" > "$review/static-review.log" 2>&1
+env -i HOME="$review/replay/probe-home" TMPDIR="$review/replay/probe-tmp" PATH=/opt/homebrew/bin:/usr/bin:/bin PYTHONPATH="$review/replay/guard" PYTHONDONTWRITEBYTECODE=1 LITELLM_LOCAL_MODEL_COST_MAP=True FRIDAY_TELEMETRY_ENABLED=false OTEL_SDK_DISABLED=true /private/tmp/friday-alpha3-pypi/production-install/bin/python "$review/independent-contract-probes.py" > "$review/independent-contract-probes.log" 2>&1
+for operation in validate 'render --check'; do
+  env -i HOME="$review/home" PATH=/opt/homebrew/bin:/usr/bin:/bin UV_NO_SYNC=1 UV_OFFLINE=1 UV_PROJECT_ENVIRONMENT=/private/tmp/friday-mcp-upgrade/venv UV_CACHE_DIR="$review/cache" PYTHONDONTWRITEBYTECODE=1 /private/tmp/friday-mcp-upgrade/venv/bin/python scripts/friday-dev-board.py $operation
+done
+env -i HOME="$review/home" PATH=/opt/homebrew/bin:/usr/bin:/bin UV_NO_SYNC=1 UV_OFFLINE=1 UV_PROJECT_ENVIRONMENT=/private/tmp/friday-mcp-upgrade/venv UV_CACHE_DIR="$review/cache" PYTHONDONTWRITEBYTECODE=1 /private/tmp/friday-mcp-upgrade/venv/bin/python scripts/check-documentation-lifecycle.py
+git diff --check 123d9ed943519c4e68bf9249705e55d1a1ebf8b8..6691aa2428b81ed96fd8d404f6b3f5a0f1e82f13
+git rev-parse HEAD
+git status --porcelain=v1

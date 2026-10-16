@@ -1,0 +1,137 @@
+{
+  "guide_changes": [
+    "docs/guides/05-tools.md",
+    "docs/guides/09-cli-reference.md",
+    "docs/guides/13-troubleshooting.md",
+    "docs/guides/14-appendices.md"
+  ],
+  "other21_guides_unchanged": true,
+  "all_code_fences_unchanged": true,
+  "documents": [
+    {
+      "path": "docs/guides/02-getting-started.md",
+      "changed": false,
+      "sha256": "a4622e1b09343b437118996376c8aa6523e2bf0c7c60c11b4bb0a467787cf6aa"
+    },
+    {
+      "path": "docs/guides/OUTLINE.md",
+      "changed": false,
+      "sha256": "a57b8737a4e9f124d742d97aec627b8223cf02e877354800683050111ca0447b"
+    },
+    {
+      "path": "docs/guides/04-adaptive-memory.md",
+      "changed": false,
+      "sha256": "bfd84bb9233710377766a4e4b86439d9795c66f17cf82a386d799f5c3a121f08"
+    },
+    {
+      "path": "docs/guides/19-mcp-migration.md",
+      "changed": false,
+      "sha256": "212ddd8790ac53ca51a8612f61557d9567b2e5afd23fa88d6e01783e85050611"
+    },
+    {
+      "path": "docs/guides/10-configuration.md",
+      "changed": false,
+      "sha256": "3faad249d8e4cb3ce6f55a3fd9eaeb033908f0bcd49ce2e8fc7267aba9aa9716"
+    },
+    {
+      "path": "docs/guides/01-executive-summary.md",
+      "changed": false,
+      "sha256": "f1837b09586bc5af7b87b0011510ce3bd5118b8343dede32209d6d7b813a007f"
+    },
+    {
+      "path": "docs/guides/13-troubleshooting.md",
+      "changed": true,
+      "sha256": "351e1d66c8f990e88bcb0f4174309076492b4911a710929a174e5ae3cc0d5174"
+    },
+    {
+      "path": "docs/guides/05-tools.md",
+      "changed": true,
+      "sha256": "27a3b63158822b1f689a80d0b026432ed71695d0e7d13041507096449160957a"
+    },
+    {
+      "path": "docs/guides/18-mcp-server.md",
+      "changed": false,
+      "sha256": "b6e6174edf2b0b175d5a1324fa4cd9ff5f3b8b74a35485ed48b2894728946e27"
+    },
+    {
+      "path": "docs/guides/speech.md",
+      "changed": false,
+      "sha256": "e9c6675f85ba151e4d6f2572c4086aec12db35e057d5f214ff39a739614f5e7f"
+    },
+    {
+      "path": "docs/guides/README.md",
+      "changed": false,
+      "sha256": "e38dbae3dc76a008d849cebd569861abccc53db6f80f65813a7191ad3a7a18d4"
+    },
+    {
+      "path": "docs/guides/08-workflows.md",
+      "changed": false,
+      "sha256": "a51142153a64d383168bb5a71d7babba0fbd04a3a25eb82edd24727150483667"
+    },
+    {
+      "path": "docs/guides/09-cli-reference.md",
+      "changed": true,
+      "sha256": "5ed8d2062244c60a8f49ef00bf6e1d322b3692eeefcab02f0064b4ecdbf9bcde"
+    },
+    {
+      "path": "docs/guides/17-mcp-client.md",
+      "changed": false,
+      "sha256": "8b7dbb204942846468693a9e4a21e81e91894131e797aae3855c5f2d4ee4cd2c"
+    },
+    {
+      "path": "docs/guides/FRIDAY-FEATURES.md",
+      "changed": false,
+      "sha256": "56fe73fabdc8bcb0433796d60ec2bf1a87fd78f2cfd6aeb27b5c6f35aba2fb88"
+    },
+    {
+      "path": "docs/guides/07-multi-agent.md",
+      "changed": false,
+      "sha256": "ea66dd1b48eae7c31a1e250f9b2e900f4463c059f9a73f4c3d9e447fbe4f928e"
+    },
+    {
+      "path": "docs/guides/11-advanced-topics.md",
+      "changed": false,
+      "sha256": "0fbcde541564e1f2d370c7c8a77106b768d1e15c978ffad0da214d765b09c351"
+    },
+    {
+      "path": "docs/guides/15-contributing.md",
+      "changed": false,
+      "sha256": "0d08b90a4b8dfcd23e8bb5943eb287afb9dc5d2e915343e1731d2c7407d53620"
+    },
+    {
+      "path": "docs/guides/16-desktop-deployment.md",
+      "changed": false,
+      "sha256": "b676d1c32785084897cfd3746b97954576a98205bc3d49f2dd8b97534d99fb13"
+    },
+    {
+      "path": "docs/guides/security-configuration-guidelines.md",
+      "changed": false,
+      "sha256": "fc96fb882a8b8bac785007ee6472f3f270fb7b8f80927f27d20a9587fa092926"
+    },
+    {
+      "path": "docs/guides/memory-management-guidelines.md",
+      "changed": false,
+      "sha256": "e9f2ab933b800d7db3a9b20f95389230e40a7caaa2ae745f29a2b0586c90a086"
+    },
+    {
+      "path": "docs/guides/14-appendices.md",
+      "changed": true,
+      "sha256": "a51b42f30f4c6fc6b242b57bfdaba8a91c2c73e234884cd9fb91c0443ba97398"
+    },
+    {
+      "path": "docs/guides/03-core-concepts.md",
+      "changed": false,
+      "sha256": "a4554e89d617c541d019bfa8f759cdac63a0f748ed1201e6f6c10cc116ea05df"
+    },
+    {
+      "path": "docs/guides/06-agents.md",
+      "changed": false,
+      "sha256": "fef9226f1bcd8aee142e16b22f96ab049a525dd0c8bf1056eaf9d78f4a52b34b"
+    },
+    {
+      "path": "docs/guides/12-use-cases.md",
+      "changed": false,
+      "sha256": "b5c8384932495dada08d936189ce8699688ba2166371109dc14551c232ff3509"
+    }
+  ]
+}

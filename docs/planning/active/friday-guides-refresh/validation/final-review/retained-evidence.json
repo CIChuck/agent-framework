@@ -1,0 +1,40 @@
+{
+  "reviewed_candidate": "07e6e65b90afbf80bd81b95a7af802659d77983c",
+  "verdict": "VERIFIED",
+  "report_sha256": "14a50c72aa2f031cd2ceb0d266d1d4d54692041583fe68a553fa87db13ffa359",
+  "files": {
+    "audit.json": "7444983874d3e79ee049af8107b28059ee7b4172e8b7a9887f2b69cd8d02bd2e",
+    "audit.log": "4052ef6e2a1f2fe6cfdaf06f64f0f49e64f8b7a2fad8ad1e77526b8e9c8a4b95",
+    "audit.py.txt": "158071cd65d92e0962c96b3d34b296194a0c1660fcebf771e08629e9abc57ba3",
+    "board-render.log": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+    "board-validate.log": "c13c382896bdfdacab5f77ed969a62f70b2a7a5654a148c0309e4c2175e91ad2",
+    "check-guides.py.txt": "9a6a15686bd555895ae0685e6a4d732fad191d9b360cc1c5b6025abc598c5942",
+    "documentation-lifecycle.log": "c78aa38a7dc83314376ec3962a449954803afdc8233a48fa5ec446d6055950ad",
+    "evidence.json": "2f591cd7efdcd68e702763bad77f5bb7ce7f4d458cd3f8a1c3c10ff597d295ca",
+    "final-status.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "independent-probes.log": "bf856c813f8167beb37806a81c717776928f6f2670c7474a4ba4d84be3a942c4",
+    "independent-probes.py.txt": "8d5788dcd8c1dde726572ee7290bf235b784156bc07644ec7d0484af3492f188",
+    "normalize-logs.py.txt": "c3a7c7d1d71e1131875cc4589d25b700530c6c78d29926c0c550ec7b8ee6345e",
+    "replay.log": "d6e747484b83c51c20d8fe4cdef4c0d28463e70d0cb1fb2d2bfb89ab2402beca",
+    "replay.log.raw.json": "743936d82cb50cc685f07abdc3e60ceb766dc6b818ef16d51f47e3e2c69d6d29",
+    "report.md": "14a50c72aa2f031cd2ceb0d266d1d4d54692041583fe68a553fa87db13ffa359",
+    "reproduce.sh.txt": "e28994d4178461dd5326ad4ddce83eb3212701424e16d933401be34691e9aa55",
+    "request.json": "4d86e2af6cc52399f9f83a659000a9f1fb9a63bee567cc1260cc9cca73e3054c",
+    "retained-contract-replay.log": "c22093437f13b84780739f955d9133e243653abba952d170e7adf991d46243ec",
+    "retained-contract-replay.py.txt": "1ff2d971a69d068a7920b660f9036f9f753c8e27fd76f9d787c9b791b78525bf",
+    "static-review.json": "d38c7ebbd0b9c38cfba0cb607bba8cdc25426a7e5b8b3668b87462ba3dcd9a08",
+    "static-review.log": "f762cab0ee84754b274c7c016edf6140b752a06c027b26ee2b89a73dfa3c9e4f",
+    "static-review.py.txt": "48b79cac63d23c541d897a7c6a2a87e6473db4a73a629bafe77f1adf78d59e1f",
+    "replay/results.json": "aa768c7141604e7b8d4be25f8a36691aaac3e8abd5bace089ea816295a8b28fe"
+  },
+  "provenance": {},
+  "original_paths": {
+    "audit.py": "audit.py.txt",
+    "check-guides.py": "check-guides.py.txt",
+    "independent-probes.py": "independent-probes.py.txt",
+    "normalize-logs.py": "normalize-logs.py.txt",
+    "reproduce.sh": "reproduce.sh.txt",
+    "retained-contract-replay.py": "retained-contract-replay.py.txt",
+    "static-review.py": "static-review.py.txt"
+  }
+}

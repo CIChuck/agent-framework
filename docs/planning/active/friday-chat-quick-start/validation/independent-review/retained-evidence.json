@@ -1,0 +1,23 @@
+{
+  "reviewed_candidate": "6a83ad509b9f0cc43838e405a03610b16c74e7c1",
+  "verdict": "VERIFIED",
+  "report_sha256": "30cd9e52c306396ea3b4fcadcd4926eae85e2ef01bf080ad3ed53c07c3aa8749",
+  "files": {
+    "artifact-sha256.json": "01794c86c6ae33c8c2ccefc49a4ae00b1b2bbb09a4fbf5818143e509e438cba5",
+    "candidate-diff.json": "bef500d7c5059b372a78a2a0b6504bd7470799488c7def8ad3b4d28a285179f4",
+    "independent-checks.py.txt": "027f335ffee9f322a8431ecfcf0347f63f59a3fe2ff27444cbc8942d79ed9cf6",
+    "independent-command-receipts.json": "1a9449241000bcbfcd000af6405a6a90139fdfb258a5d1b8b0641a9500df29dc",
+    "independent-results.json": "09ec77a1080e50afaf7a0fcc78446b1f96472b5b007c7adde54d9a107272a7d1",
+    "replay-packet.py.txt": "6628306b761ad290fffc5128edb9fc21835e0e6e388c4e85c53505fa577cca1d",
+    "report.md": "30cd9e52c306396ea3b4fcadcd4926eae85e2ef01bf080ad3ed53c07c3aa8749",
+    "report.sha256": "db0c51debb51155ad10ba9ee624b76ecf84ab9552297e0b12891cb2237e06c1e",
+    "review-request.json": "dfe5e77aa3607cc0d04868750bca58acb414f9815d01b94c12398376e7935f0e",
+    "packet-replay/results.json": "ab1cadcbac9e0ddbd0be17256daf62255573bb290218e79690aa389623751162"
+  },
+  "provenance": {},
+  "original_paths": {
+    "independent-checks.py": "independent-checks.py.txt",
+    "replay-packet.py": "replay-packet.py.txt"
+  },
+  "exclusions": "Private runtime/HOME/cache/state are not retained; reviewer results and scripts are retained."
+}

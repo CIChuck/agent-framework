@@ -1,0 +1,56 @@
+from pathlib import Path
+import hashlib, json, re, subprocess, os, io, sys, tomllib
+from urllib.parse import urlparse, unquote
+from readme_renderer.markdown import render
+W=Path('/private/tmp/friday-readme-refresh'); O=Path('/private/tmp/friday-readme-validation/final-review')
+a=json.loads((W/'docs/planning/active/friday-readme-refresh/authority.json').read_text()); paths=a['scope']; findings=[]; evidence={}
+def check(ok, message):
+    if not ok: findings.append(message)
+def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+evidence['authority_sha256']=sha(W/'docs/planning/active/friday-readme-refresh/authority.json'); evidence['directive_sha256']=sha(W/a['directive'])
+check(evidence['authority_sha256']=='30034e9a414c68b65e2933b9bad1ab79b588b53d714cd71eadae9d87d653c1c0','authority changed')
+check(evidence['directive_sha256']==a['directive_sha256']=='73a398a1ac03290817323c20fd06f4e7e831562ab1c5b6de8f045db023984f5c','directive changed')
+check(subprocess.check_output(['git','rev-parse','HEAD'],cwd=W,text=True).strip()=='74e6ce61d6a2f5132a4cdfe79161c46a4ca6aeb1','candidate mismatch')
+evidence['remediation_sha256']=sha(W/'docs/planning/active/friday-readme-refresh/directives/REM-DOC-001-finance-exceptions.md')
+check(evidence['remediation_sha256']=='b13ea4b525426f1aa2fbd15e1d2fb3c39567f8b374243b5006d670b4199f7e52','remediation changed')
+changed=subprocess.check_output(['git','diff','--name-only',a['base_commit']+'..HEAD'],cwd=W,text=True).splitlines(); evidence['changed']=changed
+check(set(paths)=={p for p in changed if p=='README.md' or re.fullmatch('packages/[^/]+/README.md',p)},'README scope mismatch')
+check(len(paths)==17,'scope count'); check(all(p in paths or p in ['docs/planning/README.md','docs/planning/board.yaml'] or p.startswith('docs/planning/active/friday-readme-refresh/') for p in changed),'prohibited changed paths')
+check(subprocess.check_output(['git','status','--porcelain'],cwd=W,text=True)=='','dirty candidate')
+rendered=[]; link_count=0; snippets=[]
+for filename in paths:
+    p=W/filename; t=p.read_text(); m=tomllib.loads((p.parent/'pyproject.toml').read_text())['project']; check(m['readme']=='README.md',filename+' metadata readme'); check(m['requires-python']=='>=3.13.4',filename+' Python floor'); check(m['version']=='0.1.0a3',filename+' version')
+    warnings=io.StringIO(); result=render(t,stream=warnings); check(bool(result) and not warnings.getvalue(),filename+' render failed '+warnings.getvalue()); rendered.append({'path':filename,'sha256':sha(p),'html_bytes':len(result or ''),'warnings':warnings.getvalue()}); (O/(filename.replace('/','__')+'.html')).write_text(result or '')
+    for body in re.findall(r'^```python\n(.*?)^```',t,re.M|re.S): compile(body,filename,'exec'); snippets.append(filename)
+    for target in re.findall(r'(?<!!)\[[^\]]+\]\(([^)]+)\)',t):
+        link_count+=1; u=urlparse(target); q=None
+        if u.netloc=='github.com' and re.match('/CIChuck/agent-framework/(blob|tree)/master/',u.path): q=W/unquote(re.split('/(?:blob|tree)/master/',u.path)[1])
+        elif not u.scheme: q=p if not u.path else p.parent/unquote(u.path)
+        if q:
+            check(q.exists(),filename+' missing target '+target)
+            if u.fragment and q.is_file():
+                anchors=[re.sub('[^a-z0-9_ -]','',h.strip().lower()).replace(' ','-') for h in re.findall('^#+ (.+)$',q.read_text(),re.M)]
+                check(unquote(u.fragment) in anchors,filename+' missing anchor '+target)
+    for cmd in re.findall(r'uv run --no-sync pytest (\S+)',t): check((W/cmd).is_dir(),filename+' test path '+cmd)
+evidence.update(rendered=rendered,links=link_count,compiled_python_fences=len(snippets))
+# Compare every fenced block against the prior candidate.
+for filename in paths:
+    previous=subprocess.check_output(['git','show','b6dad87b568aee3a81dc20e145bb2644e4796609:'+filename],cwd=W,text=True)
+    check(re.findall(r'^```[^\n]*\n.*?^```', previous,re.M|re.S)==re.findall(r'^```[^\n]*\n.*?^```', (W/filename).read_text(),re.M|re.S),filename+' fenced content changed')
+# Every package's shipped Python implementation must match the frozen source.
+installed=Path('/private/tmp/friday-alpha3-pypi/production-install/lib/python3.13/site-packages'); parity=0
+for src in (W/'packages').glob('*/src'):
+    for p in src.rglob('*.py'):
+        q=installed/p.relative_to(src)
+        check(q.is_file(),str(p.relative_to(W))+' missing installed source')
+        if q.is_file(): check(sha(p)==sha(q),str(p.relative_to(W))+' installed source mismatch'); parity+=1
+evidence['source_files_compared']=parity
+# Independently rerun repository documentation gates with no syncing or shared HOME.
+home=O/'home'; home.mkdir(exist_ok=True); cache=O/'uv-cache'; cache.mkdir(exist_ok=True)
+env={'PATH':'/opt/homebrew/bin:/usr/bin:/bin','HOME':str(home),'TMPDIR':str(O),'UV_PROJECT_ENVIRONMENT':'/private/tmp/friday-mcp-upgrade/venv','UV_NO_SYNC':'1','UV_OFFLINE':'1','UV_CACHE_DIR':str(cache)}
+commands=[['/private/tmp/friday-mcp-upgrade/venv/bin/python','scripts/friday-dev-board.py','validate'],['/private/tmp/friday-mcp-upgrade/venv/bin/python','scripts/friday-dev-board.py','render','--check'],['/private/tmp/friday-mcp-upgrade/venv/bin/python','scripts/check-documentation-lifecycle.py'],['git','diff','--check',a['base_commit']+'..HEAD']]
+runs=[]
+for cmd in commands:
+    r=subprocess.run(cmd,cwd=W,env=env,text=True,capture_output=True,timeout=60); check(r.returncode==0,str(cmd)+' failed'); runs.append({'argv':cmd,'exit':r.returncode,'stdout':r.stdout,'stderr':r.stderr})
+evidence['commands']=runs; evidence['findings']=findings
+(O/'audit-results.json').write_text(json.dumps(evidence,indent=2)+'\n'); print(json.dumps({k:v for k,v in evidence.items() if k not in ['rendered','changed']},indent=2)); raise SystemExit(bool(findings))

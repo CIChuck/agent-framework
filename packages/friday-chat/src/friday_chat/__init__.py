@@ -1,6 +1,6 @@
 """FridayV2 chat application package."""
 
-__version__ = "0.1.0a2"
+__version__ = "0.1.0a3"
 
 from friday_chat.reorganization import (
     AtomicJsonStore,

@@ -1,0 +1,187 @@
+{
+  "authority_sha256": "30034e9a414c68b65e2933b9bad1ab79b588b53d714cd71eadae9d87d653c1c0",
+  "directive_sha256": "73a398a1ac03290817323c20fd06f4e7e831562ab1c5b6de8f045db023984f5c",
+  "changed": [
+    "README.md",
+    "docs/planning/README.md",
+    "docs/planning/active/friday-readme-refresh/README.md",
+    "docs/planning/active/friday-readme-refresh/authority.json",
+    "docs/planning/active/friday-readme-refresh/directives/CD-DOC-001-readme-refresh.md",
+    "docs/planning/active/friday-readme-refresh/execution-log.md",
+    "docs/planning/active/friday-readme-refresh/review-and-standard.md",
+    "docs/planning/active/friday-readme-refresh/validation/documentation-checks.json",
+    "docs/planning/active/friday-readme-refresh/validation/example-checker.py.txt",
+    "docs/planning/active/friday-readme-refresh/validation/example-guard.py.txt",
+    "docs/planning/active/friday-readme-refresh/validation/offline-examples.json",
+    "docs/planning/active/friday-readme-refresh/validation/readme-sha256.json",
+    "docs/planning/active/friday-readme-refresh/validation/render-results.json",
+    "docs/planning/board.yaml",
+    "packages/friday-agent/README.md",
+    "packages/friday-chat/README.md",
+    "packages/friday-cli/README.md",
+    "packages/friday-core/README.md",
+    "packages/friday-finance/README.md",
+    "packages/friday-llm/README.md",
+    "packages/friday-mcp/README.md",
+    "packages/friday-memory/README.md",
+    "packages/friday-moltbook/README.md",
+    "packages/friday-optimization/README.md",
+    "packages/friday-runtime/README.md",
+    "packages/friday-sandbox/README.md",
+    "packages/friday-speech/README.md",
+    "packages/friday-telemetry/README.md",
+    "packages/friday-tools/README.md",
+    "packages/friday-transcript/README.md"
+  ],
+  "rendered": [
+    {
+      "path": "README.md",
+      "sha256": "cb716bafb0be1b7c653ca6d10d74b272654fb9c98d40001bdf1609b752b82998",
+      "html_bytes": 18239,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-agent/README.md",
+      "sha256": "46443ba706b849268b846b1c7383922eaab39d63d32e98f556da88cc2ffdfd1a",
+      "html_bytes": 5552,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-chat/README.md",
+      "sha256": "9e9a7588da84b924918dca5744153701de09992900a62c876c326cc33f532d77",
+      "html_bytes": 10344,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-cli/README.md",
+      "sha256": "b3fa79e05f5ffa11c1a6dd8000b334381ba79a6e7c3069a50d23dd4d0144d61e",
+      "html_bytes": 6634,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-core/README.md",
+      "sha256": "ce6df76edddd2cbffb2acc901e97fb6333ab25c4b3559c015308524f552fbdad",
+      "html_bytes": 4934,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-finance/README.md",
+      "sha256": "ea579f320a525dc55a24f717d655ddcc6b5130ccf0cead01ca1c1e57d04c6c01",
+      "html_bytes": 5882,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-llm/README.md",
+      "sha256": "2bc0bbf440d5aeb925b7b5b39010044d82a0edb301af03a04782e24d98d42ee4",
+      "html_bytes": 12167,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-mcp/README.md",
+      "sha256": "406335132fc4235ab5ddcbce4852735065e91531458c1aedc19c48a637a5c220",
+      "html_bytes": 12793,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-memory/README.md",
+      "sha256": "fc6858ebfc6431dfc47aba4e3b09ba8d22735713abaa7fbb670b59c319dfa016",
+      "html_bytes": 7220,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-moltbook/README.md",
+      "sha256": "ef7ee666d26521ea9d1caef3a93f26ded401fefd10e93431b2ba64270d9f5952",
+      "html_bytes": 6379,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-optimization/README.md",
+      "sha256": "e67d5f63086365c9c8ba8e74c70211a9a491497ef470a6ce360783a259c5a07a",
+      "html_bytes": 3952,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-runtime/README.md",
+      "sha256": "4a8ff588051b9b0ddf82cf6bad308a79392c878c53bc8299b027d091e1b4ea6d",
+      "html_bytes": 11362,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-sandbox/README.md",
+      "sha256": "f16a1309307bbcd9d04762692fd7fcffef60106d81e890bae5f01f30924fd84f",
+      "html_bytes": 5822,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-speech/README.md",
+      "sha256": "25d7caf9427eaf6abe7fc9aec3c223b19bab7d92960480f971737e50d5b6e878",
+      "html_bytes": 6089,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-telemetry/README.md",
+      "sha256": "253ebd30cc3c1ba125d7f1e1484b15edffefed137d365997e5c0ac763e9e9088",
+      "html_bytes": 9973,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-tools/README.md",
+      "sha256": "07801df1f95d866d970cca9fa3f29fba8ada16420d7a00fe32267765ca202990",
+      "html_bytes": 7059,
+      "warnings": ""
+    },
+    {
+      "path": "packages/friday-transcript/README.md",
+      "sha256": "fa6ecf1a236c77dbc39fd21012ee73147a5b63c709b0e32e142cb5620b7bba5f",
+      "html_bytes": 7648,
+      "warnings": ""
+    }
+  ],
+  "links": 167,
+  "compiled_python_fences": 22,
+  "source_files_compared": 426,
+  "commands": [
+    {
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 30 tasks\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 603 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "25bf721cdac21e6cb05bbcae79c6cdba3b1b2065..HEAD"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "findings": []
+}

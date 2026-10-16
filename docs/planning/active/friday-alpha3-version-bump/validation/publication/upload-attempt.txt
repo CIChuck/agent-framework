@@ -1,0 +1,5 @@
+Publishing 2 files to https://upload.pypi.org/legacy/
+Hashing friday_framework_telemetry-0.1.0a3-py3-none-any.whl (47.4KiB)
+Uploading friday_framework_telemetry-0.1.0a3-py3-none-any.whl (47.4KiB)
+error: Failed to publish `dist/friday_framework_telemetry-0.1.0a3-py3-none-any.whl` to https://upload.pypi.org/legacy/
+  Caused by: Server returned status code 403 Forbidden. Server says: 403 Invalid or non-existent authentication information. See https://pypi.org/help/#invalid-auth for more information.

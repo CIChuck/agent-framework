@@ -1,0 +1,205 @@
+{
+  "python_fences_compiled": 22,
+  "links_checked": 167,
+  "results": [
+    {
+      "example": "root-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/root-0-q433z6gq/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Hello, Friday!\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-agent-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-agent-0-qai162sm/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "['assistant']\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-chat-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-chat-0-hg9q56ht/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-cli-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-cli-0-5qmiuxti/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "\u2713 Application ready\n      Components       \n\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 package    \u2502 status \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502 friday-cli \u2502 ready  \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-core-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-core-0-xcfleka9/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-finance-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-finance-0-uplb5daz/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "SPY\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-llm-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-llm-0-9051wi1j/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "0.3\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "mcp-stdio",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "client.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Hello from MCP\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-memory-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-memory-0-73uxir9t/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "The project is Friday.\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-moltbook-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-moltbook-0-5ubbcaj7/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "15.0\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-runtime-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-runtime-0-4pnbps7q/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "ephemeral\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-sandbox-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-sandbox-0-n1njaxnv/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Hello from a fixture\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-speech-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-speech-0-q23iujni/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "False\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-telemetry-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-telemetry-0-vd2sm7j_/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{'count': 1}\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-telemetry-1",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-telemetry-1-je40hyi7/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "success\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-tools-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-tools-0-zzzbyubx/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "['greet']\nHello, Friday!\n",
+      "stderr": "\u001b[2m2026-10-15T03:00:06.204860Z\u001b[0m [\u001b[33m\u001b[1mwarning  \u001b[0m] \u001b[1mTool registered without explicit category\u001b[0m \u001b[36mtool\u001b[0m=\u001b[35mgreet\u001b[0m\n",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "friday-transcript-0",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/friday-transcript-0-nv98zcww/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Hello from Friday\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    },
+    {
+      "example": "chat-fake-cli",
+      "argv": [
+        "/private/tmp/friday-alpha3-pypi/production-install/bin/python",
+        "/private/tmp/friday-readme-validation/runs/chat-fake-cli-z8ti4xo8/example.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Documented fake CLI configuration completed hello and /q\n",
+      "stderr": "",
+      "guard_sha256": "4df8a5ee51d56aa431f31f3df81efdf9269fc4762e7bb498b2a8af344a41aafd"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/private/tmp/friday-guides-final-independent-review/independent-probes.py", line 26, in <module>
+    assert s.manual_names is None
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

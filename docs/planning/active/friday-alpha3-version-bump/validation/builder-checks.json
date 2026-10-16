@@ -1,0 +1,182 @@
+[
+  {
+    "check": "alpha3-board",
+    "candidate": "8b85bd9169c00025e562c8db74afa81af873ec37",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "exit_code": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "e6517dbbf799257576a862a42a5b50482ca37da43830d9839c7988f1f1a233a9",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "started_at": "2026-10-15T02:07:36.274007+00:00",
+    "finished_at": "2026-10-15T02:07:36.390249+00:00",
+    "stdout": "Development board validation passed: 29 tasks\n",
+    "stderr": ""
+  },
+  {
+    "check": "alpha3-cohort-helpers",
+    "candidate": "8b85bd9169c00025e562c8db74afa81af873ec37",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "tests/integration/test_package_cohort_metadata.py",
+      "packages/friday-chat/tests_chat/test_release_helpers.py",
+      "-q"
+    ],
+    "exit_code": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "58745d8011883213acd6d3ad00c73a2860f68e432f60fc956b8cb2a8bb6d8181",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "started_at": "2026-10-15T02:07:21.569761+00:00",
+    "finished_at": "2026-10-15T02:07:22.550022+00:00",
+    "stdout": "........                                                                 [100%]\n8 passed in 0.05s\n",
+    "stderr": ""
+  },
+  {
+    "check": "alpha3-docs",
+    "candidate": "8b85bd9169c00025e562c8db74afa81af873ec37",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    "exit_code": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "258652e8d77d82c77532ac20136644984bbfa75159a34da803786dda5955a03e",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "started_at": "2026-10-15T02:07:40.184067+00:00",
+    "finished_at": "2026-10-15T02:07:40.730050+00:00",
+    "stdout": "Documentation lifecycle validation passed: 594 Markdown files checked\n",
+    "stderr": ""
+  },
+  {
+    "check": "alpha3-lock",
+    "candidate": "8b85bd9169c00025e562c8db74afa81af873ec37",
+    "argv": [
+      "/opt/homebrew/bin/uv",
+      "lock",
+      "--check",
+      "--offline",
+      "--python",
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "--no-python-downloads"
+    ],
+    "exit_code": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "c68f773169620884e0c79dee1d7b3e32b8ad712dc9d37155af412ef88681f138",
+    "started_at": "2026-10-15T02:07:21.569807+00:00",
+    "finished_at": "2026-10-15T02:07:21.648719+00:00",
+    "stdout": "",
+    "stderr": "Resolved 213 packages in 19ms\n"
+  },
+  {
+    "check": "alpha3-metadata",
+    "candidate": "8b85bd9169c00025e562c8db74afa81af873ec37",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/check-package-metadata.py"
+    ],
+    "exit_code": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "f8d6fca602cb9f52cb26655c104c83f670736fd10f36890cff0c90b3e5ff60f8",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "started_at": "2026-10-15T02:07:21.569806+00:00",
+    "finished_at": "2026-10-15T02:07:21.611793+00:00",
+    "stdout": "Validated 17 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+    "stderr": ""
+  },
+  {
+    "check": "alpha3-modern-protocol",
+    "candidate": "8b85bd9169c00025e562c8db74afa81af873ec37",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-m",
+      "pytest",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+      "-q"
+    ],
+    "exit_code": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "af847407f6e4e1198eac2273ad7f736978cb5745355a04f7a7f5a3b42b2c283c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "started_at": "2026-10-15T02:07:21.569813+00:00",
+    "finished_at": "2026-10-15T02:07:23.680286+00:00",
+    "stdout": "........................................................................ [ 39%]\n........................................................................ [ 78%]\n.......................................                                  [100%]\n183 passed in 1.01s\n",
+    "stderr": ""
+  },
+  {
+    "check": "alpha3-render",
+    "candidate": "8b85bd9169c00025e562c8db74afa81af873ec37",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "exit_code": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "started_at": "2026-10-15T02:07:36.274002+00:00",
+    "finished_at": "2026-10-15T02:07:36.390399+00:00",
+    "stdout": "Planning dashboard is current\n",
+    "stderr": ""
+  },
+  {
+    "check": "alpha3-ruff",
+    "candidate": "8b85bd9169c00025e562c8db74afa81af873ec37",
+    "argv": [
+      "/private/tmp/friday-mcp-upgrade/venv/bin/python",
+      "-c",
+      "import subprocess; paths=subprocess.check_output(['git','diff','--name-only','a2dd82be','HEAD','--','*.py'],text=True).splitlines(); raise SystemExit(subprocess.call(['/private/tmp/friday-mcp-upgrade/venv/bin/ruff','check',*paths]))"
+    ],
+    "exit_code": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "started_at": "2026-10-15T02:07:36.274003+00:00",
+    "finished_at": "2026-10-15T02:07:36.374824+00:00",
+    "stdout": "All checks passed!\n",
+    "stderr": ""
+  },
+  {
+    "check": "alpha3-shell",
+    "candidate": "8b85bd9169c00025e562c8db74afa81af873ec37",
+    "argv": [
+      "/bin/zsh",
+      "-n",
+      "scripts/smoke-install-artifacts.sh"
+    ],
+    "exit_code": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "started_at": "2026-10-15T02:07:36.274017+00:00",
+    "finished_at": "2026-10-15T02:07:36.287931+00:00",
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "check": "alpha3-whitespace",
+    "candidate": "8b85bd9169c00025e562c8db74afa81af873ec37",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "a2dd82be",
+      "HEAD"
+    ],
+    "exit_code": 0,
+    "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "started_at": "2026-10-15T02:07:36.276360+00:00",
+    "finished_at": "2026-10-15T02:07:36.301188+00:00",
+    "stdout": "",
+    "stderr": ""
+  }
+]

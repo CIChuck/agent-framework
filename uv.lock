@@ -830,7 +830,7 @@ wheels = [
 
 [[package]]
 name = "friday-chat"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-chat" }
 dependencies = [
     { name = "friday-framework-agent" },
@@ -908,7 +908,7 @@ provides-extras = ["speech", "finance", "sandbox", "moltbook", "full", "dev"]
 
 [[package]]
 name = "friday-framework"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "." }
 dependencies = [
     { name = "friday-chat" },
@@ -1042,7 +1042,7 @@ dev = [
 
 [[package]]
 name = "friday-framework-agent"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-agent" }
 dependencies = [
     { name = "friday-framework-core" },
@@ -1068,7 +1068,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-cli"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-cli" }
 dependencies = [
     { name = "fastapi" },
@@ -1112,7 +1112,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-core"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-core" }
 dependencies = [
     { name = "friday-framework-telemetry" },
@@ -1148,7 +1148,7 @@ provides-extras = ["telemetry", "dev"]
 
 [[package]]
 name = "friday-framework-finance"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-finance" }
 dependencies = [
     { name = "friday-framework-core" },
@@ -1163,7 +1163,7 @@ requires-dist = [
 
 [[package]]
 name = "friday-framework-llm"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-llm" }
 dependencies = [
     { name = "friday-framework-core" },
@@ -1195,7 +1195,7 @@ provides-extras = ["langfuse", "dev"]
 
 [[package]]
 name = "friday-framework-mcp"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-mcp" }
 dependencies = [
     { name = "friday-framework-core" },
@@ -1246,7 +1246,7 @@ provides-extras = ["dev", "server", "full"]
 
 [[package]]
 name = "friday-framework-memory"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-memory" }
 dependencies = [
     { name = "chromadb" },
@@ -1278,7 +1278,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-moltbook"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-moltbook" }
 dependencies = [
     { name = "httpx" },
@@ -1304,7 +1304,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-optimization"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-optimization" }
 dependencies = [
     { name = "dspy-ai" },
@@ -1328,7 +1328,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-runtime"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-runtime" }
 dependencies = [
     { name = "friday-framework-agent" },
@@ -1362,7 +1362,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-sandbox"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-sandbox" }
 dependencies = [
     { name = "docker" },
@@ -1388,7 +1388,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-speech"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-speech" }
 dependencies = [
     { name = "friday-framework-core" },
@@ -1434,7 +1434,7 @@ provides-extras = ["elevenlabs", "picovoice", "dev"]
 
 [[package]]
 name = "friday-framework-telemetry"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-telemetry" }
 dependencies = [
     { name = "pydantic" },
@@ -1464,7 +1464,7 @@ provides-extras = ["otel", "dev"]
 
 [[package]]
 name = "friday-framework-tools"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-tools" }
 dependencies = [
     { name = "beautifulsoup4" },
@@ -1565,7 +1565,7 @@ provides-extras = ["sandbox", "finance", "moltbook", "dev", "llm", "langchain", 
 
 [[package]]
 name = "friday-framework-transcript"
-version = "0.1.0a2"
+version = "0.1.0a3"
 source = { editable = "packages/friday-transcript" }
 dependencies = [
     { name = "aiosqlite" },

@@ -1,0 +1,47 @@
+{
+  "reviewed_candidate": "6fb53e00877214d813656b204f950c8a0b725d05",
+  "verdict": "CHANGES_REQUESTED",
+  "report_sha256": "5f555fac293520a997afbad9547b8bbdf101386a9962aa33fd401624e21b6a75",
+  "files": {
+    "audit.log": "775f58d6fdf3b174d3b7543395223c54136e0ea2de1ede1d6d01485225062631",
+    "audit.py.txt": "618a8c150389f37da92b6503f1b0f9d134249f0b3fcc5e477b2e78f921188a4a",
+    "authority-scope-check.json": "10fa175112ffe7b708a52bef0a01ec3a62aacf8e43eb84bdd43cd30108351b83",
+    "board-render.log": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+    "board-validate.log": "c13c382896bdfdacab5f77ed969a62f70b2a7a5654a148c0309e4c2175e91ad2",
+    "check-guides.py.txt": "9a6a15686bd555895ae0685e6a4d732fad191d9b360cc1c5b6025abc598c5942",
+    "diff-numstat.txt": "269f4ab11c1776c3adad132d4948fa8728d513b6e32b213b8cda50f8aa53c220",
+    "documentation-lifecycle.log": "c3c78bcd8ac0940c3106ea69bf3447adaa966b435c90afadcf44b44a72b5c186",
+    "evidence.json": "994538a613d07f7f962d3ccee905030dfae5083cbea5e84cb61232a5b2451591",
+    "guide-diff-structure.txt": "ee159e3c14fbe0f6e88347d0020402b25d0e4a47fcd322e8b1b835d4d557c9d3",
+    "independent-probes.harness-attempt.log": "0a8540a73524a3f475277da77ad1618dfb6d5d48c3b1f266bfcf8e393750263a",
+    "independent-probes.log": "bf856c813f8167beb37806a81c717776928f6f2670c7474a4ba4d84be3a942c4",
+    "independent-probes.property-attempt.log": "bb02e89c62028a33fd2e2b76edb9b246a3a09d947564ac26f79ef443f95b990e",
+    "independent-probes.py.txt": "8d5788dcd8c1dde726572ee7290bf235b784156bc07644ec7d0484af3492f188",
+    "replay.log.raw.json": "743936d82cb50cc685f07abdc3e60ceb766dc6b818ef16d51f47e3e2c69d6d29",
+    "replay.log": "d6e747484b83c51c20d8fe4cdef4c0d28463e70d0cb1fb2d2bfb89ab2402beca",
+    "report.md": "5f555fac293520a997afbad9547b8bbdf101386a9962aa33fd401624e21b6a75",
+    "reproduce.sh.txt": "aea64aed688c95055ac6f237fdf5d40d278a5565b083a63984a4927e6453db70",
+    "request.json": "ba348cf67f2d38a4b2c92f48c585b67fbe3ab6facc68546d6f7277d570922896",
+    "retained-contract-replay.log": "c22093437f13b84780739f955d9133e243653abba952d170e7adf991d46243ec",
+    "retained-contract-replay.py.txt": "df6d851cabe0d3c0cf3eaf972fcdaf97a6249f562421364dfdf1b2efd627f069",
+    "static-review.json": "d38c7ebbd0b9c38cfba0cb607bba8cdc25426a7e5b8b3668b87462ba3dcd9a08",
+    "static-review.log": "f762cab0ee84754b274c7c016edf6140b752a06c027b26ee2b89a73dfa3c9e4f",
+    "static-review.py.txt": "8b36b128b95183ecae3f8c54dd5ba04e115b94a4e0f4a80194eeb8824a252895",
+    "whitespace.log.raw.json": "0296c2b9c0288126695ce2f5f291ba62c82735b3aab25221e48fa3ba61351387",
+    "whitespace.log": "f70955a21577cdecd2dd0122ec0215a8aeae65bd124bd23db0d5e96a9c382978",
+    "guide-checks.json": "c8351b3a4f1787fa0897941def49e7a56f51de474221b85a9156115492f84fab"
+  },
+  "provenance": {
+    "replay.log": {
+      "original_sha256": "1c0e55f9863cdbdc32d313b5b4bc6352a18a4169aca086d865081c61aaa6b398",
+      "lossless_original": "replay.log.raw.json",
+      "display_transformation": "Remove trailing ASCII spaces and tabs at line endings only."
+    },
+    "whitespace.log": {
+      "original_sha256": "442f5bb0a7dde630fc342dd318a50407415b75b9803b868478e808d53eb22b36",
+      "lossless_original": "whitespace.log.raw.json",
+      "display_transformation": "Remove trailing ASCII spaces and tabs at line endings only."
+    }
+  },
+  "omitted": "Large aggregate/remediation patches are reproducible from the pinned Git ranges; cache, HOME and replay runtime state are not retained."
+}

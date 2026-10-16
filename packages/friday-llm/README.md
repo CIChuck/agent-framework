@@ -1,210 +1,105 @@
-# Friday Framework LLM
+# Friday LLM
 
-`friday-framework-llm` is Friday's LiteLLM-backed chat and embedding package.
-Version `0.1.0a2` adds provider-neutral reasoning and sampling contracts while
-keeping the `0.1.0a0` completion APIs compatible for one deprecation window.
+LiteLLM-backed chat and embedding services with typed requests, streaming events, reusable model profiles, resilience and optional provider-neutral request metrics.
 
-## Install
+**Distribution:** [friday-framework-llm](https://pypi.org/project/friday-framework-llm/) · **Import:** `friday_llm`
+**Python:** 3.13.4+ · **Status:** alpha · **License:** MIT
+
+## Installation
 
 ```bash
-pip install friday-framework-llm==0.1.0a2
+python -m pip install "friday-framework-llm==0.1.0a3"
 ```
 
-The import package is `friday_llm`. This alpha pins `litellm==1.94.1` because
-the observed provider translation is part of the tested contract.
+Friday distributions use the same release version; keep internal Friday dependencies aligned.
 
-## Reusable Model Library
-
-`ModelLibrary` separates credential environment-variable names, reusable
-endpoints, and deployable chat or embedding profiles. Applications bind roles
-with `ChatServiceBinding` or `EmbeddingServiceBinding`, resolve them with an
-explicit environment mapping, and construct services through
-`LiteLLMService.from_spec(...)` or `LiteLLMEmbeddingService.from_spec(...)`.
-Friday LLM owns the strict schema and pure resolution; Runtime and applications
-own local-file loading and decide which role bindings are active.
-
-Credentials are represented with `SecretStr` in resolved service specs and are
-redacted from representations and serialized model dumps. Unknown references,
-kind mismatches, incomplete targets, unsupported controls, and missing selected
-credential variables fail before provider I/O.
-
-## Typed Completion
-
-New integrations should declare transport identity, model identity, and
-generation intent separately:
+## Quick start: validate a request locally
 
 ```python
+from friday_llm import ChatCompletionRequest, GenerationOverrides, SamplingConfig
+
+request = ChatCompletionRequest(
+    messages=({"role": "user", "content": "Hello"},),
+    overrides=GenerationOverrides(sampling=SamplingConfig(temperature=0.3)),
+)
+print(request.overrides.sampling.temperature)
+```
+
+Expected output: `0.3`. Constructing a request makes no provider call. The current distribution pins `litellm==1.100.1`; use the declared dependency rather than substituting a different LiteLLM version.
+
+## Complete a request against a local model server
+
+This example performs a **live** call. Start LM Studio's OpenAI-compatible server at `http://127.0.0.1:1234/v1`, load the model under the alias shown, and replace the captured revision with the one actually served.
+
+```python
+import asyncio
 from friday_llm import (
-    ChatCompletionRequest,
-    GenerationOverrides,
-    LiteLLMService,
-    ModelTarget,
-    ReasoningConfig,
-    ReasoningMode,
-    SamplingConfig,
-    TransportTarget,
+    ChatCompletionRequest, LiteLLMService, ModelTarget, TransportTarget,
+    close_litellm_async_clients,
 )
 
-service = LiteLLMService(
-    model_name="openai/qwen3.8-27b-mlx",
-    api_key="lm-studio",
-    api_base="http://127.0.0.1:1234/v1",
-    transport_target=TransportTarget(
-        provider="openai_compatible",
-        dialect="openai_chat_completions",
-        serving_engine="lm_studio",
-    ),
-    model_target=ModelTarget(
-        model_id="qwen3.8-27b-mlx",
-        family="qwen3_8",
-        revision="your-captured-model-revision",
-    ),
-)
-
-response = await service.chat_completion_request(
-    ChatCompletionRequest(
-        messages=({"role": "user", "content": "Use a synthetic prompt."},),
-        overrides=GenerationOverrides(
-            reasoning=ReasoningConfig(
-                mode=ReasoningMode.ENABLED,
-                effort="medium",
-            ),
-            sampling=SamplingConfig(temperature=0.3, top_k=20),
-            max_tokens=256,
+async def main() -> None:
+    service = LiteLLMService(
+        model_name="openai/qwen3.8-27b-mlx",
+        api_key="lm-studio",  # Local server placeholder, not a hosted credential.
+        api_base="http://127.0.0.1:1234/v1",
+        transport_target=TransportTarget(
+            provider="openai_compatible", dialect="openai_chat_completions",
+            serving_engine="lm_studio",
+        ),
+        model_target=ModelTarget(
+            model_id="qwen3.8-27b-mlx", family="qwen3_8",
+            revision="replace-with-served-model-revision",
         ),
     )
-)
+    try:
+        response = await service.chat_completion_request(
+            ChatCompletionRequest(messages=({"role": "user", "content": "Hello"},))
+        )
+        print(response.content)
+    finally:
+        await close_litellm_async_clients()
+
+asyncio.run(main())
 ```
 
-Omitted request fields inherit service defaults. An explicit `None` clears a
-service default and delegates that field to the provider. The typed API does
-not inject the legacy `temperature=0.7` default.
+Transport clients are process-shared by LiteLLM. In a long-running application, call `close_litellm_async_clients()` once at process shutdown after all model work is quiescent, not after each borrowed service call. Hosted endpoints require their real credential supplied by the application.
 
-## Typed Streaming
+## Public surfaces and capabilities
 
-`chat_completion_events()` separates text, reasoning, tool fragments, complete
-tool calls, usage, finish state, and diagnostic-safe errors. It never mixes
-reasoning text into final text or tool arguments.
-
-```python
-async for event in service.chat_completion_events(request):
-    if event.type == "text_delta":
-        print(event.text, end="")
-    elif event.type == "tool_call_complete":
-        dispatch(event.name, event.arguments)
-```
-
-## Release-One Support Matrix
-
-| Axis | Built-in normalized profile |
+| Need | API |
 | --- | --- |
-| Endpoint dialect | OpenAI-compatible Chat Completions |
-| Transport | `litellm.acompletion` |
-| Serving engine | LM Studio |
-| Model family | Qwen3.8 |
-| Evidence target | local alias `qwen3.8-27b-mlx` |
-| Reasoning | provider default, enabled, disabled; effort `xhigh`, `medium`, `low`; preserve |
-| Sampling | temperature, top-p, top-k, min-p, presence/frequency penalty, repetition penalty |
-| Unsupported | Qwen3.8 reasoning token budget |
+| Typed completion | `ChatCompletionRequest`, `chat_completion_request()` |
+| Typed streaming | `chat_completion_events()`; distinct text/reasoning/tool/usage/finish events |
+| Embeddings | `LiteLLMEmbeddingService` |
+| Reusable model configuration | `ModelLibrary`, service bindings, `resolve_chat_service`, `resolve_embedding_service`, `from_spec()` |
+| Request controls | `GenerationConfig`, `GenerationOverrides`, `ReasoningConfig`, `SamplingConfig` |
+| Resilience and estimates | `ResilienceConfig`, `CircuitBreakerConfig`, `PricingConfig`, `CostCalculator` |
 
-OpenAI Responses, LM Studio native REST, Anthropic-native, Gemini, Ollama,
-DeepSeek, Moonshot, Bedrock, vLLM, and SGLang normalized profiles are deferred.
-Legacy LiteLLM routing remains available, but Friday does not advertise typed
-reasoning controls for an unregistered target composition.
+Built-in normalized reasoning/sampling capability support is specifically LM Studio + OpenAI-compatible Chat Completions + Qwen3.8. Other LiteLLM routes remain compatibility paths; routing support is not a promise that every normalized control works on every endpoint. Unsupported controls fail preflight. Model-library credential entries name environment variables; resolved specs use redacted secret values. Runtime/Chat own file loading.
 
-Model-card sampling recommendations are not Friday defaults. Typed,
-namespaced `LMStudioQwenOptions` exist only for the registered profile and
-cannot set credentials, URLs, messages, tools, telemetry, retries, timeouts, or
-arbitrary `extra_body` fields.
+Omitted typed request fields inherit service defaults; explicit `None` clears a default and delegates to the provider. Typed calls do not inject legacy `temperature=0.7`. Legacy `chat_completion()` and text-only streaming remain compatibility APIs; explicit `thinking_enabled` has deprecation/migration behavior. Prefer the typed surface for new callers. Importing Friday LLM does not change LiteLLM's global `drop_params` or `modify_params` policy.
 
-## Assurance And Privacy
+## Telemetry and privacy
 
-Friday uses these evidence terms precisely:
+Borrowed `TelemetryInterface` sinks receive closed version-one request/attempt/batch/finish events. They exclude prompt/response/reasoning text, tool payloads, vectors and raw model/context identifiers. USD amounts are estimates from reported usage and configured/historical rates, not billing; the built-in rates are historical early-2025 data. Missing usage is distinct from zero, and failed attempts can have unknown charges.
 
-- `requested`: supplied by the caller;
-- `resolved`: accepted after merge and capability validation;
-- `emitted`: present in captured outbound HTTP JSON;
-- `acknowledged`: confirmed by provider or server metadata;
-- `behaviorally_observed`: supported by a bounded controlled comparison.
+The standalone legacy telemetry helper retains raw-content behavior and is outside that safety guarantee. Optional legacy Langfuse callback support is available through the `langfuse` extra; the provider-neutral Langfuse implementation is separate queued work. Do not enable callback logging assuming it inherits the closed event schema.
 
-Emitted does not mean effective. Assurance metadata contains bounded field and
-profile names, capability provenance, and the LiteLLM version. It does not
-contain prompts, tool arguments, credentials, response bodies, or reasoning
-text. `preserve_thinking` controls provider chat-template replay; it does not
-grant Friday permission to persist or log reasoning.
+## Development
 
-## Legacy Migration
-
-`chat_completion()` and text-only `chat_completion_stream()` retain their
-current signatures and return shapes. The legacy default still disables
-thinking and still supplies `temperature=0.7`.
-
-| Old input | `0.1.0a2` behavior | Migration |
-| --- | --- | --- |
-| `thinking_enabled` omitted | legacy disabled behavior | move new callers to `ReasoningMode.AUTO` or an explicit mode |
-| `thinking_enabled=False` | disabled plus `DeprecationWarning` | use `ReasoningConfig(mode="disabled")` |
-| `thinking_enabled=True` | enabled intent plus `DeprecationWarning` | declare an execution target and use typed reasoning |
-| contradictory old/new values | configuration error before I/O | keep one source of truth |
-
-Importing `friday_llm` no longer changes LiteLLM's process-global
-`drop_params` or `modify_params` policy. Compatibility settings are scoped to
-individual legacy calls; typed calls use strict preflight validation.
-
-LM Studio 0.4.x accepts only string-form tool-choice values. For a normalized
-named function choice, the private LM Studio adapter exposes only the selected
-function schema and emits `required`, preserving exact-function semantics
-without adding an LM Studio field to the public request model. A missing or
-ambiguous selected schema fails before external I/O.
-
-## Live LM Studio Evidence Lane
-
-The default tests never contact LM Studio. To opt in, load the exact model,
-record its revision/fingerprint, then run:
+Work from the monorepo root after the [shared contributor setup](https://github.com/CIChuck/agent-framework/blob/master/README.md#development).
+Run the focused suite:
 
 ```bash
-FRIDAY_LLM_LIVE=1 \
-FRIDAY_LLM_LIVE_REVISION='<captured revision>' \
-FRIDAY_LLM_LIVE_MODEL='qwen3.8-27b-mlx' \
-uv run pytest -q packages/friday-llm/tests_llm/test_live_lmstudio.py
+uv run --no-sync pytest packages/friday-llm/tests_llm -q
 ```
 
-The live lane is a release gate, not ordinary CI. Record LM Studio version,
-architecture, quantization, alias, chat template, context length, and server
-settings alongside its results.
+The default suite is deterministic. The separately gated `test_live_lmstudio.py` lane requires an explicitly provisioned model, captured revision and live-test opt-in; it is not the quick-start validation above.
+## Documentation and support
+
+[Model library and migration](https://github.com/CIChuck/agent-framework/blob/master/docs/reference/llm/model-library-technical-spec.md) · [Telemetry contracts](https://github.com/CIChuck/agent-framework/blob/master/packages/friday-telemetry/README.md) · [Source](https://github.com/CIChuck/agent-framework/tree/master/packages/friday-llm/src/friday_llm) · [Issues](https://github.com/CIChuck/agent-framework/issues) · [Contributing](https://github.com/CIChuck/agent-framework/blob/master/docs/guides/15-contributing.md)
 
 ## License
 
-MIT
-
-## Provider-neutral request metrics
-
-An optional borrowed `TelemetryInterface` sink now receives closed version-one
-`llm.request_start`, `llm.attempt_finish`, `llm.batch_finish` and
-`llm.request_finish` events. Consumers of the services' previous
-`llm_completion_success/error` or `embeddings_generated/error` payloads must
-migrate to these events; the services do not emit both schemas. Completion, stream
-and vector return shapes, retries, circuit policy and Langfuse metadata remain
-compatible. Constructors and `from_spec` accept optional keyword-only
-`service_role`, defaulting to `unspecified`.
-
-Metrics exclude prompts, response/reasoning text, tool data, vectors, raw model or
-context identifiers and exception messages. Request IDs are generated per call,
-attempt IDs count actual dispatches, and embedding batch IDs correlate their
-attempts. Cache hits, empty input and preflight rejection have no dispatch or
-fabricated usage. Reported zero differs from unavailable usage. Streams count raw
-chunks and retain the final cumulative usage snapshot once, including usage after
-finish; `first_text_ms` measures elapsed time to first text, including setup retries.
-Cancellation and explicit early close produce `cancelled` and `incomplete` outcomes.
-
-USD values are estimates from reported usage and local rates, never actual billing.
-`price_source`, `price_match` and an opaque `pricing_ref` describe the effective
-rates without exposing model/config strings. Built-in rates are the historical
-early-2025 table, not verified current prices; custom and supplied rates are caller
-inputs. Partial/missing required usage, disabled pricing or an unpriced model means
-no estimate. Failed attempts may incur unknown provider charges. The additive
-`CostCalculator.estimate_with_provenance` leaves legacy numeric `calculate` and
-lookup behavior intact; invalid rates have an explicit telemetry disposition.
-
-The public standalone legacy telemetry helper retains historical unsafe payloads
-for compatibility and is outside this guarantee. Full turn/parent-span correlation
-and Langfuse adoption remain separate work.
+[MIT](https://github.com/CIChuck/agent-framework/blob/master/LICENSE).

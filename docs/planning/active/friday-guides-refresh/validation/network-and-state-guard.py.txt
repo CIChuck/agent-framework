@@ -1,0 +1,17 @@
+import os, sys
+ROOT='/Users/chuckrussell/Dev/gendev/agent-framework'
+PRIVATE='/private/tmp/friday-guides-validation/'
+def guard(event,args):
+    if event in ('socket.getaddrinfo','socket.connect','socket.sendto'):
+        raise RuntimeError('Network prohibited by guide example validation')
+    if event=='open' and isinstance(args[0],(str,bytes,os.PathLike)):
+        p=os.path.abspath(os.fsdecode(args[0]))
+        if p==ROOT or p.startswith(ROOT+'/'):
+            raise RuntimeError('Shared checkout access prohibited')
+        if '.env' in p.split('/') or p.endswith('/scripts/pypi.sh'):
+            raise RuntimeError('Credential file access prohibited')
+        flags=args[2] if len(args)>2 and isinstance(args[2],int) else 0
+        mode=args[1] if len(args)>1 and isinstance(args[1],str) else ''
+        if (flags & (os.O_WRONLY|os.O_RDWR|os.O_CREAT|os.O_TRUNC|os.O_APPEND) or any(x in mode for x in 'wax+')) and not p.startswith(PRIVATE) and p!='/dev/null':
+            raise RuntimeError('Write outside isolated guide validation prohibited: '+p)
+sys.addaudithook(guard)

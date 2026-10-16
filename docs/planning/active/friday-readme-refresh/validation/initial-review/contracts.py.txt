@@ -1,0 +1,24 @@
+import asyncio, json, re
+from pathlib import Path
+from unittest.mock import AsyncMock
+from typer.testing import CliRunner
+from friday_chat.cli import app
+from friday_chat.config import FridayChatConfig
+from friday_finance import MassiveAgentClient, MassiveNotFoundError, MassiveTimeoutError, MassiveRateLimitError
+W=Path('/private/tmp/friday-readme-refresh')
+help_result=CliRunner().invoke(app,['--help']); assert help_result.exit_code==0
+for arg in ['--config','--runtime','--version']: assert arg in help_result.stdout
+version=CliRunner().invoke(app,['--version']); assert version.exit_code==0 and '0.1.0a3' in version.stdout
+chat=(W/'packages/friday-chat/README.md').read_text(); y=re.findall('^```yaml\n(.*?)^```',chat,re.M|re.S); import yaml
+config=FridayChatConfig.model_validate(yaml.safe_load(y[1])); assert config.telemetry.enabled and config.telemetry.provider=='debug'
+async def run():
+    client=MassiveAgentClient(api_key='synthetic-noncredential',tier='starter'); client.governor.wait=AsyncMock()
+    observed=[]
+    for error in [TimeoutError('synthetic timeout'),LookupError('synthetic 404'),RuntimeError('synthetic 401'),RuntimeError('synthetic 429')]:
+        def query(): raise error
+        try: await client.execute_query(query)
+        except Exception as actual:
+            observed.append({'input':type(error).__name__+': '+str(error),'output_type':type(actual).__name__,'unchanged':actual is error,'typed_timeout':isinstance(actual,MassiveTimeoutError),'typed_not_found':isinstance(actual,MassiveNotFoundError)})
+    return observed
+out={'help':help_result.stdout,'version':version.stdout,'telemetry_yaml_valid':True,'finance':asyncio.run(run())}
+Path('/private/tmp/friday-readme-validation/review/contracts-results.json').write_text(json.dumps(out,indent=2)+'\n'); print(json.dumps(out,indent=2))

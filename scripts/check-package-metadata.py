@@ -9,11 +9,12 @@ import sys
 import tomllib
 from pathlib import Path
 
-DEFAULT_VERSION = "0.1.0a2"
-DEFAULT_INTERNAL_VERSION = "0.1.0a2"
+DEFAULT_VERSION = "0.1.0a3"
+DEFAULT_INTERNAL_VERSION = "0.1.0a3"
 EXPECTED_AUTHOR = [{"name": "Friday Team"}]
 EXPECTED_LICENSE = "MIT"
 REPO_URL = "https://github.com/CIChuck/agent-framework"
+DOCUMENTATION_URL = "https://gendevx.com/friday/"
 INTERNAL_DEP_RE = re.compile(r"friday-(?:chat|framework(?:-[A-Za-z0-9_.-]+)?)")
 REQUIRED_URLS = ("Homepage", "Repository", "Issues", "Documentation", "Source")
 REQUIRED_DEPENDENCY_PROJECTS = {
@@ -148,6 +149,12 @@ def validate_project(
     else:
         for key in REQUIRED_URLS:
             value = urls.get(key)
+            if key == "Documentation":
+                if value != DOCUMENTATION_URL:
+                    errors.append(
+                        f"{path}: project.urls.{key} must be {DOCUMENTATION_URL}"
+                    )
+                continue
             if not isinstance(value, str) or not value.startswith(REPO_URL):
                 errors.append(f"{path}: project.urls.{key} must start with {REPO_URL}")
 

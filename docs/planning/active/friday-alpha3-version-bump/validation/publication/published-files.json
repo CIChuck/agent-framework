@@ -1,0 +1,155 @@
+[
+  {
+    "project": "friday-framework-telemetry",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:48.561286+00:00",
+    "files": {
+      "friday_framework_telemetry-0.1.0a3-py3-none-any.whl": "7f20080d322ff30aabaaef3dc87fb879e3539c49a33682aa5a47901db5ee16a0",
+      "friday_framework_telemetry-0.1.0a3.tar.gz": "a4659d96f5f4f50fcfc2bf69b682da7c9d9c47002f0f72a56b6ac4b9fe63cbc8"
+    }
+  },
+  {
+    "project": "friday-framework-transcript",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:48.611705+00:00",
+    "files": {
+      "friday_framework_transcript-0.1.0a3-py3-none-any.whl": "bae0fff681489028453ef96c2074a3e07b14d77989f97b2c2cd1a36ff26dacf9",
+      "friday_framework_transcript-0.1.0a3.tar.gz": "5e0071de0d5964d68943794505c972a0996dd919ce91354f7e58a0d775e0950a"
+    }
+  },
+  {
+    "project": "friday-framework-sandbox",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:48.661111+00:00",
+    "files": {
+      "friday_framework_sandbox-0.1.0a3-py3-none-any.whl": "ac4a108cc2e11b101d2e62cf6fce883cf271c3dfbd813c114b6061e974d16b21",
+      "friday_framework_sandbox-0.1.0a3.tar.gz": "bee7123e4ca9453842c91c17bcf7356292e2a22b172ebbbf396ed70620635866"
+    }
+  },
+  {
+    "project": "friday-framework-moltbook",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:48.710986+00:00",
+    "files": {
+      "friday_framework_moltbook-0.1.0a3-py3-none-any.whl": "9933f32158b685951896f832b9f518b492290a9538a2844ef146dc79b1a06630",
+      "friday_framework_moltbook-0.1.0a3.tar.gz": "02b5618e3847710f5f6866f21b5ac9edb69f67017827b6dac0e4d6ce6d638080"
+    }
+  },
+  {
+    "project": "friday-framework-core",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:48.828695+00:00",
+    "files": {
+      "friday_framework_core-0.1.0a3-py3-none-any.whl": "b20a3c94ce3f890e71ebc66344fae9b77e017b1bb08fb6fd82065ae1b1ddabb9",
+      "friday_framework_core-0.1.0a3.tar.gz": "c426cf20be274873bafaeaedae8f771e25ca056815deb011f4261d9866c96779"
+    }
+  },
+  {
+    "project": "friday-framework-finance",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:49.137366+00:00",
+    "files": {
+      "friday_framework_finance-0.1.0a3-py3-none-any.whl": "6903eb0dd19f317bb42124efab5842b69a196f73dac67115e92b42fc58525b91",
+      "friday_framework_finance-0.1.0a3.tar.gz": "930ffcd540a5c6b4e3468f608fd02e5fcea1b22b1e864820a0b4f764b526faac"
+    }
+  },
+  {
+    "project": "friday-framework-llm",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:49.194102+00:00",
+    "files": {
+      "friday_framework_llm-0.1.0a3-py3-none-any.whl": "93fe0bec9c208757ef6f26338ea934dc8eaf2184825888bf5eff1408b8fd6730",
+      "friday_framework_llm-0.1.0a3.tar.gz": "155cf294a7ad59e8101c9b9104d6f344ce9d6e6edd433968917cf08c3f101741"
+    }
+  },
+  {
+    "project": "friday-framework-speech",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:49.251237+00:00",
+    "files": {
+      "friday_framework_speech-0.1.0a3-py3-none-any.whl": "6d6db4439f88054c121b44ba51bbd9404efff839e536bf63c5a2f565d3c0b2f8",
+      "friday_framework_speech-0.1.0a3.tar.gz": "7bce18cb0c630f0f0f7e30c6dde852a6b9814148ea9dd6ceccf763507d79be8a"
+    }
+  },
+  {
+    "project": "friday-framework-memory",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:49.386148+00:00",
+    "files": {
+      "friday_framework_memory-0.1.0a3-py3-none-any.whl": "afbc8faebc1664bf19232578a62da2f28f7610f535df869993dadcee869987d2",
+      "friday_framework_memory-0.1.0a3.tar.gz": "84e2ecc1360ed93f88d6eb0797ed16b7876d5393e31b3cea91da04d4e39ea4d1"
+    }
+  },
+  {
+    "project": "friday-framework-agent",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:49.683933+00:00",
+    "files": {
+      "friday_framework_agent-0.1.0a3-py3-none-any.whl": "b655e72c7bdcd3c62ecafc07a8d4c1d94847584fe96a2db6a08c45106acf6379",
+      "friday_framework_agent-0.1.0a3.tar.gz": "244b91f32b8eeed7e7fdaa89b8e37ab5c2dd4cc0e22b052a1039134a1c43f07d"
+    }
+  },
+  {
+    "project": "friday-framework-optimization",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:49.753533+00:00",
+    "files": {
+      "friday_framework_optimization-0.1.0a3-py3-none-any.whl": "f96955731e052f1b42d5df8795ae96fcf5ae8c828ea96fb4fe5f48c193e9e24d",
+      "friday_framework_optimization-0.1.0a3.tar.gz": "fa5518f9a10a796944a7f31721c0546f88d62bc725bb85d13ca6452f713c6654"
+    }
+  },
+  {
+    "project": "friday-framework-tools",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:49.808411+00:00",
+    "files": {
+      "friday_framework_tools-0.1.0a3-py3-none-any.whl": "454b7189738b21bc25f62348a9b27d396a233df4843bb52281ecad1354a04cf2",
+      "friday_framework_tools-0.1.0a3.tar.gz": "3ea8a5b42c80b8ebdb02c4f9eb170ba950aa97df094967e6a0bc224d7b8e1492"
+    }
+  },
+  {
+    "project": "friday-framework-mcp",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:49.998230+00:00",
+    "files": {
+      "friday_framework_mcp-0.1.0a3-py3-none-any.whl": "2d98ccbbef75a4f0f5753e257958b84d364d28f155414790361768728e009a17",
+      "friday_framework_mcp-0.1.0a3.tar.gz": "12300d787bcbb4228882fd72a670920ace793c7ab8d93c1c7263f3f9003e81f9"
+    }
+  },
+  {
+    "project": "friday-framework-runtime",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:33:50.189837+00:00",
+    "files": {
+      "friday_framework_runtime-0.1.0a3-py3-none-any.whl": "d611f51ca11ca19d8f41c0a0cc34ea3f9627e99c8e7a5e9785f950013eb4ff02",
+      "friday_framework_runtime-0.1.0a3.tar.gz": "3f69e9e284c815d2d4aa37bed6efb7d408a6152f6ce7dfe6a0be74315b0be515"
+    }
+  },
+  {
+    "project": "friday-framework-cli",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:34:53.962342+00:00",
+    "files": {
+      "friday_framework_cli-0.1.0a3-py3-none-any.whl": "8b46a76b024a84dfee3747d70001fc7975855067015b75e210e81f8037fe58c1",
+      "friday_framework_cli-0.1.0a3.tar.gz": "ae87d44d549dcfe64911230d3fd5da2eac4b8a31dce9caf95a92b70dc26bed85"
+    }
+  },
+  {
+    "project": "friday-chat",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:35:57.523761+00:00",
+    "files": {
+      "friday_chat-0.1.0a3-py3-none-any.whl": "e6418b158d3268bcf5390742ecf5301aaf2209342ab7320347d313081e515efe",
+      "friday_chat-0.1.0a3.tar.gz": "ade13b00a5a6ea80772f4e68b6e44b51e033b7f91bcd56b68af03597e355e00b"
+    }
+  },
+  {
+    "project": "friday-framework",
+    "version": "0.1.0a3",
+    "verified_at": "2026-10-15T02:37:00.157028+00:00",
+    "files": {
+      "friday_framework-0.1.0a3-py3-none-any.whl": "11dcd9b8aa23db7388ee3997f72ac496e0dc90cd288161fc942fd47841e02753",
+      "friday_framework-0.1.0a3.tar.gz": "265e46ef8b8f2d5b419bbbb63de6a089f618b56e05ba92c9ceae0a7675003635"
+    }
+  }
+]

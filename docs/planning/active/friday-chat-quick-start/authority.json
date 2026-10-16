@@ -1,0 +1,21 @@
+{
+  "initiative": "friday-chat-quick-start",
+  "maintainer": "Chuck Russell",
+  "date": "2026-10-15",
+  "base": "316749cc1584d5bff1ef8ae4358766ca0acecaac",
+  "branch": "docs/chat-quick-start",
+  "authorization": "Explicit user request: create docs/guides/quick-start.md with UC1 repository clone and UC2 PyPI pip/uv-add full framework installs, detailed runtime/model/CLI YAML, required model roles, Ollama and LM Studio, embedding memory explanation, a shell launcher, and a fresh independent new-user reviewer.",
+  "scope": [
+    "docs/guides/quick-start.md",
+    "docs/guides/README.md",
+    "docs/planning/active/friday-chat-quick-start/",
+    "docs/planning/board.yaml",
+    "docs/planning/README.md"
+  ],
+  "non_goals": [
+    "No product source/tests/dependencies/version changes",
+    "No install/sync/provider/real model/hardware/shared store calls",
+    "No external delivery/publication"
+  ],
+  "baseline_index_sha256": "e38dbae3dc76a008d849cebd569861abccc53db6f80f65813a7191ad3a7a18d4"
+}

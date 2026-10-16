@@ -1,0 +1,7 @@
+# CD-REL-A3-002 — alpha3 publication
+
+The maintainer explicitly directed: "publish this release to pypi". This authorizes production publication of the verified alpha3 cohort, including the necessary bounded release-helper correction found during artifact checks. Base40d7d38c; branch release/0.1.0a3; initiative remains started with implementation authority granted. This follows REL-A3-001 and does not alter its historical authority.
+
+Only product edit: scripts/check-package-artifacts.py, replacing the stale expected LiteLLM1.94.1 with1.100.1, exactly matching current source and lock metadata. No package code, dependencies, version, fixtures, or built artifacts may change. Preserve all existing negative checks. No unrelated cleanup, live provider calls, GitHub release, or history rewrite.
+
+Acceptance: metadata and 34 artifact checks pass; strict Twine checks pass; existing cohort/release-helper tests and changed-file Ruff pass; fresh read-only validation of the frozen one-line helper candidate; clean Python3.13 install from local artifacts, imports, dependency check, packaged templates and fake transport smoke, Chat help/version; freeze filenames and SHA256 before upload; upload each dependency layer to production PyPI with credentials confined to the process environment, compare all34 published filenames/hashes, and run a clean production-only install/CLI check. Stop on source/artifact mismatch, secrets, credential failure, or substantive failure; retry only bounded registry/network propagation. Source correction and validation precede upload.

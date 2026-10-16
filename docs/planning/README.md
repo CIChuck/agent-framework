@@ -30,6 +30,7 @@ Directory placement does not grant implementation authority.
 | 23 | [Tool capability notes](backlog/tool-capabilities/) | backlog | not_granted | not_started | reconcile requirements with tool governance |
 | 25 | [Friday runtime skills](backlog/friday-runtime-skills/) | backlog | not_granted | not_started | review the draft definition and promote a bounded first phase |
 | 26 | [Friday tool manifest continuity remediation](queued/friday-tool-manifest-continuity/) | normal | not_granted | not_started | validate the native-tool trial and review discovery-aware MCP remediation tasks |
+| 33 | [Board validation and GitHub delivery reconciliation](queued/friday-board-delivery-reconciliation/) | normal | not_granted | not_started | Review and approve delivery-evidence contract, migration and bounded construction directive |
 
 ## Approved
 
@@ -42,7 +43,11 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 27 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
-| 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](active/friday-deprecated-credential-cleanup/) | normal | granted | local | Aggregate VERIFIED; execute authorized GitHub PR/manual merge and remote deletion; acceptance remains separate |
+| 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](active/friday-deprecated-credential-cleanup/) | normal | granted | merged | PR 9 merged and remote branch deleted; maintainer lifecycle closeout/acceptance remains |
+| 29 | [Friday 0.1.0a3 repository version bump](active/friday-alpha3-version-bump/) | normal | granted | released | Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified |
+| 30 | [Precise Python monorepo and package READMEs](active/friday-readme-refresh/) | normal | granted | local | All17 README rewrites VERIFIED; maintainer acceptance and requested source delivery next |
+| 31 | [Current technical end-user guides for alpha3](active/friday-guides-refresh/) | normal | granted | local | VERIFIED guides; maintainer review, completion/acceptance and separately requested source delivery |
+| 32 | [Friday Chat quick start for clone and PyPI users](active/friday-chat-quick-start/) | normal | granted | local | VERIFIED delivery candidate; execute authorized push/PR/merge and remote branch deletion; alpha4 release follows |
 
 ## Completed
 

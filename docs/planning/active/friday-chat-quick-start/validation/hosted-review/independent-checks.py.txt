@@ -1,0 +1,108 @@
+"""Bounded read-only independent hosted-guide checks; existing environments only."""
+from pathlib import Path
+import base64
+import hashlib
+import importlib.metadata as metadata
+import json
+import os
+import re
+import subprocess
+import sys
+import tomllib
+
+W = Path('/private/tmp/friday-chat-quick-start')
+O = Path('/private/tmp/friday-chat-hosted-independent-review')
+P = '/private/tmp/friday-alpha3-pypi/production-install/bin/python'
+D = '/private/tmp/friday-mcp-upgrade/venv/bin/python'
+request_path = Path('/private/tmp/friday-chat-hosted-review-request.json')
+request = json.loads(request_path.read_text())
+E = {'reviewer': '/root/chat_hosted_openai_review', 'model': 'Codex GPT-6 family; exact backend build unavailable', 'date': '2026-10-15', 'mode': 'fresh-context read-only hosted delta and bounded aggregate', 'shared_context_exceptions': [], 'request': request, 'request_sha256': hashlib.sha256(request_path.read_bytes()).hexdigest(), 'commands': [], 'checks': {}}
+for name in ('bin','home','tmp','guard'):
+    (O/name).mkdir(exist_ok=True)
+guard = (O/'replay/guard/sitecustomize.py').read_text().replace(repr(str(O/'replay')+'/'), repr(str(O)+'/'))
+(O/'guard/sitecustomize.py').write_text(guard)
+shim=O/'bin/uv'
+shim.write_text('#!/bin/bash\nset -euo pipefail\nif [[ "$#" != 4 || "$1" != run || "$2" != python || "$3" != scripts/friday-dev-board.py || "$4" != validate ]]; then exit 99; fi\nexec '+D+' scripts/friday-dev-board.py validate\n')
+shim.chmod(0o700)
+env={'PATH':str(O/'bin')+':'+str(Path(P).parent)+':/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin','HOME':str(O/'home'),'TMPDIR':str(O/'tmp'),'PYTHONDONTWRITEBYTECODE':'1','PYTHONPATH':str(O/'guard'),'FRIDAY_TELEMETRY_ENABLED':'false','OTEL_SDK_DISABLED':'true','ANONYMIZED_TELEMETRY':'False','LITELLM_LOCAL_MODEL_COST_MAP':'True','HF_HUB_DISABLE_TELEMETRY':'1','LANG':'en_US.UTF-8'}
+def sha(value):return hashlib.sha256(value).hexdigest()
+def save(): (O/'evidence.json').write_text(json.dumps(E,indent=2)+'\n')
+def check(name,condition,detail):
+    E['checks'][name]={'pass':bool(condition),'detail':detail};save()
+    if not condition:raise RuntimeError(name)
+def cmd(argv,cwd=W,input=None,extra=None,expected=0):
+    result=subprocess.run(argv,cwd=cwd,env={**env,**(extra or {})},input=input,text=True,capture_output=True,timeout=60)
+    E['commands'].append({'argv':argv,'cwd':str(cwd),'exit_code':result.returncode,'stdout':result.stdout,'stderr':result.stderr});save()
+    if result.returncode!=expected:raise RuntimeError(E['commands'][-1])
+    return result.stdout+result.stderr
+
+check('candidate',cmd(['git','rev-parse','HEAD']).strip()==request['candidate'],request['candidate'])
+check('branch',cmd(['git','branch','--show-current']).strip()=='docs/chat-quick-start','docs/chat-quick-start')
+check('clean_before',not cmd(['git','status','--porcelain=v1']),'empty status')
+authority={p:sha((W/p).read_bytes()) for p in request['authority_sha256']}
+check('authority_hashes',authority==request['authority_sha256'],authority)
+guide=W/'docs/guides/quick-start.md'
+E['guide_sha256']=sha(guide.read_bytes())
+packet='docs/planning/active/friday-chat-quick-start/'
+allowed={'docs/guides/quick-start.md','docs/guides/README.md','docs/planning/board.yaml','docs/planning/README.md'}
+for label,rng in [('delta',request['diff']),('aggregate',request['aggregate_diff'])]:
+    paths=cmd(['git','diff','--name-only',rng]).splitlines();E[label+'_paths']=paths
+    check(label+'_scope',all(p in allowed or p.startswith(packet) for p in paths),paths)
+    diff=cmd(['git','diff','--no-ext-diff','--binary',rng])
+    (O/(label+'-diff.json')).write_text(json.dumps({'sha256':sha(diff.encode()),'diff_utf8_base64':base64.b64encode(diff.encode()).decode()},indent=2)+'\n')
+    cmd(['git','diff','--check',rng])
+check('unchanged_product_source',not cmd(['git','diff','--name-only',request['aggregate_diff'],'--','packages','pyproject.toml','uv.lock','scripts','tests']), 'No package/source/test/dependency/version/entrypoint/script delta')
+prior_paths=[packet+'validation/independent-review',packet+'validation/intro-review']
+check('prior_independent_evidence_immutable',not cmd(['git','diff','--name-only',request['diff'],'--',*prior_paths]),'Prior report/request/evidence trees byte-identical to amendment base')
+prior=W/prior_paths[0]/'report.md'
+check('prior_full_report_hash',sha(prior.read_bytes())==(prior.parent/'report.sha256').read_text().split()[0],sha(prior.read_bytes()))
+E['prior_intro_report_sha256']=sha((W/prior_paths[1]/'report.md').read_bytes())
+replay_source=W/packet/'validation/check-hosted-guide.py.txt'
+check('replayed_checker_identical',replay_source.read_bytes()==(O/'replay-hosted.py').read_bytes(),sha(replay_source.read_bytes()))
+replay=json.loads((O/'replay/results.json').read_text())
+check('all_hosted_replay_checks',len(replay['results'])==15 and not replay['errors'] and all(x['exit_code']==0 for x in replay['results']),{'groups':len(replay['results']),'errors':replay['errors'],'python':replay['python_fences_compiled'],'yaml':replay['yaml_examples_parsed'],'bash':replay['bash_fences_syntax_checked'],'links':replay['links_enumerated'],'local_links':replay['local_links_and_anchors_checked']})
+E['replay_results_sha256']=sha((O/'replay/results.json').read_bytes())
+for args in (['validate'],['next'],['show',request['initiative']],['render','--check']):cmd([D,'scripts/friday-dev-board.py',*args])
+cmd([D,'scripts/check-documentation-lifecycle.py'])
+E['documentation_gate_note']='Exact lifecycle script; sole uv-run board-validation invocation narrowly redirected by private shim to existing interpreter. No sync/install.'
+uvhelp=cmd(['/opt/homebrew/bin/uv','add','--help'])
+check('uv_add_active','--active' in uvhelp,'Local uv help confirms --active')
+uvhelp=cmd(['/opt/homebrew/bin/uv','sync','--help'])
+check('uv_sync_flags',all(x in uvhelp for x in ('--all-packages','--all-extras','--locked','--python')),'Local uv help confirms documented workspace flags')
+root=tomllib.loads((W/'pyproject.toml').read_text());chat=tomllib.loads((W/'packages/friday-chat/pyproject.toml').read_text())
+check('source_install_metadata',root['project']['version']=='0.1.0a3' and root['project']['requires-python']=='>=3.13.4' and 'all' in root['project']['optional-dependencies'] and 'friday-chat==0.1.0a3' in root['project']['dependencies'] and chat['project']['scripts']['friday-chat']=='friday_chat.cli:app','UC1/UC2 cohort, Python floor, aggregate all extra, Chat entrypoint')
+dist=metadata.distribution('friday-framework')
+check('installed_cohort_metadata',dist.version=='0.1.0a3' and set(root['project']['optional-dependencies'])<=set(dist.metadata.get_all('Provides-Extra')),{'version':dist.version,'extras':dist.metadata.get_all('Provides-Extra'),'python':sys.version,'litellm':metadata.version('litellm')})
+comparisons=[]
+files={'friday-chat':['config.py','runtime.py','display.py','cli.py','adapters.py','background.py','app.py','reorganization/assembly.py'],'friday-llm':['model_library.py','translation.py','embeddings.py','service.py','generation.py','capabilities.py','targets.py'],'friday-runtime':['model_library.py']}
+for package,names in files.items():
+    module=package.replace('-','_');dist=metadata.distribution('friday-chat' if package=='friday-chat' else package.replace('friday-','friday-framework-'))
+    for name in names:
+        source=W/'packages'/package/'src'/module/name;installed=Path(dist.locate_file(module+'/'+name))
+        comparisons.append({'source':str(source.relative_to(W)),'installed':str(installed),'source_sha256':sha(source.read_bytes()),'installed_sha256':sha(installed.read_bytes()),'equal':source.read_bytes()==installed.read_bytes()})
+check('installed_source_identity',all(c['equal'] for c in comparisons),comparisons)
+
+# Real-newline newcomer interaction and new-shell credentials under independent guard.
+case=O/'hosted-new-shell';case.mkdir(exist_ok=True)
+seed=next((O/'replay').glob('openai-launcher with spaces-*'))
+for src,dst in [('config.yml','config.yml'),('cli.yml','cli.yml'),('saved-models.yml','models.yml'),('run-friday-chat.sh','run-friday-chat.sh')]: (case/dst).write_bytes((seed/src).read_bytes())
+launcher=case/'run-friday-chat.sh';launcher.chmod(0o700)
+(case/'friday.env').write_text('export FRIDAY_CHAT_BIN=/private/tmp/friday-alpha3-pypi/production-install/bin/friday-chat\n')
+out=cmd([str(launcher),'fake'],cwd=O,input='Hello from the hosted independent review.\n/q\n',extra={'OPENAI_API_KEY':'synthetic-inherited'})
+check('actual_newline_hosted_fake_session','Hello from the hosted independent review.' in out and ('Goodbye' in out or 'session' in out.lower()),'Actual installed CLI handled greeting and /q under synthetic hosted credential')
+out=cmd([str(launcher),'fake'],cwd=O,input='/q\n',expected=1)
+check('new_shell_missing_key_rejected','OPENAI_API_KEY' in out,'Fresh sanitized shell without key fails credential resolution even in fake mode')
+stub=case/'credential check bin';stub.write_text('#!/bin/bash\nset -euo pipefail\n[[ "$OPENAI_API_KEY" = "$EXPECT_SYNTHETIC_KEY" ]]\necho "Synthetic credential precedence matched"\n');stub.chmod(0o700)
+import shlex
+(case/'friday.env').write_text('export FRIDAY_CHAT_BIN='+shlex.quote(str(stub))+'\n')
+cmd([str(launcher),'real'],cwd=O,extra={'OPENAI_API_KEY':'synthetic-inherited','EXPECT_SYNTHETIC_KEY':'synthetic-inherited'})
+(case/'friday.env').write_text('export FRIDAY_CHAT_BIN='+shlex.quote(str(stub))+'\nexport OPENAI_API_KEY=synthetic-file\n')
+cmd([str(launcher),'real'],cwd=O,extra={'OPENAI_API_KEY':'synthetic-inherited','EXPECT_SYNTHETIC_KEY':'synthetic-file'})
+check('credential_inheritance_and_file_precedence',True,'Without a key assignment friday.env preserves inherited key; explicit file export overrides it')
+cmd([str(launcher),'real'],cwd=O,extra={'EXPECT_SYNTHETIC_KEY':'synthetic-file'})
+check('new_shell_file_supplied_key',True,'Private file export supplies key in a new sanitized shell')
+
+check('clean_after',not cmd(['git','status','--porcelain=v1']),'empty status')
+check('candidate_after',cmd(['git','rev-parse','HEAD']).strip()==request['candidate'],request['candidate'])
+E['outcome']='VERIFIED';save()
+print(json.dumps({'outcome':E['outcome'],'checks':len(E['checks']),'commands':len(E['commands']),'guide_sha256':E['guide_sha256'],'evidence_sha256':sha((O/'evidence.json').read_bytes())},indent=2))

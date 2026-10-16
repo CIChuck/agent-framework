@@ -1,0 +1,1 @@
+Validated 17 wheels and 17 sdists in /private/tmp/friday-alpha3-pypi/dist

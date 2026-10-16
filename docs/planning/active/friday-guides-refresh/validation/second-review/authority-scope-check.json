@@ -1,0 +1,449 @@
+{
+  "candidate": "6fb53e00877214d813656b204f950c8a0b725d05",
+  "base": "123d9ed943519c4e68bf9249705e55d1a1ebf8b8",
+  "remediation_base": "6691aa2428b81ed96fd8d404f6b3f5a0f1e82f13",
+  "head": "6fb53e00877214d813656b204f950c8a0b725d05",
+  "branch": "docs/guides-refresh",
+  "status": "",
+  "authority": {
+    "AGENTS.md": {
+      "expected": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "actual": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    "docs/reference/policies/repository-engineering-policy.md": {
+      "expected": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "actual": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    "docs/reference/policies/development-task-lifecycle.md": {
+      "expected": "7087fb62381cc8a46128bc6745476d1aa08e1d577b4c73340760657ae834fe2a",
+      "actual": "7087fb62381cc8a46128bc6745476d1aa08e1d577b4c73340760657ae834fe2a"
+    },
+    "docs/reference/policies/independent-validation-policy.md": {
+      "expected": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "actual": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    "docs/planning/active/friday-guides-refresh/authority.json": {
+      "expected": "573a1c4148a4321ca4cb06b7f8d2421dc662588c653e12935fc286fe9d668ac2",
+      "actual": "573a1c4148a4321ca4cb06b7f8d2421dc662588c653e12935fc286fe9d668ac2"
+    },
+    "docs/planning/active/friday-guides-refresh/directives/CD-GUIDE-001-guides-refresh.md": {
+      "expected": "0c064f647a47c0d2ac82b34e83bf9a3ee9a812c1d3ce13b650b9c203f4b7d3ee",
+      "actual": "0c064f647a47c0d2ac82b34e83bf9a3ee9a812c1d3ce13b650b9c203f4b7d3ee"
+    },
+    "docs/planning/active/friday-guides-refresh/directives/REM-GUIDE-001.md": {
+      "expected": "af275dd018b798f0ff9b768962a2529b9f8cc18b99e301de0eae5326c8641e76",
+      "actual": "af275dd018b798f0ff9b768962a2529b9f8cc18b99e301de0eae5326c8641e76"
+    },
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/report.md": {
+      "expected": "f0149d02d0ab700730f4d685740e8877b8caee90564e582b225394b67f594088",
+      "actual": "f0149d02d0ab700730f4d685740e8877b8caee90564e582b225394b67f594088"
+    }
+  },
+  "baseline": {
+    "docs/guides/01-executive-summary.md": {
+      "expected": "cdad1e5c8c1215f13bb7140ebc2cb4d9c9257dfdab15adfc7676732f54487af6",
+      "actual": "cdad1e5c8c1215f13bb7140ebc2cb4d9c9257dfdab15adfc7676732f54487af6"
+    },
+    "docs/guides/02-getting-started.md": {
+      "expected": "4ffc81007ef44840bf453791d77c9f5418ba08257b90aaefa285a6fbdc0fcb3d",
+      "actual": "4ffc81007ef44840bf453791d77c9f5418ba08257b90aaefa285a6fbdc0fcb3d"
+    },
+    "docs/guides/03-core-concepts.md": {
+      "expected": "7cb5cba356c2cc6b333b26b373181286c634a658a3a177007cd35557000548bb",
+      "actual": "7cb5cba356c2cc6b333b26b373181286c634a658a3a177007cd35557000548bb"
+    },
+    "docs/guides/04-adaptive-memory.md": {
+      "expected": "fee31fdfb4ff5d5b1092126e638522d06f4adc969caaa47298836bef7f6144f0",
+      "actual": "fee31fdfb4ff5d5b1092126e638522d06f4adc969caaa47298836bef7f6144f0"
+    },
+    "docs/guides/05-tools.md": {
+      "expected": "db294c5956e6fbdac2ef9e6cef6106d23048d0e0d27f11776d9c1d046a48b6d3",
+      "actual": "db294c5956e6fbdac2ef9e6cef6106d23048d0e0d27f11776d9c1d046a48b6d3"
+    },
+    "docs/guides/06-agents.md": {
+      "expected": "209d099d4db369b83dfe0e9b3f2c99a74d3785d68c5f1de7df52358bee9e3320",
+      "actual": "209d099d4db369b83dfe0e9b3f2c99a74d3785d68c5f1de7df52358bee9e3320"
+    },
+    "docs/guides/07-multi-agent.md": {
+      "expected": "d5914aad03f9bdf232935a97c8302da73193d86465977aea7f455e9265a48e64",
+      "actual": "d5914aad03f9bdf232935a97c8302da73193d86465977aea7f455e9265a48e64"
+    },
+    "docs/guides/08-workflows.md": {
+      "expected": "18fcdc6a92d5c36b29c9c1d2a2d6653f542b5128e16639b1a3ca7b06f336758a",
+      "actual": "18fcdc6a92d5c36b29c9c1d2a2d6653f542b5128e16639b1a3ca7b06f336758a"
+    },
+    "docs/guides/09-cli-reference.md": {
+      "expected": "9eac9abc6404f23940345710c8ef329aa85adb7981acd4ed9029a2afda49f874",
+      "actual": "9eac9abc6404f23940345710c8ef329aa85adb7981acd4ed9029a2afda49f874"
+    },
+    "docs/guides/10-configuration.md": {
+      "expected": "5085a99de6fb7b9417a5eb7c3d19983070eba2ed14052d4e5c085410699056c0",
+      "actual": "5085a99de6fb7b9417a5eb7c3d19983070eba2ed14052d4e5c085410699056c0"
+    },
+    "docs/guides/11-advanced-topics.md": {
+      "expected": "b1106ef407bb96f1a0cc720b546228140fe94223e82e151267a38f0a0edbc717",
+      "actual": "b1106ef407bb96f1a0cc720b546228140fe94223e82e151267a38f0a0edbc717"
+    },
+    "docs/guides/12-use-cases.md": {
+      "expected": "a772bd0ab4f400c812154cad95b609180fce4e92d9d8787217b4027b819a18b3",
+      "actual": "a772bd0ab4f400c812154cad95b609180fce4e92d9d8787217b4027b819a18b3"
+    },
+    "docs/guides/13-troubleshooting.md": {
+      "expected": "c8f48cc7ed17762c393a265775e02fe99f12d4ed3c2bd7490bf9760746c2f73d",
+      "actual": "c8f48cc7ed17762c393a265775e02fe99f12d4ed3c2bd7490bf9760746c2f73d"
+    },
+    "docs/guides/14-appendices.md": {
+      "expected": "323e6b9a9c372e6656b7f4213e3eb500a3ce435228301fb00a6756f9f09025bc",
+      "actual": "323e6b9a9c372e6656b7f4213e3eb500a3ce435228301fb00a6756f9f09025bc"
+    },
+    "docs/guides/15-contributing.md": {
+      "expected": "a838eec5468cbda3010c852326bf674cdcdfdcdfadc1d06d1bb19b70c46e0606",
+      "actual": "a838eec5468cbda3010c852326bf674cdcdfdcdfadc1d06d1bb19b70c46e0606"
+    },
+    "docs/guides/16-desktop-deployment.md": {
+      "expected": "a64fc6e891318075f6c45e1b56be0bd4f4a9c8d9de8760d9c165123c15b8d044",
+      "actual": "a64fc6e891318075f6c45e1b56be0bd4f4a9c8d9de8760d9c165123c15b8d044"
+    },
+    "docs/guides/17-mcp-client.md": {
+      "expected": "373d5ec99655f7d9b3bbb2a2e03e702ab8cdc0d4f13ca6de4c6892c6e6ff36d4",
+      "actual": "373d5ec99655f7d9b3bbb2a2e03e702ab8cdc0d4f13ca6de4c6892c6e6ff36d4"
+    },
+    "docs/guides/18-mcp-server.md": {
+      "expected": "2da4b65182f1371c6d3d38567d6fbaba9db0087057e30e6f2ae4b8c15e1b9ded",
+      "actual": "2da4b65182f1371c6d3d38567d6fbaba9db0087057e30e6f2ae4b8c15e1b9ded"
+    },
+    "docs/guides/19-mcp-migration.md": {
+      "expected": "369982a1243779c5d2e4cb61bc53a8bc301ef9bdb92bc64debd76a2e4054e27e",
+      "actual": "369982a1243779c5d2e4cb61bc53a8bc301ef9bdb92bc64debd76a2e4054e27e"
+    },
+    "docs/guides/FRIDAY-FEATURES.md": {
+      "expected": "a4957a19adf98c5ca6a6e65869d30c1788cbfc17b8bf91ec7db7866374681a1f",
+      "actual": "a4957a19adf98c5ca6a6e65869d30c1788cbfc17b8bf91ec7db7866374681a1f"
+    },
+    "docs/guides/OUTLINE.md": {
+      "expected": "825f0d9a6a569ac95dc4b3a7c38059c62466f01fa80d747c9d3582cbdb60c911",
+      "actual": "825f0d9a6a569ac95dc4b3a7c38059c62466f01fa80d747c9d3582cbdb60c911"
+    },
+    "docs/guides/README.md": {
+      "expected": "53b312ed5ecce8dd76452b7b750579790b5cd8c5d6fd791f1f4ec88614abdcc7",
+      "actual": "53b312ed5ecce8dd76452b7b750579790b5cd8c5d6fd791f1f4ec88614abdcc7"
+    },
+    "docs/guides/memory-management-guidelines.md": {
+      "expected": "1cab9ded6e177a91084cbe483f5806809a9f53d585f53fe03b454348936fd661",
+      "actual": "1cab9ded6e177a91084cbe483f5806809a9f53d585f53fe03b454348936fd661"
+    },
+    "docs/guides/security-configuration-guidelines.md": {
+      "expected": "bfeef92007f506a8a8a0a5faa4596fafeffdae400fc150986a00d548c41d48ee",
+      "actual": "bfeef92007f506a8a8a0a5faa4596fafeffdae400fc150986a00d548c41d48ee"
+    },
+    "docs/guides/speech.md": {
+      "expected": "a2f2d8a4c5649cb2b72120a86f7f923927548deb194b99ebcb0884c67902b0e3",
+      "actual": "a2f2d8a4c5649cb2b72120a86f7f923927548deb194b99ebcb0884c67902b0e3"
+    }
+  },
+  "guide_comparison": [
+    {
+      "path": "docs/guides/01-executive-summary.md",
+      "prior_sha256": "f1837b09586bc5af7b87b0011510ce3bd5118b8343dede32209d6d7b813a007f",
+      "candidate_sha256": "f1837b09586bc5af7b87b0011510ce3bd5118b8343dede32209d6d7b813a007f",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 0
+    },
+    {
+      "path": "docs/guides/02-getting-started.md",
+      "prior_sha256": "a4622e1b09343b437118996376c8aa6523e2bf0c7c60c11b4bb0a467787cf6aa",
+      "candidate_sha256": "a4622e1b09343b437118996376c8aa6523e2bf0c7c60c11b4bb0a467787cf6aa",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 6
+    },
+    {
+      "path": "docs/guides/03-core-concepts.md",
+      "prior_sha256": "a4554e89d617c541d019bfa8f759cdac63a0f748ed1201e6f6c10cc116ea05df",
+      "candidate_sha256": "a4554e89d617c541d019bfa8f759cdac63a0f748ed1201e6f6c10cc116ea05df",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 3
+    },
+    {
+      "path": "docs/guides/04-adaptive-memory.md",
+      "prior_sha256": "bfd84bb9233710377766a4e4b86439d9795c66f17cf82a386d799f5c3a121f08",
+      "candidate_sha256": "bfd84bb9233710377766a4e4b86439d9795c66f17cf82a386d799f5c3a121f08",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 3
+    },
+    {
+      "path": "docs/guides/05-tools.md",
+      "prior_sha256": "0d4a0d603bdefc7222b11f4e85f362a843cb755edfac2fefc91fac8c3dc04a91",
+      "candidate_sha256": "27a3b63158822b1f689a80d0b026432ed71695d0e7d13041507096449160957a",
+      "identical": false,
+      "all_fences_identical": true,
+      "fences": 3
+    },
+    {
+      "path": "docs/guides/06-agents.md",
+      "prior_sha256": "fef9226f1bcd8aee142e16b22f96ab049a525dd0c8bf1056eaf9d78f4a52b34b",
+      "candidate_sha256": "fef9226f1bcd8aee142e16b22f96ab049a525dd0c8bf1056eaf9d78f4a52b34b",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 2
+    },
+    {
+      "path": "docs/guides/07-multi-agent.md",
+      "prior_sha256": "ea66dd1b48eae7c31a1e250f9b2e900f4463c059f9a73f4c3d9e447fbe4f928e",
+      "candidate_sha256": "ea66dd1b48eae7c31a1e250f9b2e900f4463c059f9a73f4c3d9e447fbe4f928e",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 2
+    },
+    {
+      "path": "docs/guides/08-workflows.md",
+      "prior_sha256": "a51142153a64d383168bb5a71d7babba0fbd04a3a25eb82edd24727150483667",
+      "candidate_sha256": "a51142153a64d383168bb5a71d7babba0fbd04a3a25eb82edd24727150483667",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 8
+    },
+    {
+      "path": "docs/guides/09-cli-reference.md",
+      "prior_sha256": "8763c2eed373b2af9db6384de8aee789fe369c1dbfa1ed426ec2d35259bc2e3e",
+      "candidate_sha256": "5ed8d2062244c60a8f49ef00bf6e1d322b3692eeefcab02f0064b4ecdbf9bcde",
+      "identical": false,
+      "all_fences_identical": true,
+      "fences": 1
+    },
+    {
+      "path": "docs/guides/10-configuration.md",
+      "prior_sha256": "3faad249d8e4cb3ce6f55a3fd9eaeb033908f0bcd49ce2e8fc7267aba9aa9716",
+      "candidate_sha256": "3faad249d8e4cb3ce6f55a3fd9eaeb033908f0bcd49ce2e8fc7267aba9aa9716",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 7
+    },
+    {
+      "path": "docs/guides/11-advanced-topics.md",
+      "prior_sha256": "0fbcde541564e1f2d370c7c8a77106b768d1e15c978ffad0da214d765b09c351",
+      "candidate_sha256": "0fbcde541564e1f2d370c7c8a77106b768d1e15c978ffad0da214d765b09c351",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 3
+    },
+    {
+      "path": "docs/guides/12-use-cases.md",
+      "prior_sha256": "b5c8384932495dada08d936189ce8699688ba2166371109dc14551c232ff3509",
+      "candidate_sha256": "b5c8384932495dada08d936189ce8699688ba2166371109dc14551c232ff3509",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 1
+    },
+    {
+      "path": "docs/guides/13-troubleshooting.md",
+      "prior_sha256": "44684e03707d034ccb7efbba461ff7ee25e9b4079d707b82a93e48c31e117440",
+      "candidate_sha256": "351e1d66c8f990e88bcb0f4174309076492b4911a710929a174e5ae3cc0d5174",
+      "identical": false,
+      "all_fences_identical": true,
+      "fences": 2
+    },
+    {
+      "path": "docs/guides/14-appendices.md",
+      "prior_sha256": "4aab115bab3c67f1e4a457754ed933fde5f757fbcfb811753f73c17f39392eb2",
+      "candidate_sha256": "a51b42f30f4c6fc6b242b57bfdaba8a91c2c73e234884cd9fb91c0443ba97398",
+      "identical": false,
+      "all_fences_identical": true,
+      "fences": 0
+    },
+    {
+      "path": "docs/guides/15-contributing.md",
+      "prior_sha256": "0d08b90a4b8dfcd23e8bb5943eb287afb9dc5d2e915343e1731d2c7407d53620",
+      "candidate_sha256": "0d08b90a4b8dfcd23e8bb5943eb287afb9dc5d2e915343e1731d2c7407d53620",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 3
+    },
+    {
+      "path": "docs/guides/16-desktop-deployment.md",
+      "prior_sha256": "b676d1c32785084897cfd3746b97954576a98205bc3d49f2dd8b97534d99fb13",
+      "candidate_sha256": "b676d1c32785084897cfd3746b97954576a98205bc3d49f2dd8b97534d99fb13",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 4
+    },
+    {
+      "path": "docs/guides/17-mcp-client.md",
+      "prior_sha256": "8b7dbb204942846468693a9e4a21e81e91894131e797aae3855c5f2d4ee4cd2c",
+      "candidate_sha256": "8b7dbb204942846468693a9e4a21e81e91894131e797aae3855c5f2d4ee4cd2c",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 7
+    },
+    {
+      "path": "docs/guides/18-mcp-server.md",
+      "prior_sha256": "b6e6174edf2b0b175d5a1324fa4cd9ff5f3b8b74a35485ed48b2894728946e27",
+      "candidate_sha256": "b6e6174edf2b0b175d5a1324fa4cd9ff5f3b8b74a35485ed48b2894728946e27",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 2
+    },
+    {
+      "path": "docs/guides/19-mcp-migration.md",
+      "prior_sha256": "212ddd8790ac53ca51a8612f61557d9567b2e5afd23fa88d6e01783e85050611",
+      "candidate_sha256": "212ddd8790ac53ca51a8612f61557d9567b2e5afd23fa88d6e01783e85050611",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 6
+    },
+    {
+      "path": "docs/guides/FRIDAY-FEATURES.md",
+      "prior_sha256": "56fe73fabdc8bcb0433796d60ec2bf1a87fd78f2cfd6aeb27b5c6f35aba2fb88",
+      "candidate_sha256": "56fe73fabdc8bcb0433796d60ec2bf1a87fd78f2cfd6aeb27b5c6f35aba2fb88",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 0
+    },
+    {
+      "path": "docs/guides/OUTLINE.md",
+      "prior_sha256": "a57b8737a4e9f124d742d97aec627b8223cf02e877354800683050111ca0447b",
+      "candidate_sha256": "a57b8737a4e9f124d742d97aec627b8223cf02e877354800683050111ca0447b",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 0
+    },
+    {
+      "path": "docs/guides/README.md",
+      "prior_sha256": "e38dbae3dc76a008d849cebd569861abccc53db6f80f65813a7191ad3a7a18d4",
+      "candidate_sha256": "e38dbae3dc76a008d849cebd569861abccc53db6f80f65813a7191ad3a7a18d4",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 0
+    },
+    {
+      "path": "docs/guides/memory-management-guidelines.md",
+      "prior_sha256": "e9f2ab933b800d7db3a9b20f95389230e40a7caaa2ae745f29a2b0586c90a086",
+      "candidate_sha256": "e9f2ab933b800d7db3a9b20f95389230e40a7caaa2ae745f29a2b0586c90a086",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 4
+    },
+    {
+      "path": "docs/guides/security-configuration-guidelines.md",
+      "prior_sha256": "fc96fb882a8b8bac785007ee6472f3f270fb7b8f80927f27d20a9587fa092926",
+      "candidate_sha256": "fc96fb882a8b8bac785007ee6472f3f270fb7b8f80927f27d20a9587fa092926",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 2
+    },
+    {
+      "path": "docs/guides/speech.md",
+      "prior_sha256": "e9c6675f85ba151e4d6f2572c4086aec12db35e057d5f214ff39a739614f5e7f",
+      "candidate_sha256": "e9c6675f85ba151e4d6f2572c4086aec12db35e057d5f214ff39a739614f5e7f",
+      "identical": true,
+      "all_fences_identical": true,
+      "fences": 6
+    }
+  ],
+  "aggregate_changed_paths": [
+    "docs/guides/01-executive-summary.md",
+    "docs/guides/02-getting-started.md",
+    "docs/guides/03-core-concepts.md",
+    "docs/guides/04-adaptive-memory.md",
+    "docs/guides/05-tools.md",
+    "docs/guides/06-agents.md",
+    "docs/guides/07-multi-agent.md",
+    "docs/guides/08-workflows.md",
+    "docs/guides/09-cli-reference.md",
+    "docs/guides/10-configuration.md",
+    "docs/guides/11-advanced-topics.md",
+    "docs/guides/12-use-cases.md",
+    "docs/guides/13-troubleshooting.md",
+    "docs/guides/14-appendices.md",
+    "docs/guides/15-contributing.md",
+    "docs/guides/16-desktop-deployment.md",
+    "docs/guides/17-mcp-client.md",
+    "docs/guides/18-mcp-server.md",
+    "docs/guides/19-mcp-migration.md",
+    "docs/guides/FRIDAY-FEATURES.md",
+    "docs/guides/OUTLINE.md",
+    "docs/guides/README.md",
+    "docs/guides/memory-management-guidelines.md",
+    "docs/guides/security-configuration-guidelines.md",
+    "docs/guides/speech.md",
+    "docs/planning/README.md",
+    "docs/planning/active/friday-guides-refresh/README.md",
+    "docs/planning/active/friday-guides-refresh/authority.json",
+    "docs/planning/active/friday-guides-refresh/directives/CD-GUIDE-001-guides-refresh.md",
+    "docs/planning/active/friday-guides-refresh/directives/REM-GUIDE-001.md",
+    "docs/planning/active/friday-guides-refresh/execution-log.md",
+    "docs/planning/active/friday-guides-refresh/review-and-changes.md",
+    "docs/planning/active/friday-guides-refresh/validation/baseline-audit.json",
+    "docs/planning/active/friday-guides-refresh/validation/builder-checks.json",
+    "docs/planning/active/friday-guides-refresh/validation/check-guides.py.txt",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/authority-check.json",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/board-render.log",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/board-validate.log",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/documentation-lifecycle.log",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/evidence.json",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/independent-contract-probes.log",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/independent-contract-probes.py.txt",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/replay.log",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/report.md",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/reproduce.sh.txt",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/retained-evidence.json",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/reviewer-checks.json",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/static-review.json",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/static-review.log",
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/static-review.py.txt",
+    "docs/planning/active/friday-guides-refresh/validation/network-and-state-guard.py.txt",
+    "docs/planning/active/friday-guides-refresh/validation/published-source-comparison.json",
+    "docs/planning/active/friday-guides-refresh/validation/remediation/guide-checks.json",
+    "docs/planning/active/friday-guides-refresh/validation/remediation/network-and-state-guard.py.txt",
+    "docs/planning/active/friday-guides-refresh/validation/remediation/probes.log",
+    "docs/planning/active/friday-guides-refresh/validation/remediation/probes.py.txt",
+    "docs/planning/active/friday-guides-refresh/validation/remediation/repository-checks.json",
+    "docs/planning/active/friday-guides-refresh/validation/remediation/scope.json",
+    "docs/planning/active/friday-guides-refresh/validation/repository-checks.json",
+    "docs/planning/board.yaml"
+  ],
+  "initial_evidence_hashes": {
+    "evidence.json": true,
+    "independent-contract-probes.log": true,
+    "reproduce.sh.txt": true,
+    "board-validate.log": true,
+    "reviewer-checks.json": true,
+    "authority-check.json": true,
+    "static-review.log": true,
+    "report.md": true,
+    "independent-contract-probes.py.txt": true,
+    "static-review.py.txt": true,
+    "documentation-lifecycle.log": true,
+    "replay.log": true,
+    "static-review.json": true,
+    "board-render.log": true
+  },
+  "outline_headings_exact_match": {
+    "01-executive-summary.md": true,
+    "02-getting-started.md": true,
+    "03-core-concepts.md": true,
+    "04-adaptive-memory.md": true,
+    "05-tools.md": true,
+    "06-agents.md": true,
+    "07-multi-agent.md": true,
+    "08-workflows.md": true,
+    "09-cli-reference.md": true,
+    "10-configuration.md": true,
+    "11-advanced-topics.md": true,
+    "12-use-cases.md": true,
+    "13-troubleshooting.md": true,
+    "14-appendices.md": true,
+    "15-contributing.md": true,
+    "16-desktop-deployment.md": true,
+    "17-mcp-client.md": true,
+    "18-mcp-server.md": true,
+    "19-mcp-migration.md": true
+  },
+  "whitespace_exit_code": 2,
+  "whitespace_affected_files": [
+    "docs/planning/active/friday-guides-refresh/validation/initial-review/replay.log"
+  ]
+}

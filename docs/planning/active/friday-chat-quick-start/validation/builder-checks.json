@@ -1,0 +1,73 @@
+{
+  "candidate_worktree": "/private/tmp/friday-chat-quick-start",
+  "guide_sha256": "b50c4b9e567d48af20d54d27b9d4c93653039ae4d80ddea683cf133ced06b755",
+  "framework_version": "0.1.0a3",
+  "python_fences_compiled": 3,
+  "yaml_examples_parsed": 4,
+  "bash_fences_syntax_checked": 16,
+  "links_enumerated": 75,
+  "local_links_and_anchors_checked": 64,
+  "results": [
+    {
+      "label": "ollama-schema-and-assembly",
+      "exit_code": 0,
+      "stdout": "Complete canonical real assembly without startup or model calls; ten chat/two embedding roles; no adapter gaps\nChat services: chat, extraction, synthesizer, classifier, researcher, judge, compaction, passage_router, smart_file_summarizer, smart_file_synthesizer\nEmbedding services: memory, maintenance\nDisplay source: explicit\nConfiguration parsed and model bindings resolved; no model call made.\n",
+      "stderr": ""
+    },
+    {
+      "label": "ollama-preflight-mocked-transport",
+      "exit_code": 0,
+      "stdout": "Chat reply: Hello from a synthetic response.\nEmbedding vector length: 3\nTransport routes [('chat', 'openai/qwen2.5:7b', 'http://127.0.0.1:11434/v1'), ('embedding', 'openai/nomic-embed-text', 'http://127.0.0.1:11434/v1')]\n",
+      "stderr": ""
+    },
+    {
+      "label": "ollama-negative-contracts",
+      "exit_code": 0,
+      "stdout": "Missing credential rejected\nUnknown profile rejected\nMissing maintenance role rejected\n",
+      "stderr": ""
+    },
+    {
+      "label": "ollama-launcher with spaces",
+      "exit_code": 0,
+      "stdout": "Actual installed launcher fake session passed\nEnvironment generation, existing-file refusal, cwd-independent mode/path selection, and missing-file/invalid-argument checks passed\n",
+      "stderr": ""
+    },
+    {
+      "label": "lmstudio-schema-and-assembly",
+      "exit_code": 0,
+      "stdout": "Complete canonical real assembly without startup or model calls; ten chat/two embedding roles; no adapter gaps\nChat services: chat, extraction, synthesizer, classifier, researcher, judge, compaction, passage_router, smart_file_summarizer, smart_file_synthesizer\nEmbedding services: memory, maintenance\nDisplay source: explicit\nConfiguration parsed and model bindings resolved; no model call made.\n",
+      "stderr": ""
+    },
+    {
+      "label": "lmstudio-preflight-mocked-transport",
+      "exit_code": 0,
+      "stdout": "Chat reply: Hello from a synthetic response.\nEmbedding vector length: 3\nTransport routes [('chat', 'openai/qwen2.5-7b-instruct', 'http://127.0.0.1:1234/v1'), ('embedding', 'openai/text-embedding-nomic-embed-text-v1.5', 'http://127.0.0.1:1234/v1')]\n",
+      "stderr": ""
+    },
+    {
+      "label": "lmstudio-negative-contracts",
+      "exit_code": 0,
+      "stdout": "Missing credential rejected\nUnknown profile rejected\nMissing maintenance role rejected\n",
+      "stderr": ""
+    },
+    {
+      "label": "lmstudio-launcher with spaces",
+      "exit_code": 0,
+      "stdout": "Actual installed launcher fake session passed\nEnvironment generation, existing-file refusal, cwd-independent mode/path selection, and missing-file/invalid-argument checks passed\n",
+      "stderr": ""
+    },
+    {
+      "label": "render",
+      "exit_code": 0,
+      "stdout": "Both guide bodies rendered without warnings\n",
+      "stderr": ""
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "No install/sync, downloads or real provider/model calls",
+    "Live preflight executed only with mocked transport; not model-quality or retrieval evidence",
+    "Both model libraries exercised against installed production alpha3 with private paths/network/write guard",
+    "Installed/source package inventory verified by previous guide review; no source changes in this task"
+  ]
+}

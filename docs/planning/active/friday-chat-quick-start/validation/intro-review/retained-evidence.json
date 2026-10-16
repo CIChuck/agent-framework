@@ -1,0 +1,9 @@
+{
+  "candidate": "847b5c34acc1f7da14630f209cef053994d8cbf6",
+  "verdict": "VERIFIED",
+  "files": {
+    "report.md": "ce6d9882c39b5f651bf3ac5b696017c6568d5792f1b610a30a119047aea7b04e",
+    "evidence.json": "b1947be7e20a2776e0093e73368f21f1b6c038fe77399a9b9a5bb0e4bd386481",
+    "review.py.txt": "c56e705a730c7efbb64101b25c5bf3bddfa2853147e6116e6d1fa9e02cb26328"
+  }
+}

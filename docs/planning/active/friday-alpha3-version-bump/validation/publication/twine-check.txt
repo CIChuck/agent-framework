@@ -1,0 +1,82 @@
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_chat-0.1.0a3-py3-none-any.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework-0.1.0a3-py3-none-any.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_agent-0.1.0a3-py3-none-any
+.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_cli-0.1.0a3-py3-none-any.w
+hl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_core-0.1.0a3-py3-none-any.
+whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_finance-0.1.0a3-py3-none-a
+ny.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_llm-0.1.0a3-py3-none-any.w
+hl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_mcp-0.1.0a3-py3-none-any.w
+hl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_memory-0.1.0a3-py3-none-an
+y.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_moltbook-0.1.0a3-py3-none-
+any.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_optimization-0.1.0a3-py3-n
+one-any.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_runtime-0.1.0a3-py3-none-a
+ny.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_sandbox-0.1.0a3-py3-none-a
+ny.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_speech-0.1.0a3-py3-none-an
+y.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_telemetry-0.1.0a3-py3-none
+-any.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_tools-0.1.0a3-py3-none-any
+.whl: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_transcript-0.1.0a3-py3-non
+e-any.whl: PASSED
+Checking /private/tmp/friday-alpha3-pypi/dist/friday_chat-0.1.0a3.tar.gz: PASSED
+Checking /private/tmp/friday-alpha3-pypi/dist/friday_framework-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_agent-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_cli-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_core-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_finance-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_llm-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_mcp-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_memory-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_moltbook-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_optimization-0.1.0a3.tar.g
+z: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_runtime-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_sandbox-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_speech-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_telemetry-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_tools-0.1.0a3.tar.gz: PASSED
+Checking
+/private/tmp/friday-alpha3-pypi/dist/friday_framework_transcript-0.1.0a3.tar.gz:PASSED
