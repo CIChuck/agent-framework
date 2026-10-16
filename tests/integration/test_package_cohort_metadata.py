@@ -10,7 +10,7 @@ from pathlib import Path
 from packaging.requirements import Requirement
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
-COHORT_VERSION = "0.1.0a3"
+COHORT_VERSION = "0.1.0a4"
 COHORT_DISTRIBUTIONS = {
     "friday-chat",
     "friday-framework",

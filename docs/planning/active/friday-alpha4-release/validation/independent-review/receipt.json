@@ -1,0 +1,9 @@
+{
+  "candidate": "e965917a9a236c4428972255e2017be81aa69d7f",
+  "base": "465c5643b855c76a3584c393e96fb7bd1c855396",
+  "verdict": "VERIFIED",
+  "review_mode": "fresh-context read-only full release review",
+  "authority_sha256": "eedde1ab89091cd75c17223e6b1656d29687ce3ac389a0989717d012857c9351",
+  "directive_sha256": "21046526cdb982fbbddb8ddde71c4b4511a4329a24a94720df68181622dc6a10",
+  "artifact_manifest_sha256": "b4b0180dccb2cb1c6393ba78d07dd353143d042b3d5480f22712f4f35284bfaa"
+}

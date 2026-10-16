@@ -2,7 +2,7 @@
 
 Friday is a modular Python framework for building agents with conversation memory, model services, tools and workflows. Use **Friday Chat** for a terminal application, **Friday Runtime** to compose an embedded application, or individual packages for smaller integrations.
 
-**Current release:** [0.1.0a3](https://pypi.org/project/friday-framework/0.1.0a3/) (alpha) · **Python:** 3.13.4+ · **License:** MIT
+**Current release:** [0.1.0a4](https://pypi.org/project/friday-framework/0.1.0a4/) (alpha) · **Python:** 3.13.4+ · **License:** MIT
 
 Public APIs and configuration are still evolving. The implemented packages and their limits are described below; the Optimization namespace is scaffolding. Keep all Friday distributions on the same release version.
 
@@ -13,7 +13,7 @@ Create a virtual environment, then install the published application or framewor
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-python -m pip install "friday-chat==0.1.0a3"
+python -m pip install "friday-chat==0.1.0a4"
 friday-chat --help
 ```
 
@@ -22,12 +22,12 @@ On Windows, use `.venv\Scripts\Activate.ps1` in PowerShell instead of the `sourc
 For framework development in your own application:
 
 ```bash
-python -m pip install "friday-framework==0.1.0a3"
+python -m pip install "friday-framework==0.1.0a4"
 ```
 
 `friday-framework` is a metadata-only convenience distribution: import the member packages, not `friday` or `friday_framework`. Its default dependencies include the core framework and Chat. Install an individual distribution from the table below when you need only that surface.
 
-Optional extras include `mcp`, `speech`, `finance`, `sandbox`, `moltbook`, `optimization`, `documents`, `spreadsheets`, `langfuse` and `all`. Select only what your application needs, for example `python -m pip install "friday-framework[mcp]==0.1.0a3"`. Extras install dependencies; they do not configure credentials, start services, implement placeholder functionality, or complete the separately queued Langfuse backend.
+Optional extras include `mcp`, `speech`, `finance`, `sandbox`, `moltbook`, `optimization`, `documents`, `spreadsheets`, `langfuse` and `all`. Select only what your application needs, for example `python -m pip install "friday-framework[mcp]==0.1.0a4"`. Extras install dependencies; they do not configure credentials, start services, implement placeholder functionality, or complete the separately queued Langfuse backend.
 
 ## Quick start: define and invoke a local tool
 

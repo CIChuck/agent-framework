@@ -1,6 +1,6 @@
 [project]
 name = "friday-framework"
-version = "0.1.0a3"
+version = "0.1.0a4"
 description = "Friday Agentic Framework Workspace"
 readme = "README.md"
 requires-python = ">=3.13.4"
@@ -16,63 +16,63 @@ classifiers = [
 ]
 
 dependencies = [
-    "friday-framework-core==0.1.0a3",
-    "friday-framework-memory==0.1.0a3",
-    "friday-framework-llm==0.1.0a3",
-    "friday-framework-agent==0.1.0a3",
-    "friday-framework-tools==0.1.0a3",
-    "friday-framework-transcript==0.1.0a3",
-    "friday-framework-cli==0.1.0a3",
-    "friday-framework-runtime==0.1.0a3",
-    "friday-framework-telemetry==0.1.0a3",
-    "friday-chat==0.1.0a3",
+    "friday-framework-core==0.1.0a4",
+    "friday-framework-memory==0.1.0a4",
+    "friday-framework-llm==0.1.0a4",
+    "friday-framework-agent==0.1.0a4",
+    "friday-framework-tools==0.1.0a4",
+    "friday-framework-transcript==0.1.0a4",
+    "friday-framework-cli==0.1.0a4",
+    "friday-framework-runtime==0.1.0a4",
+    "friday-framework-telemetry==0.1.0a4",
+    "friday-chat==0.1.0a4",
 ]
 
 [project.optional-dependencies]
 speech = [
-    "friday-framework-speech[picovoice,elevenlabs]==0.1.0a3",
-    "friday-chat[speech]==0.1.0a3",
+    "friday-framework-speech[picovoice,elevenlabs]==0.1.0a4",
+    "friday-chat[speech]==0.1.0a4",
 ]
 finance = [
-    "friday-framework-finance==0.1.0a3",
-    "friday-framework-tools[finance]==0.1.0a3",
-    "friday-chat[finance]==0.1.0a3",
+    "friday-framework-finance==0.1.0a4",
+    "friday-framework-tools[finance]==0.1.0a4",
+    "friday-chat[finance]==0.1.0a4",
 ]
 sandbox = [
-    "friday-framework-sandbox==0.1.0a3",
-    "friday-framework-tools[sandbox]==0.1.0a3",
-    "friday-chat[sandbox]==0.1.0a3",
+    "friday-framework-sandbox==0.1.0a4",
+    "friday-framework-tools[sandbox]==0.1.0a4",
+    "friday-chat[sandbox]==0.1.0a4",
 ]
 moltbook = [
-    "friday-framework-moltbook==0.1.0a3",
-    "friday-framework-tools[moltbook]==0.1.0a3",
-    "friday-chat[moltbook]==0.1.0a3",
+    "friday-framework-moltbook==0.1.0a4",
+    "friday-framework-tools[moltbook]==0.1.0a4",
+    "friday-chat[moltbook]==0.1.0a4",
 ]
 mcp = [
-    "friday-framework-mcp==0.1.0a3",
+    "friday-framework-mcp==0.1.0a4",
 ]
 optimization = [
-    "friday-framework-optimization==0.1.0a3",
+    "friday-framework-optimization==0.1.0a4",
 ]
 documents = [
-    "friday-framework-tools[documents]==0.1.0a3",
+    "friday-framework-tools[documents]==0.1.0a4",
 ]
 spreadsheets = [
-    "friday-framework-tools[spreadsheets]==0.1.0a3",
+    "friday-framework-tools[spreadsheets]==0.1.0a4",
 ]
 langfuse = [
-    "friday-framework-llm[langfuse]==0.1.0a3",
+    "friday-framework-llm[langfuse]==0.1.0a4",
 ]
 all = [
-    "friday-framework-speech[picovoice,elevenlabs]==0.1.0a3",
-    "friday-framework-finance==0.1.0a3",
-    "friday-framework-sandbox==0.1.0a3",
-    "friday-framework-moltbook==0.1.0a3",
-    "friday-framework-mcp==0.1.0a3",
-    "friday-framework-optimization==0.1.0a3",
-    "friday-framework-tools[all-adapters,all-formats,finance,moltbook,sandbox]==0.1.0a3",
-    "friday-framework-llm[langfuse]==0.1.0a3",
-    "friday-chat[finance,moltbook,sandbox,speech]==0.1.0a3",
+    "friday-framework-speech[picovoice,elevenlabs]==0.1.0a4",
+    "friday-framework-finance==0.1.0a4",
+    "friday-framework-sandbox==0.1.0a4",
+    "friday-framework-moltbook==0.1.0a4",
+    "friday-framework-mcp==0.1.0a4",
+    "friday-framework-optimization==0.1.0a4",
+    "friday-framework-tools[all-adapters,all-formats,finance,moltbook,sandbox]==0.1.0a4",
+    "friday-framework-llm[langfuse]==0.1.0a4",
+    "friday-chat[finance,moltbook,sandbox,speech]==0.1.0a4",
 ]
 dev = [
     "pytest>=8.0.0",

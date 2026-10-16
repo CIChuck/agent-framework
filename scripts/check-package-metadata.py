@@ -9,8 +9,8 @@ import sys
 import tomllib
 from pathlib import Path
 
-DEFAULT_VERSION = "0.1.0a3"
-DEFAULT_INTERNAL_VERSION = "0.1.0a3"
+DEFAULT_VERSION = "0.1.0a4"
+DEFAULT_INTERNAL_VERSION = "0.1.0a4"
 EXPECTED_AUTHOR = [{"name": "Friday Team"}]
 EXPECTED_LICENSE = "MIT"
 REPO_URL = "https://github.com/CIChuck/agent-framework"

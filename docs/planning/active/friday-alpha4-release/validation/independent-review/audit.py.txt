@@ -1,0 +1,208 @@
+from pathlib import Path, PurePosixPath
+import base64
+import csv
+import email
+import hashlib
+import importlib.util
+import io
+import json
+import re
+import subprocess
+import sys
+import tarfile
+import tomllib
+import zipfile
+from packaging.requirements import Requirement
+from packaging.utils import canonicalize_name
+
+ROOT=Path('/Users/chuckrussell/Dev/gendev/agent-framework')
+OUT=Path('/private/tmp/friday-alpha4-review-e965917a')
+BASE='465c5643b855c76a3584c393e96fb7bd1c855396'
+CAND='e965917a9a236c4428972255e2017be81aa69d7f'
+VERSION='0.1.0a4'
+PACKET='docs/planning/active/friday-alpha4-release/'
+DOCURL='https://gendevx.com/friday/'
+errors=[]
+report={}
+def require(value,message):
+ if not value: errors.append(message)
+def git(*args): return subprocess.check_output(['git',*args],cwd=ROOT)
+def blob(rev,path): return git('show',rev+':'+path)
+def digest(data): return hashlib.sha256(data).hexdigest()
+def save(name,value): (OUT/name).write_text(json.dumps(value,indent=2)+'\n')
+changed=git('diff','--name-only',BASE,CAND).decode().splitlines()
+(OUT/'candidate.diff').write_bytes(git('diff','--binary',BASE,CAND))
+authority=json.loads(blob(CAND,PACKET+'authority.json'))
+products=set(authority['product_paths'])
+baselines=authority['baseline_sha256']
+planning={
+ 'docs/planning/board.yaml','docs/planning/README.md',
+ *(PACKET+p for p in ['README.md','authority.json','directives/CD-REL-A4-001.md','execution-log.md','validation/source-checks.json','version-change-summary.json'])}
+require(authority['base_commit']==BASE,'Authority base mismatch')
+require(authority['branch']=='release/0.1.0a4','Authority branch mismatch')
+require(set(baselines)==products,'Baseline manifest paths do not exactly match product paths')
+require(set(changed)==products|planning,'Candidate diff paths differ from exactly authorized product/planning paths')
+records=[]
+for path in sorted(products):
+ old=blob(BASE,path); new=blob(CAND,path)
+ match=digest(old)==baselines[path]
+ mechanical=old.replace(b'0.1.0a3',b'0.1.0a4')==new
+ require(match,'Baseline hash mismatch: '+path)
+ require(mechanical,'Non-version product change: '+path)
+ require((ROOT/path).read_bytes()==new,'Worktree differs from candidate: '+path)
+ records.append({'path':path,'baseline_sha256':digest(old),'candidate_sha256':digest(new),'baseline_match':match,'exact_a3_to_a4_only':mechanical,'old_version_occurrences':old.count(b'0.1.0a3'),'negative_a0_occurrences_preserved':old.count(b'0.1.0a0')==new.count(b'0.1.0a0')})
+for path in planning:
+ require((ROOT/path).read_bytes()==blob(CAND,path),'Changed planning worktree differs: '+path)
+inputs=['AGENTS.md','docs/reference/policies/repository-engineering-policy.md','docs/reference/policies/independent-validation-policy.md','docs/reference/policies/development-task-lifecycle.md',PACKET+'authority.json',PACKET+'directives/CD-REL-A4-001.md']
+report['authority_inputs']=[{'path':p,'revision':CAND,'sha256':digest(blob(CAND,p)),'last_change':git('log','-1','--format=%H',CAND,'--',p).decode().strip()} for p in inputs]
+report['source_scope']={'base':BASE,'candidate':CAND,'changed_paths':changed,'product_path_count':len(products),'planning_path_count':len(planning),'all_product_changes_exact_version_substitution':all(r['exact_a3_to_a4_only'] for r in records),'baseline_paths':len(baselines),'negative_a0_total':sum(blob(CAND,p).count(b'0.1.0a0') for p in products),'product_audit':records}
+projects={}
+for path in ['pyproject.toml',*sorted(p for p in products if p.startswith('packages/') and p.endswith('/pyproject.toml'))]:
+ data=tomllib.loads(blob(CAND,path).decode()); project=data['project']; name=canonicalize_name(project['name'])
+ projects[name]=(path,data)
+ require(project['version']==VERSION,'Project version wrong: '+path)
+ require(project['urls']['Documentation']==DOCURL,'Documentation URL wrong: '+path)
+ for reqtext in project.get('dependencies',[])+[r for rs in project.get('optional-dependencies',{}).values() for r in rs]:
+  req=Requirement(reqtext)
+  if req.name=='friday-chat' or req.name.startswith('friday-framework'):
+   require(str(req.specifier)=='=='+VERSION,'Internal pin is not exact: '+path+' '+reqtext)
+require(len(projects)==17,'Expected 17 projects')
+oldlock=tomllib.loads(blob(BASE,'uv.lock').decode()); newlock=tomllib.loads(blob(CAND,'uv.lock').decode())
+third_old=[p for p in oldlock['package'] if canonicalize_name(p['name']) not in projects]
+third_new=[p for p in newlock['package'] if canonicalize_name(p['name']) not in projects]
+require(third_old==third_new,'Third-party lock graph changed')
+report['metadata']={'projects':sorted(projects),'version':VERSION,'documentation':DOCURL,'third_party_lock_records_unchanged':len(third_new)}
+readmes=['README.md',*sorted(p for p in products if p.startswith('packages/') and p.endswith('/README.md'))]
+require(len(readmes)==17,'Expected 17 current READMEs')
+for path in readmes: require('0.1.0a3' not in blob(CAND,path).decode(),'Current README retains alpha3: '+path)
+# Repository checker checks local links; changed README package links are included explicitly.
+spec=importlib.util.spec_from_file_location('review_doclinks',ROOT/'scripts/check-documentation-lifecycle.py')
+module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
+changed_md=[ROOT/p for p in changed if p.endswith('.md')]
+link_errors=module._check_links(changed_md)
+require(not link_errors,'Changed links broken: '+repr(link_errors))
+full_link_errors=module._check_links(module._markdown_files())
+require(len(full_link_errors)==6,'Unexpected full documentation broken-link count')
+for err in full_link_errors:
+ path=err.split(':',1)[0]
+ require('friday-telemetry-rewire/validation/VAL-001/report.md' in path,'Non-baseline link error: '+err)
+ require(blob(BASE,path)==blob(CAND,path),'Baseline telemetry evidence changed')
+report['links']={'changed_markdown_count':len(changed_md),'changed_link_errors':link_errors,'full_baseline_link_errors':full_link_errors,'baseline_evidence_unchanged':True}
+# Every included file must correspond byte-for-byte to the frozen commit.
+artifact_dir=ROOT/'dist/friday-package-cohort-0.1.0a4'
+artifacts=sorted([*artifact_dir.glob('*.whl'),*artifact_dir.glob('*.tar.gz')])
+manifest=json.loads((ROOT/'build/alpha4-work/artifact-sha256.json').read_text())
+metadata_manifest=json.loads((ROOT/'build/alpha4-work/artifact-metadata.json').read_text())
+require(len(artifacts)==34,'Expected 34 artifacts')
+require(set(manifest)=={p.name for p in artifacts},'Hash manifest does not exactly cover artifact set')
+require(len(metadata_manifest)==34 and {r['filename'] for r in metadata_manifest}==set(manifest),'Metadata manifest does not exactly cover artifact set')
+metadata_by_filename={r['filename']:r for r in metadata_manifest}
+def req_key(reqtext):
+ req=Requirement(reqtext)
+ return (canonicalize_name(req.name),tuple(sorted(canonicalize_name(e) for e in req.extras)),str(req.specifier),str(req.marker) if req.marker else '')
+def expected_requirements(project):
+ result={req_key(r) for r in project.get('dependencies',[])}
+ extras=project.get('optional-dependencies',{})
+ def expand(extra,seen=()):
+  require(extra not in seen,'Recursive self extra: '+project['name'])
+  if extra in seen:return []
+  output=[]
+  for text in extras.get(extra,[]):
+   req=Requirement(text)
+   if canonicalize_name(req.name)==canonicalize_name(project['name']):
+    for child in req.extras: output.extend(expand(child,seen+(extra,)))
+   else: output.append(text)
+  return output
+ for extra in extras:
+  for text in expand(extra):
+   req=Requirement(text)
+   marker='extra == '+repr(canonicalize_name(extra))
+   if req.marker: marker='('+str(req.marker)+') and '+marker
+   bare=canonicalize_name(req.name)
+   if req.extras: bare+='['+','.join(sorted(canonicalize_name(e) for e in req.extras))+']'
+   bare+=str(req.specifier)
+   result.add(req_key(bare+'; '+marker))
+ return result
+artifact_records=[]
+metadata_messages={}
+for artifact in artifacts:
+ require(digest(artifact.read_bytes())==manifest.get(artifact.name),'Artifact hash mismatch: '+artifact.name)
+ if artifact.suffix=='.whl':
+  with zipfile.ZipFile(artifact) as z:
+   content={n:z.read(n) for n in z.namelist() if not n.endswith('/')}
+   mp=[n for n in content if n.endswith('.dist-info/METADATA')]
+   require(len(mp)==1,'Wheel metadata count wrong: '+artifact.name)
+   metadata=email.message_from_bytes(content[mp[0]])
+   name=canonicalize_name(metadata['Name']); path,data=projects[name]; project=data['project']
+   package_root=PurePosixPath(path).parent
+   compared=[]
+   for n,b in content.items():
+    require(not PurePosixPath(n).is_absolute() and '..' not in PurePosixPath(n).parts,'Unsafe wheel path')
+    if '.dist-info/' in n:continue
+    source=str(package_root/'src'/n)
+    try: sourcebytes=blob(CAND,source)
+    except subprocess.CalledProcessError: errors.append('Wheel contains untracked/non-source file: '+artifact.name+' '+n); continue
+    require(b==sourcebytes,'Wheel/source mismatch: '+artifact.name+' '+n)
+    compared.append(source)
+   expected=[]
+   for source_root in data.get('tool',{}).get('hatch',{}).get('build',{}).get('targets',{}).get('wheel',{}).get('packages',[]):
+    prefix=str(package_root/source_root)
+    expected+=git('ls-tree','-r','--name-only',CAND,'--',prefix).decode().splitlines()
+   require(set(compared)==set(expected),'Wheel does not exactly cover configured tracked source: '+artifact.name)
+   recordpath=next(n for n in content if n.endswith('.dist-info/RECORD'))
+   for n,h,size in csv.reader(io.StringIO(content[recordpath].decode())):
+    if n==recordpath:continue
+    require(n in content,'Wheel RECORD missing member: '+n)
+    if n not in content:continue
+    alg,encoded=h.split('=',1)
+    require(alg=='sha256' and base64.urlsafe_b64encode(hashlib.sha256(content[n]).digest()).rstrip(b'=').decode()==encoded,'Wheel RECORD digest mismatch: '+n)
+    require(int(size)==len(content[n]),'Wheel RECORD size mismatch: '+n)
+   entrypoints=project.get('scripts',{})
+   if entrypoints:
+    ep=next((b.decode() for n,b in content.items() if n.endswith('.dist-info/entry_points.txt')),'')
+    for entry,target in entrypoints.items():require(entry+' = '+target in ep,'Entry point mismatch: '+artifact.name)
+   source_count=len(compared)
+ else:
+  with tarfile.open(artifact) as z:
+   members=z.getmembers()
+   for m in members:
+    require(not PurePosixPath(m.name).is_absolute() and '..' not in PurePosixPath(m.name).parts,'Unsafe sdist path: '+artifact.name)
+    require(m.isfile() or m.isdir(),'Sdist contains link/special file: '+artifact.name)
+   content={m.name:z.extractfile(m).read() for m in members if m.isfile()}
+   mp=[n for n in content if n.endswith('/PKG-INFO')]
+   require(len(mp)==1,'Sdist metadata count wrong: '+artifact.name)
+   metadata=email.message_from_bytes(content[mp[0]])
+   name=canonicalize_name(metadata['Name']); path,data=projects[name]; project=data['project']
+   package_root=PurePosixPath(path).parent
+   source_count=0
+   for n,b in content.items():
+    relative=PurePosixPath(*PurePosixPath(n).parts[1:])
+    if str(relative)=='PKG-INFO':continue
+    if str(relative)=='.gitignore' and b==blob(CAND,'.gitignore'):continue
+    source=str(package_root/relative)
+    try: sourcebytes=blob(CAND,source)
+    except subprocess.CalledProcessError: errors.append('Sdist contains untracked/non-source file: '+artifact.name+' '+n);continue
+    require(b==sourcebytes,'Sdist/source mismatch: '+artifact.name+' '+n)
+    source_count+=1
+   if name=='friday-chat':
+    for f in ['config.example.yaml','models-config.example.yaml','cli-config.example.yaml']:
+     require(any(n.endswith('/src/friday_chat/config_templates/'+f) for n in content),'Sdist missing template: '+f)
+ require(metadata['Version']==VERSION,'Artifact metadata version wrong: '+artifact.name)
+ require(metadata['Requires-Python']==project['requires-python'],'Artifact Requires-Python mismatch: '+artifact.name)
+ require(metadata.get('License-Expression',metadata.get('License'))==project['license'],'Artifact license mismatch: '+artifact.name)
+ require(metadata.get_payload(decode=True).decode().rstrip()==blob(CAND,str(PurePosixPath(path).parent/'README.md')).decode().rstrip(),'Artifact README payload mismatch: '+artifact.name)
+ urls=dict(value.split(', ',1) for value in metadata.get_all('Project-URL',[]))
+ require(urls==project['urls'],'Artifact URLs mismatch: '+artifact.name)
+ actual_reqs={req_key(r) for r in metadata.get_all('Requires-Dist',[])}
+ expected_reqs=expected_requirements(project)
+ require(actual_reqs==expected_reqs,'Artifact requirements differ from source: '+artifact.name+' missing='+repr(sorted(expected_reqs-actual_reqs))+' extra='+repr(sorted(actual_reqs-expected_reqs)))
+ declared={canonicalize_name(e) for e in project.get('optional-dependencies',{})}
+ require(set(metadata.get_all('Provides-Extra',[]))==declared,'Artifact extras differ from source: '+artifact.name)
+ require(metadata_by_filename.get(artifact.name)=={'filename':artifact.name,'project':name,'version':VERSION,'documentation':DOCURL},'Metadata manifest entry mismatch: '+artifact.name)
+ metadata_messages[artifact.name]=metadata
+ artifact_records.append({'filename':artifact.name,'sha256':digest(artifact.read_bytes()),'project':name,'version':metadata['Version'],'documentation':urls.get('Documentation'),'source_files_byte_matched':source_count,'requirements_count':len(actual_reqs)})
+report['artifacts']={'count':len(artifacts),'wheel_count':len(list(artifact_dir.glob('*.whl'))),'sdist_count':len(list(artifact_dir.glob('*.tar.gz'))),'sha256_manifest_sha256':digest((ROOT/'build/alpha4-work/artifact-sha256.json').read_bytes()),'metadata_manifest_sha256':digest((ROOT/'build/alpha4-work/artifact-metadata.json').read_bytes()),'records':artifact_records}
+report['errors']=errors
+save('audit.json',report)
+print(json.dumps({'candidate':CAND,'products':len(products),'pinned_baselines_verified':len(records),'exact_version_substitutions_only':report['source_scope']['all_product_changes_exact_version_substitution'],'projects':len(projects),'third_party_records_unchanged':len(third_new),'changed_markdown_files':len(changed_md),'changed_link_errors':link_errors,'baseline_link_error_count':len(full_link_errors),'artifacts':len(artifacts),'artifact_source_file_matches':sum(r['source_files_byte_matched'] for r in artifact_records),'errors':errors},indent=2))
+raise SystemExit(bool(errors))

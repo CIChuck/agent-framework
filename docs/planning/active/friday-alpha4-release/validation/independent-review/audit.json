@@ -1,0 +1,934 @@
+{
+  "authority_inputs": [
+    {
+      "path": "AGENTS.md",
+      "revision": "e965917a9a236c4428972255e2017be81aa69d7f",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "last_change": "816e64f35d58b4b1334388dd3b5b6fb312534176"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "revision": "e965917a9a236c4428972255e2017be81aa69d7f",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "last_change": "0c8095f5132c9cc47573f27481dea59a7cc70c6c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "revision": "e965917a9a236c4428972255e2017be81aa69d7f",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "last_change": "12c1e9e577409bf25f7fdc18fb7bb75a24f5ec07"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "revision": "e965917a9a236c4428972255e2017be81aa69d7f",
+      "sha256": "7087fb62381cc8a46128bc6745476d1aa08e1d577b4c73340760657ae834fe2a",
+      "last_change": "30119a18f77a435cd40f84bfefb69c32ede54998"
+    },
+    {
+      "path": "docs/planning/active/friday-alpha4-release/authority.json",
+      "revision": "e965917a9a236c4428972255e2017be81aa69d7f",
+      "sha256": "eedde1ab89091cd75c17223e6b1656d29687ce3ac389a0989717d012857c9351",
+      "last_change": "e965917a9a236c4428972255e2017be81aa69d7f"
+    },
+    {
+      "path": "docs/planning/active/friday-alpha4-release/directives/CD-REL-A4-001.md",
+      "revision": "e965917a9a236c4428972255e2017be81aa69d7f",
+      "sha256": "21046526cdb982fbbddb8ddde71c4b4511a4329a24a94720df68181622dc6a10",
+      "last_change": "e965917a9a236c4428972255e2017be81aa69d7f"
+    }
+  ],
+  "source_scope": {
+    "base": "465c5643b855c76a3584c393e96fb7bd1c855396",
+    "candidate": "e965917a9a236c4428972255e2017be81aa69d7f",
+    "changed_paths": [
+      "README.md",
+      "docs/planning/README.md",
+      "docs/planning/active/friday-alpha4-release/README.md",
+      "docs/planning/active/friday-alpha4-release/authority.json",
+      "docs/planning/active/friday-alpha4-release/directives/CD-REL-A4-001.md",
+      "docs/planning/active/friday-alpha4-release/execution-log.md",
+      "docs/planning/active/friday-alpha4-release/validation/source-checks.json",
+      "docs/planning/active/friday-alpha4-release/version-change-summary.json",
+      "docs/planning/board.yaml",
+      "packages/friday-agent/README.md",
+      "packages/friday-agent/pyproject.toml",
+      "packages/friday-chat/README.md",
+      "packages/friday-chat/pyproject.toml",
+      "packages/friday-chat/src/friday_chat/__init__.py",
+      "packages/friday-chat/src/friday_chat/app.py",
+      "packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+      "packages/friday-chat/tests_chat/test_imports.py",
+      "packages/friday-chat/tests_chat/test_release_helpers.py",
+      "packages/friday-cli/README.md",
+      "packages/friday-cli/pyproject.toml",
+      "packages/friday-cli/src/friday_cli/__init__.py",
+      "packages/friday-core/README.md",
+      "packages/friday-core/pyproject.toml",
+      "packages/friday-core/src/friday_core/__init__.py",
+      "packages/friday-finance/README.md",
+      "packages/friday-finance/pyproject.toml",
+      "packages/friday-llm/README.md",
+      "packages/friday-llm/pyproject.toml",
+      "packages/friday-mcp/README.md",
+      "packages/friday-mcp/pyproject.toml",
+      "packages/friday-mcp/src/friday_mcp/__init__.py",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+      "packages/friday-memory/README.md",
+      "packages/friday-memory/pyproject.toml",
+      "packages/friday-moltbook/README.md",
+      "packages/friday-moltbook/pyproject.toml",
+      "packages/friday-moltbook/src/friday_moltbook/__init__.py",
+      "packages/friday-optimization/README.md",
+      "packages/friday-optimization/pyproject.toml",
+      "packages/friday-runtime/README.md",
+      "packages/friday-runtime/pyproject.toml",
+      "packages/friday-sandbox/README.md",
+      "packages/friday-sandbox/pyproject.toml",
+      "packages/friday-sandbox/src/friday_sandbox/__init__.py",
+      "packages/friday-speech/README.md",
+      "packages/friday-speech/pyproject.toml",
+      "packages/friday-telemetry/README.md",
+      "packages/friday-telemetry/pyproject.toml",
+      "packages/friday-telemetry/src/friday_telemetry/__init__.py",
+      "packages/friday-tools/README.md",
+      "packages/friday-tools/pyproject.toml",
+      "packages/friday-tools/src/friday_tools/__init__.py",
+      "packages/friday-transcript/README.md",
+      "packages/friday-transcript/pyproject.toml",
+      "pyproject.toml",
+      "scripts/check-package-artifacts.py",
+      "scripts/check-package-metadata.py",
+      "scripts/smoke-install-artifacts.sh",
+      "tests/integration/test_package_cohort_metadata.py",
+      "uv.lock"
+    ],
+    "product_path_count": 52,
+    "planning_path_count": 8,
+    "all_product_changes_exact_version_substitution": true,
+    "baseline_paths": 52,
+    "negative_a0_total": 6,
+    "product_audit": [
+      {
+        "path": "README.md",
+        "baseline_sha256": "83bde576d0320adfa8ede5dedf9c37a9fd86fc604a080f39af44cf96c64def71",
+        "candidate_sha256": "e3dc1ca7d19e644ba491be8a2c8e019d1cc47b9061c3f7f9fa9874a8292d0839",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 5,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-agent/README.md",
+        "baseline_sha256": "46443ba706b849268b846b1c7383922eaab39d63d32e98f556da88cc2ffdfd1a",
+        "candidate_sha256": "efc182a5cd3ec45e6c5c6af0a0d64197d80f8d7ebb73d9da190afbb45d0d126c",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-agent/pyproject.toml",
+        "baseline_sha256": "cf6ff511eed14acb836d56da1e0b490efdebeb331b1bca9308dad0a034c2d4c6",
+        "candidate_sha256": "1b966bc888515b5f423ba9bdea4e40d24da28c508822e932a5c45594e4e678e4",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 4,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-chat/README.md",
+        "baseline_sha256": "9e9a7588da84b924918dca5744153701de09992900a62c876c326cc33f532d77",
+        "candidate_sha256": "f2198b74f7a0eeae1fb43c37c59df01f6b13313bfa87c491a54bc934c318e636",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-chat/pyproject.toml",
+        "baseline_sha256": "cf4c581bcc99e9ec2cf7c64ea2bc6e0bf1af4d41ec908b1c7caf78eadc53ca3e",
+        "candidate_sha256": "68ab189ca2a719d894d8d63cab6a623c7f20ba4a0d98b0d780ccca7790104b1e",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 17,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-chat/src/friday_chat/__init__.py",
+        "baseline_sha256": "4f01cf8ac5938e7398765b4ccd845bdc258a78da02ad359f4c6b50fe9d0d2a85",
+        "candidate_sha256": "02fccfca2ce6de298d97469062e482191ac9a2a5d5d238ee9f4fed457ba908de",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-chat/src/friday_chat/app.py",
+        "baseline_sha256": "30fb269ea38fba59b99ff2f4fa20e1bdd334bb74562a8f4bd165464bc0bcf2bf",
+        "candidate_sha256": "a93581751af86642329d41a1258f4bbbada4b5aed26570adb2011abb165d37ec",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+        "baseline_sha256": "44325063ea328fde4840361ae57806894cf0465c6370538a2bc6a6f955b178d8",
+        "candidate_sha256": "02348795a8c04ac63f6119fad8c26a00d2611b671a99a71ee108bc95e013917f",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-chat/tests_chat/test_imports.py",
+        "baseline_sha256": "5413b4a0265154ecf6343f2e31347c35067989e9f11c6ed9eefec815d70243ec",
+        "candidate_sha256": "3d0ea782c58b6a2d1d7fa5b3f11f6056757cab210f156834896fff1ab8a61d2a",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-chat/tests_chat/test_release_helpers.py",
+        "baseline_sha256": "171a321edfd40d01244266916b355229587ab6559eacf28b6f5e47c2f389ba25",
+        "candidate_sha256": "65f4ad70c2a1b523b92e302c864c42ac9e2d6693bf087f19f1242e01431b61b3",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 39,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-cli/README.md",
+        "baseline_sha256": "b3fa79e05f5ffa11c1a6dd8000b334381ba79a6e7c3069a50d23dd4d0144d61e",
+        "candidate_sha256": "689057007d11736b4dda5aab4c3b12be0e862c63643fe349e6d1374fc99287a9",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-cli/pyproject.toml",
+        "baseline_sha256": "b9894c0288bdd5e9ca4c5f7afa6609dd73e635bbbada2a17dafa0456ff6e4bc5",
+        "candidate_sha256": "c35659d710cd840f46a0574a9913d857642feab9ec002c4974bb2fc385066868",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 6,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-cli/src/friday_cli/__init__.py",
+        "baseline_sha256": "e39df05715d5c6d09c9d5ef9c02060dab097a1e7ed3f4fc8ec94fecdb944d242",
+        "candidate_sha256": "eadaed2487f368077381633f1a4839ca20319263b9dc5137b2ff7a39c867a83a",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-core/README.md",
+        "baseline_sha256": "ce6df76edddd2cbffb2acc901e97fb6333ab25c4b3559c015308524f552fbdad",
+        "candidate_sha256": "41e7dd9db5e2565c35b5ec1ac1c97be2d2a78fc3a0bb52d193d961443604d8e0",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-core/pyproject.toml",
+        "baseline_sha256": "f1a554dac9f8e49c297128ce8e790de484977586f0e703fb3029cebeeaa0d4b5",
+        "candidate_sha256": "a25eeb33992595b3bb5f9fff277a7d74fc14a307153974ebef053ca27757933c",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-core/src/friday_core/__init__.py",
+        "baseline_sha256": "6a32d58262368ad6322770a5dddb4334ceb3b2c343c221a173ca72ca694a4b81",
+        "candidate_sha256": "5343759de1e349d6060e9258fa336333d83e557273d7c68c84a7f9a913a6ecb0",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-finance/README.md",
+        "baseline_sha256": "50fed6251d7c2fe882e1bf15084d12a057a1ffe253721b5965becc9cfb20d15b",
+        "candidate_sha256": "8910595e1a4e431bdb8fd91eb683386bb16ef8cef1e0c87cce257a4f74f773ef",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-finance/pyproject.toml",
+        "baseline_sha256": "37a204784f604cc5f99c692beb32ac495979030dd72562aafa70e1ef8337858d",
+        "candidate_sha256": "85ae66eacb515133c7acf4e0e74b906cce1328fc66afd557446b02503c3d4fdb",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-llm/README.md",
+        "baseline_sha256": "2bc0bbf440d5aeb925b7b5b39010044d82a0edb301af03a04782e24d98d42ee4",
+        "candidate_sha256": "8503b6301707e326c1f540e1b1596f6f226f5debdb7b81c9d940445e303b61cf",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-llm/pyproject.toml",
+        "baseline_sha256": "cc27ef1502266f6ff7ab9b3ca1b4e5c0629a1fc2ee2f507d112a9b43daa95c2d",
+        "candidate_sha256": "a86ec2a3f4d922a4305eda96a088c1bd7e354b82adebc1ec2a61ef7614336ea9",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 3,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-mcp/README.md",
+        "baseline_sha256": "406335132fc4235ab5ddcbce4852735065e91531458c1aedc19c48a637a5c220",
+        "candidate_sha256": "ec904a9adf9d37d4f3ee2827418114a61da1fc5122754a7cf32dff17072e8da0",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-mcp/pyproject.toml",
+        "baseline_sha256": "3042b769c8a98cd036048f9ab777c4156375f047d9219850aaa524db2c4f1f34",
+        "candidate_sha256": "a38e37d1258b1b70ca81ec721aae6162beeef4100cba41a141561e262cf20dd6",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 5,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-mcp/src/friday_mcp/__init__.py",
+        "baseline_sha256": "327ccb485ca8a4f33d742e4fc056680eccf3cb80eef7583ea6c85c2ed786b8a1",
+        "candidate_sha256": "7169c3b31a239a8bbcd755976e85b6acc569cb76a575dc98a19f503627f51a9b",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+        "baseline_sha256": "992d5d358255cea317562d3e429fbc6a56475dd4306ffa5bc707dbd7eddc864f",
+        "candidate_sha256": "24a577bd1fa02877532cb5fbdd8d86fabe2cf86ee062397f5d92450689bffd0a",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-memory/README.md",
+        "baseline_sha256": "fc6858ebfc6431dfc47aba4e3b09ba8d22735713abaa7fbb670b59c319dfa016",
+        "candidate_sha256": "3f7a7b981b170d60b0e480a5b8df3f41206330443438b308731ab840034f745b",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-memory/pyproject.toml",
+        "baseline_sha256": "d0b4fa3945f2510a923f3a8926575bd82e54334f9eba21185c626990c6667cb8",
+        "candidate_sha256": "2f02fb0bf8ce6eeef55e5824420cd70b997eea51592221c6f3b1fc4c82dfdcfa",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 3,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-moltbook/README.md",
+        "baseline_sha256": "ef7ee666d26521ea9d1caef3a93f26ded401fefd10e93431b2ba64270d9f5952",
+        "candidate_sha256": "7a46db1927356776312688360afa7bcb500bde250c451d7425c86afe4f56de04",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-moltbook/pyproject.toml",
+        "baseline_sha256": "31d47cb024e2d787f401b6b11b964d8b169eb77c8e23348fbf90f4824a06cc1f",
+        "candidate_sha256": "27c2a58ff6844558bea1c5af127f20ea5a4809be705e6cd735d227e7b515ddff",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-moltbook/src/friday_moltbook/__init__.py",
+        "baseline_sha256": "be9b59dfde83bd5b432a2e09cb51f68b56e49f072ea806b2e49a3650059365fa",
+        "candidate_sha256": "81e07d024fec8ff873f4e76c0f82c61e08c0689793b7ec9a07de1f6fabf0e1a6",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-optimization/README.md",
+        "baseline_sha256": "e67d5f63086365c9c8ba8e74c70211a9a491497ef470a6ce360783a259c5a07a",
+        "candidate_sha256": "5b4368a54c8f4fd4b1f1497b9b9e637856c7a91b019211b8d0543024ae89100c",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-optimization/pyproject.toml",
+        "baseline_sha256": "7aed192e9c542b413785b0ba1a0f8b5c39f5307eba7f074c1aa66269d259f6ae",
+        "candidate_sha256": "9700a55ae0855dfb0f80854d762ab3d904b81e22363467a3af2515c22a23db7a",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-runtime/README.md",
+        "baseline_sha256": "4a8ff588051b9b0ddf82cf6bad308a79392c878c53bc8299b027d091e1b4ea6d",
+        "candidate_sha256": "fe6341b46e1761e6f43b71870519d46fb9b87fc43d18f880dd3a58a08a2d6bb1",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-runtime/pyproject.toml",
+        "baseline_sha256": "d2e0d54d59706e072b21866b124af136495f9b469ca8f717c1b94f5110727183",
+        "candidate_sha256": "d798de945b112522fd536c3deababbeb7efb333ae869cdd0094d2349d0a961eb",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 8,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-sandbox/README.md",
+        "baseline_sha256": "f16a1309307bbcd9d04762692fd7fcffef60106d81e890bae5f01f30924fd84f",
+        "candidate_sha256": "6c95b64d0b856d03ad6eff5ee669f17c344fc0eb2c9b55ae63246bbe8e6a07b4",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-sandbox/pyproject.toml",
+        "baseline_sha256": "a742c9de147522bddfccbb7760e791b82e81009a299e752ea0252450b4a6848e",
+        "candidate_sha256": "7dda3bd36e5f16a3a49356333c6840c2938cf037a4031ac07e3daeeadf41c3cc",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-sandbox/src/friday_sandbox/__init__.py",
+        "baseline_sha256": "a6db7023e9d48b6dda2894a7dd1428cc182172cf74dd6f2c23f74c805b2a2cb0",
+        "candidate_sha256": "8c45d4dee070469a2d607ecd70b659750ba1ba7fc9f6d62e742540a4c73355d6",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-speech/README.md",
+        "baseline_sha256": "25d7caf9427eaf6abe7fc9aec3c223b19bab7d92960480f971737e50d5b6e878",
+        "candidate_sha256": "5c61c4986cd00b6a02abfe2f83d18fec40bad6bd6c9823531c0549a5ce759927",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 3,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-speech/pyproject.toml",
+        "baseline_sha256": "ebab07ac963e863af358d268a8aff1d70ea68411744a5169381e43b68a362228",
+        "candidate_sha256": "b32b0486ff6aa31059d51dd8389376d9d34de593689de37deec3f72ac9e38bee",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-telemetry/README.md",
+        "baseline_sha256": "253ebd30cc3c1ba125d7f1e1484b15edffefed137d365997e5c0ac763e9e9088",
+        "candidate_sha256": "f9e3b969662c8ad7eae746fbbca229375456ba6d919203eb1bfcb15f8e15dcef",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-telemetry/pyproject.toml",
+        "baseline_sha256": "622b902c7a0dc428a69ca98e50aa79432f5c70f486ed73bff61a0ae70c087a50",
+        "candidate_sha256": "f7116ca8b09a6e3e7bb27d4e40364b2e7e9f3e22bdbe29a22fe0ce5581320110",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-telemetry/src/friday_telemetry/__init__.py",
+        "baseline_sha256": "46d9a4742a78f039b34f8d321de224256d3121fe37b66647236c0738b2038a65",
+        "candidate_sha256": "47c791e4dda98c34ac3b2455902f8e8f49a6dcb8df7e1bdf450c38c702c9b717",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-tools/README.md",
+        "baseline_sha256": "07801df1f95d866d970cca9fa3f29fba8ada16420d7a00fe32267765ca202990",
+        "candidate_sha256": "fed69bab31f6ed769abff23f62e306ecf3a0d9e1f78cf147c418b347a884caf2",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-tools/pyproject.toml",
+        "baseline_sha256": "0b13cd971da575c7e458fe52989a2b4fc826c058be3990ed825c0b5ae6c1121c",
+        "candidate_sha256": "03657692f28bd4cc2a0c6d333fb2d7a39f4712ee51d6b192c26bbdb32465b1b4",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 11,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-tools/src/friday_tools/__init__.py",
+        "baseline_sha256": "7491022cb962caa71453ebbc5e4da3b6a3b79b9403aef2dfcce58c33396555dc",
+        "candidate_sha256": "75504c3496145579e722f3696abfc9907003932ef214d8e387e25ec03dbe1b95",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-transcript/README.md",
+        "baseline_sha256": "fa6ecf1a236c77dbc39fd21012ee73147a5b63c709b0e32e142cb5620b7bba5f",
+        "candidate_sha256": "18688e03a9c5b674ca2530bb89d5b3aede6cfc84bf81546c052309b8fd641247",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "packages/friday-transcript/pyproject.toml",
+        "baseline_sha256": "1919953fe5ef0c3a7aa6fe9b6dea0c8330d8366787cc356cd7688b80f51f4af3",
+        "candidate_sha256": "f140475f2e9718d12e4194864884580eb2854c7d6ef6426e5100ec2718a90839",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "pyproject.toml",
+        "baseline_sha256": "7b55d717620fd0afc0c2b183848b950ccaacb1d39439397cb1696567b7ff4024",
+        "candidate_sha256": "f63adea253719a5961c260485e94cfc0deb979650ec1d350d6265594426ff9fd",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 36,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "scripts/check-package-artifacts.py",
+        "baseline_sha256": "549a599921caa6052f02d7890f47b9bf14b4210c23595eab01c29d4c64033c9e",
+        "candidate_sha256": "f624ffc04d8c94aee93e4728112d7393d305a2cdc21f8125949905b9d44e8267",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "scripts/check-package-metadata.py",
+        "baseline_sha256": "46eb9f4e38a93cc22bb91483a0ea78272db1563dc5727f082895532992c9cdf4",
+        "candidate_sha256": "d010fe96e9a386f4db8614e9aaf409d0064b18c7cea7a16cd508140611788ba9",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "scripts/smoke-install-artifacts.sh",
+        "baseline_sha256": "ac2a3a7ff3081c0b871fe984640d2fb7f3b2465dbc49d78572f46306f58e3ec6",
+        "candidate_sha256": "018347ffbb43f2c8c25094dea45274df5208ababdd36208058cdd451266fbcba",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 2,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "tests/integration/test_package_cohort_metadata.py",
+        "baseline_sha256": "07ce92feaab0d27062ede63a7fc2f7efcaa66163cc7ff62b5fc281e2824d3a0a",
+        "candidate_sha256": "cbe3f6ab11c6833fc707a0225b10f1d4e8fb03f87eef6007302d272dc1e4c203",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 1,
+        "negative_a0_occurrences_preserved": true
+      },
+      {
+        "path": "uv.lock",
+        "baseline_sha256": "a68d81a710def9813659a3b431d054156256b5aa95a569536b889470e24e837a",
+        "candidate_sha256": "f19d32b5bf811e448c5c0eb538758b27f16b820d1af4f2dbb37e1ac9e0b354b1",
+        "baseline_match": true,
+        "exact_a3_to_a4_only": true,
+        "old_version_occurrences": 17,
+        "negative_a0_occurrences_preserved": true
+      }
+    ]
+  },
+  "metadata": {
+    "projects": [
+      "friday-chat",
+      "friday-framework",
+      "friday-framework-agent",
+      "friday-framework-cli",
+      "friday-framework-core",
+      "friday-framework-finance",
+      "friday-framework-llm",
+      "friday-framework-mcp",
+      "friday-framework-memory",
+      "friday-framework-moltbook",
+      "friday-framework-optimization",
+      "friday-framework-runtime",
+      "friday-framework-sandbox",
+      "friday-framework-speech",
+      "friday-framework-telemetry",
+      "friday-framework-tools",
+      "friday-framework-transcript"
+    ],
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/",
+    "third_party_lock_records_unchanged": 196
+  },
+  "links": {
+    "changed_markdown_count": 21,
+    "changed_link_errors": [],
+    "full_baseline_link_errors": [
+      "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/packages/friday-telemetry/src/friday_telemetry/providers/composite.py'",
+      "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/packages/friday-telemetry/src/friday_telemetry/providers/composite.py'",
+      "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md'",
+      "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md'",
+      "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:98: broken link '/private/tmp/telem-01/review/packages/friday-chat/tests_chat/test_reorganization_terminal.py'",
+      "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:100: broken link '/private/tmp/telem-01/review/docs/reference/policies/independent-validation-policy.md'"
+    ],
+    "baseline_evidence_unchanged": true
+  },
+  "artifacts": {
+    "count": 34,
+    "wheel_count": 17,
+    "sdist_count": 17,
+    "sha256_manifest_sha256": "b4b0180dccb2cb1c6393ba78d07dd353143d042b3d5480f22712f4f35284bfaa",
+    "metadata_manifest_sha256": "d062fc3ff51b62c6ada15f080e6c8f556555222cfae75e6be82b3ddd320cf653",
+    "records": [
+      {
+        "filename": "friday_chat-0.1.0a4-py3-none-any.whl",
+        "sha256": "8aed7a20a5166682a00c2be751fa6906bc1a226dc6fd6553e51ad1e7039744de",
+        "project": "friday-chat",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 60,
+        "requirements_count": 30
+      },
+      {
+        "filename": "friday_chat-0.1.0a4.tar.gz",
+        "sha256": "152a73dd172c212a15e02c152ca1cb1fa9a6215edeff77f455fd24e9d10e6862",
+        "project": "friday-chat",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 123,
+        "requirements_count": 30
+      },
+      {
+        "filename": "friday_framework-0.1.0a4-py3-none-any.whl",
+        "sha256": "63b233f1ec42b072afbb2569e675dea6fbc2468d39872f70919be88ad2810a44",
+        "project": "friday-framework",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 0,
+        "requirements_count": 41
+      },
+      {
+        "filename": "friday_framework-0.1.0a4.tar.gz",
+        "sha256": "719b3f88d3cfd92411451848fb4cd1b05d66c92ea48ec61676139148f231fd39",
+        "project": "friday-framework",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 3,
+        "requirements_count": 41
+      },
+      {
+        "filename": "friday_framework_agent-0.1.0a4-py3-none-any.whl",
+        "sha256": "f7897ebd49284802571899f3f0ce9da77aefd80f904f56a8737e7c0d7acc694f",
+        "project": "friday-framework-agent",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 22,
+        "requirements_count": 5
+      },
+      {
+        "filename": "friday_framework_agent-0.1.0a4.tar.gz",
+        "sha256": "866a4f44051c4aeadfe7b7415fbdbfff316a8d8568a5f34b4be562830fc7d938",
+        "project": "friday-framework-agent",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 37,
+        "requirements_count": 5
+      },
+      {
+        "filename": "friday_framework_cli-0.1.0a4-py3-none-any.whl",
+        "sha256": "9b0e3bc2deac50a49a841d2a9c779979c6e1847e83a7b9072b192d3d9e117ee3",
+        "project": "friday-framework-cli",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 13,
+        "requirements_count": 14
+      },
+      {
+        "filename": "friday_framework_cli-0.1.0a4.tar.gz",
+        "sha256": "3721be1c8c88f4d02dcea339de20331bf3c6f92b014bafbc60510a2b426a6514",
+        "project": "friday-framework-cli",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 21,
+        "requirements_count": 14
+      },
+      {
+        "filename": "friday_framework_core-0.1.0a4-py3-none-any.whl",
+        "sha256": "f3a455c134e4582b23c72dd170e8b4ddfcd3f89f76947233d71272487b51b460",
+        "project": "friday-framework-core",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 23,
+        "requirements_count": 9
+      },
+      {
+        "filename": "friday_framework_core-0.1.0a4.tar.gz",
+        "sha256": "00ba4cf036bc006504269e0d8b9ec25461754626541d639bd9e973f20d039bcb",
+        "project": "friday-framework-core",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 37,
+        "requirements_count": 9
+      },
+      {
+        "filename": "friday_framework_finance-0.1.0a4-py3-none-any.whl",
+        "sha256": "ffa8f5f8690d30e429e7c8e57624d7ea988fd132b279423faedf3ee61dc71600",
+        "project": "friday-framework-finance",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 12,
+        "requirements_count": 2
+      },
+      {
+        "filename": "friday_framework_finance-0.1.0a4.tar.gz",
+        "sha256": "7643b9e5019f3610af039deed05da00a3c2ea3973a1effb724e36d24f1b93526",
+        "project": "friday-framework-finance",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 16,
+        "requirements_count": 2
+      },
+      {
+        "filename": "friday_framework_llm-0.1.0a4-py3-none-any.whl",
+        "sha256": "20e1dcfce55d127a973bc5877241ac7f24b4db5e293154f9e62126f25dd19012",
+        "project": "friday-framework-llm",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 21,
+        "requirements_count": 7
+      },
+      {
+        "filename": "friday_framework_llm-0.1.0a4.tar.gz",
+        "sha256": "e66a3945c352d229cb5b43f1c04c6366ba65b94b85bc924abf8e15eda74a705d",
+        "project": "friday-framework-llm",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 44,
+        "requirements_count": 7
+      },
+      {
+        "filename": "friday_framework_mcp-0.1.0a4-py3-none-any.whl",
+        "sha256": "3bfcb48e2c8479e1a16a8f50441b4fd980604bb7cfcd7bc940f5fc8e0eebf83e",
+        "project": "friday-framework-mcp",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 28,
+        "requirements_count": 16
+      },
+      {
+        "filename": "friday_framework_mcp-0.1.0a4.tar.gz",
+        "sha256": "1b06b0cb67a2f722b55cc09315dd5a81d216861da3aa7f4a0aaf9b293d376293",
+        "project": "friday-framework-mcp",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 62,
+        "requirements_count": 16
+      },
+      {
+        "filename": "friday_framework_memory-0.1.0a4-py3-none-any.whl",
+        "sha256": "72d68f2532d09451b56589f41f9493b85113d190a2fcda1b2131d30599c7db4f",
+        "project": "friday-framework-memory",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 75,
+        "requirements_count": 8
+      },
+      {
+        "filename": "friday_framework_memory-0.1.0a4.tar.gz",
+        "sha256": "912c5205e12f580b44f209d63ec80d021a2533e586b4b1fd2c94f87f332daa98",
+        "project": "friday-framework-memory",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 131,
+        "requirements_count": 8
+      },
+      {
+        "filename": "friday_framework_moltbook-0.1.0a4-py3-none-any.whl",
+        "sha256": "74a292b78926096235f622624055d5706d157daff047904ddf1c5995929ec6e2",
+        "project": "friday-framework-moltbook",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 15,
+        "requirements_count": 5
+      },
+      {
+        "filename": "friday_framework_moltbook-0.1.0a4.tar.gz",
+        "sha256": "108b04d4fbf2a68203dd18b58164adfc06fd7afc514d73a84362e30116846b79",
+        "project": "friday-framework-moltbook",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 20,
+        "requirements_count": 5
+      },
+      {
+        "filename": "friday_framework_optimization-0.1.0a4-py3-none-any.whl",
+        "sha256": "826a889053d2f2a80855f26294a483077b3158cfec7a2e218e0ecedf1ddbf9a8",
+        "project": "friday-framework-optimization",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 4,
+        "requirements_count": 4
+      },
+      {
+        "filename": "friday_framework_optimization-0.1.0a4.tar.gz",
+        "sha256": "870a3badaf3f8052a7f60e8468996137cc1fbdd26fa88b6b7ca3ae4e54e2c1b1",
+        "project": "friday-framework-optimization",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 6,
+        "requirements_count": 4
+      },
+      {
+        "filename": "friday_framework_runtime-0.1.0a4-py3-none-any.whl",
+        "sha256": "35292867782731c4751d5c07c26d1e1c4fdf8b3473576a4d136debe4aa66377f",
+        "project": "friday-framework-runtime",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 9,
+        "requirements_count": 9
+      },
+      {
+        "filename": "friday_framework_runtime-0.1.0a4.tar.gz",
+        "sha256": "1bff3f83d548152772ad071efdf335f5bfc8d10f84d7e1f70bfa86c68cb477db",
+        "project": "friday-framework-runtime",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 20,
+        "requirements_count": 9
+      },
+      {
+        "filename": "friday_framework_sandbox-0.1.0a4-py3-none-any.whl",
+        "sha256": "4381ed3e37853db84afee3db05ef3e4b1a8f980963b9a86965e4e19b2d5b8178",
+        "project": "friday-framework-sandbox",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 9,
+        "requirements_count": 5
+      },
+      {
+        "filename": "friday_framework_sandbox-0.1.0a4.tar.gz",
+        "sha256": "58ee8c2c5dbec5c27656e630c8eabd3f7208154a78eb151138639e5a77bd931c",
+        "project": "friday-framework-sandbox",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 20,
+        "requirements_count": 5
+      },
+      {
+        "filename": "friday_framework_speech-0.1.0a4-py3-none-any.whl",
+        "sha256": "0e688d49d27fc67b8620473fbc83bbe65cb554a81a363c6f42769cf3272af89e",
+        "project": "friday-framework-speech",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 12,
+        "requirements_count": 13
+      },
+      {
+        "filename": "friday_framework_speech-0.1.0a4.tar.gz",
+        "sha256": "80df55ec59000c4162a021814c3dfd709ecb29e6dbdb500a7173b7c49479a59e",
+        "project": "friday-framework-speech",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 19,
+        "requirements_count": 13
+      },
+      {
+        "filename": "friday_framework_telemetry-0.1.0a4-py3-none-any.whl",
+        "sha256": "36a61c779ab93c9b1d3a1f20dbfd6c80981de3c38087816235031ed2bd79e1fe",
+        "project": "friday-framework-telemetry",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 26,
+        "requirements_count": 6
+      },
+      {
+        "filename": "friday_framework_telemetry-0.1.0a4.tar.gz",
+        "sha256": "d4a8db4244f9cb602ae4a632a4d7d3c6ea9c2da1c91e4ca8576de07f123a506d",
+        "project": "friday-framework-telemetry",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 40,
+        "requirements_count": 6
+      },
+      {
+        "filename": "friday_framework_tools-0.1.0a4-py3-none-any.whl",
+        "sha256": "498daf87da69462fc648b6565cb16650d5028c2905377f048de917885fc47ba0",
+        "project": "friday-framework-tools",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 87,
+        "requirements_count": 32
+      },
+      {
+        "filename": "friday_framework_tools-0.1.0a4.tar.gz",
+        "sha256": "89dc527229830e687ce9ccde7e44ffae07cf5cdf7aa1e3e79a526f40928354bb",
+        "project": "friday-framework-tools",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 103,
+        "requirements_count": 32
+      },
+      {
+        "filename": "friday_framework_transcript-0.1.0a4-py3-none-any.whl",
+        "sha256": "4c23e780c134f6ccfec6a5561053c0c13253a9261bf5477a3d38ad363ef88e67",
+        "project": "friday-framework-transcript",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 13,
+        "requirements_count": 5
+      },
+      {
+        "filename": "friday_framework_transcript-0.1.0a4.tar.gz",
+        "sha256": "7477141f7e012044e55e5bed5409f78937cafd8636813577aff4af401165d344",
+        "project": "friday-framework-transcript",
+        "version": "0.1.0a4",
+        "documentation": "https://gendevx.com/friday/",
+        "source_files_byte_matched": 19,
+        "requirements_count": 5
+      }
+    ]
+  },
+  "errors": []
+}

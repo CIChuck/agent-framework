@@ -1,6 +1,6 @@
 [project]
 name = "friday-framework-moltbook"
-version = "0.1.0a3"
+version = "0.1.0a4"
 description = "Moltbook API client and models"
 readme = "README.md"
 requires-python = ">=3.13.4"

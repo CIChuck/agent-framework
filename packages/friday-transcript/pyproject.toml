@@ -1,13 +1,13 @@
 [project]
 name = "friday-framework-transcript"
-version = "0.1.0a3"
+version = "0.1.0a4"
 description = "Persistent, immutable conversation transcript storage for Friday"
 readme = "README.md"
 requires-python = ">=3.13.4"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
 dependencies = [
-    "friday-framework-core==0.1.0a3",
+    "friday-framework-core==0.1.0a4",
     "pydantic>=2.0",
     "aiosqlite>=0.19.0",
 ]

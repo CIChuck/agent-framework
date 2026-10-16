@@ -1,0 +1,58 @@
+from pathlib import Path
+import asyncio
+import importlib
+import importlib.metadata
+import inspect
+import json
+import runpy
+import sys
+import tomllib
+import zipfile
+import hashlib
+
+ROOT=Path('/Users/chuckrussell/Dev/gendev/agent-framework')
+OUT=Path('/private/tmp/friday-alpha4-review-e965917a')
+VENV=ROOT/'build/alpha4-work/local-install'
+manifest=json.loads((ROOT/'build/alpha4-work/artifact-sha256.json').read_text())
+if Path(sys.prefix)!=VENV:raise RuntimeError('Incorrect clean installation environment')
+try:sys.audit('socket.connect',None,None)
+except RuntimeError as exc:
+ if 'Offline artifact smoke' not in str(exc):raise
+else:raise RuntimeError('Offline guard is not active')
+records=[]
+for path in [ROOT/'pyproject.toml',*sorted((ROOT/'packages').glob('*/pyproject.toml'))]:
+ data=tomllib.loads(path.read_text()); project=data['project']; name=project['name']
+ dist=importlib.metadata.distribution(name)
+ if dist.version!='0.1.0a4':raise RuntimeError('Installed version mismatch: '+name)
+ if 'Documentation, https://gendevx.com/friday/' not in dist.metadata.get_all('Project-URL',[]):raise RuntimeError('Installed URL mismatch: '+name)
+ wheel_name=name.replace('-','_')+'-0.1.0a4-py3-none-any.whl'
+ artifact=ROOT/'dist/friday-package-cohort-0.1.0a4'/wheel_name
+ actual_hash=hashlib.sha256(artifact.read_bytes()).hexdigest()
+ if actual_hash!=manifest[wheel_name]:raise RuntimeError('Frozen artifact hash mismatch: '+name)
+ with zipfile.ZipFile(artifact) as z:
+  compared=0
+  for member in z.namelist():
+   if member.endswith('/') or member.endswith('.dist-info/RECORD'):continue
+   installed=dist.locate_file(member)
+   if installed.read_bytes()!=z.read(member):raise RuntimeError('Installed content differs from frozen wheel: '+name+' '+member)
+   compared+=1
+ modules=[]
+ for source in data.get('tool',{}).get('hatch',{}).get('build',{}).get('targets',{}).get('wheel',{}).get('packages',[]):
+  module_name=Path(source).name
+  module=importlib.import_module(module_name)
+  if not Path(module.__file__).is_relative_to(VENV):raise RuntimeError('Module resolved outside clean installation: '+module_name)
+  exported=getattr(module,'__version__',None)
+  if exported is not None and exported!='0.1.0a4':raise RuntimeError('Exported version mismatch: '+module_name)
+  modules.append(module_name)
+ records.append({'name':name,'version':dist.version,'documentation':'https://gendevx.com/friday/','frozen_wheel_content_verified':compared,'local_wheel':wheel_name,'sha256':actual_hash,'modules':modules})
+functions=runpy.run_path(str(ROOT/'packages/friday-chat/tests_chat/test_imports.py'))
+executed=[]
+for name,func in functions.items():
+ if name.startswith('test_') and callable(func):
+  if inspect.iscoroutinefunction(func):asyncio.run(func())
+  else:func()
+  executed.append(name)
+if len(executed)!=6:raise RuntimeError('Expected all six Chat import checks')
+result={'python_version':sys.version,'prefix':sys.prefix,'offline_guard_active':True,'all_17_local_wheel_hashes_and_urls_verified':len(records)==17,'installed':records,'existing_chat_import_tests':executed}
+(OUT/'installed-review.json').write_text(json.dumps(result,indent=2)+'\n')
+print('17 distributions: alpha4 versions, documentation URLs and frozen local wheel hashes match; 16 package namespaces import from clean site-packages; all 6 existing Chat import tests pass under active network guard.')

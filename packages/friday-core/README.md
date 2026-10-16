@@ -8,7 +8,7 @@ Shared contracts and primitives for Friday packages: LLM, memory, tool, agent an
 ## Installation
 
 ```bash
-python -m pip install "friday-framework-core==0.1.0a3"
+python -m pip install "friday-framework-core==0.1.0a4"
 ```
 
 Friday distributions use the same release version; keep internal Friday dependencies aligned.

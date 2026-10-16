@@ -1,0 +1,19 @@
+{
+  "friday-chat": "0.1.0a4",
+  "friday-framework": "0.1.0a4",
+  "friday-framework-agent": "0.1.0a4",
+  "friday-framework-cli": "0.1.0a4",
+  "friday-framework-core": "0.1.0a4",
+  "friday-framework-finance": "0.1.0a4",
+  "friday-framework-llm": "0.1.0a4",
+  "friday-framework-mcp": "0.1.0a4",
+  "friday-framework-memory": "0.1.0a4",
+  "friday-framework-moltbook": "0.1.0a4",
+  "friday-framework-optimization": "0.1.0a4",
+  "friday-framework-runtime": "0.1.0a4",
+  "friday-framework-sandbox": "0.1.0a4",
+  "friday-framework-speech": "0.1.0a4",
+  "friday-framework-telemetry": "0.1.0a4",
+  "friday-framework-tools": "0.1.0a4",
+  "friday-framework-transcript": "0.1.0a4"
+}

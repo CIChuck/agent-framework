@@ -8,7 +8,7 @@ MCP tools clients, transports and programmatic servers. Use the protocol APIs di
 ## Installation
 
 ```bash
-python -m pip install "friday-framework-mcp==0.1.0a3"
+python -m pip install "friday-framework-mcp==0.1.0a4"
 ```
 
 Friday distributions use the same release version; keep internal Friday dependencies aligned.
@@ -75,7 +75,7 @@ Expected output: `Hello from MCP`. Keep server stdout exclusively for protocol m
 
 Legacy HTTP+SSE is not the modern Streamable HTTP transport. Stdio configuration defaults to legacy compatibility; select `modern` or `auto` explicitly. HTTP requires a dated version and matching admission policy. The official `mcp` SDK is a development interoperability dependency, not Friday's production protocol implementation.
 
-The optional `server` extra installs standalone HTTP server dependencies: `python -m pip install "friday-framework-mcp[server]==0.1.0a3"`. `full` adds broader Friday integrations; extras do not activate remote peers.
+The optional `server` extra installs standalone HTTP server dependencies: `python -m pip install "friday-framework-mcp[server]==0.1.0a4"`. `full` adds broader Friday integrations; extras do not activate remote peers.
 
 ## Integrated Runtime/Chat configuration
 

@@ -45,9 +45,10 @@ Directory placement does not grant implementation authority.
 | 27 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
 | 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](active/friday-deprecated-credential-cleanup/) | normal | granted | merged | PR 9 merged and remote branch deleted; maintainer lifecycle closeout/acceptance remains |
 | 29 | [Friday 0.1.0a3 repository version bump](active/friday-alpha3-version-bump/) | normal | granted | released | Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified |
-| 30 | [Precise Python monorepo and package READMEs](active/friday-readme-refresh/) | normal | granted | local | All17 README rewrites VERIFIED; maintainer acceptance and requested source delivery next |
-| 31 | [Current technical end-user guides for alpha3](active/friday-guides-refresh/) | normal | granted | local | VERIFIED guides; maintainer review, completion/acceptance and separately requested source delivery |
-| 32 | [Friday Chat quick start for clone and PyPI users](active/friday-chat-quick-start/) | normal | granted | local | VERIFIED delivery candidate; execute authorized push/PR/merge and remote branch deletion; alpha4 release follows |
+| 30 | [Precise Python monorepo and package READMEs](active/friday-readme-refresh/) | normal | granted | merged | Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains |
+| 31 | [Current technical end-user guides for alpha3](active/friday-guides-refresh/) | normal | granted | merged | Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains |
+| 32 | [Friday Chat quick start for clone and PyPI users](active/friday-chat-quick-start/) | normal | granted | merged | Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains |
+| 34 | [Friday 0.1.0a4 coordinated release](active/friday-alpha4-release/) | normal | granted | local | VERIFIED alpha4 candidate; execute authorized release PR merge and production PyPI publication |
 
 ## Completed
 

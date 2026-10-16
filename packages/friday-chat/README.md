@@ -8,7 +8,7 @@ The maintained terminal chat application for Friday. It composes the framework's
 ## Installation
 
 ```bash
-python -m pip install "friday-chat==0.1.0a3"
+python -m pip install "friday-chat==0.1.0a4"
 ```
 
 Friday distributions use the same release version; keep internal Friday dependencies aligned.
@@ -61,7 +61,7 @@ Real mode can contact configured providers, consume quota and write configured s
 
 - Interactive chat, configured model/embedding roles, memory retrieval/extraction, transcript persistence and selected native/MCP tools.
 - Model-library bindings for primary chat, extraction, routing, compaction, maintenance, embeddings and smart-file processing. Legacy flat generation fields remain a compatibility surface; conflicting old/new fields fail validation.
-- Optional `speech`, `finance`, `sandbox`, `moltbook` extras; `full` combines those integrations. For example: `python -m pip install "friday-chat[speech]==0.1.0a3"`. Installing dependencies does not enable providers.
+- Optional `speech`, `finance`, `sandbox`, `moltbook` extras; `full` combines those integrations. For example: `python -m pip install "friday-chat[speech]==0.1.0a4"`. Installing dependencies does not enable providers.
 - MCP client configuration under `tools.providers.mcp`, disabled by default. Real mode is required. Modern stdio and explicitly admitted HTTPS Streamable HTTP are supported; credentials, remote trust, filters and limits remain explicit.
 
 See the MCP guide for complete YAML, canonical `mcp_...` tool names and the distinction between an optional peer and a pinned required tool. There is no Chat MCP health command, external MCP `config_file` include, or in-place integrated catalog-refresh switch.
