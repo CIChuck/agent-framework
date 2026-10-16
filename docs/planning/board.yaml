@@ -628,11 +628,14 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-alpha4-release/
-  next_gate: Frozen alpha4 source independent review and artifact/clean-install checks before authorized source and PyPI delivery
+  next_gate: VERIFIED alpha4 candidate; execute authorized release PR merge and production PyPI publication
   delivery_state: local
   branch: release/0.1.0a4
   depends_on: []
-  validation: []
+  validation:
+  - Fresh independent full release VERIFIED e965917a
+  - 191 focused source tests; 6 installed Chat import checks; Ruff/Mypy/lock/metadata passed
+  - 34 frozen artifacts and clean local cohort installation verified
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 events:

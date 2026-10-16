@@ -1,0 +1,541 @@
+{
+  "checked_at": "2026-10-16T20:19:22.677815+00:00",
+  "head": "e965917a9a236c4428972255e2017be81aa69d7f",
+  "branch": "release/0.1.0a4",
+  "status_porcelain": "",
+  "source_python": "3.13.10 (main, Dec  2 2025, 22:01:27) [Clang 21.1.4 ]",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "outcome": "VERIFIED",
+  "finding_count": 0,
+  "checks": [
+    {
+      "check": "cohort-and-helpers",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/integration/test_package_cohort_metadata.py",
+        "packages/friday-chat/tests_chat/test_release_helpers.py",
+        "--basetemp",
+        "/private/tmp/friday-alpha4-review-e965917a/pytest-cohort"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:50.607150+00:00",
+      "finished_at": "2026-10-16T20:14:51.071374+00:00",
+      "exit_code": 0,
+      "stdout": "cohort-and-helpers.stdout",
+      "stderr": "cohort-and-helpers.stderr"
+    },
+    {
+      "check": "modern-mcp",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+        "--basetemp",
+        "/private/tmp/friday-alpha4-review-e965917a/pytest-mcp"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:50.608082+00:00",
+      "finished_at": "2026-10-16T20:14:52.099202+00:00",
+      "exit_code": 0,
+      "stdout": "modern-mcp.stdout",
+      "stderr": "modern-mcp.stderr"
+    },
+    {
+      "check": "source-chat-imports",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "packages/friday-chat/tests_chat/test_imports.py",
+        "-k",
+        "not test_runtime_version_matches_distribution_metadata",
+        "--basetemp",
+        "/private/tmp/friday-alpha4-review-e965917a/pytest-imports"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:50.608211+00:00",
+      "finished_at": "2026-10-16T20:14:53.379363+00:00",
+      "exit_code": 0,
+      "stdout": "source-chat-imports.stdout",
+      "stderr": "source-chat-imports.stderr"
+    },
+    {
+      "check": "metadata",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "scripts/check-package-metadata.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:50.609984+00:00",
+      "finished_at": "2026-10-16T20:14:50.642162+00:00",
+      "exit_code": 0,
+      "stdout": "metadata.stdout",
+      "stderr": "metadata.stderr"
+    },
+    {
+      "check": "artifacts",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "scripts/check-package-artifacts.py",
+        "dist/friday-package-cohort-0.1.0a4"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:50.642218+00:00",
+      "finished_at": "2026-10-16T20:14:50.826365+00:00",
+      "exit_code": 0,
+      "stdout": "artifacts.stdout",
+      "stderr": "artifacts.stderr"
+    },
+    {
+      "check": "ruff",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "--no-cache",
+        "packages/friday-chat/src/friday_chat/__init__.py",
+        "packages/friday-chat/src/friday_chat/app.py",
+        "packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+        "packages/friday-chat/tests_chat/test_imports.py",
+        "packages/friday-chat/tests_chat/test_release_helpers.py",
+        "packages/friday-cli/src/friday_cli/__init__.py",
+        "packages/friday-core/src/friday_core/__init__.py",
+        "packages/friday-mcp/src/friday_mcp/__init__.py",
+        "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+        "packages/friday-moltbook/src/friday_moltbook/__init__.py",
+        "packages/friday-sandbox/src/friday_sandbox/__init__.py",
+        "packages/friday-telemetry/src/friday_telemetry/__init__.py",
+        "packages/friday-tools/src/friday_tools/__init__.py",
+        "scripts/check-package-artifacts.py",
+        "scripts/check-package-metadata.py",
+        "tests/integration/test_package_cohort_metadata.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:50.995657+00:00",
+      "finished_at": "2026-10-16T20:14:51.029128+00:00",
+      "exit_code": 0,
+      "stdout": "ruff.stdout",
+      "stderr": "ruff.stderr"
+    },
+    {
+      "check": "focused-mypy",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "-m",
+        "mypy",
+        "--cache-dir",
+        "/private/tmp/friday-alpha4-review-e965917a/mypy-cache",
+        "scripts/check-package-artifacts.py",
+        "scripts/check-package-metadata.py",
+        "tests/integration/test_package_cohort_metadata.py",
+        "packages/friday-chat/tests_chat/test_release_helpers.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:51.029163+00:00",
+      "finished_at": "2026-10-16T20:14:51.701366+00:00",
+      "exit_code": 0,
+      "stdout": "focused-mypy.stdout",
+      "stderr": "focused-mypy.stderr"
+    },
+    {
+      "check": "lock",
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "lock",
+        "--offline",
+        "--check"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:51.071427+00:00",
+      "finished_at": "2026-10-16T20:14:51.151136+00:00",
+      "exit_code": 0,
+      "stdout": "lock.stdout",
+      "stderr": "lock.stderr"
+    },
+    {
+      "check": "shell-syntax",
+      "command": [
+        "/bin/zsh",
+        "-n",
+        "scripts/smoke-install-artifacts.sh"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:51.151167+00:00",
+      "finished_at": "2026-10-16T20:14:51.159205+00:00",
+      "exit_code": 0,
+      "stdout": "shell-syntax.stdout",
+      "stderr": "shell-syntax.stderr"
+    },
+    {
+      "check": "board-validate",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:51.159236+00:00",
+      "finished_at": "2026-10-16T20:14:51.265909+00:00",
+      "exit_code": 0,
+      "stdout": "board-validate.stdout",
+      "stderr": "board-validate.stderr"
+    },
+    {
+      "check": "dashboard",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:51.265944+00:00",
+      "finished_at": "2026-10-16T20:14:51.369929+00:00",
+      "exit_code": 0,
+      "stdout": "dashboard.stdout",
+      "stderr": "dashboard.stderr"
+    },
+    {
+      "check": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "465c5643b855c76a3584c393e96fb7bd1c855396",
+        "e965917a9a236c4428972255e2017be81aa69d7f"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "started_at": "2026-10-16T20:14:51.701399+00:00",
+      "finished_at": "2026-10-16T20:14:51.718416+00:00",
+      "exit_code": 0,
+      "stdout": "whitespace.stdout",
+      "stderr": "whitespace.stderr"
+    },
+    {
+      "check": "strict-twine-corrected",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/build/release-0.1.0a4-tools/bin/python",
+        "-m",
+        "twine",
+        "check",
+        "--strict",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_chat-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_chat-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_agent-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_agent-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_cli-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_cli-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_core-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_core-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_finance-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_finance-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_llm-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_llm-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_mcp-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_mcp-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_memory-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_memory-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_moltbook-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_moltbook-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_optimization-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_optimization-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_runtime-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_runtime-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_sandbox-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_sandbox-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_speech-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_speech-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_telemetry-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_telemetry-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_tools-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_tools-0.1.0a4.tar.gz",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_transcript-0.1.0a4-py3-none-any.whl",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4/friday_framework_transcript-0.1.0a4.tar.gz"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": "/private/tmp/friday-alpha4-review-e965917a/home",
+        "TMPDIR": "/private/tmp/friday-alpha4-review-e965917a/tmp",
+        "LANG": "en_US.UTF-8",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/Users/chuckrussell/Dev/gendev/agent-framework/build/release-cache",
+        "UV_NO_CONFIG": "1",
+        "UV_NO_SYNC": "1",
+        "UV_OFFLINE": "1",
+        "FRIDAY_TELEMETRY_ENABLED": "false",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "True",
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+        "OTEL_SDK_DISABLED": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "DO_NOT_TRACK": "1"
+      },
+      "finished_at": "2026-10-16T20:17:20.670493+00:00",
+      "exit_code": 0,
+      "stdout": "strict-twine-corrected.stdout",
+      "stderr": "strict-twine-corrected.stderr"
+    },
+    {
+      "check": "documentation-lifecycle-no-sync",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": "/private/tmp/friday-alpha4-review-e965917a/home",
+        "TMPDIR": "/private/tmp/friday-alpha4-review-e965917a/tmp",
+        "LANG": "en_US.UTF-8",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/Users/chuckrussell/Dev/gendev/agent-framework/build/release-cache",
+        "UV_NO_CONFIG": "1",
+        "UV_NO_SYNC": "1",
+        "UV_OFFLINE": "1",
+        "FRIDAY_TELEMETRY_ENABLED": "false",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "True",
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+        "OTEL_SDK_DISABLED": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "DO_NOT_TRACK": "1"
+      },
+      "finished_at": "2026-10-16T20:17:21.019138+00:00",
+      "exit_code": 1,
+      "stdout": "documentation-lifecycle-no-sync.stdout",
+      "stderr": "documentation-lifecycle-no-sync.stderr"
+    },
+    {
+      "check": "installed-pip-check",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/private/tmp/friday-alpha4-review-e965917a",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": "/private/tmp/friday-alpha4-review-e965917a/home",
+        "TMPDIR": "/private/tmp/friday-alpha4-review-e965917a/tmp",
+        "LANG": "en_US.UTF-8",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/Users/chuckrussell/Dev/gendev/agent-framework/build/release-cache",
+        "UV_NO_CONFIG": "1",
+        "UV_NO_SYNC": "1",
+        "UV_OFFLINE": "1",
+        "FRIDAY_TELEMETRY_ENABLED": "false",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "True",
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+        "OTEL_SDK_DISABLED": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "DO_NOT_TRACK": "1",
+        "PYTHONPATH": "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/guard"
+      },
+      "finished_at": "2026-10-16T20:17:20.902160+00:00",
+      "exit_code": 0,
+      "stdout": "installed-pip-check.stdout",
+      "stderr": "installed-pip-check.stderr"
+    },
+    {
+      "check": "installed-llm-fake-transport",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/python",
+        "/private/tmp/friday-alpha4-review-e965917a/installed-helper.py"
+      ],
+      "cwd": "/private/tmp/friday-alpha4-review-e965917a",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": "/private/tmp/friday-alpha4-review-e965917a/home",
+        "TMPDIR": "/private/tmp/friday-alpha4-review-e965917a/tmp",
+        "LANG": "en_US.UTF-8",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/Users/chuckrussell/Dev/gendev/agent-framework/build/release-cache",
+        "UV_NO_CONFIG": "1",
+        "UV_NO_SYNC": "1",
+        "UV_OFFLINE": "1",
+        "FRIDAY_TELEMETRY_ENABLED": "false",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "True",
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+        "OTEL_SDK_DISABLED": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "DO_NOT_TRACK": "1",
+        "PYTHONPATH": "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/guard",
+        "FRIDAY_SMOKE_DISTRIBUTION": "friday-framework-llm",
+        "FRIDAY_SMOKE_IMPORT": "friday_llm"
+      },
+      "finished_at": "2026-10-16T20:17:23.236333+00:00",
+      "exit_code": 0,
+      "stdout": "installed-llm-fake-transport.stdout",
+      "stderr": "installed-llm-fake-transport.stderr"
+    },
+    {
+      "check": "installed-chat-fake-transport",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/python",
+        "/private/tmp/friday-alpha4-review-e965917a/installed-helper.py"
+      ],
+      "cwd": "/private/tmp/friday-alpha4-review-e965917a",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": "/private/tmp/friday-alpha4-review-e965917a/home",
+        "TMPDIR": "/private/tmp/friday-alpha4-review-e965917a/tmp",
+        "LANG": "en_US.UTF-8",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/Users/chuckrussell/Dev/gendev/agent-framework/build/release-cache",
+        "UV_NO_CONFIG": "1",
+        "UV_NO_SYNC": "1",
+        "UV_OFFLINE": "1",
+        "FRIDAY_TELEMETRY_ENABLED": "false",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "True",
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+        "OTEL_SDK_DISABLED": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "DO_NOT_TRACK": "1",
+        "PYTHONPATH": "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/guard",
+        "FRIDAY_SMOKE_DISTRIBUTION": "friday-chat",
+        "FRIDAY_SMOKE_IMPORT": "friday_chat"
+      },
+      "finished_at": "2026-10-16T20:17:24.305539+00:00",
+      "exit_code": 0,
+      "stdout": "installed-chat-fake-transport.stdout",
+      "stderr": "installed-chat-fake-transport.stderr"
+    },
+    {
+      "check": "installed-chat-help",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/friday-chat",
+        "--help"
+      ],
+      "cwd": "/private/tmp/friday-alpha4-review-e965917a",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": "/private/tmp/friday-alpha4-review-e965917a/home",
+        "TMPDIR": "/private/tmp/friday-alpha4-review-e965917a/tmp",
+        "LANG": "en_US.UTF-8",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/Users/chuckrussell/Dev/gendev/agent-framework/build/release-cache",
+        "UV_NO_CONFIG": "1",
+        "UV_NO_SYNC": "1",
+        "UV_OFFLINE": "1",
+        "FRIDAY_TELEMETRY_ENABLED": "false",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "True",
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+        "OTEL_SDK_DISABLED": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "DO_NOT_TRACK": "1",
+        "PYTHONPATH": "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/guard"
+      },
+      "finished_at": "2026-10-16T20:17:24.622857+00:00",
+      "exit_code": 0,
+      "stdout": "installed-chat-help.stdout",
+      "stderr": "installed-chat-help.stderr"
+    },
+    {
+      "check": "installed-chat-version",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/friday-chat",
+        "--version"
+      ],
+      "cwd": "/private/tmp/friday-alpha4-review-e965917a",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": "/private/tmp/friday-alpha4-review-e965917a/home",
+        "TMPDIR": "/private/tmp/friday-alpha4-review-e965917a/tmp",
+        "LANG": "en_US.UTF-8",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/Users/chuckrussell/Dev/gendev/agent-framework/build/release-cache",
+        "UV_NO_CONFIG": "1",
+        "UV_NO_SYNC": "1",
+        "UV_OFFLINE": "1",
+        "FRIDAY_TELEMETRY_ENABLED": "false",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "True",
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+        "OTEL_SDK_DISABLED": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "DO_NOT_TRACK": "1",
+        "PYTHONPATH": "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/guard"
+      },
+      "finished_at": "2026-10-16T20:17:24.672086+00:00",
+      "exit_code": 0,
+      "stdout": "installed-chat-version.stdout",
+      "stderr": "installed-chat-version.stderr"
+    },
+    {
+      "check": "shared-environment-version",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "-c",
+        "import importlib.metadata; print(importlib.metadata.version(\"friday-chat\"))"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": "/private/tmp/friday-alpha4-review-e965917a/home",
+        "TMPDIR": "/private/tmp/friday-alpha4-review-e965917a/tmp",
+        "LANG": "en_US.UTF-8",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/Users/chuckrussell/Dev/gendev/agent-framework/build/release-cache",
+        "UV_NO_CONFIG": "1",
+        "UV_NO_SYNC": "1",
+        "UV_OFFLINE": "1",
+        "FRIDAY_TELEMETRY_ENABLED": "false",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "True",
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+        "OTEL_SDK_DISABLED": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "DO_NOT_TRACK": "1"
+      },
+      "finished_at": "2026-10-16T20:17:23.276732+00:00",
+      "exit_code": 0,
+      "stdout": "shared-environment-version.stdout",
+      "stderr": "shared-environment-version.stderr"
+    },
+    {
+      "check": "installed-review-corrected",
+      "command": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/python",
+        "/private/tmp/friday-alpha4-review-e965917a/installed-review.py"
+      ],
+      "cwd": "/private/tmp/friday-alpha4-review-e965917a",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": "/private/tmp/friday-alpha4-review-e965917a/home",
+        "TMPDIR": "/private/tmp/friday-alpha4-review-e965917a/tmp",
+        "LANG": "en_US.UTF-8",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/Users/chuckrussell/Dev/gendev/agent-framework/build/release-cache",
+        "UV_NO_CONFIG": "1",
+        "UV_NO_SYNC": "1",
+        "UV_OFFLINE": "1",
+        "FRIDAY_TELEMETRY_ENABLED": "false",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "True",
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+        "OTEL_SDK_DISABLED": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "DO_NOT_TRACK": "1",
+        "PYTHONPATH": "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/guard"
+      },
+      "finished_at": "2026-10-16T20:18:10.887433+00:00",
+      "exit_code": 0,
+      "stdout": "installed-review-corrected.stdout",
+      "stderr": "installed-review-corrected.stderr"
+    }
+  ],
+  "artifact_manifest_sha256": "b4b0180dccb2cb1c6393ba78d07dd353143d042b3d5480f22712f4f35284bfaa",
+  "artifact_metadata_sha256": "d062fc3ff51b62c6ada15f080e6c8f556555222cfae75e6be82b3ddd320cf653"
+}

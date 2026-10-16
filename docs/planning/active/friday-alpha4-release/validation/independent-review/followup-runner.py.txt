@@ -1,0 +1,35 @@
+from pathlib import Path
+import concurrent.futures
+import datetime
+import json
+import os
+import re
+import subprocess
+ROOT=Path('/Users/chuckrussell/Dev/gendev/agent-framework')
+OUT=Path('/private/tmp/friday-alpha4-review-e965917a')
+PY=str(ROOT/'.venv/bin/python')
+IPY=str(ROOT/'build/alpha4-work/local-install/bin/python')
+baseenv={'PATH':'/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin','HOME':str(OUT/'home'),'TMPDIR':str(OUT/'tmp'),'LANG':'en_US.UTF-8','PYTHONDONTWRITEBYTECODE':'1','UV_CACHE_DIR':str(ROOT/'build/release-cache'),'UV_NO_CONFIG':'1','UV_NO_SYNC':'1','UV_OFFLINE':'1','FRIDAY_TELEMETRY_ENABLED':'false','LITELLM_LOCAL_MODEL_COST_MAP':'True','HF_HUB_DISABLE_TELEMETRY':'1','OTEL_SDK_DISABLED':'true','ANONYMIZED_TELEMETRY':'False','DO_NOT_TRACK':'1'}
+offline={**baseenv,'PYTHONPATH':str(ROOT/'build/alpha4-work/guard')}
+helper=re.findall(r"<<'PY'\n(.*?)\nPY",(ROOT/'scripts/smoke-install-artifacts.sh').read_text(),re.S)[-1]
+(OUT/'installed-helper.py').write_text(helper+'\n')
+artifacts=sorted([*(ROOT/'dist/friday-package-cohort-0.1.0a4').glob('*.whl'),*(ROOT/'dist/friday-package-cohort-0.1.0a4').glob('*.tar.gz')])
+checks=[
+ ('strict-twine-corrected',[str(ROOT/'build/release-0.1.0a4-tools/bin/python'),'-m','twine','check','--strict',*[str(p) for p in artifacts]],baseenv,ROOT),
+ ('documentation-lifecycle-no-sync',[PY,'scripts/check-documentation-lifecycle.py'],baseenv,ROOT),
+ ('installed-review',[IPY,str(OUT/'installed-review.py')],offline,OUT),
+ ('installed-pip-check',[IPY,'-m','pip','check'],offline,OUT),
+ ('installed-llm-fake-transport',[IPY,str(OUT/'installed-helper.py')],{**offline,'FRIDAY_SMOKE_DISTRIBUTION':'friday-framework-llm','FRIDAY_SMOKE_IMPORT':'friday_llm'},OUT),
+ ('installed-chat-fake-transport',[IPY,str(OUT/'installed-helper.py')],{**offline,'FRIDAY_SMOKE_DISTRIBUTION':'friday-chat','FRIDAY_SMOKE_IMPORT':'friday_chat'},OUT),
+ ('installed-chat-help',[str(ROOT/'build/alpha4-work/local-install/bin/friday-chat'),'--help'],offline,OUT),
+ ('installed-chat-version',[str(ROOT/'build/alpha4-work/local-install/bin/friday-chat'),'--version'],offline,OUT),
+ ('shared-environment-version',[PY,'-c','import importlib.metadata; print(importlib.metadata.version("friday-chat"))'],baseenv,ROOT),
+]
+def run(item):
+ name,cmd,env,cwd=item
+ p=subprocess.run(cmd,cwd=cwd,env=env,text=True,capture_output=True)
+ (OUT/(name+'.stdout')).write_text(p.stdout);(OUT/(name+'.stderr')).write_text(p.stderr)
+ print(name+': '+str(p.returncode)+' '+(p.stdout+p.stderr).strip()[-350:],flush=True)
+ return {'check':name,'command':cmd,'cwd':str(cwd),'environment':env,'finished_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'exit_code':p.returncode,'stdout':name+'.stdout','stderr':name+'.stderr'}
+with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:records=list(pool.map(run,checks))
+(OUT/'followup-checks.json').write_text(json.dumps(records,indent=2)+'\n')

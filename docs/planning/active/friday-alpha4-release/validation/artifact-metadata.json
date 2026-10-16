@@ -1,0 +1,206 @@
+[
+  {
+    "filename": "friday_chat-0.1.0a4-py3-none-any.whl",
+    "project": "friday-chat",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_chat-0.1.0a4.tar.gz",
+    "project": "friday-chat",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework-0.1.0a4.tar.gz",
+    "project": "friday-framework",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_agent-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-agent",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_agent-0.1.0a4.tar.gz",
+    "project": "friday-framework-agent",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_cli-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-cli",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_cli-0.1.0a4.tar.gz",
+    "project": "friday-framework-cli",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_core-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-core",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_core-0.1.0a4.tar.gz",
+    "project": "friday-framework-core",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_finance-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-finance",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_finance-0.1.0a4.tar.gz",
+    "project": "friday-framework-finance",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_llm-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-llm",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_llm-0.1.0a4.tar.gz",
+    "project": "friday-framework-llm",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_mcp-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-mcp",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_mcp-0.1.0a4.tar.gz",
+    "project": "friday-framework-mcp",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_memory-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-memory",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_memory-0.1.0a4.tar.gz",
+    "project": "friday-framework-memory",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_moltbook-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-moltbook",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_moltbook-0.1.0a4.tar.gz",
+    "project": "friday-framework-moltbook",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_optimization-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-optimization",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_optimization-0.1.0a4.tar.gz",
+    "project": "friday-framework-optimization",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_runtime-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-runtime",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_runtime-0.1.0a4.tar.gz",
+    "project": "friday-framework-runtime",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_sandbox-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-sandbox",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_sandbox-0.1.0a4.tar.gz",
+    "project": "friday-framework-sandbox",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_speech-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-speech",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_speech-0.1.0a4.tar.gz",
+    "project": "friday-framework-speech",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_telemetry-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-telemetry",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_telemetry-0.1.0a4.tar.gz",
+    "project": "friday-framework-telemetry",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_tools-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-tools",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_tools-0.1.0a4.tar.gz",
+    "project": "friday-framework-tools",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_transcript-0.1.0a4-py3-none-any.whl",
+    "project": "friday-framework-transcript",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  },
+  {
+    "filename": "friday_framework_transcript-0.1.0a4.tar.gz",
+    "project": "friday-framework-transcript",
+    "version": "0.1.0a4",
+    "documentation": "https://gendevx.com/friday/"
+  }
+]

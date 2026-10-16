@@ -1,0 +1,46 @@
+from pathlib import Path
+import concurrent.futures
+import datetime
+import json
+import os
+import subprocess
+
+ROOT = Path('/Users/chuckrussell/Dev/gendev/agent-framework')
+OUT = Path('/private/tmp/friday-alpha4-review-e965917a')
+OUT.mkdir(exist_ok=True)
+(OUT / 'home').mkdir(exist_ok=True)
+(OUT / 'tmp').mkdir(exist_ok=True)
+BASE='465c5643b855c76a3584c393e96fb7bd1c855396'
+CAND='e965917a9a236c4428972255e2017be81aa69d7f'
+PY=str(ROOT / '.venv/bin/python')
+changed=subprocess.check_output(['git','diff','--name-only',BASE,CAND],cwd=ROOT,text=True).splitlines()
+python_files=[p for p in changed if p.endswith('.py')]
+commands={
+ 'cohort-and-helpers': [PY,'-m','pytest','-q','-p','no:cacheprovider','tests/integration/test_package_cohort_metadata.py','packages/friday-chat/tests_chat/test_release_helpers.py','--basetemp',str(OUT/'pytest-cohort')],
+ 'modern-mcp': [PY,'-m','pytest','-q','-p','no:cacheprovider','packages/friday-mcp/tests_mcp/client/test_modern_protocol.py','--basetemp',str(OUT/'pytest-mcp')],
+ 'source-chat-imports': [PY,'-m','pytest','-q','-p','no:cacheprovider','packages/friday-chat/tests_chat/test_imports.py','-k','not test_runtime_version_matches_distribution_metadata','--basetemp',str(OUT/'pytest-imports')],
+ 'metadata': [PY,'scripts/check-package-metadata.py'],
+ 'artifacts': [PY,'scripts/check-package-artifacts.py','dist/friday-package-cohort-0.1.0a4'],
+ 'strict-twine': [str(ROOT/'build/release-0.1.0a4-tools/bin/python'),'-m','twine','check','--strict',*[str(p) for p in sorted((ROOT/'dist/friday-package-cohort-0.1.0a4').iterdir())]],
+ 'ruff': [PY,'-m','ruff','check','--no-cache',*python_files],
+ 'focused-mypy': [PY,'-m','mypy','--cache-dir',str(OUT/'mypy-cache'),'scripts/check-package-artifacts.py','scripts/check-package-metadata.py','tests/integration/test_package_cohort_metadata.py','packages/friday-chat/tests_chat/test_release_helpers.py'],
+ 'lock': ['/opt/homebrew/bin/uv','lock','--offline','--check'],
+ 'shell-syntax': ['/bin/zsh','-n','scripts/smoke-install-artifacts.sh'],
+ 'board-validate': [PY,'scripts/friday-dev-board.py','validate'],
+ 'dashboard': [PY,'scripts/friday-dev-board.py','render','--check'],
+ 'documentation-lifecycle': [PY,'scripts/check-documentation-lifecycle.py'],
+ 'whitespace': ['git','diff','--check',BASE,CAND],
+}
+env={'PATH':'/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin','HOME':str(OUT/'home'),'TMPDIR':str(OUT/'tmp'),'LANG':'en_US.UTF-8','PYTHONDONTWRITEBYTECODE':'1','UV_CACHE_DIR':str(ROOT/'build/release-cache'),'UV_NO_CONFIG':'1','FRIDAY_TELEMETRY_ENABLED':'false','LITELLM_LOCAL_MODEL_COST_MAP':'True','HF_HUB_DISABLE_TELEMETRY':'1','OTEL_SDK_DISABLED':'true','ANONYMIZED_TELEMETRY':'False','DO_NOT_TRACK':'1'}
+def run(item):
+ name,cmd=item
+ start=datetime.datetime.now(datetime.timezone.utc).isoformat()
+ proc=subprocess.run(cmd,cwd=ROOT,env=env,text=True,capture_output=True)
+ (OUT/(name+'.stdout')).write_text(proc.stdout)
+ (OUT/(name+'.stderr')).write_text(proc.stderr)
+ r={'check':name,'command':cmd,'cwd':str(ROOT),'started_at':start,'finished_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'exit_code':proc.returncode,'stdout':name+'.stdout','stderr':name+'.stderr'}
+ print(name+': '+str(proc.returncode)+' '+(proc.stdout+proc.stderr).strip()[-600:],flush=True)
+ return r
+with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+ results=list(pool.map(run,commands.items()))
+(OUT/'checks.json').write_text(json.dumps({'environment':env,'records':results},indent=2)+'\n')

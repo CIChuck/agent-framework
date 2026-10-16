@@ -1,0 +1,104 @@
+[
+  {
+    "check": "create-venv",
+    "command": [
+      "/opt/homebrew/bin/uv",
+      "venv",
+      "--seed",
+      "--python",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-16T20:13:03.908578+00:00"
+  },
+  {
+    "check": "install-cohort",
+    "command": [
+      "/opt/homebrew/bin/uv",
+      "pip",
+      "install",
+      "--python",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/python",
+      "--index-url",
+      "https://pypi.org/simple",
+      "--find-links",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/dist/friday-package-cohort-0.1.0a4",
+      "friday-framework[all]==0.1.0a4",
+      "friday-chat==0.1.0a4"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-16T20:13:12.202286+00:00"
+  },
+  {
+    "check": "dependency-check",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-16T20:13:12.561859+00:00"
+  },
+  {
+    "check": "versions-and-urls",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/python",
+      "-c",
+      "import importlib.metadata,json\nfrom pathlib import Path\nnames=json.loads(Path('/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/projects.json').read_text())\nversions={name:importlib.metadata.version(name) for name in names}\nif len(versions)!=17 or set(versions.values())!={'0.1.0a4'}: raise RuntimeError(str(versions))\nfor name in names:\n    urls=importlib.metadata.metadata(name).get_all('Project-URL',[])\n    if 'Documentation, https://gendevx.com/friday/' not in urls: raise RuntimeError('Documentation mismatch: '+name)\nPath('/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-installed-versions.json').write_text(json.dumps(versions,indent=2)+'\\n')\nprint('All 17 installed versions and documentation URLs match alpha4')\n"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-16T20:13:12.599313+00:00"
+  },
+  {
+    "check": "imports",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/python",
+      "-c",
+      "import friday_core,friday_telemetry,friday_llm,friday_transcript,friday_memory,friday_agent,friday_runtime,friday_cli,friday_tools,friday_mcp,friday_chat;print(\"Framework, Runtime, MCP, Agent and Chat imports OK\")"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-16T20:13:18.707980+00:00"
+  },
+  {
+    "check": "friday-framework-llm-fake-transport",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/python",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/installed-helper-smoke.py"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-16T20:13:20.880390+00:00"
+  },
+  {
+    "check": "friday-chat-fake-transport",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/python",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/installed-helper-smoke.py"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-16T20:13:23.993694+00:00"
+  },
+  {
+    "check": "chat-version",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/friday-chat",
+      "--version"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-16T20:13:27.342569+00:00"
+  },
+  {
+    "check": "chat-help",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/build/alpha4-work/local-install/bin/friday-chat",
+      "--help"
+    ],
+    "exit_code": 0,
+    "finished_at": "2026-10-16T20:13:30.692006+00:00"
+  },
+  {
+    "check": "six-existing-Chat-import-tests",
+    "exit_code": 0
+  }
+]
