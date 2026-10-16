@@ -1,0 +1,9 @@
+{
+  "candidate": "ed88901be55003d905d913ee6f029945b30cf1dc",
+  "base": "a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad",
+  "verdict": "VERIFIED",
+  "review_mode": "fresh-context read-only delta and aggregate",
+  "authority": "docs/planning/active/friday-chat-quick-start/directives/ADD-QS-002-delivery.md",
+  "authority_sha256": "6a740ac1a6ca41d0cbabd0746b0da69a6c833e3cda68f8adf209a951aa6ed558",
+  "report_sha256": "32bf64566ea54977084598007b051bccec70b41f6fd2a68792de651377b27ac8"
+}

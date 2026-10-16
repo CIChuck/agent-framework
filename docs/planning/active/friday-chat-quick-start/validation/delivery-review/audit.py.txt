@@ -1,0 +1,135 @@
+from __future__ import annotations
+import copy
+import datetime
+import hashlib
+import json
+import os
+import re
+import runpy
+import subprocess
+import tempfile
+import tomllib
+from pathlib import Path
+from unittest.mock import patch
+
+ROOT = Path('/Users/chuckrussell/Dev/gendev/agent-framework')
+OUT = Path(__file__).resolve().parent
+BASE = 'a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad'
+DELTA = '3504c93a'
+CANDIDATE = 'ed88901be55003d905d913ee6f029945b30cf1dc'
+DOC_URL = 'https://gendevx.com/friday/'
+OLD_DOC = 'https://github.com/CIChuck/agent-framework/tree/main/docs'
+ALPHA = '8b85bd9169c00025e562c8db74afa81af873ec37'
+HELPER = '72f06012437ae5b82ade9255dcc2a0c0119ea898'
+README = '74e6ce61d6a2f5132a4cdfe79161c46a4ca6aeb1'
+GUIDES = '07e6e65b90afbf80bd81b95a7af802659d77983c'
+HOSTED = '89ad03a70d1c2ff9d5e8a2048f3491bb7c74903d'
+os.chdir(ROOT)
+os.environ.update(UV_CACHE_DIR=str(ROOT/'build/release-cache'), UV_OFFLINE='1', UV_NO_SYNC='1', PYTHONDONTWRITEBYTECODE='1')
+def git(*args: str) -> bytes:
+    return subprocess.check_output(['git', *args], cwd=ROOT)
+def at(rev: str, path: str) -> bytes:
+    return git('show', f'{rev}:{path}')
+def digest(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+def need(ok: bool, message: str) -> None:
+    if not ok:
+        raise RuntimeError(message)
+def names(base: str, *paths: str) -> list[str]:
+    return git('diff', '--name-only', f'{base}..{CANDIDATE}', '--', *paths).decode().splitlines()
+report = {'reviewer':'/root/docs_delivery_review', 'model':'Codex GPT-6 family; exact backend build not exposed', 'mode':'fresh-context read-only delta and aggregate', 'date':datetime.datetime.now(datetime.timezone.utc).isoformat(), 'candidate':CANDIDATE, 'base':BASE, 'delta_base':git('rev-parse',DELTA).decode().strip(), 'checks':{}}
+need(git('rev-parse','HEAD').decode().strip()==CANDIDATE,'HEAD mismatch')
+need(git('branch','--show-current').decode().strip()=='docs/chat-quick-start','branch mismatch')
+need(not git('status','--porcelain'), 'candidate not clean')
+checks = report['checks']
+metadata = [Path('pyproject.toml'), *sorted(Path('packages').glob('*/pyproject.toml'))]
+need(len(metadata)==17,'cohort count')
+for p in metadata:
+    need(tomllib.loads(p.read_text())['project']['urls']['Documentation']==DOC_URL, str(p)+' docs URL')
+    need(at(DELTA,str(p)).replace(OLD_DOC.encode(),DOC_URL.encode())==p.read_bytes(),str(p)+' non-doc metadata drift')
+    need(at(ALPHA,str(p)).replace(OLD_DOC.encode(),DOC_URL.encode())==p.read_bytes(),str(p)+' drift from reviewed metadata')
+checks['metadata']={'projects':17,'exact_url':DOC_URL,'only_Documentation_changed_since_reviewed_alpha3':True}
+checker=runpy.run_path('scripts/check-package-metadata.py')
+project=tomllib.loads(Path('pyproject.toml').read_text())
+probe_results=[]
+class ProbePath:
+    parent=ROOT
+    def __str__(self): return 'synthetic-pyproject.toml'
+    def read_text(self): return 'synthetic'
+for key in checker['REQUIRED_URLS']:
+    original=project['project']['urls'][key]
+    for value in [None, 31, [], 'https://example.invalid/', original]:
+        data=copy.deepcopy(project)
+        if value is None:
+            del data['project']['urls'][key]
+        else:
+            data['project']['urls'][key]=value
+        with patch.object(checker['tomllib'],'loads', return_value=data):
+            errors=checker['validate_project'](ProbePath(),expected_version='0.1.0a3',internal_version='0.1.0a3')
+        expected_error=value!=original
+        need(bool(errors)==expected_error,f'URL case wrong {key} {value!r}: {errors}')
+        if expected_error:
+            need(len(errors)==1 and f'project.urls.{key}' in errors[0],f'wrong rejection {key}: {errors}')
+        probe_results.append({'key':key,'value':value,'errors':errors})
+for value in [OLD_DOC, DOC_URL.rstrip('/'), DOC_URL+'extra']:
+    data=copy.deepcopy(project); data['project']['urls']['Documentation']=value
+    with patch.object(checker['tomllib'],'loads', return_value=data):
+        errors=checker['validate_project'](ProbePath(),expected_version='0.1.0a3',internal_version='0.1.0a3')
+    need(len(errors)==1 and 'project.urls.Documentation' in errors[0], 'docs exactness')
+    probe_results.append({'key':'Documentation','value':value,'errors':errors})
+checks['url_rule_probes']={'cases':len(probe_results),'results':probe_results}
+oldquick='docs/guides/quick-start.md'; newquick='docs/guides/00-quick-start.md'
+quick=Path(newquick).read_bytes()
+need(not Path(oldquick).exists(),'old quick start remains')
+need(quick==at(DELTA,oldquick)==at(HOSTED,oldquick),'rename content changed')
+need(digest(quick)=='eedd970411de3cd3233d02427357b2ffb8fa9e97005b01c09f500cf714d26f5a','hosted guide digest mismatch')
+index='docs/guides/README.md'
+need(Path(index).read_bytes()==at(HOSTED,index).replace(b'(quick-start.md)',b'(00-quick-start.md)'),'quick-start index drift')
+need(Path(index).read_text().count('(00-quick-start.md)')==2,'navigation count')
+need(Path('README.md').read_bytes()==at(README,'README.md').replace(b'https://github.com/CIChuck/agent-framework/blob/master/docs/guides/README.md',DOC_URL.encode()),'root README drift')
+checks['quick_start']={'sha256':digest(quick),'rename_exact':True,'navigation_links':2,'root_canonical_link_only':True}
+readme_paths=json.loads(Path('docs/planning/active/friday-readme-refresh/authority.json').read_text())['scope']
+for p in readme_paths:
+    if p!='README.md': need(Path(p).read_bytes()==at(README,p),p+' README differs from review')
+guide_paths=json.loads(Path('docs/planning/active/friday-guides-refresh/authority.json').read_text())['scope']
+for p in guide_paths:
+    if p!=index: need(Path(p).read_bytes()==at(GUIDES,p),p+' guide differs from review')
+need(not [p for p in names(ALPHA,'packages') if '/src/' in p or '/tests_' in p], 'runtime/test drift since alpha review')
+need(Path('uv.lock').read_bytes()==at(ALPHA,'uv.lock'),'lock drift since alpha review')
+need(Path('scripts/check-package-artifacts.py').read_bytes()==at(HELPER,'scripts/check-package-artifacts.py'),'artifact helper drift')
+need(Path('scripts/smoke-install-artifacts.sh').read_bytes()==at(ALPHA,'scripts/smoke-install-artifacts.sh'),'smoke helper drift')
+def third_party(raw: bytes) -> list[bytes]:
+    return [chunk for chunk in raw.split(b'[[package]]')[1:] if not tomllib.loads(b'[[package]]'.decode()+chunk.decode())['package'][0]['name'].startswith(('friday-framework','friday-chat'))]
+need(third_party(at(BASE,'uv.lock'))==third_party(Path('uv.lock').read_bytes()),'third-party lock changed')
+checks['prior_unit_mapping']={'package_READMEs_unchanged':16,'guides_unchanged':24,'quick_start_unchanged':True,'runtime_and_tests_unchanged_since':ALPHA,'third_party_lock_records_byte_identical_to_base':len(third_party(Path('uv.lock').read_bytes()))}
+retained=0
+for manifest in [*Path('docs/planning/active/friday-guides-refresh/validation').glob('*/retained-evidence.json'), *Path('docs/planning/active/friday-chat-quick-start/validation').glob('*/retained-evidence.json')]:
+    data=json.loads(manifest.read_text())
+    for p,expected in data.get('files',{}).items():
+        need(digest((manifest.parent/p).read_bytes())==expected,str(manifest)+' bad hash '+p)
+        retained+=1
+checks['retained_artifact_hashes_verified']=retained
+reports=['docs/planning/active/friday-alpha3-version-bump/validation/report.md','docs/planning/active/friday-alpha3-version-bump/validation/publication/helper-review.md','docs/planning/active/friday-readme-refresh/validation/final-review/report.md','docs/planning/active/friday-guides-refresh/validation/final-review/report.md','docs/planning/active/friday-chat-quick-start/validation/hosted-review/report.md']
+checks['retained_reports']={}
+for p in reports:
+    introduced=git('log','--diff-filter=A','--format=%H','--',p).decode().splitlines()[-1]
+    need(Path(p).read_bytes()==at(introduced,p),'report modified '+p)
+    checks['retained_reports'][p]={'introduced':introduced,'sha256':digest(Path(p).read_bytes()),'unchanged':True}
+docs=runpy.run_path('scripts/check-documentation-lifecycle.py')
+all_docs=docs['_markdown_files']()
+changed=[ROOT/p for p in names(BASE) if p.endswith('.md') and (ROOT/p).is_file()]
+need(not docs['_check_links'](changed),'changed Markdown links fail')
+need(not docs['_check_planning_packets'](),'planning packet failure')
+need(not docs['_check_retired_path'](all_docs),'retired archive path failure')
+baseline='docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md'
+need(Path(baseline).read_bytes()==at(BASE,baseline)==at(DELTA,baseline),'baseline report changed')
+all_errors=docs['_check_links'](all_docs)
+base_errors=docs['_check_links']([ROOT/baseline])
+need(all_errors==base_errors and len(base_errors)==6,'unexpected lifecycle failures')
+checks['documentation']={'markdown_inventory':len(all_docs),'changed_Markdown_files':len(changed),'changed_local_links_errors':[],'baseline_report_sha256':digest(Path(baseline).read_bytes()),'baseline_report_identical_to_origin_master':True,'only_global_link_errors':base_errors}
+paths=['AGENTS.md','docs/reference/policies/repository-engineering-policy.md','docs/reference/policies/development-task-lifecycle.md','docs/reference/policies/independent-validation-policy.md','docs/planning/active/friday-chat-quick-start/authority.json','docs/planning/active/friday-chat-quick-start/directives/CD-QS-001.md','docs/planning/active/friday-chat-quick-start/directives/ADD-QS-001-hosted-openai.md','docs/planning/active/friday-chat-quick-start/directives/ADD-QS-002-delivery.md']
+report['authority_at_candidate']={p:digest(Path(p).read_bytes()) for p in paths}
+checks['scope']={'delta_paths':names(DELTA),'aggregate_paths':names(BASE)}
+need(git('rev-parse','HEAD').decode().strip()==CANDIDATE and not git('status','--porcelain'),'freeze changed at close')
+(OUT/'audit.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps({'candidate':CANDIDATE,'url_cases':len(probe_results),'retained_hashes':retained,'changed_markdown':len(changed),'all_markdown':len(all_docs),'third_party_records':checks['prior_unit_mapping']['third_party_lock_records_byte_identical_to_base'],'baseline_errors':len(base_errors),'delta_paths':len(names(DELTA)),'aggregate_paths':len(names(BASE)),'authority':report['authority_at_candidate'],'result':'PASS'},indent=2))

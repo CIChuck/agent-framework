@@ -1,7 +1,7 @@
 # Friday Chat quick start
 
 Status: started; implementation_authority: granted by explicit maintainer request.
-execution_phase: validation; validation_state: pending.
+execution_phase: closeout; validation_state: verified.
 
 [Authority](authority.json), [construction directive](directives/CD-QS-001.md)
 and the maintainer-authorized [hosted API amendment](directives/ADD-QS-001-hosted-openai.md)
@@ -25,6 +25,9 @@ delivery. Local documentation only; no acceptance, push or publication inferred.
 
 Delivery amendment: [ADD-QS-002](directives/ADD-QS-002-delivery.md) records the
 maintainer-authorized metadata correction, rename and GitHub delivery.
-Current execution_phase: validation; validation_state: pending.
-Next gate: independent delivery review, then authorized push/PR/merge and remote
+Current execution_phase: closeout; validation_state: verified.
+Next gate: authorized push/PR/merge and remote
 branch deletion; alpha4 publication follows in a separate release unit.
+
+Fresh [delivery review](validation/delivery-review/report.md): VERIFIED candidate
+ed88901b. Current gate is authorized push, PR merge and remote source-branch deletion.

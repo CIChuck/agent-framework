@@ -597,7 +597,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-chat-quick-start/
-  next_gate: Independent delivery review, then maintainer-authorized push/PR/merge and remote branch deletion; alpha4 release follows
+  next_gate: VERIFIED delivery candidate; execute authorized push/PR/merge and remote branch deletion; alpha4 release follows
   delivery_state: local
   branch: docs/chat-quick-start
   depends_on: []
@@ -606,6 +606,7 @@ tasks:
   - docs/planning/active/friday-chat-quick-start/validation/intro-review/report.md
   - docs/planning/active/friday-chat-quick-start/validation/hosted-review/report.md
   - docs/planning/active/friday-chat-quick-start/implementation-report.md
+  - Fresh delivery delta and aggregate VERIFIED ed88901b; validation/delivery-review/report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-15'
 - id: friday-board-delivery-reconciliation
