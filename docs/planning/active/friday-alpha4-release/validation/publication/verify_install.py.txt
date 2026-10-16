@@ -1,0 +1,82 @@
+"""Install and smoke-test alpha4 in a fresh local-artifact or production profile."""
+from datetime import datetime, timezone
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+
+ROOT = Path(__file__).resolve().parents[2]
+WORK = Path(__file__).resolve().parent
+PROFILE = sys.argv[1]
+if PROFILE not in {'local', 'production'}:
+    raise ValueError('Expected local or production profile')
+VENV = WORK / (PROFILE + '-install')
+release_home = WORK / (PROFILE + '-home')
+release_tmp = WORK / (PROFILE + '-tmp')
+guard = WORK / 'guard'
+for directory in [release_home, release_tmp, guard]:
+    directory.mkdir(exist_ok=True)
+(guard / 'sitecustomize.py').write_text('''import sys\ndef offline_guard(event, args):\n    if event in {"socket.connect", "socket.getaddrinfo", "socket.bind"}:\n        raise RuntimeError("Offline artifact smoke forbids network access: " + event)\nsys.addaudithook(offline_guard)\n''')
+env = {'PATH': '/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin',
+       'HOME': str(release_home), 'TMPDIR': str(release_tmp), 'LANG': 'en_US.UTF-8',
+       'UV_NO_CONFIG': '1', 'UV_CACHE_DIR': str(ROOT / 'build/release-cache'),
+       'PYTHONDONTWRITEBYTECODE': '1'}
+offline = {**env, 'PYTHONPATH': str(guard), 'FRIDAY_TELEMETRY_ENABLED': 'false',
+           'LITELLM_LOCAL_MODEL_COST_MAP': 'True', 'HF_HUB_DISABLE_TELEMETRY': '1',
+           'OTEL_SDK_DISABLED': 'true', 'ANONYMIZED_TELEMETRY': 'False',
+           'DO_NOT_TRACK': '1'}
+records = []
+
+
+def run(name, command, offline_profile=False):
+    result = subprocess.run(command, cwd=WORK, env=offline if offline_profile else env,
+                            capture_output=True, text=True)
+    (WORK / f'{PROFILE}-{name}.stdout').write_text(result.stdout)
+    (WORK / f'{PROFILE}-{name}.stderr').write_text(result.stderr)
+    records.append({'check': name, 'command': command, 'exit_code': result.returncode,
+                    'finished_at': datetime.now(timezone.utc).isoformat()})
+    (WORK / f'{PROFILE}-install-results.json').write_text(json.dumps(records, indent=2) + '\n')
+    print(f'{PROFILE}/{name}: exit {result.returncode}', flush=True)
+    if result.returncode:
+        print((result.stdout + result.stderr)[-3500:], flush=True)
+        raise RuntimeError(f'{PROFILE}/{name} failed')
+
+
+run('create-venv', ['/opt/homebrew/bin/uv', 'venv', '--seed', '--allow-existing', '--python', str(ROOT / '.venv/bin/python'), str(VENV)])
+python = str(VENV / 'bin/python')
+install = ['/opt/homebrew/bin/uv', 'pip', 'install', '--python', python,
+           '--index-url', 'https://pypi.org/simple', '--prerelease', 'allow']
+if PROFILE == 'local':
+    install += ['--find-links', str(ROOT / 'dist/friday-package-cohort-0.1.0a4')]
+else:
+    install += ['--no-cache']
+run('install-cohort', install + ['friday-framework[all]==0.1.0a4', 'friday-chat==0.1.0a4'])
+run('dependency-check', [python, '-m', 'pip', 'check'], True)
+project_names = [record['project'] for record in json.loads((WORK / 'artifact-metadata.json').read_text())]
+project_names = sorted(set(project_names))
+(WORK / 'projects.json').write_text(json.dumps(project_names, indent=2) + '\n')
+version_code = f'''import importlib.metadata,json
+from pathlib import Path
+names=json.loads(Path({str(WORK / 'projects.json')!r}).read_text())
+versions={{name:importlib.metadata.version(name) for name in names}}
+if len(versions)!=17 or set(versions.values())!={{'0.1.0a4'}}: raise RuntimeError(str(versions))
+for name in names:
+    urls=importlib.metadata.metadata(name).get_all('Project-URL',[])
+    if 'Documentation, https://gendevx.com/friday/' not in urls: raise RuntimeError('Documentation mismatch: '+name)
+Path({str(WORK / (PROFILE + '-installed-versions.json'))!r}).write_text(json.dumps(versions,indent=2)+'\\n')
+print('All 17 installed versions and documentation URLs match alpha4')
+'''
+run('versions-and-urls', [python, '-c', version_code], True)
+run('imports', [python, '-c', 'import friday_core,friday_telemetry,friday_llm,friday_transcript,friday_memory,friday_agent,friday_runtime,friday_cli,friday_tools,friday_mcp,friday_chat;print("Framework, Runtime, MCP, Agent and Chat imports OK")'], True)
+helper = re.findall(r"<<'PY'\n(.*?)\nPY", (ROOT / 'scripts/smoke-install-artifacts.sh').read_text(), re.S)[-1]
+helper_path = WORK / 'installed-helper-smoke.py'
+helper_path.write_text(helper + '\n')
+for distribution, import_package in [('friday-framework-llm', 'friday_llm'), ('friday-chat', 'friday_chat')]:
+    offline['FRIDAY_SMOKE_DISTRIBUTION'] = distribution
+    offline['FRIDAY_SMOKE_IMPORT'] = import_package
+    run(distribution + '-fake-transport', [python, str(helper_path)], True)
+run('chat-version', [str(VENV / 'bin/friday-chat'), '--version'], True)
+run('chat-help', [str(VENV / 'bin/friday-chat'), '--help'], True)
+print(PROFILE + ': all clean-install checks passed', flush=True)

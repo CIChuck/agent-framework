@@ -48,7 +48,7 @@ Directory placement does not grant implementation authority.
 | 30 | [Precise Python monorepo and package READMEs](active/friday-readme-refresh/) | normal | granted | merged | Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains |
 | 31 | [Current technical end-user guides for alpha3](active/friday-guides-refresh/) | normal | granted | merged | Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains |
 | 32 | [Friday Chat quick start for clone and PyPI users](active/friday-chat-quick-start/) | normal | granted | merged | Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains |
-| 34 | [Friday 0.1.0a4 coordinated release](active/friday-alpha4-release/) | normal | granted | local | VERIFIED alpha4 candidate; execute authorized release PR merge and production PyPI publication |
+| 34 | [Friday 0.1.0a4 coordinated release](active/friday-alpha4-release/) | normal | granted | released | Maintainer lifecycle closeout; alpha4 source merged, all 17 PyPI projects and fresh production install verified |
 
 ## Completed
 

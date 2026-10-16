@@ -1,0 +1,138 @@
+"""Publish a frozen alpha4 cohort, then verify registry hashes and project URLs."""
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import time
+import urllib.error
+import urllib.request
+
+ROOT = Path(__file__).resolve().parents[2]
+WORK = Path(__file__).resolve().parent
+DIST = ROOT / 'dist/friday-package-cohort-0.1.0a4'
+VERSION = '0.1.0a4'
+DOCS = 'https://gendevx.com/friday/'
+manifest = json.loads((WORK / 'artifact-sha256.json').read_text())
+if len(manifest) != 34:
+    raise RuntimeError('Expected exactly 34 frozen distribution artifacts')
+for filename, digest in manifest.items():
+    if hashlib.sha256((DIST / filename).read_bytes()).hexdigest() != digest:
+        raise RuntimeError('Frozen artifact changed: ' + filename)
+review = json.loads((WORK / 'review-gate.json').read_text())
+if review.get('verdict') != 'VERIFIED':
+    raise RuntimeError('Independent source review is required')
+candidate = review['candidate']
+changed_after_review = subprocess.check_output(['git', 'diff', '--name-only', candidate, 'HEAD'], cwd=ROOT, text=True).splitlines()
+if any(not path.startswith(('docs/planning/', 'docs/reference/releases/')) for path in changed_after_review):
+    raise RuntimeError('Product source changed after independent review')
+local_checks = json.loads((WORK / 'local-install-results.json').read_text())
+if not local_checks or any(record['exit_code'] for record in local_checks):
+    raise RuntimeError('Clean local artifact installation checks are required')
+if subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT, text=True).strip():
+    raise RuntimeError('Source checkout must be clean before publication')
+credential = next((os.environ[n] for n in ('UV_PUBLISH_TOKEN', 'TWINE_PASSWORD', 'PYPI_TOKEN', 'PYPI_API_TOKEN') if os.environ.get(n)), None)
+if credential is None:
+    values = set(re.findall(r'pypi-[A-Za-z0-9_-]{20,}', (ROOT / 'scripts/pypi.sh').read_text()))
+    if len(values) != 1:
+        raise RuntimeError('A single existing PyPI upload credential is required')
+    credential = values.pop()
+env = {'PATH': '/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin',
+       'UV_PUBLISH_TOKEN': credential, 'UV_CACHE_DIR': str(ROOT / 'build/release-cache'),
+       'UV_NO_PROGRESS': '1', 'UV_NO_CONFIG': '1'}
+layers = [
+    ['telemetry', 'transcript', 'sandbox', 'moltbook'], ['core'],
+    ['finance', 'llm', 'speech'], ['memory'], ['agent', 'optimization', 'tools'],
+    ['mcp'], ['runtime'], ['cli'], ['chat'], ['root'],
+]
+
+
+def project(short):
+    return 'friday-chat' if short == 'chat' else 'friday-framework' if short == 'root' else 'friday-framework-' + short
+
+
+def registry(name):
+    try:
+        request = urllib.request.Request(f'https://pypi.org/pypi/{name}/{VERSION}/json', headers={'User-Agent': 'Codex-release-verification'})
+        with urllib.request.urlopen(request, timeout=30) as response:
+            return json.load(response)
+    except urllib.error.HTTPError as error:
+        if error.code == 404:
+            # The project record can propagate before the version endpoint.
+            request = urllib.request.Request(f'https://pypi.org/pypi/{name}/json', headers={'User-Agent': 'Codex-release-verification', 'Cache-Control': 'no-cache'})
+            try:
+                with urllib.request.urlopen(request, timeout=30) as response:
+                    data = json.load(response)
+                if data['info'].get('version') == VERSION:
+                    return data
+            except urllib.error.HTTPError as project_error:
+                if project_error.code != 404:
+                    raise
+            return {'urls': [], 'info': {}}
+        raise
+
+
+def existing_files(data):
+    return {item['filename']: item['digests']['sha256'] for item in data['urls']}
+
+
+def upload(filename, expected):
+    path = DIST / filename
+    if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+        raise RuntimeError('Frozen file changed before upload: ' + filename)
+    for attempt in range(3):
+        print('Uploading ' + filename, flush=True)
+        command = ['/opt/homebrew/bin/uv', 'publish', '--no-config', '--trusted-publishing', 'never', '--publish-url', 'https://upload.pypi.org/legacy/', str(path)]
+        run = subprocess.run(command, cwd=ROOT, env=env, capture_output=True, text=True)
+        output = re.sub(r'pypi-[A-Za-z0-9_-]{20,}', '[REDACTED]', (run.stdout + run.stderr).replace(credential, '[REDACTED]'))
+        (WORK / f'upload-{filename}-{attempt}.log').write_text(output)
+        if run.returncode == 0:
+            return
+        name = filename.split('-' + VERSION)[0].replace('_', '-')
+        observed = existing_files(registry(name))
+        if filename in observed:
+            if observed[filename] != expected:
+                raise RuntimeError('Immutable PyPI hash conflict: ' + filename)
+            return
+        transient = any(str(code) in output for code in (429, 500, 502, 503, 504)) or 'Too Many Requests' in output
+        if transient and attempt < 2:
+            delay = 30 if '429' in output else 10
+            print(f'Transient registry failure; retry in {delay}s', flush=True)
+            time.sleep(delay)
+            continue
+        print(output[-1500:], flush=True)
+        raise RuntimeError('Publication failed: ' + filename)
+
+
+results = []
+for layer in layers:
+    for short in layer:
+        name = project(short)
+        base = name.replace('-', '_')
+        expected = {filename: digest for filename, digest in manifest.items() if filename.startswith(base + '-' + VERSION)}
+        if len(expected) != 2:
+            raise RuntimeError('Expected a wheel and sdist for ' + name)
+        observed = existing_files(registry(name))
+        if any(filename not in expected or expected[filename] != digest for filename, digest in observed.items()):
+            raise RuntimeError('Existing release conflicts with frozen artifacts: ' + name)
+        for filename, digest in expected.items():
+            if filename not in observed:
+                upload(filename, digest)
+        for attempt in range(7):
+            data = registry(name)
+            actual = existing_files(data)
+            if actual == expected and data['info'].get('project_urls', {}).get('Documentation') == DOCS:
+                break
+            if attempt == 6:
+                raise RuntimeError('Registry files/metadata not verified: ' + name)
+            time.sleep(5)
+        record = {'project': name, 'version': VERSION, 'documentation': DOCS,
+                  'verified_at': datetime.now(timezone.utc).isoformat(), 'files': actual}
+        results.append(record)
+        (WORK / 'published-files.json').write_text(json.dumps(results, indent=2) + '\n')
+        print(f'Verified {len(results)}/17: {name}, both hashes and Documentation URL match', flush=True)
+if len(results) != 17:
+    raise RuntimeError('Incomplete cohort publication')
+print('Published and hash-verified all 17 distributions / 34 files at 0.1.0a4', flush=True)
