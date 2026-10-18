@@ -80,6 +80,7 @@ Current planning artifacts:
 - [Third Ubuntu Actions run and Runtime failures](validation/TUI-CI01-ubuntu-run-39174159031.md)
 - [Moltbook-candidate independent preflight findings](validation/VAL-TUI-CI01-preflight-49acc931.md)
 - [Fourth Ubuntu Actions run and complete failure evidence](validation/TUI-CI01-ubuntu-run-39175010441.md)
+- [TUI-CI01 independent post-run review](validation/VAL-TUI-CI01-final-a7519db2.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)

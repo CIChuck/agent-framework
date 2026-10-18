@@ -218,6 +218,8 @@
     "fourth_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39175010441",
     "fourth_linux_run_source": "94f968143ee9890cf761b0e3be9004735e5a6aaf",
     "fourth_linux_run_report": "validation/TUI-CI01-ubuntu-run-39175010441.md",
+    "post_run_review_report": "validation/VAL-TUI-CI01-final-a7519db2.md",
+    "post_run_review_outcome": "CHANGES_REQUESTED; CI01-07 through CI01-10; no full Linux verification",
     "candidate_status": "fourth Ubuntu run exercised all independent steps: focused tests, unchanged CLI and installed-wheel checks passed; one Runtime MCP stdio and five Chat tests failed; approved CI01 scope stops before product/test edits",
     "linux_run_status": "failed: Runtime 333 passed/1 failed; Chat 816 passed/5 failed/23 skipped; friday-cli 155 passed; no full Linux coverage claim"
   },

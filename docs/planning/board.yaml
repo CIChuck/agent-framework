@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review fourth Ubuntu run 39175010441 and obtain a separate maintainer-approved directive for Runtime MCP and Chat Linux failures before a green CI01 run and final independent review
+  next_gate: Draft and obtain maintainer approval for separate Runtime MCP and Chat Linux remediation; then require a green exact-candidate CI01 run and fresh independent review
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -309,6 +309,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01A-local-checks.md (local implementation, package and regression checks before independent review)
   - docs/planning/active/friday-tui/validation/VAL-N01A-neutral-config-loader.md (historical independent BLOCKED work-unit review; Linux smoke remains a later release gate)
   - docs/planning/active/friday-tui/validation/VAL-N01A-waiver-closeout.md (fresh independent VERIFIED N01A review under maintainer Linux deferral; Linux release gate remains open)
+  - docs/planning/active/friday-tui/validation/VAL-TUI-CI01-final-a7519db2.md (independent CHANGES_REQUESTED CI01 post-run review; Linux gate remains open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech

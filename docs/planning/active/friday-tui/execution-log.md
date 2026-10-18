@@ -1832,3 +1832,16 @@ maintainer-approved directive for the Runtime/MCP and Chat compatibility
 work before another green-run claim. No TUI product code, protected package
 source, tests, metadata or lockfile changed.
 execution_phase: validation; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope).
+
+## 2026-10-18 — TUI-CI01 independent post-run review
+
+Fresh-context, read-only review of committed evidence candidate `a7519db2`
+returned `CHANGES_REQUESTED` with findings CI01-07 through CI01-10. It
+confirmed the workflow and planning diff stayed in CI01 scope and that the
+focused, unchanged CLI, wheel and installed-isolation checks passed. Full
+Runtime and Chat suites remain red, and the reviewed post-run evidence commit
+does not have its own green exact-candidate run. The report is
+`validation/VAL-TUI-CI01-final-a7519db2.md`. The next gate is a separately
+approved remediation directive for the Runtime/MCP and Chat Linux issues;
+no protected source or test edit is authorized by this review.
+execution_phase: validation; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope).
