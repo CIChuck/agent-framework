@@ -1,7 +1,7 @@
 # Friday TUI neutral configuration loader contract
 
-**Status:** Implemented as a local N01A candidate under an approved bounded
-directive; independent validation pending.
+**Status:** Implemented as frozen N01A candidate `4a5311f2` under an approved
+bounded directive; independent validation BLOCKED on Linux smoke evidence.
 
 **Branch and authority:** `feature/friday-tui`; `granted` for TUI-N01A only
 
@@ -21,6 +21,10 @@ contracts; loading a file alone does not make a runnable TUI.
 
 ## Before-code source boundary
 
+This table describes the `26f5d090` source before N01A, rather than the
+current frozen candidate. Its Chat application loader now delegates to the
+neutral Runtime owner.
+
 | Concern | Observed owner and behavior | Consequence |
 | --- | --- | --- |
 | Chat application YAML | [`friday_chat.config`](../../../../packages/friday-chat/src/friday_chat/config.py) defines the Friday-py-compatible models and `load_friday_py_config()`. It reads one explicit path, validates the MCP reference shape before ordinary environment interpolation, parses the typed sections, emits ordered diagnostics, resolves canonical model-library bindings, and requires either the canonical triplet or legacy `llm.model`. | This is the compatibility baseline that TUI must share through a neutral owner. |
@@ -33,13 +37,13 @@ contracts; loading a file alone does not make a runnable TUI.
 The current [configuration reference](../../../../docs/guides/10-configuration.md)
 also distinguishes Chat and headless Runtime schemas. Its TUI section and
 version metadata require revision with the shipped user guide, not during this
-design-only extraction proposal.
+loader-only work unit.
 
-## Proposed neutral owner and API
+## N01A neutral owner and API
 
-Add one UI-neutral `friday_runtime.application_config` module under
-`friday-runtime`, which already owns the model-library loader. The proposed
-public seam is:
+The N01A candidate adds one UI-neutral `friday_runtime.application_config`
+module under `friday-runtime`, which already owns the model-library loader.
+The public seam is:
 
 ```python
 def load_application_config(
@@ -171,6 +175,7 @@ observations. These are **before-code** evidence, not verification of an
 extraction or TUI. The exact N01A source/test/package boundary and after-code
 checks are in [CD-TUI-N01A](directives/CD-TUI-N01A-neutral-config-loader.md),
 which is approved for this unit only. The
-[local candidate checks](validation/N01A-local-checks.md) are not an
-independent verdict. Chooser parser bounds, link-listing policy and
+[local candidate checks](validation/N01A-local-checks.md) and the independent
+[BLOCKED report](validation/VAL-N01A-neutral-config-loader.md) leave the
+required Linux smoke open. Chooser parser bounds, link-listing policy and
 assembly/resource-close interfaces remain later, separately directed units.

@@ -1610,3 +1610,24 @@ N01A validation limit, not a claim of Linux coverage or user UAT. Freeze the
 candidate for a fresh-context independent review of the exact scope and
 evidence before any later TUI unit.
 execution_phase: validation; validation_state: pending.
+
+## 2026-10-18 — TUI-N01A independent review BLOCKED on Linux evidence
+
+Committed frozen candidate `4a5311f2340adfbbf9cd5c4289db325e6b420b6b`
+from base `ab56cbc61ac8f9ec54fc8d6e0b1753fe18411332`. Fresh-context,
+read-only reviewer `/root/n01a_independent_validation` examined the exact
+directive, authority hashes and diff and returned `BLOCKED` with no code
+finding. Independent focused, full Runtime/Chat/`friday-cli`, cross-package,
+static, wheel and installed-import checks passed; full evidence and residual
+limits are in `validation/VAL-N01A-neutral-config-loader.md`.
+
+Blocker B-01 is the mandatory automated Linux neutral-loader smoke in
+CD-TUI-N01A gate 4. The host is macOS and no working local Docker/Linux runner
+exists. Run and retain that smoke against the unchanged candidate, including
+installed-wheel frontend isolation, then obtain fresh-context independent
+closure. Do not mark N01A verified, start a dependent construction unit or
+infer TUI UAT, maintainer acceptance or delivery. The overall initiative
+remains `started` with a normal scheduling condition so unrelated planning
+can continue; only N01A validation is blocked. N01A-only source authority is
+still recorded, but the candidate stays frozen pending the Linux gate.
+execution_phase: validation; validation_state: blocked.

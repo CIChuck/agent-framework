@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Obtain fresh-context independent validation of the frozen TUI-N01A candidate; automated Linux smoke remains unverified
+  next_gate: Run and retain automated Linux neutral-loader and installed-wheel isolation smoke against frozen N01A candidate 4a5311f2, then obtain fresh-context independent closure of blocker B-01
   delivery_state: local
   branch: feature/friday-tui
   depends_on: []
@@ -307,6 +307,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01A-before-code-characterization.md (read-only Chat/Runtime/CLI baseline; N01A implementation and UAT pending)
   - docs/planning/active/friday-tui/validation/n01a-directive-planning-checks.json (bounded directive and unchanged-source planning checks; implementation/UAT pending)
   - docs/planning/active/friday-tui/validation/N01A-local-checks.md (local implementation, package and regression checks; independent verdict and Linux smoke pending)
+  - docs/planning/active/friday-tui/validation/VAL-N01A-neutral-config-loader.md (independent BLOCKED work-unit review; mandatory automated Linux smoke remains open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -2988,3 +2989,10 @@ events:
   action: n01a_local_candidate_checked
   note: Neutral loader and Chat facade locally pass full Runtime, Chat, friday-cli and cross-package tests, changed-file static checks, lock/metadata checks and clean-wheel install/import checks. Actual Linux smoke is pending because no local Linux runner is available. Freeze candidate for independent review; no acceptance or delivery inferred.
   evidence: docs/planning/active/friday-tui/validation/N01A-local-checks.md
+- task: friday-tui
+  at: '2026-10-18T20:35:12+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01a_independent_validation_blocked
+  note: Fresh-context read-only reviewer BLOCKED frozen candidate 4a5311f2 solely for missing mandatory automated Linux neutral-loader smoke. Local compatibility, package, installed-wheel and regression checks passed independently; the initiative remains started, N01A validation_state is blocked, and later units remain design-only. Run and retain Linux evidence before requesting fresh independent closure; no UAT, acceptance or delivery is inferred.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01A-neutral-config-loader.md; candidate 4a5311f2340adfbbf9cd5c4289db325e6b420b6b

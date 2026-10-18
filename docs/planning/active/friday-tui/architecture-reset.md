@@ -1,9 +1,9 @@
 # Friday TUI architecture reset
 
-**Status:** Accepted product boundaries; independent replacement plan drafted,
-technical mapping and construction directive still pending
+**Status:** Accepted product boundaries; N01S verified; N01A independent review
+BLOCKED pending Linux smoke
 
-**Branch:** `feature/friday-tui`; authority `design_only`
+**Branch:** `feature/friday-tui`; authority `granted` for N01A only
 
 This record incorporates Chuck Russell's answers after the documentation review.
 It controls where the earlier packet proposes a direct dependency on
@@ -200,8 +200,8 @@ and per-command scope remain technical design work.
    bind its accepted zones, scrolling, editor, response and resize behavior in
    the replacement technical contract and user UAT.
 
-No product implementation, dependency edit, release or UAT result is authorized
-by this planning record. The board remains `started` with `design_only`
-authority. The [draft replacement plan](replacement-plan.md) still needs a
-command-to-neutral-service map, exact technical ownership and an approved
-construction directive before any product-code gate.
+This planning record itself grants no product-code, dependency, release or UAT
+authority. The board remains `started`; N01A was separately approved and its
+frozen candidate has a [BLOCKED independent review](validation/VAL-N01A-neutral-config-loader.md)
+pending automated Linux smoke. Later units still need exact technical
+ownership and separately approved construction directives.

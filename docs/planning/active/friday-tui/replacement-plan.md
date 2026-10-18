@@ -1,7 +1,7 @@
 # Friday TUI independent integration and construction plan
 
 **Status:** Draft replacement planning contract; N01S independently VERIFIED;
-N01A local candidate awaiting independent validation
+N01A independent validation BLOCKED on Linux smoke evidence
 
 **Branch and authority:** `feature/friday-tui`; `granted` for TUI-N01A only
 
@@ -250,8 +250,9 @@ release; `/switch [agent]` retains its active-agent meaning.
 Each unit needs a separate exact-path directive, expected behavior and
 negative cases, a frozen candidate, focused tests and fresh independent
 review before dependent implementation. The IDs below are planning units;
-only N01A currently has implementation authority, and its local candidate
-awaits independent review.
+only N01A currently has implementation authority. Its frozen candidate is
+independently [BLOCKED](validation/VAL-N01A-neutral-config-loader.md) until
+the required automated Linux smoke runs.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
 | --- | --- | --- |
@@ -342,10 +343,9 @@ identity-only candidate; later units do not inherit that authority. The
 [N01A before-code characterization](validation/N01A-before-code-characterization.md)
 records the current configuration behavior, not an implemented extraction.
 
-1. Implement the [approved N01A neutral-loader
-   directive](directives/CD-TUI-N01A-neutral-config-loader.md) under its
-   bounded board/authority grant, then independently validate the frozen
-   candidate before dependent TUI work.
+1. Close the [N01A Linux smoke blocker](validation/VAL-N01A-neutral-config-loader.md)
+   against frozen candidate `4a5311f2` and obtain fresh-context independent
+   validation before dependent TUI work.
 2. Choose owners for command/event seams. Review the
    [event/lifecycle proposal](neutral-event-lifecycle-contract.md) and bind
    event admission, argument snapshot and resource-close boundaries against
@@ -360,6 +360,6 @@ records the current configuration behavior, not an implemented extraction.
    branch, source and authority before each product-code unit.
 
 The board remains `started` with `granted` authority for N01A only. Its
-[local candidate checks](validation/N01A-local-checks.md) precede independent
-validation; later units remain design-only. No TUI, UAT or real-provider test
-has run.
+[local candidate checks](validation/N01A-local-checks.md) and independent
+[BLOCKED review](validation/VAL-N01A-neutral-config-loader.md) are recorded;
+later units remain design-only. No TUI, UAT or real-provider test has run.

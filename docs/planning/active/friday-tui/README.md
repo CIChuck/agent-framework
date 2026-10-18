@@ -1,14 +1,14 @@
 # Product Requirements Document: Friday TUI
 
 **Status:** Active; TUI-N01S neutral session identity independently VERIFIED;
-TUI-N01A neutral loader locally checked, awaiting independent validation
+TUI-N01A neutral loader candidate independently BLOCKED on Linux smoke evidence
 
 **Lifecycle:** Started; board priority 14; current authority `granted` for
 TUI-N01A only
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: pending (TUI-N01A)
+execution_phase: validation; validation_state: blocked (TUI-N01A Linux smoke)
 
 **Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -61,6 +61,7 @@ Current planning artifacts:
 - [TUI-N01A before-code configuration characterization](validation/N01A-before-code-characterization.md)
 - [Approved TUI-N01A neutral-loader construction directive](directives/CD-TUI-N01A-neutral-config-loader.md)
 - [TUI-N01A local construction checks](validation/N01A-local-checks.md)
+- [Independent TUI-N01A blocked validation report](validation/VAL-N01A-neutral-config-loader.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -593,22 +594,21 @@ testable units and macOS/Linux UAT. The prior [build plan](build-plan.md),
 are withdrawn historical proposals. Their 24 units, five checkpoints and
 Chat API changes cannot be used as construction gates.
 
-Before the first product-code directive, map every command family to an
-existing or newly extracted UI-neutral capability; review the
-[configuration loader proposal](neutral-config-loader-contract.md), then bind
-configuration and event ownership, safe/force-quit mechanics and exact
-first-unit tests.
-Then review a bounded directive under the repository's authority process.
-At each construction increment, test its behavior and regressions before
-dependent work. macOS user UAT begins at the first usable shell, automated
-Linux checks run throughout, and hands-on Linux terminal UAT is mandatory
-on the final installed candidate. A controlled real-provider/tool run is
-also required for first-release acceptance; select its provider before
-final UAT. The user guide and configuration reference are built alongside
-the features they describe and verified against that candidate.
+The first neutral session-identity unit is verified. The approved neutral
+configuration-loader unit is frozen at candidate `4a5311f2`; its independent
+review is [BLOCKED](validation/VAL-N01A-neutral-config-loader.md) only because
+the required automated Linux smoke has not run. Obtain that evidence and a
+fresh review of the unchanged candidate before dependent construction.
+Later units need their own bounded directives and authority. At each increment,
+test behavior and regressions before dependent work. macOS user UAT begins at
+the first usable shell, automated Linux checks run throughout, and hands-on
+Linux terminal UAT is mandatory on the final installed candidate. A controlled
+real-provider/tool run is also required for first-release acceptance; select
+its provider before final UAT. Build the user guide and configuration reference
+alongside the features they describe and verify them against that candidate.
 
-The [board](../../board.yaml) still records `started` / `design_only` on
-`feature/friday-tui`. No product implementation, dependency installation,
+The [board](../../board.yaml) records `started` on `feature/friday-tui`, with
+N01A-only construction authority and blocked validation. No TUI executable,
 UAT result, publication or maintainer acceptance is claimed by this packet.
 
 ## 10. Planning review record

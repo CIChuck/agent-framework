@@ -9,7 +9,7 @@
   "work_state": "started",
   "implementation_authority": "granted",
   "execution_phase": "validation",
-  "validation_state": "pending",
+  "validation_state": "blocked",
   "allowed_changes": [
     "docs/planning/active/friday-tui/** (scoped authority and evidence only)",
     "docs/planning/board.yaml (TUI task and its scoped events only)",
@@ -196,6 +196,11 @@
     "approved_at": "2026-10-18",
     "approval_evidence": "Current-session reply 'approved' to the explicit CD-TUI-N01A scope-and-authority question",
     "later_units_authorized": false,
-    "construction_base": "ab56cbc61ac8f9ec54fc8d6e0b1753fe18411332"
+    "construction_base": "ab56cbc61ac8f9ec54fc8d6e0b1753fe18411332",
+    "frozen_candidate": "4a5311f2340adfbbf9cd5c4289db325e6b420b6b",
+    "validation_report": "validation/VAL-N01A-neutral-config-loader.md",
+    "validation_outcome": "BLOCKED",
+    "validation_blocker": "B-01: required automated installed-wheel neutral-loader smoke has not run on Linux; no local Linux runner is available",
+    "exit_gate": "Run and retain Linux smoke against the frozen candidate, then obtain fresh-context independent closure before claiming VERIFIED or starting a dependent unit"
   }
 }
