@@ -37,7 +37,7 @@ jobs:
       - name: Install Python and locked development dependencies
         run: |
           uv python install 3.13
-          uv sync --locked --package friday-framework --package friday-framework-mcp --extra dev
+          uv sync --locked --package friday-framework --package friday-framework-mcp --package friday-framework-finance --extra dev
           uv run --no-sync python - <<'PY'
           from importlib import metadata
           import sys
@@ -45,7 +45,7 @@ jobs:
           if sys.version_info[:2] != (3, 13) or sys.version_info < (3, 13, 4):
               raise SystemExit(f"Expected Python 3.13.4 or newer: {sys.version}")
           print(f"Python: {sys.version}")
-          for package in ("mcp", "cryptography", "pytest-mock"):
+          for package in ("mcp", "cryptography", "pytest-mock", "friday-framework-finance"):
               print(f"CI test dependency {package}: {metadata.version(package)}")
           PY
 
@@ -87,6 +87,7 @@ jobs:
             friday-framework-transcript
             friday-framework-mcp
             friday-framework-runtime
+            friday-framework-finance
             friday-framework-tools
             friday-framework-cli
             friday-chat
@@ -195,7 +196,7 @@ jobs:
           )
 
           chat_wheels=()
-          for package in friday-framework-tools friday-framework-cli friday-chat; do
+          for package in friday-framework-finance friday-framework-tools friday-framework-cli friday-chat; do
             chat_wheels+=( "$(wheel_for "$package")" )
           done
           uv pip install --python "$RUNTIME_VENV/bin/python" "${chat_wheels[@]}"

@@ -151,3 +151,31 @@ dashboard consistency and the exact changed-path diff. No workflow, package,
 test, metadata, lockfile, trigger, permission or credential edit is authorized
 by this addendum. Commit the corrected packet and request a fresh-context
 read-only review before the authorized Ubuntu rerun.
+
+## RD-TUI-CI01-04: finance test closure and MCP observation
+
+The second Ubuntu run
+[`39173445329`](https://github.com/CIChuck/agent-framework/actions/runs/39173445329)
+tested `7a41004aae8b375ebd01ff23fa0fb5f4e62bee1a`. The locked MCP dev
+dependencies installed and the focused tests passed. Full Runtime ran 334
+tests, with 331 passing and three failing. Two failures came from importing
+`friday_tools`, whose package initializer imports `friday_finance`; the CI
+selection had omitted the existing `friday-framework-finance` workspace
+package. The third was one required synthetic MCP stdio server startup under
+the `auto`/modern profile. The log gives no underlying lifecycle outcome, so
+this failure must remain open until a new full Ubuntu run resolves it or
+supplies more evidence. Chat, CLI, wheel and installed-import steps were
+skipped; this run is not Linux verification.
+
+- Add the existing `friday-framework-finance` workspace package to locked CI
+  selection and print its installed distribution version. Build its wheel
+  and include it in the isolated Chat-side wheel installation; keep Runtime's
+  initial isolated environment frontend-free.
+- Confirm the selected package is in a locked/offline export and dry run.
+  Run workflow syntax, board/dashboard and allowed-path checks. Commit and
+  independently review the correction, then use the recorded branch-push
+  authorization to rerun the exact candidate. Inspect the MCP case in the
+  complete Runtime result; do not skip, mark expected, or change that test.
+- No product source, tests, metadata, lockfile, trigger, action permission or
+  credential change is authorized here. A repeat MCP failure requiring
+  protected code/test changes stops for a separately scoped directive.

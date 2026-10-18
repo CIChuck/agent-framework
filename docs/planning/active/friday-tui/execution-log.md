@@ -1,9 +1,9 @@
 # Friday TUI execution log
 
-Status: Active TUI-CI01 workflow verification; N01A closed under its
+Status: Active TUI-CI01 workflow remediation; N01A closed under its
 maintainer-approved Linux-smoke deferral
 
-execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun)
+execution_phase: validation; validation_state: changes_requested (TUI-CI01 Ubuntu Runtime failures)
 
 ## 2026-10-16 — activation and build planning
 
@@ -1747,3 +1747,19 @@ the board's next gate, then regenerated the dashboard. The workflow and all
 package paths remain unchanged from `3086f7d7`. A fresh review and green
 Ubuntu run for the new candidate remain required.
 execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).
+
+## 2026-10-18 — TUI-CI01 second Ubuntu run and finance closure correction
+
+Fresh-context preflight of `7a41004a` verified the packet correction and
+workflow readiness only; recorded in `validation/VAL-TUI-CI01-preflight-7a41004a.md`.
+The authorized branch push triggered Ubuntu run
+[`39173445329`](https://github.com/CIChuck/agent-framework/actions/runs/39173445329)
+on source and checkout `7a41004a`. The 21 focused tests passed. Full Runtime
+reported 331 passed, three failed. Two failures reflect missing
+`friday_finance` in the selected test environment; one synthetic MCP stdio
+case failed without a disclosed lifecycle outcome. Later Chat/CLI and wheel
+steps were skipped. `validation/TUI-CI01-ubuntu-run-39173445329.md` retains
+the evidence and `RD-TUI-CI01-04` bounds the workflow-only finance correction.
+The MCP result must be inspected in the next full Ubuntu run. No Linux
+verification claim is made.
+execution_phase: validation; validation_state: changes_requested (TUI-CI01 Ubuntu Runtime failures).

@@ -3,7 +3,7 @@
 **Date/branch:** 2026-10-18; `feature/friday-tui`.
 
 **State:** Local checks for the first candidate and its bounded preflight
-remediation, followed by the locked MCP test-dependency correction. This
+remediation, followed by the locked MCP and finance test-dependency corrections. This
 record is not an independent `VERIFIED` result, terminal UAT or TUI release
 acceptance.
 
@@ -83,9 +83,36 @@ For `RD-TUI-CI01-02`, the workflow now selects both the workspace root and
   changed. A new Ubuntu run must execute every step before this unit can be
   verified.
 
+## Locked finance selection after second Ubuntu failure
+
+The second Ubuntu run passed 21 focused tests but full Runtime reported 331
+passed and three failed. Two failures were `friday_tools` imports without the
+existing `friday-framework-finance` workspace package. One synthetic MCP
+stdio case also failed with an unavailable required server; its underlying
+lifecycle outcome was not present in the log. See the
+[second-run evidence](TUI-CI01-ubuntu-run-39173445329.md) and directive
+`RD-TUI-CI01-04`. This correction selects finance in the locked CI sync,
+builds its wheel and includes it only in the later Chat-side installed-wheel
+closure. The initial Runtime isolation test still excludes Chat, CLI and
+finance.
+
+- Locked/offline export of the exact selected workspace packages includes
+  `friday-finance`, `massive==2.1.0`, `mcp==2.3.0`,
+  `cryptography==50.0.2` and `pytest-mock==3.15.1`; the locked/offline dry
+  run succeeds. Local macOS execution of the two finance-dependent Runtime
+  tests passed. It does not resolve the Linux MCP failure.
+- Workflow YAML, pinned actions, contexts, all nine Bash scripts and four
+  embedded Python blocks passed static checks. The finance package appears
+  in the selected install, wheel build and Chat-side installation steps.
+- An offline local finance-wheel build could not resolve uncached
+  `hatchling` in a fresh build environment; this is a local cache limit.
+  The Ubuntu workflow uses network-enabled `uv build`, so the wheel step
+  must be evaluated by its own run. No package code, tests, metadata or
+  lockfile changed.
+
 ## Remaining gate
 
-The first authorized GitHub Actions run failed; it supplies no Linux
+The first two authorized GitHub Actions runs failed; neither supplies Linux
 verification. Rerun the corrected workflow on its own source SHA and retain
 the URL, tested commit/merge SHA, Ubuntu/Python/uv versions, exit codes and
 wheel hashes. Investigate any further Linux failure without modifying package
