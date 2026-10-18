@@ -1643,3 +1643,20 @@ The product candidate stays `4a5311f2340adfbbf9cd5c4289db325e6b420b6b`;
 no source, test, package or lock file changed. Amended authority must receive
 a fresh-context read-only review before N01A is called `VERIFIED` or closed.
 execution_phase: validation; validation_state: pending.
+
+## 2026-10-18 — TUI-N01A independently VERIFIED and closed
+
+Fresh-context, read-only reviewer `/root/n01a_waiver_validation` returned
+`VERIFIED` for frozen product candidate
+`4a5311f2340adfbbf9cd5c4289db325e6b420b6b` under the bounded
+maintainer Linux-smoke deferral. The full work-unit report is
+`validation/VAL-N01A-waiver-closeout.md`; the earlier `BLOCKED` report is
+retained as historical evidence. No product source, test, package metadata
+or lock file changed after the candidate. Linux has not run and remains a
+cross-platform and final-candidate release gate.
+
+Closed N01A only and returned the current board/manifest implementation
+authority to `design_only`. The Friday TUI initiative remains `started`;
+later units need separate approval. No TUI UAT, full-initiative acceptance,
+push, merge, release or publication is inferred. Stop after this unit.
+execution_phase: planning; validation_state: verified (TUI-N01A only).

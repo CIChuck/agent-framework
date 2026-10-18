@@ -2,34 +2,26 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S independently verified; TUI-N01A exact neutral configuration-loader directive approved, with its Linux smoke deferred for this unit's closeout by maintainer amendment; all later TUI units remain design-only",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for that unit's closeout by maintainer amendment; all later TUI units remain design-only",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
-  "implementation_authority": "granted",
-  "execution_phase": "validation",
-  "validation_state": "pending",
+  "implementation_authority": "design_only",
+  "execution_phase": "planning",
+  "validation_state": "verified",
   "allowed_changes": [
     "docs/planning/active/friday-tui/** (scoped authority and evidence only)",
     "docs/planning/board.yaml (TUI task and its scoped events only)",
-    "docs/planning/README.md (generated dashboard)",
-    "packages/friday-runtime/src/friday_runtime/application_config.py (add)",
-    "packages/friday-chat/src/friday_chat/config.py (facade edit)",
-    "packages/friday-runtime/pyproject.toml (direct parser/model dependencies only)",
-    "uv.lock (resulting friday-framework-runtime dependency entry only)",
-    "packages/friday-runtime/tests_runtime/test_application_config.py (add)",
-    "packages/friday-chat/tests_chat/test_config_facade.py (add)"
+    "docs/planning/README.md (generated dashboard)"
   ],
-  "product_code_generation_authorized": true,
-  "build_plan_approval": "CD-TUI-N01A exact directive approved for the neutral configuration-loader slice only; N01S remains independently verified; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
+  "product_code_generation_authorized": false,
+  "build_plan_approval": "TUI-N01S and TUI-N01A verified under their exact directives; N01A Linux smoke was waived only for unit closeout; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
     "directives/CD-TUI-N01A-neutral-config-loader.md"
   ],
-  "construction_directives_active": [
-    "directives/CD-TUI-N01A-neutral-config-loader.md"
-  ],
+  "construction_directives_active": [],
   "validated_construction_scope": {
     "unit": "TUI-N01S",
     "directive": "directives/CD-TUI-N01S-session-identity.md",
@@ -44,7 +36,7 @@
   "protected": [
     "Existing friday-cli feature set, behavior and implementation",
     "Existing friday-chat behavior and defaults",
-    "All product packages, tests, scripts, workspace metadata and dependency lock outside the exact TUI-N01A directive scope",
+    "All product packages, tests, scripts, workspace metadata and dependency lock pending a separately approved next construction directive",
     "Historical archive and frozen review evidence",
     "Existing local runtime, transcript and memory state"
   ],
@@ -189,7 +181,7 @@
     "uat": "Real users follow first-launch, configuration, representative-command and safe-Quit guide steps before release acceptance",
     "implementation_status": "No TUI executable or final user guide exists yet"
   },
-  "active_construction_scope": {
+  "closed_construction_scope_n01a": {
     "unit": "TUI-N01A",
     "directive": "directives/CD-TUI-N01A-neutral-config-loader.md",
     "approved_by": "Chuck Russell",
@@ -202,6 +194,9 @@
     "prior_validation_outcome": "BLOCKED",
     "prior_validation_blocker": "B-01: automated installed-wheel neutral-loader smoke did not run on Linux; no local Linux runner was available",
     "linux_smoke_closeout_waiver": "Maintainer Chuck Russell, 2026-10-18: 'Let's postpone testing on Linux for now. Close N01A.' Waives Linux smoke for N01A work-unit closeout only; Linux remains a later TUI cross-platform/release gate.",
-    "exit_gate": "Obtain fresh-context independent review of the unchanged candidate under the maintainer's bounded Linux deferral before claiming N01A VERIFIED"
+    "validation_report": "validation/VAL-N01A-waiver-closeout.md",
+    "validation_outcome": "VERIFIED",
+    "maintainer_closeout_evidence": "Current-session instruction 'Let's postpone testing on Linux for now. Close N01A.'",
+    "remaining_release_gate": "Automated Linux smoke and final installed-candidate Linux terminal UAT remain required before first TUI release acceptance"
   }
 }

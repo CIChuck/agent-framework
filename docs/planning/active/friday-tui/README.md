@@ -1,14 +1,13 @@
 # Product Requirements Document: Friday TUI
 
-**Status:** Active; TUI-N01S neutral session identity independently VERIFIED;
-TUI-N01A Linux smoke deferred by maintainer for unit closeout, fresh review pending
+**Status:** Active; TUI-N01S and TUI-N01A independently VERIFIED. N01A is
+closed under a maintainer-approved Linux-smoke deferral for that unit only.
 
-**Lifecycle:** Started; board priority 14; current authority `granted` for
-TUI-N01A only
+**Lifecycle:** Started; board priority 14; current authority `design_only`
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: pending (TUI-N01A waiver review)
+execution_phase: planning; validation_state: verified (TUI-N01A unit only)
 
 **Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -62,6 +61,7 @@ Current planning artifacts:
 - [Approved TUI-N01A neutral-loader construction directive](directives/CD-TUI-N01A-neutral-config-loader.md)
 - [TUI-N01A local construction checks](validation/N01A-local-checks.md)
 - [Independent TUI-N01A blocked validation report](validation/VAL-N01A-neutral-config-loader.md)
+- [Independent TUI-N01A closeout review under Linux deferral](validation/VAL-N01A-waiver-closeout.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -597,11 +597,12 @@ Chat API changes cannot be used as construction gates.
 The first neutral session-identity unit is verified. The approved neutral
 configuration-loader unit is frozen at candidate `4a5311f2`. Its first
 independent review was [BLOCKED](validation/VAL-N01A-neutral-config-loader.md)
-only because the automated Linux smoke could not run. The maintainer has
-[deferred that check for N01A closeout](directives/CD-TUI-N01A-neutral-config-loader.md)
-while retaining it for later TUI cross-platform/release acceptance. Obtain a
-fresh independent review under the amended directive before dependent
-construction.
+only because the automated Linux smoke could not run. The maintainer
+[deferred that check for N01A closeout](directives/CD-TUI-N01A-neutral-config-loader.md),
+and a fresh independent reviewer returned
+[VERIFIED](validation/VAL-N01A-waiver-closeout.md). Linux testing remains a
+later TUI cross-platform/release gate. Dependent construction needs its own
+approved directive.
 Later units need their own bounded directives and authority. At each increment,
 test behavior and regressions before dependent work. macOS user UAT begins at
 the first usable shell; resume automated Linux checks when a runner is
@@ -612,8 +613,8 @@ its provider before final UAT. Build the user guide and configuration reference
 alongside the features they describe and verify them against that candidate.
 
 The [board](../../board.yaml) records `started` on `feature/friday-tui`, with
-N01A-only construction authority and pending waiver review. No TUI executable,
-UAT result, publication or maintainer acceptance is claimed by this packet.
+`design_only` authority after N01A closeout. No TUI executable, UAT result,
+publication or acceptance of the full initiative is claimed by this packet.
 
 ## 10. Planning review record
 
