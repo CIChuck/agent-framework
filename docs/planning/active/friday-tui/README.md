@@ -2,12 +2,14 @@
 
 **Status:** Active; TUI-N01S and TUI-N01A independently VERIFIED. N01A is
 closed under a maintainer-approved Linux-smoke deferral for that unit only.
+TUI-CI01 is locally checked and awaits an authorized GitHub Actions run.
 
-**Lifecycle:** Started; board priority 14; current authority `design_only`
+**Lifecycle:** Started; board priority 14; current authority `granted` for
+TUI-CI01 only
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: verified (TUI-N01A unit only)
+execution_phase: validation; validation_state: pending (TUI-CI01 Linux run)
 
 **Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -62,6 +64,8 @@ Current planning artifacts:
 - [TUI-N01A local construction checks](validation/N01A-local-checks.md)
 - [Independent TUI-N01A blocked validation report](validation/VAL-N01A-neutral-config-loader.md)
 - [Independent TUI-N01A closeout review under Linux deferral](validation/VAL-N01A-waiver-closeout.md)
+- [Approved Linux GitHub Actions verification directive](directives/CD-TUI-CI01-linux-actions.md)
+- [TUI-CI01 local workflow checks](validation/TUI-CI01-local-checks.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)

@@ -1660,3 +1660,38 @@ authority to `design_only`. The Friday TUI initiative remains `started`;
 later units need separate approval. No TUI UAT, full-initiative acceptance,
 push, merge, release or publication is inferred. Stop after this unit.
 execution_phase: planning; validation_state: verified (TUI-N01A only).
+
+## 2026-10-18 — Linux GitHub Actions work unit proposed
+
+The maintainer asked for the next steps after discussing Linux testing on
+GitHub Actions. Prepared `directives/CD-TUI-CI01-linux-actions.md` as a
+design-only proposal for an Ubuntu workflow covering the deferred N01A smoke,
+installed-wheel isolation and protected Runtime/Chat/`friday-cli` regressions.
+No workflow, package source, test or lockfile changed; no Linux run or remote
+delivery has occurred. The board remains `started` with design-only authority
+pending review and explicit approval of the exact CI scope.
+execution_phase: planning; validation_state: verified (TUI-N01A only).
+
+## 2026-10-18 — TUI-CI01 approved for bounded workflow implementation
+
+Chuck Russell replied "approved" to the explicit TUI-CI01 directive question.
+This grants implementation authority for `.github/workflows/friday-tui-linux.yml`
+and the directive's exact scoped planning/evidence paths only. N01A remains
+closed under its Linux-smoke waiver; no later TUI product unit is authorized.
+External delivery remains unauthorized. Start CI workflow construction and
+local checks before freezing a candidate for a separately authorized GitHub
+Actions run and independent review.
+execution_phase: implementation; validation_state: pending (TUI-CI01).
+
+## 2026-10-18 — TUI-CI01 workflow locally checked
+
+Added only `.github/workflows/friday-tui-linux.yml` for automation. Its
+focused loader/facade checks, separate Runtime/Chat/`friday-cli` suites and
+isolated installed-wheel check all passed locally on macOS. Syntax, lock,
+board, dashboard and changed-path checks passed. The detailed
+`validation/TUI-CI01-local-checks.md` records exact counts and the inherited
+six-link documentation checker debt. No Linux/Actions run has occurred.
+Freeze the candidate for separately authorized branch delivery and a real
+Ubuntu run; then obtain independent read-only review of the exact candidate
+and Linux evidence. No TUI product implementation or user UAT is inferred.
+execution_phase: validation; validation_state: pending (TUI-CI01 Linux run).

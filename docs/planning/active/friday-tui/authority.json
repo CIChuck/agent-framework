@@ -2,26 +2,31 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for that unit's closeout by maintainer amendment; all later TUI units remain design-only",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; TUI-CI01 approved for its exact Linux workflow scope only; later TUI product units remain design-only",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
-  "implementation_authority": "design_only",
-  "execution_phase": "planning",
-  "validation_state": "verified",
+  "implementation_authority": "granted",
+  "execution_phase": "validation",
+  "validation_state": "pending",
   "allowed_changes": [
     "docs/planning/active/friday-tui/** (scoped authority and evidence only)",
     "docs/planning/board.yaml (TUI task and its scoped events only)",
-    "docs/planning/README.md (generated dashboard)"
+    "docs/planning/README.md (generated dashboard)",
+    ".github/workflows/friday-tui-linux.yml (TUI-CI01 only)"
   ],
   "product_code_generation_authorized": false,
+  "workflow_code_generation_authorized": true,
   "build_plan_approval": "TUI-N01S and TUI-N01A verified under their exact directives; N01A Linux smoke was waived only for unit closeout; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
-    "directives/CD-TUI-N01A-neutral-config-loader.md"
+    "directives/CD-TUI-N01A-neutral-config-loader.md",
+    "directives/CD-TUI-CI01-linux-actions.md"
   ],
-  "construction_directives_active": [],
+  "construction_directives_active": [
+    "directives/CD-TUI-CI01-linux-actions.md"
+  ],
   "validated_construction_scope": {
     "unit": "TUI-N01S",
     "directive": "directives/CD-TUI-N01S-session-identity.md",
@@ -180,6 +185,20 @@
     "configuration_reference_location": "Accepted: detailed tui settings reference in docs/guides/10-configuration.md; task-focused TUI guide setup links to it; configuration guide links back to TUI operating guide",
     "uat": "Real users follow first-launch, configuration, representative-command and safe-Quit guide steps before release acceptance",
     "implementation_status": "No TUI executable or final user guide exists yet"
+  },
+  "active_construction_scope_ci01": {
+    "unit": "TUI-CI01",
+    "directive": "directives/CD-TUI-CI01-linux-actions.md",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-10-18",
+    "approval_evidence": "Current-session reply 'approved' to the explicit TUI-CI01 directive question",
+    "construction_base": "d69c1d72fb841e4b3e51683ef16d7dcd4eac1f00",
+    "scope": "Add .github/workflows/friday-tui-linux.yml and update only the directive's named planning and validation evidence paths",
+    "later_tui_product_units_authorized": false,
+    "remote_push_authorized": false,
+    "local_check_report": "validation/TUI-CI01-local-checks.md",
+    "candidate_status": "locally checked; Linux run pending",
+    "linux_run_status": "pending"
   },
   "closed_construction_scope_n01a": {
     "unit": "TUI-N01A",

@@ -1,0 +1,215 @@
+name: Friday TUI Linux verification
+
+on:
+  push:
+    branches: [feature/friday-tui]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  n01a-linux:
+    name: N01A Linux smoke and regressions
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash
+    env:
+      LITELLM_LOCAL_MODEL_COST_MAP: "true"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTEST_ADDOPTS: "-p no:cacheprovider"
+      WHEEL_DIR: ${{ runner.temp }}/friday-tui-wheels
+      RUNTIME_VENV: ${{ runner.temp }}/friday-tui-runtime-venv
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          version: "0.11.3"
+          python-version: "3.13"
+          enable-cache: true
+
+      - name: Install Python and locked development dependencies
+        run: |
+          uv python install 3.13
+          uv sync --locked --extra dev
+          uv run --no-sync python - <<'PY'
+          import sys
+
+          if sys.version_info[:2] != (3, 13) or sys.version_info < (3, 13, 4):
+              raise SystemExit(f"Expected Python 3.13.4 or newer: {sys.version}")
+          print(f"Python: {sys.version}")
+          PY
+
+      - name: Record source and runner versions
+        run: |
+          git rev-parse HEAD
+          cat /etc/os-release
+          uv --version
+
+      - name: Test neutral loader and Chat facade
+        run: |
+          uv run --no-sync pytest -q \
+            packages/friday-runtime/tests_runtime/test_application_config.py \
+            packages/friday-chat/tests_chat/test_config_facade.py
+
+      - name: Test full Runtime package
+        run: uv run --no-sync pytest -q packages/friday-runtime/tests_runtime
+
+      - name: Test full Chat package
+        run: uv run --no-sync pytest -q packages/friday-chat/tests_chat
+
+      - name: Test unchanged friday-cli package
+        run: uv run --no-sync pytest -q packages/friday-cli/tests_cli
+
+      - name: Build local Runtime and Chat dependency wheels
+        run: |
+          mkdir -p "$WHEEL_DIR"
+          packages=(
+            friday-framework-telemetry
+            friday-framework-core
+            friday-framework-llm
+            friday-framework-memory
+            friday-framework-agent
+            friday-framework-transcript
+            friday-framework-mcp
+            friday-framework-runtime
+            friday-framework-tools
+            friday-framework-cli
+            friday-chat
+          )
+          for package in "${packages[@]}"; do
+            uv build --wheel --package "$package" --out-dir "$WHEEL_DIR"
+          done
+          sha256sum "$WHEEL_DIR"/*.whl
+
+      - name: Check Runtime wheel metadata
+        run: |
+          uv run --no-sync python - <<'PY'
+          from email.parser import BytesParser
+          from pathlib import Path
+          import os
+          import re
+          from zipfile import ZipFile
+
+          wheels = list(Path(os.environ["WHEEL_DIR"]).glob("friday_framework_runtime-*.whl"))
+          if len(wheels) != 1:
+              raise SystemExit(f"Expected one Runtime wheel, found {len(wheels)}")
+          with ZipFile(wheels[0]) as archive:
+              metadata_paths = [p for p in archive.namelist() if p.endswith(".dist-info/METADATA")]
+              if len(metadata_paths) != 1:
+                  raise SystemExit("Runtime wheel has no unique METADATA")
+              metadata = BytesParser().parsebytes(archive.read(metadata_paths[0]))
+          requirements = metadata.get_all("Requires-Dist", [])
+          names = set()
+          for requirement in requirements:
+              match = re.match(r"^[A-Za-z0-9_.-]+", requirement)
+              if match is None:
+                  raise SystemExit(f"Invalid dependency: {requirement}")
+              names.add(match.group().lower().replace("_", "-"))
+          if not {"pydantic", "pyyaml"} <= names:
+              raise SystemExit(f"Missing direct parser/model dependencies: {requirements}")
+          if names & {"friday-chat", "friday-framework-cli"}:
+              raise SystemExit(f"Runtime wheel depends on a frontend: {requirements}")
+          print(f"Runtime wheel: {wheels[0].name}")
+          print("Runtime dependencies:", *requirements, sep="\n- ")
+          PY
+
+      - name: Test installed Runtime isolation and Chat facade
+        run: |
+          shopt -s nullglob
+          wheel_for() {
+            local normalized="${1//-/_}"
+            local matches=( "$WHEEL_DIR/${normalized}-"*.whl )
+            if [[ ${#matches[@]} -ne 1 ]]; then
+              echo "Expected one wheel for $1, found ${#matches[@]}" >&2
+              return 1
+            fi
+            printf '%s\n' "${matches[0]}"
+          }
+
+          runtime_packages=(
+            friday-framework-telemetry
+            friday-framework-core
+            friday-framework-llm
+            friday-framework-memory
+            friday-framework-agent
+            friday-framework-transcript
+            friday-framework-mcp
+            friday-framework-runtime
+          )
+          runtime_wheels=()
+          for package in "${runtime_packages[@]}"; do
+            runtime_wheels+=( "$(wheel_for "$package")" )
+          done
+          uv venv --python 3.13 "$RUNTIME_VENV"
+          uv pip install --python "$RUNTIME_VENV/bin/python" "${runtime_wheels[@]}"
+          uv pip check --python "$RUNTIME_VENV/bin/python"
+          (
+            cd "$RUNNER_TEMP"
+            "$RUNTIME_VENV/bin/python" -I - <<'PY'
+          from importlib import metadata, util
+          from pathlib import Path
+          import sys
+
+          for package, module in (
+              ("friday-chat", "friday_chat"),
+              ("friday-framework-cli", "friday_cli"),
+          ):
+              try:
+                  metadata.version(package)
+              except metadata.PackageNotFoundError:
+                  pass
+              else:
+                  raise SystemExit(f"{package} was installed with Runtime")
+              if util.find_spec(module) is not None:
+                  raise SystemExit(f"{module} is importable before frontend installation")
+
+          from friday_runtime import application_config
+
+          source = Path(application_config.__file__).resolve()
+          if not source.is_relative_to(Path(sys.prefix).resolve()):
+              raise SystemExit(f"Runtime import came from outside installed venv: {source}")
+          if {"friday_chat", "friday_cli"} & sys.modules.keys():
+              raise SystemExit("Neutral import loaded a frontend module")
+          print(f"Isolated Runtime import: {source}")
+          PY
+          )
+
+          chat_wheels=()
+          for package in friday-framework-tools friday-framework-cli friday-chat; do
+            chat_wheels+=( "$(wheel_for "$package")" )
+          done
+          uv pip install --python "$RUNTIME_VENV/bin/python" "${chat_wheels[@]}"
+          uv pip check --python "$RUNTIME_VENV/bin/python"
+          (
+            cd "$RUNNER_TEMP"
+            "$RUNTIME_VENV/bin/python" -I - <<'PY'
+          from pathlib import Path
+          import sys
+
+          import friday_chat.config as chat_config
+          from friday_chat.config import FridayChatConfig, FridayChatConfigError
+          from friday_runtime.application_config import ApplicationConfig, ApplicationConfigError
+
+          chat_source = Path(chat_config.__file__).resolve()
+          if not chat_source.is_relative_to(Path(sys.prefix).resolve()):
+              raise SystemExit(f"Chat facade came from outside installed venv: {chat_source}")
+          if FridayChatConfig is not ApplicationConfig:
+              raise SystemExit("Chat config model is not the neutral model")
+          if FridayChatConfigError is not ApplicationConfigError:
+              raise SystemExit("Chat config error is not the neutral error")
+          for cls in (FridayChatConfig, ApplicationConfig):
+              source = Path(sys.modules[cls.__module__].__file__).resolve()
+              if not source.is_relative_to(Path(sys.prefix).resolve()):
+                  raise SystemExit(f"Config class came from outside installed venv: {source}")
+          print("Installed Chat facade and Runtime identities match")
+          PY
+          )
