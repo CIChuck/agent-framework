@@ -1,11 +1,16 @@
 # Friday TUI neutral configuration loader contract
 
-**Status:** Draft technical proposal for maintainer review. It does not grant
-construction authority or claim that a shared loader exists.
+**Status:** Reviewed N01A technical contract; proposed for a separate scoped
+construction approval. No shared loader exists yet.
 
 **Branch and authority:** `feature/friday-tui`; `design_only`
 
-**Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
+**Original TUI baseline:** `c34269867be50f71923c93c95a63236a35505812`
+
+**Current before-code baseline:** `26f5d090` (N01S identity extraction
+independently VERIFIED; no configuration-loader change). The
+[N01A characterization](validation/N01A-before-code-characterization.md)
+records the current loader's observable behavior.
 
 This is the configuration-loading slice of the [independent TUI plan](replacement-plan.md).
 The TUI must use the same Friday Chat runtime files and effective settings
@@ -49,31 +54,43 @@ def load_application_config(
 It retains the currently accepted sections, defaults, strict-versus-flexible
 nested validation, ordered `ConfigDiagnostic` values, resolved LLM and
 embedding service specs, and model methods used by Chat. A neutral
-`ApplicationConfigError` expresses load failures. For review, bind these public
-names and one `ConfigDiagnosticRules` value carrying deprecated/renamed key
-mappings. An omitted rules value uses neutral defaults. The Chat facade passes
-its current module-level `DEPRECATED_CONFIG_KEYS` and `RENAMED_CONFIG_KEYS`
-at each call, preserving existing monkeypatch behavior without a reverse
-runtime-to-Chat import. The exact shape and immutability of that value, plus
-exception class/name compatibility, must be proven by the construction
-directive's before/after fixtures. `friday-runtime` must declare its direct parser/model
-dependencies in its package metadata when this is implemented; its imports
-must remain free of either frontend and presentation side effects.
+`ApplicationConfigError` expresses the same load failures. Preserve the
+existing concrete class names `FridayChatConfig` and `FridayChatConfigError`
+in the neutral owner and expose `ApplicationConfig` and
+`ApplicationConfigError` as aliases of those **same class objects**. This
+keeps existing Chat type names and exception identity while giving the TUI
+neutral import names. Their owning `__module__` changes to
+`friday_runtime.application_config`; test old Chat imports and historical
+pickle global lookup. A discovered supported serialization dependency on the
+old module identity stops the extraction for an explicit compatibility fix.
+
+`ConfigDiagnosticRules` is a frozen, slot-based value with
+`deprecated_keys: Mapping[str, str]` and
+`renamed_keys: Mapping[str, str]`. Construction snapshots both mappings into
+read-only copies, so a caller cannot change a load's rules after passing the
+value. With `diagnostic_rules=None`, the neutral loader uses the current Chat
+default mappings. The Chat facade builds a fresh rules value on **each**
+`load_friday_py_config()` call from its current module-level
+`DEPRECATED_CONFIG_KEYS` and `RENAMED_CONFIG_KEYS`. This preserves both
+replacement monkeypatches and in-place edits without a reverse Runtime-to-Chat
+import. Neither frontend parses warning text to infer diagnostic state.
+
+`friday-runtime` must declare `pydantic>=2.0` and `pyyaml>=6.0.0` as direct
+dependencies in its own package metadata; it already declares `friday-llm`.
+The lockfile and installed wheel metadata must reflect that closure. The
+neutral module must have no frontend import or presentation side effect.
 
 `friday_chat.config` remains a compatibility facade. Existing imports,
 `FridayChatConfig`, `FridayChatConfigError`, `load_friday_py_config(path,
 *, env=None)`, exported section types, constants and `get_config_traceability()`
-must continue to work. The facade delegates to the neutral loader without
-copying its schema or parsing rules. The current Chat tests monkeypatch
-`DEPRECATED_CONFIG_KEYS` and `RENAMED_CONFIG_KEYS` on the Chat module; the
-facade passes those values through the neutral rules argument. It must also preserve exception
-class identity, messages and cause/context behavior where current callers
-observe them. Re-export the neutral model, error and section types as the
-existing Chat names so a Chat caller and neutral caller see the same class
-objects. The facade must still wrap the loader call to supply current Chat
-diagnostic rules. The directive must test these compatibility details before
-migration. Keep Chat-specific traceability ownership strings
-in the facade rather than making the neutral module depend on Chat.
+must continue to work. Preserve the current `__all__` and the additional
+importable `ChatTelemetryConfig`, `FlexibleConfigSection`, `ProviderConfig`
+and `ENV_PATTERN` names. The facade delegates without copying the schema or
+parser. Re-export the neutral model, error and section classes as the existing
+Chat names; the Chat and Runtime imports must identify the same objects. Keep
+Chat-specific traceability ownership strings and the copy-returning
+`get_config_traceability()` in the facade. Preserve Chat exception messages,
+cause/context, diagnostic order and existing public method behavior.
 
 `friday-tui` imports only the neutral API and owns its config-error presentation.
 Neither frontend may parse the other's rendered warning/error text to infer
@@ -114,6 +131,20 @@ state. The TUI maps typed diagnostics to its own view; Chat retains its current
    persistent store or terminal UI. Shallow chooser listing and Refresh must
    remain separate and cannot call this full loader.
 
+The existing full loader uses `yaml.safe_load()` without a new size, alias or
+depth limit. N01A must preserve that behavior; adding a new full-loader parser
+policy would change Chat. The separately scoped chooser shallow reader needs
+its own bounds and symlink/error contract in TUI-N03A.
+
+For this unit, failure categories are the **observed Python outcomes**, not a
+new tagged error taxonomy. Missing files, malformed YAML, non-mapping roots,
+missing `${NAME}` values, typed validation failures and canonical resolution
+failures keep their current `FridayChatConfigError` messages and chaining.
+An empty YAML document reaches the existing missing-`llm.model` error. File
+read, permission and decoding errors currently propagate as their native
+`OSError`/`UnicodeError` subclasses; N01A must not silently wrap them.
+Chooser-versus-explicit-path error presentation belongs to TUI-N03A.
+
 Mode selection is not part of this API. Chat retains its existing fake default
 and `FRIDAY_CHAT_RUNTIME` behavior. The TUI ignores that Chat-specific variable
 for mode selection: configured interactive startup defaults to real and its
@@ -132,15 +163,12 @@ environment; D-61 changes only launcher mode selection.
 | TUI-N01C: neutral assembly | After required primitives exist, compose real and explicit fake runtime services from the neutral config. Compare effective model/service, storage, workflow, tool, transcript and cleanup behavior on disposable fixtures. Do not substitute `RuntimeKernel` alone for Chat parity; a separate exact directive and failure-injection tests are required. |
 | TUI-N03A: launcher/chooser | Full validation calls the neutral loader only after a chosen or explicit path. Check D-47 through D-61 recovery, link and mode-isolation cases; keep the initial candidate check shallow. With `FRIDAY_CHAT_RUNTIME=fake` or an invalid value in the process environment, omitted TUI `--runtime` still selects real; explicit TUI fake still selects fake. Chat's existing override remains unchanged. An invalid chosen file stays in the chooser, while invalid explicit `--config` exits nonzero. |
 
-Baseline read-only tests on this source revision passed: 103 focused Chat and
-Runtime config/CLI tests, plus 155 `friday-cli` tests. These are **before-code**
-evidence, not verification of an extraction or a TUI. Subsequent product
-changes require fresh after-code comparisons, installed-package checks,
-automated Linux checks and the planned user UAT.
-
-**Still to bind before a construction directive:** confirm the proposed
-neutral public names and the exact diagnostic-rules value shape against
-characterization fixtures; error categories for unreadable/invalid file
-handling without changing Chat behavior; parser bounds and link resolution in
-the chooser's shallow reader; and the later assembly/resource-close interface.
-No current board authority permits implementing these proposals.
+At current HEAD, 369 focused Chat, Runtime and `friday-cli` tests pass. The
+[before-code characterization](validation/N01A-before-code-characterization.md)
+records synthetic legacy/canonical, error, diagnostic, symlink and parser
+observations. These are **before-code** evidence, not verification of an
+extraction or TUI. The exact N01A source/test/package boundary and after-code
+checks are in [CD-TUI-N01A](directives/CD-TUI-N01A-neutral-config-loader.md),
+which is proposed and not approved. No current board authority permits its
+product-code edits. Chooser parser bounds, link-listing policy and
+assembly/resource-close interfaces remain later, separately directed units.

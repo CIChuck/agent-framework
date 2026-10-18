@@ -1,7 +1,7 @@
 # Product Requirements Document: Friday TUI
 
-**Status:** Active; TUI-N01S neutral session-identity candidate independently
-VERIFIED; later units remain in design review
+**Status:** Active; TUI-N01S neutral session identity independently VERIFIED;
+TUI-N01A neutral loader directive proposed for separate approval
 
 **Lifecycle:** Started; board priority 14; current authority `design_only`
 
@@ -56,7 +56,9 @@ Current planning artifacts:
 - [TUI-N00 source and integration review](n00-integration-review.md)
 - [Approved TUI-N01S session-identity directive](directives/CD-TUI-N01S-session-identity.md)
 - [Independent TUI-N01S validation report](validation/VAL-N01S-session-identity.md)
-- [Draft UI-neutral runtime configuration loader contract](neutral-config-loader-contract.md)
+- [Reviewed UI-neutral runtime configuration loader contract](neutral-config-loader-contract.md)
+- [TUI-N01A before-code configuration characterization](validation/N01A-before-code-characterization.md)
+- [Proposed TUI-N01A neutral-loader construction directive](directives/CD-TUI-N01A-neutral-config-loader.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)

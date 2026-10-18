@@ -1,6 +1,7 @@
 # Friday TUI independent integration and construction plan
 
-**Status:** Draft replacement planning contract; review required before a construction directive
+**Status:** Draft replacement planning contract; N01S independently VERIFIED;
+N01A exact directive proposed for separate approval
 
 **Branch and authority:** `feature/friday-tui`; `design_only`
 
@@ -10,15 +11,16 @@ This is the current planning path for an independently installable Friday TUI.
 The [product requirements](README.md) and [accepted decisions](decisions.md)
 control its scope. The [command inventory](command-matrix.md),
 [screen proposal](screen-layout.md), [neutral-capability map](neutral-capability-map.md),
-[draft neutral configuration loader contract](neutral-config-loader-contract.md),
+[reviewed neutral configuration loader contract](neutral-config-loader-contract.md),
 [draft startup bootstrap contract](startup-bootstrap-contract.md),
 [reasoning requirement](reasoning-display-requirement.md) and
 [Activity requirement](tool-activity-requirement.md) provide supporting detail. The
 earlier [build plan](build-plan.md), [integration contract](integration-contract.md),
 [tactical plan](tactical-plan.md), [test/UAT plan](test-and-uat-plan.md), and
 [CD-TUI-001](directives/CD-TUI-001-shared-presentation-contracts.md) are
-withdrawn Chat-dependent history, not construction instructions. No unit below
-authorizes product code, a dependency change, UAT signoff or publication.
+withdrawn Chat-dependent history, not construction instructions. The rows
+below do not themselves authorize product code, a dependency change, UAT
+signoff or publication; N01S had its own now-closed approval.
 
 ## 1. Invariants and package direction
 
@@ -53,11 +55,12 @@ bounded extraction. A claim of "same runtime" is not evidence that the
 configuration, maintenance and transcript behavior already match.
 
 The [neutral configuration loader contract](neutral-config-loader-contract.md)
-proposes a shared Chat-compatible file loader and Chat facade. The
+and [proposed N01A directive](directives/CD-TUI-N01A-neutral-config-loader.md)
+bind a shared Chat-compatible file loader and Chat facade. The
 [startup bootstrap contract](startup-bootstrap-contract.md) collects D-47
 through D-61, a source-backed proposed chooser signature and an explicit
-failure-state test matrix. Both proposals need technical review before an
-exact construction directive.
+failure-state test matrix. The N01A directive needs separate maintainer
+approval; chooser construction needs its own later reviewed directive.
 The [event and lifecycle contract](neutral-event-lifecycle-contract.md)
 records source-backed ownership and failure boundaries for later units;
 its exact API, hooks and termination mechanism need their own directives.
@@ -286,9 +289,10 @@ Exact error categories and resource-close behavior remain directive work.
 
 TUI-N01B, TUI-N01C and TUI-N05 must be subdivided into command/service-family
 directives after review of the [capability map](neutral-capability-map.md).
-TUI-N01A is separately bounded by the
-[loader proposal](neutral-config-loader-contract.md) and still requires an
-exact approved directive.
+TUI-N01A is bounded by the
+[reviewed loader contract](neutral-config-loader-contract.md) and
+[proposed exact directive](directives/CD-TUI-N01A-neutral-config-loader.md),
+which still requires maintainer approval.
 N02 events must be demonstrated against the
 real neutral execution path, not just a synthetic UI feed. A usable shell is a
 milestone, not first-release command parity.
@@ -331,16 +335,17 @@ milestone, not first-release command parity.
 ## 5. Current construction gate and remaining design work
 
 The [TUI-N00 source review](n00-integration-review.md) reconciles all 50
-command cases and records before-code Chat/`friday-cli` checks. Its
-[TUI-N01S directive](directives/CD-TUI-N01S-session-identity.md) is approved
-for the identity slice only. Source inspection and these before-code checks
-cannot verify unchanged behavior after extraction.
+command cases and records the original Chat/`friday-cli` baseline. TUI-N01S
+was independently [VERIFIED](validation/VAL-N01S-session-identity.md) for its
+identity-only candidate; later units do not inherit that authority. The
+[N01A before-code characterization](validation/N01A-before-code-characterization.md)
+records the current configuration behavior, not an implemented extraction.
 
-1. Implement TUI-N01S under its approved directive, then obtain independent
-   validation of the frozen candidate. Later units do not inherit its authority.
-2. Review the [neutral loader proposal](neutral-config-loader-contract.md),
-   bind its public typed shapes and Chat compatibility facade, then choose
-   owners for command/event seams. Review the
+1. Review and explicitly approve the [N01A neutral-loader
+   directive](directives/CD-TUI-N01A-neutral-config-loader.md), then record
+   its bounded board/authority grant before product edits. Implement and
+   independently validate its frozen candidate before dependent TUI work.
+2. Choose owners for command/event seams. Review the
    [event/lifecycle proposal](neutral-event-lifecycle-contract.md) and bind
    event admission, argument snapshot and resource-close boundaries against
    actual native/MCP/provider paths in their later directives.
@@ -350,9 +355,8 @@ cannot verify unchanged behavior after extraction.
    defaults, Activity per-entry/total limits, accepted `/cls` and selected-text
    copy behavior, overflow behavior and Force quit's confirmed emergency
    mechanism to testable UI contracts.
-4. Replace the withdrawn directive with one bounded unit, exact files,
-   fixtures, checks and stop conditions; recheck board, branch, source and
-   authority before any product-code proposal.
+4. Prepare separate exact directives for later bounded units; recheck board,
+   branch, source and authority before each product-code unit.
 
 The board remains `started` with `design_only` authority. This draft makes
 the next design work reviewable; it does not approve a construction directive

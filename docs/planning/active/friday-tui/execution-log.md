@@ -1,8 +1,8 @@
 # Friday TUI execution log
 
-Status: Active design/planning; product implementation not authorized
+Status: Active design/planning; no further product implementation authorized
 
-execution_phase: planning; validation_state: not_ready
+execution_phase: planning; validation_state: verified (TUI-N01S only)
 
 ## 2026-10-16 — activation and build planning
 
@@ -1545,3 +1545,26 @@ implementation authority to `design_only` for later units. The next gate is
 review and separate approval of an exact N01A neutral-loader directive before
 another product-code edit.
 execution_phase: planning; validation_state: verified.
+
+## 2026-10-18 — TUI-N01A neutral-loader directive prepared
+
+Rechecked the `feature/friday-tui` branch at `26f5d090`, the board, authority
+manifest and current Chat/Runtime loader. All 369 focused Chat, Runtime and
+`friday-cli` configuration/CLI tests passed unchanged. A disposable synthetic
+probe characterized legacy and canonical loading, Chat diagnostic-map
+replacement, warning order, environment failures, invalid-file categories,
+raw relative paths, symlink target catalog anchoring and the different
+headless `RuntimeConfig` parser. No live provider request or real credential
+was used.
+
+Bound the N01A neutral API and Chat compatibility facade in
+`neutral-config-loader-contract.md`, retained the before-code evidence in
+`validation/N01A-before-code-characterization.md`, and proposed
+`directives/CD-TUI-N01A-neutral-config-loader.md` with exact source/test/
+package-metadata paths, after-code checks and stop conditions. N01A excludes
+the chooser, service assembly, command effects and TUI UI. This planning
+transaction grants no product-code authority, user UAT, acceptance or
+delivery. The next gate is maintainer review and explicit scoped approval of
+the proposed directive, followed by a board/manifest grant before source
+edits.
+execution_phase: planning; validation_state: verified (TUI-N01S only).

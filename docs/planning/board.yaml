@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-10-17'
+updated: '2026-10-18'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/friday-tui/
-  next_gate: TUI-N01S independently VERIFIED; review the N01A neutral-loader contract and seek a separate exact directive and scoped approval before any further product-code edit
+  next_gate: Review and explicitly approve CD-TUI-N01A neutral-loader scope; record a separate board/manifest grant before any product-code edit
   delivery_state: local
   branch: feature/friday-tui
   depends_on: []
@@ -304,6 +304,8 @@ tasks:
   - docs/planning/active/friday-tui/validation/context-ocr-page-failure-checks.json (accepted whole-PDF rejection on required OCR-page failure; planning checks only)
   - docs/planning/active/friday-tui/validation/context-ocr-language-selection-checks.json (accepted configurable installed Tesseract languages with English default; planning checks only)
   - docs/planning/active/friday-tui/validation/VAL-N01S-session-identity.md (independent VERIFIED review of the bounded identity unit; full TUI acceptance and UAT pending)
+  - docs/planning/active/friday-tui/validation/N01A-before-code-characterization.md (read-only Chat/Runtime/CLI baseline; N01A implementation and UAT pending)
+  - docs/planning/active/friday-tui/validation/n01a-directive-planning-checks.json (bounded directive and unchanged-source planning checks; implementation/UAT pending)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -2964,3 +2966,10 @@ events:
   action: n01s_independently_verified_and_future_code_authority_closed
   note: Fresh-context read-only reviewer VERIFIED candidate 073134f9 for TUI-N01S with no findings. The initiative remains started; subsequent product-code units return to design-only authority pending their own approved directives. No maintainer acceptance, UAT or delivery is inferred.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01S-session-identity.md; candidate 073134f9b13ddfbb07e884c7e1c05c872e0783f7
+- task: friday-tui
+  at: '2026-10-18T19:42:10+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01a_neutral_loader_directive_proposed
+  note: Reviewed the shared Chat-compatible configuration-loader contract and proposed exact N01A source/test/package-metadata scope with before-code fixtures and after-code regression gates. This is design-only planning; no product code, dependency, UI, UAT or delivery authority is granted.
+  evidence: docs/planning/active/friday-tui/neutral-config-loader-contract.md; docs/planning/active/friday-tui/directives/CD-TUI-N01A-neutral-config-loader.md; docs/planning/active/friday-tui/validation/N01A-before-code-characterization.md
