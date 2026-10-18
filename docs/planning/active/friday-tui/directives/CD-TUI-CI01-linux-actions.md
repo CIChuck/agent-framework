@@ -79,3 +79,27 @@ units, including TUI-N01B, require their own approved directives.
 current-session reply "approved" to the explicit TUI-CI01 directive question.
 The approval covers only the workflow and scoped planning/evidence paths above.
 Remote push authorization is a separate delivery decision.
+
+## RD-TUI-CI01-01: bounded preflight remediation
+
+The fresh-context review of candidate `7d97aacdd11c3cdf9903b52866a6896a21302e3e`
+returned `CHANGES_REQUESTED` on 2026-10-18. This addendum directs only the
+following mechanical corrections within the workflow path already approved
+above. It does not expand TUI-CI01 implementation or delivery authority.
+
+- **CI01-01:** Move `WHEEL_DIR` and `RUNTIME_VENV` expressions using
+  `${{ runner.temp }}` from job-level `env` to the steps that consume them.
+  Verify YAML/Bash/Python syntax and statically assert that job-level `env`
+  has no `runner` expression while each consuming step declares its path.
+  No package, test, dependency, credential or runner change is authorized.
+- **CI01-02:** Record the event source SHA in addition to the tested checkout
+  SHA. For pull requests use the PR head SHA; for pushes use `github.sha`.
+  Keep the default PR merge checkout so the workflow tests the merge result.
+  Verify the step expression and logging script. No trigger or checkout
+  behavior change is authorized.
+
+Record the review and correction in the scoped validation evidence and
+execution log. The corrected candidate must be committed and receive a new
+fresh-context read-only review. The previous review cannot verify the changed
+candidate. Linux Actions evidence and separate branch-push authorization
+remain mandatory for TUI-CI01 verification.

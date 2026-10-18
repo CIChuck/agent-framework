@@ -197,6 +197,8 @@
     "later_tui_product_units_authorized": false,
     "remote_push_authorized": false,
     "local_check_report": "validation/TUI-CI01-local-checks.md",
+    "first_candidate_preflight_report": "validation/VAL-TUI-CI01-preflight-7d97aacd.md",
+    "first_candidate_preflight_outcome": "CHANGES_REQUESTED; findings CI01-01 and CI01-02 covered by RD-TUI-CI01-01",
     "candidate_status": "locally checked; Linux run pending",
     "linux_run_status": "pending"
   },

@@ -21,8 +21,6 @@ jobs:
       LITELLM_LOCAL_MODEL_COST_MAP: "true"
       PYTHONDONTWRITEBYTECODE: "1"
       PYTEST_ADDOPTS: "-p no:cacheprovider"
-      WHEEL_DIR: ${{ runner.temp }}/friday-tui-wheels
-      RUNTIME_VENV: ${{ runner.temp }}/friday-tui-runtime-venv
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -49,8 +47,11 @@ jobs:
           PY
 
       - name: Record source and runner versions
+        env:
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          git rev-parse HEAD
+          printf 'Source commit: %s\n' "$SOURCE_SHA"
+          printf 'Checked-out commit: %s\n' "$(git rev-parse HEAD)"
           cat /etc/os-release
           uv --version
 
@@ -70,6 +71,8 @@ jobs:
         run: uv run --no-sync pytest -q packages/friday-cli/tests_cli
 
       - name: Build local Runtime and Chat dependency wheels
+        env:
+          WHEEL_DIR: ${{ runner.temp }}/friday-tui-wheels
         run: |
           mkdir -p "$WHEEL_DIR"
           packages=(
@@ -91,6 +94,8 @@ jobs:
           sha256sum "$WHEEL_DIR"/*.whl
 
       - name: Check Runtime wheel metadata
+        env:
+          WHEEL_DIR: ${{ runner.temp }}/friday-tui-wheels
         run: |
           uv run --no-sync python - <<'PY'
           from email.parser import BytesParser
@@ -123,6 +128,9 @@ jobs:
           PY
 
       - name: Test installed Runtime isolation and Chat facade
+        env:
+          WHEEL_DIR: ${{ runner.temp }}/friday-tui-wheels
+          RUNTIME_VENV: ${{ runner.temp }}/friday-tui-runtime-venv
         run: |
           shopt -s nullglob
           wheel_for() {

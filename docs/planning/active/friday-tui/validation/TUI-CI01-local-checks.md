@@ -2,10 +2,9 @@
 
 **Date/branch:** 2026-10-18; `feature/friday-tui`.
 
-**State:** Locally checked CI workflow candidate before its stable commit.
-The exact candidate commit is supplied at delivery/review. This record is
-not a Linux run, independent `VERIFIED` result, terminal UAT or TUI release
-acceptance.
+**State:** Local checks for the first candidate and its bounded preflight
+remediation. This record is not a Linux run, independent `VERIFIED` result,
+terminal UAT or TUI release acceptance.
 
 The only automation file added is
 `.github/workflows/friday-tui-linux.yml`. It targets GitHub-hosted
@@ -20,7 +19,18 @@ are unchanged.
 - Parsed the workflow with YAML BaseLoader. Checked the exact event set,
   runner, Bash shell, `contents: read`, full-SHA action references, every
   embedded Bash script with `bash -n` and every embedded Python block with
-  `ast.parse`; all passed. This is a local syntax check, not an Actions run.
+  `ast.parse`; all passed. The first-candidate independent reviewer found that
+  syntax checks alone missed an invalid `runner.temp` job-level expression and
+  missing PR source-SHA logging. See the retained
+  [preflight review](VAL-TUI-CI01-preflight-7d97aacd.md) and the directive's
+  `RD-TUI-CI01-01` remediation addendum. After correction, reran YAML parsing,
+  `bash -n` on all nine `run` steps, Python AST parsing on all four embedded
+  blocks, and explicit context-scope checks: no job-level `runner` expression;
+  every wheel/venv consumer has step-level `runner.temp`; the source-SHA
+  expression uses PR head with a push fallback; the version step prints both
+  source and tested checkout SHAs. Executed the two log lines with a synthetic
+  source SHA and checked both printed values. All passed. These are local
+  checks, not an Actions run.
 - On macOS Python 3.13.10, the focused neutral-loader/facade tests passed
   (**21**). Full Runtime passed (**334**) after permitting loopback for its
   synthetic HTTP tests; the sandbox-only attempt had nine localhost-bind
@@ -45,6 +55,12 @@ are unchanged.
   check and `git diff --check` passed. The documentation lifecycle checker
   still reports the six pre-existing broken absolute links in the unrelated
   telemetry `VAL-001` report; it reported no new TUI links.
+
+The package source, lockfile, focused/full test invocations, wheel build and
+installed-import scripts were unchanged by `RD-TUI-CI01-01`. The full package
+suites and wheel installation were not repeated after the workflow-only
+correction. The new version-log command and environment placement need the
+actual Ubuntu run before they count as platform evidence.
 
 ## Remaining gate
 

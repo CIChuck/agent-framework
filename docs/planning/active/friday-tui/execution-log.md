@@ -1695,3 +1695,21 @@ Freeze the candidate for separately authorized branch delivery and a real
 Ubuntu run; then obtain independent read-only review of the exact candidate
 and Linux evidence. No TUI product implementation or user UAT is inferred.
 execution_phase: validation; validation_state: pending (TUI-CI01 Linux run).
+
+## 2026-10-18 — TUI-CI01 first-candidate preflight and remediation
+
+Fresh-context read-only review of committed candidate `7d97aacd` returned
+`CHANGES_REQUESTED`: CI01-01 identified `runner.temp` in job-level `env`,
+where GitHub cannot resolve it; CI01-02 identified PR logs that omitted the
+source head SHA. Retained the full finding record in
+`validation/VAL-TUI-CI01-preflight-7d97aacd.md` and assigned both findings in
+the approved directive's `RD-TUI-CI01-01` bounded remediation addendum.
+
+Moved temporary paths to consuming step environments and logged the PR source
+SHA (or push SHA) beside the tested checkout SHA, preserving PR merge testing.
+Reran workflow context-scope, YAML, Bash and embedded-Python checks; all
+passed. Package code, tests, metadata, lockfile and the tested wheel/import
+scripts were unchanged. The corrected workflow needs a new committed
+candidate, fresh read-only review, separately authorized branch push and an
+actual green Ubuntu run before TUI-CI01 can be `VERIFIED`.
+execution_phase: validation; validation_state: pending (TUI-CI01 Linux run).

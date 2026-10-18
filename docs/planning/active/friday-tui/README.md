@@ -66,6 +66,7 @@ Current planning artifacts:
 - [Independent TUI-N01A closeout review under Linux deferral](validation/VAL-N01A-waiver-closeout.md)
 - [Approved Linux GitHub Actions verification directive](directives/CD-TUI-CI01-linux-actions.md)
 - [TUI-CI01 local workflow checks](validation/TUI-CI01-local-checks.md)
+- [TUI-CI01 first-candidate independent preflight findings](validation/VAL-TUI-CI01-preflight-7d97aacd.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
