@@ -1794,3 +1794,17 @@ runs the MCP case separately for diagnosis. The workflow remains read-only
 and no product/test source changed. A complete Linux run and final
 independent review remain open.
 execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).
+
+## 2026-10-18 — TUI-CI01 current-authority preflight correction
+
+Fresh-context review of `49acc931` returned `CHANGES_REQUESTED` for
+CI01-05 and CI01-06; the workflow and locked closure passed preflight.
+The packet README still described old `design_only` authority and future
+Linux-runner availability, while the board still named a finance-corrected
+candidate already tested. The findings are retained in
+`validation/VAL-TUI-CI01-preflight-49acc931.md` and assigned in
+`RD-TUI-CI01-07`. Updated the README's current-state wording and made the
+board next gate refer to the current CI01 candidate's full Ubuntu run and
+work-unit review. The workflow remains unchanged from `49acc931`; a fresh
+read-only review is required before pushing the corrected packet.
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).

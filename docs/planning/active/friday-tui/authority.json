@@ -211,6 +211,8 @@
     "fourth_candidate_preflight_outcome": "CHANGES_REQUESTED; packet-state finding CI01-04 covered by RD-TUI-CI01-05",
     "fifth_candidate_preflight_report": "validation/VAL-TUI-CI01-preflight-505c4c1d.md",
     "fifth_candidate_preflight_outcome": "VERIFIED for preflight only; Linux run and final work-unit review remained open",
+    "sixth_candidate_preflight_report": "validation/VAL-TUI-CI01-preflight-49acc931.md",
+    "sixth_candidate_preflight_outcome": "CHANGES_REQUESTED; findings CI01-05 and CI01-06 covered by RD-TUI-CI01-07",
     "second_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39173445329",
     "third_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39174159031",
     "candidate_status": "third Ubuntu run failed during full Runtime tests; Moltbook selection and independent-step evidence collection added for rerun; repeated MCP stdio failure remains open",

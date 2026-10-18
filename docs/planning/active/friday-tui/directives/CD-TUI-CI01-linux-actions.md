@@ -225,3 +225,18 @@ conditions. This run remains failed and is not Linux verification.
   push authorization for its Ubuntu run. No product source, tests, package
   metadata, lockfile, trigger, permission or credential changes are
   authorized by this addendum.
+
+## RD-TUI-CI01-07: current authority and run gate
+
+Fresh-context preflight of `49acc931ac1fe5a610b94f0005d67f8c1ef6c7ad`
+returned `CHANGES_REQUESTED` for two current-state defects. The packet
+README still said the board had `design_only` authority and that Linux
+checks awaited a runner, contradicting its header and the current
+`granted` CI01 board state. The board next gate still named the already
+run finance-corrected candidate rather than the Moltbook/diagnostic
+candidate. Correct the README's current-state paragraph and Linux-check
+sentence, set a durable board gate for the current candidate's complete
+Ubuntu run and independent review, regenerate the dashboard and retain
+the review evidence. No workflow, product, test or lockfile edit is
+authorized by this addendum. Commit and obtain fresh-context read-only
+review before the authorized branch push.

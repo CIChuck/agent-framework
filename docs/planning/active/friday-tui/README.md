@@ -76,6 +76,7 @@ Current planning artifacts:
 - [Finance-candidate independent preflight finding](validation/VAL-TUI-CI01-preflight-89a875ac.md)
 - [Finance-rerun packet independent preflight](validation/VAL-TUI-CI01-preflight-505c4c1d.md)
 - [Third Ubuntu Actions run and Runtime failures](validation/TUI-CI01-ubuntu-run-39174159031.md)
+- [Moltbook-candidate independent preflight findings](validation/VAL-TUI-CI01-preflight-49acc931.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -617,18 +618,20 @@ and a fresh independent reviewer returned
 [VERIFIED](validation/VAL-N01A-waiver-closeout.md). Linux testing remains a
 later TUI cross-platform/release gate. Dependent construction needs its own
 approved directive.
-Later units need their own bounded directives and authority. At each increment,
-test behavior and regressions before dependent work. macOS user UAT begins at
-the first usable shell; resume automated Linux checks when a runner is
-available, and hands-on Linux terminal UAT remains mandatory on the final
+Later product units need their own bounded directives and authority. At each
+increment, test behavior and regressions before dependent work. macOS user
+UAT begins at the first usable shell; automated Linux checks are active under
+TUI-CI01, and hands-on Linux terminal UAT remains mandatory on the final
 installed candidate. A controlled
 real-provider/tool run is also required for first-release acceptance; select
 its provider before final UAT. Build the user guide and configuration reference
 alongside the features they describe and verify them against that candidate.
 
-The [board](../../board.yaml) records `started` on `feature/friday-tui`, with
-`design_only` authority after N01A closeout. No TUI executable, UAT result,
-publication or acceptance of the full initiative is claimed by this packet.
+The [board](../../board.yaml) records `started` on `feature/friday-tui` with
+implementation authority `granted` for TUI-CI01's Linux Actions workflow
+only. N01A is closed under its unit-specific Linux deferral. No TUI
+executable, UAT result, publication or acceptance of the full initiative is
+claimed by this packet.
 
 ## 10. Planning review record
 
