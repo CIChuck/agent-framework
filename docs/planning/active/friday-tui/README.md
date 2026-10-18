@@ -1,14 +1,14 @@
 # Product Requirements Document: Friday TUI
 
 **Status:** Active; TUI-N01S neutral session identity independently VERIFIED;
-TUI-N01A neutral loader candidate independently BLOCKED on Linux smoke evidence
+TUI-N01A Linux smoke deferred by maintainer for unit closeout, fresh review pending
 
 **Lifecycle:** Started; board priority 14; current authority `granted` for
 TUI-N01A only
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: blocked (TUI-N01A Linux smoke)
+execution_phase: validation; validation_state: pending (TUI-N01A waiver review)
 
 **Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -595,20 +595,24 @@ are withdrawn historical proposals. Their 24 units, five checkpoints and
 Chat API changes cannot be used as construction gates.
 
 The first neutral session-identity unit is verified. The approved neutral
-configuration-loader unit is frozen at candidate `4a5311f2`; its independent
-review is [BLOCKED](validation/VAL-N01A-neutral-config-loader.md) only because
-the required automated Linux smoke has not run. Obtain that evidence and a
-fresh review of the unchanged candidate before dependent construction.
+configuration-loader unit is frozen at candidate `4a5311f2`. Its first
+independent review was [BLOCKED](validation/VAL-N01A-neutral-config-loader.md)
+only because the automated Linux smoke could not run. The maintainer has
+[deferred that check for N01A closeout](directives/CD-TUI-N01A-neutral-config-loader.md)
+while retaining it for later TUI cross-platform/release acceptance. Obtain a
+fresh independent review under the amended directive before dependent
+construction.
 Later units need their own bounded directives and authority. At each increment,
 test behavior and regressions before dependent work. macOS user UAT begins at
-the first usable shell, automated Linux checks run throughout, and hands-on
-Linux terminal UAT is mandatory on the final installed candidate. A controlled
+the first usable shell; resume automated Linux checks when a runner is
+available, and hands-on Linux terminal UAT remains mandatory on the final
+installed candidate. A controlled
 real-provider/tool run is also required for first-release acceptance; select
 its provider before final UAT. Build the user guide and configuration reference
 alongside the features they describe and verify them against that candidate.
 
 The [board](../../board.yaml) records `started` on `feature/friday-tui`, with
-N01A-only construction authority and blocked validation. No TUI executable,
+N01A-only construction authority and pending waiver review. No TUI executable,
 UAT result, publication or maintainer acceptance is claimed by this packet.
 
 ## 10. Planning review record

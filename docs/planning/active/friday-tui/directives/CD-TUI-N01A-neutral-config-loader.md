@@ -160,3 +160,22 @@ under N01A.
 current-session reply "approved" to the explicit CD-TUI-N01A scope-and-
 authority question. Scope is only the exact paths and checks above. Product
 validation, TUI UAT, acceptance and delivery remain pending.
+
+## Maintainer amendment: defer Linux smoke for N01A closeout
+
+On 2026-10-18, after the independent reviewer returned `BLOCKED` solely for
+the unavailable Linux runner, Chuck Russell directed: "Let's postpone testing
+on Linux for now. Close N01A." This explicitly waives the automated Linux
+smoke in gate 4 **only as a prerequisite to N01A work-unit verification and
+closeout** for frozen product candidate `4a5311f2340adfbbf9cd5c4289db325e6b420b6b`.
+It does not assert that Linux passed, waive macOS or other N01A checks, or
+authorize any product edit. Automated Linux testing remains an open TUI
+cross-platform/release gate to run when a runner is available, before
+first-release acceptance. Terminal user UAT on macOS and Linux remains at
+the first-shell and final installed-candidate gates.
+
+The original `BLOCKED` report remains historical evidence. Because this
+amendment changes controlling authority, obtain a new fresh-context,
+read-only independent review of the unchanged candidate under this exact
+waiver before recording N01A `VERIFIED`. This amendment grants no authority
+for later TUI construction, push, merge, release or publication.

@@ -2,14 +2,14 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S independently verified; TUI-N01A exact neutral configuration-loader directive approved for construction only; all later TUI units remain design-only",
+  "approval_scope": "TUI-N01S independently verified; TUI-N01A exact neutral configuration-loader directive approved, with its Linux smoke deferred for this unit's closeout by maintainer amendment; all later TUI units remain design-only",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
   "execution_phase": "validation",
-  "validation_state": "blocked",
+  "validation_state": "pending",
   "allowed_changes": [
     "docs/planning/active/friday-tui/** (scoped authority and evidence only)",
     "docs/planning/board.yaml (TUI task and its scoped events only)",
@@ -198,9 +198,10 @@
     "later_units_authorized": false,
     "construction_base": "ab56cbc61ac8f9ec54fc8d6e0b1753fe18411332",
     "frozen_candidate": "4a5311f2340adfbbf9cd5c4289db325e6b420b6b",
-    "validation_report": "validation/VAL-N01A-neutral-config-loader.md",
-    "validation_outcome": "BLOCKED",
-    "validation_blocker": "B-01: required automated installed-wheel neutral-loader smoke has not run on Linux; no local Linux runner is available",
-    "exit_gate": "Run and retain Linux smoke against the frozen candidate, then obtain fresh-context independent closure before claiming VERIFIED or starting a dependent unit"
+    "prior_validation_report": "validation/VAL-N01A-neutral-config-loader.md",
+    "prior_validation_outcome": "BLOCKED",
+    "prior_validation_blocker": "B-01: automated installed-wheel neutral-loader smoke did not run on Linux; no local Linux runner was available",
+    "linux_smoke_closeout_waiver": "Maintainer Chuck Russell, 2026-10-18: 'Let's postpone testing on Linux for now. Close N01A.' Waives Linux smoke for N01A work-unit closeout only; Linux remains a later TUI cross-platform/release gate.",
+    "exit_gate": "Obtain fresh-context independent review of the unchanged candidate under the maintainer's bounded Linux deferral before claiming N01A VERIFIED"
   }
 }

@@ -1,7 +1,7 @@
 # Friday TUI architecture reset
 
-**Status:** Accepted product boundaries; N01S verified; N01A independent review
-BLOCKED pending Linux smoke
+**Status:** Accepted product boundaries; N01S verified; N01A Linux smoke
+deferred for unit closeout, fresh review pending
 
 **Branch:** `feature/friday-tui`; authority `granted` for N01A only
 
@@ -202,6 +202,7 @@ and per-command scope remain technical design work.
 
 This planning record itself grants no product-code, dependency, release or UAT
 authority. The board remains `started`; N01A was separately approved and its
-frozen candidate has a [BLOCKED independent review](validation/VAL-N01A-neutral-config-loader.md)
-pending automated Linux smoke. Later units still need exact technical
+frozen candidate has a historical [BLOCKED independent review](validation/VAL-N01A-neutral-config-loader.md)
+and a maintainer Linux deferral for unit closeout. A fresh review is pending;
+Linux coverage remains a later release gate. Later units still need exact technical
 ownership and separately approved construction directives.

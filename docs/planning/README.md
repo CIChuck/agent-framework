@@ -41,7 +41,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 14 | [Friday TUI](active/friday-tui/) | normal | granted | local | Run and retain automated Linux neutral-loader and installed-wheel isolation smoke against frozen N01A candidate 4a5311f2, then obtain fresh-context independent closure of blocker B-01 |
+| 14 | [Friday TUI](active/friday-tui/) | normal | granted | local | Obtain fresh-context independent validation of frozen N01A candidate 4a5311f2 under the maintainer's N01A-only Linux-smoke deferral; retain Linux coverage for later TUI release readiness |
 | 27 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
 | 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](active/friday-deprecated-credential-cleanup/) | normal | granted | merged | PR 9 merged and remote branch deleted; maintainer lifecycle closeout/acceptance remains |
 | 29 | [Friday 0.1.0a3 repository version bump](active/friday-alpha3-version-bump/) | normal | granted | released | Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified |

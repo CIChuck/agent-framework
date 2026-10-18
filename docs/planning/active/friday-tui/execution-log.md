@@ -1631,3 +1631,15 @@ remains `started` with a normal scheduling condition so unrelated planning
 can continue; only N01A validation is blocked. N01A-only source authority is
 still recorded, but the candidate stays frozen pending the Linux gate.
 execution_phase: validation; validation_state: blocked.
+
+## 2026-10-18 — Maintainer defers Linux smoke for N01A closeout
+
+Chuck Russell directed, "Let's postpone testing on Linux for now. Close N01A."
+The directive now records an approved waiver of its automated Linux smoke
+only as a prerequisite for closing this frozen N01A work unit. The Linux check
+has not run and remains required for later TUI cross-platform/release
+acceptance. The previous independent `BLOCKED` report remains historical.
+The product candidate stays `4a5311f2340adfbbf9cd5c4289db325e6b420b6b`;
+no source, test, package or lock file changed. Amended authority must receive
+a fresh-context read-only review before N01A is called `VERIFIED` or closed.
+execution_phase: validation; validation_state: pending.

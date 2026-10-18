@@ -1,7 +1,8 @@
 # Friday TUI neutral configuration loader contract
 
 **Status:** Implemented as frozen N01A candidate `4a5311f2` under an approved
-bounded directive; independent validation BLOCKED on Linux smoke evidence.
+bounded directive; maintainer deferred Linux smoke for unit closeout and fresh
+independent review is pending.
 
 **Branch and authority:** `feature/friday-tui`; `granted` for TUI-N01A only
 
@@ -175,7 +176,8 @@ observations. These are **before-code** evidence, not verification of an
 extraction or TUI. The exact N01A source/test/package boundary and after-code
 checks are in [CD-TUI-N01A](directives/CD-TUI-N01A-neutral-config-loader.md),
 which is approved for this unit only. The
-[local candidate checks](validation/N01A-local-checks.md) and the independent
-[BLOCKED report](validation/VAL-N01A-neutral-config-loader.md) leave the
-required Linux smoke open. Chooser parser bounds, link-listing policy and
+[local candidate checks](validation/N01A-local-checks.md), historical independent
+[BLOCKED report](validation/VAL-N01A-neutral-config-loader.md), and bounded
+Linux deferral leave cross-platform coverage open for later TUI gates. Chooser
+parser bounds, link-listing policy and
 assembly/resource-close interfaces remain later, separately directed units.

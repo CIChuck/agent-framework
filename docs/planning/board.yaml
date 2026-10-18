@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Run and retain automated Linux neutral-loader and installed-wheel isolation smoke against frozen N01A candidate 4a5311f2, then obtain fresh-context independent closure of blocker B-01
+  next_gate: Obtain fresh-context independent validation of frozen N01A candidate 4a5311f2 under the maintainer's N01A-only Linux-smoke deferral; retain Linux coverage for later TUI release readiness
   delivery_state: local
   branch: feature/friday-tui
   depends_on: []
@@ -2996,3 +2996,10 @@ events:
   action: n01a_independent_validation_blocked
   note: Fresh-context read-only reviewer BLOCKED frozen candidate 4a5311f2 solely for missing mandatory automated Linux neutral-loader smoke. Local compatibility, package, installed-wheel and regression checks passed independently; the initiative remains started, N01A validation_state is blocked, and later units remain design-only. Run and retain Linux evidence before requesting fresh independent closure; no UAT, acceptance or delivery is inferred.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01A-neutral-config-loader.md; candidate 4a5311f2340adfbbf9cd5c4289db325e6b420b6b
+- task: friday-tui
+  at: '2026-10-18T21:26:44+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01a_linux_smoke_deferred_for_unit_closeout
+  note: Directed postponement of Linux testing and closure of N01A. This waives automated Linux smoke only for N01A work-unit verification; no Linux pass is claimed, and Linux cross-platform testing remains required before TUI first-release acceptance. The frozen product candidate is unchanged; obtain fresh independent review under amended authority before recording VERIFIED.
+  evidence: Current-session maintainer statement 'Let's postpone testing on Linux for now. Close N01A.'; docs/planning/active/friday-tui/directives/CD-TUI-N01A-neutral-config-loader.md
