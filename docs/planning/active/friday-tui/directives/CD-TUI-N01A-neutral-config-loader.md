@@ -1,16 +1,16 @@
 # CD-TUI-N01A: neutral application configuration loader
 
-**Status:** Proposed for maintainer approval; **not** a construction grant.
+**Status:** Approved for TUI-N01A construction on 2026-10-18 by Chuck Russell.
 
 **Initiative/unit:** `friday-tui` / TUI-N01A
 
-**Branch/before-code source:** `feature/friday-tui` / `26f5d090`
+**Branch/before-code source:** `feature/friday-tui` / `ab56cbc6`
 
-**Current authority:** `design_only`; `product_code_generation_authorized:
-false`. TUI-N01S was independently `VERIFIED`, but its grant does not extend
-to this unit. Construction requires the maintainer's explicit approval of
-this exact directive and a matching `granted` board/authority-manifest update
-before any product-code edit, per [AGENTS.md](../../../../../AGENTS.md).
+**Current authority:** `granted` for TUI-N01A only. Chuck Russell answered
+"approved" to the explicit CD-TUI-N01A scope-and-authority question in the
+current session. The board and authority manifest record the same bounded
+grant. TUI-N01S was independently `VERIFIED`; later TUI units remain
+design-only, per [AGENTS.md](../../../../../AGENTS.md).
 
 ## Purpose and observable result
 
@@ -156,6 +156,7 @@ closure cannot be shown, or the change needs another source path. Do not
 start chooser parsing, UI configuration, service assembly or command work
 under N01A.
 
-**Approval fields:** Maintainer approval/date/evidence pending. The current
-board and authority manifest remain `design_only` until that approval is
-explicitly recorded.
+**Approval fields:** Maintainer Chuck Russell; approved 2026-10-18 by the
+current-session reply "approved" to the explicit CD-TUI-N01A scope-and-
+authority question. Scope is only the exact paths and checks above. Product
+validation, TUI UAT, acceptance and delivery remain pending.

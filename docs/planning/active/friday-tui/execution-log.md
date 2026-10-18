@@ -1,8 +1,8 @@
 # Friday TUI execution log
 
-Status: Active design/planning; no further product implementation authorized
+Status: Active TUI-N01A candidate awaiting independent validation
 
-execution_phase: planning; validation_state: verified (TUI-N01S only)
+execution_phase: validation; validation_state: pending (TUI-N01A)
 
 ## 2026-10-16 — activation and build planning
 
@@ -1568,3 +1568,45 @@ delivery. The next gate is maintainer review and explicit scoped approval of
 the proposed directive, followed by a board/manifest grant before source
 edits.
 execution_phase: planning; validation_state: verified (TUI-N01S only).
+
+## 2026-10-18 — CD-TUI-N01A approved for loader-only implementation
+
+Chuck Russell answered "approved" to the explicit question approving
+CD-TUI-N01A and granting implementation authority for its exact neutral
+configuration-loader scope. Recorded the grant in the directive, board and
+authority manifest. This is the shared application YAML loader, Chat facade,
+two focused new test files, Runtime direct dependency declarations and the
+resulting lockfile entry only. The independent TUI package, chooser, runtime
+assembly and command effects remain out of scope. Rechecked the clean branch
+and current source before editing. The next gate is local implementation,
+protected Chat/CLI and installed-package checks, a frozen candidate commit
+and fresh-context independent validation.
+execution_phase: implementation; validation_state: not_ready.
+
+## 2026-10-18 — TUI-N01A implemented and locally checked
+
+Moved the typed application YAML models, parser and diagnostics into
+`friday_runtime.application_config` and kept `friday_chat.config` as a facade
+with the existing import names, traceability map, diagnostic-key monkeypatch
+behavior and loader signature. Added the neutral rule snapshot API and direct
+Runtime Pydantic/PyYAML package requirements with a scoped lockfile update.
+No `friday-cli` or other product module changed. The moved 34 classes and
+seven unchanged helpers are AST-identical to the before-code Chat source.
+
+Local checks passed: 334 Runtime tests; 839 Chat tests with five skipped;
+155 `friday-cli` tests; and 113 cross-package telemetry, MCP and integration
+tests. Changed-file Ruff/Mypy, lock check, package metadata check, board
+validation and diff check pass. Runtime and Chat wheels built. A fresh
+outside-checkout venv installed the Runtime wheel with its declared closure
+and loaded no Chat/CLI package; the installed Chat wheel then shared the
+same classes and config results. `uv pip check` found 127 compatible
+packages. `friday-chat` version/help and the existing `friday --help` import
+failure match the checkout baseline. Detailed evidence is in
+`validation/N01A-local-checks.md`.
+
+Actual automated Linux execution remains unverified because this macOS host
+has no running Docker daemon or usable local Docker app. This is a disclosed
+N01A validation limit, not a claim of Linux coverage or user UAT. Freeze the
+candidate for a fresh-context independent review of the exact scope and
+evidence before any later TUI unit.
+execution_phase: validation; validation_state: pending.

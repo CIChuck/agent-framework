@@ -1338,6 +1338,8 @@ dependencies = [
     { name = "friday-framework-memory" },
     { name = "friday-framework-telemetry" },
     { name = "friday-framework-transcript" },
+    { name = "pydantic" },
+    { name = "pyyaml" },
 ]
 
 [package.optional-dependencies]
@@ -1355,6 +1357,8 @@ requires-dist = [
     { name = "friday-framework-memory", editable = "packages/friday-memory" },
     { name = "friday-framework-telemetry", editable = "packages/friday-telemetry" },
     { name = "friday-framework-transcript", editable = "packages/friday-transcript" },
+    { name = "pydantic", specifier = ">=2.0" },
+    { name = "pyyaml", specifier = ">=6.0.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
     { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
 ]

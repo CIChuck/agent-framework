@@ -1,13 +1,14 @@
 # Product Requirements Document: Friday TUI
 
 **Status:** Active; TUI-N01S neutral session identity independently VERIFIED;
-TUI-N01A neutral loader directive proposed for separate approval
+TUI-N01A neutral loader locally checked, awaiting independent validation
 
-**Lifecycle:** Started; board priority 14; current authority `design_only`
+**Lifecycle:** Started; board priority 14; current authority `granted` for
+TUI-N01A only
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: verified
+execution_phase: validation; validation_state: pending (TUI-N01A)
 
 **Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -58,7 +59,8 @@ Current planning artifacts:
 - [Independent TUI-N01S validation report](validation/VAL-N01S-session-identity.md)
 - [Reviewed UI-neutral runtime configuration loader contract](neutral-config-loader-contract.md)
 - [TUI-N01A before-code configuration characterization](validation/N01A-before-code-characterization.md)
-- [Proposed TUI-N01A neutral-loader construction directive](directives/CD-TUI-N01A-neutral-config-loader.md)
+- [Approved TUI-N01A neutral-loader construction directive](directives/CD-TUI-N01A-neutral-config-loader.md)
+- [TUI-N01A local construction checks](validation/N01A-local-checks.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)

@@ -218,9 +218,9 @@ tasks:
   priority: 14
   work_state: started
   condition: normal
-  implementation_authority: design_only
+  implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review and explicitly approve CD-TUI-N01A neutral-loader scope; record a separate board/manifest grant before any product-code edit
+  next_gate: Obtain fresh-context independent validation of the frozen TUI-N01A candidate; automated Linux smoke remains unverified
   delivery_state: local
   branch: feature/friday-tui
   depends_on: []
@@ -306,6 +306,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-N01S-session-identity.md (independent VERIFIED review of the bounded identity unit; full TUI acceptance and UAT pending)
   - docs/planning/active/friday-tui/validation/N01A-before-code-characterization.md (read-only Chat/Runtime/CLI baseline; N01A implementation and UAT pending)
   - docs/planning/active/friday-tui/validation/n01a-directive-planning-checks.json (bounded directive and unchanged-source planning checks; implementation/UAT pending)
+  - docs/planning/active/friday-tui/validation/N01A-local-checks.md (local implementation, package and regression checks; independent verdict and Linux smoke pending)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -2973,3 +2974,17 @@ events:
   action: n01a_neutral_loader_directive_proposed
   note: Reviewed the shared Chat-compatible configuration-loader contract and proposed exact N01A source/test/package-metadata scope with before-code fixtures and after-code regression gates. This is design-only planning; no product code, dependency, UI, UAT or delivery authority is granted.
   evidence: docs/planning/active/friday-tui/neutral-config-loader-contract.md; docs/planning/active/friday-tui/directives/CD-TUI-N01A-neutral-config-loader.md; docs/planning/active/friday-tui/validation/N01A-before-code-characterization.md
+- task: friday-tui
+  at: '2026-10-18T20:12:39+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01a_construction_approved
+  note: Approved CD-TUI-N01A and granted implementation authority for its exact neutral configuration-loader, Chat facade, tests, Runtime direct dependencies and resulting lockfile scope only. Later TUI units remain design-only.
+  evidence: Current-session reply 'approved' to the explicit CD-TUI-N01A scope-and-authority question; docs/planning/active/friday-tui/directives/CD-TUI-N01A-neutral-config-loader.md; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-18T20:23:50+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01a_local_candidate_checked
+  note: Neutral loader and Chat facade locally pass full Runtime, Chat, friday-cli and cross-package tests, changed-file static checks, lock/metadata checks and clean-wheel install/import checks. Actual Linux smoke is pending because no local Linux runner is available. Freeze candidate for independent review; no acceptance or delivery inferred.
+  evidence: docs/planning/active/friday-tui/validation/N01A-local-checks.md

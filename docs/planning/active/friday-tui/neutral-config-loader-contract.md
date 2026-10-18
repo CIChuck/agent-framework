@@ -1,9 +1,9 @@
 # Friday TUI neutral configuration loader contract
 
-**Status:** Reviewed N01A technical contract; proposed for a separate scoped
-construction approval. No shared loader exists yet.
+**Status:** Implemented as a local N01A candidate under an approved bounded
+directive; independent validation pending.
 
-**Branch and authority:** `feature/friday-tui`; `design_only`
+**Branch and authority:** `feature/friday-tui`; `granted` for TUI-N01A only
 
 **Original TUI baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -19,7 +19,7 @@ without importing `friday-chat` or `friday-cli` (D-06, D-08). The
 Service construction, command effects and resource cleanup need later neutral
 contracts; loading a file alone does not make a runnable TUI.
 
-## Current source boundary
+## Before-code source boundary
 
 | Concern | Observed owner and behavior | Consequence |
 | --- | --- | --- |
@@ -163,12 +163,14 @@ environment; D-61 changes only launcher mode selection.
 | TUI-N01C: neutral assembly | After required primitives exist, compose real and explicit fake runtime services from the neutral config. Compare effective model/service, storage, workflow, tool, transcript and cleanup behavior on disposable fixtures. Do not substitute `RuntimeKernel` alone for Chat parity; a separate exact directive and failure-injection tests are required. |
 | TUI-N03A: launcher/chooser | Full validation calls the neutral loader only after a chosen or explicit path. Check D-47 through D-61 recovery, link and mode-isolation cases; keep the initial candidate check shallow. With `FRIDAY_CHAT_RUNTIME=fake` or an invalid value in the process environment, omitted TUI `--runtime` still selects real; explicit TUI fake still selects fake. Chat's existing override remains unchanged. An invalid chosen file stays in the chooser, while invalid explicit `--config` exits nonzero. |
 
-At current HEAD, 369 focused Chat, Runtime and `friday-cli` tests pass. The
+At before-code revision `26f5d090`, 369 focused Chat, Runtime and
+`friday-cli` tests passed. The
 [before-code characterization](validation/N01A-before-code-characterization.md)
 records synthetic legacy/canonical, error, diagnostic, symlink and parser
 observations. These are **before-code** evidence, not verification of an
 extraction or TUI. The exact N01A source/test/package boundary and after-code
 checks are in [CD-TUI-N01A](directives/CD-TUI-N01A-neutral-config-loader.md),
-which is proposed and not approved. No current board authority permits its
-product-code edits. Chooser parser bounds, link-listing policy and
+which is approved for this unit only. The
+[local candidate checks](validation/N01A-local-checks.md) are not an
+independent verdict. Chooser parser bounds, link-listing policy and
 assembly/resource-close interfaces remain later, separately directed units.

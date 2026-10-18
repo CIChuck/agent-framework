@@ -1,9 +1,9 @@
 # Friday TUI independent integration and construction plan
 
 **Status:** Draft replacement planning contract; N01S independently VERIFIED;
-N01A exact directive proposed for separate approval
+N01A local candidate awaiting independent validation
 
-**Branch and authority:** `feature/friday-tui`; `design_only`
+**Branch and authority:** `feature/friday-tui`; `granted` for TUI-N01A only
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -55,11 +55,11 @@ bounded extraction. A claim of "same runtime" is not evidence that the
 configuration, maintenance and transcript behavior already match.
 
 The [neutral configuration loader contract](neutral-config-loader-contract.md)
-and [proposed N01A directive](directives/CD-TUI-N01A-neutral-config-loader.md)
+and [approved N01A directive](directives/CD-TUI-N01A-neutral-config-loader.md)
 bind a shared Chat-compatible file loader and Chat facade. The
 [startup bootstrap contract](startup-bootstrap-contract.md) collects D-47
 through D-61, a source-backed proposed chooser signature and an explicit
-failure-state test matrix. The N01A directive needs separate maintainer
+failure-state test matrix. The N01A directive has separate bounded maintainer
 approval; chooser construction needs its own later reviewed directive.
 The [event and lifecycle contract](neutral-event-lifecycle-contract.md)
 records source-backed ownership and failure boundaries for later units;
@@ -250,7 +250,8 @@ release; `/switch [agent]` retains its active-agent meaning.
 Each unit needs a separate exact-path directive, expected behavior and
 negative cases, a frozen candidate, focused tests and fresh independent
 review before dependent implementation. The IDs below are planning units;
-none is approved to execute.
+only N01A currently has implementation authority, and its local candidate
+awaits independent review.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
 | --- | --- | --- |
@@ -291,8 +292,8 @@ TUI-N01B, TUI-N01C and TUI-N05 must be subdivided into command/service-family
 directives after review of the [capability map](neutral-capability-map.md).
 TUI-N01A is bounded by the
 [reviewed loader contract](neutral-config-loader-contract.md) and
-[proposed exact directive](directives/CD-TUI-N01A-neutral-config-loader.md),
-which still requires maintainer approval.
+[approved exact directive](directives/CD-TUI-N01A-neutral-config-loader.md),
+which authorizes only this bounded unit.
 N02 events must be demonstrated against the
 real neutral execution path, not just a synthetic UI feed. A usable shell is a
 milestone, not first-release command parity.
@@ -341,10 +342,10 @@ identity-only candidate; later units do not inherit that authority. The
 [N01A before-code characterization](validation/N01A-before-code-characterization.md)
 records the current configuration behavior, not an implemented extraction.
 
-1. Review and explicitly approve the [N01A neutral-loader
-   directive](directives/CD-TUI-N01A-neutral-config-loader.md), then record
-   its bounded board/authority grant before product edits. Implement and
-   independently validate its frozen candidate before dependent TUI work.
+1. Implement the [approved N01A neutral-loader
+   directive](directives/CD-TUI-N01A-neutral-config-loader.md) under its
+   bounded board/authority grant, then independently validate the frozen
+   candidate before dependent TUI work.
 2. Choose owners for command/event seams. Review the
    [event/lifecycle proposal](neutral-event-lifecycle-contract.md) and bind
    event admission, argument snapshot and resource-close boundaries against
@@ -358,6 +359,7 @@ records the current configuration behavior, not an implemented extraction.
 4. Prepare separate exact directives for later bounded units; recheck board,
    branch, source and authority before each product-code unit.
 
-The board remains `started` with `design_only` authority. This draft makes
-the next design work reviewable; it does not approve a construction directive
-or assert that any TUI, UAT or real-provider test has run.
+The board remains `started` with `granted` authority for N01A only. Its
+[local candidate checks](validation/N01A-local-checks.md) precede independent
+validation; later units remain design-only. No TUI, UAT or real-provider test
+has run.
