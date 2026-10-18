@@ -218,9 +218,9 @@ tasks:
   priority: 14
   work_state: started
   condition: normal
-  implementation_authority: granted
+  implementation_authority: design_only
   packet: docs/planning/active/friday-tui/
-  next_gate: Independently validate the frozen TUI-N01S session-identity candidate; keep loader, assembly/close, chooser, replay, event and Force quit units design-only pending separate directives
+  next_gate: TUI-N01S independently VERIFIED; review the N01A neutral-loader contract and seek a separate exact directive and scoped approval before any further product-code edit
   delivery_state: local
   branch: feature/friday-tui
   depends_on: []
@@ -303,6 +303,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/context-tesseract-system-dependency-checks.json (accepted separately system-installed Tesseract on macOS and Linux; planning checks only)
   - docs/planning/active/friday-tui/validation/context-ocr-page-failure-checks.json (accepted whole-PDF rejection on required OCR-page failure; planning checks only)
   - docs/planning/active/friday-tui/validation/context-ocr-language-selection-checks.json (accepted configurable installed Tesseract languages with English default; planning checks only)
+  - docs/planning/active/friday-tui/validation/VAL-N01S-session-identity.md (independent VERIFIED review of the bounded identity unit; full TUI acceptance and UAT pending)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -2956,3 +2957,10 @@ events:
   action: n01s_construction_approved
   note: Approved CD-TUI-N01S and granted implementation authority for the neutral session-identity slice only. The three exact source/test paths in that directive are in scope; later TUI units retain design-only authority.
   evidence: Current-session reply 'approved, proceed' to the explicit CD-TUI-N01S scope-and-authority question; docs/planning/active/friday-tui/directives/CD-TUI-N01S-session-identity.md; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-18T19:28:33+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01s_independently_verified_and_future_code_authority_closed
+  note: Fresh-context read-only reviewer VERIFIED candidate 073134f9 for TUI-N01S with no findings. The initiative remains started; subsequent product-code units return to design-only authority pending their own approved directives. No maintainer acceptance, UAT or delivery is inferred.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01S-session-identity.md; candidate 073134f9b13ddfbb07e884c7e1c05c872e0783f7

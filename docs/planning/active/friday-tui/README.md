@@ -1,13 +1,13 @@
 # Product Requirements Document: Friday TUI
 
-**Status:** Active; TUI-N01S neutral session-identity candidate awaits
-independent validation; later units remain in design review
+**Status:** Active; TUI-N01S neutral session-identity candidate independently
+VERIFIED; later units remain in design review
 
-**Lifecycle:** Started; board priority 14; authority `granted` for TUI-N01S only
+**Lifecycle:** Started; board priority 14; current authority `design_only`
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: pending
+execution_phase: planning; validation_state: verified
 
 **Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -55,6 +55,7 @@ Current planning artifacts:
 - [Per-command neutral-capability and first-extraction map](neutral-capability-map.md)
 - [TUI-N00 source and integration review](n00-integration-review.md)
 - [Approved TUI-N01S session-identity directive](directives/CD-TUI-N01S-session-identity.md)
+- [Independent TUI-N01S validation report](validation/VAL-N01S-session-identity.md)
 - [Draft UI-neutral runtime configuration loader contract](neutral-config-loader-contract.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
