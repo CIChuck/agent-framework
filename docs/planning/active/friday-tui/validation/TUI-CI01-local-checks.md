@@ -3,7 +3,8 @@
 **Date/branch:** 2026-10-18; `feature/friday-tui`.
 
 **State:** Local checks for the first candidate and its bounded preflight
-remediation, followed by the locked MCP and finance test-dependency corrections. This
+remediation, followed by the locked MCP, finance and Moltbook test-dependency
+corrections. This
 record is not an independent `VERIFIED` result, terminal UAT or TUI release
 acceptance.
 
@@ -110,13 +111,37 @@ finance.
   must be evaluated by its own run. No package code, tests, metadata or
   lockfile changed.
 
+## Moltbook selection and failure evidence after third Ubuntu run
+
+The third Ubuntu run again passed 21 focused tests; full Runtime reported
+331 passed and three failed. Finance resolved the first missing import, but
+the two tool-discovery cases then reached the existing optional
+`friday-framework-moltbook` package. The synthetic MCP `auto`/modern stdio
+case failed a second time. See the [third-run evidence](TUI-CI01-ubuntu-run-39174159031.md)
+and `RD-TUI-CI01-06`.
+
+- Exact locked/offline export selects `friday-finance`,
+  `friday-moltbook`, `massive==2.1.0`, `mcp==2.3.0`,
+  `cryptography==50.0.2` and `pytest-mock==3.15.1`; locked/offline dry
+  run succeeds. The two tool-discovery tests passed locally on macOS.
+- Workflow YAML, pinned actions, expression contexts, all ten Bash scripts
+  and four embedded Python blocks passed static checks. Independent steps
+  use cancellation-aware conditions tied to a successful dependency install
+  or wheel build. No `continue-on-error` is present, so any test failure
+  keeps the job red. The standalone MCP invocation is diagnostic and does
+  not substitute for full Runtime.
+- The Moltbook wheel is built and installed in the later Chat-side closure;
+  initial installed Runtime isolation excludes it. No package source,
+  tests, metadata or lockfile changed.
+
 ## Remaining gate
 
-The first two authorized GitHub Actions runs failed; neither supplies Linux
+The first three authorized GitHub Actions runs failed; none supplies Linux
 verification. Rerun the corrected workflow on its own source SHA and retain
-the URL, tested commit/merge SHA, Ubuntu/Python/uv versions, exit codes and
-wheel hashes. Investigate any further Linux failure without modifying package
-source or tests under TUI-CI01. Fresh-context, read-only independent review
-of the committed candidate and complete Linux evidence is required before
-calling TUI-CI01 `VERIFIED`. Hands-on Linux terminal UAT remains a separate
-final installed-candidate gate.
+the URL, tested commit/merge SHA, Ubuntu/Python/uv versions, all suite
+results, wheel hashes and installed-import evidence. The repeated MCP
+failure requires diagnosis without changing package source or tests under
+TUI-CI01. Fresh-context, read-only independent review of the committed
+candidate and complete Linux evidence is required before calling TUI-CI01
+`VERIFIED`. Hands-on Linux terminal UAT remains a separate final
+installed-candidate gate.

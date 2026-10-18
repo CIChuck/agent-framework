@@ -2,9 +2,9 @@
 
 **Status:** Active; TUI-N01S and TUI-N01A independently VERIFIED. N01A is
 closed under a maintainer-approved Linux-smoke deferral for that unit only.
-TUI-CI01's second authorized Ubuntu run passed focused tests but failed three
-full Runtime tests; a bounded workflow-only finance dependency correction
-awaits rerun and review.
+TUI-CI01's third authorized Ubuntu run passed focused tests but failed three
+full Runtime tests. The Moltbook test environment and independent CI steps
+are corrected for rerun; the repeated MCP stdio failure remains open.
 
 **Lifecycle:** Started; board priority 14; current authority `granted` for
 TUI-CI01 only
@@ -74,6 +74,8 @@ Current planning artifacts:
 - [Third-candidate independent preflight](validation/VAL-TUI-CI01-preflight-7a41004a.md)
 - [Second Ubuntu Actions run and Runtime failures](validation/TUI-CI01-ubuntu-run-39173445329.md)
 - [Finance-candidate independent preflight finding](validation/VAL-TUI-CI01-preflight-89a875ac.md)
+- [Finance-rerun packet independent preflight](validation/VAL-TUI-CI01-preflight-505c4c1d.md)
+- [Third Ubuntu Actions run and Runtime failures](validation/TUI-CI01-ubuntu-run-39174159031.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)

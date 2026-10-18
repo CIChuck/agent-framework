@@ -209,9 +209,12 @@
     "third_candidate_preflight_outcome": "VERIFIED for preflight only; Linux run and final work-unit review remained open",
     "fourth_candidate_preflight_report": "validation/VAL-TUI-CI01-preflight-89a875ac.md",
     "fourth_candidate_preflight_outcome": "CHANGES_REQUESTED; packet-state finding CI01-04 covered by RD-TUI-CI01-05",
+    "fifth_candidate_preflight_report": "validation/VAL-TUI-CI01-preflight-505c4c1d.md",
+    "fifth_candidate_preflight_outcome": "VERIFIED for preflight only; Linux run and final work-unit review remained open",
     "second_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39173445329",
-    "candidate_status": "second Ubuntu run failed during full Runtime tests; workflow-only finance selection correction pending rerun; MCP stdio failure under observation",
-    "linux_run_status": "failed: 331 Runtime tests passed and three failed in run 39173445329; later checks skipped; no Linux coverage claim"
+    "third_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39174159031",
+    "candidate_status": "third Ubuntu run failed during full Runtime tests; Moltbook selection and independent-step evidence collection added for rerun; repeated MCP stdio failure remains open",
+    "linux_run_status": "failed: 331 Runtime tests passed and three failed in run 39174159031; later checks skipped; no Linux coverage claim"
   },
   "closed_construction_scope_n01a": {
     "unit": "TUI-N01A",

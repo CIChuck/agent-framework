@@ -35,9 +35,10 @@ jobs:
           enable-cache: true
 
       - name: Install Python and locked development dependencies
+        id: dependencies
         run: |
           uv python install 3.13
-          uv sync --locked --package friday-framework --package friday-framework-mcp --package friday-framework-finance --extra dev
+          uv sync --locked --package friday-framework --package friday-framework-mcp --package friday-framework-finance --package friday-framework-moltbook --extra dev
           uv run --no-sync python - <<'PY'
           from importlib import metadata
           import sys
@@ -45,7 +46,7 @@ jobs:
           if sys.version_info[:2] != (3, 13) or sys.version_info < (3, 13, 4):
               raise SystemExit(f"Expected Python 3.13.4 or newer: {sys.version}")
           print(f"Python: {sys.version}")
-          for package in ("mcp", "cryptography", "pytest-mock", "friday-framework-finance"):
+          for package in ("mcp", "cryptography", "pytest-mock", "friday-framework-finance", "friday-framework-moltbook"):
               print(f"CI test dependency {package}: {metadata.version(package)}")
           PY
 
@@ -65,15 +66,27 @@ jobs:
             packages/friday-chat/tests_chat/test_config_facade.py
 
       - name: Test full Runtime package
+        id: runtime
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
         run: uv run --no-sync pytest -q packages/friday-runtime/tests_runtime
 
+      - name: Diagnose MCP stdio auto-modern profile
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        run: |
+          uv run --no-sync pytest -q --durations=1 \
+            'packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_public_kernel_stdio_profiles_and_child_cleanup[auto-True]'
+
       - name: Test full Chat package
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
         run: uv run --no-sync pytest -q packages/friday-chat/tests_chat
 
       - name: Test unchanged friday-cli package
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
         run: uv run --no-sync pytest -q packages/friday-cli/tests_cli
 
       - name: Build local Runtime and Chat dependency wheels
+        id: wheels
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
         env:
           WHEEL_DIR: ${{ runner.temp }}/friday-tui-wheels
         run: |
@@ -88,6 +101,7 @@ jobs:
             friday-framework-mcp
             friday-framework-runtime
             friday-framework-finance
+            friday-framework-moltbook
             friday-framework-tools
             friday-framework-cli
             friday-chat
@@ -98,6 +112,7 @@ jobs:
           sha256sum "$WHEEL_DIR"/*.whl
 
       - name: Check Runtime wheel metadata
+        if: ${{ !cancelled() && steps.wheels.outcome == 'success' }}
         env:
           WHEEL_DIR: ${{ runner.temp }}/friday-tui-wheels
         run: |
@@ -132,6 +147,7 @@ jobs:
           PY
 
       - name: Test installed Runtime isolation and Chat facade
+        if: ${{ !cancelled() && steps.wheels.outcome == 'success' }}
         env:
           WHEEL_DIR: ${{ runner.temp }}/friday-tui-wheels
           RUNTIME_VENV: ${{ runner.temp }}/friday-tui-runtime-venv
@@ -196,7 +212,7 @@ jobs:
           )
 
           chat_wheels=()
-          for package in friday-framework-finance friday-framework-tools friday-framework-cli friday-chat; do
+          for package in friday-framework-finance friday-framework-moltbook friday-framework-tools friday-framework-cli friday-chat; do
             chat_wheels+=( "$(wheel_for "$package")" )
           done
           uv pip install --python "$RUNTIME_VENV/bin/python" "${chat_wheels[@]}"

@@ -1776,3 +1776,21 @@ Ubuntu rerun; updated the board next gate and regenerated the dashboard.
 The workflow remains identical to `89a875ac`. The prior MCP failure is
 unresolved until the next full Runtime result. Fresh preflight is required.
 execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).
+
+## 2026-10-18 — TUI-CI01 third Ubuntu run and bounded diagnostic correction
+
+Fresh-context preflight verified `505c4c1d` for workflow readiness only;
+recorded in `validation/VAL-TUI-CI01-preflight-505c4c1d.md`. The authorized
+push triggered Ubuntu run
+[`39174159031`](https://github.com/CIChuck/agent-framework/actions/runs/39174159031)
+on matching source and checkout SHAs. Focused tests passed (21); Runtime
+reported 331 passed and three failed. The two tool-discovery cases now
+failed on an omitted `friday_moltbook` import, and the synthetic MCP
+`auto`/modern stdio case failed again. Later independent checks were
+skipped. The evidence is in `validation/TUI-CI01-ubuntu-run-39174159031.md`.
+`RD-TUI-CI01-06` adds the existing Moltbook package to CI selection,
+retains independent suites/wheel checks after earlier test failures, and
+runs the MCP case separately for diagnosis. The workflow remains read-only
+and no product/test source changed. A complete Linux run and final
+independent review remain open.
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).

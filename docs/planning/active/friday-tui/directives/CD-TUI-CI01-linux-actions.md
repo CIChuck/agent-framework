@@ -192,3 +192,36 @@ remaining full-run and independent-review gate, regenerate the dashboard and
 retain the review as evidence. No workflow or package change is authorized
 by this addendum. Commit and obtain fresh-context read-only review before
 the authorized branch push.
+
+## RD-TUI-CI01-06: Moltbook test closure and complete failure evidence
+
+The third Ubuntu run
+[`39174159031`](https://github.com/CIChuck/agent-framework/actions/runs/39174159031)
+tested `505c4c1d0c64e7c4cc73fb62a4889bf8746160ce`. Finance was installed,
+but the two tool-discovery tests next reached an unselected
+`friday_moltbook` import. The same MCP `auto`/modern stdio startup case
+failed for a second Linux run, without a lifecycle outcome in the test log.
+Later suites and wheels were again skipped under default step-success
+conditions. This run remains failed and is not Linux verification.
+
+- Include the existing `friday-framework-moltbook` package in the locked
+  test selection, print its installed version, build its wheel and install
+  it with the later Chat-side wheel closure. Do not add it to the first
+  isolated Runtime installation.
+- Give the dependency-install and wheel-build steps IDs. After a successful
+  dependency install, run the separate Runtime, Chat and unchanged CLI
+  suites and wheel build even when an earlier test step fails. Run metadata
+  and installed-wheel checks only after a successful wheel build. Use
+  cancellation-aware conditions and keep normal failing step conclusions;
+  no `continue-on-error` or failure suppression is authorized.
+- Add a separate invocation of the synthetic MCP `auto`/modern stdio case
+  after the full Runtime suite, with a duration report. This is diagnostic
+  evidence; it does not replace the full suite or override its failure.
+  If it fails again, retain both outcomes and determine whether a
+  protected source/test correction is required under a new directive.
+- Check exact locked/offline selection, workflow syntax and expression
+  contexts, board/dashboard and changed paths. Commit a stable candidate,
+  obtain fresh-context read-only preflight, then use the recorded branch
+  push authorization for its Ubuntu run. No product source, tests, package
+  metadata, lockfile, trigger, permission or credential changes are
+  authorized by this addendum.
