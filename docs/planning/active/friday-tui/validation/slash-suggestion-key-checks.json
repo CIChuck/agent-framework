@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "slash_suggestion_key_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-68: with inline slash suggestions open, Up/Down highlight and Tab inserts the highlighted suggestion without dispatch; Enter always submits. With no list open, Tab moves focus. No highlighted match means Tab cannot insert. Physical terminal UAT remains required.",
+  "documents_sha256": {
+    "decisions.md": "99c976623d4bc986d8378645499b97ba46a11721631d7cc55ae02637dcd2dba4",
+    "screen-layout.md": "900d26f5475ebe8b619c110f565c2c7e752d537b95330daa5cfd68992ec00857",
+    "README.md": "7d8434cac924adb3718b8e252bc2dfadeafda09de093dd60194103304601fb14",
+    "replacement-plan.md": "9dea1560630054df0e82a4f2664dcca5fe27441f56570c1f189670c64ca57848",
+    "user-guide-requirements.md": "7a31dbadc6c2e4f0b9514de7ab92c133e56588f387969a254fd6036f160fdf54",
+    "command-matrix.md": "b2794d1e9cc9287df9445937fe2876104e729b355aa4a249205c25ad756589fd",
+    "authority.json": "646a376b283ad2ab9da7e5a801657aa7ffe01c7d645330fb8bddbe82d9d72ff3",
+    "execution-log.md": "dc943211c6842d20c6ec4b650843eb6b03df7af16add53283994cfcf516f6ea8",
+    "docs/planning/board.yaml": "325d5ec8ba5d0e1d54e3fc32e2ffe0e443842a9efd818372832f8bc262f728fe",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "64 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only key decision and no product code change",
+    "tui_key_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted inline slash-suggestion keyboard behavior and planning checks only. Physical terminal key delivery, TUI implementation, installed-package verification, user UAT and release acceptance remain unproven."
+}

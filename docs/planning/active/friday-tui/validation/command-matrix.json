@@ -1,0 +1,1277 @@
+{
+  "source_commit": "c34269867be50f71923c93c95a63236a35505812",
+  "inventory_mode": "current public registry metadata; not behavioral parity evidence",
+  "commands": [
+    {
+      "name": "agent",
+      "description": "Show detailed agent information.",
+      "category": "orchestration",
+      "usage": "/agent [name]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "name",
+          "description": "Agent name; omit to inspect the active agent.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-001",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "agents",
+      "description": "List available agents.",
+      "category": "orchestration",
+      "usage": "/agents",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-002",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "clear",
+      "description": "Clear conversation history.",
+      "category": "session",
+      "usage": "/clear",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-003",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "clear-tools",
+      "description": "Clear the pending manual set and restore automatic tool selection.",
+      "category": "tools",
+      "usage": "/clear-tools",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-004",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "cls",
+      "description": "Clear the terminal through the display boundary.",
+      "category": "session",
+      "usage": "/cls",
+      "aliases": [
+        "clearscreen"
+      ],
+      "arguments": [],
+      "detail": "Requests one clear-screen UI effect and emits no replacement text. Unavailable or failed display boundaries report an honest error.",
+      "case_id": "PAR-005",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "compact",
+      "description": "Manually trigger context compaction.",
+      "category": "memory",
+      "usage": "/compact",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-006",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "context",
+      "description": "Show the assembled context payload.",
+      "category": "memory",
+      "usage": "/context [--debug] [--file]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "--debug",
+          "description": "Include detailed token diagnostics.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--file",
+          "description": "Export the context to a file.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-007",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "debug",
+      "description": "Show context assembly debug information.",
+      "category": "memory",
+      "usage": "/debug",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-008",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "debug-budget",
+      "description": "Show token budget diagnostics.",
+      "category": "memory",
+      "usage": "/debug-budget",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-009",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "debug-retrieval",
+      "description": "Show retrieval diagnostics for a query.",
+      "category": "memory",
+      "usage": "/debug-retrieval <query>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "query",
+          "description": "Retrieval query; remaining words are joined.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-010",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "delegate",
+      "description": "Delegate a task to another agent.",
+      "category": "orchestration",
+      "usage": "/delegate <agent> <task>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "agent",
+          "description": "Target agent name.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "task",
+          "description": "Task text; remaining words are joined.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-011",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "entities",
+      "description": "List graph entities and relationships.",
+      "category": "memory",
+      "usage": "/entities [nodes|name]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "nodes|name",
+          "description": "Use 'nodes' for node details or provide an entity name to inspect.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-012",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "exit",
+      "description": "Exit the chat session.",
+      "category": "session",
+      "usage": "/exit",
+      "aliases": [
+        "quit",
+        "q"
+      ],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-013",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "export",
+      "description": "Export persisted entries from the current session.",
+      "category": "transcript",
+      "usage": "/export [csv|jsonl|markdown|md|training]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "format",
+          "description": "Output format for the current session export.",
+          "required": false,
+          "default": "markdown",
+          "choices": [
+            "csv",
+            "jsonl",
+            "markdown",
+            "md",
+            "training"
+          ]
+        }
+      ],
+      "detail": "Queries the current persisted transcript and writes a safely contained CSV, JSONL, Markdown, or training JSONL export. It never copies the live SQLite database.",
+      "case_id": "PAR-014",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "export-prompts",
+      "description": "Export persisted captured prompts and responses for one session.",
+      "category": "transcript",
+      "usage": "/export-prompts [session_id]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "session_id",
+          "description": "Session identifier; omit for the current session.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": "Queries context-log records for the current or selected session and writes contained JSON. Empty output explains that transcript.capture_raw_prompts must be enabled.",
+      "case_id": "PAR-015",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "help",
+      "description": "Show available commands or focused command help.",
+      "category": "session",
+      "usage": "/help [command]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "command",
+          "description": "Command name or alias to inspect.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-016",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "history",
+      "description": "Show conversation history.",
+      "category": "session",
+      "usage": "/history",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-017",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "ingest",
+      "description": "Ingest file content into vector memory.",
+      "category": "files",
+      "usage": "/ingest <path> [description] [--lines=N]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "path",
+          "description": "File path to ingest.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "description",
+          "description": "Optional source description; remaining words are joined.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--lines=N",
+          "description": "Maximum number of source lines to ingest.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-018",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "inject-payload",
+      "description": "Inject a test payload for security validation.",
+      "category": "security",
+      "usage": "/inject-payload <payload>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "payload",
+          "description": "Test payload; remaining words are joined.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-019",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "inject-tools",
+      "description": "Set the exact manual tool schema set for subsequent turns.",
+      "category": "tools",
+      "usage": "/inject-tools <name> [name ...]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "name",
+          "description": "One or more whitespace-separated registered names accepted atomically within configured count and schema-token limits.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": "Switches runtime selection to manual mode only after every name and the complete schema set pass validation. The accepted set remains model-bound until /clear-tools restores automatic selection.",
+      "case_id": "PAR-020",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "insights",
+      "description": "List durable insights.",
+      "category": "memory",
+      "usage": "/insights",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-021",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "lifecycle",
+      "description": "Run or inspect memory lifecycle processing.",
+      "category": "maintenance",
+      "usage": "/lifecycle [--execute] [--stats|--flush|--optimize]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "--execute",
+          "description": "Apply lifecycle changes instead of a dry run.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "mode",
+          "description": "Inspect statistics, flush access data, or optimize lifecycle state.",
+          "required": false,
+          "default": null,
+          "choices": [
+            "--stats",
+            "--flush",
+            "--optimize"
+          ]
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-022",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "list-ingested",
+      "description": "List ingested document memory records.",
+      "category": "memory",
+      "usage": "/list-ingested",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-023",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "memory",
+      "description": "Show typed memory, transcript, session, and context statistics.",
+      "category": "memory",
+      "usage": "/memory",
+      "aliases": [],
+      "arguments": [],
+      "detail": "Reports public episodic, vector, graph, transcript, lifecycle, priming, app-session, and last-context metrics. Empty stores report zero; unavailable or unconfigured components are labeled honestly.",
+      "case_id": "PAR-024",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "meta",
+      "description": "List active meta insights with lifecycle and provenance metadata.",
+      "category": "memory",
+      "usage": "/meta",
+      "aliases": [],
+      "arguments": [],
+      "detail": "Queries typed short- and long-term meta_insight records, excludes decayed records, and shows bounded synthesis provenance, source, confidence, and verification fields when available. It never runs synthesis or reorganization.",
+      "case_id": "PAR-025",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "migrate",
+      "description": "Migrate existing memories to lifecycle metadata.",
+      "category": "maintenance",
+      "usage": "/migrate [--force|--execute|--stats]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "mode",
+          "description": "Execute migration or report dry-run statistics.",
+          "required": false,
+          "default": null,
+          "choices": [
+            "--force",
+            "--execute",
+            "--stats"
+          ]
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-026",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "prime",
+      "description": "Load and show primed context.",
+      "category": "memory",
+      "usage": "/prime",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-027",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "prompt",
+      "description": "Show the full formatted prompt sent to the LLM.",
+      "category": "memory",
+      "usage": "/prompt [--file]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "--file",
+          "description": "Export the prompt to a file.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-028",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "read",
+      "description": "Read a file with smart detection.",
+      "category": "files",
+      "usage": "/read <path> [--lines=N]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "path",
+          "description": "File path to read.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--lines=N",
+          "description": "Maximum number of lines to return.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-029",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "recommend-tools",
+      "description": "Recommend tools for a query.",
+      "category": "tools",
+      "usage": "/recommend-tools <query>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "query",
+          "description": "Recommendation query; remaining words are joined.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-030",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "reorganize",
+      "description": "Preview or explicitly execute coordinated memory reorganization.",
+      "category": "maintenance",
+      "usage": "/reorganize [--execute] [--backup|--dedupe|--analyze|--prune|--synthesize|--verify] [--skip-synthesis] [--skip-verify] [--skip-lifecycle] [--force-reembed]\n       /reorganize --recover <run-id> [--execute]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "--execute",
+          "description": "Apply changes (exact flag required; a verified recovery bundle is always created first).",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "mode",
+          "description": "Run one reorganization step instead of the full operation.",
+          "required": false,
+          "default": null,
+          "choices": [
+            "--backup",
+            "--dedupe",
+            "--analyze",
+            "--prune",
+            "--synthesize",
+            "--verify"
+          ]
+        },
+        {
+          "name": "--skip-synthesis",
+          "description": "Skip synthesis during a full run.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--skip-verify",
+          "description": "Skip verification during a full run.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--skip-lifecycle",
+          "description": "Skip lifecycle processing.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--force-reembed",
+          "description": "Force eligible records to be re-embedded.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--recover <run-id>",
+          "description": "Inspect a retained run; add exact --execute to restore its recorded verified bundle.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": "The command is dry-run by default. Full mode runs dedupe, prune, synthesis, verification, and lifecycle unless a full-only skip flag is supplied. --analyze is read-only and rejects --execute. Every mutating mode first creates a verified Memory and Transcript recovery bundle; Transcript content is recovery-only and is never reorganized. Plain 'execute' and --no-backup are rejected. Recovery artifacts and the owner-only categorical log are retained; use the exact --recover forms shown above after recovery_required. Automatic exit reorganization is separately configurable and defaults to disabled.",
+      "case_id": "PAR-031",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "replay",
+      "description": "Replay a transcript CSV.",
+      "category": "transcript",
+      "usage": "/replay <csv_path> [delay_seconds]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "csv_path",
+          "description": "Transcript CSV path.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "delay_seconds",
+          "description": "Delay between replayed user turns.",
+          "required": false,
+          "default": "0",
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-032",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "reset",
+      "description": "Reset one or more memory stores.",
+      "category": "memory",
+      "usage": "/reset [graph|vector|episodic]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "store",
+          "description": "Memory store to reset; omit to reset every supported store.",
+          "required": false,
+          "default": null,
+          "choices": [
+            "graph",
+            "vector",
+            "episodic"
+          ]
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-033",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "run-tool",
+      "description": "Execute a named tool.",
+      "category": "tools",
+      "usage": "/run-tool <name> [json]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "name",
+          "description": "Registered tool name.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "json",
+          "description": "JSON object containing tool parameters.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-034",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "security",
+      "description": "Show security status.",
+      "category": "security",
+      "usage": "/security",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-035",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "security-config",
+      "description": "Update security configuration.",
+      "category": "security",
+      "usage": "/security-config <sensitivity|action|wrapping> <value>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "setting",
+          "description": "Security setting to update.",
+          "required": true,
+          "default": null,
+          "choices": [
+            "sensitivity",
+            "action",
+            "wrapping"
+          ]
+        },
+        {
+          "name": "value",
+          "description": "Validated value for the selected security setting.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-036",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "security-test",
+      "description": "Run local security sanitization tests.",
+      "category": "security",
+      "usage": "/security-test [instruction|delimiter|jailbreak|exfil|all]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "type",
+          "description": "Security sample type to run.",
+          "required": false,
+          "default": "all",
+          "choices": [
+            "instruction",
+            "delimiter",
+            "jailbreak",
+            "exfil",
+            "all"
+          ]
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-037",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "sessions",
+      "description": "List persisted transcript sessions with current and primed markers.",
+      "category": "transcript",
+      "usage": "/sessions",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-038",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "set",
+      "description": "Set a scoped variable.",
+      "category": "session",
+      "usage": "/set <key> <value>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "key",
+          "description": "Variable key to set.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "value",
+          "description": "Variable value; remaining words are joined.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-039",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "speech",
+      "description": "Configure speech settings.",
+      "category": "speech",
+      "usage": "/speech [on|off|config|mode <live|file>|voice <name>|provider <elevenlabs|picovoice>]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "action",
+          "description": "Speech setting to inspect or update.",
+          "required": false,
+          "default": "config",
+          "choices": [
+            "on",
+            "off",
+            "config",
+            "mode",
+            "voice",
+            "provider"
+          ]
+        },
+        {
+          "name": "value",
+          "description": "Value required by mode, voice, or provider actions.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-040",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "speech-test",
+      "description": "Run the speech validation harness.",
+      "category": "speech",
+      "usage": "/speech-test [once|loop]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "mode",
+          "description": "Run one speech test or request loop mode.",
+          "required": false,
+          "default": "once",
+          "choices": [
+            "once",
+            "loop"
+          ]
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-041",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "status",
+      "description": "Show orchestrator status.",
+      "category": "orchestration",
+      "usage": "/status",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-042",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "summaries",
+      "description": "List turn summaries.",
+      "category": "memory",
+      "usage": "/summaries",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-043",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "switch",
+      "description": "Switch active agent or show current agent status.",
+      "category": "orchestration",
+      "usage": "/switch [agent]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "agent",
+          "description": "Agent name; omit to show the active agent.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-044",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "timing",
+      "description": "Show timing breakdown for the last turn.",
+      "category": "memory",
+      "usage": "/timing",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-045",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "tool-budget",
+      "description": "Inspect authoritative tool selection and schema-budget state.",
+      "category": "tools",
+      "usage": "/tool-budget",
+      "aliases": [],
+      "arguments": [],
+      "detail": "Distinguishes registered tools, pending manual selection, the most recent automatic selection, the last completed turn, and executed tools. Schema estimates and limits use tools.context.max_tools, tools.context.max_budget_ratio, memory.context_window, and memory.output_buffer.",
+      "case_id": "PAR-046",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "tools",
+      "description": "List registered runtime tools and optionally filter by category.",
+      "category": "tools",
+      "usage": "/tools [category]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "category",
+          "description": "Optional runtime tool category filter.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-047",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "transcript",
+      "description": "Show a persisted current or selected transcript, or export all sessions.",
+      "category": "transcript",
+      "usage": "/transcript [session_id|export]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "target",
+          "description": "Persisted session identifier to show, or export for all non-archived sessions.",
+          "required": false,
+          "default": "current session",
+          "choices": []
+        }
+      ],
+      "detail": "With no target, queries the runtime's current session identity. Selected identifiers are bound store-query values, never paths. The export target writes deterministic sessions.csv and entries.csv beneath a safely contained timestamped export directory.",
+      "case_id": "PAR-048",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "vars",
+      "description": "Show scoped variables.",
+      "category": "session",
+      "usage": "/vars",
+      "aliases": [],
+      "arguments": [],
+      "detail": null,
+      "case_id": "PAR-049",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    },
+    {
+      "name": "workflow",
+      "description": "List, run, or control workflows.",
+      "category": "workflow",
+      "usage": "/workflow <list|run|status|approve|skip> [name] [key=value ...]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "action",
+          "description": "Workflow operation.",
+          "required": true,
+          "default": null,
+          "choices": [
+            "list",
+            "run",
+            "status",
+            "approve",
+            "skip"
+          ]
+        },
+        {
+          "name": "name",
+          "description": "Workflow name for run, or an optional approval/skip identifier.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "key=value",
+          "description": "Optional workflow inputs for the run action.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null,
+      "case_id": "PAR-050",
+      "tui_parity_status": "required, not executed",
+      "obligations": [
+        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "each documented argument/choice and alias covered",
+        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
+        "invalid input and unavailable-backend case when applicable"
+      ]
+    }
+  ]
+}

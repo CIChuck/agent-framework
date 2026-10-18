@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_file_relaunch_scope_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-79: attachments last across turns in the current TUI run but are discarded on exit; every new launch starts with no active file attachments, even when an earlier transcript exists. Users reselect files as needed; no new attachment persistence is introduced.",
+  "documents_sha256": {
+    "decisions.md": "c5e89de2d30e0bb594f76f62edefe783b0eb653546c9d7523a74ccbbf6d92aec",
+    "screen-layout.md": "580f59a8e0ba9487fd4a2482a455e4e7da4ab04c6119239248f7f54d495ab6fe",
+    "README.md": "d2be355656814cf783179d89a66c82229e6a544e7dd4136cc5c53ed1a62070e4",
+    "replacement-plan.md": "f0776dbb4250894d90d3edb7d3bc99a357fbd12e76cc200141860b2f61784adf",
+    "user-guide-requirements.md": "2fd4eee2e8edead2b17d5fbcff74a03aa383d96469e53f6c6e5ccc4757cec74d",
+    "neutral-capability-map.md": "f320d7b2073ed56346c9f54b868382ab622b56c6f601adc894055c719393bcc2",
+    "authority.json": "35b2e41bba6b1ae2a7725c14b3ce46ca20d0125a981856c1066eafb93cd2431e",
+    "execution-log.md": "cdd3fe1a3181654731f402d4d30f9ee5e52b06515901815bf874c424739f2b50",
+    "docs/planning/board.yaml": "3b720762bdc5531bdd901afbc68f6e9d436971927bc7213952dc4a49f9d2def4",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "75 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only relaunch-scope decision and no product code change",
+    "tui_attachment_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted empty-on-relaunch attachment direction and planning checks only. Additional-file and file-size/type behavior, implementation, terminal UAT and release acceptance remain open."
+}

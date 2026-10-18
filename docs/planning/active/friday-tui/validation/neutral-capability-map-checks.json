@@ -1,0 +1,28 @@
+{
+  "initiative": "friday-tui",
+  "kind": "neutral_capability_map_planning",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "scope": "Source-backed map of 50 Chat slash commands and non-slash/startup routes to proposed UI-neutral service seams; TUI-N01S session-identity extraction proposed, not authorized.",
+  "documents_sha256": {
+    "neutral-capability-map.md": "3f4c32c1714d55916778ebbcbc8dcb1400f484c97a49990229a831044d317f33",
+    "README.md": "f28c6e67294c525e48085853e12202c1b54d953dccd9bbd26461fb5fa88fd2c8",
+    "replacement-plan.md": "bf6c40779b49ccf03dc24358e3ab131c6673491764b1f3242e9a59469ae97552",
+    "execution-log.md": "1e4a48725152acc85bf96967503b98379046361ff91e5362fe073acda2da90ff",
+    "docs/planning/board.yaml": "7fb15b83e49d018f0ec8145663d46013907facc3cbb13a3817c4d9bbfe82c40b",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "source_head": "matches source baseline",
+    "command_map": "50 unique PAR-001..PAR-050 rows; names and order match command-matrix.json",
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "40 valid before this receipt",
+    "packet_markdown_links": "17 files; 151 local links; no missing targets",
+    "packet_trailing_whitespace": "17 files; passed",
+    "tracked_git_diff_check": "passed",
+    "changed_path_scope": "planning packet, scoped board/dashboard and queued-to-active move only"
+  },
+  "evidence_limit": "Source inventory and planning checks only. No product change, product regression test, TUI implementation, terminal UAT, construction approval or release acceptance."
+}

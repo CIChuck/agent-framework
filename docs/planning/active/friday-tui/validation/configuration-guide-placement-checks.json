@@ -1,0 +1,23 @@
+{
+  "initiative": "friday-tui",
+  "kind": "planning_configuration_guide_placement",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "decision": "Detailed tui settings reference belongs in docs/guides/10-configuration.md; the new TUI guide provides task-focused setup and links to the reference; the configuration guide links back.",
+  "documents_sha256": {
+    "user-guide-requirements.md": "8d69060fc28bd8599453c54de4c28a9936f2486e60c10c39f1ff35ade02575dd",
+    "decisions.md": "ada84a424599c1fb603a3ed1028ac9bb14a60e7f5fc5393c01915dfebe7388bf",
+    "authority.json": "92427347b2e91ebc6a6d57b182b50daeb22b15914e81be0ebc63d66a9367ca08",
+    "execution-log.md": "ce4dee53e51516cf6f8bf1609bbae03d67390066be4b26f88b6a9e2441ea72c2"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "15 valid before this receipt",
+    "packet_markdown_links": "12 files; no missing local targets",
+    "tracked_git_diff_check": "passed",
+    "changed_packet_trailing_whitespace": "passed"
+  },
+  "evidence_limit": "Placement decision and planning documentation only. The TUI and final user guides remain unimplemented; no user UAT was performed."
+}

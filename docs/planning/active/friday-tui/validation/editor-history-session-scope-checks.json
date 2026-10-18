@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "editor_history_session_scope_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-72: editor recall history is in-process for the current TUI run only. Discard it on exit; a new launch starts empty even with persisted transcripts. Do not create a separate history file or write it to runtime memory/configuration merely for recall.",
+  "documents_sha256": {
+    "decisions.md": "71589e46278a88be1b00b8a4ccfbfc3f32fa837a2cc62a25d88307ae18897fb5",
+    "screen-layout.md": "8b34ebb1638f448e7c7dc496f9b56b96a7b45cf2a0b432d84afa2ee44fe4b962",
+    "README.md": "324aa6ac3b57668df8c5fda486e6e8db68de0ad441f8e5f3e06dd061d7c17a23",
+    "replacement-plan.md": "381f3b102ff58fc3c168434397e96e7dce85e161a5df501a695214fd11eb312a",
+    "user-guide-requirements.md": "b501f228e12c775fb1c305a81c126c2fd6018baca19b9054025231cf29cdb48d",
+    "command-matrix.md": "15b8add083fc47f85b901de8af8ccbb0ae7f8573ee6b5d936861b3d9d73498ff",
+    "authority.json": "b9675c3714aeb06b885f07bd42dec176d03c80b513e333bf66d21f2f27630ce7",
+    "execution-log.md": "8b6274526ea87170af079c4dd4f5d249d94ccd3dfda677fa8b3d37dea075bc12",
+    "docs/planning/board.yaml": "cc3d16818b930e2d091ad069bcbbf98a8cc4ec6f275951d12bcfa845dc2e8aa9",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "68 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only editor-history scope decision and no product code change",
+    "tui_history_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted current-run editor-history scope and planning checks only. No TUI implementation, editor interaction test, installed-package verification, user UAT or release acceptance."
+}

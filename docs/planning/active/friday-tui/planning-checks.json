@@ -1,0 +1,29 @@
+{
+  "recorded_at": "2026-10-16T23:11:08.452971+00:00",
+  "kind": "planning transaction verification; not product behavioral validation",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "checks": {
+    "board_and_generated_dashboard": "passed: 34 tasks",
+    "current_command_inventory": "50 canonical / commands and 3 aliases reconciled",
+    "source_hashes_and_protected_package_trees": "unchanged",
+    "changed_markdown_links_and_packet_structure": "passed",
+    "moved_packet": "active exists; queued packet absent",
+    "changed_path_allowlist": "passed",
+    "unrelated_board_tasks_and_prior_events": "unchanged",
+    "new_packet_JSON_and_whitespace": "passed",
+    "full_documentation_lifecycle": "6 unchanged historical VAL-001 temporary-checkout link failures only",
+    "product_code_tests": "not run; product code unchanged and implementation not authorized"
+  },
+  "full_documentation_command_exit_code": 1,
+  "known_baseline_link_failures": [
+    "- docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/packages/friday-telemetry/src/friday_telemetry/providers/composite.py'",
+    "- docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/packages/friday-telemetry/src/friday_telemetry/providers/composite.py'",
+    "- docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md'",
+    "- docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md'",
+    "- docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:98: broken link '/private/tmp/telem-01/review/packages/friday-chat/tests_chat/test_reorganization_terminal.py'",
+    "- docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:100: broken link '/private/tmp/telem-01/review/docs/reference/policies/independent-validation-policy.md'"
+  ],
+  "authority_sha256": "2fd529e5bbbe8c51961114781355601818bfdef9f4e4b2288be4e0096f8730ea",
+  "source_baseline_sha256": "addde405302ac06170be1a0a37827a08011783a3080a2e7ab04f0b8b761de43b"
+}

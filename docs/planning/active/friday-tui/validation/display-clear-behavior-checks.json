@@ -1,0 +1,30 @@
+{
+  "initiative": "friday-tui",
+  "kind": "display_clear_behavior_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-33: /cls and /clearscreen clear the displayed conversation, pinned latest prompt and Activity view; session history, memory and persisted transcripts remain intact",
+  "source_behavior_reference": "friday_chat.commands.session.cls_handler returns an empty output and one CLEAR_SCREEN UI effect; TUI implementation is pending",
+  "documents_sha256": {
+    "README.md": "91be79c4f977ac8f75c87da3e64881b565d1181378f0f3b397eaf667f4963119",
+    "decisions.md": "7d393fb81dd93f1819a55f4528dacbf36bedfdf0cc82f69be97c0b5469530def",
+    "replacement-plan.md": "a41061bb34b65f8a9ab091cec6c7f02f6ec9078f6cee0ec558bee76f1706c239",
+    "tool-activity-requirement.md": "236fa6677821d8843e47a1502ed08d04591013cf814e605ef29cab4f001862cb",
+    "screen-layout.md": "e4773c20f76ee1b3a47614292852751f685f1061f278e0a36b360263062b0912",
+    "user-guide-requirements.md": "fcc979fe8957bf8e2ed7d46512df19dbe011d6d5cfd7bca0316b0d9f626b6b78",
+    "architecture-reset.md": "66a61d61b96bfa163243cd8869f0a46ada89c0ba52f95f0ee624ebdc1236c3e4",
+    "command-matrix.md": "fcdf8bab0e5ff314ca379830bced04c6e43ace0d79ab314dba824220ccaed06d",
+    "authority.json": "b03803d548459f3e0570d23c2ea72e33e4316fedd66237968892dfd7bf3a74a6",
+    "execution-log.md": "c3135533dfce9021725a12fdd4975299fdb70a90ae6dd2d7c840b6c750c5872f"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "26 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, terminal UAT, product acceptance or release is claimed."
+}

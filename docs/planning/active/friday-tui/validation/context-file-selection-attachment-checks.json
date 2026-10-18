@@ -1,0 +1,34 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_file_selection_attachment_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-77: deliberate Context-browser file selection by click or keyboard activation immediately initiates attachment for the next eligible model turn, without a separate Add action or automatic prompt submission. Focus movement and scrolling do not select. Show attached or failed status. Lifetime after the next accepted conversational turn remains open.",
+  "source_check_reference": "validation/context-file-browsing-checks.json records the existing Chat file-command and smart-tool gap; no selected-file attachment implementation exists.",
+  "documents_sha256": {
+    "decisions.md": "4aca515e6465bb988cd9e350cd991b0fe49357f0c54198284468831d86ae39f9",
+    "screen-layout.md": "2ba77c1c2bcde21d46da65af0c42ad2a89bbf9f286d598aac4636851d8e8c938",
+    "README.md": "ff26d7f773dccc21a72903e3d8adfde52c58333c8052074d90ca616a77c05981",
+    "replacement-plan.md": "ebe28c151e987369d4e849fda29bc682b1cd0cbd88a291f58c4ac0ab60444791",
+    "user-guide-requirements.md": "874464b1b7a44ea3929ee7635eff3377d9a2e2916e1adddeb01050a7afae68e0",
+    "neutral-capability-map.md": "edea14a8cef886c3cc33f8fec9b36e576b8bd7eb9f67e9289f343773ca2f37b9",
+    "authority.json": "76e22fad3e20e9ec15ec68a28fba67b0bba5b6393df58dda1b13b97d32586a0a",
+    "execution-log.md": "8e78031a377d326e760bc744da37994bb366b2b610c13ba9d17aeb26579530ad",
+    "docs/planning/board.yaml": "e3b44af19ff1f2a6104b4b303e58d9dcf543017613f060c8a55752f22dcc3146",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "73 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only selection/attachment decision and no product code change",
+    "tui_attachment_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted immediate selected-file attachment direction and planning checks only. Attachment lifetime, file-size/type contract, implementation, terminal UAT and release acceptance remain open."
+}

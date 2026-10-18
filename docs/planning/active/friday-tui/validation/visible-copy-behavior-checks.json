@@ -1,0 +1,29 @@
+{
+  "initiative": "friday-tui",
+  "kind": "selected_visible_activity_and_reasoning_copy_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-35: selected visible Activity and shown provider reasoning can be copied; a truncated argument copies only its bounded preview and notice, and hidden reasoning or discarded overflow is unavailable",
+  "documents_sha256": {
+    "README.md": "e7704cdde5345c96b443c388769bbefad51451946ec6de29c6d4573d6ebbefbd",
+    "decisions.md": "da93623518cbb6370a91f996eb9cbcdf11c9c4a45be569e0822a796c8b9ae23c",
+    "replacement-plan.md": "cf766c256481ee32adb4fdc8960750673b4858b613b0bd8436b319187df4c4d1",
+    "tool-activity-requirement.md": "8c88e3af1d08a91df79edf61fff98dc06d10d8fb1f3f2cd13111e6358b97581d",
+    "reasoning-display-requirement.md": "2af3301e6d74fbba460f9b2182b911d25f67dab98e31fa1abe3688c780a6d3e3",
+    "screen-layout.md": "20df55a160d4db1cb1ec47f50ffa3561417615513b62a68172dbe92b6d287e4c",
+    "user-guide-requirements.md": "72e5b8b6d66ec9defa3f78e7dcf7fe490eff6b399286f983836864f1ab49fa43",
+    "architecture-reset.md": "0f5ce403798b6d11738b99e4cac5a168b10602802c25582996a6a23093236ea5",
+    "authority.json": "11ed1243e8529b7e91d283c70a4c647c1b4a3bba0b0e7a1cc05f2180cbdb73e7",
+    "execution-log.md": "1593f3e9c16c8c7545e895b979f206c8e5afdaa61786d79c1d75e44638107408"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "28 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, clipboard UAT, product acceptance or release is claimed."
+}

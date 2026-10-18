@@ -1,0 +1,37 @@
+{
+  "initiative": "friday-tui",
+  "kind": "failed_prompt_restore_location_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-104: after bounded conversation eviction removes a failed initial provider-context error notice, keep a compact Restore failed prompt action beside the editor while that prompt remains recoverable in the current TUI run; preserve newer drafts through D-41/D-101 Confirm/Cancel and never submit automatically.",
+  "source_evidence": {
+    "maintainer_answer": "A to locating Restore failed prompt beside the editor after its error notice is evicted.",
+    "prior_decisions": "D-101 supplies failed-prompt recovery and draft replacement protection; D-102 limits recovery to the current TUI run; D-41 governs Confirm/Cancel.",
+    "unresolved_boundary": "Explicit /cls treatment of the separate editor recovery action remains a distinct decision."
+  },
+  "documents_sha256": {
+    "decisions.md": "fa68917a6337e1794493f322fbd716a49f3671692750facf88fdccd320a3ade0",
+    "README.md": "9f0f094c50f5ebb30c831d0c5fd2d7f31f10d9e4b57a9b5a47b9c661b86cc692",
+    "replacement-plan.md": "aa1e548cfa8d24c75bb488901ce9d5a940da5ec09f60176622d13ef5e10fdd4d",
+    "screen-layout.md": "43c552642c0e8c22e3142519fbbe3e485c5b6498796296ee47ac4fbe0a912b05",
+    "user-guide-requirements.md": "dd07b2e42f942ec6354c41a6dd36657b25a19e8c871a9edb6184b95a6830f913",
+    "neutral-capability-map.md": "3957d6635cf5930c93ee592a6104fee4550aad93c79d16fa18d8059c20e6ca97",
+    "authority.json": "2f35f4ca75f323b1af4e834a7f93d9310d88032c46735669a31d1c539e3ae9a7",
+    "execution-log.md": "ee897f2ff8c323f058645eab5bd3975bd93976fb2fa25d4902547ceb97ca14d7",
+    "docs/planning/board.yaml": "99194c13e64566da3f7d0de04a42f9822ff85f1a3f1c0e28506801f8f0a44263",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "100 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 129 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only decision and no product code change",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted Restore placement after bounded notice eviction and planning checks only. Explicit /cls recovery clearing, exact UI construction, installed behavior, terminal UAT and release acceptance remain open."
+}

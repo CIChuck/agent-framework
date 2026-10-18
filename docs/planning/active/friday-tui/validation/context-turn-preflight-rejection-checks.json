@@ -1,0 +1,39 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_turn_preflight_rejection_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-98: if the fully assembled first provider request exceeds the selected model effective input budget after normal Friday context selection, the TUI rejects before provider call, reports estimated total/available/overage and retains the exact draft/caret and attachment snapshots without creating an accepted turn or tool effect.",
+  "source_evidence": {
+    "maintainer_answer": "A to stop before provider call and retain draft and attachments",
+    "prior_decisions": "D-92/D-93 reject over-limit attachment admission, D-95 estimated tokens, D-96/D-97 fixed 4,000/8,000 defaults",
+    "budget_source": "packages/friday-memory/src/friday_memory/context/layout.py stores last_budget_status after prompt formatting and warns on overage but returns messages; a separate neutral enforcement seam is required"
+  },
+  "documents_sha256": {
+    "decisions.md": "375240c8267d3934358cef266f8fa3a7864d84c8be55a909d3a37099b16d37ab",
+    "README.md": "179f4f5cd12f24f5365dd060c605aef7ea92260724cbfe382db90592af188500",
+    "replacement-plan.md": "280223d017475b62a0c729722911e7c74ff95405a3048249ac9c1877f6595c38",
+    "user-guide-requirements.md": "430efdfbaa3053a087d2ae6c6e36363e2b316734f443f88e0e08b3bb1e355071",
+    "neutral-capability-map.md": "bac80a6cded09a66b9f598c01695cf7bb580ab427e8111272fd80c9885aed67e",
+    "ux-configuration.md": "bcd29f02407d3d1255beaee8cd80597719a4891f3aee9a9574698b5815522ef5",
+    "screen-layout.md": "21e5757c4e653f5c9785e3a1445a6abd3c20729e744821155cf8791af4e3ede9",
+    "authority.json": "9c439e46e8dd176c147d8e2b7bfcfd3c2382b5d6be7ca21d98115956f0c0f00b",
+    "execution-log.md": "a9cba9c5c4cd63a2ed9d0e3cd37af3f6916c66b042b205a540ed4d796afca246",
+    "docs/planning/board.yaml": "8bbcf84b7d12e4b2bf5e55a5cb64e6904a3dc1559922d74219db70ff04c41f24",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "94 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 123 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "turn_preflight_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted initial model-turn over-budget rejection and planning checks only. Exact estimator/reserve and neutral enforcement seam, provider rejection after a passing estimate, later agent-loop overage, installed behavior, terminal UAT and release acceptance remain open."
+}

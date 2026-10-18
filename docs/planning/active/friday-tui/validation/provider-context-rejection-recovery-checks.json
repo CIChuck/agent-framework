@@ -1,0 +1,39 @@
+{
+  "initiative": "friday-tui",
+  "kind": "provider_context_rejection_recovery_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-100: when a provider reports a recognizable context-length rejection after a passing Friday estimate, the TUI shows the post-send error and leaves correction/retry to the user. It adds no automatic compaction or resend; initial submitted draft and attachments remain available, while a later post-tool turn is marked incomplete with prior activity/effects retained.",
+  "source_evidence": {
+    "maintainer_answer": "A to report the post-estimate provider context-length error, preserve recoverable user state and avoid automatic retry.",
+    "prior_decisions": "D-98/D-99 gate requests before sending and may attempt configured older-turn compaction for a local overage; D-100 is the distinct post-send error path.",
+    "error_classification_source": "packages/friday-llm/src/friday_llm/telemetry.py classifies litellm.BadRequestError broadly as invalid_request and does not alone identify context-length rejection.",
+    "transport_retry_source": "packages/friday-llm/src/friday_llm/service.py has internal transport retry behavior; D-100 forbids an additional TUI-triggered retry while preserving that existing behavior."
+  },
+  "documents_sha256": {
+    "decisions.md": "a35cbf42c679f3751ca21ca1ffd1fa796077180910660ecded08af17ec8756b8",
+    "README.md": "3e87cf0120037f3b53cfa9b45afa73141f77afec45a4875512c11af8911fa5fd",
+    "replacement-plan.md": "e802c2490bb45870c43db5fdb550c86f0e363833114b3882ae68e7dff3e4a868",
+    "screen-layout.md": "7a6d5efd4367f71d65020e997854e6928d5cd79997c2214aafa6041066818f02",
+    "user-guide-requirements.md": "ffb735ade26c220ae7be080b570c81961411ba31c8a119155917eb33eb6e087d",
+    "neutral-capability-map.md": "523f1dfbe6defbcfa6b38fd7fc53cd962d880bb0511bebc9383a397105d9ed92",
+    "authority.json": "46db8b3ab00c91ebdc9b2a7766f8523eecfb51fcf787dcea7aa571ed7059ee01",
+    "execution-log.md": "deff5be9ff0038d0646019a36fb50009c7108da94d287b022f809f94fa630c47",
+    "docs/planning/board.yaml": "b66e0c5e991c3a9f3689513b03bea25f832706fb08718a90f2bd5ae2aac299f9",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "96 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 125 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "provider_rejection_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted provider-context rejection recovery direction and planning checks only. Exact context-length classification, provider-detail display, transcript treatment, draft-recovery placement, neutral service contract, installed behavior, terminal UAT and release acceptance remain open."
+}

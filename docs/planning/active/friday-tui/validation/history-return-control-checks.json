@@ -1,0 +1,28 @@
+{
+  "initiative": "friday-tui",
+  "kind": "history_browsing_and_return_control_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-36: pause following away from bottom; hide latest prompt pin in older exchanges; show clickable keyboard-focusable Jump to latest control away from bottom; activation or scrolling to bottom restores pin when available and resumes following",
+  "documents_sha256": {
+    "README.md": "84868559a520ef55f4ac26e70dccee6e6f758f529295ed865879ddf5aeb17110",
+    "decisions.md": "442bc2c23b3993e7b88a47d57b55d5a04ce9c2a41a4bf2f6cca3f08daea63abc",
+    "replacement-plan.md": "e7c645f1466e792638ea6d08ad313200ac668220faace5e9246c664cc7e8aa7b",
+    "screen-layout.md": "3d12a40a32ad683982f485aa4b792b9adbe65a09f8648ad883d749d94a928990",
+    "user-guide-requirements.md": "9d22c2f5f7efea534460921783595bcc61ee4f7b7eca8e56b0d355dbcb29d21c",
+    "architecture-reset.md": "8a39b35210f6757da66fe0efabc26db1319338e33e4383b37602f588895f89ef",
+    "ux-configuration.md": "5a3716094839b86100b6dc44a0823e993b4f0de92955c6cc05b609dff415457f",
+    "authority.json": "d02c5468ad1a361ed3096fe4279428c1398255e642fd8faacb5400fb3986d53d",
+    "execution-log.md": "e45b7881933e4d8ea6749f95787068199bce27adc9986972b5e15d5f1aaf9647"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "29 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, mouse/keyboard UAT, product acceptance or release is claimed."
+}

@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "editor_history_draft_restoration_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-73: browsing editor history preserves an unsent draft and editing position, restoring both exactly when leaving without submitting a recalled entry. Recalled entries are editable copies and never execute on recall; explicit Submit remains required.",
+  "documents_sha256": {
+    "decisions.md": "5e4d716c1f046f07f46aaa6fc56efc3ee59292df395f4445a728b03e4972dafc",
+    "screen-layout.md": "b9d33eaa652bc2b2107431006986973ca3f79c088b9cc8da0f4876bb5ba028ed",
+    "README.md": "2ab8be44bb010fdce23bd22af9789dac7168cda75de01c47e5930312b125cbc1",
+    "replacement-plan.md": "1e4dafdb9e5b663fd579975e9f8e5479cbed47775187eb745a0105e568a8c561",
+    "user-guide-requirements.md": "798ab09019bf19e4cf3408e773f62a5dcbb4c2e9f33bd7f459d92302b288b674",
+    "command-matrix.md": "d34baffbddcc13c7ffbfcc583ca0be61b6b9cc9f3e3ac80d1c475e8f0bab8ce0",
+    "authority.json": "a19d962b375c8e79350c3f51fad9d985083b818c6e92d747407731c71cd587c7",
+    "execution-log.md": "c2e600fc149bba36145bc2d3322d282f02be91dec279ecbaaa0d0ed0a44a64f3",
+    "docs/planning/board.yaml": "fd901212ebb26111c88feccfed8c05a95bcabda2ebb486c0f0fc85b8fe6e9b74",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "69 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only draft-restoration decision and no product code change",
+    "tui_history_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted editor-history draft-restoration decision and planning checks only. No TUI implementation, editor interaction test, installed-package verification, user UAT or release acceptance."
+}

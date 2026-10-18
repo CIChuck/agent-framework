@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-10-16'
+updated: '2026-10-17'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -216,16 +216,95 @@ tasks:
 - id: friday-tui
   title: Friday TUI
   priority: 14
-  work_state: queued
+  work_state: started
   condition: normal
-  implementation_authority: not_granted
-  packet: docs/planning/queued/friday-tui/
-  next_gate: review and approve the draft product plan
-  delivery_state: not_started
-  branch: null
+  implementation_authority: granted
+  packet: docs/planning/active/friday-tui/
+  next_gate: Implement and independently validate the approved TUI-N01S session-identity slice only; keep loader, assembly/close, chooser, replay, event and Force quit units design-only pending separate directives
+  delivery_state: local
+  branch: feature/friday-tui
   depends_on: []
-  validation: []
-  legacy_import: true
+  validation:
+  - docs/planning/active/friday-tui/planning-checks.json (planning checks only; product validation not ready)
+  - docs/planning/active/friday-tui/decision-update-checks.json (accepted product decisions; planning checks only)
+  - docs/planning/active/friday-tui/technical-contract-checks.json (technical drafting and unchanged-source baseline only; not TUI verification)
+  - docs/planning/active/friday-tui/incremental-testing-checks.json (testable-unit/UAT planning amendment only; execution and signoff pending)
+  - docs/planning/active/friday-tui/shared-config-checks.json (shared runtime configuration planning clarification; implementation/UAT pending)
+  - docs/planning/active/friday-tui/ux-configuration-checks.json (presentation-file design and existing-loader compatibility only; TUI/UAT pending)
+  - docs/planning/active/friday-tui/ux-design-approval-checks.json (UX design accepted and documentation aligned; construction/UAT pending)
+  - docs/planning/active/friday-tui/validation/architecture-reset-checks.json (independent-package decision reconciliation; planning checks only)
+  - docs/planning/active/friday-tui/validation/user-guide-requirements-checks.json (user guide and configuration documentation requirement; planning checks only)
+  - docs/planning/active/friday-tui/validation/configuration-guide-placement-checks.json (accepted documentation placement; planning checks only)
+  - docs/planning/active/friday-tui/validation/screen-layout-proposal-checks.json (screen design proposal; planning checks only)
+  - docs/planning/active/friday-tui/validation/inline-timeline-role-colors-checks.json (accepted inline layout and role-color direction; planning checks only)
+  - docs/planning/active/friday-tui/validation/pinned-prompt-reasoning-requirements-checks.json (pinned prompt and first-release reasoning visibility; planning checks only)
+  - docs/planning/active/friday-tui/validation/tool-activity-requirement-checks.json (agentic tool-activity requirement; planning checks only)
+  - docs/planning/active/friday-tui/validation/tool-activity-sequence-clarification-checks.json (tool execution and later reasoning sequence; planning checks only)
+  - docs/planning/active/friday-tui/validation/tool-activity-first-release-checks.json (first-release tool activity decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/tool-activity-parameters-checks.json (first-release parameter display decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/replacement-plan-review-checks.json (independent replacement plan and maintainer answers; planning checks only)
+  - docs/planning/active/friday-tui/validation/oversized-activity-parameter-checks.json (bounded oversized parameter decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/not-run-request-boundary-checks.json (rejected-request boundary and command inventory reconciliation; planning checks only)
+  - docs/planning/active/friday-tui/validation/display-clear-behavior-checks.json (accepted /cls view-clearing behavior; planning checks only)
+  - docs/planning/active/friday-tui/validation/transcript-session-scope-checks.json (first-release transcript-session scope; planning checks only)
+  - docs/planning/active/friday-tui/validation/visible-copy-behavior-checks.json (selected visible Activity and reasoning copy; planning checks only)
+  - docs/planning/active/friday-tui/validation/history-return-control-checks.json (history browsing and clickable return control; planning checks only)
+  - docs/planning/active/friday-tui/validation/rendered-history-eviction-checks.json (bounded on-screen history and saved-transcript access; planning checks only)
+  - docs/planning/active/friday-tui/validation/editor-key-behavior-checks.json (accepted Enter submit and Ctrl+Enter newline behavior; planning checks only)
+  - docs/planning/active/friday-tui/validation/newline-fallback-checks.json (focusable Insert newline fallback decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/palette-command-selection-checks.json (slash-command palette fills editor without dispatch; planning checks only)
+  - docs/planning/active/friday-tui/validation/palette-draft-replacement-checks.json (confirmation before replacing an unsent editor draft; planning checks only)
+  - docs/planning/active/friday-tui/validation/activity-first-entry-visibility-checks.json (automatic Activity opening and user collapse behavior; planning checks only)
+  - docs/planning/active/friday-tui/validation/collapsed-activity-count-checks.json (collapsed Activity new-entry count decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/activity-scroll-return-checks.json (independent Activity scrolling and return control; planning checks only)
+  - docs/planning/active/friday-tui/validation/activity-inline-placement-checks.json (inline Activity placement decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/older-activity-state-checks.json (preserve older Activity expansion state on new prompts; planning checks only)
+  - docs/planning/active/friday-tui/validation/neutral-capability-map-checks.json (source-backed command/service map and first extraction proposal; planning checks only)
+  - docs/planning/active/friday-tui/validation/tui-runtime-default-checks.json (real-by-default configured TUI startup decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/chooser-initial-location-checks.json (launch-directory chooser list and Browse decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/chooser-candidate-types-checks.json (likely runtime YAML chooser list decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/chooser-invalid-selection-checks.json (invalid chooser selection recovery decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/explicit-config-invalid-checks.json (invalid explicit config exit decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/chooser-empty-list-checks.json (empty initial chooser list decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/chooser-real-start-failure-checks.json (chooser real-runtime startup failure recovery decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/explicit-real-start-failure-checks.json (explicit-path real-runtime startup failure decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/chooser-content-detection-checks.json (shallow content-based candidate detection decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/chooser-start-cleanup-failure-checks.json (combined startup and cleanup failure decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/startup-bootstrap-contract-checks.json (draft consolidated startup contract; planning checks only)
+  - docs/planning/active/friday-tui/validation/incomplete-chooser-candidate-checks.json (incomplete runtime-shaped candidate visibility decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/browse-path-entry-checks.json (Browse path entry and folder navigation decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/chooser-refresh-checks.json (on-demand candidate-list Refresh decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/chooser-symlink-checks.json (direct-child linked runtime candidate decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/neutral-config-loader-contract-checks.json (source-backed shared loader/facade proposal and pre-code baseline; planning checks only)
+  - docs/planning/active/friday-tui/validation/chat-only-runtime-mode-checks.json (accepted Chat-only runtime environment variable decision; planning checks only)
+  - docs/planning/active/friday-tui/validation/startup-replay-result-checks.json (accepted read-only startup replay result retention; planning checks only)
+  - docs/planning/active/friday-tui/validation/startup-replay-summary-checks.json (accepted file/count-only startup replay result content; planning checks only)
+  - docs/planning/active/friday-tui/validation/startup-replay-failure-view-checks.json (accepted read-only startup replay error view and nonzero exit; planning checks only)
+  - docs/planning/active/friday-tui/validation/startup-replay-no-retry-checks.json (accepted no-Retry startup replay failure behavior; planning checks only)
+  - docs/planning/active/friday-tui/validation/slash-suggestion-visibility-checks.json (accepted automatic slash-command suggestions; planning checks only)
+  - docs/planning/active/friday-tui/validation/slash-suggestion-selection-checks.json (accepted inline suggestion editor completion; planning checks only)
+  - docs/planning/active/friday-tui/validation/slash-suggestion-key-checks.json (accepted Up/Down and Tab suggestion keys; planning checks only)
+  - docs/planning/active/friday-tui/validation/slash-subcommand-suggestion-checks.json (accepted declared subcommand suggestions; planning checks only)
+  - docs/planning/active/friday-tui/validation/slash-usage-hint-checks.json (accepted contextual argument usage hints; planning checks only)
+  - docs/planning/active/friday-tui/validation/editor-history-content-checks.json (accepted prompt and slash-command editor history; planning checks only)
+  - docs/planning/active/friday-tui/validation/editor-history-session-scope-checks.json (accepted current-run-only editor recall; planning checks only)
+  - docs/planning/active/friday-tui/validation/editor-history-draft-restoration-checks.json (accepted unsent-draft restoration during recall; planning checks only)
+  - docs/planning/active/friday-tui/validation/editor-history-boundary-keys-checks.json (accepted Up/Down editor-boundary history navigation; planning checks only)
+  - docs/planning/active/friday-tui/validation/editor-history-additional-routes-checks.json (accepted agent and optional shell input recall; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-file-browsing-checks.json (accepted first-release Context file browsing and source-backed attachment gap; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-file-selection-attachment-checks.json (accepted immediate file attachment on deliberate Context selection; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-file-attachment-lifetime-checks.json (accepted retention of attached file across turns until removal; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-file-relaunch-scope-checks.json (accepted empty attachments after TUI relaunch; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-multiple-file-attachments-checks.json (accepted additive multiple-file attachments with individual removal; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-file-snapshot-checks.json (accepted selection-time file snapshot and same-file refresh; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-file-format-extraction-checks.json (accepted real PDF, DOCX and XLSX attachment extraction with text/code/data; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-scanned-pdf-ocr-checks.json (accepted first-release Tesseract OCR for scanned PDF attachment; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-mixed-pdf-page-routing-checks.json (accepted embedded text plus page-selective OCR in original PDF order; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-tesseract-system-dependency-checks.json (accepted separately system-installed Tesseract on macOS and Linux; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-ocr-page-failure-checks.json (accepted whole-PDF rejection on required OCR-page failure; planning checks only)
+  - docs/planning/active/friday-tui/validation/context-ocr-language-selection-checks.json (accepted configurable installed Tesseract languages with English default; planning checks only)
+  approved_by: Chuck Russell
+  approved_at: '2026-10-16'
 - id: friday-speech
   title: Friday Speech
   priority: 15
@@ -2149,3 +2228,731 @@ events:
   action: set_delivery
   note: Alpha4 source PR merged, remote branch retired, complete production PyPI cohort and fresh production-only installation verified; acceptance remains distinct.
   evidence: 'PR #11 https://github.com/CIChuck/agent-framework/pull/11 merge 489aed28bbf14cb5c312e207a56d973d241c293d; 17 projects/34 hashes verified at 0.1.0a4; docs/reference/releases/friday-package-cohort-0.1.0a4-release-evidence.md'
+- task: friday-tui
+  at: '2026-10-16T23:09:44+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transitioned queued -> approved
+  note: Explicitly requested activation and a dedicated-branch build plan; approval is limited to design/planning, not product implementation or acceptance.
+  evidence: Current 2026-10-16 maintainer request; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-16T23:09:44+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned approved -> started
+  note: Started authorized design/build planning on feature/friday-tui; moved packet to active with design_only authority and draft implementation gates.
+  evidence: Base c34269867be50f71923c93c95a63236a35505812; docs/planning/active/friday-tui/build-plan.md
+- task: friday-tui
+  at: '2026-10-16T23:19:42+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: product_decisions_confirmed
+  note: Accepted Q-01 macOS/Linux, Q-02 multiline editor with explicit submit shortcut, and Q-03 safe-point quit with non-interruptible work and cleanup completed before exit; planning authority unchanged.
+  evidence: Explicit current-session Q-01/Q-02/Q-03 answers; docs/planning/active/friday-tui/decisions.md
+- task: friday-tui
+  at: '2026-10-17T00:02:49+00:00'
+  actor: Codex
+  actor_role: agent
+  action: technical_contract_drafted
+  note: Prepared concrete technical decisions, registry matrix, unchanged-source evidence and draft CD-TUI-001; design_only authority retained pending maintainer review.
+  evidence: docs/planning/active/friday-tui/integration-contract.md; directives/CD-TUI-001-shared-presentation-contracts.md; validation/technical-evidence.json
+- task: friday-tui
+  at: '2026-10-17T00:24:39+00:00'
+  actor: Codex
+  actor_role: agent
+  action: incremental_testing_and_uat_planned
+  note: Recorded maintainer testing/UAT requirement; proposed 24 bounded units and five real-user checkpoints, split first directive into independently checked scopes; no product or UAT execution approval inferred.
+  evidence: docs/planning/active/friday-tui/test-and-uat-plan.md; validation/test-unit-map.json; directives/CD-TUI-001-shared-presentation-contracts.md
+- task: friday-tui
+  at: '2026-10-17T00:32:12+00:00'
+  actor: Codex
+  actor_role: agent
+  action: shared_runtime_configuration_recorded
+  note: Recorded maintainer requirement for compatible runtime configuration across CLI/TUI; reconciled replay precedence, presentation-only settings and startup/UAT parity checks; authority unchanged.
+  evidence: docs/planning/active/friday-tui/integration-contract.md; decisions.md D-06; test-and-uat-plan.md CFG-01..06
+- task: friday-tui
+  at: '2026-10-17T00:39:02+00:00'
+  actor: Codex
+  actor_role: agent
+  action: presentation_configuration_extension_proposed
+  note: Proposed additive tui namespace in existing CLI presentation file; preserved legacy fields and first directive scope; recorded existing-loader probes/47 config-display tests, not TUI or UAT execution.
+  evidence: docs/planning/active/friday-tui/ux-configuration.md; validation/ux-config-compatibility.json; validation/ux-config-baseline.log
+- task: friday-tui
+  at: '2026-10-17T00:44:07+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: ux_configuration_design_approved
+  note: 'Agreed with additive presentation-file design and requested documentation alignment: existing CLI file plus optional versioned tui namespace and UX option families; implementation and UAT remain pending.'
+  evidence: Current-session explicit agreement; docs/planning/active/friday-tui/ux-configuration.md; authority.json presentation_configuration_extension_request.design_approval
+- task: friday-tui
+  at: '2026-10-17T01:09:58+00:00'
+  actor: Codex
+  actor_role: agent
+  action: independent_package_design_reset_recorded
+  note: Recorded maintainer decisions on no CLI-code dependency, busy slash Quit, semantic and ongoing command parity, config chooser, and Linux UAT; withdrew Chat-dependent contract and CD-TUI-001. Design-only authority retained.
+  evidence: docs/planning/active/friday-tui/architecture-reset.md; docs/planning/active/friday-tui/decisions.md
+- task: friday-tui
+  at: '2026-10-17T01:13:47+00:00'
+  actor: Codex
+  actor_role: agent
+  action: user_documentation_requirements_recorded
+  note: Recorded maintainer requirement for a task-oriented TUI user guide, configuration guidance, guide navigation and final-candidate UAT; no published guide or implementation claimed.
+  evidence: docs/planning/active/friday-tui/user-guide-requirements.md; README.md AC-16; decisions.md D-14
+- task: friday-tui
+  at: '2026-10-17T01:18:09+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: tui_configuration_reference_placement_confirmed
+  note: Confirmed docs/guides/10-configuration.md as the detailed tui settings reference; the TUI guide will provide task-focused setup and reciprocal links. Guide implementation remains pending.
+  evidence: Current-session agreement; docs/planning/active/friday-tui/user-guide-requirements.md; decisions.md D-15
+- task: friday-tui
+  at: '2026-10-17T01:20:20+00:00'
+  actor: Codex
+  actor_role: agent
+  action: screen_layout_proposed
+  note: Drafted independent TUI screen zones and interaction flow, including editor, streaming conversation, scrolling, responsive sidebar, status and keyboard-first controls. Inline versus separate command results awaits maintainer review.
+  evidence: docs/planning/active/friday-tui/screen-layout.md
+- task: friday-tui
+  at: '2026-10-17T01:23:17+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: inline_timeline_role_colors_approved
+  note: Selected inline command results and distinct color coding for user prompts versus Friday responses; labels and non-color cues retained for accessibility. Exact palette and implementation/UAT remain pending.
+  evidence: Current-session choice; docs/planning/active/friday-tui/screen-layout.md; decisions.md D-16
+- task: friday-tui
+  at: '2026-10-17T01:27:13+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: pinned_prompt_and_reasoning_direction_requested
+  note: Requested a pinned latest prompt above its scrolling response and a future hide/show option for provider-supplied thinking. Default final-answer-only display and release timing are captured as design direction; first-release timing awaits answer. Planning authority unchanged.
+  evidence: Current-session request; docs/planning/active/friday-tui/decisions.md D-17/D-18; docs/planning/active/friday-tui/reasoning-display-requirement.md
+- task: friday-tui
+  at: '2026-10-17T01:28:58+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: first_release_reasoning_visibility_confirmed
+  note: Confirmed provider-supplied reasoning hide/show option is required in the first TUI release. Final-answer-only remains the default; no CLI or runtime generation change. Construction authority remains design_only.
+  evidence: Current-session explicit answer; docs/planning/active/friday-tui/decisions.md D-18; README.md AC-17; reasoning-display-requirement.md
+- task: friday-tui
+  at: '2026-10-17T01:33:54+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: agentic_tool_activity_requested
+  note: Requested rolling TUI visibility of each tool call and its parameters across multiple internal agentic-loop turns. Distinguish requested from executed calls; first-release timing and parameter disclosure await answer. Planning authority unchanged.
+  evidence: Current-session request; docs/planning/active/friday-tui/tool-activity-requirement.md; decisions.md D-19
+- task: friday-tui
+  at: '2026-10-17T01:40:52+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: tool_activity_sequence_clarified
+  note: Clarified that a model request is not an executed call; omit tool-result payloads from scrolling Activity/chat while showing actual calls with parameters/status and later provider-exposed reasoning when enabled. Planning authority unchanged.
+  evidence: Current-session clarification; docs/planning/active/friday-tui/decisions.md D-19/D-20; docs/planning/active/friday-tui/tool-activity-requirement.md
+- task: friday-tui
+  at: '2026-10-17T01:44:26+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: first_release_tool_activity_confirmed
+  note: Confirmed rolling tool-activity log is required in the first TUI release; parameter-disclosure rule remains open. Planning authority unchanged.
+  evidence: Current-session explicit answer; docs/planning/active/friday-tui/decisions.md D-19; README.md AC-18; tool-activity-requirement.md
+- task: friday-tui
+  at: '2026-10-17T01:46:53+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: first_release_tool_parameters_confirmed
+  note: Confirmed no TUI credential/sensitive-value filtering for displayed execution parameters in the first release; filtering may be later scope. Runtime tool policy and design_only authority unchanged.
+  evidence: Current-session explicit answer; docs/planning/active/friday-tui/decisions.md D-21; tool-activity-requirement.md; README.md AC-18
+- task: friday-tui
+  at: '2026-10-17T02:09:11+00:00'
+  actor: Codex
+  actor_role: agent
+  action: independent_replacement_plan_drafted
+  note: Reconciled maintainer answers D-22 through D-30 into a draft independent integration, construction and test/UAT plan; old Chat-dependent plans remain withdrawn. The command-to-neutral-capability map, exact technical contracts and reviewed directive are still pending under design_only authority.
+  evidence: docs/planning/active/friday-tui/replacement-plan.md; decisions.md D-22..D-30; execution-log.md
+- task: friday-tui
+  at: '2026-10-17T02:17:36+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: oversized_activity_parameter_policy_confirmed
+  note: Selected an explicitly truncated bounded preview for one oversized tool parameter, with overflow discarded from TUI memory. The tool still receives the complete argument and no credential masking is added. Exact limits and implementation/UAT remain pending under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-31; tool-activity-requirement.md
+- task: friday-tui
+  at: '2026-10-17T02:20:02+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: not_run_request_boundary_confirmed
+  note: Selected Not run only for an actual model or user tool request rejected before invocation; pre-request tool selection or budget exclusions create no Activity entry. Command inventory obligations were aligned with independent TUI handlers. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-32; validation/not-run-request-boundary-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:23:21+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: display_clear_behavior_confirmed
+  note: Selected /cls and /clearscreen to clear the displayed conversation, pinned latest prompt and Activity view while keeping session history, memory and persisted transcripts. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-33; validation/display-clear-behavior-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:25:31+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transcript_session_switch_excluded_from_first_release
+  note: Selected current transcript-session display and /sessions /transcript parity without an active-session switching control; /switch continues to change the active agent. Removed the draft session-switch Activity/UI contract. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-34; validation/transcript-session-scope-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:29:29+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: selected_visible_activity_and_reasoning_copy_confirmed
+  note: Selected copy of visible Activity and shown reasoning text, with oversized parameters limited to their displayed preview and truncation notice; hidden reasoning and discarded overflow cannot be copied. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-35; validation/visible-copy-behavior-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:32:16+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: history_return_control_confirmed
+  note: Selected hiding the latest prompt pin while browsing older exchanges and requested a clickable Jump to latest control. The control is keyboard-focusable, returns to the bottom, restores the pin when available and resumes following. Planning authority remains design_only.
+  evidence: Current-session A answer and clickable-control requirement; docs/planning/active/friday-tui/decisions.md D-36; validation/history-return-control-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:34:55+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: rendered_history_eviction_policy_confirmed
+  note: Selected an eviction notice with /transcript access for saved older messages, honest no-saved-transcript behavior and no first-release Load older control. Transient Activity and reasoning are not recoverable from transcripts. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-37; validation/rendered-history-eviction-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:40:18+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: editor_key_behavior_confirmed
+  note: Selected Enter to submit and Ctrl+Enter to insert a newline in the TUI editor. Multiline paste does not submit. Real terminal key delivery and focusable Insert newline/Submit fallbacks remain first-release verification work. Planning authority remains design_only.
+  evidence: Current-session explicit preference; docs/planning/active/friday-tui/decisions.md D-38; validation/editor-key-behavior-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:46:15+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: newline_fallback_confirmed
+  note: Selected the visible clickable keyboard-focusable Insert newline control as the fallback when Ctrl+Enter is indistinguishable from Enter. No second default newline shortcut in the first release. Physical terminal checks and guide instructions remain UAT work; authority is design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-39; validation/newline-fallback-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:48:49+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: palette_command_selection_confirmed
+  note: Selected palette / command entries to fill and focus the prompt editor for review and arguments without dispatch; Enter or Submit later invokes normal admission. Existing-draft handling remains open. Planning authority is design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-40; validation/palette-command-selection-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:50:03+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: palette_draft_replacement_confirmed
+  note: Selected confirmation before a palette slash command replaces a nonempty unsent draft. Cancel keeps the draft exactly; Confirm replaces it without submitting; an empty editor fills directly. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-41; validation/palette-draft-replacement-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:53:13+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: activity_first_entry_visibility_confirmed
+  note: Selected Activity to open when its first entry arrives so the rolling log is visible. Users may collapse and reopen it; later entries accumulate without forcing a manually collapsed view open. Opening must preserve editor focus and paused conversation position. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-42; validation/activity-first-entry-visibility-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:55:04+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: collapsed_activity_count_confirmed
+  note: Selected a collapsed Activity header count of new entries since collapse. Appended entries increment once; status updates do not. Reopening or clearing resets the count; eviction while collapsed gets a header indicator and detail on reopen. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-43; validation/collapsed-activity-count-checks.json
+- task: friday-tui
+  at: '2026-10-17T02:56:49+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: activity_scroll_return_confirmed
+  note: Selected pause of Activity auto-follow when its own view scrolls up, with a clickable keyboard-focusable Jump to latest Activity control or scrolling down to resume. This is independent of conversation scrolling and the prompt pin. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-44; validation/activity-scroll-return-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:04:08+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: activity_inline_placement_confirmed
+  note: Selected inline Activity within the originating conversation exchange or user-entered tool-command entry, ahead of final response/result. Internal scrolling and collapse keep narrow terminals usable; no persistent Activity side pane. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-45; validation/activity-inline-placement-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:06:48+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: older_activity_state_confirmed
+  note: Selected preservation of each older exchange's expanded/collapsed Activity state when a new conversational prompt is accepted. The new exchange opens its Activity independently on its first entry; bounded eviction and explicit clear still apply. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-46; validation/older-activity-state-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:10:53+00:00'
+  actor: Codex
+  actor_role: agent
+  action: neutral_capability_map_drafted
+  note: Mapped 50 slash commands and non-slash/startup routes to proposed neutral services, with a bounded session-identity extraction as the first testable code candidate. Source inspection only; design_only authority and no product/UAT validation remain.
+  evidence: docs/planning/active/friday-tui/neutral-capability-map.md; docs/planning/active/friday-tui/validation/neutral-capability-map-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:17:24+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: tui_runtime_default_confirmed
+  note: Selected real provider-backed startup by default after explicit or chosen TUI config; --runtime fake remains explicit. Failed real startup does not silently change mode. Existing Chat and friday-cli defaults and behavior remain unchanged; design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-47; docs/planning/active/friday-tui/validation/tui-runtime-default-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:19:55+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: chooser_initial_location_confirmed
+  note: Selected the launch working directory for the chooser's initial runtime-config list when --config is absent, with Browse to another path; no automatic user-directory or recursive scan. Candidate classification and error recovery remain open; design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-48; docs/planning/active/friday-tui/validation/chooser-initial-location-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:25:02+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: chooser_candidate_types_confirmed
+  note: Selected likely Chat runtime YAML including custom filenames for the launch-directory list; recognized model-library and presentation YAML are excluded. Browse remains available. Exact classifier and error recovery remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-49; docs/planning/active/friday-tui/validation/chooser-candidate-types-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:29:40+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: chooser_invalid_selection_recovery_confirmed
+  note: Selected in-place chooser recovery for an invalid chosen runtime file, with actionable validation error and Retry, Browse and Quit. Explicit --config and provider-startup failures remain separate; design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-50; docs/planning/active/friday-tui/validation/chooser-invalid-selection-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:33:47+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: explicit_config_invalid_exit_confirmed
+  note: Selected configuration error and nonzero exit for an invalid explicit --config file, without opening the chooser or starting the runtime; current Chat behavior is a reference only. Provider-startup failure UX remains open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-51; docs/planning/active/friday-tui/validation/explicit-config-invalid-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:36:25+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: chooser_empty_list_confirmed
+  note: Selected in-place chooser empty state with no-configurations-found message and Browse and Quit; no automatic wider search or runtime start. Exact classifier and provider-startup failure UX remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-52; docs/planning/active/friday-tui/validation/chooser-empty-list-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:38:50+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: chooser_real_start_failure_recovery_confirmed
+  note: Selected cleanup and in-place chooser recovery after valid selection but failed real-runtime startup, with Retry, Browse and Quit and no fake fallback. Cleanup failure must be reported; exact mechanism and explicit-path startup failure remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-53; docs/planning/active/friday-tui/validation/chooser-real-start-failure-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:40:36+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: explicit_real_start_failure_exit_confirmed
+  note: Selected partial-service cleanup, error report and nonzero exit after failed real startup with valid explicit --config; no chooser or fake fallback. Cleanup failure is reported; exact mechanism remains technical-contract work under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-54; docs/planning/active/friday-tui/validation/explicit-real-start-failure-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:43:10+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: chooser_content_detection_confirmed
+  note: Selected shallow read-only top-level YAML inspection for likely runtime configs with custom basenames; exclude recognized model-library/presentation files and retain Browse for unrecognized paths. Exact signature remains technical-contract work under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-55; docs/planning/active/friday-tui/validation/chooser-content-detection-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:45:38+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: chooser_start_cleanup_failure_exit_confirmed
+  note: Selected reporting both startup and cleanup failures, best-effort terminal restoration and nonzero exit after chooser-based real startup; no in-process retry or Browse with uncertain resources. Exact mechanism remains technical-contract work under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-56; docs/planning/active/friday-tui/validation/chooser-start-cleanup-failure-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:47:16+00:00'
+  actor: Codex
+  actor_role: agent
+  action: startup_bootstrap_contract_drafted
+  note: Consolidated D-47 through D-56 into a draft startup contract with proposed shallow YAML signature, failure-state matrix and testable bootstrap groups. Exact parser, neutral loader and resource-close contracts require review; design_only authority.
+  evidence: docs/planning/active/friday-tui/startup-bootstrap-contract.md; docs/planning/active/friday-tui/validation/startup-bootstrap-contract-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:49:34+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: incomplete_chooser_candidate_confirmed
+  note: Selected initial-list visibility for incomplete but recognizable runtime YAML, with full validation only after selection and D-50 recovery. Exact key signature remains technical-contract work under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-57; docs/planning/active/friday-tui/validation/incomplete-chooser-candidate-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:51:58+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: chooser_browse_path_entry_confirmed
+  note: Selected both folder navigation and typed/pasted absolute, relative and home-shorthand path entry for Browse, with current displayed folder as the relative base and in-chooser recovery for missing/invalid files. No automatic search, file creation or explicit --config change; design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-58; docs/planning/active/friday-tui/validation/browse-path-entry-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:55:37+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: chooser_refresh_confirmed
+  note: Accepted visible keyboard-focusable on-demand Refresh of the no-config chooser's captured launch-folder candidates, including new, removed and reclassified files and empty-list recovery. No automatic watcher, wider search, full validation or runtime start; design_only authority.
+  evidence: Current-session acceptance of recommended option; docs/planning/active/friday-tui/decisions.md D-59; docs/planning/active/friday-tui/validation/chooser-refresh-checks.json
+- task: friday-tui
+  at: '2026-10-17T03:58:30+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: chooser_symlink_candidates_confirmed
+  note: Accepted direct-child .yaml/.yml links to readable regular runtime-shaped files, including outside-folder targets, for initial and refreshed lists. Broken, cyclic, unreadable, directory-target and unrelated links stay Browse-only with D-50 recovery; no recursive scan or runtime start. Design_only authority.
+  evidence: Current-session acceptance of recommended option; docs/planning/active/friday-tui/decisions.md D-60; docs/planning/active/friday-tui/validation/chooser-symlink-checks.json
+- task: friday-tui
+  at: '2026-10-17T04:05:07+00:00'
+  actor: Codex
+  actor_role: agent
+  action: neutral_config_loader_contract_drafted
+  note: Drafted a source-backed neutral Chat-compatible application YAML loader and Chat facade proposal, splitting file loading from neutral effects and assembly. Read-only baseline was 103 focused Chat/runtime tests and 155 friday-cli tests. No product code, dependency or existing CLI behavior changed; design_only authority remains.
+  evidence: docs/planning/active/friday-tui/neutral-config-loader-contract.md; docs/planning/active/friday-tui/validation/neutral-config-loader-contract-checks.json
+- task: friday-tui
+  at: '2026-10-17T11:35:02+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: chat_only_runtime_mode_environment_confirmed
+  note: Accepted keeping FRIDAY_CHAT_RUNTIME specific to the existing Chat launcher. TUI ignores it for mode selection, uses real by default and its own explicit --runtime fake for fake mode; runtime YAML environment lookup and Chat behavior remain unchanged. Design-only authority.
+  evidence: Current-session agreement; docs/planning/active/friday-tui/decisions.md D-61; docs/planning/active/friday-tui/validation/chat-only-runtime-mode-checks.json
+- task: friday-tui
+  at: '2026-10-17T15:25:28+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: startup_replay_result_retention_confirmed
+  note: Selected a read-only startup replay result screen that remains until Quit after successful --replay FILE. The view shows file and processed-turn count, admits no commands and does not enter configured startup. Per-turn content and failure view remain open; design-only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-62; docs/planning/active/friday-tui/validation/startup-replay-result-checks.json
+- task: friday-tui
+  at: '2026-10-17T16:10:27+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: startup_replay_summary_content_confirmed
+  note: Selected only replay file and processed-turn count as data on the completed startup replay result screen for the first release. No browsable turn-by-turn record; D-62 retention until Quit remains. Failure presentation is still open; design-only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-63; docs/planning/active/friday-tui/validation/startup-replay-summary-checks.json
+- task: friday-tui
+  at: '2026-10-17T16:15:01+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: startup_replay_failure_view_confirmed
+  note: Selected a read-only startup replay file/error screen that remains until Quit after missing/invalid CSV or replay failure, followed by nonzero exit; no chooser or interactive session. Explicit Retry and cleanup details remain open under design-only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-64; docs/planning/active/friday-tui/validation/startup-replay-failure-view-checks.json
+- task: friday-tui
+  at: '2026-10-17T16:23:19+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: startup_replay_no_retry_confirmed
+  note: Selected Quit and relaunch after a failed startup replay, with no in-process Retry. Accepted the remaining recommended replay direction as technical contract work and requested the next feature questions. Neutral error mapping and cleanup remain unbound under design-only authority.
+  evidence: Current-session A answer and replay-direction acceptance; docs/planning/active/friday-tui/decisions.md D-65; docs/planning/active/friday-tui/validation/startup-replay-no-retry-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:12:16+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: slash_suggestion_visibility_confirmed
+  note: Selected automatic name and alias suggestions while typing a leading slash command, derived from the TUI registry. Display has no editor or execution side effect. Suggestion-selection controls remain open; planning authority is design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-66; docs/planning/active/friday-tui/validation/slash-suggestion-visibility-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:13:42+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: slash_suggestion_selection_confirmed
+  note: Selected inline suggestion completion of the current command token while retaining arguments and editor focus; selection never dispatches and Enter or Submit remains separate. Exact keyboard and pointer controls remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-67; docs/planning/active/friday-tui/validation/slash-suggestion-selection-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:16:16+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: slash_suggestion_keys_confirmed
+  note: Selected Up/Down to highlight and Tab to insert an inline suggestion while open, with Enter always submitting the editor draft and Tab moving focus when no suggestion list is open. Pointer/dismissal and terminal UAT remain under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-68; docs/planning/active/friday-tui/validation/slash-suggestion-key-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:18:04+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: slash_subcommand_suggestions_confirmed
+  note: Selected declared subcommand suggestions after a recognized slash command, drawn from active TUI metadata. Reuse fill-only selection; do not suggest free-form values or execute on selection. Planning authority remains design_only.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-69; docs/planning/active/friday-tui/validation/slash-subcommand-suggestion-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:20:06+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: slash_usage_hints_confirmed
+  note: Selected contextual display-only argument usage hints for recognized slash commands and subcommands from active TUI metadata. Hints do not fill values or execute commands; exact placement remains UI-contract work under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-70; docs/planning/active/friday-tui/validation/slash-usage-hint-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:22:36+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: editor_history_content_confirmed
+  note: Selected accepted conversational prompts and submitted slash commands for running-TUI editor history. Recalling fills the editor without execution; persistence, additional routes, exact keys and draft restoration remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-71; docs/planning/active/friday-tui/validation/editor-history-content-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:25:02+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: editor_history_session_scope_confirmed
+  note: Selected in-process editor recall history for the current TUI run only; a new launch starts empty despite saved transcripts. No new history file or runtime-memory write. Other routes, navigation keys and draft restoration remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-72; docs/planning/active/friday-tui/validation/editor-history-session-scope-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:26:38+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: editor_history_draft_restoration_confirmed
+  note: Selected preservation of the unsent editor draft and editing position during recall browsing, restoring both exactly on leaving without submission. Browsed copies do not mutate submitted entries; keys and other routes remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-73; docs/planning/active/friday-tui/validation/editor-history-draft-restoration-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:28:35+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: editor_history_boundary_keys_confirmed
+  note: Selected Up/Down history traversal at multiline editor caret boundaries rather than F3/F4. Open slash suggestions take arrow-key priority; interior arrow movement remains caret navigation. Physical terminal UAT remains under design_only authority.
+  evidence: Current-session B answer; docs/planning/active/friday-tui/decisions.md D-74; docs/planning/active/friday-tui/validation/editor-history-boundary-keys-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:30:27+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: editor_history_additional_routes_confirmed
+  note: Selected accepted @agent messages and enabled/admitted ! commands for current-run editor recall. Recall fills only; disabled or rejected routes are excluded. Existing route enablement and CLI behavior remain unchanged under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-75; docs/planning/active/friday-tui/validation/editor-history-additional-routes-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:33:55+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_file_browsing_confirmed
+  note: Selected first-release file browsing in the Context sidebar. Source check found Chat file read output, memory ingest and configured smart-file tool results but no selected-file attachment for later model turns. Attachment interaction and lifetime remain open under design_only authority.
+  evidence: Current-session B answer and selected-file question; docs/planning/active/friday-tui/decisions.md D-76; docs/planning/active/friday-tui/validation/context-file-browsing-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:37:45+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_file_selection_attachment_confirmed
+  note: Selected immediate context attachment when a user deliberately selects a file in the first-release Context browser. No separate Add action or prompt submission. Focus movement and scrolling do not select; attachment lifetime beyond the next accepted conversational turn remains open under design_only authority.
+  evidence: Current-session B answer; docs/planning/active/friday-tui/decisions.md D-77; docs/planning/active/friday-tui/validation/context-file-selection-attachment-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:38:59+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_file_attachment_lifetime_confirmed
+  note: Selected retention of an attached file across accepted conversational turns until explicit removal. Removal affects future turns, not an admitted turn; relaunch and multiple-file behavior remain open under design_only authority.
+  evidence: Current-session B answer; docs/planning/active/friday-tui/decisions.md D-78; docs/planning/active/friday-tui/validation/context-file-attachment-lifetime-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:40:24+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_file_relaunch_scope_confirmed
+  note: Selected empty attachment state on every new TUI launch, even when earlier transcripts exist. Current-run attachments remain until removed or exit; no new persistence is added under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-79; docs/planning/active/friday-tui/validation/context-file-relaunch-scope-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:42:50+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_multiple_file_attachments_confirmed
+  note: Selected adding a second distinct file alongside existing attachments, with individual removal and no implicit replacement. Duplicate-selection and aggregate budget rules remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-80; docs/planning/active/friday-tui/validation/context-multiple-file-attachments-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:48:10+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_file_snapshot_confirmed
+  note: Selected content snapshot at deliberate file selection, reused across turns; same-file reselection refreshes in place without duplication, and failed refresh retains the last good snapshot with an error. Format and budget policy remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-81; docs/planning/active/friday-tui/validation/context-file-snapshot-checks.json
+- task: friday-tui
+  at: '2026-10-17T19:59:29+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_file_format_extraction_confirmed
+  note: Selected actual text/code/data plus PDF, DOCX and XLSX extraction for first-release attachments, with required installed readers and no placeholder or empty success. Existing friday-tools readers are candidates; Chat /read remains unchanged. OCR, workbook scope and budgets remain open under design_only authority.
+  evidence: Current-session B answer; docs/planning/active/friday-tui/decisions.md D-82; docs/planning/active/friday-tui/validation/context-file-format-extraction-checks.json
+- task: friday-tui
+  at: '2026-10-17T20:44:10+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_scanned_pdf_tesseract_confirmed
+  note: Selected first-release Tesseract OCR for scanned/image-only PDF attachments. The neutral OCR unit must render PDF pages, capture real recognized text for model context, fail visibly when required components or text are absent, and preserve Chat/CLI behavior. Mixed-page policy, language support, dependency distribution and budgets remain open under design_only authority.
+  evidence: Current-session B answer naming Tesseract; docs/planning/active/friday-tui/decisions.md D-83; docs/planning/active/friday-tui/validation/context-scanned-pdf-ocr-checks.json
+- task: friday-tui
+  at: '2026-10-17T21:04:38+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_mixed_pdf_page_routing_confirmed
+  note: Selected embedded text on PDF pages where usable and Tesseract only for pages lacking it, preserving page order without duplicate OCR text. Partial-page failure, text-usability criteria, OCR languages, installation and budgets remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-84; docs/planning/active/friday-tui/validation/context-mixed-pdf-page-routing-checks.json
+- task: friday-tui
+  at: '2026-10-18T00:25:45+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_tesseract_system_dependency_confirmed
+  note: Selected separately system-installed Tesseract for first-release OCR on macOS/Linux. TUI must not bundle or auto-install it; missing executable fails OCR attachment with an actionable error but leaves ordinary file use available. PDF renderer distribution, languages, page-failure policy and budgets remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-85; docs/planning/active/friday-tui/validation/context-tesseract-system-dependency-checks.json
+- task: friday-tui
+  at: '2026-10-18T01:17:30+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_ocr_page_failure_rejection_confirmed
+  note: Selected rejection of the entire new PDF attachment if any page requiring OCR cannot yield usable text. Report page and cause, send no partial PDF context, preserve the last complete snapshot on failed refresh and leave other files attached. OCR language, renderer, usability and budgets remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-86; docs/planning/active/friday-tui/validation/context-ocr-page-failure-checks.json
+- task: friday-tui
+  at: '2026-10-18T01:49:45+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_ocr_language_selection_confirmed
+  note: Selected English-default OCR with configurable installed Tesseract language packs through a TUI-only field in the shared presentation file. Missing requested packs fail OCR attachment by name without fallback; runtime and CLI configuration behavior stay unchanged. PDF renderer, usability criteria and budgets remain open under design_only authority.
+  evidence: Current-session B answer; docs/planning/active/friday-tui/decisions.md D-87; docs/planning/active/friday-tui/validation/context-ocr-language-selection-checks.json
+- task: friday-tui
+  at: '2026-10-18T01:53:19+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_pdf_renderer_package_confirmed
+  note: Selected an installed friday-tui package dependency for the cross-platform PDF page renderer, so users do not install a separate renderer. Tesseract and language packs remain system-installed. Exact renderer, licensing/platform/native dependency proof, text-usability criteria and budgets remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-88; docs/planning/active/friday-tui/validation/context-pdf-renderer-package-checks.json
+- task: friday-tui
+  at: '2026-10-18T02:52:55+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_xlsx_all_worksheets_confirmed
+  note: Selected every worksheet in an attached XLSX workbook, labeled by sheet name and kept in workbook order, including non-active and hidden sheets. Existing reader defaults to active sheet, so neutral TUI extraction and actual model-input tests must prove complete multi-sheet content. Formula, per-sheet failure and budget rules remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-89; docs/planning/active/friday-tui/validation/context-xlsx-all-worksheets-checks.json
+- task: friday-tui
+  at: '2026-10-18T03:55:33+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_xlsx_sheet_failure_rejection_confirmed
+  note: Selected whole-workbook rejection with a sheet-specific error if any XLSX worksheet read fails. No partial new model input; failed refresh keeps the last complete snapshot and other attachments remain active. Formula and size/context policy remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-90; docs/planning/active/friday-tui/validation/context-xlsx-sheet-failure-checks.json
+- task: friday-tui
+  at: '2026-10-18T13:46:06+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_xlsx_formula_and_saved_result_confirmed
+  note: Selected both formula expression and any workbook-saved result, distinctly labeled with sheet and cell; unavailable saved values are identified without calculation. Existing reader returns saved results only, so neutral TUI extraction needs formula-aware model-input tests. Size/context policy remains open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-91; docs/planning/active/friday-tui/validation/context-xlsx-formula-result-checks.json
+- task: friday-tui
+  at: '2026-10-18T13:48:20+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_oversized_file_rejection_confirmed
+  note: Selected whole-file rejection with a visible limit error when a file's extracted content exceeds the TUI per-file attachment bound. No partial excerpt or new model input; failed refresh preserves the last complete snapshot. Numeric threshold, measurement and aggregate budget remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-92; docs/planning/active/friday-tui/validation/context-oversized-file-rejection-checks.json
+- task: friday-tui
+  at: '2026-10-18T13:50:53+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_aggregate_attachment_rejection_confirmed
+  note: Selected rejection of a new attachment that would exceed the combined file budget, preserving all existing snapshots with no automatic eviction or partial content. Users remove files and retry; an over-budget refresh retains the previous complete snapshot. Numeric aggregate bound remains open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-93; docs/planning/active/friday-tui/validation/context-aggregate-attachment-rejection-checks.json
+- task: friday-tui
+  at: '2026-10-18T13:54:32+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_attachment_limit_configuration_confirmed
+  note: Selected optional typed TUI-only per-file and combined attachment-limit settings with defaults under the existing shared presentation file's tui.attachments namespace. Exact field names, units and numeric bounds remain open; CLI and Friday runtime configuration stay unchanged under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-94; docs/planning/active/friday-tui/validation/context-attachment-limit-config-checks.json
+- task: friday-tui
+  at: '2026-10-18T13:57:46+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_attachment_token_units_confirmed
+  note: Selected estimated tokens for both per-file and combined attachment limits, counting complete formatted model-input text including labels and OCR/formula content. Exact estimator, headroom and numeric defaults remain open; no runtime or CLI limit change under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-95; docs/planning/active/friday-tui/validation/context-attachment-token-units-checks.json
+- task: friday-tui
+  at: '2026-10-18T14:02:18+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_attachment_fixed_defaults_confirmed
+  note: Selected fixed conservative estimated-token defaults for omitted per-file and combined TUI attachment limits across models and providers, rather than context-window scaling. Explicit settings still override them; exact numeric values, estimator and headroom remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-96; docs/planning/active/friday-tui/validation/context-attachment-fixed-defaults-checks.json
+- task: friday-tui
+  at: '2026-10-18T14:07:07+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_attachment_default_values_confirmed
+  note: Selected fixed omitted TUI attachment limits of 4,000 estimated tokens per file and 8,000 combined. Exactly-at-limit content is admitted; above-limit content is rejected. A passed attachment may still exceed later model-turn context; exact estimator, field names, override ranges and turn-level behavior remain open under design_only authority.
+  evidence: Current-session B answer; docs/planning/active/friday-tui/decisions.md D-97; docs/planning/active/friday-tui/validation/context-attachment-default-values-checks.json
+- task: friday-tui
+  at: '2026-10-18T14:12:10+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_turn_preflight_rejection_confirmed
+  note: Selected rejection of an over-budget fully assembled first model request before the provider call, with estimated total/available/overage shown and exact draft plus attachments retained. No accepted-turn, provider or tool effects; neutral preflight, estimator and later agent-loop behavior remain construction or subsequent decisions under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-98; docs/planning/active/friday-tui/validation/context-turn-preflight-rejection-checks.json
+- task: friday-tui
+  at: '2026-10-18T14:25:09+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: context_older_turn_compaction_recovery_confirmed
+  note: Selected one eligible, runtime-configured older-turn compaction attempt for each over-budget initial or later conversational model step, followed by full reassembly and re-estimation. Compaction may call its own model service and persist memory effects; a still-over-budget step stops safely. No new active-loop compaction or Chat/CLI behavior change under design_only authority.
+  evidence: Current-session acceptance of older-turn compaction recommendation; docs/planning/active/friday-tui/decisions.md D-99; docs/planning/active/friday-tui/validation/context-older-turn-compaction-recovery-checks.json
+- task: friday-tui
+  at: '2026-10-18T14:30:29+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: post_estimate_provider_context_rejection_confirmed
+  note: Selected user-directed recovery when a provider reports a recognizable context-length rejection after a passing Friday estimate. The TUI shows the post-send error and preserves the initial submitted draft/attachments or marks a later agent-loop turn incomplete with prior tool activity/effects; it adds no automatic compaction or resend. Classification and transcript details remain construction work under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-100; docs/planning/active/friday-tui/validation/provider-context-rejection-recovery-checks.json
+- task: friday-tui
+  at: '2026-10-18T14:33:45+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: failed_prompt_editor_recovery_confirmed
+  note: Selected automatic restoration of a provider-rejected initial prompt into an empty editor; when a newer unsent draft exists, leave it intact and show a Restore action using the established Confirm/Cancel replacement pattern. No automatic resend, new compaction or Chat/CLI change under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-101; docs/planning/active/friday-tui/validation/failed-prompt-editor-recovery-checks.json
+- task: friday-tui
+  at: '2026-10-18T14:47:38+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: failed_initial_transcript_exclusion_confirmed
+  note: Selected no persistent transcript entry for a first provider context-length rejection after a passing estimate. The error and submitted prompt stay recoverable only during the current TUI run; a later successful corrected submission is recorded once. Later post-tool failure persistence remains open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-102; docs/planning/active/friday-tui/validation/failed-initial-transcript-exclusion-checks.json
+- task: friday-tui
+  at: '2026-10-18T15:01:58+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: later_incomplete_turn_transcript_exclusion_confirmed
+  note: Selected no transcript entry for an incomplete agent-loop turn after tool execution when a later model step still exceeds local budget or receives a provider context-length rejection. Current-run Activity remains bounded and visible while retained; completed tool effects and earlier transcripts are unchanged under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-103; docs/planning/active/friday-tui/validation/later-incomplete-transcript-exclusion-checks.json
+- task: friday-tui
+  at: '2026-10-18T15:49:11+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: failed_prompt_restore_location_confirmed
+  note: Selected an editor-adjacent Restore failed prompt action when the failed initial request error notice is evicted from the bounded conversation. Recovery remains available in the current TUI run, with keyboard and pointer access and no automatic draft replacement or resend. Explicit /cls treatment remains open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-104; docs/planning/active/friday-tui/validation/failed-prompt-restore-location-checks.json
+- task: friday-tui
+  at: '2026-10-18T16:25:58+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: failed_prompt_display_clear_recovery_confirmed
+  note: Selected continued current-run failed-prompt recovery through /cls, /clearscreen and the bound display-clear shortcut. The conversation notice, pin and Activity clear, while Restore remains beside the editor without automatic resend or transcript persistence. Later successful-submission and explicit-dismissal behavior remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-105; docs/planning/active/friday-tui/validation/failed-prompt-display-clear-recovery-checks.json
+- task: friday-tui
+  at: '2026-10-18T16:35:26+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: older_failed_prompt_successful_turn_cleanup_confirmed
+  note: Selected clearing the earlier failed initial prompt's Restore action and in-process recovery only after a different conversational turn completes successfully. Admission, partial output, a failed new turn and slash commands alone do not clear it. The failed attempt remains absent from transcripts under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-106; docs/planning/active/friday-tui/validation/older-failed-prompt-successful-turn-cleanup-checks.json
+- task: friday-tui
+  at: '2026-10-18T17:17:16+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: multiple_failed_prompt_restore_chooser_confirmed
+  note: Selected one editor-adjacent Restore failed prompts count control and newest-first chooser when two or more failed initial prompts remain recoverable in the current run. Opening or canceling the chooser leaves the newer draft intact; selection uses existing Confirm/Cancel protection. Selected-entry disposition and pending cap remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-107; docs/planning/active/friday-tui/validation/multiple-failed-prompt-restore-chooser-checks.json
+- task: friday-tui
+  at: '2026-10-18T18:19:28+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: confirmed_restore_pending_retention_confirmed
+  note: Selected keeping a confirmed restored prompt's original snapshot in the current-run pending recovery chooser, with unchanged count, until a conversational turn succeeds. Editor edits or replacement do not mutate the original; a successful turn clears all earlier pending recoveries. Explicit dismissal and pending cap remain open under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-108; docs/planning/active/friday-tui/validation/confirmed-restore-pending-retention-checks.json
+- task: friday-tui
+  at: '2026-10-18T18:30:10+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: failed_prompt_explicit_dismissal_confirmed
+  note: Selected confirmed per-prompt Dismiss for current-run failed-prompt recovery and asked to stop failed-prompt option questions. Finite recovery-state limits and deterministic overflow behavior move to the construction directive under design_only authority.
+  evidence: Current-session A answer; docs/planning/active/friday-tui/decisions.md D-109; docs/planning/active/friday-tui/validation/failed-prompt-explicit-dismissal-checks.json
+- task: friday-tui
+  at: '2026-10-18T18:37:21+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n00_integration_review_and_n01s_directive_proposed
+  note: Rechecked the 50-command source registry and independent-service gaps; captured 108 focused Chat/Runtime and 155 friday-cli passing before-code tests plus existing launcher behavior; drafted a source-backed N00 review and narrow N01S identity directive. No implementation authority or product change.
+  evidence: docs/planning/active/friday-tui/n00-integration-review.md; docs/planning/active/friday-tui/directives/CD-TUI-N01S-session-identity.md; docs/planning/active/friday-tui/validation/n00-integration-review-checks.json
+- task: friday-tui
+  at: '2026-10-18T19:16:11+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01s_construction_approved
+  note: Approved CD-TUI-N01S and granted implementation authority for the neutral session-identity slice only. The three exact source/test paths in that directive are in scope; later TUI units retain design-only authority.
+  evidence: Current-session reply 'approved, proceed' to the explicit CD-TUI-N01S scope-and-authority question; docs/planning/active/friday-tui/directives/CD-TUI-N01S-session-identity.md; docs/planning/active/friday-tui/authority.json

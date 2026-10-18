@@ -1,0 +1,31 @@
+{
+  "initiative": "friday-tui",
+  "kind": "chooser_invalid_selection_recovery_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-50: when a chooser-selected file fails runtime-configuration validation, keep the chooser open with an actionable error and Retry of the selected path, Browse to another file, and Quit. Retry rereads the selected path. No runtime starts from an invalid file. Explicit --config failure and real-provider startup failure remain separate.",
+  "documents_sha256": {
+    "README.md": "7d7b0e932d590aa30691491d598bb66feddd14b513609e2b42ccf564a32e296d",
+    "decisions.md": "3edef18d7b38cb4cb1ac0c66b5f2eaeeca206b9e9c200a202312684132d402de",
+    "replacement-plan.md": "1dcbde3ca513031eeffc78f39f0b02cd996a32059d4a8337e916cde09c6bd53c",
+    "architecture-reset.md": "7f3b35013db7c3baff4beccb25a92970e699d8424fb0d419ed13931692cac162",
+    "neutral-capability-map.md": "e4d8c1c2ad293ffdf1859ce44240e6be2ddd948b70d6afe722201133c94e2d4d",
+    "user-guide-requirements.md": "dbd55504be3f4605ad1a66e8c0ce3b0d869f7115b3567a38e8d182cfb15b92ad",
+    "authority.json": "26d6f103420a64ff7eb5b6d48806e301c8b0dd67bf1c07fa21d6d47dcca629d7",
+    "execution-log.md": "c19a9c4ca9392db201abe0dbc7d822c27241b3c996504b5d5cb5ef3fd89eda6b",
+    "docs/planning/board.yaml": "7c7b612d6ba0d4196bad2a9f23ec05325bdb6f519de1a24ac3e1be491867a4f8",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "44 valid before this receipt",
+    "packet_markdown_links": "17 files; 151 local links; no missing targets",
+    "packet_trailing_whitespace": "17 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

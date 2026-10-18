@@ -1,0 +1,37 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_mixed_pdf_page_routing_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-84: for mixed PDFs, use usable embedded text on text pages and Tesseract OCR only on pages without usable embedded text; preserve original page order and avoid duplicated OCR text. Text-usability criteria and partial-page failure handling remain open.",
+  "source_evidence": {
+    "maintainer_answer": "A to the page-selective OCR question",
+    "existing_pdf_reader": "packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py uses pypdf embedded-text extraction and does not route per-page OCR"
+  },
+  "documents_sha256": {
+    "decisions.md": "0a3a468f615c3941eccdd4d94724987805a4a3c5744d3295e29d83a4f6aa621f",
+    "screen-layout.md": "1c8df376612ca6265f9ba9649262e0ad9935bcce04b4ee278b827ea26258dacb",
+    "README.md": "037e76cfb70bf277bbaccf22e3393ff2d3dd57d8e81da7b280ed0823ff0b9c66",
+    "replacement-plan.md": "c1063d2aa1b227094d21560795ade7bf157ca2d1d4beaf52e69505fabdb7f78b",
+    "user-guide-requirements.md": "ffcef690cc77318736d9c39525c381980847920bbfd38acee50a323ba1fcefd9",
+    "neutral-capability-map.md": "4bccd7ff08edd99664582ed044f1e42e1a450200fe0bd088b03e3ae0cfaf7925",
+    "authority.json": "5b41c9fc8400032cea8d7f48d5e8ea0ed101e36c2881be0b8a159a1afe269c64",
+    "execution-log.md": "3920a1959f7697642cbaeaa06306fe1d1680378f3c15df95ca0793753f13b776",
+    "docs/planning/board.yaml": "ed2d5c40ac15c4ed567c5f1017f18af24d3a99739b5178be57faa15d81ef56b9",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "80 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "mixed_pdf_ocr_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted page-selective OCR routing and planning checks only. Usable-text detection, per-page failure handling, Tesseract installation, language support, dependency distribution, size/time budgets, installed OCR attachment tests, terminal UAT and release acceptance remain open."
+}

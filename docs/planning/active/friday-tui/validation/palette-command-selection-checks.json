@@ -1,0 +1,27 @@
+{
+  "initiative": "friday-tui",
+  "kind": "palette_command_selection_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-40: selecting a slash command in the palette fills and focuses the editor for review and arguments without dispatch; Enter or Submit invokes normal admission later",
+  "documents_sha256": {
+    "README.md": "e2bfa0903cdc7c4c99495570da5b839909329663ec5906f774594199a6d3d1cb",
+    "decisions.md": "b2dd4a002ad291803be3ed6b136e138abfb1a3e19a88e743664baf7032977824",
+    "replacement-plan.md": "4da241c51c4ee6c8bdde957da15b5dcab8321cd4dba7fb261c3163abf7ee04b0",
+    "screen-layout.md": "dccf0380e2083e14286022d34af313ccfc6eb8f1eea5ba8eabc1909bf3ebb959",
+    "user-guide-requirements.md": "aeee773b76f854feae9afe3be525fe09dc457963a98c4b1179a015751c6b48c0",
+    "ux-configuration.md": "ffac4c122e9a400251fbf132de1eff81fb8fd3751b353736a9b02cf7e0c0ea1a",
+    "authority.json": "cd57e45999e681d3edd9e7f62efa641c403145599b54cddb96c9e12f2b4f86de",
+    "execution-log.md": "4230ec837b99d28c7e08902ae50afef20ac22183f2300c8c7d0ee04bbf13ced2"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "33 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. Existing-draft treatment is open. No TUI implementation, product tests, UAT or release acceptance is claimed."
+}

@@ -1,0 +1,39 @@
+{
+  "initiative": "friday-tui",
+  "kind": "failed_initial_transcript_exclusion_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-102: a first conversational provider request rejected for context length after a passing Friday estimate creates no persistent failed-attempt transcript entry. Keep the error and submitted prompt recoverable only in the current TUI run; a corrected successful resubmission is recorded once as a new turn.",
+  "source_evidence": {
+    "maintainer_answer": "A to in-process recovery without a persistent failed-attempt transcript entry.",
+    "prior_decisions": "D-100 sets user-directed correction after post-send provider context rejection; D-101 restores the initial submitted prompt in an empty editor or exposes a Restore action without overwriting a newer draft.",
+    "existing_chat_comparison": "packages/friday-chat/src/friday_chat/turns/processor.py persists a completed turn after response processing; packages/friday-chat/src/friday_chat/app.py records turn state after processing succeeds. The TUI cannot import Chat code.",
+    "transcript_boundary": "The new TUI-neutral persistence contract must distinguish an attempted provider request from a completed conversation turn, without claiming provider telemetry or separately persisted memory effects were reversed."
+  },
+  "documents_sha256": {
+    "decisions.md": "bc8b78e2cdf37090fb099cc533a4555180da9e87ba692bb72f668c3b0fab149e",
+    "README.md": "f33be3842305bd0223c452e73f27d638d04c2277348022fb981b4fab81ef4d1d",
+    "replacement-plan.md": "08873a67da069e53a94221b9b203e6a5962b565b6ab037c60bbd20596d44adb7",
+    "screen-layout.md": "82f22063e460317ea1057ec4656d69ab4b57eac607489c8d9d48b628d1ae15e1",
+    "user-guide-requirements.md": "1a74dafcc635fde3f03b1721a114935cde10f46550e1e70e80fc629fc32f15af",
+    "neutral-capability-map.md": "1e9889663a8a68f7e789a215e268d6b14168d45f69ec8293108eab27e96c670d",
+    "authority.json": "731d798702a3e618ba62daca4e293705c866231e6e7862d841f0a31f363a200f",
+    "execution-log.md": "200f2d6b4c858222a3fdf8895de4da4ab1e18363b11adc8ed3383590d99db617",
+    "docs/planning/board.yaml": "f094dcd66466d11b39d73c672c9bee0d5a37a1df247fbfb3f647c77aeb0ced47",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "98 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 127 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "transcript_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted failed-initial transcript exclusion and planning checks only. Later post-tool failure persistence, Restore-action lifetime under view eviction, provider-error classification, installed behavior, terminal UAT and release acceptance remain open."
+}

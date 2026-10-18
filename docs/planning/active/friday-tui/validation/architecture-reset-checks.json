@@ -1,0 +1,30 @@
+{
+  "initiative": "friday-tui",
+  "kind": "planning_architecture_reset",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "documents_sha256": {
+    "architecture-reset.md": "63f558c9ae10d6eee59926c30c79dd8e2da3c45ab7f814bde3e4297db536a41a",
+    "decisions.md": "2637fbe66b60cee2e7c9365f08f7042e0bcb33b7436b750934eb92af7da28166",
+    "README.md": "fcebda268895bba5137a9fb4f4284d93d1702d8ec99af3048d354ad882a22efa",
+    "build-plan.md": "5acf3278995f14d537e4abeae2fba6de31e1d6222ee61e58ad2ba449a7e59100",
+    "integration-contract.md": "a5d30c1af850ffab347b2e3e8a4bd1980771c6253070e786caa33affb6e172c1",
+    "tactical-plan.md": "35c43595071a93ec7a9fe9d747eefbc066639a7d2e98012fa68ca451d43e4c2a",
+    "test-and-uat-plan.md": "48431d22e97d1240a80273a1c2bc426a258024f18bbcb728464c2b576e1936f4",
+    "ux-configuration.md": "1b4a12830518d45aed8e637f6b7117708f422fa39ffbbeec85332472a301e9de",
+    "directives/CD-TUI-001-shared-presentation-contracts.md": "6422e1b1d783307c96b5616f30733f46aa0be25c5cc403cb3b611f4cca74c07e",
+    "authority.json": "6f517d52f3235b6c845f95155ac4cb0143dd1d2fce63a93d3083119094d15888",
+    "execution-log.md": "69d0255cd74e81e561dc399632f912f792d6e83c36178bcaf2bd51bfa0573273"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "13 valid",
+    "packet_markdown_links": "11 files; no missing local targets",
+    "tracked_git_diff_check": "passed",
+    "changed_packet_trailing_whitespace": "passed",
+    "product_code_or_dependency_changes": "none in this amendment"
+  },
+  "evidence_limit": "Planning documentation only. Prior test receipts remain historical; no TUI implementation, new product tests, Linux terminal UAT or user acceptance was performed."
+}

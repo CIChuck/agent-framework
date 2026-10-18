@@ -1,0 +1,30 @@
+{
+  "initiative": "friday-tui",
+  "kind": "chooser_candidate_types_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-49: the launch-directory chooser list shows likely Friday Chat runtime YAML, including custom filenames, and excludes recognized model-library and CLI presentation YAML. Browse accepts another existing path. Candidate listing is read-only and does not validate the whole config or start the runtime. Exact classifier and empty/invalid-file recovery remain open.",
+  "documents_sha256": {
+    "README.md": "1caa026543f7a58233dd8704ae88417ffe821893d9367344f55eb1d6b1294084",
+    "decisions.md": "a6a81de91bf35cf5654309ef7f4818cd44d1775c5d1e7016554bf52352e2c328",
+    "replacement-plan.md": "95af87fc6660545b68cda8b92c95ddcb87713797898d14c8826b2f17314eaa99",
+    "architecture-reset.md": "8d7bb4e5b2233b2e06c7497f7a3d8b9b64c54d497b0b099c2f823639c52aad7f",
+    "neutral-capability-map.md": "7ea6e07553eebee8089dfaccf5880276df71d34ef54baeffbe829762d43945d0",
+    "user-guide-requirements.md": "244817e9c6cb608d512e55ad46d3f6ba1ca11d9b4bdd8cfc391b445092c1fa71",
+    "authority.json": "4342fd280286a5ac13bb0be4d3ca6a353a201ffc8b82bed23aaea35e988cd6ca",
+    "execution-log.md": "6d587fbcda7ab631a6aded3e95fa38da144e450196ac6f6b246defc855c92f42",
+    "docs/planning/board.yaml": "d9537750447506dad8d904f87bf977b9d5ced18e9bdc3827484a9b381ef288db",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "43 valid before this receipt",
+    "packet_markdown_links": "17 files; 151 local links; no missing targets",
+    "packet_trailing_whitespace": "17 files; passed",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

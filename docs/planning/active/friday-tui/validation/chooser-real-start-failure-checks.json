@@ -1,0 +1,31 @@
+{
+  "initiative": "friday-tui",
+  "kind": "chooser_real_start_failure_recovery_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-53: after a valid chooser selection, failed real-runtime startup cleans up partial services, reports the error and returns to the chooser with Retry of the selected file, Browse and Quit. There is no silent fake fallback. Failed cleanup must be reported without implying retry is safe. Explicit --config startup failure remains separate.",
+  "documents_sha256": {
+    "README.md": "5fb2a789566350e5677950b13a406d3f6b097a9396035624695e04dc36346910",
+    "decisions.md": "0e22d3f4eb08c47383f171e7144cffebd4392d4ad09f7b57bbe30e33c3d24542",
+    "replacement-plan.md": "fd5314c9d3a4a94488bf3709d95013dbe3ff1ebe5495a4077738d407b47f6322",
+    "architecture-reset.md": "00b1482c375415a95571f9a0c9e00d11478fa47eeada963899f6f638fa4bd058",
+    "neutral-capability-map.md": "cb67777db2156ae97d0190aa0774f7de1063f6b229c19d1032f585c141d47747",
+    "user-guide-requirements.md": "6eca7ff49979c65c18cb5672ee9301c598b0084f07a20ad0451471acc6cd1005",
+    "authority.json": "dad4db5a3d7208a3dafa5f0b7860c7eee20fb63be6699a37142e53d6f672526b",
+    "execution-log.md": "1e67b95aa85cc3dfb6bb0d642be5abde93e5da28202d8592f8a25e1d25b666e4",
+    "docs/planning/board.yaml": "c88d57f86b8abbecfe8f9017971052cca70086e81f36f077861893dae029dc91",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "47 valid before this receipt",
+    "packet_markdown_links": "17 files; 151 local links; no missing targets",
+    "packet_trailing_whitespace": "17 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

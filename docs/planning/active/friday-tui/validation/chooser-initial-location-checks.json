@@ -1,0 +1,30 @@
+{
+  "initiative": "friday-tui",
+  "kind": "chooser_initial_location_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-48: when --config is absent, initial chooser candidates come from the captured process launch working directory, with Browse to another path. No automatic user-directory or recursive search. Explicit --config bypasses the list. Candidate classification and empty/invalid-file recovery remain open.",
+  "documents_sha256": {
+    "README.md": "7e8a5ffeaf957fd249e8e151dc298f8f748aa084e7ebe46b2b6bf509173b688b",
+    "decisions.md": "13f30be35fb664affbdf7c2bdd696c6f9744cbc608a13cedd2e196ec202c2d23",
+    "replacement-plan.md": "343eedc50c7545f27cc1528a75ba9f8d7fafd031f83a4a4e6fb3888b759a0255",
+    "architecture-reset.md": "4a4ff7b2db6e771eb047e5888bedd5418d93d7051583af1701b74351cd9d0aed",
+    "neutral-capability-map.md": "333dca9a59a49edce89b282a44b83dd9dfddafba8e2f8261a470ebe03e69e388",
+    "user-guide-requirements.md": "bdf543fd738769eb7cca6d9cf1bacae5a126044d89a0fe6c017b18cc71768f5c",
+    "authority.json": "fcfc04d0307b18222fbd449770292f7e256623a5985f552478f54a3810bf3569",
+    "execution-log.md": "2c40684282897cb4a88149f41bc0c94cef804a52a8347467c73985657b852915",
+    "docs/planning/board.yaml": "aa4dfd729a1e11380380145e4317df07c0f438c187ce0a9a51891366d4a8016a",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "42 valid before this receipt",
+    "packet_markdown_links": "17 files; 151 local links; no missing targets",
+    "packet_trailing_whitespace": "17 files; passed",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

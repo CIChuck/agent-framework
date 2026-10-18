@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_attachment_default_values_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-97: omitted per-file attachment limit defaults to 4,000 estimated tokens and omitted combined active-attachment limit defaults to 8,000 estimated tokens. Exactly-at-limit content is admitted, above-limit content rejected; explicit valid settings override each default independently. Attachment admission does not guarantee a later model turn fits.",
+  "source_evidence": {
+    "maintainer_answer": "B to 4,000 per-file and 8,000 combined fixed defaults",
+    "prior_decisions": "D-94 optional typed settings, D-95 estimated-token units, D-96 model-independent defaults",
+    "small_context_example": "docs/guides/00-quick-start.md includes an 8,192-token context-window example; 8,000 attachment tokens can leave too little room for other turn content"
+  },
+  "documents_sha256": {
+    "decisions.md": "0a173dbb89737dad4bbc1b3bcb29666530cdc46002b10245b1ca2b794ac922fb",
+    "README.md": "a48ce8de628195cd5fcd4996dea0a2cf41f8d122c0b6f331249d03c3768d205d",
+    "replacement-plan.md": "aebacd873bf774904b2ac22c9da1e336b3df4986932a3c11d9462d64a2555c9d",
+    "user-guide-requirements.md": "dd089136c231f663ec33394bbaf76e6bc39d7e5d1e9e62c7fa152bf20b01df2d",
+    "neutral-capability-map.md": "e8f1207b14e8b75eff79f63e38f95e6112241b115a906876801da250a7d8ae99",
+    "ux-configuration.md": "1fdea81be5a289d892b4936138ca268de9e6d09a70f713f3cf22cf4d4282781c",
+    "authority.json": "9dd08c91ab282f4b248828f82783e4d4d1db37ec50194a8a642c8fe499b8694d",
+    "execution-log.md": "fc8ccea87adea9652826e8d874109d886b1d4e6e2dd04e14bd605860cd175f93",
+    "docs/planning/board.yaml": "c05996131c8f44006a5ddfce930ed629a676d4a596c5411e04377ab1ab92ddc1",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "93 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 122 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "numeric_limit_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted default values and planning checks only. Exact field names, estimator, valid override ranges, runtime context policy, installed behavior, terminal UAT and release acceptance remain open."
+}

@@ -1,0 +1,26 @@
+{
+  "initiative": "friday-tui",
+  "kind": "planning_first_release_tool_activity_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "Rolling tool-activity log is required in the first TUI release; first-release AC-18 and guide/UAT coverage added. Parameter-disclosure rule remains open.",
+  "documents_sha256": {
+    "tool-activity-requirement.md": "5246594e12a869b3af47bbee25657ee872fef5a65ed0e156cde6abffa8097103",
+    "decisions.md": "97bab92675e13df41ff00f62962627a1cd6c1302054fad1c5f76c662f15be304",
+    "architecture-reset.md": "ec3d289818a70161a38e14bae0f14f7fad5e96a988f0949e46dfb137315d958e",
+    "README.md": "01826c07b728a87971d0da1c8bad77f6040b68a8660db749484d1c8ab9de7c56",
+    "user-guide-requirements.md": "60d64038338bdc5298541e56adbac333df5ffd396f61b87b224c747c7bc8d258",
+    "authority.json": "36e3cfbe9965ed1d02f2120e6267d86c48aaf073663a0b80521bade4fac46904",
+    "execution-log.md": "1469718cb5e5c8b288fdf437521d7bab98deb75d641f07eecf43a427d4d5920e"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "21 valid before this receipt",
+    "packet_markdown_links": "15 files; no missing local targets",
+    "tracked_git_diff_check": "passed",
+    "packet_trailing_whitespace": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No tool-activity UI, execution-event seam, parameter-disclosure behavior, terminal UAT, or product acceptance has been verified."
+}

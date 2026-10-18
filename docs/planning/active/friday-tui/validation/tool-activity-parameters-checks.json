@@ -1,0 +1,27 @@
+{
+  "initiative": "friday-tui",
+  "kind": "planning_first_release_tool_parameter_display_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "First-release Activity shows parameter values actually passed to executed tools without TUI-specific credential or sensitive-value filtering. Existing runtime tool policy is unchanged; filtering is later scope if requested.",
+  "documents_sha256": {
+    "tool-activity-requirement.md": "6a271a35f449a4cdab4b9fe638375defdeadf4dd7cdca21cbfa2eaac9194bb92",
+    "screen-layout.md": "afb9eb84778b35d20ea4bd5a3c9c64bb5b4b396ac92a4b8da7ee922f3eeb5a9e",
+    "decisions.md": "996c9e986951831bf23d8fbc9f57dc3846d4a84fbf29de1d97fdf296cdc5095f",
+    "architecture-reset.md": "3103c319aa9ec06c7724d2268439d963ffaca02bf8b07b78fa3875d358f61814",
+    "README.md": "80c11371ae77a8810857047503fc15d463d961f1eccd02c4460a9735667dd8ba",
+    "user-guide-requirements.md": "946677752c8d4a176d43b383d79ed8bc50e6834362772e817138583e6a0dff22",
+    "authority.json": "cc9fbd5a5dbe35dd16ce602e728d8b50b6504cc9add7ca099d3adf2dc753df28",
+    "execution-log.md": "a8ebbe20a908f087bd0899e72a19055e45f0ae9baf2780e326b55472f12e9e7b"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "22 valid before this receipt",
+    "packet_markdown_links": "15 files; no missing local targets",
+    "tracked_git_diff_check": "passed",
+    "packet_trailing_whitespace": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No tool-activity UI, raw parameter display, terminal UAT, or product acceptance has been verified."
+}

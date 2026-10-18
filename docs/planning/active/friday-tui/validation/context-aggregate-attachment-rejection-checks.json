@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_aggregate_attachment_rejection_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-93: reject a new attachment that would exceed the combined active-file budget, retaining all existing snapshots without automatic eviction or partial inclusion. The user removes files and retries; an over-budget refresh keeps its old complete snapshot.",
+  "source_evidence": {
+    "maintainer_answer": "A to rejecting the new file and keeping existing attachments until manual removal",
+    "related_decisions": "D-80 adds distinct files alongside existing attachments; D-81 keeps the last good snapshot on failed refresh; D-92 rejects per-file oversize without excerpts",
+    "implementation_boundary": "Neutral TUI attachment admission and visible status only; Chat and friday-cli behavior stay unchanged"
+  },
+  "documents_sha256": {
+    "decisions.md": "3514a80f3e081f8c437afa31c9770793264cff11d1d1bd3a9015bc0c89848fc1",
+    "screen-layout.md": "196c408a09feaed6935339b9263a053df6747af05ef53f8a56a75ff25f2e23d3",
+    "README.md": "c8065580c2fb88cce1ea7fd5e53f969e56f6dd6791b02085fe7dd449d2c5220c",
+    "replacement-plan.md": "ffdd74462c116ed23b314e4e5ba1461f17ee282e8e4fd159061894bcecbe22fc",
+    "user-guide-requirements.md": "4dc833e0df5f73eb7ea3a042269c48bdd555f25bb7d19e075d6cd6f5ef0faf56",
+    "neutral-capability-map.md": "12ac8dc1c70ebe071c0ea2ae70a62c45ef488946c529e2d8f5a94af4b288a4fd",
+    "authority.json": "42df00eef40bd68fb963f8dcab4cf1c968ba78d32482790c38e41268fae53d7b",
+    "execution-log.md": "ad914a0c2c010b773b13e342864d9cd397f3917a322a35592bd8eec19ae9370b",
+    "docs/planning/board.yaml": "e8fc904606756c12a90d8c38fe5ef6f0efbb9e0a699428f83021782d138b99ca",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "89 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "aggregate_attachment_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted aggregate over-limit outcome and planning checks only. Numeric measurement/threshold, runtime context reservation, installed multi-attachment behavior, terminal UAT and release acceptance remain open."
+}

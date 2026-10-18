@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_multiple_file_attachments_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-80: selecting another distinct file adds it alongside existing active attachments, without implicit replacement. Each attached file has its own Remove action; removing one leaves the others active for later accepted turns. Duplicate-selection and aggregate context-budget policy remain open.",
+  "documents_sha256": {
+    "decisions.md": "3e3f47bdb6f31580323829b1cfc17c80c67bf3697f93cfa1e8807b43fbade050",
+    "screen-layout.md": "394548ab16c7624c838d1839c527ef59cfbb841de2c1cd0c64f2eac4c907bea0",
+    "README.md": "e205fdd583659c1d148bab3549378f9ce7386199177bd6266d8cf00f57ea8288",
+    "replacement-plan.md": "6b343240943436e1ecdad7b8140574019fece62faa2fc47f6c657a9254f205f9",
+    "user-guide-requirements.md": "96a2e6d2a1e8d7330b54fa2ad3e539fd4013b0f9c4b153610aed0205a8c9d643",
+    "neutral-capability-map.md": "a36a50be2d2c9acafa6abdaedeca33273ba652830032262f110e52a7f5fad439",
+    "authority.json": "355279d1f6fea9c14f81fb6acb7570d657ef23cb7fbd1d35e7ddee6a2ade8fbf",
+    "execution-log.md": "a7272bc5d47ab09f456e9639231ffcecfd9273f91e4e756817f817791d2058fa",
+    "docs/planning/board.yaml": "0f503376a378f641a468feb6ff9365a98f6ac3b1116bae6c3ebb8dbb06fd102d",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "76 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only multiple-file decision and no product code change",
+    "tui_attachment_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted additive distinct-file attachments and planning checks only. Duplicate-selection, file-change, format, budget, implementation, terminal UAT and release acceptance remain open."
+}

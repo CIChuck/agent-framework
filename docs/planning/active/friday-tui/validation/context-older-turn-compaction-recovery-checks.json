@@ -1,0 +1,41 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_older_turn_compaction_recovery_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-99: for an initial or later over-budget conversational model step, make at most one eligible request to Friday runtime-configured older-turn compaction, reassemble and re-estimate the full pending request, then proceed if it fits or stop that step safely. Maintenance model calls and durable memory effects are separate from the blocked conversational provider request.",
+  "source_evidence": {
+    "maintainer_answer": "Yes, use older turn compaction for first-release over-budget model-step recovery.",
+    "prior_decision": "D-98 established initial request preflight and preservation of the unaccepted draft/attachments; D-99 refines the blocked-provider wording and includes later agent-loop steps.",
+    "existing_compactor": "packages/friday-memory/src/friday_memory/maintenance/compactor.py summarizes eligible older stored turns; its run may call a model, write memory and perform configured insight deduplication/promotion; target_met does not substitute for full request re-estimation.",
+    "eligibility_and_command": "packages/friday-memory/src/friday_memory/context/budget_monitor.py gates automatic compaction by enablement, in-flight state, cooldown and history; packages/friday-chat/src/friday_chat/commands/registry.py has a Chat-specific /compact handler that the independent TUI cannot import.",
+    "guide": "docs/guides/memory-management-guidelines.md describes opt-in runtime compaction, configured model service, recency/minimum-turn limits and non-guaranteed target."
+  },
+  "documents_sha256": {
+    "decisions.md": "a6cb122eb09e017c6bd10e75794424d7c49133753af1a1c3557d2bb5a8315d32",
+    "README.md": "57b41b0c43f5baf862b2b943aa7f771e17a43ba3edd614b790d7e42461572264",
+    "replacement-plan.md": "2465d66fd6d9be326a349561601e8e471ae549bcee5b4cdfa831232bb003eeba",
+    "user-guide-requirements.md": "7fa42f953869b1b9a2015da3d787acffe1cc04fd7bf8dc65cc4da9dbe58624cd",
+    "neutral-capability-map.md": "91822d5e6c255778d3c8808221e2a426ebd67f34547d47b1cd4250b86f8e7bf7",
+    "ux-configuration.md": "465cfefd40b21a1404e02db96a5c554ea7def53a6db9e567f0ac5a853647f9ff",
+    "screen-layout.md": "132d992bc6ea9d3b661c71c66a09d04fd51c4a7fdb92db11e5c4ac7ef7542c70",
+    "authority.json": "37ae59302865e9c2ecad1cd82d21caad7e1f6beac74a320bd8f479db2d665251",
+    "execution-log.md": "13f68f2184f9af789a51e6280f6ba30399c65830707575facafd0e2a542ed4c4",
+    "docs/planning/board.yaml": "5abb96a0bee3fe0ec6342c030f78f529a60af5b08f30894851c3233506ad89aa",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "95 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 124 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "compaction_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted first-release older-turn compaction recovery and planning checks only. Exact estimator/reserve, neutral service/effect contract, provider rejection after a passing estimate, installed behavior, terminal UAT and release acceptance remain open."
+}

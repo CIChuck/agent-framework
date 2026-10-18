@@ -1,0 +1,28 @@
+{
+  "initiative": "friday-tui",
+  "kind": "older_activity_state_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-46: a new accepted conversational prompt leaves older exchanges Activity sections in their user-chosen expanded/collapsed state; the new exchange opens independently on its first Activity entry. Bounded retention and explicit clear still apply.",
+  "documents_sha256": {
+    "README.md": "8f00de65772a81a4cb59c8298e1a01ed2c5640a18a2717c50e71c26cd41255ff",
+    "decisions.md": "234c56411de2ffd3a1dbc6fffcd23d462cf79652c56085f9d3f6f95a3957731b",
+    "replacement-plan.md": "f1a707efcc3d565cb386797f9aa0bf296971856fa31bd93f27f0b2c2460c3171",
+    "screen-layout.md": "bf4f340b69396a503863f3ad8202bedf211218466f2e7fe969ad82839181f8d2",
+    "tool-activity-requirement.md": "218bf589497e693de67403562e41339cf99f13d5dcadd5d1c461a9beeacb4354",
+    "user-guide-requirements.md": "b500f6a725ffc33c64cbbd2773352d0dd8410e5d7a246b646935aa0cc113951f",
+    "ux-configuration.md": "db1a94dad1c1f36df6da6b45f6f4b8fc71ad5670caabfe1e58970295c41cd2ff",
+    "authority.json": "10f719227b147311e09fe42997fa87b7869357de621422db232979026f8d241f",
+    "execution-log.md": "08962a032773622129ebd801d908394b82af013fef0934d4499b2e5b93300017"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "39 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. TUI implementation, product tests, terminal UAT and release acceptance remain pending."
+}

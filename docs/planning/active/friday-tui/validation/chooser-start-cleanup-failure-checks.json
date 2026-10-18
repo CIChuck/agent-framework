@@ -1,0 +1,31 @@
+{
+  "initiative": "friday-tui",
+  "kind": "chooser_start_cleanup_failure_exit_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-56: when chooser-based real startup and cleanup of partial services both fail, report both failures, restore the terminal as far as possible, and exit nonzero. No in-process Retry or Browse while resources may remain active.",
+  "documents_sha256": {
+    "README.md": "0370bcede1d2c4e2a661446f6bdbb8c4e0e3b564a13237ffa48dc550331bec79",
+    "decisions.md": "827ac663529f25bc6155d000f06a80c9085a160e748643c88628278f4a304586",
+    "replacement-plan.md": "9607616fca32ebed204f6f33f528c6dc037512b3f82e9f23667f8a20e300f80e",
+    "architecture-reset.md": "6c832f0d4c08079ebf90e3766e9d0e062c28464124e8673b9a714793f1818901",
+    "neutral-capability-map.md": "4a6fd9b09f9cace2771bbbf11bd153a4c118fbd5550ad21cc97fa0b649d0159d",
+    "user-guide-requirements.md": "114bece0c0acee672075d444381738d5d3f42c0ad9fe511d775822051142a536",
+    "authority.json": "bcf33bb80d85a7e45612ec855f53b5a13be6d897cfb5a1aafbc2e723f564e915",
+    "execution-log.md": "6dcaa84f99cead86df460f0fc7e8b5b4e0de0c59f017225aedde8b3b55f63be9",
+    "docs/planning/board.yaml": "f5cac2163be121149308fca99e7b465cc820cb494c275bc749be1195ceb75d6e",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "50 valid before this receipt",
+    "packet_markdown_links": "17 files; 151 local links; no missing targets",
+    "packet_trailing_whitespace": "17 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

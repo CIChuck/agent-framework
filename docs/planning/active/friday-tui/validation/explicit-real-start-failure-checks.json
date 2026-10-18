@@ -1,0 +1,31 @@
+{
+  "initiative": "friday-tui",
+  "kind": "explicit_real_start_failure_exit_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-54: after valid explicit --config, failed real-runtime startup closes partial services, reports startup and any cleanup failure, and exits nonzero without opening the chooser or falling back to fake.",
+  "documents_sha256": {
+    "README.md": "50916d803ab7d4bcb2f73968da0039272fa4718231d3b29bed734fa01603ba76",
+    "decisions.md": "28df234403b7783d7da548edd4b1d859b57ad00e0a8ade30f9afd7abe7c9bfe4",
+    "replacement-plan.md": "394fbe0035f55fa2e9ef353619a1ff8bafb1aed2423547d0a6cccbd8f0b51aa1",
+    "architecture-reset.md": "a165b53160dd6ebeb41f9427bbc7ff6573dd479d65fd6587fbcf2aab57e91dd4",
+    "neutral-capability-map.md": "69b0bb396a97ce619aeeae17624a54d9aa40e6424e8a74fd675a3fed08a85efe",
+    "user-guide-requirements.md": "4afc5c7c9c6628054a5394d1a363031226f6f4bd330b945fdeb092e70ef8b211",
+    "authority.json": "397fe6e7b46ab972de32fe149a0f0524ad7b5539b98b192f73eefe8ecbd83d4e",
+    "execution-log.md": "a9dd9a3c158312441cdf7f16c95848dc4af2851d424725393bf2b0fb5e1438e5",
+    "docs/planning/board.yaml": "bc5f7bb93f45313fd76ecab7259a448d571d810ce08f85b5c70f2e2b977ed3ae",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "48 valid before this receipt",
+    "packet_markdown_links": "17 files; 151 local links; no missing targets",
+    "packet_trailing_whitespace": "17 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

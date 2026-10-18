@@ -1,0 +1,28 @@
+{
+  "initiative": "friday-tui",
+  "kind": "collapsed_activity_count_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-43: collapsed Activity header counts new entries since collapse. Appended entries increment once; status updates do not. Reopen or display clear resets count. Eviction while collapsed is indicated in header with detail on reopen.",
+  "documents_sha256": {
+    "README.md": "64d4076e6c602c4037acbab7f009ddba2177a245d9ecb2345607e3fb807c2fae",
+    "decisions.md": "adb34d1a6b857b9f8b927e426c9d7e374037e3a5f9742f4d859066eb502683a4",
+    "replacement-plan.md": "f6886ebaab4ecbc5eee7f120b07c3c98a2bb6b48162c5b068c51cc216f84c7ff",
+    "screen-layout.md": "1d1ffb045629cd984d99971c75dcb0b74e9130695abd70faaa10687e277329fe",
+    "tool-activity-requirement.md": "d9ebe354f05345d0b9ba77204b46330bb25a0eb422908e8fc31789d50e926844",
+    "user-guide-requirements.md": "4c4113cd4f9654b7cb60b424b1e3be028ab2688b79548ef49d361175b50dacb4",
+    "ux-configuration.md": "8aa931f157c8e239407085784afbd2003293e47ddf7281b56c66a2aaa1d331f5",
+    "authority.json": "2086011588a2c96e7a2e849c25b56b7e5cd4970ec1287208f3f346107ff693df",
+    "execution-log.md": "80500689f1133fd3ce43c9459ce1490ed984c7f62825dd64a326f5fa5531a9b1"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "36 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. Activity implementation, product tests, terminal UAT and release acceptance remain pending."
+}

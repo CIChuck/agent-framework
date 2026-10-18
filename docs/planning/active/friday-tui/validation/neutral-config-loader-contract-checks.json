@@ -1,0 +1,34 @@
+{
+  "initiative": "friday-tui",
+  "kind": "neutral_config_loader_contract_draft",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "proposal": "One UI-neutral Chat-compatible application YAML loader in friday-runtime with a friday-chat public-API facade; file loading, effect primitives, service assembly and TUI launcher remain separate construction slices.",
+  "documents_sha256": {
+    "neutral-config-loader-contract.md": "ab5e2530befaabfd97acb0273e689ea0ca2977f60ba634976c85865da6ec94d4",
+    "README.md": "c0cd8cf1b96bca5c1160e72cc8410d533d581b7bb04ee9387041ace97ce25bf1",
+    "replacement-plan.md": "5d0fc75c052ead6b2298d3ec8f35387c0fcc4964468fc2a5c06157b399eecd29",
+    "neutral-capability-map.md": "77705f4f20c9773c7e61521fb94ad8b4a3179656afc841ddf793e29d54c28a53",
+    "startup-bootstrap-contract.md": "a9caf5514d922726c766b0473ba95d5dd7e70510fdbace701ac0bc0850326ce9",
+    "authority.json": "91b00e120ccb161286cc8ce4a1f8e8e37a50eb8bf21404b8ab27bfaeb908e4b3",
+    "execution-log.md": "10c1daa4d0955549bec0f5fb3310e865430ffd9fa485455aa9833ed08aef5304",
+    "docs/planning/board.yaml": "c82ab8a3abf466f782974158c322fded2e8f81916f2f29d9fce94f47517b6c4d",
+    "docs/planning/README.md": "5981e91828ae6748edc5c267e26c154d8b0601f400b3b81a8cf41c39271aec9d"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "56 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "pre_code_focused_chat_runtime_tests": "103 passed",
+    "pre_code_friday_cli_tests": "155 passed",
+    "product_tests_after_change": "not applicable; no product code changed",
+    "installed_package_checks": "not run; construction authority pending",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Source-backed draft and read-only before-code baseline only. This is not an approved construction directive, TUI implementation, after-code CLI regression result, user UAT or release acceptance."
+}

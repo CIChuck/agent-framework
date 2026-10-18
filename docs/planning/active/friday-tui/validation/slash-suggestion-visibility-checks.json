@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "slash_suggestion_visibility_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-66: typing a leading slash command automatically shows registered name and alias matches as the command name changes. Display has no draft or execution side effect and does not change Enter submission; suggestion selection remains open.",
+  "documents_sha256": {
+    "decisions.md": "edcb28746859b70cebd7b6a67a080319dbc234f2efea407ed9228e7c2948ebb5",
+    "screen-layout.md": "c92d652529c69cf285865b7c6bda40cb3c383b6b75adf78724f169e779dbbbde",
+    "README.md": "79ca90c292caa9e3ea6184b63b103df45a240987b5a70fd07eed0dc80ef53434",
+    "replacement-plan.md": "11f843d67a55f52a86173c9cad9768f3531193b2e215f1f44b46d46c8d32f24b",
+    "user-guide-requirements.md": "19ff859c6ac15d0af0fa0d7085afa00739ddb16beb0fca4469fbb21faef298dd",
+    "command-matrix.md": "181af812243178ccd5ee93f71a80f8c9163ae4d373d118e41735ce39aff5b538",
+    "authority.json": "7d747dac3317fcbc8fa7e3802a4078486436c3a000cb69dbcdf7f05f1fd3b168",
+    "execution-log.md": "ed9b698fa7c094b16e4aef5d8b748de192f1c2f3529114657481cd37e6b7d43f",
+    "docs/planning/board.yaml": "d0e599acc4d471b78edaba6f55700dcb5ade7aae9a8d239d95d2d0a2e7340f00",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "62 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only suggestion-visibility decision and no product code change",
+    "tui_suggestion_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted automatic slash-suggestion visibility decision and planning checks only. No TUI implementation, command interaction test, installed-package verification, user UAT or release acceptance."
+}

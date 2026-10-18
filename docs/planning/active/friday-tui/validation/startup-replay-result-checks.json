@@ -1,0 +1,35 @@
+{
+  "initiative": "friday-tui",
+  "kind": "startup_replay_result_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-62: after successful startup --replay FILE, retain a read-only TUI result with input file and processed-turn count until Quit. Preserve version-before-replay-before-configured-start precedence and isolated fake replay; no prompt/command admission or automatic configured-session transition. Per-turn and failure presentation remain open.",
+  "documents_sha256": {
+    "decisions.md": "b088fc9bd1a14eff038a4fc17ecea3b15bc8f4731022caec3cf1ec1d15831ff9",
+    "startup-bootstrap-contract.md": "761ac8ba2df7cf5caaedbd14e47f8147f9ddd48be8dfa251f7aeddfd4fe43616",
+    "replacement-plan.md": "d6d0e33d9d7fbf07232fc9e0adfa89b35f27d9b18847a1756db616718cad66f7",
+    "README.md": "268b9b7dd9fb8a5cc9ef551b277b55ed9f65c4301e15c351abb1bd5f53fb88b0",
+    "user-guide-requirements.md": "0deb157b2f6ac447542e80a0289d7d9b4ceec1759e0b9723b42bc58377c7e492",
+    "architecture-reset.md": "1a6f925a057cf5acde9e2fb17bf2e832032dcd314b17dff0e634fbde28289a4e",
+    "command-matrix.md": "b797732dd2033ce7b41949903e8150b95f9e327776cbcab7c4727e4e5def821f",
+    "neutral-config-loader-contract.md": "17c2784b66e53d2bb932c388b9a703c39f1f1d6358642021367c489e381d67c1",
+    "authority.json": "07874f4508363787b8755ad4d4e05c642dfc136e53df7b35dab1c7a50f77c655",
+    "execution-log.md": "32f35de441530946c2b2d14f5b07a452a5e03982d56d5006843ba46b6a6c5c25",
+    "docs/planning/board.yaml": "8d91feda2ed92c9466193fa5f9d6b064820f1c259d844062fae1c232c0e8bb9a",
+    "docs/planning/README.md": "3362c8a2c827a16354ba3313379cd4273745172f9978b0857408369e760c61d6"
+  },
+  "checks": {
+    "existing_chat_cli_and_replay_pytest": "23 passed",
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "58 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "tui_replay_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted product decision, existing Chat replay baseline and planning checks only. No neutral replay service or TUI implementation, after-code CLI regression, installed-package verification, user UAT or release acceptance."
+}

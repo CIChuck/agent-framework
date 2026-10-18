@@ -1,0 +1,63 @@
+{
+  "recorded_at": "2026-10-17T00:25:28.119171+00:00",
+  "kind": "documentation-only incremental-testing and UAT planning amendment",
+  "source_commit": "c34269867be50f71923c93c95a63236a35505812",
+  "branch": "feature/friday-tui",
+  "checks": {
+    "board_and_generated_dashboard": "passed: 34 tasks",
+    "git_diff_check": "passed",
+    "unit_count": 24,
+    "parity_cases_mapped_once": 50,
+    "aliases_preserved": 3,
+    "uat_checkpoints": 5,
+    "uat_scenario_groups": 14,
+    "all_future_results": "not_run; signoff pending",
+    "changed_links_packet_json_whitespace_scope": "passed",
+    "historical_receipts_and_baseline_logs": "unchanged",
+    "other_board_tasks_prior_events": "unchanged",
+    "protected_source_hashes_unchanged": 16,
+    "known_historical_broken_links": 6
+  },
+  "full_documentation_lifecycle": {
+    "exit_code": 1,
+    "reason": "Six unchanged temporary-checkout links in the frozen friday-telemetry-rewire VAL-001 report; no new broken links"
+  },
+  "runtime_tests_executed_for_this_amendment": false,
+  "uat_executed": false,
+  "user_uat_signoff_recorded": false,
+  "historical_source_baseline": "Prior 241-test result retained unchanged; not rerun for this documentation amendment",
+  "authority": {
+    "work_state": "started",
+    "implementation_authority": "design_only",
+    "product_code_generation_authorized": false,
+    "construction_directives_approved": []
+  },
+  "next_gate": "Review integration contract, test/UAT plan and split CD-TUI-001 exact scope before product-code authority",
+  "current_document_sha256": {
+    "docs/planning/active/friday-tui/README.md": "a3b3b17518aaf356a95116ae682f4748cbaca6f1f0398f418b1f1e98e88be2b2",
+    "docs/planning/active/friday-tui/authority.json": "aa7fbf7a9546bca11b0808217046c8e112a47638ffea8df8343f252df0011b03",
+    "docs/planning/active/friday-tui/build-plan.md": "c972a6c1546db7ed742d6d6be11cc800454bbc95c4847619ac31844fc4736716",
+    "docs/planning/active/friday-tui/command-matrix.md": "729a2ec809fbf9b0b01709854eaffc0b89e63311638cd0976e2e47c47d560826",
+    "docs/planning/active/friday-tui/decision-update-checks.json": "0fa8c00fa7fcb9c9e9daa4ebd56b1357f0b29e0f23bbd1b04dbcd7bf78ba4fec",
+    "docs/planning/active/friday-tui/decisions.md": "2438f4fa79ee9175f5b09104bcb1db144618343c1bf337eea3a14f48f4a64888",
+    "docs/planning/active/friday-tui/directives/CD-TUI-001-shared-presentation-contracts.md": "08d08fcabd0e4dc6e69163cbc51c975e392022cbcfa62d0ec21b62f9fe92e4df",
+    "docs/planning/active/friday-tui/execution-log.md": "b45dfc2281efc741a449c3109fd2c29c8f38ee418ff57781fab8269abb653f0c",
+    "docs/planning/active/friday-tui/integration-contract.md": "9a2d39d7c633cf6ce6956c57f25c5b72350f83705f5c4b3ad22b6e447837665a",
+    "docs/planning/active/friday-tui/planning-checks.json": "35a3b4d6eda1e5cb11d9946ca5f65cf8152b796fd793f70e56bbfd59e13f2586",
+    "docs/planning/active/friday-tui/source-baseline.json": "addde405302ac06170be1a0a37827a08011783a3080a2e7ab04f0b8b761de43b",
+    "docs/planning/active/friday-tui/tactical-plan.md": "f4bd29ac089a1b520c0764c901847a0d69525cd6c45690c58830644fade86f38",
+    "docs/planning/active/friday-tui/technical-contract-checks.json": "a0912056e693def6bcf48f550a9db35c30e0fd5a6174698230b0d4f6dea0c593",
+    "docs/planning/active/friday-tui/test-and-uat-plan.md": "151263b94dc7fcbbd67d42f2e2214d97995d11afcff73d421c7b080927862785",
+    "docs/planning/active/friday-tui/validation/baseline-collection-collision.log": "aa16f924aa32a9853e27526d14c0cd0e643c331c6b81061fc1c80bee225eafd8",
+    "docs/planning/active/friday-tui/validation/baseline-mypy.log": "f9b031e5c45aa702cd4fef028d465551cb20a2c4698e0913c7b00766b20ac4d8",
+    "docs/planning/active/friday-tui/validation/baseline-pytest.log": "c622b2308004b4d28e7776641fa68a603688a8c590a085b04b3775d6279a22e1",
+    "docs/planning/active/friday-tui/validation/baseline-ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "docs/planning/active/friday-tui/validation/command-matrix.json": "d37945feefdc5c6083f761eb41bba3f6cc787a53c0925a1bbaf83c1f33651ecb",
+    "docs/planning/active/friday-tui/validation/technical-evidence.json": "5258fe6c6efd0c6dbb4085176eb989258b2e7e7053b7c08296aedd8c336df4f3",
+    "docs/planning/active/friday-tui/validation/test-unit-map.json": "35803c5bc1050e2382fc9bba82b9211b9ef3e4790c33f470b20ea7e73d11e94d",
+    "docs/planning/active/friday-tui/validation/textual-overlay.txt": "89d98dfdc3228c63a7286c3cefa3004140caa3db5929aa12a6c29042fbc23d81",
+    "docs/planning/active/friday-tui/validation/textual-resolution.log": "6f803ceb7736bf50db05f0428b63d020edecc8e5b4e3b2d3b2d4878f50175a55",
+    "docs/planning/board.yaml": "8bb77edc881b993ce81e2c7df93240b5035183a4ce6847de74960f582f820a06",
+    "docs/planning/README.md": "909daca098c9962f7a185509142b12932c1a85f3a1071edfeb90d01c8c37d845"
+  }
+}

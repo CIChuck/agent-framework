@@ -1,0 +1,31 @@
+{
+  "initiative": "friday-tui",
+  "kind": "planning_tool_activity_sequence_clarification",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "confirmed_direction": "Show tool invocations that actually start, their parameters and status; do not render tool-result payloads in Activity or scrolling chat. Show later provider-exposed reasoning in sequence only when the first-release reasoning view is enabled.",
+  "open_choices": [
+    "First-release timing for tool-activity log",
+    "Safe/redacted versus raw parameter display"
+  ],
+  "documents_sha256": {
+    "tool-activity-requirement.md": "92a7cc99245b81938be3a31d09c63c6ca9b67d11d4c6c46289b686fcc9a223a6",
+    "screen-layout.md": "8d4e1dbb1265f0a36bafbfa69d7823c9a672b9e54f0c4987717757af5891a8e5",
+    "decisions.md": "d2aa90e0d1579fcd835de027fed293fd3be576777094fdcdd019410dd0cae82e",
+    "architecture-reset.md": "a533c61ff9ebae838ff38fce68781adf239ec62f21879eaa5a398665db635941",
+    "reasoning-display-requirement.md": "b0a7c528c73b4a8afacf62e9c5d0ee99d38fbb966eedc5a8001133467e528d9e",
+    "user-guide-requirements.md": "4d81b77bced36e52edee6b5905fc1a3a5e5f2af7b8716079843c0193ebe161ac",
+    "authority.json": "333263bc61fd515933c3698d2bb5e07156bd59320697dae870b2015e224aab39",
+    "execution-log.md": "b25b46e517cec1a3a9e83b0a7446aed2189469562fa812e057fca10fb3b28ead"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "20 valid before this receipt",
+    "packet_markdown_links": "15 files; no missing local targets",
+    "tracked_git_diff_check": "passed",
+    "packet_trailing_whitespace": "passed"
+  },
+  "evidence_limit": "Planning documentation and source inspection only. No TUI tool-activity implementation, provider reasoning availability, terminal UAT, or product acceptance has been verified."
+}

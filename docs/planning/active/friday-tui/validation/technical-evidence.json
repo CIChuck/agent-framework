@@ -1,0 +1,111 @@
+{
+  "recorded_at": "2026-10-16T23:58:06.300663+00:00",
+  "kind": "read-only technical design evidence; not TUI or release verification",
+  "source_commit": "c34269867be50f71923c93c95a63236a35505812",
+  "host": {
+    "os": "macOS",
+    "version": "27.0.1",
+    "machine": "arm64",
+    "python": "3.13.10"
+  },
+  "pytest": {
+    "exit_code": 0,
+    "tests": 241,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "profile": [
+      "packages/friday-cli/tests_cli",
+      "packages/friday-chat/tests_chat/test_command_registry.py",
+      "packages/friday-chat/tests_chat/test_command_foundations.py",
+      "packages/friday-chat/tests_chat/test_display.py",
+      "packages/friday-chat/tests_chat/test_cli.py",
+      "packages/friday-chat/tests_chat/test_app_lifecycle.py",
+      "packages/friday-chat/tests_chat/test_session_identity.py",
+      "packages/friday-chat/tests_chat/test_input_sources.py"
+    ],
+    "collection_mode": "importlib",
+    "cache_provider": false,
+    "network_guard": "existing build/alpha4-work/guard/sitecustomize.py; provider telemetry disabled",
+    "test_groups": {
+      "packages.friday-cli.tests_cli": 155,
+      "packages.friday-chat.tests_chat": 86
+    },
+    "harness_note": "Initial default collection hit duplicate test_display.py module names. importlib mode corrects collection without source changes or cache deletion.",
+    "environment": {
+      "PYTHONPATH": "build/alpha4-work/guard",
+      "FRIDAY_TELEMETRY_ENABLED": "false",
+      "LITELLM_LOCAL_MODEL_COST_MAP": "True",
+      "HF_HUB_DISABLE_TELEMETRY": "1",
+      "OTEL_SDK_DISABLED": "true",
+      "ANONYMIZED_TELEMETRY": "False",
+      "DO_NOT_TRACK": "1"
+    },
+    "log": "baseline-pytest.log",
+    "initial_collection_log": "baseline-collection-collision.log",
+    "command": ".venv/bin/python -m pytest -q --import-mode=importlib -p no:cacheprovider packages/friday-cli/tests_cli packages/friday-chat/tests_chat/test_command_registry.py packages/friday-chat/tests_chat/test_command_foundations.py packages/friday-chat/tests_chat/test_display.py packages/friday-chat/tests_chat/test_cli.py packages/friday-chat/tests_chat/test_app_lifecycle.py packages/friday-chat/tests_chat/test_session_identity.py packages/friday-chat/tests_chat/test_input_sources.py --junitxml=build/friday-tui-contract/baseline-pytest.xml",
+    "network_guard_sha256": "deaad0f91dac25c51c325a280579f763028e02e37f34ba58fb80711c649176f9"
+  },
+  "textual_metadata": {
+    "url": "https://pypi.org/pypi/textual/8.2.8/json",
+    "version": "8.2.8",
+    "requires_python": "<4.0,>=3.9",
+    "required_rich": "rich>=14.2.0"
+  },
+  "dependency_overlay": {
+    "mode": "uv pip compile; no installation or workspace metadata changes",
+    "resolved": {
+      "linkify-it-py": "2.2.0",
+      "markdown-it-py": "4.0.0",
+      "mdit-py-plugins": "0.6.1",
+      "mdurl": "0.1.2",
+      "platformdirs": "4.13.3",
+      "pygments": "2.19.2",
+      "rich": "14.2.0",
+      "textual": "8.2.8",
+      "typing-extensions": "4.15.0"
+    },
+    "existing_versions_changed": {},
+    "new_packages": [
+      "linkify-it-py",
+      "mdit-py-plugins",
+      "platformdirs",
+      "textual"
+    ],
+    "constraints": "194 current single-version third-party package records; environment-split grpcio omitted because unrelated to this overlay",
+    "limits": [
+      "Not a full workspace dependency solve",
+      "No installed Textual runtime test",
+      "No Linux or real terminal UI test"
+    ]
+  },
+  "product_files_changed": false,
+  "static_checks": {
+    "paths": [
+      "packages/friday-chat/src/friday_chat/app.py",
+      "packages/friday-chat/src/friday_chat/display.py"
+    ],
+    "ruff": {
+      "exit_code": 0,
+      "result": "All checks passed!",
+      "log": "baseline-ruff.log"
+    },
+    "mypy": {
+      "exit_code": 0,
+      "options": [
+        "--follow-imports=silent"
+      ],
+      "result": "Success: no issues found in 2 source files",
+      "log": "baseline-mypy.log"
+    }
+  },
+  "environment_caveat": {
+    "mode": "existing editable/source environment; not an installed release verification",
+    "installed_distribution_metadata": {
+      "friday-chat": "0.1.0a3",
+      "friday-framework-cli": "0.1.0a3"
+    },
+    "source_release": "0.1.0a4",
+    "action": "Preserved environment without uv sync; baseline exercises current checkout source, not clean installed alpha4 distributions"
+  }
+}

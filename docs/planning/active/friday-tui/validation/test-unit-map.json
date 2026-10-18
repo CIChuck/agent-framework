@@ -1,0 +1,485 @@
+{
+  "kind": "proposed construction-to-parity-case map; no test execution",
+  "source_commit": "c34269867be50f71923c93c95a63236a35505812",
+  "construction_units": [
+    {
+      "id": "TUI-00A",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-00B",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-01A",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-01B",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-01C",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02A",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02B",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02C",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02D",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02E",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02F1",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02F2",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02F3",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02G",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02H",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02I",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02J",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-03A",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-03B",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-03C",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-04A",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-04B",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-05A",
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-05B",
+      "execution_result": "not_run"
+    }
+  ],
+  "parity_units": [
+    {
+      "id": "TUI-02A",
+      "cases": [
+        {
+          "case_id": "PAR-003",
+          "command": "clear",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-005",
+          "command": "cls",
+          "aliases": [
+            "clearscreen"
+          ]
+        },
+        {
+          "case_id": "PAR-013",
+          "command": "exit",
+          "aliases": [
+            "quit",
+            "q"
+          ]
+        },
+        {
+          "case_id": "PAR-016",
+          "command": "help",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-017",
+          "command": "history",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-039",
+          "command": "set",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-049",
+          "command": "vars",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02B",
+      "cases": [
+        {
+          "case_id": "PAR-007",
+          "command": "context",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-008",
+          "command": "debug",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-009",
+          "command": "debug-budget",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-010",
+          "command": "debug-retrieval",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-012",
+          "command": "entities",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-021",
+          "command": "insights",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-023",
+          "command": "list-ingested",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-024",
+          "command": "memory",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-025",
+          "command": "meta",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-028",
+          "command": "prompt",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-043",
+          "command": "summaries",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-045",
+          "command": "timing",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02C",
+      "cases": [
+        {
+          "case_id": "PAR-006",
+          "command": "compact",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-027",
+          "command": "prime",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-033",
+          "command": "reset",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02D",
+      "cases": [
+        {
+          "case_id": "PAR-014",
+          "command": "export",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-015",
+          "command": "export-prompts",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-032",
+          "command": "replay",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-038",
+          "command": "sessions",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-048",
+          "command": "transcript",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02E",
+      "cases": [
+        {
+          "case_id": "PAR-018",
+          "command": "ingest",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-029",
+          "command": "read",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02F1",
+      "cases": [
+        {
+          "case_id": "PAR-022",
+          "command": "lifecycle",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02F2",
+      "cases": [
+        {
+          "case_id": "PAR-026",
+          "command": "migrate",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02F3",
+      "cases": [
+        {
+          "case_id": "PAR-031",
+          "command": "reorganize",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02G",
+      "cases": [
+        {
+          "case_id": "PAR-004",
+          "command": "clear-tools",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-020",
+          "command": "inject-tools",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-030",
+          "command": "recommend-tools",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-034",
+          "command": "run-tool",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-046",
+          "command": "tool-budget",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-047",
+          "command": "tools",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02H",
+      "cases": [
+        {
+          "case_id": "PAR-019",
+          "command": "inject-payload",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-035",
+          "command": "security",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-036",
+          "command": "security-config",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-037",
+          "command": "security-test",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02I",
+      "cases": [
+        {
+          "case_id": "PAR-040",
+          "command": "speech",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-041",
+          "command": "speech-test",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    },
+    {
+      "id": "TUI-02J",
+      "cases": [
+        {
+          "case_id": "PAR-001",
+          "command": "agent",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-002",
+          "command": "agents",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-011",
+          "command": "delegate",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-042",
+          "command": "status",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-044",
+          "command": "switch",
+          "aliases": []
+        },
+        {
+          "case_id": "PAR-050",
+          "command": "workflow",
+          "aliases": []
+        }
+      ],
+      "execution_result": "not_run"
+    }
+  ],
+  "additional_routes": {
+    "@agent": "TUI-02J",
+    "disabled_by_default_shell": "TUI-02J",
+    "startup_replay": "TUI-02D",
+    "launcher_config_help_version": "TUI-01A"
+  },
+  "uat_checkpoints": [
+    {
+      "id": "UAT-01",
+      "gate": "G1",
+      "result": "not_run",
+      "user_approval": "pending"
+    },
+    {
+      "id": "UAT-02",
+      "gate": "G2",
+      "result": "not_run",
+      "user_approval": "pending"
+    },
+    {
+      "id": "UAT-03",
+      "gate": "G3",
+      "result": "not_run",
+      "user_approval": "pending"
+    },
+    {
+      "id": "UAT-04",
+      "gate": "G4",
+      "result": "not_run",
+      "user_approval": "pending"
+    },
+    {
+      "id": "UAT-05",
+      "gate": "G5",
+      "result": "not_run",
+      "user_approval": "pending"
+    }
+  ],
+  "uat_scenario_groups": [
+    "UAT-01",
+    "UAT-02A",
+    "UAT-02B",
+    "UAT-02C",
+    "UAT-02D",
+    "UAT-02E",
+    "UAT-02F",
+    "UAT-02G",
+    "UAT-02H",
+    "UAT-02I",
+    "UAT-02J",
+    "UAT-03",
+    "UAT-04",
+    "UAT-05"
+  ]
+}

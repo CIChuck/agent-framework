@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "failed_prompt_explicit_dismissal_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-109: confirmed per-prompt Dismiss removes only the selected current-run failed-prompt recovery snapshot, preserves the editor draft/caret and attachments, updates the recovery controls, and makes no provider request or failed-attempt transcript write.",
+  "source_evidence": {
+    "maintainer_answer": "A to confirmed per-prompt Dismiss; requested that failed-prompt option questions stop.",
+    "prior_decisions": "D-101/D-102 define current-run recovery without a failed-attempt transcript; D-107 groups multiple pending prompts; D-108 retains restored snapshots until conversational success or explicit dismissal.",
+    "remaining_construction_detail": "A finite recovery-state count/size limit and deterministic overflow behavior must be bound in the construction directive; no additional failed-prompt product question is pending."
+  },
+  "documents_sha256": {
+    "decisions.md": "289adb573ce932ecabebc07d54493ee84a788918ad0a43860abf95d94b7f70bc",
+    "README.md": "286c5f3b10442d9b8f1ed0826df9e71741bebfba8fadb6f69f5b02a45827ac4f",
+    "replacement-plan.md": "efd4b86d31b7d21567407b5a752099823d1900da9a3530380990bdae657def9e",
+    "screen-layout.md": "1632767f68f268a50e3f1b1e60a3198c2e323b8a5822ea38b5eb1efb0d016fab",
+    "user-guide-requirements.md": "c0b92100bc79d87623e8e1bfa6ad109d0f272f33c3037cdc937ea43b9e95a57e",
+    "neutral-capability-map.md": "b2258a10c76fff4615d6bbdaeb99b48db55b6be34d1e3cec42ebec7f9302382a",
+    "authority.json": "72676f31e2d8f9e0346861ad6b90c266c2b5ec0c492e333a3cde3752b9673d41",
+    "execution-log.md": "6190366579a53f3116f3c5ea6a71187a5a68ebae5bc15a05d91d2bc78332cb67",
+    "docs/planning/board.yaml": "7552d97f820207e1c2974fec475ea0a96142183459789f5f2c3f069913373455",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "105 valid before this receipt",
+    "decision_rows": "109 contiguous rows",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 134 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only decision and no product code change",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted explicit Dismiss behavior and planning checks only. Finite recovery-state bounds, exact UI construction, installed behavior, terminal UAT and release acceptance remain open."
+}

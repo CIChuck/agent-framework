@@ -1,0 +1,30 @@
+{
+  "initiative": "friday-tui",
+  "kind": "tui_runtime_default_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-47: configured interactive TUI startup defaults to real provider-backed runtime; --runtime fake is explicit; no silent fallback after real failure. Existing friday-chat fake default, friday-cli behavior and version/startup replay precedence remain unchanged.",
+  "documents_sha256": {
+    "README.md": "75a4ffd6b4cd4addd2871b25e773eed2ca46bb13c3536dbef341ab02fb754b4f",
+    "decisions.md": "9996202972aeb55977ee9c7d1c99af473f760da829671cba9c447bc8d06b2ebc",
+    "replacement-plan.md": "055d6ad0a3945e9ceb071cd70afa19dcc56b1790aced46b669dbb67bffa15264",
+    "neutral-capability-map.md": "78400017a55a67ac952bd14d90e85bdac21f65d3ba65b8f651ca3c23b7fa7ca6",
+    "ux-configuration.md": "7b6b64b151aea3cf3240dc1c43747e193fb5aeabfa47ab2f1d215d9109856c59",
+    "user-guide-requirements.md": "dafc4b69999f37fea5c8f680c9ffc8f8800ca6ab38b89b54054a8a702be58bdb",
+    "authority.json": "6b7c087a0ded328f8561a674373a69ff38fd5fcd2782918a824b1e23d231308b",
+    "execution-log.md": "61b2bf136d413673aaf134401ec8b9c3906180d5eadba0e44889a7a52c49f33e",
+    "docs/planning/board.yaml": "a16ab2a1cd48f74a21a30baa350db96c0f7302f24e2775a110522b2f3d2ed87d",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "41 valid before this receipt",
+    "packet_markdown_links": "17 files; 151 local links; no missing targets",
+    "packet_trailing_whitespace": "17 files; passed",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

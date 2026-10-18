@@ -1,0 +1,32 @@
+{
+  "initiative": "friday-tui",
+  "kind": "chooser_refresh_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-59: visible keyboard-focusable Refresh rescans the captured launch-folder runtime candidates on demand. Added, removed and newly recognizable files update the list; no automatic watcher, wider search, full validation or runtime start. Empty-list recovery includes Refresh, Browse and Quit. Selected-path Retry rereads independently.",
+  "documents_sha256": {
+    "startup-bootstrap-contract.md": "1c73a29e5b1617ee63212f4792bb9c919d4b4bf99068cffae0c9e9821a3b0932",
+    "README.md": "e7e8b09d6c07ff7290875a65df62002e0981ad9de03376a7126e170befb24a8c",
+    "decisions.md": "97023367723ba1d0881e71a0b2b7a9f2bce64fe178a73656ef141c19692660cb",
+    "replacement-plan.md": "e7c6dd5a1c2590a1b6c58c53e9f977acafbfa8fcc5252274a4124be243cbdbb4",
+    "architecture-reset.md": "38386f27e448722c4f0e28bc3c451cd865a957273490c7c0ce726da435add934",
+    "neutral-capability-map.md": "8f35c9dc16ee191fafd6cb0232affabe7a4409ffb11da9c3b3e5dc510bea37d6",
+    "user-guide-requirements.md": "9aae848e9ad734c57c3064ad9a1023cd72156fd85376871604a8aa4b81488a7f",
+    "authority.json": "869b837c696e0ec46f7fc311c543261e4e5ed748babbc23cddce97eea2cb6f8e",
+    "execution-log.md": "25fd46c8c9716d075e7be4a4f2535fe20e1a13152d46b5d996d734cc72f11642",
+    "docs/planning/board.yaml": "47d3c5dc8c4c5989504e2d221032b957804f17c223194034569904458b1dbaa8",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "54 valid before this receipt",
+    "packet_markdown_links": "18 files; 160 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

@@ -1,0 +1,28 @@
+{
+  "initiative": "friday-tui",
+  "kind": "activity_first_entry_visibility_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-42: Activity opens automatically on its first entry; user collapse remains respected while later entries accumulate, with a visible reopen control. Auto-opening does not steal editor focus or override paused conversation following.",
+  "documents_sha256": {
+    "README.md": "81221a81f69530a16bf0bded6ad34f71e8dd9bc843e9902edc2e6ed3011c34f3",
+    "decisions.md": "189669ae506ffd55062b12ad18814d7d020d859ea08e9ab2362337c48f26d254",
+    "replacement-plan.md": "408abebe8501b9444ec69323b93f07e490c4c70e2813c551cf9332a748b85e91",
+    "screen-layout.md": "cabdde27d1baefd086ccec3912206182a5da426695b4b36edb93e90712a5c727",
+    "tool-activity-requirement.md": "16861fde0d071839d9a6cf647628d0fd336d9fd6b3d7beaec05474f2f06b2a17",
+    "user-guide-requirements.md": "fdcd7cba9e8650c20d610fdb59f41fd262f56129a37c593cb75cc65b77a58c70",
+    "ux-configuration.md": "f88b1eab70805568cd70bc438f3e56cbf7a89b6e1cbcf6464bc79e0cc5327774",
+    "authority.json": "aef2bf5dcfc340c674d2f40519bb94e5700abec6760d5694f690f614939c2e37",
+    "execution-log.md": "36529e4076ecefe97831b07df6b9f9ad60f6c5bd63f70484bc5c455019266444"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "35 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. Activity implementation, product tests, terminal UAT and release acceptance remain pending."
+}

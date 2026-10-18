@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_file_snapshot_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-81: capture file content when selected and reuse its snapshot across later accepted turns. Reselecting the same file refreshes that attachment in place without duplication; failed refresh reports an error and preserves the last good snapshot. Source edits/deletion do not silently change an attachment.",
+  "documents_sha256": {
+    "decisions.md": "7c2d8bb71fe483727aa7c82a728fe213b0fea98b0f2f7131d7d2a18d9e44853f",
+    "screen-layout.md": "5bc3a31528ec59beaf7210436fdf7ac37737b90553db94aa2a3201210aee91e3",
+    "README.md": "c3d2ad565256cf8fa000a3f8524ac7eb42c189d11f513d97d2582dccc2db0156",
+    "replacement-plan.md": "d31ace1b973ef0632ca1fb03361fcc40b8102c8701aff7bcc2948b7bd9f8d39e",
+    "user-guide-requirements.md": "1e756fd61baed5d3838b567e358dfff35d7969cb1355fbab4f3521acce3c51c3",
+    "neutral-capability-map.md": "d29ba447aea7161f73f5f6788919af24ea178b16fa9dc98039e9da871758058d",
+    "authority.json": "fc8268c884807818637eb8b4f1c4deeb0e9d9ec712fedda6e0d89f018912e411",
+    "execution-log.md": "6331a8d5ac28e4a0daaa7726e1d5a1c833589f8c2e559f7013444c715ed7e478",
+    "docs/planning/board.yaml": "6772c8dbf97f0fba819dd8c557541e0e29583bdef8604a35d4486cadf1fc8022",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "77 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only snapshot decision and no product code change",
+    "tui_attachment_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted selection-time snapshot and same-file refresh direction plus planning checks only. Supported formats, size/budget policy, implementation, terminal UAT and release acceptance remain open."
+}

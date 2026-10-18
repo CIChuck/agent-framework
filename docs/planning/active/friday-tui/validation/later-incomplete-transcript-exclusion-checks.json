@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "later_incomplete_turn_transcript_exclusion_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-103: after one or more tools execute, a later model step that fails for context length leaves an incomplete turn and Activity visible only in the current bounded TUI run and creates no incomplete-turn transcript entry, whether local budget recovery fails or the provider rejects a request after a passing estimate. Completed tool effects and earlier transcripts remain unchanged.",
+  "source_evidence": {
+    "maintainer_answer": "A to no incomplete-turn transcript entry and current-run-only display after later post-tool context failure.",
+    "prior_decisions": "D-23 makes TUI Activity bounded and in-process only; D-99/D-100 stop later over-budget or provider-rejected model steps with prior tool effects intact; D-102 excludes a failed initial request from persisted transcripts.",
+    "persistence_boundary": "N01K separately checks local-overage and provider-rejection paths against a disposable transcript store after a fake tool executes; provider telemetry and configured compaction memory effects remain distinct."
+  },
+  "documents_sha256": {
+    "decisions.md": "93e3bfee8653b8c3faa4698d013ce62eb795fabb67b6ff10e28361755732586a",
+    "README.md": "1fd057d7f701834535579af9055c0a6b35dbae36d527ba49ce8aa54539d030b3",
+    "replacement-plan.md": "c507e516859388c2c082654c653f62c858444126d73c7bf6f1401f6c0c55a06e",
+    "screen-layout.md": "48ab28cdc8bd9070e387ec8cffa6b7ca336f207ae461eff66a5fa9ef8213aac3",
+    "user-guide-requirements.md": "10e7fff40fc54453424ce45e333e48e47ac7e30643d324f42011294a41ff0ebf",
+    "neutral-capability-map.md": "2bca213b9df8c1d6e5fb73afb4f4d0c1fa03ae496215d59b150d5827e02c3a6f",
+    "authority.json": "cb254e2608fe312d239ce6337a92349da05118865040634c0236d781dd1c0669",
+    "execution-log.md": "7e7006bd8e730fa79b24781cc6829b38f38a33f97e0dcde3d64f7c207ab11bd7",
+    "docs/planning/board.yaml": "4122b02adb206a0753620a7e24529bb13d5a75d3a70ea0ff139cbb91422b695d",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "99 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 128 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "incomplete_turn_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted later post-tool incomplete-turn transcript exclusion and planning checks only. Exact neutral failure/persistence ordering, provider-error classification, installed behavior, terminal UAT and release acceptance remain open."
+}

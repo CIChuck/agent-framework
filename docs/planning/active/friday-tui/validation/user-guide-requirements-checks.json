@@ -1,0 +1,27 @@
+{
+  "initiative": "friday-tui",
+  "kind": "planning_user_guide_requirement",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "documents_sha256": {
+    "user-guide-requirements.md": "150a6a3a22e818c78e97f6dfd77ec8e02b004e16f2f3f465da0cb742a143a081",
+    "architecture-reset.md": "21f1270ddcb12f599b2fe1c969a60b35a733616944a28b3ead2b4437840b5ca7",
+    "README.md": "214482f17bc148c0b9730bbd2e898f5f489548293c84f3cb57232e6d746ca5d8",
+    "decisions.md": "08480db5de4d6d848fe3e662f4e748ae779a3b7d7bc3fa316994170041107c93",
+    "test-and-uat-plan.md": "924228c3e96da8e3a5d4c0a24d6f4c5e247261d8a8d9f247e7d5de04139c230f",
+    "authority.json": "952b058b024be8b1812af6ac1b8debb5ca23a096b0b4a96735b214a4b7d49189",
+    "execution-log.md": "0efd3621f877dad8854e0b2386892a16dceae8a6df5a5570583943202199629e"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "14 valid before this receipt",
+    "packet_markdown_links": "12 files; no missing local targets",
+    "tracked_git_diff_check": "passed",
+    "changed_packet_trailing_whitespace": "passed",
+    "product_code_or_dependency_changes": "none"
+  },
+  "open_preference": "Location of the detailed tui settings reference: docs/guides/10-configuration.md or the future TUI guide. One location will own detail and the other will link.",
+  "evidence_limit": "Planning requirement only. No TUI guide, product implementation, new product tests, Linux terminal UAT or user acceptance was performed."
+}

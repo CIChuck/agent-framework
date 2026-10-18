@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_attachment_fixed_defaults_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-96: omitted per-file and combined TUI attachment limits use fixed conservative estimated-token defaults across models/providers and known or unknown context metadata. Explicit valid values override them; runtime context budgeting remains separate.",
+  "source_evidence": {
+    "maintainer_answer": "A to fixed conservative defaults for every model",
+    "prior_decisions": "D-94 provides optional typed TUI-only limit settings; D-95 sets estimated-token units",
+    "configuration_boundary": "Shared presentation-file tui.attachments namespace; no Chat/CLI or Friday runtime configuration change"
+  },
+  "documents_sha256": {
+    "decisions.md": "8ae7f62ed32493f454600f6c4ee4776a1eb9b7576224c32fe4f6e4b9a5e31616",
+    "README.md": "373ade0ddf01bfdc5ca451525131ed2bd448df580bfe5f6df59aa82e9385d00f",
+    "replacement-plan.md": "cb7e153c059100b8ad2d81df0655f7cda4b10b491f0269ed08e82da8cebd9518",
+    "user-guide-requirements.md": "db62e998d87de295018bef20e4f2015b7596dc110694d95ee677cf45a7c5bc81",
+    "neutral-capability-map.md": "ca78240114defa66403df341ff1fd8a225f31ec4879b112a7a0c415a893cdb37",
+    "ux-configuration.md": "cb980899ba3865804c1d6381c461eab2fe2e543f94a13080b3ed00ea13e6eb12",
+    "authority.json": "82d4ce788fd440bf4192162946daf85414ba88c491d69121102219841cf80e4e",
+    "execution-log.md": "200493eed6f64cb745b5d0ad72be6c0847b99608a1a434a04e7e7b0ed41e890f",
+    "docs/planning/board.yaml": "be9d682db3e29dd0544c1b79541f018e5555f2b6c5cb41814eda744447fa7bc3",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "92 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 121 paths within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "fixed_default_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted fixed-default strategy and planning checks only. Exact numeric defaults/ranges, field names, estimator/headroom, runtime context reservation, installed behavior, terminal UAT and release acceptance remain open."
+}

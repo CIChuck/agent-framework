@@ -1,0 +1,66 @@
+{
+  "recorded_at": "2026-10-17T00:03:59.689801+00:00",
+  "kind": "technical-contract planning transaction; not product implementation, independent validation or TUI acceptance",
+  "source_commit": "c34269867be50f71923c93c95a63236a35505812",
+  "branch": "feature/friday-tui",
+  "checks": {
+    "board_and_generated_dashboard": "passed: 34 tasks",
+    "command_registry_metadata": "50 canonical rows and 3 aliases match current public metadata, including arguments/defaults/choices",
+    "unchanged_source_pytest": "passed: 241 tests, 155 CLI and 86 selected Chat; source environment only",
+    "unchanged_source_static_checks": "Ruff and focused Mypy passed on app/display",
+    "dependency_metadata_overlay": "resolved without installing; existing constrained rendering versions retained",
+    "changed_document_links_and_packet_status": "passed",
+    "json_and_whitespace_including_untracked_files": "passed",
+    "exact_changed_path_scope": "TUI planning packet and its board/dashboard only, including queued README move",
+    "protected_source": "16 baseline hashes unchanged; no package/test/script/metadata/lock/policy/archive diff",
+    "other_board_tasks_and_prior_events": "unchanged",
+    "historical_evidence": "source-baseline.json, planning-checks.json and decision-update-checks.json retained unchanged",
+    "full_documentation_lifecycle": {
+      "exit_code": 1,
+      "known_unchanged_broken_links": [
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/packages/friday-telemetry/src/friday_telemetry/providers/composite.py'",
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/packages/friday-telemetry/src/friday_telemetry/providers/composite.py'",
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md'",
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:23: broken link '/private/tmp/telem-01/review/docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md'",
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:98: broken link '/private/tmp/telem-01/review/packages/friday-chat/tests_chat/test_reorganization_terminal.py'",
+        "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md:100: broken link '/private/tmp/telem-01/review/docs/reference/policies/independent-validation-policy.md'"
+      ]
+    }
+  },
+  "authority": {
+    "work_state": "started",
+    "implementation_authority": "design_only",
+    "product_code_generation_authorized": false,
+    "construction_directives_approved": []
+  },
+  "remaining_gates": [
+    "Maintainer review of integration contract/build plan and approval of CD-TUI-001 exact shared-interface scope",
+    "Record scoped product-code authority before implementation",
+    "Independent validation of shared-interface candidate before separately authorized TUI shell work",
+    "Full workspace solve, installed behavior and Textual/macOS/Linux UI verification remain future acceptance work"
+  ],
+  "evidence_sha256": {
+    "README.md": "000ac4dde30238901e3b08db0cab8149882d3f033cbd8b6ff3bf077140d13f33",
+    "authority.json": "ba92c118a3117f4ca891829a20e2ed7f8a473ebe86c5e69626ef98a3dceb20f7",
+    "build-plan.md": "efbd6a4a197edf576939b6c33172be4bb4544b1859bbcf6ef534d62f736eee61",
+    "command-matrix.md": "729a2ec809fbf9b0b01709854eaffc0b89e63311638cd0976e2e47c47d560826",
+    "decision-update-checks.json": "0fa8c00fa7fcb9c9e9daa4ebd56b1357f0b29e0f23bbd1b04dbcd7bf78ba4fec",
+    "decisions.md": "a71a30291ed32ccc30573a9d0eeb357fff986973c48ed5f422d49ee2d1606941",
+    "directives/CD-TUI-001-shared-presentation-contracts.md": "94323c6bfa3d18b7633bfde1cce8285b79a9ba21d2ea95dc9072379300b8f82c",
+    "execution-log.md": "a75157bb1e833357c5a2848466a448a47091a7181141688410bf4ddaa878360e",
+    "integration-contract.md": "b7710eaa78c0375b5e07b75dcbdaeded205f1ed3566aece7dd4ecac7f92e6a93",
+    "planning-checks.json": "35a3b4d6eda1e5cb11d9946ca5f65cf8152b796fd793f70e56bbfd59e13f2586",
+    "source-baseline.json": "addde405302ac06170be1a0a37827a08011783a3080a2e7ab04f0b8b761de43b",
+    "tactical-plan.md": "056d87dd33dacf4be60b7782296433619c3d03b5a39030ab520d84c018480eb1",
+    "validation/baseline-collection-collision.log": "aa16f924aa32a9853e27526d14c0cd0e643c331c6b81061fc1c80bee225eafd8",
+    "validation/baseline-mypy.log": "f9b031e5c45aa702cd4fef028d465551cb20a2c4698e0913c7b00766b20ac4d8",
+    "validation/baseline-pytest.log": "c622b2308004b4d28e7776641fa68a603688a8c590a085b04b3775d6279a22e1",
+    "validation/baseline-ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "validation/command-matrix.json": "d37945feefdc5c6083f761eb41bba3f6cc787a53c0925a1bbaf83c1f33651ecb",
+    "validation/technical-evidence.json": "5258fe6c6efd0c6dbb4085176eb989258b2e7e7053b7c08296aedd8c336df4f3",
+    "validation/textual-overlay.txt": "89d98dfdc3228c63a7286c3cefa3004140caa3db5929aa12a6c29042fbc23d81",
+    "validation/textual-resolution.log": "6f803ceb7736bf50db05f0428b63d020edecc8e5b4e3b2d3b2d4878f50175a55",
+    "docs/planning/board.yaml": "dc8f3cae5f46b9b926a505f00d41a84e319bea22e83cb60fff93b948ad35a33e",
+    "docs/planning/README.md": "2426073cbd27c13ef9c1209b675ea09dfe2fa312d19a2d36ee78b899bfc69696"
+  }
+}

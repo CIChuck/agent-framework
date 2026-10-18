@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_xlsx_all_worksheets_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-89: a selected XLSX workbook is one TUI attachment containing content from every worksheet, including non-active and hidden sheets, labeled by sheet name in workbook order. No active-sheet-only or silently incomplete successful attachment; Chat and CLI behavior stay unchanged.",
+  "source_evidence": {
+    "maintainer_answer": "A to every worksheet, labeled by sheet name, rather than only the active worksheet",
+    "existing_reader": "packages/friday-tools/src/friday_tools/filesystem/readers/xlsx_reader.py defaults to wb.active and supports explicit sheet name or index; it does not assemble all sheets in one read",
+    "implementation_boundary": "Neutral TUI extraction must enumerate or assemble sheet content without importing Chat or CLI handlers"
+  },
+  "documents_sha256": {
+    "decisions.md": "aa17c99880420eceed5ac70a9537a348a3400891cc76352cb76fc0e56afc3674",
+    "screen-layout.md": "330f2b5f0990a0eadb35738dfdd7b690a69c8681b4acb043f704b2d2b1b81418",
+    "README.md": "33924f1ab07d0d2a86179269007a1127b854131e5ee924f43a6bb8ec4808c289",
+    "replacement-plan.md": "52c3f30bdbf1c0b24fcc77d8683150aac5fa8e4fdd83e67fbeaccecc3bfb74e1",
+    "user-guide-requirements.md": "551989eec081344be6e24cb8fe6c97fd7d076a78160ce760604539974914ac7f",
+    "neutral-capability-map.md": "c5f195af17418137c7223e54279ee63aa0c9a5686529f61230e46db1de1773fb",
+    "authority.json": "f0cf1ca2ebd677233aac5f429db63c129a9ba846098eb0a890a842caef377a43",
+    "execution-log.md": "fa21f6f70ab46725558374e5495bc61479eaa0c56d7adeabf806c56004d9579f",
+    "docs/planning/board.yaml": "3ebd6cc24d8f69838177ea8e39985daa5f36e10aaaf3bf07e476f085460cbb59",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "85 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "all_sheet_model_input": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted multi-worksheet attachment direction and planning checks only. Formula representation, worksheet read-failure policy, file-size/aggregate context budgets, installed multi-sheet behavior, terminal UAT and release acceptance remain open."
+}

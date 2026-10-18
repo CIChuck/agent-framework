@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "editor_history_additional_routes_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-75: include accepted @agent messages and enabled/admitted ! commands in current-run editor recall alongside prompts and slash commands. Recalling fills the editor without execution. Disabled, rejected and unsent routes are excluded; no route enablement or CLI behavior changes.",
+  "documents_sha256": {
+    "decisions.md": "05fa024d5d50c0ad3db0363c80c2183b905e01e321a34079ec1784472bcd9cef",
+    "screen-layout.md": "f404b7040dc4e5a9bb4764187aee540edc193a8aa27a57f9095a41c96cf3854c",
+    "README.md": "eba3396f870c015dc33c27a61372e6982480e94f30b6940210997e9425d771b9",
+    "replacement-plan.md": "0306d3ce83761c33d056de33b433ca6e1cf0a2edd9ef116db4351ed7d7a034f1",
+    "user-guide-requirements.md": "3b03001f9efd71d06a30b49a7e895cf7a23e4c869c85a3b1d4f851f305972602",
+    "command-matrix.md": "77bdcccd5d3b0a01560c04b8a3ba28b0400a1333ef9b1bbeb5a8ec7a661a27db",
+    "authority.json": "f37e96d6ee7e68c6827bde811d4c17a536ca8ad3887ab068d362af79fd44d81c",
+    "execution-log.md": "869c4b1bcbafa60bd48e0e3dab91d5946d549a84c9f083a016da5def045a2aac",
+    "docs/planning/board.yaml": "537ac7157c684b2d83acd41b25d5ec6b6546b10b122b0705f802cb36cde958c3",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "71 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only input-history decision and no product code change",
+    "tui_input_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted additional editor-history routes and planning checks only. TUI implementation, route behavior, installed-package verification, terminal UAT and release acceptance remain unproven."
+}

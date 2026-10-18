@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_xlsx_sheet_failure_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-90: an unreadable worksheet rejects the entire new XLSX attachment with the worksheet and cause named and no partial model input. Failed refresh retains the last complete workbook snapshot, while other attachments remain active.",
+  "source_evidence": {
+    "maintainer_answer": "A to reject the whole workbook if one worksheet cannot be read",
+    "related_decisions": "D-89 requires every worksheet in one attachment; D-81 keeps the last good snapshot on failed refresh; D-82 disallows empty successful attachment",
+    "implementation_boundary": "TUI neutral extraction only; no Chat or CLI handler dependency or behavior change"
+  },
+  "documents_sha256": {
+    "decisions.md": "329136bb9e3c8471146e1763b9ad8d4299eb728e841b49f275979ac8915ce4f8",
+    "screen-layout.md": "0454dbfadf63be361bc09f07ed94126b4a6c9ba1392afd1ff13c99d664963615",
+    "README.md": "e72dc8c0cdf5a860d6f6d89c3e9fc81010b116b1bcf86313898fa236dc5d48b3",
+    "replacement-plan.md": "d9f8397fa91d5e4098e7c00b78b86865759eef97739aaeebef34467b0a0d61d9",
+    "user-guide-requirements.md": "fc208de5d8cea012b7b4ce621cd54681b2c64bf719de84ba7b4e425fc708894b",
+    "neutral-capability-map.md": "9f07470b8738fd4abceb7384d27bb8b599abe45831c7cc21e2a99fded25a38e7",
+    "authority.json": "b753b3220b172fa20a0e3ce0f6d1736894aa23af4a36da519fc1032ab67ef005",
+    "execution-log.md": "11300b5436aec21dbb5359674ee41826d1b96d3d4a0896f7332756d4612deb51",
+    "docs/planning/board.yaml": "2d88748592b054613f1627d182c85414511500f080a0ade7240def5e2dfc1f24",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "86 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "sheet_failure_model_input": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted whole-workbook failure semantics and planning checks only. Formula representation, file-size/aggregate context budgets, installed XLSX behavior, terminal UAT and release acceptance remain open."
+}

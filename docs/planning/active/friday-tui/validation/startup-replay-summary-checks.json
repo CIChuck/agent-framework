@@ -1,0 +1,35 @@
+{
+  "initiative": "friday-tui",
+  "kind": "startup_replay_summary_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-63: the first-release completed startup replay screen shows input file and processed-turn count as replay data, with no browsable per-turn record. D-62 read-only retention until Quit remains; failure presentation is still open.",
+  "documents_sha256": {
+    "decisions.md": "27738f82ea15bd6d30724f6d2965c32ed0ea673506952afe5b43537688623657",
+    "startup-bootstrap-contract.md": "a5b86336f139c2c42cea8e92278bc438f29d4a962f05281afb17f59d15ad6638",
+    "replacement-plan.md": "5cb337984a5007e5cd9b6aef8ed28a47c10eb43cc5fcf5bad8afdc3df1da9502",
+    "README.md": "a7665ee4e5fb88999581602220691155593d3b009c8f75b3ec0960ab6c1daf3c",
+    "user-guide-requirements.md": "85f93d3a2570f07e7bb3e52275bfbef7c4ad7eb2969ac8bd25058cd8635ec379",
+    "architecture-reset.md": "9fa6c2c9807c327d02f631c80a78485fcbf3e9916783069ad011e823ee3f821b",
+    "command-matrix.md": "d62567753d271c699f060023979110d9962c7344fbdb94d7e06197cc3c84d50b",
+    "authority.json": "d3034ac256a165d383e517d0be0374b6dd7ded17e9d0890d5987a4c6fe298d05",
+    "execution-log.md": "18dbcf14d0bb5132c37fe5ac55f6a0bb06ac6c5d86742d70ca6b948feb0252dd",
+    "docs/planning/board.yaml": "c65331147d406baf0b977e93c25e51d41ff77b3f89e2ab91d458313cd2485f7c",
+    "docs/planning/README.md": "94634895851cd4ae89d160581b8f7136135f2d59ac606d9c1e079a2e59648f8e"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "59 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only content decision and no product code change",
+    "existing_chat_replay_baseline": "23 existing Chat CLI/replay tests passed in the preceding D-62 review",
+    "tui_replay_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted content decision and planning checks only. No neutral replay service or TUI implementation, after-code CLI regression, installed-package verification, user UAT or release acceptance."
+}

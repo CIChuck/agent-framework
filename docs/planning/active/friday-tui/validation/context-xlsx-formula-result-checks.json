@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_xlsx_formula_and_saved_result_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-91: attached XLSX formula cells include both the original formula and any workbook-saved result, distinctly labeled with sheet/cell identity. When no saved result is present, label it unavailable; do not calculate or fabricate a result.",
+  "source_evidence": {
+    "maintainer_answer": "A to both formula and saved result, clearly labeled",
+    "existing_reader": "packages/friday-tools/src/friday_tools/filesystem/readers/xlsx_reader.py loads with data_only=True, returning saved results instead of expressions",
+    "implementation_boundary": "TUI neutral extraction needs formula-aware content without Chat or CLI handler dependency or behavior change"
+  },
+  "documents_sha256": {
+    "decisions.md": "fd37aa84e1f386c7e202b3b6fa7106c01cd4fe7d6a77a6e104f799c1b4afc329",
+    "screen-layout.md": "ee50f0f16db115de378837930346fdeeceac0537483add0c5959ca77ec6c5a8d",
+    "README.md": "b744fc2eb579b9d500dd79bf253426bdbc342562c0f19ad98809f0c7273ec55b",
+    "replacement-plan.md": "920821f65d6b7af4ef47a0dcf2aef870bb47dba2e76885b4f19464af27dbf38c",
+    "user-guide-requirements.md": "c4ec7d3589e8d4e1774b90922eb39a7cdf3ce5fde3cbdf645a03824a6277deaf",
+    "neutral-capability-map.md": "ba9ec257100354200a5c7165da5860fbb885c8602d10da9fc2a155cd1d3dad75",
+    "authority.json": "2c6274573e853e86f8ae643866aff4a3bef4c0775e51dea6b2f5b37fa8bc0bfe",
+    "execution-log.md": "5831854648c443e837274bb5aefc105adf507b97bf6c76c316a0d22b889bca0d",
+    "docs/planning/board.yaml": "3462f9b67da4ce55213b08c72eb774241e7b5ead45f9adbb3b434168bb3f5292",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "87 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "formula_model_input": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted formula representation and planning checks only. File-size/aggregate context budgets, installed XLSX formula extraction, terminal UAT and release acceptance remain open."
+}

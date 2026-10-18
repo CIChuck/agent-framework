@@ -1,0 +1,48 @@
+{
+  "recorded_at": "2026-10-17T00:37:30.118342+00:00",
+  "kind": "existing-loader compatibility probe for proposed valid-YAML tui namespace; not a TUI implementation test",
+  "source_commit": "c34269867be50f71923c93c95a63236a35505812",
+  "input": "packages/friday-chat/cli-config.example.yaml plus proposed tui namespace from ux-configuration.md, using disposable ignored-directory copies",
+  "method": "read disposable copies through CLIConfig.from_yaml and existing Chat resolve_display_config; compare normalized configuration values and rendered assistant text",
+  "probes": [
+    {
+      "case": "proposed_namespace",
+      "existing_framework_and_chat_display_values": "unchanged",
+      "assistant_rendering": "byte-identical in controlled Rich console"
+    },
+    {
+      "case": "invalid_tui_shape_but_valid_yaml",
+      "existing_framework_and_chat_display_values": "unchanged",
+      "assistant_rendering": "byte-identical in controlled Rich console"
+    },
+    {
+      "case": "unknown_tui_version_but_valid_yaml",
+      "existing_framework_and_chat_display_values": "unchanged",
+      "assistant_rendering": "byte-identical in controlled Rich console"
+    }
+  ],
+  "limits": [
+    "No new TUI schema or settings reader exists yet",
+    "Malformed YAML still follows existing whole-file errors",
+    "No TUI settings effects, keyboard, layout or UAT executed"
+  ],
+  "user_files_modified": false,
+  "product_files_changed": false,
+  "existing_regression_profile": {
+    "exit_code": 0,
+    "tests": 47,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "paths": [
+      "packages/friday-cli/tests_cli/test_cli_config.py",
+      "packages/friday-chat/tests_chat/test_display.py"
+    ],
+    "options": [
+      "--import-mode=importlib",
+      "-p no:cacheprovider"
+    ],
+    "log": "ux-config-baseline.log",
+    "environment": "existing editable checkout, network guard and telemetry-disabled profile retained; not clean installed TUI verification"
+  }
+}

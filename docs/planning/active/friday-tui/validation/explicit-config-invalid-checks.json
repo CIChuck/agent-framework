@@ -1,0 +1,32 @@
+{
+  "initiative": "friday-tui",
+  "kind": "explicit_config_invalid_exit_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-51: an invalid runtime file supplied via explicit --config reports the configuration error and exits nonzero without opening the chooser or starting the runtime. This is separate from interactive chooser recovery and provider-startup failure.",
+  "source_reference": "packages/friday-chat/src/friday_chat/cli.py:99-142; current explicit-config error path exits with code 1; behavior reference only",
+  "documents_sha256": {
+    "README.md": "8e8fcbb20563db4083f31c1a3a16c98746e7e538ed98dff7de32fb46182052b6",
+    "decisions.md": "e7a3d626a9ffd4d7d2e83a7e4b6724b0e6406c4856da90730de80fe84378162a",
+    "replacement-plan.md": "f7a4d583a8ba519d5c69a212bed8dea68a23bb3dca4221f4dc666569d5bc6249",
+    "architecture-reset.md": "7cd221227778a5b183efb13c89f4b8361b2789d7368bc8cef4cc0141e120e24e",
+    "neutral-capability-map.md": "924a2046f9fde12a07d029895e41943840095f991e1788df2fcfbddf693455cb",
+    "user-guide-requirements.md": "77d7e6a67c375e6cda472583ce3492fdb9ed1397230e40c72fa292b1a825d72a",
+    "authority.json": "8cd473ef9761d54d760fdde2d0dfec04737b6164260b5840b1f61651a90f6019",
+    "execution-log.md": "a49ab96c561845463187e8158ae886ccff6fb29fdb27d84f2bf22989cb73b1d5",
+    "docs/planning/board.yaml": "6f89feef254391c3dddc86438c2312c9d1ba596f63faf0a76e71f89832c1312f",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "45 valid before this receipt",
+    "packet_markdown_links": "17 files; 151 local links; no missing targets",
+    "packet_trailing_whitespace": "17 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}
