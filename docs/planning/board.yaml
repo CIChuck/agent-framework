@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Obtain a complete Ubuntu Actions run for the current TUI-CI01 candidate, inspect the MCP stdio result and all independent checks, then obtain work-unit review
+  next_gate: Review fourth Ubuntu run 39175010441 and obtain a separate maintainer-approved directive for Runtime MCP and Chat Linux failures before a green CI01 run and final independent review
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []

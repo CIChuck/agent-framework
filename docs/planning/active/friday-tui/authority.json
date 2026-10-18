@@ -9,7 +9,7 @@
   "work_state": "started",
   "implementation_authority": "granted",
   "execution_phase": "validation",
-  "validation_state": "pending",
+  "validation_state": "changes_requested",
   "allowed_changes": [
     "docs/planning/active/friday-tui/** (scoped authority and evidence only)",
     "docs/planning/board.yaml (TUI task and its scoped events only)",
@@ -215,8 +215,11 @@
     "sixth_candidate_preflight_outcome": "CHANGES_REQUESTED; findings CI01-05 and CI01-06 covered by RD-TUI-CI01-07",
     "second_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39173445329",
     "third_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39174159031",
-    "candidate_status": "third Ubuntu run failed during full Runtime tests; Moltbook selection and independent-step evidence collection added for rerun; repeated MCP stdio failure remains open",
-    "linux_run_status": "failed: 331 Runtime tests passed and three failed in run 39174159031; later checks skipped; no Linux coverage claim"
+    "fourth_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39175010441",
+    "fourth_linux_run_source": "94f968143ee9890cf761b0e3be9004735e5a6aaf",
+    "fourth_linux_run_report": "validation/TUI-CI01-ubuntu-run-39175010441.md",
+    "candidate_status": "fourth Ubuntu run exercised all independent steps: focused tests, unchanged CLI and installed-wheel checks passed; one Runtime MCP stdio and five Chat tests failed; approved CI01 scope stops before product/test edits",
+    "linux_run_status": "failed: Runtime 333 passed/1 failed; Chat 816 passed/5 failed/23 skipped; friday-cli 155 passed; no full Linux coverage claim"
   },
   "closed_construction_scope_n01a": {
     "unit": "TUI-N01A",

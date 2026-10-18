@@ -1,9 +1,9 @@
 # Friday TUI execution log
 
-Status: Active TUI-CI01 workflow verification; N01A closed under its
+Status: Active TUI-CI01 Linux verification stopped at its protected-source boundary; N01A closed under its
 maintainer-approved Linux-smoke deferral
 
-execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun)
+execution_phase: validation; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope)
 
 ## 2026-10-16 — activation and build planning
 
@@ -1808,3 +1808,27 @@ board next gate refer to the current CI01 candidate's full Ubuntu run and
 work-unit review. The workflow remains unchanged from `49acc931`; a fresh
 read-only review is required before pushing the corrected packet.
 execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).
+
+## 2026-10-18 — TUI-CI01 fourth Ubuntu run and protected-source stop
+
+Pushed packet candidate `94f968143ee9890cf761b0e3be9004735e5a6aaf`
+under the recorded branch-push authorization. GitHub Actions run
+[`39175010441`](https://github.com/CIChuck/agent-framework/actions/runs/39175010441)
+exercised all independent checks. The focused neutral loader/Chat facade
+tests passed 21/21; the unchanged `friday-cli` suite passed 155/155; all 13
+local wheels built; Runtime wheel metadata, outside-checkout Runtime
+isolation and installed Chat facade checks passed. Full Runtime reported 333
+passed and one MCP `auto`/modern stdio failure; a standalone invocation of
+that case also failed. Full Chat reported 816 passed, five failed and 23
+skipped. Four failures involve `/reorganize` on Linux, where the existing
+lease registry rejects non-Darwin execution; one is a help-output assertion.
+The complete findings and exact source/run are in
+`validation/TUI-CI01-ubuntu-run-39175010441.md`.
+
+The CI workflow's dependency and installed-wheel checks now run, but the
+required full-suite Linux gate remains red. The CI01 directive forbids package
+source/test edits; stop at that boundary and require a separately scoped,
+maintainer-approved directive for the Runtime/MCP and Chat compatibility
+work before another green-run claim. No TUI product code, protected package
+source, tests, metadata or lockfile changed.
+execution_phase: validation; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope).
