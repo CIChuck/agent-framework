@@ -1,8 +1,9 @@
 # Friday TUI execution log
 
-Status: Active TUI-N01A candidate awaiting independent validation
+Status: Active TUI-CI01 workflow verification; N01A closed under its
+maintainer-approved Linux-smoke deferral
 
-execution_phase: validation; validation_state: pending (TUI-N01A)
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun)
 
 ## 2026-10-16 — activation and build planning
 
@@ -38,7 +39,7 @@ different startup/interactive replay semantics. They are TUI-00 design items.
 Asked about OS support, multiline input and quit during mutations; answers are
 recorded in the decision register as they arrive.
 
-## Current stop point
+## 2026-10-16 planning stop point
 
 Build plan and tactical sequence are draft. Product choices and the exact
 integration contract must be reviewed before a product-code construction
@@ -1732,4 +1733,17 @@ locked sync. Offline export/dry-run confirms the selected closure includes
 `mcp`, `cryptography` and `pytest-mock`; workflow syntax, board, dashboard and
 lock checks pass. No protected product or test path changed. Freeze and
 review the corrected candidate, then rerun Actions for its new SHA.
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).
+
+## 2026-10-18 — TUI-CI01 packet-state preflight correction
+
+Fresh-context read-only review of `3086f7d7` returned `CHANGES_REQUESTED`
+for CI01-03: this log's current header still named N01A as awaiting review,
+and the board's next gate still included the already completed locked MCP
+dependency correction. Retained the finding in
+`validation/VAL-TUI-CI01-preflight-3086f7d7.md` and assigned it in
+`RD-TUI-CI01-03` of the directive. Updated only the log's current status and
+the board's next gate, then regenerated the dashboard. The workflow and all
+package paths remain unchanged from `3086f7d7`. A fresh review and green
+Ubuntu run for the new candidate remain required.
 execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).

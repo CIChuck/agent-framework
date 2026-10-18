@@ -203,6 +203,8 @@
     "local_check_report": "validation/TUI-CI01-local-checks.md",
     "first_candidate_preflight_report": "validation/VAL-TUI-CI01-preflight-7d97aacd.md",
     "first_candidate_preflight_outcome": "CHANGES_REQUESTED; findings CI01-01 and CI01-02 covered by RD-TUI-CI01-01",
+    "second_candidate_preflight_report": "validation/VAL-TUI-CI01-preflight-3086f7d7.md",
+    "second_candidate_preflight_outcome": "CHANGES_REQUESTED; finding CI01-03 covered by RD-TUI-CI01-03",
     "candidate_status": "first Ubuntu run failed on missing locked MCP dev test dependency; workflow-only correction pending rerun",
     "linux_run_status": "failed at Runtime test collection; run 39172562601; no Linux coverage claim"
   },

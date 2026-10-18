@@ -69,6 +69,7 @@ Current planning artifacts:
 - [TUI-CI01 local workflow checks](validation/TUI-CI01-local-checks.md)
 - [TUI-CI01 first-candidate independent preflight findings](validation/VAL-TUI-CI01-preflight-7d97aacd.md)
 - [First Ubuntu Actions run and failure diagnosis](validation/TUI-CI01-ubuntu-run-39172562601.md)
+- [Second-candidate independent preflight finding](validation/VAL-TUI-CI01-preflight-3086f7d7.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)

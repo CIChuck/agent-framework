@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Correct locked MCP test-dependency selection, rerun Ubuntu Actions for the new TUI-CI01 SHA, then obtain independent review
+  next_gate: Rerun Ubuntu Actions for the corrected TUI-CI01 SHA, capture all test and installed-wheel evidence, then obtain independent review
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []

@@ -136,3 +136,18 @@ Record the failed run and its disposition in the packet. Commit and obtain
 fresh-context read-only review of the corrected candidate; then use the
 maintainer-authorized TUI-CI01 branch push to rerun Actions. A skipped or
 failed step never counts as Linux verification.
+
+## RD-TUI-CI01-03: current packet and board state
+
+Fresh-context review of `3086f7d73efd48533c69d329305cb27c4c03dfcc`
+returned `CHANGES_REQUESTED` for CI01-03: the execution-log header still
+named N01A as awaiting validation, and the board next gate still called for
+the locked MCP selection already present in that candidate. This conflicts
+with the current TUI-CI01 validation state required by the lifecycle policy.
+
+Correct the execution-log header and board next gate, regenerate the
+dashboard, and retain the finding as validation evidence. Validate board and
+dashboard consistency and the exact changed-path diff. No workflow, package,
+test, metadata, lockfile, trigger, permission or credential edit is authorized
+by this addendum. Commit the corrected packet and request a fresh-context
+read-only review before the authorized Ubuntu rerun.
