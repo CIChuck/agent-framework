@@ -41,7 +41,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 14 | [Friday TUI](active/friday-tui/) | normal | granted | local | Implement and independently validate the approved TUI-N01S session-identity slice only; keep loader, assembly/close, chooser, replay, event and Force quit units design-only pending separate directives |
+| 14 | [Friday TUI](active/friday-tui/) | normal | granted | local | Independently validate the frozen TUI-N01S session-identity candidate; keep loader, assembly/close, chooser, replay, event and Force quit units design-only pending separate directives |
 | 27 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
 | 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](active/friday-deprecated-credential-cleanup/) | normal | granted | merged | PR 9 merged and remote branch deleted; maintainer lifecycle closeout/acceptance remains |
 | 29 | [Friday 0.1.0a3 repository version bump](active/friday-alpha3-version-bump/) | normal | granted | released | Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified |

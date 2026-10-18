@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Implement and independently validate the approved TUI-N01S session-identity slice only; keep loader, assembly/close, chooser, replay, event and Force quit units design-only pending separate directives
+  next_gate: Independently validate the frozen TUI-N01S session-identity candidate; keep loader, assembly/close, chooser, replay, event and Force quit units design-only pending separate directives
   delivery_state: local
   branch: feature/friday-tui
   depends_on: []

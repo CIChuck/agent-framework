@@ -1506,3 +1506,26 @@ TUI units remain design-only; no TUI release or UAT is implied. The next gate
 is local implementation, regression checks and fresh-context independent
 validation of a frozen candidate.
 execution_phase: implementation; validation_state: not_ready.
+
+## 2026-10-18 — TUI-N01S identity candidate implemented and locally checked
+
+Moved the immutable identity type, mismatch exception and resolver without
+behavior changes to `friday_runtime.session_identity`; `friday_chat.session`
+re-exports the same objects and retains `FridaySession`. Added focused Runtime
+tests for generation, validation, injection, mismatch, old Chat import/pickle
+class lookup and the neutral import boundary. No `friday-cli`, Chat command,
+package metadata, dependency or TUI implementation file changed.
+
+Local checks: 117 focused Chat/Runtime tests and 155 `friday-cli` tests passed.
+With local loopback enabled, all 324 Runtime tests passed and all 828 Chat
+tests passed (five skipped). Focused Ruff and Mypy on the three allowed files
+pass. Both affected wheels built, and importing them from a temporary install
+outside the checkout preserved the neutral import closure and Chat class
+identity; dependencies for that smoke were supplied by the existing workspace
+environment. `friday-chat --version` still reports `0.1.0a4`, its help exits
+zero, and `friday --help` retains its pre-existing `friday_cli.main.app` import
+failure. Repository-wide Ruff still reports 534 existing errors outside the
+three changed files; focused changed-file lint passes. No user UAT applies to
+this identity-only slice. Freeze a candidate commit and seek fresh-context
+independent validation before claiming verification or completion.
+execution_phase: validation; validation_state: pending.

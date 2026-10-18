@@ -1,13 +1,13 @@
 # Product Requirements Document: Friday TUI
 
-**Status:** Active; TUI-N01S neutral session-identity directive approved for
-construction; later units remain in design review
+**Status:** Active; TUI-N01S neutral session-identity candidate awaits
+independent validation; later units remain in design review
 
 **Lifecycle:** Started; board priority 14; authority `granted` for TUI-N01S only
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: implementation; validation_state: not_ready
+execution_phase: validation; validation_state: pending
 
 **Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 

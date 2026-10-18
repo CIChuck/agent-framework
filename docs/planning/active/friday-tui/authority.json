@@ -8,8 +8,8 @@
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "implementation",
-  "validation_state": "not_ready",
+  "execution_phase": "validation",
+  "validation_state": "pending",
   "allowed_changes": [
     "docs/planning/active/friday-tui/**",
     "docs/planning/queued/friday-tui/README.md (move to active only)",
