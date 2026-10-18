@@ -1,9 +1,9 @@
 # Friday TUI execution log
 
-Status: Active TUI-CI01 workflow remediation; N01A closed under its
+Status: Active TUI-CI01 workflow verification; N01A closed under its
 maintainer-approved Linux-smoke deferral
 
-execution_phase: validation; validation_state: changes_requested (TUI-CI01 Ubuntu Runtime failures)
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun)
 
 ## 2026-10-16 — activation and build planning
 
@@ -1763,3 +1763,16 @@ the evidence and `RD-TUI-CI01-04` bounds the workflow-only finance correction.
 The MCP result must be inspected in the next full Ubuntu run. No Linux
 verification claim is made.
 execution_phase: validation; validation_state: changes_requested (TUI-CI01 Ubuntu Runtime failures).
+
+## 2026-10-18 — TUI-CI01 finance-candidate packet-state correction
+
+Fresh-context review of `89a875ac` returned `CHANGES_REQUESTED` for
+CI01-04. It found no workflow issue but identified a mismatch between the
+packet index's pending state, this log's current `changes_requested` header
+and the board's obsolete finance-correction next gate. The finding is in
+`validation/VAL-TUI-CI01-preflight-89a875ac.md` and is assigned in
+`RD-TUI-CI01-05`. Reconciled the current state as pending a complete
+Ubuntu rerun; updated the board next gate and regenerated the dashboard.
+The workflow remains identical to `89a875ac`. The prior MCP failure is
+unresolved until the next full Runtime result. Fresh preflight is required.
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).

@@ -73,6 +73,7 @@ Current planning artifacts:
 - [Second-candidate independent preflight finding](validation/VAL-TUI-CI01-preflight-3086f7d7.md)
 - [Third-candidate independent preflight](validation/VAL-TUI-CI01-preflight-7a41004a.md)
 - [Second Ubuntu Actions run and Runtime failures](validation/TUI-CI01-ubuntu-run-39173445329.md)
+- [Finance-candidate independent preflight finding](validation/VAL-TUI-CI01-preflight-89a875ac.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)

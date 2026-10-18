@@ -179,3 +179,16 @@ skipped; this run is not Linux verification.
 - No product source, tests, metadata, lockfile, trigger, action permission or
   credential change is authorized here. A repeat MCP failure requiring
   protected code/test changes stops for a separately scoped directive.
+
+## RD-TUI-CI01-05: current validation and board state
+
+Fresh-context preflight of `89a875acb14c02007cf6a1873428960210598a45`
+returned `CHANGES_REQUESTED` for CI01-04. The workflow correctly selects
+finance, but the packet index said the Ubuntu rerun was pending while the
+execution-log header retained `changes_requested`; the board next gate still
+called for the completed finance selection. Reconcile the two current
+validation fields as pending the next Ubuntu run, update the board to the
+remaining full-run and independent-review gate, regenerate the dashboard and
+retain the review as evidence. No workflow or package change is authorized
+by this addendum. Commit and obtain fresh-context read-only review before
+the authorized branch push.

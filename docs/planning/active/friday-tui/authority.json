@@ -207,6 +207,8 @@
     "second_candidate_preflight_outcome": "CHANGES_REQUESTED; finding CI01-03 covered by RD-TUI-CI01-03",
     "third_candidate_preflight_report": "validation/VAL-TUI-CI01-preflight-7a41004a.md",
     "third_candidate_preflight_outcome": "VERIFIED for preflight only; Linux run and final work-unit review remained open",
+    "fourth_candidate_preflight_report": "validation/VAL-TUI-CI01-preflight-89a875ac.md",
+    "fourth_candidate_preflight_outcome": "CHANGES_REQUESTED; packet-state finding CI01-04 covered by RD-TUI-CI01-05",
     "second_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39173445329",
     "candidate_status": "second Ubuntu run failed during full Runtime tests; workflow-only finance selection correction pending rerun; MCP stdio failure under observation",
     "linux_run_status": "failed: 331 Runtime tests passed and three failed in run 39173445329; later checks skipped; no Linux coverage claim"
