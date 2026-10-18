@@ -220,8 +220,8 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Authorize push of frozen TUI-CI01 candidate for Linux Actions run, then obtain independent review of the exact run
-  delivery_state: local
+  next_gate: Correct locked MCP test-dependency selection, rerun Ubuntu Actions for the new TUI-CI01 SHA, then obtain independent review
+  delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
   validation:
@@ -3011,3 +3011,10 @@ events:
   action: n01a_verified_and_unit_closed
   note: Fresh-context read-only reviewer VERIFIED unchanged N01A candidate 4a5311f2 under the maintainer's N01A-only Linux-smoke deferral. Closed that work unit and returned implementation authority to design_only. The initiative remains started; automated Linux smoke and final Linux UAT remain first-release gates. No later construction, initiative acceptance or delivery is inferred.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01A-waiver-closeout.md; candidate 4a5311f2340adfbbf9cd5c4289db325e6b420b6b
+- task: friday-tui
+  at: '2026-10-18T22:34:00+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> pushed
+  note: Chuck Russell authorized the TUI-CI01 branch push with 'yes, authorized'; pushed e3e2e974 to origin feature/friday-tui for the Ubuntu run, which failed at Runtime test collection due to missing cryptography.
+  evidence: https://github.com/CIChuck/agent-framework/actions/runs/39172562601

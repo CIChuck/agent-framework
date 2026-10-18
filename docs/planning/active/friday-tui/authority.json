@@ -45,7 +45,8 @@
     "Historical archive and frozen review evidence",
     "Existing local runtime, transcript and memory state"
   ],
-  "external_delivery_authorized": false,
+  "external_delivery_authorized": true,
+  "external_delivery_scope": "Chuck Russell's 2026-10-18 reply 'yes, authorized' permits pushing feature/friday-tui to origin for TUI-CI01 Ubuntu verification and bounded workflow-only corrections; pull request, merge, release and product work remain unauthorized",
   "planning_completion_checks": [
     "Board/schema/dashboard consistency",
     "Current command inventory and source baseline reconciliation",
@@ -195,12 +196,15 @@
     "construction_base": "d69c1d72fb841e4b3e51683ef16d7dcd4eac1f00",
     "scope": "Add .github/workflows/friday-tui-linux.yml and update only the directive's named planning and validation evidence paths",
     "later_tui_product_units_authorized": false,
-    "remote_push_authorized": false,
+    "remote_push_authorized": true,
+    "remote_push_authorization_evidence": "Current-session reply 'yes, authorized' to pushing feature/friday-tui for the TUI-CI01 Ubuntu run",
+    "first_pushed_candidate": "e3e2e974b22d193794dc5420cbad29a36b40e3e8",
+    "first_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39172562601",
     "local_check_report": "validation/TUI-CI01-local-checks.md",
     "first_candidate_preflight_report": "validation/VAL-TUI-CI01-preflight-7d97aacd.md",
     "first_candidate_preflight_outcome": "CHANGES_REQUESTED; findings CI01-01 and CI01-02 covered by RD-TUI-CI01-01",
-    "candidate_status": "locally checked; Linux run pending",
-    "linux_run_status": "pending"
+    "candidate_status": "first Ubuntu run failed on missing locked MCP dev test dependency; workflow-only correction pending rerun",
+    "linux_run_status": "failed at Runtime test collection; run 39172562601; no Linux coverage claim"
   },
   "closed_construction_scope_n01a": {
     "unit": "TUI-N01A",

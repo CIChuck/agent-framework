@@ -37,13 +37,16 @@ jobs:
       - name: Install Python and locked development dependencies
         run: |
           uv python install 3.13
-          uv sync --locked --extra dev
+          uv sync --locked --package friday-framework --package friday-framework-mcp --extra dev
           uv run --no-sync python - <<'PY'
+          from importlib import metadata
           import sys
 
           if sys.version_info[:2] != (3, 13) or sys.version_info < (3, 13, 4):
               raise SystemExit(f"Expected Python 3.13.4 or newer: {sys.version}")
           print(f"Python: {sys.version}")
+          for package in ("mcp", "cryptography", "pytest-mock"):
+              print(f"CI test dependency {package}: {metadata.version(package)}")
           PY
 
       - name: Record source and runner versions

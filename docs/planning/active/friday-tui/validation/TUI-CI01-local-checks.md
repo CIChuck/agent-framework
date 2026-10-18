@@ -3,8 +3,9 @@
 **Date/branch:** 2026-10-18; `feature/friday-tui`.
 
 **State:** Local checks for the first candidate and its bounded preflight
-remediation. This record is not a Linux run, independent `VERIFIED` result,
-terminal UAT or TUI release acceptance.
+remediation, followed by the locked MCP test-dependency correction. This
+record is not an independent `VERIFIED` result, terminal UAT or TUI release
+acceptance.
 
 The only automation file added is
 `.github/workflows/friday-tui-linux.yml`. It targets GitHub-hosted
@@ -62,12 +63,33 @@ suites and wheel installation were not repeated after the workflow-only
 correction. The new version-log command and environment placement need the
 actual Ubuntu run before they count as platform evidence.
 
+## Locked MCP test-dependency correction
+
+The first pushed Ubuntu run failed while collecting the full Runtime suite
+because its HTTP integration test imports `cryptography`, absent from the
+root-only `dev` sync. See the [failed-run evidence](TUI-CI01-ubuntu-run-39172562601.md).
+For `RD-TUI-CI01-02`, the workflow now selects both the workspace root and
+`friday-framework-mcp` with `--extra dev` under `uv sync --locked`.
+
+- `uv export --locked --offline` for those exact package/extra selections
+  includes `mcp==2.3.0`, `cryptography==50.0.2` and
+  `pytest-mock==3.15.1`. A locked/offline dry run against a fresh temporary
+  project environment would install all three from the existing lock.
+- YAML parsing, the job/step context-scope assertion, `bash -n` on all nine
+  workflow `run` steps, and AST parsing of all four embedded Python blocks
+  passed. The direct dependency-version print in the install step parses.
+- `uv lock --check --offline`, board validation (34 tasks), dashboard check
+  and `git diff --check` passed. No package code, tests, metadata or lockfile
+  changed. A new Ubuntu run must execute every step before this unit can be
+  verified.
+
 ## Remaining gate
 
-No Linux host or GitHub Actions run was used locally. After separately
-authorized branch delivery, retain the run URL, tested commit/merge SHA,
-Ubuntu/Python/uv versions, exit codes and wheel hashes. Investigate any
-Linux failure without modifying package source or tests under TUI-CI01.
-Fresh-context, read-only independent review of the committed candidate and
-Linux evidence is required before calling TUI-CI01 `VERIFIED`. Hands-on
-Linux terminal UAT remains a separate final installed-candidate gate.
+The first authorized GitHub Actions run failed; it supplies no Linux
+verification. Rerun the corrected workflow on its own source SHA and retain
+the URL, tested commit/merge SHA, Ubuntu/Python/uv versions, exit codes and
+wheel hashes. Investigate any further Linux failure without modifying package
+source or tests under TUI-CI01. Fresh-context, read-only independent review
+of the committed candidate and complete Linux evidence is required before
+calling TUI-CI01 `VERIFIED`. Hands-on Linux terminal UAT remains a separate
+final installed-candidate gate.

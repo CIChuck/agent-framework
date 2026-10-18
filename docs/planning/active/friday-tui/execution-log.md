@@ -1713,3 +1713,23 @@ scripts were unchanged. The corrected workflow needs a new committed
 candidate, fresh read-only review, separately authorized branch push and an
 actual green Ubuntu run before TUI-CI01 can be `VERIFIED`.
 execution_phase: validation; validation_state: pending (TUI-CI01 Linux run).
+
+## 2026-10-18 — Authorized TUI-CI01 push and first Ubuntu failure
+
+Chuck Russell answered "yes, authorized" to the separate question approving
+the `feature/friday-tui` push for its Ubuntu Actions run. Pushed preflight
+candidate `e3e2e974b22d193794dc5420cbad29a36b40e3e8` to `origin`; board
+delivery moved from `local` to `pushed`. The [first run](validation/TUI-CI01-ubuntu-run-39172562601.md)
+on Ubuntu 24.04.5 / Python 3.13.12 / uv 0.11.3 passed the 21 focused tests
+but failed while collecting full Runtime tests because `cryptography` was
+absent. Chat, CLI and installed-wheel checks were skipped. This run is not
+Linux verification.
+
+The test import is in an existing Runtime test; `uv.lock` already resolves
+`cryptography` through `friday-framework-mcp[dev]`. Added bounded
+`RD-TUI-CI01-02` to select both root and MCP `dev` extras in the workflow's
+locked sync. Offline export/dry-run confirms the selected closure includes
+`mcp`, `cryptography` and `pytest-mock`; workflow syntax, board, dashboard and
+lock checks pass. No protected product or test path changed. Freeze and
+review the corrected candidate, then rerun Actions for its new SHA.
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).

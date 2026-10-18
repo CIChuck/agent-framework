@@ -9,8 +9,9 @@
 
 **Current authority:** Granted for this exact CI workflow unit only. Chuck
 Russell answered "approved" to the explicit TUI-CI01 scope question in the
-current session. Remote push, pull request, merge, release and TUI product
-work remain unauthorized.
+current session. Chuck Russell separately authorized the TUI-CI01 branch push
+for Ubuntu verification with "yes, authorized" on 2026-10-18. Pull request,
+merge, release and TUI product work remain unauthorized.
 
 ## Purpose and observable result
 
@@ -78,7 +79,10 @@ units, including TUI-N01B, require their own approved directives.
 **Approval record:** Maintainer Chuck Russell; approved 2026-10-18 by the
 current-session reply "approved" to the explicit TUI-CI01 directive question.
 The approval covers only the workflow and scoped planning/evidence paths above.
-Remote push authorization is a separate delivery decision.
+The later current-session reply "yes, authorized" separately authorized
+pushing this TUI-CI01 branch to `origin` for the Ubuntu run and bounded
+workflow-only corrections needed to complete that run; it does not authorize
+a pull request, merge, release or product implementation.
 
 ## RD-TUI-CI01-01: bounded preflight remediation
 
@@ -103,3 +107,32 @@ execution log. The corrected candidate must be committed and receive a new
 fresh-context read-only review. The previous review cannot verify the changed
 candidate. Linux Actions evidence and separate branch-push authorization
 remain mandatory for TUI-CI01 verification.
+
+## RD-TUI-CI01-02: locked MCP test-dependency selection
+
+The first authorized Ubuntu run
+[`39172562601`](https://github.com/CIChuck/agent-framework/actions/runs/39172562601)
+tested source `e3e2e974b22d193794dc5420cbad29a36b40e3e8` and failed during
+full Runtime test collection: `test_mcp_http_integration.py` imports
+`cryptography`, absent from the root `dev` sync. Later checks were skipped.
+This is a workflow dependency-selection defect. The existing `uv.lock`
+contains `mcp==2.3.0` and `cryptography==50.0.2` through the MCP package's
+`dev` extra, so no package or lock change is required.
+
+- Select both the `friday-framework` root and
+  `friday-framework-mcp` workspace member with `--extra dev` in the existing
+  `uv sync --locked` step. Keep the Python version check and print the
+  installed `mcp`, `cryptography` and `pytest-mock` versions before tests.
+- Verify by locked/offline dry run and export that the selected closure
+  includes those three test dependencies; rerun YAML, Bash and Python syntax,
+  board/dashboard and changed-path checks. The definitive acceptance test is
+  a green Ubuntu run for the new source SHA, including all separate suites,
+  built-wheel metadata and installed-import checks.
+- No product source, tests, metadata, lockfile, trigger, action permission,
+  credential, or wheel-isolation behavior change is authorized. A further
+  failure requiring any protected path stops for a separate directive.
+
+Record the failed run and its disposition in the packet. Commit and obtain
+fresh-context read-only review of the corrected candidate; then use the
+maintainer-authorized TUI-CI01 branch push to rerun Actions. A skipped or
+failed step never counts as Linux verification.
