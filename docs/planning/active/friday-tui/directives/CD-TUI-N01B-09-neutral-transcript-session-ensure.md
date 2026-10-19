@@ -1,9 +1,11 @@
 # CD-TUI-N01B-09: neutral transcript session-ensure effect
 
-**Status:** Proposed only. Chuck Russell's current-session “approved and
-authorized - proceed” after N01B-08 closeout authorizes this read-only
-characterization and proposed directive, not its four source/test paths.
-Separate exact maintainer approval is required before product code work.
+**Status:** Approved by Chuck Russell on 2026-10-19 for the four named local
+Runtime/Chat source and test paths and scoped TUI evidence. Approval was the
+current-session reply “approved and authorized - proceed” after the controller
+linked this exact directive and requested its four-path implementation scope.
+No additional push, PR, merge, release or TUI terminal UAT acceptance follows
+from this approval.
 N01B-08's [local and exact-source Ubuntu gates](../validation/VAL-N01B-08-postrun-3a5e05cf.md)
 are independently VERIFIED; its one push is consumed.
 
@@ -32,7 +34,7 @@ snapshot fields and error behavior. TUI does not call the helper in this
 unit. This is not complete neutral transcript persistence or runtime
 assembly.
 
-## Proposed exact local change boundary
+## Approved exact local change boundary
 
 1. Add only `packages/friday-runtime/src/friday_runtime/transcript_session_effects.py`.
    Define a narrow `TranscriptSessionStore` structural async protocol for
@@ -124,4 +126,4 @@ changes, an existing session is reopened or rewritten, a `False` create
 starts failing early, protected tests need editing, or another source/test
 path is needed. Do not begin turn-number allocation, entry-building,
 transcript finalization, runtime assembly or TUI implementation under
-this proposed directive.
+this directive.

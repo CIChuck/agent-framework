@@ -62,11 +62,12 @@ Ubuntu gate was [independently VERIFIED](validation/VAL-N01B-08-postrun-3a5e05cf
 The [N01B-09 read-only characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
 records Chat's current transcript session get-or-create behavior. Its
 [exact four-path directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
-is proposed only and awaits separate maintainer approval before code.
+is approved for local construction; implementation and independent validation
+are pending.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: verified (N01B-08 gates only; N01B-09 proposal and TUI UAT open)
+execution_phase: construction; validation_state: verified (N01B-08 gates only; N01B-09 implementation and TUI UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -845,7 +846,8 @@ completed/success and was [independently reconciled](validation/VAL-N01B-08-post
 The next bounded [N01B-09 session-ensure directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
 has a [225-pass unchanged baseline and disposable behavior
 characterization](validation/N01B-09-before-code-session-ensure-characterization.md).
-It is a proposal only; exact local construction needs separate approval.
+It is approved for exact local construction; implementation and independent
+validation remain open.
 No TUI executable, UAT result,
 publication or acceptance of the full initiative is claimed by this packet.
 

@@ -56,13 +56,13 @@ were independently VERIFIED. Chat still owns session/turn policy, entry
 construction, pending-state handling and receipt checks; later product
 work needs a separate directive.
 
-The proposed [N01B-09 session-ensure directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
-would move only the existing get-or-create store effect into Runtime.
+The approved [N01B-09 session-ensure directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
+will move only the existing get-or-create store effect into Runtime.
 Its [read-only characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
 protects Chat's lazy new-session snapshot, preservation of existing
 sessions, ignored false create result, and downstream append error. It
-does not authorize source work or move turn numbering, entry construction,
-finalization or resource-close policy.
+authorizes only its four exact local source/test paths; turn numbering, entry
+construction, finalization and resource-close policy stay outside this unit.
 
 Source check for selected-file context: Chat's `/read` formats file content as
 command output; `/ingest` writes content to vector memory. `/context` shows or

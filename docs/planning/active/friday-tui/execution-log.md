@@ -1,7 +1,7 @@
 # Friday TUI execution log
 
-Status: N01B-09 session-ensure characterization and exact directive are
-proposed only, pending separate maintainer approval. N01B-08 exact local
+Status: N01B-09 session-ensure directive is approved for exact four-path local
+construction; implementation and independent validation are pending. N01B-08 exact local
 write-effects candidate `8ac249d3` is independently
 VERIFIED with product source frozen; one authorized non-force push reached
 `c4a5faa6` and is consumed; exact-source Ubuntu run 39301138733 completed/
@@ -22,7 +22,18 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: planning; validation_state: verified (N01B-08 gates only; N01B-09 proposal and TUI UAT open)
+execution_phase: construction; validation_state: verified (N01B-08 gates only; N01B-09 implementation and TUI UAT open)
+
+## 2026-10-19 — N01B-09 exact local directive approved
+
+Chuck Russell replied “approved and authorized - proceed” after the controller
+linked the [exact four-path directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
+and requested its local Runtime/Chat source and test scope. This authorizes
+bounded local construction and scoped TUI evidence. An additional push, PR,
+merge, release, later product unit and installed TUI UAT acceptance remain
+outside this approval. The before-code source remains `c4a5faa6`.
+
+execution_phase: construction; validation_state: pending (N01B-09 local candidate).
 
 ## 2026-10-19 — N01B-09 transcript session-ensure directive proposed
 

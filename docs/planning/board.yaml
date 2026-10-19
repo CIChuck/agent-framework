@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review and approve the exact four-path CD-TUI-N01B-09 neutral transcript session-ensure directive before product code; installed TUI terminal UAT remains a release gate
+  next_gate: Implement exact four-path CD-TUI-N01B-09 locally, run scoped checks and obtain fresh-context independent validation; installed TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3519,3 +3519,10 @@ events:
   action: n01b_09_session_ensure_directive_proposed
   note: Maintainer's 'approved and authorized - proceed' after N01B-08 closeout authorizes read-only next-unit planning. Existing session get-or-create, lazy Chat snapshot, existing/ended reuse and false/error behavior were characterized with 225 unchanged Chat/Runtime/Transcript/CLI tests and disposable SQLite/fake-store probes. Proposed CD-TUI-N01B-09 names four local Runtime/Chat source/test paths for future approval. No N01B-09 code/test, additional push, PR, merge, release or installed TUI UAT is authorized by this planning step.
   evidence: docs/planning/active/friday-tui/validation/N01B-09-before-code-session-ensure-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-19T18:37:46+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_09_exact_local_directive_approved
+  note: Maintainer replied 'approved and authorized - proceed' after the controller linked exact CD-TUI-N01B-09 and requested approval of its four named local Runtime/Chat source/test paths. Local code, tests and scoped TUI evidence are authorized. No additional push, PR, merge, release, installed TUI UAT acceptance or later product unit is inferred.
+  evidence: current-session reply 'approved and authorized - proceed'; docs/planning/active/friday-tui/directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md; docs/planning/active/friday-tui/authority.json
