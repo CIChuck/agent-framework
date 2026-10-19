@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Obtain explicit push authority for independently reviewed N01B-01 source, run exact-source Ubuntu checks and reconcile them; installed macOS/Linux terminal UAT remains a release gate
+  next_gate: Independently review green exact-source N01B-01 Ubuntu run and packet reconciliation, then prepare the next separately approved product subunit; installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -316,9 +316,11 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI03-preflight-315a30e4.md (independent VERIFIED pre-push review of exact CI03 source candidate)
   - docs/planning/active/friday-tui/validation/TUI-CI03-ubuntu-run-39183895627.md (green exact-source Ubuntu Runtime/direct-MCP, Chat/CLI, wheel and installed-isolation gates)
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI03-final-676700f5.md (independent VERIFIED CI03 infrastructure and CI01/CI02 automated Linux gate reconciliation; TUI product/UAT open)
-  - docs/planning/active/friday-tui/validation/N01B-01-local-checks.md (builder local tests and installed-wheel checks; independent N01B-01 review pending)
+  - docs/planning/active/friday-tui/validation/N01B-01-local-checks.md (builder local tests and installed-wheel checks before independent N01B-01 review)
   - docs/planning/active/friday-tui/validation/VAL-N01B-01-preflight-7e5241c8.md (historical CHANGES_REQUESTED first-candidate review; findings N01B01-01 and N01B01-02)
-  - docs/planning/active/friday-tui/validation/VAL-N01B-01-prepush-edbcee92.md (independent VERIFIED corrected N01B-01 pre-push candidate; exact-source Ubuntu pending)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-01-prepush-edbcee92.md (historical independent VERIFIED corrected N01B-01 pre-push candidate, superseded for final authority candidate)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-01-final-closeout-35e297e8.md (independent VERIFIED final N01B-01 pre-push candidate)
+  - docs/planning/active/friday-tui/validation/N01B-01-ubuntu-run-39190668231.md (green exact-source N01B-01 Ubuntu run; independent post-run review pending)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3098,3 +3100,17 @@ events:
   action: n01b_01_corrected_candidate_verified_pre_push
   note: Fresh-context read-only review VERIFIED corrected candidate edbcee92 after doc-only remediation and closed N01B01-01/02. Product paths were unchanged after first review. Exact-source Ubuntu run, installed TUI terminal UAT, acceptance and external delivery remain open; a further push needs explicit maintainer authority.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-01-prepush-edbcee92.md
+- task: friday-tui
+  at: '2026-10-19T02:42:22+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_01_exact_push_authorized
+  note: Chuck Russell replied 'authorized' to the explicit question to push feature/friday-tui at 62d3ae3b to origin and trigger the Ubuntu workflow. This does not authorize a later push, PR, merge, release or TUI product-unit expansion.
+  evidence: current-session reply 'authorized'; docs/planning/active/friday-tui/validation/VAL-N01B-01-final-closeout-35e297e8.md
+- task: friday-tui
+  at: '2026-10-19T02:42:23+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_01_exact_source_ubuntu_green_pending_review
+  note: Non-force push advanced feature/friday-tui from 315a30e4 to 62d3ae3b. Ubuntu workflow 39190668231 checked out that exact SHA and passed Runtime, Chat, unchanged friday-cli, repeated MCP, wheel metadata and installed configuration isolation. Post-run independent review is pending; no installed transcript-specific Linux import probe or terminal UAT is inferred.
+  evidence: docs/planning/active/friday-tui/validation/N01B-01-ubuntu-run-39190668231.md; https://github.com/CIChuck/agent-framework/actions/runs/39190668231

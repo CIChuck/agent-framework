@@ -12,11 +12,11 @@ review VERIFIED CI03 and reconciled the CI01/CI02 automated Linux gates.
 **Lifecycle:** Started; board priority 14; CI03 infrastructure work unit and
 CI01/CI02 automated Linux gates VERIFIED; the first TUI-N01B product subunit
 has an approved exact directive and a corrected pre-push candidate independently
-`VERIFIED`; its exact-source Ubuntu run remains pending
+`VERIFIED`; its exact-source Ubuntu run succeeded and post-run review is pending
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: verified (N01B-01 pre-push candidate only; exact-source Linux, TUI product and UAT not ready)
+execution_phase: validation; validation_state: in_review (N01B-01 post-run reconciliation; TUI product and UAT not ready)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -102,6 +102,8 @@ Current planning artifacts:
 - [TUI-N01B-01 first-candidate independent review](validation/VAL-N01B-01-preflight-7e5241c8.md)
 - [Bounded N01B-01 documentation remediation directive](remediation/REM-TUI-N01B-01-01.md)
 - [Corrected N01B-01 independent pre-push verification](validation/VAL-N01B-01-prepush-edbcee92.md)
+- [Final N01B-01 independent pre-push candidate review](validation/VAL-N01B-01-final-closeout-35e297e8.md)
+- [N01B-01 exact-source Ubuntu run](validation/N01B-01-ubuntu-run-39190668231.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -661,11 +663,11 @@ The [board](../../board.yaml) records `started` on `feature/friday-tui` with
 implementation authority `granted` for the initiative; only TUI-N01B-01's
 four named source/test paths fall within the approved construction scope.
 Product source is frozen after N01B-01 pre-push verification; its exact-source
-Ubuntu run still needs a separately authorized branch push. CI03
-and CI01/CI02 automated Linux
-gates are independently VERIFIED. N01A is closed under its unit-specific Linux
-deferral. No TUI executable, UAT result, publication or acceptance of the full
-initiative is claimed by this packet.
+Ubuntu [run succeeded](validation/N01B-01-ubuntu-run-39190668231.md) after
+an authorized push. Independent post-run reconciliation is pending. CI03 and
+CI01/CI02 automated Linux gates are independently VERIFIED. N01A is closed
+under its unit-specific Linux deferral. No TUI executable, UAT result,
+publication or acceptance of the full initiative is claimed by this packet.
 
 ## 10. Planning review record
 

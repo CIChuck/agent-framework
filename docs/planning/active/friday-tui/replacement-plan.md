@@ -1,8 +1,8 @@
 # Friday TUI independent integration and construction plan
 
 **Status:** Active replacement planning contract; N01S and N01A independently
-VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 corrected pre-push
-candidate VERIFIED, exact-source Ubuntu run pending
+VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 pre-push candidate
+VERIFIED, exact-source Ubuntu run green and post-run review pending
 
 **Branch and authority:** `feature/friday-tui`; `granted` for the exact
 CD-TUI-N01B-01 subunit only; later product units remain design-only
@@ -356,16 +356,18 @@ identity-only candidate. N01A's neutral configuration loader was separately
 [VERIFIED under the maintainer's unit-specific Linux-smoke deferral](validation/VAL-N01A-waiver-closeout.md).
 The subsequent [CI03 exact-source Ubuntu run](validation/TUI-CI03-ubuntu-run-39183895627.md)
 and [independent review](validation/VAL-TUI-CI03-final-676700f5.md) reconciled
-the CI01/CI02 automated Linux gates. None of those prior verifications is an
-N01B-01 exact-source Linux result or TUI terminal UAT.
+the CI01/CI02 automated Linux gates. They preceded N01B-01 and are not its
+exact-source Linux result or TUI terminal UAT.
 
 1. The first [N01B-01 review](validation/VAL-N01B-01-preflight-7e5241c8.md)
    requested two documentation/evidence corrections under the bounded
    [remediation directive](remediation/REM-TUI-N01B-01-01.md). A fresh
-   [independent review VERIFIED the corrected pre-push candidate](validation/VAL-N01B-01-prepush-edbcee92.md)
+   [independent review VERIFIED the corrected pre-push candidate](validation/VAL-N01B-01-final-closeout-35e297e8.md)
    against the [approved exact directive](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md).
-   The next delivery gate is a separately authorized push for an exact-source
-   Ubuntu run. Installed macOS/Linux terminal UAT remains a release gate.
+   Chuck Russell authorized the branch push; the [exact-source Ubuntu
+   run](validation/N01B-01-ubuntu-run-39190668231.md) succeeded. Its result
+   needs fresh independent post-run review. Installed macOS/Linux terminal UAT
+   remains a release gate.
 2. Choose owners for command/event seams. Review the
    [event/lifecycle proposal](neutral-event-lifecycle-contract.md) and bind
    event admission, argument snapshot and resource-close boundaries against
@@ -382,7 +384,8 @@ N01B-01 exact-source Linux result or TUI terminal UAT.
 The board remains `started` with `granted` authority only for the exact
 N01B-01 subunit. Its first candidate `7e5241c8` received
 `CHANGES_REQUESTED` for packet documentation and command evidence; corrected
-candidate `edbcee92` is independently `VERIFIED` for pre-push readiness.
-Product source is frozen. N01A is closed, while later N01B effects and all
-subsequent product units remain design-only. No exact-source N01B-01 Ubuntu
-run, TUI, terminal UAT or real-provider test has run.
+candidate `35e297e8` is independently `VERIFIED` for pre-push readiness.
+Product source is frozen. The pushed source `62d3ae3b` passed the Ubuntu
+workflow; post-run independent reconciliation is pending. N01A is closed,
+while later N01B effects and all subsequent product units remain design-only.
+No TUI, terminal UAT or real-provider test has run.

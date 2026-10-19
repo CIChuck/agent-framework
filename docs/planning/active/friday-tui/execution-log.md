@@ -1,9 +1,25 @@
 # Friday TUI execution log
 
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
-gates reconciled green; corrected TUI-N01B-01 pre-push candidate VERIFIED
+gates reconciled green; TUI-N01B-01 exact-source Ubuntu run green, final
+independent post-run review pending
 
-execution_phase: validation; validation_state: verified (N01B-01 pre-push candidate only; exact-source Linux and TUI product/UAT not ready)
+execution_phase: validation; validation_state: in_review (N01B-01 post-run reconciliation; TUI product/UAT not ready)
+
+## 2026-10-18 — N01B-01 authorized push and exact-source Ubuntu success
+
+Chuck Russell replied "authorized" to the explicit request to push
+`feature/friday-tui` at `62d3ae3b` for the Ubuntu workflow. The remote branch
+matched the local tracking ref at `315a30e4` before the non-force push.
+The [final pre-push review](validation/VAL-N01B-01-final-closeout-35e297e8.md)
+VERIFIED product/authority candidate `35e297e8`; commit `62d3ae3b` added
+only its review evidence. [Ubuntu run 39190668231](validation/N01B-01-ubuntu-run-39190668231.md)
+checked out and passed on that exact pushed SHA. Full Runtime, Chat, unchanged
+`friday-cli`, repeated MCP, wheels, metadata and installed configuration
+isolation passed. The workflow does not directly assert installed transcript
+contract identity; independent local wheel checks cover that contract.
+Fresh post-run review remains pending before marking this unit fully
+reconciled. Installed terminal UAT and the TUI product remain open.
 
 ## 2026-10-18 — N01B-01 corrected candidate independently VERIFIED pre-push
 
