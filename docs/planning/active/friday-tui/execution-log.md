@@ -5,9 +5,25 @@ gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-04 local candidate `abeeb895` independently
-VERIFIED; authorized exact-source Ubuntu run 39268960501 independently VERIFIED
+VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
+VERIFIED; TUI-N01B-05 single-file export-effects directive proposed for review only
 
-execution_phase: planning; validation_state: verified (N01B-04 local and exact-source Ubuntu gates; TUI product/UAT open)
+execution_phase: planning; validation_state: not_ready (N01B-05 directive proposed; N01B-04 gates VERIFIED; TUI product/UAT open)
+
+## 2026-10-19 — N01B-05 single-file export-effects directive proposed
+
+After the maintainer asked to continue from N01B-04 closeout, read-only
+[source characterization](validation/N01B-05-before-code-single-file-export-characterization.md)
+isolated the five fixed-name single-file exports from Chat-owned format/path
+decisions, Chat's export-result identity and the two-file all-session export.
+The unchanged focused/protected baseline passed 239 tests. The
+[N01B-05 directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
+is proposed for exact maintainer approval. Only planning files, the scoped
+TUI board event and generated dashboard change. No product source, tests,
+package metadata, lock, workflow, push or TUI UAT is authorized by this
+planning pass.
+
+execution_phase: planning; validation_state: not_ready (N01B-05 proposal only).
 
 ## 2026-10-19 — N01B-04 exact-source Ubuntu gate independently VERIFIED
 

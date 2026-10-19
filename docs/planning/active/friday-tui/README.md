@@ -22,10 +22,12 @@ four named local source/test paths. Local candidate `abeeb895` is
 [independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md); its
 authorized [exact-source Ubuntu run](validation/N01B-04-ubuntu-run-39268960501.md)
 on `4b2aadd2` was [independently VERIFIED](validation/VAL-N01B-04-postrun-27c84ad9.md).
+The [N01B-05 single-file export-effects directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
+is proposed for review only; no N01B-05 product code is authorized.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: verified (N01B-04 local and exact-source Ubuntu gates; TUI product/UAT open)
+execution_phase: planning; validation_state: not_ready (N01B-05 directive proposed; N01B-04 local and Ubuntu gates VERIFIED; TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -133,6 +135,8 @@ Current planning artifacts:
 - [Independent N01B-04 local candidate review](validation/VAL-N01B-04-prepush-abeeb895.md)
 - [N01B-04 exact-source Ubuntu run](validation/N01B-04-ubuntu-run-39268960501.md)
 - [Independent N01B-04 post-run Ubuntu reconciliation](validation/VAL-N01B-04-postrun-27c84ad9.md)
+- [N01B-05 before-code single-file export characterization](validation/N01B-05-before-code-single-file-export-characterization.md)
+- [Proposed N01B-05 neutral single-file export-effects directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -697,7 +701,7 @@ verification ran after a separately authorized push and [passed on
 run was [independently reconciled](validation/VAL-N01B-03-postrun-9a68d0c7.md).
 The [approved N01B-04 directive](directives/CD-TUI-N01B-04-neutral-export-destination-paths.md)
 and [226-pass before-code characterization](validation/N01B-04-before-code-export-path-characterization.md)
-bound the next candidate: neutral export-root creation and safe child-path
+bounded the N01B-04 candidate: neutral export-root creation and safe child-path
 resolution with Chat command behavior preserved. The maintainer approved its
 four exact local product source/test paths on 2026-10-19. Its
 [local construction checks](validation/N01B-04-local-checks.md) passed;
@@ -705,8 +709,12 @@ candidate `abeeb895` was [independently VERIFIED](validation/VAL-N01B-04-prepush
 for the local unit. Its authorized [exact-source Ubuntu
 run](validation/N01B-04-ubuntu-run-39268960501.md) succeeded on pushed
 `4b2aadd2` and was [independently reconciled](validation/VAL-N01B-04-postrun-27c84ad9.md).
-Later product
-units need their own bounded directives and authority. At each
+The [proposed N01B-05 directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
+and [239-pass before-code characterization](validation/N01B-05-before-code-single-file-export-characterization.md)
+isolate the single-file write effects for `/export` and `/export-prompts`.
+They preserve Chat's result identity and safe-path call sites, and leave
+two-file `/transcript export` writing for a later unit. N01B-05 needs exact
+maintainer approval before product code or tests change. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
 TUI-CI01/CI02 and are independently VERIFIED on the reviewed CI03 source.
@@ -733,7 +741,7 @@ passed and was [independently reconciled](validation/VAL-N01B-03-postrun-9a68d0c
 N01A is closed under
 its unit-specific Linux deferral. Later N01B effects beyond N01B-04 require
 separate authority; N01B-04's local and automated Linux gates are independently
-VERIFIED. No TUI executable, UAT
+VERIFIED. N01B-05 is a proposal only. No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.
 

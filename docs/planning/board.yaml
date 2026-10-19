@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: N01B-04 local and exact-source Ubuntu gates independently VERIFIED; prepare and approve the next bounded N01B directive before product code; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Review and explicitly approve proposed CD-TUI-N01B-05 single-file export effects before product code; N01B-04 local and Ubuntu gates independently VERIFIED; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -337,6 +337,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-N01B-04-prepush-abeeb895.md (independent VERIFIED local N01B-04 candidate; exact-source Ubuntu and TUI UAT open)
   - docs/planning/active/friday-tui/validation/N01B-04-ubuntu-run-39268960501.md (green exact-source Ubuntu run on authorized N01B-04 push)
   - docs/planning/active/friday-tui/validation/VAL-N01B-04-postrun-27c84ad9.md (independent VERIFIED N01B-04 exact-source Ubuntu reconciliation; later product/UAT open)
+  - docs/planning/active/friday-tui/validation/N01B-05-before-code-single-file-export-characterization.md (239 unchanged baseline tests and read-only export-effect characterization; proposed directive planning only)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3291,3 +3292,10 @@ events:
   action: n01b_04_exact_source_ubuntu_independently_verified
   note: Fresh-context read-only reviewer VERIFIED saved and live GitHub run/job evidence on pushed 4b2aadd2, green Runtime, Chat, unchanged friday-cli, repeated MCP, wheels and installed configuration checks. Seven post-run evidence paths are scoped; product files match independently reviewed abeeb895. The automated N01B-04 Linux gate is closed. Installed TUI UAT, later product authority, maintainer acceptance and further external delivery remain open.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-04-postrun-27c84ad9.md; https://github.com/CIChuck/agent-framework/actions/runs/39268960501
+- task: friday-tui
+  at: '2026-10-19T14:46:46+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_05_single_file_export_effects_directive_proposed
+  note: After the maintainer asked to continue to the next TUI gate, read-only source review isolated current-session and prompt-log single-file write effects from Chat-owned format/path decisions, result identity and the two-file all-session export. The unchanged focused/protected suite passed 239 tests. CD-TUI-N01B-05 is proposed for exact maintainer approval; no N01B-05 product code, test edit, push or TUI UAT is authorized by this planning pass.
+  evidence: docs/planning/active/friday-tui/validation/N01B-05-before-code-single-file-export-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md
