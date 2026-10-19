@@ -16,7 +16,20 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: planning; validation_state: verified (N01B-07 local and exact-source Ubuntu gates only; TUI product/UAT open)
+execution_phase: implementation; validation_state: not_ready (N01B-08 local unit; N01B-07 gates verified; TUI product/UAT open)
+
+## 2026-10-19 — N01B-08 exact local directive approved
+
+Chuck Russell replied “approved and authorized - proceed” after the
+controller linked [CD-TUI-N01B-08](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
+and requested approval of its four named Runtime/Chat source/test paths.
+The local append/context-log effect extraction and scoped evidence may now
+proceed on `feature/friday-tui`. The approved planning candidate is
+`bec5b875`; product source still matches pushed `4a646dc7`. No additional
+push, PR, merge, release or installed TUI UAT is authorized by this
+approval. Builder checks and fresh-context independent review remain open.
+
+execution_phase: implementation; validation_state: not_ready (N01B-08 local unit).
 
 ## 2026-10-19 — N01B-08 transcript write-effects directive proposed
 

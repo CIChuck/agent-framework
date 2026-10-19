@@ -1,8 +1,8 @@
 # TUI-N01B-08 before-code transcript write characterization
 
-**Status:** Read-only planning evidence, 2026-10-19. The proposed
+**Status:** Read-only before-code evidence, 2026-10-19. The exact
 [CD-TUI-N01B-08](../directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
-is not approved for source or test edits. The current branch is
+was subsequently approved for its four local source/test paths. The current branch is
 `feature/friday-tui` at planning commit `ba609b27`; its product bytes match
 the pushed `4a646dc7` source. N01B-07's exact-source Ubuntu gate was
 [independently VERIFIED](VAL-N01B-07-postrun-4fc8309d.md), and its push
@@ -72,6 +72,6 @@ delegation tests should compare persisted entry/context data and the exact
 preflight, session, turn-number, append, context and receipt order through a
 disposable store. Full Runtime/Chat and unchanged CLI suites, static checks,
 installed Runtime-only and Chat wheel probes, and fresh independent review
-remain construction gates after explicit directive approval. Automated Ubuntu
+remain construction gates under the approved directive. Automated Ubuntu
 verification needs a separately authorized push. This characterization is
 not implementation, independent validation, UAT or release acceptance.

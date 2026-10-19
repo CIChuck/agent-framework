@@ -1,18 +1,17 @@
 # CD-TUI-N01B-08: neutral transcript append and context-log effects
 
-**Status:** Proposed on 2026-10-19 for maintainer review; **not approved for
-code generation**. The maintainer's current-session “approved and authorized
-- proceed” authorizes characterization and this exact proposal after the
-N01B-07 gate. The four source/test paths below have not yet received exact
-directive approval. N01B-07's [exact-source Ubuntu
+**Status:** Approved by Chuck Russell on 2026-10-19 for the four named local
+Runtime/Chat source and test paths below, plus scoped TUI evidence. The
+approval is the current-session reply “approved and authorized - proceed”
+after the controller linked this exact directive, named its four-path local
+scope and cited the `AGENTS.md` directive gate. N01B-07's [exact-source Ubuntu
 gate](../validation/VAL-N01B-07-postrun-4fc8309d.md) is independently
 VERIFIED; its one push is consumed.
 
 **Initiative/unit:** `friday-tui` / TUI-N01B-08, a bounded transcript-write
 subunit after N01B-07. **Branch/before-code source:** `feature/friday-tui`;
-current planning HEAD `ba609b27` has the same product bytes as pushed
-`4a646dc7`. Recheck branch, source and authority if approval arrives after
-this planning commit.
+approved planning candidate `bec5b875` has the same product bytes as pushed
+`4a646dc7`. Recheck branch, source and authority before editing product code.
 
 **Authority and precedence:** [AGENTS.md](../../../../../AGENTS.md), the
 [independent-validation policy](../../../../reference/policies/independent-validation-policy.md),
@@ -33,7 +32,7 @@ entry fields, observable order, errors, partial commits, pending-state and
 turn-number behavior. The TUI does not call the helper in this unit. This is
 one independently testable step, not a complete neutral transcript writer.
 
-## Proposed exact local change boundary
+## Approved exact local change boundary
 
 1. Add only `packages/friday-runtime/src/friday_runtime/transcript_write_effects.py`.
    Define a narrow `TranscriptWriteStore` structural async protocol for
@@ -63,7 +62,7 @@ one independently testable step, not a complete neutral transcript writer.
    existing Chat, Runtime and `friday-cli` tests are protected fixtures.
 
 Scoped TUI planning/evidence files, the TUI board event and generated
-dashboard may be updated after approval. No other source/test path, TUI
+dashboard may be updated. No other source/test path, TUI
 package, `friday-transcript` source/protocol, package metadata, lock,
 workflow, script, runtime configuration or user guide may change. A newly
 needed path or semantic change requires an amended directive and separate

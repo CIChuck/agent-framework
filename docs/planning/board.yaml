@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review and approve the exact four-path CD-TUI-N01B-08 neutral transcript write-effects directive before product code; installed TUI terminal UAT remains a release gate
+  next_gate: Implement approved four-path CD-TUI-N01B-08 locally, run protected comparisons and obtain fresh independent review; installed TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3463,3 +3463,10 @@ events:
   action: n01b_08_transcript_write_directive_proposed
   note: Maintainer's 'approved and authorized - proceed' after N01B-07 closeout authorizes read-only next-unit planning. Existing append/context ordering and partial failures were characterized with 279 unchanged Chat/Runtime/CLI tests and disposable SQLite probes. Proposed CD-TUI-N01B-08 names four local Runtime/Chat source/test paths for future approval. No N01B-08 code/test, additional push, PR, merge, release or installed TUI UAT is authorized by this planning step.
   evidence: docs/planning/active/friday-tui/validation/N01B-08-before-code-transcript-write-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-19T17:52:55+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_08_exact_local_directive_approved
+  note: Maintainer replied 'approved and authorized - proceed' after the controller linked exact CD-TUI-N01B-08 and requested approval of its four named local Runtime/Chat source/test paths. Local code, tests and scoped TUI evidence are authorized. No additional push, PR, merge, release, installed TUI UAT acceptance or later product unit is inferred.
+  evidence: current-session reply 'approved and authorized - proceed'; docs/planning/active/friday-tui/directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md; docs/planning/active/friday-tui/authority.json
