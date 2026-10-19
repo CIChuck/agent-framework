@@ -2,9 +2,26 @@
 
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
-independently verified; TUI-N01B-02 approved for bounded construction
+independently verified; TUI-N01B-02 local checks passed, independent review pending
 
-execution_phase: implementation; validation_state: not_ready (N01B-02 construction authorized; N01B-01 VERIFIED, TUI product/UAT not ready)
+execution_phase: validation; validation_state: pending (N01B-02 local checks passed; independent review pending; TUI product/UAT not ready)
+
+## 2026-10-19 — N01B-02 local construction checks passed
+
+The four approved source/test paths now provide a UI-neutral persisted query
+adapter and Chat delegation while preserving Chat writes, exports and
+constructor. The [local report](validation/N01B-02-local-checks.md) records
+195 focused/protected passes, full Runtime 352, full Chat 851 with five skips,
+unchanged `friday-cli` 155, Ruff/Mypy/lock checks and isolated installed-wheel
+queries, Chat commands and export. Full-suite fixture tests required local
+loopback access; initial sandbox failures were `127.0.0.1` bind refusals, and
+both exact suites passed with that access. The changed Chat lines pass Ruff
+format range checks; whole-file formatting remains red on its before-code
+source. The next gate is a stable candidate commit and fresh-context,
+read-only independent review. No push, exact-source Ubuntu run or TUI terminal
+UAT is claimed.
+
+execution_phase: validation; validation_state: pending (N01B-02 independent review).
 
 ## 2026-10-19 — N01B-02 exact directive approved
 
