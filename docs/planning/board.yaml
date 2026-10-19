@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: N01B-04 local candidate abeeb895 independently VERIFIED and exact-source Ubuntu run 39268960501 green on pushed 4b2aadd2; independent post-run reconciliation next; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: N01B-04 local and exact-source Ubuntu gates independently VERIFIED; prepare and approve the next bounded N01B directive before product code; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -335,6 +335,8 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-04-before-code-export-path-characterization.md (226 unchanged tests and disposable path probe; proposed directive planning only)
   - docs/planning/active/friday-tui/validation/N01B-04-local-checks.md (builder local suites, protected comparisons and installed-wheel checks; independent review separately verified)
   - docs/planning/active/friday-tui/validation/VAL-N01B-04-prepush-abeeb895.md (independent VERIFIED local N01B-04 candidate; exact-source Ubuntu and TUI UAT open)
+  - docs/planning/active/friday-tui/validation/N01B-04-ubuntu-run-39268960501.md (green exact-source Ubuntu run on authorized N01B-04 push)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-04-postrun-27c84ad9.md (independent VERIFIED N01B-04 exact-source Ubuntu reconciliation; later product/UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3282,3 +3284,10 @@ events:
   action: n01b_04_exact_source_ubuntu_green_pending_review
   note: Non-force push advanced feature/friday-tui from f7950581 to 4b2aadd2. Ubuntu workflow 39268960501 checked out that exact SHA and passed full Runtime, full Chat, unchanged friday-cli, repeated MCP, wheels, metadata and installed configuration isolation. Fresh independent post-run reconciliation is pending; the workflow's installed probe does not exercise new export paths, and no terminal TUI UAT is inferred. The one push authorization is consumed.
   evidence: docs/planning/active/friday-tui/validation/N01B-04-ubuntu-run-39268960501.md; https://github.com/CIChuck/agent-framework/actions/runs/39268960501
+- task: friday-tui
+  at: '2026-10-19T14:40:27+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_04_exact_source_ubuntu_independently_verified
+  note: Fresh-context read-only reviewer VERIFIED saved and live GitHub run/job evidence on pushed 4b2aadd2, green Runtime, Chat, unchanged friday-cli, repeated MCP, wheels and installed configuration checks. Seven post-run evidence paths are scoped; product files match independently reviewed abeeb895. The automated N01B-04 Linux gate is closed. Installed TUI UAT, later product authority, maintainer acceptance and further external delivery remain open.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01B-04-postrun-27c84ad9.md; https://github.com/CIChuck/agent-framework/actions/runs/39268960501

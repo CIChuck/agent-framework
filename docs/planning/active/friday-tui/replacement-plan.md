@@ -6,7 +6,7 @@ and exact-source Ubuntu gate independently VERIFIED; N01B-02 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-03 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-04 export destination/path
 candidate `abeeb895` independently VERIFIED locally and exact-source Ubuntu run
-39268960501 successful, pending independent post-run reconciliation
+39268960501 independently VERIFIED
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; no product-code directive is
@@ -294,7 +294,8 @@ product source/test paths on 2026-10-19. The
 candidate `abeeb895` was [independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md)
 for its local scope. The authorized [exact-source Ubuntu
 run](validation/N01B-04-ubuntu-run-39268960501.md) succeeded on `4b2aadd2`;
-independent post-run reconciliation remains open.
+its [independent post-run review](validation/VAL-N01B-04-postrun-27c84ad9.md)
+VERIFIED the automated Linux gate.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -432,6 +433,7 @@ local and exact-source Ubuntu gates. N01B-04 candidate `abeeb895` is
 [independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md) for its
 local scope, with product source frozen. The authorized
 [exact-source Ubuntu run](validation/N01B-04-ubuntu-run-39268960501.md)
-succeeded; its next gate is independent post-run reconciliation. Later product
+succeeded and was [independently VERIFIED](validation/VAL-N01B-04-postrun-27c84ad9.md).
+The next bounded N01B product unit needs its own approved directive. Later product
 units remain open.
 No TUI, terminal UAT or real-provider test has run.

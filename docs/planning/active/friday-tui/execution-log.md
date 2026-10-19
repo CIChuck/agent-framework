@@ -5,9 +5,21 @@ gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-04 local candidate `abeeb895` independently
-VERIFIED; authorized exact-source Ubuntu run 39268960501 succeeded, pending independent post-run reconciliation
+VERIFIED; authorized exact-source Ubuntu run 39268960501 independently VERIFIED
 
-execution_phase: validation; validation_state: in_review (N01B-04 exact-source Ubuntu post-run reconciliation; TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-04 local and exact-source Ubuntu gates; TUI product/UAT open)
+
+## 2026-10-19 — N01B-04 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context, read-only reviewer [VERIFIED](validation/VAL-N01B-04-postrun-27c84ad9.md)
+the live GitHub run/job metadata, saved job log, exact pushed and checked-out
+`4b2aadd2` SHA, post-run evidence-only diff and frozen product source. The
+automated Ubuntu gate is closed. The branch remains `started`; the next
+bounded N01B product unit needs a separately approved directive. Installed
+TUI terminal UAT, real-provider/tool testing and full initiative acceptance
+remain open, and no further push is authorized.
+
+execution_phase: planning; validation_state: verified (N01B-04 automated gate only).
 
 ## 2026-10-19 — N01B-04 exact-source Ubuntu run green, pending independent review
 
