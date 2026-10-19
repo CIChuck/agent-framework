@@ -5,15 +5,17 @@ closed under a maintainer-approved Linux-smoke deferral for that unit only.
 TUI-CI02's authorized Ubuntu run passed Chat, unchanged `friday-cli` and wheel
 gates but failed Runtime and direct MCP `auto` interoperability. Its
 framework-source stop condition is reached; CI01 and CI02 Linux verification
-remain open. The bounded CI03 shared-MCP directive is approved for
-characterization, correction, verification and reviewed feature-branch push.
+were red before the bounded CI03 shared-MCP correction. Its reviewed candidate
+was pushed and the exact-source Ubuntu workflow is green. Final independent
+CI03 and CI01/CI02 Linux gate reconciliation remains pending.
 
 **Lifecycle:** Started; board priority 14; prior CI01/CI02 authority is
-exhausted at its stop gate; CI03 is awaiting exact-candidate independent review
+exhausted at its stop gate; CI03 passed pre-push review and Ubuntu verification,
+with final independent reconciliation pending
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: pending (CI03 local checks passed; independent review and Ubuntu verification pending)
+execution_phase: validation; validation_state: pending (CI03 pre-push VERIFIED and Ubuntu green; final independent reconciliation pending)
 
 **Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -90,6 +92,8 @@ Current planning artifacts:
 - [CI02 Ubuntu run and MCP failure diagnosis](validation/TUI-CI02-ubuntu-run-39181571549.md)
 - [Approved CI03 shared MCP auto-negotiation directive](directives/CD-TUI-CI03-mcp-auto-negotiation.md)
 - [CI03 local characterization and regression checks](validation/TUI-CI03-local-checks.md)
+- [CI03 independent pre-push candidate review](validation/VAL-TUI-CI03-preflight-315a30e4.md)
+- [CI03 exact-source green Ubuntu run](validation/TUI-CI03-ubuntu-run-39183895627.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -634,19 +638,19 @@ approved directive.
 Later product units need their own bounded directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
-TUI-CI01/CI02 and remain red while approved CI03 awaits independent review
-and a new Ubuntu run. Hands-on Linux terminal UAT remains mandatory on the
-final installed candidate. A controlled real-provider/tool run is also required
-for first-release acceptance; select
-its provider before final UAT. Build the user guide and configuration reference
+TUI-CI01/CI02 and are green on the reviewed CI03 source; final independent
+gate reconciliation is pending. Hands-on Linux terminal UAT remains mandatory
+on the final installed candidate. A controlled real-provider/tool run is also
+required for first-release acceptance; select its provider before final UAT.
+Build the user guide and configuration reference
 alongside the features they describe and verify them against that candidate.
 
 The [board](../../board.yaml) records `started` on `feature/friday-tui` with
 implementation authority `granted` for the bounded CI03 shared-MCP work, now
-locally validated with independent review and Ubuntu verification pending;
-CI01/CI02 stopped at the shared MCP source boundary. N01A is closed under its
-unit-specific Linux deferral. No TUI
-executable, UAT result, publication or acceptance of the full initiative is
+locally validated and green on Ubuntu, with final independent reconciliation
+pending; CI01/CI02 earlier stopped at the shared MCP source boundary. N01A is
+closed under its unit-specific Linux deferral. No TUI executable, UAT result,
+publication or acceptance of the full initiative is
 claimed by this packet.
 
 ## 10. Planning review record

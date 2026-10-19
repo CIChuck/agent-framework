@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Freeze CI03 candidate and obtain fresh-context independent review; after VERIFIED, push authorized feature branch for exact-source Ubuntu verification; CI01/CI02 Linux gates remain open
+  next_gate: Fresh-context final review of CI03 exact-source green Ubuntu run and CI01/CI02 Linux gate reconciliation; TUI product construction and terminal UAT remain later gates
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -312,7 +312,9 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI01-final-a7519db2.md (independent CHANGES_REQUESTED CI01 post-run review; Linux gate remains open)
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI02-preflight-49adbcb5.md (independent VERIFIED CI02 pre-push review only; Ubuntu gate remained open)
   - docs/planning/active/friday-tui/validation/TUI-CI02-ubuntu-run-39181571549.md (red exact-source Ubuntu Runtime/direct-MCP gate; CI02 stopped before framework source)
-  - docs/planning/active/friday-tui/validation/TUI-CI03-local-checks.md (synthetic characterization and local shared-MCP regressions; independent review and Ubuntu pending)
+  - docs/planning/active/friday-tui/validation/TUI-CI03-local-checks.md (synthetic characterization and local shared-MCP regressions before candidate review and Ubuntu run)
+  - docs/planning/active/friday-tui/validation/VAL-TUI-CI03-preflight-315a30e4.md (independent VERIFIED pre-push review of exact CI03 source candidate)
+  - docs/planning/active/friday-tui/validation/TUI-CI03-ubuntu-run-39183895627.md (green exact-source Ubuntu Runtime/direct-MCP, Chat/CLI, wheel and installed-isolation gates; final review pending)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3043,3 +3045,10 @@ events:
   action: ci03_local_candidate_ready_for_independent_review
   note: Synthetic owned-stdio peer confirmed auto modern-probe timeout followed by legacy initialize -32022 before source correction. Bounded one-time modern retry and explicit-modern Ubuntu control are locally implemented. Full MCP, Runtime, Chat, unchanged friday-cli, three stdio repetitions, static, lock and board checks passed. Exact candidate review and Ubuntu verification remain pending.
   evidence: docs/planning/active/friday-tui/validation/TUI-CI03-local-checks.md
+- task: friday-tui
+  at: '2026-10-19T01:12:28+00:00'
+  actor: Codex
+  actor_role: agent
+  action: ci03_preflight_verified_and_ubuntu_green
+  note: Fresh-context read-only reviewer VERIFIED candidate 315a30e4 for pre-push readiness; maintainer-authorized push triggered Ubuntu run 39183895627 on the same source. Full Runtime, repeated Runtime/direct MCP auto, Chat, unchanged friday-cli, wheel metadata and installed isolation gates passed. Final independent CI03 and CI01/CI02 gate reconciliation remains pending; no TUI UAT or acceptance is inferred.
+  evidence: docs/planning/active/friday-tui/validation/VAL-TUI-CI03-preflight-315a30e4.md; docs/planning/active/friday-tui/validation/TUI-CI03-ubuntu-run-39183895627.md; https://github.com/CIChuck/agent-framework/actions/runs/39183895627

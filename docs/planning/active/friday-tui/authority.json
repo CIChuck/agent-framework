@@ -49,8 +49,8 @@
     "Historical archive and frozen review evidence",
     "Existing local runtime, transcript and memory state"
   ],
-  "external_delivery_authorized": true,
-  "external_delivery_scope": "Only the independently reviewed CI03 candidate may be pushed to feature/friday-tui for Ubuntu verification; no PR, merge, release, deployment or product acceptance is authorized",
+  "external_delivery_authorized": false,
+  "external_delivery_scope": "The independently reviewed CI03 candidate was pushed at 315a30e441a1fed5f4e2fa553a66e563aabb4972 and passed Ubuntu run 39183895627; no further push, PR, merge, release or deployment is authorized by this completed delivery action",
   "planning_completion_checks": [
     "Board/schema/dashboard consistency",
     "Current command inventory and source baseline reconciliation",
@@ -280,7 +280,12 @@
     "remote_push_authorized": true,
     "later_tui_product_units_authorized": false,
     "pr_merge_release_authorized": false,
-    "status": "CI03-A sequence confirmed in synthetic owned-stdio child; bounded source/workflow correction and local regressions complete; candidate review and Ubuntu verification pending",
-    "local_check_report": "validation/TUI-CI03-local-checks.md"
+    "status": "pre-push independently VERIFIED; exact-source Ubuntu run green; final CI03/CI01/CI02 reconciliation review pending",
+    "local_check_report": "validation/TUI-CI03-local-checks.md",
+    "pre_push_candidate": "315a30e441a1fed5f4e2fa553a66e563aabb4972",
+    "pre_push_review": "validation/VAL-TUI-CI03-preflight-315a30e4.md (VERIFIED for pre-push only)",
+    "ubuntu_run": "https://github.com/CIChuck/agent-framework/actions/runs/39183895627",
+    "ubuntu_run_report": "validation/TUI-CI03-ubuntu-run-39183895627.md",
+    "ubuntu_run_status": "success on pushed source; full Runtime, repeated direct MCP, Chat, unchanged friday-cli, wheel and installed isolation gates green; final independent review pending"
   }
 }

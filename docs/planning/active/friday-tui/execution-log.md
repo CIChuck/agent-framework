@@ -1961,3 +1961,19 @@ counts and the sandbox loopback rerun. The candidate awaits a committed
 freeze, fresh-context independent review and exact-source Ubuntu verification.
 
 execution_phase: validation; validation_state: pending (CI03 independent review and Ubuntu run).
+
+## 2026-10-18 — CI03 pre-push review and green exact-source Ubuntu run
+
+A fresh-context read-only reviewer returned
+[VERIFIED for pre-push readiness](validation/VAL-TUI-CI03-preflight-315a30e4.md)
+on candidate `315a30e4`; no findings were recorded. The authorized push set
+`origin/feature/friday-tui` to that exact SHA. [Ubuntu run
+39183895627](validation/TUI-CI03-ubuntu-run-39183895627.md) then passed the
+full Runtime, repeated Runtime and direct MCP auto cases, full Chat, unchanged
+`friday-cli`, wheel metadata and installed Runtime isolation gates. The exact
+source matches the pre-push review. A fresh final independent review must
+reconcile the CI03 work unit and previously red CI01/CI02 Linux gates before
+their validation state is closed. This is infrastructure validation, not TUI
+terminal UAT, PR/merge/release or maintainer acceptance.
+
+execution_phase: validation; validation_state: pending (final CI03/CI01/CI02 reconciliation review).
