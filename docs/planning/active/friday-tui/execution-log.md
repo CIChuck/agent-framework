@@ -6,9 +6,23 @@ independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-04 local candidate `abeeb895` independently
 VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
-VERIFIED; TUI-N01B-05 single-file export-effects candidate c773f272 independently VERIFIED locally; pushed 37298e48 exact-source Ubuntu run green, post-run review pending
+VERIFIED; TUI-N01B-05 single-file export-effects candidate `c773f272` and
+exact-source Ubuntu run 39278047819 independently VERIFIED
 
-execution_phase: validation; validation_state: in_review (N01B-05 Ubuntu run green, post-run review pending; TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-05 local and automated Ubuntu gates only; TUI product/UAT open)
+
+## 2026-10-19 — N01B-05 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-05-postrun-3d5695d8.md)
+the live GitHub run and job, pushed `37298e48` source, matching remote and
+saved-log hash, protected Runtime/Chat/unchanged CLI checks and scoped
+evidence-only post-run diff. This closes the N01B-05 automated Ubuntu gate.
+Product source remains frozen at candidate `c773f272`. The one push is
+consumed; a later bounded directive needs separate approval before product
+work. Installed macOS/Linux TUI terminal UAT, real-provider/tool run, full
+parity, maintainer acceptance and further delivery remain open.
+
+execution_phase: planning; validation_state: verified (N01B-05 work unit and automated Ubuntu gate only).
 
 ## 2026-10-19 — N01B-05 exact-source Ubuntu run green
 
