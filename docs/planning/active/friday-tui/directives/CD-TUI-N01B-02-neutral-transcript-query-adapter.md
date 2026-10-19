@@ -1,7 +1,6 @@
 # CD-TUI-N01B-02: neutral persisted transcript-query adapter
 
-**Status:** Proposed for maintainer review on 2026-10-18. Product-code
-construction under this directive is not yet approved.
+**Status:** Approved for bounded construction on 2026-10-19 by Chuck Russell.
 
 **Initiative/unit:** `friday-tui` / TUI-N01B-02 (second, separately gated
 subunit of N01B).
@@ -129,6 +128,8 @@ metadata or workflow path is needed. Do not start neutral transcript writes,
 exports, command effects, session/turn state, resource close, runtime
 assembly, TUI implementation or terminal UAT under this directive.
 
-**Approval fields:** Maintainer Chuck Russell; approval date and exact reply
-pending. The current request to proceed authorizes preparing this reviewable
-plan, not product-code generation under an unapproved directive.
+**Approval fields:** Maintainer Chuck Russell; approved 2026-10-19 by the
+current-session reply "CD-TUI-N01B-02 approved" to this exact directive.
+Only the four named source/test paths and scoped packet/board evidence are
+authorized. Push, PR, merge, release and later N01B subunits need separate
+authority.

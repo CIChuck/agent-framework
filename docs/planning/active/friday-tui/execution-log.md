@@ -2,9 +2,22 @@
 
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
-independently verified; TUI-N01B-02 proposed for separate approval
+independently verified; TUI-N01B-02 approved for bounded construction
 
-execution_phase: planning; validation_state: not_ready (N01B-02 proposed only; N01B-01 VERIFIED, TUI product/UAT not ready)
+execution_phase: implementation; validation_state: not_ready (N01B-02 construction authorized; N01B-01 VERIFIED, TUI product/UAT not ready)
+
+## 2026-10-19 — N01B-02 exact directive approved
+
+Chuck Russell replied "CD-TUI-N01B-02 approved" to the explicit
+[directive](directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md)
+approval question. The authority manifest activates only the four named
+Runtime/Chat source/test paths and scoped TUI packet/board evidence. Its
+[171-pass baseline](validation/N01B-02-before-code-characterization.md) stays
+the protected comparison. The next gate is bounded implementation, local
+checks, a stable candidate commit and fresh independent review. Later N01B
+effects, TUI implementation and external delivery are outside this approval.
+
+execution_phase: implementation; validation_state: not_ready (N01B-02 construction begins).
 
 ## 2026-10-18 — N01B-02 read-only baseline and exact directive proposed
 

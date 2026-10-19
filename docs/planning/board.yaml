@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review and separately approve proposed CD-TUI-N01B-02 neutral transcript-query adapter directive before product code; installed macOS/Linux terminal UAT remains a release gate
+  next_gate: Construct and independently verify approved CD-TUI-N01B-02 neutral transcript-query adapter on four exact source/test paths; installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3129,3 +3129,10 @@ events:
   action: n01b_02_neutral_transcript_query_adapter_directive_proposed
   note: Read-only source characterization found a bounded persisted-query adapter extraction. Unchanged Chat transcript, identity and friday-cli comparison tests passed 171. Proposed CD-TUI-N01B-02 names exact Runtime/Chat source and test paths, behavior and validation gates. Product code, TUI shell, UAT and external delivery remain unauthorized by this planning pass; separate maintainer approval is pending.
   evidence: docs/planning/active/friday-tui/validation/N01B-02-before-code-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md
+- task: friday-tui
+  at: '2026-10-19T11:14:23+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_02_exact_directive_approved
+  note: Chuck Russell replied 'CD-TUI-N01B-02 approved' to the explicit directive approval question. Construction is limited to the four named Runtime/Chat source/test paths and scoped TUI packet/board evidence. Independent validation is required; no push, PR, merge, release or later N01B unit is authorized by this approval.
+  evidence: current-session reply 'CD-TUI-N01B-02 approved'; docs/planning/active/friday-tui/directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md
