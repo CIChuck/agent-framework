@@ -1,9 +1,31 @@
 # Friday TUI execution log
 
-Status: Active TUI-CI02 bounded Linux test/workflow remediation; TUI-CI01
-Linux gate remains open; N01A closed under its maintainer-approved deferral
+Status: TUI-CI02 stopped at the shared MCP source boundary after its Ubuntu
+diagnosis; CI03 proposed; TUI-CI01 Linux gate remains open; N01A closed
 
-execution_phase: implementation; validation_state: not_ready (TUI-CI02 candidate in progress; TUI-CI01 Linux failures remain open)
+execution_phase: planning; validation_state: changes_requested (CI02 Ubuntu MCP auto-negotiation failure; CI03 approval pending)
+
+## 2026-10-18 — CI02 Ubuntu run reached framework-source stop gate
+
+The fresh-context third pre-push review
+[VERIFIED](validation/VAL-TUI-CI02-preflight-49adbcb5.md) commit `49adbcb5`.
+The maintainer-authorized push triggered [Ubuntu run
+39181571549](validation/TUI-CI02-ubuntu-run-39181571549.md) on that exact
+source. Focused loader/Chat, full Chat, unchanged `friday-cli`, wheels,
+metadata and installed isolation passed. Full Runtime failed one auto/modern
+MCP case (333 passed), all three focused Runtime auto/modern repetitions
+failed with `connection_failed` after about 1.7 seconds, and all three
+direct SDK `auto` repetitions failed on legacy `initialize` with peer error
+`-32022`. The synthetic fixture timeout was not changed; CI02-C's direct-MCP
+pass and timeout-outcome conditions are false.
+
+A read-only local delayed-modern-peer check reproduced the same `-32022`
+pattern for `auto` while explicit `modern` connected. This supports an
+auto-negotiation timing hypothesis but does not prove the first Ubuntu probe
+outcome. [CD-TUI-CI03](directives/CD-TUI-CI03-mcp-auto-negotiation.md) is a
+separate proposed framework-source directive with a characterization-first
+gate. No new source, test or workflow edit is authorized until approval. CI01
+and CI02 are not marked complete, accepted or UAT-passed.
 
 ## 2026-10-18 — TUI-CI02 exact scope approved
 

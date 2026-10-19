@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Obtain fresh independent review of the locally checked CI02 candidate; then push the reviewed candidate for Ubuntu diagnosis and full Linux gates
+  next_gate: Review and approve proposed CD-TUI-CI03 shared MCP auto-negotiation directive; CI01 and CI02 Linux gates remain open after red Ubuntu run 39181571549
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -310,6 +310,8 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-N01A-neutral-config-loader.md (historical independent BLOCKED work-unit review; Linux smoke remains a later release gate)
   - docs/planning/active/friday-tui/validation/VAL-N01A-waiver-closeout.md (fresh independent VERIFIED N01A review under maintainer Linux deferral; Linux release gate remains open)
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI01-final-a7519db2.md (independent CHANGES_REQUESTED CI01 post-run review; Linux gate remains open)
+  - docs/planning/active/friday-tui/validation/VAL-TUI-CI02-preflight-49adbcb5.md (independent VERIFIED CI02 pre-push review only; Ubuntu gate remained open)
+  - docs/planning/active/friday-tui/validation/TUI-CI02-ubuntu-run-39181571549.md (red exact-source Ubuntu Runtime/direct-MCP gate; CI02 stopped before framework source)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3019,3 +3021,10 @@ events:
   action: delivery local -> pushed
   note: Chuck Russell authorized the TUI-CI01 branch push with 'yes, authorized'; pushed e3e2e974 to origin feature/friday-tui for the Ubuntu run, which failed at Runtime test collection due to missing cryptography.
   evidence: https://github.com/CIChuck/agent-framework/actions/runs/39172562601
+- task: friday-tui
+  at: '2026-10-19T00:45:56+00:00'
+  actor: Codex
+  actor_role: agent
+  action: ci02_ubuntu_diagnosis_stopped_at_framework_boundary
+  note: Approved CI02 candidate 49adbcb5 was independently VERIFIED for pre-push readiness and pushed with maintainer authorization. Exact-source Ubuntu run passed Chat, unchanged friday-cli and wheel gates but failed Runtime auto/modern and three direct MCP auto checks with unsupported-protocol error -32022. CI02-C timeout correction conditions are false. CI03 framework-source remediation is proposed only, not approved; CI01 and CI02 Linux gates remain open.
+  evidence: docs/planning/active/friday-tui/validation/TUI-CI02-ubuntu-run-39181571549.md; https://github.com/CIChuck/agent-framework/actions/runs/39181571549

@@ -2,18 +2,17 @@
 
 **Status:** Active; TUI-N01S and TUI-N01A independently VERIFIED. N01A is
 closed under a maintainer-approved Linux-smoke deferral for that unit only.
-TUI-CI01's latest authorized Ubuntu run passed focused tests, unchanged
-`friday-cli` tests and installed-wheel checks, but failed one Runtime and five
-Chat tests. Its full Linux verification gate remains open. Product/test
-remediation is now authorized by the bounded CI02 directive; its validation
-remains pending.
+TUI-CI02's authorized Ubuntu run passed Chat, unchanged `friday-cli` and wheel
+gates but failed Runtime and direct MCP `auto` interoperability. Its
+framework-source stop condition is reached; CI01 and CI02 Linux verification
+remain open. A separate CI03 framework directive is proposed, not approved.
 
-**Lifecycle:** Started; board priority 14; current authority `granted` for
-TUI-CI01 and the bounded TUI-CI02 test/workflow remediation
+**Lifecycle:** Started; board priority 14; prior CI01/CI02 authority is
+exhausted at its stop gate; CI03 source work awaits maintainer approval
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: implementation; validation_state: not_ready (TUI-CI02 candidate in progress; TUI-CI01 Linux failures remain open)
+execution_phase: planning; validation_state: changes_requested (CI02 Ubuntu MCP auto-negotiation failure; CI03 approval pending)
 
 **Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -86,6 +85,9 @@ Current planning artifacts:
 - [CI02 local candidate checks](validation/TUI-CI02-local-checks.md)
 - [CI02 first-candidate independent preflight finding](validation/VAL-TUI-CI02-preflight-0bd4e441.md)
 - [CI02 second-candidate independent preflight finding](validation/VAL-TUI-CI02-preflight-0aac67f6.md)
+- [CI02 third-candidate independent pre-push verification](validation/VAL-TUI-CI02-preflight-49adbcb5.md)
+- [CI02 Ubuntu run and MCP failure diagnosis](validation/TUI-CI02-ubuntu-run-39181571549.md)
+- [Proposed CI03 shared MCP auto-negotiation directive](directives/CD-TUI-CI03-mcp-auto-negotiation.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -629,17 +631,18 @@ later TUI cross-platform/release gate. Dependent construction needs its own
 approved directive.
 Later product units need their own bounded directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
-UAT begins at the first usable shell; automated Linux checks are active under
-TUI-CI01, and hands-on Linux terminal UAT remains mandatory on the final
+UAT begins at the first usable shell; automated Linux checks ran under
+TUI-CI01/CI02 and remain red pending a separate CI03 decision. Hands-on
+Linux terminal UAT remains mandatory on the final
 installed candidate. A controlled
 real-provider/tool run is also required for first-release acceptance; select
 its provider before final UAT. Build the user guide and configuration reference
 alongside the features they describe and verify them against that candidate.
 
 The [board](../../board.yaml) records `started` on `feature/friday-tui` with
-implementation authority `granted` for TUI-CI01's Linux Actions workflow and
-TUI-CI02's bounded test/workflow remediation. N01A is closed under its
-unit-specific Linux deferral. No TUI
+implementation authority `granted` for earlier bounded CI01/CI02 work, now
+stopped at the shared MCP source boundary. CI03 has no implementation
+authority. N01A is closed under its unit-specific Linux deferral. No TUI
 executable, UAT result, publication or acceptance of the full initiative is
 claimed by this packet.
 
