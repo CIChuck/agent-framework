@@ -8,14 +8,14 @@ exact-source Ubuntu gates independently VERIFIED; N01B-04 export destination/pat
 candidate `abeeb895` independently VERIFIED locally and exact-source Ubuntu run
 39268960501 independently VERIFIED; N01B-05 single-file export effects
 candidate `c773f272` and exact-source Ubuntu run 39278047819 independently
-VERIFIED; N01B-06 all-session export-effects candidate `e16aede6`
-independently VERIFIED locally, with exact-source Ubuntu still open
+VERIFIED; N01B-06 all-session export-effects candidate `e16aede6` and its
+exact-source Ubuntu gate independently VERIFIED
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; N01B-05 is independently
 VERIFIED locally and on exact-source Ubuntu, with source frozen; N01B-06 is
-independently VERIFIED for its exact local construction scope, with source
-frozen and no active product-code directive; later product units remain
+independently VERIFIED locally and on exact-source Ubuntu, with source frozen
+and no active product-code directive; later product units remain
 proposals until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
@@ -321,13 +321,14 @@ the exact N01B-06 four-path local construction scope was approved. Its
 [fresh-context reviewer](validation/VAL-N01B-06-prepush-e16aede6.md) VERIFIED
 frozen candidate `e16aede6`. The separately authorized non-force push reached
 `aa8ae784`; [exact-source Ubuntu run 39284711876](validation/N01B-06-ubuntu-run-39284711876.md)
-reports `completed/success`, pending independent post-run review. The one
+reported `completed/success` and was [independently VERIFIED](validation/VAL-N01B-06-postrun-3413c25f.md).
+The one
 push authority is consumed.
 The [N01B-07 characterization](validation/N01B-07-before-code-transcript-tool-record-characterization.md)
 and [proposed directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
 split pure tool-call provenance preflight and record preparation from Chat's
-store effects. They are planning only, conditional on reconciling N01B-06's
-Ubuntu gate and separate approval of exact construction scope.
+store effects. They are planning only, pending separate approval of exact
+construction scope.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -477,7 +478,8 @@ was approved for exact local construction; candidate `e16aede6` is
 [independently VERIFIED](validation/VAL-N01B-06-prepush-e16aede6.md) locally.
 The separately authorized non-force push reached `aa8ae784`; its
 [exact-source Ubuntu run](validation/N01B-06-ubuntu-run-39284711876.md)
-reports `completed/success`. The one push authority is consumed; independent
-post-run review remains open.
+reported `completed/success` and was [independently reconciled](validation/VAL-N01B-06-postrun-3413c25f.md).
+The one push authority is consumed; N01B-07 still needs exact directive
+approval before product code.
 Later product units remain open.
 No TUI, terminal UAT or real-provider test has run.

@@ -36,16 +36,16 @@ Its [local checks](validation/N01B-06-local-checks.md) passed and candidate
 `e16aede6` was [independently VERIFIED](validation/VAL-N01B-06-prepush-e16aede6.md)
 for the local work unit. Source is frozen. The one authorized non-force push
 reached `aa8ae784`; [exact-source Ubuntu run 39284711876](validation/N01B-06-ubuntu-run-39284711876.md)
-reports `completed/success`, with independent post-run reconciliation pending.
+reported `completed/success` and was [independently VERIFIED](validation/VAL-N01B-06-postrun-3413c25f.md).
 Push authority is consumed.
 The [N01B-07 transcript tool-record directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
 is a planning proposal backed by [read-only source and test characterization](validation/N01B-07-before-code-transcript-tool-record-characterization.md).
-It grants no later product-code authority and does not close the N01B-06
-Ubuntu gate.
+It grants no later product-code authority. Exact directive approval is the
+next product gate.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: in_review (N01B-06 exact-source Ubuntu run reports success; independent post-run review and TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-06 automated Ubuntu gate only; N01B-07 proposed and TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -750,8 +750,9 @@ succeeded and was [independently reconciled](validation/VAL-N01B-05-postrun-3d56
 The [N01B-06 directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
 bounded the remaining all-session directory and two-file write effects
 to four named local source/test paths. Its [local independent review](validation/VAL-N01B-06-prepush-e16aede6.md)
-VERIFIED frozen candidate `e16aede6`; exact-source Ubuntu remains open. At each
-increment, test behavior and regressions before dependent work. macOS user
+VERIFIED frozen candidate `e16aede6`; the authorized exact-source Ubuntu
+gate was [independently VERIFIED](validation/VAL-N01B-06-postrun-3413c25f.md).
+At each increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
 TUI-CI01/CI02 and are independently VERIFIED on the reviewed CI03 source.
 Hands-on Linux terminal UAT remains mandatory on the final installed
@@ -786,7 +787,10 @@ N01B-06 candidate `e16aede6` is [independently VERIFIED locally](validation/VAL-
 backed by [unchanged tests and failure probes](validation/N01B-06-before-code-all-session-export-characterization.md).
 One authorized non-force push of that frozen candidate with scoped evidence
 reached `aa8ae784` and is consumed; the [Ubuntu run](validation/N01B-06-ubuntu-run-39284711876.md)
-reports `completed/success`, pending independent post-run review.
+and job reported `completed/success` and were [independently
+reconciled](validation/VAL-N01B-06-postrun-3413c25f.md). The
+[N01B-07 tool-record directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
+is proposed only and needs separate approval before code work.
 No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.

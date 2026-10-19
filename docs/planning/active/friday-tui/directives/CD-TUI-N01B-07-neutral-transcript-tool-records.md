@@ -1,9 +1,9 @@
 # CD-TUI-N01B-07: neutral transcript tool-record preparation
 
-**Status:** Proposed only; not approved for code generation. Independent
-post-run review of N01B-06's `completed/success` exact-source Ubuntu run
-remains the current board gate. A maintainer must separately approve this exact directive
-before any N01B-07 source or test edit.
+**Status:** Proposed only; not approved for code generation. N01B-06's
+exact-source Ubuntu gate was [independently VERIFIED](../validation/VAL-N01B-06-postrun-3413c25f.md).
+A maintainer must separately approve this exact directive before any
+N01B-07 source or test edit.
 
 **Initiative/unit:** `friday-tui` / TUI-N01B-07, a bounded N01B transcript
 write subunit after N01B-06. **Branch/before-code product source:**

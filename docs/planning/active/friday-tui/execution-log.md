@@ -9,10 +9,25 @@ VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
 VERIFIED; TUI-N01B-05 single-file export-effects candidate `c773f272` and
 exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
-exact-source Ubuntu run 39284711876 reports success on pushed aa8ae784,
-pending independent post-run review
+exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED;
+N01B-07 directive proposed only
 
-execution_phase: validation; validation_state: in_review (N01B-06 exact-source Ubuntu run reports success; post-run review and TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-06 automated Ubuntu gate only; N01B-07 approval and TUI product/UAT open)
+
+## 2026-10-19 — N01B-06 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-06-postrun-3413c25f.md)
+the [completed/success run and sole job](validation/N01B-06-ubuntu-run-39284711876.md)
+against live remote, source and checkout `aa8ae784`, and independently
+matched the saved log hashes, test results, wheels and installed
+configuration boundary. The N01B-06 automated Linux gate is closed. The
+reviewed product source remains frozen at `e16aede6`; the one authorized
+push is consumed. The [N01B-07 directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
+is proposed only and needs separate exact approval before product code.
+Installed macOS/Linux TUI terminal UAT, controlled real-provider/tool
+testing, initiative acceptance and further delivery remain open.
+
+execution_phase: planning; validation_state: verified (N01B-06 automated Ubuntu gate only; N01B-07 proposed and TUI product/UAT open).
 
 ## 2026-10-19 — N01B-06 exact-source Ubuntu run reports success
 

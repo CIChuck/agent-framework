@@ -2,12 +2,11 @@
 
 **Status:** Read-only planning evidence on 2026-10-19. N01B-07 has no
 product-code authority. N01B-06 product source is frozen at `e16aede6`;
-its one authorized push reached `aa8ae784`, but [Ubuntu run
+its one authorized push reached `aa8ae784`, and [Ubuntu run
 39284711876](https://github.com/CIChuck/agent-framework/actions/runs/39284711876)
-reports `completed/success`, with independent post-run reconciliation still
-pending. The local post-push commit `ce717c17` changes only
-planning/status files; no product, test, workflow or dependency file changed
-after the pushed source.
+was [independently VERIFIED](VAL-N01B-06-postrun-3413c25f.md). Local
+post-push commits change only planning/status/evidence files; no product,
+test, workflow or dependency file changed after the pushed source.
 
 ## Existing behavior and extraction boundary
 
@@ -64,7 +63,8 @@ behavior through a disposable store, including context-log and append
 failures. Protected existing Chat and `friday-cli` tests stay unchanged.
 
 **Stop point:** [CD-TUI-N01B-07](../directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
-is a proposal only. N01B-06's independent exact-source Ubuntu post-run
-reconciliation remains the current board gate. No N01B-07 source,
+is a proposal only. N01B-06's exact-source Ubuntu gate is independently
+VERIFIED; separate exact directive approval is the current board gate.
+No N01B-07 source,
 test, metadata, lock, workflow, push, PR, merge or release change is
 authorized by this characterization.
