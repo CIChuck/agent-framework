@@ -11,7 +11,7 @@
   "execution_phase": "planning",
   "validation_state": "verified",
   "allowed_changes": [
-    "docs/planning/active/friday-tui/** (N01B-02 closeout and next-unit planning evidence only)",
+    "docs/planning/active/friday-tui/** (N01B-03 read-only characterization and proposed directive; N01B-02 closeout remains frozen)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
@@ -33,6 +33,14 @@
     "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard are edited; no product source, tests, package metadata, lock or workflow is changed",
     "validation": "171 unchanged baseline tests passed; board validation, JSON parse, local-link check, exact changed-path inspection and git diff --check"
   },
+  "n01b_03_planning_exemption": {
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-10-19",
+    "source": "Current-session instruction 'proceed to next step' after N01B-02 exact-source Ubuntu closeout and the board's later-N01B directive gate",
+    "exact_scope": "Read-only N01B-03 export characterization and proposed exact directive, scoped TUI packet status, TUI board next gate/event and generated dashboard",
+    "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard may change; no product source, tests, package metadata, lock or workflow",
+    "validation": "195 unchanged baseline tests passed; disposable seven-file byte probe and empty probe; board/dashboard validation, JSON parse, 212 changed-document local links, staged exact-path and whitespace checks passed. Repository-wide documentation lifecycle remains red on six unchanged telemetry report links"
+  },
   "build_plan_approval": "TUI-N01S and TUI-N01A verified under their exact directives; N01A Linux smoke was waived only for unit closeout; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
@@ -44,6 +52,15 @@
     "directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md"
   ],
   "construction_directives_active": [],
+  "n01b_03_directive_record": {
+    "unit": "TUI-N01B-03",
+    "path": "directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md",
+    "status": "proposed; exact maintainer approval pending",
+    "before_code_baseline": "validation/N01B-03-before-code-characterization.md",
+    "before_code_source": "c1e38d944452ff26edd5a1fa4302fe5d9a2ccfc6",
+    "source_code_generation_authorized": false,
+    "external_delivery_authorized": false
+  },
   "n01b_02_directive_record": {
     "unit": "TUI-N01B-02",
     "path": "directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md",
@@ -153,7 +170,7 @@
     "Q-03": "Quit at a safe stopping point, finishing any non-interruptible operation and cleaning up before exiting."
   },
   "follow_up_request": "Proceed and walk me through the decision process, following the request to finalize the technical integration contract.",
-  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contract extraction and exact-source Ubuntu gate are independently VERIFIED. N01B-02 neutral persisted-query adapter and its authorized exact-source Ubuntu run are independently VERIFIED. Transcript command effects, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
+  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contract extraction and exact-source Ubuntu gate are independently VERIFIED. N01B-02 neutral persisted-query adapter and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-03 pure transcript-export serialization is proposed, not approved. Export file effects, transcript writes, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
   "draft_construction_directive": "directives/CD-TUI-001-shared-presentation-contracts.md (withdrawn; not executable)",
   "read_only_design_checks": [
     "Existing CLI/selected Chat pytest baseline with fake providers and network guard; no source or test edits",

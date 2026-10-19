@@ -7,6 +7,29 @@ independently verified
 
 execution_phase: planning; validation_state: verified (N01B-02 exact-source Ubuntu gate only; TUI product/UAT not ready)
 
+## 2026-10-19 — N01B-03 export serialization directive proposed
+
+Chuck Russell instructed "proceed to next step" after N01B-02's independent
+exact-source Ubuntu closeout. Source inspection isolated six pure transcript
+export content formats from Chat's command/file effects. The unchanged
+Runtime query/view, Chat transcript/export and protected `friday-cli` suite
+passed **195 tests** at clean `c1e38d94`; a disposable seven-file probe
+captured exact UTF-8 byte counts and SHA-256 values. The
+[before-code characterization](validation/N01B-03-before-code-characterization.md)
+and [proposed exact directive](directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md)
+limit the next candidate to one neutral serializer module, Chat delegation
+and two new test files. This is planning only: the directive awaits explicit
+maintainer approval, and no product source, test, workflow, metadata, lock or
+external state changed. Later export file effects, TUI construction and
+installed terminal UAT remain open.
+Board/dashboard validation, authority JSON parsing and all 212 checked
+changed-document local links passed. The repository-wide documentation
+lifecycle check remains red on six absolute `/private/tmp/telem-01/review`
+links in an unchanged telemetry validation report; this is the same
+before-code failure recorded in the N01B-02 planning pass.
+
+execution_phase: planning; validation_state: verified (N01B-02 only; N01B-03 approval pending).
+
 ## 2026-10-19 — N01B-02 exact-source Ubuntu gate independently VERIFIED
 
 A fresh-context read-only reviewer

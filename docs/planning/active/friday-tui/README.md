@@ -665,6 +665,11 @@ and an [independent local pre-push VERIFIED review](validation/VAL-N01B-02-prepu
 They are frozen. The separately authorized push of `07177e6c` reached GitHub,
 and its [exact-source Ubuntu run](validation/N01B-02-ubuntu-run-39248181260.md)
 was [independently reconciled](validation/VAL-N01B-02-postrun-8e389def.md).
+The next proposed [N01B-03 directive](directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md)
+would extract only pure export content serialization; its
+[before-code characterization](validation/N01B-03-before-code-characterization.md)
+records 195 unchanged tests and a seven-file byte probe. Maintainer approval
+is pending, so no N01B-03 product code is authorized.
 Later product units need their own bounded directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under

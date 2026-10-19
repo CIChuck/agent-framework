@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-10-18'
+updated: '2026-10-19'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: N01B-02 local and exact-source Ubuntu gates independently VERIFIED; select and approve a bounded directive for later N01B effects; installed macOS/Linux terminal UAT remains a release gate
+  next_gate: Review and explicitly approve proposed CD-TUI-N01B-03 pure transcript-export serialization before product code; N01B-02 local and exact-source Ubuntu gates VERIFIED; installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -327,6 +327,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-N01B-02-final-a3d0d961.md (independent VERIFIED final N01B-02 local pre-push authority candidate)
   - docs/planning/active/friday-tui/validation/N01B-02-ubuntu-run-39248181260.md (green exact-source N01B-02 Ubuntu run)
   - docs/planning/active/friday-tui/validation/VAL-N01B-02-postrun-8e389def.md (independent VERIFIED N01B-02 exact-source Ubuntu reconciliation; later product/UAT open)
+  - docs/planning/active/friday-tui/validation/N01B-03-before-code-characterization.md (195 unchanged tests and seven-file byte probe; proposed directive planning only)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3176,3 +3177,10 @@ events:
   action: n01b_02_exact_source_ubuntu_independently_verified
   note: Fresh-context read-only reviewer VERIFIED green exact-source Ubuntu run 39248181260 and packet candidate 8e389def. Full Runtime, Chat, unchanged friday-cli, repeated MCP, wheels and installed configuration isolation passed on pushed 07177e6c. The workflow's installed probe covers configuration; independent local installed transcript checks remain separate. N01B-02 automated Linux gate is closed, while full TUI, installed terminal UAT, later product authority, acceptance and further external delivery remain open.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-02-postrun-8e389def.md; https://github.com/CIChuck/agent-framework/actions/runs/39248181260
+- task: friday-tui
+  at: '2026-10-19T12:21:58+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_03_pure_export_serialization_directive_proposed
+  note: After the maintainer asked to proceed to the board's next TUI gate, read-only inspection isolated pure transcript-export serializers from Chat-owned command and file effects. The unchanged focused/protected suite passed 195 tests, and a disposable seven-file UTF-8 byte probe was recorded at clean c1e38d94. CD-TUI-N01B-03 is proposed for exact maintainer approval; no product code, later export effects, push or TUI UAT is authorized by this planning step.
+  evidence: docs/planning/active/friday-tui/validation/N01B-03-before-code-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md
