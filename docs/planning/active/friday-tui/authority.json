@@ -2,24 +2,21 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI01/CI02 Linux gates remain open; approved CI03 permits bounded shared-MCP auto-negotiation source/test and optional workflow work plus an independently reviewed feature-branch push; later TUI product units remain design-only",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; later TUI product units remain design-only",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "validation",
-  "validation_state": "pending",
+  "execution_phase": "planning",
+  "validation_state": "verified",
   "allowed_changes": [
-    "packages/friday-mcp/src/friday_mcp/client/base.py (CI03 auto negotiation only)",
-    "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py (CI03 characterization/regression only)",
-    ".github/workflows/friday-tui-linux.yml (optional direct explicit-modern control only)",
-    "docs/planning/active/friday-tui/** (CI03 authority and validation evidence only)",
+    "docs/planning/active/friday-tui/** (CI03 verification closeout and next-unit planning only)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
-  "product_code_generation_authorized": true,
-  "workflow_code_generation_authorized": true,
+  "product_code_generation_authorized": false,
+  "workflow_code_generation_authorized": false,
   "build_plan_approval": "TUI-N01S and TUI-N01A verified under their exact directives; N01A Linux smoke was waived only for unit closeout; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
@@ -28,9 +25,7 @@
     "directives/CD-TUI-CI02-linux-regression-remediation.md",
     "directives/CD-TUI-CI03-mcp-auto-negotiation.md"
   ],
-  "construction_directives_active": [
-    "directives/CD-TUI-CI03-mcp-auto-negotiation.md"
-  ],
+  "construction_directives_active": [],
   "validated_construction_scope": {
     "unit": "TUI-N01S",
     "directive": "directives/CD-TUI-N01S-session-identity.md",
@@ -45,7 +40,7 @@
   "protected": [
     "Existing friday-cli feature set, behavior and implementation",
     "Existing friday-chat behavior and defaults",
-    "All other product/framework source and tests, scripts, workspace metadata, dependency lock and workflow paths outside the approved CI03 exact scope",
+    "All product/framework source and tests, workflows, scripts, workspace metadata and dependency lock pending the next exact approved construction directive",
     "Historical archive and frozen review evidence",
     "Existing local runtime, transcript and memory state"
   ],
@@ -191,7 +186,25 @@
     "uat": "Real users follow first-launch, configuration, representative-command and safe-Quit guide steps before release acceptance",
     "implementation_status": "No TUI executable or final user guide exists yet"
   },
-  "active_construction_scope_ci01": {
+  "closed_construction_scope_n01a": {
+    "unit": "TUI-N01A",
+    "directive": "directives/CD-TUI-N01A-neutral-config-loader.md",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-10-18",
+    "approval_evidence": "Current-session reply 'approved' to the explicit CD-TUI-N01A scope-and-authority question",
+    "later_units_authorized": false,
+    "construction_base": "ab56cbc61ac8f9ec54fc8d6e0b1753fe18411332",
+    "frozen_candidate": "4a5311f2340adfbbf9cd5c4289db325e6b420b6b",
+    "prior_validation_report": "validation/VAL-N01A-neutral-config-loader.md",
+    "prior_validation_outcome": "BLOCKED",
+    "prior_validation_blocker": "B-01: automated installed-wheel neutral-loader smoke did not run on Linux; no local Linux runner was available",
+    "linux_smoke_closeout_waiver": "Maintainer Chuck Russell, 2026-10-18: 'Let's postpone testing on Linux for now. Close N01A.' Waives Linux smoke for N01A work-unit closeout only; Linux remains a later TUI cross-platform/release gate.",
+    "validation_report": "validation/VAL-N01A-waiver-closeout.md",
+    "validation_outcome": "VERIFIED",
+    "maintainer_closeout_evidence": "Current-session instruction 'Let's postpone testing on Linux for now. Close N01A.'",
+    "remaining_release_gate": "Automated Linux smoke and final installed-candidate Linux terminal UAT remain required before first TUI release acceptance"
+  },
+  "closed_construction_scope_ci01": {
     "unit": "TUI-CI01",
     "directive": "directives/CD-TUI-CI01-linux-actions.md",
     "approved_by": "Chuck Russell",
@@ -228,27 +241,11 @@
     "post_run_review_report": "validation/VAL-TUI-CI01-final-a7519db2.md",
     "post_run_review_outcome": "CHANGES_REQUESTED; CI01-07 through CI01-10; no full Linux verification",
     "candidate_status": "fifth Ubuntu run exercised all independent steps on current pushed source: focused tests, unchanged CLI and installed-wheel checks passed; one Runtime MCP stdio and five Chat tests failed; approved CI01 scope stops before product/test edits",
-    "linux_run_status": "failed: Runtime 333 passed/1 failed; Chat 816 passed/5 failed/23 skipped; friday-cli 155 passed; no full Linux coverage claim"
+    "linux_run_status": "failed: Runtime 333 passed/1 failed; Chat 816 passed/5 failed/23 skipped; friday-cli 155 passed; no full Linux coverage claim",
+    "automated_linux_gate_reconciliation": "VERIFIED by CI03 final independent review on exact-source Ubuntu run 39183895627; full Runtime, repeated auto case, Chat, unchanged friday-cli, wheels and installed isolation green",
+    "reconciliation_report": "validation/VAL-TUI-CI03-final-676700f5.md"
   },
-  "closed_construction_scope_n01a": {
-    "unit": "TUI-N01A",
-    "directive": "directives/CD-TUI-N01A-neutral-config-loader.md",
-    "approved_by": "Chuck Russell",
-    "approved_at": "2026-10-18",
-    "approval_evidence": "Current-session reply 'approved' to the explicit CD-TUI-N01A scope-and-authority question",
-    "later_units_authorized": false,
-    "construction_base": "ab56cbc61ac8f9ec54fc8d6e0b1753fe18411332",
-    "frozen_candidate": "4a5311f2340adfbbf9cd5c4289db325e6b420b6b",
-    "prior_validation_report": "validation/VAL-N01A-neutral-config-loader.md",
-    "prior_validation_outcome": "BLOCKED",
-    "prior_validation_blocker": "B-01: automated installed-wheel neutral-loader smoke did not run on Linux; no local Linux runner was available",
-    "linux_smoke_closeout_waiver": "Maintainer Chuck Russell, 2026-10-18: 'Let's postpone testing on Linux for now. Close N01A.' Waives Linux smoke for N01A work-unit closeout only; Linux remains a later TUI cross-platform/release gate.",
-    "validation_report": "validation/VAL-N01A-waiver-closeout.md",
-    "validation_outcome": "VERIFIED",
-    "maintainer_closeout_evidence": "Current-session instruction 'Let's postpone testing on Linux for now. Close N01A.'",
-    "remaining_release_gate": "Automated Linux smoke and final installed-candidate Linux terminal UAT remain required before first TUI release acceptance"
-  },
-  "active_construction_scope_ci02": {
+  "closed_construction_scope_ci02": {
     "unit": "TUI-CI02",
     "directive": "directives/CD-TUI-CI02-linux-regression-remediation.md",
     "approved_by": "Chuck Russell",
@@ -266,9 +263,11 @@
     "pre_push_review": "validation/VAL-TUI-CI02-preflight-49adbcb5.md (VERIFIED for pre-push only)",
     "ubuntu_run": "https://github.com/CIChuck/agent-framework/actions/runs/39181571549",
     "ubuntu_run_report": "validation/TUI-CI02-ubuntu-run-39181571549.md",
-    "status": "stopped at framework-source boundary: Runtime auto/modern connection_failed; direct MCP auto receives -32022; CI02-C timeout gate not met"
+    "status": "stopped at framework-source boundary: Runtime auto/modern connection_failed; direct MCP auto receives -32022; CI02-C timeout gate not met",
+    "automated_linux_gate_reconciliation": "VERIFIED by CI03 final independent review on exact-source Ubuntu run 39183895627; direct SDK auto repeated three times and Runtime auto case green; CI02-C timeout change remained unneeded",
+    "reconciliation_report": "validation/VAL-TUI-CI03-final-676700f5.md"
   },
-  "active_construction_scope_ci03": {
+  "closed_construction_scope_ci03": {
     "unit": "TUI-CI03",
     "directive": "directives/CD-TUI-CI03-mcp-auto-negotiation.md",
     "approved_by": "Chuck Russell",
@@ -280,12 +279,14 @@
     "remote_push_authorized": true,
     "later_tui_product_units_authorized": false,
     "pr_merge_release_authorized": false,
-    "status": "pre-push independently VERIFIED; exact-source Ubuntu run green; final CI03/CI01/CI02 reconciliation review pending",
+    "status": "VERIFIED: bounded shared-MCP auto-negotiation unit and exact-source Ubuntu gates complete; TUI product and UAT remain open",
     "local_check_report": "validation/TUI-CI03-local-checks.md",
     "pre_push_candidate": "315a30e441a1fed5f4e2fa553a66e563aabb4972",
     "pre_push_review": "validation/VAL-TUI-CI03-preflight-315a30e4.md (VERIFIED for pre-push only)",
     "ubuntu_run": "https://github.com/CIChuck/agent-framework/actions/runs/39183895627",
     "ubuntu_run_report": "validation/TUI-CI03-ubuntu-run-39183895627.md",
-    "ubuntu_run_status": "success on pushed source; full Runtime, repeated direct MCP, Chat, unchanged friday-cli, wheel and installed isolation gates green; final independent review pending"
+    "ubuntu_run_status": "success on pushed source; full Runtime, repeated direct MCP, Chat, unchanged friday-cli, wheel and installed isolation gates green; final independent review pending",
+    "validation_report": "validation/VAL-TUI-CI03-final-676700f5.md",
+    "validation_outcome": "VERIFIED"
   }
 }

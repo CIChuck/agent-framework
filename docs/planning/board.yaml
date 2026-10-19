@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Fresh-context final review of CI03 exact-source green Ubuntu run and CI01/CI02 Linux gate reconciliation; TUI product construction and terminal UAT remain later gates
+  next_gate: Define and approve an exact TUI-N01B neutral-primitive construction directive before product work; installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -314,7 +314,8 @@ tasks:
   - docs/planning/active/friday-tui/validation/TUI-CI02-ubuntu-run-39181571549.md (red exact-source Ubuntu Runtime/direct-MCP gate; CI02 stopped before framework source)
   - docs/planning/active/friday-tui/validation/TUI-CI03-local-checks.md (synthetic characterization and local shared-MCP regressions before candidate review and Ubuntu run)
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI03-preflight-315a30e4.md (independent VERIFIED pre-push review of exact CI03 source candidate)
-  - docs/planning/active/friday-tui/validation/TUI-CI03-ubuntu-run-39183895627.md (green exact-source Ubuntu Runtime/direct-MCP, Chat/CLI, wheel and installed-isolation gates; final review pending)
+  - docs/planning/active/friday-tui/validation/TUI-CI03-ubuntu-run-39183895627.md (green exact-source Ubuntu Runtime/direct-MCP, Chat/CLI, wheel and installed-isolation gates)
+  - docs/planning/active/friday-tui/validation/VAL-TUI-CI03-final-676700f5.md (independent VERIFIED CI03 infrastructure and CI01/CI02 automated Linux gate reconciliation; TUI product/UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3052,3 +3053,10 @@ events:
   action: ci03_preflight_verified_and_ubuntu_green
   note: Fresh-context read-only reviewer VERIFIED candidate 315a30e4 for pre-push readiness; maintainer-authorized push triggered Ubuntu run 39183895627 on the same source. Full Runtime, repeated Runtime/direct MCP auto, Chat, unchanged friday-cli, wheel metadata and installed isolation gates passed. Final independent CI03 and CI01/CI02 gate reconciliation remains pending; no TUI UAT or acceptance is inferred.
   evidence: docs/planning/active/friday-tui/validation/VAL-TUI-CI03-preflight-315a30e4.md; docs/planning/active/friday-tui/validation/TUI-CI03-ubuntu-run-39183895627.md; https://github.com/CIChuck/agent-framework/actions/runs/39183895627
+- task: friday-tui
+  at: '2026-10-19T01:17:58+00:00'
+  actor: Codex
+  actor_role: agent
+  action: ci03_verified_ci01_ci02_linux_gates_reconciled
+  note: Fresh-context read-only final reviewer VERIFIED CI03 and the previously red CI01/CI02 automated Linux gates against source 315a30e4 and green Ubuntu run 39183895627. CI03 infrastructure work unit is closed; Friday TUI initiative remains started. Next product unit needs its own exact directive and approval; no TUI executable, installed terminal UAT, maintainer acceptance, PR, merge or release is inferred.
+  evidence: docs/planning/active/friday-tui/validation/VAL-TUI-CI03-final-676700f5.md; https://github.com/CIChuck/agent-framework/actions/runs/39183895627

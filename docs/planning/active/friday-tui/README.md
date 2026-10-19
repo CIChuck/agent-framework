@@ -6,18 +6,18 @@ TUI-CI02's authorized Ubuntu run passed Chat, unchanged `friday-cli` and wheel
 gates but failed Runtime and direct MCP `auto` interoperability. Its
 framework-source stop condition is reached; CI01 and CI02 Linux verification
 were red before the bounded CI03 shared-MCP correction. Its reviewed candidate
-was pushed and the exact-source Ubuntu workflow is green. Final independent
-CI03 and CI01/CI02 Linux gate reconciliation remains pending.
+was pushed and the exact-source Ubuntu workflow is green. A final independent
+review VERIFIED CI03 and reconciled the CI01/CI02 automated Linux gates.
 
-**Lifecycle:** Started; board priority 14; prior CI01/CI02 authority is
-exhausted at its stop gate; CI03 passed pre-push review and Ubuntu verification,
-with final independent reconciliation pending
+**Lifecycle:** Started; board priority 14; CI03 infrastructure work unit and
+CI01/CI02 automated Linux gates VERIFIED; next TUI product unit needs a
+separate exact directive and approval
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: pending (CI03 pre-push VERIFIED and Ubuntu green; final independent reconciliation pending)
+execution_phase: planning; validation_state: verified (CI03 infrastructure unit only; TUI product and UAT not ready)
 
-**Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
+**Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
 **Parity target:** The maintained `friday-chat` application
 
@@ -94,6 +94,7 @@ Current planning artifacts:
 - [CI03 local characterization and regression checks](validation/TUI-CI03-local-checks.md)
 - [CI03 independent pre-push candidate review](validation/VAL-TUI-CI03-preflight-315a30e4.md)
 - [CI03 exact-source green Ubuntu run](validation/TUI-CI03-ubuntu-run-39183895627.md)
+- [CI03 final independent infrastructure review](validation/VAL-TUI-CI03-final-676700f5.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -638,20 +639,19 @@ approved directive.
 Later product units need their own bounded directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
-TUI-CI01/CI02 and are green on the reviewed CI03 source; final independent
-gate reconciliation is pending. Hands-on Linux terminal UAT remains mandatory
-on the final installed candidate. A controlled real-provider/tool run is also
+TUI-CI01/CI02 and are independently VERIFIED on the reviewed CI03 source.
+Hands-on Linux terminal UAT remains mandatory on the final installed
+candidate. A controlled real-provider/tool run is also
 required for first-release acceptance; select its provider before final UAT.
-Build the user guide and configuration reference
-alongside the features they describe and verify them against that candidate.
+Build the user guide and configuration reference alongside the features they
+describe and verify them against that candidate.
 
 The [board](../../board.yaml) records `started` on `feature/friday-tui` with
-implementation authority `granted` for the bounded CI03 shared-MCP work, now
-locally validated and green on Ubuntu, with final independent reconciliation
-pending; CI01/CI02 earlier stopped at the shared MCP source boundary. N01A is
-closed under its unit-specific Linux deferral. No TUI executable, UAT result,
-publication or acceptance of the full initiative is
-claimed by this packet.
+implementation authority `granted` for the initiative, but no next product
+unit is authorized for code generation. CI03 and CI01/CI02 automated Linux
+gates are independently VERIFIED. N01A is closed under its unit-specific Linux
+deferral. No TUI executable, UAT result, publication or acceptance of the full
+initiative is claimed by this packet.
 
 ## 10. Planning review record
 

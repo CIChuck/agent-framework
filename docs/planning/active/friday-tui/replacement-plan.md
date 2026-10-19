@@ -249,11 +249,13 @@ release; `/switch [agent]` retains its active-agent meaning.
 
 Each unit needs a separate exact-path directive, expected behavior and
 negative cases, a frozen candidate, focused tests and fresh independent
-review before dependent implementation. The IDs below are planning units;
-only N01A currently has implementation authority. Its frozen candidate's
-first review was [BLOCKED](validation/VAL-N01A-neutral-config-loader.md) on
-Linux infrastructure; the maintainer's bounded deferral now requires a fresh
-review before unit closeout. Linux coverage remains a later TUI gate.
+review before dependent implementation. The IDs below are planning units.
+N01S and N01A are independently verified, and the CI01-CI03 infrastructure
+work has a green [Ubuntu run](validation/TUI-CI03-ubuntu-run-39183895627.md)
+and [final independent review](validation/VAL-TUI-CI03-final-676700f5.md).
+N01B is the next proposed product unit; it has no construction authority until
+an exact directive is approved. Installed TUI terminal UAT on macOS and Linux
+remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
 | --- | --- | --- |
