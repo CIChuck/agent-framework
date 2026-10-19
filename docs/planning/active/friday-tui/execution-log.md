@@ -9,9 +9,21 @@ VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
 VERIFIED; TUI-N01B-05 single-file export-effects candidate `c773f272` and
 exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
-exact-source Ubuntu gate open
+exact-source Ubuntu run 39284711876 queued on pushed aa8ae784
 
-execution_phase: planning; validation_state: verified (N01B-06 local unit only; exact-source Ubuntu and TUI product/UAT open)
+execution_phase: validation; validation_state: pending (N01B-06 exact-source Ubuntu run queued; local unit VERIFIED; TUI product/UAT open)
+
+## 2026-10-19 — N01B-06 authorized push and queued Ubuntu run
+
+The one authorized non-force push advanced `origin/feature/friday-tui` from
+`37298e48` to `aa8ae784`. GitHub created [run 39284711876](https://github.com/CIChuck/agent-framework/actions/runs/39284711876)
+on that exact SHA; the job is queued with no runner assigned or test result.
+The pushed product source matches independently reviewed `e16aede6`.
+Push authority is consumed. Reconcile the run and obtain a fresh independent
+post-run review before claiming the automated Linux gate. Installed TUI
+terminal UAT remains open.
+
+execution_phase: validation; validation_state: pending (N01B-06 Ubuntu run queued).
 
 ## 2026-10-19 — N01B-06 exact-source Ubuntu push authorized
 

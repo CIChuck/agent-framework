@@ -319,8 +319,9 @@ isolate the remaining all-session directory creation and two-file writes;
 the exact N01B-06 four-path local construction scope was approved. Its
 [local checks](validation/N01B-06-local-checks.md) passed, and a
 [fresh-context reviewer](validation/VAL-N01B-06-prepush-e16aede6.md) VERIFIED
-frozen candidate `e16aede6`. The maintainer separately authorized one
-non-force branch push for exact-source Ubuntu verification; it is pending.
+frozen candidate `e16aede6`. The separately authorized non-force push reached
+`aa8ae784`; [exact-source Ubuntu run 39284711876](https://github.com/CIChuck/agent-framework/actions/runs/39284711876)
+is queued, with no test outcome yet. The one push authority is consumed.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -468,7 +469,8 @@ push authority is consumed.
 The [N01B-06 directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
 was approved for exact local construction; candidate `e16aede6` is
 [independently VERIFIED](validation/VAL-N01B-06-prepush-e16aede6.md) locally.
-One separately authorized non-force push for its exact-source Ubuntu gate is
-pending.
+The separately authorized non-force push reached `aa8ae784`; its
+[exact-source Ubuntu run](https://github.com/CIChuck/agent-framework/actions/runs/39284711876)
+is queued. The one push authority is consumed; no Ubuntu result is claimed.
 Later product units remain open.
 No TUI, terminal UAT or real-provider test has run.

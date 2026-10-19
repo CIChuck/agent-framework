@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Perform the one authorized non-force push of frozen N01B-06 source to origin/feature/friday-tui, reconcile its exact-source Ubuntu run, and obtain independent post-run review; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Reconcile queued exact-source Ubuntu run 39284711876 on pushed aa8ae784 and obtain independent post-run review; one N01B-06 push is consumed; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3376,3 +3376,10 @@ events:
   action: n01b_06_one_nonforce_push_authorized
   note: Maintainer replied 'Approved. Let's get moving on to the next task.' after the controller identified one non-force push of the reviewed N01B-06 branch tip for exact-source Ubuntu verification. This permits one push of frozen e16aede6 product source with scoped evidence-only authorization commit, then CI reconciliation. No additional push, PR, merge, release, later product unit or installed TUI UAT acceptance is authorized.
   evidence: current-session reply 'Approved. Let's get moving on to the next task.'; docs/planning/active/friday-tui/authority.json; docs/planning/active/friday-tui/validation/VAL-N01B-06-prepush-e16aede6.md
+- task: friday-tui
+  at: '2026-10-19T16:29:16+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_06_authorized_push_ubuntu_queued
+  note: The one authorized non-force push advanced origin/feature/friday-tui from 37298e48 to aa8ae784. GitHub Actions run 39284711876 was created on that exact SHA and is queued without a runner or test result. Reviewed product source still matches e16aede6. Push authority is consumed; exact-source Ubuntu outcome and independent post-run reconciliation remain pending. No additional push or TUI UAT is inferred.
+  evidence: https://github.com/CIChuck/agent-framework/actions/runs/39284711876; docs/planning/active/friday-tui/authority.json

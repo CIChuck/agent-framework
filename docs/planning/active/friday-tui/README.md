@@ -34,12 +34,13 @@ is approved for four exact local Runtime/Chat source/test paths after [253 uncha
 and disposable failure probes](validation/N01B-06-before-code-all-session-export-characterization.md).
 Its [local checks](validation/N01B-06-local-checks.md) passed and candidate
 `e16aede6` was [independently VERIFIED](validation/VAL-N01B-06-prepush-e16aede6.md)
-for the local work unit. Source is frozen; the maintainer has authorized one
-non-force branch push for exact-source Ubuntu verification, still pending.
+for the local work unit. Source is frozen. The one authorized non-force push
+reached `aa8ae784`; [exact-source Ubuntu run 39284711876](https://github.com/CIChuck/agent-framework/actions/runs/39284711876)
+is queued without a test result. Push authority is consumed.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: verified (N01B-06 local unit only; exact-source Ubuntu and TUI product/UAT open)
+execution_phase: validation; validation_state: pending (N01B-06 exact-source Ubuntu run queued; local unit VERIFIED; TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -775,8 +776,9 @@ VERIFIED. N01B-05 local candidate `c773f272` and its
 independently VERIFIED. The one-push authority is consumed.
 N01B-06 candidate `e16aede6` is [independently VERIFIED locally](validation/VAL-N01B-06-prepush-e16aede6.md),
 backed by [unchanged tests and failure probes](validation/N01B-06-before-code-all-session-export-characterization.md).
-One non-force push of that frozen candidate with scoped evidence is authorized
-for exact-source Ubuntu verification; it remains pending.
+One authorized non-force push of that frozen candidate with scoped evidence
+reached `aa8ae784` and is consumed; the [Ubuntu run](https://github.com/CIChuck/agent-framework/actions/runs/39284711876)
+is queued. No Ubuntu result is claimed yet.
 No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.
