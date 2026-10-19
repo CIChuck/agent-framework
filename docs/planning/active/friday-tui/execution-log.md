@@ -33,6 +33,15 @@ The authorized test-only correction now covers all six, with focused Chat
 The first verdict is not treated as a pass for the revised candidate; it needs
 fresh independent review.
 
+The second committed candidate `0aac67f6` also received a fresh-context
+[CHANGES_REQUESTED preflight](validation/VAL-TUI-CI02-preflight-0aac67f6.md):
+CI02-01 persisted because substring checks could match another option or
+description. The next bounded correction parses full option names from their
+rendered rows. A local deletion simulation confirms each expected option
+disappears from the parsed set when its row is removed. Focused Chat 46,
+full Chat 845 passed/5 skipped, and Ruff/Mypy on changed Chat tests passed.
+The next gate is a fresh pre-push review of the new committed candidate.
+
 ## 2026-10-16 — activation and build planning
 
 Chuck Russell explicitly requested moving Friday TUI from queued to active,

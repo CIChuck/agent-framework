@@ -56,15 +56,23 @@ def test_cli_help(monkeypatch: pytest.MonkeyPatch, color_mode: str) -> None:
 
     result = runner.invoke(app, ["--help"])
     visible_help = re.sub(r"\x1b\[[0-9;]*m", "", result.output)
+    visible_options = set(
+        re.findall(
+            r"(?m)^[ \t]*(?:│[ \t])?(--[a-z][a-z-]*)(?=[ \t])",
+            visible_help,
+        )
+    )
 
     assert result.exit_code == 0
     assert "FridayV2 chat application" in visible_help
-    assert "--version" in visible_help
-    assert "--replay" in visible_help
-    assert "--replay-delay" in visible_help
-    assert "--config" in visible_help
-    assert "--cli-config" in visible_help
-    assert "--runtime" in visible_help
+    assert {
+        "--version",
+        "--replay",
+        "--replay-delay",
+        "--config",
+        "--cli-config",
+        "--runtime",
+    } <= visible_options
 
 
 def test_cli_version() -> None:

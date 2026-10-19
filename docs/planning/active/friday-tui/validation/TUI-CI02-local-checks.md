@@ -46,3 +46,10 @@ rerun (46 passed), the full Chat suite was rerun with loopback access (845
 passed, 5 skipped), and Ruff plus Mypy on the changed Chat tests passed.
 The earlier Runtime, direct MCP and unchanged `friday-cli` results still apply
 because the correction changed only Chat help assertions.
+
+The second independent preflight showed that substring checks could still
+pass after deleting a declared option row. The revised test now parses full
+option names only from rendered help rows. A read-only six-case deletion
+simulation confirmed that removing any one row removes its option from the
+parsed set. Focused Chat rerun: 46 passed; full Chat rerun with loopback access:
+845 passed and 5 skipped; Ruff and changed-Chat Mypy passed.
