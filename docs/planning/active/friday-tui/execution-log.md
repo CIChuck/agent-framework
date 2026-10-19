@@ -6,9 +6,21 @@ independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-04 local candidate `abeeb895` independently
 VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
-VERIFIED; TUI-N01B-05 single-file export-effects candidate c773f272 independently VERIFIED locally; source frozen
+VERIFIED; TUI-N01B-05 single-file export-effects candidate c773f272 independently VERIFIED locally; pushed 37298e48 exact-source Ubuntu run green, post-run review pending
 
-execution_phase: planning; validation_state: verified (N01B-05 local gate only; exact-source Ubuntu and TUI product/UAT open)
+execution_phase: validation; validation_state: in_review (N01B-05 Ubuntu run green, post-run review pending; TUI product/UAT open)
+
+## 2026-10-19 — N01B-05 exact-source Ubuntu run green
+
+The one authorized non-force push advanced `origin/feature/friday-tui` to
+`37298e48`; the [run report](validation/N01B-05-ubuntu-run-39278047819.md)
+records matching source and checkout SHAs, successful GitHub run/job status,
+377 Runtime, 844 Chat with 23 skips, unchanged CLI 155, repeated MCP, wheel
+and installed configuration checks. Reviewed product source still matches
+`c773f272`. The push authority is consumed. Fresh-context independent
+post-run reconciliation is next; installed TUI terminal UAT remains open.
+
+execution_phase: validation; validation_state: in_review (N01B-05 automated Ubuntu gate only).
 
 ## 2026-10-19 — N01B-05 exact-source Ubuntu push authorized
 

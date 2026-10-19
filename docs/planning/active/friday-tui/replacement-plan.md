@@ -6,7 +6,7 @@ and exact-source Ubuntu gate independently VERIFIED; N01B-02 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-03 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-04 export destination/path
 candidate `abeeb895` independently VERIFIED locally and exact-source Ubuntu run
-39268960501 independently VERIFIED; N01B-05 single-file export effects candidate c773f272 independently VERIFIED locally
+39268960501 independently VERIFIED; N01B-05 single-file export effects candidate c773f272 independently VERIFIED locally and exact-source Ubuntu run 39278047819 green pending post-run review
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; N01B-05 is independently
@@ -305,8 +305,9 @@ two-file all-session export. Its four named Runtime/Chat source/test paths are
 authorized for local construction only.
 Its [local checks](validation/N01B-05-local-checks.md) passed and a
 [fresh-context reviewer](validation/VAL-N01B-05-prepush-c773f272.md) VERIFIED
-the frozen candidate. One non-force push for exact-source Ubuntu verification
-is separately authorized and pending.
+the frozen candidate. The separately authorized non-force push reached
+`37298e48`; its [Ubuntu run](validation/N01B-05-ubuntu-run-39278047819.md)
+succeeded and awaits independent post-run review.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -447,7 +448,8 @@ local scope, with product source frozen. The authorized
 succeeded and was [independently VERIFIED](validation/VAL-N01B-04-postrun-27c84ad9.md).
 The [N01B-05 directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
 was approved for exact local construction. Its candidate `c773f272` is
-[independently VERIFIED](validation/VAL-N01B-05-prepush-c773f272.md) locally;
-one non-force N01B-05 push is separately authorized and pending.
+[independently VERIFIED](validation/VAL-N01B-05-prepush-c773f272.md) locally.
+The authorized push and [exact-source Ubuntu run](validation/N01B-05-ubuntu-run-39278047819.md)
+are green; post-run independent review remains and push authority is consumed.
 Later product units remain open.
 No TUI, terminal UAT or real-provider test has run.

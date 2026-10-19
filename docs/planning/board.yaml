@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Perform the one authorized non-force push of frozen N01B-05 source to origin/feature/friday-tui, reconcile its exact-source Ubuntu run, and obtain independent post-run review; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Obtain fresh-context independent post-run reconciliation of successful N01B-05 exact-source Ubuntu run 39278047819 on pushed 37298e48; one push consumed; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -340,6 +340,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-05-before-code-single-file-export-characterization.md (239 unchanged baseline tests and read-only export-effect characterization; proposed directive planning only)
   - docs/planning/active/friday-tui/validation/N01B-05-local-checks.md (builder local suites, protected comparisons and installed-wheel checks; independent review separately verified)
   - docs/planning/active/friday-tui/validation/VAL-N01B-05-prepush-c773f272.md (independent VERIFIED local N01B-05 candidate; exact-source Ubuntu and TUI UAT open)
+  - docs/planning/active/friday-tui/validation/N01B-05-ubuntu-run-39278047819.md (green exact-source Ubuntu run on authorized N01B-05 push; independent post-run review and TUI UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3329,3 +3330,10 @@ events:
   action: n01b_05_one_nonforce_push_authorized
   note: Maintainer replied 'proceed' after the controller identified one separately authorized non-force push of the frozen N01B-05 branch as the next step for exact-source Ubuntu verification. This permits one push of c773f272 product source with scoped evidence-only authorization commit, then CI reconciliation. No additional push, PR, merge, release, later product unit or installed TUI UAT acceptance is authorized.
   evidence: current-session reply 'proceed'; docs/planning/active/friday-tui/authority.json; docs/planning/active/friday-tui/validation/VAL-N01B-05-prepush-c773f272.md
+- task: friday-tui
+  at: '2026-10-19T15:41:41+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_05_authorized_push_and_ubuntu_run_green
+  note: The one authorized non-force push advanced origin/feature/friday-tui from 4b2aadd2 to 37298e48. GitHub run 39278047819 and job 118147042792 completed successfully on the exact pushed and checked-out SHA; 21 loader, 377 Runtime, 844 Chat with 23 skips, 155 unchanged CLI, repeated MCP, 13 wheel and installed config gates passed. The pushed product source matches independently reviewed c773f272. Push authority is consumed; independent post-run reconciliation and installed TUI UAT remain open.
+  evidence: docs/planning/active/friday-tui/validation/N01B-05-ubuntu-run-39278047819.md; https://github.com/CIChuck/agent-framework/actions/runs/39278047819
