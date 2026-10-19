@@ -57,12 +57,12 @@ locally](validation/VAL-N01B-08-prepush-8ac249d3.md). The [post-verdict
 status audit](validation/VAL-N01B-08-final-1c5a70a3.md) also returned
 `VERIFIED`. The one authorized non-force push reached `c4a5faa6` and is
 consumed; [exact-source Ubuntu run 39301138733](validation/N01B-08-ubuntu-run-39301138733.md)
-and its sole job reported `completed/success`. Independent post-run review
-remains open.
+and its sole job reported `completed/success`; the exact-source automated
+Ubuntu gate was [independently VERIFIED](validation/VAL-N01B-08-postrun-3a5e05cf.md).
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: pending (N01B-08 Ubuntu run completed/success; independent post-run review and TUI UAT open)
+execution_phase: planning; validation_state: verified (N01B-08 local and exact-source Ubuntu gates; TUI UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -195,6 +195,7 @@ Current planning artifacts:
 - [Independent N01B-08 local candidate review](validation/VAL-N01B-08-prepush-8ac249d3.md)
 - [Independent N01B-08 final local status audit](validation/VAL-N01B-08-final-1c5a70a3.md)
 - [N01B-08 exact-source Ubuntu run report](validation/N01B-08-ubuntu-run-39301138733.md)
+- [Independent N01B-08 post-run Ubuntu reconciliation](validation/VAL-N01B-08-postrun-3a5e05cf.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -834,7 +835,7 @@ passed and the [local candidate was independently VERIFIED](validation/VAL-N01B-
 The [final local status audit](validation/VAL-N01B-08-final-1c5a70a3.md)
 returned `VERIFIED`. The one authorized push reached `c4a5faa6` and is
 consumed. Its [Ubuntu run](validation/N01B-08-ubuntu-run-39301138733.md)
-completed/success; independent post-run reconciliation remains open.
+completed/success and was [independently reconciled](validation/VAL-N01B-08-postrun-3a5e05cf.md).
 No TUI executable, UAT result,
 publication or acceptance of the full initiative is claimed by this packet.
 

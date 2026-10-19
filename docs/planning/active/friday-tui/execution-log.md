@@ -3,7 +3,7 @@
 Status: N01B-08 exact local write-effects candidate `8ac249d3` is independently
 VERIFIED with product source frozen; one authorized non-force push reached
 `c4a5faa6` and is consumed; exact-source Ubuntu run 39301138733 completed/
-success, pending independent post-run review. N01B-07 exact local tool-record
+success and was independently VERIFIED. N01B-07 exact local tool-record
 candidate `a196e95a` is independently
 VERIFIED with product source frozen; one authorized non-force push reached
 `4a646dc7` and is consumed; exact-source Ubuntu run 39294625340 completed/
@@ -20,7 +20,21 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: validation; validation_state: pending (N01B-08 Ubuntu run completed/success; independent post-run review and TUI UAT open)
+execution_phase: planning; validation_state: verified (N01B-08 local and exact-source Ubuntu gates; TUI UAT open)
+
+## 2026-10-19 — N01B-08 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-08-postrun-3a5e05cf.md)
+the bounded automated Ubuntu gate on pushed `c4a5faa6`. The reviewer
+matched the live branch, run 39301138733 and sole job 118226328033 to
+the checked-out source, saved log hashes, test counts, wheel metadata and
+installed configuration boundary. Four N01B-08 product/test blobs still
+match local candidate `8ac249d3`. This closes only the N01B-08 automated
+Linux gate; the one push is consumed. Installed TUI terminal UAT, later
+product work, initiative acceptance, PR, merge, release and additional
+delivery remain open.
+
+execution_phase: planning; validation_state: verified (N01B-08 automated Ubuntu gate only).
 
 ## 2026-10-19 — N01B-08 pushed exact-source Ubuntu run completed
 

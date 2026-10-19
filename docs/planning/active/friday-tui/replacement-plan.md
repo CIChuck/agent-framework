@@ -12,9 +12,8 @@ VERIFIED; N01B-06 all-session export-effects candidate `e16aede6` and its
 exact-source Ubuntu gate independently VERIFIED; N01B-07 neutral tool-record
 candidate `a196e95a` independently VERIFIED locally and on exact-source
 Ubuntu run 39294625340; N01B-08 neutral transcript write-effects candidate
-`8ac249d3` independently VERIFIED locally, with its one authorized push
-reaching `c4a5faa6` and exact-source Ubuntu run 39301138733 completed/success
-pending independent post-run review
+`8ac249d3` independently VERIFIED locally and on exact-source Ubuntu run
+39301138733
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; N01B-05 is independently
@@ -24,9 +23,8 @@ and the N01B-07 tool-record candidate independently VERIFIED for its four
 named local paths, with source frozen; one authorized non-force push reached
 `4a646dc7` and is consumed, and Ubuntu post-run review is VERIFIED; N01B-08
 source is frozen after local and final status audits; its one authorized
-push is consumed, and completed/success Ubuntu run awaits independent
-post-run review; later product units remain
-proposals until separately approved
+push is consumed, and the exact-source Ubuntu gate is independently
+VERIFIED; later product units remain proposals until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -356,7 +354,7 @@ locally](validation/VAL-N01B-08-prepush-8ac249d3.md). Its [post-verdict
 status delta](validation/VAL-N01B-08-final-1c5a70a3.md) was also VERIFIED.
 The one authorized non-force push reached `c4a5faa6` and is consumed;
 [exact-source Ubuntu run 39301138733](validation/N01B-08-ubuntu-run-39301138733.md)
-completed/success pending independent post-run review.
+completed/success and was [independently VERIFIED](validation/VAL-N01B-08-postrun-3a5e05cf.md).
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -523,6 +521,6 @@ the [frozen candidate](validation/VAL-N01B-08-prepush-8ac249d3.md) was
 independently VERIFIED locally. The [final status audit](validation/VAL-N01B-08-final-1c5a70a3.md)
 returned VERIFIED. The one authorized push is consumed; [exact-source
 Ubuntu run 39301138733](validation/N01B-08-ubuntu-run-39301138733.md)
-completed/success pending independent post-run review. Later product work
-remains a separate gate.
+completed/success and was [independently reconciled](validation/VAL-N01B-08-postrun-3a5e05cf.md).
+Later product work remains a separate gate.
 No TUI, terminal UAT or real-provider test has run.

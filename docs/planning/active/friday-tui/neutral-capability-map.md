@@ -51,8 +51,10 @@ directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
 moved only append/context-log effects after the [before-code failure
 characterization](validation/N01B-08-before-code-transcript-write-characterization.md).
 Its four-path [local candidate](validation/VAL-N01B-08-prepush-8ac249d3.md)
-was independently VERIFIED; status-delta review and exact-source Ubuntu
-are separate gates before later product work.
+and [exact-source Ubuntu gate](validation/VAL-N01B-08-postrun-3a5e05cf.md)
+were independently VERIFIED. Chat still owns session/turn policy, entry
+construction, pending-state handling and receipt checks; later product
+work needs a separate directive.
 
 Source check for selected-file context: Chat's `/read` formats file content as
 command output; `/ingest` writes content to vector memory. `/context` shows or
