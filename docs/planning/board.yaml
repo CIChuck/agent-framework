@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Freeze the locally checked N01B-07 four-path candidate and obtain fresh-context read-only independent review; a push for exact-source Ubuntu requires separate authorization and installed TUI terminal UAT remains a release gate
+  next_gate: Obtain separate authorization for one non-force push of frozen N01B-07 source and scoped closeout evidence, then reconcile the exact-source Ubuntu run; installed TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -349,6 +349,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-N01B-06-postrun-3413c25f.md (independent VERIFIED N01B-06 exact-source Ubuntu reconciliation; later product/UAT open)
   - docs/planning/active/friday-tui/validation/N01B-07-before-code-transcript-tool-record-characterization.md (303 unchanged tests and source-backed neutral tool-record baseline before separately approved N01B-07 local construction)
   - docs/planning/active/friday-tui/validation/N01B-07-local-checks.md (16 new, 393 Runtime, 871 Chat and 155 CLI tests; static, wheels and isolated installed checks before independent review)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-07-prepush-a196e95a.md (independent VERIFIED local N01B-07 candidate; exact-source Ubuntu and TUI UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3422,3 +3423,10 @@ events:
   action: n01b_07_local_candidate_checks_passed_pending_review
   note: The exact four-path Runtime/Chat tool-record unit has 16 new direct/delegation passes, 393 full Runtime, 871 full Chat with five skips and 155 unchanged CLI passes. Scoped Ruff/Mypy, 17 wheels and isolated installed Runtime-only and Chat probes passed; the first sandboxed Runtime run's nine loopback-bind failures were resolved by the full rerun with synthetic loopback access. Freeze the product candidate for fresh-context independent read-only review. No additional push or TUI UAT is inferred.
   evidence: docs/planning/active/friday-tui/validation/N01B-07-local-checks.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md
+- task: friday-tui
+  at: '2026-10-19T17:08:45+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_07_local_candidate_independently_verified
+  note: Fresh-context read-only reviewer VERIFIED frozen four-path candidate a196e95a against authority base f78ab6aa. Independent Runtime 393, Chat 871 with five skips, unchanged CLI 155, static, lock, board, wheel and installed Runtime-only/Chat checks passed. The exact N01B-07 local unit is closed and its product source remains frozen. One separately authorized non-force push and subsequent exact-source Ubuntu reconciliation remain the next gate; no push, PR, merge, release, later unit, installed TUI UAT or full initiative acceptance is inferred.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01B-07-prepush-a196e95a.md; docs/planning/active/friday-tui/authority.json

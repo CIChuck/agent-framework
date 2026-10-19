@@ -7,6 +7,9 @@ with the next task” after the controller identified this proposed directive as
 the next product gate and stated that interpretation before code work.
 N01B-06's exact-source Ubuntu gate was [independently
 VERIFIED](../validation/VAL-N01B-06-postrun-3413c25f.md).
+The resulting local candidate `a196e95a` was [independently
+VERIFIED](../validation/VAL-N01B-07-prepush-a196e95a.md); its product source
+is frozen and its exact-source Ubuntu gate requires separate push authority.
 
 **Initiative/unit:** `friday-tui` / TUI-N01B-07, a bounded N01B transcript
 write subunit after N01B-06. **Branch/before-code product source:**

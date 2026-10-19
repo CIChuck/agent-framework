@@ -9,14 +9,16 @@ candidate `abeeb895` independently VERIFIED locally and exact-source Ubuntu run
 39268960501 independently VERIFIED; N01B-05 single-file export effects
 candidate `c773f272` and exact-source Ubuntu run 39278047819 independently
 VERIFIED; N01B-06 all-session export-effects candidate `e16aede6` and its
-exact-source Ubuntu gate independently VERIFIED
+exact-source Ubuntu gate independently VERIFIED; N01B-07 neutral tool-record
+candidate `a196e95a` independently VERIFIED locally, with exact-source Ubuntu open
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; N01B-05 is independently
 VERIFIED locally and on exact-source Ubuntu, with source frozen; N01B-06 is
 independently VERIFIED locally and on exact-source Ubuntu, with source frozen
-and the N01B-07 tool-record directive approved for its four named local paths;
-later product units remain proposals until separately approved
+and the N01B-07 tool-record candidate independently VERIFIED for its four
+named local paths, with source frozen; later product units remain proposals
+until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -328,8 +330,10 @@ The [N01B-07 characterization](validation/N01B-07-before-code-transcript-tool-re
 and [approved directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
 split pure tool-call provenance preflight and record preparation from Chat's
 store effects. Their exact four-path local construction scope is approved;
-[builder checks](validation/N01B-07-local-checks.md) passed and independent
-validation remains pending.
+[builder checks](validation/N01B-07-local-checks.md) passed and frozen candidate
+`a196e95a` was [independently VERIFIED
+locally](validation/VAL-N01B-07-prepush-a196e95a.md). An exact-source Ubuntu
+run requires separate authorization for a non-force push.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -481,7 +485,9 @@ The separately authorized non-force push reached `aa8ae784`; its
 [exact-source Ubuntu run](validation/N01B-06-ubuntu-run-39284711876.md)
 reported `completed/success` and was [independently reconciled](validation/VAL-N01B-06-postrun-3413c25f.md).
 The one push authority is consumed; N01B-07's exact local construction has
-[passing builder checks](validation/N01B-07-local-checks.md) and awaits
-independent review.
+[passing builder checks](validation/N01B-07-local-checks.md) and was
+[independently VERIFIED](validation/VAL-N01B-07-prepush-a196e95a.md) at
+frozen product candidate `a196e95a`. Its exact-source Ubuntu gate remains
+open pending a separately authorized push.
 Later product units remain open.
 No TUI, terminal UAT or real-provider test has run.

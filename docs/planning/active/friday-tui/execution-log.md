@@ -1,7 +1,8 @@
 # Friday TUI execution log
 
-Status: N01B-07 exact local tool-record construction has passing builder
-checks and awaits independent validation; N01S/N01A and CI03
+Status: N01B-07 exact local tool-record candidate `a196e95a` is independently
+VERIFIED with product source frozen; its exact-source Ubuntu gate is open;
+N01S/N01A and CI03
 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
@@ -13,7 +14,21 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: validation; validation_state: pending (N01B-07 local candidate review; TUI product/UAT open)
+execution_phase: closeout; validation_state: verified (N01B-07 local unit only; exact-source Ubuntu and TUI product/UAT open)
+
+## 2026-10-19 — N01B-07 local candidate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-07-prepush-a196e95a.md)
+stable candidate `a196e95a` against authority base `f78ab6aa` and the exact
+four-path directive. The reviewer independently reproduced the Runtime 393,
+Chat 871 with five skips, unchanged CLI 155, static/lock/board checks, 17
+wheels and isolated installed Runtime-only/Chat behavior. The N01B-07 local
+work unit is closed and product source is frozen. The next gate is a separately
+authorized non-force push of frozen source and scoped evidence, followed by
+exact-source Ubuntu reconciliation. No N01B-07 push, installed TUI terminal
+UAT, later product-unit approval or full initiative acceptance is recorded.
+
+execution_phase: closeout; validation_state: verified (N01B-07 local unit only).
 
 ## 2026-10-19 — N01B-07 local candidate checks passed
 

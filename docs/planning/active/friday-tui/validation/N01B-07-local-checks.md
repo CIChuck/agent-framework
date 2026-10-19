@@ -6,7 +6,7 @@
 at unchanged pushed product source `aa8ae784`.
 **Authority commit:** `f78ab6aa` records the maintainer's exact local
 four-path approval before code edits.
-**Outcome:** Builder local checks passed. Freeze the candidate and request
+**Outcome at builder check:** Local checks passed; candidate was ready for
 fresh-context read-only independent review. No N01B-07 push, exact-source
 Ubuntu run, installed TUI terminal UAT or maintainer acceptance is claimed.
 
@@ -84,8 +84,10 @@ is outside the repository and not committed.
 
 ## Remaining boundary
 
-The four scoped product/test paths are ready for a stable candidate commit
-and independent validation.
+The four scoped product/test paths were committed as stable candidate
+`a196e95a`. Subsequently, a fresh-context
+[independent review](VAL-N01B-07-prepush-a196e95a.md) returned `VERIFIED` for
+the local N01B-07 work unit. The four product/test paths are now frozen.
 Installed macOS/Linux TUI terminal UAT, controlled real-provider/tool
 testing, later neutral transcript persistence and full initiative
 acceptance remain separate gates. A separate authorization is required
