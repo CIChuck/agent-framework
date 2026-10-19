@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Freeze N01B-02 candidate and obtain fresh independent validation of the four exact source/test paths; installed macOS/Linux terminal UAT remains a release gate
+  next_gate: N01B-02 independently VERIFIED locally at e62f39ce; separately authorize a non-force feature-branch push for exact-source Ubuntu execution; later N01B units need exact directives and installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -322,7 +322,8 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-N01B-01-final-closeout-35e297e8.md (independent VERIFIED final N01B-01 pre-push candidate)
   - docs/planning/active/friday-tui/validation/N01B-01-ubuntu-run-39190668231.md (green exact-source N01B-01 Ubuntu run)
   - docs/planning/active/friday-tui/validation/VAL-N01B-01-postrun-4febb6f6.md (independent VERIFIED N01B-01 exact-source Ubuntu reconciliation; later product/UAT open)
-  - docs/planning/active/friday-tui/validation/N01B-02-local-checks.md (builder local and installed-wheel checks; independent review pending)
+  - docs/planning/active/friday-tui/validation/N01B-02-local-checks.md (builder local and installed-wheel checks)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-02-prepush-e62f39ce.md (independent VERIFIED N01B-02 local pre-push readiness; exact-source Ubuntu and TUI UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3144,3 +3145,10 @@ events:
   action: n01b_02_local_checks_passed_pending_independent_review
   note: The four exact source/test paths passed 195 focused/protected tests, full Runtime 352, full Chat 851 with five skips, unchanged friday-cli 155, static/lock gates and installed-wheel direct queries, Chat commands and export. Initial full-suite sandbox runs could not bind disposable 127.0.0.1 fixtures; authorized loopback reruns passed. Candidate freeze and fresh independent review remain pending; no external delivery or TUI UAT is claimed.
   evidence: docs/planning/active/friday-tui/validation/N01B-02-local-checks.md
+- task: friday-tui
+  at: '2026-10-19T11:30:32+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_02_independently_verified_local_pre_push
+  note: Fresh-context read-only reviewer VERIFIED clean candidate e62f39ce against approved base b58e8288 and the four exact source/test paths. Independent focused, full Runtime/Chat, unchanged friday-cli, static/lock and isolated installed-wheel checks passed with no findings. Product source is frozen and no directive remains active. Exact-source Ubuntu execution requires separate push authority; TUI terminal UAT, later product units, acceptance and external delivery remain open.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01B-02-prepush-e62f39ce.md
