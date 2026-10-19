@@ -17,10 +17,12 @@ run. Its source is frozen. TUI-N01B-03's local source, regression and
 installed-wheel checks are independently `VERIFIED` at candidate `782dedbb`.
 Its separately authorized [exact-source Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md)
 on `f7950581` was [independently VERIFIED](validation/VAL-N01B-03-postrun-9a68d0c7.md).
+TUI-N01B-04 has a proposed neutral export destination/path directive and
+before-code characterization; it is awaiting separate maintainer approval.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: verified (N01B-03 local and exact-source Ubuntu gates only; TUI product/UAT not ready)
+execution_phase: planning; validation_state: verified (N01B-03 local and exact-source Ubuntu gates only; N01B-04 proposal pending; TUI product/UAT not ready)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -116,6 +118,14 @@ Current planning artifacts:
 - [Final TUI-N01B-02 pre-push authority review](validation/VAL-N01B-02-final-a3d0d961.md)
 - [N01B-02 exact-source Ubuntu run](validation/N01B-02-ubuntu-run-39248181260.md)
 - [Independent N01B-02 post-run Ubuntu reconciliation](validation/VAL-N01B-02-postrun-8e389def.md)
+- [Approved N01B-03 pure export serialization directive](directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md)
+- [N01B-03 before-code characterization](validation/N01B-03-before-code-characterization.md)
+- [N01B-03 local construction checks](validation/N01B-03-local-checks.md)
+- [Independent N01B-03 local candidate review](validation/VAL-N01B-03-prepush-782dedbb.md)
+- [N01B-03 exact-source Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md)
+- [Independent N01B-03 post-run Ubuntu reconciliation](validation/VAL-N01B-03-postrun-9a68d0c7.md)
+- [Proposed N01B-04 neutral export destination/path directive](directives/CD-TUI-N01B-04-neutral-export-destination-paths.md)
+- [N01B-04 before-code export-path characterization](validation/N01B-04-before-code-export-path-characterization.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -678,7 +688,12 @@ VERIFIED the local candidate. Its source is frozen. Exact-source Ubuntu
 verification ran after a separately authorized push and [passed on
 `f7950581`](validation/N01B-03-ubuntu-run-39256858630.md). The exact-source
 run was [independently reconciled](validation/VAL-N01B-03-postrun-9a68d0c7.md).
-Later product units need their own bounded directives and authority. At each
+The [proposed N01B-04 directive](directives/CD-TUI-N01B-04-neutral-export-destination-paths.md)
+and [226-pass before-code characterization](validation/N01B-04-before-code-export-path-characterization.md)
+bound the next candidate: neutral export-root creation and safe child-path
+resolution with Chat command behavior preserved. It awaits explicit maintainer
+approval before its four product source/test paths can change. Later product
+units need their own bounded directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
 TUI-CI01/CI02 and are independently VERIFIED on the reviewed CI03 source.
@@ -704,7 +719,7 @@ is VERIFIED; its [exact-source Ubuntu run](validation/N01B-03-ubuntu-run-3925685
 passed and was [independently reconciled](validation/VAL-N01B-03-postrun-9a68d0c7.md).
 N01A is closed under
 its unit-specific Linux deferral. Later N01B effects beyond N01B-03 require
-separate authority. No TUI executable, UAT
+separate authority; N01B-04 is proposed only. No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.
 

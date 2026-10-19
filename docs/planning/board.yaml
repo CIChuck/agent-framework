@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: N01B-03 local and exact-source Ubuntu gates independently VERIFIED; choose the next bounded N01B directive for separate approval; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Review proposed CD-TUI-N01B-04 neutral export destination/path directive and before-code evidence; explicit maintainer approval required before its four source/test paths may change; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -332,6 +332,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-N01B-03-prepush-782dedbb.md (independent VERIFIED N01B-03 local candidate; exact-source Ubuntu and TUI UAT open)
   - docs/planning/active/friday-tui/validation/N01B-03-ubuntu-run-39256858630.md (green exact-source Ubuntu run on authorized N01B-03 push; post-run review and TUI UAT open)
   - docs/planning/active/friday-tui/validation/VAL-N01B-03-postrun-9a68d0c7.md (independent VERIFIED N01B-03 exact-source Ubuntu reconciliation; later product/UAT open)
+  - docs/planning/active/friday-tui/validation/N01B-04-before-code-export-path-characterization.md (226 unchanged tests and disposable path probe; proposed directive planning only)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3230,3 +3231,10 @@ events:
   action: n01b_03_exact_source_ubuntu_independently_verified
   note: Fresh-context read-only reviewer VERIFIED saved exact-source Ubuntu job log and packet candidate 9a68d0c7. Runtime, Chat, unchanged friday-cli, repeated MCP, wheels and installed configuration checks passed on pushed f7950581; the controller separately checked live GitHub run/job metadata. Reviewer live API access was unavailable, recorded as a residual limit. N01B-03 automated Linux gate is closed; full TUI, installed terminal UAT, later product authority, acceptance and further external delivery remain open.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-03-postrun-9a68d0c7.md; https://github.com/CIChuck/agent-framework/actions/runs/39256858630
+- task: friday-tui
+  at: '2026-10-19T13:38:22+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_04_neutral_export_destination_paths_directive_proposed
+  note: After the maintainer asked for the next TUI step, source review found a bounded neutral export-root and safe-path seam. Chat's public export_directory also serves /context --file and /prompt --file, so those behaviors are protected. The unchanged focused/protected suite passed 226 tests and a disposable traversal/symlink probe passed. CD-TUI-N01B-04 is proposed for exact maintainer approval; no product code, export file writes, later N01B unit, push or TUI UAT is authorized by this planning pass.
+  evidence: docs/planning/active/friday-tui/validation/N01B-04-before-code-export-path-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-04-neutral-export-destination-paths.md

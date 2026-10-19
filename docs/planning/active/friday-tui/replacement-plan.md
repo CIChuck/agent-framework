@@ -4,11 +4,13 @@
 VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 pre-push candidate
 and exact-source Ubuntu gate independently VERIFIED; N01B-02 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-03 local and
-exact-source Ubuntu gates independently VERIFIED
+exact-source Ubuntu gates independently VERIFIED; N01B-04 export destination/path
+directive proposed for separate approval
 
 **Branch and authority:** `feature/friday-tui`; N01B-01, N01B-02 and N01B-03
 source frozen after their bounded reviews; no product-code directive is
-active; later product units remain design-only until separately approved
+active; N01B-04 and later product units remain design-only until separately
+approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -282,8 +284,12 @@ passed, and a [fresh independent review](validation/VAL-N01B-03-prepush-782dedbb
 VERIFIED candidate `782dedbb` locally. A separately authorized push reached
 `f7950581`, and its [exact-source Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md)
 passed and was [independently reconciled](validation/VAL-N01B-03-postrun-9a68d0c7.md).
-The next N01B product
-unit needs its own directive.
+The [proposed N01B-04 directive](directives/CD-TUI-N01B-04-neutral-export-destination-paths.md)
+and [226-pass before-code characterization](validation/N01B-04-before-code-export-path-characterization.md)
+scope only Runtime export-root creation and safe-path resolution plus Chat
+delegation. Chat keeps export writes and its shared `/context --file` and
+`/prompt --file` behavior. N01B-04 needs explicit maintainer approval before
+the four named product source/test paths may change.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |

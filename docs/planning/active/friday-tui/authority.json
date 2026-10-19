@@ -2,7 +2,7 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 independently verified on its exact scope; CD-TUI-N01B-02 independently verified locally and on its explicitly authorized exact-source Ubuntu run; CD-TUI-N01B-03 independently VERIFIED locally and on its separately authorized exact-source Ubuntu run; later TUI product units remain design-only",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 independently verified on its exact scope; CD-TUI-N01B-02 independently verified locally and on its explicitly authorized exact-source Ubuntu run; CD-TUI-N01B-03 independently VERIFIED locally and on its separately authorized exact-source Ubuntu run; CD-TUI-N01B-04 is proposed for planning only and requires separate approval before source/test generation",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
@@ -11,7 +11,7 @@
   "execution_phase": "planning",
   "validation_state": "verified",
   "allowed_changes": [
-    "docs/planning/active/friday-tui/** (N01B-03 post-verdict evidence and next planning only; reviewed source frozen)",
+    "docs/planning/active/friday-tui/** (N01B-04 read-only characterization, proposed directive and scoped planning status only; reviewed source frozen)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
@@ -41,6 +41,14 @@
     "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard may change; no product source, tests, package metadata, lock or workflow",
     "validation": "195 unchanged baseline tests passed; disposable seven-file byte probe and empty probe; board/dashboard validation, JSON parse, 212 changed-document local links, staged exact-path and whitespace checks passed. Repository-wide documentation lifecycle remains red on six unchanged telemetry report links"
   },
+  "n01b_04_planning_exemption": {
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-10-19",
+    "source": "Current-session request 'Let's continue with the next step for TUI. What is the next task?' after N01B-03 exact-source Ubuntu closeout",
+    "exact_scope": "Read-only N01B-04 export destination/path characterization and proposed exact directive, scoped TUI packet status, TUI board next gate/event and generated dashboard",
+    "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard may change; no product source, tests, package metadata, lock or workflow",
+    "validation": "226 unchanged baseline tests passed; disposable child/traversal/symlink path probe passed; board validation (34 tasks), current dashboard, authority JSON parse and proposal-only assertions, 250 changed-document local links, nine exact staged planning paths and staged whitespace check passed"
+  },
   "build_plan_approval": "TUI-N01S and TUI-N01A verified under their exact directives; N01A Linux smoke was waived only for unit closeout; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
@@ -53,6 +61,15 @@
     "directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md"
   ],
   "construction_directives_active": [],
+  "n01b_04_directive_record": {
+    "unit": "TUI-N01B-04",
+    "path": "directives/CD-TUI-N01B-04-neutral-export-destination-paths.md",
+    "status": "proposed for maintainer review; no product source/test authority",
+    "before_code_baseline": "validation/N01B-04-before-code-export-path-characterization.md",
+    "before_code_source": "3b91c5b55a567fd5225a6430bf27fbaef35fefbf",
+    "source_code_generation_authorized": false,
+    "external_delivery_authorized": false
+  },
   "n01b_03_directive_record": {
     "unit": "TUI-N01B-03",
     "path": "directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md",
@@ -195,7 +212,7 @@
     "Q-03": "Quit at a safe stopping point, finishing any non-interruptible operation and cleaning up before exiting."
   },
   "follow_up_request": "Proceed and walk me through the decision process, following the request to finalize the technical integration contract.",
-  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contract extraction and exact-source Ubuntu gate are independently VERIFIED. N01B-02 neutral persisted-query adapter and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-03 pure transcript-export serialization and its authorized exact-source Ubuntu run are independently VERIFIED. Export file effects, transcript writes, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
+  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contract extraction and exact-source Ubuntu gate are independently VERIFIED. N01B-02 neutral persisted-query adapter and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-03 pure transcript-export serialization and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-04 export destination/path policy is proposed only; file writes, transcript writes, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
   "draft_construction_directive": "directives/CD-TUI-001-shared-presentation-contracts.md (withdrawn; not executable)",
   "read_only_design_checks": [
     "Existing CLI/selected Chat pytest baseline with fake providers and network guard; no source or test edits",

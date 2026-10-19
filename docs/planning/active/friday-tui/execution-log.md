@@ -4,9 +4,24 @@ Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
-independently verified
+independently verified; TUI-N01B-04 export destination/path directive proposed
+for maintainer review
 
-execution_phase: planning; validation_state: verified (N01B-03 local and exact-source Ubuntu gates only; TUI product/UAT not ready)
+execution_phase: planning; validation_state: verified (N01B-03 local and exact-source Ubuntu gates only; N01B-04 proposal pending; TUI product/UAT not ready)
+
+## 2026-10-19 — N01B-04 next-unit directive proposed
+
+The maintainer asked for the next TUI task after N01B-03's exact-source Ubuntu
+closeout. Read-only [source characterization](validation/N01B-04-before-code-export-path-characterization.md)
+found a bounded Runtime seam for export-root creation and safe child paths;
+Chat's public `export_directory` also serves `/context --file` and
+`/prompt --file`, so those commands are protected. The unchanged focused and
+CLI comparison passed 226 tests, and a disposable traversal/symlink probe
+passed. The [exact N01B-04 directive](directives/CD-TUI-N01B-04-neutral-export-destination-paths.md)
+is proposed for separate maintainer approval. No product source/test edit,
+push, terminal UAT or full TUI acceptance follows from this planning pass.
+
+execution_phase: planning; validation_state: proposed (N01B-04 directive only; N01B-03 independently VERIFIED).
 
 ## 2026-10-19 — N01B-03 exact-source Ubuntu gate independently VERIFIED
 
