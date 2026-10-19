@@ -342,10 +342,10 @@ The [N01B-08 before-code characterization](validation/N01B-08-before-code-transc
 records Chat's append/context-log ordering, late pending-context read,
 separate SQLite commits and observed false/exception behavior. The
 [approved N01B-08 directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
-would extract only those write effects to Runtime while Chat retains
-session/turn policy, entry construction and receipt checks. Its four local
-source/test paths are approved for code generation; checks and independent
-review remain open.
+extracts only those write effects to Runtime while Chat retains session/turn
+policy, entry construction and receipt checks. Its four local source/test
+paths passed [builder checks](validation/N01B-08-local-checks.md); the
+candidate awaits a stable commit and independent review.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -507,5 +507,6 @@ Later product units remain open.
 The [N01B-08 approved directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
 and [before-code characterization](validation/N01B-08-before-code-transcript-write-characterization.md)
 authorize only the four named local source/test paths. Builder checks and
-independent review are the next product gates.
+their [local evidence](validation/N01B-08-local-checks.md) are complete;
+fresh independent review is the next product gate.
 No TUI, terminal UAT or real-provider test has run.

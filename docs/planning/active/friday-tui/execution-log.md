@@ -16,7 +16,20 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: implementation; validation_state: not_ready (N01B-08 local unit; N01B-07 gates verified; TUI product/UAT open)
+execution_phase: validation; validation_state: pending (N01B-08 independent local review; N01B-07 gates verified; TUI product/UAT open)
+
+## 2026-10-19 — N01B-08 local construction checks passed
+
+The exact four-path Runtime/Chat append/context-log effect extraction is
+ready to freeze. [Builder checks](validation/N01B-08-local-checks.md) passed:
+18 new tests, full Runtime 402, full Chat 880 with five skips, unchanged
+`friday-cli` 155, scoped Ruff/Mypy, offline lock, 17 wheels and isolated
+Runtime-only/Chat installed probes. Chat retains session/turn/entry policy,
+pending-state handling and MCP receipt readback. Freeze this source/test
+candidate for fresh-context read-only independent review; no additional
+push or installed TUI UAT is inferred.
+
+execution_phase: validation; validation_state: pending (N01B-08 independent review).
 
 ## 2026-10-19 — N01B-08 exact local directive approved
 

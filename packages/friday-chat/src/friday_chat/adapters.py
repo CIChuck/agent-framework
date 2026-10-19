@@ -75,10 +75,12 @@ from friday_runtime.transcript_tool_records import (
     build_transcript_tool_records,
     validate_transcript_tool_provenance,
 )
+from friday_runtime.transcript_write_effects import (
+    append_transcript_entry_with_context,
+)
 from friday_telemetry import TelemetryInterface
 from friday_telemetry.models.llm_events import ServiceRole
 from friday_transcript import (
-    ContextLogEntry,
     SQLiteTranscriptStore,
     TranscriptEntry,
     TranscriptSession,
@@ -1240,19 +1242,10 @@ class FrameworkTranscriptAdapter:
                 "memory_snippets": list(turn.memory_snippets),
             },
         )
-        if not await self.store.append_entry(entry):
-            raise RuntimeError("Failed to append transcript entry.")
-        if self._pending_context_log is not None:
-            prompt, raw_response = self._pending_context_log
-            await self.store.store_context_log(
-                ContextLogEntry(
-                    session_id=self.session_id,
-                    turn_number=turn_number,
-                    entry_id=turn.turn_id,
-                    raw_prompt=prompt,
-                    raw_response=raw_response,
-                )
-            )
+        context_attempted = await append_transcript_entry_with_context(
+            self.store, entry, lambda: self._pending_context_log
+        )
+        if context_attempted:
             self._pending_context_log = None
         self._turn_number = turn_number
 

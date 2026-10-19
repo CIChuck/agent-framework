@@ -8,8 +8,8 @@
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "implementation",
-  "validation_state": "not_ready",
+  "execution_phase": "validation",
+  "validation_state": "pending",
   "allowed_changes": [
     "packages/friday-runtime/src/friday_runtime/transcript_write_effects.py",
     "packages/friday-chat/src/friday_chat/adapters.py (N01B-08 append/context-log delegation only)",
@@ -19,7 +19,7 @@
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
-  "product_code_generation_authorized": true,
+  "product_code_generation_authorized": false,
   "workflow_code_generation_authorized": false,
   "planning_lightweight_exemption": {
     "authorized_by": "Chuck Russell",
@@ -101,11 +101,11 @@
     "directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md",
     "directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md"
   ],
-  "construction_directives_active": ["directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md"],
+  "construction_directives_active": [],
   "n01b_08_directive_record": {
     "unit": "TUI-N01B-08",
     "path": "directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md",
-    "status": "approved for exact four-path local construction; builder checks and independent review pending",
+    "status": "exact four-path local construction performed; candidate frozen pending fresh independent review",
     "approved_by": "Chuck Russell",
     "approved_at": "2026-10-19",
     "approval_evidence": "Current-session reply 'approved and authorized - proceed' after the controller linked the exact N01B-08 directive and requested approval of its four named local source/test paths",
@@ -114,7 +114,10 @@
     "planning_evidence": "validation/N01B-08-before-code-transcript-write-characterization.md",
     "before_code_product_source": "4a646dc73f98b87b65a2f8be95cde71b4bc27221",
     "baseline_result": "113 relevant Chat, 11 direct Runtime and 155 unchanged friday-cli tests passed; disposable failure and late-pending probes passed",
-    "source_code_generation_authorized": true,
+    "candidate_base": "0268ec33",
+    "local_check_report": "validation/N01B-08-local-checks.md",
+    "local_check_result": "18 new tests, full Runtime 402, full Chat 880 with five skips, unchanged CLI 155, scoped static checks, 17 wheels and isolated installed Runtime-only and Chat effects passed",
+    "source_code_generation_authorized": false,
     "external_delivery_authorized": false
   },
   "n01b_07_directive_record": {

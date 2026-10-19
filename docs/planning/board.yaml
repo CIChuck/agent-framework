@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Implement approved four-path CD-TUI-N01B-08 locally, run protected comparisons and obtain fresh independent review; installed TUI terminal UAT remains a release gate
+  next_gate: Freeze the locally checked N01B-08 four-path candidate and obtain fresh-context read-only independent review; a push for exact-source Ubuntu requires separate authorization and installed TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -355,6 +355,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-07-ubuntu-run-39294625340.md (completed/success exact-source Ubuntu run on authorized N01B-07 push; independently reconciled separately)
   - docs/planning/active/friday-tui/validation/VAL-N01B-07-postrun-4fc8309d.md (independent VERIFIED N01B-07 exact-source Ubuntu reconciliation; later product and TUI UAT open)
   - docs/planning/active/friday-tui/validation/N01B-08-before-code-transcript-write-characterization.md (279 unchanged baseline passes and disposable failure/timing probes; proposed directive planning only)
+  - docs/planning/active/friday-tui/validation/N01B-08-local-checks.md (18 new, 402 Runtime, 880 Chat with five skips and 155 CLI tests; static, wheels and isolated installed checks before independent review)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3470,3 +3471,10 @@ events:
   action: n01b_08_exact_local_directive_approved
   note: Maintainer replied 'approved and authorized - proceed' after the controller linked exact CD-TUI-N01B-08 and requested approval of its four named local Runtime/Chat source/test paths. Local code, tests and scoped TUI evidence are authorized. No additional push, PR, merge, release, installed TUI UAT acceptance or later product unit is inferred.
   evidence: current-session reply 'approved and authorized - proceed'; docs/planning/active/friday-tui/directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-19T17:59:26+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_08_local_candidate_checks_passed_pending_review
+  note: The exact four-path Runtime/Chat transcript append/context-log unit has 18 new tests, 402 full Runtime, 880 full Chat with five skips and 155 unchanged CLI passes. Scoped Ruff/Mypy, 17 wheels and isolated installed Runtime-only and Chat probes passed. Freeze the product candidate for fresh-context read-only independent review. No additional push or TUI UAT is inferred.
+  evidence: docs/planning/active/friday-tui/validation/N01B-08-local-checks.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md
