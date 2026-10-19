@@ -34,7 +34,8 @@ is approved for four exact local Runtime/Chat source/test paths after [253 uncha
 and disposable failure probes](validation/N01B-06-before-code-all-session-export-characterization.md).
 Its [local checks](validation/N01B-06-local-checks.md) passed and candidate
 `e16aede6` was [independently VERIFIED](validation/VAL-N01B-06-prepush-e16aede6.md)
-for the local work unit. Source is frozen; no N01B-06 push is authorized.
+for the local work unit. Source is frozen; the maintainer has authorized one
+non-force branch push for exact-source Ubuntu verification, still pending.
 
 **Branch:** `feature/friday-tui`
 
@@ -774,7 +775,8 @@ VERIFIED. N01B-05 local candidate `c773f272` and its
 independently VERIFIED. The one-push authority is consumed.
 N01B-06 candidate `e16aede6` is [independently VERIFIED locally](validation/VAL-N01B-06-prepush-e16aede6.md),
 backed by [unchanged tests and failure probes](validation/N01B-06-before-code-all-session-export-characterization.md).
-No push has been authorized for that candidate.
+One non-force push of that frozen candidate with scoped evidence is authorized
+for exact-source Ubuntu verification; it remains pending.
 No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.

@@ -13,6 +13,18 @@ exact-source Ubuntu gate open
 
 execution_phase: planning; validation_state: verified (N01B-06 local unit only; exact-source Ubuntu and TUI product/UAT open)
 
+## 2026-10-19 — N01B-06 exact-source Ubuntu push authorized
+
+Chuck Russell replied “Approved. Let's get moving on to the next task” after
+the controller identified one non-force push of the frozen N01B-06 branch tip
+`51793851` for exact-source Ubuntu verification. The controller stated this
+one-push interpretation before acting. Authority covers product candidate
+`e16aede6` plus a scoped evidence-only authorization commit. It does not
+authorize an additional push, PR, merge, release, later product unit or
+installed TUI UAT acceptance. The push and CI reconciliation are pending.
+
+execution_phase: planning; validation_state: verified (N01B-06 local gate only; authorized push pending).
+
 ## 2026-10-19 — N01B-06 local candidate independently VERIFIED
 
 The exact four-path Runtime/Chat change and [builder checks](validation/N01B-06-local-checks.md)

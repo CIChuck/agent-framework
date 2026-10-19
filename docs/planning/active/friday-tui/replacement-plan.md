@@ -319,8 +319,8 @@ isolate the remaining all-session directory creation and two-file writes;
 the exact N01B-06 four-path local construction scope was approved. Its
 [local checks](validation/N01B-06-local-checks.md) passed, and a
 [fresh-context reviewer](validation/VAL-N01B-06-prepush-e16aede6.md) VERIFIED
-frozen candidate `e16aede6`. Exact-source Ubuntu verification requires a
-separately authorized branch push.
+frozen candidate `e16aede6`. The maintainer separately authorized one
+non-force branch push for exact-source Ubuntu verification; it is pending.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -466,6 +466,9 @@ The authorized push and [exact-source Ubuntu run](validation/N01B-05-ubuntu-run-
 are green and were [independently reconciled](validation/VAL-N01B-05-postrun-3d5695d8.md);
 push authority is consumed.
 The [N01B-06 directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
-is approved for exact local construction, with no push authority.
+was approved for exact local construction; candidate `e16aede6` is
+[independently VERIFIED](validation/VAL-N01B-06-prepush-e16aede6.md) locally.
+One separately authorized non-force push for its exact-source Ubuntu gate is
+pending.
 Later product units remain open.
 No TUI, terminal UAT or real-provider test has run.

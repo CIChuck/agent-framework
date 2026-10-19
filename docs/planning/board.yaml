@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Seek separate authority for one non-force push of the frozen N01B-06 candidate for exact-source Ubuntu verification; later product units need separate directives; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Perform the one authorized non-force push of frozen N01B-06 source to origin/feature/friday-tui, reconcile its exact-source Ubuntu run, and obtain independent post-run review; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3369,3 +3369,10 @@ events:
   action: n01b_06_local_candidate_independently_verified
   note: Fresh-context read-only reviewer VERIFIED frozen e16aede6 against approved authority base d6ababf1. The exact four-path source/test diff, 262 focused/protected tests, full Runtime 382, Chat 866 with five skips, unchanged CLI 155, static and lock checks, 17 wheels, isolated installed Runtime/Chat export effects and hashes passed. Product source is frozen. A non-force branch push for exact-source Ubuntu verification needs separate maintainer authorization; installed TUI UAT, later units, acceptance and PR/merge/release remain open.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-06-prepush-e16aede6.md
+- task: friday-tui
+  at: '2026-10-19T16:17:20+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_06_one_nonforce_push_authorized
+  note: Maintainer replied 'Approved. Let's get moving on to the next task.' after the controller identified one non-force push of the reviewed N01B-06 branch tip for exact-source Ubuntu verification. This permits one push of frozen e16aede6 product source with scoped evidence-only authorization commit, then CI reconciliation. No additional push, PR, merge, release, later product unit or installed TUI UAT acceptance is authorized.
+  evidence: current-session reply 'Approved. Let's get moving on to the next task.'; docs/planning/active/friday-tui/authority.json; docs/planning/active/friday-tui/validation/VAL-N01B-06-prepush-e16aede6.md

@@ -2,7 +2,7 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-05 independently verified locally and on their authorized exact-source Ubuntu runs; one N01B-05 non-force push consumed; CD-TUI-N01B-06 independently VERIFIED locally at e16aede6 with source frozen; no N01B-06 push, PR, merge, release or later product-unit authority",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-05 independently verified locally and on their authorized exact-source Ubuntu runs; one N01B-05 non-force push consumed; CD-TUI-N01B-06 independently VERIFIED locally at e16aede6 with source frozen; one separately authorized N01B-06 non-force branch push for exact-source Ubuntu verification; no PR, merge, release or later product-unit authority",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
@@ -100,7 +100,21 @@
     "source_code_generation_authorized": false,
     "external_delivery_authorized": false
   },
-  "n01b_06_delivery_gate": "Local candidate e16aede68c929737874d76bf72fcea98f952bcc4 independently VERIFIED for N01B-06; source frozen. Exact-source Ubuntu verification requires a separately authorized non-force push. Installed TUI UAT, later product units, maintainer acceptance and PR/merge/release remain open",
+  "n01b_06_push_authorization": {
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-10-19",
+    "authorization_evidence": "Current-session reply 'Approved. Let's get moving on to the next task.' immediately after the controller identified a single non-force push of reviewed branch tip 51793851 for N01B-06 exact-source Ubuntu verification as the next action",
+    "reviewed_product_candidate": "e16aede68c929737874d76bf72fcea98f952bcc4",
+    "local_evidence_tip_before_authorization": "517938515a814fdfc4745c24f20e902568947d43",
+    "remote_branch": "origin/feature/friday-tui",
+    "remote_tip_before_authorization": "37298e48e90c8fd6d61b831895693c9e6a496975",
+    "force_push": false,
+    "allowed_action": "One non-force branch push of the frozen N01B-06 product source with scoped evidence-only authorization commit, followed by exact-source Ubuntu run reconciliation",
+    "one_push_consumed": false,
+    "additional_push_authorized": false,
+    "pr_merge_release_authorized": false
+  },
+  "n01b_06_delivery_gate": "Local candidate e16aede68c929737874d76bf72fcea98f952bcc4 independently VERIFIED for N01B-06; source frozen. One separately authorized non-force branch push is pending for exact-source Ubuntu verification. Installed TUI UAT, later product units, maintainer acceptance and PR/merge/release remain open",
   "n01b_05_directive_record": {
     "unit": "TUI-N01B-05",
     "path": "directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md",
