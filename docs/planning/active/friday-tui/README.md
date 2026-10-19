@@ -44,12 +44,13 @@ and test characterization](validation/N01B-07-before-code-transcript-tool-record
 Its [local construction checks](validation/N01B-07-local-checks.md) passed;
 the frozen four-path candidate `a196e95a` was [independently
 VERIFIED](validation/VAL-N01B-07-prepush-a196e95a.md) for the local work unit.
-Its exact-source Ubuntu gate needs separate push authorization. No N01B-07
-external delivery is authorized.
+Its exact-source Ubuntu gate now has [one authorized non-force branch
+push](authority.json) for frozen product source and scoped evidence; the run
+has not yet been reconciled.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: closeout; validation_state: verified (N01B-07 local unit only; exact-source Ubuntu and TUI product/UAT open)
+execution_phase: validation; validation_state: pending (N01B-07 local unit VERIFIED; one push authorized for exact-source Ubuntu, TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -172,6 +173,7 @@ Current planning artifacts:
 - [Approved N01B-07 neutral transcript tool-record directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
 - [N01B-07 local construction checks](validation/N01B-07-local-checks.md)
 - [Independent N01B-07 local candidate review](validation/VAL-N01B-07-prepush-a196e95a.md)
+- [Independent N01B-07 final local closeout audit](validation/VAL-N01B-07-final-2e8fa81d.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -800,6 +802,8 @@ is approved for exact local construction; [builder checks](validation/N01B-07-lo
 passed and candidate `a196e95a` is [independently VERIFIED
 locally](validation/VAL-N01B-07-prepush-a196e95a.md). Its product source is
 frozen; exact-source Ubuntu verification requires separately authorized push.
+That one non-force push is now authorized by the maintainer and awaits
+execution and run reconciliation.
 No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.

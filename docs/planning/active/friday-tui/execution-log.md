@@ -1,7 +1,8 @@
 # Friday TUI execution log
 
 Status: N01B-07 exact local tool-record candidate `a196e95a` is independently
-VERIFIED with product source frozen; its exact-source Ubuntu gate is open;
+VERIFIED with product source frozen; one non-force push is authorized for its
+pending exact-source Ubuntu gate;
 N01S/N01A and CI03
 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
@@ -14,7 +15,19 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: closeout; validation_state: verified (N01B-07 local unit only; exact-source Ubuntu and TUI product/UAT open)
+execution_phase: validation; validation_state: pending (N01B-07 local unit VERIFIED; exact-source Ubuntu and TUI product/UAT open)
+
+## 2026-10-19 — one N01B-07 non-force push authorized
+
+Chuck Russell replied “proceed” after the controller asked permission for one
+non-force push of branch tip `3d44b1cb` to `origin/feature/friday-tui` for
+exact-source Ubuntu verification. The live remote branch still pointed to
+`aa8ae784`. The reviewed product candidate `a196e95a` remains frozen; only
+this scoped authorization evidence may be added before the push. No PR,
+merge, release, later product unit or installed TUI terminal UAT is
+authorized. Record the push SHA and reconcile the run after the one push.
+
+execution_phase: validation; validation_state: pending (N01B-07 exact-source Ubuntu gate).
 
 ## 2026-10-19 — N01B-07 local candidate independently VERIFIED
 

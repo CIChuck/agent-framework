@@ -17,8 +17,9 @@ product source is frozen after bounded reviews; N01B-05 is independently
 VERIFIED locally and on exact-source Ubuntu, with source frozen; N01B-06 is
 independently VERIFIED locally and on exact-source Ubuntu, with source frozen
 and the N01B-07 tool-record candidate independently VERIFIED for its four
-named local paths, with source frozen; later product units remain proposals
-until separately approved
+named local paths, with source frozen; the maintainer authorized one
+non-force push for exact-source Ubuntu verification; later product units
+remain proposals until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -333,7 +334,7 @@ store effects. Their exact four-path local construction scope is approved;
 [builder checks](validation/N01B-07-local-checks.md) passed and frozen candidate
 `a196e95a` was [independently VERIFIED
 locally](validation/VAL-N01B-07-prepush-a196e95a.md). An exact-source Ubuntu
-run requires separate authorization for a non-force push.
+run has one separately authorized non-force push pending execution.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -484,10 +485,10 @@ was approved for exact local construction; candidate `e16aede6` is
 The separately authorized non-force push reached `aa8ae784`; its
 [exact-source Ubuntu run](validation/N01B-06-ubuntu-run-39284711876.md)
 reported `completed/success` and was [independently reconciled](validation/VAL-N01B-06-postrun-3413c25f.md).
-The one push authority is consumed; N01B-07's exact local construction has
+The N01B-06 one-push authority is consumed; N01B-07's exact local construction has
 [passing builder checks](validation/N01B-07-local-checks.md) and was
 [independently VERIFIED](validation/VAL-N01B-07-prepush-a196e95a.md) at
 frozen product candidate `a196e95a`. Its exact-source Ubuntu gate remains
-open pending a separately authorized push.
+open, with one non-force push authorized and pending execution.
 Later product units remain open.
 No TUI, terminal UAT or real-provider test has run.
