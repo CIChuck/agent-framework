@@ -43,6 +43,15 @@ below are proposals, not approved API signatures.
 | P: speech/orchestration/workflow | `speech.py`, Chat runtime orchestrator and `FrameworkWorkflowAdapter` | Typed optional-service operations and state. Verify actual fake/real availability before promising a richer backend. |
 | X: transcripts/exports | `transcripts.py`, transcript handlers and `FrameworkTranscriptAdapter` over `friday-transcript` | Typed queries, session identity, export file effects/limits and errors. TUI need not reuse CLI prose; exported contents and persistence semantics must match. Verified N01B-01 moved only the three read-only query views and their protocol. Independently verified N01B-02 moved the four persisted read methods into a neutral adapter while Chat delegates. N01B-03 moved only pure export content serialization into Runtime. [N01B-04](validation/VAL-N01B-04-postrun-27c84ad9.md) moved only root creation and safe-path resolution; all four units are independently VERIFIED locally and on exact-source Ubuntu. Chat retains transcript writes and command policy. Its public export-root helper also serves `/context --file` and `/prompt --file`. [N01B-05](validation/VAL-N01B-05-postrun-3d5695d8.md) moved only current-session and prompt-log single-file write effects while preserving Chat path hooks and result identity; its local and exact-source Ubuntu gates are independently VERIFIED. [N01B-06](validation/VAL-N01B-06-postrun-3413c25f.md) moved all-session directory and two-file write effects into Runtime while preserving Chat's path hooks, output and result identity; its local and exact-source Ubuntu gates are independently VERIFIED. TUI UAT remains open. |
 
+[N01B-07](validation/VAL-N01B-07-postrun-4fc8309d.md) subsequently moved
+only pure MCP provenance preflight and tool-call/result record preparation
+into Runtime; Chat still owns transcript append, optional context-log write,
+session/turn state and receipt checks. The [proposed N01B-08
+directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
+would move only append/context-log effects after the [before-code failure
+characterization](validation/N01B-08-before-code-transcript-write-characterization.md).
+Its four local source/test paths are not approved yet.
+
 Source check for selected-file context: Chat's `/read` formats file content as
 command output; `/ingest` writes content to vector memory. `/context` shows or
 exports an assembled context, and `/run-tool file_read` runs a configured tool

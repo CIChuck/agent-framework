@@ -48,6 +48,10 @@ The one authorized non-force push reached `4a646dc7` and is consumed;
 [exact-source Ubuntu run 39294625340](validation/N01B-07-ubuntu-run-39294625340.md)
 reported `completed/success` and was [independently
 VERIFIED](validation/VAL-N01B-07-postrun-4fc8309d.md).
+The [N01B-08 before-code characterization](validation/N01B-08-before-code-transcript-write-characterization.md)
+records the existing append/context-log effect order and partial-failure
+behavior. Its [exact four-path directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
+is proposed for approval; no N01B-08 source or test work has begun.
 
 **Branch:** `feature/friday-tui`
 
@@ -178,6 +182,8 @@ Current planning artifacts:
 - [Independent N01B-07 one-push authorization audit](validation/VAL-N01B-07-push-authority-e8fdfcb4.md)
 - [N01B-07 exact-source Ubuntu run report](validation/N01B-07-ubuntu-run-39294625340.md)
 - [Independent N01B-07 post-run Ubuntu reconciliation](validation/VAL-N01B-07-postrun-4fc8309d.md)
+- [N01B-08 before-code transcript write characterization](validation/N01B-08-before-code-transcript-write-characterization.md)
+- [Proposed N01B-08 neutral transcript write-effects directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -809,7 +815,9 @@ frozen. The one authorized non-force push reached `4a646dc7` and is
 consumed. [Ubuntu run 39294625340](validation/N01B-07-ubuntu-run-39294625340.md)
 and its sole job reported `completed/success` and were [independently
 reconciled](validation/VAL-N01B-07-postrun-4fc8309d.md). The next bounded
-N01B transcript-persistence directive remains unapproved.
+[N01B-08 transcript write-effects directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
+has a [279-pass baseline and failure characterization](validation/N01B-08-before-code-transcript-write-characterization.md)
+but remains proposed; its exact local source/test boundary needs approval.
 No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.

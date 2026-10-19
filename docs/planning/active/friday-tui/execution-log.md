@@ -18,6 +18,21 @@ exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
 execution_phase: planning; validation_state: verified (N01B-07 local and exact-source Ubuntu gates only; TUI product/UAT open)
 
+## 2026-10-19 — N01B-08 transcript write-effects directive proposed
+
+Chuck Russell's “approved and authorized - proceed” advances the next
+bounded planning step after N01B-07. [Read-only characterization](validation/N01B-08-before-code-transcript-write-characterization.md)
+of the current Chat path and disposable SQLite failure/timing probes found
+that an entry can remain committed when the later context-log write fails.
+Relevant unchanged Chat, direct Runtime and full `friday-cli` runs passed
+113, 11 and 155 tests respectively; the offline lock check passed. The
+[exact four-path directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
+is proposed for neutral Runtime append/context-log effects and Chat
+delegation. Its source/test scope still needs explicit maintainer approval;
+no product code, test, dependency, workflow, push or UAT state changed.
+
+execution_phase: planning; validation_state: verified (N01B-07 gates only; N01B-08 proposal pending).
+
 ## 2026-10-19 — N01B-07 exact-source Ubuntu gate independently VERIFIED
 
 A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-07-postrun-4fc8309d.md)

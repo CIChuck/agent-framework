@@ -338,6 +338,13 @@ locally](validation/VAL-N01B-07-prepush-a196e95a.md). An exact-source Ubuntu
 run [completed/success](validation/N01B-07-ubuntu-run-39294625340.md) on
 the one authorized pushed SHA `4a646dc7` and was [independently
 VERIFIED](validation/VAL-N01B-07-postrun-4fc8309d.md).
+The [N01B-08 before-code characterization](validation/N01B-08-before-code-transcript-write-characterization.md)
+records Chat's append/context-log ordering, late pending-context read,
+separate SQLite commits and observed false/exception behavior. The
+[proposed N01B-08 directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
+would extract only those write effects to Runtime while Chat retains
+session/turn policy, entry construction and receipt checks. Its four local
+source/test paths are not yet approved for code generation.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -496,4 +503,7 @@ closed by [independent reconciliation](validation/VAL-N01B-07-postrun-4fc8309d.m
 of the [completed/success Ubuntu run](validation/N01B-07-ubuntu-run-39294625340.md)
 on the one authorized push `4a646dc7`. That push is consumed.
 Later product units remain open.
+The [N01B-08 proposed directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
+and [before-code characterization](validation/N01B-08-before-code-transcript-write-characterization.md)
+are planning only. Exact approval is the next product gate.
 No TUI, terminal UAT or real-provider test has run.

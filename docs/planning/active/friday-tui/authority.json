@@ -2,7 +2,7 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-06 independently verified locally and on their authorized exact-source Ubuntu runs; N01B-06 product source frozen at e16aede6, one authorized non-force push reached aa8ae784 and is consumed; maintainer approved exact CD-TUI-N01B-07 for its four named local Runtime/Chat source/test paths and scoped TUI evidence; N01B-07 local candidate a196e95a and authorized exact-source Ubuntu run/job 39294625340 independently VERIFIED with product source frozen; one authorized non-force push reached 4a646dc7 and is consumed; no PR, merge, release or later product-unit authority",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-06 independently verified locally and on their authorized exact-source Ubuntu runs; N01B-06 product source frozen at e16aede6, one authorized non-force push reached aa8ae784 and is consumed; maintainer approved exact CD-TUI-N01B-07 for its four named local Runtime/Chat source/test paths and scoped TUI evidence; N01B-07 local candidate a196e95a and authorized exact-source Ubuntu run/job 39294625340 independently VERIFIED with product source frozen; one authorized non-force push reached 4a646dc7 and is consumed; current-session approval authorizes N01B-08 characterization and exact proposed directive only; no N01B-08 product source/test, additional push, PR, merge or release authority",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
@@ -11,7 +11,7 @@
   "execution_phase": "planning",
   "validation_state": "verified",
   "allowed_changes": [
-    "docs/planning/active/friday-tui/** (scoped N01B-07 Ubuntu closeout evidence and status only)",
+    "docs/planning/active/friday-tui/** (scoped N01B-08 planning characterization, proposed directive and packet/authority status only)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
@@ -73,6 +73,14 @@
     "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard may change; no product source, tests, package metadata, lock or workflow",
     "validation": "63 unchanged transcript/identity tests, 85 unchanged MCP-memory/telemetry tests and 155 unchanged friday-cli tests passed; board validation (34 tasks), dashboard current, authority JSON parsed, 379 scoped Markdown links resolved, exact planning paths, unchanged product source, staged whitespace and offline lock checks passed"
   },
+  "n01b_08_planning_exemption": {
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-10-19",
+    "source": "Current-session instruction 'approved and authorized - proceed' after the N01B-07 exact-source Ubuntu closeout and the board's next bounded transcript-persistence directive gate",
+    "exact_scope": "Read-only N01B-08 transcript append/context-log characterization and proposed exact directive, scoped TUI packet and authority status, TUI board next gate/event and generated dashboard",
+    "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard may change; no product source, tests, package metadata, lock or workflow",
+    "validation": "279 unchanged baseline tests passed in separate Chat, Runtime and CLI runs; disposable append/context failure and late-pending probes passed; offline lock check passed; board validation (34 tasks), dashboard current, unique-key authority JSON parsed and 402 local links resolved; exact staged paths, unchanged product source and whitespace checks passed"
+  },
   "build_plan_approval": "TUI-N01S and TUI-N01A verified under their exact directives; N01A Linux smoke was waived only for unit closeout; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
@@ -89,6 +97,18 @@
     "directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md"
   ],
   "construction_directives_active": [],
+  "n01b_08_directive_record": {
+    "unit": "TUI-N01B-08",
+    "path": "directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md",
+    "status": "proposed only; exact four-path local directive approval pending",
+    "proposed_by": "Codex",
+    "proposed_at": "2026-10-19",
+    "planning_evidence": "validation/N01B-08-before-code-transcript-write-characterization.md",
+    "before_code_product_source": "4a646dc73f98b87b65a2f8be95cde71b4bc27221",
+    "baseline_result": "113 relevant Chat, 11 direct Runtime and 155 unchanged friday-cli tests passed; disposable failure and late-pending probes passed",
+    "source_code_generation_authorized": false,
+    "external_delivery_authorized": false
+  },
   "n01b_07_directive_record": {
     "unit": "TUI-N01B-07",
     "path": "directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md",
