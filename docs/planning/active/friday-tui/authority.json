@@ -2,16 +2,16 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-05 independently verified locally and on their authorized exact-source Ubuntu runs; one N01B-05 non-force push consumed; CD-TUI-N01B-06 independently VERIFIED locally at e16aede6 with source frozen; its one authorized non-force push reached aa8ae784 and is consumed, with exact-source Ubuntu run pending; no PR, merge, release or later product-unit authority",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-05 independently verified locally and on their authorized exact-source Ubuntu runs; one N01B-05 non-force push consumed; CD-TUI-N01B-06 independently VERIFIED locally at e16aede6 with source frozen; its one authorized non-force push reached aa8ae784 and is consumed, with completed/success exact-source Ubuntu run pending independent post-run review; no PR, merge, release or later product-unit authority",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
   "execution_phase": "validation",
-  "validation_state": "pending",
+  "validation_state": "in_review",
   "allowed_changes": [
-    "docs/planning/active/friday-tui/** (scoped N01B-06 review evidence and status only; product source frozen)",
+    "docs/planning/active/friday-tui/** (scoped N01B-06 run evidence/status and N01B-07 planning proposal only; product source frozen)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
@@ -65,6 +65,14 @@
     "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard may change; no product source, tests, package metadata, lock or workflow",
     "validation": "253 unchanged focused/protected tests passed; disposable timestamp-collision, second-write-failure and child-path-order probes passed; board validation (34 tasks), generated dashboard current, authority JSON parsed, 359 scoped Markdown links resolved, exact planning paths and whitespace checks passed"
   },
+  "n01b_07_planning_exemption": {
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-10-19",
+    "source": "Current-session reply 'Approved. Let's get moving on to the next task.' after the controller identified the N01B-06 push/Ubuntu gate and stated that it would identify the next bounded TUI unit",
+    "exact_scope": "Read-only N01B-07 transcript tool-record characterization and proposed exact directive, scoped TUI packet/authority status, TUI board event and generated dashboard while the N01B-06 Ubuntu gate remains pending",
+    "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard may change; no product source, tests, package metadata, lock or workflow",
+    "validation": "63 unchanged transcript/identity tests, 85 unchanged MCP-memory/telemetry tests and 155 unchanged friday-cli tests passed; board validation (34 tasks), dashboard current, authority JSON parsed, 379 scoped Markdown links resolved, exact planning paths, unchanged product source, staged whitespace and offline lock checks passed"
+  },
   "build_plan_approval": "TUI-N01S and TUI-N01A verified under their exact directives; N01A Linux smoke was waived only for unit closeout; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
@@ -80,6 +88,18 @@
     "directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md"
   ],
   "construction_directives_active": [],
+  "n01b_07_directive_record": {
+    "unit": "TUI-N01B-07",
+    "path": "directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md",
+    "status": "proposed only; N01B-06 independent post-run review remains the current gate",
+    "proposed_by": "Codex",
+    "proposed_at": "2026-10-19",
+    "planning_evidence": "validation/N01B-07-before-code-transcript-tool-record-characterization.md",
+    "before_code_product_source": "aa8ae784487cb723130a39e5a8421b881f40178d",
+    "baseline_result": "63 unchanged transcript/identity, 85 MCP-memory/telemetry and 155 friday-cli tests passed in separate runs",
+    "source_code_generation_authorized": false,
+    "external_delivery_authorized": false
+  },
   "n01b_06_directive_record": {
     "unit": "TUI-N01B-06",
     "path": "directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md",
@@ -113,11 +133,12 @@
     "one_push_consumed": true,
     "exact_pushed_source": "aa8ae784487cb723130a39e5a8421b881f40178d",
     "ubuntu_run": "https://github.com/CIChuck/agent-framework/actions/runs/39284711876",
-    "ubuntu_run_result": "queued on exact pushed SHA; no test result yet",
+    "ubuntu_run_result": "run and job completed/success on exact pushed SHA; individual-job API lag resolved after successful steps/log archive; independent post-run review pending",
+    "ubuntu_run_report": "validation/N01B-06-ubuntu-run-39284711876.md",
     "additional_push_authorized": false,
     "pr_merge_release_authorized": false
   },
-  "n01b_06_delivery_gate": "Local candidate e16aede68c929737874d76bf72fcea98f952bcc4 independently VERIFIED for N01B-06; source frozen. The one authorized non-force push reached aa8ae784 and is consumed. Exact-source Ubuntu run 39284711876 is queued, so its validation and independent post-run review remain pending. Installed TUI UAT, later product units, maintainer acceptance and PR/merge/release remain open",
+  "n01b_06_delivery_gate": "Local candidate e16aede68c929737874d76bf72fcea98f952bcc4 independently VERIFIED for N01B-06; source frozen. The one authorized non-force push reached aa8ae784 and is consumed. Exact-source Ubuntu run and job 39284711876 report completed/success; independent post-run reconciliation remains pending. Installed TUI UAT, later product units, maintainer acceptance and PR/merge/release remain open",
   "n01b_05_directive_record": {
     "unit": "TUI-N01B-05",
     "path": "directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md",
@@ -320,7 +341,7 @@
     "Existing local runtime, transcript and memory state"
   ],
   "external_delivery_authorized": false,
-  "external_delivery_scope": "The separately authorized non-force N01B-06 push reached aa8ae784487cb723130a39e5a8421b881f40178d; exact-source Ubuntu run 39284711876 is queued with no test result. The one push authority is consumed. No additional push, PR, merge, release, deployment or later product unit is authorized",
+  "external_delivery_scope": "The separately authorized non-force N01B-06 push reached aa8ae784487cb723130a39e5a8421b881f40178d; exact-source Ubuntu run 39284711876 reports completed/success, pending independent post-run reconciliation. The one push authority is consumed. No additional push, PR, merge, release, deployment or later product unit is authorized",
   "planning_completion_checks": [
     "Board/schema/dashboard consistency",
     "Current command inventory and source baseline reconciliation",

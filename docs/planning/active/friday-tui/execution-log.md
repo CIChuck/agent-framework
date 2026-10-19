@@ -9,9 +9,38 @@ VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
 VERIFIED; TUI-N01B-05 single-file export-effects candidate `c773f272` and
 exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
-exact-source Ubuntu run 39284711876 queued on pushed aa8ae784
+exact-source Ubuntu run 39284711876 reports success on pushed aa8ae784,
+pending independent post-run review
 
-execution_phase: validation; validation_state: pending (N01B-06 exact-source Ubuntu run queued; local unit VERIFIED; TUI product/UAT open)
+execution_phase: validation; validation_state: in_review (N01B-06 exact-source Ubuntu run reports success; post-run review and TUI product/UAT open)
+
+## 2026-10-19 — N01B-06 exact-source Ubuntu run reports success
+
+GitHub run [39284711876](validation/N01B-06-ubuntu-run-39284711876.md)
+reports `completed/success` on source and checkout `aa8ae784`, matching
+the live remote branch. The full log archive records 21 loader, 382 Runtime,
+848 Chat with 23 skips, 155 unchanged CLI, repeated MCP, 13 wheels and
+installed configuration-isolation passes. The individual-job API lagged at
+`in_progress` after all steps succeeded and the complete archive became
+available; the [run report](validation/N01B-06-ubuntu-run-39284711876.md)
+records the hashes and boundary. Fresh independent post-run reconciliation
+is next. No installed TUI UAT or further delivery is inferred.
+
+execution_phase: validation; validation_state: in_review (N01B-06 Ubuntu post-run reconciliation).
+
+## 2026-10-19 — N01B-07 transcript tool-record directive proposed
+
+While the N01B-06 exact-source Ubuntu run awaits a terminal result, a
+read-only review of Chat's transcript write adapter separated pure MCP
+provenance preflight and tool-call/result construction from session, entry,
+raw-context-log and receipt effects. The [before-code characterization](validation/N01B-07-before-code-transcript-tool-record-characterization.md)
+records 63 unchanged transcript/identity, 85 MCP-memory/telemetry and 155
+unchanged `friday-cli` passes. The [exact N01B-07 directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
+is proposed only. No N01B-07 source/test edit, additional push, PR, merge,
+release or installed TUI UAT is authorized. N01B-06's Ubuntu run and
+independent post-run reconciliation remain the current gate.
+
+execution_phase: validation; validation_state: pending (N01B-06 Ubuntu run; N01B-07 proposal only).
 
 ## 2026-10-19 — N01B-06 authorized push and queued Ubuntu run
 

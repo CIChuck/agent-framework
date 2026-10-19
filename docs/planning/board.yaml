@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Reconcile queued exact-source Ubuntu run 39284711876 on pushed aa8ae784 and obtain independent post-run review; one N01B-06 push is consumed; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Independently reconcile completed/success exact-source Ubuntu run and job 39284711876 on pushed aa8ae784; N01B-07 is proposed only; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -345,6 +345,8 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-06-before-code-all-session-export-characterization.md (253 unchanged baseline tests and disposable collision/partial-write probes; proposed directive planning only)
   - docs/planning/active/friday-tui/validation/N01B-06-local-checks.md (builder local suites, protected comparisons and installed-wheel checks; independent review separately verified)
   - docs/planning/active/friday-tui/validation/VAL-N01B-06-prepush-e16aede6.md (independent VERIFIED local N01B-06 candidate; exact-source Ubuntu and TUI UAT open)
+  - docs/planning/active/friday-tui/validation/N01B-06-ubuntu-run-39284711876.md (completed/success exact-source Ubuntu run on N01B-06 push; independent post-run review pending)
+  - docs/planning/active/friday-tui/validation/N01B-07-before-code-transcript-tool-record-characterization.md (303 unchanged tests and source-backed neutral tool-record proposal; N01B-07 implementation not authorized)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3383,3 +3385,17 @@ events:
   action: n01b_06_authorized_push_ubuntu_queued
   note: The one authorized non-force push advanced origin/feature/friday-tui from 37298e48 to aa8ae784. GitHub Actions run 39284711876 was created on that exact SHA and is queued without a runner or test result. Reviewed product source still matches e16aede6. Push authority is consumed; exact-source Ubuntu outcome and independent post-run reconciliation remain pending. No additional push or TUI UAT is inferred.
   evidence: https://github.com/CIChuck/agent-framework/actions/runs/39284711876; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-19T16:34:44+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_07_transcript_tool_records_directive_proposed
+  note: Read-only review isolated Chat's pure MCP transcript provenance preflight and tool-call/result construction from session, entry and raw-context-log effects. Unchanged focused transcript/identity 63, MCP-memory/telemetry 85 and friday-cli 155 tests passed. CD-TUI-N01B-07 is proposed only; its code/test paths and any additional push require separate maintainer approval after the current N01B-06 Ubuntu gate. No product source, test, dependency or workflow changed.
+  evidence: docs/planning/active/friday-tui/validation/N01B-07-before-code-transcript-tool-record-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md
+- task: friday-tui
+  at: '2026-10-19T16:37:05+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_06_exact_source_ubuntu_success_pending_review
+  note: GitHub run 39284711876 reports completed/success on pushed and checked-out aa8ae784. The complete log archive records 21 loader, 382 Runtime, 848 Chat with 23 skips, 155 unchanged CLI, repeated MCP, 13 wheels and installed configuration-isolation passes. Live remote matches aa8ae784 and reviewed product source remains e16aede6. The individual-job API still showed in_progress after all successful steps and complete logs; fresh independent post-run reconciliation is required. One push is consumed; TUI UAT remains open.
+  evidence: docs/planning/active/friday-tui/validation/N01B-06-ubuntu-run-39284711876.md; https://github.com/CIChuck/agent-framework/actions/runs/39284711876
