@@ -3,7 +3,7 @@
 **Status:** Active replacement planning contract; N01S and N01A independently
 VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 pre-push candidate
 and exact-source Ubuntu gate independently VERIFIED; N01B-02 independently
-VERIFIED for local pre-push readiness
+VERIFIED locally with a green exact-source Ubuntu run pending post-run review
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 and N01B-02 source
 frozen after their bounded reviews; no product-code directive is active;
@@ -266,8 +266,10 @@ The persisted-query adapter subunit has an
 and [before-code characterization](validation/N01B-02-before-code-characterization.md);
 its [local construction checks](validation/N01B-02-local-checks.md) passed,
 and an [independent review](validation/VAL-N01B-02-prepush-e62f39ce.md)
-VERIFIED candidate `e62f39ce` for local pre-push readiness. Its exact-source
-Ubuntu run requires a separately authorized push.
+VERIFIED candidate `e62f39ce` for local pre-push readiness. The separately
+authorized push reached `07177e6c`, and its [exact-source Ubuntu
+run](validation/N01B-02-ubuntu-run-39248181260.md) is green pending independent
+post-run reconciliation.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -381,8 +383,10 @@ exact-source Linux result or TUI terminal UAT.
    and [171-pass source characterization](validation/N01B-02-before-code-characterization.md).
    [Local checks](validation/N01B-02-local-checks.md) and a
    [fresh independent review](validation/VAL-N01B-02-prepush-e62f39ce.md)
-   VERIFIED only its exact local pre-push scope. Freeze the source and obtain
-   separate push authority before exact-source Ubuntu execution. Installed
+   VERIFIED only its exact local pre-push scope. The separately authorized
+   push of `07177e6c` produced a green [exact-source Ubuntu
+   run](validation/N01B-02-ubuntu-run-39248181260.md); independently reconcile
+   the run before closing that validation gate. Installed
    macOS/Linux terminal UAT remains a release gate.
 2. Choose owners for command/event seams. Review the
    [event/lifecycle proposal](neutral-event-lifecycle-contract.md) and bind
@@ -403,6 +407,7 @@ product-code directive. The N01B-01 first candidate `7e5241c8` received
 candidate `35e297e8` is independently `VERIFIED` for pre-push readiness.
 Product source is frozen. The pushed source `62d3ae3b` passed the Ubuntu
 workflow and post-run independent reconciliation. N01A is closed, and
-N01B-02 candidate `e62f39ce` is independently VERIFIED locally before push;
-its own exact-source Ubuntu run and subsequent product units remain open.
+N01B-02 candidate `e62f39ce` is independently VERIFIED locally. Pushed source
+`07177e6c` passed the Ubuntu workflow, pending independent post-run review;
+subsequent product units remain open.
 No TUI, terminal UAT or real-provider test has run.

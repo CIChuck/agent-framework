@@ -2,10 +2,28 @@
 
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
-independently verified; TUI-N01B-02 independently verified for local pre-push
-readiness
+independently verified; TUI-N01B-02 independently verified locally and its
+exact-source Ubuntu run green pending post-run review
 
-execution_phase: planning; validation_state: verified (N01B-02 local pre-push gate only; exact-source Ubuntu run and TUI product/UAT not ready)
+execution_phase: validation; validation_state: in_review (N01B-02 exact-source Ubuntu run green; post-run independent review pending; TUI product/UAT not ready)
+
+## 2026-10-19 — N01B-02 authorized push and green exact-source Ubuntu run
+
+Chuck Russell replied "authorized" to the exact non-force push question for
+`07177e6c` on `origin/feature/friday-tui`. The push advanced the branch from
+`f0e0786f` to `07177e6c`. GitHub [run
+39248181260](validation/N01B-02-ubuntu-run-39248181260.md) checked out that
+full SHA on Ubuntu 24.04.5 and passed every workflow step: full Runtime 352,
+full Chat 833 with 23 skips, unchanged `friday-cli` 155, repeated MCP checks,
+13 wheel builds, Runtime frontend-dependency isolation and installed
+configuration-facade checks. The Ubuntu workflow does not run an installed
+transcript-adapter-specific probe; local independently reviewed installed
+wheel checks cover that behavior on unchanged product source. Fresh read-only
+post-run reconciliation is the next gate. The one-shot push authority is
+consumed; no later product unit, PR, merge, release, terminal UAT or acceptance
+is implied.
+
+execution_phase: validation; validation_state: in_review (N01B-02 post-run reconciliation).
 
 ## 2026-10-19 — N01B-02 independently VERIFIED for local pre-push readiness
 
