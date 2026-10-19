@@ -59,10 +59,14 @@ status audit](validation/VAL-N01B-08-final-1c5a70a3.md) also returned
 consumed; [exact-source Ubuntu run 39301138733](validation/N01B-08-ubuntu-run-39301138733.md)
 and its sole job reported `completed/success`; the exact-source automated
 Ubuntu gate was [independently VERIFIED](validation/VAL-N01B-08-postrun-3a5e05cf.md).
+The [N01B-09 read-only characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
+records Chat's current transcript session get-or-create behavior. Its
+[exact four-path directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
+is proposed only and awaits separate maintainer approval before code.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: verified (N01B-08 local and exact-source Ubuntu gates; TUI UAT open)
+execution_phase: planning; validation_state: verified (N01B-08 gates only; N01B-09 proposal and TUI UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -196,6 +200,8 @@ Current planning artifacts:
 - [Independent N01B-08 final local status audit](validation/VAL-N01B-08-final-1c5a70a3.md)
 - [N01B-08 exact-source Ubuntu run report](validation/N01B-08-ubuntu-run-39301138733.md)
 - [Independent N01B-08 post-run Ubuntu reconciliation](validation/VAL-N01B-08-postrun-3a5e05cf.md)
+- [N01B-09 before-code session-ensure characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
+- [Proposed N01B-09 neutral transcript session-ensure directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -836,6 +842,10 @@ The [final local status audit](validation/VAL-N01B-08-final-1c5a70a3.md)
 returned `VERIFIED`. The one authorized push reached `c4a5faa6` and is
 consumed. Its [Ubuntu run](validation/N01B-08-ubuntu-run-39301138733.md)
 completed/success and was [independently reconciled](validation/VAL-N01B-08-postrun-3a5e05cf.md).
+The next bounded [N01B-09 session-ensure directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
+has a [225-pass unchanged baseline and disposable behavior
+characterization](validation/N01B-09-before-code-session-ensure-characterization.md).
+It is a proposal only; exact local construction needs separate approval.
 No TUI executable, UAT result,
 publication or acceptance of the full initiative is claimed by this packet.
 

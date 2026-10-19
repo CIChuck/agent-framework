@@ -1,6 +1,8 @@
 # Friday TUI execution log
 
-Status: N01B-08 exact local write-effects candidate `8ac249d3` is independently
+Status: N01B-09 session-ensure characterization and exact directive are
+proposed only, pending separate maintainer approval. N01B-08 exact local
+write-effects candidate `8ac249d3` is independently
 VERIFIED with product source frozen; one authorized non-force push reached
 `c4a5faa6` and is consumed; exact-source Ubuntu run 39301138733 completed/
 success and was independently VERIFIED. N01B-07 exact local tool-record
@@ -20,7 +22,23 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: planning; validation_state: verified (N01B-08 local and exact-source Ubuntu gates; TUI UAT open)
+execution_phase: planning; validation_state: verified (N01B-08 gates only; N01B-09 proposal and TUI UAT open)
+
+## 2026-10-19 — N01B-09 transcript session-ensure directive proposed
+
+Chuck Russell's “approved and authorized - proceed” advances the next
+bounded planning step after N01B-08. [Read-only characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
+of Chat's session get-or-create path and disposable SQLite/fake-store
+failure probes found the current lazy snapshot, existing/ended reuse and
+ignored false-create behavior. Selected unchanged Chat, protected
+Runtime/Transcript/Chat and full `friday-cli` runs passed 41, 29 and 155
+tests respectively; the offline lock check passed. The [exact four-path
+directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
+is proposed for a neutral Runtime effect with Chat delegation. Its
+source/test scope still needs explicit maintainer approval; no N01B-09
+product code, tests, additional push or UAT state changed.
+
+execution_phase: planning; validation_state: verified (N01B-08 gates only; N01B-09 proposal pending).
 
 ## 2026-10-19 — N01B-08 exact-source Ubuntu gate independently VERIFIED
 

@@ -2,7 +2,7 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-06 independently verified locally and on their authorized exact-source Ubuntu runs; N01B-06 product source frozen at e16aede6, one authorized non-force push reached aa8ae784 and is consumed; maintainer approved exact CD-TUI-N01B-07 for its four named local Runtime/Chat source/test paths and scoped TUI evidence; N01B-07 local candidate a196e95a and authorized exact-source Ubuntu run/job 39294625340 independently VERIFIED with product source frozen; one authorized non-force push reached 4a646dc7 and is consumed; maintainer approved exact CD-TUI-N01B-08 for its four named local Runtime/Chat source/test paths and scoped TUI evidence; frozen local candidate 8ac249d3 and authorized exact-source Ubuntu run/job 39301138733 independently VERIFIED; one authorized non-force push reached c4a5faa6 and is consumed; no additional push, PR, merge or release authority",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-06 independently verified locally and on their authorized exact-source Ubuntu runs; N01B-06 product source frozen at e16aede6, one authorized non-force push reached aa8ae784 and is consumed; maintainer approved exact CD-TUI-N01B-07 for its four named local Runtime/Chat source/test paths and scoped TUI evidence; N01B-07 local candidate a196e95a and authorized exact-source Ubuntu run/job 39294625340 independently VERIFIED with product source frozen; one authorized non-force push reached 4a646dc7 and is consumed; maintainer approved exact CD-TUI-N01B-08 for its four named local Runtime/Chat source/test paths and scoped TUI evidence; frozen local candidate 8ac249d3 and authorized exact-source Ubuntu run/job 39301138733 independently VERIFIED; one authorized non-force push reached c4a5faa6 and is consumed; current-session approval authorizes N01B-09 characterization and proposed exact directive only; no N01B-09 source/test, additional push, PR, merge or release authority",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
@@ -11,7 +11,7 @@
   "execution_phase": "planning",
   "validation_state": "verified",
   "allowed_changes": [
-    "docs/planning/active/friday-tui/** (scoped N01B-08 Ubuntu closeout evidence and status only)",
+    "docs/planning/active/friday-tui/** (scoped N01B-09 planning characterization, proposed directive and packet/authority status only)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
@@ -81,6 +81,14 @@
     "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard may change; no product source, tests, package metadata, lock or workflow",
     "validation": "279 unchanged baseline tests passed in separate Chat, Runtime and CLI runs; disposable append/context failure and late-pending probes passed; offline lock check passed; board validation (34 tasks), dashboard current, unique-key authority JSON parsed and 402 local links resolved; exact staged paths, unchanged product source and whitespace checks passed"
   },
+  "n01b_09_planning_exemption": {
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-10-19",
+    "source": "Current-session instruction 'approved and authorized - proceed' after the N01B-08 exact-source Ubuntu closeout and the board's next bounded transcript-persistence directive gate",
+    "exact_scope": "Read-only N01B-09 transcript session-ensure characterization and proposed exact directive, scoped TUI packet and authority status, TUI board next gate/event and generated dashboard",
+    "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard may change; no product source, tests, package metadata, lock or workflow",
+    "validation": "225 unchanged baseline tests passed in separate Chat, Runtime/Transcript and CLI runs; disposable session/failure/cancellation probes and offline lock check passed; board validation (34 tasks), dashboard current, unique-key authority JSON parsed and 486 local links resolved; exact planning paths, unchanged product source and whitespace checks passed"
+  },
   "build_plan_approval": "TUI-N01S and TUI-N01A verified under their exact directives; N01A Linux smoke was waived only for unit closeout; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
@@ -98,6 +106,18 @@
     "directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md"
   ],
   "construction_directives_active": [],
+  "n01b_09_directive_record": {
+    "unit": "TUI-N01B-09",
+    "path": "directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md",
+    "status": "proposed only; exact four-path local directive approval pending",
+    "proposed_by": "Codex",
+    "proposed_at": "2026-10-19",
+    "planning_evidence": "validation/N01B-09-before-code-session-ensure-characterization.md",
+    "before_code_product_source": "c4a5faa6a65d7f6b2259c684336a9a816d481b33",
+    "baseline_result": "41 selected Chat, 29 protected Runtime/Transcript/Chat and 155 unchanged friday-cli tests passed; disposable session/failure/cancellation probes passed",
+    "source_code_generation_authorized": false,
+    "external_delivery_authorized": false
+  },
   "n01b_08_directive_record": {
     "unit": "TUI-N01B-08",
     "path": "directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md",
@@ -446,7 +466,7 @@
     "Q-03": "Quit at a safe stopping point, finishing any non-interruptible operation and cleaning up before exiting."
   },
   "follow_up_request": "Proceed and walk me through the decision process, following the request to finalize the technical integration contract.",
-  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 through N01B-08 neutral transcript-query, export, effect, tool-record and write-effect units are independently VERIFIED locally and on their authorized exact-source Ubuntu runs, with product source frozen. Later transcript persistence, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
+  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 through N01B-08 neutral transcript-query, export, effect, tool-record and write-effect units are independently VERIFIED locally and on their authorized exact-source Ubuntu runs, with product source frozen. N01B-09 neutral session ensure is proposed only after read-only characterization. Later turn allocation, entry construction, finalization, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
   "draft_construction_directive": "directives/CD-TUI-001-shared-presentation-contracts.md (withdrawn; not executable)",
   "read_only_design_checks": [
     "Existing CLI/selected Chat pytest baseline with fake providers and network guard; no source or test edits",

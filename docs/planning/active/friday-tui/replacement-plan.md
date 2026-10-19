@@ -13,7 +13,8 @@ exact-source Ubuntu gate independently VERIFIED; N01B-07 neutral tool-record
 candidate `a196e95a` independently VERIFIED locally and on exact-source
 Ubuntu run 39294625340; N01B-08 neutral transcript write-effects candidate
 `8ac249d3` independently VERIFIED locally and on exact-source Ubuntu run
-39301138733
+39301138733; N01B-09 session-ensure characterization and directive proposed
+only
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; N01B-05 is independently
@@ -24,7 +25,8 @@ named local paths, with source frozen; one authorized non-force push reached
 `4a646dc7` and is consumed, and Ubuntu post-run review is VERIFIED; N01B-08
 source is frozen after local and final status audits; its one authorized
 push is consumed, and the exact-source Ubuntu gate is independently
-VERIFIED; later product units remain proposals until separately approved
+VERIFIED; N01B-09 is proposed only, and later product units require separate
+approval
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -355,6 +357,12 @@ status delta](validation/VAL-N01B-08-final-1c5a70a3.md) was also VERIFIED.
 The one authorized non-force push reached `c4a5faa6` and is consumed;
 [exact-source Ubuntu run 39301138733](validation/N01B-08-ubuntu-run-39301138733.md)
 completed/success and was [independently VERIFIED](validation/VAL-N01B-08-postrun-3a5e05cf.md).
+The [N01B-09 read-only characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
+isolates Chat's current transcript session get-or-create effect, including
+its lazy snapshot, existing-session preservation and ignored false create.
+The [exact N01B-09 directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
+is proposed only; its four named local source/test paths need separate
+maintainer approval before construction.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -523,4 +531,8 @@ returned VERIFIED. The one authorized push is consumed; [exact-source
 Ubuntu run 39301138733](validation/N01B-08-ubuntu-run-39301138733.md)
 completed/success and was [independently reconciled](validation/VAL-N01B-08-postrun-3a5e05cf.md).
 Later product work remains a separate gate.
+The proposed [N01B-09 session-ensure directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
+and [before-code characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
+define the next bounded approval request. No N01B-09 source/test work or
+additional push is authorized yet.
 No TUI, terminal UAT or real-provider test has run.

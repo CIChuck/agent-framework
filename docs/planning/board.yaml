@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Characterize the next bounded N01B neutral transcript-persistence unit and obtain approval of its exact directive; installed TUI terminal UAT remains a release gate
+  next_gate: Review and approve the exact four-path CD-TUI-N01B-09 neutral transcript session-ensure directive before product code; installed TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -361,6 +361,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-N01B-08-push-authority-a97cbbc3.md (independent VERIFIED one-push authorization delta; exact-source Ubuntu and TUI UAT open)
   - docs/planning/active/friday-tui/validation/N01B-08-ubuntu-run-39301138733.md (completed/success exact-source Ubuntu run on authorized N01B-08 push; independently reconciled separately)
   - docs/planning/active/friday-tui/validation/VAL-N01B-08-postrun-3a5e05cf.md (independent VERIFIED N01B-08 exact-source Ubuntu reconciliation; later product and TUI UAT open)
+  - docs/planning/active/friday-tui/validation/N01B-09-before-code-session-ensure-characterization.md (225 unchanged baseline passes and disposable session/failure/cancellation probes; proposed directive planning only)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3511,3 +3512,10 @@ events:
   action: n01b_08_exact_source_ubuntu_independently_verified
   note: Fresh-context read-only reviewer independently VERIFIED completed/success run and sole job 39301138733 against live remote, source and checkout c4a5faa6, matching saved log hashes, test counts, wheels and installed configuration boundary. The N01B-08 automated Linux gate is closed; its product source remains frozen at 8ac249d3 and one push is consumed. Installed TUI terminal UAT, later product units, initiative acceptance and additional delivery remain open.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-08-postrun-3a5e05cf.md; https://github.com/CIChuck/agent-framework/actions/runs/39301138733
+- task: friday-tui
+  at: '2026-10-19T18:34:48+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_09_session_ensure_directive_proposed
+  note: Maintainer's 'approved and authorized - proceed' after N01B-08 closeout authorizes read-only next-unit planning. Existing session get-or-create, lazy Chat snapshot, existing/ended reuse and false/error behavior were characterized with 225 unchanged Chat/Runtime/Transcript/CLI tests and disposable SQLite/fake-store probes. Proposed CD-TUI-N01B-09 names four local Runtime/Chat source/test paths for future approval. No N01B-09 code/test, additional push, PR, merge, release or installed TUI UAT is authorized by this planning step.
+  evidence: docs/planning/active/friday-tui/validation/N01B-09-before-code-session-ensure-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md; docs/planning/active/friday-tui/authority.json
