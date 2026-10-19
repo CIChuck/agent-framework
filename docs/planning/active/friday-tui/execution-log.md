@@ -1,8 +1,9 @@
 # Friday TUI execution log
 
 Status: N01B-07 exact local tool-record candidate `a196e95a` is independently
-VERIFIED with product source frozen; one non-force push is authorized for its
-pending exact-source Ubuntu gate;
+VERIFIED with product source frozen; one authorized non-force push reached
+`4a646dc7` and is consumed; exact-source Ubuntu run 39294625340 completed/
+success pending independent post-run review;
 N01S/N01A and CI03
 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
@@ -15,7 +16,23 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: validation; validation_state: pending (N01B-07 local unit VERIFIED; exact-source Ubuntu and TUI product/UAT open)
+execution_phase: validation; validation_state: pending (N01B-07 local unit VERIFIED; Ubuntu run successful pending independent post-run review, TUI product/UAT open)
+
+## 2026-10-19 — N01B-07 exact-source Ubuntu run succeeded, review pending
+
+The single authorized non-force push advanced `origin/feature/friday-tui`
+from `aa8ae784` to `4a646dc7`. The live remote, [run and sole
+job](validation/N01B-07-ubuntu-run-39294625340.md), printed source and
+checked-out SHA all match `4a646dc7`; GitHub reports both run and job
+`completed/success`. The saved logs record 21 loader/Chat facade, 393
+Runtime, 853 Chat with 23 skips, 155 unchanged `friday-cli`, repeated MCP,
+13 wheels and installed configuration-isolation passes. Product bytes still
+match independently reviewed candidate `a196e95a`. The push is consumed.
+Fresh-context read-only post-run reconciliation is required before closing
+the automated Linux gate. Installed TUI terminal UAT and later product units
+remain open.
+
+execution_phase: validation; validation_state: pending (N01B-07 independent post-run review).
 
 ## 2026-10-19 — one N01B-07 non-force push authorized
 
