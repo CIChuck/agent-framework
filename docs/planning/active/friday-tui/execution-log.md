@@ -1,10 +1,22 @@
 # Friday TUI execution log
 
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
-gates reconciled green; TUI-N01B-01 exact-source Ubuntu run green, final
-independent post-run review pending
+gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
+independently verified
 
-execution_phase: validation; validation_state: in_review (N01B-01 post-run reconciliation; TUI product/UAT not ready)
+execution_phase: closeout; validation_state: verified (N01B-01 contract and automated Linux gate only; TUI product/UAT not ready)
+
+## 2026-10-18 — N01B-01 Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-01-postrun-4febb6f6.md)
+the exact-source [Ubuntu run](validation/N01B-01-ubuntu-run-39190668231.md)
+and packet delta at `4febb6f6`. The reviewer cross-checked public GitHub
+run/job metadata, source and checkout SHA, full Runtime/Chat/unchanged CLI
+counts, repeated MCP passes, wheels and installed configuration isolation.
+The transcript-specific installed-wheel identity and pickle checks remain
+separate local pre-push evidence; no installed transcript-specific Linux probe
+is claimed. This closes the N01B-01 automated Linux gate, while the initiative
+remains `started`. Later product units and installed terminal UAT remain open.
 
 ## 2026-10-18 — N01B-01 authorized push and exact-source Ubuntu success
 

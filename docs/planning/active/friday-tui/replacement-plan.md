@@ -2,7 +2,7 @@
 
 **Status:** Active replacement planning contract; N01S and N01A independently
 VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 pre-push candidate
-VERIFIED, exact-source Ubuntu run green and post-run review pending
+and exact-source Ubuntu gate independently VERIFIED
 
 **Branch and authority:** `feature/friday-tui`; `granted` for the exact
 CD-TUI-N01B-01 subunit only; later product units remain design-only
@@ -365,9 +365,10 @@ exact-source Linux result or TUI terminal UAT.
    [independent review VERIFIED the corrected pre-push candidate](validation/VAL-N01B-01-final-closeout-35e297e8.md)
    against the [approved exact directive](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md).
    Chuck Russell authorized the branch push; the [exact-source Ubuntu
-   run](validation/N01B-01-ubuntu-run-39190668231.md) succeeded. Its result
-   needs fresh independent post-run review. Installed macOS/Linux terminal UAT
-   remains a release gate.
+   run](validation/N01B-01-ubuntu-run-39190668231.md) succeeded and was
+   [independently reconciled](validation/VAL-N01B-01-postrun-4febb6f6.md).
+   The next product unit needs a separate exact directive and maintainer
+   approval. Installed macOS/Linux terminal UAT remains a release gate.
 2. Choose owners for command/event seams. Review the
    [event/lifecycle proposal](neutral-event-lifecycle-contract.md) and bind
    event admission, argument snapshot and resource-close boundaries against
@@ -386,6 +387,6 @@ N01B-01 subunit. Its first candidate `7e5241c8` received
 `CHANGES_REQUESTED` for packet documentation and command evidence; corrected
 candidate `35e297e8` is independently `VERIFIED` for pre-push readiness.
 Product source is frozen. The pushed source `62d3ae3b` passed the Ubuntu
-workflow; post-run independent reconciliation is pending. N01A is closed,
+workflow and post-run independent reconciliation. N01A is closed,
 while later N01B effects and all subsequent product units remain design-only.
 No TUI, terminal UAT or real-provider test has run.

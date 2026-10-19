@@ -1,8 +1,8 @@
 # Friday TUI architecture reset
 
 **Status:** Accepted product boundaries; N01S/N01A verified; CI01-CI03
-automated Linux gates verified; N01B-01 exact-source Ubuntu run green,
-independent post-run review pending
+automated Linux gates verified; N01B-01 exact-source Ubuntu gate independently
+verified
 
 **Branch:** `feature/friday-tui`; initiative authority `granted`, with N01B-01
 the only approved product subunit and no active product-code generation
@@ -215,6 +215,7 @@ remains a release gate. The approved
 was [independently VERIFIED for pre-push readiness](validation/VAL-N01B-01-final-closeout-35e297e8.md)
 on its named source/test paths; the authorized exact-source
 [Ubuntu run](validation/N01B-01-ubuntu-run-39190668231.md) succeeded and
-awaits independent post-run reconciliation. Later units still need exact
+was [independently reconciled](validation/VAL-N01B-01-postrun-4febb6f6.md).
+Later units still need exact
 technical ownership and separate maintainer approval before product code
 generation.
