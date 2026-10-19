@@ -1,6 +1,10 @@
 # Friday TUI execution log
 
-Status: N01B-07 exact local tool-record candidate `a196e95a` is independently
+Status: N01B-08 exact local write-effects candidate `8ac249d3` is independently
+VERIFIED with product source frozen; one authorized non-force push reached
+`c4a5faa6` and is consumed; exact-source Ubuntu run 39301138733 completed/
+success, pending independent post-run review. N01B-07 exact local tool-record
+candidate `a196e95a` is independently
 VERIFIED with product source frozen; one authorized non-force push reached
 `4a646dc7` and is consumed; exact-source Ubuntu run 39294625340 completed/
 success and was independently VERIFIED;
@@ -16,7 +20,23 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: validation; validation_state: pending (N01B-08 authorized exact-source Ubuntu push/run; TUI UAT open)
+execution_phase: validation; validation_state: pending (N01B-08 Ubuntu run completed/success; independent post-run review and TUI UAT open)
+
+## 2026-10-19 — N01B-08 pushed exact-source Ubuntu run completed
+
+The one authorized non-force push advanced `origin/feature/friday-tui` from
+`4a646dc7` to `c4a5faa6`; push authority is consumed. GitHub Actions
+[run 39301138733](validation/N01B-08-ubuntu-run-39301138733.md) and sole
+job 118226328033 reported `completed/success` on that exact source. The
+saved logs show full Runtime 402, Chat 862 with 23 skips, unchanged CLI 155,
+repeated MCP, wheel and installed-configuration checks passing. Four
+N01B-08 product/test blobs match independently reviewed local candidate
+`8ac249d3`. A fresh-context independent post-run reconciliation must review
+the live run, saved logs and current status before the automated Ubuntu gate
+can be called VERIFIED. Installed TUI terminal UAT and later product work
+remain open; no additional push, PR, merge or release is authorized.
+
+execution_phase: validation; validation_state: pending (N01B-08 post-run review).
 
 ## 2026-10-19 — one N01B-08 non-force push authorized
 
