@@ -1,10 +1,20 @@
 # Friday TUI execution log
 
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
-gates reconciled green; TUI-N01B-01 first candidate CHANGES_REQUESTED for two
-documentation/evidence findings
+gates reconciled green; corrected TUI-N01B-01 pre-push candidate VERIFIED
 
-execution_phase: remediation; validation_state: changes_requested (N01B-01 documentation-only correction; TUI product/UAT not ready)
+execution_phase: validation; validation_state: verified (N01B-01 pre-push candidate only; exact-source Linux and TUI product/UAT not ready)
+
+## 2026-10-18 — N01B-01 corrected candidate independently VERIFIED pre-push
+
+Fresh-context read-only review of corrected candidate `edbcee92`
+[VERIFIED](validation/VAL-N01B-01-prepush-edbcee92.md) closure of both
+first-candidate findings and the complete bounded source/test diff. The
+reviewer independently reran 179 focused tests and checked static, lock,
+board, dashboard, links and scope. Earlier independent full Runtime/Chat/CLI
+and installed-wheel checks apply because product files did not change in
+remediation. This is pre-push readiness, not an exact-source Ubuntu run or
+TUI/UAT acceptance. A feature-branch push needs separate maintainer authority.
 
 ## 2026-10-18 — N01B-01 first independent review requests documentation corrections
 

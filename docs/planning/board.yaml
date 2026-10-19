@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Correct N01B01-01/02 documentation findings under REM-TUI-N01B-01-01, freeze a new candidate and obtain fresh review; installed macOS/Linux terminal UAT remains a release gate
+  next_gate: Obtain explicit push authority for independently reviewed N01B-01 source, run exact-source Ubuntu checks and reconcile them; installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -318,6 +318,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI03-final-676700f5.md (independent VERIFIED CI03 infrastructure and CI01/CI02 automated Linux gate reconciliation; TUI product/UAT open)
   - docs/planning/active/friday-tui/validation/N01B-01-local-checks.md (builder local tests and installed-wheel checks; independent N01B-01 review pending)
   - docs/planning/active/friday-tui/validation/VAL-N01B-01-preflight-7e5241c8.md (historical CHANGES_REQUESTED first-candidate review; findings N01B01-01 and N01B01-02)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-01-prepush-edbcee92.md (independent VERIFIED corrected N01B-01 pre-push candidate; exact-source Ubuntu pending)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3090,3 +3091,10 @@ events:
   action: n01b_01_first_candidate_changes_requested
   note: Fresh-context read-only first-candidate review returned CHANGES_REQUESTED for N01B01-01 stale replacement-plan authority text and N01B01-02 missing command evidence. Product and installed-wheel checks passed. Bounded documentation-only remediation is active; source/test paths are frozen pending a new candidate and fresh review.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-01-preflight-7e5241c8.md; docs/planning/active/friday-tui/remediation/REM-TUI-N01B-01-01.md
+- task: friday-tui
+  at: '2026-10-19T02:10:01+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_01_corrected_candidate_verified_pre_push
+  note: Fresh-context read-only review VERIFIED corrected candidate edbcee92 after doc-only remediation and closed N01B01-01/02. Product paths were unchanged after first review. Exact-source Ubuntu run, installed TUI terminal UAT, acceptance and external delivery remain open; a further push needs explicit maintainer authority.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01B-01-prepush-edbcee92.md
