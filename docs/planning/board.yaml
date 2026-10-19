@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Obtain fresh-context delta review of REM-TUI-N01B-09-01 status correction and complete corrected N01B-09 candidate reconciliation; installed TUI terminal UAT remains a release gate
+  next_gate: Obtain separate authorization for one non-force push of frozen N01B-09 local candidate for exact-source Ubuntu verification; installed TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -364,6 +364,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-09-before-code-session-ensure-characterization.md (225 unchanged baseline passes and disposable session/failure/cancellation probes; proposed directive planning only)
   - docs/planning/active/friday-tui/validation/N01B-09-local-checks.md (22 new, 414 Runtime, 890 Chat with five skips and 155 CLI tests; static, wheels and installed checks before independent review)
   - docs/planning/active/friday-tui/validation/VAL-N01B-09-prepush-36028fbf.md (historical CHANGES_REQUESTED first-candidate review; N01B09-01 packet validation-state finding)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-09-prepush-cda7419d.md (independent VERIFIED corrected local candidate; exact-source Ubuntu and TUI UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3542,3 +3543,10 @@ events:
   action: n01b_09_status_remediation_pending_fresh_review
   note: Fresh-context reviewer returned CHANGES_REQUESTED for N01B09-01, a current packet validation-state mismatch; product, test and installed-package checks passed. REM-TUI-N01B-09-01 bounds a mechanical documentation/status correction under previously approved scoped TUI evidence authority. The first verdict remains historical; a corrected stable candidate needs fresh delta and complete review. No product edit, additional push or TUI UAT is inferred.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-09-prepush-36028fbf.md; docs/planning/active/friday-tui/remediation/REM-TUI-N01B-09-01.md
+- task: friday-tui
+  at: '2026-10-19T18:54:43+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_09_local_candidate_independently_verified
+  note: Fresh-context read-only reviewer VERIFIED corrected candidate cda7419d against authority base ee9d667c, including N01B09-01 status remediation and complete four-path source/test scope. Product/test blobs match first candidate 36028fbf; local deterministic and installed-wheel evidence is reconciled. Product source is frozen. A separately authorized non-force push for exact-source Ubuntu remains the next gate; TUI terminal UAT, later product units and acceptance remain open.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01B-09-prepush-cda7419d.md; docs/planning/active/friday-tui/authority.json

@@ -13,8 +13,8 @@ exact-source Ubuntu gate independently VERIFIED; N01B-07 neutral tool-record
 candidate `a196e95a` independently VERIFIED locally and on exact-source
 Ubuntu run 39294625340; N01B-08 neutral transcript write-effects candidate
 `8ac249d3` independently VERIFIED locally and on exact-source Ubuntu run
-39301138733; N01B-09 session-ensure local builder checks passed, independent
-validation pending
+39301138733; N01B-09 session-ensure corrected local candidate `cda7419d`
+independently VERIFIED, exact-source Ubuntu pending separate push authority
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; N01B-05 is independently
@@ -25,8 +25,8 @@ named local paths, with source frozen; one authorized non-force push reached
 `4a646dc7` and is consumed, and Ubuntu post-run review is VERIFIED; N01B-08
 source is frozen after local and final status audits; its one authorized
 push is consumed, and the exact-source Ubuntu gate is independently
-VERIFIED; N01B-09 is approved for four exact local source/test paths, and later
-product units require separate approval
+VERIFIED; N01B-09 is independently VERIFIED for four exact local source/test
+paths with product source frozen, and later product units require separate approval
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -362,8 +362,8 @@ isolates Chat's current transcript session get-or-create effect, including
 its lazy snapshot, existing-session preservation and ignored false create.
 The [exact N01B-09 directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
 is approved for its four named local source/test paths and scoped TUI evidence.
-[Builder checks](validation/N01B-09-local-checks.md) passed; the exact local
-candidate awaits independent validation.
+[Builder checks](validation/N01B-09-local-checks.md) passed; the corrected
+exact local candidate was [independently VERIFIED](validation/VAL-N01B-09-prepush-cda7419d.md).
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -535,5 +535,6 @@ Later product work remains a separate gate.
 The approved [N01B-09 session-ensure directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
 and [before-code characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
 bound the four-path local unit. [Builder checks](validation/N01B-09-local-checks.md)
-passed, with independent validation pending. No additional push is authorized.
+passed and the [corrected local candidate was independently VERIFIED](validation/VAL-N01B-09-prepush-cda7419d.md).
+No additional push is authorized yet.
 No TUI, terminal UAT or real-provider test has run.

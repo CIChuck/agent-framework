@@ -58,8 +58,8 @@ work needs a separate directive.
 
 The approved [N01B-09 session-ensure directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
 moves only the existing get-or-create store effect into Runtime; its
-[builder checks](validation/N01B-09-local-checks.md) passed, with independent
-validation pending.
+[builder checks](validation/N01B-09-local-checks.md) passed, and the
+[corrected local candidate was independently VERIFIED](validation/VAL-N01B-09-prepush-cda7419d.md).
 Its [read-only characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
 protects Chat's lazy new-session snapshot, preservation of existing
 sessions, ignored false create result, and downstream append error. It

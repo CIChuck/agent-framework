@@ -1,7 +1,8 @@
 # Friday TUI execution log
 
-Status: N01B-09 session-ensure local builder checks passed for the exact
-four-path directive; the candidate awaits independent validation. N01B-08 exact local
+Status: N01B-09 corrected exact four-path session-ensure candidate
+`cda7419d` is independently VERIFIED locally, with product source frozen.
+Its exact-source Ubuntu gate requires a separate push authorization. N01B-08 exact local
 write-effects candidate `8ac249d3` is independently
 VERIFIED with product source frozen; one authorized non-force push reached
 `c4a5faa6` and is consumed; exact-source Ubuntu run 39301138733 completed/
@@ -22,7 +23,22 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: validation; validation_state: pending (N01B-09 corrected local candidate; N01B-08 gates independently verified; TUI UAT open)
+execution_phase: closeout; validation_state: verified (N01B-09 local gate only; exact-source Ubuntu and TUI UAT open)
+
+## 2026-10-19 — N01B-09 corrected local candidate independently VERIFIED
+
+A fresh-context read-only reviewer
+[VERIFIED](validation/VAL-N01B-09-prepush-cda7419d.md) the documentation-only
+N01B09-01 correction and complete candidate `cda7419d` against approved
+authority base `ee9d667c`. All four source/test blobs match the first
+candidate `36028fbf`; the historical `CHANGES_REQUESTED` finding is resolved.
+The reviewer reran 22 focused tests, board/dashboard, static, lock, JSON,
+link and exact-path checks, and reconciled unchanged full-suite and installed
+wheel evidence. The local N01B-09 product source is frozen. One separately
+authorized non-force push is the next automated Ubuntu gate; installed TUI
+terminal UAT, later units and initiative acceptance remain open.
+
+execution_phase: closeout; validation_state: verified (N01B-09 local only; Ubuntu and UAT open).
 
 ## 2026-10-19 — N01B09-01 current-status remediation
 

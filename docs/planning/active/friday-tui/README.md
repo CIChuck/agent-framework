@@ -63,16 +63,18 @@ The [N01B-09 read-only characterization](validation/N01B-09-before-code-session-
 records Chat's current transcript session get-or-create behavior. Its
 [exact four-path directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
 is approved for local construction. Its [builder checks](validation/N01B-09-local-checks.md)
-passed for the four exact paths; the local candidate awaits independent
-validation.
+passed for the four exact paths. The corrected local candidate `cda7419d`
+was [independently VERIFIED](validation/VAL-N01B-09-prepush-cda7419d.md).
 The first local candidate's [independent review](validation/VAL-N01B-09-prepush-36028fbf.md)
 requested a current-status correction under
 [REM-TUI-N01B-09-01](remediation/REM-TUI-N01B-09-01.md); its code checks
-passed, and a corrected candidate needs fresh review.
+passed, and the corrected candidate received the fresh review above. Its
+product source is frozen; exact-source Ubuntu and installed TUI terminal UAT
+remain open.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: pending (N01B-09 corrected local candidate; N01B-08 gates independently verified; TUI UAT open)
+execution_phase: closeout; validation_state: verified (N01B-09 local gate only; exact-source Ubuntu and TUI UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -211,6 +213,7 @@ Current planning artifacts:
 - [N01B-09 local builder checks](validation/N01B-09-local-checks.md)
 - [N01B-09 first-candidate independent review and N01B09-01 finding](validation/VAL-N01B-09-prepush-36028fbf.md)
 - [N01B09-01 bounded status remediation](remediation/REM-TUI-N01B-09-01.md)
+- [Independent N01B-09 corrected local candidate review](validation/VAL-N01B-09-prepush-cda7419d.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -855,7 +858,9 @@ The next bounded [N01B-09 session-ensure directive](directives/CD-TUI-N01B-09-ne
 has a [225-pass unchanged baseline and disposable behavior
 characterization](validation/N01B-09-before-code-session-ensure-characterization.md).
 It is approved for exact local construction, and [builder checks](validation/N01B-09-local-checks.md)
-passed; independent review is the next local gate.
+passed. The [corrected local candidate was independently VERIFIED](validation/VAL-N01B-09-prepush-cda7419d.md);
+its product source is frozen. Exact-source Ubuntu verification requires a
+separately authorized push.
 No TUI executable, UAT result,
 publication or acceptance of the full initiative is claimed by this packet.
 
