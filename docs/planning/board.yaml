@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review and explicitly approve or revise proposed CD-TUI-N01B-06 for bounded all-session export effects before any product or test edit; no further push authority; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Build and locally validate the exact four-path CD-TUI-N01B-06 all-session export-effects unit, commit a stable candidate and obtain fresh-context independent review; no push authority; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3353,3 +3353,10 @@ events:
   action: n01b_06_all_session_export_effects_directive_proposed
   note: After the maintainer requested the next tasks, read-only source review isolated the remaining timestamped-directory and two-file all-session export effects. The unchanged focused/protected suite passed 253 tests; disposable probes confirmed collision and partial-second-write behavior. CD-TUI-N01B-06 is proposed for exact maintainer review. No N01B-06 product code, test edit, push or TUI UAT is authorized by this planning pass.
   evidence: docs/planning/active/friday-tui/validation/N01B-06-before-code-all-session-export-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md
+- task: friday-tui
+  at: '2026-10-19T15:56:03+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_06_exact_local_construction_approved
+  note: Maintainer replied 'approved continue with next steps' after the controller stated that N01B-06 awaited exact directive approval. Before code work, the controller linked CD-TUI-N01B-06 and identified four-path local-only approval. Local authority covers only the named Runtime/Chat source and tests plus scoped TUI packet evidence. No push, PR, merge, release, later N01B unit or installed TUI UAT acceptance is authorized.
+  evidence: current-session reply 'approved continue with next steps'; docs/planning/active/friday-tui/directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md; docs/planning/active/friday-tui/authority.json

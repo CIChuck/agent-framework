@@ -8,9 +8,22 @@ independently verified; TUI-N01B-04 local candidate `abeeb895` independently
 VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
 VERIFIED; TUI-N01B-05 single-file export-effects candidate `c773f272` and
 exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
-all-session export effects proposed for review only
+all-session export effects approved for bounded local construction
 
-execution_phase: planning; validation_state: not_ready (N01B-06 proposal only; N01B-05 local and Ubuntu gates VERIFIED; TUI product/UAT open)
+execution_phase: implementation; validation_state: not_ready (N01B-06 local unit approved; N01B-05 local and Ubuntu gates VERIFIED; TUI product/UAT open)
+
+## 2026-10-19 — N01B-06 exact local construction approved
+
+Chuck Russell replied “approved continue with next steps” after the
+controller stated that N01B-06 awaited exact directive approval. Before
+code work, the controller linked the [directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
+and stated its four-path local-only interpretation. The approved scope is
+the two named Runtime/Chat source files and two named tests, plus scoped TUI
+evidence. No push, PR, merge, release, later unit or installed TUI UAT
+acceptance is authorized. Run focused tests, protected regressions,
+installed-wheel checks and independent review before closing this unit.
+
+execution_phase: implementation; validation_state: not_ready (N01B-06 local unit).
 
 ## 2026-10-19 — N01B-06 all-session export-effects directive proposed
 

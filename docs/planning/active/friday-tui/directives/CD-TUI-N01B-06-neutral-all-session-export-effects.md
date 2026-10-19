@@ -1,7 +1,7 @@
 # CD-TUI-N01B-06: neutral all-session transcript export effects
 
-**Status:** Proposed for exact maintainer review; **not approved** for
-product code or test edits, push or external delivery.
+**Status:** Approved for the exact N01B-06 local construction scope by Chuck
+Russell on 2026-10-19. No push or external-delivery authority.
 
 **Initiative/unit:** `friday-tui` / TUI-N01B-06, a separately gated N01B
 subunit after N01B-05's independently VERIFIED local and exact-source
@@ -11,12 +11,13 @@ Ubuntu gates.
 `010849f531d2bbc08569d1825eec7e34f4db5489` (clean). N01B-05
 product source is frozen at reviewed candidate `c773f272`; pushed source
 `37298e48` passed exact-source Ubuntu verification. Subsequent N01B-05
-closeout commits are local planning/evidence only; its one push was consumed.
+closeout and N01B-06 proposal commits are local planning/evidence only; the
+N01B-05 one-push authority was consumed.
 
 **Authority and precedence:** [AGENTS.md](../../../../../AGENTS.md) and
 the [independent-validation policy](../../../../reference/policies/independent-validation-policy.md)
 require explicit maintainer approval of this exact directive before
-product code or tests change. If approved, the accepted
+product code or tests change. With this approval, the accepted
 [independent-package boundary](../architecture-reset.md),
 [replacement plan](../replacement-plan.md),
 [capability map](../neutral-capability-map.md),
@@ -154,8 +155,11 @@ source/test/metadata path is needed. Do not begin transcript persistence,
 session lifecycle, assembly/close or TUI implementation under this
 directive.
 
-**Approval fields:** None. The maintainer's current “proceed with the next
-tasks upon completion of board/doc updates” authorizes this planning
-proposal, but this exact directive has not yet been presented and
-approved for product construction. A separate one-push authorization
-would be required for later exact-source Ubuntu verification.
+**Approval fields:** Chuck Russell replied “approved continue with next
+steps” immediately after the controller stated that N01B-06 awaited exact
+directive approval. Before code work, the controller linked this directive
+and stated the interpretation: approval covers its four named local
+Runtime/Chat source/test paths and scoped TUI packet evidence only.
+A separate one-push authorization would be required for later exact-source
+Ubuntu verification; PR, merge, release, installed TUI UAT and later N01B
+subunits are not authorized.

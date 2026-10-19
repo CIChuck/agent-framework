@@ -30,13 +30,13 @@ for the local work unit. Source is frozen. The separately authorized non-force
 push reached `37298e48`; its [exact-source Ubuntu run](validation/N01B-05-ubuntu-run-39278047819.md)
 succeeded and was [independently VERIFIED](validation/VAL-N01B-05-postrun-3d5695d8.md).
 The [N01B-06 all-session export-effects directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
-is proposed for exact maintainer review after [253 unchanged baseline tests
+is approved for four exact local Runtime/Chat source/test paths after [253 unchanged baseline tests
 and disposable failure probes](validation/N01B-06-before-code-all-session-export-characterization.md).
-It authorizes no product or test edit yet.
+Its implementation and independent review are pending; no push is authorized.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: not_ready (N01B-06 proposal only; N01B-05 local and Ubuntu gates VERIFIED; TUI product/UAT open)
+execution_phase: implementation; validation_state: not_ready (N01B-06 local unit approved; N01B-05 local and Ubuntu gates VERIFIED; TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -151,7 +151,7 @@ Current planning artifacts:
 - [N01B-05 exact-source Ubuntu run](validation/N01B-05-ubuntu-run-39278047819.md)
 - [Independent N01B-05 exact-source Ubuntu review](validation/VAL-N01B-05-postrun-3d5695d8.md)
 - [N01B-06 before-code all-session export characterization](validation/N01B-06-before-code-all-session-export-characterization.md)
-- [Proposed N01B-06 neutral all-session export-effects directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
+- [Approved N01B-06 neutral all-session export-effects directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -735,7 +735,7 @@ VERIFIED candidate `c773f272` locally. The separately authorized push reached
 succeeded and was [independently reconciled](validation/VAL-N01B-05-postrun-3d5695d8.md).
 The [N01B-06 directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
 proposes the remaining all-session directory and two-file write effects;
-it awaits exact maintainer approval before source or test changes. At each
+it is approved for the four named local source/test paths. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
 TUI-CI01/CI02 and are independently VERIFIED on the reviewed CI03 source.
@@ -766,7 +766,7 @@ separate authority; N01B-04's local and automated Linux gates are independently
 VERIFIED. N01B-05 local candidate `c773f272` and its
 [exact-source Ubuntu run](validation/VAL-N01B-05-postrun-3d5695d8.md) are
 independently VERIFIED. The one-push authority is consumed.
-N01B-06 is a planning proposal only, backed by [unchanged tests and
+N01B-06 is approved for bounded local construction, backed by [unchanged tests and
 failure probes](validation/N01B-06-before-code-all-session-export-characterization.md).
 No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
