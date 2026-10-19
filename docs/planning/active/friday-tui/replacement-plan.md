@@ -8,13 +8,15 @@ exact-source Ubuntu gates independently VERIFIED; N01B-04 export destination/pat
 candidate `abeeb895` independently VERIFIED locally and exact-source Ubuntu run
 39268960501 independently VERIFIED; N01B-05 single-file export effects
 candidate `c773f272` and exact-source Ubuntu run 39278047819 independently
-VERIFIED; N01B-06 all-session export effects approved for bounded local construction
+VERIFIED; N01B-06 all-session export-effects candidate `e16aede6`
+independently VERIFIED locally, with exact-source Ubuntu still open
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; N01B-05 is independently
 VERIFIED locally and on exact-source Ubuntu, with source frozen; N01B-06 is
-the only active product-code directive for its exact local construction scope;
-later product units remain proposals until separately approved
+independently VERIFIED for its exact local construction scope, with source
+frozen and no active product-code directive; later product units remain
+proposals until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -314,7 +316,11 @@ succeeded and was [independently VERIFIED](validation/VAL-N01B-05-postrun-3d5695
 The [N01B-06 before-code characterization](validation/N01B-06-before-code-all-session-export-characterization.md)
 and [approved directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
 isolate the remaining all-session directory creation and two-file writes;
-the exact N01B-06 four-path local construction scope is approved.
+the exact N01B-06 four-path local construction scope was approved. Its
+[local checks](validation/N01B-06-local-checks.md) passed, and a
+[fresh-context reviewer](validation/VAL-N01B-06-prepush-e16aede6.md) VERIFIED
+frozen candidate `e16aede6`. Exact-source Ubuntu verification requires a
+separately authorized branch push.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |

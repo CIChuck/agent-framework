@@ -8,9 +8,25 @@ independently verified; TUI-N01B-04 local candidate `abeeb895` independently
 VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
 VERIFIED; TUI-N01B-05 single-file export-effects candidate `c773f272` and
 exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
-all-session export effects approved for bounded local construction
+all-session export-effects candidate `e16aede6` independently VERIFIED locally;
+exact-source Ubuntu gate open
 
-execution_phase: implementation; validation_state: not_ready (N01B-06 local unit approved; N01B-05 local and Ubuntu gates VERIFIED; TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-06 local unit only; exact-source Ubuntu and TUI product/UAT open)
+
+## 2026-10-19 — N01B-06 local candidate independently VERIFIED
+
+The exact four-path Runtime/Chat change and [builder checks](validation/N01B-06-local-checks.md)
+were committed at `e16aede6`. A fresh-context read-only reviewer
+[VERIFIED](validation/VAL-N01B-06-prepush-e16aede6.md) the frozen candidate
+against authority base `d6ababf1`: 262 focused/protected, 382 Runtime,
+866 Chat with five skips, 155 unchanged CLI tests, static checks, wheels
+and isolated installed Runtime/Chat effects passed. Product source is frozen;
+the post-verdict board and packet changes are evidence/status only. This
+closes the local N01B-06 gate. A non-force push for exact-source Ubuntu
+verification needs separate authorization. Installed TUI terminal UAT,
+later product units, full acceptance, PR, merge and release remain open.
+
+execution_phase: planning; validation_state: verified (N01B-06 local unit only).
 
 ## 2026-10-19 — N01B-06 exact local construction approved
 

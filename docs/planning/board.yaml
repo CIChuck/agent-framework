@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Build and locally validate the exact four-path CD-TUI-N01B-06 all-session export-effects unit, commit a stable candidate and obtain fresh-context independent review; no push authority; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Seek separate authority for one non-force push of the frozen N01B-06 candidate for exact-source Ubuntu verification; later product units need separate directives; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -343,6 +343,8 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-05-ubuntu-run-39278047819.md (green exact-source Ubuntu run on authorized N01B-05 push)
   - docs/planning/active/friday-tui/validation/VAL-N01B-05-postrun-3d5695d8.md (independent VERIFIED N01B-05 exact-source Ubuntu reconciliation; later product/UAT open)
   - docs/planning/active/friday-tui/validation/N01B-06-before-code-all-session-export-characterization.md (253 unchanged baseline tests and disposable collision/partial-write probes; proposed directive planning only)
+  - docs/planning/active/friday-tui/validation/N01B-06-local-checks.md (builder local suites, protected comparisons and installed-wheel checks; independent review separately verified)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-06-prepush-e16aede6.md (independent VERIFIED local N01B-06 candidate; exact-source Ubuntu and TUI UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3360,3 +3362,10 @@ events:
   action: n01b_06_exact_local_construction_approved
   note: Maintainer replied 'approved continue with next steps' after the controller stated that N01B-06 awaited exact directive approval. Before code work, the controller linked CD-TUI-N01B-06 and identified four-path local-only approval. Local authority covers only the named Runtime/Chat source and tests plus scoped TUI packet evidence. No push, PR, merge, release, later N01B unit or installed TUI UAT acceptance is authorized.
   evidence: current-session reply 'approved continue with next steps'; docs/planning/active/friday-tui/directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-19T16:12:23+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_06_local_candidate_independently_verified
+  note: Fresh-context read-only reviewer VERIFIED frozen e16aede6 against approved authority base d6ababf1. The exact four-path source/test diff, 262 focused/protected tests, full Runtime 382, Chat 866 with five skips, unchanged CLI 155, static and lock checks, 17 wheels, isolated installed Runtime/Chat export effects and hashes passed. Product source is frozen. A non-force branch push for exact-source Ubuntu verification needs separate maintainer authorization; installed TUI UAT, later units, acceptance and PR/merge/release remain open.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01B-06-prepush-e16aede6.md

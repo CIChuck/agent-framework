@@ -32,11 +32,13 @@ succeeded and was [independently VERIFIED](validation/VAL-N01B-05-postrun-3d5695
 The [N01B-06 all-session export-effects directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
 is approved for four exact local Runtime/Chat source/test paths after [253 unchanged baseline tests
 and disposable failure probes](validation/N01B-06-before-code-all-session-export-characterization.md).
-Its implementation and independent review are pending; no push is authorized.
+Its [local checks](validation/N01B-06-local-checks.md) passed and candidate
+`e16aede6` was [independently VERIFIED](validation/VAL-N01B-06-prepush-e16aede6.md)
+for the local work unit. Source is frozen; no N01B-06 push is authorized.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: implementation; validation_state: not_ready (N01B-06 local unit approved; N01B-05 local and Ubuntu gates VERIFIED; TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-06 local unit only; exact-source Ubuntu and TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -152,6 +154,8 @@ Current planning artifacts:
 - [Independent N01B-05 exact-source Ubuntu review](validation/VAL-N01B-05-postrun-3d5695d8.md)
 - [N01B-06 before-code all-session export characterization](validation/N01B-06-before-code-all-session-export-characterization.md)
 - [Approved N01B-06 neutral all-session export-effects directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
+- [N01B-06 local construction checks](validation/N01B-06-local-checks.md)
+- [Independent N01B-06 local candidate review](validation/VAL-N01B-06-prepush-e16aede6.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -734,8 +738,9 @@ VERIFIED candidate `c773f272` locally. The separately authorized push reached
 `37298e48`, and its [Ubuntu run](validation/N01B-05-ubuntu-run-39278047819.md)
 succeeded and was [independently reconciled](validation/VAL-N01B-05-postrun-3d5695d8.md).
 The [N01B-06 directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
-proposes the remaining all-session directory and two-file write effects;
-it is approved for the four named local source/test paths. At each
+bounded the remaining all-session directory and two-file write effects
+to four named local source/test paths. Its [local independent review](validation/VAL-N01B-06-prepush-e16aede6.md)
+VERIFIED frozen candidate `e16aede6`; exact-source Ubuntu remains open. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
 TUI-CI01/CI02 and are independently VERIFIED on the reviewed CI03 source.
@@ -748,8 +753,9 @@ describe and verify them against that candidate.
 The [board](../../board.yaml) records `started` on `feature/friday-tui` with
 implementation authority `granted` for the initiative. N01B-01's and N01B-02's
 bounded construction scopes have been completed and frozen; N01B-03 is also
-independently VERIFIED locally and frozen. N01B-05 is also independently
-VERIFIED locally, with source frozen and no active product-code directive.
+independently VERIFIED locally and frozen. N01B-05 and N01B-06 are also
+independently VERIFIED locally, with source frozen and no active product-code
+directive.
 N01B-01's exact-source
 Ubuntu [run succeeded](validation/N01B-01-ubuntu-run-39190668231.md) after
 an authorized push and was [independently reconciled](validation/VAL-N01B-01-postrun-4febb6f6.md).
@@ -761,13 +767,14 @@ VERIFIED. N01B-03's [local independent review](validation/VAL-N01B-03-prepush-78
 is VERIFIED; its [exact-source Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md)
 passed and was [independently reconciled](validation/VAL-N01B-03-postrun-9a68d0c7.md).
 N01A is closed under
-its unit-specific Linux deferral. Later N01B effects beyond N01B-05 require
+its unit-specific Linux deferral. Later N01B effects beyond N01B-06 require
 separate authority; N01B-04's local and automated Linux gates are independently
 VERIFIED. N01B-05 local candidate `c773f272` and its
 [exact-source Ubuntu run](validation/VAL-N01B-05-postrun-3d5695d8.md) are
 independently VERIFIED. The one-push authority is consumed.
-N01B-06 is approved for bounded local construction, backed by [unchanged tests and
-failure probes](validation/N01B-06-before-code-all-session-export-characterization.md).
+N01B-06 candidate `e16aede6` is [independently VERIFIED locally](validation/VAL-N01B-06-prepush-e16aede6.md),
+backed by [unchanged tests and failure probes](validation/N01B-06-before-code-all-session-export-characterization.md).
+No push has been authorized for that candidate.
 No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.
