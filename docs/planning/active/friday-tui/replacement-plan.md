@@ -5,7 +5,8 @@ VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 pre-push candidate
 and exact-source Ubuntu gate independently VERIFIED; N01B-02 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-03 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-04 export destination/path
-candidate `abeeb895` independently VERIFIED locally, with exact-source Ubuntu open
+candidate `abeeb895` independently VERIFIED locally and exact-source Ubuntu run
+39268960501 successful, pending independent post-run reconciliation
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; no product-code directive is
@@ -291,8 +292,9 @@ delegation. Chat keeps export writes and its shared `/context --file` and
 product source/test paths on 2026-10-19. The
 [local construction checks](validation/N01B-04-local-checks.md) passed;
 candidate `abeeb895` was [independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md)
-for its local scope. One non-force branch push is authorized solely for
-exact-source Ubuntu verification; its result remains open.
+for its local scope. The authorized [exact-source Ubuntu
+run](validation/N01B-04-ubuntu-run-39268960501.md) succeeded on `4b2aadd2`;
+independent post-run reconciliation remains open.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -428,7 +430,8 @@ The board remains `started` with initiative authority `granted` and no active
 product-code directive. N01B-01 through N01B-03 have independently VERIFIED
 local and exact-source Ubuntu gates. N01B-04 candidate `abeeb895` is
 [independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md) for its
-local scope, with product source frozen. Its next gate is the authorized
-non-force branch push and exact-source Ubuntu verification; later product
+local scope, with product source frozen. The authorized
+[exact-source Ubuntu run](validation/N01B-04-ubuntu-run-39268960501.md)
+succeeded; its next gate is independent post-run reconciliation. Later product
 units remain open.
 No TUI, terminal UAT or real-provider test has run.

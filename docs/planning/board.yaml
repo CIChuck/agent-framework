@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: N01B-04 local candidate abeeb895 independently VERIFIED; one non-force branch push authorized for exact-source Ubuntu verification; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: N01B-04 local candidate abeeb895 independently VERIFIED and exact-source Ubuntu run 39268960501 green on pushed 4b2aadd2; independent post-run reconciliation next; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3275,3 +3275,10 @@ events:
   action: n01b_04_exact_non_force_push_authorized
   note: Maintainer replied 'continue' immediately after the controller identified the separate non-force push of feature/friday-tui for N01B-04 exact-source Ubuntu verification, and the controller stated this interpretation before acting. One push of frozen product candidate abeeb895 with scoped evidence-only authorization is allowed. No additional push, PR, merge, release, later product unit or TUI UAT acceptance is authorized.
   evidence: current-session reply 'continue'; docs/planning/active/friday-tui/validation/VAL-N01B-04-prepush-abeeb895.md
+- task: friday-tui
+  at: '2026-10-19T14:31:51+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_04_exact_source_ubuntu_green_pending_review
+  note: Non-force push advanced feature/friday-tui from f7950581 to 4b2aadd2. Ubuntu workflow 39268960501 checked out that exact SHA and passed full Runtime, full Chat, unchanged friday-cli, repeated MCP, wheels, metadata and installed configuration isolation. Fresh independent post-run reconciliation is pending; the workflow's installed probe does not exercise new export paths, and no terminal TUI UAT is inferred. The one push authorization is consumed.
+  evidence: docs/planning/active/friday-tui/validation/N01B-04-ubuntu-run-39268960501.md; https://github.com/CIChuck/agent-framework/actions/runs/39268960501

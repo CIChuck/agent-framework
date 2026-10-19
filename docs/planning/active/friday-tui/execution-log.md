@@ -5,9 +5,23 @@ gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-04 local candidate `abeeb895` independently
-VERIFIED; one non-force branch push is authorized for exact-source Ubuntu verification
+VERIFIED; authorized exact-source Ubuntu run 39268960501 succeeded, pending independent post-run reconciliation
 
-execution_phase: planning; validation_state: verified (N01B-04 local gate only; exact-source Ubuntu and TUI product/UAT open)
+execution_phase: validation; validation_state: in_review (N01B-04 exact-source Ubuntu post-run reconciliation; TUI product/UAT open)
+
+## 2026-10-19 — N01B-04 exact-source Ubuntu run green, pending independent review
+
+The one authorized non-force push advanced `origin/feature/friday-tui` from
+`f7950581` to `4b2aadd2`. Git remote and GitHub Actions metadata agree on
+the full pushed SHA; the [run report](validation/N01B-04-ubuntu-run-39268960501.md)
+records the matching checkout SHA, green full Runtime, Chat and unchanged
+`friday-cli` suites, repeated MCP checks, wheel metadata and installed
+configuration isolation. The pushed product source remains byte-identical to
+independently reviewed candidate `abeeb895`. The push authority is consumed.
+Independent post-run reconciliation is next; installed TUI terminal UAT and
+full initiative acceptance remain open.
+
+execution_phase: validation; validation_state: in_review (N01B-04 Ubuntu gate only).
 
 ## 2026-10-19 — N01B-04 exact-source Ubuntu push authorized
 
