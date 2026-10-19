@@ -5,9 +5,20 @@ gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-04 local candidate `abeeb895` independently
-VERIFIED; exact-source Ubuntu remains open
+VERIFIED; one non-force branch push is authorized for exact-source Ubuntu verification
 
 execution_phase: planning; validation_state: verified (N01B-04 local gate only; exact-source Ubuntu and TUI product/UAT open)
+
+## 2026-10-19 — N01B-04 exact-source Ubuntu push authorized
+
+Chuck Russell replied “continue” immediately after the controller identified
+the separate non-force `feature/friday-tui` push for exact-source Ubuntu
+verification. The controller stated that interpretation before acting. This
+authorizes one branch push containing frozen product candidate `abeeb895` and
+this scoped evidence-only authorization record. It does not authorize another
+push, a PR, merge, release, later product unit or TUI UAT acceptance.
+
+execution_phase: planning; validation_state: verified (N01B-04 local only; Ubuntu run pending).
 
 ## 2026-10-19 — N01B-04 local candidate independently VERIFIED
 

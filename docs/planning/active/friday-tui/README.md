@@ -20,7 +20,8 @@ on `f7950581` was [independently VERIFIED](validation/VAL-N01B-03-postrun-9a68d0
 TUI-N01B-04's neutral export destination/path directive is approved for its
 four named local source/test paths. Local candidate `abeeb895` is
 [independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md); its
-exact-source Ubuntu gate remains open.
+one non-force branch push is authorized for exact-source Ubuntu verification;
+that gate remains open.
 
 **Branch:** `feature/friday-tui`
 
@@ -699,8 +700,8 @@ resolution with Chat command behavior preserved. The maintainer approved its
 four exact local product source/test paths on 2026-10-19. Its
 [local construction checks](validation/N01B-04-local-checks.md) passed;
 candidate `abeeb895` was [independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md)
-for the local unit. Exact-source Ubuntu verification requires a separately
-authorized branch push. Later product
+for the local unit. The maintainer authorized one non-force branch push for
+exact-source Ubuntu verification. Later product
 units need their own bounded directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under

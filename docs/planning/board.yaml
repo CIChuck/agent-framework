@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: N01B-04 local candidate abeeb895 independently VERIFIED; request separate authorization for a non-force branch push and exact-source Ubuntu verification; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: N01B-04 local candidate abeeb895 independently VERIFIED; one non-force branch push authorized for exact-source Ubuntu verification; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3268,3 +3268,10 @@ events:
   action: n01b_04_local_candidate_independently_verified
   note: Fresh-context read-only reviewer VERIFIED frozen local product candidate abeeb895 against pinned authority, exact four-path diff, 13 direct and 239 protected tests, 365 Runtime and 860 Chat passes with five skips, static checks and isolated installed Runtime/Chat export behavior. Product source remains frozen. A non-force branch push for exact-source Ubuntu verification needs separate maintainer authorization; TUI terminal UAT, acceptance and later product units remain open.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-04-prepush-abeeb895.md
+- task: friday-tui
+  at: '2026-10-19T14:24:32+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_04_exact_non_force_push_authorized
+  note: Maintainer replied 'continue' immediately after the controller identified the separate non-force push of feature/friday-tui for N01B-04 exact-source Ubuntu verification, and the controller stated this interpretation before acting. One push of frozen product candidate abeeb895 with scoped evidence-only authorization is allowed. No additional push, PR, merge, release, later product unit or TUI UAT acceptance is authorized.
+  evidence: current-session reply 'continue'; docs/planning/active/friday-tui/validation/VAL-N01B-04-prepush-abeeb895.md
