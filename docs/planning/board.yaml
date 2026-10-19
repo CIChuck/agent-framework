@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review and approve proposed CD-TUI-CI02 test/workflow-only Linux remediation and safe /reorganize refusal; then obtain green exact-candidate Ubuntu run and fresh independent review
+  next_gate: Obtain fresh independent review of the locally checked CI02 candidate; then push the reviewed candidate for Ubuntu diagnosis and full Linux gates
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []

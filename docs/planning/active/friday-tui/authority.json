@@ -2,19 +2,22 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; TUI-CI01 approved for its exact Linux workflow scope only; later TUI product units remain design-only",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; TUI-CI01 workflow and TUI-CI02 exact test/workflow remediation approved; later TUI product units remain design-only",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "planning",
-  "validation_state": "changes_requested",
+  "execution_phase": "implementation",
+  "validation_state": "not_ready",
   "allowed_changes": [
     "docs/planning/active/friday-tui/** (scoped authority and evidence only)",
     "docs/planning/board.yaml (TUI task and its scoped events only)",
     "docs/planning/README.md (generated dashboard)",
-    ".github/workflows/friday-tui-linux.yml (TUI-CI01 only)"
+    ".github/workflows/friday-tui-linux.yml (TUI-CI01/CI02 only)",
+    "packages/friday-chat/tests_chat/test_cli.py (CI02 ANSI help coverage only)",
+    "packages/friday-chat/tests_chat/test_maintenance_commands.py (CI02 portable /reorganize assertions only)",
+    "packages/friday-runtime/tests_runtime/test_mcp_http_integration.py (CI02 synthetic startup diagnostic; timeout conditional on Ubuntu evidence)"
   ],
   "product_code_generation_authorized": false,
   "workflow_code_generation_authorized": true,
@@ -22,19 +25,12 @@
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
     "directives/CD-TUI-N01A-neutral-config-loader.md",
-    "directives/CD-TUI-CI01-linux-actions.md"
+    "directives/CD-TUI-CI01-linux-actions.md",
+    "directives/CD-TUI-CI02-linux-regression-remediation.md"
   ],
   "construction_directives_active": [
-    "directives/CD-TUI-CI01-linux-actions.md"
+    "directives/CD-TUI-CI02-linux-regression-remediation.md"
   ],
-  "proposed_next_construction_directive": {
-    "unit": "TUI-CI02",
-    "path": "directives/CD-TUI-CI02-linux-regression-remediation.md",
-    "status": "proposed; exact test/workflow scope awaits maintainer approval",
-    "product_code_generation_authorized": false,
-    "test_or_workflow_edits_authorized_under_ci02": false,
-    "proposed_linux_maintenance_behavior": "preserve existing safe non-Darwin refusal; full Linux maintenance execution deferred pending separate design"
-  },
   "validated_construction_scope": {
     "unit": "TUI-N01S",
     "directive": "directives/CD-TUI-N01S-session-identity.md",
@@ -49,12 +45,12 @@
   "protected": [
     "Existing friday-cli feature set, behavior and implementation",
     "Existing friday-chat behavior and defaults",
-    "All product packages, tests, scripts, workspace metadata and dependency lock pending a separately approved next construction directive",
+    "All other product packages, tests, scripts, workspace metadata and dependency lock pending a separately approved next construction directive",
     "Historical archive and frozen review evidence",
     "Existing local runtime, transcript and memory state"
   ],
   "external_delivery_authorized": true,
-  "external_delivery_scope": "Chuck Russell's 2026-10-18 reply 'yes, authorized' permits pushing feature/friday-tui to origin for TUI-CI01 Ubuntu verification and bounded workflow-only corrections; pull request, merge, release and product work remain unauthorized",
+  "external_delivery_scope": "Chuck Russell's 2026-10-18 reply 'approved' permits pushing the reviewed TUI-CI02 candidate to feature/friday-tui for the Ubuntu run; pull request, merge, release and product work remain unauthorized",
   "planning_completion_checks": [
     "Board/schema/dashboard consistency",
     "Current command inventory and source baseline reconciliation",
@@ -251,5 +247,20 @@
     "validation_outcome": "VERIFIED",
     "maintainer_closeout_evidence": "Current-session instruction 'Let's postpone testing on Linux for now. Close N01A.'",
     "remaining_release_gate": "Automated Linux smoke and final installed-candidate Linux terminal UAT remain required before first TUI release acceptance"
+  },
+  "active_construction_scope_ci02": {
+    "unit": "TUI-CI02",
+    "directive": "directives/CD-TUI-CI02-linux-regression-remediation.md",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-10-18",
+    "approval_evidence": "Current-session reply 'approved' to the explicit CI02 exact test/workflow scope and branch-push question",
+    "construction_base": "fdbf215d952e885f884ba14afcb96810f056d620",
+    "linux_maintenance_behavior": "preserve existing safe non-Darwin refusal; full Linux maintenance execution deferred pending separate design",
+    "product_code_generation_authorized": false,
+    "test_or_workflow_edits_authorized_under_ci02": true,
+    "remote_push_authorized": true,
+    "remote_push_authorization_evidence": "Same current-session reply 'approved' explicitly covered commit and push of resulting candidate to feature/friday-tui",
+    "conditional_mcp_timeout_gate": "Only after Ubuntu lifecycle outcome supports synthetic fixture timeout and repeated direct MCP interoperability checks pass",
+    "pr_merge_release_authorized": false
   }
 }

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import platform
 from pathlib import Path
 
 import pytest
@@ -56,6 +57,27 @@ def _context(
     return app.command_context
 
 
+def _assert_linux_reorganize_refusal(
+    context: RegistryCommandContext, output: str
+) -> None:
+    assert output == (
+        "Reorganization failed safely (MaintenancePlatformError). "
+        "Review sanitized diagnostics and recovery status."
+    )
+    assert context.runtime is not None
+    assert context.runtime.maintenance.actions == []
+    assert context.history == [("hello", "Friday: hello")]
+    assert context.last_context == "context"
+    assert context.last_prompt == "prompt"
+
+
+def _set_test_platform(
+    monkeypatch: pytest.MonkeyPatch, forced_linux: bool
+) -> None:
+    if forced_linux:
+        monkeypatch.setattr("friday_chat.reorganization.lease.platform.system", lambda: "Linux")
+
+
 async def test_reset_full_calls_all_stores_and_archives_transcripts() -> None:
     registry = build_default_registry()
     context = _context()
@@ -101,7 +123,11 @@ async def test_reset_store_failure_reports_and_continues() -> None:
     assert "- episodic: reset" in result.output
 
 
-async def test_reorganize_dry_run_default_and_execute_containment() -> None:
+@pytest.mark.parametrize("forced_linux", [False, True])
+async def test_reorganize_dry_run_default_and_execute_containment(
+    monkeypatch: pytest.MonkeyPatch, forced_linux: bool
+) -> None:
+    _set_test_platform(monkeypatch, forced_linux)
     registry = build_default_registry()
     context = _context()
 
@@ -109,8 +135,11 @@ async def test_reorganize_dry_run_default_and_execute_containment() -> None:
     _, execute = await registry.execute("/reorganize --execute", context)
 
     assert dry_run is not None
-    assert "Reorganization mode: full" in dry_run.output
-    assert "Dry run: True" in dry_run.output
+    if platform.system() == "Linux":
+        _assert_linux_reorganize_refusal(context, dry_run.output)
+    else:
+        assert "Reorganization mode: full" in dry_run.output
+        assert "Dry run: True" in dry_run.output
     assert execute is not None
     assert "Reorganization execute is disabled:" in execute.output
     assert "Dry run: False" not in execute.output
@@ -464,18 +493,29 @@ async def test_reorganize_rejects_execute_for_analyze_mode() -> None:
     assert "--analyze is analysis-only" in result.output
 
 
-async def test_reorganize_single_step_mode_dispatches_in_dry_run() -> None:
+@pytest.mark.parametrize("forced_linux", [False, True])
+async def test_reorganize_single_step_mode_dispatches_in_dry_run(
+    monkeypatch: pytest.MonkeyPatch, forced_linux: bool
+) -> None:
+    _set_test_platform(monkeypatch, forced_linux)
     registry = build_default_registry()
     context = _context()
 
     _, result = await registry.execute("/reorganize --dedupe", context)
 
     assert result is not None
-    assert "Reorganization mode: dedupe" in result.output
-    assert "Dry run: True" in result.output
+    if platform.system() == "Linux":
+        _assert_linux_reorganize_refusal(context, result.output)
+    else:
+        assert "Reorganization mode: dedupe" in result.output
+        assert "Dry run: True" in result.output
 
 
-async def test_reorganize_manual_default_ignores_mutating_maintenance_default() -> None:
+@pytest.mark.parametrize("forced_linux", [False, True])
+async def test_reorganize_manual_default_ignores_mutating_maintenance_default(
+    monkeypatch: pytest.MonkeyPatch, forced_linux: bool
+) -> None:
+    _set_test_platform(monkeypatch, forced_linux)
     registry = build_default_registry()
     context = _context()
     assert context.runtime is not None
@@ -484,10 +524,17 @@ async def test_reorganize_manual_default_ignores_mutating_maintenance_default() 
     _, result = await registry.execute("/reorganize", context)
 
     assert result is not None
-    assert "Dry run: True" in result.output
+    if platform.system() == "Linux":
+        _assert_linux_reorganize_refusal(context, result.output)
+    else:
+        assert "Dry run: True" in result.output
 
 
-async def test_reorganize_requires_persist_dir_and_reports_typed_capability() -> None:
+@pytest.mark.parametrize("forced_linux", [False, True])
+async def test_reorganize_requires_persist_dir_and_reports_typed_capability(
+    monkeypatch: pytest.MonkeyPatch, forced_linux: bool
+) -> None:
+    _set_test_platform(monkeypatch, forced_linux)
     registry = build_default_registry()
     missing_context = _context(persist_directory=None)
     error_context = _context()
@@ -500,8 +547,13 @@ async def test_reorganize_requires_persist_dir_and_reports_typed_capability() ->
     assert missing is not None
     assert missing.output == "Cannot reorganize: memory.persist_directory is required."
     assert error is not None
-    assert "Error [capability_unavailable]" in error.output
-    assert "maintenance mutation adapter is unavailable" in error.output
+    if platform.system() == "Linux":
+        _assert_linux_reorganize_refusal(error_context, error.output)
+        assert len(error_context.runtime.maintenance.errors) == 1
+        assert str(error_context.runtime.maintenance.errors[0]) == "embedding timeout"
+    else:
+        assert "Error [capability_unavailable]" in error.output
+        assert "maintenance mutation adapter is unavailable" in error.output
 
 
 async def test_reorganize_recovery_parser_and_execute_containment() -> None:

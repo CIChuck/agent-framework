@@ -41,16 +41,27 @@ def _install_cli_inputs(
     )
 
 
-def test_cli_help() -> None:
+@pytest.mark.parametrize("color_mode", ["plain", "github_actions", "force_color"])
+def test_cli_help(monkeypatch: pytest.MonkeyPatch, color_mode: str) -> None:
+    monkeypatch.delenv("GITHUB_ACTIONS", raising=False)
+    monkeypatch.delenv("FORCE_COLOR", raising=False)
+    monkeypatch.setenv("NO_COLOR", "1")
+    if color_mode != "plain":
+        monkeypatch.delenv("NO_COLOR")
+        monkeypatch.setenv(
+            "GITHUB_ACTIONS" if color_mode == "github_actions" else "FORCE_COLOR",
+            "1",
+        )
     runner = CliRunner()
 
     result = runner.invoke(app, ["--help"])
+    visible_help = re.sub(r"\x1b\[[0-9;]*m", "", result.output)
 
     assert result.exit_code == 0
-    assert "FridayV2 chat application" in result.output
-    assert "--version" in result.output
-    assert "--config" in result.output
-    assert "--cli-config" in result.output
+    assert "FridayV2 chat application" in visible_help
+    assert "--version" in visible_help
+    assert "--config" in visible_help
+    assert "--cli-config" in visible_help
 
 
 def test_cli_version() -> None:

@@ -5,15 +5,15 @@ closed under a maintainer-approved Linux-smoke deferral for that unit only.
 TUI-CI01's latest authorized Ubuntu run passed focused tests, unchanged
 `friday-cli` tests and installed-wheel checks, but failed one Runtime and five
 Chat tests. Its full Linux verification gate remains open. Product/test
-remediation requires a separately approved directive under the CI01 stop
-condition.
+remediation is now authorized by the bounded CI02 directive; its validation
+remains pending.
 
 **Lifecycle:** Started; board priority 14; current authority `granted` for
-TUI-CI01 only
+TUI-CI01 and the bounded TUI-CI02 test/workflow remediation
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: changes_requested (TUI-CI01 Linux failures; CI02 approval pending)
+execution_phase: implementation; validation_state: not_ready (TUI-CI02 candidate in progress; TUI-CI01 Linux failures remain open)
 
 **Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -81,8 +81,9 @@ Current planning artifacts:
 - [Moltbook-candidate independent preflight findings](validation/VAL-TUI-CI01-preflight-49acc931.md)
 - [Fourth Ubuntu Actions run and complete failure evidence](validation/TUI-CI01-ubuntu-run-39175010441.md)
 - [TUI-CI01 independent post-run review](validation/VAL-TUI-CI01-final-a7519db2.md)
-- [Proposed CI02 Linux regression remediation directive](directives/CD-TUI-CI02-linux-regression-remediation.md)
+- [Approved CI02 Linux regression remediation directive](directives/CD-TUI-CI02-linux-regression-remediation.md)
 - [CI02 before-code Linux failure diagnosis](validation/TUI-CI02-before-code-diagnosis.md)
+- [CI02 local candidate checks](validation/TUI-CI02-local-checks.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -634,8 +635,9 @@ its provider before final UAT. Build the user guide and configuration reference
 alongside the features they describe and verify them against that candidate.
 
 The [board](../../board.yaml) records `started` on `feature/friday-tui` with
-implementation authority `granted` for TUI-CI01's Linux Actions workflow
-only. N01A is closed under its unit-specific Linux deferral. No TUI
+implementation authority `granted` for TUI-CI01's Linux Actions workflow and
+TUI-CI02's bounded test/workflow remediation. N01A is closed under its
+unit-specific Linux deferral. No TUI
 executable, UAT result, publication or acceptance of the full initiative is
 claimed by this packet.
 

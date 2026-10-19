@@ -1,9 +1,9 @@
 # CD-TUI-CI02: Diagnose and correct Linux CI regressions
 
-**Status:** Proposed for maintainer review; not approved and not implementation
-authority. No source, test or workflow edit under this directive may begin
-until the maintainer approves its exact scope and the packet/board record that
-approval. TUI-CI01 remains `started` and `changes_requested`.
+**Status:** Approved by Chuck Russell on 2026-10-18 for the exact test/workflow
+scope below. His current-session reply "approved" also authorized committing
+and pushing the resulting candidate to `feature/friday-tui` for the Ubuntu run.
+TUI-CI01 remains `started` and `changes_requested` until its Linux gate passes.
 
 **Initiative/unit:** `friday-tui` / TUI-CI02
 
@@ -20,19 +20,19 @@ CI01-07 through CI01-10. The read-only
 [before-code diagnosis](../validation/TUI-CI02-before-code-diagnosis.md)
 distinguishes confirmed behavior from the unresolved MCP cause. CI01's
 workflow-only authority does not permit these
-test changes. Approval of this directive would grant only the bounded paths
-and behavior below; it would not accept CI01, authorize TUI product code,
+test changes. Approval of this directive grants only the bounded paths
+and behavior below; it does not accept CI01, authorize TUI product code,
 approve a PR/merge/release, or waive Linux terminal UAT.
 
-**Proposed Linux maintenance decision for approval:** Keep the current
+**Approved Linux maintenance decision:** Keep the current
 `friday-chat` behavior: `/reorganize` safely refuses on Linux because durable
 lease semantics are verified only on Darwin. Make tests assert that refusal
 and absence of mutation on Linux while retaining meaningful macOS command
 checks. Full Linux maintenance support, if desired later, needs its own
 cross-platform durability design and directive. This interpretation preserves
 the existing Chat and `friday-cli` feature sets and behavior. The maintainer's
-reply "approved continue" to the recommended next steps is treated as
-authorization to prepare this proposal, not as approval of unseen file edits.
+reply "approved continue" to the earlier recommended next steps authorized
+the proposal; the later reply "approved" authorized this exact directive.
 
 ## Objective and testable subunits
 
@@ -108,8 +108,8 @@ use only existing synthetic fixtures.
   embedded Bash/Python syntax, `uv lock --check`, board validation,
   dashboard check and `git diff --check`. Inspect the exact allowed-path
   diff. Commit a stable candidate, obtain fresh-context read-only
-  independent review, and record all findings. A separate maintainer
-  delivery authorization is required before a push to run Actions.
+  independent review, and record all findings. The maintainer authorized
+  pushing that reviewed candidate to `feature/friday-tui` for Actions.
 
 ## Stop and closeout gates
 

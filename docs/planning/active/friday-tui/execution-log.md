@@ -1,9 +1,29 @@
 # Friday TUI execution log
 
-Status: Active TUI-CI01 Linux verification stopped at its protected-source boundary; N01A closed under its
-maintainer-approved Linux-smoke deferral
+Status: Active TUI-CI02 bounded Linux test/workflow remediation; TUI-CI01
+Linux gate remains open; N01A closed under its maintainer-approved deferral
 
-execution_phase: planning; validation_state: changes_requested (TUI-CI01 Linux failures; CI02 approval pending)
+execution_phase: implementation; validation_state: not_ready (TUI-CI02 candidate in progress; TUI-CI01 Linux failures remain open)
+
+## 2026-10-18 — TUI-CI02 exact scope approved
+
+Chuck Russell replied "approved" to the explicit request to approve
+`CD-TUI-CI02-linux-regression-remediation.md` and authorize committing and
+pushing the resulting reviewed candidate to `feature/friday-tui`. This grants
+only the directive's named tests, workflow, and packet/board evidence edits.
+The approved Linux `/reorganize` outcome is the existing safe refusal without
+mutation; the macOS behavior remains covered. MCP timeout adjustment remains
+conditional on the Ubuntu diagnosis and passing direct interoperability checks.
+No product-source, `friday-cli`, dependency, PR, merge, release, or TUI
+implementation authority follows from this approval.
+
+The local candidate now has ANSI-independent Chat help assertions, native
+macOS and injected-Linux `/reorganize` checks, failure-only synthetic MCP
+lifecycle/child diagnostics, and separate repeated Runtime/direct-MCP steps
+in the Linux workflow. [Local checks](validation/TUI-CI02-local-checks.md)
+passed after loopback access for synthetic HTTP fixtures; the Ubuntu outcome
+and CI02-C timeout decision remain open. The next gate is exact-candidate
+independent review before the authorized branch push.
 
 ## 2026-10-16 — activation and build planning
 

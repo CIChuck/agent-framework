@@ -831,8 +831,29 @@ async def test_real_public_kernel_stdio_profiles_and_child_cleanup(
         monkeypatch,
         {"enabled": True, "mode": "all", "config": {"servers": [entry]}},
     )
+    started_at = asyncio.get_running_loop().time()
     try:
-        await kernel.start()
+        try:
+            await kernel.start()
+        except Exception as exc:
+            provider = kernel.mcp_provider
+            manager = provider.manager if provider is not None else None
+            clients = manager.connected_servers if manager is not None else []
+            client = manager.get_client("local") if "local" in clients else None
+            transport = getattr(client, "_transport", None)
+            process = getattr(transport, "_process", None)
+            counter_path = tmp_path / "stdio-counter.jsonl"
+            print(
+                "synthetic MCP startup diagnostic: "
+                f"profile={profile} modern={modern} "
+                f"elapsed_seconds={asyncio.get_running_loop().time() - started_at:.3f} "
+                f"exception_type={type(exc).__name__} "
+                f"lifecycle={provider.lifecycle if provider is not None else None} "
+                f"retained_clients={clients} "
+                f"child_returncode={getattr(process, 'returncode', None)} "
+                f"tool_record_count={len(records(counter_path))}"
+            )
+            raise
         client = kernel.mcp_provider.manager.get_client("local")
         transport = client._transport
         process = transport._process

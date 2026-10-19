@@ -73,8 +73,52 @@ jobs:
       - name: Diagnose MCP stdio auto-modern profile
         if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
         run: |
-          uv run --no-sync pytest -q --durations=1 \
-            'packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_public_kernel_stdio_profiles_and_child_cleanup[auto-True]'
+          failures=0
+          for attempt in 1 2 3; do
+            printf 'Runtime synthetic MCP attempt %s\n' "$attempt"
+            if ! uv run --no-sync pytest -q --durations=1 \
+              'packages/friday-runtime/tests_runtime/test_mcp_http_integration.py::test_real_public_kernel_stdio_profiles_and_child_cleanup[auto-True]'; then
+              failures=$((failures + 1))
+            fi
+          done
+          test "$failures" -eq 0
+
+      - name: Check direct MCP stdio interoperability repeatedly
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        run: |
+          failures=0
+          for attempt in 1 2 3; do
+            printf 'Direct MCP stdio attempt %s\n' "$attempt"
+            if ! uv run --no-sync pytest -q --durations=1 \
+              'packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_official_sdk_230_real_stdio_catalog_text_structured_and_reaping[auto]'; then
+              failures=$((failures + 1))
+            fi
+          done
+          test "$failures" -eq 0
+
+      - name: Capture Chat help output with and without ANSI color
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        run: |
+          uv run --no-sync python - <<'PY'
+          import os
+
+          from friday_chat.cli import app
+          from typer.testing import CliRunner
+
+          os.environ.pop("GITHUB_ACTIONS", None)
+          os.environ.pop("FORCE_COLOR", None)
+          os.environ["NO_COLOR"] = "1"
+          plain = CliRunner().invoke(app, ["--help"])
+          print(f"Plain help exit code: {plain.exit_code}")
+          print(plain.output)
+          os.environ.pop("NO_COLOR", None)
+          os.environ["FORCE_COLOR"] = "1"
+          colored = CliRunner().invoke(app, ["--help"])
+          print(f"Colored help exit code: {colored.exit_code}")
+          print(colored.output)
+          if plain.exit_code or colored.exit_code:
+              raise SystemExit("Chat help invocation failed")
+          PY
 
       - name: Test full Chat package
         if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
