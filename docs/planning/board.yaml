@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review and separately approve the exact CD-TUI-N01B-07 neutral transcript tool-record directive before product code; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Construct and locally test the exact CD-TUI-N01B-07 neutral transcript tool-record unit, then freeze a candidate for fresh independent read-only review; installed TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -347,7 +347,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-N01B-06-prepush-e16aede6.md (independent VERIFIED local N01B-06 candidate; exact-source Ubuntu and TUI UAT open)
   - docs/planning/active/friday-tui/validation/N01B-06-ubuntu-run-39284711876.md (completed/success exact-source Ubuntu run on N01B-06 push)
   - docs/planning/active/friday-tui/validation/VAL-N01B-06-postrun-3413c25f.md (independent VERIFIED N01B-06 exact-source Ubuntu reconciliation; later product/UAT open)
-  - docs/planning/active/friday-tui/validation/N01B-07-before-code-transcript-tool-record-characterization.md (303 unchanged tests and source-backed neutral tool-record proposal; N01B-07 implementation not authorized)
+  - docs/planning/active/friday-tui/validation/N01B-07-before-code-transcript-tool-record-characterization.md (303 unchanged tests and source-backed neutral tool-record baseline before separately approved N01B-07 local construction)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3407,3 +3407,10 @@ events:
   action: n01b_06_exact_source_ubuntu_independently_verified
   note: Fresh-context read-only reviewer VERIFIED the completed/success run and sole job 39284711876 against live remote, source and checkout aa8ae784 and independently matched the saved log hashes, test counts, wheels and installed configuration boundary. The N01B-06 automated Linux gate is closed; its source remains frozen and one push is consumed. N01B-07 remains a proposed directive awaiting separate exact maintainer approval. Installed TUI terminal UAT, later units, acceptance and additional delivery remain open.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-06-postrun-3413c25f.md; https://github.com/CIChuck/agent-framework/actions/runs/39284711876
+- task: friday-tui
+  at: '2026-10-19T16:51:51+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_07_exact_local_directive_approved
+  note: Maintainer replied 'All deliverables are approved. Continue with the next task' after the controller identified CD-TUI-N01B-07 as the proposed next product gate. Before code work the controller stated its interpretation as approval of the four named local Runtime/Chat source/test paths. No push, PR, merge, release, installed TUI UAT acceptance or later unit is authorized. N01B-06 source remains frozen.
+  evidence: current-session reply 'All deliverables are approved. Continue with the next task.'; docs/planning/active/friday-tui/directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md; docs/planning/active/friday-tui/authority.json

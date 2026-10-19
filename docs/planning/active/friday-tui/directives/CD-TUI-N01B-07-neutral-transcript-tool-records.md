@@ -1,9 +1,12 @@
 # CD-TUI-N01B-07: neutral transcript tool-record preparation
 
-**Status:** Proposed only; not approved for code generation. N01B-06's
-exact-source Ubuntu gate was [independently VERIFIED](../validation/VAL-N01B-06-postrun-3413c25f.md).
-A maintainer must separately approve this exact directive before any
-N01B-07 source or test edit.
+**Status:** Approved by Chuck Russell on 2026-10-19 for the four named local
+Runtime/Chat source and test paths below, plus scoped TUI evidence. The
+approval is the current-session reply “All deliverables are approved. Continue
+with the next task” after the controller identified this proposed directive as
+the next product gate and stated that interpretation before code work.
+N01B-06's exact-source Ubuntu gate was [independently
+VERIFIED](../validation/VAL-N01B-06-postrun-3413c25f.md).
 
 **Initiative/unit:** `friday-tui` / TUI-N01B-07, a bounded N01B transcript
 write subunit after N01B-06. **Branch/before-code product source:**
@@ -33,7 +36,7 @@ logging and MCP receipt checks. Existing Chat and `friday-cli` behavior,
 bytes, errors, side effects and public types must remain unchanged. The
 TUI does not call these functions in this unit.
 
-## Exact change boundary after separate approval
+## Exact approved local change boundary
 
 1. Add only `packages/friday-runtime/src/friday_runtime/transcript_tool_records.py`.
    Define a structural, frontend-independent typed tool-call input with

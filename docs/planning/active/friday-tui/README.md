@@ -39,13 +39,14 @@ reached `aa8ae784`; [exact-source Ubuntu run 39284711876](validation/N01B-06-ubu
 reported `completed/success` and was [independently VERIFIED](validation/VAL-N01B-06-postrun-3413c25f.md).
 Push authority is consumed.
 The [N01B-07 transcript tool-record directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
-is a planning proposal backed by [read-only source and test characterization](validation/N01B-07-before-code-transcript-tool-record-characterization.md).
-It grants no later product-code authority. Exact directive approval is the
-next product gate.
+is approved for four named local source/test paths, backed by [read-only source
+and test characterization](validation/N01B-07-before-code-transcript-tool-record-characterization.md).
+Construction and independent local review are next; no external delivery is
+authorized for this unit.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: verified (N01B-06 automated Ubuntu gate only; N01B-07 proposed and TUI product/UAT open)
+execution_phase: implementation; validation_state: not_ready (N01B-07 exact local construction; N01B-06 automated Ubuntu gate VERIFIED, TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -790,7 +791,7 @@ reached `aa8ae784` and is consumed; the [Ubuntu run](validation/N01B-06-ubuntu-r
 and job reported `completed/success` and were [independently
 reconciled](validation/VAL-N01B-06-postrun-3413c25f.md). The
 [N01B-07 tool-record directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
-is proposed only and needs separate approval before code work.
+is now approved for exact local construction and independent review.
 No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.

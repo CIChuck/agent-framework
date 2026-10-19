@@ -1,7 +1,9 @@
 # TUI-N01B-07 before-code transcript tool-record characterization
 
-**Status:** Read-only planning evidence on 2026-10-19. N01B-07 has no
-product-code authority. N01B-06 product source is frozen at `e16aede6`;
+**Status:** Read-only before-code evidence from 2026-10-19. N01B-07's
+exact four-path local directive was subsequently approved; this document
+does not establish implementation or validation. N01B-06 product source is
+frozen at `e16aede6`;
 its one authorized push reached `aa8ae784`, and [Ubuntu run
 39284711876](https://github.com/CIChuck/agent-framework/actions/runs/39284711876)
 was [independently VERIFIED](VAL-N01B-06-postrun-3413c25f.md). Local
@@ -63,8 +65,7 @@ behavior through a disposable store, including context-log and append
 failures. Protected existing Chat and `friday-cli` tests stay unchanged.
 
 **Stop point:** [CD-TUI-N01B-07](../directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
-is a proposal only. N01B-06's exact-source Ubuntu gate is independently
-VERIFIED; separate exact directive approval is the current board gate.
-No N01B-07 source,
-test, metadata, lock, workflow, push, PR, merge or release change is
-authorized by this characterization.
+was approved separately after this characterization. N01B-06's exact-source
+Ubuntu gate is independently VERIFIED. This characterization alone does not
+authorize a source, test, metadata, lock, workflow, push, PR, merge or release
+change; the approved directive controls exact local construction.

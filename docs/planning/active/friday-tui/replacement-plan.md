@@ -15,8 +15,8 @@ exact-source Ubuntu gate independently VERIFIED
 product source is frozen after bounded reviews; N01B-05 is independently
 VERIFIED locally and on exact-source Ubuntu, with source frozen; N01B-06 is
 independently VERIFIED locally and on exact-source Ubuntu, with source frozen
-and no active product-code directive; later product units remain
-proposals until separately approved
+and the N01B-07 tool-record directive active for its four named local paths;
+later product units remain proposals until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -325,10 +325,10 @@ reported `completed/success` and was [independently VERIFIED](validation/VAL-N01
 The one
 push authority is consumed.
 The [N01B-07 characterization](validation/N01B-07-before-code-transcript-tool-record-characterization.md)
-and [proposed directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
+and [approved directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
 split pure tool-call provenance preflight and record preparation from Chat's
-store effects. They are planning only, pending separate approval of exact
-construction scope.
+store effects. Their exact four-path local construction scope is now approved;
+validation remains pending.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -479,7 +479,7 @@ was approved for exact local construction; candidate `e16aede6` is
 The separately authorized non-force push reached `aa8ae784`; its
 [exact-source Ubuntu run](validation/N01B-06-ubuntu-run-39284711876.md)
 reported `completed/success` and was [independently reconciled](validation/VAL-N01B-06-postrun-3413c25f.md).
-The one push authority is consumed; N01B-07 still needs exact directive
-approval before product code.
+The one push authority is consumed; N01B-07 has exact local directive
+approval, with construction and independent review pending.
 Later product units remain open.
 No TUI, terminal UAT or real-provider test has run.

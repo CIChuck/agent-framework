@@ -1,6 +1,8 @@
 # Friday TUI execution log
 
-Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
+Status: N01B-07 exact local tool-record construction approved, with
+implementation and independent validation pending; N01S/N01A and CI03
+independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
@@ -9,10 +11,23 @@ VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
 VERIFIED; TUI-N01B-05 single-file export-effects candidate `c773f272` and
 exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
-exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED;
-N01B-07 directive proposed only
+exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: planning; validation_state: verified (N01B-06 automated Ubuntu gate only; N01B-07 approval and TUI product/UAT open)
+execution_phase: implementation; validation_state: not_ready (N01B-07 local construction; TUI product/UAT open)
+
+## 2026-10-19 — N01B-07 exact local construction approved
+
+Chuck Russell replied “All deliverables are approved. Continue with the next
+task” after the controller identified the proposed [N01B-07
+directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md) as
+the next product gate. Before code work, the controller stated its
+interpretation as approval for the directive's four named local Runtime/Chat
+source/test paths. Source baseline `aa8ae784` remains frozen from N01B-06;
+N01B-07 construction and independent validation now proceed locally. No
+additional push, PR, merge, release, later unit or installed TUI UAT
+acceptance is authorized.
+
+execution_phase: implementation; validation_state: not_ready (N01B-07 local unit).
 
 ## 2026-10-19 — N01B-06 exact-source Ubuntu gate independently VERIFIED
 
