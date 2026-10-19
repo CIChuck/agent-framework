@@ -6,12 +6,10 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from friday_runtime.transcript_export_files import (
+    create_all_session_export_directory,
+    write_all_session_files,
     write_context_log_file,
     write_current_session_file,
-)
-from friday_runtime.transcript_export_format import (
-    serialize_entries_csv,
-    serialize_sessions_csv,
 )
 from friday_runtime.transcript_export_paths import (
     resolve_export_directory,
@@ -317,7 +315,7 @@ def _write_all_session_export(
     root = export_directory(context)
     timestamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%S%fZ")
     directory = _safe_export_path(root, f"transcript-export-{timestamp}")
-    directory.mkdir(parents=False, exist_ok=False)
+    create_all_session_export_directory(directory)
     sessions_path = _safe_export_path(directory, "sessions.csv")
     entries_path = _safe_export_path(directory, "entries.csv")
 
@@ -325,14 +323,7 @@ def _write_all_session_export(
     entries = tuple(
         entry for _session, entries in entries_by_session for entry in entries
     )
-    sessions_path.write_text(
-        serialize_sessions_csv(sessions),
-        encoding="utf-8",
-    )
-    entries_path.write_text(
-        serialize_entries_csv(entries),
-        encoding="utf-8",
-    )
+    write_all_session_files(sessions_path, entries_path, sessions, entries)
     return TranscriptExportResult(
         files=(sessions_path, entries_path),
         session_count=len(sessions),

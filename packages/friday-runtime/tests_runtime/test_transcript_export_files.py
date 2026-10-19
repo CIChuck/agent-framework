@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import subprocess
 import sys
 from datetime import UTC, datetime
@@ -9,6 +10,8 @@ from pathlib import Path
 
 import pytest
 from friday_runtime.transcript_export_files import (
+    create_all_session_export_directory,
+    write_all_session_files,
     write_context_log_file,
     write_current_session_file,
 )
@@ -22,6 +25,129 @@ STAMP = datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC)
 SESSION = TranscriptSessionView("s-α", None, STAMP, None, "m", 1, 0)
 ENTRY = TranscriptEntryView("e-1", "s-α", 1, 'Hi, "Friday"\nagain', "Voilà", STAMP)
 LOG = TranscriptContextLogView("l-1", "s-α", 1, "e-1", "raw\nπ", None, STAMP)
+
+
+def test_all_session_directory_creation_preserves_collision_and_parent_rules(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    root = tmp_path / "exports"
+    root.mkdir()
+    destination = root / "transcript-export-fixed"
+    calls: list[tuple[Path, bool, bool]] = []
+    original_mkdir = Path.mkdir
+
+    def track_mkdir(
+        path: Path,
+        mode: int = 0o777,
+        parents: bool = False,
+        exist_ok: bool = False,
+    ) -> None:
+        calls.append((path, parents, exist_ok))
+        original_mkdir(path, mode=mode, parents=parents, exist_ok=exist_ok)
+
+    monkeypatch.setattr(Path, "mkdir", track_mkdir)
+    create_all_session_export_directory(destination)
+    assert destination.is_dir()
+    assert calls == [(destination, False, False)]
+    with pytest.raises(FileExistsError):
+        create_all_session_export_directory(destination)
+    with pytest.raises(FileNotFoundError):
+        create_all_session_export_directory(tmp_path / "missing" / "run")
+    assert calls == [
+        (destination, False, False),
+        (destination, False, False),
+        (tmp_path / "missing" / "run", False, False),
+    ]
+
+
+def test_all_session_pair_writes_exact_utf8_bytes_and_frozen_hashes(
+    tmp_path: Path,
+) -> None:
+    directory = tmp_path / "export"
+    create_all_session_export_directory(directory)
+    sessions_path = directory / "sessions.csv"
+    entries_path = directory / "entries.csv"
+    write_all_session_files(sessions_path, entries_path, (SESSION,), (ENTRY,))
+
+    assert (
+        sessions_path.read_bytes()
+        == (
+            '"session_id","user_id","started_at","ended_at","model_name",'
+            '"total_turns","total_tokens","archived"\n'
+            '"s-α","","2026-01-02T03:04:05+00:00","","m","1","0","False"\n'
+        ).encode()
+    )
+    assert (
+        entries_path.read_bytes()
+        == (
+            '"session_id","turn_number","timestamp","user_message",'
+            '"assistant_message","model_name","total_tokens","latency_ms"\n'
+            '"s-α","1","2026-01-02T03:04:05+00:00",'
+            '"Hi, ""Friday""\nagain","Voilà","","",""\n'
+        ).encode()
+    )
+    assert hashlib.sha256(sessions_path.read_bytes()).hexdigest() == (
+        "f259ccf80cb97232e5afaefbba5832a72c997351e82a16084300dc65e42134b2"
+    )
+    assert hashlib.sha256(entries_path.read_bytes()).hexdigest() == (
+        "4d918ce79fb4525be47f83b65b8fca830614e9a88131736a7bb9bf0e1288cd0c"
+    )
+
+
+def test_empty_all_session_pair_has_headers_and_writer_does_not_make_parent(
+    tmp_path: Path,
+) -> None:
+    directory = tmp_path / "export"
+    with pytest.raises(FileNotFoundError):
+        write_all_session_files(
+            directory / "sessions.csv", directory / "entries.csv", (), ()
+        )
+    assert not directory.exists()
+
+    create_all_session_export_directory(directory)
+    write_all_session_files(
+        directory / "sessions.csv", directory / "entries.csv", (), ()
+    )
+    assert (directory / "sessions.csv").read_bytes() == (
+        b'"session_id","user_id","started_at","ended_at","model_name",'
+        b'"total_turns","total_tokens","archived"\n'
+    )
+    assert (directory / "entries.csv").read_bytes() == (
+        b'"session_id","turn_number","timestamp","user_message",'
+        b'"assistant_message","model_name","total_tokens","latency_ms"\n'
+    )
+
+
+@pytest.mark.parametrize("failed_name", ["sessions.csv", "entries.csv"])
+def test_all_session_write_failure_propagates_and_keeps_completed_first_file(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    failed_name: str,
+) -> None:
+    directory = tmp_path / "export"
+    create_all_session_export_directory(directory)
+    sessions_path = directory / "sessions.csv"
+    entries_path = directory / "entries.csv"
+    calls: list[tuple[Path, str]] = []
+    original_write_text = Path.write_text
+
+    def fail_write(path: Path, text: str, *, encoding: str) -> int:
+        calls.append((path, encoding))
+        if path.name == failed_name:
+            raise PermissionError("synthetic write failure")
+        return original_write_text(path, text, encoding=encoding)
+
+    monkeypatch.setattr(Path, "write_text", fail_write)
+    with pytest.raises(PermissionError, match="synthetic write failure"):
+        write_all_session_files(sessions_path, entries_path, (SESSION,), (ENTRY,))
+    expected_calls = [(sessions_path, "utf-8")]
+    if failed_name == "entries.csv":
+        expected_calls.append((entries_path, "utf-8"))
+    assert calls == expected_calls
+    assert sessions_path.exists() is (failed_name == "entries.csv")
+    assert not entries_path.exists()
+    assert directory.is_dir()
 
 
 @pytest.mark.parametrize(
@@ -176,6 +302,8 @@ def test_neutral_module_imports_without_chat_or_cli() -> None:
         "from friday_runtime import transcript_export_files\n"
         "assert not any(name.startswith(('friday_chat', 'friday_cli')) "
         "for name in sys.modules)\n"
+        "assert callable(transcript_export_files.create_all_session_export_directory)\n"
+        "assert callable(transcript_export_files.write_all_session_files)\n"
         "assert callable(transcript_export_files.write_current_session_file)\n"
     )
     result = subprocess.run(

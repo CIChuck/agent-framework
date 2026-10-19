@@ -9,6 +9,7 @@ from friday_runtime.transcript_export_format import (
     serialize_context_logs_json,
     serialize_entries_csv,
     serialize_entries_jsonl,
+    serialize_sessions_csv,
     serialize_training_jsonl,
     serialize_transcript_markdown,
 )
@@ -17,6 +18,22 @@ from friday_runtime.transcript_views import (
     TranscriptEntryView,
     TranscriptSessionView,
 )
+
+
+def create_all_session_export_directory(destination: Path) -> None:
+    """Create one caller-named export directory without reusing a collision."""
+    destination.mkdir(parents=False, exist_ok=False)
+
+
+def write_all_session_files(
+    sessions_destination: Path,
+    entries_destination: Path,
+    sessions: Sequence[TranscriptSessionView],
+    entries: Sequence[TranscriptEntryView],
+) -> None:
+    """Write an all-session CSV pair to caller-prevalidated paths in order."""
+    sessions_destination.write_text(serialize_sessions_csv(sessions), encoding="utf-8")
+    entries_destination.write_text(serialize_entries_csv(entries), encoding="utf-8")
 
 
 def write_current_session_file(
@@ -59,4 +76,9 @@ def write_context_log_file(
     destination.write_text(text, encoding="utf-8")
 
 
-__all__ = ["write_context_log_file", "write_current_session_file"]
+__all__ = [
+    "create_all_session_export_directory",
+    "write_all_session_files",
+    "write_context_log_file",
+    "write_current_session_file",
+]
