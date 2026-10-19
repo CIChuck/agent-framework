@@ -71,6 +71,7 @@ from friday_memory.retrieval.mcp import (
     mcp_memory_snippet,
 )
 from friday_runtime.transcript_queries import TranscriptQueryAdapter
+from friday_runtime.transcript_session_effects import ensure_transcript_session
 from friday_runtime.transcript_tool_records import (
     build_transcript_tool_records,
     validate_transcript_tool_provenance,
@@ -1346,11 +1347,8 @@ class FrameworkTranscriptAdapter:
         return await TranscriptQueryAdapter(self.store).query_context_logs(session_id)
 
     async def _ensure_session(self) -> None:
-        session = await self.store.get_session(self.session_id)
-        if session is not None:
-            return
-        await self.store.create_session(
-            TranscriptSession(
+        def session_factory() -> TranscriptSession:
+            return TranscriptSession(
                 session_id=self.session_id,
                 user_id=self.config.chat.user_name,
                 model_name=self.config.llm.model or "unknown",
@@ -1362,7 +1360,8 @@ class FrameworkTranscriptAdapter:
                     mode="json", exclude={"tools": {"providers": {"mcp"}}}
                 ),
             )
-        )
+
+        await ensure_transcript_session(self.store, self.session_id, session_factory)
 
     async def _next_turn_number(self) -> int:
         if self._turn_number is None:

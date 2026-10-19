@@ -1,7 +1,7 @@
 # Friday TUI execution log
 
-Status: N01B-09 session-ensure directive is approved for exact four-path local
-construction; implementation and independent validation are pending. N01B-08 exact local
+Status: N01B-09 session-ensure local builder checks passed for the exact
+four-path directive; the candidate awaits independent validation. N01B-08 exact local
 write-effects candidate `8ac249d3` is independently
 VERIFIED with product source frozen; one authorized non-force push reached
 `c4a5faa6` and is consumed; exact-source Ubuntu run 39301138733 completed/
@@ -22,7 +22,22 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: construction; validation_state: verified (N01B-08 gates only; N01B-09 implementation and TUI UAT open)
+execution_phase: validation; validation_state: verified (N01B-08 gates only; N01B-09 independent review and TUI UAT open)
+
+## 2026-10-19 — N01B-09 local candidate checks passed, pending review
+
+The exact four-path session-ensure unit has 22 new passing tests, 414 full
+Runtime, 890 full Chat with five skips, and 155 unchanged CLI passes. Scoped
+Ruff/Mypy, offline lock, 17 wheels, and isolated installed Runtime-only and
+Chat persistence probes passed. The complete Runtime and Chat suites needed
+local loopback access for synthetic HTTP/TLS fixtures; initial sandboxed
+attempts failed at bind permission only. The [local check report](validation/N01B-09-local-checks.md)
+records the behavior comparisons and the existing SQLite archived-model
+reader limitation. Freeze the candidate for fresh-context read-only review.
+No additional push, exact-source Ubuntu run or installed TUI terminal UAT is
+inferred.
+
+execution_phase: validation; validation_state: pending (N01B-09 independent local review).
 
 ## 2026-10-19 — N01B-09 exact local directive approved
 

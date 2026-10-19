@@ -13,7 +13,8 @@ exact-source Ubuntu gate independently VERIFIED; N01B-07 neutral tool-record
 candidate `a196e95a` independently VERIFIED locally and on exact-source
 Ubuntu run 39294625340; N01B-08 neutral transcript write-effects candidate
 `8ac249d3` independently VERIFIED locally and on exact-source Ubuntu run
-39301138733; N01B-09 session-ensure directive approved for local construction
+39301138733; N01B-09 session-ensure local builder checks passed, independent
+validation pending
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; N01B-05 is independently
@@ -360,8 +361,9 @@ The [N01B-09 read-only characterization](validation/N01B-09-before-code-session-
 isolates Chat's current transcript session get-or-create effect, including
 its lazy snapshot, existing-session preservation and ignored false create.
 The [exact N01B-09 directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
-is approved for its four named local source/test paths and scoped TUI evidence;
-construction and independent validation are pending.
+is approved for its four named local source/test paths and scoped TUI evidence.
+[Builder checks](validation/N01B-09-local-checks.md) passed; the exact local
+candidate awaits independent validation.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -530,8 +532,8 @@ returned VERIFIED. The one authorized push is consumed; [exact-source
 Ubuntu run 39301138733](validation/N01B-08-ubuntu-run-39301138733.md)
 completed/success and was [independently reconciled](validation/VAL-N01B-08-postrun-3a5e05cf.md).
 Later product work remains a separate gate.
-The proposed [N01B-09 session-ensure directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
+The approved [N01B-09 session-ensure directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
 and [before-code characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
-define the next bounded approval request. No N01B-09 source/test work or
-additional push is authorized yet.
+bound the four-path local unit. [Builder checks](validation/N01B-09-local-checks.md)
+passed, with independent validation pending. No additional push is authorized.
 No TUI, terminal UAT or real-provider test has run.

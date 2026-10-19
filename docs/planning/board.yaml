@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Implement exact four-path CD-TUI-N01B-09 locally, run scoped checks and obtain fresh-context independent validation; installed TUI terminal UAT remains a release gate
+  next_gate: Freeze the exact four-path CD-TUI-N01B-09 local candidate and obtain fresh-context independent validation; installed TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3526,3 +3526,10 @@ events:
   action: n01b_09_exact_local_directive_approved
   note: Maintainer replied 'approved and authorized - proceed' after the controller linked exact CD-TUI-N01B-09 and requested approval of its four named local Runtime/Chat source/test paths. Local code, tests and scoped TUI evidence are authorized. No additional push, PR, merge, release, installed TUI UAT acceptance or later product unit is inferred.
   evidence: current-session reply 'approved and authorized - proceed'; docs/planning/active/friday-tui/directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-19T18:43:43+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_09_local_candidate_checks_passed_pending_review
+  note: The exact four-path Runtime/Chat session-ensure unit has 22 new tests, 414 full Runtime, 890 full Chat with five skips and 155 unchanged CLI passes. Scoped Ruff/Mypy, offline lock, 17 wheels and isolated installed Runtime-only and Chat persistence probes passed. Freeze the product candidate for fresh-context read-only independent review. No additional push or TUI UAT is inferred.
+  evidence: docs/planning/active/friday-tui/validation/N01B-09-local-checks.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md
