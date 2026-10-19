@@ -2,16 +2,16 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 independently verified on its exact scope; CD-TUI-N01B-02 independently verified locally and on its explicitly authorized exact-source Ubuntu run; CD-TUI-N01B-03 independently VERIFIED locally and its separately authorized exact-source Ubuntu run is green pending post-run review; later TUI product units remain design-only",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 independently verified on its exact scope; CD-TUI-N01B-02 independently verified locally and on its explicitly authorized exact-source Ubuntu run; CD-TUI-N01B-03 independently VERIFIED locally and on its separately authorized exact-source Ubuntu run; later TUI product units remain design-only",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "validation",
-  "validation_state": "pending",
+  "execution_phase": "planning",
+  "validation_state": "verified",
   "allowed_changes": [
-    "docs/planning/active/friday-tui/** (N01B-03 Ubuntu run and post-review evidence only; reviewed source frozen)",
+    "docs/planning/active/friday-tui/** (N01B-03 post-verdict evidence and next planning only; reviewed source frozen)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
@@ -56,7 +56,7 @@
   "n01b_03_directive_record": {
     "unit": "TUI-N01B-03",
     "path": "directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md",
-    "status": "independently VERIFIED locally; source frozen; exact-source Ubuntu run green on authorized push, pending independent post-run reconciliation",
+    "status": "independently VERIFIED locally and on authorized exact-source Ubuntu run; source frozen",
     "approved_by": "Chuck Russell",
     "approved_at": "2026-10-19",
     "approval_evidence": "Current-session reply 'approved' to the explicit CD-TUI-N01B-03 approval question",
@@ -69,7 +69,8 @@
     "validation_outcome": "VERIFIED for local work unit only",
     "pushed_source": "f7950581c2f65c2a3e5e7e31c80ccd0ecb5e0882",
     "ubuntu_run_report": "validation/N01B-03-ubuntu-run-39256858630.md",
-    "post_run_review_status": "pending",
+    "post_run_review_status": "VERIFIED",
+    "post_run_review_report": "validation/VAL-N01B-03-postrun-9a68d0c7.md",
     "source_code_generation_authorized": false,
     "external_delivery_authorized": false
   },
@@ -80,10 +81,11 @@
     "remote_branch": "origin/feature/friday-tui",
     "force_push": false,
     "ubuntu_run": "https://github.com/CIChuck/agent-framework/actions/runs/39256858630",
-    "ubuntu_run_result": "success on exact pushed SHA; independent post-run reconciliation pending",
+    "ubuntu_run_result": "success on exact pushed SHA; independent post-run reconciliation VERIFIED",
     "additional_push_authorized": false,
     "pr_merge_release_authorized": false
   },
+  "n01b_03_delivery_gate": "Authorized non-force branch push reached f7950581c2f65c2a3e5e7e31c80ccd0ecb5e0882; exact-source Ubuntu run 39256858630 and independent post-run review VERIFIED N01B-03. Later N01B product effects need a separately approved exact directive; installed terminal UAT remains a release gate",
   "n01b_02_directive_record": {
     "unit": "TUI-N01B-02",
     "path": "directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md",
@@ -176,7 +178,7 @@
     "Existing local runtime, transcript and memory state"
   ],
   "external_delivery_authorized": false,
-  "external_delivery_scope": "The separately authorized non-force N01B-03 push reached f7950581c2f65c2a3e5e7e31c80ccd0ecb5e0882; exact-source Ubuntu run 39256858630 succeeded and awaits independent post-run reconciliation. The earlier N01B-02 push and automated Linux gate remain verified. No further push, PR, merge, release or deployment is authorized by the consumed N01B-03 delivery action",
+  "external_delivery_scope": "The separately authorized non-force N01B-03 push reached f7950581c2f65c2a3e5e7e31c80ccd0ecb5e0882; exact-source Ubuntu run 39256858630 and independent post-run review VERIFIED its automated Linux gate. The earlier N01B-02 push and automated Linux gate remain verified. No further push, PR, merge, release or deployment is authorized by the consumed N01B-03 delivery action",
   "planning_completion_checks": [
     "Board/schema/dashboard consistency",
     "Current command inventory and source baseline reconciliation",
@@ -193,7 +195,7 @@
     "Q-03": "Quit at a safe stopping point, finishing any non-interruptible operation and cleaning up before exiting."
   },
   "follow_up_request": "Proceed and walk me through the decision process, following the request to finalize the technical integration contract.",
-  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contract extraction and exact-source Ubuntu gate are independently VERIFIED. N01B-02 neutral persisted-query adapter and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-03 pure transcript-export serialization is independently VERIFIED locally; its exact-source Ubuntu run passed and awaits independent post-run reconciliation. Export file effects, transcript writes, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
+  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contract extraction and exact-source Ubuntu gate are independently VERIFIED. N01B-02 neutral persisted-query adapter and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-03 pure transcript-export serialization and its authorized exact-source Ubuntu run are independently VERIFIED. Export file effects, transcript writes, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
   "draft_construction_directive": "directives/CD-TUI-001-shared-presentation-contracts.md (withdrawn; not executable)",
   "read_only_design_checks": [
     "Existing CLI/selected Chat pytest baseline with fake providers and network guard; no source or test edits",
@@ -208,7 +210,7 @@
     "source": "Current-session instruction: test as we build, break phases into testable subunits and do not forget UAT.",
     "requirement": "Immediate unit/regression checks during construction and explicit real-user UAT",
     "proposed_execution_plan": "replacement-plan.md proposes bounded units, macOS milestone UAT, automated Linux checks during construction, final hands-on Linux UAT and a controlled real-provider/tool run; provider selection is a required pre-UAT gate",
-    "execution_status": "N01B-01 contract extraction and exact-source Ubuntu run are independently verified; N01B-02 neutral adapter, protected Chat/friday-cli comparisons and exact-source Ubuntu run 39248181260 are independently verified. N01B-03 pure export serialization, protected comparisons and isolated installed-wheel behavior are independently VERIFIED locally; its exact-source Ubuntu run 39256858630 succeeded and awaits independent post-run reconciliation. No installed TUI terminal UAT or user UAT signoff is inferred"
+    "execution_status": "N01B-01 contract extraction and exact-source Ubuntu run are independently verified; N01B-02 neutral adapter, protected Chat/friday-cli comparisons and exact-source Ubuntu run 39248181260 are independently verified. N01B-03 pure export serialization, protected comparisons, isolated installed-wheel behavior and exact-source Ubuntu run 39256858630 are independently VERIFIED. No installed TUI terminal UAT or user UAT signoff is inferred"
   },
   "accepted_runtime_configuration_requirement": {
     "confirmed_by": "Chuck Russell",

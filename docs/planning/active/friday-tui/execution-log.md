@@ -3,10 +3,26 @@
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
-independently verified; TUI-N01B-03 local unit independently verified and its
-exact-source Ubuntu run green, pending post-run review
+independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
+independently verified
 
-execution_phase: validation; validation_state: pending (N01B-03 post-run independent review; TUI product/UAT not ready)
+execution_phase: planning; validation_state: verified (N01B-03 local and exact-source Ubuntu gates only; TUI product/UAT not ready)
+
+## 2026-10-19 — N01B-03 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-03-postrun-9a68d0c7.md)
+the [green Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md) against
+pushed source `f7950581` and evidence-only packet candidate `9a68d0c7`.
+The reviewer matched the checkout, Runtime/Chat/unchanged `friday-cli` results,
+MCP repeats, wheels and installed configuration probe in the saved job log.
+The reviewer could not independently query live GitHub metadata, a limit
+recorded in the report; the controller had separately queried the successful
+run and job metadata. Product source remained byte-identical to the local
+reviewed candidate. N01B-03's automated Linux gate is closed. The next N01B
+product unit requires its own exact directive and approval; installed TUI
+terminal UAT, maintainer acceptance and further external delivery remain open.
+
+execution_phase: planning; validation_state: verified (N01B-03 local and Ubuntu gates only).
 
 ## 2026-10-19 — N01B-03 authorized push and green exact-source Ubuntu run
 
