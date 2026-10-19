@@ -5,7 +5,36 @@ gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified
 
-execution_phase: planning; validation_state: verified (N01B-02 exact-source Ubuntu gate only; TUI product/UAT not ready)
+execution_phase: validation; validation_state: pending (N01B-03 independent review; TUI product/UAT not ready)
+
+## 2026-10-19 — N01B-03 local construction checks passed
+
+The four approved source/test paths now supply pure Runtime export
+serialization and Chat delegation. The [local report](validation/N01B-03-local-checks.md)
+records 204 focused/protected passes, full Runtime 356, full Chat 856 with
+five skips, unchanged `friday-cli` 155, static/lock gates and isolated wheel
+checks reproducing all seven frozen export hashes. The first sandboxed full
+Runtime attempt failed only at nine disposable `127.0.0.1` bind calls; its
+local-loopback rerun passed. Whole-file Chat formatting remains red on its
+pre-code source, while the edited ranges pass. The next gate is a stable
+candidate commit and fresh-context read-only independent review. No push,
+exact-source Ubuntu run or installed TUI terminal UAT is claimed.
+
+execution_phase: validation; validation_state: pending (N01B-03 independent review).
+
+## 2026-10-19 — N01B-03 exact directive approved
+
+Chuck Russell replied "approved" to the explicit
+[CD-TUI-N01B-03](directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md)
+question. The authority manifest activates only its four named Runtime/Chat
+source/test paths and scoped TUI packet/board evidence. The
+[before-code characterization](validation/N01B-03-before-code-characterization.md)
+is the protected comparison. The next gate is bounded implementation,
+local checks, a stable candidate commit and fresh independent review.
+The approval does not extend to Chat export file effects, a TUI executable,
+later N01B units or external delivery.
+
+execution_phase: implementation; validation_state: not_ready (N01B-03 construction begins).
 
 ## 2026-10-19 — N01B-03 export serialization directive proposed
 

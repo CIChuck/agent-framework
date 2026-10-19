@@ -1,7 +1,6 @@
 # CD-TUI-N01B-03: neutral transcript-export serialization
 
-**Status:** Proposed on 2026-10-19; maintainer approval pending. No product
-code generation is authorized by this draft.
+**Status:** Approved for bounded construction on 2026-10-19 by Chuck Russell.
 
 **Initiative/unit:** `friday-tui` / TUI-N01B-03, a separately gated N01B
 subunit after the independently VERIFIED N01B-01 and N01B-02 query work.
@@ -134,7 +133,8 @@ product/test/metadata path is needed. Do not begin export file effects,
 transcript writes, session lifecycle, assembly/close, TUI implementation or
 terminal UAT under this directive.
 
-**Approval fields:** Maintainer approval pending. The current request to
-proceed authorizes this reviewable planning draft only. Construction begins
-only after Chuck Russell explicitly approves this exact CD-TUI-N01B-03
-scope. Push, PR, merge, release and later N01B subunits remain separate.
+**Approval fields:** Maintainer Chuck Russell; approved 2026-10-19 by the
+current-session reply "approved" to the explicit question approving this
+exact CD-TUI-N01B-03 directive. Only its four named source/test paths and
+scoped TUI packet/board evidence are authorized. Push, PR, merge, release
+and later N01B subunits remain separate.

@@ -6,7 +6,8 @@ and exact-source Ubuntu gate independently VERIFIED; N01B-02 local and
 exact-source Ubuntu gates independently VERIFIED
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 and N01B-02 source
-frozen after their bounded reviews; no product-code directive is active;
+frozen after their bounded reviews; N01B-03 is the only active product-code
+directive and its local checks passed, pending candidate freeze and review;
 later product units remain design-only until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
@@ -270,12 +271,14 @@ VERIFIED candidate `e62f39ce` for local pre-push readiness. The separately
 authorized push reached `07177e6c`, and its [exact-source Ubuntu
 run](validation/N01B-02-ubuntu-run-39248181260.md) was
 [independently reconciled](validation/VAL-N01B-02-postrun-8e389def.md).
-The next proposed subunit is pure transcript-export serialization under
+The next approved subunit is pure transcript-export serialization under
 [CD-TUI-N01B-03](directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md)
 and its [195-pass before-code characterization](validation/N01B-03-before-code-characterization.md).
 It leaves Chat's export file effects and command behavior in Chat. This
-directive is not yet approved; file effects and later N01B primitives need
-their own subsequent boundaries. No N01B-03 product code is authorized yet.
+directive authorizes only the four named source/test paths for local
+construction; file effects and later N01B primitives need their own
+subsequent boundaries. The [local checks](validation/N01B-03-local-checks.md)
+passed; independent review is pending.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |

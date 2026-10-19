@@ -2,12 +2,17 @@
 
 from __future__ import annotations
 
-import csv
-import io
-import json
-from collections.abc import Sequence
 from datetime import UTC, datetime
 from pathlib import Path
+
+from friday_runtime.transcript_export_format import (
+    serialize_context_logs_json,
+    serialize_entries_csv,
+    serialize_entries_jsonl,
+    serialize_sessions_csv,
+    serialize_training_jsonl,
+    serialize_transcript_markdown,
+)
 
 from friday_chat.commands.contracts import (
     CommandContext,
@@ -311,60 +316,22 @@ def _write_all_session_export(
     sessions_path = _safe_export_path(directory, "sessions.csv")
     entries_path = _safe_export_path(directory, "entries.csv")
 
-    session_rows = [
-        (
-            session.session_id,
-            session.user_id or "",
-            session.started_at.isoformat(),
-            session.ended_at.isoformat() if session.ended_at is not None else "",
-            session.model_name,
-            session.total_turns,
-            session.total_tokens,
-            session.archived,
-        )
-        for session, _entries in entries_by_session
-    ]
-    entry_rows = [
-        _entry_csv_row(entry)
-        for _session, entries in entries_by_session
-        for entry in entries
-    ]
+    sessions = tuple(session for session, _entries in entries_by_session)
+    entries = tuple(
+        entry for _session, entries in entries_by_session for entry in entries
+    )
     sessions_path.write_text(
-        _csv_text(
-            (
-                "session_id",
-                "user_id",
-                "started_at",
-                "ended_at",
-                "model_name",
-                "total_turns",
-                "total_tokens",
-                "archived",
-            ),
-            session_rows,
-        ),
+        serialize_sessions_csv(sessions),
         encoding="utf-8",
     )
     entries_path.write_text(
-        _csv_text(
-            (
-                "session_id",
-                "turn_number",
-                "timestamp",
-                "user_message",
-                "assistant_message",
-                "model_name",
-                "total_tokens",
-                "latency_ms",
-            ),
-            entry_rows,
-        ),
+        serialize_entries_csv(entries),
         encoding="utf-8",
     )
     return TranscriptExportResult(
         files=(sessions_path, entries_path),
-        session_count=len(session_rows),
-        entry_count=len(entry_rows),
+        session_count=len(sessions),
+        entry_count=len(entries),
     )
 
 
@@ -378,51 +345,34 @@ def _write_current_session_export(
     if export_format == "csv":
         path = _safe_export_path(root, "friday_current_session.csv")
         path.write_text(
-            _csv_text(
-                (
-                    "session_id",
-                    "turn_number",
-                    "timestamp",
-                    "user_message",
-                    "assistant_message",
-                    "model_name",
-                    "total_tokens",
-                    "latency_ms",
-                ),
-                [_entry_csv_row(entry) for entry in entries],
-            ),
+            serialize_entries_csv(entries),
             encoding="utf-8",
         )
     elif export_format == "jsonl":
         path = _safe_export_path(root, "friday_current_session.jsonl")
-        lines = [
-            json.dumps(_entry_json_record(entry), ensure_ascii=False, sort_keys=True)
-            for entry in entries
-        ]
-        path.write_text("\n".join(lines), encoding="utf-8")
+        path.write_text(serialize_entries_jsonl(entries), encoding="utf-8")
     elif export_format == "training":
         path = _safe_export_path(root, "friday_current_session_training.jsonl")
-        lines = [
-            json.dumps(
-                {
-                    "messages": [
-                        {"role": "user", "content": entry.user_message or ""},
-                        {
-                            "role": "assistant",
-                            "content": entry.assistant_message or "",
-                        },
-                    ]
-                },
-                ensure_ascii=False,
-                sort_keys=True,
-            )
-            for entry in entries
-        ]
-        path.write_text("\n".join(lines), encoding="utf-8")
+        path.write_text(serialize_training_jsonl(entries), encoding="utf-8")
     else:
         path = _safe_export_path(root, "friday_current_session.md")
+        user_name = (
+            context.runtime.config.chat.user_name
+            if context.runtime is not None
+            else "User"
+        )
+        assistant_name = (
+            context.runtime.config.chat.assistant_name
+            if context.runtime is not None
+            else "Friday"
+        )
         path.write_text(
-            _format_transcript_markdown(context, session, entries),
+            serialize_transcript_markdown(
+                session,
+                entries,
+                user_name=user_name,
+                assistant_name=assistant_name,
+            ),
             encoding="utf-8",
         )
     return TranscriptExportResult(files=(path,), entry_count=len(entries))
@@ -434,19 +384,8 @@ def _write_context_log_export(
     context_logs: tuple[TranscriptContextLogView, ...],
 ) -> TranscriptExportResult:
     path = _safe_export_path(export_directory(context), "friday_prompts.json")
-    payload = [
-        {
-            "session_id": session.session_id,
-            "turn_number": entry.turn_number,
-            "entry_id": entry.entry_id,
-            "captured_at": entry.captured_at.isoformat(),
-            "prompt": entry.raw_prompt,
-            "raw_response": entry.raw_response,
-        }
-        for entry in context_logs
-    ]
     path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True),
+        serialize_context_logs_json(session, context_logs),
         encoding="utf-8",
     )
     return TranscriptExportResult(
@@ -462,72 +401,6 @@ def _safe_export_path(root: Path, *parts: str) -> Path:
     if not candidate.is_relative_to(resolved_root):
         raise ValueError("export path escaped configured root")
     return candidate
-
-
-def _csv_text(
-    header: tuple[str, ...],
-    rows: Sequence[Sequence[object]],
-) -> str:
-    handle = io.StringIO(newline="")
-    writer = csv.writer(handle, quoting=csv.QUOTE_ALL, lineterminator="\n")
-    writer.writerow(header)
-    writer.writerows(rows)
-    return handle.getvalue()
-
-
-def _entry_csv_row(entry: TranscriptEntryView) -> tuple[object, ...]:
-    return (
-        entry.session_id,
-        entry.turn_number,
-        entry.timestamp.isoformat(),
-        entry.user_message or "",
-        entry.assistant_message or "",
-        entry.model_name or "",
-        entry.total_tokens if entry.total_tokens is not None else "",
-        entry.latency_ms if entry.latency_ms is not None else "",
-    )
-
-
-def _entry_json_record(entry: TranscriptEntryView) -> dict[str, object]:
-    return {
-        "assistant_message": entry.assistant_message,
-        "entry_id": entry.entry_id,
-        "latency_ms": entry.latency_ms,
-        "model_name": entry.model_name,
-        "session_id": entry.session_id,
-        "timestamp": entry.timestamp.isoformat(),
-        "total_tokens": entry.total_tokens,
-        "turn_number": entry.turn_number,
-        "user_message": entry.user_message,
-    }
-
-
-def _format_transcript_markdown(
-    context: CommandContext,
-    session: TranscriptSessionView,
-    entries: tuple[TranscriptEntryView, ...],
-) -> str:
-    user_name = (
-        context.runtime.config.chat.user_name if context.runtime is not None else "User"
-    )
-    assistant_name = (
-        context.runtime.config.chat.assistant_name
-        if context.runtime is not None
-        else "Friday"
-    )
-    lines = [f"# Transcript: {session.session_id}", ""]
-    for entry in entries:
-        lines.extend(
-            (
-                f"## Turn {entry.turn_number}",
-                "",
-                f"**{user_name}:** {entry.user_message or ''}",
-                "",
-                f"**{assistant_name}:** {entry.assistant_message or ''}",
-                "",
-            )
-        )
-    return "\n".join(lines).rstrip() + "\n"
 
 
 def _record_count(count: int, noun: str) -> str:

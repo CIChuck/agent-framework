@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review and explicitly approve proposed CD-TUI-N01B-03 pure transcript-export serialization before product code; N01B-02 local and exact-source Ubuntu gates VERIFIED; installed macOS/Linux terminal UAT remains a release gate
+  next_gate: N01B-03 local byte/regression/installed checks passed; freeze exact candidate and obtain fresh-context independent review; installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -328,6 +328,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-02-ubuntu-run-39248181260.md (green exact-source N01B-02 Ubuntu run)
   - docs/planning/active/friday-tui/validation/VAL-N01B-02-postrun-8e389def.md (independent VERIFIED N01B-02 exact-source Ubuntu reconciliation; later product/UAT open)
   - docs/planning/active/friday-tui/validation/N01B-03-before-code-characterization.md (195 unchanged tests and seven-file byte probe; proposed directive planning only)
+  - docs/planning/active/friday-tui/validation/N01B-03-local-checks.md (builder local byte/regression and installed-wheel checks before independent review)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3184,3 +3185,17 @@ events:
   action: n01b_03_pure_export_serialization_directive_proposed
   note: After the maintainer asked to proceed to the board's next TUI gate, read-only inspection isolated pure transcript-export serializers from Chat-owned command and file effects. The unchanged focused/protected suite passed 195 tests, and a disposable seven-file UTF-8 byte probe was recorded at clean c1e38d94. CD-TUI-N01B-03 is proposed for exact maintainer approval; no product code, later export effects, push or TUI UAT is authorized by this planning step.
   evidence: docs/planning/active/friday-tui/validation/N01B-03-before-code-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md
+- task: friday-tui
+  at: '2026-10-19T12:30:38+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_03_exact_directive_approved
+  note: Chuck Russell replied 'approved' to the explicit CD-TUI-N01B-03 question. Local construction is limited to its four Runtime/Chat source/test paths and scoped packet/board evidence. Chat export file effects, later N01B units, push, PR, merge, release and full TUI UAT remain outside this approval.
+  evidence: current-session reply 'approved'; docs/planning/active/friday-tui/directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md
+- task: friday-tui
+  at: '2026-10-19T12:40:20+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_03_local_checks_passed_pending_independent_review
+  note: The four approved source/test paths passed 204 focused and protected tests, full Runtime 356, full Chat 856 with five skips, unchanged friday-cli 155, static/lock checks and isolated installed-wheel export hashes. An initial sandboxed Runtime run failed only on nine local bind permissions; its loopback rerun passed. Freeze a stable candidate for independent review. No further N01B product unit, push or installed TUI UAT is inferred.
+  evidence: docs/planning/active/friday-tui/validation/N01B-03-local-checks.md
