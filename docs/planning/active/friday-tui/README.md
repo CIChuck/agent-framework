@@ -24,10 +24,12 @@ authorized [exact-source Ubuntu run](validation/N01B-04-ubuntu-run-39268960501.m
 on `4b2aadd2` was [independently VERIFIED](validation/VAL-N01B-04-postrun-27c84ad9.md).
 The [N01B-05 single-file export-effects directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
 is approved for four exact Runtime/Chat source/test paths and scoped local evidence.
+Its [local construction checks](validation/N01B-05-local-checks.md) passed;
+candidate freeze and independent review are pending.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: implementation; validation_state: not_ready (N01B-05 local construction; N01B-04 local and Ubuntu gates VERIFIED; TUI product/UAT open)
+execution_phase: validation; validation_state: in_review (N01B-05 local candidate pending independent review; N01B-04 gates VERIFIED; TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -137,6 +139,7 @@ Current planning artifacts:
 - [Independent N01B-04 post-run Ubuntu reconciliation](validation/VAL-N01B-04-postrun-27c84ad9.md)
 - [N01B-05 before-code single-file export characterization](validation/N01B-05-before-code-single-file-export-characterization.md)
 - [Approved N01B-05 neutral single-file export-effects directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
+- [N01B-05 local construction checks](validation/N01B-05-local-checks.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -714,7 +717,8 @@ and [239-pass before-code characterization](validation/N01B-05-before-code-singl
 isolate the single-file write effects for `/export` and `/export-prompts`.
 They preserve Chat's result identity and safe-path call sites, and leave
 two-file `/transcript export` writing for a later unit. N01B-05 is approved
-for the four named local source/test paths. At each
+for the four named local source/test paths; its local checks passed and a
+fresh-context independent review is next. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
 TUI-CI01/CI02 and are independently VERIFIED on the reviewed CI03 source.
@@ -741,7 +745,7 @@ passed and was [independently reconciled](validation/VAL-N01B-03-postrun-9a68d0c
 N01A is closed under
 its unit-specific Linux deferral. Later N01B effects beyond N01B-05 require
 separate authority; N01B-04's local and automated Linux gates are independently
-VERIFIED. N01B-05 local construction is active. No TUI executable, UAT
+VERIFIED. N01B-05 local candidate awaits independent review. No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.
 

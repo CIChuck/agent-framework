@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Construct and locally validate approved CD-TUI-N01B-05 single-file export effects on four exact source/test paths, then freeze candidate for independent review; no N01B-05 push authorized; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Freeze N01B-05 local candidate and obtain fresh-context read-only independent validation of exact four-path source/test diff and local evidence; no N01B-05 push authorized; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -338,6 +338,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-04-ubuntu-run-39268960501.md (green exact-source Ubuntu run on authorized N01B-04 push)
   - docs/planning/active/friday-tui/validation/VAL-N01B-04-postrun-27c84ad9.md (independent VERIFIED N01B-04 exact-source Ubuntu reconciliation; later product/UAT open)
   - docs/planning/active/friday-tui/validation/N01B-05-before-code-single-file-export-characterization.md (239 unchanged baseline tests and read-only export-effect characterization; proposed directive planning only)
+  - docs/planning/active/friday-tui/validation/N01B-05-local-checks.md (builder local suites, protected comparisons and installed-wheel checks; independent review pending)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3306,3 +3307,10 @@ events:
   action: n01b_05_exact_local_construction_approved
   note: Maintainer replied 'continue' immediately after the controller linked CD-TUI-N01B-05 and identified exact-directive approval as the next gate; the controller stated this interpretation before code work. Local authority covers only the four named Runtime/Chat source and test paths plus scoped TUI packet evidence. No push, PR, merge, release, later N01B unit or installed TUI UAT is authorized.
   evidence: docs/planning/active/friday-tui/directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-19T15:05:15+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_05_local_construction_checks_passed
+  note: Exact four-path Runtime/Chat extraction passed 14 new tests, 253 focused/protected including unchanged CLI, full Runtime 377, full Chat 862 with five skips, standalone unchanged CLI 155, Ruff, targeted Mypy, offline lock, all 17 wheel builds, and installed Runtime-only and Chat frozen-hash probes. Initial full-suite socket failures were sandbox-only and passed with loopback access. Candidate freeze and independent review remain; no push or TUI UAT is inferred.
+  evidence: docs/planning/active/friday-tui/validation/N01B-05-local-checks.md

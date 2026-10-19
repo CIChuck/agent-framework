@@ -6,9 +6,22 @@ independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-04 local candidate `abeeb895` independently
 VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
-VERIFIED; TUI-N01B-05 single-file export-effects directive approved for exact local construction
+VERIFIED; TUI-N01B-05 single-file export-effects local checks passed, independent review pending
 
-execution_phase: implementation; validation_state: not_ready (N01B-05 local construction; N01B-04 gates VERIFIED; TUI product/UAT open)
+execution_phase: validation; validation_state: in_review (N01B-05 local candidate pending independent review; N01B-04 gates VERIFIED; TUI product/UAT open)
+
+## 2026-10-19 — N01B-05 local construction checks passed
+
+The [local report](validation/N01B-05-local-checks.md) records 14 new tests,
+253 focused/protected passes, full Runtime 377, Chat 862 with five skips,
+unchanged CLI 155, Ruff, targeted Mypy, offline lock and 17 wheel builds.
+Isolated Runtime-only and Chat-installed probes retained all five and seven
+frozen hashes, respectively. Localhost integration fixtures passed when the
+full suites were rerun with loopback access. Freeze the exact four-path
+candidate and obtain fresh-context read-only independent review. No push,
+exact-source Ubuntu run or installed TUI UAT is inferred.
+
+execution_phase: validation; validation_state: in_review (N01B-05 local candidate).
 
 ## 2026-10-19 — N01B-05 exact local construction approved
 

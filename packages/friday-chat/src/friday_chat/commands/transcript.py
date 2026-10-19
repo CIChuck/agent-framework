@@ -5,13 +5,13 @@ from __future__ import annotations
 from datetime import UTC, datetime
 from pathlib import Path
 
+from friday_runtime.transcript_export_files import (
+    write_context_log_file,
+    write_current_session_file,
+)
 from friday_runtime.transcript_export_format import (
-    serialize_context_logs_json,
     serialize_entries_csv,
-    serialize_entries_jsonl,
     serialize_sessions_csv,
-    serialize_training_jsonl,
-    serialize_transcript_markdown,
 )
 from friday_runtime.transcript_export_paths import (
     resolve_export_directory,
@@ -349,16 +349,10 @@ def _write_current_session_export(
     root = export_directory(context)
     if export_format == "csv":
         path = _safe_export_path(root, "friday_current_session.csv")
-        path.write_text(
-            serialize_entries_csv(entries),
-            encoding="utf-8",
-        )
     elif export_format == "jsonl":
         path = _safe_export_path(root, "friday_current_session.jsonl")
-        path.write_text(serialize_entries_jsonl(entries), encoding="utf-8")
     elif export_format == "training":
         path = _safe_export_path(root, "friday_current_session_training.jsonl")
-        path.write_text(serialize_training_jsonl(entries), encoding="utf-8")
     else:
         path = _safe_export_path(root, "friday_current_session.md")
         user_name = (
@@ -371,15 +365,16 @@ def _write_current_session_export(
             if context.runtime is not None
             else "Friday"
         )
-        path.write_text(
-            serialize_transcript_markdown(
-                session,
-                entries,
-                user_name=user_name,
-                assistant_name=assistant_name,
-            ),
-            encoding="utf-8",
+        write_current_session_file(
+            path,
+            session,
+            entries,
+            export_format="markdown",
+            user_name=user_name,
+            assistant_name=assistant_name,
         )
+        return TranscriptExportResult(files=(path,), entry_count=len(entries))
+    write_current_session_file(path, session, entries, export_format=export_format)
     return TranscriptExportResult(files=(path,), entry_count=len(entries))
 
 
@@ -389,10 +384,7 @@ def _write_context_log_export(
     context_logs: tuple[TranscriptContextLogView, ...],
 ) -> TranscriptExportResult:
     path = _safe_export_path(export_directory(context), "friday_prompts.json")
-    path.write_text(
-        serialize_context_logs_json(session, context_logs),
-        encoding="utf-8",
-    )
+    write_context_log_file(path, session, context_logs)
     return TranscriptExportResult(
         files=(path,),
         session_count=1,
