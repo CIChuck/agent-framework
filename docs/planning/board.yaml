@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: N01B-04 local candidate abeeb895 frozen; obtain fresh independent review of exact directive, four-path diff and protected comparisons; push, exact-source Ubuntu and installed macOS/Linux TUI terminal UAT remain separate gates
+  next_gate: N01B-04 local candidate abeeb895 independently VERIFIED; request separate authorization for a non-force branch push and exact-source Ubuntu verification; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -333,7 +333,8 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-03-ubuntu-run-39256858630.md (green exact-source Ubuntu run on authorized N01B-03 push; post-run review and TUI UAT open)
   - docs/planning/active/friday-tui/validation/VAL-N01B-03-postrun-9a68d0c7.md (independent VERIFIED N01B-03 exact-source Ubuntu reconciliation; later product/UAT open)
   - docs/planning/active/friday-tui/validation/N01B-04-before-code-export-path-characterization.md (226 unchanged tests and disposable path probe; proposed directive planning only)
-  - docs/planning/active/friday-tui/validation/N01B-04-local-checks.md (builder local suites, protected comparisons and installed-wheel checks; independent review pending)
+  - docs/planning/active/friday-tui/validation/N01B-04-local-checks.md (builder local suites, protected comparisons and installed-wheel checks; independent review separately verified)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-04-prepush-abeeb895.md (independent VERIFIED local N01B-04 candidate; exact-source Ubuntu and TUI UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3260,3 +3261,10 @@ events:
   action: n01b_04_local_candidate_frozen_for_review
   note: Clean local candidate abeeb895 commits the approved four product source/test paths with scoped authority, board and builder checks against planning base 401d1058. Local suites, protected CLI comparison, static checks, offline installed-wheel isolation and seven export hashes passed; product source is frozen for fresh independent validation. No push, exact-source Ubuntu gate or installed TUI UAT is claimed.
   evidence: docs/planning/active/friday-tui/validation/N01B-04-local-checks.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-04-neutral-export-destination-paths.md
+- task: friday-tui
+  at: '2026-10-19T14:19:11+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_04_local_candidate_independently_verified
+  note: Fresh-context read-only reviewer VERIFIED frozen local product candidate abeeb895 against pinned authority, exact four-path diff, 13 direct and 239 protected tests, 365 Runtime and 860 Chat passes with five skips, static checks and isolated installed Runtime/Chat export behavior. Product source remains frozen. A non-force branch push for exact-source Ubuntu verification needs separate maintainer authorization; TUI terminal UAT, acceptance and later product units remain open.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01B-04-prepush-abeeb895.md

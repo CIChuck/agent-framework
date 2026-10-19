@@ -4,10 +4,24 @@ Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
-independently verified; TUI-N01B-04 local candidate `abeeb895` frozen for
-independent review
+independently verified; TUI-N01B-04 local candidate `abeeb895` independently
+VERIFIED; exact-source Ubuntu remains open
 
-execution_phase: validation; validation_state: in_review (N01B-04 local candidate abeeb895; N01B-03 independently verified; TUI product/UAT not ready)
+execution_phase: planning; validation_state: verified (N01B-04 local gate only; exact-source Ubuntu and TUI product/UAT open)
+
+## 2026-10-19 — N01B-04 local candidate independently VERIFIED
+
+A fresh-context, read-only reviewer [VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md)
+the exact local candidate `abeeb895` against its approved directive, pinned
+authority, four-path product diff and protected comparisons. The reviewer
+reproduced 13 new tests, 239 focused/protected tests, 365 Runtime passes,
+860 Chat passes with five skips, static checks, board/dashboard checks and
+isolated installed-wheel behavior, including seven frozen export hashes.
+The source remains frozen. A separately authorized branch push is required
+for an exact-source Ubuntu run; installed TUI terminal UAT and full initiative
+acceptance remain open.
+
+execution_phase: planning; validation_state: verified (N01B-04 local only).
 
 ## 2026-10-19 — N01B-04 local candidate frozen for independent review
 

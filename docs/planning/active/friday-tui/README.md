@@ -18,12 +18,13 @@ installed-wheel checks are independently `VERIFIED` at candidate `782dedbb`.
 Its separately authorized [exact-source Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md)
 on `f7950581` was [independently VERIFIED](validation/VAL-N01B-03-postrun-9a68d0c7.md).
 TUI-N01B-04's neutral export destination/path directive is approved for its
-four named local source/test paths. Local candidate `abeeb895` is frozen after
-passing construction checks and is awaiting independent review.
+four named local source/test paths. Local candidate `abeeb895` is
+[independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md); its
+exact-source Ubuntu gate remains open.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: in_review (N01B-04 local candidate abeeb895; N01B-03 local and exact-source Ubuntu gates verified; TUI product/UAT not ready)
+execution_phase: planning; validation_state: verified (N01B-04 local gate only; exact-source Ubuntu and TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -128,6 +129,7 @@ Current planning artifacts:
 - [Approved N01B-04 neutral export destination/path directive](directives/CD-TUI-N01B-04-neutral-export-destination-paths.md)
 - [N01B-04 before-code export-path characterization](validation/N01B-04-before-code-export-path-characterization.md)
 - [N01B-04 local construction checks](validation/N01B-04-local-checks.md)
+- [Independent N01B-04 local candidate review](validation/VAL-N01B-04-prepush-abeeb895.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -696,7 +698,9 @@ bound the next candidate: neutral export-root creation and safe child-path
 resolution with Chat command behavior preserved. The maintainer approved its
 four exact local product source/test paths on 2026-10-19. Its
 [local construction checks](validation/N01B-04-local-checks.md) passed;
-candidate `abeeb895` is frozen for independent review. Later product
+candidate `abeeb895` was [independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md)
+for the local unit. Exact-source Ubuntu verification requires a separately
+authorized branch push. Later product
 units need their own bounded directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
@@ -723,7 +727,7 @@ is VERIFIED; its [exact-source Ubuntu run](validation/N01B-03-ubuntu-run-3925685
 passed and was [independently reconciled](validation/VAL-N01B-03-postrun-9a68d0c7.md).
 N01A is closed under
 its unit-specific Linux deferral. Later N01B effects beyond N01B-03 require
-separate authority; N01B-04 is under local construction. No TUI executable, UAT
+separate authority; N01B-04 is locally VERIFIED only. No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.
 

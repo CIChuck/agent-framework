@@ -5,13 +5,11 @@ VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 pre-push candidate
 and exact-source Ubuntu gate independently VERIFIED; N01B-02 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-03 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-04 export destination/path
-directive approved for local construction, with candidate `abeeb895` frozen
-for independent review
+candidate `abeeb895` independently VERIFIED locally, with exact-source Ubuntu open
 
-**Branch and authority:** `feature/friday-tui`; N01B-01, N01B-02 and N01B-03
-source frozen after their bounded reviews, except the exact N01B-04 Chat
-delegation path; N01B-04 is the only active product-code directive; later
-product units remain design-only until separately approved
+**Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
+product source is frozen after bounded reviews; no product-code directive is
+active; later product units remain design-only until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -292,8 +290,8 @@ delegation. Chat keeps export writes and its shared `/context --file` and
 `/prompt --file` behavior. The maintainer approved the four named local
 product source/test paths on 2026-10-19. The
 [local construction checks](validation/N01B-04-local-checks.md) passed;
-candidate `abeeb895` is frozen for independent review. External delivery is
-separate.
+candidate `abeeb895` was [independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md)
+for its local scope. Exact-source Ubuntu and external delivery are separate.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -426,12 +424,10 @@ exact-source Linux result or TUI terminal UAT.
    branch, source and authority before each product-code unit.
 
 The board remains `started` with initiative authority `granted` and no active
-product-code directive. The N01B-01 first candidate `7e5241c8` received
-`CHANGES_REQUESTED` for packet documentation and command evidence; corrected
-candidate `35e297e8` is independently `VERIFIED` for pre-push readiness.
-Product source is frozen. The pushed source `62d3ae3b` passed the Ubuntu
-workflow and post-run independent reconciliation. N01A is closed, and
-N01B-02 candidate `e62f39ce` is independently VERIFIED locally. Pushed source
-`07177e6c` passed the Ubuntu workflow and independent post-run review;
-subsequent product units remain open.
+product-code directive. N01B-01 through N01B-03 have independently VERIFIED
+local and exact-source Ubuntu gates. N01B-04 candidate `abeeb895` is
+[independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md) for its
+local scope, with product source frozen. Its next gate is a separately
+authorized branch push for exact-source Ubuntu verification; later product
+units remain open.
 No TUI, terminal UAT or real-provider test has run.
