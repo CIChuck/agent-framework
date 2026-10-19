@@ -16,7 +16,21 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: validation; validation_state: pending (N01B-08 independent local review; N01B-07 gates verified; TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-08 local candidate at reviewed authority; Ubuntu/TUI UAT open)
+
+## 2026-10-19 — N01B-08 frozen local candidate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-08-prepush-8ac249d3.md)
+the exact four-path candidate `8ac249d3` against authority base `0268ec33`.
+Independent focused, full Runtime 402, Chat 880 with five skips, unchanged
+`friday-cli` 155, static, lock, board, wheel and isolated installed checks
+passed. The source is frozen. A stale replacement-plan sentence identified
+as a prose advisory is corrected in this post-verdict status commit; because
+that plan is controlling authority, a fresh read-only delta audit must
+reconcile the update. No additional push, exact-source Ubuntu verification,
+installed TUI terminal UAT or initiative acceptance is inferred.
+
+execution_phase: planning; validation_state: verified (N01B-08 local candidate; post-verdict status-delta audit open).
 
 ## 2026-10-19 — N01B-08 local construction checks passed
 

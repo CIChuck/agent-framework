@@ -345,7 +345,10 @@ separate SQLite commits and observed false/exception behavior. The
 extracts only those write effects to Runtime while Chat retains session/turn
 policy, entry construction and receipt checks. Its four local source/test
 paths passed [builder checks](validation/N01B-08-local-checks.md); the
-candidate awaits a stable commit and independent review.
+frozen candidate `8ac249d3` was [independently VERIFIED
+locally](validation/VAL-N01B-08-prepush-8ac249d3.md). Post-verdict
+status-delta review precedes further delivery; exact-source Ubuntu remains
+open.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -508,5 +511,7 @@ The [N01B-08 approved directive](directives/CD-TUI-N01B-08-neutral-transcript-wr
 and [before-code characterization](validation/N01B-08-before-code-transcript-write-characterization.md)
 authorize only the four named local source/test paths. Builder checks and
 their [local evidence](validation/N01B-08-local-checks.md) are complete;
-fresh independent review is the next product gate.
+the [frozen candidate](validation/VAL-N01B-08-prepush-8ac249d3.md) was
+independently VERIFIED locally. Post-verdict status-delta review and
+exact-source Ubuntu are separate gates before later product work.
 No TUI, terminal UAT or real-provider test has run.

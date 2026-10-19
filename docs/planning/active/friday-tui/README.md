@@ -52,11 +52,14 @@ The [N01B-08 before-code characterization](validation/N01B-08-before-code-transc
 records the existing append/context-log effect order and partial-failure
 behavior. Its [exact four-path directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
 is approved for local construction. [Builder checks](validation/N01B-08-local-checks.md)
-pass; the four-path candidate is frozen for fresh independent review.
+passed, and frozen candidate `8ac249d3` was [independently VERIFIED
+locally](validation/VAL-N01B-08-prepush-8ac249d3.md). A post-verdict
+status-delta audit precedes any delivery; exact-source Ubuntu verification
+remains open.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: pending (N01B-08 independent local review; N01B-07 gates verified; TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-08 local candidate at reviewed authority; Ubuntu/TUI UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -186,6 +189,7 @@ Current planning artifacts:
 - [N01B-08 before-code transcript write characterization](validation/N01B-08-before-code-transcript-write-characterization.md)
 - [Approved N01B-08 neutral transcript write-effects directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
 - [N01B-08 local construction checks](validation/N01B-08-local-checks.md)
+- [Independent N01B-08 local candidate review](validation/VAL-N01B-08-prepush-8ac249d3.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -821,7 +825,9 @@ reconciled](validation/VAL-N01B-07-postrun-4fc8309d.md). The next bounded
 has a [279-pass baseline and failure characterization](validation/N01B-08-before-code-transcript-write-characterization.md)
 and is approved for exact local construction. Builder checks and independent
 review are tracked separately: [builder checks](validation/N01B-08-local-checks.md)
-passed; independent review remains open. No TUI executable, UAT result,
+passed and the [local candidate was independently VERIFIED](validation/VAL-N01B-08-prepush-8ac249d3.md).
+An authority-delta audit precedes further delivery; Ubuntu remains open.
+No TUI executable, UAT result,
 publication or acceptance of the full initiative is claimed by this packet.
 
 ## 10. Planning review record

@@ -48,10 +48,11 @@ only pure MCP provenance preflight and tool-call/result record preparation
 into Runtime; Chat still owns transcript append, optional context-log write,
 session/turn state and receipt checks. The [approved N01B-08
 directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
-would move only append/context-log effects after the [before-code failure
+moved only append/context-log effects after the [before-code failure
 characterization](validation/N01B-08-before-code-transcript-write-characterization.md).
-Its four local source/test paths are approved; independent review remains
-open.
+Its four-path [local candidate](validation/VAL-N01B-08-prepush-8ac249d3.md)
+was independently VERIFIED; status-delta review and exact-source Ubuntu
+are separate gates before later product work.
 
 Source check for selected-file context: Chat's `/read` formats file content as
 command output; `/ingest` writes content to vector memory. `/context` shows or
