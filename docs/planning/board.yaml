@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Separately authorize one non-force push for N01B-08 exact-source Ubuntu verification after independent status-delta audit; installed TUI terminal UAT remains a release gate
+  next_gate: Perform the one authorized non-force push of frozen N01B-08 source and scoped authorization evidence, then reconcile the exact-source Ubuntu run; installed TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -357,6 +357,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-08-before-code-transcript-write-characterization.md (279 unchanged baseline passes and disposable failure/timing probes; proposed directive planning only)
   - docs/planning/active/friday-tui/validation/N01B-08-local-checks.md (18 new, 402 Runtime, 880 Chat with five skips and 155 CLI tests; static, wheels and isolated installed checks before independent review)
   - docs/planning/active/friday-tui/validation/VAL-N01B-08-prepush-8ac249d3.md (independent VERIFIED local N01B-08 candidate at reviewed authority; post-verdict status audit, exact-source Ubuntu and TUI UAT open)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-08-final-1c5a70a3.md (independent VERIFIED post-verdict N01B-08 status audit; exact-source Ubuntu and TUI UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3486,3 +3487,10 @@ events:
   action: n01b_08_local_candidate_independently_verified
   note: Fresh-context read-only reviewer VERIFIED exact four-path local candidate 8ac249d3 against authority base 0268ec33. Independent 402 Runtime, 880 Chat with five skips, 155 unchanged CLI, static, lock, board, wheel and installed-isolation checks passed. Product source is frozen. A replacement-plan status-prose advisory is corrected in a post-verdict delta that needs fresh independent audit. No additional push, exact-source Ubuntu, installed TUI UAT or full initiative acceptance is inferred.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-08-prepush-8ac249d3.md; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-19T18:13:27+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_08_one_nonforce_push_authorized
+  note: Maintainer replied 'approved and authorized - proceed' after the controller identified a separately authorized N01B-08 push as the next gate. This permits one non-force push of frozen product candidate 8ac249d3 with scoped authorization evidence to origin/feature/friday-tui for exact-source Ubuntu verification. The live remote tip before authorization was 4a646dc7; local evidence tip was 471b85e7. No additional push, PR, merge, release, later product unit or installed TUI UAT acceptance is authorized.
+  evidence: current-session reply 'approved and authorized - proceed'; docs/planning/active/friday-tui/authority.json; docs/planning/active/friday-tui/validation/VAL-N01B-08-final-1c5a70a3.md

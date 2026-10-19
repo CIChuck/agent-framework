@@ -11,7 +11,9 @@ candidate `c773f272` and exact-source Ubuntu run 39278047819 independently
 VERIFIED; N01B-06 all-session export-effects candidate `e16aede6` and its
 exact-source Ubuntu gate independently VERIFIED; N01B-07 neutral tool-record
 candidate `a196e95a` independently VERIFIED locally and on exact-source
-Ubuntu run 39294625340
+Ubuntu run 39294625340; N01B-08 neutral transcript write-effects candidate
+`8ac249d3` independently VERIFIED locally with one non-force push authorized
+for its pending exact-source Ubuntu gate
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; N01B-05 is independently
@@ -19,8 +21,10 @@ VERIFIED locally and on exact-source Ubuntu, with source frozen; N01B-06 is
 independently VERIFIED locally and on exact-source Ubuntu, with source frozen
 and the N01B-07 tool-record candidate independently VERIFIED for its four
 named local paths, with source frozen; one authorized non-force push reached
-`4a646dc7` and is consumed, and Ubuntu post-run review is VERIFIED; later
-product units remain proposals until separately approved
+`4a646dc7` and is consumed, and Ubuntu post-run review is VERIFIED; N01B-08
+source is frozen after local and final status audits, and one non-force push
+is authorized for its pending Ubuntu gate; later product units remain
+proposals until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -346,9 +350,10 @@ extracts only those write effects to Runtime while Chat retains session/turn
 policy, entry construction and receipt checks. Its four local source/test
 paths passed [builder checks](validation/N01B-08-local-checks.md); the
 frozen candidate `8ac249d3` was [independently VERIFIED
-locally](validation/VAL-N01B-08-prepush-8ac249d3.md). Post-verdict
-status-delta review precedes further delivery; exact-source Ubuntu remains
-open.
+locally](validation/VAL-N01B-08-prepush-8ac249d3.md). Its [post-verdict
+status delta](validation/VAL-N01B-08-final-1c5a70a3.md) was also VERIFIED.
+One non-force push is authorized for exact-source Ubuntu verification; that
+run remains open.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -512,6 +517,7 @@ and [before-code characterization](validation/N01B-08-before-code-transcript-wri
 authorize only the four named local source/test paths. Builder checks and
 their [local evidence](validation/N01B-08-local-checks.md) are complete;
 the [frozen candidate](validation/VAL-N01B-08-prepush-8ac249d3.md) was
-independently VERIFIED locally. Post-verdict status-delta review and
-exact-source Ubuntu are separate gates before later product work.
+independently VERIFIED locally. The [final status audit](validation/VAL-N01B-08-final-1c5a70a3.md)
+returned VERIFIED. One non-force push is authorized; exact-source Ubuntu
+and later product work remain separate gates.
 No TUI, terminal UAT or real-provider test has run.

@@ -2,20 +2,16 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-06 independently verified locally and on their authorized exact-source Ubuntu runs; N01B-06 product source frozen at e16aede6, one authorized non-force push reached aa8ae784 and is consumed; maintainer approved exact CD-TUI-N01B-07 for its four named local Runtime/Chat source/test paths and scoped TUI evidence; N01B-07 local candidate a196e95a and authorized exact-source Ubuntu run/job 39294625340 independently VERIFIED with product source frozen; one authorized non-force push reached 4a646dc7 and is consumed; maintainer approved exact CD-TUI-N01B-08 for its four named local Runtime/Chat source/test paths and scoped TUI evidence; frozen local candidate 8ac249d3 independently VERIFIED at its reviewed authority revision; exact-source Ubuntu remains open; no additional push, PR, merge or release authority",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-06 independently verified locally and on their authorized exact-source Ubuntu runs; N01B-06 product source frozen at e16aede6, one authorized non-force push reached aa8ae784 and is consumed; maintainer approved exact CD-TUI-N01B-07 for its four named local Runtime/Chat source/test paths and scoped TUI evidence; N01B-07 local candidate a196e95a and authorized exact-source Ubuntu run/job 39294625340 independently VERIFIED with product source frozen; one authorized non-force push reached 4a646dc7 and is consumed; maintainer approved exact CD-TUI-N01B-08 for its four named local Runtime/Chat source/test paths and scoped TUI evidence; frozen local candidate 8ac249d3 independently VERIFIED and final status audit VERIFIED; maintainer authorized one non-force push for exact-source Ubuntu verification; no additional push, PR, merge or release authority",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "planning",
-  "validation_state": "verified",
+  "execution_phase": "validation",
+  "validation_state": "pending",
   "allowed_changes": [
-    "packages/friday-runtime/src/friday_runtime/transcript_write_effects.py",
-    "packages/friday-chat/src/friday_chat/adapters.py (N01B-08 append/context-log delegation only)",
-    "packages/friday-runtime/tests_runtime/test_transcript_write_effects.py",
-    "packages/friday-chat/tests_chat/test_transcript_write_effect_delegation.py",
-    "docs/planning/active/friday-tui/** (scoped N01B-08 authority, construction checks and validation evidence only)",
+    "docs/planning/active/friday-tui/** (scoped N01B-08 one-push authorization and Ubuntu delivery evidence only)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
@@ -119,9 +115,23 @@
     "local_check_report": "validation/N01B-08-local-checks.md",
     "local_check_result": "18 new tests, full Runtime 402, full Chat 880 with five skips, unchanged CLI 155, scoped static checks, 17 wheels and isolated installed Runtime-only and Chat effects passed",
     "validation_report": "validation/VAL-N01B-08-prepush-8ac249d3.md",
-    "validation_outcome": "VERIFIED for frozen local work unit at reviewed authority; exact-source Ubuntu and installed TUI terminal UAT remain open",
+    "validation_outcome": "VERIFIED for frozen local work unit and final authority-status audit; one separate push authorization is recorded for the pending exact-source Ubuntu gate; installed TUI terminal UAT remains open",
     "source_code_generation_authorized": false,
-    "external_delivery_authorized": false
+    "external_delivery_authorized": true
+  },
+  "n01b_08_push_authorization": {
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-10-19",
+    "authorization_evidence": "Current-session reply 'approved and authorized - proceed' after the controller identified the separately authorized non-force push as the next N01B-08 exact-source Ubuntu gate",
+    "reviewed_product_candidate": "8ac249d3ad694d886a7b11acf69d2ec2cc817d51",
+    "local_evidence_tip_before_authorization": "471b85e7164ea431ffe1c23e93f0b2b5e572ed3d",
+    "remote_branch": "origin/feature/friday-tui",
+    "remote_tip_before_authorization": "4a646dc73f98b87b65a2f8be95cde71b4bc27221",
+    "force_push": false,
+    "allowed_action": "One non-force branch push of frozen N01B-08 product source with scoped evidence-only authorization commit, followed by exact-source Ubuntu run reconciliation",
+    "one_push_consumed": false,
+    "additional_push_authorized": false,
+    "pr_merge_release_authorized": false
   },
   "n01b_07_directive_record": {
     "unit": "TUI-N01B-07",
@@ -410,8 +420,8 @@
     "Historical archive and frozen review evidence",
     "Existing local runtime, transcript and memory state"
   ],
-  "external_delivery_authorized": false,
-  "external_delivery_scope": "The single authorized non-force N01B-07 push reached 4a646dc73f98b87b65a2f8be95cde71b4bc27221 on origin/feature/friday-tui and is consumed. Exact-source Ubuntu run and sole job 39294625340 completed/success and were independently VERIFIED. No additional push, PR, merge, release, deployment or product unit beyond N01B-07 is authorized",
+  "external_delivery_authorized": true,
+  "external_delivery_scope": "Maintainer's current-session 'approved and authorized - proceed' authorizes one non-force push of frozen N01B-08 product candidate 8ac249d3 with scoped evidence-only authorization commit to origin/feature/friday-tui for exact-source Ubuntu verification. Live remote tip before authorization was 4a646dc7. No additional push, PR, merge, release, deployment or later product unit is authorized",
   "planning_completion_checks": [
     "Board/schema/dashboard consistency",
     "Current command inventory and source baseline reconciliation",
@@ -428,7 +438,7 @@
     "Q-03": "Quit at a safe stopping point, finishing any non-interruptible operation and cleaning up before exiting."
   },
   "follow_up_request": "Proceed and walk me through the decision process, following the request to finalize the technical integration contract.",
-  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 through N01B-07 neutral transcript-query, export, effect and tool-record units are independently VERIFIED locally and on their authorized exact-source Ubuntu runs, with product source frozen. Transcript persistence, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
+  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 through N01B-07 neutral transcript-query, export, effect and tool-record units are independently VERIFIED locally and on their authorized exact-source Ubuntu runs, with product source frozen. N01B-08 neutral transcript write effects are independently VERIFIED locally with product source frozen; one non-force push is authorized for its pending exact-source Ubuntu gate. Later transcript persistence, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
   "draft_construction_directive": "directives/CD-TUI-001-shared-presentation-contracts.md (withdrawn; not executable)",
   "read_only_design_checks": [
     "Existing CLI/selected Chat pytest baseline with fake providers and network guard; no source or test edits",

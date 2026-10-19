@@ -16,7 +16,23 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: planning; validation_state: verified (N01B-08 local candidate at reviewed authority; Ubuntu/TUI UAT open)
+execution_phase: validation; validation_state: pending (N01B-08 authorized exact-source Ubuntu push/run; TUI UAT open)
+
+## 2026-10-19 — one N01B-08 non-force push authorized
+
+Chuck Russell replied “approved and authorized - proceed” after the
+controller identified a separately authorized push as the next gate. The
+[final local status audit](validation/VAL-N01B-08-final-1c5a70a3.md)
+VERIFIED the post-verdict authority delta without changing the frozen
+four-path product candidate `8ac249d3`. The maintainer authorizes one
+non-force push of this source with scoped authorization evidence to
+`origin/feature/friday-tui` for exact-source Ubuntu verification. The live
+remote tip before authorization was `4a646dc7`; local evidence tip was
+`471b85e7`. This grants no additional push, later product work, PR, merge,
+release or installed TUI terminal UAT acceptance. The Ubuntu run and
+independent reconciliation remain open.
+
+execution_phase: validation; validation_state: pending (N01B-08 one-push Ubuntu gate).
 
 ## 2026-10-19 — N01B-08 frozen local candidate independently VERIFIED
 

@@ -53,13 +53,15 @@ records the existing append/context-log effect order and partial-failure
 behavior. Its [exact four-path directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
 is approved for local construction. [Builder checks](validation/N01B-08-local-checks.md)
 passed, and frozen candidate `8ac249d3` was [independently VERIFIED
-locally](validation/VAL-N01B-08-prepush-8ac249d3.md). A post-verdict
-status-delta audit precedes any delivery; exact-source Ubuntu verification
-remains open.
+locally](validation/VAL-N01B-08-prepush-8ac249d3.md). The [post-verdict
+status audit](validation/VAL-N01B-08-final-1c5a70a3.md) also returned
+`VERIFIED`. The maintainer authorized one non-force push of the frozen source
+with scoped evidence for exact-source Ubuntu verification; that run remains
+open.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: verified (N01B-08 local candidate at reviewed authority; Ubuntu/TUI UAT open)
+execution_phase: validation; validation_state: pending (N01B-08 authorized exact-source Ubuntu push/run; TUI UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -190,6 +192,7 @@ Current planning artifacts:
 - [Approved N01B-08 neutral transcript write-effects directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
 - [N01B-08 local construction checks](validation/N01B-08-local-checks.md)
 - [Independent N01B-08 local candidate review](validation/VAL-N01B-08-prepush-8ac249d3.md)
+- [Independent N01B-08 final local status audit](validation/VAL-N01B-08-final-1c5a70a3.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -826,7 +829,9 @@ has a [279-pass baseline and failure characterization](validation/N01B-08-before
 and is approved for exact local construction. Builder checks and independent
 review are tracked separately: [builder checks](validation/N01B-08-local-checks.md)
 passed and the [local candidate was independently VERIFIED](validation/VAL-N01B-08-prepush-8ac249d3.md).
-An authority-delta audit precedes further delivery; Ubuntu remains open.
+The [final local status audit](validation/VAL-N01B-08-final-1c5a70a3.md)
+returned `VERIFIED`. One non-force push is authorized for exact-source Ubuntu
+verification; the run remains open.
 No TUI executable, UAT result,
 publication or acceptance of the full initiative is claimed by this packet.
 
