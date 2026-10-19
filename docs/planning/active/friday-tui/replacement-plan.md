@@ -305,7 +305,8 @@ two-file all-session export. Its four named Runtime/Chat source/test paths are
 authorized for local construction only.
 Its [local checks](validation/N01B-05-local-checks.md) passed and a
 [fresh-context reviewer](validation/VAL-N01B-05-prepush-c773f272.md) VERIFIED
-the frozen candidate. Exact-source Ubuntu verification needs a separate push.
+the frozen candidate. One non-force push for exact-source Ubuntu verification
+is separately authorized and pending.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -447,6 +448,6 @@ succeeded and was [independently VERIFIED](validation/VAL-N01B-04-postrun-27c84a
 The [N01B-05 directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
 was approved for exact local construction. Its candidate `c773f272` is
 [independently VERIFIED](validation/VAL-N01B-05-prepush-c773f272.md) locally;
-no N01B-05 push is authorized.
+one non-force N01B-05 push is separately authorized and pending.
 Later product units remain open.
 No TUI, terminal UAT or real-provider test has run.

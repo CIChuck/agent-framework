@@ -26,8 +26,8 @@ The [N01B-05 single-file export-effects directive](directives/CD-TUI-N01B-05-neu
 is approved for four exact Runtime/Chat source/test paths and scoped local evidence.
 Its [local construction checks](validation/N01B-05-local-checks.md) passed;
 candidate `c773f272` was [independently VERIFIED](validation/VAL-N01B-05-prepush-c773f272.md)
-for the local work unit. Source is frozen; an exact-source Ubuntu run needs
-separate push authority.
+for the local work unit. Source is frozen. Chuck Russell separately authorized
+one non-force push for exact-source Ubuntu verification; that push is pending.
 
 **Branch:** `feature/friday-tui`
 
@@ -751,7 +751,8 @@ N01A is closed under
 its unit-specific Linux deferral. Later N01B effects beyond N01B-05 require
 separate authority; N01B-04's local and automated Linux gates are independently
 VERIFIED. N01B-05 local candidate `c773f272` is independently VERIFIED;
-exact-source Ubuntu verification needs separate push authority. No TUI executable, UAT
+one non-force push for exact-source Ubuntu verification is authorized and pending.
+No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.
 

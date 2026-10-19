@@ -10,6 +10,20 @@ VERIFIED; TUI-N01B-05 single-file export-effects candidate c773f272 independentl
 
 execution_phase: planning; validation_state: verified (N01B-05 local gate only; exact-source Ubuntu and TUI product/UAT open)
 
+## 2026-10-19 — N01B-05 exact-source Ubuntu push authorized
+
+Chuck Russell replied “proceed” after the controller stated that the next
+step is one separately authorized non-force push of the frozen N01B-05 branch
+to `origin/feature/friday-tui` for exact-source Ubuntu verification. The
+controller stated this one-push interpretation before acting. Authority covers
+candidate `c773f272` and a scoped evidence-only authorization commit; it does
+not authorize another push, PR, merge, release, later product unit or installed
+TUI UAT acceptance. The [final local audit](validation/VAL-N01B-05-final-331b1680.md)
+confirmed source and tests remained frozen through closeout. The push and CI
+reconciliation are pending.
+
+execution_phase: planning; validation_state: verified (N01B-05 local gate only; authorized push pending).
+
 ## 2026-10-19 — N01B-05 local candidate independently VERIFIED
 
 A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-05-prepush-c773f272.md)

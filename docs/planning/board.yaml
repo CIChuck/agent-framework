@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Obtain separate maintainer authorization for one non-force push of frozen N01B-05 source to origin/feature/friday-tui for exact-source Ubuntu verification; local work unit independently VERIFIED; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Perform the one authorized non-force push of frozen N01B-05 source to origin/feature/friday-tui, reconcile its exact-source Ubuntu run, and obtain independent post-run review; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3322,3 +3322,10 @@ events:
   action: n01b_05_local_candidate_independently_verified
   note: Fresh-context read-only reviewer VERIFIED candidate c773f272 against approved authority base 13bc923f. Exact four-path source/test scope, 253 focused/protected tests, full Runtime 377, Chat 862 with five skips, unchanged CLI 155, Ruff, Mypy, lock, board, links, wheels, and isolated installed five/seven frozen hashes passed. Candidate source is frozen; exact-source Ubuntu needs a separately authorized non-force push. Installed TUI UAT, later units, maintainer acceptance and PR/merge/release remain open.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-05-prepush-c773f272.md
+- task: friday-tui
+  at: '2026-10-19T15:22:43+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_05_one_nonforce_push_authorized
+  note: Maintainer replied 'proceed' after the controller identified one separately authorized non-force push of the frozen N01B-05 branch as the next step for exact-source Ubuntu verification. This permits one push of c773f272 product source with scoped evidence-only authorization commit, then CI reconciliation. No additional push, PR, merge, release, later product unit or installed TUI UAT acceptance is authorized.
+  evidence: current-session reply 'proceed'; docs/planning/active/friday-tui/authority.json; docs/planning/active/friday-tui/validation/VAL-N01B-05-prepush-c773f272.md
