@@ -1,6 +1,7 @@
 # CD-TUI-N01B-04: neutral export destination and safe paths
 
-**Status:** Proposed for maintainer review; no N01B-04 product-code authority.
+**Status:** Approved for the exact N01B-04 local construction scope by Chuck
+Russell on 2026-10-19. No external delivery authority.
 
 **Initiative/unit:** `friday-tui` / TUI-N01B-04, a separate N01B subunit
 after N01B-03's independently VERIFIED local and exact-source Ubuntu gates.
@@ -123,6 +124,8 @@ editing, or another source/test/metadata path is needed. Export content
 writes, result ownership, transcript writes, session lifecycle,
 assembly/close and TUI implementation require later directives.
 
-**Approval fields:** Maintainer approval pending. This proposal and its
-before-code evidence do not authorize product source/test generation,
+**Approval fields:** Chuck Russell replied "lets continue" to the explicit
+request to approve this directive after reviewing the concrete proposal and
+before-code evidence. The approval authorizes only the four named local
+product source/test paths and scoped packet evidence. It does not authorize
 another push, PR, merge, release or later N01B subunits.

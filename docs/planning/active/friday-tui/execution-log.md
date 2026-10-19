@@ -4,10 +4,33 @@ Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
-independently verified; TUI-N01B-04 export destination/path directive proposed
-for maintainer review
+independently verified; TUI-N01B-04 local export destination/path checks passed,
+candidate freeze and independent review next
 
-execution_phase: planning; validation_state: verified (N01B-03 local and exact-source Ubuntu gates only; N01B-04 proposal pending; TUI product/UAT not ready)
+execution_phase: implementation; validation_state: not_ready (N01B-04 local checks passed, candidate freeze next; N01B-03 independently verified; TUI product/UAT not ready)
+
+## 2026-10-19 — N01B-04 local construction checks passed
+
+The [local report](validation/N01B-04-local-checks.md) records 13 new tests,
+the 239-pass protected comparison, full Runtime and Chat suites (365 and 860
+passes, with five Chat skips), Ruff and Mypy checks, and offline installed-wheel
+probes. Runtime imports the neutral path module without Chat/CLI installed.
+The installed Chat registry retained seven frozen export-file hashes and the
+`/context --file` and `/prompt --file` file/output behavior. Source remains in
+the four approved paths. Freeze a stable candidate and obtain fresh-context,
+read-only independent review before any delivery decision.
+
+execution_phase: implementation; validation_state: not_ready (N01B-04 local checks passed; candidate freeze next).
+
+## 2026-10-19 — N01B-04 exact local construction approved
+
+Chuck Russell replied "lets continue" to the explicit request to approve the
+[N01B-04 directive](directives/CD-TUI-N01B-04-neutral-export-destination-paths.md).
+The active scope is the four named Runtime/Chat source and test paths, plus
+scoped TUI packet evidence. Implementation and required comparisons may begin.
+No push, later product unit, terminal UAT or full TUI acceptance is inferred.
+
+execution_phase: implementation; validation_state: not_ready (N01B-04 local unit).
 
 ## 2026-10-19 — N01B-04 next-unit directive proposed
 

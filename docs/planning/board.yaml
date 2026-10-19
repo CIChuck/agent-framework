@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review proposed CD-TUI-N01B-04 neutral export destination/path directive and before-code evidence; explicit maintainer approval required before its four source/test paths may change; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: N01B-04 local source/tests and installed-wheel checks passed; freeze an exact candidate and obtain fresh independent review; push, exact-source Ubuntu and installed macOS/Linux TUI terminal UAT remain separate gates
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -333,6 +333,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-03-ubuntu-run-39256858630.md (green exact-source Ubuntu run on authorized N01B-03 push; post-run review and TUI UAT open)
   - docs/planning/active/friday-tui/validation/VAL-N01B-03-postrun-9a68d0c7.md (independent VERIFIED N01B-03 exact-source Ubuntu reconciliation; later product/UAT open)
   - docs/planning/active/friday-tui/validation/N01B-04-before-code-export-path-characterization.md (226 unchanged tests and disposable path probe; proposed directive planning only)
+  - docs/planning/active/friday-tui/validation/N01B-04-local-checks.md (builder local suites, protected comparisons and installed-wheel checks; independent review pending)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3238,3 +3239,17 @@ events:
   action: n01b_04_neutral_export_destination_paths_directive_proposed
   note: After the maintainer asked for the next TUI step, source review found a bounded neutral export-root and safe-path seam. Chat's public export_directory also serves /context --file and /prompt --file, so those behaviors are protected. The unchanged focused/protected suite passed 226 tests and a disposable traversal/symlink probe passed. CD-TUI-N01B-04 is proposed for exact maintainer approval; no product code, export file writes, later N01B unit, push or TUI UAT is authorized by this planning pass.
   evidence: docs/planning/active/friday-tui/validation/N01B-04-before-code-export-path-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-04-neutral-export-destination-paths.md
+- task: friday-tui
+  at: '2026-10-19T13:48:16+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_04_exact_local_construction_approved
+  note: Maintainer replied 'lets continue' to the explicit request to approve CD-TUI-N01B-04. Exact local authority covers the four named Runtime/Chat source and test paths and scoped packet evidence. Later product units, push, PR, merge, release and installed TUI UAT are not authorized by this approval.
+  evidence: docs/planning/active/friday-tui/directives/CD-TUI-N01B-04-neutral-export-destination-paths.md; docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-10-19T14:05:58+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_04_local_construction_checks_passed
+  note: Exact four-path Runtime/Chat export-root and safe-path extraction passed 13 new tests, 239 focused/protected tests, 365 Runtime tests and 860 Chat tests with five skips; Ruff, targeted Mypy, lock and isolated Runtime/Chat wheel probes passed. Final installed Chat probe matched all seven frozen export-file hashes plus context/prompt shared files. Candidate freeze and independent review remain; no push or TUI terminal UAT is claimed.
+  evidence: docs/planning/active/friday-tui/validation/N01B-04-local-checks.md

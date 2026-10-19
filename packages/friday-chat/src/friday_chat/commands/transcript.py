@@ -13,6 +13,10 @@ from friday_runtime.transcript_export_format import (
     serialize_training_jsonl,
     serialize_transcript_markdown,
 )
+from friday_runtime.transcript_export_paths import (
+    resolve_export_directory,
+    safe_export_path,
+)
 
 from friday_chat.commands.contracts import (
     CommandContext,
@@ -215,12 +219,13 @@ async def _export_all_sessions(context: CommandContext) -> CommandResult:
 
 def export_directory(context: CommandContext) -> Path:
     """Resolve and create the configured transcript export root."""
-    directory = Path("./exports")
-    if context.runtime is not None and context.runtime.config.transcript.export_directory:
-        directory = Path(context.runtime.config.transcript.export_directory)
-    resolved = directory.resolve(strict=False)
-    resolved.mkdir(parents=True, exist_ok=True)
-    return resolved
+    raw_directory: str | None = None
+    if (
+        context.runtime is not None
+        and context.runtime.config.transcript.export_directory
+    ):
+        raw_directory = context.runtime.config.transcript.export_directory
+    return resolve_export_directory(raw_directory)
 
 
 def _primed_session_ids(
@@ -396,11 +401,7 @@ def _write_context_log_export(
 
 
 def _safe_export_path(root: Path, *parts: str) -> Path:
-    resolved_root = root.resolve(strict=False)
-    candidate = resolved_root.joinpath(*parts).resolve(strict=False)
-    if not candidate.is_relative_to(resolved_root):
-        raise ValueError("export path escaped configured root")
-    return candidate
+    return safe_export_path(root, *parts)
 
 
 def _record_count(count: int, noun: str) -> str:
