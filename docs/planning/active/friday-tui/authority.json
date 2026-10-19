@@ -11,12 +11,20 @@
   "execution_phase": "planning",
   "validation_state": "verified",
   "allowed_changes": [
-    "docs/planning/active/friday-tui/** (CI03 verification closeout and next-unit planning only)",
+    "docs/planning/active/friday-tui/** (N01B-01 read-only characterization and directive planning only)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
   "product_code_generation_authorized": false,
   "workflow_code_generation_authorized": false,
+  "planning_lightweight_exemption": {
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-10-18",
+    "source": "Current-session instruction 'proceed' after the N01B planning next step was identified",
+    "exact_scope": "N01B-01 read-only characterization, proposed directive, TUI packet status, scoped TUI board event and generated planning dashboard",
+    "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard are edited; no product source, tests, package metadata, lock or workflow is changed",
+    "validation": "171 unchanged baseline tests passed; board validation, JSON parse, local-link check, exact changed-path inspection and git diff --check"
+  },
   "build_plan_approval": "TUI-N01S and TUI-N01A verified under their exact directives; N01A Linux smoke was waived only for unit closeout; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
@@ -26,6 +34,14 @@
     "directives/CD-TUI-CI03-mcp-auto-negotiation.md"
   ],
   "construction_directives_active": [],
+  "proposed_next_construction_directive": {
+    "unit": "TUI-N01B-01",
+    "path": "directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md",
+    "status": "proposed; maintainer approval pending",
+    "before_code_baseline": "validation/N01B-01-before-code-characterization.md",
+    "source_code_generation_authorized": false,
+    "later_n01b_subunits_authorized": false
+  },
   "validated_construction_scope": {
     "unit": "TUI-N01S",
     "directive": "directives/CD-TUI-N01S-session-identity.md",
@@ -62,21 +78,22 @@
     "Q-03": "Quit at a safe stopping point, finishing any non-interruptible operation and cleaning up before exiting."
   },
   "follow_up_request": "Proceed and walk me through the decision process, following the request to finalize the technical integration contract.",
-  "technical_contract_status": "TUI-N01S identity extraction is independently verified. Shared Chat-compatible loader, assembly/close, startup chooser, replay, event API and Force quit remain proposals without construction authority; their exact contracts and separate directives remain unresolved",
+  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contracts are proposed without construction approval; neutral adapter/effects, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
   "draft_construction_directive": "directives/CD-TUI-001-shared-presentation-contracts.md (withdrawn; not executable)",
   "read_only_design_checks": [
     "Existing CLI/selected Chat pytest baseline with fake providers and network guard; no source or test edits",
     "Read-only neutral-loader characterization baseline: 103 focused Chat/runtime config and CLI tests plus 155 friday-cli tests passed; no extraction or TUI verification",
     "Focused existing app/display Ruff and Mypy checks",
     "Public primary Textual documentation and PyPI metadata inspection",
-    "Metadata-only uv pip compile overlay in ignored build directory; no installation, workspace sync or lock update"
+    "Metadata-only uv pip compile overlay in ignored build directory; no installation, workspace sync or lock update",
+    "N01B-01 before-code read-only transcript-query and pickle-global characterization; 171 unchanged transcript, identity and friday-cli tests passed"
   ],
   "accepted_testing_requirement": {
     "confirmed_by": "Chuck Russell",
     "source": "Current-session instruction: test as we build, break phases into testable subunits and do not forget UAT.",
     "requirement": "Immediate unit/regression checks during construction and explicit real-user UAT",
     "proposed_execution_plan": "replacement-plan.md proposes bounded units, macOS milestone UAT, automated Linux checks during construction, final hands-on Linux UAT and a controlled real-provider/tool run; provider selection is a required pre-UAT gate",
-    "execution_status": "No product tests or UAT executed for this planning amendment; no user UAT signoff inferred"
+    "execution_status": "Existing transcript, identity and friday-cli baseline tests passed read-only for N01B-01 planning; no N01B code or user UAT has executed, and no user UAT signoff is inferred"
   },
   "accepted_runtime_configuration_requirement": {
     "confirmed_by": "Chuck Russell",

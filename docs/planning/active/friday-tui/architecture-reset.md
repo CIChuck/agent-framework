@@ -1,9 +1,10 @@
 # Friday TUI architecture reset
 
-**Status:** Accepted product boundaries; N01S verified; N01A Linux smoke
-deferred for unit closeout, fresh review pending
+**Status:** Accepted product boundaries; N01S/N01A verified; CI01-CI03
+automated Linux gates verified; N01B-01 directive proposed
 
-**Branch:** `feature/friday-tui`; authority `granted` for N01A only
+**Branch:** `feature/friday-tui`; initiative authority `granted`, with no
+active product construction directive
 
 This record incorporates Chuck Russell's answers after the documentation review.
 It controls where the earlier packet proposes a direct dependency on
@@ -201,8 +202,14 @@ and per-command scope remain technical design work.
    the replacement technical contract and user UAT.
 
 This planning record itself grants no product-code, dependency, release or UAT
-authority. The board remains `started`; N01A was separately approved and its
-frozen candidate has a historical [BLOCKED independent review](validation/VAL-N01A-neutral-config-loader.md)
-and a maintainer Linux deferral for unit closeout. A fresh review is pending;
-Linux coverage remains a later release gate. Later units still need exact technical
-ownership and separately approved construction directives.
+authority. The board remains `started`. N01A was separately approved and its
+frozen candidate has a historical [BLOCKED independent review](validation/VAL-N01A-neutral-config-loader.md),
+then a maintainer Linux-smoke deferral and a fresh
+[VERIFIED closeout review](validation/VAL-N01A-waiver-closeout.md). The later
+[CI03 exact-source Ubuntu run](validation/TUI-CI03-ubuntu-run-39183895627.md)
+and [final independent review](validation/VAL-TUI-CI03-final-676700f5.md)
+reconciled the CI01/CI02 automated Linux gates. Hands-on Linux terminal UAT
+remains a release gate. The proposed
+[N01B-01 directive](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
+and later units need exact technical ownership and separate maintainer
+approval before product code generation.

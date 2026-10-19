@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Define and approve an exact TUI-N01B neutral-primitive construction directive before product work; installed macOS/Linux terminal UAT remains a release gate
+  next_gate: Review and approve proposed CD-TUI-N01B-01 neutral transcript-query contracts before product work; installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3060,3 +3060,10 @@ events:
   action: ci03_verified_ci01_ci02_linux_gates_reconciled
   note: Fresh-context read-only final reviewer VERIFIED CI03 and the previously red CI01/CI02 automated Linux gates against source 315a30e4 and green Ubuntu run 39183895627. CI03 infrastructure work unit is closed; Friday TUI initiative remains started. Next product unit needs its own exact directive and approval; no TUI executable, installed terminal UAT, maintainer acceptance, PR, merge or release is inferred.
   evidence: docs/planning/active/friday-tui/validation/VAL-TUI-CI03-final-676700f5.md; https://github.com/CIChuck/agent-framework/actions/runs/39183895627
+- task: friday-tui
+  at: '2026-10-19T01:36:24+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_01_directive_proposed
+  note: Read-only source characterization identified a four-object transcript query contract for the first N01B subunit. The unchanged transcript, identity and friday-cli baseline passed 171 tests. An exact-path directive is proposed for maintainer review; no N01B source/test generation, product validation, terminal UAT or external delivery is authorized or claimed.
+  evidence: docs/planning/active/friday-tui/validation/N01B-01-before-code-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md

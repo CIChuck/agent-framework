@@ -1,9 +1,23 @@
 # Friday TUI execution log
 
-Status: TUI-CI02 stopped at the shared MCP source boundary after its Ubuntu
-diagnosis; CI03 proposed; TUI-CI01 Linux gate remains open; N01A closed
+Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
+gates reconciled green; TUI-N01B-01 directive proposed for review
 
-execution_phase: planning; validation_state: changes_requested (CI02 Ubuntu MCP auto-negotiation failure; CI03 approval pending)
+execution_phase: planning; validation_state: verified (CI03 infrastructure only; TUI-N01B-01 and product/UAT not ready)
+
+## 2026-10-18 — N01B-01 read-only baseline and exact directive proposed
+
+The source-backed [before-code characterization](validation/N01B-01-before-code-characterization.md)
+records the three Chat-owned frozen transcript query views, four-method async
+query protocol, five-name Chat export surface and historical pickle lookups.
+The unchanged focused transcript, identity and `friday-cli` suites passed
+**171 tests**. The proposed
+[CD-TUI-N01B-01](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
+would move only those four read-only contracts to `friday-runtime`, retain
+same-object Chat re-exports, and leave actual query adapters, exports,
+commands, session state and close ownership for later directives. No N01B
+source/test edit, terminal UAT or external delivery occurred. Maintainer
+approval of this exact directive is the next product-code gate.
 
 ## 2026-10-18 — CI02 Ubuntu run reached framework-source stop gate
 

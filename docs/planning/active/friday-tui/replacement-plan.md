@@ -253,9 +253,11 @@ review before dependent implementation. The IDs below are planning units.
 N01S and N01A are independently verified, and the CI01-CI03 infrastructure
 work has a green [Ubuntu run](validation/TUI-CI03-ubuntu-run-39183895627.md)
 and [final independent review](validation/VAL-TUI-CI03-final-676700f5.md).
-N01B is the next proposed product unit; it has no construction authority until
-an exact directive is approved. Installed TUI terminal UAT on macOS and Linux
-remains a release gate.
+N01B is the next proposed product unit. Its first read-only query-contract
+subunit is bounded by [CD-TUI-N01B-01](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
+and the [before-code baseline](validation/N01B-01-before-code-characterization.md),
+but it has no construction authority until that exact directive is approved.
+Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
 | --- | --- | --- |
@@ -292,8 +294,14 @@ processing-failure cases: read-only file/error view until Quit, nonzero exit,
 and no Retry or configured startup. Verify Quit and relaunch after correction.
 Exact error categories and resource-close behavior remain directive work.
 
-TUI-N01B, TUI-N01C and TUI-N05 must be subdivided into command/service-family
-directives after review of the [capability map](neutral-capability-map.md).
+TUI-N01B, TUI-N01C and TUI-N05 must be subdivided into bounded directives after
+review of the [capability map](neutral-capability-map.md). TUI-N01B-01 moves
+only the three frozen transcript query views and their asynchronous query
+protocol into a neutral module, with Chat compatibility re-exports.
+`TranscriptExportResult`, query/store implementation, command effects,
+session state and resource close remain outside that subunit. Subsequent N01B
+subunits require their own source review and exact directives; N01B-01 alone
+does not make transcript commands available in an independent TUI.
 TUI-N01A is bounded by the
 [reviewed loader contract](neutral-config-loader-contract.md) and
 [approved exact directive](directives/CD-TUI-N01A-neutral-config-loader.md),

@@ -13,8 +13,9 @@ TUI exists or that the proposed neutral APIs already provide parity.
 `friday_chat.commands.registry.build_default_registry()` registers 50 slash
 commands, but its `CommandContext`, handlers, runtime bundle and several
 effect services live in `friday-chat`. In particular,
-`friday_chat.config.load_friday_py_config()` owns the established YAML shape,
-diagnostics, interpolation and model-library binding;
+`friday_chat.config.load_friday_py_config()` now delegates the established YAML
+shape, diagnostics, interpolation and model-library binding to the verified
+`friday_runtime.application_config` neutral loader;
 `friday_chat.runtime.build_runtime()` assembles Chat's fake or real services.
 `friday_runtime.kernel.RuntimeKernel` is headless, but its `RuntimeConfig` and
 assembly path are distinct and do not currently demonstrate the same Chat
@@ -40,7 +41,7 @@ below are proposals, not approved API signatures.
 | F: file/replay | `commands/files.py`, `replay.py`; configured `friday_tools.filesystem.smart_read.SmartFileReadTool` | Typed file read/ingest and replay operations with the same path, line-limit, CSV, reset and delay semantics; TUI controls presentation. The first-release sidebar file browser is new TUI presentation work. Deliberate selection immediately initiates attachment for the next eligible model turn through a new neutral contract, not an existing Chat command effect (D-77). |
 | T: tools/security | `tools/`, `security.py` and tool handlers; underlying `friday-tools`/MCP packages | Typed registry, selection/budget, manual invocation and sanitizer results. Preserve current manual-call output, tool policy and exact executed arguments; event admission is a separate contract. |
 | P: speech/orchestration/workflow | `speech.py`, Chat runtime orchestrator and `FrameworkWorkflowAdapter` | Typed optional-service operations and state. Verify actual fake/real availability before promising a richer backend. |
-| X: transcripts/exports | `transcripts.py`, transcript handlers and `FrameworkTranscriptAdapter` over `friday-transcript` | Typed queries, session identity, export file effects/limits and errors. TUI need not reuse CLI prose; exported contents and persistence semantics must match. |
+| X: transcripts/exports | `transcripts.py`, transcript handlers and `FrameworkTranscriptAdapter` over `friday-transcript` | Typed queries, session identity, export file effects/limits and errors. TUI need not reuse CLI prose; exported contents and persistence semantics must match. Proposed N01B-01 moves only the three read-only query views and their protocol; Chat keeps the adapter and export effects. |
 
 Source check for selected-file context: Chat's `/read` formats file content as
 command output; `/ingest` writes content to vector memory. `/context` shows or
