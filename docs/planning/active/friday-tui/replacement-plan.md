@@ -6,11 +6,11 @@ and exact-source Ubuntu gate independently VERIFIED; N01B-02 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-03 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-04 export destination/path
 candidate `abeeb895` independently VERIFIED locally and exact-source Ubuntu run
-39268960501 independently VERIFIED; N01B-05 single-file export effects local checks passed, independent review pending
+39268960501 independently VERIFIED; N01B-05 single-file export effects candidate c773f272 independently VERIFIED locally
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
-product source is frozen after bounded reviews; N01B-05 is the active exact
-local directive with local checks passed and independent review pending;
+product source is frozen after bounded reviews; N01B-05 is independently
+VERIFIED locally with source frozen and no active product-code directive;
 later product units remain design-only until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
@@ -303,8 +303,9 @@ isolate only the current-session and prompt-log single-file write effects.
 Chat retains format/path decisions, its export result identity and the
 two-file all-session export. Its four named Runtime/Chat source/test paths are
 authorized for local construction only.
-Its [local checks](validation/N01B-05-local-checks.md) passed; an independent
-review of the frozen candidate is next.
+Its [local checks](validation/N01B-05-local-checks.md) passed and a
+[fresh-context reviewer](validation/VAL-N01B-05-prepush-c773f272.md) VERIFIED
+the frozen candidate. Exact-source Ubuntu verification needs a separate push.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -436,15 +437,16 @@ exact-source Linux result or TUI terminal UAT.
 4. Prepare separate exact directives for later bounded units; recheck board,
    branch, source and authority before each product-code unit.
 
-The board remains `started` with initiative authority `granted` and N01B-05
-as the active exact local product-code directive. N01B-01 through N01B-03 have independently VERIFIED
+The board remains `started` with initiative authority `granted` and no active
+product-code directive. N01B-01 through N01B-03 have independently VERIFIED
 local and exact-source Ubuntu gates. N01B-04 candidate `abeeb895` is
 [independently VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md) for its
 local scope, with product source frozen. The authorized
 [exact-source Ubuntu run](validation/N01B-04-ubuntu-run-39268960501.md)
 succeeded and was [independently VERIFIED](validation/VAL-N01B-04-postrun-27c84ad9.md).
 The [N01B-05 directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
-is approved for exact local construction. Its local checks passed, while
-independent review is pending and no N01B-05 push is authorized.
+was approved for exact local construction. Its candidate `c773f272` is
+[independently VERIFIED](validation/VAL-N01B-05-prepush-c773f272.md) locally;
+no N01B-05 push is authorized.
 Later product units remain open.
 No TUI, terminal UAT or real-provider test has run.

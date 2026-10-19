@@ -25,11 +25,13 @@ on `4b2aadd2` was [independently VERIFIED](validation/VAL-N01B-04-postrun-27c84a
 The [N01B-05 single-file export-effects directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
 is approved for four exact Runtime/Chat source/test paths and scoped local evidence.
 Its [local construction checks](validation/N01B-05-local-checks.md) passed;
-candidate freeze and independent review are pending.
+candidate `c773f272` was [independently VERIFIED](validation/VAL-N01B-05-prepush-c773f272.md)
+for the local work unit. Source is frozen; an exact-source Ubuntu run needs
+separate push authority.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: in_review (N01B-05 local candidate pending independent review; N01B-04 gates VERIFIED; TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-05 local gate only; exact-source Ubuntu and TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -140,6 +142,7 @@ Current planning artifacts:
 - [N01B-05 before-code single-file export characterization](validation/N01B-05-before-code-single-file-export-characterization.md)
 - [Approved N01B-05 neutral single-file export-effects directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
 - [N01B-05 local construction checks](validation/N01B-05-local-checks.md)
+- [Independent N01B-05 local candidate review](validation/VAL-N01B-05-prepush-c773f272.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -717,8 +720,9 @@ and [239-pass before-code characterization](validation/N01B-05-before-code-singl
 isolate the single-file write effects for `/export` and `/export-prompts`.
 They preserve Chat's result identity and safe-path call sites, and leave
 two-file `/transcript export` writing for a later unit. N01B-05 is approved
-for the four named local source/test paths; its local checks passed and a
-fresh-context independent review is next. At each
+for the four named local source/test paths; [fresh-context review](validation/VAL-N01B-05-prepush-c773f272.md)
+VERIFIED candidate `c773f272` locally. A separately authorized push is next
+for exact-source Ubuntu verification. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
 TUI-CI01/CI02 and are independently VERIFIED on the reviewed CI03 source.
@@ -731,8 +735,9 @@ describe and verify them against that candidate.
 The [board](../../board.yaml) records `started` on `feature/friday-tui` with
 implementation authority `granted` for the initiative. N01B-01's and N01B-02's
 bounded construction scopes have been completed and frozen; N01B-03 is also
-independently VERIFIED locally and frozen. N01B-05 is the active
-product-code directive. N01B-01's exact-source
+independently VERIFIED locally and frozen. N01B-05 is also independently
+VERIFIED locally, with source frozen and no active product-code directive.
+N01B-01's exact-source
 Ubuntu [run succeeded](validation/N01B-01-ubuntu-run-39190668231.md) after
 an authorized push and was [independently reconciled](validation/VAL-N01B-01-postrun-4febb6f6.md).
 N01B-02 is locally VERIFIED; its pushed `07177e6c` source passed the
@@ -745,7 +750,8 @@ passed and was [independently reconciled](validation/VAL-N01B-03-postrun-9a68d0c
 N01A is closed under
 its unit-specific Linux deferral. Later N01B effects beyond N01B-05 require
 separate authority; N01B-04's local and automated Linux gates are independently
-VERIFIED. N01B-05 local candidate awaits independent review. No TUI executable, UAT
+VERIFIED. N01B-05 local candidate `c773f272` is independently VERIFIED;
+exact-source Ubuntu verification needs separate push authority. No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.
 

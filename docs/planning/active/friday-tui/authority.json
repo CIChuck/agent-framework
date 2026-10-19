@@ -2,24 +2,20 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-04 independently verified locally and on their authorized exact-source Ubuntu runs; CD-TUI-N01B-05 approved for the four named Runtime/Chat source/test paths and scoped local evidence only; no push or later product-unit authority",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-04 independently verified locally and on their authorized exact-source Ubuntu runs; CD-TUI-N01B-05 independently VERIFIED for its exact local work unit and source frozen; no push or later product-unit authority",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "validation",
-  "validation_state": "in_review",
+  "execution_phase": "planning",
+  "validation_state": "verified",
   "allowed_changes": [
-    "packages/friday-runtime/src/friday_runtime/transcript_export_files.py (N01B-05 only)",
-    "packages/friday-chat/src/friday_chat/commands/transcript.py (N01B-05 single-file wrapper functions only)",
-    "packages/friday-runtime/tests_runtime/test_transcript_export_files.py (N01B-05 only)",
-    "packages/friday-chat/tests_chat/test_transcript_export_file_delegation.py (N01B-05 only)",
-    "docs/planning/active/friday-tui/** (scoped N01B-05 authority, construction and validation evidence only)",
+    "docs/planning/active/friday-tui/** (scoped N01B-05 review and local closeout evidence only; reviewed source frozen)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
-  "product_code_generation_authorized": true,
+  "product_code_generation_authorized": false,
   "workflow_code_generation_authorized": false,
   "planning_lightweight_exemption": {
     "authorized_by": "Chuck Russell",
@@ -74,13 +70,11 @@
     "directives/CD-TUI-N01B-04-neutral-export-destination-paths.md",
     "directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md"
   ],
-  "construction_directives_active": [
-    "directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md"
-  ],
+  "construction_directives_active": [],
   "n01b_05_directive_record": {
     "unit": "TUI-N01B-05",
     "path": "directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md",
-    "status": "approved; local construction checks passed; candidate freeze and independent review pending",
+    "status": "independently VERIFIED for exact local N01B-05 work unit; source frozen",
     "approved_by": "Chuck Russell",
     "approved_at": "2026-10-19",
     "approval_evidence": "Current-session reply 'continue' immediately after the controller linked the exact directive and identified its approval as the next gate; interpretation stated before code work",
@@ -90,10 +84,14 @@
     "before_code_source": "887e43a02d7213e65436b1d85bfafbe255ac865c",
     "baseline_result": "239 unchanged focused/protected tests passed",
     "local_check_report": "validation/N01B-05-local-checks.md",
-    "validation_outcome": "pending fresh-context read-only review",
-    "source_code_generation_authorized": true,
+    "candidate_base": "13bc923f195275fc0a84d2195914f0127127c990",
+    "candidate": "c773f2726828b62988428ed3652ca08430b9e346",
+    "validation_report": "validation/VAL-N01B-05-prepush-c773f272.md",
+    "validation_outcome": "VERIFIED for local work unit only; exact-source Ubuntu and installed TUI UAT open",
+    "source_code_generation_authorized": false,
     "external_delivery_authorized": false
   },
+  "n01b_05_delivery_gate": "Local candidate c773f272 independently VERIFIED for N01B-05; source frozen. A separately authorized non-force branch push is required for exact-source Ubuntu verification. Installed TUI UAT, later product units, maintainer acceptance and PR/merge/release remain open",
   "n01b_04_directive_record": {
     "unit": "TUI-N01B-04",
     "path": "directives/CD-TUI-N01B-04-neutral-export-destination-paths.md",
@@ -272,7 +270,7 @@
     "Q-03": "Quit at a safe stopping point, finishing any non-interruptible operation and cleaning up before exiting."
   },
   "follow_up_request": "Proceed and walk me through the decision process, following the request to finalize the technical integration contract.",
-  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contract extraction and exact-source Ubuntu gate are independently VERIFIED. N01B-02 neutral persisted-query adapter and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-03 pure transcript-export serialization and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-04 export destination/path local and exact-source Ubuntu gates are independently VERIFIED. N01B-05 single-file export effects passed local builder checks and await independent review; all-session export effects, transcript writes, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
+  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contract extraction and exact-source Ubuntu gate are independently VERIFIED. N01B-02 neutral persisted-query adapter and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-03 pure transcript-export serialization and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-04 export destination/path local and exact-source Ubuntu gates are independently VERIFIED. N01B-05 single-file export effects are independently VERIFIED locally; all-session export effects, transcript writes, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
   "draft_construction_directive": "directives/CD-TUI-001-shared-presentation-contracts.md (withdrawn; not executable)",
   "read_only_design_checks": [
     "Existing CLI/selected Chat pytest baseline with fake providers and network guard; no source or test edits",

@@ -6,9 +6,21 @@ independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-04 local candidate `abeeb895` independently
 VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
-VERIFIED; TUI-N01B-05 single-file export-effects local checks passed, independent review pending
+VERIFIED; TUI-N01B-05 single-file export-effects candidate c773f272 independently VERIFIED locally; source frozen
 
-execution_phase: validation; validation_state: in_review (N01B-05 local candidate pending independent review; N01B-04 gates VERIFIED; TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-05 local gate only; exact-source Ubuntu and TUI product/UAT open)
+
+## 2026-10-19 — N01B-05 local candidate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-05-prepush-c773f272.md)
+the exact `13bc923f..c773f272` N01B-05 candidate: four approved source/test
+paths and scoped evidence, full protected suites, static checks, wheels and
+installed five/seven frozen export hashes. The source is frozen. Exact-source
+Ubuntu verification requires a separately authorized non-force branch push;
+installed TUI terminal UAT, later product units, maintainer acceptance and
+PR/merge/release remain open.
+
+execution_phase: planning; validation_state: verified (N01B-05 local work unit only).
 
 ## 2026-10-19 — N01B-05 local construction checks passed
 

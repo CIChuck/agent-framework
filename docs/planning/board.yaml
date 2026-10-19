@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Freeze N01B-05 local candidate and obtain fresh-context read-only independent validation of exact four-path source/test diff and local evidence; no N01B-05 push authorized; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Obtain separate maintainer authorization for one non-force push of frozen N01B-05 source to origin/feature/friday-tui for exact-source Ubuntu verification; local work unit independently VERIFIED; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -338,7 +338,8 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-04-ubuntu-run-39268960501.md (green exact-source Ubuntu run on authorized N01B-04 push)
   - docs/planning/active/friday-tui/validation/VAL-N01B-04-postrun-27c84ad9.md (independent VERIFIED N01B-04 exact-source Ubuntu reconciliation; later product/UAT open)
   - docs/planning/active/friday-tui/validation/N01B-05-before-code-single-file-export-characterization.md (239 unchanged baseline tests and read-only export-effect characterization; proposed directive planning only)
-  - docs/planning/active/friday-tui/validation/N01B-05-local-checks.md (builder local suites, protected comparisons and installed-wheel checks; independent review pending)
+  - docs/planning/active/friday-tui/validation/N01B-05-local-checks.md (builder local suites, protected comparisons and installed-wheel checks; independent review separately verified)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-05-prepush-c773f272.md (independent VERIFIED local N01B-05 candidate; exact-source Ubuntu and TUI UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3314,3 +3315,10 @@ events:
   action: n01b_05_local_construction_checks_passed
   note: Exact four-path Runtime/Chat extraction passed 14 new tests, 253 focused/protected including unchanged CLI, full Runtime 377, full Chat 862 with five skips, standalone unchanged CLI 155, Ruff, targeted Mypy, offline lock, all 17 wheel builds, and installed Runtime-only and Chat frozen-hash probes. Initial full-suite socket failures were sandbox-only and passed with loopback access. Candidate freeze and independent review remain; no push or TUI UAT is inferred.
   evidence: docs/planning/active/friday-tui/validation/N01B-05-local-checks.md
+- task: friday-tui
+  at: '2026-10-19T15:14:32+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_05_local_candidate_independently_verified
+  note: Fresh-context read-only reviewer VERIFIED candidate c773f272 against approved authority base 13bc923f. Exact four-path source/test scope, 253 focused/protected tests, full Runtime 377, Chat 862 with five skips, unchanged CLI 155, Ruff, Mypy, lock, board, links, wheels, and isolated installed five/seven frozen hashes passed. Candidate source is frozen; exact-source Ubuntu needs a separately authorized non-force push. Installed TUI UAT, later units, maintainer acceptance and PR/merge/release remain open.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01B-05-prepush-c773f272.md
