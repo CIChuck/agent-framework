@@ -2,7 +2,7 @@
 
 **Status:** Active; TUI-N01S and TUI-N01A independently VERIFIED. N01A is
 closed under a maintainer-approved Linux-smoke deferral for that unit only.
-TUI-CI01's fourth authorized Ubuntu run passed focused tests, unchanged
+TUI-CI01's latest authorized Ubuntu run passed focused tests, unchanged
 `friday-cli` tests and installed-wheel checks, but failed one Runtime and five
 Chat tests. Its full Linux verification gate remains open. Product/test
 remediation requires a separately approved directive under the CI01 stop
@@ -13,7 +13,7 @@ TUI-CI01 only
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope)
+execution_phase: planning; validation_state: changes_requested (TUI-CI01 Linux failures; CI02 approval pending)
 
 **Reviewed:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -81,6 +81,8 @@ Current planning artifacts:
 - [Moltbook-candidate independent preflight findings](validation/VAL-TUI-CI01-preflight-49acc931.md)
 - [Fourth Ubuntu Actions run and complete failure evidence](validation/TUI-CI01-ubuntu-run-39175010441.md)
 - [TUI-CI01 independent post-run review](validation/VAL-TUI-CI01-final-a7519db2.md)
+- [Proposed CI02 Linux regression remediation directive](directives/CD-TUI-CI02-linux-regression-remediation.md)
+- [CI02 before-code Linux failure diagnosis](validation/TUI-CI02-before-code-diagnosis.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)

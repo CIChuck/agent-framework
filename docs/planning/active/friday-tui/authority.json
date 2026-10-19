@@ -8,7 +8,7 @@
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "validation",
+  "execution_phase": "planning",
   "validation_state": "changes_requested",
   "allowed_changes": [
     "docs/planning/active/friday-tui/** (scoped authority and evidence only)",
@@ -27,6 +27,14 @@
   "construction_directives_active": [
     "directives/CD-TUI-CI01-linux-actions.md"
   ],
+  "proposed_next_construction_directive": {
+    "unit": "TUI-CI02",
+    "path": "directives/CD-TUI-CI02-linux-regression-remediation.md",
+    "status": "proposed; exact test/workflow scope awaits maintainer approval",
+    "product_code_generation_authorized": false,
+    "test_or_workflow_edits_authorized_under_ci02": false,
+    "proposed_linux_maintenance_behavior": "preserve existing safe non-Darwin refusal; full Linux maintenance execution deferred pending separate design"
+  },
   "validated_construction_scope": {
     "unit": "TUI-N01S",
     "directive": "directives/CD-TUI-N01S-session-identity.md",
@@ -218,9 +226,12 @@
     "fourth_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39175010441",
     "fourth_linux_run_source": "94f968143ee9890cf761b0e3be9004735e5a6aaf",
     "fourth_linux_run_report": "validation/TUI-CI01-ubuntu-run-39175010441.md",
+    "fifth_linux_run": "https://github.com/CIChuck/agent-framework/actions/runs/39175828523",
+    "fifth_linux_run_source": "927dacc81d21a6e119a0c06bb8a2443d069157f5",
+    "fifth_linux_run_status": "failed: same Runtime MCP case and five Chat cases; focused, unchanged CLI, wheel and isolation checks passed",
     "post_run_review_report": "validation/VAL-TUI-CI01-final-a7519db2.md",
     "post_run_review_outcome": "CHANGES_REQUESTED; CI01-07 through CI01-10; no full Linux verification",
-    "candidate_status": "fourth Ubuntu run exercised all independent steps: focused tests, unchanged CLI and installed-wheel checks passed; one Runtime MCP stdio and five Chat tests failed; approved CI01 scope stops before product/test edits",
+    "candidate_status": "fifth Ubuntu run exercised all independent steps on current pushed source: focused tests, unchanged CLI and installed-wheel checks passed; one Runtime MCP stdio and five Chat tests failed; approved CI01 scope stops before product/test edits",
     "linux_run_status": "failed: Runtime 333 passed/1 failed; Chat 816 passed/5 failed/23 skipped; friday-cli 155 passed; no full Linux coverage claim"
   },
   "closed_construction_scope_n01a": {

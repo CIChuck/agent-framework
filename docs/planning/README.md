@@ -41,7 +41,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 14 | [Friday TUI](active/friday-tui/) | normal | granted | pushed | Draft and obtain maintainer approval for separate Runtime MCP and Chat Linux remediation; then require a green exact-candidate CI01 run and fresh independent review |
+| 14 | [Friday TUI](active/friday-tui/) | normal | granted | pushed | Review and approve proposed CD-TUI-CI02 test/workflow-only Linux remediation and safe /reorganize refusal; then obtain green exact-candidate Ubuntu run and fresh independent review |
 | 27 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
 | 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](active/friday-deprecated-credential-cleanup/) | normal | granted | merged | PR 9 merged and remote branch deleted; maintainer lifecycle closeout/acceptance remains |
 | 29 | [Friday 0.1.0a3 repository version bump](active/friday-alpha3-version-bump/) | normal | granted | released | Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified |

@@ -3,7 +3,7 @@
 Status: Active TUI-CI01 Linux verification stopped at its protected-source boundary; N01A closed under its
 maintainer-approved Linux-smoke deferral
 
-execution_phase: validation; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope)
+execution_phase: planning; validation_state: changes_requested (TUI-CI01 Linux failures; CI02 approval pending)
 
 ## 2026-10-16 — activation and build planning
 
@@ -1845,3 +1845,35 @@ does not have its own green exact-candidate run. The report is
 approved remediation directive for the Runtime/MCP and Chat Linux issues;
 no protected source or test edit is authorized by this review.
 execution_phase: validation; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope).
+
+## 2026-10-18 — TUI-CI01 pushed review packet and fifth Ubuntu run
+
+Pushed evidence/review commit `927dacc81d21a6e119a0c06bb8a2443d069157f5`
+under the recorded CI01 branch-push authorization. [Actions run
+`39175828523`](https://github.com/CIChuck/agent-framework/actions/runs/39175828523)
+tested that exact source and checkout. It failed the same Runtime MCP
+`auto`/modern case in both the full suite (333 passed, one failed) and its
+standalone diagnostic. Chat again had 816 passed, five failed and 23 skipped;
+the five failures were the same help assertion and four `/reorganize` cases.
+The focused 21 tests, unchanged `friday-cli` 155 tests, 13 wheel builds,
+Runtime wheel metadata and isolated installed-package checks passed. This
+confirms the failed gate on the pushed packet commit without granting source
+or test authority.
+execution_phase: validation; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope).
+
+## 2026-10-18 — Proposed TUI-CI02 Linux remediation directive
+
+From CI01 findings CI01-07 through CI01-10, drafted
+`directives/CD-TUI-CI02-linux-regression-remediation.md` for a test/workflow-
+only diagnostic and correction path. Local reproduction with
+`GITHUB_ACTIONS=true` or `FORCE_COLOR=1` shows the help assertion misses
+visibly present `--version` because ANSI styling splits the raw substring;
+stripping ANSI restores the assertion. The current Chat lease registry
+deliberately rejects Linux maintenance, so the proposed initial behavior is
+to retain safe refusal and test it explicitly. The MCP lifecycle outcome
+remains unknown; the proposal gates any synthetic timeout change on captured
+Ubuntu evidence and stops for a new framework directive if product code is
+needed. The maintainer's "approved continue" authorized this planning pass;
+CI02's exact construction scope remains unapproved. No product, test or
+workflow file changed in this pass.
+execution_phase: planning; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope; CI02 approval pending).
