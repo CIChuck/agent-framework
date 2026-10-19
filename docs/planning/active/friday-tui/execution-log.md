@@ -1936,3 +1936,28 @@ needed. The maintainer's "approved continue" authorized this planning pass;
 CI02's exact construction scope remains unapproved. No product, test or
 workflow file changed in this pass.
 execution_phase: planning; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope; CI02 approval pending).
+
+## 2026-10-18 — CI03 shared-MCP directive approved
+
+Chuck Russell replied "approved" to the exact CD-TUI-CI03 source/test/optional
+workflow scope and independently reviewed feature-branch push request. The
+board and authority manifest now activate CI03-A characterization before any
+shared-MCP source edit. If the timeout followed by `-32022` sequence is not
+confirmed, source work stops for a revised directive. CI01/CI02 Linux gates
+remain open. No TUI product unit, PR, merge, release or acceptance is implied.
+
+execution_phase: implementation; validation_state: not_ready (CI03-A characterization pending).
+
+## 2026-10-18 — CI03 local characterization and regression gate
+
+The new owned-stdio synthetic test failed before source correction and
+confirmed the first `server/discover` timeout followed by legacy `initialize`
+error `-32022`, with no tool call and complete child cleanup. The bounded
+`auto` retry now passes its positive and negative cases. Full local MCP,
+Runtime, Chat and unchanged `friday-cli` regressions, three direct stdio runs,
+Ruff, targeted Mypy, lock check, workflow parse, board validation and diff
+checks passed. The [local report](validation/TUI-CI03-local-checks.md) records
+counts and the sandbox loopback rerun. The candidate awaits a committed
+freeze, fresh-context independent review and exact-source Ubuntu verification.
+
+execution_phase: validation; validation_state: pending (CI03 independent review and Ubuntu run).

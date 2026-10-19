@@ -86,6 +86,8 @@ jobs:
       - name: Check direct MCP stdio interoperability repeatedly
         if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
         run: |
+          uv run --no-sync pytest -q \
+            'packages/friday-mcp/tests_mcp/client/test_stdio_interop.py::test_official_sdk_230_real_stdio_catalog_text_structured_and_reaping[modern]'
           failures=0
           for attempt in 1 2 3; do
             printf 'Direct MCP stdio attempt %s\n' "$attempt"

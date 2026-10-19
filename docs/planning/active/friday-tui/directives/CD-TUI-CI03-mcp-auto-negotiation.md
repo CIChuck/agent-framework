@@ -1,8 +1,11 @@
 # CD-TUI-CI03: Bounded MCP auto-negotiation recovery
 
-**Status:** Proposed for maintainer review. This document grants no source,
-test, workflow or push authority. TUI-CI02 stopped at its approved
-framework-source boundary; CI01 and CI02 remain `changes_requested` on Linux.
+**Status:** Approved by Chuck Russell on 2026-10-18. The maintainer's reply
+"approved" to the CI03 scope and reviewed-candidate push question authorizes
+the exact source, test, optional workflow and packet edits below, followed by
+an independently reviewed push to `feature/friday-tui` for Ubuntu verification.
+TUI-CI02 stopped at its approved framework-source boundary; CI01 and CI02
+remain `changes_requested` on Linux.
 
 **Initiative/unit:** `friday-tui` / TUI-CI03, a separate shared-framework
 remediation required by the TUI Linux verification gate.
@@ -24,7 +27,7 @@ delayed modern SDK peer reproduced the same error;
 explicit `modern` connected within the three-second budget. The probe-timeout
 mechanism is a strong inference, not yet a directly captured Ubuntu event.
 
-**Proposed contract:** Preserve `legacy` and explicit `modern` behavior and
+**Approved contract:** Preserve `legacy` and explicit `modern` behavior and
 the configured total connection deadline. For `auto`, retain legacy fallback
 when a peer ignores or rejects modern discovery. If modern discovery timed
 out and the legacy `initialize` reply returns unsupported-protocol code
@@ -41,7 +44,7 @@ first modern-probe outcome and prove that the subsequent `-32022` follows that
 timeout. If that sequence is not confirmed, stop and revise this directive
 before source changes. Do not approve a speculative generic retry.
 
-## Testable subunits and proposed exact edit scope
+## Testable subunits and exact edit scope
 
 1. **CI03-A, characterize before source edit:** Add a deterministic synthetic
    test for a modern peer whose discovery reply arrives after `auto`'s first
@@ -62,7 +65,7 @@ before source changes. Do not approve a speculative generic retry.
    green exact-candidate run and fresh-context independent review. Hands-on
    Linux terminal UAT remains a later TUI release gate.
 
-After approval, exact allowed edits would be:
+Exact allowed edits are:
 
 - `packages/friday-mcp/src/friday_mcp/client/base.py` — only `auto`
   negotiation and deadline handling for the confirmed failure sequence.
@@ -75,16 +78,17 @@ After approval, exact allowed edits would be:
 
 No `friday-cli` source/tests, Chat source, Runtime source, TUI package,
 metadata, dependency lock, production timeout/default, release, PR or merge
-edit is proposed. A needed additional path or changed contract requires a
+edit is authorized. A needed additional path or changed contract requires a
 revised directive and maintainer approval before editing it. Avoid logging
 credentials or peer-supplied text; use synthetic fixtures and fixed reason
-codes. The maintainer must separately authorize any future branch push.
+codes. The independently reviewed CI03 candidate branch push is authorized;
+PR, merge, release and any later work remain outside this approval.
 
 ## Approval and stop gate
 
-The maintainer can approve or revise this exact CI03 scope and behavior.
-Approval would authorize only the listed local source/test/workflow work after
-the board and authority manifest record it. It would not accept CI01/CI02,
+The maintainer approved this exact CI03 scope and behavior. It authorizes only
+the listed local source/test/workflow work after the board and authority
+manifest record it and the reviewed-candidate branch push. It does not accept CI01/CI02,
 approve a PR or release, or waive Linux terminal UAT. Stop if CI03-A does not
 confirm the sequence, if source correction changes the `friday-cli` contract,
 or if tests reveal an unrelated transport or SDK problem.

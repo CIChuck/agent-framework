@@ -2,29 +2,35 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI01/CI02 bounded authority stopped at the shared MCP source boundary after red Ubuntu run; CI03 source work proposed only; later TUI product units remain design-only",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI01/CI02 Linux gates remain open; approved CI03 permits bounded shared-MCP auto-negotiation source/test and optional workflow work plus an independently reviewed feature-branch push; later TUI product units remain design-only",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "planning",
-  "validation_state": "changes_requested",
+  "execution_phase": "validation",
+  "validation_state": "pending",
   "allowed_changes": [
-    "docs/planning/active/friday-tui/** (CI02 run evidence and proposed CI03 planning only)",
+    "packages/friday-mcp/src/friday_mcp/client/base.py (CI03 auto negotiation only)",
+    "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py (CI03 characterization/regression only)",
+    ".github/workflows/friday-tui-linux.yml (optional direct explicit-modern control only)",
+    "docs/planning/active/friday-tui/** (CI03 authority and validation evidence only)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
-  "product_code_generation_authorized": false,
-  "workflow_code_generation_authorized": false,
+  "product_code_generation_authorized": true,
+  "workflow_code_generation_authorized": true,
   "build_plan_approval": "TUI-N01S and TUI-N01A verified under their exact directives; N01A Linux smoke was waived only for unit closeout; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
     "directives/CD-TUI-N01A-neutral-config-loader.md",
     "directives/CD-TUI-CI01-linux-actions.md",
-    "directives/CD-TUI-CI02-linux-regression-remediation.md"
+    "directives/CD-TUI-CI02-linux-regression-remediation.md",
+    "directives/CD-TUI-CI03-mcp-auto-negotiation.md"
   ],
-  "construction_directives_active": [],
+  "construction_directives_active": [
+    "directives/CD-TUI-CI03-mcp-auto-negotiation.md"
+  ],
   "validated_construction_scope": {
     "unit": "TUI-N01S",
     "directive": "directives/CD-TUI-N01S-session-identity.md",
@@ -39,12 +45,12 @@
   "protected": [
     "Existing friday-cli feature set, behavior and implementation",
     "Existing friday-chat behavior and defaults",
-    "All product/framework source and tests, workflow, scripts, workspace metadata and dependency lock pending a separately approved CI03 or later construction directive",
+    "All other product/framework source and tests, scripts, workspace metadata, dependency lock and workflow paths outside the approved CI03 exact scope",
     "Historical archive and frozen review evidence",
     "Existing local runtime, transcript and memory state"
   ],
-  "external_delivery_authorized": false,
-  "external_delivery_scope": "The approved CI02 feature-branch push completed at 49adbcb50d8e6b238172845fe32ef1ddfe279f4a; no further push, PR, merge, release or product work is authorized by proposed CI03",
+  "external_delivery_authorized": true,
+  "external_delivery_scope": "Only the independently reviewed CI03 candidate may be pushed to feature/friday-tui for Ubuntu verification; no PR, merge, release, deployment or product acceptance is authorized",
   "planning_completion_checks": [
     "Board/schema/dashboard consistency",
     "Current command inventory and source baseline reconciliation",
@@ -262,13 +268,19 @@
     "ubuntu_run_report": "validation/TUI-CI02-ubuntu-run-39181571549.md",
     "status": "stopped at framework-source boundary: Runtime auto/modern connection_failed; direct MCP auto receives -32022; CI02-C timeout gate not met"
   },
-  "proposed_next_construction_directive": {
+  "active_construction_scope_ci03": {
     "unit": "TUI-CI03",
-    "path": "directives/CD-TUI-CI03-mcp-auto-negotiation.md",
-    "status": "proposed; separate shared-framework source/test scope awaits maintainer approval",
-    "source_code_generation_authorized": false,
-    "test_or_workflow_edits_authorized_under_ci03": false,
-    "remote_push_authorized": false,
-    "source_evidence": "validation/TUI-CI02-ubuntu-run-39181571549.md"
+    "directive": "directives/CD-TUI-CI03-mcp-auto-negotiation.md",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-10-18",
+    "approval_evidence": "Current-session reply 'approved' to the exact CI03 source/test/workflow scope and reviewed-candidate push question",
+    "construction_base": "8013bb57f2499ceb0852b3d16099586649e4e107",
+    "source_code_generation_authorized": true,
+    "test_or_workflow_edits_authorized_under_ci03": true,
+    "remote_push_authorized": true,
+    "later_tui_product_units_authorized": false,
+    "pr_merge_release_authorized": false,
+    "status": "CI03-A sequence confirmed in synthetic owned-stdio child; bounded source/workflow correction and local regressions complete; candidate review and Ubuntu verification pending",
+    "local_check_report": "validation/TUI-CI03-local-checks.md"
   }
 }

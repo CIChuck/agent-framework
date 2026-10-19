@@ -223,6 +223,16 @@ class MCPClientBase(ABC):
         self._discovery = None
 
     async def _initialize(self) -> None:
+        modern_probe_timed_out = False
+
+        def accept_discovery(response: dict[str, Any]) -> None:
+            discovery = Discovery.parse(
+                FrozenJSON.from_value(response, self.limits).object(), self.limits
+            )
+            self._discovery = discovery
+            self._capabilities = discovery.capabilities
+            self._identity = discovery.server_info
+
         if self.protocol_profile != "legacy":
             self._selected_version = MODERN_VERSION
             try:
@@ -245,23 +255,34 @@ class MCPClientBase(ABC):
             except TimeoutError:
                 if self.protocol_profile != "auto":
                     raise
+                modern_probe_timed_out = True
             else:
-                discovery = Discovery.parse(
-                    FrozenJSON.from_value(response, self.limits).object(), self.limits
-                )
-                self._discovery = discovery
-                self._capabilities = discovery.capabilities
-                self._identity = discovery.server_info
+                accept_discovery(response)
                 return
         self._selected_version = LEGACY_VERSION
-        response = await self._request(
-            "initialize",
-            {
-                "protocolVersion": LEGACY_VERSION,
-                "capabilities": {},
-                "clientInfo": self._client_info,
-            },
-        )
+        try:
+            response = await self._request(
+                "initialize",
+                {
+                    "protocolVersion": LEGACY_VERSION,
+                    "capabilities": {},
+                    "clientInfo": self._client_info,
+                },
+            )
+        except MCPError as exc:
+            if not modern_probe_timed_out or exc.code != -32022:
+                raise
+            # The timed-out probe may have succeeded server-side; that peer
+            # rejects legacy initialize. Retry only the read-only handshake.
+            if self._connect_deadline is None:
+                raise
+            remaining = self._connect_deadline - asyncio.get_running_loop().time()
+            if remaining <= 0:
+                raise TimeoutError("MCP request timed out") from exc
+            self._selected_version = MODERN_VERSION
+            response = await self._request("server/discover", {}, timeout=remaining)
+            accept_discovery(response)
+            return
         if response.get("protocolVersion") != LEGACY_VERSION:
             raise ProtocolFailure("unsupported_version")
         capabilities = response.get("capabilities")

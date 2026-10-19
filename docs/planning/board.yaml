@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review and approve proposed CD-TUI-CI03 shared MCP auto-negotiation directive; CI01 and CI02 Linux gates remain open after red Ubuntu run 39181571549
+  next_gate: Freeze CI03 candidate and obtain fresh-context independent review; after VERIFIED, push authorized feature branch for exact-source Ubuntu verification; CI01/CI02 Linux gates remain open
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -312,6 +312,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI01-final-a7519db2.md (independent CHANGES_REQUESTED CI01 post-run review; Linux gate remains open)
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI02-preflight-49adbcb5.md (independent VERIFIED CI02 pre-push review only; Ubuntu gate remained open)
   - docs/planning/active/friday-tui/validation/TUI-CI02-ubuntu-run-39181571549.md (red exact-source Ubuntu Runtime/direct-MCP gate; CI02 stopped before framework source)
+  - docs/planning/active/friday-tui/validation/TUI-CI03-local-checks.md (synthetic characterization and local shared-MCP regressions; independent review and Ubuntu pending)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3028,3 +3029,17 @@ events:
   action: ci02_ubuntu_diagnosis_stopped_at_framework_boundary
   note: Approved CI02 candidate 49adbcb5 was independently VERIFIED for pre-push readiness and pushed with maintainer authorization. Exact-source Ubuntu run passed Chat, unchanged friday-cli and wheel gates but failed Runtime auto/modern and three direct MCP auto checks with unsupported-protocol error -32022. CI02-C timeout correction conditions are false. CI03 framework-source remediation is proposed only, not approved; CI01 and CI02 Linux gates remain open.
   evidence: docs/planning/active/friday-tui/validation/TUI-CI02-ubuntu-run-39181571549.md; https://github.com/CIChuck/agent-framework/actions/runs/39181571549
+- task: friday-tui
+  at: '2026-10-19T00:54:59+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: ci03_scope_and_reviewed_push_approved
+  note: Maintainer approved CD-TUI-CI03 exact shared-MCP auto-negotiation source/test scope, optional explicit-modern workflow control, and independently reviewed feature-branch candidate push for Ubuntu verification. CI01/CI02 Linux gates remain open; no TUI product unit, PR, merge, release or acceptance is authorized.
+  evidence: docs/planning/active/friday-tui/directives/CD-TUI-CI03-mcp-auto-negotiation.md; current-session reply "approved"
+- task: friday-tui
+  at: '2026-10-19T01:02:14+00:00'
+  actor: Codex
+  actor_role: agent
+  action: ci03_local_candidate_ready_for_independent_review
+  note: Synthetic owned-stdio peer confirmed auto modern-probe timeout followed by legacy initialize -32022 before source correction. Bounded one-time modern retry and explicit-modern Ubuntu control are locally implemented. Full MCP, Runtime, Chat, unchanged friday-cli, three stdio repetitions, static, lock and board checks passed. Exact candidate review and Ubuntu verification remain pending.
+  evidence: docs/planning/active/friday-tui/validation/TUI-CI03-local-checks.md

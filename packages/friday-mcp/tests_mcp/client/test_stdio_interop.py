@@ -8,6 +8,7 @@ from pathlib import Path
 
 import pytest
 
+from friday_mcp.client.base import MCPError
 from friday_mcp.client.protocol import (
     LEGACY_VERSION,
     MODERN_VERSION,
@@ -17,6 +18,52 @@ from friday_mcp.client.protocol import (
 from friday_mcp.client.stdio import StdioMCPClient
 
 FIXTURES = Path(__file__).parents[1] / "fixtures"
+
+DELAYED_MODERN_PEER = r"""
+import json
+import os
+import sys
+import time
+from pathlib import Path
+
+mode = sys.argv[1]
+delay = float(sys.argv[2])
+modern_version = sys.argv[3]
+counter = Path(os.environ["MCP_FIXTURE_COUNTER"])
+discoveries = 0
+
+for line in sys.stdin:
+    request = json.loads(line)
+    method = request.get("method")
+    with counter.open("a", encoding="utf-8") as stream:
+        stream.write(json.dumps({"method": method}) + "\n")
+    if "id" not in request:
+        continue
+    if method == "server/discover":
+        discoveries += 1
+        if mode in {"unavailable", "other-legacy-error"}:
+            continue
+        if mode == "rejected-modern":
+            response = {"error": {"code": -32601, "message": "No discovery"}}
+        else:
+            if discoveries == 1:
+                time.sleep(delay)
+            response = {
+                "result": {
+                    "resultType": "complete",
+                    "supportedVersions": [modern_version],
+                    "capabilities": {"tools": {}},
+                    "ttlMs": 0,
+                    "cacheScope": "private",
+                }
+            }
+    elif method == "initialize":
+        code = -32021 if mode == "other-legacy-error" else -32022
+        response = {"error": {"code": code, "message": "Synthetic handshake error"}}
+    else:
+        response = {"error": {"code": -32601, "message": "Unknown method"}}
+    print(json.dumps({"jsonrpc": "2.0", "id": request["id"], **response}), flush=True)
+"""
 
 
 def client_for(tmp_path, *, modern=True, profile=None, mode="good", timeout=3):
@@ -56,6 +103,90 @@ async def disconnect_owned(client, transport, process):
     assert not client._pending_requests
     assert not client._control_tasks
     assert not client._exchange_tasks
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "mode,timeout,delay",
+    [
+        ("late-modern", 4.0, 2.3),
+        ("unavailable", 2.0, 0.0),
+        ("rejected-modern", 2.0, 0.0),
+        ("other-legacy-error", 2.0, 0.0),
+    ],
+)
+async def test_auto_timeout_then_legacy_version_rejection_retries_only_modern(
+    tmp_path, mode, timeout, delay
+):
+    client = StdioMCPClient(
+        "synthetic-delayed-modern",
+        sys.executable,
+        ["-u", "-c", DELAYED_MODERN_PEER, mode, str(delay), MODERN_VERSION],
+        env={"MCP_FIXTURE_COUNTER": str(tmp_path / "counter.jsonl")},
+        cwd=tmp_path,
+        protocol_profile="auto",
+        limits=ProtocolLimits(timeout_seconds=timeout),
+    )
+    original_request = client._request
+    outcomes = []
+    owned = []
+
+    async def observe_request(method, params, timeout=None):
+        if not owned:
+            transport = client._transport
+            owned.extend((transport, transport._process))
+        try:
+            result = await original_request(method, params, timeout=timeout)
+        except TimeoutError:
+            outcomes.append((method, "timeout"))
+            raise
+        except MCPError as exc:
+            outcomes.append((method, exc.code))
+            raise
+        outcomes.append((method, "success"))
+        return result
+
+    client._request = observe_request
+    try:
+        if mode == "unavailable":
+            with pytest.raises(TimeoutError):
+                await client.connect()
+        elif mode in {"rejected-modern", "other-legacy-error"}:
+            with pytest.raises(MCPError) as caught:
+                await client.connect()
+            assert caught.value.code == (
+                -32021 if mode == "other-legacy-error" else -32022
+            )
+        else:
+            await client.connect()
+            assert client.negotiated_version == MODERN_VERSION
+    finally:
+        await client.disconnect()
+        await disconnect_owned(client, *owned)
+        assert "tools/call" not in [r["method"] for r in records(tmp_path)]
+    if mode == "rejected-modern":
+        assert outcomes == [("server/discover", -32601), ("initialize", -32022)]
+    elif mode == "other-legacy-error":
+        assert outcomes == [("server/discover", "timeout"), ("initialize", -32021)]
+    elif mode == "unavailable":
+        assert outcomes[:2] == [
+            ("server/discover", "timeout"),
+            ("initialize", -32022),
+        ]
+        # The outer connection deadline may cancel the retry before its
+        # request-scoped timeout reports its own outcome.
+        assert outcomes[2:] in ([], [("server/discover", "timeout")])
+    else:
+        assert outcomes == [
+            ("server/discover", "timeout"),
+            ("initialize", -32022),
+            ("server/discover", "success"),
+        ]
+    methods = [r["method"] for r in records(tmp_path)]
+    assert methods.count("server/discover") == (
+        2 if mode in {"late-modern", "unavailable"} else 1
+    )
+    assert methods.count("initialize") == 1
 
 
 @pytest.mark.asyncio
