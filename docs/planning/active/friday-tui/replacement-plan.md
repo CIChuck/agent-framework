@@ -2,10 +2,11 @@
 
 **Status:** Active replacement planning contract; N01S and N01A independently
 VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 pre-push candidate
-and exact-source Ubuntu gate independently VERIFIED
+and exact-source Ubuntu gate independently VERIFIED; N01B-02 directive proposed
 
-**Branch and authority:** `feature/friday-tui`; `granted` for the exact
-CD-TUI-N01B-01 subunit only; later product units remain design-only
+**Branch and authority:** `feature/friday-tui`; N01B-01 source frozen after
+verification; N01B-02 and later product units remain design-only until each
+exact directive is separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -256,9 +257,13 @@ N01S and N01A are independently verified, and the CI01-CI03 infrastructure
 work has a green [Ubuntu run](validation/TUI-CI03-ubuntu-run-39183895627.md)
 and [final independent review](validation/VAL-TUI-CI03-final-676700f5.md).
 N01B is the next product unit. Its first read-only query-contract
-subunit is bounded by [CD-TUI-N01B-01](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
-and the [before-code baseline](validation/N01B-01-before-code-characterization.md),
-and its exact directive is approved for bounded construction.
+subunit was independently VERIFIED under
+[CD-TUI-N01B-01](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
+and its [before-code baseline](validation/N01B-01-before-code-characterization.md).
+The next persisted-query adapter subunit has a
+[proposed exact directive](directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md)
+and [before-code characterization](validation/N01B-02-before-code-characterization.md);
+construction awaits separate maintainer approval.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -367,8 +372,11 @@ exact-source Linux result or TUI terminal UAT.
    Chuck Russell authorized the branch push; the [exact-source Ubuntu
    run](validation/N01B-01-ubuntu-run-39190668231.md) succeeded and was
    [independently reconciled](validation/VAL-N01B-01-postrun-4febb6f6.md).
-   The next product unit needs a separate exact directive and maintainer
-   approval. Installed macOS/Linux terminal UAT remains a release gate.
+   The next product unit has a
+   [proposed N01B-02 adapter directive](directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md)
+   and [171-pass source characterization](validation/N01B-02-before-code-characterization.md).
+   It needs separate maintainer approval before code generation. Installed
+   macOS/Linux terminal UAT remains a release gate.
 2. Choose owners for command/event seams. Review the
    [event/lifecycle proposal](neutral-event-lifecycle-contract.md) and bind
    event admission, argument snapshot and resource-close boundaries against
@@ -382,11 +390,11 @@ exact-source Linux result or TUI terminal UAT.
 4. Prepare separate exact directives for later bounded units; recheck board,
    branch, source and authority before each product-code unit.
 
-The board remains `started` with `granted` authority only for the exact
-N01B-01 subunit. Its first candidate `7e5241c8` received
+The board remains `started` with initiative authority `granted`, but no
+active product-code directive. The N01B-01 first candidate `7e5241c8` received
 `CHANGES_REQUESTED` for packet documentation and command evidence; corrected
 candidate `35e297e8` is independently `VERIFIED` for pre-push readiness.
 Product source is frozen. The pushed source `62d3ae3b` passed the Ubuntu
 workflow and post-run independent reconciliation. N01A is closed,
-while later N01B effects and all subsequent product units remain design-only.
+while proposed N01B-02 and all subsequent product units remain design-only.
 No TUI, terminal UAT or real-provider test has run.

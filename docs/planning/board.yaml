@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Prepare an exact directive and obtain separate maintainer approval for the next N01B neutral adapter/effects subunit; installed macOS/Linux terminal UAT remains a release gate
+  next_gate: Review and separately approve proposed CD-TUI-N01B-02 neutral transcript-query adapter directive before product code; installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3122,3 +3122,10 @@ events:
   action: n01b_01_exact_source_ubuntu_independently_verified
   note: Fresh-context read-only reviewer VERIFIED exact-source Ubuntu run 39190668231 and packet candidate 4febb6f6. Runtime, Chat, unchanged friday-cli, repeated MCP, wheel and installed configuration checks passed on pushed 62d3ae3b. Local independent installed transcript-contract checks remain separate; no Linux terminal UAT, full TUI, acceptance or later product-unit authority is inferred.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-01-postrun-4febb6f6.md; https://github.com/CIChuck/agent-framework/actions/runs/39190668231
+- task: friday-tui
+  at: '2026-10-19T03:12:27+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_02_neutral_transcript_query_adapter_directive_proposed
+  note: Read-only source characterization found a bounded persisted-query adapter extraction. Unchanged Chat transcript, identity and friday-cli comparison tests passed 171. Proposed CD-TUI-N01B-02 names exact Runtime/Chat source and test paths, behavior and validation gates. Product code, TUI shell, UAT and external delivery remain unauthorized by this planning pass; separate maintainer approval is pending.
+  evidence: docs/planning/active/friday-tui/validation/N01B-02-before-code-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md

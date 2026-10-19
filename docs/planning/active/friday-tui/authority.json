@@ -2,21 +2,17 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 approved for its four exact source/test paths only; later TUI product units remain design-only",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 approved and independently verified on its exact scope; CD-TUI-N01B-02 is proposed only, with no product-code authority; later TUI product units remain design-only",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "closeout",
-  "validation_state": "verified",
+  "execution_phase": "planning",
+  "validation_state": "not_ready",
   "allowed_changes": [
-    "packages/friday-runtime/src/friday_runtime/transcript_views.py (add only)",
-    "packages/friday-chat/src/friday_chat/transcripts.py (compatibility facade only)",
-    "packages/friday-runtime/tests_runtime/test_transcript_views.py (add only)",
-    "packages/friday-chat/tests_chat/test_transcript_query_facade.py (add only)",
-    "docs/planning/active/friday-tui/** (N01B-01 authority, implementation and validation evidence only)",
-    "docs/planning/board.yaml (TUI task and scoped events only)",
+    "docs/planning/active/friday-tui/** (N01B-02 characterization, proposed directive and planning status only)",
+    "docs/planning/board.yaml (TUI next gate and scoped event only)",
     "docs/planning/README.md (generated dashboard)"
   ],
   "product_code_generation_authorized": false,
@@ -26,6 +22,14 @@
     "authorized_at": "2026-10-18",
     "source": "Current-session instruction 'proceed' after the N01B planning next step was identified",
     "exact_scope": "N01B-01 read-only characterization, proposed directive, TUI packet status, scoped TUI board event and generated planning dashboard",
+    "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard are edited; no product source, tests, package metadata, lock or workflow is changed",
+    "validation": "171 unchanged baseline tests passed; board validation, JSON parse, local-link check, exact changed-path inspection and git diff --check"
+  },
+  "n01b_02_planning_exemption": {
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-10-18",
+    "source": "Current-session instruction 'PROCEED' after the N01B adapter/effects directive was identified as the next planning step",
+    "exact_scope": "Read-only N01B-02 characterization and proposed exact directive, scoped TUI packet and authority status, TUI board next gate/event and generated dashboard",
     "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard are edited; no product source, tests, package metadata, lock or workflow is changed",
     "validation": "171 unchanged baseline tests passed; board validation, JSON parse, local-link check, exact changed-path inspection and git diff --check"
   },
@@ -39,6 +43,14 @@
     "directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md"
   ],
   "construction_directives_active": [],
+  "n01b_02_directive_proposal": {
+    "unit": "TUI-N01B-02",
+    "path": "directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md",
+    "status": "proposed; separate exact maintainer approval pending",
+    "before_code_baseline": "validation/N01B-02-before-code-characterization.md",
+    "source_code_generation_authorized": false,
+    "external_delivery_authorized": false
+  },
   "n01b_01_directive_record": {
     "unit": "TUI-N01B-01",
     "path": "directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md",
@@ -92,7 +104,7 @@
   "protected": [
     "Existing friday-cli feature set, behavior and implementation",
     "Existing friday-chat behavior and defaults",
-    "All product/framework source and tests outside the four CD-TUI-N01B-01 paths; all workflows, scripts, workspace metadata and dependency lock",
+    "All product/framework source and tests pending a separately approved exact directive; all workflows, scripts, workspace metadata and dependency lock",
     "Historical archive and frozen review evidence",
     "Existing local runtime, transcript and memory state"
   ],

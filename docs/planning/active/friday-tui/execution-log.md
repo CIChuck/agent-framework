@@ -2,9 +2,32 @@
 
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
-independently verified
+independently verified; TUI-N01B-02 proposed for separate approval
 
-execution_phase: closeout; validation_state: verified (N01B-01 contract and automated Linux gate only; TUI product/UAT not ready)
+execution_phase: planning; validation_state: not_ready (N01B-02 proposed only; N01B-01 VERIFIED, TUI product/UAT not ready)
+
+## 2026-10-18 — N01B-02 read-only baseline and exact directive proposed
+
+Chuck Russell instructed "PROCEED" after the next N01B neutral
+adapter/effects planning step was identified. Source inspection found the four
+persisted query methods and query-only helpers inside Chat's
+`FrameworkTranscriptAdapter`. Its writes, configuration, MCP provenance,
+finalization, fake store and command exports remain Chat-owned. The unchanged
+transcript, session-identity and `friday-cli` comparison suite passed **171 tests**
+on clean source `f0e0786f`. The
+[before-code characterization](validation/N01B-02-before-code-characterization.md)
+records exact paging, archive, ordering and context-log limit behavior. The
+[proposed CD-TUI-N01B-02](directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md)
+names four source/test paths, direct neutral tests, protected Chat/CLI
+comparisons, installed isolation and stop conditions. This planning pass
+changes only scoped packet/board/dashboard files; it does not activate the
+directive, edit product code, run terminal UAT or authorize external delivery.
+Board, dashboard, JSON, changed-document local links and staged diff checks
+passed. The repository-wide documentation lifecycle check remains red on six
+absolute `/private/tmp/telem-01/review` links in an unchanged telemetry review
+report; those links are present at the before-code HEAD.
+
+execution_phase: planning; validation_state: not_ready (N01B-02 exact directive approval pending).
 
 ## 2026-10-18 — N01B-01 Ubuntu gate independently VERIFIED
 

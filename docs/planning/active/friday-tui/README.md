@@ -10,13 +10,13 @@ was pushed and the exact-source Ubuntu workflow is green. A final independent
 review VERIFIED CI03 and reconciled the CI01/CI02 automated Linux gates.
 
 **Lifecycle:** Started; board priority 14; CI03 infrastructure work unit and
-CI01/CI02 automated Linux gates VERIFIED; the first TUI-N01B product subunit
-has an approved exact directive; its pre-push candidate and exact-source
-Ubuntu run are independently `VERIFIED`
+CI01/CI02 automated Linux gates VERIFIED; TUI-N01B-01's pre-push candidate and
+exact-source Ubuntu run are independently `VERIFIED`. TUI-N01B-02 has a
+proposed exact directive awaiting separate maintainer approval.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: closeout; validation_state: verified (N01B-01 contract unit and automated Linux gate only; TUI product and UAT not ready)
+execution_phase: planning; validation_state: not_ready (N01B-02 proposed only; N01B-01 VERIFIED, TUI product and UAT not ready)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -105,6 +105,8 @@ Current planning artifacts:
 - [Final N01B-01 independent pre-push candidate review](validation/VAL-N01B-01-final-closeout-35e297e8.md)
 - [N01B-01 exact-source Ubuntu run](validation/N01B-01-ubuntu-run-39190668231.md)
 - [Independent N01B-01 post-run Ubuntu reconciliation](validation/VAL-N01B-01-postrun-4febb6f6.md)
+- [TUI-N01B-02 before-code transcript adapter characterization](validation/N01B-02-before-code-characterization.md)
+- [Proposed TUI-N01B-02 neutral transcript-query adapter directive](directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -646,11 +648,14 @@ and a fresh independent reviewer returned
 [VERIFIED](validation/VAL-N01A-waiver-closeout.md). Linux testing remains a
 later TUI cross-platform/release gate. Dependent construction needs its own
 approved directive.
-The first N01B subunit has an
+The first N01B subunit is independently VERIFIED under its
 [approved transcript-query contract directive](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
 and [before-code baseline](validation/N01B-01-before-code-characterization.md).
-It permits only the four named source/test paths. Later product units need their
-own bounded directives and authority. At each
+Its source is frozen. The next, read-only persisted-query adapter has a
+[proposed exact directive](directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md)
+and [171-pass before-code characterization](validation/N01B-02-before-code-characterization.md),
+but no product-code approval. Later product units need their own bounded
+directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
 TUI-CI01/CI02 and are independently VERIFIED on the reviewed CI03 source.
