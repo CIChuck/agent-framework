@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Independently reconcile N01B-02 green exact-source Ubuntu run 39248181260 on authorized pushed 07177e6c; later N01B units need exact directives and installed macOS/Linux terminal UAT remains a release gate
+  next_gate: N01B-02 local and exact-source Ubuntu gates independently VERIFIED; select and approve a bounded directive for later N01B effects; installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -325,7 +325,8 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-02-local-checks.md (builder local and installed-wheel checks)
   - docs/planning/active/friday-tui/validation/VAL-N01B-02-prepush-e62f39ce.md (independent VERIFIED N01B-02 local pre-push readiness; exact-source Ubuntu and TUI UAT open)
   - docs/planning/active/friday-tui/validation/VAL-N01B-02-final-a3d0d961.md (independent VERIFIED final N01B-02 local pre-push authority candidate)
-  - docs/planning/active/friday-tui/validation/N01B-02-ubuntu-run-39248181260.md (green exact-source N01B-02 Ubuntu run; post-run independent review pending)
+  - docs/planning/active/friday-tui/validation/N01B-02-ubuntu-run-39248181260.md (green exact-source N01B-02 Ubuntu run)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-02-postrun-8e389def.md (independent VERIFIED N01B-02 exact-source Ubuntu reconciliation; later product/UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3168,3 +3169,10 @@ events:
   action: n01b_02_exact_source_ubuntu_green_pending_review
   note: Non-force push advanced feature/friday-tui from f0e0786f to 07177e6c. Ubuntu workflow 39248181260 checked out that exact SHA and passed full Runtime, full Chat, unchanged friday-cli, repeated MCP, wheels and installed configuration isolation. Independent post-run review is pending; the workflow does not run installed transcript-specific import/delegation and no terminal UAT is inferred.
   evidence: docs/planning/active/friday-tui/validation/N01B-02-ubuntu-run-39248181260.md; https://github.com/CIChuck/agent-framework/actions/runs/39248181260
+- task: friday-tui
+  at: '2026-10-19T12:06:49+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_02_exact_source_ubuntu_independently_verified
+  note: Fresh-context read-only reviewer VERIFIED green exact-source Ubuntu run 39248181260 and packet candidate 8e389def. Full Runtime, Chat, unchanged friday-cli, repeated MCP, wheels and installed configuration isolation passed on pushed 07177e6c. The workflow's installed probe covers configuration; independent local installed transcript checks remain separate. N01B-02 automated Linux gate is closed, while full TUI, installed terminal UAT, later product authority, acceptance and further external delivery remain open.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01B-02-postrun-8e389def.md; https://github.com/CIChuck/agent-framework/actions/runs/39248181260

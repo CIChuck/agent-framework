@@ -12,12 +12,12 @@ review VERIFIED CI03 and reconciled the CI01/CI02 automated Linux gates.
 **Lifecycle:** Started; board priority 14; CI03 infrastructure work unit and
 CI01/CI02 automated Linux gates VERIFIED; TUI-N01B-01's pre-push candidate and
 exact-source Ubuntu run are independently `VERIFIED`. TUI-N01B-02 is
-independently `VERIFIED` locally and its authorized exact-source Ubuntu run is
-green; post-run independent reconciliation is pending. Its source is frozen.
+independently `VERIFIED` locally and on its authorized exact-source Ubuntu
+run. Its source is frozen.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: in_review (N01B-02 exact-source Ubuntu run green; independent post-run review pending; TUI UAT not ready)
+execution_phase: planning; validation_state: verified (N01B-02 exact-source Ubuntu gate only; TUI product/UAT not ready)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -112,6 +112,7 @@ Current planning artifacts:
 - [Independent TUI-N01B-02 local pre-push review](validation/VAL-N01B-02-prepush-e62f39ce.md)
 - [Final TUI-N01B-02 pre-push authority review](validation/VAL-N01B-02-final-a3d0d961.md)
 - [N01B-02 exact-source Ubuntu run](validation/N01B-02-ubuntu-run-39248181260.md)
+- [Independent N01B-02 post-run Ubuntu reconciliation](validation/VAL-N01B-02-postrun-8e389def.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -663,8 +664,8 @@ Its four named source/test paths have [passing local checks](validation/N01B-02-
 and an [independent local pre-push VERIFIED review](validation/VAL-N01B-02-prepush-e62f39ce.md).
 They are frozen. The separately authorized push of `07177e6c` reached GitHub,
 and its [exact-source Ubuntu run](validation/N01B-02-ubuntu-run-39248181260.md)
-is green pending independent post-run reconciliation. Later product units need
-their own bounded directives and authority. At each
+was [independently reconciled](validation/VAL-N01B-02-postrun-8e389def.md).
+Later product units need their own bounded directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
 TUI-CI01/CI02 and are independently VERIFIED on the reviewed CI03 source.
@@ -681,8 +682,9 @@ directive is active. N01B-01's exact-source
 Ubuntu [run succeeded](validation/N01B-01-ubuntu-run-39190668231.md) after
 an authorized push and was [independently reconciled](validation/VAL-N01B-01-postrun-4febb6f6.md).
 N01B-02 is locally VERIFIED; its pushed `07177e6c` source passed the
-[Ubuntu workflow](validation/N01B-02-ubuntu-run-39248181260.md), with
-independent post-run review pending. CI03 and CI01/CI02 automated Linux gates are independently
+[Ubuntu workflow](validation/N01B-02-ubuntu-run-39248181260.md) and was
+[independently reviewed](validation/VAL-N01B-02-postrun-8e389def.md). CI03
+and CI01/CI02 automated Linux gates are independently
 VERIFIED. N01A is closed under its unit-specific Linux deferral. Later N01B
 effects require separate authority. No TUI executable, UAT result, publication
 or acceptance of the full initiative is claimed by this packet.

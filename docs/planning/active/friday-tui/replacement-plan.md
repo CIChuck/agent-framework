@@ -2,8 +2,8 @@
 
 **Status:** Active replacement planning contract; N01S and N01A independently
 VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 pre-push candidate
-and exact-source Ubuntu gate independently VERIFIED; N01B-02 independently
-VERIFIED locally with a green exact-source Ubuntu run pending post-run review
+and exact-source Ubuntu gate independently VERIFIED; N01B-02 local and
+exact-source Ubuntu gates independently VERIFIED
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 and N01B-02 source
 frozen after their bounded reviews; no product-code directive is active;
@@ -268,8 +268,8 @@ its [local construction checks](validation/N01B-02-local-checks.md) passed,
 and an [independent review](validation/VAL-N01B-02-prepush-e62f39ce.md)
 VERIFIED candidate `e62f39ce` for local pre-push readiness. The separately
 authorized push reached `07177e6c`, and its [exact-source Ubuntu
-run](validation/N01B-02-ubuntu-run-39248181260.md) is green pending independent
-post-run reconciliation.
+run](validation/N01B-02-ubuntu-run-39248181260.md) was
+[independently reconciled](validation/VAL-N01B-02-postrun-8e389def.md).
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -385,8 +385,8 @@ exact-source Linux result or TUI terminal UAT.
    [fresh independent review](validation/VAL-N01B-02-prepush-e62f39ce.md)
    VERIFIED only its exact local pre-push scope. The separately authorized
    push of `07177e6c` produced a green [exact-source Ubuntu
-   run](validation/N01B-02-ubuntu-run-39248181260.md); independently reconcile
-   the run before closing that validation gate. Installed
+   run](validation/N01B-02-ubuntu-run-39248181260.md), which a fresh reviewer
+   [VERIFIED](validation/VAL-N01B-02-postrun-8e389def.md). Installed
    macOS/Linux terminal UAT remains a release gate.
 2. Choose owners for command/event seams. Review the
    [event/lifecycle proposal](neutral-event-lifecycle-contract.md) and bind
@@ -408,6 +408,6 @@ candidate `35e297e8` is independently `VERIFIED` for pre-push readiness.
 Product source is frozen. The pushed source `62d3ae3b` passed the Ubuntu
 workflow and post-run independent reconciliation. N01A is closed, and
 N01B-02 candidate `e62f39ce` is independently VERIFIED locally. Pushed source
-`07177e6c` passed the Ubuntu workflow, pending independent post-run review;
+`07177e6c` passed the Ubuntu workflow and independent post-run review;
 subsequent product units remain open.
 No TUI, terminal UAT or real-provider test has run.

@@ -2,10 +2,26 @@
 
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
-independently verified; TUI-N01B-02 independently verified locally and its
-exact-source Ubuntu run green pending post-run review
+independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
+independently verified
 
-execution_phase: validation; validation_state: in_review (N01B-02 exact-source Ubuntu run green; post-run independent review pending; TUI product/UAT not ready)
+execution_phase: planning; validation_state: verified (N01B-02 exact-source Ubuntu gate only; TUI product/UAT not ready)
+
+## 2026-10-19 — N01B-02 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer
+[VERIFIED](validation/VAL-N01B-02-postrun-8e389def.md) pushed source
+`07177e6c`, green GitHub run `39248181260` and the post-run packet at
+`8e389def`. The review independently checked live run/job metadata and logs,
+all named steps and test counts, the docs-only packet delta, authority hashes,
+board/dashboard, links and clean state. The installed Ubuntu wheel probe covers
+the configuration facade; independently reviewed local installed-wheel checks
+cover N01B-02 transcript queries and Chat delegation on the byte-identical
+product source. This closes only N01B-02's automated Linux gate. No product
+directive is active; later N01B effects, installed terminal UAT, acceptance,
+PR, merge and release remain open. The authorized push is consumed.
+
+execution_phase: planning; validation_state: verified (N01B-02 automated Linux gate only).
 
 ## 2026-10-19 — N01B-02 authorized push and green exact-source Ubuntu run
 
