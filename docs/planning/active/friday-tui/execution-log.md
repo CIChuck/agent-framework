@@ -7,9 +7,23 @@ independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-04 local candidate `abeeb895` independently
 VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
 VERIFIED; TUI-N01B-05 single-file export-effects candidate `c773f272` and
-exact-source Ubuntu run 39278047819 independently VERIFIED
+exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
+all-session export effects proposed for review only
 
-execution_phase: planning; validation_state: verified (N01B-05 local and automated Ubuntu gates only; TUI product/UAT open)
+execution_phase: planning; validation_state: not_ready (N01B-06 proposal only; N01B-05 local and Ubuntu gates VERIFIED; TUI product/UAT open)
+
+## 2026-10-19 — N01B-06 all-session export-effects directive proposed
+
+After the maintainer requested the next tasks, read-only source review
+isolated Chat's remaining timestamped-directory and two-file export effects.
+The [before-code characterization](validation/N01B-06-before-code-all-session-export-characterization.md)
+records 253 unchanged focused/protected passes and disposable collision and
+partial-second-write probes. The [exact directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
+is proposed for maintainer review. No N01B-06 product or test edit, further
+push, PR, merge, release or installed TUI UAT is authorized by this planning
+pass. N01B-05 source and its verified automated Ubuntu gate remain frozen.
+
+execution_phase: planning; validation_state: not_ready (N01B-06 proposal only).
 
 ## 2026-10-19 — N01B-05 exact-source Ubuntu gate independently VERIFIED
 

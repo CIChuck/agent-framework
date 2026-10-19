@@ -7,12 +7,14 @@ exact-source Ubuntu gates independently VERIFIED; N01B-03 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-04 export destination/path
 candidate `abeeb895` independently VERIFIED locally and exact-source Ubuntu run
 39268960501 independently VERIFIED; N01B-05 single-file export effects
-candidate `c773f272` and exact-source Ubuntu run 39278047819 independently VERIFIED
+candidate `c773f272` and exact-source Ubuntu run 39278047819 independently
+VERIFIED; N01B-06 all-session export effects proposed for exact review only
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; N01B-05 is independently
-VERIFIED locally with source frozen and no active product-code directive;
-later product units remain design-only until separately approved
+VERIFIED locally and on exact-source Ubuntu, with source frozen and no active
+product-code directive; N01B-06 and later product units remain proposals
+until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -309,6 +311,10 @@ Its [local checks](validation/N01B-05-local-checks.md) passed and a
 the frozen candidate. The separately authorized non-force push reached
 `37298e48`; its [Ubuntu run](validation/N01B-05-ubuntu-run-39278047819.md)
 succeeded and was [independently VERIFIED](validation/VAL-N01B-05-postrun-3d5695d8.md).
+The [N01B-06 before-code characterization](validation/N01B-06-before-code-all-session-export-characterization.md)
+and [proposed directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
+isolate the remaining all-session directory creation and two-file writes;
+no N01B-06 product edit is approved yet.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -453,5 +459,7 @@ was approved for exact local construction. Its candidate `c773f272` is
 The authorized push and [exact-source Ubuntu run](validation/N01B-05-ubuntu-run-39278047819.md)
 are green and were [independently reconciled](validation/VAL-N01B-05-postrun-3d5695d8.md);
 push authority is consumed.
+The [N01B-06 directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
+is proposed for exact maintainer review, with no product or push authority.
 Later product units remain open.
 No TUI, terminal UAT or real-provider test has run.

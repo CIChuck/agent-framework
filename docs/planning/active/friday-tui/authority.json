@@ -2,16 +2,16 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-05 independently verified locally and on their authorized exact-source Ubuntu runs; one N01B-05 non-force push consumed; no further push, PR, merge, release or later product-unit authority",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-05 independently verified locally and on their authorized exact-source Ubuntu runs; one N01B-05 non-force push consumed; N01B-06 all-session export-effects directive proposed for review only; no later product, push, PR, merge or release authority",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
   "execution_phase": "planning",
-  "validation_state": "verified",
+  "validation_state": "not_ready",
   "allowed_changes": [
-    "docs/planning/active/friday-tui/** (scoped N01B-05 review and local closeout evidence only; reviewed source frozen)",
+    "docs/planning/active/friday-tui/** (scoped N01B-06 planning and proposed directive only; reviewed source frozen)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
@@ -57,6 +57,14 @@
     "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard may change; no product source, tests, package metadata, lock or workflow",
     "validation": "239 unchanged focused/protected tests passed; board validation (34 tasks), generated dashboard current, authority JSON parsed, 285 changed-document local links resolved, nine exact staged planning paths, staged whitespace and offline lock checks passed"
   },
+  "n01b_06_planning_exemption": {
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-10-19",
+    "source": "Current-session instruction 'proceed with the next tasks upon completion of board/doc updates' after N01B-05 Ubuntu closeout and the board's next bounded N01B directive gate",
+    "exact_scope": "Read-only N01B-06 all-session export-effect characterization and proposed exact directive, scoped TUI packet and authority status, TUI board next gate/event and generated dashboard",
+    "reason_runtime_behavior_cannot_change": "Only planning Markdown, authority JSON, TUI board YAML and generated dashboard may change; no product source, tests, package metadata, lock or workflow",
+    "validation": "253 unchanged focused/protected tests passed; disposable timestamp-collision, second-write-failure and child-path-order probes passed; board validation (34 tasks), generated dashboard current, authority JSON parsed, 359 scoped Markdown links resolved, exact planning paths and whitespace checks passed"
+  },
   "build_plan_approval": "TUI-N01S and TUI-N01A verified under their exact directives; N01A Linux smoke was waived only for unit closeout; replacement-plan.md and neutral-capability-map.md remain proposals for later units",
   "construction_directives_approved": [
     "directives/CD-TUI-N01S-session-identity.md",
@@ -71,6 +79,18 @@
     "directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md"
   ],
   "construction_directives_active": [],
+  "n01b_06_directive_record": {
+    "unit": "TUI-N01B-06",
+    "path": "directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md",
+    "status": "proposed; exact maintainer approval pending",
+    "proposed_by": "Codex",
+    "proposed_at": "2026-10-19",
+    "planning_evidence": "validation/N01B-06-before-code-all-session-export-characterization.md",
+    "before_code_source": "010849f531d2bbc08569d1825eec7e34f4db5489",
+    "baseline_result": "253 unchanged focused/protected tests passed; disposable collision and second-write-failure probes passed",
+    "source_code_generation_authorized": false,
+    "external_delivery_authorized": false
+  },
   "n01b_05_directive_record": {
     "unit": "TUI-N01B-05",
     "path": "directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md",
@@ -290,7 +310,7 @@
     "Q-03": "Quit at a safe stopping point, finishing any non-interruptible operation and cleaning up before exiting."
   },
   "follow_up_request": "Proceed and walk me through the decision process, following the request to finalize the technical integration contract.",
-  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contract extraction and exact-source Ubuntu gate are independently VERIFIED. N01B-02 neutral persisted-query adapter and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-03 pure transcript-export serialization and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-04 export destination/path local and exact-source Ubuntu gates are independently VERIFIED. N01B-05 single-file export effects and exact-source Ubuntu gate are independently VERIFIED; all-session export effects, transcript writes, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
+  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contract extraction and exact-source Ubuntu gate are independently VERIFIED. N01B-02 neutral persisted-query adapter and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-03 pure transcript-export serialization and its authorized exact-source Ubuntu run are independently VERIFIED. N01B-04 export destination/path local and exact-source Ubuntu gates are independently VERIFIED. N01B-05 single-file export effects and exact-source Ubuntu gate are independently VERIFIED. N01B-06 all-session export effects are proposed only; transcript writes, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
   "draft_construction_directive": "directives/CD-TUI-001-shared-presentation-contracts.md (withdrawn; not executable)",
   "read_only_design_checks": [
     "Existing CLI/selected Chat pytest baseline with fake providers and network guard; no source or test edits",
