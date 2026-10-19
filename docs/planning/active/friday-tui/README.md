@@ -84,6 +84,7 @@ Current planning artifacts:
 - [Approved CI02 Linux regression remediation directive](directives/CD-TUI-CI02-linux-regression-remediation.md)
 - [CI02 before-code Linux failure diagnosis](validation/TUI-CI02-before-code-diagnosis.md)
 - [CI02 local candidate checks](validation/TUI-CI02-local-checks.md)
+- [CI02 first-candidate independent preflight finding](validation/VAL-TUI-CI02-preflight-0bd4e441.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)

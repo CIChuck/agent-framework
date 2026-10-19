@@ -38,3 +38,11 @@ error category appeared. The Chat test files pass Mypy.
 then the authorized push and GitHub-hosted Ubuntu run. CI02-C permits a bounded
 synthetic timeout adjustment only if that run shows a fixture-budget timeout
 and repeated direct MCP interoperability checks pass.
+
+The first independent preflight found CI02-01: three declared Chat options
+were missing from the help assertions. The bounded correction now asserts all
+six declared options in all three color modes. The focused Chat tests were
+rerun (46 passed), the full Chat suite was rerun with loopback access (845
+passed, 5 skipped), and Ruff plus Mypy on the changed Chat tests passed.
+The earlier Runtime, direct MCP and unchanged `friday-cli` results still apply
+because the correction changed only Chat help assertions.

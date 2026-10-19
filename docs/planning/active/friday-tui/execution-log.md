@@ -25,6 +25,14 @@ passed after loopback access for synthetic HTTP fixtures; the Ubuntu outcome
 and CI02-C timeout decision remain open. The next gate is exact-candidate
 independent review before the authorized branch push.
 
+The first committed CI02 candidate `0bd4e441` received a fresh-context
+[CHANGES_REQUESTED preflight](validation/VAL-TUI-CI02-preflight-0bd4e441.md).
+Finding CI02-01 requires assertions for all six declared Chat help options.
+The authorized test-only correction now covers all six, with focused Chat
+46 passed, full Chat 845 passed/5 skipped, and focused Ruff/Mypy passing.
+The first verdict is not treated as a pass for the revised candidate; it needs
+fresh independent review.
+
 ## 2026-10-16 — activation and build planning
 
 Chuck Russell explicitly requested moving Friday TUI from queued to active,
