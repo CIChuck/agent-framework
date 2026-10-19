@@ -3,9 +3,23 @@
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
-independently verified
+independently verified; TUI-N01B-03 local unit independently verified
 
-execution_phase: validation; validation_state: pending (N01B-03 independent review; TUI product/UAT not ready)
+execution_phase: planning; validation_state: verified (N01B-03 local unit only; exact-source Ubuntu and TUI product/UAT not ready)
+
+## 2026-10-19 — N01B-03 local candidate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-03-prepush-782dedbb.md)
+clean candidate `782dedbb` against approved base `23fc6d16` and the four
+exact Runtime/Chat source/test paths. The independent 204-test protected
+comparison, full Runtime and Chat suites, static/lock/board checks, and
+isolated installed Runtime and Chat seven-file byte probes passed. The
+reviewer found no changes needed. N01B-03 product source is frozen, and no
+construction directive remains active. Its exact-source Ubuntu run requires
+a separately authorized branch push. Installed TUI terminal UAT, later N01B
+product work, maintainer acceptance, PR, merge and release remain open.
+
+execution_phase: planning; validation_state: verified (N01B-03 local unit only).
 
 ## 2026-10-19 — N01B-03 local construction checks passed
 
