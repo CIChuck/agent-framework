@@ -3,7 +3,7 @@
 Status: N01B-07 exact local tool-record candidate `a196e95a` is independently
 VERIFIED with product source frozen; one authorized non-force push reached
 `4a646dc7` and is consumed; exact-source Ubuntu run 39294625340 completed/
-success pending independent post-run review;
+success and was independently VERIFIED;
 N01S/N01A and CI03
 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
@@ -16,7 +16,22 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: validation; validation_state: pending (N01B-07 local unit VERIFIED; Ubuntu run successful pending independent post-run review, TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-07 local and exact-source Ubuntu gates only; TUI product/UAT open)
+
+## 2026-10-19 — N01B-07 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-07-postrun-4fc8309d.md)
+the [completed/success run and sole job](validation/N01B-07-ubuntu-run-39294625340.md)
+against live remote, source and checkout `4a646dc7`. Freshly fetched log
+hashes matched the saved evidence, along with test counts, wheel metadata
+and installed configuration isolation. The N01B-07 automated Linux gate is
+closed; reviewed product source remains frozen at `a196e95a` and the one
+push is consumed. The next bounded N01B transcript-persistence unit needs
+source-backed characterization and separate exact directive approval.
+Installed TUI terminal UAT, later product units, initiative acceptance and
+further delivery remain open.
+
+execution_phase: planning; validation_state: verified (N01B-07 automated Ubuntu gate only).
 
 ## 2026-10-19 — N01B-07 exact-source Ubuntu run succeeded, review pending
 

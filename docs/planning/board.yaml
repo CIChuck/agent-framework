@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Obtain fresh-context read-only independent post-run reconciliation of completed/success N01B-07 exact-source Ubuntu run 39294625340; installed TUI terminal UAT remains a release gate
+  next_gate: Characterize the next bounded N01B neutral transcript-persistence unit and obtain approval of its exact directive; installed TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -351,7 +351,9 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-07-local-checks.md (16 new, 393 Runtime, 871 Chat and 155 CLI tests; static, wheels and isolated installed checks before independent review)
   - docs/planning/active/friday-tui/validation/VAL-N01B-07-prepush-a196e95a.md (independent VERIFIED local N01B-07 candidate; exact-source Ubuntu and TUI UAT open)
   - docs/planning/active/friday-tui/validation/VAL-N01B-07-final-2e8fa81d.md (independent VERIFIED post-verdict authority closeout; exact-source Ubuntu and TUI UAT open)
-  - docs/planning/active/friday-tui/validation/N01B-07-ubuntu-run-39294625340.md (completed/success exact-source Ubuntu run on authorized N01B-07 push; independent post-run review pending)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-07-push-authority-e8fdfcb4.md (independent VERIFIED one-push authorization delta; exact-source Ubuntu and TUI UAT open)
+  - docs/planning/active/friday-tui/validation/N01B-07-ubuntu-run-39294625340.md (completed/success exact-source Ubuntu run on authorized N01B-07 push; independently reconciled separately)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-07-postrun-4fc8309d.md (independent VERIFIED N01B-07 exact-source Ubuntu reconciliation; later product and TUI UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3446,3 +3448,10 @@ events:
   action: n01b_07_authorized_push_ubuntu_success_pending_review
   note: The one authorized non-force push advanced origin/feature/friday-tui from aa8ae784 to 4a646dc7. GitHub Actions run 39294625340 and sole job 118203828817 completed/success on that exact source. Saved logs show 21 neutral-loader/Chat facade, 393 Runtime, 853 Chat with 23 skips, 155 unchanged CLI, repeated MCP, 13 wheels and installed configuration-isolation passes. Reviewed N01B-07 product files still match a196e95a. The one push is consumed; independent post-run reconciliation, installed TUI UAT and later product units remain open.
   evidence: docs/planning/active/friday-tui/validation/N01B-07-ubuntu-run-39294625340.md; https://github.com/CIChuck/agent-framework/actions/runs/39294625340
+- task: friday-tui
+  at: '2026-10-19T17:40:28+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_07_exact_source_ubuntu_independently_verified
+  note: Fresh-context read-only reviewer independently VERIFIED completed/success run and sole job 39294625340 against live remote, source and checkout 4a646dc7, matching saved log hashes, test counts, wheels and installed configuration boundary. The N01B-07 automated Linux gate is closed; its product source remains frozen at a196e95a and one push is consumed. Installed TUI terminal UAT, later product units, initiative acceptance and additional delivery remain open.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01B-07-postrun-4fc8309d.md; https://github.com/CIChuck/agent-framework/actions/runs/39294625340

@@ -10,8 +10,8 @@ candidate `abeeb895` independently VERIFIED locally and exact-source Ubuntu run
 candidate `c773f272` and exact-source Ubuntu run 39278047819 independently
 VERIFIED; N01B-06 all-session export-effects candidate `e16aede6` and its
 exact-source Ubuntu gate independently VERIFIED; N01B-07 neutral tool-record
-candidate `a196e95a` independently VERIFIED locally; exact-source Ubuntu run
-39294625340 completed/success pending independent post-run review
+candidate `a196e95a` independently VERIFIED locally and on exact-source
+Ubuntu run 39294625340
 
 **Branch and authority:** `feature/friday-tui`; N01B-01 through N01B-04
 product source is frozen after bounded reviews; N01B-05 is independently
@@ -19,7 +19,7 @@ VERIFIED locally and on exact-source Ubuntu, with source frozen; N01B-06 is
 independently VERIFIED locally and on exact-source Ubuntu, with source frozen
 and the N01B-07 tool-record candidate independently VERIFIED for its four
 named local paths, with source frozen; one authorized non-force push reached
-`4a646dc7` and is consumed, with Ubuntu post-run review pending; later
+`4a646dc7` and is consumed, and Ubuntu post-run review is VERIFIED; later
 product units remain proposals until separately approved
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
@@ -336,7 +336,8 @@ store effects. Their exact four-path local construction scope is approved;
 `a196e95a` was [independently VERIFIED
 locally](validation/VAL-N01B-07-prepush-a196e95a.md). An exact-source Ubuntu
 run [completed/success](validation/N01B-07-ubuntu-run-39294625340.md) on
-the one authorized pushed SHA `4a646dc7`, pending independent post-run review.
+the one authorized pushed SHA `4a646dc7` and was [independently
+VERIFIED](validation/VAL-N01B-07-postrun-4fc8309d.md).
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |
@@ -491,8 +492,8 @@ The N01B-06 one-push authority is consumed; N01B-07's exact local construction h
 [passing builder checks](validation/N01B-07-local-checks.md) and was
 [independently VERIFIED](validation/VAL-N01B-07-prepush-a196e95a.md) at
 frozen product candidate `a196e95a`. Its exact-source Ubuntu gate remains
-open pending independent reconciliation of the [completed/success Ubuntu
-run](validation/N01B-07-ubuntu-run-39294625340.md) on the one authorized
-push `4a646dc7`. That push is consumed.
+closed by [independent reconciliation](validation/VAL-N01B-07-postrun-4fc8309d.md)
+of the [completed/success Ubuntu run](validation/N01B-07-ubuntu-run-39294625340.md)
+on the one authorized push `4a646dc7`. That push is consumed.
 Later product units remain open.
 No TUI, terminal UAT or real-provider test has run.

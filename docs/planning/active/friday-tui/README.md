@@ -46,11 +46,12 @@ the frozen four-path candidate `a196e95a` was [independently
 VERIFIED](validation/VAL-N01B-07-prepush-a196e95a.md) for the local work unit.
 The one authorized non-force push reached `4a646dc7` and is consumed;
 [exact-source Ubuntu run 39294625340](validation/N01B-07-ubuntu-run-39294625340.md)
-reported `completed/success` and awaits independent post-run reconciliation.
+reported `completed/success` and was [independently
+VERIFIED](validation/VAL-N01B-07-postrun-4fc8309d.md).
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: pending (N01B-07 local unit VERIFIED; exact-source Ubuntu run successful pending independent post-run review, TUI product/UAT open)
+execution_phase: planning; validation_state: verified (N01B-07 local and exact-source Ubuntu gates only; TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -174,7 +175,9 @@ Current planning artifacts:
 - [N01B-07 local construction checks](validation/N01B-07-local-checks.md)
 - [Independent N01B-07 local candidate review](validation/VAL-N01B-07-prepush-a196e95a.md)
 - [Independent N01B-07 final local closeout audit](validation/VAL-N01B-07-final-2e8fa81d.md)
+- [Independent N01B-07 one-push authorization audit](validation/VAL-N01B-07-push-authority-e8fdfcb4.md)
 - [N01B-07 exact-source Ubuntu run report](validation/N01B-07-ubuntu-run-39294625340.md)
+- [Independent N01B-07 post-run Ubuntu reconciliation](validation/VAL-N01B-07-postrun-4fc8309d.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -804,8 +807,9 @@ passed and candidate `a196e95a` is [independently VERIFIED
 locally](validation/VAL-N01B-07-prepush-a196e95a.md). Its product source is
 frozen. The one authorized non-force push reached `4a646dc7` and is
 consumed. [Ubuntu run 39294625340](validation/N01B-07-ubuntu-run-39294625340.md)
-and its sole job reported `completed/success`; independent post-run review
-remains pending.
+and its sole job reported `completed/success` and were [independently
+reconciled](validation/VAL-N01B-07-postrun-4fc8309d.md). The next bounded
+N01B transcript-persistence directive remains unapproved.
 No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.
