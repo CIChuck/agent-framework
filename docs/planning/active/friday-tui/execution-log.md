@@ -1,7 +1,7 @@
 # Friday TUI execution log
 
-Status: N01B-07 exact local tool-record construction approved, with
-implementation and independent validation pending; N01S/N01A and CI03
+Status: N01B-07 exact local tool-record construction has passing builder
+checks and awaits independent validation; N01S/N01A and CI03
 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
@@ -13,7 +13,22 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: implementation; validation_state: not_ready (N01B-07 local construction; TUI product/UAT open)
+execution_phase: validation; validation_state: pending (N01B-07 local candidate review; TUI product/UAT open)
+
+## 2026-10-19 — N01B-07 local candidate checks passed
+
+The two new Runtime tool-record stages and Chat delegation are confined to
+the [directive's four paths](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md).
+The [builder report](validation/N01B-07-local-checks.md) records 16 new
+passes, full Runtime 393, full Chat 871 with five skips, unchanged
+`friday-cli` 155, scoped Ruff/Mypy, 17 wheels and isolated installed
+Runtime-only and Chat persistence probes. The initial sandboxed full Runtime
+run failed nine existing HTTP fixtures on denied loopback bind; a complete
+rerun with synthetic loopback access passed 393/393. Product source is ready
+for a stable candidate commit and fresh-context read-only review. No push,
+exact-source Ubuntu run, installed TUI UAT or acceptance is inferred.
+
+execution_phase: validation; validation_state: pending (N01B-07 local independent review).
 
 ## 2026-10-19 — N01B-07 exact local construction approved
 

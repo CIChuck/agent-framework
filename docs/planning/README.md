@@ -41,7 +41,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 14 | [Friday TUI](active/friday-tui/) | normal | granted | pushed | Construct and locally test the exact CD-TUI-N01B-07 neutral transcript tool-record unit, then freeze a candidate for fresh independent read-only review; installed TUI terminal UAT remains a release gate |
+| 14 | [Friday TUI](active/friday-tui/) | normal | granted | pushed | Freeze the locally checked N01B-07 four-path candidate and obtain fresh-context read-only independent review; a push for exact-source Ubuntu requires separate authorization and installed TUI terminal UAT remains a release gate |
 | 27 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
 | 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](active/friday-deprecated-credential-cleanup/) | normal | granted | merged | PR 9 merged and remote branch deleted; maintainer lifecycle closeout/acceptance remains |
 | 29 | [Friday 0.1.0a3 repository version bump](active/friday-alpha3-version-bump/) | normal | granted | released | Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified |

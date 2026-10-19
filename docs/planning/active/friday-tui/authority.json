@@ -8,8 +8,8 @@
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "implementation",
-  "validation_state": "not_ready",
+  "execution_phase": "validation",
+  "validation_state": "pending",
   "allowed_changes": [
     "packages/friday-runtime/src/friday_runtime/transcript_tool_records.py (N01B-07 only)",
     "packages/friday-chat/src/friday_chat/adapters.py (N01B-07 delegation only)",
@@ -19,7 +19,7 @@
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
-  "product_code_generation_authorized": true,
+  "product_code_generation_authorized": false,
   "workflow_code_generation_authorized": false,
   "planning_lightweight_exemption": {
     "authorized_by": "Chuck Russell",
@@ -92,13 +92,11 @@
     "directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md",
     "directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md"
   ],
-  "construction_directives_active": [
-    "directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md"
-  ],
+  "construction_directives_active": [],
   "n01b_07_directive_record": {
     "unit": "TUI-N01B-07",
     "path": "directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md",
-    "status": "approved and active for exact local four-path construction only; validation not ready",
+    "status": "exact four-path local construction performed; candidate frozen pending fresh independent review",
     "approved_by": "Chuck Russell",
     "approved_at": "2026-10-19",
     "approval_evidence": "Current-session reply 'All deliverables are approved. Continue with the next task.' after the controller identified N01B-07 as the proposed next directive; controller stated the four named local source/test-path interpretation before code work",
@@ -107,7 +105,10 @@
     "planning_evidence": "validation/N01B-07-before-code-transcript-tool-record-characterization.md",
     "before_code_product_source": "aa8ae784487cb723130a39e5a8421b881f40178d",
     "baseline_result": "63 unchanged transcript/identity, 85 MCP-memory/telemetry and 155 friday-cli tests passed in separate runs",
-    "source_code_generation_authorized": true,
+    "candidate_base": "f78ab6aa",
+    "local_check_report": "validation/N01B-07-local-checks.md",
+    "local_check_result": "16 new tests, full Runtime 393, full Chat 871 with five skips, unchanged CLI 155, static checks, 17 wheels and isolated installed Runtime/Chat effects passed",
+    "source_code_generation_authorized": false,
     "external_delivery_authorized": false
   },
   "n01b_06_directive_record": {

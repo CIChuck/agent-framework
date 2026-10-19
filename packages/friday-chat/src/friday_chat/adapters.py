@@ -71,13 +71,15 @@ from friday_memory.retrieval.mcp import (
     mcp_memory_snippet,
 )
 from friday_runtime.transcript_queries import TranscriptQueryAdapter
+from friday_runtime.transcript_tool_records import (
+    build_transcript_tool_records,
+    validate_transcript_tool_provenance,
+)
 from friday_telemetry import TelemetryInterface
 from friday_telemetry.models.llm_events import ServiceRole
 from friday_transcript import (
     ContextLogEntry,
     SQLiteTranscriptStore,
-    ToolCall,
-    ToolResult,
     TranscriptEntry,
     TranscriptSession,
 )
@@ -1209,69 +1211,24 @@ class FrameworkTranscriptAdapter:
         return None
 
     async def record_interaction(self, turn: ChatInteractionTurn) -> None:
-        provenance: list[MCPToolCallProvenance | None] = []
-        for call in turn.tool_calls:
-            facts = call.mcp_provenance
-            if facts is None:
-                provenance.append(None)
-                continue
-            if (
-                call.arguments
-                or call.call_id != facts.call_id
-                or call.name != facts.tool.canonical_name
-                or facts.output_sanitization_state == "not_checked"
-                or facts.model_result_size_bytes != len(call.result.encode("utf-8"))
-                or len(call.result.encode("utf-8"))
-                > self.config.tools.mcp_provider.config.limits.max_result_bytes
-                or facts.transcript_correlation_id not in {None, turn.turn_id}
-            ):
-                raise ValueError(
-                    "MCP transcript requires safe, bounded, correlated records"
-                )
-            try:
-                correlated = MCPToolCallProvenance.model_validate(
-                    {
-                        **facts.model_dump(),
-                        "transcript_correlation_id": turn.turn_id,
-                    }
-                )
-            except ValueError:
-                raise ValueError("Invalid MCP transcript correlation") from None
-            provenance.append(correlated)
+        provenance = validate_transcript_tool_provenance(
+            turn.turn_id,
+            turn.tool_calls,
+            self.config.tools.mcp_provider.config.limits.max_result_bytes,
+        )
         await self._ensure_session()
         turn_number = await self._next_turn_number()
-        tool_call_ids = [
-            call.call_id or f"{turn.turn_id}:{index}:{call.name}"
-            for index, call in enumerate(turn.tool_calls)
-        ]
+        tool_calls, tool_results = build_transcript_tool_records(
+            turn.turn_id, turn.tool_calls, provenance
+        )
         entry = TranscriptEntry(
             id=turn.turn_id,
             session_id=self.session_id,
             turn_number=turn_number,
             user_message=turn.user_message,
             assistant_message=turn.assistant_message,
-            tool_calls=[
-                ToolCall(
-                    id=tool_call_ids[index],
-                    name=call.name,
-                    arguments=dict(call.arguments),
-                    mcp_provenance=provenance[index],
-                )
-                for index, call in enumerate(turn.tool_calls)
-            ],
-            tool_results=[
-                ToolResult(
-                    tool_call_id=tool_call_ids[index],
-                    output=call.result,
-                    error=(
-                        facts.failure_code
-                        if (facts := provenance[index]) is not None
-                        else None
-                    ),
-                    mcp_provenance=provenance[index],
-                )
-                for index, call in enumerate(turn.tool_calls)
-            ],
+            tool_calls=tool_calls,
+            tool_results=tool_results,
             timestamp=datetime.now(),
             model_name=self.config.llm.model,
             temperature=self.config.llm.temperature,
