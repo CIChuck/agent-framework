@@ -1,9 +1,24 @@
 # Friday TUI execution log
 
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
-gates reconciled green; TUI-N01B-01 locally checked, independent review pending
+gates reconciled green; TUI-N01B-01 first candidate CHANGES_REQUESTED for two
+documentation/evidence findings
 
-execution_phase: validation; validation_state: pending (N01B-01 candidate review; TUI product/UAT not ready)
+execution_phase: remediation; validation_state: changes_requested (N01B-01 documentation-only correction; TUI product/UAT not ready)
+
+## 2026-10-18 — N01B-01 first independent review requests documentation corrections
+
+The fresh-context, read-only reviewer returned
+[CHANGES_REQUESTED](validation/VAL-N01B-01-preflight-7e5241c8.md) on frozen
+candidate `7e5241c8`, finding N01B01-01 (stale N01A-only and pending-review
+text in the replacement plan) and N01B01-02 (missing exact reproduction
+commands in the builder report). Independent focused, full Runtime/Chat/CLI,
+static and installed-wheel checks passed, and no product-source defect was
+found. The bounded
+[remediation directive](remediation/REM-TUI-N01B-01-01.md) permits only those
+document/evidence corrections plus scoped packet and board state. Product
+source and tests remain frozen. A new commit and fresh independent review are
+required before a pre-push verdict.
 
 ## 2026-10-18 — N01B-01 local candidate checks complete
 

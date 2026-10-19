@@ -1,9 +1,11 @@
 # Friday TUI independent integration and construction plan
 
-**Status:** Draft replacement planning contract; N01S independently VERIFIED;
-N01A Linux smoke deferred for unit closeout, fresh independent review pending
+**Status:** Active replacement planning contract; N01S and N01A independently
+VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 approved and in
+documentation remediation after its first candidate review
 
-**Branch and authority:** `feature/friday-tui`; `granted` for TUI-N01A only
+**Branch and authority:** `feature/friday-tui`; `granted` for the exact
+CD-TUI-N01B-01 subunit only; later product units remain design-only
 
 **Source baseline:** `c34269867be50f71923c93c95a63236a35505812`
 
@@ -350,14 +352,20 @@ milestone, not first-release command parity.
 The [TUI-N00 source review](n00-integration-review.md) reconciles all 50
 command cases and records the original Chat/`friday-cli` baseline. TUI-N01S
 was independently [VERIFIED](validation/VAL-N01S-session-identity.md) for its
-identity-only candidate; later units do not inherit that authority. The
-[N01A before-code characterization](validation/N01A-before-code-characterization.md)
-records the current configuration behavior, not an implemented extraction.
+identity-only candidate. N01A's neutral configuration loader was separately
+[VERIFIED under the maintainer's unit-specific Linux-smoke deferral](validation/VAL-N01A-waiver-closeout.md).
+The subsequent [CI03 exact-source Ubuntu run](validation/TUI-CI03-ubuntu-run-39183895627.md)
+and [independent review](validation/VAL-TUI-CI03-final-676700f5.md) reconciled
+the CI01/CI02 automated Linux gates. None of those prior verifications is an
+N01B-01 exact-source Linux result or TUI terminal UAT.
 
-1. Review frozen N01A candidate `4a5311f2` under the
-   [maintainer Linux deferral](directives/CD-TUI-N01A-neutral-config-loader.md),
-   record a fresh independent verdict and close only that work unit before
-   dependent TUI construction. Retain Linux smoke for later release readiness.
+1. Resolve findings N01B01-01 and N01B01-02 from the first
+   [N01B-01 independent review](validation/VAL-N01B-01-preflight-7e5241c8.md)
+   under the bounded [remediation directive](remediation/REM-TUI-N01B-01-01.md).
+   Freeze a new candidate and obtain a fresh independent review of the
+   [approved N01B-01 directive](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md).
+   Any exact-source Ubuntu run needs a separately authorized push. Installed
+   macOS/Linux terminal UAT remains a release gate.
 2. Choose owners for command/event seams. Review the
    [event/lifecycle proposal](neutral-event-lifecycle-contract.md) and bind
    event admission, argument snapshot and resource-close boundaries against
@@ -371,8 +379,9 @@ records the current configuration behavior, not an implemented extraction.
 4. Prepare separate exact directives for later bounded units; recheck board,
    branch, source and authority before each product-code unit.
 
-The board remains `started` with `granted` authority for N01A only. Its
-[local candidate checks](validation/N01A-local-checks.md), historical independent
-[BLOCKED review](validation/VAL-N01A-neutral-config-loader.md) and maintainer
-Linux deferral are recorded; a fresh verdict is pending. Later units remain
-design-only. No TUI, UAT or real-provider test has run.
+The board remains `started` with `granted` authority only for the exact
+N01B-01 subunit. Its first candidate `7e5241c8` received
+`CHANGES_REQUESTED` for packet documentation and command evidence; product
+source is frozen during that remediation. N01A is closed, while later N01B
+effects and all subsequent product units remain design-only. No TUI, terminal
+UAT or real-provider test has run.

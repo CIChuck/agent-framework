@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Freeze and independently review the locally checked CD-TUI-N01B-01 candidate; installed macOS/Linux terminal UAT remains a release gate
+  next_gate: Correct N01B01-01/02 documentation findings under REM-TUI-N01B-01-01, freeze a new candidate and obtain fresh review; installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -317,6 +317,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/TUI-CI03-ubuntu-run-39183895627.md (green exact-source Ubuntu Runtime/direct-MCP, Chat/CLI, wheel and installed-isolation gates)
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI03-final-676700f5.md (independent VERIFIED CI03 infrastructure and CI01/CI02 automated Linux gate reconciliation; TUI product/UAT open)
   - docs/planning/active/friday-tui/validation/N01B-01-local-checks.md (builder local tests and installed-wheel checks; independent N01B-01 review pending)
+  - docs/planning/active/friday-tui/validation/VAL-N01B-01-preflight-7e5241c8.md (historical CHANGES_REQUESTED first-candidate review; findings N01B01-01 and N01B01-02)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3082,3 +3083,10 @@ events:
   action: n01b_01_local_candidate_ready_for_independent_review
   note: The four approved source/test paths implement neutral transcript query contracts and Chat same-object re-exports. Focused, full Runtime/Chat and unchanged friday-cli suites, static/lock checks and installed Runtime/Chat wheel isolation passed. Stable candidate commit and fresh independent review remain pending; Linux exact-source run and TUI UAT are not claimed.
   evidence: docs/planning/active/friday-tui/validation/N01B-01-local-checks.md
+- task: friday-tui
+  at: '2026-10-19T02:04:55+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_01_first_candidate_changes_requested
+  note: Fresh-context read-only first-candidate review returned CHANGES_REQUESTED for N01B01-01 stale replacement-plan authority text and N01B01-02 missing command evidence. Product and installed-wheel checks passed. Bounded documentation-only remediation is active; source/test paths are frozen pending a new candidate and fresh review.
+  evidence: docs/planning/active/friday-tui/validation/VAL-N01B-01-preflight-7e5241c8.md; docs/planning/active/friday-tui/remediation/REM-TUI-N01B-01-01.md

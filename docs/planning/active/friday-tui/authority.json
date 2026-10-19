@@ -8,8 +8,8 @@
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "validation",
-  "validation_state": "pending",
+  "execution_phase": "remediation",
+  "validation_state": "changes_requested",
   "allowed_changes": [
     "packages/friday-runtime/src/friday_runtime/transcript_views.py (add only)",
     "packages/friday-chat/src/friday_chat/transcripts.py (compatibility facade only)",
@@ -19,7 +19,7 @@
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
-  "product_code_generation_authorized": true,
+  "product_code_generation_authorized": false,
   "workflow_code_generation_authorized": false,
   "planning_lightweight_exemption": {
     "authorized_by": "Chuck Russell",
@@ -50,9 +50,18 @@
     "approval_evidence": "Current-session reply 'approved' to the explicit CD-TUI-N01B-01 question",
     "before_code_baseline": "validation/N01B-01-before-code-characterization.md",
     "local_check_report": "validation/N01B-01-local-checks.md",
-    "candidate_state": "local checks passed; stable commit and independent review pending",
-    "source_code_generation_authorized": true,
+    "candidate_state": "first candidate 7e5241c8 reviewed CHANGES_REQUESTED; source frozen during documentation-only remediation",
+    "source_code_generation_authorized": false,
     "later_n01b_subunits_authorized": false
+  },
+  "n01b_01_first_candidate_review": {
+    "candidate": "7e5241c8611c41475b7730ff84005c4bb7561dd6",
+    "base": "9b24588676c3b84d62c262d4937f4b0d2b39fbfc",
+    "report": "validation/VAL-N01B-01-preflight-7e5241c8.md",
+    "outcome": "CHANGES_REQUESTED",
+    "findings": ["N01B01-01", "N01B01-02"],
+    "remediation_directive": "remediation/REM-TUI-N01B-01-01.md",
+    "remediation_scope": "replacement-plan.md, validation/N01B-01-local-checks.md, and scoped packet/board evidence only; no product source or tests"
   },
   "validated_construction_scope": {
     "unit": "TUI-N01S",
