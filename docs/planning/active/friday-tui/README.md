@@ -65,10 +65,14 @@ records Chat's current transcript session get-or-create behavior. Its
 is approved for local construction. Its [builder checks](validation/N01B-09-local-checks.md)
 passed for the four exact paths; the local candidate awaits independent
 validation.
+The first local candidate's [independent review](validation/VAL-N01B-09-prepush-36028fbf.md)
+requested a current-status correction under
+[REM-TUI-N01B-09-01](remediation/REM-TUI-N01B-09-01.md); its code checks
+passed, and a corrected candidate needs fresh review.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: validation; validation_state: verified (N01B-08 gates only; N01B-09 independent review and TUI UAT open)
+execution_phase: validation; validation_state: pending (N01B-09 corrected local candidate; N01B-08 gates independently verified; TUI UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -205,6 +209,8 @@ Current planning artifacts:
 - [N01B-09 before-code session-ensure characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
 - [Approved N01B-09 neutral transcript session-ensure directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
 - [N01B-09 local builder checks](validation/N01B-09-local-checks.md)
+- [N01B-09 first-candidate independent review and N01B09-01 finding](validation/VAL-N01B-09-prepush-36028fbf.md)
+- [N01B09-01 bounded status remediation](remediation/REM-TUI-N01B-09-01.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)

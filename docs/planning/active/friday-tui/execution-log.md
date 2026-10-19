@@ -22,7 +22,21 @@ exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
 all-session export-effects candidate `e16aede6` independently VERIFIED locally;
 exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
 
-execution_phase: validation; validation_state: verified (N01B-08 gates only; N01B-09 independent review and TUI UAT open)
+execution_phase: validation; validation_state: pending (N01B-09 corrected local candidate; N01B-08 gates independently verified; TUI UAT open)
+
+## 2026-10-19 — N01B09-01 current-status remediation
+
+Fresh-context read-only review of candidate `36028fbf` returned
+[`CHANGES_REQUESTED`](validation/VAL-N01B-09-prepush-36028fbf.md) for one
+process inconsistency: current packet headers said `verified` while the
+N01B-09 independent gate remained pending. The reviewer independently passed
+the code, test and installed-package checks. Under
+[REM-TUI-N01B-09-01](remediation/REM-TUI-N01B-09-01.md), the current process
+fields now say `pending`; N01B-08's verified history remains explicit.
+The first verdict is historical, not a pass. The corrected stable candidate
+needs a fresh read-only delta review and complete candidate reconciliation.
+
+execution_phase: validation; validation_state: pending (N01B-09 corrected candidate awaiting fresh review).
 
 ## 2026-10-19 — N01B-09 local candidate checks passed, pending review
 
