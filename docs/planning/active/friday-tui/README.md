@@ -18,12 +18,12 @@ installed-wheel checks are independently `VERIFIED` at candidate `782dedbb`.
 Its separately authorized [exact-source Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md)
 on `f7950581` was [independently VERIFIED](validation/VAL-N01B-03-postrun-9a68d0c7.md).
 TUI-N01B-04's neutral export destination/path directive is approved for its
-four named local source/test paths. Local construction checks passed; candidate
-freeze and independent review are next.
+four named local source/test paths. Local candidate `abeeb895` is frozen after
+passing construction checks and is awaiting independent review.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: implementation; validation_state: not_ready (N01B-04 local construction; N01B-03 local and exact-source Ubuntu gates verified; TUI product/UAT not ready)
+execution_phase: validation; validation_state: in_review (N01B-04 local candidate abeeb895; N01B-03 local and exact-source Ubuntu gates verified; TUI product/UAT not ready)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -696,7 +696,7 @@ bound the next candidate: neutral export-root creation and safe child-path
 resolution with Chat command behavior preserved. The maintainer approved its
 four exact local product source/test paths on 2026-10-19. Its
 [local construction checks](validation/N01B-04-local-checks.md) passed;
-candidate freeze and independent review remain. Later product
+candidate `abeeb895` is frozen for independent review. Later product
 units need their own bounded directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under

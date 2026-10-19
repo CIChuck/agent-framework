@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: N01B-04 local source/tests and installed-wheel checks passed; freeze an exact candidate and obtain fresh independent review; push, exact-source Ubuntu and installed macOS/Linux TUI terminal UAT remain separate gates
+  next_gate: N01B-04 local candidate abeeb895 frozen; obtain fresh independent review of exact directive, four-path diff and protected comparisons; push, exact-source Ubuntu and installed macOS/Linux TUI terminal UAT remain separate gates
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3253,3 +3253,10 @@ events:
   action: n01b_04_local_construction_checks_passed
   note: Exact four-path Runtime/Chat export-root and safe-path extraction passed 13 new tests, 239 focused/protected tests, 365 Runtime tests and 860 Chat tests with five skips; Ruff, targeted Mypy, lock and isolated Runtime/Chat wheel probes passed. Final installed Chat probe matched all seven frozen export-file hashes plus context/prompt shared files. Candidate freeze and independent review remain; no push or TUI terminal UAT is claimed.
   evidence: docs/planning/active/friday-tui/validation/N01B-04-local-checks.md
+- task: friday-tui
+  at: '2026-10-19T14:09:04+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_04_local_candidate_frozen_for_review
+  note: Clean local candidate abeeb895 commits the approved four product source/test paths with scoped authority, board and builder checks against planning base 401d1058. Local suites, protected CLI comparison, static checks, offline installed-wheel isolation and seven export hashes passed; product source is frozen for fresh independent validation. No push, exact-source Ubuntu gate or installed TUI UAT is claimed.
+  evidence: docs/planning/active/friday-tui/validation/N01B-04-local-checks.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-04-neutral-export-destination-paths.md

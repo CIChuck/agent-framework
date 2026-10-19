@@ -4,10 +4,23 @@ Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
-independently verified; TUI-N01B-04 local export destination/path checks passed,
-candidate freeze and independent review next
+independently verified; TUI-N01B-04 local candidate `abeeb895` frozen for
+independent review
 
-execution_phase: implementation; validation_state: not_ready (N01B-04 local checks passed, candidate freeze next; N01B-03 independently verified; TUI product/UAT not ready)
+execution_phase: validation; validation_state: in_review (N01B-04 local candidate abeeb895; N01B-03 independently verified; TUI product/UAT not ready)
+
+## 2026-10-19 — N01B-04 local candidate frozen for independent review
+
+Commit `abeeb8951914d5b63ca77be4f48a66ace256bfb3` freezes the exact
+four source/test paths and scoped packet changes against planning base
+`401d10583a19c1b1689cdeb7046d00e5352e5819`. The candidate is clean and
+the [local report](validation/N01B-04-local-checks.md) records its passing
+checks and installed-wheel comparison. Product source is frozen. A fresh-context,
+read-only reviewer must reconcile the directive, authority, candidate diff,
+test evidence and protected Chat/`friday-cli` behavior. No push or TUI terminal
+UAT is authorized by this candidate.
+
+execution_phase: validation; validation_state: in_review (N01B-04 local candidate only).
 
 ## 2026-10-19 — N01B-04 local construction checks passed
 

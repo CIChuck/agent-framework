@@ -5,7 +5,8 @@ VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 pre-push candidate
 and exact-source Ubuntu gate independently VERIFIED; N01B-02 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-03 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-04 export destination/path
-directive approved for local construction
+directive approved for local construction, with candidate `abeeb895` frozen
+for independent review
 
 **Branch and authority:** `feature/friday-tui`; N01B-01, N01B-02 and N01B-03
 source frozen after their bounded reviews, except the exact N01B-04 Chat
@@ -291,7 +292,7 @@ delegation. Chat keeps export writes and its shared `/context --file` and
 `/prompt --file` behavior. The maintainer approved the four named local
 product source/test paths on 2026-10-19. The
 [local construction checks](validation/N01B-04-local-checks.md) passed;
-candidate freeze and independent review are next. External delivery is
+candidate `abeeb895` is frozen for independent review. External delivery is
 separate.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
