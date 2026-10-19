@@ -1,7 +1,7 @@
 # CD-TUI-N01B-05: neutral single-file transcript export effects
 
-**Status:** Proposed for exact maintainer review. No N01B-05 product-code,
-test, push or external-delivery authority is granted by this draft.
+**Status:** Approved for the exact N01B-05 local construction scope by Chuck
+Russell on 2026-10-19. No push or external-delivery authority.
 
 **Initiative/unit:** `friday-tui` / TUI-N01B-05, a separately gated N01B
 subunit after N01B-04's independently VERIFIED local and exact-source
@@ -16,7 +16,7 @@ closeout commits are local and unpushed.
 **Authority and precedence:** [AGENTS.md](../../../../../AGENTS.md) and
 the [independent-validation policy](../../../../reference/policies/independent-validation-policy.md)
 require explicit maintainer approval of this exact directive before
-product code or tests change. If approved, the accepted
+product code or tests change. With this approval, the accepted
 [independent-package boundary](../architecture-reset.md),
 [replacement plan](../replacement-plan.md),
 [capability map](../neutral-capability-map.md),
@@ -161,8 +161,10 @@ another source/test/metadata path is needed. Do not begin the
 two-file all-session export, transcript persistence, session
 lifecycle, assembly/close or TUI implementation under this directive.
 
-**Approval fields:** Proposed by Codex on 2026-10-19 after the
-maintainer's current-session “continue” for next-gate planning.
-Maintainer decision: pending. Exact N01B-05 product-code/test
-authorization: not granted. Push, PR, merge, release and later N01B
-subunits: not authorized.
+**Approval fields:** Chuck Russell replied “continue” immediately after
+the controller linked this exact directive, identified its approval as
+the next gate and explained the AGENTS.md requirement. The controller
+stated that interpretation before code work. Approval authorizes only
+the four named Runtime/Chat source/test paths and scoped TUI packet
+evidence for local N01B-05 construction. Push, PR, merge, release,
+installed TUI UAT and later N01B subunits are not authorized.

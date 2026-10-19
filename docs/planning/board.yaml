@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review and explicitly approve proposed CD-TUI-N01B-05 single-file export effects before product code; N01B-04 local and Ubuntu gates independently VERIFIED; installed macOS/Linux TUI terminal UAT remains a release gate
+  next_gate: Construct and locally validate approved CD-TUI-N01B-05 single-file export effects on four exact source/test paths, then freeze candidate for independent review; no N01B-05 push authorized; installed macOS/Linux TUI terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -3299,3 +3299,10 @@ events:
   action: n01b_05_single_file_export_effects_directive_proposed
   note: After the maintainer asked to continue to the next TUI gate, read-only source review isolated current-session and prompt-log single-file write effects from Chat-owned format/path decisions, result identity and the two-file all-session export. The unchanged focused/protected suite passed 239 tests. CD-TUI-N01B-05 is proposed for exact maintainer approval; no N01B-05 product code, test edit, push or TUI UAT is authorized by this planning pass.
   evidence: docs/planning/active/friday-tui/validation/N01B-05-before-code-single-file-export-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md
+- task: friday-tui
+  at: '2026-10-19T14:53:20+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_05_exact_local_construction_approved
+  note: Maintainer replied 'continue' immediately after the controller linked CD-TUI-N01B-05 and identified exact-directive approval as the next gate; the controller stated this interpretation before code work. Local authority covers only the four named Runtime/Chat source and test paths plus scoped TUI packet evidence. No push, PR, merge, release, later N01B unit or installed TUI UAT is authorized.
+  evidence: docs/planning/active/friday-tui/directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md; docs/planning/active/friday-tui/authority.json

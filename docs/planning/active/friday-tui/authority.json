@@ -2,20 +2,24 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 independently verified on its exact scope; CD-TUI-N01B-02 independently verified locally and on its explicitly authorized exact-source Ubuntu run; CD-TUI-N01B-03 independently VERIFIED locally and on its separately authorized exact-source Ubuntu run; CD-TUI-N01B-04 independently VERIFIED locally and on its separately authorized exact-source Ubuntu run 39268960501; N01B-05 is a proposed planning-only directive with no product-code or delivery authority",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 through N01B-04 independently verified locally and on their authorized exact-source Ubuntu runs; CD-TUI-N01B-05 approved for the four named Runtime/Chat source/test paths and scoped local evidence only; no push or later product-unit authority",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "planning",
+  "execution_phase": "implementation",
   "validation_state": "not_ready",
   "allowed_changes": [
-    "docs/planning/active/friday-tui/** (N01B-05 read-only characterization and proposed directive only; reviewed product source frozen)",
+    "packages/friday-runtime/src/friday_runtime/transcript_export_files.py (N01B-05 only)",
+    "packages/friday-chat/src/friday_chat/commands/transcript.py (N01B-05 single-file wrapper functions only)",
+    "packages/friday-runtime/tests_runtime/test_transcript_export_files.py (N01B-05 only)",
+    "packages/friday-chat/tests_chat/test_transcript_export_file_delegation.py (N01B-05 only)",
+    "docs/planning/active/friday-tui/** (scoped N01B-05 authority, construction and validation evidence only)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
-  "product_code_generation_authorized": false,
+  "product_code_generation_authorized": true,
   "workflow_code_generation_authorized": false,
   "planning_lightweight_exemption": {
     "authorized_by": "Chuck Russell",
@@ -67,19 +71,25 @@
     "directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md",
     "directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md",
     "directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md",
-    "directives/CD-TUI-N01B-04-neutral-export-destination-paths.md"
+    "directives/CD-TUI-N01B-04-neutral-export-destination-paths.md",
+    "directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md"
   ],
-  "construction_directives_active": [],
+  "construction_directives_active": [
+    "directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md"
+  ],
   "n01b_05_directive_record": {
     "unit": "TUI-N01B-05",
     "path": "directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md",
-    "status": "proposed for exact maintainer review; no code generation",
+    "status": "approved and active for exact local N01B-05 construction",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-10-19",
+    "approval_evidence": "Current-session reply 'continue' immediately after the controller linked the exact directive and identified its approval as the next gate; interpretation stated before code work",
     "proposed_by": "Codex",
     "proposed_at": "2026-10-19",
     "planning_evidence": "validation/N01B-05-before-code-single-file-export-characterization.md",
     "before_code_source": "887e43a02d7213e65436b1d85bfafbe255ac865c",
     "baseline_result": "239 unchanged focused/protected tests passed",
-    "source_code_generation_authorized": false,
+    "source_code_generation_authorized": true,
     "external_delivery_authorized": false
   },
   "n01b_04_directive_record": {

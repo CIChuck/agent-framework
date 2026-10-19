@@ -6,9 +6,20 @@ independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
 independently verified; TUI-N01B-04 local candidate `abeeb895` independently
 VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
-VERIFIED; TUI-N01B-05 single-file export-effects directive proposed for review only
+VERIFIED; TUI-N01B-05 single-file export-effects directive approved for exact local construction
 
-execution_phase: planning; validation_state: not_ready (N01B-05 directive proposed; N01B-04 gates VERIFIED; TUI product/UAT open)
+execution_phase: implementation; validation_state: not_ready (N01B-05 local construction; N01B-04 gates VERIFIED; TUI product/UAT open)
+
+## 2026-10-19 — N01B-05 exact local construction approved
+
+Chuck Russell replied “continue” immediately after the controller linked the
+[exact N01B-05 directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
+and identified its approval as the next gate. The controller stated that
+interpretation before code work. Local authority covers the four named
+Runtime/Chat source/test paths and scoped packet evidence. It does not authorize
+a push, PR, merge, release, later N01B unit or installed TUI UAT.
+
+execution_phase: implementation; validation_state: not_ready (N01B-05 local unit).
 
 ## 2026-10-19 — N01B-05 single-file export-effects directive proposed
 

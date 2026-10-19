@@ -23,11 +23,11 @@ four named local source/test paths. Local candidate `abeeb895` is
 authorized [exact-source Ubuntu run](validation/N01B-04-ubuntu-run-39268960501.md)
 on `4b2aadd2` was [independently VERIFIED](validation/VAL-N01B-04-postrun-27c84ad9.md).
 The [N01B-05 single-file export-effects directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
-is proposed for review only; no N01B-05 product code is authorized.
+is approved for four exact Runtime/Chat source/test paths and scoped local evidence.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: not_ready (N01B-05 directive proposed; N01B-04 local and Ubuntu gates VERIFIED; TUI product/UAT open)
+execution_phase: implementation; validation_state: not_ready (N01B-05 local construction; N01B-04 local and Ubuntu gates VERIFIED; TUI product/UAT open)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -136,7 +136,7 @@ Current planning artifacts:
 - [N01B-04 exact-source Ubuntu run](validation/N01B-04-ubuntu-run-39268960501.md)
 - [Independent N01B-04 post-run Ubuntu reconciliation](validation/VAL-N01B-04-postrun-27c84ad9.md)
 - [N01B-05 before-code single-file export characterization](validation/N01B-05-before-code-single-file-export-characterization.md)
-- [Proposed N01B-05 neutral single-file export-effects directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
+- [Approved N01B-05 neutral single-file export-effects directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -709,12 +709,12 @@ candidate `abeeb895` was [independently VERIFIED](validation/VAL-N01B-04-prepush
 for the local unit. Its authorized [exact-source Ubuntu
 run](validation/N01B-04-ubuntu-run-39268960501.md) succeeded on pushed
 `4b2aadd2` and was [independently reconciled](validation/VAL-N01B-04-postrun-27c84ad9.md).
-The [proposed N01B-05 directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
+The [approved N01B-05 directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
 and [239-pass before-code characterization](validation/N01B-05-before-code-single-file-export-characterization.md)
 isolate the single-file write effects for `/export` and `/export-prompts`.
 They preserve Chat's result identity and safe-path call sites, and leave
-two-file `/transcript export` writing for a later unit. N01B-05 needs exact
-maintainer approval before product code or tests change. At each
+two-file `/transcript export` writing for a later unit. N01B-05 is approved
+for the four named local source/test paths. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
 TUI-CI01/CI02 and are independently VERIFIED on the reviewed CI03 source.
@@ -727,8 +727,8 @@ describe and verify them against that candidate.
 The [board](../../board.yaml) records `started` on `feature/friday-tui` with
 implementation authority `granted` for the initiative. N01B-01's and N01B-02's
 bounded construction scopes have been completed and frozen; N01B-03 is also
-independently VERIFIED locally and frozen. No product-code directive is
-currently active. N01B-01's exact-source
+independently VERIFIED locally and frozen. N01B-05 is the active
+product-code directive. N01B-01's exact-source
 Ubuntu [run succeeded](validation/N01B-01-ubuntu-run-39190668231.md) after
 an authorized push and was [independently reconciled](validation/VAL-N01B-01-postrun-4febb6f6.md).
 N01B-02 is locally VERIFIED; its pushed `07177e6c` source passed the
@@ -739,9 +739,9 @@ VERIFIED. N01B-03's [local independent review](validation/VAL-N01B-03-prepush-78
 is VERIFIED; its [exact-source Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md)
 passed and was [independently reconciled](validation/VAL-N01B-03-postrun-9a68d0c7.md).
 N01A is closed under
-its unit-specific Linux deferral. Later N01B effects beyond N01B-04 require
+its unit-specific Linux deferral. Later N01B effects beyond N01B-05 require
 separate authority; N01B-04's local and automated Linux gates are independently
-VERIFIED. N01B-05 is a proposal only. No TUI executable, UAT
+VERIFIED. N01B-05 local construction is active. No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this
 packet.
 
