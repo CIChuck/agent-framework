@@ -15,11 +15,12 @@ exact-source Ubuntu run are independently `VERIFIED`. TUI-N01B-02 is
 independently `VERIFIED` locally and on its authorized exact-source Ubuntu
 run. Its source is frozen. TUI-N01B-03's local source, regression and
 installed-wheel checks are independently `VERIFIED` at candidate `782dedbb`.
-Its exact-source Ubuntu gate remains open.
+Its separately authorized [exact-source Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md)
+passed on `f7950581`; independent post-run reconciliation is pending.
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: verified (N01B-03 local unit only; exact-source Ubuntu and TUI product/UAT not ready)
+execution_phase: validation; validation_state: pending (N01B-03 post-run independent review; local unit VERIFIED, TUI product/UAT not ready)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -674,7 +675,9 @@ records 195 unchanged tests and a seven-file byte probe. Its
 [local construction checks](validation/N01B-03-local-checks.md) passed, and a
 [fresh independent review](validation/VAL-N01B-03-prepush-782dedbb.md)
 VERIFIED the local candidate. Its source is frozen. Exact-source Ubuntu
-verification requires a separately authorized push.
+verification ran after a separately authorized push and [passed on
+`f7950581`](validation/N01B-03-ubuntu-run-39256858630.md). Fresh independent
+post-run reconciliation remains pending.
 Later product units need their own bounded directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
@@ -697,7 +700,8 @@ N01B-02 is locally VERIFIED; its pushed `07177e6c` source passed the
 [independently reviewed](validation/VAL-N01B-02-postrun-8e389def.md). CI03
 and CI01/CI02 automated Linux gates are independently
 VERIFIED. N01B-03's [local independent review](validation/VAL-N01B-03-prepush-782dedbb.md)
-is VERIFIED; its exact-source Ubuntu gate remains open. N01A is closed under
+is VERIFIED; its [exact-source Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md)
+passed and awaits independent post-run review. N01A is closed under
 its unit-specific Linux deferral. Later N01B effects beyond N01B-03 require
 separate authority. No TUI executable, UAT
 result, publication or acceptance of the full initiative is claimed by this

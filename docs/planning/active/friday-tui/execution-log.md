@@ -3,9 +3,26 @@
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
 gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
 independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
-independently verified; TUI-N01B-03 local unit independently verified
+independently verified; TUI-N01B-03 local unit independently verified and its
+exact-source Ubuntu run green, pending post-run review
 
-execution_phase: planning; validation_state: verified (N01B-03 local unit only; exact-source Ubuntu and TUI product/UAT not ready)
+execution_phase: validation; validation_state: pending (N01B-03 post-run independent review; TUI product/UAT not ready)
+
+## 2026-10-19 — N01B-03 authorized push and green exact-source Ubuntu run
+
+Chuck Russell replied "yes you may push" to the exact non-force branch-push
+question. The push advanced `origin/feature/friday-tui` from `07177e6c` to
+`f7950581`. [GitHub run 39256858630](validation/N01B-03-ubuntu-run-39256858630.md)
+reports that SHA as both its head and checked-out source; all steps passed.
+The log records 356 Runtime tests, 838 Chat passes with 23 skips, 155 unchanged
+`friday-cli` passes, repeated MCP checks, 13 wheels, Runtime metadata without
+Chat/CLI requirements, and installed configuration isolation. Its installed
+probe covers configuration, while the earlier independent local probe covers
+all seven new export byte digests. Fresh independent post-run reconciliation
+is the next gate. The push authority is consumed; no later product unit,
+further push, TUI terminal UAT or acceptance is inferred.
+
+execution_phase: validation; validation_state: pending (N01B-03 post-run reconciliation).
 
 ## 2026-10-19 — N01B-03 local candidate independently VERIFIED
 

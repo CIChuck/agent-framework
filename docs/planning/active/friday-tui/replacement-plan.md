@@ -4,7 +4,8 @@
 VERIFIED; CI01-CI03 automated Linux gates VERIFIED; N01B-01 pre-push candidate
 and exact-source Ubuntu gate independently VERIFIED; N01B-02 local and
 exact-source Ubuntu gates independently VERIFIED; N01B-03 locally VERIFIED,
-exact-source Ubuntu gate open
+exact-source Ubuntu run green on an authorized push, independent post-run
+reconciliation pending
 
 **Branch and authority:** `feature/friday-tui`; N01B-01, N01B-02 and N01B-03
 source frozen after their bounded reviews; no product-code directive is
@@ -279,8 +280,10 @@ directive authorizes only the four named source/test paths for local
 construction; file effects and later N01B primitives need their own
 subsequent boundaries. The [local checks](validation/N01B-03-local-checks.md)
 passed, and a [fresh independent review](validation/VAL-N01B-03-prepush-782dedbb.md)
-VERIFIED candidate `782dedbb` locally. Its exact-source Ubuntu run requires a
-separately authorized push; the next N01B product unit needs its own directive.
+VERIFIED candidate `782dedbb` locally. A separately authorized push reached
+`f7950581`, and its [exact-source Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md)
+passed; independent post-run reconciliation is pending. The next N01B product
+unit needs its own directive.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |

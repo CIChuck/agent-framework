@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: N01B-03 local candidate 782dedbb independently VERIFIED; obtain separate authority before a non-force branch push for exact-source Ubuntu verification or any later product directive; installed macOS/Linux terminal UAT remains a release gate
+  next_gate: N01B-03 authorized exact-source Ubuntu run 39256858630 passed on f7950581; obtain fresh-context independent post-run reconciliation; later product work needs a new directive and installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -330,6 +330,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/N01B-03-before-code-characterization.md (195 unchanged tests and seven-file byte probe; proposed directive planning only)
   - docs/planning/active/friday-tui/validation/N01B-03-local-checks.md (builder local byte/regression and installed-wheel checks before independent review)
   - docs/planning/active/friday-tui/validation/VAL-N01B-03-prepush-782dedbb.md (independent VERIFIED N01B-03 local candidate; exact-source Ubuntu and TUI UAT open)
+  - docs/planning/active/friday-tui/validation/N01B-03-ubuntu-run-39256858630.md (green exact-source Ubuntu run on authorized N01B-03 push; post-run review and TUI UAT open)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3207,3 +3208,17 @@ events:
   action: n01b_03_independently_verified_local_candidate
   note: Fresh-context read-only reviewer VERIFIED clean candidate 782dedbb against approved base 23fc6d16 and the four exact source/test paths. Independent focused and full Runtime/Chat suites, protected friday-cli tests, static/lock checks, seven frozen installed-wheel export digests and packet consistency passed with no findings. Product source is frozen and no construction directive remains active. Exact-source Ubuntu execution needs separate push authority; installed TUI terminal UAT, later product units, acceptance and external delivery remain open.
   evidence: docs/planning/active/friday-tui/validation/VAL-N01B-03-prepush-782dedbb.md
+- task: friday-tui
+  at: '2026-10-19T13:08:57+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_03_exact_non_force_push_authorized
+  note: Chuck Russell replied 'yes you may push' to the explicit request to push the reviewed f7950581 candidate to origin/feature/friday-tui for exact-source Ubuntu verification. Recorded after the push and run; the timestamp is the evidence-recording time. The authorization was consumed by that non-force push and does not cover another push, PR, merge, release or later product unit.
+  evidence: current-session reply 'yes you may push'; docs/planning/active/friday-tui/validation/VAL-N01B-03-prepush-782dedbb.md
+- task: friday-tui
+  at: '2026-10-19T13:08:58+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_03_exact_source_ubuntu_green_pending_review
+  note: Non-force push advanced feature/friday-tui from 07177e6c to f7950581. GitHub Actions run 39256858630 checked out that exact SHA and passed full Runtime, full Chat, unchanged friday-cli, repeated MCP, wheels, metadata and installed configuration isolation. Fresh independent post-run reconciliation is pending; the workflow's installed probe does not exercise new export serializers, and no terminal TUI UAT is inferred.
+  evidence: docs/planning/active/friday-tui/validation/N01B-03-ubuntu-run-39256858630.md; https://github.com/CIChuck/agent-framework/actions/runs/39256858630
