@@ -1,10 +1,10 @@
 # Friday TUI architecture reset
 
 **Status:** Accepted product boundaries; N01S/N01A verified; CI01-CI03
-automated Linux gates verified; N01B-01 directive proposed
+automated Linux gates verified; N01B-01 directive approved for construction
 
-**Branch:** `feature/friday-tui`; initiative authority `granted`, with no
-active product construction directive
+**Branch:** `feature/friday-tui`; initiative authority `granted`, with only
+N01B-01 active for its four exact source/test paths
 
 This record incorporates Chuck Russell's answers after the documentation review.
 It controls where the earlier packet proposes a direct dependency on
@@ -209,7 +209,8 @@ then a maintainer Linux-smoke deferral and a fresh
 [CI03 exact-source Ubuntu run](validation/TUI-CI03-ubuntu-run-39183895627.md)
 and [final independent review](validation/VAL-TUI-CI03-final-676700f5.md)
 reconciled the CI01/CI02 automated Linux gates. Hands-on Linux terminal UAT
-remains a release gate. The proposed
+remains a release gate. The approved
 [N01B-01 directive](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
-and later units need exact technical ownership and separate maintainer
-approval before product code generation.
+permits only its named source/test paths. Later units still need exact
+technical ownership and separate maintainer approval before product code
+generation.

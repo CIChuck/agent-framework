@@ -220,7 +220,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-tui/
-  next_gate: Review and approve proposed CD-TUI-N01B-01 neutral transcript-query contracts before product work; installed macOS/Linux terminal UAT remains a release gate
+  next_gate: Freeze and independently review the locally checked CD-TUI-N01B-01 candidate; installed macOS/Linux terminal UAT remains a release gate
   delivery_state: pushed
   branch: feature/friday-tui
   depends_on: []
@@ -316,6 +316,7 @@ tasks:
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI03-preflight-315a30e4.md (independent VERIFIED pre-push review of exact CI03 source candidate)
   - docs/planning/active/friday-tui/validation/TUI-CI03-ubuntu-run-39183895627.md (green exact-source Ubuntu Runtime/direct-MCP, Chat/CLI, wheel and installed-isolation gates)
   - docs/planning/active/friday-tui/validation/VAL-TUI-CI03-final-676700f5.md (independent VERIFIED CI03 infrastructure and CI01/CI02 automated Linux gate reconciliation; TUI product/UAT open)
+  - docs/planning/active/friday-tui/validation/N01B-01-local-checks.md (builder local tests and installed-wheel checks; independent N01B-01 review pending)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
 - id: friday-speech
@@ -3067,3 +3068,17 @@ events:
   action: n01b_01_directive_proposed
   note: Read-only source characterization identified a four-object transcript query contract for the first N01B subunit. The unchanged transcript, identity and friday-cli baseline passed 171 tests. An exact-path directive is proposed for maintainer review; no N01B source/test generation, product validation, terminal UAT or external delivery is authorized or claimed.
   evidence: docs/planning/active/friday-tui/validation/N01B-01-before-code-characterization.md; docs/planning/active/friday-tui/directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md
+- task: friday-tui
+  at: '2026-10-19T01:46:51+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: n01b_01_directive_approved
+  note: Chuck Russell replied 'approved' to the exact CD-TUI-N01B-01 question. This authorizes only the four named transcript-query source/test paths and scoped packet/board evidence. Later N01B effects, TUI implementation and external delivery remain unauthorized by this approval.
+  evidence: current-session reply 'approved'; docs/planning/active/friday-tui/directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md
+- task: friday-tui
+  at: '2026-10-19T01:54:07+00:00'
+  actor: Codex
+  actor_role: agent
+  action: n01b_01_local_candidate_ready_for_independent_review
+  note: The four approved source/test paths implement neutral transcript query contracts and Chat same-object re-exports. Focused, full Runtime/Chat and unchanged friday-cli suites, static/lock checks and installed Runtime/Chat wheel isolation passed. Stable candidate commit and fresh independent review remain pending; Linux exact-source run and TUI UAT are not claimed.
+  evidence: docs/planning/active/friday-tui/validation/N01B-01-local-checks.md

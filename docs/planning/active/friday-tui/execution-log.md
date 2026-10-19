@@ -1,9 +1,31 @@
 # Friday TUI execution log
 
 Status: N01S/N01A and CI03 independently verified; CI01/CI02 automated Linux
-gates reconciled green; TUI-N01B-01 directive proposed for review
+gates reconciled green; TUI-N01B-01 locally checked, independent review pending
 
-execution_phase: planning; validation_state: verified (CI03 infrastructure only; TUI-N01B-01 and product/UAT not ready)
+execution_phase: validation; validation_state: pending (N01B-01 candidate review; TUI product/UAT not ready)
+
+## 2026-10-18 — N01B-01 local candidate checks complete
+
+The [local report](validation/N01B-01-local-checks.md) records 179 focused
+passes, full Runtime 339, full Chat 848 with five skips, unchanged
+`friday-cli` 155, static/lock/board checks and isolated installed-wheel
+identity and import closure. Initial full-suite runner failures came only
+from denied local loopback binds; full suites passed when loopback was
+available. The four changed source/test paths match the approved directive.
+The next gate is a stable commit and fresh-context, read-only independent
+review. Exact-source N01B-01 Ubuntu verification and terminal UAT are not
+claimed.
+
+## 2026-10-18 — TUI-N01B-01 exact directive approved
+
+Chuck Russell answered "approved" to the explicit question about
+[CD-TUI-N01B-01](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md).
+The authority manifest activates only the neutral transcript-query contract
+and Chat compatibility-facade extraction on the four named source/test paths.
+All later N01B effects, TUI implementation and external delivery remain
+outside this approval. The before-code baseline is 171 unchanged tests; the
+next gate is bounded construction, local checks and fresh independent review.
 
 ## 2026-10-18 — N01B-01 read-only baseline and exact directive proposed
 

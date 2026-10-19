@@ -253,10 +253,10 @@ review before dependent implementation. The IDs below are planning units.
 N01S and N01A are independently verified, and the CI01-CI03 infrastructure
 work has a green [Ubuntu run](validation/TUI-CI03-ubuntu-run-39183895627.md)
 and [final independent review](validation/VAL-TUI-CI03-final-676700f5.md).
-N01B is the next proposed product unit. Its first read-only query-contract
+N01B is the next product unit. Its first read-only query-contract
 subunit is bounded by [CD-TUI-N01B-01](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
 and the [before-code baseline](validation/N01B-01-before-code-characterization.md),
-but it has no construction authority until that exact directive is approved.
+and its exact directive is approved for bounded construction.
 Installed TUI terminal UAT on macOS and Linux remains a release gate.
 
 | Unit | Demonstrable result | Immediate evidence before next unit |

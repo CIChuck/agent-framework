@@ -2,20 +2,24 @@
   "initiative": "friday-tui",
   "approved_by": "Chuck Russell",
   "approved_at": "2026-10-16",
-  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; later TUI product units remain design-only",
+  "approval_scope": "TUI-N01S and TUI-N01A independently verified; N01A Linux smoke deferred for unit closeout; CI03 independently verified and CI01/CI02 automated Linux gates reconciled green on exact pushed source; CD-TUI-N01B-01 approved for its four exact source/test paths only; later TUI product units remain design-only",
   "source_request": "Move Friday TUI from queued to active, construct a build plan from the README, ask project questions and open a dedicated branch.",
   "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
   "branch": "feature/friday-tui",
   "work_state": "started",
   "implementation_authority": "granted",
-  "execution_phase": "planning",
-  "validation_state": "verified",
+  "execution_phase": "validation",
+  "validation_state": "pending",
   "allowed_changes": [
-    "docs/planning/active/friday-tui/** (N01B-01 read-only characterization and directive planning only)",
+    "packages/friday-runtime/src/friday_runtime/transcript_views.py (add only)",
+    "packages/friday-chat/src/friday_chat/transcripts.py (compatibility facade only)",
+    "packages/friday-runtime/tests_runtime/test_transcript_views.py (add only)",
+    "packages/friday-chat/tests_chat/test_transcript_query_facade.py (add only)",
+    "docs/planning/active/friday-tui/** (N01B-01 authority, implementation and validation evidence only)",
     "docs/planning/board.yaml (TUI task and scoped events only)",
     "docs/planning/README.md (generated dashboard)"
   ],
-  "product_code_generation_authorized": false,
+  "product_code_generation_authorized": true,
   "workflow_code_generation_authorized": false,
   "planning_lightweight_exemption": {
     "authorized_by": "Chuck Russell",
@@ -31,15 +35,23 @@
     "directives/CD-TUI-N01A-neutral-config-loader.md",
     "directives/CD-TUI-CI01-linux-actions.md",
     "directives/CD-TUI-CI02-linux-regression-remediation.md",
-    "directives/CD-TUI-CI03-mcp-auto-negotiation.md"
+    "directives/CD-TUI-CI03-mcp-auto-negotiation.md",
+    "directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md"
   ],
-  "construction_directives_active": [],
-  "proposed_next_construction_directive": {
+  "construction_directives_active": [
+    "directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md"
+  ],
+  "active_n01b_01_directive": {
     "unit": "TUI-N01B-01",
     "path": "directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md",
-    "status": "proposed; maintainer approval pending",
+    "status": "approved for bounded construction",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-10-18",
+    "approval_evidence": "Current-session reply 'approved' to the explicit CD-TUI-N01B-01 question",
     "before_code_baseline": "validation/N01B-01-before-code-characterization.md",
-    "source_code_generation_authorized": false,
+    "local_check_report": "validation/N01B-01-local-checks.md",
+    "candidate_state": "local checks passed; stable commit and independent review pending",
+    "source_code_generation_authorized": true,
     "later_n01b_subunits_authorized": false
   },
   "validated_construction_scope": {
@@ -56,7 +68,7 @@
   "protected": [
     "Existing friday-cli feature set, behavior and implementation",
     "Existing friday-chat behavior and defaults",
-    "All product/framework source and tests, workflows, scripts, workspace metadata and dependency lock pending the next exact approved construction directive",
+    "All product/framework source and tests outside the four CD-TUI-N01B-01 paths; all workflows, scripts, workspace metadata and dependency lock",
     "Historical archive and frozen review evidence",
     "Existing local runtime, transcript and memory state"
   ],
@@ -78,7 +90,7 @@
     "Q-03": "Quit at a safe stopping point, finishing any non-interruptible operation and cleaning up before exiting."
   },
   "follow_up_request": "Proceed and walk me through the decision process, following the request to finalize the technical integration contract.",
-  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contracts are proposed without construction approval; neutral adapter/effects, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
+  "technical_contract_status": "TUI-N01S identity and TUI-N01A Chat-compatible loader are independently verified. N01B-01 neutral transcript-query contract extraction is approved for its exact paths; neutral adapter/effects, assembly/close, startup chooser, replay, event API and Force quit still need separate directives",
   "draft_construction_directive": "directives/CD-TUI-001-shared-presentation-contracts.md (withdrawn; not executable)",
   "read_only_design_checks": [
     "Existing CLI/selected Chat pytest baseline with fake providers and network guard; no source or test edits",

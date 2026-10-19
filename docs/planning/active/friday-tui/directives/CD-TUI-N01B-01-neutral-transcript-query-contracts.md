@@ -1,6 +1,6 @@
 # CD-TUI-N01B-01: neutral transcript-query contracts
 
-**Status:** Proposed for maintainer review; **not approved for construction**.
+**Status:** Approved for construction on 2026-10-18 by Chuck Russell.
 
 **Initiative/unit:** `friday-tui` / TUI-N01B-01 (first subunit of N01B).
 
@@ -8,9 +8,9 @@
 `d7be6459da29b8f46e270c1e1cb38772ded020cc`.
 
 **Authority:** The initiative is `started` with implementation authority
-`granted`, but its [authority manifest](../authority.json) has no active N01B
-directive and prohibits product code generation. Chuck Russell must approve
-this exact directive before its source or test paths are changed. The accepted
+`granted`. Chuck Russell approved this exact directive with the current-session
+reply "approved" to the N01B-01 scope-and-authority question. The
+[authority manifest](../authority.json) activates only this N01B subunit. The accepted
 [product boundaries](../architecture-reset.md), [replacement
 plan](../replacement-plan.md), [capability map](../neutral-capability-map.md),
 [before-code characterization](../validation/N01B-01-before-code-characterization.md),
@@ -123,6 +123,8 @@ fixtures, or the implementation needs a different source/test/metadata path.
 Do not start the neutral adapter, command effects, session/turn state,
 resource close, service assembly or TUI implementation under this directive.
 
-**Approval fields:** Maintainer approval pending; exact scope is the four
-source/test paths above plus scoped packet/board evidence. No source or test
-change is authorized by this proposal alone.
+**Approval fields:** Maintainer Chuck Russell; approved 2026-10-18 by the
+current-session reply "approved" to the explicit CD-TUI-N01B-01 question.
+Exact scope is the four source/test paths above plus scoped packet/board
+evidence. Later N01B subunits and any push, PR, merge or release remain
+unauthorized by this approval.

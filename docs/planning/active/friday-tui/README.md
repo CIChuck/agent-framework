@@ -11,11 +11,12 @@ review VERIFIED CI03 and reconciled the CI01/CI02 automated Linux gates.
 
 **Lifecycle:** Started; board priority 14; CI03 infrastructure work unit and
 CI01/CI02 automated Linux gates VERIFIED; the first TUI-N01B product subunit
-has a proposed exact directive awaiting approval
+has an approved exact directive and local candidate checks, pending independent
+review
 
 **Branch:** `feature/friday-tui`
 
-execution_phase: planning; validation_state: verified (CI03 infrastructure unit only; TUI product and UAT not ready)
+execution_phase: validation; validation_state: pending (N01B-01 candidate review; TUI product and UAT not ready)
 
 **Initial design review:** 2026-10-16 against source revision `c3426986` (`0.1.0a4`)
 
@@ -96,7 +97,8 @@ Current planning artifacts:
 - [CI03 exact-source green Ubuntu run](validation/TUI-CI03-ubuntu-run-39183895627.md)
 - [CI03 final independent infrastructure review](validation/VAL-TUI-CI03-final-676700f5.md)
 - [TUI-N01B-01 before-code transcript-query characterization](validation/N01B-01-before-code-characterization.md)
-- [Proposed TUI-N01B-01 neutral transcript-query directive](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
+- [Approved TUI-N01B-01 neutral transcript-query directive](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
+- [TUI-N01B-01 local construction and installed-wheel checks](validation/N01B-01-local-checks.md)
 - [Draft UI-neutral event and lifecycle contract](neutral-event-lifecycle-contract.md)
 - [Draft startup bootstrap contract and test matrix](startup-bootstrap-contract.md)
 - [Accepted CLI presentation-file extension and TUI UX options](ux-configuration.md)
@@ -638,10 +640,10 @@ and a fresh independent reviewer returned
 [VERIFIED](validation/VAL-N01A-waiver-closeout.md). Linux testing remains a
 later TUI cross-platform/release gate. Dependent construction needs its own
 approved directive.
-The first N01B subunit has a
-[proposed transcript-query contract directive](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
+The first N01B subunit has an
+[approved transcript-query contract directive](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
 and [before-code baseline](validation/N01B-01-before-code-characterization.md).
-It is not approved for source or test changes. Later product units need their
+It permits only the four named source/test paths. Later product units need their
 own bounded directives and authority. At each
 increment, test behavior and regressions before dependent work. macOS user
 UAT begins at the first usable shell; automated Linux checks ran under
@@ -653,8 +655,8 @@ Build the user guide and configuration reference alongside the features they
 describe and verify them against that candidate.
 
 The [board](../../board.yaml) records `started` on `feature/friday-tui` with
-implementation authority `granted` for the initiative, but no next product
-unit is authorized for code generation, including proposed TUI-N01B-01. CI03
+implementation authority `granted` for the initiative; only TUI-N01B-01's
+four named source/test paths are authorized for code generation. CI03
 and CI01/CI02 automated Linux
 gates are independently VERIFIED. N01A is closed under its unit-specific Linux
 deferral. No TUI executable, UAT result, publication or acceptance of the full
