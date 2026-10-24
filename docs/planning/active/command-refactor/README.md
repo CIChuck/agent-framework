@@ -34,26 +34,29 @@ will control implementation.
 
 ## Canonical planning chain
 
-Read these in order when preparing a phase gate or an exact implementation
-directive. A later document may detail a decision, but cannot silently change
-an earlier authority or scope decision.
+The three command documents below are the canonical product-intent sources for
+this branch. Read them together when deriving or revising the build, phase or
+tactical plans. A later plan may detail an accepted decision, but cannot
+silently replace the intent, maintainer commentary or source baseline.
 
 | Role | Canonical file | What it controls |
 | --- | --- | --- |
 | Authority | [Board](../../board.yaml) and [authority record](authority.json) | Task state, branch, current scope and the requirement for an exact approved construction directive before product code. |
-| Scope | [Build plan](build-plan.md) and [scope decisions](scope-decisions.md) | Approved objective and boundaries; selected retirements, preserved behavior, open contract choices and deferred work. |
-| Baseline | [Command matrix](command-matrix.md) and [JSON snapshot](validation/command-matrix.json) | The 50-name, three-alias before-change Chat surface and source metadata, not a post-refactor target or parity result. |
+| Feature intent | [Refactor discussion](command_refactor.md) | Why this branch exists, shared-owner and harness-evolution direction, migration sequence, protected behavior and maintainer clarifications. Candidate pruning and construction ideas remain proposals where labeled. |
+| Maintainer priorities | [Command inventory](command-inventory.md) | Focus areas, command scores and comments, recorded command decisions, architecture opportunities and deferred consolidation ideas. Assistant recommendations remain advisory. |
+| Command baseline | [Command matrix](command-matrix.md) and [JSON snapshot](validation/command-matrix.json) | The 50-name, three-alias before-change Chat surface and PAR case IDs, including the six retirement cases; not a post-refactor target or parity result. |
+| Reconciled scope | [Build plan](build-plan.md) and [scope decisions](scope-decisions.md) | The approved objective and current decisions derived from the three intent sources; open choices and deferred work stay explicit. |
 | Contract input | [Shared-command architecture](shared-command-architecture.md) | Proposed ownership and dependency direction; package, API and CLI role still need explicit review and approval. |
 | Evidence standard | [Test strategy](test-strategy.md) | Required regression classes for phases and bounded units. |
 | Sequence | [Phase plan](phase-plan.md) | Phase outcomes and exit gates derived from scope, baseline and evidence standard. |
 | Execution | [Tactical plan](tactical-plan.md) and [execution log](execution-log.md) | Current characterization tasks and actual work receipts; future code units need their own directives. |
 
-The maintainer's [scored inventory](command-inventory.md) is decision input,
-not the supported-surface decision register. The
-[refactor discussion](command_refactor.md) and
-[pruning review](command-pruning-review.md) preserve historical reasoning,
-including an obsolete seven-name proposal. Keep the matrix and refactor
-discussion reciprocally linked as decisions are reconciled. The
+The [scope decision register](scope-decisions.md) reconciles the recorded
+decisions across the three intent sources; it does not demote the scored
+inventory or refactor discussion to historical input. Keep the matrix and
+refactor discussion reciprocally linked as command scope changes. The
+[pruning review](command-pruning-review.md) preserves an obsolete seven-name
+proposal as historical reasoning. The
 [branch isolation record](branch-isolation.md) explains the independent
 history and eventual TUI reconciliation. The
 [command follow-up backlog](../../backlog/friday-tui-command-followups/README.md)

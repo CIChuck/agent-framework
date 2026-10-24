@@ -2,7 +2,8 @@
 
 **Status:** Maintainer decisions recorded through 2026-10-24; unresolved contract
 choices below require review before construction. This record reconciles the
-scored [inventory](command-inventory.md) with the approved [build-plan scope](build-plan.md).
+canonical [refactor intent](command_refactor.md), [scored inventory](command-inventory.md)
+and [command matrix](command-matrix.md) for the approved [build plan](build-plan.md).
 It does not replace an exact construction directive.
 
 ## Controlling decisions
@@ -28,10 +29,13 @@ It does not replace an exact construction directive.
 ## Change control
 
 The [scored inventory](command-inventory.md) preserves the maintainer's raw
-scores and commentary. The [matrix and JSON snapshot](command-matrix.md)
-preserve the 50-name source baseline, including names selected for retirement;
-they are not a post-refactor target or passing test result. This register owns
-the current scope synthesis. Reconcile it with the matrix, build and
+scores and commentary. The [refactor intent](command_refactor.md) preserves
+the branch's architectural direction and explicit maintainer clarifications.
+The [matrix and JSON snapshot](command-matrix.md) preserve the 50-name source
+baseline, including names selected for retirement; they are not a
+post-refactor target or passing test result. This register owns the current
+scope synthesis, not the underlying feature intent. Reconcile it with the
+three source documents, the [build plan](build-plan.md),
 [phase plan](phase-plan.md), tests, help and guides when an open choice is
 decided. Each product-code unit still needs its own approved exact directive
 under the project [authority record](authority.json) and development board.

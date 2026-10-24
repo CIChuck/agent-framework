@@ -1,8 +1,9 @@
 # Friday TUI command coverage matrix
 
-Status: Canonical before-change Chat command inventory and TUI parity planning
-baseline; it is not the 44-name supported-surface target or behavioral test
-evidence. TUI behavior tests are still required.
+Status: Canonical command-by-command source baseline and PAR case inventory for
+this feature branch. It records the before-change Chat surface and TUI parity
+planning obligations; it is not the 44-name supported-surface target or
+behavioral test evidence. TUI behavior tests are still required.
 
 Companion: The [command refactor and pruning discussion](command_refactor.md)
 and its [separate active initiative](README.md)

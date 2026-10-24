@@ -1,10 +1,12 @@
-# Friday slash-command refactor and pruning discussion
+# Friday slash-command refactor — feature intent and design rationale
 
-**Status:** Historical planning note, begun 2026-10-19. This records the
-conversation and source observations; it does not authorize product-code work.
-The [scope decision register](scope-decisions.md) controls current retirement
-scope and open choices. The [command matrix](command-matrix.md) remains the
-50-command before-change baseline. Accepted TUI decision D-123
+**Status:** Canonical feature-intent and design-rationale document, begun
+2026-10-19. Its established direction and maintainer clarifications guide this
+branch; sections labeled as candidates or proposals are not accepted contracts.
+It does not authorize product-code work. The [scope decision register](scope-decisions.md)
+reconciles current retirement decisions and open choices with the
+[scored inventory](command-inventory.md). The [command matrix](command-matrix.md)
+remains the 50-command before-change baseline. Accepted TUI decision D-123
 (`01cbaa0b:docs/planning/active/friday-tui/decisions.md`) is historical
 context for the shared-owner requirement.
 
@@ -13,16 +15,16 @@ context for the shared-owner requirement.
 is now a separate active project with its own
 [build plan](build-plan.md) and
 [regression strategy](test-strategy.md).
-This discussion and the TUI matrix remain linked source material. The separate
-project owns Chat extraction and cross-client regression; Friday TUI owns its
+This intent document and the TUI matrix remain linked canonical inputs. The
+separate project owns Chat extraction and cross-client regression; Friday TUI owns its
 later adapter and parity/UAT work. The separate `friday-framework-cli` package's
 direct-consumer role is an open technical-contract decision, while its existing
 behavior remains protected.
 
 This note and the [command matrix](command-matrix.md) are companion planning
 artifacts: the matrix identifies each current parity case, while this note
-records the proposed migration and pruning decisions that could change those
-cases. Reconcile them together when a command decision is accepted.
+records the migration direction and candidate pruning ideas that could change
+those cases. Reconcile them together when a command decision is accepted.
 The [command inventory and scoring sheet](command-inventory.md) puts every
 current command and architecture opportunity in one place for the maintainer's
 value score and migration decision. Its recommendations do not change the

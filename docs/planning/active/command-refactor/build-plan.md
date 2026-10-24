@@ -1,7 +1,21 @@
 # Shared Friday command refactor — build plan
 
-**Status:** maintainer-approved initiative scope; technical contract and
-construction directives remain open
+**Status:** maintainer-approved initiative scope derived from the three
+canonical intent documents below; technical contract and construction
+directives remain open
+
+## Intent lineage
+
+This build plan translates three linked source documents into an execution
+sequence. If a later plan appears to disagree with them, reconcile the
+disagreement in the [scope decision register](scope-decisions.md) before
+changing a phase gate or writing a construction directive.
+
+| Canonical source | Build commitment |
+| --- | --- |
+| [Refactor intent](command_refactor.md) | One shared, UI-neutral command owner; preserved behavior for retained commands; explicit retirement unit; Chat and separate CLI regression; TUI integration only after acceptance. Friday services own domain capability as the harness evolves. |
+| [Scored command inventory](command-inventory.md) | Honor maintainer command decisions and focus areas. Carry architecture opportunities into contract review; defer consolidation and behavior enhancements unless separately decided. |
+| [Command matrix](command-matrix.md) | Use the 50 canonical names, three aliases and PAR IDs as the before-change case inventory. Reconcile the six retirement cases separately from retained-command equivalence. |
 
 ## Objective and ownership
 
@@ -59,6 +73,8 @@ the [tactical plan](tactical-plan.md) tracks current characterization tasks.
    normalization, capability/context boundaries, typed semantic result and
    UI-effect intents. Keep domain operations in their owning Friday packages.
    Set the package name, public API and CLI adapter participation explicitly.
+   Review inventory architecture opportunities A-01 through A-10: record which
+   support this behavior-preserving refactor and which remain later work.
 3. **Migrate bounded command families.** Move registry mechanics and small
    display commands first, then service-owning families. Each command has one
    active implementation; Chat delegates while its current presentation and

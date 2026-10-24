@@ -52,7 +52,10 @@ is authorized by this tactical plan alone.
 For each proposed P2–P4 unit, the tactical implementation plan must cite its
 phase gate, applicable [scope decisions](scope-decisions.md), exact PAR cases
 from the [source matrix](command-matrix.md), and the approved technical
-contract revision. Pin allowed source/test/doc paths, protected Chat and CLI
+contract revision. Check the unit against the [refactor intent](command_refactor.md)
+and maintainer [command inventory](command-inventory.md); record any apparent
+conflict before proposing the directive. Pin allowed source/test/doc paths,
+protected Chat and CLI
 behavior, fixtures, exact commands and expected results from the
 [test strategy](test-strategy.md). Record the candidate commit, independent
 review and stop conditions in the exact construction directive before any

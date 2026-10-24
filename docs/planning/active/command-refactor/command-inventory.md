@@ -1,15 +1,16 @@
 # Friday slash-command inventory and scoring sheet
 
-**Status:** Scored review sheet, 2026-10-22. Maintainer scores and comments
-are preserved as input; the [scope decision register](scope-decisions.md)
-records the current migration decisions and unresolved outliers. My
-recommendations are advisory. The 50-command source baseline and Friday Chat
-behavior remain in force until the approved contract and bounded construction
-directives reconcile them.
+**Status:** Canonical maintainer scoring and command-decision source,
+2026-10-22. The scores, comments, focus areas and recorded decisions express
+feature intent. The [scope decision register](scope-decisions.md) reconciles
+the current migration decisions and unresolved outliers; assistant
+recommendations remain advisory. The 50-command source baseline and Friday
+Chat behavior remain in force until the approved contract and bounded
+construction directives reconcile them.
 
 The [separate shared-command initiative](README.md)
 now owns migration planning and the cross-client regression gates. This scored
-sheet remains the maintainer's decision source and is paired with the
+sheet remains the maintainer's canonical decision source and is paired with the
 [TUI command matrix](command-matrix.md); neither is rewritten as though the
 six selected retirements have already shipped.
 

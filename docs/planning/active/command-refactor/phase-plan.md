@@ -1,8 +1,9 @@
 # Shared command refactor — phase plan
 
-**Status:** Planning sequence derived from the approved [build-plan scope](build-plan.md)
-and current [scope decisions](scope-decisions.md). Gates and construction units
-remain conditional on an approved technical contract and exact directives.
+**Status:** Planning sequence derived from the three canonical intent documents
+through the approved [build-plan scope](build-plan.md) and current
+[scope decisions](scope-decisions.md). Gates and construction units remain
+conditional on an approved technical contract and exact directives.
 
 The [tactical plan](tactical-plan.md) tracks the current work within these
 phases. The [test strategy](test-strategy.md) supplies evidence requirements

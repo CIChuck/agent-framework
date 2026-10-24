@@ -21,6 +21,13 @@ the six retirement cases from retained-command parity obligations in the JSON
 inventory. Technical contract, retired-name response and scored outliers remain
 open; this documentation pass does not advance a construction gate.
 
+2026-10-24: The maintainer clarified that `command_refactor.md`,
+`command-inventory.md` and `command-matrix.md` are the canonical intent sources
+for this feature branch and ultimate build plan. The packet index, build plan,
+scope register, phase plan and tactical-plan derivation were aligned to that
+source order. Candidate recommendations remain distinct from accepted
+decisions.
+
 `execution_phase: planning`; `validation_state: not_ready`.
 
 Next: characterize Chat and `friday-framework-cli`, settle the supported
