@@ -36,6 +36,12 @@ P4 covers cross-family installed integration; P5 requires an aggregate report,
 independent review, acceptance and a TUI handoff manifest. This revision does
 not close P0/P1 or authorize product source edits.
 
+2026-10-24: The maintainer requested a concrete architectural surface for the
+shared command owner. The [architecture proposal](shared-command-architecture.md)
+now maps proposed package ownership, Chat-owned service seams, the separate
+`friday-framework-cli` registry and installed-client reuse proof. Package/API
+and service-ownership choices remain P1 decisions; no product code changed.
+
 `execution_phase: planning`; `validation_state: not_ready`.
 
 Next: characterize Chat and `friday-framework-cli`, settle the supported
