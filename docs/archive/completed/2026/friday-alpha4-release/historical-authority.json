@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "owner": "friday-alpha4-release",
+  "packet": "docs/archive/completed/2026/friday-alpha4-release/historical/",
+  "files": [
+    {
+      "path": "docs/archive/completed/2026/friday-alpha4-release/historical/README.md",
+      "sha256": "d061ff330faacad9f227a553bf918a6c587b8150e38be7af7664215edb4ad998",
+      "kind": "index"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-alpha4-release/historical/authority.json",
+      "sha256": "eedde1ab89091cd75c17223e6b1656d29687ce3ac389a0989717d012857c9351",
+      "kind": "authority"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-alpha4-release/historical/execution-log.md",
+      "sha256": "c15e0ddcb2e83fe93e9cae525b012b2592c01b08d574b0602b65016d5760cdd9",
+      "kind": "approval"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-alpha4-release/historical/directives/CD-REL-A4-001.md",
+      "sha256": "21046526cdb982fbbddb8ddde71c4b4511a4329a24a94720df68181622dc6a10",
+      "kind": "directive"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-alpha4-release/historical/validation/independent-review/report.md",
+      "sha256": "94bbfd4ec366091c5278a6e569e3b198267ae246f9b87f208c3d590c9425e4a8",
+      "kind": "report"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-alpha4-release/historical/validation/publication/published-files.json",
+      "sha256": "106a940fbd3b8bc5c50173f2222622aa03dfd4b2d034f409c84722ce45aa9950",
+      "kind": "evidence"
+    }
+  ]
+}

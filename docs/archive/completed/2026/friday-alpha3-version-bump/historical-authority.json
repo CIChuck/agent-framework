@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "owner": "friday-alpha3-version-bump",
+  "packet": "docs/archive/completed/2026/friday-alpha3-version-bump/historical/",
+  "files": [
+    {
+      "path": "docs/archive/completed/2026/friday-alpha3-version-bump/historical/README.md",
+      "sha256": "8a7775f8ada80ef7acfd16a667ea979b6e785f2b5ce144050fe103f5a4f1c0d6",
+      "kind": "index"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-alpha3-version-bump/historical/authority.json",
+      "sha256": "e9cb1735409d644bd7dced3012585b677b57ca208abf3b40350c7d9903b17159",
+      "kind": "authority"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-alpha3-version-bump/historical/publication-authority.json",
+      "sha256": "5902c8f4ccc30592b6982d05dcb6e046516215aaa52b2076b73a0d2d9f70f353",
+      "kind": "approval"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-alpha3-version-bump/historical/directives/CD-REL-A3-001-version-bump.md",
+      "sha256": "23c794dd3798216790e2bee48e907cf520afc0b3f42f0be40f1f01df0c9446fb",
+      "kind": "directive"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-alpha3-version-bump/historical/validation/report.md",
+      "sha256": "47c034e68b875a6230f6ce5badfbaa05d593d54588106639ab0e0836f4cd3e3c",
+      "kind": "report"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-alpha3-version-bump/historical/validation/publication/release-readiness.md",
+      "sha256": "b944dffe56a725f6e2ed3ceed959b4cd5f53f6f6df67960cb616b521f6380569",
+      "kind": "evidence"
+    }
+  ]
+}

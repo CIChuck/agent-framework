@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-10-16'
+updated: '2026-10-24'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -380,79 +380,86 @@ tasks:
 - id: friday-telemetry-rewire
   title: Friday-telemetry-rewire
   priority: 27
-  work_state: started
+  work_state: accepted
   condition: normal
   implementation_authority: closed
-  packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: 'core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths'
+  packet: docs/archive/completed/2026/friday-telemetry-rewire/
+  next_gate: none; accepted and archived; future work tracked separately
   delivery_state: merged
   branch: feature/friday-telemetry-rewire
   depends_on: []
   validation:
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-001/evidence.yaml
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-001/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-001/evidence.yaml
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-002/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-002/evidence.yaml
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-003/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-003/evidence.yaml
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-002/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-002/evidence.yaml
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-004/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-004/evidence.yaml
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-005/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-005/evidence.yaml
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-003/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-003/evidence.json
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-006/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-006/evidence.json
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-004/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-004/evidence.json
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-005/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-005/evidence.json
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-007/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-007/evidence.json
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-008/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-008/evidence.json
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-009/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-009/evidence.json
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-010/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-010/evidence.json
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-011/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-011/evidence.json
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-006/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-006/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-001/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-001/evidence.yaml
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-001/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-001/evidence.yaml
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-002/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-002/evidence.yaml
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-003/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-003/evidence.yaml
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-002/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-002/evidence.yaml
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-004/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-004/evidence.yaml
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-005/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-005/evidence.yaml
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-003/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-003/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-006/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-006/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-004/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-004/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-005/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-005/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-007/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-007/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-008/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-008/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-009/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-009/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-010/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-010/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-011/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-011/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-006/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-006/evidence.json
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-017/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-017/evidence.json
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-007/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-007/evidence.json
-  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-017/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-017/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-007/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-007/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/execution/TELEM-02-final/report.md
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-02/acceptance-evidence.json
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-008/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-008/stored-artifact-manifest.json
-  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-final/report.md
-  - docs/planning/active/friday-telemetry-rewire/closeout-TELEM-03.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-008/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-008/stored-artifact-manifest.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/execution/TELEM-03-final/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/closeout-TELEM-03.md
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-03/README.md
-  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/report.md
-  - docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-019/report.md
-  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-baseline/report.md
-  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-final/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-009/report.md
-  - docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-record.md
-  - docs/planning/active/friday-telemetry-rewire/validation/CDR-020/report.md
-  - docs/planning/active/friday-telemetry-rewire/execution/REM-005-baseline/report.md
-  - docs/planning/active/friday-telemetry-rewire/execution/REM-005-candidate/report.md
-  - docs/planning/active/friday-telemetry-rewire/validation/VAL-010/report.md
-  - docs/planning/active/friday-telemetry-rewire/execution/REM-005-final/report.md
-  - docs/planning/active/friday-telemetry-rewire/closeout-TELEM-04.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/execution/TELEM-04-planning/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/directives/CD-004-approval-record.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-019/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/execution/TELEM-04-baseline/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/execution/TELEM-04-final/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-009/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/remediation/REM-005-approval-record.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/CDR-020/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/execution/REM-005-baseline/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/execution/REM-005-candidate/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-010/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/execution/REM-005-final/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire/historical/closeout-TELEM-04.md
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-04/README.md
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire/completion-proposal.txt (completion proposal with immutable historical backing)
   approved_by: repository maintainer
   approved_at: '2026-10-04'
+  authority_backing_packets:
+  - packet: docs/archive/completed/2026/friday-telemetry-rewire/historical/
+    manifest: docs/archive/completed/2026/friday-telemetry-rewire/historical-authority.json
+    manifest_sha256: 9aa7c9546bbbf4e4bc8af9e90d6f23c9d81925b208132a5b80a4d7e80fdd6a45
+  accepted_by: Chuck Russell
+  accepted_at: '2026-10-24'
 - id: friday-mcp-protocol-upgrade
   title: Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade
   priority: 4
@@ -466,32 +473,32 @@ tasks:
   depends_on:
   - friday-mcp
   validation:
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-01/report.md: CHANGES_REQUESTED'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-02/report.md: VERIFIED client-core/stdio work unit only'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json: maintainer acceptance of client-core/stdio unit only'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/report.md: CHANGES_REQUESTED; four HTTP findings, original candidate retained'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md: VERIFIED corrected Streamable HTTP work unit; maintainer acceptance pending'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json: maintainer acceptance of corrected HTTP unit only'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-01/report.md: CHANGES_REQUESTED; sole bounded guide-accuracy finding; runtime checks pass'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-02/report.md: VERIFIED Runtime/YAML/Chat full work-unit review; maintainer acceptance pending'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json: maintainer accepted independently VERIFIED Runtime/YAML/Chat unit'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/execution/up04-planning/report.md: exact UP-04 planning packet; no product construction authority'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-01/report.md: independent CHANGES_REQUESTED, high refresh-admission and medium input-grammar findings; REM-MCP-UP-004 proposed'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-02/report.md: independent corrected-candidate CHANGES_REQUESTED; VAL-UP04-003'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-03/report.md: independent remediation delta and full UP-04 VERIFIED; acceptance pending'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-04.json: maintainer accepted independently VERIFIED UP-04; all3 findings resolved'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-01/report.md: independent full UP-05 CHANGES_REQUESTED'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-02/report.md: independent full UP-05 CHANGES_REQUESTED'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-03/report.md: independent full UP-05 VERIFIED'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-05.json: maintainer accepted independently VERIFIED UP-05; all five findings resolved'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-01/report.md: BLOCKED closure authority; full aggregate review not completed'
-  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP06-02/report.md: VERIFIED fresh whole-feature27-check review; acceptance pending'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP02A-01/report.md: CHANGES_REQUESTED'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP02A-02/report.md: VERIFIED client-core/stdio work unit only'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/acceptance/MCP-UP-02A.json: maintainer acceptance of client-core/stdio unit only'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP02B-01/report.md: CHANGES_REQUESTED; four HTTP findings, original candidate retained'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP02B-02/report.md: VERIFIED corrected Streamable HTTP work unit; maintainer acceptance pending'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/acceptance/MCP-UP-02B.json: maintainer acceptance of corrected HTTP unit only'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP03-01/report.md: CHANGES_REQUESTED; sole bounded guide-accuracy finding; runtime checks pass'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP03-02/report.md: VERIFIED Runtime/YAML/Chat full work-unit review; maintainer acceptance pending'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/acceptance/MCP-UP-03.json: maintainer accepted independently VERIFIED Runtime/YAML/Chat unit'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/execution/up04-planning/report.md: exact UP-04 planning packet; no product construction authority'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP04-01/report.md: independent CHANGES_REQUESTED, high refresh-admission and medium input-grammar findings; REM-MCP-UP-004 proposed'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP04-02/report.md: independent corrected-candidate CHANGES_REQUESTED; VAL-UP04-003'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP04-03/report.md: independent remediation delta and full UP-04 VERIFIED; acceptance pending'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/acceptance/MCP-UP-04.json: maintainer accepted independently VERIFIED UP-04; all3 findings resolved'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP05-01/report.md: independent full UP-05 CHANGES_REQUESTED'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP05-02/report.md: independent full UP-05 CHANGES_REQUESTED'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP05-03/report.md: independent full UP-05 VERIFIED'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/acceptance/MCP-UP-05.json: maintainer accepted independently VERIFIED UP-05; all five findings resolved'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP06-01/report.md: BLOCKED closure authority; full aggregate review not completed'
+  - 'docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/validation/VAL-UP06-02/report.md: VERIFIED fresh whole-feature27-check review; acceptance pending'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
   authority_backing_packets:
-  - packet: docs/planning/active/friday-mcp-protocol-upgrade/
+  - packet: docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/
     manifest: docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical-authority.json
-    manifest_sha256: 190b1fd6b5a919fe0131b01fd858e6b35d8c1decf87c6d577aeef3fec4b82dfd
+    manifest_sha256: 40101d5e42b57ce6a3f25e49b4e6294f6f36d4894be7983c4767863739ec613b
   accepted_by: Chuck Russell
   accepted_at: '2026-10-14'
 - id: friday-langfuse-integration
@@ -510,21 +517,28 @@ tasks:
 - id: friday-deprecated-credential-cleanup
   title: Remove deprecated credential-bearing files and rotate exposed credentials
   priority: 28
-  work_state: started
+  work_state: accepted
   condition: normal
-  implementation_authority: granted
-  packet: docs/planning/active/friday-deprecated-credential-cleanup/
-  next_gate: PR 9 merged and remote branch deleted; maintainer lifecycle closeout/acceptance remains
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/friday-deprecated-credential-cleanup/
+  next_gate: none; accepted and archived; future work tracked separately
   delivery_state: merged
   branch: security/remove-deprecated-credentials
   depends_on: []
   validation:
-  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md: VERIFIED bounded two-artifact removal only; provider actions pending'
-  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec002-review/report.md: VERIFIED exact command-fixture migration only; pre-existing docs debt recorded'
-  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec003-review/report.md: VERIFIED exact untracking and local-file preservation; all bounded checks pass'
-  - 'docs/planning/active/friday-deprecated-credential-cleanup/validation/sec004-aggregate/report.md: VERIFIED full aggregate526688e3; limits and baseline debt disclosed'
+  - 'docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/validation/VAL-SEC-001/report.md: VERIFIED bounded two-artifact removal only; provider actions pending'
+  - 'docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/validation/sec002-review/report.md: VERIFIED exact command-fixture migration only; pre-existing docs debt recorded'
+  - 'docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/validation/sec003-review/report.md: VERIFIED exact untracking and local-file preservation; all bounded checks pass'
+  - 'docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/validation/sec004-aggregate/report.md: VERIFIED full aggregate526688e3; limits and baseline debt disclosed'
+  - docs/archive/completed/2026/friday-deprecated-credential-cleanup/completion-proposal.txt (completion proposal with immutable historical backing)
   approved_by: Chuck Russell
   approved_at: '2026-10-14'
+  authority_backing_packets:
+  - packet: docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/
+    manifest: docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical-authority.json
+    manifest_sha256: ebe344c7155687cadbabd4612d0815b910c62422f887ade8f99a1ef2310c7f9b
+  accepted_by: Chuck Russell
+  accepted_at: '2026-10-24'
 - id: friday-tool-manifest-continuity
   title: Friday tool manifest continuity remediation
   priority: 26
@@ -540,75 +554,103 @@ tasks:
 - id: friday-alpha3-version-bump
   title: Friday 0.1.0a3 repository version bump
   priority: 29
-  work_state: started
+  work_state: accepted
   condition: normal
-  implementation_authority: granted
-  packet: docs/planning/active/friday-alpha3-version-bump/
-  next_gate: Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/friday-alpha3-version-bump/
+  next_gate: none; accepted and archived; future work tracked separately
   delivery_state: released
   branch: release/0.1.0a3
   depends_on: []
   validation:
-  - docs/planning/active/friday-alpha3-version-bump/validation/report.md
-  - docs/planning/active/friday-alpha3-version-bump/validation/reviewer-checks.json
-  - docs/planning/active/friday-alpha3-version-bump/validation/publication/helper-review.md
-  - docs/planning/active/friday-alpha3-version-bump/validation/publication/release-readiness.md
+  - docs/archive/completed/2026/friday-alpha3-version-bump/historical/validation/report.md
+  - docs/archive/completed/2026/friday-alpha3-version-bump/historical/validation/reviewer-checks.json
+  - docs/archive/completed/2026/friday-alpha3-version-bump/historical/validation/publication/helper-review.md
+  - docs/archive/completed/2026/friday-alpha3-version-bump/historical/validation/publication/release-readiness.md
   - docs/reference/releases/friday-package-cohort-0.1.0a3-release-evidence.md
-  - docs/planning/active/friday-alpha3-version-bump/validation/publication/published-files.json
-  - docs/planning/active/friday-alpha3-version-bump/validation/publication/production-install-results.json
+  - docs/archive/completed/2026/friday-alpha3-version-bump/historical/validation/publication/published-files.json
+  - docs/archive/completed/2026/friday-alpha3-version-bump/historical/validation/publication/production-install-results.json
+  - docs/archive/completed/2026/friday-alpha3-version-bump/completion-proposal.txt (completion proposal with immutable historical backing)
   approved_by: Chuck Russell
   approved_at: '2026-10-14'
+  authority_backing_packets:
+  - packet: docs/archive/completed/2026/friday-alpha3-version-bump/historical/
+    manifest: docs/archive/completed/2026/friday-alpha3-version-bump/historical-authority.json
+    manifest_sha256: 3fa8e362fc8614c559fa26f414e4def4b2386397a9c580af64edc5f4886669ca
+  accepted_by: Chuck Russell
+  accepted_at: '2026-10-24'
 - id: friday-readme-refresh
   title: Precise Python monorepo and package READMEs
   priority: 30
-  work_state: started
+  work_state: accepted
   condition: normal
-  implementation_authority: granted
-  packet: docs/planning/active/friday-readme-refresh/
-  next_gate: 'Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains'
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/friday-readme-refresh/
+  next_gate: none; accepted and archived; future work tracked separately
   delivery_state: merged
   branch: docs/readme-refresh
   depends_on: []
   validation:
-  - docs/planning/active/friday-readme-refresh/validation/final-review/report.md
-  - docs/planning/active/friday-readme-refresh/review-and-standard.md
+  - docs/archive/completed/2026/friday-readme-refresh/historical/validation/final-review/report.md
+  - docs/archive/completed/2026/friday-readme-refresh/historical/review-and-standard.md
+  - docs/archive/completed/2026/friday-readme-refresh/completion-proposal.txt (completion proposal with immutable historical backing)
   approved_by: Chuck Russell
   approved_at: '2026-10-15'
+  authority_backing_packets:
+  - packet: docs/archive/completed/2026/friday-readme-refresh/historical/
+    manifest: docs/archive/completed/2026/friday-readme-refresh/historical-authority.json
+    manifest_sha256: 509315ecf479c53619e0ad85af9feefda7fcbeadbf5d2c2021890c594b7ec670
+  accepted_by: Chuck Russell
+  accepted_at: '2026-10-24'
 - id: friday-guides-refresh
   title: Current technical end-user guides for alpha3
   priority: 31
-  work_state: started
+  work_state: accepted
   condition: normal
-  implementation_authority: granted
-  packet: docs/planning/active/friday-guides-refresh/
-  next_gate: 'Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains'
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/friday-guides-refresh/
+  next_gate: none; accepted and archived; future work tracked separately
   delivery_state: merged
   branch: docs/guides-refresh
   depends_on: []
   validation:
-  - docs/planning/active/friday-guides-refresh/validation/final-review/report.md
-  - docs/planning/active/friday-guides-refresh/review-and-changes.md
+  - docs/archive/completed/2026/friday-guides-refresh/historical/validation/final-review/report.md
+  - docs/archive/completed/2026/friday-guides-refresh/historical/review-and-changes.md
+  - docs/archive/completed/2026/friday-guides-refresh/completion-proposal.txt (completion proposal with immutable historical backing)
   approved_by: Chuck Russell
   approved_at: '2026-10-15'
+  authority_backing_packets:
+  - packet: docs/archive/completed/2026/friday-guides-refresh/historical/
+    manifest: docs/archive/completed/2026/friday-guides-refresh/historical-authority.json
+    manifest_sha256: 71fc7af0740126864a33bee88a5ae67ada1b9e8b4fc52c8f9c326552c215c14c
+  accepted_by: Chuck Russell
+  accepted_at: '2026-10-24'
 - id: friday-chat-quick-start
   title: Friday Chat quick start for clone and PyPI users
   priority: 32
-  work_state: started
+  work_state: accepted
   condition: normal
-  implementation_authority: granted
-  packet: docs/planning/active/friday-chat-quick-start/
-  next_gate: 'Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains'
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/friday-chat-quick-start/
+  next_gate: none; accepted and archived; future work tracked separately
   delivery_state: merged
   branch: docs/chat-quick-start
   depends_on: []
   validation:
-  - docs/planning/active/friday-chat-quick-start/validation/independent-review/report.md
-  - docs/planning/active/friday-chat-quick-start/validation/intro-review/report.md
-  - docs/planning/active/friday-chat-quick-start/validation/hosted-review/report.md
-  - docs/planning/active/friday-chat-quick-start/implementation-report.md
+  - docs/archive/completed/2026/friday-chat-quick-start/historical/validation/independent-review/report.md
+  - docs/archive/completed/2026/friday-chat-quick-start/historical/validation/intro-review/report.md
+  - docs/archive/completed/2026/friday-chat-quick-start/historical/validation/hosted-review/report.md
+  - docs/archive/completed/2026/friday-chat-quick-start/historical/implementation-report.md
   - Fresh delivery delta and aggregate VERIFIED ed88901b; validation/delivery-review/report.md
+  - docs/archive/completed/2026/friday-chat-quick-start/completion-proposal.txt (completion proposal with immutable historical backing)
   approved_by: Chuck Russell
   approved_at: '2026-10-15'
+  authority_backing_packets:
+  - packet: docs/archive/completed/2026/friday-chat-quick-start/historical/
+    manifest: docs/archive/completed/2026/friday-chat-quick-start/historical-authority.json
+    manifest_sha256: 29681582937fb9577f97311088f25b0bfea6f2eab1e3e591acf96657d490b00d
+  accepted_by: Chuck Russell
+  accepted_at: '2026-10-24'
 - id: friday-board-delivery-reconciliation
   title: Board validation and GitHub delivery reconciliation
   priority: 33
@@ -624,11 +666,11 @@ tasks:
 - id: friday-alpha4-release
   title: Friday 0.1.0a4 coordinated release
   priority: 34
-  work_state: started
+  work_state: accepted
   condition: normal
-  implementation_authority: granted
-  packet: docs/planning/active/friday-alpha4-release/
-  next_gate: Maintainer lifecycle closeout; alpha4 source merged, all 17 PyPI projects and fresh production install verified
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/friday-alpha4-release/
+  next_gate: none; accepted and archived; future work tracked separately
   delivery_state: released
   branch: release/0.1.0a4
   depends_on: []
@@ -637,10 +679,17 @@ tasks:
   - 191 focused source tests; 6 installed Chat import checks; Ruff/Mypy/lock/metadata passed
   - 34 frozen artifacts and clean local cohort installation verified
   - docs/reference/releases/friday-package-cohort-0.1.0a4-release-evidence.md
-  - docs/planning/active/friday-alpha4-release/validation/publication/published-files.json
-  - docs/planning/active/friday-alpha4-release/validation/publication/production-install-results.json
+  - docs/archive/completed/2026/friday-alpha4-release/historical/validation/publication/published-files.json
+  - docs/archive/completed/2026/friday-alpha4-release/historical/validation/publication/production-install-results.json
+  - docs/archive/completed/2026/friday-alpha4-release/completion-proposal.txt (completion proposal with immutable historical backing)
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
+  authority_backing_packets:
+  - packet: docs/archive/completed/2026/friday-alpha4-release/historical/
+    manifest: docs/archive/completed/2026/friday-alpha4-release/historical-authority.json
+    manifest_sha256: 9664f2cf0e039b59331a076249463904f5eb8efa1153763e865aaffdf793f7e3
+  accepted_by: Chuck Russell
+  accepted_at: '2026-10-24'
 - id: friday-tui-command-followups
   title: Friday TUI command follow-ups
   priority: 35
@@ -2189,3 +2238,108 @@ events:
   action: approved independent command-first execution
   note: Maintainer required the command refactor and TUI branches to be independent and directed command refactor execution first. This branch is rebuilt from master c3426986 with only command planning and scheduling changes; product code still requires exact construction directives.
   evidence: current-session maintainer direction; docs/planning/active/command-refactor/authority.json
+- task: friday-telemetry-rewire
+  at: '2026-10-24T14:46:57+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Maintainer authorized completion proposal after read-only active-project audit. Independent verification and recorded delivery are reconciled in the review index; acceptance remains a separate maintainer gate.
+  evidence: docs/planning/review/friday-telemetry-rewire/README.md; docs/planning/active/friday-telemetry-rewire/validation/VAL-010/report.md
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-24T14:46:57+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Maintainer authorized completion proposal after read-only active-project audit. Independent verification and recorded delivery are reconciled in the review index; acceptance remains a separate maintainer gate.
+  evidence: docs/planning/review/friday-deprecated-credential-cleanup/README.md; docs/planning/active/friday-deprecated-credential-cleanup/validation/sec004-aggregate/report.md
+- task: friday-alpha3-version-bump
+  at: '2026-10-24T14:46:57+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Maintainer authorized completion proposal after read-only active-project audit. Independent verification and recorded delivery are reconciled in the review index; acceptance remains a separate maintainer gate.
+  evidence: docs/planning/review/friday-alpha3-version-bump/README.md; docs/planning/active/friday-alpha3-version-bump/validation/report.md
+- task: friday-readme-refresh
+  at: '2026-10-24T14:46:57+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Maintainer authorized completion proposal after read-only active-project audit. Independent verification and recorded delivery are reconciled in the review index; acceptance remains a separate maintainer gate.
+  evidence: docs/planning/review/friday-readme-refresh/README.md; docs/planning/active/friday-readme-refresh/validation/final-review/report.md
+- task: friday-guides-refresh
+  at: '2026-10-24T14:46:57+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Maintainer authorized completion proposal after read-only active-project audit. Independent verification and recorded delivery are reconciled in the review index; acceptance remains a separate maintainer gate.
+  evidence: docs/planning/review/friday-guides-refresh/README.md; docs/planning/active/friday-guides-refresh/validation/final-review/report.md
+- task: friday-chat-quick-start
+  at: '2026-10-24T14:46:57+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Maintainer authorized completion proposal after read-only active-project audit. Independent verification and recorded delivery are reconciled in the review index; acceptance remains a separate maintainer gate.
+  evidence: docs/planning/review/friday-chat-quick-start/README.md; docs/planning/active/friday-chat-quick-start/validation/delivery-review/report.md
+- task: friday-alpha4-release
+  at: '2026-10-24T14:46:57+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Maintainer authorized completion proposal after read-only active-project audit. Independent verification and recorded delivery are reconciled in the review index; acceptance remains a separate maintainer gate.
+  evidence: docs/planning/review/friday-alpha4-release/README.md; docs/planning/active/friday-alpha4-release/validation/independent-review/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-24T15:07:19+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Maintainer confirmed that completed initiatives had been accepted and directed full-folder archival. The board records acceptance reconciliation on 2026-10-24 without inferring an earlier unrecorded date. Historical authority moved into the accepted archive packet.
+  evidence: docs/archive/completed/2026/friday-telemetry-rewire/README.md; docs/archive/completed/2026/archival-relocation-2026-10-24.json; docs/archive/completed/2026/friday-telemetry-rewire/completion-proposal.txt
+- task: friday-deprecated-credential-cleanup
+  at: '2026-10-24T15:07:19+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Maintainer confirmed that completed initiatives had been accepted and directed full-folder archival. The board records acceptance reconciliation on 2026-10-24 without inferring an earlier unrecorded date. Historical authority moved into the accepted archive packet.
+  evidence: docs/archive/completed/2026/friday-deprecated-credential-cleanup/README.md; docs/archive/completed/2026/archival-relocation-2026-10-24.json; docs/archive/completed/2026/friday-deprecated-credential-cleanup/completion-proposal.txt
+- task: friday-alpha3-version-bump
+  at: '2026-10-24T15:07:19+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Maintainer confirmed that completed initiatives had been accepted and directed full-folder archival. The board records acceptance reconciliation on 2026-10-24 without inferring an earlier unrecorded date. Historical authority moved into the accepted archive packet.
+  evidence: docs/archive/completed/2026/friday-alpha3-version-bump/README.md; docs/archive/completed/2026/archival-relocation-2026-10-24.json; docs/archive/completed/2026/friday-alpha3-version-bump/completion-proposal.txt
+- task: friday-readme-refresh
+  at: '2026-10-24T15:07:19+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Maintainer confirmed that completed initiatives had been accepted and directed full-folder archival. The board records acceptance reconciliation on 2026-10-24 without inferring an earlier unrecorded date. Historical authority moved into the accepted archive packet.
+  evidence: docs/archive/completed/2026/friday-readme-refresh/README.md; docs/archive/completed/2026/archival-relocation-2026-10-24.json; docs/archive/completed/2026/friday-readme-refresh/completion-proposal.txt
+- task: friday-guides-refresh
+  at: '2026-10-24T15:07:19+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Maintainer confirmed that completed initiatives had been accepted and directed full-folder archival. The board records acceptance reconciliation on 2026-10-24 without inferring an earlier unrecorded date. Historical authority moved into the accepted archive packet.
+  evidence: docs/archive/completed/2026/friday-guides-refresh/README.md; docs/archive/completed/2026/archival-relocation-2026-10-24.json; docs/archive/completed/2026/friday-guides-refresh/completion-proposal.txt
+- task: friday-chat-quick-start
+  at: '2026-10-24T15:07:19+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Maintainer confirmed that completed initiatives had been accepted and directed full-folder archival. The board records acceptance reconciliation on 2026-10-24 without inferring an earlier unrecorded date. Historical authority moved into the accepted archive packet.
+  evidence: docs/archive/completed/2026/friday-chat-quick-start/README.md; docs/archive/completed/2026/archival-relocation-2026-10-24.json; docs/archive/completed/2026/friday-chat-quick-start/completion-proposal.txt
+- task: friday-alpha4-release
+  at: '2026-10-24T15:07:19+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Maintainer confirmed that completed initiatives had been accepted and directed full-folder archival. The board records acceptance reconciliation on 2026-10-24 without inferring an earlier unrecorded date. Historical authority moved into the accepted archive packet.
+  evidence: docs/archive/completed/2026/friday-alpha4-release/README.md; docs/archive/completed/2026/archival-relocation-2026-10-24.json; docs/archive/completed/2026/friday-alpha4-release/completion-proposal.txt
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-24T15:07:19+00:00'
+  actor: Codex
+  actor_role: agent
+  action: relocated accepted historical authority
+  note: Moved previously accepted MCP authority evidence from the active lane into its accepted archive packet under the maintainer-approved archival process; acceptance date and delivery state are unchanged.
+  evidence: docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical-authority.json; docs/archive/completed/2026/archival-relocation-2026-10-24.json

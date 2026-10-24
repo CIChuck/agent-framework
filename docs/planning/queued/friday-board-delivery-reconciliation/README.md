@@ -23,8 +23,8 @@ priorities and maintainer acceptance boundaries remain unchanged.
 2026-10-15T01:55:15Z as a2dd82be951aaa1bb15dc4cc1f5753f14727f8ad, and its
 source branch was deleted. The cleanup task still recorded local delivery and
 PR/merge execution as its next gate. Ordinary board validation passed.
-The [corrected delivery receipt](../../active/friday-deprecated-credential-cleanup/delivery-evidence.json)
-and [execution log](../../active/friday-deprecated-credential-cleanup/execution-log.md)
+The [corrected delivery receipt](../../../archive/completed/2026/friday-deprecated-credential-cleanup/historical/delivery-evidence.json)
+and [execution log](../../../archive/completed/2026/friday-deprecated-credential-cleanup/historical/execution-log.md)
 record the later reconciliation in local commit ed47d651. That manual correction
 does not prevent the failure from recurring.
 

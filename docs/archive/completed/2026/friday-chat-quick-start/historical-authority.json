@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "owner": "friday-chat-quick-start",
+  "packet": "docs/archive/completed/2026/friday-chat-quick-start/historical/",
+  "files": [
+    {
+      "path": "docs/archive/completed/2026/friday-chat-quick-start/historical/README.md",
+      "sha256": "2e92fb79f85bddf1043175fefd5d4ae1c452ff96438a92c50d61458d2cf580f0",
+      "kind": "index"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-chat-quick-start/historical/authority.json",
+      "sha256": "6dd8c733f71595b136f91cbef62184169fbfd306c3bb48c974e2bb147782fc4b",
+      "kind": "authority"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-chat-quick-start/historical/execution-log.md",
+      "sha256": "f301450c66d50a0e834224bcfade8c9b130fc0c6e1f69b434c7fb13fd97c8f3a",
+      "kind": "approval"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-chat-quick-start/historical/directives/ADD-QS-002-delivery.md",
+      "sha256": "6a740ac1a6ca41d0cbabd0746b0da69a6c833e3cda68f8adf209a951aa6ed558",
+      "kind": "directive"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-chat-quick-start/historical/validation/delivery-review/report.md",
+      "sha256": "32bf64566ea54977084598007b051bccec70b41f6fd2a68792de651377b27ac8",
+      "kind": "report"
+    }
+  ]
+}

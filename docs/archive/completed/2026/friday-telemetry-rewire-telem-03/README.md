@@ -9,9 +9,9 @@ not to independent verification alone.
 Product candidate: `dd543fd6a6819ec0c4fb2529fa384fea886f5509`.
 Evidence closeout: `e6209e3156216afde1655758e280690229f7d3e6`.
 [Exact decision, approved controls and frozen evidence hashes](acceptance-evidence.json).
-[Independent VAL-008 VERIFIED](../../../../planning/active/friday-telemetry-rewire/validation/VAL-008/report.md).
-[Builder evidence](../../../../planning/active/friday-telemetry-rewire/execution/TELEM-03-final/report.md).
-[Continuing initiative](../../../../planning/active/friday-telemetry-rewire/README.md).
+[Independent VAL-008 VERIFIED](../friday-telemetry-rewire/historical/validation/VAL-008/report.md).
+[Builder evidence](../friday-telemetry-rewire/historical/execution/TELEM-03-final/report.md).
+[Continuing initiative](../friday-telemetry-rewire/historical/README.md).
 
 Accepted behavior: safe typed/legacy/stream/embedding request/attempt/batch events,
 truthful usage/cost provenance and borrowed provider-neutral injection through

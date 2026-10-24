@@ -1,0 +1,27 @@
+# Remove deprecated credential-bearing files and rotate exposed credentials — completed for maintainer review
+
+**Status:** completed; awaiting maintainer acceptance
+
+**Work state:** completed
+
+**Validation:** verified
+
+**Delivery:** merged
+
+**Implementation authority:** closed
+
+**Date:** 2026-10-24
+
+The bounded credential cleanup has an independently VERIFIED aggregate, maintainer-confirmed rotation and old-key retirement, and merged PR #9.
+
+- [Independent review](../../active/friday-deprecated-credential-cleanup/validation/sec004-aggregate/report.md)
+- [Delivery evidence](https://github.com/CIChuck/agent-framework/pull/9)
+- [Original planning packet and historical evidence](../../active/friday-deprecated-credential-cleanup/README.md)
+- [Immutable authority backing manifest](historical-authority.json)
+
+**Known limit:** No issuer-side key checks were performed. Historical credential copies and unrelated tracked artifacts were outside the bounded cleanup.
+
+**Next gate:** Explicit maintainer lifecycle acceptance. This completion proposal
+and the delivery state do not themselves grant acceptance. The original packet
+remains at its frozen path as historical backing; this review index is the
+canonical current packet. Friday TUI and other initiatives are unaffected.

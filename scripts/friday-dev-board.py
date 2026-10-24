@@ -390,13 +390,18 @@ def _authority_backings(
                     record["packet"], item_label + ".packet", directory=True
                 )
                 parts = PurePosixPath(packet).parts
-                if (
-                    len(parts) != 4
-                    or parts[:2] != ("docs", "planning")
-                    or parts[2] not in CURRENT_LANES
+                planning_history = (
+                    len(parts) == 4
+                    and parts[:2] == ("docs", "planning")
+                    and parts[2] in CURRENT_LANES
+                )
+                archived_history = packet == canonical + "historical/"
+                if (state == "completed" and not planning_history) or (
+                    state == "accepted" and not archived_history
                 ):
                     raise BoardError(
-                        f"{item_label}.packet must identify one planning packet"
+                        f"{item_label}.packet must identify its historical "
+                        "planning packet or accepted archive history"
                     )
                 entry = AuthorityBacking(
                     packet,
@@ -554,6 +559,39 @@ def validate_board(board: dict[str, Any], root: Path) -> list[str]:
                 errors.append(f"{label}: accepted work must have normal condition")
             if not task.get("accepted_by") or not task.get("accepted_at"):
                 errors.append(f"{label} lacks explicit acceptance evidence")
+            validation = task.get("validation")
+            if isinstance(validation, list):
+                for number, entry in enumerate(validation):
+                    if not isinstance(entry, str):
+                        continue
+                    evidence_path = entry.split(" (", 1)[0].split(": ", 1)[0]
+                    if not evidence_path.startswith("docs/") or not Path(
+                        evidence_path
+                    ).suffix:
+                        continue
+                    relative = Path(evidence_path)
+                    if (
+                        ".." in relative.parts
+                        or relative.is_absolute()
+                        or not (root / relative).is_file()
+                    ):
+                        errors.append(
+                            f"{label}.validation[{number}] references missing "
+                            f"evidence: {evidence_path}"
+                        )
+            if TASK_ID_PATTERN.fullmatch(task_id):
+                old_active = root / "docs" / "planning" / "active" / task_id
+                if old_active.exists():
+                    errors.append(
+                        f"{label} retains historical authority under active: "
+                        f"{old_active.relative_to(root)}"
+                    )
+            archive_history = packet_path / "historical"
+            if archive_history.exists() and not task.get("authority_backing_packets"):
+                errors.append(
+                    f"{label} has unregistered archive historical authority: "
+                    f"{archive_history.relative_to(root)}"
+                )
 
     for index, task in enumerate(tasks):
         if not isinstance(task, dict):

@@ -43,13 +43,6 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 27 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
-| 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](active/friday-deprecated-credential-cleanup/) | normal | granted | merged | PR 9 merged and remote branch deleted; maintainer lifecycle closeout/acceptance remains |
-| 29 | [Friday 0.1.0a3 repository version bump](active/friday-alpha3-version-bump/) | normal | granted | released | Maintainer lifecycle closeout; alpha3 production PyPI publication and fresh install verified |
-| 30 | [Precise Python monorepo and package READMEs](active/friday-readme-refresh/) | normal | granted | merged | Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains |
-| 31 | [Current technical end-user guides for alpha3](active/friday-guides-refresh/) | normal | granted | merged | Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains |
-| 32 | [Friday Chat quick start for clone and PyPI users](active/friday-chat-quick-start/) | normal | granted | merged | Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains |
-| 34 | [Friday 0.1.0a4 coordinated release](active/friday-alpha4-release/) | normal | granted | released | Maintainer lifecycle closeout; alpha4 source merged, all 17 PyPI projects and fresh production install verified |
 | 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | characterize Chat and friday-framework-cli baselines, decide supported names and CLI reuse boundary, review exact shared contract and first construction directive |
 
 ## Completed
@@ -67,6 +60,13 @@ Directory placement does not grant implementation authority.
 | 3 | [Friday MCP client enhancement](../archive/completed/2026/friday-mcp/) | normal | closed | merged | none; pull request 6 merged, optional WS-09 and later delivery require separate authority |
 | 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](../archive/completed/2026/friday-mcp-protocol-upgrade/) | normal | closed | merged | MCP delivery closed; next queued work is Langfuse contract and construction-directive preparation |
 | 24 | [Documentation information architecture](../archive/completed/2026/documentation-governance/) | normal | closed | merged | none; accepted and merged |
+| 27 | [Friday-telemetry-rewire](../archive/completed/2026/friday-telemetry-rewire/) | normal | closed | merged | none; accepted and archived; future work tracked separately |
+| 28 | [Remove deprecated credential-bearing files and rotate exposed credentials](../archive/completed/2026/friday-deprecated-credential-cleanup/) | normal | closed | merged | none; accepted and archived; future work tracked separately |
+| 29 | [Friday 0.1.0a3 repository version bump](../archive/completed/2026/friday-alpha3-version-bump/) | normal | closed | released | none; accepted and archived; future work tracked separately |
+| 30 | [Precise Python monorepo and package READMEs](../archive/completed/2026/friday-readme-refresh/) | normal | closed | merged | none; accepted and archived; future work tracked separately |
+| 31 | [Current technical end-user guides for alpha3](../archive/completed/2026/friday-guides-refresh/) | normal | closed | merged | none; accepted and archived; future work tracked separately |
+| 32 | [Friday Chat quick start for clone and PyPI users](../archive/completed/2026/friday-chat-quick-start/) | normal | closed | merged | none; accepted and archived; future work tracked separately |
+| 34 | [Friday 0.1.0a4 coordinated release](../archive/completed/2026/friday-alpha4-release/) | normal | closed | released | none; accepted and archived; future work tracked separately |
 
 ## Operating Rules
 
