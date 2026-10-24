@@ -1,6 +1,8 @@
 # Friday TUI command coverage matrix
 
-Status: Canonical command-parity planning baseline; TUI behavior tests are still required.
+Status: Canonical before-change Chat command inventory and TUI parity planning
+baseline; it is not the 44-name supported-surface target or behavioral test
+evidence. TUI behavior tests are still required.
 
 Companion: The [command refactor and pruning discussion](command_refactor.md)
 and its [separate active initiative](README.md)
@@ -10,9 +12,11 @@ baseline. The maintainer selected six slash commands for retirement as part
 of the shared command refactor: PAR-004 `/clear-tools`, PAR-019
 `/inject-payload`, PAR-020 `/inject-tools`, PAR-030 `/recommend-tools`, PAR-034
 `/run-tool` and PAR-046 `/tool-budget`. PAR-047 `/tools` remains. These rows
-stay visible as the
-before-change inventory until the bounded refactor plan reconciles the
-decision register, PRD, release scope, help, guides and validation cases.
+stay visible as the before-change inventory and retirement cases, not as TUI
+parity targets after retirement. The controlling
+[scope decisions](scope-decisions.md) and [phase plan](phase-plan.md) define
+the intended changes and gates; the target matrix must be reconciled with
+the accepted contract, help, guides and validation cases before construction.
 
 Source snapshot: Friday Chat registry at `c3426986`. The current source is a
 migration inventory; the proposed [shared command architecture](shared-command-architecture.md)
@@ -24,7 +28,8 @@ effects. Destructive operations use disposable stores or fakes. A registered nam
 is not a passed parity case. Chat and TUI must execute maintained commands
 through the same shared handler and policy; frontend adapters only present the
 typed result and apply declared UI effects. Full argument/default/choice
-metadata is retained in
+metadata and distinct retained-command versus retirement planning obligations
+are retained in
 [the JSON inventory](validation/command-matrix.json).
 
 | Case | Command | Aliases | Current usage |

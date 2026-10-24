@@ -1,8 +1,9 @@
 # Friday Chat slash-command pruning review
 
-**Status:** Historical source-backed recommendation, 2026-10-22. The seven-name
+**Status:** Superseded source-backed recommendation, 2026-10-22. The seven-name
 proposal below was superseded by the maintainer's scored
-[command inventory](command-inventory.md#notes-and-decisions): five tool slash
+[command inventory](command-inventory.md#notes-and-decisions) and current
+[scope decision register](scope-decisions.md): five tool slash
 commands and `/inject-payload` are selected for retirement within the shared
 command refactor, while `/tools`, `/security-test` and `/speech-test` are
 retained for now. In particular, the `/tool-budget` replacement advice below is no longer
@@ -61,14 +62,16 @@ the alpha transition understandable. Friday Chat and TUI should use the same
 retired-name behavior once both depend on the shared command owner;
 `friday-framework-cli` is unchanged.
 
-The source change must explicitly reconcile the historical
+The historical proposal would have required reconciling the
 [`legacy_command_names.yaml`](../../../../packages/friday-chat/tests_chat/compat/fixtures/legacy_command_names.yaml)
 test fixture rather than rewriting that frozen legacy list as though the
-commands never existed. Record the accepted seven-name exception and check
+commands never existed. Its seven-name exception is superseded; the current
+six-name scope still requires checking
 every other legacy name/alias. The current [CLI reference](../../../guides/09-cli-reference.md),
-tool/troubleshooting, speech and security guides need exact replacement text.
-The decision register, vision, PRD, phase plan, command matrix, AC cases and
-their validation inventory must be reconciled together before a reduced TUI
+tool/troubleshooting, speech and security guides need exact replacement text
+where the six selected retirements affect them. The current decision register,
+phase plan, command matrix, compatibility cases and validation inventory must
+be reconciled together before a reduced TUI
 parity target is claimed. Historical accepted/archive documents stay historical.
 
 ## Construction boundary and stop point
@@ -76,9 +79,9 @@ parity target is claimed. Historical accepted/archive documents stay historical.
 Pruning is an intentional change to maintained Friday Chat behavior, not a
 behavior-preserving shared-engine extraction. A proposed exact construction
 directive must name the source/test/doc paths, old-name response, before/after
-checks, installed-package gates and independent review. The current board
-still names N03A-01 shell review and macOS physical UAT as the TUI next gate;
-the existing shell directive does not authorize command edits. Do not change
+checks, installed-package gates and independent review. TUI development is
+deferred until the command refactor is completed, tested and accepted; the old
+shell directive does not authorize command edits. Do not change
 source, tests, accepted command inventories or user guides until the exact
-pruning decision and bounded directive are approved and the board/packet are
+retirement contract and bounded directive are approved and the board/packet are
 reconciled.

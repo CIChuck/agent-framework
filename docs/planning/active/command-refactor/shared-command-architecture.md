@@ -8,7 +8,8 @@ or publication authority.
 This document belongs to the [active shared-command initiative](README.md).
 Its proposed contract remains linked to the
 [command coverage matrix](command-matrix.md), which supplies the current TUI
-parity baseline.
+parity planning baseline. The [scope decision register](scope-decisions.md)
+controls the six selected retirements and unresolved contract choices.
 
 ## Why this boundary exists
 
@@ -149,8 +150,8 @@ features can be added with zero client changes.
 1. Characterize the existing Chat behavior for each bounded command family:
    accepted and invalid syntax, aliases, unavailable services, progress,
    error/result text and meaning, session changes, files, and other effects.
-   Keep the [50-command matrix](command-matrix.md) as the frozen migration and
-   acceptance inventory until each case is reconciled with the shared registry.
+   Keep the [50-command matrix](command-matrix.md) as the frozen source inventory
+   until each retained or retirement case is reconciled with the shared registry.
 2. Identify Chat-owned context and service dependencies. Move only the needed
    typed contracts and implementation into the neutral owner, replacing
    frontend-specific references without changing observable Chat behavior.
@@ -163,14 +164,18 @@ features can be added with zero client changes.
    separate `friday-framework-cli` baseline. If the approved contract gives
    that CLI a shared-primitives adapter, prove its unchanged public behavior
    and installed operation before TUI command integration.
-4. Connect the TUI to that **same** shared engine. Test each PAR case through
-   both frontends on equivalent disposable fixtures, including state/file
-   effects and failures, then complete rolling terminal UAT. Test metadata
-   driven help/completion and a TUI-only extension without CLI leakage.
+4. After command-refactor acceptance, connect the TUI to that **same** shared
+   engine. Test each retained PAR case through both frontends on equivalent
+   disposable fixtures, including state/file effects and failures; verify the
+   six retirement cases against their approved old-name and discovery policy.
+   Complete rolling terminal UAT, metadata-driven help/completion checks and a
+   TUI-only extension check without CLI leakage.
 
 The matrix detects missing coverage, version skew, unintended frontend
 differences, and migration regressions. It is not a specification for a second
 set of TUI handlers. Preview alphas may expose a tested subset, but any
 maintained command they expose must use the shared implementation. Neither
-this design nor its migration changes Friday Chat or `friday-framework-cli`
-public behavior by intent; before/after checks must demonstrate that boundary.
+this design nor its retained-command migration changes Friday Chat or
+`friday-framework-cli` public behavior by intent. The six selected Chat
+retirements are explicit exceptions; before/after checks must demonstrate
+both boundaries.

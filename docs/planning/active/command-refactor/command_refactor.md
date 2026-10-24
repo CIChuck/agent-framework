@@ -1,11 +1,12 @@
 # Friday slash-command refactor and pruning discussion
 
-**Status:** Working planning note, 2026-10-19. This records the conversation and
-source observations; it does not approve a command removal, revise the accepted
-50-command baseline, or authorize product-code work. The accepted TUI decision
-D-123 (`01cbaa0b:docs/planning/active/friday-tui/decisions.md`) and current
-[command matrix](command-matrix.md) remain controlling until deliberately
-revised.
+**Status:** Historical planning note, begun 2026-10-19. This records the
+conversation and source observations; it does not authorize product-code work.
+The [scope decision register](scope-decisions.md) controls current retirement
+scope and open choices. The [command matrix](command-matrix.md) remains the
+50-command before-change baseline. Accepted TUI decision D-123
+(`01cbaa0b:docs/planning/active/friday-tui/decisions.md`) is historical
+context for the shared-owner requirement.
 
 **Initiative handoff, 2026-10-24:** The
 [shared Friday command refactor](README.md)
@@ -218,11 +219,10 @@ to the same implementations.
 
 The six selected command retirements belong in the shared command
 refactor, but require a reconciled baseline, old-name behavior, acceptance
-checks and a bounded construction directive before any source change. The
-existing N03A-01 shell
-review and physical macOS UAT remain the board's current TUI gate; a command
-construction unit needs its own reconciled board/packet state and exact
-maintainer-approved directive.
+checks and a bounded construction directive before any source change. TUI
+development is deferred until the command refactor is completed, tested and
+accepted; a command construction unit needs its own reconciled board/packet
+state and exact maintainer-approved directive.
 
 ## Maintainer clarifications, 2026-10-22
 

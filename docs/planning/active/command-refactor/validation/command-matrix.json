@@ -1,6 +1,6 @@
 {
   "source_commit": "c34269867be50f71923c93c95a63236a35505812",
-  "inventory_mode": "current public registry metadata; not behavioral parity evidence",
+  "inventory_mode": "current public registry metadata and planning obligations; not behavioral parity evidence",
   "commands": [
     {
       "name": "agent",
@@ -21,7 +21,7 @@
       "case_id": "PAR-001",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -38,7 +38,7 @@
       "case_id": "PAR-002",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -55,7 +55,7 @@
       "case_id": "PAR-003",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -70,12 +70,11 @@
       "arguments": [],
       "detail": null,
       "case_id": "PAR-004",
-      "tui_parity_status": "required, not executed",
+      "tui_parity_status": "retirement selected; no TUI parity target",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
-        "each documented argument/choice and alias covered",
-        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
-        "invalid input and unavailable-backend case when applicable"
+        "former slash-command effect never executes after retirement",
+        "old-name response, help and completion match the approved retirement contract",
+        "legacy compatibility exception and user guides are reconciled"
       ]
     },
     {
@@ -91,7 +90,7 @@
       "case_id": "PAR-005",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -108,7 +107,7 @@
       "case_id": "PAR-006",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -140,7 +139,7 @@
       "case_id": "PAR-007",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -157,7 +156,7 @@
       "case_id": "PAR-008",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -174,7 +173,7 @@
       "case_id": "PAR-009",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -199,7 +198,7 @@
       "case_id": "PAR-010",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -231,7 +230,7 @@
       "case_id": "PAR-011",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -256,7 +255,7 @@
       "case_id": "PAR-012",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -276,7 +275,7 @@
       "case_id": "PAR-013",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -307,7 +306,7 @@
       "case_id": "PAR-014",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -332,7 +331,7 @@
       "case_id": "PAR-015",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -357,7 +356,7 @@
       "case_id": "PAR-016",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -374,7 +373,7 @@
       "case_id": "PAR-017",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -413,7 +412,7 @@
       "case_id": "PAR-018",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -436,12 +435,11 @@
       ],
       "detail": null,
       "case_id": "PAR-019",
-      "tui_parity_status": "required, not executed",
+      "tui_parity_status": "retirement selected; no TUI parity target",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
-        "each documented argument/choice and alias covered",
-        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
-        "invalid input and unavailable-backend case when applicable"
+        "former slash-command effect never executes after retirement",
+        "old-name response, help and completion match the approved retirement contract",
+        "legacy compatibility exception and user guides are reconciled"
       ]
     },
     {
@@ -461,12 +459,11 @@
       ],
       "detail": "Switches runtime selection to manual mode only after every name and the complete schema set pass validation. The accepted set remains model-bound until /clear-tools restores automatic selection.",
       "case_id": "PAR-020",
-      "tui_parity_status": "required, not executed",
+      "tui_parity_status": "retirement selected; no TUI parity target",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
-        "each documented argument/choice and alias covered",
-        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
-        "invalid input and unavailable-backend case when applicable"
+        "former slash-command effect never executes after retirement",
+        "old-name response, help and completion match the approved retirement contract",
+        "legacy compatibility exception and user guides are reconciled"
       ]
     },
     {
@@ -480,7 +477,7 @@
       "case_id": "PAR-021",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -516,7 +513,7 @@
       "case_id": "PAR-022",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -533,7 +530,7 @@
       "case_id": "PAR-023",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -550,7 +547,7 @@
       "case_id": "PAR-024",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -567,7 +564,7 @@
       "case_id": "PAR-025",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -596,7 +593,7 @@
       "case_id": "PAR-026",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -613,7 +610,7 @@
       "case_id": "PAR-027",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -638,7 +635,7 @@
       "case_id": "PAR-028",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -670,7 +667,7 @@
       "case_id": "PAR-029",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -693,12 +690,11 @@
       ],
       "detail": null,
       "case_id": "PAR-030",
-      "tui_parity_status": "required, not executed",
+      "tui_parity_status": "retirement selected; no TUI parity target",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
-        "each documented argument/choice and alias covered",
-        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
-        "invalid input and unavailable-backend case when applicable"
+        "former slash-command effect never executes after retirement",
+        "old-name response, help and completion match the approved retirement contract",
+        "legacy compatibility exception and user guides are reconciled"
       ]
     },
     {
@@ -769,7 +765,7 @@
       "case_id": "PAR-031",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -801,7 +797,7 @@
       "case_id": "PAR-032",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -830,7 +826,7 @@
       "case_id": "PAR-033",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -860,12 +856,11 @@
       ],
       "detail": null,
       "case_id": "PAR-034",
-      "tui_parity_status": "required, not executed",
+      "tui_parity_status": "retirement selected; no TUI parity target",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
-        "each documented argument/choice and alias covered",
-        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
-        "invalid input and unavailable-backend case when applicable"
+        "former slash-command effect never executes after retirement",
+        "old-name response, help and completion match the approved retirement contract",
+        "legacy compatibility exception and user guides are reconciled"
       ]
     },
     {
@@ -879,7 +874,7 @@
       "case_id": "PAR-035",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -915,7 +910,7 @@
       "case_id": "PAR-036",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -946,7 +941,7 @@
       "case_id": "PAR-037",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -963,7 +958,7 @@
       "case_id": "PAR-038",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -995,7 +990,7 @@
       "case_id": "PAR-039",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -1034,7 +1029,7 @@
       "case_id": "PAR-040",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -1062,7 +1057,7 @@
       "case_id": "PAR-041",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -1079,7 +1074,7 @@
       "case_id": "PAR-042",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -1096,7 +1091,7 @@
       "case_id": "PAR-043",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -1121,7 +1116,7 @@
       "case_id": "PAR-044",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -1138,7 +1133,7 @@
       "case_id": "PAR-045",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -1153,12 +1148,11 @@
       "arguments": [],
       "detail": "Distinguishes registered tools, pending manual selection, the most recent automatic selection, the last completed turn, and executed tools. Schema estimates and limits use tools.context.max_tools, tools.context.max_budget_ratio, memory.context_window, and memory.output_buffer.",
       "case_id": "PAR-046",
-      "tui_parity_status": "required, not executed",
+      "tui_parity_status": "retirement selected; no TUI parity target",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
-        "each documented argument/choice and alias covered",
-        "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
-        "invalid input and unavailable-backend case when applicable"
+        "former slash-command effect never executes after retirement",
+        "old-name response, help and completion match the approved retirement contract",
+        "legacy compatibility exception and user guides are reconciled"
       ]
     },
     {
@@ -1180,7 +1174,7 @@
       "case_id": "PAR-047",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -1205,7 +1199,7 @@
       "case_id": "PAR-048",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -1222,7 +1216,7 @@
       "case_id": "PAR-049",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"
@@ -1267,7 +1261,7 @@
       "case_id": "PAR-050",
       "tui_parity_status": "required, not executed",
       "obligations": [
-        "equivalent input validation and session semantics through independent TUI handlers and UI-neutral services",
+        "equivalent normalized requests and session semantics through one shared command implementation; frontend adapters render and apply declared UI effects",
         "each documented argument/choice and alias covered",
         "equivalent result meaning, persistence, progress, state and exit effects; TUI presentation may differ",
         "invalid input and unavailable-backend case when applicable"

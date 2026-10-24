@@ -1,10 +1,11 @@
 # Friday slash-command inventory and scoring sheet
 
-**Status:** Working review sheet, 2026-10-22. Your scores and decisions will
-set the proposed migration scope. My recommendations are advisory. The
-accepted 50-command TUI parity baseline and Friday Chat behavior remain in
-force until a product decision and bounded construction directive reconcile
-them.
+**Status:** Scored review sheet, 2026-10-22. Maintainer scores and comments
+are preserved as input; the [scope decision register](scope-decisions.md)
+records the current migration decisions and unresolved outliers. My
+recommendations are advisory. The 50-command source baseline and Friday Chat
+behavior remain in force until the approved contract and bounded construction
+directives reconcile them.
 
 The [separate shared-command initiative](README.md)
 now owns migration planning and the cross-client regression gates. This scored
@@ -36,8 +37,9 @@ decisions above.
 
 ## Focus-area scoring overview
 
-Use a focus-area score to set migration priority. Individual command decisions
-below control the proposed scope when they differ from a group preference.
+Use a focus-area score to suggest migration priority. Individual command scores
+and comments below feed the decision register when they differ from a group
+preference; they do not independently authorize source changes.
 Each command appears once under its primary focus area; cross-area connections
 remain in the combine and optimization column.
 
@@ -334,8 +336,10 @@ PAR matrix, help, documentation and compatibility expectations in the bounded
 command-refactor plan before implementing that scope change. `/inject-payload`
 has no remaining consumer once `/run-tool` is retired.
 
-After you score the sheet, reconcile the decision register, PRD, phase plan,
-PAR matrix, Chat compatibility evidence and user guides before generating
-command-refactor code. The current [TUI board gate](../../board.yaml) is
-still the corrected shell review and physical macOS UAT; this sheet grants no
-source, delivery or release authority.
+The scores and comments above remain review input. The current
+[scope decision register](scope-decisions.md) records the selected six-name
+retirement and unresolved scored outliers; the [phase plan](phase-plan.md)
+records the gates. Reconcile those records, the PAR matrix, Chat compatibility
+evidence and user guides before generating command-refactor code. TUI
+development is deferred until this refactor is completed, tested and accepted;
+this sheet grants no source, delivery or release authority.

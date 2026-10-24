@@ -14,6 +14,13 @@ tested, and accepted. The command branch was rebuilt directly from `master`
 `backup/command-refactor-stacked-20261024`; the TUI branch and its uncommitted
 work were not rewritten. See the [branch isolation record](branch-isolation.md).
 
+2026-10-24: Documentation review established a [scope decision register](scope-decisions.md)
+and [phase plan](phase-plan.md), clarified the planning chain in the packet
+index, marked the older seven-name recommendation as superseded and separated
+the six retirement cases from retained-command parity obligations in the JSON
+inventory. Technical contract, retired-name response and scored outliers remain
+open; this documentation pass does not advance a construction gate.
+
 `execution_phase: planning`; `validation_state: not_ready`.
 
 Next: characterize Chat and `friday-framework-cli`, settle the supported

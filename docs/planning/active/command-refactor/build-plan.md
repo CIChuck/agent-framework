@@ -1,4 +1,4 @@
-# Shared Friday command refactor — draft build plan
+# Shared Friday command refactor — build plan
 
 **Status:** maintainer-approved initiative scope; technical contract and
 construction directives remain open
@@ -16,10 +16,9 @@ supports sharing without changing its established behavior accidentally.
 This work has its own board lifecycle, branch, architecture decision, bounded
 construction directives, candidate commits and independent reviews. The TUI
 project owns its frontend adapter, command discovery, rendering, interaction
-and physical terminal UAT after the shared command owner is accepted. TUI
-shell, conversation, Activity and file-context work may proceed independently
-under their own gates; the TUI command-integration phase and full command
-parity wait for this initiative's accepted result.
+and physical terminal UAT after the shared command owner is accepted. Under
+the current maintainer decision, TUI development is deferred until this
+refactor is completed, tested and accepted.
 
 ## Source baseline and decisions
 
@@ -35,6 +34,8 @@ parity wait for this initiative's accepted result.
   Determine the retired-name response and release boundary explicitly. Keep
   `/tools`, `/security`, `/security-config`, `/security-test`, `/workflow`,
   `/speech-test` and `/migrate` with their current behavior for this version.
+  The [scope decision register](scope-decisions.md) distinguishes these
+  decisions from scored recommendations and lists contract choices still open.
 - [Consolidation and behavior enhancements](../../backlog/friday-tui-command-followups/README.md)
   are later decisions. They are not bundled into behavior-preserving migration.
 - The separate `friday-cli.commands` registry is not the Friday Chat slash
@@ -44,6 +45,9 @@ parity wait for this initiative's accepted result.
   The CLI workstream must identify a concrete reusable seam or document with
   source and test evidence why a direct adapter would damage its contract;
   merely rerunning its tests does not close the requested CLI benefit.
+
+The [phase plan](phase-plan.md) defines the derived sequence and exit gates;
+the [tactical plan](tactical-plan.md) tracks current characterization tasks.
 
 ## Proposed work units
 
@@ -82,4 +86,4 @@ behavior and documentation, Friday Chat and `friday-framework-cli` pass their
 applicable regression and installed-client gates, dependency direction is
 verified, and an independent reviewer returns `VERIFIED` on a frozen aggregate
 candidate. TUI parity and physical terminal acceptance remain in the TUI
-project. No implementation begins from this draft alone.
+project. No implementation begins from this plan alone.

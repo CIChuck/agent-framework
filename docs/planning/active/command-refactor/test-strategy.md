@@ -1,4 +1,4 @@
-# Shared command refactor — draft regression and validation strategy
+# Shared command refactor — regression and validation strategy
 
 **Status:** approved regression expectations; exact commands and fixtures must be pinned
 in approved work-unit directives before implementation
