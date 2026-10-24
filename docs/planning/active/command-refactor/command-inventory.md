@@ -15,7 +15,8 @@ six selected retirements have already shipped.
 **Source:** The live Friday Chat
 [`build_default_registry()`](../../../../packages/friday-chat/src/friday_chat/commands/registry.py)
 has 50 canonical commands and three aliases. [PAR-001–PAR-050](command-matrix.md)
-and the [effect map](tui-source-baseline.md#per-command-effect-map)
+and the historical TUI effect map
+(`01cbaa0b:docs/planning/active/friday-tui/neutral-capability-map.md`)
 provide the current inventory. The [pruning review](command-pruning-review.md)
 records source, test and guide evidence behind the proposed retirements. The
 separate `friday-framework-cli` command registry is outside this inventory.
@@ -221,7 +222,8 @@ model context from a slash command, using the same UI-neutral attachment
 capability planned for TUI file selection. Keep bare `/read` display-only and
 keep attachment distinct from `/ingest` persistence. Whether Chat and TUI both
 gain the new syntax, and how it maps to the accepted attachment lifetime and
-removal behavior, is for your decision. [D-77–D-82](tui-source-baseline.md#decisions) already
+removal behavior, is for your decision. TUI decisions D-77–D-82
+(`01cbaa0b:docs/planning/active/friday-tui/decisions.md`) already
 require selected TUI files to attach while preserving existing Chat `/read`
 behavior in the first release.
 

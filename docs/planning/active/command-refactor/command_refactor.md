@@ -2,8 +2,8 @@
 
 **Status:** Working planning note, 2026-10-19. This records the conversation and
 source observations; it does not approve a command removal, revise the accepted
-50-command baseline, or authorize product-code work. The accepted
-[D-123 decision](tui-source-baseline.md#decisions) and current
+50-command baseline, or authorize product-code work. The accepted TUI decision
+D-123 (`01cbaa0b:docs/planning/active/friday-tui/decisions.md`) and current
 [command matrix](command-matrix.md) remain controlling until deliberately
 revised.
 
@@ -100,9 +100,10 @@ for the dependency and extension criteria.
    decision.
 
 This fourth point qualifies the earlier blanket preservation language in
-[D-123](tui-source-baseline.md#decisions), the TUI PRD draft
+D-123 (`01cbaa0b:docs/planning/active/friday-tui/decisions.md`), the TUI PRD draft
 (`../friday-tui/prd/README.md`), the TUI vision draft
-(`../friday-tui/vision/README.md`), the [phase plan](tui-source-baseline.md#phase-build-plan), and the
+(`../friday-tui/vision/README.md`), the TUI phase plan
+(`01cbaa0b:docs/planning/active/friday-tui/planning/phase-build-plan.md`), and the
 [50-command matrix](command-matrix.md). Those documents still describe all 50
 currently maintained commands and unchanged Chat behavior. The selected
 six-command retirement is a product-scope decision for the shared refactor;
@@ -171,7 +172,8 @@ because they are complex or infrequently visible.
 
 This ordering is a planning proposal, not a construction directive. The
 [separate initiative](README.md) owns
-the refactor sequence, and the current [TUI phase build plan](tui-source-baseline.md#phase-build-plan)
+the refactor sequence, and the historical TUI phase build plan
+(`01cbaa0b:docs/planning/active/friday-tui/planning/phase-build-plan.md`)
 owns only TUI integration. The board, approved
 construction directives, and independent-validation policy govern any later
 code work.

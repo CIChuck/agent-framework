@@ -1,7 +1,7 @@
 # Shared Friday slash-command architecture
 
-**Status:** Proposed technical contract implementing accepted decision
-[D-123](tui-source-baseline.md#decisions). Package/API signatures and construction units still
+**Status:** Proposed technical contract informed by accepted TUI decision D-123
+(`01cbaa0b:docs/planning/active/friday-tui/decisions.md`). Package/API signatures and construction units still
 require review and their own directives. This document grants no code, release,
 or publication authority.
 

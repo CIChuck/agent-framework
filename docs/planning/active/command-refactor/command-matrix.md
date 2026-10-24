@@ -84,8 +84,9 @@ Additional first-full-release route: `@agent_name <message>` retains its
 application routing. D-117 defers the optional disabled-by-default
 `!<command>` shell route; Chat and `friday-cli` keep their current behavior.
 Startup replay, config/runtime flags and installed
-help/version need startup cases specified in the active
-[replacement plan](tui-source-baseline.md#replacement-plan) before a construction directive. D-62
+help/version need startup cases specified in the deferred TUI replacement plan
+(`01cbaa0b:docs/planning/active/friday-tui/replacement-plan.md`) before a TUI
+construction directive. D-62
 keeps the successful startup replay result visible in a read-only screen until
 Quit; D-63 limits its replay data to file and turn count. Interactive
 `/replay` remains PAR-032. D-64 keeps startup replay failures in a read-only

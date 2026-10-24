@@ -26,10 +26,11 @@ command contract before implementation.
 
 The canonical `feature/command-refactor` branch contains no Friday TUI package
 source or TUI implementation history. TUI development is deferred until this
-refactor is completed, tested, and accepted. Copies of this planning packet in
-other checkouts are reference snapshots; command implementation belongs on
-`feature/command-refactor`. Earlier TUI planning references are recorded as historical
-[source provenance](tui-source-baseline.md), not dependencies on that branch.
+refactor is completed, tested, and accepted. The TUI branch's handoff index is
+only a reference; command implementation belongs on
+`feature/command-refactor`. Earlier TUI decisions and effect-map notes at
+`01cbaa0b` are historical input. The reviewed command contract in this packet
+will control implementation.
 
 The [approved build-plan scope](build-plan.md) defines boundaries. The
 [test strategy](test-strategy.md) defines the required characterization,
