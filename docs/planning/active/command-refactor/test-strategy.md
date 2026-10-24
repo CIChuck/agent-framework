@@ -35,7 +35,7 @@ its adapter. Test TUI rendering separately when the TUI project integrates.
 | Registry and syntax | Names, aliases, tokenization, defaults, help, unknown command, invalid argument and old-name retirement behavior; compare source snapshot and approved exception list. |
 | Effects and safety | Disposable session, memory, transcript, file, tool, security, agent, workflow, speech and maintenance fixtures as relevant; compare ordered effects, rollback/failure and guardrails. |
 | Friday Chat regression | Focused command-family suites, legacy command-surface compatibility, application/rendering checks and broader Chat suite at each family boundary. |
-| `friday-framework-cli` regression | Full owning test suite, registry/completion/API checks, entry point and installed wheel behavior with and without the shared package; add direct shared-adapter tests if that role is approved. |
+| `friday-framework-cli` regression | Full owning test suite, registry/completion/API checks, entry point and installed wheel behavior under the approved dependency graph; compare with the pre-refactor baseline and add shared-adapter tests if that role is approved. |
 | Packaging and integration | Build/install shared owner and both terminal clients outside the checkout; check isolated imports, dependency closure and equivalent service effects through real adapters. |
 | Independent validation | Freeze each candidate commit; fresh-context read-only review of the exact directive, diff, positive/negative evidence and baseline exceptions. Run a final aggregate review across all families. |
 

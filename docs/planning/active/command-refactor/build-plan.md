@@ -22,10 +22,13 @@ changing a phase gate or writing a construction directive.
 Extract the maintained Friday Chat slash-command definitions and execution
 into one UI-neutral owner. Friday Chat continues to present command results in
 its terminal interface; Friday TUI consumes the same semantic implementation
-and renders it in its own interface. Establish the separate
-`friday-framework-cli` package's direct-consumer or protected-adapter role in
-the approved technical contract so that it can benefit where its current API
-supports sharing without changing its established behavior accidentally.
+and renders it in its own interface. The proposed home is
+`packages/friday-commands/`, distributed as `friday-framework-commands` and
+imported as `friday_commands`. P1 reviews that
+[proposed location and API](shared-command-architecture.md#proposed-relocation-and-package-surface)
+before construction. Assess whether the separate `friday-framework-cli`
+package can reuse a concrete primitive through a compatible adapter while
+preserving its generic registry, entry point and established behavior.
 
 This work has its own board lifecycle, branch, architecture decision, bounded
 construction directives, candidate commits and independent reviews. The TUI
@@ -38,10 +41,11 @@ refactor is completed, tested and accepted.
 
 - The current Chat registry contains 50 canonical slash commands and three
   aliases in the [TUI matrix](command-matrix.md).
-  Capture a fresh source snapshot before code changes. The matrix remains the
-  before-change inventory and TUI parity baseline until a supported-surface
-  decision updates it, the [refactor discussion](command_refactor.md),
-  TUI decisions, release criteria, help, guides and tests together.
+  Capture a fresh source snapshot before code changes. Keep the matrix as the
+  frozen before-change inventory; record the approved retained/retired target
+  and compatibility exceptions separately. Reconcile the
+  [refactor intent](command_refactor.md), TUI decisions, release criteria,
+  help, guides and tests before claiming parity against the target.
 - The maintainer's [scored inventory](command-inventory.md)
   selects `/clear-tools`, `/inject-tools`, `/recommend-tools`, `/run-tool`,
   `/tool-budget` and `/inject-payload` for retirement in this refactor.
@@ -52,35 +56,42 @@ refactor is completed, tested and accepted.
   decisions from scored recommendations and lists contract choices still open.
 - [Consolidation and behavior enhancements](../../backlog/friday-tui-command-followups/README.md)
   are later decisions. They are not bundled into behavior-preserving migration.
-- The separate `friday-cli.commands` registry is not the Friday Chat slash
-  registry. Inventory its public entry point, command registration/completion
-  and consumers before deciding whether it can use a shared contract directly.
-  A shared package must not depend on Friday Chat, Friday TUI or `friday-cli`.
-  The CLI workstream must identify a concrete reusable seam or document with
-  source and test evidence why a direct adapter would damage its contract;
-  merely rerunning its tests does not close the requested CLI benefit.
+- The separate `friday_cli.commands` registry is not the Friday Chat slash
+  registry. Friday Chat currently imports `friday_cli` display utilities, but
+  dispatches slash commands through its own registry. Inventory the generic
+  CLI's public entry point, registration/completion API and consumers before
+  deciding its reuse role. The shared package must not import Friday Chat,
+  Friday TUI or `friday_cli`; this does not require removing Chat's existing
+  display dependency during extraction. Identify a concrete reusable primitive
+  and compatible adapter, or document with source and test evidence why one
+  would damage the generic CLI contract. Merely rerunning its tests does not
+  close the requested CLI-benefit assessment.
 
 The [phase plan](phase-plan.md) defines the derived sequence and exit gates;
 the [tactical plan](tactical-plan.md) tracks current characterization tasks.
 
 ## Proposed work units
 
-1. **Characterize and decide.** Freeze Chat and `friday-framework-cli`
+1. **Characterize and decide (P0–P1).** Freeze Chat and `friday-framework-cli`
    command/API baselines. Reconcile retained/retired names, aliases, syntax,
    help, effects and old-name behavior. Review the security and workflow
    commands' actual current paths without changing behavior.
-2. **Approve the neutral contract.** Define command metadata, argument
+2. **Approve the neutral contract (P1).** Define command metadata, argument
    normalization, capability/context boundaries, typed semantic result and
-   UI-effect intents. Keep domain operations in their owning Friday packages.
-   Set the package name, public API and CLI adapter participation explicitly.
+   UI-effect intents. Map Chat-owned service implementations to public
+   Runtime/domain operations or narrow injected capabilities; keep domain
+   behavior in its owning package rather than duplicating it in adapters.
+   Set the package name, public API, dependency direction and CLI adapter role
+   explicitly.
    Review inventory architecture opportunities A-01 through A-10: record which
    support this behavior-preserving refactor and which remain later work.
-3. **Migrate bounded command families.** Move registry mechanics and small
-   display commands first, then service-owning families. Each command has one
-   active implementation; Chat delegates while its current presentation and
-   public behavior are preserved. Retire the six selected names as a separately
-   tested scope unit, not as accidental extraction fallout.
-4. **Prove the shared owner before TUI integration.** Complete the
+3. **Migrate bounded command families (P2–P3).** Establish the shared
+   foundation and pilot semantics selected in the approved P1 unit map, then migrate retained
+   families in dependency order. Each command has one active implementation;
+   Chat delegates while its current presentation and public behavior are
+   preserved. Retire the six selected names as a separately tested scope unit
+   at the position approved in P1, not as accidental extraction fallout.
+4. **Prove the shared owner before TUI integration (P4–P5).** Complete the
    [test strategy](test-strategy.md), including installed package/client
    isolation, exact changed-name checks, cross-family state/effect scenarios
    and a fresh independent aggregate review. Record known deviations and

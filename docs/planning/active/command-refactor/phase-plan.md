@@ -41,9 +41,10 @@ fixtures, commands, expected results and stop conditions.
 
 Freeze Chat's 50 canonical names and three aliases, plus the separate
 `friday-framework-cli` registry, public API, completion and installed entry
-point. Create the PAR ledger with source handlers, service/effect paths,
-representative disposable fixtures and baseline receipts. Capture full owning
-suite baselines with known failures and skips.
+point. Record Chat's existing use of `friday_cli` display utilities separately
+from slash-command dispatch. Create the PAR ledger with source handlers,
+service/effect paths, representative disposable fixtures and baseline receipts.
+Capture full owning-suite baselines with known failures and skips.
 
 **Exit:** All 50 PAR IDs and three aliases are accounted for. Each applicable
 behavior class has a reproducible baseline, or an explicit evidence gap that
@@ -54,18 +55,21 @@ commits, commands and environments. This gate does not authorize a source edit.
 
 Resolve O-01 through O-04 in the [decision register](scope-decisions.md) and
 approve an O-05 rule for baseline quirks and per-command exceptions. Approve
+the proposed `packages/friday-commands/` location or an explicit alternative,
 the neutral registry/API, typed result and UI-effect model,
-error/progress/cancellation semantics, capability boundaries, dependency
-direction and CLI reuse role. Map every PAR case to a retained family or the
-six-name retirement unit, with dependencies and risk. Define cross-family
-scenarios and supported package/runtime environments. Decide when the
+error/progress/cancellation semantics, capability boundaries, Chat-owned
+service relocation or injection map, dependency direction and separate CLI
+reuse role: a compatible adapter or a source-backed reason no safe seam exists.
+Map every PAR case to a retained family or the six-name retirement unit, with
+dependencies and risk. Define cross-family scenarios and supported
+package/runtime environments. Decide when the
 retirement unit runs relative to family migrations before either begins.
 
 **Exit:** The reviewed technical contract, supported-surface and compatibility
-exception list, complete family/unit and scenario maps, supported-environment
-matrix, retirement order and first exact construction directive are approved.
-The ledger is ready for the first unit. Any decision needed by that unit or
-any unassigned PAR case blocks implementation.
+exception list, complete family/unit, service-ownership and scenario maps,
+supported-environment matrix, retirement order and first exact construction
+directive are approved. The ledger is ready for the first unit. Any decision
+needed by that unit or any unassigned PAR case blocks implementation.
 
 ### P2 — Prove the shared foundation
 

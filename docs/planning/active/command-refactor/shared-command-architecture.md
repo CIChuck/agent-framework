@@ -11,7 +11,9 @@ It refines the canonical [feature intent](command_refactor.md),
 [scored command inventory](command-inventory.md) and
 [command coverage matrix](command-matrix.md). The matrix supplies the current
 TUI parity planning baseline; the [scope decision register](scope-decisions.md)
-controls the six selected retirements and unresolved contract choices.
+controls the six selected retirements and unresolved contract choices. The
+[phase plan](phase-plan.md) requires an approved package, service-ownership
+and CLI-role decision before construction.
 
 ## Why this boundary exists
 
@@ -27,27 +29,27 @@ registration API and `str | None` result contract; merging the registries
 would be a separate public-API decision.
 Current Chat command handlers and `CommandContext` reference Chat-owned runtime,
 session, and service objects, so copying or importing the registry into the TUI
-would either duplicate behavior or make the TUI depend on a CLI package.
+would either duplicate behavior or make the TUI depend on `friday-chat`.
 
 Friday Chat and Friday TUI must execute a maintained command through **one
 shared, UI-neutral implementation**. For a given command and session state,
 both frontends must use the same command name/alias and argument metadata,
 parsing and validation, handler/policy, service effects, error meaning, and
 typed result. Each frontend may render that result and perform declared UI
-effects in its own interface. A TUI-only extension must not appear in either
-CLI's default command set.
+effects in its own interface. A TUI-only extension must not appear in the
+default registry of Friday Chat or `friday-framework-cli`.
 
 ## Invocation, execution, and presentation boundary
 
 ```text
-CLI text or TUI control
+Friday Chat text or TUI control
   -> shared command name/alias, parameters, parsing, and validation
   -> shared execution and Friday service effects
   -> shared semantic outcome, progress, and UI-effect intent
   -> frontend-owned rendering and interaction
 ```
 
-The CLI may accept typed `/` text while the TUI may also offer completion or
+Friday Chat may accept typed `/` text while the TUI may also offer completion or
 a palette. Those are input affordances: once a maintained command is invoked,
 both clients must resolve the same canonical command and parameters with the
 same defaults, validation, policy, and execution. A TUI control must not call
@@ -57,17 +59,17 @@ The shared engine returns the **same semantic outcome** for equivalent
 requests and state: command data, success or error meaning, any ordered
 progress, and declared effects on Friday services or the UI. It does not
 choose terminal colors, line wrapping, table layout, scrolling, focus, or
-where messages appear. The CLI and TUI own those presentation choices and
-apply UI-effect intents in their own environments. For example, `/cls`
-requests a display clear; the CLI clears its terminal view and the TUI clears
-its conversation view. Neither renderer executes the command again or
+where messages appear. Friday Chat and the TUI own those presentation choices
+and apply UI-effect intents in their own environments. For example, `/cls`
+requests a display clear; Friday Chat clears its terminal view and the TUI
+clears its conversation view. Neither renderer executes the command again or
 reinterprets a failed operation as success.
 
 The current Chat `CommandResult` includes display-ready `output: str` and
 `ui_effects`. That is a compatibility starting point, not a requirement for
-the TUI to parse CLI-formatted text to recover command data. The technical
-contract must define typed results or events where structured data and rich
-TUI presentation need them, while preserving existing Chat text and behavior
+the TUI to parse Friday Chat's formatted text to recover command data. The
+technical contract must define typed results or events where structured data
+and rich TUI presentation need them, while preserving existing Chat text and behavior
 for retained commands. The shared result must contain enough semantic data for
 both adapters; Chat may format that data into its established text, while TUI
 renders it without parsing that text. Exact result variants, compatibility
@@ -116,7 +118,7 @@ dependency of the TUI.
 
 | Proposed owner | Move or retain | Boundary |
 | --- | --- | --- |
-| `packages/friday-commands/src/friday_commands/` | Move maintained command metadata, name/alias resolution, parsing, validation, dispatch, command policy and handler semantics from `friday_chat.commands`. Define typed requests, outcomes, errors, progress and UI-effect intents plus small capability contracts. | One implementation for each retained command; no CLI formatting or concrete Chat session/runtime types. The six selected retirements require separately approved old-name behavior. |
+| `packages/friday-commands/src/friday_commands/` | Move maintained command metadata, name/alias resolution, parsing, validation, dispatch, command policy and handler semantics from `friday_chat.commands`. Define typed requests, outcomes, errors, progress and UI-effect intents plus small capability contracts. | One implementation for each retained command; no frontend formatting or concrete Chat session/runtime types. The six selected retirements require separately approved old-name behavior. |
 | `packages/friday-chat/src/friday_chat/` | Keep the executable, input loop, Chat presentation, output/progress delivery, and capability wiring. Preserve necessary public `friday_chat.commands` imports as delegating compatibility entry points. | Existing Chat text and interaction remain protected; compatibility shims do not own a second registry definition or handler. Its current `friday-framework-cli` display dependency is separate from command ownership. |
 | `packages/friday-tui/src/friday_tui/` (later project) | Build the TUI editor, discovery, adapter, renderer, view state and lifecycle after shared-owner acceptance. | Consume the shared registry and semantic results. TUI-only commands compose through an isolated extension point; no imports from `friday_chat` or `friday_cli`. No TUI source is constructed by this refactor. |
 | Runtime and domain packages | Keep or expose public memory, transcript, tool, agent, security, speech and maintenance operations. | Own domain behavior and durable state. Frontend adapters may supply capabilities, but must not each reimplement command policy or stateful service logic. |
@@ -157,8 +159,9 @@ the command's intended effects from frontend-only state such as editor recall.
 Both frontends derive maintained-command help, aliases, usage, and discovery
 from the same registry metadata. An explicit extension point may compose
 TUI-only commands into the TUI's effective registry with collision checks and
-without changing the shared default or either CLI. New maintained commands
-and changes to existing commands are made once in the shared engine.
+without changing the shared default, Friday Chat or the generic CLI. New
+maintained commands and changes to existing commands are made once in the
+shared engine.
 
 ## Framework evolution rule
 
@@ -189,6 +192,11 @@ features can be added with zero client changes.
 
 ## Migration and proof
 
+The [phase plan](phase-plan.md) places source characterization in P0, package,
+service and CLI-role decisions in P1, foundation and family/retirement units
+in P2–P3, installed cross-family integration in P4 and aggregate acceptance
+in P5. TUI integration begins only after P5 acceptance.
+
 1. Characterize the existing Chat behavior for each bounded command family:
    accepted and invalid syntax, aliases, unavailable services, progress,
    error/result text and meaning, session changes, files, and other effects.
@@ -211,7 +219,7 @@ features can be added with zero client changes.
    disposable fixtures, including state/file effects and failures; verify the
    six retirement cases against their approved old-name and discovery policy.
    Complete rolling terminal UAT, metadata-driven help/completion checks and a
-   TUI-only extension check without CLI leakage.
+   TUI-only extension check without leakage into Friday Chat or the generic CLI.
 
 ## Reuse proof and acceptance boundary
 

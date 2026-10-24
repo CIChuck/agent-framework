@@ -22,7 +22,7 @@ It does not replace an exact construction directive.
 | --- | --- | --- |
 | O-01 | What happens when each retired name is entered: unknown command or a bounded migration response? | Exact response, help/completion policy, release boundary and six-case compatibility exception list. The older [pruning review](command-pruning-review.md) suggests messages but is not a decision. |
 | O-02 | What package, public API, typed result/effect model and capability boundaries own shared execution? | Reviewed contract with import direction, migration seams and protected Chat behavior. The [architecture document](shared-command-architecture.md) is a proposal. |
-| O-03 | How does the separate `friday-framework-cli` benefit from shared primitives or an adapter while keeping its public registry and entry point? | Source-backed direct-consumer or protected-adapter decision and concrete regression gate. |
+| O-03 | How does the separate `friday-framework-cli` benefit from shared primitives or an adapter while keeping its public registry and entry point? | Source-backed compatible reuse decision and concrete regression gate; if no safe seam exists, record the reason and protected baseline rather than changing its public API incidentally. |
 | O-04 | How are scored `/prime`, `/set` and `/vars` retirement comments reconciled with the six-name scope? | Explicitly confirm their disposition before the supported-surface contract is frozen. Until then, no source removal of these names is authorized. |
 | O-05 | Which observed Chat quirks are compatibility obligations and which are later defects? | Command-level baseline and any approved exception. No behavior correction is implied by extraction. |
 

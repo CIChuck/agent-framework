@@ -42,6 +42,13 @@ now maps proposed package ownership, Chat-owned service seams, the separate
 `friday-framework-cli` registry and installed-client reuse proof. Package/API
 and service-ownership choices remain P1 decisions; no product code changed.
 
+2026-10-24: The maintainer asked to synchronize the build plan, phase plan and
+shared-command architecture. The plans now preserve the 50-command source
+matrix while defining a separate target, identify the proposed command package
+as a P1 choice, map Chat-owned service seams and the generic CLI role into P1,
+and align P0–P5 work units, installed-client proof and TUI handoff. The CLI
+decision register and regression gate were reconciled; no product code changed.
+
 `execution_phase: planning`; `validation_state: not_ready`.
 
 Next: characterize Chat and `friday-framework-cli`, settle the supported
