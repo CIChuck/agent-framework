@@ -49,6 +49,15 @@ as a P1 choice, map Chat-owned service seams and the generic CLI role into P1,
 and align P0–P5 work units, installed-client proof and TUI handoff. The CLI
 decision register and regression gate were reconciled; no product code changed.
 
+2026-10-24: The maintainer flagged the tactical plan as stale. Review found
+that it presumed generic-CLI reuse, omitted the new P0/P1 service and package
+decisions, treated the first pilot as predetermined and requested a candidate
+commit before implementation. The revised tactical plan now lists current
+P0/P1 outputs, later P2–P5 receipts and the before/after directive boundary.
+It also flags the scored `/security-test` retirement against the approved
+six-name scope for explicit P1 reconciliation. The PAR ledger and technical
+contract remain to be produced; no product code changed.
+
 `execution_phase: planning`; `validation_state: not_ready`.
 
 Next: characterize Chat and `friday-framework-cli`, settle the supported
