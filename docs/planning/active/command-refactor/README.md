@@ -24,9 +24,11 @@ separate `friday-framework-cli` require explicit regression coverage; the
 exact direct-consumer role of `friday-framework-cli` must be settled in the
 command contract before implementation.
 
-This branch contains no Friday TUI package source or TUI implementation
-history. The TUI branch is deferred until this refactor is completed, tested,
-and accepted. Earlier TUI planning references are recorded as historical
+The canonical `feature/command-refactor` branch contains no Friday TUI package
+source or TUI implementation history. TUI development is deferred until this
+refactor is completed, tested, and accepted. Copies of this planning packet in
+other checkouts are reference snapshots; command implementation belongs on
+`feature/command-refactor`. Earlier TUI planning references are recorded as historical
 [source provenance](tui-source-baseline.md), not dependencies on that branch.
 
 The [approved build-plan scope](build-plan.md) defines boundaries. The
