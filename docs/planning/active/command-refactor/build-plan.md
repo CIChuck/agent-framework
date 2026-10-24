@@ -82,9 +82,10 @@ the [tactical plan](tactical-plan.md) tracks current characterization tasks.
    tested scope unit, not as accidental extraction fallout.
 4. **Prove the shared owner before TUI integration.** Complete the
    [test strategy](test-strategy.md), including installed package/client
-   isolation, exact changed-name checks, cross-family regressions and a fresh
-   independent aggregate review. Record known deviations and obtain explicit
-   maintainer acceptance before the TUI command phase consumes the result.
+   isolation, exact changed-name checks, cross-family state/effect scenarios
+   and a fresh independent aggregate review. Record known deviations and
+   obtain explicit maintainer acceptance before the TUI command phase consumes
+   the result.
 
 ## Boundaries and exit criteria
 

@@ -28,6 +28,14 @@ scope register, phase plan and tactical-plan derivation were aligned to that
 source order. Candidate recommendations remain distinct from accepted
 decisions.
 
+2026-10-24: After reviewing phase-plan sufficiency, the maintainer authorized
+a revision to measurable gates. P0 now requires a PAR evidence ledger; P1
+must fix contract choices, unit ownership, retirement order, interaction
+scenarios and supported environments; P2–P3 require cumulative unit evidence;
+P4 covers cross-family installed integration; P5 requires an aggregate report,
+independent review, acceptance and a TUI handoff manifest. This revision does
+not close P0/P1 or authorize product source edits.
+
 `execution_phase: planning`; `validation_state: not_ready`.
 
 Next: characterize Chat and `friday-framework-cli`, settle the supported

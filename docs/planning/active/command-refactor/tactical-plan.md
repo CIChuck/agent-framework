@@ -15,13 +15,16 @@ sequence; the [scope decisions](scope-decisions.md), [build plan](build-plan.md)
 1. **P0 — Baseline characterization.** Recheck the live Friday Chat registry,
    aliases, parser, help, handler dependencies and effects against the 50/3
    inventory. Inventory the separate `friday-framework-cli` registry, public
-   API, completion and installed entry point. Capture baseline test commands,
-   counts, skips and known failures. Use disposable stores for effectful probes.
+   API, completion and installed entry point. Open the PAR coverage ledger;
+   capture baseline test commands, fixtures, counts, skips and known failures.
+   Use disposable stores for effectful probes.
 2. **P1 — Decide the exact supported surface.** Reconcile the six selected
    retirements, `/prime`, `/set` and `/vars` scored comments, retained-name
    behavior and old-name response with the scored inventory. Record any
-   user-visible exception to the before-change matrix;
-   do not fold deferred consolidation or behavior enhancements into extraction.
+   user-visible exception to the before-change matrix. Map all cases to
+   retained families or the retirement unit, choose that unit's order, and
+   identify cross-family scenarios and supported test environments. Do not
+   fold deferred consolidation or behavior enhancements into extraction.
 3. **P1 — Review the cross-client contract.** Decide the neutral package/API,
    command context and capability boundary, typed results and UI-effect
    intents. Determine how `friday-framework-cli` can reuse a concrete seam
@@ -32,15 +35,19 @@ sequence; the [scope decisions](scope-decisions.md), [build plan](build-plan.md)
    Each directive pins allowed files, baseline, negative/effect cases,
    compatibility exceptions, installed checks and stop conditions. Do not
    generate product code until its directive is approved.
-5. **P2 to P4 — Implement and verify by family.** After each authorized code unit,
-   freeze a candidate, run the focused and protected Chat/CLI gates, and
-   obtain a fresh-context read-only `VERIFIED` result. Run broad owning
-   suites and installed isolation checks before an aggregate review.
-6. **P5 and later handoff to TUI.** Propose completion only after the shared owner and
-   both terminal-client gates are verified. Maintainer acceptance is separate.
+5. **P2 to P3 — Implement and verify by unit.** After each authorized foundation,
+   retained-family or retirement unit, freeze a candidate, update the PAR
+   ledger, run focused and cumulative Chat/CLI gates, and obtain a fresh-context
+   read-only `VERIFIED` result.
+6. **P4 — Cross-family integration.** Run the scenario map and installed
+   package/client checks against a frozen candidate; reconcile every result
+   with the P0 baseline and approved exceptions.
+7. **P5 and later handoff to TUI.** Propose completion only after the shared
+   owner and both current terminal-client gates are verified. Maintainer
+   acceptance is separate.
    TUI development remains deferred until completion, testing, and maintainer
-   acceptance. Its independent branch then integrates the accepted public
-   contract and runs its own parity and terminal UAT.
+   acceptance. Deliver the accepted contract and evidence manifest to the
+   independent TUI branch for its own parity and terminal UAT.
 
 The current gate is steps 1–3: characterization and contract review. The
 later steps are conditional on that gate and exact directives. No
@@ -49,7 +56,7 @@ is authorized by this tactical plan alone.
 
 ## Deriving a construction unit
 
-For each proposed P2–P4 unit, the tactical implementation plan must cite its
+For each proposed P2–P3 unit, the tactical implementation plan must cite its
 phase gate, applicable [scope decisions](scope-decisions.md), exact PAR cases
 from the [source matrix](command-matrix.md), and the approved technical
 contract revision. Check the unit against the [refactor intent](command_refactor.md)
