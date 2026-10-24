@@ -20,7 +20,7 @@ Directory placement does not grant implementation authority.
 | 11 | [Friday startup context](queued/friday-startup-context/) | normal | not_granted | not_started | review and approve the draft feature plan |
 | 12 | [Friday Web Chat](queued/friday-web-chat/) | normal | not_granted | not_started | review and approve the draft product plan |
 | 13 | [Friday API](queued/friday-api/) | normal | not_granted | not_started | review architecture and approve a bounded phase |
-| 14 | [Friday TUI](queued/friday-tui/) | normal | not_granted | not_started | review and approve the draft product plan |
+| 14 | [Friday TUI](deferred/friday-tui/) | deferred | not_granted | not_started | resume only after the separate command refactor is completed, fully tested, and accepted; reconcile the independent TUI branch and its existing work before further development |
 | 15 | [Friday Speech](queued/friday-speech/) | normal | not_granted | not_started | review provider security and approve the draft plan |
 | 18 | [Human in the Loop](blocked/human-in-the-loop/) | blocked | not_granted | not_started | resolve the high-priority architecture contradictions |
 | 19 | [Model-aware reasoning control](deferred/model-aware-reasoning-control/) | deferred | not_granted | not_started | explicit maintainer decision to reopen design |
@@ -31,6 +31,7 @@ Directory placement does not grant implementation authority.
 | 25 | [Friday runtime skills](backlog/friday-runtime-skills/) | backlog | not_granted | not_started | review the draft definition and promote a bounded first phase |
 | 26 | [Friday tool manifest continuity remediation](queued/friday-tool-manifest-continuity/) | normal | not_granted | not_started | validate the native-tool trial and review discovery-aware MCP remediation tasks |
 | 33 | [Board validation and GitHub delivery reconciliation](queued/friday-board-delivery-reconciliation/) | normal | not_granted | not_started | Review and approve delivery-evidence contract, migration and bounded construction directive |
+| 35 | [Friday TUI command follow-ups](backlog/friday-tui-command-followups/) | backlog | not_granted | not_started | review and promote one bounded command follow-up after refactor scope is reconciled |
 
 ## Approved
 
@@ -49,6 +50,7 @@ Directory placement does not grant implementation authority.
 | 31 | [Current technical end-user guides for alpha3](active/friday-guides-refresh/) | normal | granted | merged | Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains |
 | 32 | [Friday Chat quick start for clone and PyPI users](active/friday-chat-quick-start/) | normal | granted | merged | Source delivered in PR #10, merge 465c5643; maintainer lifecycle acceptance remains |
 | 34 | [Friday 0.1.0a4 coordinated release](active/friday-alpha4-release/) | normal | granted | released | Maintainer lifecycle closeout; alpha4 source merged, all 17 PyPI projects and fresh production install verified |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | characterize Chat and friday-framework-cli baselines, decide supported names and CLI reuse boundary, review exact shared contract and first construction directive |
 
 ## Completed
 

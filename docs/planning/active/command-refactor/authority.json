@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "initiative": "friday-command-refactor",
+  "maintainer": "Chuck Russell",
+  "date": "2026-10-24",
+  "decision": "execute command refactor first on a branch independent of Friday TUI; defer TUI development until command refactor is completed, tested, and accepted",
+  "branch": "feature/command-refactor",
+  "baseline": "c3426986",
+  "current_scope": "design, source characterization and exact construction-directive preparation",
+  "product_code_authority": "requires a separately approved exact construction directive"
+}

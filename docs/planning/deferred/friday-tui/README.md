@@ -1,7 +1,14 @@
 # Product Requirements Document: Friday TUI (Terminal User Interface)
 
+**Scheduling decision (2026-10-24):** The maintainer postponed Friday TUI
+development until the independent [shared command refactor](../../active/command-refactor/README.md)
+is completed, tested, and accepted. This is the `master`-based planning view;
+existing TUI implementation and validation remain preserved on
+`feature/friday-tui`. Reconcile that branch and its current packet before
+resuming TUI work. This draft does not replace the branch's later decisions.
+
 **Status:** Draft; implementation authority not granted
-**Lifecycle:** Queued
+**Lifecycle:** Queued, deferred
 
 ## 1. Executive Summary
 The goal of this project is to develop a robust Terminal User Interface (TUI) for the Friday Framework, utilizing the `Textual` library. This TUI will serve as a rich, interactive frontend for the Friday Integration Test Application, providing a superior user experience compared to the existing raw CLI implementation. It will reside in a new dedicated package (`packages/friday-tui`) and aim for feature parity with the existing CLI tool (`tests/integration/memory/friday.py`).

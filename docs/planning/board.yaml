@@ -217,10 +217,10 @@ tasks:
   title: Friday TUI
   priority: 14
   work_state: queued
-  condition: normal
+  condition: deferred
   implementation_authority: not_granted
-  packet: docs/planning/queued/friday-tui/
-  next_gate: review and approve the draft product plan
+  packet: docs/planning/deferred/friday-tui/
+  next_gate: resume only after the separate command refactor is completed, fully tested, and accepted; reconcile the independent TUI branch and its existing work before further development
   delivery_state: not_started
   branch: null
   depends_on: []
@@ -641,6 +641,32 @@ tasks:
   - docs/planning/active/friday-alpha4-release/validation/publication/production-install-results.json
   approved_by: Chuck Russell
   approved_at: '2026-10-16'
+- id: friday-tui-command-followups
+  title: Friday TUI command follow-ups
+  priority: 35
+  work_state: queued
+  condition: backlog
+  implementation_authority: not_granted
+  packet: docs/planning/backlog/friday-tui-command-followups/
+  next_gate: review and promote one bounded command follow-up after refactor scope is reconciled
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+- id: friday-command-refactor
+  title: Shared Friday command refactor
+  priority: 36
+  work_state: started
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/command-refactor/
+  next_gate: characterize Chat and friday-framework-cli baselines, decide supported names and CLI reuse boundary, review exact shared contract and first construction directive
+  delivery_state: local
+  branch: feature/command-refactor
+  depends_on: []
+  validation: []
+  approved_by: Chuck Russell
+  approved_at: '2026-10-24'
 events:
 - task: documentation-governance
   at: '2026-09-03'
@@ -2149,3 +2175,17 @@ events:
   action: set_delivery
   note: Alpha4 source PR merged, remote branch retired, complete production PyPI cohort and fresh production-only installation verified; acceptance remains distinct.
   evidence: 'PR #11 https://github.com/CIChuck/agent-framework/pull/11 merge 489aed28bbf14cb5c312e207a56d973d241c293d; 17 projects/34 hashes verified at 0.1.0a4; docs/reference/releases/friday-package-cohort-0.1.0a4-release-evidence.md'
+- task: friday-tui
+  at: '2026-10-24T16:32:22+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: condition normal -> deferred
+  note: Maintainer postponed all Friday TUI development until the separate command refactor is completed, tested, and accepted. Existing TUI work remains preserved on its independent feature branch.
+  evidence: current-session maintainer direction; feature/friday-tui at 01cbaa0b
+- task: friday-command-refactor
+  at: '2026-10-24T16:32:22+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved independent command-first execution
+  note: Maintainer required the command refactor and TUI branches to be independent and directed command refactor execution first. This branch is rebuilt from master c3426986 with only command planning and scheduling changes; product code still requires exact construction directives.
+  evidence: current-session maintainer direction; docs/planning/active/command-refactor/authority.json
