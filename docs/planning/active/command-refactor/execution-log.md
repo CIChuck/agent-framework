@@ -137,6 +137,16 @@ Docs plus 14 Zapier); the same three Zapier definitions remain rejected for
 unsupported schema keywords. The user's Chat YAML and models config remain
 outside this candidate. Freeze the candidate and obtain independent review.
 
+2026-10-25: Candidate `ddd73e0ac3e0e446113a25b68643f9a71afad2c3`
+was frozen from `c7c29b9c04e8aeadd69ffc7067cfe48bec3ae4db` with only
+the approved seven-file remediation diff. A fresh-context, read-only reviewer
+returned **VERIFIED** after independently reproducing 2,003 tests, focused
+Ruff and mypy, board and documentation checks, and an anonymous live
+five-tool OpenAI Docs registration probe. See
+[VAL-CMD-MCP-002](validation/VAL-CMD-MCP-002-report.md). The working Chat
+YAML now sets the schema budget to 50,000, outside the candidate. The command
+initiative remains started; this verdict does not grant maintainer acceptance.
+
 `execution_phase: planning`; `validation_state: not_ready`.
 
 Next: characterize Chat and `friday-framework-cli`, settle the supported
