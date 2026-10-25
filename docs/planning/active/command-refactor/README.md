@@ -64,9 +64,11 @@ holds behavior changes and consolidation proposals outside this extraction.
 The approved [MCP client compatibility exception](directives/CD-CMD-MCP-001-compatibility-exception.md)
 records the maintainer-requested Draft-07 and query-URL fixes as a separate,
 bounded unit on this branch; it does not advance the command P0–P5 gates.
-Two further MCP issues are documented for review before any code directive:
+Two further MCP issues are documented:
 [tool continuity across conversation turns](proposals/mcp-tool-turn-continuity.md)
 and [server-neutral input-schema compatibility](proposals/mcp-schema-compatibility.md).
+The schema issue now has a [proposed exact construction directive](directives/CD-CMD-MCP-003-server-neutral-schema.md)
+awaiting maintainer approval before product code edits.
 They are separate from the shared-command contract and from each other:
 registration determines which tools exist in Chat, while per-turn selection
 determines which registered schemas the model receives. Both proposals remain

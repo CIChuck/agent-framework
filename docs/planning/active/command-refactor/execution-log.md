@@ -185,5 +185,16 @@ initiative remains started; this verdict does not grant maintainer acceptance.
 
 `execution_phase: planning`; `validation_state: not_ready`.
 
-Next: characterize Chat and `friday-framework-cli`, settle the supported
-surface and shared contract, then request exact construction-directive approval.
+2026-10-25: The maintainer accepted the MCP schema policy decisions, including
+bounded productive local recursion after a read-only Zapier schema-shape probe,
+and requested code generation after the document revision. The
+[proposed server-neutral schema directive](directives/CD-CMD-MCP-003-server-neutral-schema.md)
+now specifies source boundaries, provider-export and local-validation gates,
+diagnostics, budget accounting and tests. The exact directive has not yet been
+approved; product source remains unchanged. The separate tool-turn continuity
+proposal remains a later construction unit.
+
+Next MCP gate: obtain approval of the exact schema directive. The command
+refactor's separate P0/P1 next step remains characterization of Chat and
+`friday-framework-cli`, followed by the shared command contract and its first
+construction directive.

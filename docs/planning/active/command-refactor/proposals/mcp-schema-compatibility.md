@@ -1,7 +1,8 @@
 # Proposal — server-neutral MCP input-schema compatibility
 
-**Status:** maintainer policy decisions recorded on 2026-10-25; engineering
-contract and construction directive still pending. No product-code authority.
+**Status:** maintainer policy decisions recorded on 2026-10-25; an
+[exact construction directive](../directives/CD-CMD-MCP-003-server-neutral-schema.md)
+is proposed for review. No product-code authority under that directive yet.
 
 **Branch/relationship:** `feature/command-refactor`. This is a separate MCP
 follow-up, not a P0–P5 slash-command migration. Read with the
@@ -82,7 +83,7 @@ unavailable under the agreed preserve-or-reject rule. The three Zapier tools
 must not be declared fixed until provider export, registration and execution
 checks pass; local-reference support alone is insufficient proof.
 
-## Design work before a construction directive
+## Engineering work before source edits
 
 - Specify the exact keyword/dialect matrix and a fixture corpus from more
   than one server. Resolve how Draft-07 `definitions`, 2020-12 `$defs`, JSON
@@ -102,9 +103,10 @@ checks pass; local-reference support alone is insufficient proof.
   Decide the exact startup/status UI for the accepted diagnostic policy and
   how to avoid logging peer-controlled text. Fair allocation among *valid*
   tools from different servers remains a separate budget question.
-- Prepare exact source/test paths, deterministic fixtures, expected decisions,
-  security and regression gates, and stop conditions in a bounded construction
-  directive. The command-refactor P0–P5 plan does not supply that authority.
+- Review the [proposed bounded directive](../directives/CD-CMD-MCP-003-server-neutral-schema.md)
+  for exact source/test paths, deterministic fixtures, expected decisions,
+  security and regression gates, and stop conditions. The command-refactor
+  P0–P5 plan does not supply that authority.
 
 ## Required proof for a later implementation
 
