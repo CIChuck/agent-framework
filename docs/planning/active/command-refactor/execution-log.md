@@ -104,6 +104,17 @@ Friday Chat config edits remain outside the candidate. This closes the MCP
 exception's validation gate only; the command initiative remains started in
 P0/P1 planning and awaits its own contract and construction directive.
 
+2026-10-25: A live Friday report showed only Zapier's `send_feedback` tool and
+no OpenAI Docs tools. Authenticated, read-only reproduction through the
+configured MCP runtime discovered five Docs and 17 Zapier definitions. The
+default shared 4,000 schema budget prepared all five Docs and one Zapier tool;
+registration then rejected all five Docs for their Draft-07 declaration. A
+40,000-budget in-memory probe prepared all 22, registered 14 Zapier tools and
+identified three further Zapier definitions outside the schema subset. See
+[FIND-CMD-MCP-002](validation/FIND-CMD-MCP-002-registration-gap.md) and the
+[proposed bounded Draft-07 remediation](remediation/REM-CMD-MCP-002-2025-draft7-registration.md).
+No product source or user config changed in this review.
+
 `execution_phase: planning`; `validation_state: not_ready`.
 
 Next: characterize Chat and `friday-framework-cli`, settle the supported
