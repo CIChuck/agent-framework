@@ -90,6 +90,39 @@ async def test_validated_wrapper_checks_canonical_recursive_schema_before_rpc(
 
 
 @pytest.mark.asyncio
+async def test_validated_wrapper_rejects_argument_limits_without_rpc(
+    mock_mcp_client,
+) -> None:
+    metadata = MCPToolMetadata(
+        canonical_name="mcp_peer_write",
+        server_name="peer",
+        original_name="write",
+        transport="stdio",
+        trust_level="local",
+        discovery_state="discovered",
+        schema_sanitization_state="sanitized",
+        filter_state="included",
+    )
+    wrapper = MCPToolWrapper.from_validated(
+        mock_mcp_client,
+        metadata,
+        MCPValidatedDefinition("safe", '{"type":"object"}'),
+    )
+    deep: list[object] = []
+    for _ in range(34):
+        deep = [deep]
+    for arguments in (
+        {"value": "x" * 65537},
+        {"items": list(range(300))},
+        {"deep": deep},
+    ):
+        with pytest.raises(MCPArgumentValidationError) as failure:
+            await wrapper.execute(**arguments)
+        assert failure.value.reason == "validation_limit"
+    mock_mcp_client.call_tool.assert_not_awaited()
+
+
+@pytest.mark.asyncio
 async def test_optional_call_observer_reports_only_phase_name_and_outcome(
     mock_mcp_client,
 ) -> None:

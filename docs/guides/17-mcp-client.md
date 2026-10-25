@@ -289,7 +289,9 @@ one count summary per server at startup. Local argument validation precedes
 each MCP call and rejects invalid or over-budget arguments without an RPC.
 Validation runs in an isolated worker with a hard deadline; `/tools mcp` can
 show `last_call_invalid_arguments` or `last_call_validation_limit` after a
-failed local call. These fixed reasons do not expose the submitted values.
+failed local call. The deadline begins before bounded input preflight and
+worker startup; large argument trees are rejected before full serialization.
+These fixed reasons do not expose the submitted values.
 The client retains its original catalog/wire bindings, including exact Unicode
 Base64 header encoding. Unsupported references/dialects/keywords remain rejected.
 Checked results use the same sanitation, quarantine, transcript correlation and

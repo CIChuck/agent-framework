@@ -219,3 +219,15 @@ permitted model-path proof before the recursive tools can be offered. The
 command refactor's separate P0/P1 next step remains characterization of Chat
 and `friday-framework-cli`, followed by the shared command contract and its
 first construction directive.
+
+2026-10-25: Candidate `3a99de8f971807ade560f8f03d9a0b2ba3a0bf25` was
+frozen from `936fb835ad0685c59ea93d8979f63a0618a99982`. Fresh-context,
+read-only validation returned **CHANGES_REQUESTED**: the full argument tree
+was serialized before the node/depth caps and before the worker deadline.
+The bounded remediation now preflights exact JSON types, container size,
+node/depth and estimated encoded size before serialization, and starts the
+deadline before preflight/worker startup. New tests prove large structures
+reject before serialization, size/depth/node failures make no RPC, and a zero
+deadline fails safely. The refreshed selected suite passed **1,847 tests**.
+The candidate must be refrozen and independently reviewed again; the first
+review is not a `VERIFIED` result.

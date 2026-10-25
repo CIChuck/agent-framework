@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import json
+import math
 import multiprocessing
+import time
 from multiprocessing.connection import Connection, wait
 from typing import Any, Literal
 
@@ -167,26 +169,10 @@ def validate_arguments(
 ) -> None:
     """Validate bounded JSON arguments before any MCP RPC."""
     try:
+        _preflight_arguments(arguments)
         encoded = json.dumps(arguments, allow_nan=False, separators=(",", ":"))
         if len(encoded.encode("utf-8")) > 65536:
             raise MCPArgumentValidationError("validation_limit")
-        count = 0
-
-        def bound(value: Any, depth: int) -> None:
-            nonlocal count
-            count += 1
-            if depth > 32 or count > 256:
-                raise MCPArgumentValidationError("validation_limit")
-            if isinstance(value, dict):
-                if any(not isinstance(key, str) for key in value):
-                    raise MCPArgumentValidationError()
-                for child in value.values():
-                    bound(child, depth + 1)
-            elif isinstance(value, list):
-                for child in value:
-                    bound(child, depth + 1)
-
-        bound(arguments, 0)
         validator_type = (
             Draft7Validator if dialect == "draft7" else Draft202012Validator
         )
@@ -197,6 +183,56 @@ def validate_arguments(
         raise
     except Exception:
         raise MCPArgumentValidationError() from None
+
+
+def _preflight_arguments(arguments: dict[str, Any]) -> None:
+    """Bound nodes, depth and possible encoded size before full serialization."""
+    if type(arguments) is not dict:
+        raise MCPArgumentValidationError()
+    stack: list[tuple[Any, int]] = [(arguments, 0)]
+    count = 0
+    estimated_bytes = 0
+    while stack:
+        value, depth = stack.pop()
+        count += 1
+        if depth > 32 or count > 256:
+            raise MCPArgumentValidationError("validation_limit")
+        kind = type(value)
+        if kind is dict:
+            estimated_bytes += 2 + 2 * len(value)
+            for key, child in value.items():
+                if type(key) is not str:
+                    raise MCPArgumentValidationError()
+                count += 1
+                estimated_bytes += len(key) + 2
+                if count > 256 or estimated_bytes > 65536:
+                    raise MCPArgumentValidationError("validation_limit")
+                stack.append((child, depth + 1))
+        elif kind is list:
+            estimated_bytes += 2 + len(value)
+            if len(value) + count > 256:
+                raise MCPArgumentValidationError("validation_limit")
+            stack.extend((child, depth + 1) for child in value)
+        elif kind is str:
+            estimated_bytes += len(value) + 2
+        elif kind is int:
+            # Avoid converting an attacker-sized integer to decimal first.
+            bits = value.bit_length()
+            if bits > 13900:
+                raise MCPArgumentValidationError("validation_limit")
+            estimated_bytes += (bits * 30103) // 100000 + 3
+        elif kind is float:
+            if not math.isfinite(value):
+                raise MCPArgumentValidationError()
+            estimated_bytes += 32
+        elif kind is bool:
+            estimated_bytes += 5
+        elif value is None:
+            estimated_bytes += 4
+        else:
+            raise MCPArgumentValidationError()
+        if estimated_bytes > 65536:
+            raise MCPArgumentValidationError("validation_limit")
 
 
 def _validation_worker(
@@ -226,10 +262,14 @@ def validate_arguments_with_deadline(
     timeout_seconds: float = 2.0,
 ) -> None:
     """Hard-stop adversarial schema evaluation without leaking input on error."""
+    started = time.monotonic()
     try:
         # Reject oversized/non-JSON input before serializing it to a worker.
+        _preflight_arguments(arguments)
         encoded = json.dumps(arguments, allow_nan=False, separators=(",", ":"))
         if len(encoded.encode("utf-8")) > 65536:
+            raise MCPArgumentValidationError("validation_limit")
+        if time.monotonic() - started >= timeout_seconds:
             raise MCPArgumentValidationError("validation_limit")
         context = multiprocessing.get_context("spawn")
         receiver, sender = context.Pipe(duplex=False)
@@ -241,7 +281,10 @@ def validate_arguments_with_deadline(
         try:
             process.start()
             sender.close()
-            ready = wait((receiver, process.sentinel), timeout=timeout_seconds)
+            remaining = timeout_seconds - (time.monotonic() - started)
+            if remaining <= 0:
+                raise MCPArgumentValidationError("validation_limit")
+            ready = wait((receiver, process.sentinel), timeout=remaining)
             if receiver not in ready:
                 raise MCPArgumentValidationError("validation_limit")
             outcome = receiver.recv()
