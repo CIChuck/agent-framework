@@ -458,7 +458,6 @@ async def test_bounded_connect_and_discovery_concurrency(tmp_path, fake_clients)
         ({"max_tools_per_server": 1}, 2, "tool_limit"),
         ({"max_total_tools": 1}, 1, "tool_limit"),
         ({"max_schema_bytes_per_tool": 1}, 0, "schema_limit"),
-        ({"max_schema_tokens": 1}, 0, "schema_limit"),
     ],
 )
 async def test_discovery_caps_are_deterministic(
@@ -478,6 +477,22 @@ async def test_discovery_caps_are_deterministic(
     assert reason in provider.diagnostics.codes
     if expected == 1:
         assert provider.prepared_tools[0].server_id == "a"
+    await provider.stop()
+
+
+@pytest.mark.asyncio
+async def test_shared_schema_budget_is_deferred_until_registration(
+    tmp_path, fake_clients
+):
+    _, _, catalogs, _ = fake_clients
+    catalogs["a"] = [{"name": "probe", "inputSchema": {"type": "object"}}]
+    provider = RuntimeMCPProvider(
+        provider_config([server("a")], limits={"max_schema_tokens": 1}),
+        str(tmp_path),
+    )
+    await provider.start()
+    assert len(provider.prepared_tools) == 1
+    assert provider.diagnostics.rejected_tools == 0
     await provider.stop()
 
 

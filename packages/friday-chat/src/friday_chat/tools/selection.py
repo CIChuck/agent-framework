@@ -42,6 +42,7 @@ class ToolRejectionReason(str, Enum):
     UNSAFE_SCHEMA = "unsafe_schema"
     SCHEMA_LIMIT = "schema_limit"
     NOT_REGISTERED = "not_registered"
+    PROVIDER_EXPORT = "provider_export"
     NOT_RELEVANT = "not_relevant"
     NOT_REQUESTED = "not_requested"
 
@@ -231,10 +232,12 @@ class ToolSelectionState:
         *,
         mcp_metadata: Mapping[str, MCPToolMetadata] | None = None,
         estimator: SchemaTokenEstimator | None = None,
+        provider_schema_support: bool = False,
     ) -> None:
         self._config = config
         self._mcp_metadata = dict(mcp_metadata or {})
         self._estimator = estimator or UTF8SchemaTokenEstimator()
+        self._provider_schema_support = provider_schema_support
         self._tools = _validated_registered_tools(tools)
         self._manual_names: tuple[str, ...] | None = None
         self._last_turn_snapshot: ToolBudgetSnapshot | None = None
@@ -259,6 +262,17 @@ class ToolSelectionState:
     def registered_names(self) -> tuple[str, ...]:
         """Return registered tool names in stable registry order."""
         return tuple(tool.name for tool in self._tools)
+
+    def provider_export_rejections(self) -> tuple[str, ...]:
+        """Canonical MCP names withheld for unverified advanced-schema export."""
+        if self._provider_schema_support:
+            return ()
+        return tuple(
+            tool.name
+            for tool in self._tools
+            if tool.name in self._mcp_metadata
+            and _extended_schema_keywords(tool.input_schema)
+        )
 
     @property
     def manual_names(self) -> tuple[str, ...]:
@@ -625,6 +639,12 @@ class ToolSelectionState:
             raise ToolSelectionError(
                 ToolRejectionReason.UNSAFE_SCHEMA, (), "MCP schema verification failed."
             )
+        if not self._provider_schema_support and _extended_schema_keywords(parameters):
+            raise ToolSelectionError(
+                ToolRejectionReason.PROVIDER_EXPORT,
+                (),
+                "MCP schema provider compatibility is unverified.",
+            )
         if (
             model_bytes > limits.max_schema_bytes_per_tool
             or model_bytes > metadata.schema_byte_size
@@ -826,6 +846,16 @@ def tool_relevance_score(user_message: str, tool: ToolDefinition) -> float:
     if _is_file_write_query(user_message) and _is_file_read_tool(tool):
         score -= 0.5
     return min(score, 1.0)
+
+
+def _extended_schema_keywords(value: Any) -> bool:
+    if isinstance(value, dict):
+        if set(value) & {"$defs", "$ref", "propertyNames"}:
+            return True
+        return any(_extended_schema_keywords(child) for child in value.values())
+    if isinstance(value, list):
+        return any(_extended_schema_keywords(child) for child in value)
+    return False
 
 
 def _model_schema(tool: ToolDefinition) -> dict[str, Any]:

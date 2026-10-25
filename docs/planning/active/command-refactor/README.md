@@ -67,8 +67,9 @@ bounded unit on this branch; it does not advance the command P0–P5 gates.
 Two further MCP issues are documented:
 [tool continuity across conversation turns](proposals/mcp-tool-turn-continuity.md)
 and [server-neutral input-schema compatibility](proposals/mcp-schema-compatibility.md).
-The schema issue now has a [proposed exact construction directive](directives/CD-CMD-MCP-003-server-neutral-schema.md)
-awaiting maintainer approval before product code edits.
+The schema issue has an [approved exact construction directive](directives/CD-CMD-MCP-003-server-neutral-schema.md)
+for its bounded implementation unit and an
+[engineering matrix](mcp-schema-engineering-matrix.md) for the supported profile.
 They are separate from the shared-command contract and from each other:
 registration determines which tools exist in Chat, while per-turn selection
 determines which registered schemas the model receives. Both proposals remain

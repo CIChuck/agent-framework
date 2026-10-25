@@ -1204,6 +1204,15 @@ async def _tools_handler(
     if category:
         filtered = [tool for tool in tools if tool.category == category]
         if not filtered:
+            if category == "mcp" and context.runtime is not None and context.runtime.mcp_tools is not None:
+                lines = ["No MCP tools are registered."]
+                lines.extend(context.runtime.mcp_tools.status_lines())
+                lines.extend(context.runtime.mcp_tools.rejection_lines())
+                lines.extend(
+                    f"- {name}: provider_export"
+                    for name in context.runtime.tool_selection.provider_export_rejections()
+                )
+                return CommandResult(output="\n".join(lines))
             categories = ", ".join(sorted({tool.category for tool in tools}))
             return CommandResult(
                 output=(
@@ -1225,6 +1234,13 @@ async def _tools_handler(
         ):
             parameters = ", ".join(_tool_parameter_names(tool)) or "none"
             lines.append(f"- {tool.name}: {tool.description} ({parameters})")
+    if category == "mcp" and context.runtime is not None and context.runtime.mcp_tools is not None:
+        lines.extend(context.runtime.mcp_tools.status_lines())
+        lines.extend(context.runtime.mcp_tools.rejection_lines())
+        lines.extend(
+            f"- {name}: provider_export"
+            for name in context.runtime.tool_selection.provider_export_rejections()
+        )
     return CommandResult(output="\n".join(lines))
 
 

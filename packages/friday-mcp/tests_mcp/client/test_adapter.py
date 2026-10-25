@@ -1,6 +1,8 @@
 # mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for MCP tool adapter."""
 
+import json
+
 import pytest
 from friday_core.interfaces.tools import ToolDefinition
 from friday_core.mcp import MCPToolMetadata
@@ -10,6 +12,7 @@ from friday_mcp.client.adapter import (
     MCPToolWrapper,
     MCPValidatedDefinition,
 )
+from friday_mcp.client.schema_validation import MCPArgumentValidationError
 
 
 @pytest.mark.asyncio
@@ -44,6 +47,46 @@ async def test_validated_wrapper_full_protocol_snapshot_and_exact_route(
         "Read.File", {"path": "safe.txt"}
     )
     assert "Read.File" not in repr(wrapper)
+
+
+@pytest.mark.asyncio
+async def test_validated_wrapper_checks_canonical_recursive_schema_before_rpc(
+    mock_mcp_client,
+) -> None:
+    metadata = MCPToolMetadata(
+        canonical_name="mcp_peer_write",
+        server_name="peer",
+        original_name="write",
+        transport="stdio",
+        trust_level="local",
+        discovery_state="discovered",
+        schema_sanitization_state="sanitized",
+        filter_state="included",
+    )
+    schema = {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "$defs": {
+            "node": {
+                "type": "object",
+                "propertyNames": {"pattern": "^[a-z]+$"},
+                "properties": {"child": {"$ref": "#/$defs/node"}},
+            }
+        },
+        "properties": {"tree": {"$ref": "#/$defs/node"}},
+    }
+    exported = {key: value for key, value in schema.items() if key != "$schema"}
+    definition = MCPValidatedDefinition(
+        "safe", json.dumps(exported), json.dumps(schema), "draft7"
+    )
+    wrapper = MCPToolWrapper.from_validated(mock_mcp_client, metadata, definition)
+    with pytest.raises(MCPArgumentValidationError, match="local validation"):
+        await wrapper.execute(tree={"BAD": 1})
+    mock_mcp_client.call_tool.assert_not_awaited()
+    await wrapper.execute(tree={"child": {"leaf": "safe"}})
+    mock_mcp_client.call_tool.assert_awaited_once_with(
+        "write", {"tree": {"child": {"leaf": "safe"}}}
+    )
 
 
 @pytest.mark.asyncio

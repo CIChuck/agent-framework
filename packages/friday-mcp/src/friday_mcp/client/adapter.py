@@ -20,6 +20,10 @@ from friday_core.mcp import MCPToolMetadata
 
 from friday_mcp.client.base import MCPClientBase
 from friday_mcp.client.catalog import MCPCatalogSnapshot, MCPRefreshClient
+from friday_mcp.client.schema_validation import (
+    SchemaDialect,
+    validate_arguments_with_deadline,
+)
 from friday_mcp.protocols import MCPClient, ToolDefinition
 from friday_mcp.utils.schema import mcp_to_friday_schema
 
@@ -46,11 +50,19 @@ class MCPValidatedDefinition:
 
     description: str = field(repr=False)
     parameters_json: str = field(repr=False)
+    canonical_json: str | None = field(default=None, repr=False)
+    dialect: SchemaDialect = "2020-12"
 
     def parameters(self) -> dict[str, Any]:
         value: Any = json.loads(self.parameters_json)
         if not isinstance(value, dict):
             raise ValueError("MCP validated parameters must be an object")
+        return value
+
+    def canonical(self) -> dict[str, Any]:
+        value: Any = json.loads(self.canonical_json or self.parameters_json)
+        if not isinstance(value, dict):
+            raise ValueError("MCP canonical parameters must be an object")
         return value
 
 
@@ -182,6 +194,13 @@ class MCPToolWrapper:
         """Execute the tool via MCP client."""
         self._observe("start", None)
         try:
+            if self._validated is not None:
+                await asyncio.to_thread(
+                    validate_arguments_with_deadline,
+                    kwargs,
+                    self._validated.canonical(),
+                    self._validated.dialect,
+                )
             if (
                 self._refresh_client is not None
                 and self._catalog_generation is not None

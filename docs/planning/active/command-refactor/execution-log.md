@@ -194,7 +194,28 @@ diagnostics, budget accounting and tests. The exact directive has not yet been
 approved; product source remains unchanged. The separate tool-turn continuity
 proposal remains a later construction unit.
 
-Next MCP gate: obtain approval of the exact schema directive. The command
-refactor's separate P0/P1 next step remains characterization of Chat and
-`friday-framework-cli`, followed by the shared command contract and its first
-construction directive.
+2026-10-25: Chuck Russell approved the exact
+[server-neutral schema construction directive](directives/CD-CMD-MCP-003-server-neutral-schema.md)
+and directed code generation. Implementation may proceed within that bounded
+unit. The two pre-existing Chat example config edits remain outside the work.
+
+2026-10-25: CD-CMD-MCP-003 implementation now admits bounded local `$ref`,
+`$defs` and `propertyNames` schemas, validates canonical arguments in a
+deadline-bound isolated worker before RPC, defers shared schema charging until
+registration, and exposes safe startup/inspection counts and reasons. The
+[engineering matrix](mcp-schema-engineering-matrix.md) was recorded before
+source edits. The final selected MCP client, runtime and Chat regression suite
+passed **1,844 tests**; focused Ruff, mypy, format, board and documentation
+checks passed. A read-only Zapier initialize/list/registration probe discovered and
+registered **17 of 17** tools, including the three previously rejected action
+tools, without invoking tools or a paid model. The configured model provider's
+ability to carry recursive schema constraints is still unverified, so these
+tools remain `provider_export` withheld from model turns. This is a safe
+partial outcome under the directive, not end-to-end Zapier action acceptance.
+
+Next MCP gate: freeze this bounded candidate and obtain fresh-context,
+read-only validation. Provider compatibility needs a separate, explicitly
+permitted model-path proof before the recursive tools can be offered. The
+command refactor's separate P0/P1 next step remains characterization of Chat
+and `friday-framework-cli`, followed by the shared command contract and its
+first construction directive.

@@ -1,13 +1,11 @@
 """Bounded MCP registry admission, without discovery, persistence or RPCs.
 
-Schemas remain external content. This conservative inline subset rejects every
-unknown keyword: type, properties, required, additionalProperties, items,
-enum, const, default, allOf, anyOf, oneOf, not, title, description, minimum,
-maximum, exclusiveMinimum, exclusiveMaximum, multipleOf, minLength, maxLength,
-pattern, minItems, maxItems, uniqueItems, minProperties, maxProperties.
-References, identifiers, definitions, conditionals, formats and extensions are
-not implemented. Traversal is complete, at most depth 32 / 4096 JSON nodes,
-and constrained by the configured complete-definition byte cap.
+Schemas remain external content. The bounded profile admits the existing
+inline keywords plus `$defs`, local JSON Pointer `$ref` and `propertyNames`.
+External references, identifiers, conditionals, formats and extensions remain
+unsupported. Traversal is complete, at most depth 32 / 4096 JSON nodes,
+and constrained by the configured complete-definition byte cap. Reference
+analysis rejects cycles that never descend into an instance.
 
 Costs include category/tags added by the native registry, in both plain/OpenAI
 formats. A byte is conservatively budgeted as a token, not model-tokenizer parity.
@@ -31,6 +29,11 @@ from friday_core.mcp import MCPDiagnosticCode, MCPToolMetadata, normalize_mcp_to
 from friday_core.security import InjectionPatternLibrary
 from friday_mcp.client import header_bindings
 from friday_mcp.client.adapter import MCPToolWrapper, MCPValidatedDefinition
+from friday_mcp.client.schema_validation import (
+    MCPReferenceError,
+    SchemaDialect,
+    validate_local_references,
+)
 from friday_mcp.protocols import MCPClient
 
 from friday_runtime.config import MCPRuntimeHTTPServerConfig, MCPToolProviderConfig
@@ -64,6 +67,9 @@ _KEYWORDS = frozenset(
         "uniqueItems",
         "minProperties",
         "maxProperties",
+        "$defs",
+        "$ref",
+        "propertyNames",
     ]
 )
 _TYPES = frozenset(
@@ -240,6 +246,10 @@ class MCPRegistrationError(RuntimeError):
         self.decisions = tuple(decisions)
 
 
+class MCPUnsupportedKeywordError(ValueError):
+    """A bounded input schema uses a keyword outside the admitted profile."""
+
+
 def _encode(value: Any) -> str:
     # Any is confined to the JSON input/export boundary.
     return json.dumps(value, ensure_ascii=False, allow_nan=False, separators=(",", ":"))
@@ -343,8 +353,10 @@ def _schema(
         | ({"$schema"} if root else set())
         | ({"x-mcp-header"} if http_headers else set())
     )
-    if not isinstance(value, dict) or not set(value) <= allowed:
-        raise ValueError("Unsupported MCP schema")
+    if not isinstance(value, dict):
+        raise ValueError("Invalid MCP schema")
+    if not set(value) <= allowed:
+        raise MCPUnsupportedKeywordError("Unsupported MCP schema keyword")
     result: dict[str, Any] = {}
     for key, child in value.items():
         _semantic_text(key)
@@ -368,7 +380,14 @@ def _schema(
             for name, sub in child.items():
                 _semantic_text(name)
                 result[key][name] = _schema(sub, http_headers=http_headers)
-        elif key in {"items", "additionalProperties", "not"}:
+        elif key == "$defs":
+            if not isinstance(child, dict):
+                raise ValueError("Invalid MCP definitions")
+            result[key] = {}
+            for name, sub in child.items():
+                _semantic_text(name)
+                result[key][name] = _schema(sub, http_headers=http_headers)
+        elif key in {"items", "additionalProperties", "not", "propertyNames"}:
             result[key] = _schema(child, http_headers=http_headers)
         elif key in {"allOf", "anyOf", "oneOf"}:
             if not isinstance(child, list) or not child:
@@ -376,7 +395,10 @@ def _schema(
             result[key] = [_schema(sub, http_headers=http_headers) for sub in child]
         else:
             _semantic(child)
-            if key == "type":
+            if key == "$ref":
+                if not isinstance(child, str) or not child.startswith("#"):
+                    raise MCPReferenceError("Unsupported MCP reference")
+            elif key == "type":
                 types = child if isinstance(child, list) else [child]
                 if (
                     not types
@@ -467,9 +489,18 @@ def sanitize_definition(
         http_headers=http_headers,
         allow_2025_draft7=allow_2025_draft7,
     )
+    dialect: SchemaDialect = (
+        "draft7"
+        if parameters.get("$schema") == "http://json-schema.org/draft-07/schema#"
+        else "2020-12"
+    )
+    validate_local_references(clean_parameters, dialect)
     changed = clean_description != description or clean_parameters != parameters
     return MCPValidatedDefinition(
-        clean_description, _encode(clean_parameters)
+        clean_description,
+        _encode(clean_parameters),
+        canonical_json=_encode(parameters),
+        dialect=dialect,
     ), "sanitized" if changed else "unchanged"
 
 
@@ -554,6 +585,16 @@ def prepare_registration(
                 allow_2025_draft7=isinstance(server, MCPRuntimeHTTPServerConfig)
                 and server.protocol_version == "2025-11-25",
             )
+        except MCPUnsupportedKeywordError:
+            decisions.append(
+                MCPRegistrationDecision(name, server_id, "rejected", "unsupported_keyword")
+            )
+            continue
+        except MCPReferenceError:
+            decisions.append(
+                MCPRegistrationDecision(name, server_id, "rejected", "unsupported_reference")
+            )
+            continue
         except (ValueError, TypeError, UnicodeError, RecursionError, OverflowError):
             decisions.append(
                 MCPRegistrationDecision(name, server_id, "rejected", "invalid_schema")

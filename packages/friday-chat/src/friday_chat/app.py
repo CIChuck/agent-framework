@@ -459,6 +459,9 @@ class FridayChatApp:
         exit_reason: Literal["eof", "keyboard_interrupt", "command_exit"] = "eof"
         try:
             await self.runtime.start_mcp_tools()
+            if self.runtime.mcp_tools is not None:
+                for summary in self.runtime.mcp_tools.status_lines():
+                    await self.output_sink.write(summary)
             while True:
                 try:
                     user_message = await self.input_source.read()

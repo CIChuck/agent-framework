@@ -270,14 +270,26 @@ budgets/retries. Runtime admission and Chat per-turn count/schema/result budgets
 still apply. Remote metadata accurately reports streamable_http/remote; peer
 instructions and annotations never grant policy or enter prompts automatically.
 
-The model-facing inline schema admits the canonical root 2020-12 declaration,
+The bounded schema profile admits the canonical root 2020-12 declaration,
 or the exact Draft-07 declaration for a 2025-11-25 HTTP peer, and validated
 modern HTTP x-mcp-header annotations. Registration strips the admitted root
 dialect declaration and protocol header annotations before publication. A
 successful `tools/list` alone does not make a tool visible in `/tools mcp`:
-runtime registration still applies the bounded inline subset, filters and
-schema budgets. Inspect registration decisions when discovery succeeds but
-the Chat tool list is empty.
+runtime registration still applies a bounded profile, filters and schema
+budgets. That profile includes `$defs`, same-document JSON Pointer `$ref`
+(including productive structural recursion), and `propertyNames`; unknown
+keywords, external references and pure reference cycles remain rejected.
+Discovery enforces raw per-definition limits, while rejected definitions do
+not consume the shared model-facing schema budget. `/tools mcp` shows registered
+tools, per-server discovered/registered/rejected counts, and fixed rejection
+codes. A registered advanced-schema tool is offered to the model only after
+that provider's export compatibility has been verified; `provider_export`
+marks one withheld from the model despite being registered. Friday also prints
+one count summary per server at startup. Local argument validation precedes
+each MCP call and rejects invalid or over-budget arguments without an RPC.
+Validation runs in an isolated worker with a hard deadline; `/tools mcp` can
+show `last_call_invalid_arguments` or `last_call_validation_limit` after a
+failed local call. These fixed reasons do not expose the submitted values.
 The client retains its original catalog/wire bindings, including exact Unicode
 Base64 header encoding. Unsupported references/dialects/keywords remain rejected.
 Checked results use the same sanitation, quarantine, transcript correlation and

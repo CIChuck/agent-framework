@@ -656,7 +656,7 @@ class RuntimeMCPProvider:
         states: list[MCPServerDiscoveryState] = []
         lifecycle: list[MCPServerLifecycleDiagnostic] = []
         prepared: list[MCPDiscoveredTool] = []
-        connected = failed = discovered = rejected = schema_cost = 0
+        connected = failed = discovered = rejected = 0
         aggregate_codes: set[MCPDiagnosticCode] = set()
         required_failure = False
         for server in self._config.config.servers:
@@ -704,12 +704,10 @@ class RuntimeMCPProvider:
                             skip_counts.get("invalid_schema", 0) + 1
                         )
                         continue
-                    # One token per encoded byte is a conservative pre-registry
-                    # upper bound. WS-03 owns final schema/token accounting.
-                    if (
-                        size > limits.max_schema_bytes_per_tool
-                        or schema_cost + size > limits.max_schema_tokens
-                    ):
+                    # Raw discovery enforces the per-definition byte cap.
+                    # Shared model-facing cost is charged only after schema
+                    # admission in prepare_registration.
+                    if size > limits.max_schema_bytes_per_tool:
                         codes.add("schema_limit")
                         server_rejected += 1
                         skip_counts["schema_limit"] = (
@@ -717,7 +715,6 @@ class RuntimeMCPProvider:
                         )
                         continue
                     prepared.append(MCPDiscoveredTool(server.name, encoded))
-                    schema_cost += size
                 state: Literal["not_started", "connected", "failed"] = "connected"
             elif result.outcome in ("disabled", "auto_connect_disabled"):
                 state = "not_started"
@@ -742,6 +739,7 @@ class RuntimeMCPProvider:
                     server_id=server.name,
                     connection_state=state,
                     cache_timestamp=datetime.now(UTC) if state == "connected" else None,
+                    discovered_tools=len(result.tools) if state == "connected" else 0,
                     rejected_tools=server_rejected,
                     diagnostic_codes=tuple(sorted(codes)),
                 )

@@ -1,7 +1,7 @@
-# MCP server-neutral schema compatibility — proposed construction directive
+# MCP server-neutral schema compatibility — construction directive
 
-**Status:** proposed for exact-scope maintainer approval; product-code edits
-under this directive have not begun.
+**Status:** approved by Chuck Russell on 2026-10-25 in the conversation,
+after reviewing this exact directive; implementation and validation pending.
 
 **Board/branch:** `friday-command-refactor`, `feature/command-refactor`.
 This is a bounded MCP follow-up on the active branch, separate from the
@@ -10,7 +10,7 @@ decisions in the [schema proposal](../proposals/mcp-schema-compatibility.md)
 on 2026-10-25 and requested code generation after documenting them. Under
 [AGENTS.md](../../../../../AGENTS.md) and the
 [independent-validation policy](../../../../reference/policies/independent-validation-policy.md),
-this *exact* code unit still requires maintainer approval before source edits.
+this *exact* code unit required maintainer approval before source edits.
 The earlier [Draft-07 remediation](../remediation/REM-CMD-MCP-002-2025-draft7-registration.md)
 deliberately prohibited keyword broadening; this directive would supersede
 that prohibition only for the work described here.

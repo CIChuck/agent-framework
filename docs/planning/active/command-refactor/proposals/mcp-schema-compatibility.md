@@ -1,8 +1,8 @@
 # Proposal — server-neutral MCP input-schema compatibility
 
-**Status:** maintainer policy decisions recorded on 2026-10-25; an
+**Status:** maintainer policy decisions recorded on 2026-10-25; the
 [exact construction directive](../directives/CD-CMD-MCP-003-server-neutral-schema.md)
-is proposed for review. No product-code authority under that directive yet.
+was approved for implementation on this branch.
 
 **Branch/relationship:** `feature/command-refactor`. This is a separate MCP
 follow-up, not a P0–P5 slash-command migration. Read with the
@@ -103,7 +103,7 @@ checks pass; local-reference support alone is insufficient proof.
   Decide the exact startup/status UI for the accepted diagnostic policy and
   how to avoid logging peer-controlled text. Fair allocation among *valid*
   tools from different servers remains a separate budget question.
-- Review the [proposed bounded directive](../directives/CD-CMD-MCP-003-server-neutral-schema.md)
+- Execute the [approved bounded directive](../directives/CD-CMD-MCP-003-server-neutral-schema.md)
   for exact source/test paths, deterministic fixtures, expected decisions,
   security and regression gates, and stop conditions. The command-refactor
   P0–P5 plan does not supply that authority.
