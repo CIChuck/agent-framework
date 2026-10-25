@@ -1,6 +1,7 @@
 # Proposal — MCP tool continuity across Friday Chat turns
 
-**Status:** planning and diagnosis only; no construction directive or product-code authority.
+**Status:** maintainer policy decisions recorded on 2026-10-25; engineering
+contract and construction directive still pending. No product-code authority.
 
 **Branch/relationship:** `feature/command-refactor`. This is a separate MCP
 follow-up, not a P0–P5 slash-command migration or a change to the 50-command
@@ -41,54 +42,81 @@ executor, so continuity alone cannot make that executor callable. See the
 
 ## Intended behavior
 
-- A short follow-up within an established task should retain access to the
-  relevant, **currently registered** tool, subject to the same per-turn count,
-  schema, memory, and result-reservation limits.
+- A short follow-up within a pending task grounded in the user's request should
+  retain access to the relevant, **currently registered** tool, subject to the
+  same per-turn count, schema, memory, and result-reservation limits.
 - Tool availability must not imply a tool call or substitute for the user's
   decision to perform an external action. An ambiguous `yes` without a clear
   pending action must not trigger a write.
-- A new task, expired intent, disconnected server, removed tool, or changed
-  catalog must not carry a stale tool into a later turn.
-- If the needed tool cannot be offered, Friday should expose a specific
-  availability/budget outcome instead of claiming the action is ready.
+- The pending-task reminder expires at the first of: task completion,
+  cancellation, a different task, session end, five subsequent user turns, or
+  30 minutes. Expiry removes only the reminder. The registered catalog remains
+  available for selection from a later explicit request; a bare `yes` after
+  expiry requires clarification.
+- Give a pending tool priority over unrelated optional tools. If it still
+  cannot be offered because of registration, server availability or a budget
+  limit, Friday may continue the conversation but must clearly state that the
+  action cannot proceed and why. It must not silently substitute another
+  action tool.
 - Keep large server catalogs registered and discoverable without pinning every
   schema into every model request. The existing `required_tools` setting can
   pin selected names but is not a practical server-wide continuity policy.
 
-## Recommended design to evaluate
+## Maintainer decisions
+
+The maintainer accepted each of these policies in the conversation on
+2026-10-25. They settle intended behavior, not the implementation mechanism or
+the separate schema-registration gap.
+
+| Topic | Decision |
+| --- | --- |
+| Continuity source | Carry a specific pending task grounded in the user's request, with a small set of relevant tools from the actual registered catalog. A prior assistant statement or broad prior tool list alone does not establish the task. |
+| Lifetime | Clear the reminder on completion, cancellation, task change or session end, and no later than five subsequent user turns or 30 minutes, whichever comes first. Clearing does not unregister a tool. |
+| Budget and availability | Prioritize the pending tool over unrelated optional tools while preserving all limits. If it still cannot be offered, continue conversation with a clear reason the action cannot proceed; do not silently substitute another action tool. |
+| User control | Apply continuity only in automatic mode. `required_tools` retain priority; manual mode offers its manual set plus configured required tools and does not add pending tools. |
+| Catalog change | Keep a pending tool only while it still matches the same server, tool identity and validated schema in the current catalog. Otherwise discard that binding and re-evaluate the action; do not map a similar name automatically. |
+| First implementation | Limit the first fix to Friday Chat automatic selection. Define continuity state without UI-specific data, but defer package relocation and TUI integration to their own architecture work. |
+
+## Design direction and remaining engineering questions
 
 Introduce a small, session-scoped continuity signal for a *specific* pending
 tool-assisted task. Derive it from the prior user request and an actually
 registered candidate/tool, not from unverified server text or a broad copy of
 the prior model prompt. Carry tool identifiers and bounded intent metadata,
 not tool arguments, credentials, raw descriptions, or schemas. Rank the latest
-request together with that signal; preserve current policy checks before any
-schema is offered. Clear or revalidate it on task change, completion,
-expiration, manual-mode changes, catalog refresh, or server loss.
+request together with that signal in automatic mode. Preserve required tools,
+the memory floor and all other policy checks before any schema is offered.
+Revalidate the binding against the current catalog; manual mode ignores it.
+The first unit belongs in Friday Chat's automatic selection path and should
+expose a UI-neutral state contract for later review.
 
 For larger catalogs, evaluate a compact capability index or explicit tool
 lookup as a later complement. That directory would identify candidates before
 their full schemas are offered. It does not replace the immediate need to
 handle a short continuation of an already established action.
 
-## Decisions needed before a construction directive
-
-| Decision | Review question |
-| --- | --- |
-| Continuity source | What observable state establishes a pending tool-assisted task: selected candidates, an explicit assistant action proposal, a tool call, or a combination? |
-| Lifetime | When does the signal expire, and what counts as a task switch or completion? |
-| Budget conflict | Should an unavailable/budgeted-out pending tool fail the turn clearly or permit an explicit alternative? |
-| User control | How do manual selection and `required_tools` interact with continuity without silently changing their current meaning? |
-| Catalog change | Which catalog identity/generation must be checked before carrying an MCP tool into the next turn? |
-| Scope | Is the first unit limited to Friday Chat automatic selection, with any shared selector API reviewed separately for TUI reuse? |
+Before a construction directive, specify how Friday records an explicit
+pending task from user intent without treating assistant prose or untrusted MCP
+content as authority. Define the task-change detector and the exact turn/time
+expiry bookkeeping. Choose a safe schema identity/fingerprint for catalog
+revalidation and an observable, non-sensitive unavailability reason. Show how
+the pending candidate wins over optional tools while required/manual policy,
+memory floors and other budget limits remain unchanged. These are design and
+test details under the decisions above, not reopened policy choices.
 
 ## Required proof for a later implementation
 
-- Deterministic two-turn tests: relevant tool survives a short confirmation;
-  an unrelated follow-up does not retain it; a bare ambiguous confirmation
-  cannot execute an action on its own.
-- Separate tests for registration loss, catalog change, manual/required modes,
-  count/schema/memory floors, and a budget failure with an observable reason.
+- Deterministic multi-turn tests: a pending tool survives a short
+  confirmation, has priority over unrelated optional tools, and is not
+  executed merely because it is available. An unrelated request, completion,
+  cancellation, session end, five-turn limit and 30-minute limit each clear
+  the reminder. A later explicit request can reselect a still-registered tool;
+  a bare ambiguous confirmation after expiry cannot trigger an action.
+- Separate tests for registration loss, server unavailability, same-name but
+  changed-schema catalog refresh, manual/required modes, count/schema/memory
+  floors, and a clear action-unavailable result when the pending tool cannot
+  fit. Confirm manual mode never adds a pending tool or displaces a required
+  tool, and no similar-name tool silently replaces a changed binding.
 - An integration fixture with multiple MCP and native tools, showing exact
   registered, selected, rejected, and executed names on both turns. No live
   email is needed for this proof.

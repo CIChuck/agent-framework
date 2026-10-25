@@ -1,5 +1,16 @@
 # Shared command refactor — execution log
 
+2026-10-25: The maintainer resolved all six policy questions in the
+[MCP turn-continuity proposal](proposals/mcp-tool-turn-continuity.md): a
+user-request-grounded pending task and narrow registered tool set; expiry on
+completion, cancellation, task switch, session end, five follow-up turns or
+30 minutes; priority over unrelated optional tools with a clear action failure
+if unavailable; no override of manual or required selections; catalog
+identity/schema revalidation; and Friday Chat automatic selection as the first
+implementation scope. The proposal now distinguishes settled behavior from
+remaining engineering design. It remains planning only and is separate from
+the server-neutral schema proposal and command P0–P5 gates.
+
 2026-10-25: At the maintainer's request, two MCP follow-ups were written up
 before any further code change: [tool continuity across Chat turns](proposals/mcp-tool-turn-continuity.md)
 and [server-neutral input-schema compatibility](proposals/mcp-schema-compatibility.md).
