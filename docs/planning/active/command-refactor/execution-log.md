@@ -58,6 +58,42 @@ It also flags the scored `/security-test` retirement against the approved
 six-name scope for explicit P1 reconciliation. The PAR ledger and technical
 contract remain to be produced; no product code changed.
 
+2026-10-25: The maintainer approved considering a bounded MCP compatibility
+exception on this branch, then agreed to include ordinary query-bearing HTTP
+MCP endpoint URLs alongside the 2025 Draft-07 input-schema fix. The
+[proposed directive](directives/CD-CMD-MCP-001-compatibility-exception.md)
+records both fixes, unchanged security boundaries and regression gates for
+exact-scope review. Product code has not changed; command P0/P1 remains open.
+
+2026-10-25: The maintainer approved the exact
+[MCP compatibility directive](directives/CD-CMD-MCP-001-compatibility-exception.md)
+for implementation on the command-refactor branch. This authorizes only that
+bounded MCP unit; the command refactor's P0/P1 gate is unchanged.
+
+2026-10-25: The MCP compatibility working tree passed the focused pre-edit
+baseline (260 tests), then 1,639 MCP client, runtime-config and Friday Chat
+integration tests after the first implementation pass. Focused Ruff and mypy
+passed. Read-only live discovery returned five OpenAI Docs tools from both
+`https://developers.openai.com/mcp` and the `?xyz` query variant. Diff review
+found that the shared catalog parser needs a version flag to keep 2024 schema
+behavior unchanged; [amendment 001](directives/AMEND-CMD-MCP-001-001-2025-dialect-isolation.md)
+is proposed before changing `base.py`. No candidate is frozen or independently
+validated yet.
+
+2026-10-25: The maintainer approved
+[amendment 001](directives/AMEND-CMD-MCP-001-001-2025-dialect-isolation.md),
+allowing the selected 2025 version to be passed through `base.py` into catalog
+schema validation. The 2024 behavior obligation remains in force.
+
+2026-10-25: The amended MCP unit now passes 402 focused protocol, HTTP and
+runtime-config tests, followed by 1,640 MCP client, runtime-config and Friday
+Chat MCP integration tests. Focused Ruff and mypy passed for the changed
+source. Documentation lifecycle passed for 658 Markdown files; board
+validation passed for 36 tasks; `git diff --check` passed. Read-only live
+discovery after the amendment returned five tools from both the plain OpenAI
+Docs endpoint and its `?xyz` query variant. The exception is ready for a
+candidate commit and independent review; no command P0/P1 result is claimed.
+
 `execution_phase: planning`; `validation_state: not_ready`.
 
 Next: characterize Chat and `friday-framework-cli`, settle the supported

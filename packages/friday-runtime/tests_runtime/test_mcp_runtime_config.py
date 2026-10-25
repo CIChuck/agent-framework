@@ -379,7 +379,6 @@ def remote_stanza(servers, **changes):
         {"required": True, "enabled": False},
         {"url": "http://example.com/mcp"},
         {"url": "https://user:SENTINEL_TOKEN@example.com/mcp"},
-        {"url": "https://example.com/mcp?SENTINEL_QUERY"},
         {"url": "https://example.com/mcp#SENTINEL_FRAGMENT"},
         {"url": "https://127.0.0.1/mcp"},
         {"url": "https://example.com:8443/mcp"},
@@ -414,6 +413,17 @@ def test_http_union_rejects_bad_shapes_including_disabled_before_effects(
     while current is not None:
         assert "SENTINEL" not in str(current)
         current = current.__cause__ or current.__context__
+
+
+@pytest.mark.parametrize(
+    "url",
+    ["https://example.com/mcp?xyz", "https://example.com/mcp?region=us-east-1"],
+)
+def test_http_union_accepts_query_endpoint(url):
+    provider = MCPToolProviderConfig.from_dict(
+        remote_stanza([remote_server(url=url)])
+    )
+    assert provider.config.servers[0].url == url
 
 
 def test_remote_opt_in_and_local_union_defaults():

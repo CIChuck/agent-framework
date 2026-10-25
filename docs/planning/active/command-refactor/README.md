@@ -61,6 +61,9 @@ proposal as historical reasoning. The
 history and eventual TUI reconciliation. The
 [command follow-up backlog](../../backlog/friday-tui-command-followups/README.md)
 holds behavior changes and consolidation proposals outside this extraction.
+The approved [MCP client compatibility exception](directives/CD-CMD-MCP-001-compatibility-exception.md)
+records the maintainer-requested Draft-07 and query-URL fixes as a separate,
+bounded unit on this branch; it does not advance the command P0–P5 gates.
 There is no approved technical contract yet; the architecture proposal must
 be reviewed and its open package/API and CLI-role decisions recorded at P1.
 

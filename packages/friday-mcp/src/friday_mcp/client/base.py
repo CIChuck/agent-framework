@@ -580,6 +580,7 @@ class MCPClientBase(ABC):
                 FrozenJSON.from_value(response, self.limits).object(),
                 self._selected_version == MODERN_VERSION,
                 self.limits,
+                compatibility=self._selected_version == "2025-11-25",
             )
             if len(names) + len(page.tools) > self.limits.catalog_tools:
                 raise ProtocolFailure("limit_exceeded")

@@ -235,8 +235,17 @@ No default/auto HTTP version, legacy SSE fallback, OAuth discovery/login/refresh
 GET subscriptions, resources/prompts or server exposure is configured here.
 The target is the pinned MCP 2026-07-28 tools/transport specification plus the
 explicit 2025-11-25 compatibility profile, not every optional MCP feature.
+For 2025 tool discovery, input schemas may declare the exact Draft-07 URI
+`http://json-schema.org/draft-07/schema#` or the supported 2020-12 URI;
+Friday validates each declaration with its corresponding dialect. The 2026
+profile and output-schema restrictions are unchanged.
 
-Endpoints are ASCII HTTPS without userinfo, query, fragment or escaped host.
+Endpoints are ASCII HTTPS without userinfo, fragment or escaped host. Ordinary
+query strings are preserved on every request; for example,
+`https://example.com/mcp?region=us-east-1`. Do not place credentials or OAuth
+access tokens in a URL query string. Use `auth: bearer_env` and `credential_env`
+for bearer credentials; Friday cannot reliably identify secrets in arbitrary
+query values.
 TLS verifies the original hostname; no YAML flag changes trust or verification.
 Default port 443 and public addresses apply. Private destinations/non 443 ports
 need exact per-peer allowed_addresses/allowed_ports; hostnames/CIDR/wildcards and

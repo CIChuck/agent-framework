@@ -86,7 +86,7 @@ class HTTPEndpoint:
             not isinstance(url, str)
             or not 0 < len(url) <= 4096
             or any(not 0x21 <= ord(c) <= 0x7E for c in url)
-            or any(c in url for c in ("?", "#", "\\"))
+            or any(c in url for c in ("#", "\\"))
             or not isinstance(policy, HTTPEndpointPolicy)
         ):
             raise ValueError("Invalid MCP HTTP endpoint")
@@ -126,7 +126,7 @@ class HTTPEndpoint:
             if parsed.port is not None:
                 authority += f":{port}"
             normalized = urlunsplit(
-                (parsed.scheme, authority, parsed.path or "/", "", "")
+                (parsed.scheme, authority, parsed.path or "/", parsed.query, "")
             )
         except ValueError:
             raise ValueError("Invalid MCP HTTP endpoint") from None

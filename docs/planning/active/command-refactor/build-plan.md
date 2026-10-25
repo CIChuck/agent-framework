@@ -37,6 +37,12 @@ and physical terminal UAT after the shared command owner is accepted. Under
 the current maintainer decision, TUI development is deferred until this
 refactor is completed, tested and accepted.
 
+The maintainer has requested a one-off MCP compatibility exception on this
+branch. Its [approved exact directive](directives/CD-CMD-MCP-001-compatibility-exception.md)
+covers the 2025 Draft-07 discovery fix and query-bearing endpoint URLs. It has
+its own candidate and validation receipts, does not alter the command scope,
+and was approved for implementation on 2026-10-25.
+
 ## Source baseline and decisions
 
 - The current Chat registry contains 50 canonical slash commands and three
