@@ -13,7 +13,7 @@ directive.
 
 `execution_phase: planning`; `validation_state: not_ready`.
 
-**Date:** 2026-10-24
+**Date:** 2026-10-25
 
 The maintained slash-command refactor is a framework and terminal-client work
 unit with its own architecture, migration, compatibility and independent
@@ -64,6 +64,13 @@ holds behavior changes and consolidation proposals outside this extraction.
 The approved [MCP client compatibility exception](directives/CD-CMD-MCP-001-compatibility-exception.md)
 records the maintainer-requested Draft-07 and query-URL fixes as a separate,
 bounded unit on this branch; it does not advance the command P0–P5 gates.
+Two further MCP issues are documented for review before any code directive:
+[tool continuity across conversation turns](proposals/mcp-tool-turn-continuity.md)
+and [server-neutral input-schema compatibility](proposals/mcp-schema-compatibility.md).
+They are separate from the shared-command contract and from each other:
+registration determines which tools exist in Chat, while per-turn selection
+determines which registered schemas the model receives. Both proposals remain
+planning only.
 There is no approved technical contract yet; the architecture proposal must
 be reviewed and its open package/API and CLI-role decisions recorded at P1.
 

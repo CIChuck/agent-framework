@@ -1,5 +1,17 @@
 # Shared command refactor — execution log
 
+2026-10-25: At the maintainer's request, two MCP follow-ups were written up
+before any further code change: [tool continuity across Chat turns](proposals/mcp-tool-turn-continuity.md)
+and [server-neutral input-schema compatibility](proposals/mcp-schema-compatibility.md).
+A synthetic, offline two-turn selection probe demonstrated that a Gmail
+write-action candidate can be selected for an initial request and displaced by
+a feedback tool on a short `Yes, send it` follow-up. The schema proposal
+records the separate registration rejection of three Zapier tools. Both
+documents identify open contract decisions and deterministic proof required
+before construction directives; they do not advance command P0–P5 or grant
+product-code authority. The maintainer's two existing Chat config edits were
+left untouched.
+
 2026-10-24: The maintainer accepted the separate project scope, requested
 activation, and directed all command-refactor planning documents to the
 `docs/planning/active/command-refactor/` packet. The dedicated

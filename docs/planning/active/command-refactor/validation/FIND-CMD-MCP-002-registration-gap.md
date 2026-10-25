@@ -52,6 +52,9 @@ The three Zapier rejections are `inspect_zapier_actions`,
 `execute_zapier_read_action`, and `execute_zapier_write_action`. Supporting
 references or `propertyNames` changes a security-sensitive schema boundary;
 it needs its own review and directive if those capabilities are needed.
+The subsequent [server-neutral schema proposal](../proposals/mcp-schema-compatibility.md)
+records that design question separately from the
+[per-turn selection proposal](../proposals/mcp-tool-turn-continuity.md).
 
 ## Remediation boundary
 
