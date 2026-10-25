@@ -1,6 +1,7 @@
 # Proposal — server-neutral MCP input-schema compatibility
 
-**Status:** planning and diagnosis only; no construction directive or product-code authority.
+**Status:** maintainer policy decisions recorded on 2026-10-25; engineering
+contract and construction directive still pending. No product-code authority.
 
 **Branch/relationship:** `feature/command-refactor`. This is a separate MCP
 follow-up, not a P0–P5 slash-command migration. Read with the
@@ -35,6 +36,19 @@ bounded keyword subset. Raising `max_schema_tokens` makes more catalog entries
 eligible for registration but does not make unsupported schemas valid. The
 registration gap is also distinct from the subsequent per-turn tool budget.
 
+### Read-only Zapier schema-shape check
+
+On 2026-10-25, a read-only probe through the configured provider inspected
+only keyword/reference shapes; it did not invoke any MCP tool or print schema
+content or credentials. Each of the three rejected Zapier input schemas had
+one `$defs` block, three `$ref` values that were local JSON Pointers, and two
+`propertyNames` occurrences. The reachable reference graph in each schema
+contains structural recursion through object/array schema keywords. It is not
+an external-reference dependency or merely an unreferenced recursive
+definition. This is why a first release limited to *nonrecursive* local
+references would still reject all three tools. Whether Friday's model
+providers can represent these recursive schemas remains unverified.
+
 ## Why the current rejection exists
 
 The runtime publishes a sanitized schema as the model-facing tool contract.
@@ -46,61 +60,78 @@ inspection, dialect-sensitive semantics, or provider export compatibility.
 The existing fail-closed result is safer than silently changing the contract,
 but its scope is too narrow for common MCP catalogs.
 
-## Recommended server-neutral contract to design
+## Maintainer decisions
 
-1. Define a documented, dialect-aware supported profile for all servers,
-   independent of server name. Inventory actual rejected keyword shapes from
-   more than Zapier before fixing the exact profile. Record which of the three
-   Zapier schemas use local versus external references; the current finding
-   has not established those targets.
-2. Preserve the meaning of admitted schemas end to end. Decide whether model
-   providers can receive local `$defs`/`$ref` and `propertyNames` unchanged.
-   Where they cannot, evaluate bounded local-reference expansion or another
-   equivalent representation. A lossy export must not be called equivalent.
-3. Resolve only explicitly supported local references. Do not automatically
-   fetch external reference URIs. Bound traversal, expansion, cycles, bytes,
-   result size and work. Valid recursive schemas may need a documented limit
-   or explicit rejection if safe model export cannot represent them.
-4. Validate annotations and every admitted nested schema, including referenced
-   definitions. Keep peer text out of logs and error details. Report a safe
-   reason such as `unsupported_keyword` or `unsupported_reference` to help
-   distinguish compatibility from malformed JSON or exhausted budgets.
-5. Check the complete path: MCP dialect validation, runtime registration,
-   native/Chat model export, per-turn budget calculation, and tool execution.
-   Decide whether Friday should validate call arguments against the admitted
-   schema before forwarding; the current MCP wrapper forwards arguments to
-   the client, while server-side validation remains the server's duty.
+The maintainer accepted these policies in the conversation on 2026-10-25.
+The local-recursion decision supersedes the earlier nonrecursive recommendation
+after the Zapier schema-shape check above. These decisions settle intended
+behavior, not the exact implementation or model-provider compatibility.
 
-This is a **server-neutral policy**, not a promise that every possible JSON
-Schema keyword or provider-specific tool format will be supported. Unsupported
-features should remain explicit and explainable.
-
-## Decisions needed before a construction directive
-
-| Decision | Review question |
+| Topic | Decision |
 | --- | --- |
-| Supported profile | Is the first unit local `$defs`/`$ref` plus `propertyNames`, or a broader JSON Schema profile backed by a keyword inventory? |
-| Representation | Can each supported model provider accept the original schema, or must Friday transform it while preserving meaning? |
-| Reference policy | Which local pointer and recursion forms are supported, and what bounded failure applies to external, missing or cyclic references? |
-| Call validation | Must Friday enforce admitted constraints before an MCP call, in addition to server enforcement? |
-| Diagnostics | Which stable, non-sensitive rejection codes and counts should `/tools mcp` or `/tool-budget` expose? |
-| Budget order | Should a definition that fails registration consume the shared discovery-preparation budget? This is a separate issue exposed by the earlier finding. |
+| First-release profile | Define a bounded, dialect-aware, extensible profile for every server, not a Zapier exception or an unqualified promise to support every valid JSON Schema. Inventory other rejected shapes; the first release targets `$defs`, local `$ref`, and `propertyNames`, with explicit diagnostics for still-unsupported features. |
+| Model representation | Retain the validated source schema as authoritative. Offer it unchanged when a provider supports it; otherwise use only a bounded transformation proven to preserve its constraints. If faithful export is impossible, make the tool unavailable for that provider with a clear reason. Never silently drop a constraint. |
+| Reference policy | Support bounded local JSON Pointer references within the same tool schema, including productive structural recursion, without infinite expansion. Reject missing targets, pure reference/alias loops, unsupported forms and external references; never fetch a schema URL. Bound validation and processing work. |
+| Call validation | Validate model arguments locally against the admitted canonical schema before the MCP call. Invalid arguments cause no remote call and yield a safe validation error; the server still validates inputs. |
+| Visibility | Give one nonfatal startup summary per server with discovered, registered and rejected counts, plus later inspectable per-tool rejection reasons. Use fixed, non-sensitive codes for unsupported keyword/reference/provider export/budget cases; do not display raw schemas, descriptions, credentials or arbitrary peer-supplied keyword text. |
+| Budget charging | Retain raw discovery and per-definition safety limits, but charge the shared model-facing schema budget only for tools that pass schema admission. A rejected schema cannot crowd out an otherwise valid tool. |
+
+This is a **server-neutral policy**. A provider unable to accept a faithful
+representation of a recursive tool schema may still leave that tool
+unavailable under the agreed preserve-or-reject rule. The three Zapier tools
+must not be declared fixed until provider export, registration and execution
+checks pass; local-reference support alone is insufficient proof.
+
+## Design work before a construction directive
+
+- Specify the exact keyword/dialect matrix and a fixture corpus from more
+  than one server. Resolve how Draft-07 `definitions`, 2020-12 `$defs`, JSON
+  Pointer escaping, annotations, sibling keywords and unsupported extensions
+  are handled without changing schema meaning.
+- Define a bounded in-memory reference graph and local argument validator.
+  Distinguish productive recursion through instance structure from a pure
+  alias loop; never resolve external references through the network. State
+  concrete node, depth, instance-size, work and time limits and fail safely
+  when a limit is reached.
+- Test each supported model-provider export path against local references,
+  recursive references and `propertyNames`. Use unchanged schemas where
+  accepted; allow only demonstrably equivalent bounded transformations.
+  Record a stable provider-compatibility reason when no faithful export exists.
+- Keep sanitized canonical schemas and model exports consistent, with
+  registration and per-turn accounting based on what can actually be offered.
+  Decide the exact startup/status UI for the accepted diagnostic policy and
+  how to avoid logging peer-controlled text. Fair allocation among *valid*
+  tools from different servers remains a separate budget question.
+- Prepare exact source/test paths, deterministic fixtures, expected decisions,
+  security and regression gates, and stop conditions in a bounded construction
+  directive. The command-refactor P0–P5 plan does not supply that authority.
 
 ## Required proof for a later implementation
 
 - Offline fixtures from at least two independent MCP schema shapes, including
-  valid local reuse and `propertyNames` acceptance/rejection, both supported
-  dialect paths, nested annotation scanning and actual model export.
-- Negative cases for external/missing/cyclic references, unknown keywords,
-  malformed values, excessive expansion, byte/depth/node limits, and
-  cross-dialect behavior. Preserve current 2024/2025/2026 version boundaries.
+  valid local reuse, productive recursive local references and
+  `propertyNames` acceptance/rejection, both supported dialect paths, nested
+  annotation scanning and actual model-provider export.
+- Negative cases for external/missing references, pure alias loops, unknown
+  keywords, malformed values, excessive work, byte/depth/node/instance/time
+  limits and cross-dialect behavior. Preserve current 2024/2025/2026 version
+  boundaries.
 - Registration-to-Chat checks that the expected tools appear in `/tools mcp`
   and that sanitized exported schemas retain the accepted constraints.
+- Pre-call checks prove invalid arguments are blocked without a remote call
+  and valid arguments reach the server. A server-side validation failure still
+  returns through the existing MCP error path.
+- Startup and later status checks show discovered/registered/rejected counts
+  and safe per-tool reasons for a different server with an unsupported schema;
+  a healthy connection alone is not reported as full tool readiness.
+- Budget tests show rejected schemas do not consume the shared model-facing
+  cap while raw discovery caps and per-definition limits still apply.
 - Per-turn budget and execution regressions remain separate from registration
   proof. A two-turn Zapier-style workflow is an integration gate only after
   the [continuity proposal](mcp-tool-turn-continuity.md) is also resolved.
-- Read-only live discovery may corroborate catalog counts and safe rejection
-  codes; deterministic fixtures and independent review control acceptance.
+- Read-only live discovery may corroborate Zapier catalog shapes and safe
+  rejection codes without invoking tools; deterministic fixtures, provider
+  export checks and independent review control acceptance.
 
 No server-specific keyword bypass, token-cap increase, network reference
-fetch, live write action, or product-code edit follows from this proposal.
+fetch, live write action, or product-code edit follows from these decisions.

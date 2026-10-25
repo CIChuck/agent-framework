@@ -1,5 +1,18 @@
 # Shared command refactor — execution log
 
+2026-10-25: The maintainer resolved the
+[server-neutral MCP schema proposal](proposals/mcp-schema-compatibility.md): a
+bounded extensible keyword profile; faithful provider export or explicit
+rejection; local pre-call argument validation; startup and inspectable
+registration diagnostics; and charging the shared model-schema budget only
+for admitted tools. A read-only shape probe of the three rejected Zapier
+schemas found only local pointers but productive structural recursion in
+each. The maintainer revised the first-release reference policy to allow
+bounded local recursion while rejecting pure alias loops and external
+references. No MCP tool was invoked, no credential/schema content was
+recorded, and no product code or user config changed. Provider compatibility
+and an exact construction directive remain open.
+
 2026-10-25: The maintainer resolved all six policy questions in the
 [MCP turn-continuity proposal](proposals/mcp-tool-turn-continuity.md): a
 user-request-grounded pending task and narrow registered tool set; expiry on
