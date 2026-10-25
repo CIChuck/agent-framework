@@ -94,6 +94,16 @@ discovery after the amendment returned five tools from both the plain OpenAI
 Docs endpoint and its `?xyz` query variant. The exception is ready for a
 candidate commit and independent review; no command P0/P1 result is claimed.
 
+2026-10-25: MCP compatibility candidate `28c1741ef66f000f68ccb286ac99f8165828dded`
+was frozen from base `c5683fd28a40bf92cf32ae9b790897a9a34ce5f4` with
+only the approved source, tests, guide and planning records. A fresh-context,
+read-only reviewer returned **VERIFIED** after reproducing the 1,640-test gate,
+focused Ruff and mypy, board and documentation checks. See
+[VAL-CMD-MCP-001](validation/VAL-CMD-MCP-001-report.md). The two pre-existing
+Friday Chat config edits remain outside the candidate. This closes the MCP
+exception's validation gate only; the command initiative remains started in
+P0/P1 planning and awaits its own contract and construction directive.
+
 `execution_phase: planning`; `validation_state: not_ready`.
 
 Next: characterize Chat and `friday-framework-cli`, settle the supported
