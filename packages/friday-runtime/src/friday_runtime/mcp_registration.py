@@ -329,7 +329,13 @@ def _semantic(value: Any) -> None:
             _semantic(child)
 
 
-def _schema(value: Any, *, root: bool = False, http_headers: bool = False) -> Any:
+def _schema(
+    value: Any,
+    *,
+    root: bool = False,
+    http_headers: bool = False,
+    allow_2025_draft7: bool = False,
+) -> Any:
     if isinstance(value, bool):
         return value
     allowed = (
@@ -343,7 +349,9 @@ def _schema(value: Any, *, root: bool = False, http_headers: bool = False) -> An
     for key, child in value.items():
         _semantic_text(key)
         if key == "$schema":
-            if child != "https://json-schema.org/draft/2020-12/schema":
+            if child != "https://json-schema.org/draft/2020-12/schema" and not (
+                allow_2025_draft7 and child == "http://json-schema.org/draft-07/schema#"
+            ):
                 raise ValueError("Unsupported MCP schema dialect")
             continue
         if key == "x-mcp-header":
@@ -422,7 +430,11 @@ def _schema(value: Any, *, root: bool = False, http_headers: bool = False) -> An
 
 
 def sanitize_definition(
-    raw: Mapping[str, Any], max_bytes: int, *, http_headers: bool = False
+    raw: Mapping[str, Any],
+    max_bytes: int,
+    *,
+    http_headers: bool = False,
+    allow_2025_draft7: bool = False,
 ) -> tuple[MCPValidatedDefinition, Literal["unchanged", "sanitized"]]:
     """Validate complete bounded JSON, redact annotations, preserve safe semantics."""
     if len(_encode(raw).encode("utf-8")) > max_bytes:
@@ -449,7 +461,12 @@ def sanitize_definition(
     clean_description = _annotation(description)
     if http_headers:
         header_bindings(parameters)
-    clean_parameters = _schema(parameters, root=True, http_headers=http_headers)
+    clean_parameters = _schema(
+        parameters,
+        root=True,
+        http_headers=http_headers,
+        allow_2025_draft7=allow_2025_draft7,
+    )
     changed = clean_description != description or clean_parameters != parameters
     return MCPValidatedDefinition(
         clean_description, _encode(clean_parameters)
@@ -534,6 +551,8 @@ def prepare_registration(
                 limits.max_schema_bytes_per_tool,
                 http_headers=isinstance(server, MCPRuntimeHTTPServerConfig)
                 and server.protocol_version == "2026-07-28",
+                allow_2025_draft7=isinstance(server, MCPRuntimeHTTPServerConfig)
+                and server.protocol_version == "2025-11-25",
             )
         except (ValueError, TypeError, UnicodeError, RecursionError, OverflowError):
             decisions.append(

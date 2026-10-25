@@ -1,7 +1,7 @@
-# Proposed remediation directive — 2025 Draft-07 tool registration
+# Remediation directive — 2025 Draft-07 tool registration
 
-**Status:** proposed for exact-scope maintainer approval; no product source
-edits under this directive yet.
+**Status:** approved by Chuck Russell on 2026-10-25 in the conversation;
+implementation candidate prepared, independent validation pending.
 
 **Board/branch:** `friday-command-refactor` on `feature/command-refactor`;
 bounded follow-up to [CD-CMD-MCP-001](../directives/CD-CMD-MCP-001-compatibility-exception.md)
@@ -20,9 +20,9 @@ already does. Do not broaden accepted keywords, remote references, embedded
 content, schema size/token limits, tool-name policy or result handling.
 
 The accepted result is that the five-tool OpenAI Docs catalog publishes five
-registered `mcp_openaidocs_*` tools with the current Chat YAML and defaults.
-Under the current 4,000 shared schema cap, this leaves only one Zapier tool
-registered. This directive does not change that cap or support Zapier's
+registered `mcp_openaidocs_*` tools with the current Chat YAML. The default
+shared schema cap is 4,000; the user's working YAML now sets it to 40,000.
+This directive does not change either cap or support Zapier's
 `$defs`, `$ref`, and `propertyNames` constructs.
 The 2024 and 2026 registration paths must retain their current Draft-07
 rejection, and unknown/malformed dialects must still fail safely. This

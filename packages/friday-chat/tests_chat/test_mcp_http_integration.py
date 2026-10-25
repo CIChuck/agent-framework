@@ -9,6 +9,7 @@ from pathlib import Path
 import pytest
 import yaml
 from friday_chat.adapters import FrameworkMemoryAdapter
+from friday_chat.commands.registry import RegistryCommandContext, build_default_registry
 from friday_chat.config import load_friday_py_config
 from friday_chat.runtime import (
     FakeChatModel,
@@ -135,6 +136,38 @@ def real_chat_factory(
         and runtime.tools is runtime.mcp_tools
     )
     return runtime, model, collections, recorder
+
+
+@pytest.mark.asyncio
+async def test_2025_draft7_docs_catalog_is_visible_in_chat_tools_command(
+    tmp_path, monkeypatch
+):
+    helper = integration_helpers()
+    wire = helper.wire_helpers()
+    peer = wire.Peer("2025-11-25")
+    peer.tools = helper.docs_draft7_catalog()
+    helper.controlled_factory(monkeypatch, peer, wire.Resolver())
+    runtime, _, _, _ = real_chat_factory(
+        tmp_path, monkeypatch, helper.public_remote_entry("2025-11-25")
+    )
+    expected = {f"mcp_remote_{tool['name']}" for tool in peer.tools}
+    try:
+        await runtime.start_mcp_tools()
+        available = {
+            tool.name for tool in runtime.tools.list_tools() if tool.category == "mcp"
+        }
+        assert available == expected
+        registry = build_default_registry()
+        handled, result = await registry.execute(
+            "/tools mcp", RegistryCommandContext(runtime=runtime, registry=registry)
+        )
+        assert handled and result is not None
+        assert "Available tools (5 total):" in result.output
+        assert all(f"- {name}:" in result.output for name in expected)
+        assert "tools/call" not in peer.methods()
+    finally:
+        await runtime.stop_mcp_tools()
+        await runtime.async_clients.close()
 
 
 @pytest.mark.asyncio

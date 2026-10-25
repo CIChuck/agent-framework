@@ -518,6 +518,60 @@ def public_remote_entry(version="2026-07-28", **changes):
     }
 
 
+def docs_draft7_catalog():
+    names = (
+        "search_openai_docs",
+        "list_openai_docs",
+        "fetch_openai_doc",
+        "list_api_endpoints",
+        "get_openapi_spec",
+    )
+    return [
+        {
+            "name": name,
+            "description": f"Synthetic {name} documentation tool",
+            "inputSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {"query": {"type": "string"}},
+                "additionalProperties": False,
+            },
+        }
+        for name in names
+    ]
+
+
+@pytest.mark.asyncio
+async def test_2025_docs_catalog_registers_all_five_tools_without_calls(
+    tmp_path, monkeypatch
+):
+    helpers = wire_helpers()
+    peer = helpers.Peer("2025-11-25")
+    peer.tools = docs_draft7_catalog()
+    controlled_factory(monkeypatch, peer, helpers.Resolver())
+    provider = RuntimeMCPProvider(
+        MCPToolProviderConfig.from_dict(stanza([public_remote_entry("2025-11-25")])),
+        str(tmp_path),
+    )
+    registry = DefaultToolRegistry()
+    try:
+        await provider.start()
+        assert provider.discovery.discovered_tools == 5
+        assert len(provider.prepared_tools) == 5
+        await provider.register_tools(registry)
+        expected = {f"mcp_remote_{tool['name']}" for tool in peer.tools}
+        assert set(provider.owned_tool_names) == expected
+        assert set(registry.list_names()) == expected
+        assert len(provider.registration_decisions) == 5
+        assert all(
+            decision.reason == "registered"
+            for decision in provider.registration_decisions
+        )
+        assert "tools/call" not in peer.methods()
+    finally:
+        await provider.stop()
+
+
 @pytest.mark.asyncio
 @pytest.mark.parametrize("version", ["2026-07-28", "2025-11-25"])
 async def test_runtime_actual_connect_policy_rechecks_dns_and_preserves_hostname(

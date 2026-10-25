@@ -270,8 +270,14 @@ budgets/retries. Runtime admission and Chat per-turn count/schema/result budgets
 still apply. Remote metadata accurately reports streamable_http/remote; peer
 instructions and annotations never grant policy or enter prompts automatically.
 
-The model-facing inline schema admits the canonical root 2020-12 declaration and
-validated modern HTTP x-mcp-header annotations, then removes those protocol fields.
+The model-facing inline schema admits the canonical root 2020-12 declaration,
+or the exact Draft-07 declaration for a 2025-11-25 HTTP peer, and validated
+modern HTTP x-mcp-header annotations. Registration strips the admitted root
+dialect declaration and protocol header annotations before publication. A
+successful `tools/list` alone does not make a tool visible in `/tools mcp`:
+runtime registration still applies the bounded inline subset, filters and
+schema budgets. Inspect registration decisions when discovery succeeds but
+the Chat tool list is empty.
 The client retains its original catalog/wire bindings, including exact Unicode
 Base64 header encoding. Unsupported references/dialects/keywords remain rejected.
 Checked results use the same sanitation, quarantine, transcript correlation and

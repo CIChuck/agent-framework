@@ -115,6 +115,28 @@ identified three further Zapier definitions outside the schema subset. See
 [proposed bounded Draft-07 remediation](remediation/REM-CMD-MCP-002-2025-draft7-registration.md).
 No product source or user config changed in this review.
 
+2026-10-25: The maintainer approved the exact
+[Draft-07 registration remediation directive](remediation/REM-CMD-MCP-002-2025-draft7-registration.md).
+The user's Chat YAML now sets the shared MCP schema budget to 40,000; it
+remains outside this work unit. The approved fix is limited to 2025 Draft-07
+runtime registration and its publication regression.
+
+2026-10-25: The bounded runtime registration fix admits the exact Draft-07
+root declaration only for HTTP peers configured with `2025-11-25`, then
+applies the existing inline subset and strips the root dialect annotation.
+The 122-test focused pre-edit baseline passed. The final MCP client, runtime
+and Chat regression selection passed **2,003 tests**; focused Ruff and source
+mypy passed. Board validation and documentation lifecycle passed (36 tasks and
+661 Markdown files), as did `git diff --check`. An optional Ruff format check
+still finds only pre-existing formatting in `test_mcp_registration.py`; the
+new hunks and other changed Python files are formatted. A read-only live
+OpenAI Docs probe connected, discovered five, prepared five and registered
+five tools with no tool calls. With both configured servers, a discovery-only
+probe connected to both, discovered 22, prepared 22 and registered 19 (five
+Docs plus 14 Zapier); the same three Zapier definitions remain rejected for
+unsupported schema keywords. The user's Chat YAML and models config remain
+outside this candidate. Freeze the candidate and obtain independent review.
+
 `execution_phase: planning`; `validation_state: not_ready`.
 
 Next: characterize Chat and `friday-framework-cli`, settle the supported
