@@ -293,3 +293,13 @@ uv run python scripts/friday-dev-board.py validate
 uv run python scripts/check-documentation-lifecycle.py
 git diff --check
 ```
+
+2026-10-25: Frozen candidate `e898e211d2c666aef3190682cd8cfb4556e3c934`
+was independently **VERIFIED** against CD-CMD-MCP-003 and its approved
+send-boundary amendment. The reviewer reproduced 2,040 selected tests,
+focused Ruff lint/format and mypy, board validation (36 tasks), documentation
+lifecycle (668 Markdown files), and `git diff --check`. See
+[VAL-CMD-MCP-003](validation/VAL-CMD-MCP-003-report.md). The review used
+local tests only. Provider model-path export for recursive tools remains
+unproven, so those tools are still withheld from model turns. Maintainer
+acceptance and the wider command-refactor phases remain separate.
