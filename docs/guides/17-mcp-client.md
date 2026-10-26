@@ -324,9 +324,12 @@ async def refresh_tools(adapter: MCPToolAdapter) -> None:
 
 A failed refresh clears usable cached definitions. Previously created wrappers
 fail with `catalog_unavailable` before issuing a call after failure, removal or
-reconnect. An already-issued call settles once against its captured output schema
-and HTTP header bindings. Refresh never replays a tool call. An explicit successful
-refresh creates new wrappers; code should replace its own programmatic references
+reconnect. Generation-bound calls are checked again immediately before stdio
+transport send or HTTP pool dispatch; a refresh before that dispatch prevents
+the stale RPC. An already-dispatched call settles once against its captured
+output schema and HTTP header bindings. Refresh never replays a tool call. An
+explicit successful refresh creates new wrappers; code should replace its own
+programmatic references
 after applying its existing admission rules. Custom clients implementing only the
 original MCPClient contract remain supported, without generation guarantees.
 

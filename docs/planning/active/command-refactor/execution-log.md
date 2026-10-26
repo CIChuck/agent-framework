@@ -258,3 +258,38 @@ for maintainer review. The other finding, one new Ruff formatting difference
 in `friday_chat/tools/mcp.py`, was corrected mechanically within the existing
 boundary. No existing MCP client source was edited under the proposed
 amendment. Work-unit validation remains pending.
+
+2026-10-25: Chuck Russell approved the exact
+[send-boundary amendment](directives/AMEND-CMD-MCP-003-001-send-boundary.md).
+The additional `friday-mcp` client-source boundary is authorized only for the
+two generation guards and deterministic regressions described there.
+Work-unit validation remains pending.
+
+2026-10-25: A separate remediator added the approved generation guard at the
+stdio `transport.send` and HTTP pool-dispatch seams. The guard reads the
+call-local generation and current catalog immediately before dispatch;
+generation-free raw calls remain unchanged. Deterministic stdio, 2025 HTTP
+and 2026 HTTP fixtures now invalidate the catalog after initial call admission
+but before dispatch, assert `catalog_unavailable`, and observe **zero** tool
+requests. The old HTTP test expecting a pre-dispatch stale call was corrected;
+existing issued-call output-schema/header tests still pass. The full selected
+MCP client, runtime and Chat regression command passed **2,040 tests**:
+
+```sh
+uv run pytest -q packages/friday-mcp/tests_mcp/client packages/friday-runtime/tests_runtime/test_mcp_registration.py packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py packages/friday-runtime/tests_runtime/test_mcp_http_integration.py packages/friday-runtime/tests_runtime/test_mcp_loading.py packages/friday-chat/tests_chat/test_mcp_chat_bridge.py packages/friday-chat/tests_chat/test_mcp_http_integration.py packages/friday-chat/tests_chat/test_mcp_turn_budget.py packages/friday-chat/tests_chat/test_mcp_execution_security.py packages/friday-chat/tests_chat/test_mcp_execution_transcript.py packages/friday-chat/tests_chat/test_mcp_config_compatibility.py packages/friday-chat/tests_chat/test_mcp_memory.py packages/friday-chat/tests_chat/test_tool_selection_budget.py
+```
+
+Focused Ruff lint and format checks passed for the amended client files,
+refresh test and corrected Chat line; focused mypy passed for `base.py` and
+`http.py`. Board validation passed (36 tasks), documentation lifecycle passed
+(668 Markdown files), and `git diff --check` passed. Freeze the bounded
+candidate and obtain a new fresh-context, read-only aggregate review.
+
+```sh
+uv run ruff check packages/friday-mcp/src/friday_mcp/client/base.py packages/friday-mcp/src/friday_mcp/client/http.py packages/friday-mcp/tests_mcp/client/test_result_refresh.py packages/friday-chat/src/friday_chat/tools/mcp.py
+uv run ruff format --check packages/friday-mcp/src/friday_mcp/client/base.py packages/friday-mcp/src/friday_mcp/client/http.py packages/friday-mcp/tests_mcp/client/test_result_refresh.py packages/friday-chat/src/friday_chat/tools/mcp.py
+uv run mypy packages/friday-mcp/src/friday_mcp/client/base.py packages/friday-mcp/src/friday_mcp/client/http.py
+uv run python scripts/friday-dev-board.py validate
+uv run python scripts/check-documentation-lifecycle.py
+git diff --check
+```

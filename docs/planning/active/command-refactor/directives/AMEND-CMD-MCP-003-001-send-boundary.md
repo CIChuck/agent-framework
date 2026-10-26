@@ -1,6 +1,7 @@
 # Amendment 001 — bind MCP calls at transport dispatch
 
-**Status:** proposed; maintainer approval required before client source edits.
+**Status:** approved by Chuck Russell in the conversation on 2026-10-25;
+implementation and validation pending.
 
 **Amends:** [CD-CMD-MCP-003](CD-CMD-MCP-003-server-neutral-schema.md).
 The approved directive permits existing MCP client source changes only through
