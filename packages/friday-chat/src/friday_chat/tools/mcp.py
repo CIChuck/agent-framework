@@ -194,7 +194,9 @@ class MCPChatRegistry:
         except MCPArgumentValidationError as exc:
             self._last_argument_failure[name] = exc.reason
             return self._observed(
-                self.output_policy.failed_record(metadata, identifier, "execution_error")
+                self.output_policy.failed_record(
+                    metadata, identifier, "execution_error"
+                )
             )
         except TimeoutError:
             return self._observed(

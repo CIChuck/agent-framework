@@ -245,3 +245,16 @@ both stale paths. The broader MCP client, runtime and Chat selection passed
 validation (36 tasks), documentation lifecycle (666 Markdown files) and
 `git diff --check`. This remediation requires a new frozen candidate and
 fresh-context review; neither earlier candidate is `VERIFIED`.
+
+2026-10-25: Candidate `c0d5518aa132b5e416d9806e65132476f34840ea`
+received a third fresh-context, read-only **CHANGES_REQUESTED** verdict. The
+reviewer verified the earlier two remediations but reproduced one stale RPC
+when a catalog refresh occurs after the initial call-generation check and
+before transport dispatch. See
+[VAL-CMD-MCP-003](validation/VAL-CMD-MCP-003-interim-review.md). The necessary
+client-source edit is outside the approved directive's source boundary;
+[Amendment 001](directives/AMEND-CMD-MCP-003-001-send-boundary.md) is proposed
+for maintainer review. The other finding, one new Ruff formatting difference
+in `friday_chat/tools/mcp.py`, was corrected mechanically within the existing
+boundary. No existing MCP client source was edited under the proposed
+amendment. Work-unit validation remains pending.
