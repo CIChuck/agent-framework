@@ -27,7 +27,7 @@ from typing import Any, Literal, Protocol
 
 from friday_core.mcp import MCPDiagnosticCode, MCPToolMetadata, normalize_mcp_tool_name
 from friday_core.security import InjectionPatternLibrary
-from friday_mcp.client import header_bindings
+from friday_mcp.client import MCPClientBase, MCPRefreshClient, header_bindings
 from friday_mcp.client.adapter import MCPToolWrapper, MCPValidatedDefinition
 from friday_mcp.client.schema_validation import (
     MCPReferenceError,
@@ -98,6 +98,9 @@ class MCPDiscoveryEntry(Protocol):
 
     @property
     def untrusted_definition_json(self) -> str: ...
+
+    @property
+    def catalog_generation(self) -> int | None: ...
 
 
 @dataclass(frozen=True)
@@ -530,7 +533,7 @@ def prepare_registration(
     limits = config.config.limits
     prefix = config.config.tool_name_prefix
     native = set(native_names)
-    contenders: list[tuple[str, str, dict[str, Any]]] = []
+    contenders: list[tuple[str, str, dict[str, Any], int | None]] = []
     decisions: list[MCPRegistrationDecision] = []
     seen: dict[str, MCPCollisionSource] = {}
     for entry in entries:
@@ -567,14 +570,14 @@ def prepare_registration(
             )
             raise MCPRegistrationError("name_collision", decisions) from None
         seen[name] = _mcp_collision_source(entry.server_id, raw["name"])
-        contenders.append((entry.server_id, name, raw))
+        contenders.append((entry.server_id, name, raw, entry.catalog_generation))
 
     wrappers: list[MCPToolWrapper] = []
     metadata: list[MCPToolMetadata] = []
     counts: dict[str, int] = {}
     cost = 0
     server_configs = {server.name: server for server in config.config.servers}
-    for server_id, name, raw in contenders:
+    for server_id, name, raw, catalog_generation in contenders:
         server = server_configs.get(server_id)
         try:
             definition, state = sanitize_definition(
@@ -587,12 +590,16 @@ def prepare_registration(
             )
         except MCPUnsupportedKeywordError:
             decisions.append(
-                MCPRegistrationDecision(name, server_id, "rejected", "unsupported_keyword")
+                MCPRegistrationDecision(
+                    name, server_id, "rejected", "unsupported_keyword"
+                )
             )
             continue
         except MCPReferenceError:
             decisions.append(
-                MCPRegistrationDecision(name, server_id, "rejected", "unsupported_reference")
+                MCPRegistrationDecision(
+                    name, server_id, "rejected", "unsupported_reference"
+                )
             )
             continue
         except (ValueError, TypeError, UnicodeError, RecursionError, OverflowError):
@@ -614,6 +621,27 @@ def prepare_registration(
                 )
             )
             continue
+        refresh_client = (
+            client
+            if isinstance(client, MCPRefreshClient)
+            and (
+                not isinstance(client, MCPClientBase) or client.supports_catalog_refresh
+            )
+            else None
+        )
+        if refresh_client is not None:
+            snapshot = refresh_client.current_catalog_snapshot
+            if (
+                type(catalog_generation) is not int
+                or snapshot is None
+                or snapshot.generation != catalog_generation
+            ):
+                decisions.append(
+                    MCPRegistrationDecision(
+                        name, server_id, "unavailable", "registration_failed"
+                    )
+                )
+                continue
         if (
             len(wrappers) >= limits.max_total_tools
             or counts.get(server_id, 0) >= limits.max_tools_per_server
@@ -633,7 +661,9 @@ def prepare_registration(
             schema_sanitization_state=state,
             filter_state="included",
         )
-        wrapper = MCPToolWrapper.from_validated(client, item, definition)
+        wrapper = MCPToolWrapper.from_validated(
+            client, item, definition, catalog_generation=catalog_generation
+        )
         size = exported_definition_size(wrapper)
         if (
             size > limits.max_schema_bytes_per_tool

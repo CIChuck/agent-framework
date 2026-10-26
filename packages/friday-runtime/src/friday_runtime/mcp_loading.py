@@ -23,7 +23,7 @@ from friday_core.mcp import (
     MCPToolMetadata,
     build_mcp_metadata_index,
 )
-from friday_mcp.client import MCPClientManager
+from friday_mcp.client import MCPClientBase, MCPClientManager, MCPRefreshClient
 from friday_mcp.config import MCPConfig
 from friday_mcp.protocols import MCPClient
 from friday_telemetry import (
@@ -92,6 +92,7 @@ class MCPDiscoveredTool:
 
     server_id: str
     untrusted_definition_json: str = field(repr=False)
+    catalog_generation: int | None = None
 
 
 @dataclass
@@ -100,6 +101,7 @@ class _ServerResult:
     outcome: MCPLifecycleOutcome
     # Any is confined to the JSON-RPC boundary; never a diagnostic contract.
     tools: list[dict[str, Any]] = field(default_factory=list, repr=False)
+    catalog_generation: int | None = None
 
 
 class MCPRegistrationRegistry(Protocol):
@@ -598,12 +600,32 @@ class RuntimeMCPProvider:
             )
             self.emit_event("list_tools_start", server_id=server.name)
             try:
-                tools = await asyncio.wait_for(
-                    manager.get_client(server.name).list_tools(),
-                    timeout=max(0.0, deadline - asyncio.get_running_loop().time())
-                    if bounded_profile
-                    else timeout,
+                client = manager.get_client(server.name)
+                refresh_client = (
+                    client
+                    if isinstance(client, MCPRefreshClient)
+                    and (
+                        not isinstance(client, MCPClientBase)
+                        or client.supports_catalog_refresh
+                    )
+                    else None
                 )
+                discovery_timeout = (
+                    max(0.0, deadline - asyncio.get_running_loop().time())
+                    if bounded_profile
+                    else timeout
+                )
+                if refresh_client is not None:
+                    snapshot = await asyncio.wait_for(
+                        refresh_client.refresh_tool_catalog(), timeout=discovery_timeout
+                    )
+                    generation = snapshot.generation
+                    tools = snapshot.tools()
+                else:
+                    generation = None
+                    tools = await asyncio.wait_for(
+                        client.list_tools(), timeout=discovery_timeout
+                    )
                 if not isinstance(tools, list):
                     raise ValueError("Invalid MCP catalog")
                 self.emit_event(
@@ -620,7 +642,7 @@ class RuntimeMCPProvider:
                             30,
                         )
                     )
-                return _ServerResult(server, "connected", tools)
+                return _ServerResult(server, "connected", tools, generation)
             except asyncio.CancelledError:
                 self.emit_event(
                     "list_tools_failure",
@@ -714,7 +736,11 @@ class RuntimeMCPProvider:
                             skip_counts.get("schema_limit", 0) + 1
                         )
                         continue
-                    prepared.append(MCPDiscoveredTool(server.name, encoded))
+                    prepared.append(
+                        MCPDiscoveredTool(
+                            server.name, encoded, result.catalog_generation
+                        )
+                    )
                 state: Literal["not_started", "connected", "failed"] = "connected"
             elif result.outcome in ("disabled", "auto_connect_disabled"):
                 state = "not_started"

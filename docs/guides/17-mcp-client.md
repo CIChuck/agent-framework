@@ -331,6 +331,12 @@ after applying its existing admission rules. Custom clients implementing only th
 original MCPClient contract remain supported, without generation guarantees.
 
 Runtime and Chat retain startup/reconnect discovery and transactional registration.
+For refresh-capable clients, runtime discovery carries the returned catalog
+generation into registration. If another refresh changes that generation before
+registration, the stale definition is withheld. Registered wrappers retain the
+discovery generation, so a later refresh makes them unavailable before a tool
+call. Clients without the optional refresh contract retain their existing
+discovery behavior.
 They expose no in-place refresh YAML option or automatic list-change subscription.
 Use their public stop/start lifecycle for integrated rediscovery. Existing selection,
 filters, collision and schema/token budgets, provenance, quarantine, transcripts,

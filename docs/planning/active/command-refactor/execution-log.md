@@ -231,3 +231,17 @@ reject before serialization, size/depth/node failures make no RPC, and a zero
 deadline fails safely. The refreshed selected suite passed **1,847 tests**.
 The candidate must be refrozen and independently reviewed again; the first
 review is not a `VERIFIED` result.
+
+2026-10-25: Refrozen candidate `1473b933c82667cba345a78254eb055df4544ffa`
+received a second fresh-context, read-only **CHANGES_REQUESTED** verdict. The
+reviewer reproduced a catalog-generation race: a definition discovered in one
+generation could be validated locally while its wrapper called the same tool
+name in a later generation. The runtime now carries the exact discovery
+generation into registration, rejects a stale generation before publishing a
+wrapper, and binds the wrapper to the discovered generation for later calls.
+A synthetic refresh-before/after-registration test asserts zero tool calls on
+both stale paths. The broader MCP client, runtime and Chat selection passed
+**2,037 tests**; focused Ruff lint/format and mypy passed, as did board
+validation (36 tasks), documentation lifecycle (666 Markdown files) and
+`git diff --check`. This remediation requires a new frozen candidate and
+fresh-context review; neither earlier candidate is `VERIFIED`.
