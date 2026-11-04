@@ -330,3 +330,15 @@ need explicit contract treatment. Case-level fixture/assertion coverage,
 transitive effects, failure disposition and installed proof remain open.
 No product source/test edits, automatic remediation, phase completion or
 acceptance occurred. Continue the per-case audit before affected construction.
+
+2026-11-04: Continued P0 without product source/test changes.
+[Controlled failure isolation](validation/p0-failure-disposition.md) uses committed
+example blobs in temporary files and a temporary collection plugin; original
+dirty examples remain untouched. The three failing nodes pass with xterm; the
+full Chat control passed 826 tests (one existing deprecation warning, explicit
+live lane excluded). Dumb TERM reproduces both clear-byte failures after the
+committed config removes the native-vs-MCP adapter mismatch. Captured all 50
+default invocations on fresh no-runtime contexts with zero unhandled exceptions
+and audited selected existing behavior assertions. Exact node references are
+validated against source. Production-adapter/complete per-command effect mapping
+and isolated-wheel proof remain open; no P0/P1 completion or construction grant.

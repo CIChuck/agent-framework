@@ -99,3 +99,8 @@ retirement directive. No handler migration or retirement occurred in P0.
 Before construction: finish the transitive service/effect and failure-order map,
 freeze exact fixture/result expectations, assign migration families and cross-family
 scenarios, and obtain contract/directive approval. No P0/P1 completion claimed.
+
+The [50-case default behavior audit](default-behavior-audit.md) adds observed
+outputs/state, and the [selected assertion audit](behavior-assertion-audit.md)
+records inspected test semantics. The [failure controls](p0-failure-disposition.md)
+isolate the initial red baseline without modifying product source or tests.

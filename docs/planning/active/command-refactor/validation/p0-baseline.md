@@ -96,3 +96,9 @@ neutral API and capability ownership map, with separate adapters preserving each
 parser/result contract. Build/isolated-install baselines and supported-platform
 proof remain open. No phase completion, independent VERIFIED result, maintainer
 acceptance or TUI construction authority is claimed.
+
+## Follow-up controls
+
+The [failure disposition](p0-failure-disposition.md) explains all three initial
+failures. A full committed-example/xterm control passed 826 Chat tests. This
+follow-up does not replace the dirty-worktree observations above.
