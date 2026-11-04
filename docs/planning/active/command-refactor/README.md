@@ -103,3 +103,8 @@ and [baseline receipt](validation/p0-baseline.md). The initial dirty-worktree Ch
 [controlled baseline](validation/p0-failure-disposition.md) passes all 826 Chat
 tests using committed examples and xterm. Case-level behavior and installed-package
 proof remain open.
+
+Review inputs now include the [production/effect audit](validation/production-effects-audit.md),
+[foundation API draft](shared-command-api.md) and
+[draft first directive](directives/CD-CMD-FND-001-neutral-foundation.md).
+Family port signatures, installed proof and gate approval remain open.

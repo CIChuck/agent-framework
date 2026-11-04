@@ -342,3 +342,15 @@ default invocations on fresh no-runtime contexts with zero unhandled exceptions
 and audited selected existing behavior assertions. Exact node references are
 validated against source. Production-adapter/complete per-command effect mapping
 and isolated-wheel proof remain open; no P0/P1 completion or construction grant.
+
+2026-11-04: Audited production-adapter, persisted-transcript, memory-diagnostic
+and maintenance assertions and source effect ordering. The 54 passing cases
+in those four modules have unchanged test hashes against the initial receipt.
+[Audit](validation/production-effects-audit.md) distinguishes observed assertions
+from unprobed clear/reset late-failure behavior. Drafted the
+[foundation API](shared-command-api.md), with typed data/outcome invariants,
+Chat-compatible parsing and separate generic CLI preservation; family port
+schemas remain pending. Prepared [CMD-FND-001](directives/CD-CMD-FND-001-neutral-foundation.md)
+as a draft exact boundary for neutral types/registry only, no default handlers
+or client wiring. Construction remains unauthorized pending required review,
+applicable P0/P1 disposition and maintainer approval. No product code changed.

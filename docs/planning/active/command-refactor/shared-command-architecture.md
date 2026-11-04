@@ -269,3 +269,12 @@ this design nor its retained-command migration changes Friday Chat or
 `friday-framework-cli` public behavior by intent. The nine selected Chat
 retirements are explicit exceptions; before/after checks must demonstrate
 both boundaries.
+
+## Foundation API review draft
+
+The [typed API draft](shared-command-api.md) defines proposed foundation
+signatures and family ownership obligations grounded in the
+[production/effect audit](validation/production-effects-audit.md). The
+[foundation directive](directives/CD-CMD-FND-001-neutral-foundation.md) is a
+proposed construction boundary only. Neither is approved, and neither closes
+the existing P0/P1 gates or authorizes a handler migration.
