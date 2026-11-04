@@ -354,3 +354,15 @@ schemas remain pending. Prepared [CMD-FND-001](directives/CD-CMD-FND-001-neutral
 as a draft exact boundary for neutral types/registry only, no default handlers
 or client wiring. Construction remains unauthorized pending required review,
 applicable P0/P1 disposition and maintainer approval. No product code changed.
+
+2026-11-04: Under the maintainer's instruction to proceed until an artifact
+requires approval, froze review candidate 0124d14bb8e91091d35eb73c09f6640e6f558289
+and dispatched a fresh-context read-only architecture reviewer. The reviewer
+returned VERIFIED for AP-01–AP-06 design approval readiness; no mandatory findings,
+one optional multi-slash fixture clarification. Stored the returned report as
+[VAL-CMD-ARCH-001](validation/VAL-CMD-ARCH-001-report.md); reviewer verified all
+19 authority pins, 84 source/test hashes, unchanged HEAD and dirty inputs, board
+and documentation checks. The controller prepared [CMD-DESIGN-001](approval/foundation-design.md)
+for limited design/verification approval. Reviewed API/directive bytes and
+manifest authorities remain unchanged. Stop at the maintainer design decision;
+no approval, P0/P1 closure, implementation authority or external delivery inferred.

@@ -108,3 +108,11 @@ Review inputs now include the [production/effect audit](validation/production-ef
 [foundation API draft](shared-command-api.md) and
 [draft first directive](directives/CD-CMD-FND-001-neutral-foundation.md).
 Family port signatures, installed proof and gate approval remain open.
+
+## Pending foundation design decision
+
+[CMD-DESIGN-001](approval/foundation-design.md) is ready for maintainer review.
+The [independent report](validation/VAL-CMD-ARCH-001-report.md) returned VERIFIED
+for AP-01–AP-06 design approval readiness only. The reviewed API/directive and
+authority pins are unchanged. Overall execution remains planning, with P0/P1
+incomplete and product construction unauthorized. No design approval is recorded.
