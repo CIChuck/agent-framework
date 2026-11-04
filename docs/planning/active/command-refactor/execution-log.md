@@ -315,3 +315,18 @@ register, three canonical intent sources and derived plans. The 50/3 source
 snapshot is unchanged; the planned target is 41/3. No source/test changes,
 construction authority, phase completion, acceptance or TUI resumption is
 implied. Exact contract, P0 evidence and first directive remain next gates.
+
+2026-11-04: Began the bounded P0 characterization checkpoint. Captured the
+[50-case source ledger](validation/par-coverage-ledger.md), reproducible source
+inspection and stateless contract probes, and [baseline receipts](validation/p0-baseline.md).
+Live metadata matches the frozen 50-name/three-alias snapshot with no drift.
+Generic CLI: 155 passed. Chat (explicit live-provider lane excluded):
+823 passed, three failed; baseline is red. The combined suite invocation first
+failed collection due to duplicate test module basenames, so owning suites were
+run separately. Pre-existing dirty configuration/model examples and backlog
+were preserved and hashed; no clean-HEAD or isolated-wheel baseline is claimed.
+Observed parser differences and the generic CLI's missing entry-point `app`
+need explicit contract treatment. Case-level fixture/assertion coverage,
+transitive effects, failure disposition and installed proof remain open.
+No product source/test edits, automatic remediation, phase completion or
+acceptance occurred. Continue the per-case audit before affected construction.

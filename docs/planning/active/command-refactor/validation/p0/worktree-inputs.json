@@ -1,0 +1,9 @@
+{
+  "head": "fc028f3bf128a610aae7d95b59afb4b601bec0eb",
+  "preexisting_dirty_paths_sha256": {
+    "docs/planning/backlog/friday-tui-command-followups/README.md": "404b94f2c4773b6597946e7cbb1679f2040901078f1e86c625155c95cf586c95",
+    "packages/friday-chat/config.example.yaml": "c2f728c98adc5ca773bfdf3170d846a610f15d77eae9a380e1a815534b93c3e7",
+    "packages/friday-chat/models-config.example.yaml": "11e99116d885a431f085b6bd05b5bd30348eb37654fd4c9350a7cca58c527896"
+  },
+  "limits": "These pre-existing changes were present during the tests. No frozen clean-HEAD baseline is claimed."
+}

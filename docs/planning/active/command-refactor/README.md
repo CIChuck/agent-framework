@@ -97,3 +97,7 @@ No command source change is authorized by activation alone.
 
 The [next-phase checkpoint](next-phase.md) identifies the bounded P0/P1
 continuation and the review stop before product construction.
+
+Initial P0 observations are in the [source ledger](validation/par-coverage-ledger.md)
+and [baseline receipt](validation/p0-baseline.md). The Chat baseline is red;
+case-level behavior and installed-package proof remain open.
