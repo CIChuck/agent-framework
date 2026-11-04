@@ -1,5 +1,12 @@
 # Shared command refactor — regression and validation strategy
 
+**Maintainer decision update — 2026-11-04:** Apply the resolved
+[O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
+nine complete removals, `/tools` retained, a 41/3 target, shared
+`friday-commands` ownership, preserved generic CLI behavior and retained-command
+quirks. Earlier proposals below are superseded where they conflict. Exact API,
+capability mapping, baseline evidence and construction approval remain pending.
+
 **Status:** approved regression expectations; exact commands and fixtures must be pinned
 in approved work-unit directives before implementation
 
@@ -47,7 +54,7 @@ in P1; its negative checks do not count as retained-command parity.
 
 The selected retirements receive separate negative tests: old names must never
 execute their former effects; help/completion and user guides must match the
-approved response, and non-retired names/aliases must remain intact. Security
+ordinary unknown-command response without migration notices or redirects, and non-retired names/aliases must remain intact. Security
 and workflow commands require current-behavior probes on their actual paths;
 the later security/workflow capability reviews cannot be treated as completed
 by a passing command test. High-impact commands such as reset, maintenance,

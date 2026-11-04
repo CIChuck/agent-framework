@@ -1,5 +1,12 @@
 # Shared Friday command refactor
 
+**Maintainer decision update — 2026-11-04:** Apply the resolved
+[O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
+nine complete removals, `/tools` retained, a 41/3 target, shared
+`friday-commands` ownership, preserved generic CLI behavior and retained-command
+quirks. Earlier proposals below are superseded where they conflict. Exact API,
+capability mapping, baseline evidence and construction approval remain pending.
+
 **Status:** started; approved scope; contract characterization underway
 
 **Board ID:** `friday-command-refactor`
@@ -44,7 +51,7 @@ silently replace the intent, maintainer commentary or source baseline.
 | Authority | [Board](../../board.yaml) and [authority record](authority.json) | Task state, branch, current scope and the requirement for an exact approved construction directive before product code. |
 | Feature intent | [Refactor discussion](command_refactor.md) | Why this branch exists, shared-owner and harness-evolution direction, migration sequence, protected behavior and maintainer clarifications. Candidate pruning and construction ideas remain proposals where labeled. |
 | Maintainer priorities | [Command inventory](command-inventory.md) | Focus areas, command scores and comments, recorded command decisions, architecture opportunities and deferred consolidation ideas. Assistant recommendations remain advisory. |
-| Command baseline | [Command matrix](command-matrix.md) and [JSON snapshot](validation/command-matrix.json) | The 50-name, three-alias before-change Chat surface and PAR case IDs, including the six retirement cases; not a post-refactor target or parity result. |
+| Command baseline | [Command matrix](command-matrix.md) and [JSON snapshot](validation/command-matrix.json) | The 50-name, three-alias before-change Chat surface and PAR case IDs, including the nine retirement cases; not a post-refactor target or parity result. |
 | Reconciled scope | [Build plan](build-plan.md) and [scope decisions](scope-decisions.md) | The approved objective and current decisions derived from the three intent sources; open choices and deferred work stay explicit. |
 | Contract input | [Shared-command architecture](shared-command-architecture.md) | Proposed ownership and dependency direction; package, API and CLI role still need explicit review and approval. |
 | Evidence standard | [Test strategy](test-strategy.md) | Required regression classes for phases and bounded units. |
@@ -75,14 +82,18 @@ registration determines which tools exist in Chat, while per-turn selection
 determines which registered schemas the model receives. Both proposals remain
 planning only.
 There is no approved technical contract yet; the architecture proposal must
-be reviewed and its open package/API and CLI-role decisions recorded at P1.
+be reviewed at P1. Package ownership and CLI preservation are decided; exact
+API, capability mapping and compatible primitive reuse evidence remain pending.
 
 **Current decision boundary:** Retain the current behavior of every maintained
-command that survives the six selected retirements. Old-name behavior,
-package/API design and CLI integration must be reconciled in an approved
-contract and bounded directives. Consolidation remains backlog work.
+command that survives the nine selected retirements. The exact API and compatible CLI primitive reuse must be reconciled in an
+approved contract and bounded directives; removal behavior and preservation
+policy are settled by O-01–O-05. Consolidation remains backlog work.
 
 **Next gate:** Characterize current Chat and separate CLI behavior, settle
-their shared-contract roles and the six retired names' old-name response, then
+the exact shared contract under the recorded maintainer decisions, then
 review the exact command contract and first bounded construction directive.
 No command source change is authorized by activation alone.
+
+The [next-phase checkpoint](next-phase.md) identifies the bounded P0/P1
+continuation and the review stop before product construction.

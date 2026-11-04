@@ -1,8 +1,15 @@
 # Shared Friday slash-command architecture
 
+**Maintainer decision update — 2026-11-04:** Apply the resolved
+[O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
+nine complete removals, `/tools` retained, a 41/3 target, shared
+`friday-commands` ownership, preserved generic CLI behavior and retained-command
+quirks. Earlier proposals below are superseded where they conflict. Exact API,
+capability mapping, baseline evidence and construction approval remain pending.
+
 **Status:** Proposed technical contract informed by accepted TUI decision D-123
-(`01cbaa0b:docs/planning/active/friday-tui/decisions.md`). The package location,
-relocation map and proof obligations below are a recommendation for P1 review;
+(`01cbaa0b:docs/planning/active/friday-tui/decisions.md`). Shared `friday-commands` ownership is confirmed by O-02. The detailed
+relocation map and proof obligations below remain inputs to P1 review;
 the package/API signatures, service ownership and construction units remain
 open. This document grants no code, release, or publication authority.
 
@@ -11,7 +18,7 @@ It refines the canonical [feature intent](command_refactor.md),
 [scored command inventory](command-inventory.md) and
 [command coverage matrix](command-matrix.md). The matrix supplies the current
 TUI parity planning baseline; the [scope decision register](scope-decisions.md)
-controls the six selected retirements and unresolved contract choices. The
+controls the nine selected retirements and unresolved contract choices. The
 [phase plan](phase-plan.md) requires an approved package, service-ownership
 and CLI-role decision before construction.
 
@@ -105,7 +112,7 @@ silently assigned to this different CLI.
 
 The proposed home is `packages/friday-commands/`, distributed as the separately
 installable `friday-framework-commands` package and imported as
-`friday_commands`. Its final name and public API are P1 technical-contract
+`friday_commands`. Its public API and distribution details remain P1 technical-contract
 decisions; the package does not exist on this branch yet. The command engine
 owns the maintained registry, metadata, parser, dispatch, handlers, validation,
 command-level policy and typed semantic outcomes. It depends on typed,
@@ -118,7 +125,7 @@ dependency of the TUI.
 
 | Proposed owner | Move or retain | Boundary |
 | --- | --- | --- |
-| `packages/friday-commands/src/friday_commands/` | Move maintained command metadata, name/alias resolution, parsing, validation, dispatch, command policy and handler semantics from `friday_chat.commands`. Define typed requests, outcomes, errors, progress and UI-effect intents plus small capability contracts. | One implementation for each retained command; no frontend formatting or concrete Chat session/runtime types. The six selected retirements require separately approved old-name behavior. |
+| `packages/friday-commands/src/friday_commands/` | Move maintained command metadata, name/alias resolution, parsing, validation, dispatch, command policy and handler semantics from `friday_chat.commands`. Define typed requests, outcomes, errors, progress and UI-effect intents plus small capability contracts. | One implementation for each retained command; no frontend formatting or concrete Chat session/runtime types. The nine selected retirements use complete removal under O-01/O-04. |
 | `packages/friday-chat/src/friday_chat/` | Keep the executable, input loop, Chat presentation, output/progress delivery, and capability wiring. Preserve necessary public `friday_chat.commands` imports as delegating compatibility entry points. | Existing Chat text and interaction remain protected; compatibility shims do not own a second registry definition or handler. Its current `friday-framework-cli` display dependency is separate from command ownership. |
 | `packages/friday-tui/src/friday_tui/` (later project) | Build the TUI editor, discovery, adapter, renderer, view state and lifecycle after shared-owner acceptance. | Consume the shared registry and semantic results. TUI-only commands compose through an isolated extension point; no imports from `friday_chat` or `friday_cli`. No TUI source is constructed by this refactor. |
 | Runtime and domain packages | Keep or expose public memory, transcript, tool, agent, security, speech and maintenance operations. | Own domain behavior and durable state. Frontend adapters may supply capabilities, but must not each reimplement command policy or stateful service logic. |
@@ -217,7 +224,7 @@ in P5. TUI integration begins only after P5 acceptance.
 4. After command-refactor acceptance, connect the TUI to that **same** shared
    engine. Test each retained PAR case through both frontends on equivalent
    disposable fixtures, including state/file effects and failures; verify the
-   six retirement cases against their approved old-name and discovery policy.
+   nine retirement cases against their approved old-name and discovery policy.
    Complete rolling terminal UAT, metadata-driven help/completion checks and a
    TUI-only extension check without leakage into Friday Chat or the generic CLI.
 
@@ -238,7 +245,7 @@ in P5. TUI integration begins only after P5 acceptance.
   help, completion metadata and TUI-only extension isolation from that registry.
 - **Behavior checks:** Before/after Chat fixtures compare normalized request,
   result meaning, errors, ordered progress, session/runtime and file/tool
-  effects, plus Chat's protected text and UI effects. The six retired names
+  effects, plus Chat's protected text and UI effects. The nine retired names
   follow their approved retirement contract instead of retained-command
   equivalence. When TUI integration begins, run the retained PAR cases through
   both installed clients on equivalent disposable fixtures; verify TUI
@@ -259,6 +266,6 @@ differences, and migration regressions. It is not a specification for a second
 set of TUI handlers. Preview alphas may expose a tested subset, but any
 maintained command they expose must use the shared implementation. Neither
 this design nor its retained-command migration changes Friday Chat or
-`friday-framework-cli` public behavior by intent. The six selected Chat
+`friday-framework-cli` public behavior by intent. The nine selected Chat
 retirements are explicit exceptions; before/after checks must demonstrate
 both boundaries.

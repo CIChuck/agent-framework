@@ -1,5 +1,12 @@
 # Friday slash-command refactor — feature intent and design rationale
 
+**Maintainer decision update — 2026-11-04:** Apply the resolved
+[O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
+nine complete removals, `/tools` retained, a 41/3 target, shared
+`friday-commands` ownership, preserved generic CLI behavior and retained-command
+quirks. Earlier proposals below are superseded where they conflict. Exact API,
+capability mapping, baseline evidence and construction approval remain pending.
+
 **Status:** Canonical feature-intent and design-rationale document, begun
 2026-10-19. Its established direction and maintainer clarifications guide this
 branch; sections labeled as candidates or proposals are not accepted contracts.
@@ -18,8 +25,8 @@ is now a separate active project with its own
 This intent document and the TUI matrix remain linked canonical inputs. The
 separate project owns Chat extraction and cross-client regression; Friday TUI owns its
 later adapter and parity/UAT work. The separate `friday-framework-cli` package's
-direct-consumer role is an open technical-contract decision, while its existing
-behavior remains protected.
+public API and behavior remain protected; any shared primitive reuse must
+demonstrate compatibility under O-03.
 
 This note and the [command matrix](command-matrix.md) are companion planning
 artifacts: the matrix identifies each current parity case, while this note
@@ -96,7 +103,7 @@ for the dependency and extension criteria.
    validation before treating the shared engine as ready for TUI use. TUI
    parity then compares both frontends on equivalent disposable fixtures and
    includes terminal UAT.
-4. Retire the six selected slash commands as an explicit scope unit in
+4. Retire the nine selected slash commands as an explicit scope unit in
    the shared command refactor. This intentional change needs its own
    compatibility checks and must not be treated as a behavior-preserving
    extraction or an unnoticed test failure. Old-name behavior still needs a
@@ -109,7 +116,7 @@ D-123 (`01cbaa0b:docs/planning/active/friday-tui/decisions.md`), the TUI PRD dra
 (`01cbaa0b:docs/planning/active/friday-tui/planning/phase-build-plan.md`), and the
 [50-command matrix](command-matrix.md). Those documents still describe all 50
 currently maintained commands and unchanged Chat behavior. The selected
-six-command retirement is a product-scope decision for the shared refactor;
+nine-command retirement is a product-scope decision for the shared refactor;
 the as-built parity baseline is not silently rewritten. Before construction,
 reconcile the decision record,
 release scope, matrix/acceptance cases, phase gates, help, user guides, and
@@ -219,7 +226,7 @@ read-only review on a frozen candidate. Later units migrate service-owning
 families one at a time with disposable effect comparisons, then connect TUI
 to the same implementations.
 
-The six selected command retirements belong in the shared command
+The nine selected command retirements belong in the shared command
 refactor, but require a reconciled baseline, old-name behavior, acceptance
 checks and a bounded construction directive before any source change. TUI
 development is deferred until the command refactor is completed, tested and

@@ -303,3 +303,15 @@ lifecycle (668 Markdown files), and `git diff --check`. See
 local tests only. Provider model-path export for recursive tools remains
 unproven, so those tools are still withheld from model turns. Maintainer
 acceptance and the wider command-refactor phases remain separate.
+
+2026-11-04: Chuck Russell resolved O-01 through O-05 individually in the
+planning discussion. All nine selected names are removed completely without
+legacy compatibility; `/tools` stays. Shared UI-neutral `friday-commands`
+ownership is confirmed. Preserve separate generic CLI behavior, reusing
+primitives only with demonstrated compatibility. Preserve retained-command
+quirks; handle fixes through separate bounded decisions and resolve security
+or contract violations before affected migration. Reconciled the decision
+register, three canonical intent sources and derived plans. The 50/3 source
+snapshot is unchanged; the planned target is 41/3. No source/test changes,
+construction authority, phase completion, acceptance or TUI resumption is
+implied. Exact contract, P0 evidence and first directive remain next gates.

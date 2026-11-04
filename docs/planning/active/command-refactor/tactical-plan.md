@@ -1,5 +1,12 @@
 # Shared command refactor — tactical plan
 
+**Maintainer decision update — 2026-11-04:** Apply the resolved
+[O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
+nine complete removals, `/tools` retained, a 41/3 target, shared
+`friday-commands` ownership, preserved generic CLI behavior and retained-command
+quirks. Earlier proposals below are superseded where they conflict. Exact API,
+capability mapping, baseline evidence and construction approval remain pending.
+
 **Status:** P0 source characterization and P1 contract preparation are active,
 not complete. No product-code unit is authorized without an approved exact
 construction directive.
@@ -31,11 +38,10 @@ remain the inputs to each tactical unit.
    treating that dependency as a command-handler dependency. Distinguish the
    generic CLI's declared entry point from its observed complete surface.
    Run effectful probes only on disposable stores.
-3. **Resolve the supported surface (P1).** Update the
-   [decision register](scope-decisions.md) for six selected retirements,
-   `/prime`, `/set`, `/vars`, old-name behavior and the rule for existing Chat
-   quirks. Explicitly reconcile the inventory's `/security-test` retirement
-   score with the approved six-name scope, which currently retains it. Record
+3. **Apply the supported-surface decisions (P1).** Use the recorded
+   [decision register](scope-decisions.md) for nine selected retirements, complete old-name removal and preserved Chat
+   quirks. These product choices are resolved; verify their technical mapping. Explicitly reconcile the inventory's `/security-test` retirement
+   score with the approved nine-name scope, which currently retains it. Record
    the retained/retired target and compatibility exceptions
    separately from the frozen 50-command source matrix. Reconcile planned
    help, guides and legacy fixtures. Keep C-01 through C-06 and behavior
@@ -60,7 +66,7 @@ remain the inputs to each tactical unit.
 
 The current work is steps 1–5. The PAR ledger, baseline receipts, contract,
 unit/scenario maps and first directive are required outputs, not completed
-evidence. No handler migration, six-name retirement, help change or package
+evidence. No handler migration, nine-name retirement, help change or package
 source edit follows from this tactical plan alone.
 
 ## Later execution — after the P1 gate
@@ -68,7 +74,7 @@ source edit follows from this tactical plan alone.
 | Phase | Tactical action and receipt |
 | --- | --- |
 | P2 — Shared foundation | Execute only approved foundation/pilot directives. For each frozen candidate, compare assigned PAR behavior, Chat text/effects, protected generic-CLI behavior, installed wheels and import direction; record independent read-only `VERIFIED` review and cumulative ledger coverage. |
-| P3 — Family migration and retirement | Move retained families in the approved dependency order. Run the six-name retirement as its own unit at the P1-approved position. Require before/after effect evidence, unchanged other names/aliases, negative former-effect tests, approved old-name/help/guide handling, cumulative regressions and no duplicate active handler. |
+| P3 — Family migration and retirement | Move retained families in the approved dependency order. Run the nine-name retirement as its own unit at the P1-approved position. Require before/after effect evidence, unchanged other names/aliases, negative former-effect tests, approved old-name/help/guide handling, cumulative regressions and no duplicate active handler. |
 | P4 — Cross-family integration | Run the P1 scenario map through the installed shared owner and Friday Chat outside the checkout. Run the generic CLI's protected installed regression and any approved shared adapter. Check dependency closure and state/error/effect interactions; reconcile every failure, skip or deviation with P0 and approved exceptions. |
 | P5 — Aggregate review and handoff | Freeze one aggregate candidate; run exact full Friday Chat and `friday-framework-cli` suites, static/type, build, installed-client and PAR-ledger comparisons in the P1-supported environments. Record counts/limits, independent `VERIFIED` review and separate maintainer acceptance. Only then prepare the accepted commit/API/version, target surface, receipts and known limits for the deferred TUI branch. TUI parity and physical terminal UAT remain later TUI gates. |
 

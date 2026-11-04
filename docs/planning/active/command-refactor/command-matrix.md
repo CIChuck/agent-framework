@@ -1,18 +1,26 @@
 # Friday TUI command coverage matrix
 
+**Maintainer decision update — 2026-11-04:** Apply the resolved
+[O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
+nine complete removals, `/tools` retained, a 41/3 target, shared
+`friday-commands` ownership, preserved generic CLI behavior and retained-command
+quirks. Earlier proposals below are superseded where they conflict. Exact API,
+capability mapping, baseline evidence and construction approval remain pending.
+
 Status: Canonical command-by-command source baseline and PAR case inventory for
 this feature branch. It records the before-change Chat surface and TUI parity
-planning obligations; it is not the 44-name supported-surface target or
+planning obligations; it is not the 41-name supported-surface target or
 behavioral test evidence. TUI behavior tests are still required.
 
 Companion: The [command refactor and pruning discussion](command_refactor.md)
 and its [separate active initiative](README.md)
 explain the Chat-first migration and commands under review. This
 matrix retains all 50 current Chat commands as the source-derived parity
-baseline. The maintainer selected six slash commands for retirement as part
+baseline. The maintainer selected nine slash commands for retirement as part
 of the shared command refactor: PAR-004 `/clear-tools`, PAR-019
 `/inject-payload`, PAR-020 `/inject-tools`, PAR-030 `/recommend-tools`, PAR-034
-`/run-tool` and PAR-046 `/tool-budget`. PAR-047 `/tools` remains. These rows
+`/run-tool`, PAR-046 `/tool-budget`, PAR-027 `/prime`, PAR-039 `/set`
+and PAR-049 `/vars`. PAR-047 `/tools` remains. These rows
 stay visible as the before-change inventory and retirement cases, not as TUI
 parity targets after retirement. The controlling
 [scope decisions](scope-decisions.md) and [phase plan](phase-plan.md) define

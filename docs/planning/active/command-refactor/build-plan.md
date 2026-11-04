@@ -1,5 +1,12 @@
 # Shared Friday command refactor — build plan
 
+**Maintainer decision update — 2026-11-04:** Apply the resolved
+[O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
+nine complete removals, `/tools` retained, a 41/3 target, shared
+`friday-commands` ownership, preserved generic CLI behavior and retained-command
+quirks. Earlier proposals below are superseded where they conflict. Exact API,
+capability mapping, baseline evidence and construction approval remain pending.
+
 **Status:** maintainer-approved initiative scope derived from the three
 canonical intent documents below; technical contract and construction
 directives remain open
@@ -15,7 +22,7 @@ changing a phase gate or writing a construction directive.
 | --- | --- |
 | [Refactor intent](command_refactor.md) | One shared, UI-neutral command owner; preserved behavior for retained commands; explicit retirement unit; Chat and separate CLI regression; TUI integration only after acceptance. Friday services own domain capability as the harness evolves. |
 | [Scored command inventory](command-inventory.md) | Honor maintainer command decisions and focus areas. Carry architecture opportunities into contract review; defer consolidation and behavior enhancements unless separately decided. |
-| [Command matrix](command-matrix.md) | Use the 50 canonical names, three aliases and PAR IDs as the before-change case inventory. Reconcile the six retirement cases separately from retained-command equivalence. |
+| [Command matrix](command-matrix.md) | Use the 50 canonical names, three aliases and PAR IDs as the before-change case inventory. Reconcile the nine retirement cases separately from retained-command equivalence. |
 
 ## Objective and ownership
 
@@ -54,8 +61,8 @@ and was approved for implementation on 2026-10-25.
   help, guides and tests before claiming parity against the target.
 - The maintainer's [scored inventory](command-inventory.md)
   selects `/clear-tools`, `/inject-tools`, `/recommend-tools`, `/run-tool`,
-  `/tool-budget` and `/inject-payload` for retirement in this refactor.
-  Determine the retired-name response and release boundary explicitly. Keep
+  `/tool-budget`, `/inject-payload`, `/prime`, `/set` and `/vars` for retirement.
+  Remove them completely under O-01/O-04; no legacy compatibility. Keep
   `/tools`, `/security`, `/security-config`, `/security-test`, `/workflow`,
   `/speech-test` and `/migrate` with their current behavior for this version.
   The [scope decision register](scope-decisions.md) distinguishes these
@@ -95,7 +102,7 @@ the [tactical plan](tactical-plan.md) tracks current characterization tasks.
    foundation and pilot semantics selected in the approved P1 unit map, then migrate retained
    families in dependency order. Each command has one active implementation;
    Chat delegates while its current presentation and public behavior are
-   preserved. Retire the six selected names as a separately tested scope unit
+   preserved. Retire the nine selected names as a separately tested scope unit
    at the position approved in P1, not as accidental extraction fallout.
 4. **Prove the shared owner before TUI integration (P4–P5).** Complete the
    [test strategy](test-strategy.md), including installed package/client
@@ -115,8 +122,8 @@ screen text is not the cross-frontend contract. Friday Chat's retained output
 and public behavior remain compatibility obligations in its own interface.
 
 The refactor exits only when every retained command family has before/after
-evidence, the six intentional retirements have approved replacement/old-name
-behavior and documentation, Friday Chat and `friday-framework-cli` pass their
+evidence, the nine intentional retirements have ordinary unknown-command handling, no former effects
+and updated documentation, Friday Chat and `friday-framework-cli` pass their
 applicable regression and installed-client gates, dependency direction is
 verified, and an independent reviewer returns `VERIFIED` on a frozen aggregate
 candidate. TUI parity and physical terminal acceptance remain in the TUI

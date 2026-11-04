@@ -1,5 +1,12 @@
 # Shared command refactor — phase plan
 
+**Maintainer decision update — 2026-11-04:** Apply the resolved
+[O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
+nine complete removals, `/tools` retained, a 41/3 target, shared
+`friday-commands` ownership, preserved generic CLI behavior and retained-command
+quirks. Earlier proposals below are superseded where they conflict. Exact API,
+capability mapping, baseline evidence and construction approval remain pending.
+
 **Status:** Measurable planning gates derived from the canonical
 [refactor intent](command_refactor.md), [scored inventory](command-inventory.md)
 and [command matrix](command-matrix.md) through the approved
@@ -23,7 +30,7 @@ fixtures, commands, expected results and stop conditions.
   behavior evidence.
 - Reconcile every scope or contract decision against the three canonical
   intent documents, the ledger, help, compatibility fixtures and user guides.
-  The six selected retirements are intentional exceptions to preserved Chat
+  The nine selected retirements are intentional exceptions to preserved Chat
   behavior; consolidation and other enhancements remain in the backlog.
 - From P1 onward, a gate cannot pass with an unassigned PAR case, an
   unexplained baseline failure or skip, an unapproved behavior change, a
@@ -53,14 +60,14 @@ commits, commands and environments. This gate does not authorize a source edit.
 
 ### P1 — Decide surface, contract and unit map
 
-Resolve O-01 through O-04 in the [decision register](scope-decisions.md) and
-approve an O-05 rule for baseline quirks and per-command exceptions. Approve
-the proposed `packages/friday-commands/` location or an explicit alternative,
+Apply O-01 through O-05 in the [decision register](scope-decisions.md).
+The shared package ownership and preservation rules are decided. Review
+the exact `packages/friday-commands/` contract, including
 the neutral registry/API, typed result and UI-effect model,
 error/progress/cancellation semantics, capability boundaries, Chat-owned
 service relocation or injection map, dependency direction and separate CLI
 reuse role: a compatible adapter or a source-backed reason no safe seam exists.
-Map every PAR case to a retained family or the six-name retirement unit, with
+Map every PAR case to a retained family or the nine-name retirement unit, with
 dependencies and risk. Define cross-family scenarios and supported
 package/runtime environments. Decide when the
 retirement unit runs relative to family migrations before either begins.
@@ -83,7 +90,7 @@ review. One shared implementation owns each migrated command; remaining Chat
 handlers are not exposed as TUI implementations. Record cumulative ledger
 coverage and every approved exception.
 
-### P3 — Migrate retained families and retire six names
+### P3 — Migrate retained families and retire nine names
 
 Execute approved retained-family units in dependency order. Run the separately
 scoped retirement unit at the position fixed in P1; do not migrate a handler
@@ -93,7 +100,7 @@ file/tool effects, and Chat presentation on disposable fixtures.
 
 **Exit:** Every retained PAR case has before/after evidence and one active
 shared implementation. Each unit passes focused and cumulative Chat/CLI
-regressions, installed checks and independent review. All six retired names
+regressions, installed checks and independent review. All nine retired names
 have negative former-effect checks and the approved old-name, help,
 completion, guide and legacy-fixture treatment. No PAR case remains unassigned
 or unreviewed.
@@ -130,7 +137,7 @@ known limits and receipts in a TUI handoff manifest.
 
 After P5 acceptance, the deferred Friday TUI project may resume on its own
 branch and consume the accepted shared contract. The handoff manifest gives
-TUI the retained-command target, six retired-name policy, semantic PAR cases,
+TUI the retained-command target, nine retired-name policy, semantic PAR cases,
 package/API version and known limitations. TUI command-by-command parity,
 frontend rendering, interaction and physical terminal UAT remain separate TUI
 acceptance gates. P5 does not claim that those tests have passed.

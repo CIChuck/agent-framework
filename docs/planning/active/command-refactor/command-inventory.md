@@ -1,5 +1,12 @@
 # Friday slash-command inventory and scoring sheet
 
+**Maintainer decision update — 2026-11-04:** Apply the resolved
+[O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
+nine complete removals, `/tools` retained, a 41/3 target, shared
+`friday-commands` ownership, preserved generic CLI behavior and retained-command
+quirks. Earlier proposals below are superseded where they conflict. Exact API,
+capability mapping, baseline evidence and construction approval remain pending.
+
 **Status:** Canonical maintainer scoring and command-decision source,
 2026-10-22. The scores, comments, focus areas and recorded decisions express
 feature intent. The [scope decision register](scope-decisions.md) reconciles
@@ -12,7 +19,7 @@ The [separate shared-command initiative](README.md)
 now owns migration planning and the cross-client regression gates. This scored
 sheet remains the maintainer's canonical decision source and is paired with the
 [TUI command matrix](command-matrix.md); neither is rewritten as though the
-six selected retirements have already shipped.
+nine selected retirements have already shipped.
 
 **Source:** The live Friday Chat
 [`build_default_registry()`](../../../../packages/friday-chat/src/friday_chat/commands/registry.py)
@@ -338,7 +345,7 @@ command-refactor plan before implementing that scope change. `/inject-payload`
 has no remaining consumer once `/run-tool` is retired.
 
 The scores and comments above remain review input. The current
-[scope decision register](scope-decisions.md) records the selected six-name
+[scope decision register](scope-decisions.md) records the selected nine-name
 retirement and unresolved scored outliers; the [phase plan](phase-plan.md)
 records the gates. Reconcile those records, the PAR matrix, Chat compatibility
 evidence and user guides before generating command-refactor code. TUI
