@@ -1,6 +1,7 @@
 # CD-CMD-FND-001 — neutral command foundation
 
 Date: 2026-11-04
+Revision: 2026-11-05 — bounded council findings SOL3-ARCH-001–003
 Status: DRAFT — not approved; product implementation not authorized
 Initiative: `friday-command-refactor`
 Work unit: `CMD-FND-001`; proposed P2 foundation slice, not P2 completion
@@ -74,10 +75,12 @@ controller/reviewer responsibilities, not builder-owned acceptance.
    Exports must match the approved API draft; no hidden frontend imports.
 2. **FND-02 contracts / API-04:** frozen typed metadata, request/execution,
    closed `FoundationData` union, error/UI-effect/outcome/dispatch models. Enforce
-   documented combinations with explicit exceptions; no source-level mypy blanket
+   every row of the API runtime-validation table with exact TypeError/ValueError
+   boundaries; no trusted-only constructor bypass; no source-level mypy blanket
    suppression, `Any`, casts hiding an interface defect, or untyped payload escape.
 3. **FND-03 registry / API-02–API-03:** normalized canonical/alias maps, immutable
-   snapshots, deterministic canonical ordering and atomic registration failures.
+   snapshots, rebuilt canonical stored specs, one-pass normalization, explicit
+   blank-alias rejection, deterministic ordering and atomic registration failures.
    Current Chat whitespace grammar, unknown and noncommand semantics are fixed.
    No generic enforcement of metadata choices/required args or shell tokenization.
 4. **FND-04 execution / API-05–API-06:** await one injected async handler once;
@@ -86,18 +89,32 @@ controller/reviewer responsibilities, not builder-owned acceptance.
 
 ## Meaningful tests
 
-- Metadata rejection: blank name/description/category/usage, undocumented argument,
+- Metadata rejection: blank normalized canonical name/alias, blank trimmed
+  description/category/usage, blank argument name/description,
   canonical collision, alias collision and same-call duplicate alias. Compare
   full registry state before/after each failure to prove no partial registration.
+  Mixed-case/slashed/padded inputs must yield canonical keys from names() and
+  matching rebuilt spec values through resolve()/specs()/request, while leaving
+  caller input unchanged. Test
+  normalization collisions and the non-idempotent normalization-order examples.
 - Copy/freeze invariants: caller collection changes cannot change registered
   metadata; returned names/spec snapshots cannot mutate the registry.
 - Parsing: ordinary text, leading space before slash, bare slash, uppercase name,
-  extra whitespace, aliases and quoted fragments. Expected Chat token sequences
+  extra whitespace, aliases, quoted fragments, //HELP, ///HELP and slash/space
+  normalization order. Use the independent API fixture table exactly, including
+  zero handler calls for the unresolved /help key from ///HELP. Expected sequences
   come from P0 observations, not a call to the implementation under test.
 - Dispatch: unknown name calls no handler; alias delivers canonical request;
   exact argument spelling/order; one awaited call; synthetic handler exception
-  and cancellation are propagated, not wrapped or retried.
-- Constructor negative cases enforce outcome/error and handled/outcome rules.
+  and cancellation are propagated, not wrapped or retried. Non-callable handlers,
+  nonawaitable returns, invalid outcome types and invalid execute input/context
+  types raise TypeError at the specified boundary without retry.
+- Constructor negatives cover every row of the runtime-validation table: wrong
+  scalar/container/member types (including bool-vs-int), opaque/subclass payloads,
+  invalid error codes, raw-string UI effects, mismatched request/spec names, both/
+  neither data/error and invalid handled/outcome/effect combinations. Assert the
+  exact built-in exception class. Test copied finite iterables and immutability;
+  metadata blank-value semantics remain registration checks, not argument policy.
   Exit/clear data are returned, not applied. NoData remains typed semantic data.
 - Boundary: importing foundation with frontend modules blocked succeeds; static
   imports and built wheel contain no frontend/domain dependency. Synthetic

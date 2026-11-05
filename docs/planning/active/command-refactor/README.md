@@ -109,10 +109,11 @@ Review inputs now include the [production/effect audit](validation/production-ef
 [draft first directive](directives/CD-CMD-FND-001-neutral-foundation.md).
 Family port signatures, installed proof and gate approval remain open.
 
-## Pending foundation design decision
+## Foundation design remediation — fresh review pending
 
-[CMD-DESIGN-001](approval/foundation-design.md) is ready for maintainer review.
-The [independent report](validation/VAL-CMD-ARCH-001-report.md) returned VERIFIED
-for AP-01–AP-06 design approval readiness only. The reviewed API/directive and
-authority pins are unchanged. Overall execution remains planning, with P0/P1
-incomplete and product construction unauthorized. No design approval is recorded.
+[CMD-DESIGN-001](approval/foundation-design.md) is revised under the maintainer's
+2026-11-05 authorization to resolve the three [council findings](validation/COUNCIL-CMD-DESIGN-001-round1.md).
+The [remediation record](remediation/REM-CMD-DESIGN-001.md) maps each correction
+and validation. Earlier VERIFIED reports cover older bytes only. A fresh review
+of the corrected candidate is pending. Overall execution remains planning, with
+P0/P1 incomplete and product construction unauthorized. No design approval is recorded.

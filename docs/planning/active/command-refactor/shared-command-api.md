@@ -1,6 +1,7 @@
 # Shared command API — P1 review draft
 
 Date: 2026-11-04
+Revision: 2026-11-05 — SOL3-ARCH-001/002 and parser-fixture clarification
 Status: Proposed; not approved technical authority; no construction authorization
 Scope: Shared foundation API plus family ownership constraints
 
@@ -52,9 +53,48 @@ The names/fields below are the proposed public foundation contract:
 | `CommandOutcome` | `data: FoundationData|None=None`, `error: CommandError|None=None`, `ui_effects: tuple[UiEffect,...]=()`; exactly one of data/error. Error outcomes carry no success UI effects in the foundation. |
 | `DispatchResult` | `handled: bool`, `outcome: CommandOutcome|None`; false requires none, true requires a valid outcome. |
 
-Use explicit validation errors for invalid construction; assertions are not runtime
-invariant enforcement. Freeze dataclasses and use immutable tuples, copying caller
-iterables. Do not overload `NoData` to carry successful-but-unavailable state.
+### Runtime validation boundary — SOL3-ARCH-001
+
+Every public dataclass constructor validates its fields at runtime; there are no
+trusted-only constructors or unchecked factory bypasses. Check field types in
+declaration order, snapshot collection fields, then check cross-field invariants.
+Wrong field/container/member types raise built-in `TypeError`; invalid permitted
+values or relationships raise built-in `ValueError`. Do not depend on assertions,
+type annotations or a later renderer to enforce these rules. Unknown constructor
+keywords/positional arity retain the generated dataclass `TypeError` behavior.
+Error message wording is not part of this foundation API.
+
+For every `str` field, require `isinstance(value, str)`; optional strings also
+allow `None`. Every boolean requires `type(value) is bool` (integers are rejected).
+Model-valued fields require the exact declared dataclass type, not a duck-typed
+object or subclass. `FoundationData` accepts exactly `NoData`, `HelpData` or
+`ExitData` instances. Frozen models contain immutable snapshots, not caller-owned
+mutable containers. NoData is not an unavailable/error payload.
+
+For collection fields, accept a finite iterable, but reject strings, bytes,
+bytearray and mappings as containers with `TypeError`. Snapshot once to a tuple
+in supplied iteration order and validate every member. Do not coerce members,
+sort or normalize them in constructors. An exception raised by a caller's iterator
+propagates unchanged; no registry state is touched during construction.
+
+| Constructor | Additional runtime checks after scalar typing |
+| --- | --- |
+| `CommandArgument` | `choices` members are strings. `required` is strictly boolean. Blank name/description are typed inputs but registration rejects them; no implicit choices/default/required argument policy is introduced. |
+| `CommandSpec` | `aliases` members are strings; `arguments` members are exactly `CommandArgument`. Preserve raw strings at construction; registration alone canonicalizes and checks semantic metadata validity. |
+| `CommandRequest` | `args` members are strings; `spec` is exactly `CommandSpec`; `name == spec.name`, otherwise `ValueError`. This equality is checked without renormalizing either name. The registry supplies its canonical stored spec; the constructor cannot prove registry membership. |
+| `CommandExecution` | `session_id` is string or None; no normalization, nonempty or service-availability assumption. |
+| `NoData` | No fields; no additional invariant. |
+| `HelpData` | `commands` members are exactly `CommandSpec`; `focused_name` is string or None. No implicit normalization or registry lookup in this data constructor. |
+| `ExitData` | `requested` is strictly boolean; either true or false is valid. |
+| `CommandError` | `code` is a string, then one of the four declared literals; unknown string code raises `ValueError`. `command_name` is a string, including the empty unknown name; `usage` is string or None. |
+| `CommandOutcome` | Non-None data is exactly a `FoundationData` variant; non-None error is exactly `CommandError`; `ui_effects` members are exactly `UiEffect`, never their string values. Exactly one of data/error must be non-None; an error with any UI effect raises `ValueError`. |
+| `DispatchResult` | `handled` is strictly boolean; non-None outcome is exactly `CommandOutcome`. False requires None; true requires an outcome; a mismatched pair raises `ValueError`. |
+
+`FoundationData` is a type alias, not another constructor. `UiEffect(value)` uses
+normal Enum construction: known `clear_screen` resolves to its member; an unknown
+value raises `ValueError`. Other models do not coerce strings into this Enum.
+No semantic validation may inspect stores, capabilities or network state.
+
 
 ## Public foundation signatures
 
@@ -74,20 +114,80 @@ class CommandRegistry:
     ) -> DispatchResult: ...
 ```
 
-`specs()` returns canonical metadata sorted by canonical name; help renderers group
-and sort as their frontend requires. `names()` includes aliases. Registering a
-blank name/description/category/usage, an undocumented argument or a canonical/
-alias collision raises `ValueError` before changing any registry map. Normalize
-names as current Chat does (remove one leading slash, trim, lowercase). `resolve`
-applies the same normalization and alias map; returns none for unknown names.
+### Canonical registration and lookup — SOL3-ARCH-002
 
-`execute_text` preserves the current Chat grammar: only a literal leading `/`
-starts dispatch; remove it, strip remaining text and split on whitespace. Do not
-introduce shell-style quoting or unescaping. Normalize only the command name;
-retain argument spelling/order. Empty `/` is handled as unknown name `''`.
+Define `N(text) = text.removeprefix("/").strip().lower()`, in that exact order,
+applied once at each public raw-name boundary. It is not idempotent for multiple
+leading slashes: do not apply it repeatedly to an already normalized key.
+
+`register(spec, handler)` accepts exactly `CommandSpec` plus a callable handler;
+wrong spec/handler types raise `TypeError`. A handler is contractually async;
+its returned value must be awaitable and resolve to exactly `CommandOutcome`,
+otherwise execution raises `TypeError` without retry. No registration-time
+handler invocation or coroutine-function introspection is required.
+
+Registration computes and validates a new candidate entirely before mutation:
+
+1. Copy the input metadata into fresh snapshots; leave the caller's spec unchanged.
+2. Set stored name to `N(spec.name)` and aliases to `tuple(N(a) for a in spec.aliases)`.
+   Trim description, category and usage with `.strip()`. Preserve detail verbatim.
+3. Reject empty normalized canonical names **and aliases** with `ValueError`.
+   Reject blank trimmed description/category/usage with `ValueError`; do not
+   synthesize usage. Each argument must have nonblank `name.strip()` and
+   `description.strip()`; otherwise `ValueError`. Preserve argument field strings,
+   default, choices and flags verbatim after those checks; do not trim/normalize
+   argument spelling or infer handler validation.
+4. Check the whole normalized canonical-plus-alias tuple for duplicates within
+   this registration and collisions with any existing canonical/alias key.
+   Any duplicate raises `ValueError`. All earlier maps remain unchanged.
+5. Build one fresh immutable canonical `CommandSpec` from those computed values,
+   including copied argument snapshots; atomically publish it and its handler
+   and alias keys. No await or handler call occurs in registration.
+
+`specs()` returns stored canonical specs sorted by stored canonical name.
+`names()` returns a frozenset of canonical and alias keys. `resolve(raw_name)`
+requires a string (otherwise `TypeError`), applies `N` once and performs alias/canonical map lookup.
+All three methods and dispatched `CommandRequest.spec` expose the same canonical
+metadata values, never the original untrimmed caller spec. Resolved aliases
+produce `request.name == request.spec.name ==` the stored canonical key.
+
+Blank aliases are deliberately invalid in this new foundation: they must not
+make bare `/` executable. This does not change any existing default name/alias
+or authorize editing Chat's current registration API; compatibility of external
+registration shims must be reviewed before that later adapter migration.
+
+### Text parsing and independent frozen fixtures
+
+`execute_text` requires string text and exactly `CommandExecution`, otherwise
+`TypeError` before dispatch. Only a literal leading `/` starts dispatch. Remove
+that dispatch slash, strip remaining text, split on whitespace, apply `N` **once**
+to the first token and preserve argument spelling/order. Look up that parsed key
+directly; do not pass it through public `resolve()` and normalize it a second time.
+No shell-style quoting or unescaping. Empty `/` is handled as unknown name `''`.
 Unknown names yield typed `unknown_command`; ordinary text yields unhandled.
 Do not add generic argument-count/choice rejection before a retained handler
 that currently accepts/ignores tokens. Handler-level grammar migrates explicitly.
+
+With only canonical `help`, alias `h`, and canonical `read` registered, freeze:
+
+| Text | Parsed key / args | Dispatch expectation |
+| --- | --- | --- |
+| `hello` or ` /HELP topic` | not dispatched | handled false, no outcome, zero handler calls |
+| `/` | `''`, `()` | unknown name, zero handler calls |
+| `/HELP topic` | `help`, `('topic',)` | one help invocation |
+| `//HELP topic` | `help`, `('topic',)` | one help invocation |
+| `///HELP topic` | `/help`, `('topic',)` | unknown; must not become help by repeated normalization |
+| `/ /HELP topic` | `help`, `('topic',)` | one help invocation |
+| `/   HELP  A B` | `help`, `('A', 'B')` | one help invocation |
+| `/H topic` | `h`, `('topic',)` | canonical request name/spec both help |
+| `/read "a b.txt"` | `read`, `('"a', 'b.txt"')` | unchanged quoted fragments |
+
+These expected tokens were reproduced from frozen Chat source, not from a new
+registry. Also freeze registration inputs `/HELP ` with alias `/H ` to stored
+`help`/`h`; a later ` help ` or alias `H` collides after normalization. The exact
+normalization order means `N(' /HELP ') == '/help'`, not `help`. Nonempty keys
+that retain a slash after this one-pass operation remain valid; do not impose
+an unapproved identifier regex. Requests compare stored identity without `N`.
 
 Handlers run once and are awaited once. Unhandled exceptions/cancellation propagate
 in the foundation rather than being silently turned into successful results.
@@ -155,9 +255,9 @@ of prompts, secrets, raw exception strings or hidden reasoning is implied.
 | ID | Requirement | Proof required before unit completion |
 | --- | --- | --- |
 | API-01 | Neutral dependency closure | Build/install foundation outside checkout; import guard rejects all frontend modules; static import audit of transitive closure. |
-| API-02 | Registry integrity | Canonical/alias duplicate and malformed metadata negative cases leave snapshots unchanged; immutable views; name resolution behavior. |
-| API-03 | Preserved grammar | Frozen Chat cases for ordinary text, `/`, uppercase names, aliases, spaces and quoted fragments; compare request tokens and unknown meaning. Keep generic CLI tests unchanged. |
-| API-04 | Typed outcomes | Constructor negative cases for invalid data/error and handled/outcome combinations; no opaque text or unrestricted payload in foundation. |
+| API-02 | Registry integrity | Canonical reconstruction/trimming, blank alias/argument rejection, normalized duplicates and other malformed metadata leave snapshots unchanged; immutable views and request/spec identity. |
+| API-03 | Preserved grammar | Independent frozen table above, including multi-slash and normalization order; compare tokens, unknown meaning and handler count. Keep generic CLI tests unchanged. |
+| API-04 | Typed outcomes | Constructor negatives cover every runtime-validation row, exact TypeError/ValueError classes, opaque payloads, invalid codes/effects/member types, request/spec mismatch and data/error/handled combinations; no unchecked payload escape. |
 | API-05 | One execution | Recording async handler called once; exception/cancellation propagation; registry performs no I/O, UI application or host exit mutation. |
 | API-06 | No early migration | Chat still owns its current behavior during foundation-only unit; all 50/3 baseline names remain. Installed foundation exposes no default handlers. |
 | API-07 | Family parity | Before/after typed semantic data, stage/effect order, safe warnings, exact Chat text via adapter, invalid/unavailable/partial/cancel paths for each migrated PAR case. |

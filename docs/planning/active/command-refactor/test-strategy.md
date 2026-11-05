@@ -15,7 +15,7 @@ in approved work-unit directives before implementation
 Freeze a fresh inventory of Friday Chat's canonical names, aliases, metadata,
 argument grammar, generated help and the separate `friday-framework-cli`
 registry/API. Capture installed entry points, imports and dependency closure
-for both current terminal clients. Record the 50/3 Chat snapshot and the six
+for both current terminal clients. Record the 50/3 Chat snapshot and the nine
 selected retirements as different evidence classes: retained behavior must
 match; intentionally retired behavior must match its approved retirement
 contract. Existing defects and later improvements receive separate backlog

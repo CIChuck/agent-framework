@@ -39,8 +39,8 @@ accepted baseline.
 Its [consolidation recommendations](command-inventory.md#consolidation-recommendations)
 are a separate scored section near the top of that sheet.
 The [source-backed pruning review](command-pruning-review.md) preserves an
-earlier seven-command recommendation. The maintainer has instead selected six
-specific retirements for the shared command refactor; the current 50-command
+earlier seven-command recommendation. The maintainer has selected nine
+specific retirements under O-01/O-04 for the shared command refactor; the current 50-command
 as-built baseline remains in force until scope and construction are reconciled.
 
 ## Why we are considering this work
@@ -233,7 +233,12 @@ development is deferred until the command refactor is completed, tested and
 accepted; a command construction unit needs its own reconciled board/packet
 state and exact maintainer-approved directive.
 
-## Maintainer clarifications, 2026-10-22
+## Historical maintainer clarifications, 2026-10-22
+
+The six-name retirement subset below records the 2026-10-22 discussion, not the
+current supported-surface instruction. O-01–O-05 now control nine complete
+removals, including `/prime`, `/set` and `/vars`; preserve these historical notes
+as provenance only where superseded.
 
 - Migrate `/security`, `/security-config`, `/security-test`, `/workflow` and
   `/speech-test` with their current behavior. The security and
@@ -256,7 +261,12 @@ state and exact maintainer-approved directive.
 - Disregard the inventory comment about transcript model identification for
   this scope; it is not a command-refactor requirement or backlog item.
 
-## Open decisions
+## Historical open questions — resolved product decisions
+
+The questions below are retained as discussion history. O-01–O-05 resolve their
+product/ownership choices: complete removal, shared command ownership and retained
+quirks. `/prime` is selected for removal. Exact API/family engineering and review
+remain pending; these historical questions do not reopen the product choices.
 
 - For each removal, should an old name return a migration message for a period
   or immediately become unknown? What release boundary communicates it?

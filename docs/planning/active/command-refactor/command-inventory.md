@@ -294,11 +294,11 @@ In-process speech configuration and its current deterministic test command.
 | PAR-040 | `/speech`      | Inspect/change in-process speech settings and prompt snippet.        | Migrate           | Keep configuration command; separate from standalone provider audio tests.           | 5          |               |
 | PAR-041 | `/speech-test` | Make one deterministic adapter call in both `once` and `loop` modes. | Retire            | Use standalone `SpeechHarness` for real audio testing; current `loop` name misleads. | 5          |               |
 
-My earlier recommendation was **43 migrate / 7 retire**; the maintainer's
+**Historical scoring recommendation (superseded):** My earlier recommendation was **43 migrate / 7 retire**; the maintainer's
 selected scope differs and that recommendation is superseded. A **Combine**
-decision should specify whether the
-old name remains as an alias or receives a migration message, and whether its
-arguments, effects and error behavior change.
+decision for any future consolidation must specify old-name and argument/effect
+behavior; this historical recommendation does not authorize legacy support for
+the nine names selected for complete removal.
 
 ## Architecture opportunities to score separately
 
@@ -330,12 +330,14 @@ deferred from the first full TUI release. They are not part of the 50 rows.
 
 **Recorded command decisions:** Retain `/tools` as a read-only listing and
 retire `/clear-tools`, `/inject-tools`, `/recommend-tools`, `/run-tool`,
-`/tool-budget` and `/inject-payload` as part of the shared command refactor.
+`/tool-budget`, `/inject-payload`, `/prime`, `/set` and `/vars` as part of the
+shared command refactor. All nine names are removed completely, with no legacy
+notices, redirects or compatibility handlers.
 Migrate `/security`, `/security-config`, `/security-test`, `/workflow` and
 `/speech-test` unchanged.
 Retain `/migrate` for the first TUI version. C-01 through C-06 go to the
 [command follow-up backlog](../../backlog/friday-tui-command-followups/README.md)
-without changing current names or syntax during this refactor. The six named
+without changing current names or syntax during this refactor. The nine named
 command retirements belong in the shared command refactor, with explicit
 checks for removed names, help, errors and compatibility; retained commands
 keep their current behavior. This sheet does not decide whether Friday's
@@ -346,7 +348,7 @@ has no remaining consumer once `/run-tool` is retired.
 
 The scores and comments above remain review input. The current
 [scope decision register](scope-decisions.md) records the selected nine-name
-retirement and unresolved scored outliers; the [phase plan](phase-plan.md)
+retirement and the resolved scored outliers under O-04; the [phase plan](phase-plan.md)
 records the gates. Reconcile those records, the PAR matrix, Chat compatibility
 evidence and user guides before generating command-refactor code. TUI
 development is deferred until this refactor is completed, tested and accepted;

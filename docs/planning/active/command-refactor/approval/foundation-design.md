@@ -1,10 +1,11 @@
 # Foundation design approval request
 
 Date: 2026-11-04
+Revision: 2026-11-05 — council remediation; fresh review pending
 Decision ID: CMD-DESIGN-001
-Status: AWAITING MAINTAINER DECISION — approval not recorded
+Status: REVISED — awaiting fresh review before maintainer design decision
 Maintainer: Chuck Russell
-Reviewed candidate: `0124d14bb8e91091d35eb73c09f6640e6f558289`
+Prior council candidate: `fa94f180e95ba75022e81bb269b18543e6360e38`
 
 ## Decision requested
 
@@ -13,9 +14,13 @@ Approve the foundation design and verification criteria in the
 foundation types/registry semantics. This is the first design approval, not
 approval of the complete shared-command implementation contract.
 
-The [independent review](../validation/VAL-CMD-ARCH-001-report.md) returned
-**VERIFIED for design approval readiness**, with no mandatory findings. Its
-optional multi-slash parser-fixture advice is retained for future test planning.
+The earlier [independent review](../validation/VAL-CMD-ARCH-001-report.md)
+covered the prior design. The later [Sol-only council round](../validation/COUNCIL-CMD-DESIGN-001-round1.md)
+returned CHANGES_REQUESTED. On 2026-11-05 the maintainer authorized resolving its
+three findings. Runtime validation, canonical metadata storage and retirement
+instructions are now revised; the prior positive verdicts do not verify these
+new bytes. A fresh review is required before requesting design approval again.
+See the [bounded remediation record](../remediation/REM-CMD-DESIGN-001.md).
 
 ## What this approves
 
@@ -48,16 +53,18 @@ base and separately obtain construction-directive approval before product code.
 If changes are requested, revise only the specified design decisions and obtain
 fresh review of the changed candidate. No approval is inferred from silence.
 
-## Reviewed artifact identity
+## Revised artifact identity — fresh review pending
 
-- `shared-command-api.md` SHA-256: `ffa20519db96115fe3e5c169dd09dc2e684fa43ec3c944c0b4112264100c7fcc`
-- `directives/CD-CMD-FND-001-neutral-foundation.md` SHA-256: `96119a2a4872b4b98d1ad52d3c7b81b8a534841c6682aa239b2604e7634a898c`
+- `shared-command-api.md` SHA-256: `66b47b0e566dfb0e54db559a4e79077075e2430908aeef7cedbffe7ea4605f79`
+- `directives/CD-CMD-FND-001-neutral-foundation.md` SHA-256: `648d3ce07cb338cf22ded7fd22229e03bba2551cc294457f3e9d753493ca358d`
 
-These reviewed artifact bytes remain unchanged. The report and this request are
-post-review closeout metadata, not a modification of the reviewed design.
+These pins identify the corrected draft; they are not covered by the prior
+review verdicts. The historical reports and manifest remain unchanged.
 
 ## Approval record
 
-No approval has been recorded. A maintainer answer should identify
-`CMD-DESIGN-001` and either approve this limited foundation design or state the
-requested changes. The controller records the answer and date afterward.
+2026-11-05: Chuck Russell said “approved resolve them,” authorizing bounded
+resolution of council findings. This is correction authority, not approval of
+the revised design, a phase gate or product construction. No design approval is
+recorded. After fresh review, the maintainer may approve CMD-DESIGN-001 or request
+specific changes; the controller then records that separate decision and date.

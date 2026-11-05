@@ -366,3 +366,18 @@ and documentation checks. The controller prepared [CMD-DESIGN-001](approval/foun
 for limited design/verification approval. Reviewed API/directive bytes and
 manifest authorities remain unchanged. Stop at the maintainer design decision;
 no approval, P0/P1 closure, implementation authority or external delivery inferred.
+
+2026-11-05: Chuck Russell authorized resolving the three council findings.
+Applied bounded documentation remediation under REM-CMD-DESIGN-001: explicit
+runtime validation and exception classes, rebuilt canonical-spec storage with
+single-pass normalization, negative parser/constructor fixtures and active
+nine-retirement wording. Historical scoring rows, baseline snapshots, old reports
+and manifests remain unchanged. Updated the approval artifact to fresh-review
+pending; the correction authorization is not design/construction approval.
+No product source/test/config/metadata changes or automatic council run.
+Validation for the corrected packet: board validation passed (36 tasks),
+documentation lifecycle passed (685 Markdown files), whitespace checks passed,
+and all 84 inventoried source/test hashes plus three pre-existing dirty input
+hashes remained unchanged. Frozen parser observations confirm //HELP -> help,
+///HELP -> /help, and N(' /HELP ') -> /help; the implementation does not yet exist,
+so no new constructor/registry tests are claimed.
