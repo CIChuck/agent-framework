@@ -381,3 +381,11 @@ and all 84 inventoried source/test hashes plus three pre-existing dirty input
 hashes remained unchanged. Frozen parser observations confirm //HELP -> help,
 ///HELP -> /help, and N(' /HELP ') -> /help; the implementation does not yet exist,
 so no new constructor/registry tests are claimed.
+
+2026-11-05: Round 2 completed on c9c15922: GPT-6.1 Sol CHANGES_REQUESTED 8.8/10;
+GPT-6 Sol VERIFIED 9/10; GPT-5.6 Sol VERIFIED 9.5/10. All substantive constructor/
+canonicalization findings resolved. One residual current-six-name instruction
+in command-pruning-review.md remained. Under the existing authorization to
+resolve SOL3-ARCH-003, corrected that wording and historical section labels after
+all reviews completed. API/directive/approval bytes unchanged; no new delegation,
+product code, construction or design approval. Prior verdicts remain historical.

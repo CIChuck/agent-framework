@@ -1,0 +1,11 @@
+{
+  "source_base": "c9c159226ff74158e182ff1b28f8599db5f900b9",
+  "scope": "R2-SOL1-ARCH-001 residual wording correction only; no independent confirmation claimed",
+  "sha256": {
+    "docs/planning/active/command-refactor/command-pruning-review.md": "1eb2d91d30677b7a7a3de9e8be932f69b341712ad2989afe8689a323bbf11faf",
+    "docs/planning/active/command-refactor/shared-command-api.md": "66b47b0e566dfb0e54db559a4e79077075e2430908aeef7cedbffe7ea4605f79",
+    "docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md": "648d3ce07cb338cf22ded7fd22229e03bba2551cc294457f3e9d753493ca358d",
+    "docs/planning/active/command-refactor/approval/foundation-design.md": "0e315c9cacdf67c38bef54bd177792f4c67de8aaae14fd0776dbd417d312099d",
+    "docs/planning/active/command-refactor/validation/COUNCIL-CMD-DESIGN-001-round2.md": "43a3e2d6257a8316784b198ca99b231e6b7ca1ced170cb1c3b9dfead19529108"
+  }
+}

@@ -49,3 +49,13 @@ historical; none verifies the corrected bytes. The new pinned request describes
 the required delta plus whole-foundation consistency check. Freeze a local
 candidate and hand back for review. No design approval, P0/P1 closure, push,
 merge, release, acceptance or implementation authority is inferred.
+
+## Round 2 residual wording correction
+
+Round 2 confirmed SOL3-ARCH-001/002 but found R2-SOL1-ARCH-001, a residual of
+SOL3-ARCH-003 in command-pruning-review.md. After all reviewers completed, the
+controller corrected that document under the same authorized retirement-wording
+scope. Current guidance lists all nine/41+3; the old seven-name and notice
+recommendations remain explicitly historical. No API/directive/approval byte
+changed. See the round-2 report for the disagreement and review limitation.
+No automatic delegate or third council round was started.

@@ -1,17 +1,20 @@
 # Friday Chat slash-command pruning review
 
-**Status:** Superseded source-backed recommendation, 2026-10-22. The seven-name
-proposal below was superseded by the maintainer's scored
-[command inventory](command-inventory.md#notes-and-decisions) and current
-[scope decision register](scope-decisions.md): five tool slash
-commands and `/inject-payload` are selected for retirement within the shared
-command refactor, while `/tools`, `/security-test` and `/speech-test` are
-retained for now. In particular, the `/tool-budget` replacement advice below is no longer
-valid because that command is among the selected retirements. This report
-records why the original proposal was made; it does not amend the accepted
-50-command parity baseline, Chat behavior or construction authority.
+**Status:** Historical source-backed seven-name recommendation, 2026-10-22.
+It is superseded by the maintainer's [command inventory](command-inventory.md#notes-and-decisions)
+and [scope decision register](scope-decisions.md), O-01–O-05. The current decision
+is complete removal of nine names: `/clear-tools`, `/inject-tools`,
+`/recommend-tools`, `/run-tool`, `/tool-budget`, `/inject-payload`, `/prime`,
+`/set` and `/vars`. The target is 41 canonical commands and three aliases.
+`/tools`, `/security-test` and `/speech-test` remain supported.
 
-## Current baseline and review method
+The candidate recommendations, seven-name counts and old-name migration-message
+proposal below are historical reasoning only. They do not authorize current
+retirements, notices, replacements or behavior changes. In particular, both
+`/tool-budget` replacement advice and migration-message advice are superseded.
+The frozen 50-name before-change baseline and historical receipts stay intact.
+
+## Historical baseline and review method — 2026-10-22
 
 The live `build_default_registry()` has 50 canonical commands and three aliases:
 `/quit`, `/q`, and `/clearscreen`. The source-derived [command
@@ -32,7 +35,7 @@ This is code and documentation review, not usage telemetry. It establishes
 current effects and documented workflows, not how often people invoke a name.
 The separate `friday-framework-cli` registry is outside this review.
 
-## Recommendation by candidate
+## Historical recommendation by candidate
 
 | Current command | Source effect and user-facing exposure | First-pass recommendation and replacement |
 | --- | --- | --- |
@@ -49,7 +52,11 @@ canonical commands and three aliases**. `/clear` and `/cls`, interactive
 `/replay`, startup replay, `/speech`, `/security`, `/run-tool`, `/tools`, and
 `/tool-budget` remain. No new command is proposed.
 
-## Compatibility and migration decision
+## Historical compatibility proposal — superseded
+
+The migration-message proposal in the next paragraph was not adopted. O-01
+requires complete removal and ordinary unknown-command handling, with no legacy
+notices or redirects. Preserve the paragraph as historical rationale only.
 
 **Recommended old-name behavior:** In the first release containing the prune,
 exclude retired commands from normal help, completion and the TUI parity
@@ -66,10 +73,11 @@ The historical proposal would have required reconciling the
 [`legacy_command_names.yaml`](../../../../packages/friday-chat/tests_chat/compat/fixtures/legacy_command_names.yaml)
 test fixture rather than rewriting that frozen legacy list as though the
 commands never existed. Its seven-name exception is superseded; the current
-six-name scope still requires checking
+nine-name scope under O-01–O-05 still requires checking
 every other legacy name/alias. The current [CLI reference](../../../guides/09-cli-reference.md),
 tool/troubleshooting, speech and security guides need exact replacement text
-where the six selected retirements affect them. The current decision register,
+where the nine selected retirements affect them. No current legacy handler,
+notice or redirect is authorized. The current decision register,
 phase plan, command matrix, compatibility cases and validation inventory must
 be reconciled together before a reduced TUI
 parity target is claimed. Historical accepted/archive documents stay historical.

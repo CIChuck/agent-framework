@@ -117,3 +117,7 @@ The [remediation record](remediation/REM-CMD-DESIGN-001.md) maps each correction
 and validation. Earlier VERIFIED reports cover older bytes only. A fresh review
 of the corrected candidate is pending. Overall execution remains planning, with
 P0/P1 incomplete and product construction unauthorized. No design approval is recorded.
+
+Round 2 results and the narrow residual pruning-review correction are recorded
+in [the council report](validation/COUNCIL-CMD-DESIGN-001-round2.md). The correction
+has controller checks only; no previous verdict verifies the revised candidate.
