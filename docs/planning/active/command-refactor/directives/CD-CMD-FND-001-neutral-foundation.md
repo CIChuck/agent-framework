@@ -1,7 +1,7 @@
 # CD-CMD-FND-001 — neutral command foundation
 
 Date: 2026-11-04
-Revision: 2026-11-05 — bounded council findings SOL3-ARCH-001–003
+Revision: 2026-11-06 — Step 3 readiness handoff; construction approval pending
 Status: DRAFT — not approved; product implementation not authorized
 Initiative: `friday-command-refactor`
 Work unit: `CMD-FND-001`; proposed P2 foundation slice, not P2 completion
@@ -9,6 +9,13 @@ Branch: `feature/command-refactor`
 Historical source baseline inspected: `25d2dcb6`; exact local execution base
 and applicable local baselines must be frozen at approval. This imported draft
 is not a construction authorization for either checkout.
+
+Current product-source baseline: `bbbd90e05143137c5a1d49eacedb4125d254b8fb`.
+The proposed execution base is the exact frozen readiness-council candidate
+supplied by full SHA in the dispatch request, with matching product bytes.
+Step 4 must record that exact base before execution; a later base/authority
+change requires revalidation. Approved API input SHA-256:
+`e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74`.
 
 ## Role, authority and entry conditions
 
@@ -25,6 +32,27 @@ accepted API-01–API-06 criteria and review disposition in the unit report. Run
 board validate/next/show and confirm started/granted/current branch. Unresolved
 family behavior and installed baseline gaps cannot be silently waived; the
 maintainer must explicitly confirm this foundation-only unit's readiness.
+
+## Proposed foundation-only prerequisite amendment — not approved
+
+The [Step 3 readiness review](../readiness-review.md) defines RD-01 and RD-02.
+Step 4 must explicitly approve both the directive and those scoped dispositions;
+approval of CMD-DESIGN-001 alone supplies neither. Until then the existing full
+P0/P1 gate continues to block construction.
+
+RD-01 would permit only this standard-library, synthetic-handler foundation
+before final family/P1 closure. Complete per-command behavioral signoff, family
+schemas/service mapping, progress/cancellation, installed-client acceptance and
+final scenario/platform obligations remain mandatory before affected migration
+units. All 50 cases/three aliases have proposed owners in the readiness map;
+none migrates here. No API-01–API-06, neutral-import, runtime-invariant,
+standalone-wheel or fresh-independent-review obligation is deferred.
+
+RD-02 records the default client import failure and absent generic CLI app as
+baseline limitations, not passes. Do not fix clients or widen dependencies here.
+The diagnostic finance+sandbox install is not evidence that default installs
+work. Required client packaging dispositions remain before affected delivery
+gates. This amendment cannot approve future migrations or whole-refactor exit.
 
 ## Objective and non-goals
 
@@ -131,7 +159,7 @@ The existing 50-name baseline remains unchanged in Chat throughout this unit.
 From repository root:
 
 ```sh
-uv run pytest -q packages/friday-commands/tests_commands
+uv run --with-editable packages/friday-commands pytest -q packages/friday-commands/tests_commands
 uv run ruff check packages/friday-commands
 uv run ruff format --check packages/friday-commands
 uv run mypy packages/friday-commands/src

@@ -422,3 +422,25 @@ new baseline run, contract drafting or product change was started. Pause here
 until explicit maintainer resumption. Execution remains planning and validation
 state not_ready. This documentation-only administrative continuation was
 explicitly authorized by the maintainer; it changes no runtime behavior.
+
+2026-11-06: Chuck Russell explicitly resumed Step 3 and requested Claude Opus,
+OpenAI Sol and Google Gemini evaluation of the readiness review. Resumption
+revokes the prior pause for readiness preparation only. Wrote the single
+[readiness summary](readiness-review.md) and supporting step3 evidence: 17
+existing wheels built offline; the default Chat/CLI environment installed and
+passed dependency checks but Chat import failed on missing friday_finance.
+The finance+sandbox diagnostic profile passed stateless isolated registry and
+Chat help probes, with unchanged 50/3 metadata; the generic friday app remains
+absent. The full-cohort offline install hit an optimization dependency-cache
+limit. No repair, healthy-default-install or complete PAR/P0/P1 claim is made.
+Assigned all 50 cases and three aliases to proposed units, recorded service
+ownership constraints, eight scenario obligations and environment limits, and
+prepared a source-backed separate-CLI reuse assessment. Updated only the draft
+foundation directive for an explicit proposed RD-01/RD-02 readiness amendment
+and package-under-test overlay command; the approved API bytes are unchanged.
+Those dispositions and Step 4 construction approval remain ungranted.
+This is authorized planning/evidence work, including read-only source inspection,
+disposable local builds/installs and a capture script; it changes no product
+source, tests, configuration or runtime behavior. Freeze this candidate for one
+read-only three-provider council pass; no automatic remediation loop or product
+construction follows. Execution phase planning; validation state pending.

@@ -9,9 +9,9 @@ approval, construction authority or code validation is inferred.
 
 **Working home:** `agent-framework`, branch `feature/command-refactor`.
 **Board ID:** `friday-command-refactor`.
-**Status:** CMD-DESIGN-001 approved on 2026-11-06; paused before Step 3
-(first-unit prerequisite work). Construction approval remains pending.
-`execution_phase: planning`; `validation_state: not_ready`.
+**Status:** CMD-DESIGN-001 approved; Step 3 resumed and readiness packet prepared
+for the requested three-provider council. Step 4 construction approval pending.
+`execution_phase: planning`; `validation_state: pending`.
 
 The maintainer changed the working home on 2026-11-05 to this Agent Framework
 checkout; the shared command refactor remains the first phase. The full
@@ -29,7 +29,7 @@ The recorded product decisions remain: nine complete removals, `/tools` retained
 41 canonical names/three aliases, shared neutral command ownership, preserved
 generic CLI and retained-command quirks. Foundation API-01–API-06 is approved;
 the complete contract and remaining P0/P1 work are still open. That work is
-paused before Step 3. Current documentation authority comes from this checkout's
+resumed only for readiness preparation/review. Current authority comes from this checkout's
 AGENTS, policies, board and the maintainer's reconciliation instruction.
 
 ## Canonical planning chain
@@ -83,10 +83,11 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Maintainer review at the pause before Step 3. Read the
-[next-phase checkpoint](next-phase.md) for the completed/open checklist and
-reading order. Do not resume prerequisite engineering or product construction
-without the corresponding direction and approval.
+**Next gate:** Collect the requested Claude Opus, OpenAI Sol and Google Gemini
+read-only council reviews of the frozen [readiness packet](readiness-review.md),
+then present the Step 4 directive/base and proposed prerequisite dispositions.
+The [next-phase checkpoint](next-phase.md) remains the main handoff. Product
+construction is not approved.
 
 The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
 refreshes baseline identity in this working home and records the current
@@ -106,14 +107,15 @@ Review inputs now include the [production/effect audit](validation/production-ef
 [draft first directive](directives/CD-CMD-FND-001-neutral-foundation.md).
 Family port signatures, installed proof and gate approval remain open.
 
-## Foundation design — approved; Step 3 paused
+## Foundation design — approved; readiness council pending
 
 [CMD-DESIGN-001](approval/foundation-design.md) is revised under the maintainer's
 2026-11-05 authorization to resolve the three [council findings](validation/COUNCIL-CMD-DESIGN-001-round1.md).
 The [remediation record](remediation/REM-CMD-DESIGN-001.md) maps each correction
 and validation. Earlier VERIFIED reports cover older bytes only. A fresh review
 of the corrected candidate is not recorded. On 2026-11-06 Chuck Russell directly
-approved CMD-DESIGN-001 and paused before Step 3. Overall execution remains
+approved CMD-DESIGN-001, paused, then explicitly resumed Step 3 and requested
+a three-provider readiness council. Overall execution remains
 planning, with P0/P1 incomplete and product construction unauthorized. Human
 approval does not supply an independent VERIFIED result.
 

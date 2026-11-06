@@ -1,0 +1,36 @@
+13:35:04 - LiteLLM:WARNING: get_model_cost_map.py:454 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: Network disabled for installed baseline probe. Falling back to local backup.
+Traceback (most recent call last):
+  File "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/installed_probe.py", line 143, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/installed_probe.py", line 121, in main
+    module = importlib.import_module(name)
+  File "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1023, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-command-step3-bhswluon/venv/lib/python3.13/site-packages/friday_tools/__init__.py", line 19, in <module>
+    from .finance import (
+    ...<4 lines>...
+    )
+  File "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-command-step3-bhswluon/venv/lib/python3.13/site-packages/friday_tools/finance/__init__.py", line 9, in <module>
+    from .massive import (
+    ...<4 lines>...
+    )
+  File "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-command-step3-bhswluon/venv/lib/python3.13/site-packages/friday_tools/finance/massive.py", line 13, in <module>
+    from friday_finance import MassiveAgentClient
+ModuleNotFoundError: No module named 'friday_finance'

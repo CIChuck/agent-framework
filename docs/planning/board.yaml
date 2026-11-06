@@ -709,7 +709,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: PAUSED before Step 3 for maintainer review; CMD-DESIGN-001 approved; prerequisite work and construction remain gated
+  next_gate: Step 3 active; prepare and freeze foundation readiness for requested Claude, OpenAI Sol and Gemini council; Step 4 construction approval pending
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -2350,3 +2350,10 @@ events:
   action: approved CMD-DESIGN-001; paused before Step 3
   note: Direct limited foundation design approval (API-01 through API-06 and types/registry semantics). Pause before first-unit prerequisite engineering/readiness work for review. No construction approval, P0/P1 closure, independent VERIFIED, feature acceptance or external delivery authority.
   evidence: docs/planning/active/command-refactor/approval/foundation-design.md; docs/planning/active/command-refactor/next-phase.md
+- task: friday-command-refactor
+  at: '2026-11-06T18:33:03+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: resumed Step 3; requested readiness council
+  note: Authorized prerequisite/readiness preparation and read-only Claude Opus, OpenAI Sol and Google Gemini evaluation. Step 4 approval and all product construction remain separate.
+  evidence: docs/planning/active/command-refactor/authority.json

@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-06",
-  "decision": "CMD-DESIGN-001 directly approved by Chuck Russell; pause before Step 3 for review",
+  "decision": "Step 3 resumed by Chuck Russell; prepare foundation readiness for three-provider council review",
   "branch": "feature/command-refactor",
   "baseline": "c3426986",
-  "current_scope": "Administrative approval recording and navigation reconciliation only; prerequisite engineering/readiness work paused before Step 3",
+  "current_scope": "Read-only source assessment, disposable offline baseline/build/install probes, unit/dependency/environment planning and a draft readiness handoff; no product source/test/configuration changes",
   "product_code_authority": "Not granted by the foundation design decision; separate approved construction directive and applicable readiness are required",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -27,7 +27,32 @@
     "before": "Approval-sequence Step 3: resolve prerequisites for the first implementation unit",
     "requested_by": "Chuck Russell",
     "requested_at": "2026-11-06",
-    "resume_requires": "Explicit maintainer direction after review"
+    "resume_requires": "Explicit maintainer direction after review",
+    "status": "resumed",
+    "resumed_at": "2026-11-06",
+    "resumed_by": "Chuck Russell",
+    "resume_instruction": "Proceed to step three."
   },
-  "construction_directive_approval": "not_granted"
+  "construction_directive_approval": "not_granted",
+  "council_request": {
+    "requested_by": "Chuck Russell",
+    "scope": "Read-only evaluation of the frozen readiness review; no construction approval or automatic remediation loop",
+    "members": [
+      {
+        "provider": "Claude",
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      },
+      {
+        "provider": "OpenAI",
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      },
+      {
+        "provider": "Google Gemini via Antigravity",
+        "model": "gemini-4-argon-high",
+        "effort": "high"
+      }
+    ]
+  }
 }

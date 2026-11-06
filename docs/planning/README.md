@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | PAUSED before Step 3 for maintainer review; CMD-DESIGN-001 approved; prerequisite work and construction remain gated |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Step 3 active; prepare and freeze foundation readiness for requested Claude, OpenAI Sol and Gemini council; Step 4 construction approval pending |
 
 ## Completed
 

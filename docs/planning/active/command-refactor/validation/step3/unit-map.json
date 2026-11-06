@@ -1,0 +1,981 @@
+{
+  "status": "PROPOSED for readiness review; does not close P1 or authorize units",
+  "foundation": {
+    "id": "FND-001",
+    "scope": "API-01 through API-06; no handlers/clients/removals; all 50 names and three aliases remain regression obligations",
+    "migrated_PAR_cases": [],
+    "allowed_before_full_P1": "Only if Step 4 explicitly approves RD-01 foundation-only readiness amendment; not yet approved"
+  },
+  "proposed_order": [
+    "FND-001",
+    "RET-001",
+    "PILOT-001",
+    "SESSION-001",
+    "DIAG-001",
+    "MEMQ-001",
+    "FILE-001",
+    "MAINT-001",
+    "TRANSCRIPT-001",
+    "REPLAY-001",
+    "TOOLS-001",
+    "ORCH-001",
+    "SEC-001",
+    "SPEECH-001",
+    "WORKFLOW-001"
+  ],
+  "units": [
+    {
+      "id": "RET-001",
+      "title": "Nine-name retirement",
+      "commands": [
+        "clear-tools",
+        "inject-tools",
+        "recommend-tools",
+        "run-tool",
+        "tool-budget",
+        "inject-payload",
+        "prime",
+        "set",
+        "vars"
+      ],
+      "depends_on": [
+        "FND-001"
+      ],
+      "ownership_and_stop": "Remove from current Chat registration/help/completion first; prove unknown handling and no former effects; preserve runtime priming/config and tool execution outside slash commands.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "PILOT-001",
+      "title": "Help, exit and clear-screen pilot",
+      "commands": [
+        "help",
+        "exit",
+        "cls"
+      ],
+      "depends_on": [
+        "RET-001"
+      ],
+      "ownership_and_stop": "No Runtime/domain capability; freeze catalog ownership, frontend routing and rendering/lifecycle seams before its own directive.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "SESSION-001",
+      "title": "Session views",
+      "commands": [
+        "history",
+        "clear"
+      ],
+      "depends_on": [
+        "PILOT-001"
+      ],
+      "ownership_and_stop": "Host history and public memory clear; preserve clear-before-memory-await ordering.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "DIAG-001",
+      "title": "Context diagnostics",
+      "commands": [
+        "context",
+        "prompt",
+        "debug",
+        "debug-budget",
+        "debug-retrieval",
+        "timing"
+      ],
+      "depends_on": [
+        "PILOT-001"
+      ],
+      "ownership_and_stop": "Narrow read-only context/budget/timing capability; exports remain owned file effects.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "MEMQ-001",
+      "title": "Memory queries",
+      "commands": [
+        "memory",
+        "insights",
+        "summaries",
+        "meta",
+        "entities",
+        "list-ingested"
+      ],
+      "depends_on": [
+        "PILOT-001"
+      ],
+      "ownership_and_stop": "Public memory/graph/ingestion query views; preserve partial data, availability and no-synthesis-on-read.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "FILE-001",
+      "title": "Read and ingestion",
+      "commands": [
+        "read",
+        "ingest"
+      ],
+      "depends_on": [
+        "MEMQ-001"
+      ],
+      "ownership_and_stop": "Reviewed reader/ingestion capabilities; preserve whitespace path grammar, source identity and storage ownership.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "MAINT-001",
+      "title": "Memory and maintenance effects",
+      "commands": [
+        "reset",
+        "compact",
+        "lifecycle",
+        "migrate",
+        "reorganize"
+      ],
+      "depends_on": [
+        "MEMQ-001",
+        "SESSION-001"
+      ],
+      "ownership_and_stop": "Public maintenance/admission/coordinator seams; exact stage, late-error, cancellation and recovery proofs required.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "TRANSCRIPT-001",
+      "title": "Transcript and export",
+      "commands": [
+        "sessions",
+        "transcript",
+        "export",
+        "export-prompts"
+      ],
+      "depends_on": [
+        "SESSION-001"
+      ],
+      "ownership_and_stop": "Public transcript identity/query/export operations; preserve selection, content, destination and cleanup ordering.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "REPLAY-001",
+      "title": "Replay",
+      "commands": [
+        "replay"
+      ],
+      "depends_on": [
+        "TRANSCRIPT-001",
+        "MAINT-001"
+      ],
+      "ownership_and_stop": "Typed replay/admission capability; no bypass of existing guards or side-effect order.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "TOOLS-001",
+      "title": "Tool inventory",
+      "commands": [
+        "tools"
+      ],
+      "depends_on": [
+        "RET-001",
+        "PILOT-001"
+      ],
+      "ownership_and_stop": "Admitted aggregate inventory, categories and MCP diagnostics; no concrete native-registry assumption.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "ORCH-001",
+      "title": "Agent orchestration",
+      "commands": [
+        "agent",
+        "agents",
+        "status",
+        "switch",
+        "delegate"
+      ],
+      "depends_on": [
+        "PILOT-001"
+      ],
+      "ownership_and_stop": "Public orchestration descriptors/actions; preserve prior-agent restoration on failure/cancellation.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "SEC-001",
+      "title": "Security",
+      "commands": [
+        "security",
+        "security-config",
+        "security-test"
+      ],
+      "depends_on": [
+        "PILOT-001"
+      ],
+      "ownership_and_stop": "Public security config/stats/local-test capability; rollback and counters preserved; not whole-security acceptance.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "SPEECH-001",
+      "title": "Speech",
+      "commands": [
+        "speech",
+        "speech-test"
+      ],
+      "depends_on": [
+        "PILOT-001"
+      ],
+      "ownership_and_stop": "Typed speech state/config/local-test capability; preserve prompt effects; no real-audio claim.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "WORKFLOW-001",
+      "title": "Workflow",
+      "commands": [
+        "workflow"
+      ],
+      "depends_on": [
+        "ORCH-001",
+        "SEC-001"
+      ],
+      "ownership_and_stop": "Typed workflow actions and genuine approval authority; no synthetic acceptance.",
+      "status": "proposed; no migration directive or capability schema approved"
+    }
+  ],
+  "commands": [
+    {
+      "case_id": "PAR-001",
+      "name": "agent",
+      "aliases": [],
+      "proposed_unit": "ORCH-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._agent_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1103,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-002",
+      "name": "agents",
+      "aliases": [],
+      "proposed_unit": "ORCH-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._agents_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1085,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-003",
+      "name": "clear",
+      "aliases": [],
+      "proposed_unit": "SESSION-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._clear_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 260,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-004",
+      "name": "clear-tools",
+      "aliases": [],
+      "proposed_unit": "RET-001",
+      "disposition": "remove",
+      "handler": "friday_chat.commands.tools.clear_tools_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/tools.py",
+      "line": 77,
+      "candidate_test_count": 3,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-005",
+      "name": "cls",
+      "aliases": [
+        "clearscreen"
+      ],
+      "proposed_unit": "PILOT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.session.cls_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/session.py",
+      "line": 13,
+      "candidate_test_count": 5,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-006",
+      "name": "compact",
+      "aliases": [],
+      "proposed_unit": "MAINT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._compact_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 755,
+      "candidate_test_count": 3,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-007",
+      "name": "context",
+      "aliases": [],
+      "proposed_unit": "DIAG-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._context_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 285,
+      "candidate_test_count": 4,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-008",
+      "name": "debug",
+      "aliases": [],
+      "proposed_unit": "DIAG-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._debug_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 311,
+      "candidate_test_count": 3,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-009",
+      "name": "debug-budget",
+      "aliases": [],
+      "proposed_unit": "DIAG-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._debug_budget_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 329,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-010",
+      "name": "debug-retrieval",
+      "aliases": [],
+      "proposed_unit": "DIAG-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._debug_retrieval_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 382,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-011",
+      "name": "delegate",
+      "aliases": [],
+      "proposed_unit": "ORCH-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._delegate_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1117,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-012",
+      "name": "entities",
+      "aliases": [],
+      "proposed_unit": "MEMQ-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._entities_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 409,
+      "candidate_test_count": 3,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-013",
+      "name": "exit",
+      "aliases": [
+        "quit",
+        "q"
+      ],
+      "proposed_unit": "PILOT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._exit_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 252,
+      "candidate_test_count": 4,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-014",
+      "name": "export",
+      "aliases": [],
+      "proposed_unit": "TRANSCRIPT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.transcript.export_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 107,
+      "candidate_test_count": 7,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-015",
+      "name": "export-prompts",
+      "aliases": [],
+      "proposed_unit": "TRANSCRIPT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.transcript.export_prompts_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 145,
+      "candidate_test_count": 6,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-016",
+      "name": "help",
+      "aliases": [],
+      "proposed_unit": "PILOT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._help_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1346,
+      "candidate_test_count": 20,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-017",
+      "name": "history",
+      "aliases": [],
+      "proposed_unit": "SESSION-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._history_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 271,
+      "candidate_test_count": 3,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-018",
+      "name": "ingest",
+      "aliases": [],
+      "proposed_unit": "FILE-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._ingest_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 812,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-019",
+      "name": "inject-payload",
+      "aliases": [],
+      "proposed_unit": "RET-001",
+      "disposition": "remove",
+      "handler": "friday_chat.commands.registry._inject_payload_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 992,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-020",
+      "name": "inject-tools",
+      "aliases": [],
+      "proposed_unit": "RET-001",
+      "disposition": "remove",
+      "handler": "friday_chat.commands.tools.inject_tools_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/tools.py",
+      "line": 32,
+      "candidate_test_count": 4,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-021",
+      "name": "insights",
+      "aliases": [],
+      "proposed_unit": "MEMQ-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.memory.insights_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "line": 110,
+      "candidate_test_count": 2,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-022",
+      "name": "lifecycle",
+      "aliases": [],
+      "proposed_unit": "MAINT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._lifecycle_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 682,
+      "candidate_test_count": 2,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-023",
+      "name": "list-ingested",
+      "aliases": [],
+      "proposed_unit": "MEMQ-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._list_ingested_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 844,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-024",
+      "name": "memory",
+      "aliases": [],
+      "proposed_unit": "MEMQ-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.memory.memory_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "line": 31,
+      "candidate_test_count": 7,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-025",
+      "name": "meta",
+      "aliases": [],
+      "proposed_unit": "MEMQ-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.memory.meta_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "line": 136,
+      "candidate_test_count": 8,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-026",
+      "name": "migrate",
+      "aliases": [],
+      "proposed_unit": "MAINT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._migrate_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 722,
+      "candidate_test_count": 2,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-027",
+      "name": "prime",
+      "aliases": [],
+      "proposed_unit": "RET-001",
+      "disposition": "remove",
+      "handler": "friday_chat.commands.registry._prime_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 365,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-028",
+      "name": "prompt",
+      "aliases": [],
+      "proposed_unit": "DIAG-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._prompt_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 299,
+      "candidate_test_count": 2,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-029",
+      "name": "read",
+      "aliases": [],
+      "proposed_unit": "FILE-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._read_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 797,
+      "candidate_test_count": 3,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-030",
+      "name": "recommend-tools",
+      "aliases": [],
+      "proposed_unit": "RET-001",
+      "disposition": "remove",
+      "handler": "friday_chat.commands.registry._recommend_tools_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1293,
+      "candidate_test_count": 2,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-031",
+      "name": "reorganize",
+      "aliases": [],
+      "proposed_unit": "MAINT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._reorganize_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 496,
+      "candidate_test_count": 18,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-032",
+      "name": "replay",
+      "aliases": [],
+      "proposed_unit": "REPLAY-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._replay_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 863,
+      "candidate_test_count": 3,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-033",
+      "name": "reset",
+      "aliases": [],
+      "proposed_unit": "MAINT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._reset_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 451,
+      "candidate_test_count": 4,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-034",
+      "name": "run-tool",
+      "aliases": [],
+      "proposed_unit": "RET-001",
+      "disposition": "remove",
+      "handler": "friday_chat.commands.registry._run_tool_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1247,
+      "candidate_test_count": 6,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-035",
+      "name": "security",
+      "aliases": [],
+      "proposed_unit": "SEC-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._security_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 893,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-036",
+      "name": "security-config",
+      "aliases": [],
+      "proposed_unit": "SEC-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._security_config_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 953,
+      "candidate_test_count": 2,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-037",
+      "name": "security-test",
+      "aliases": [],
+      "proposed_unit": "SEC-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._security_test_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 922,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-038",
+      "name": "sessions",
+      "aliases": [],
+      "proposed_unit": "TRANSCRIPT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.transcript.sessions_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 32,
+      "candidate_test_count": 7,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-039",
+      "name": "set",
+      "aliases": [],
+      "proposed_unit": "RET-001",
+      "disposition": "remove",
+      "handler": "friday_chat.commands.registry._set_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1333,
+      "candidate_test_count": 3,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-040",
+      "name": "speech",
+      "aliases": [],
+      "proposed_unit": "SPEECH-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._speech_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1003,
+      "candidate_test_count": 3,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-041",
+      "name": "speech-test",
+      "aliases": [],
+      "proposed_unit": "SPEECH-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._speech_test_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1054,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-042",
+      "name": "status",
+      "aliases": [],
+      "proposed_unit": "ORCH-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._status_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1140,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-043",
+      "name": "summaries",
+      "aliases": [],
+      "proposed_unit": "MEMQ-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.memory.summaries_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "line": 123,
+      "candidate_test_count": 2,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-044",
+      "name": "switch",
+      "aliases": [],
+      "proposed_unit": "ORCH-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._switch_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1068,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-045",
+      "name": "timing",
+      "aliases": [],
+      "proposed_unit": "DIAG-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._timing_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 346,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-046",
+      "name": "tool-budget",
+      "aliases": [],
+      "proposed_unit": "RET-001",
+      "disposition": "remove",
+      "handler": "friday_chat.commands.tools.tool_budget_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/tools.py",
+      "line": 89,
+      "candidate_test_count": 5,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-047",
+      "name": "tools",
+      "aliases": [],
+      "proposed_unit": "TOOLS-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._tools_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1197,
+      "candidate_test_count": 4,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-048",
+      "name": "transcript",
+      "aliases": [],
+      "proposed_unit": "TRANSCRIPT-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.transcript.transcript_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 78,
+      "candidate_test_count": 11,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-049",
+      "name": "vars",
+      "aliases": [],
+      "proposed_unit": "RET-001",
+      "disposition": "remove",
+      "handler": "friday_chat.commands.registry._vars_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1321,
+      "candidate_test_count": 1,
+      "behavioral_signoff": "pending"
+    },
+    {
+      "case_id": "PAR-050",
+      "name": "workflow",
+      "aliases": [],
+      "proposed_unit": "WORKFLOW-001",
+      "disposition": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._workflow_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1158,
+      "candidate_test_count": 2,
+      "behavioral_signoff": "pending"
+    }
+  ],
+  "coverage": {
+    "baseline_cases": 50,
+    "assigned_cases": 50,
+    "retirement_cases": 9,
+    "aliases": 3,
+    "behavioral_completion_claimed": false
+  },
+  "scenario_map": [
+    {
+      "id": "SC-01",
+      "units": [
+        "SESSION-001",
+        "MEMQ-001",
+        "MAINT-001"
+      ],
+      "proof": "Temporary real stores; clear/reset partial and late failure, flush-before-compact, preserved pending turns and availability distinctions.",
+      "verification_owner": "SESSION-001, MEMQ-001, MAINT-001"
+    },
+    {
+      "id": "SC-02",
+      "units": [
+        "TRANSCRIPT-001",
+        "REPLAY-001",
+        "MAINT-001"
+      ],
+      "proof": "Persisted session identity/query/export/replay, partial cleanup and maintenance admission, no renderer writes.",
+      "verification_owner": "TRANSCRIPT-001, REPLAY-001, MAINT-001"
+    },
+    {
+      "id": "SC-03",
+      "units": [
+        "TOOLS-001",
+        "SEC-001",
+        "RET-001"
+      ],
+      "proof": "Aggregate native/MCP inventory, admission/rejection diagnostics, removed slash names cause no effects while runtime tools remain functional.",
+      "verification_owner": "TOOLS-001, SEC-001, RET-001"
+    },
+    {
+      "id": "SC-04",
+      "units": [
+        "ORCH-001",
+        "WORKFLOW-001"
+      ],
+      "proof": "Agent restoration across success/failure/cancellation and genuine pending workflow approval/skip.",
+      "verification_owner": "ORCH-001, WORKFLOW-001"
+    },
+    {
+      "id": "SC-05",
+      "units": [
+        "FILE-001",
+        "MEMQ-001"
+      ],
+      "proof": "Read/ingest/list source identity and whitespace path compatibility, invalid extension/limit, storage failures.",
+      "verification_owner": "FILE-001, MEMQ-001"
+    },
+    {
+      "id": "SC-06",
+      "units": [
+        "SPEECH-001",
+        "DIAG-001"
+      ],
+      "proof": "Current deterministic speech-test/prompt effects, disabled/error behavior; real audio separate.",
+      "verification_owner": "SPEECH-001, DIAG-001"
+    },
+    {
+      "id": "SC-07",
+      "units": [
+        "PILOT-001",
+        "SESSION-001"
+      ],
+      "proof": "Help/catalog, aliases, one host clear/exit application and provider-free xterm terminal lifecycle.",
+      "verification_owner": "PILOT-001, SESSION-001"
+    },
+    {
+      "id": "SC-08",
+      "units": [
+        "FND-001"
+      ],
+      "proof": "Separate generic CLI quotes, sync/async dispatch, public exports and installed entry point; no unapproved shared-registry adapter.",
+      "verification_owner": "Cross-cutting generic CLI regression for FND-001 and every later migration unit"
+    }
+  ],
+  "environment_matrix": [
+    {
+      "environment": "macOS 27.0.1 arm64 / Python 3.13.10",
+      "state": "observed locally; prior owning-suite receipts and current isolated wheel probes",
+      "foundation_construction": "Required initial deterministic package/import/registry/model checks plus isolated standard-library-only wheel."
+    },
+    {
+      "environment": "Default Chat/CLI wheels, declared dependencies only",
+      "state": "installed 127 distributions; dependency check passed; Chat import failed: missing friday_finance",
+      "foundation_construction": "Baseline limitation; not a healthy client profile or future client shipping proof."
+    },
+    {
+      "environment": "Chat finance+sandbox extras, isolated wheels",
+      "state": "installed 131 distributions; Chat registry/help probes pass; generic friday entry point fails",
+      "foundation_construction": "Diagnostic augmented profile only; no default-install or full runtime/UAT claim."
+    },
+    {
+      "environment": "Full 17-wheel workspace cohort",
+      "state": "builds passed; offline dependency resolution unavailable for optimization dspy cache",
+      "foundation_construction": "Environment/cache limit; not a product dependency-conflict verdict."
+    },
+    {
+      "environment": "Linux and Windows",
+      "state": "not executed or claimed; future supported-platform disposition needed before affected units",
+      "foundation_construction": "No cross-platform acceptance from local Mac readiness."
+    },
+    {
+      "environment": "Live models/tools, persisted runtime and physical TUI/audio",
+      "state": "excluded from these readiness probes",
+      "foundation_construction": "Foundation remains synthetic/no I/O; later family/UI authority required."
+    }
+  ],
+  "alias_assignments": [
+    {
+      "alias": "clearscreen",
+      "canonical": "cls",
+      "unit": "PILOT-001"
+    },
+    {
+      "alias": "quit",
+      "canonical": "exit",
+      "unit": "PILOT-001"
+    },
+    {
+      "alias": "q",
+      "canonical": "exit",
+      "unit": "PILOT-001"
+    }
+  ],
+  "source_inventory": {
+    "path": "validation/p0/inventory.json",
+    "sha256": "3f2ec73ca91f7c1cc5cfac1397ffe5a121ed010f78b7c387da3a50320cf9708e",
+    "use": "Full metadata, direct context/effect navigation and candidate test nodes remain in this unchanged source inventory; match by case_id. These are not complete behavior assertions."
+  },
+  "behavioral_signoff_rule": "All 50 cases remain pending for applicable class/effect evidence before their owning migration/retirement directives. Foundation migrates none."
+}

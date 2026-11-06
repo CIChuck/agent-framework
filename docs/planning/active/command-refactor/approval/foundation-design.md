@@ -1,9 +1,9 @@
 # Foundation design approval — CMD-DESIGN-001
 
 Date: 2026-11-04
-Revision: 2026-11-06 — maintainer approval recorded; pause before Step 3
+Revision: 2026-11-06 — approval recorded; Step 3 subsequently resumed
 Decision ID: CMD-DESIGN-001
-Status: APPROVED — foundation design only; paused before Step 3
+Status: APPROVED — foundation design only; Step 3 readiness review resumed
 Maintainer: Chuck Russell
 Historical source council candidate: `fa94f180e95ba75022e81bb269b18543e6360e38`
 
@@ -49,7 +49,8 @@ as previously decided.
 
 The foundation design baseline is now recorded, but the maintainer explicitly
 paused before Step 3 of the approval sequence: resolving prerequisites for the
-first implementation unit. Do not start or continue that work until resumed.
+first implementation unit. The later explicit Step 3 resumption below lifts
+that pause for readiness work only.
 The remaining P0/P1 case, capability, scenario, environment and unit-map work
 remains open. Family method/
 payload schemas, service relocation, installed-client baselines and progress/
@@ -85,6 +86,10 @@ Recorded decision: CMD-DESIGN-001 approved for the limited scope above. Stop bef
 Step 3 (prerequisite engineering/readiness work), pending maintainer review and
 explicit resumption. This is not construction-directive approval, P0/P1 closure,
 independent VERIFIED, feature acceptance or permission to push/merge.
+
+Later on 2026-11-06, Chuck Russell instructed “Proceed to step three” and
+requested a Claude Opus / OpenAI Sol / Google Gemini council to evaluate the
+readiness review. Step 3 is resumed; Step 4 and construction remain unapproved.
 
 ## Current planning folder
 

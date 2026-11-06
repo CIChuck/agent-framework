@@ -2,15 +2,16 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: Foundation design approved; PAUSED before approval-sequence Step 3
+Status: Step 3 readiness packet prepared; requested council pending; Step 4 not approved
 Execution phase: planning
-Validation state: not_ready
+Validation state: pending
 
 The [next-phase checkpoint](next-phase.md) is the main handoff and reading order.
 Chuck Russell approved [CMD-DESIGN-001](approval/foundation-design.md) and paused
-before resolving prerequisites for the first implementation unit. The table
-below records existing partial outputs and future work; it is not permission
-to resume that work. Step 3 in the approval sequence is distinct from phase P3.
+before prerequisite work, then explicitly resumed Step 3 on 2026-11-06 and
+requested the three-provider council. [readiness-review.md](readiness-review.md)
+is the current assessment. Step 3 is distinct from phase P3; no product
+construction or prerequisite exception is approved.
 
 ## Governing documents
 
@@ -27,9 +28,9 @@ and [matrix](command-matrix.md) remain product-intent inputs. The recorded
 decisions control nine removals, tools retention, 41 names/three aliases, neutral
 command ownership, separate CLI preservation and retained-command quirks.
 
-## P0/P1 output checklist — paused
+## P0/P1 output checklist — readiness assessment
 
-| Work area | Already exists | Open after resumption |
+| Work area | Already exists | Outstanding beyond the proposed foundation-only amendment |
 | --- | --- | --- |
 | Source characterization | [PAR ledger](validation/par-coverage-ledger.md), source inventory and 50-name/three-alias matrix. | Per-case behavior assertions, transitive service/effect and failure-order mapping, exact fixtures and unresolved-case dispositions. Extend the ledger rather than creating a replacement. |
 | Chat and CLI baselines | [Initial baseline](validation/p0-baseline.md), [failure controls](validation/p0-failure-disposition.md), and [local refresh](validation/local-2026-11-06/README.md). | Applicable installed entry-point/wheel and supported-environment proof, case-level evidence and limitation dispositions. Preserve existing receipts; write future results separately. |
@@ -37,14 +38,17 @@ command ownership, separate CLI preservation and retained-command quirks.
 | Technical contract | Architecture proposal, API draft and approved foundation-only design. | Applicable current-design review evidence, family payload/capability schemas, service-owner mapping, compatible CLI reuse assessment, progress/cancellation and full-contract approval. |
 | Unit readiness | Draft CD-CMD-FND-001 and required phase/test criteria. | Complete unit/scenario/environment maps and retirement ordering; bind the first unit to exact input revisions and baseline evidence; obtain explicit disposition for any foundation-only deferral. |
 
-No new baseline, source inspection, contract drafting, scenario mapping or
-readiness work was performed by the approval-recording continuation. P0/P1
-remain incomplete. The broad board authority does not approve CD-CMD-FND-001.
+The earlier approval-recording continuation performed no engineering. The later
+Step 3 continuation has added isolated wheel profiles, a source-backed CLI reuse
+assessment and a proposed complete unit/scenario/environment map. Per-case
+behavioral signoff and full family/P1 obligations remain open. Readiness RD-01
+and RD-02 require explicit Step 4 disposition; broad board authority does not
+approve CD-CMD-FND-001.
 
 ## Construction and later phases
 
-After explicit resumption, Step 3 produces a concise readiness summary for the
-maintainer, linked to exact evidence and unresolved decisions. The maintainer
+Step 3 has produced a concise readiness summary with evidence and unresolved
+decisions. The requested council reviews that candidate read-only. The maintainer
 then separately approves the construction directive and execution base (Step 4).
 No source generation follows from CMD-DESIGN-001 alone.
 
