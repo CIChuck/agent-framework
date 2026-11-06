@@ -709,11 +709,12 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Step 3 bounded corrections prepared; fresh independent readiness validation pending before exact Step 4 directive/base and RD-01/RD-02 decisions; no construction approval
+  next_gate: Corrected Step 3 readiness VERIFIED at fcea84b8; maintainer Step 4 decision on exact directive/base, RD-01/RD-02 and architecture readiness required before construction
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
-  validation: []
+  validation:
+  - docs/planning/active/command-refactor/validation/step3/correction-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2371,3 +2372,10 @@ events:
   action: authorized bounded readiness corrections and fresh validation
   note: Accepted the controller recommendation for CMD-RDY-001 through CMD-RDY-005; select existing cohort integration, MAINT-001 before FILE-001 and explicit bounded registry/lock procedure in the draft. Planning/evidence only; Step 4, RD-01/RD-02 and product construction remain unapproved.
   evidence: docs/planning/active/command-refactor/remediation/REM-CMD-STEP3-001.md
+- task: friday-command-refactor
+  at: '2026-11-06T20:25:43+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded VERIFIED corrected Step 3 readiness
+  note: Fresh independent validation of fcea84b879995735308e5be18cfed6cbb82a0b17 closes CMD-RDY-001 through CMD-RDY-005 and passes R-01 through R-08 for limited readiness. Step 4 directive/base/RD-01/RD-02 and architecture-readiness decisions remain with the maintainer; no implementation or delivery approval.
+  evidence: docs/planning/active/command-refactor/validation/step3/correction-report.md

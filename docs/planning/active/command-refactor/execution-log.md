@@ -492,3 +492,19 @@ validation state in_review. Freeze corrected
 inputs for one fresh read-only independent readiness pass over the five fixes
 and all R-01–R-08 criteria. Full feature-branch aggregate implementation review,
 Step 4 construction approval, RD-01/RD-02 disposition and delivery remain open.
+
+2026-11-06: Fresh independent validator returned VERIFIED for corrected readiness
+candidate `fcea84b879995735308e5be18cfed6cbb82a0b17`, correction base `e0eb3e9c`.
+[The report](validation/step3/correction-report.md) records closure of all five
+CMD-RDY findings and independent PASS on R-01–R-08/AP-01–AP-06 for the limited
+planning packet. All request/authority/deliverable/protected hashes matched at
+start/end. The controller independently confirmed the same freeze before
+collecting the result. Evidence/status closeout only: preserve the reviewed
+API, directive, readiness summary, map, receipts and planning authorization
+JSON unchanged; board scope/approval decisions are unchanged. Their pending labels retain frozen pre-review provenance; the
+report, board and main handoff record the subsequent outcome. No product
+package exists or is claimed implemented/verified. Execution phase planning;
+validation state verified for readiness only. Work state remains started/local.
+Next: explicit Step 4 decision on exact directive/base, RD-01/RD-02 and
+architecture-readiness disposition. No construction, full P0/P1 closure,
+feature acceptance, aggregate implementation approval or external delivery.

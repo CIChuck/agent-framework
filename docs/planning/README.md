@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Step 3 bounded corrections prepared; fresh independent readiness validation pending before exact Step 4 directive/base and RD-01/RD-02 decisions; no construction approval |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Corrected Step 3 readiness VERIFIED at fcea84b8; maintainer Step 4 decision on exact directive/base, RD-01/RD-02 and architecture readiness required before construction |
 
 ## Completed
 

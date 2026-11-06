@@ -9,10 +9,10 @@ approval, construction authority or code validation is inferred.
 
 **Working home:** `agent-framework`, branch `feature/command-refactor`.
 **Board ID:** `friday-command-refactor`.
-**Status:** CMD-DESIGN-001 approved; maintainer-authorized corrections address
-the five Step 3 council findings. Fresh independent readiness validation is
-pending; Step 4 remains unapproved.
-`execution_phase: planning`; `validation_state: in_review`.
+**Status:** CMD-DESIGN-001 approved; corrected Step 3 readiness VERIFIED for
+`fcea84b879995735308e5be18cfed6cbb82a0b17`. All five corrections are closed for
+that planning packet; Step 4 remains unapproved.
+`execution_phase: planning`; `validation_state: verified`.
 
 The maintainer changed the working home on 2026-11-05 to this Agent Framework
 checkout; the shared command refactor remains the first phase. The full
@@ -84,10 +84,10 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Fresh independent validation of the corrected
-[readiness packet](readiness-review.md) and
-[bounded remediation](remediation/REM-CMD-STEP3-001.md), then Step 4
-directive/base and prerequisite dispositions. The original
+**Next gate:** Read the [fresh VERIFIED result](validation/step3/correction-report.md),
+the [corrected readiness packet](readiness-review.md) and draft directive, then
+decide Step 4's exact directive/base, RD-01/RD-02 and architecture-readiness
+dispositions. The original
 [council result](validation/step3/council-round1.md) remains historical.
 The [next-phase checkpoint](next-phase.md) remains the main handoff. Product
 construction is not approved.
@@ -110,7 +110,7 @@ Review inputs now include the [production/effect audit](validation/production-ef
 [draft first directive](directives/CD-CMD-FND-001-neutral-foundation.md).
 Family port signatures, installed proof and gate approval remain open.
 
-## Foundation design — approved; corrected readiness validation pending
+## Foundation design approved; corrected readiness verified
 
 [CMD-DESIGN-001](approval/foundation-design.md) is revised under the maintainer's
 2026-11-05 authorization to resolve the three [council findings](validation/COUNCIL-CMD-DESIGN-001-round1.md).
@@ -120,7 +120,8 @@ On 2026-11-06 Chuck Russell directly
 approved CMD-DESIGN-001, paused, then explicitly resumed Step 3 and requested
 a three-provider readiness council. That council supported current foundation
 API consistency but requested five readiness corrections. Chuck Russell then
-authorized REM-CMD-STEP3-001; its corrected packet awaits fresh validation.
+authorized REM-CMD-STEP3-001; its corrected packet is now independently VERIFIED
+at `fcea84b8`. Construction approval remains separate.
 Overall execution remains
 planning, with P0/P1 incomplete and product construction unauthorized. Human
 approval does not supply an independent VERIFIED result.
