@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-06",
-  "decision": "Chuck Russell requested finance mandatory in tools metadata; execute CD-CMD-DEP-001 after verified legacy launcher removal. Foundation Step 4 remains unapproved.",
+  "decision": "Chuck Russell approved RD-01 and exact CD-CMD-FND-001 at reviewed source base d003c4db31cc9b1e3d143fd8c0d8b930db50ab30; execute only CMD-FND-001",
   "branch": "feature/command-refactor",
   "baseline": "c3426986",
-  "current_scope": "Required finance dependency and exact lock graph additions, matching README/readiness evidence/process; no Python behavior, handler/API/foundation implementation or live provider execution.",
-  "product_code_authority": "Only separately approved CD-CMD-CLI-001 and CD-CMD-DEP-001 metadata units; foundation construction remains unapproved",
+  "current_scope": "Approved neutral foundation API-01 through API-06, exact new package/tests and minimal root/cohort/artifact integration from CD-CMD-FND-001; no production handlers, command migration/removal or client wiring",
+  "product_code_authority": "Granted for CMD-FND-001 only under exact approved directive/API/base; prior separate CLI/finance metadata units VERIFIED",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -33,7 +33,7 @@
     "resumed_by": "Chuck Russell",
     "resume_instruction": "Proceed to step three."
   },
-  "construction_directive_approval": "not_granted",
+  "construction_directive_approval": "approved_for_CMD-FND-001_only",
   "council_request": {
     "requested_by": "Chuck Russell",
     "scope": "Read-only evaluation of the frozen readiness review; no construction approval or automatic remediation loop",
@@ -102,7 +102,22 @@
     "date": "2026-11-06",
     "instruction": "can't We change the declaration to make finance mandatory. Assume this would be a small change to the pyproject.toml file.",
     "scope": "Required tools-to-finance dependency; preserve compatibility extra and all existing resolved versions; clean default wheel proof and fresh independent validation",
-    "status": "implemented with clean default wheel proof; fresh independent validation pending",
+    "status": "VERIFIED at d003c4db31cc9b1e3d143fd8c0d8b930db50ab30; report validation/required-finance/report.md",
     "specific_baseline_disposition": "Finance imports now pass by required dependency; legacy launcher retired. RD-02 records validated resolutions, not a pending waiver. RD-01/foundation Step 4 remain unapproved."
+  },
+  "foundation_construction_approval": {
+    "approved_by": "Chuck Russell",
+    "date": "2026-11-06",
+    "instruction": "i approve cd-cmd-fnd-001",
+    "directive": "directives/CD-CMD-FND-001-neutral-foundation.md",
+    "directive_sha256": "cf61cab1bc18af071b4b2b9a98f335cf1685592ee647d3c80f60493a80598806",
+    "api_sha256": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+    "execution_source_base": "d003c4db31cc9b1e3d143fd8c0d8b930db50ab30",
+    "readiness_record": "approval/foundation-readiness.md",
+    "RD-01": "approved by Chuck Russell: ok i approve rd-01",
+    "RD-02": "resolved through independently VERIFIED CLI/finance units; no defect waiver",
+    "architecture_readiness": "Supplied exact-API readiness evidence accepted with CD approval; no API changes",
+    "preparation": "Only approval/evidence/status descendants may precede construction; verify product bytes and exact directive/API unchanged from approved source base, record actual builder starting HEAD",
+    "delivery": "No push/merge/release authority"
   }
 }

@@ -9,12 +9,11 @@ approval, construction authority or code validation is inferred.
 
 **Working home:** `agent-framework`, branch `feature/command-refactor`.
 **Board ID:** `friday-command-refactor`.
-**Status:** CMD-DESIGN-001 approved; prior readiness VERIFIED at `fcea84b8`.
-Legacy framework CLI retirement is VERIFIED at `06285ae4`. The maintainer then
-requested mandatory finance under
-[CD-CMD-DEP-001](directives/CD-CMD-DEP-001-required-finance.md); clean default
-imports now pass and its dependency/readiness delta awaits fresh validation.
-Step 4 remains unapproved. `execution_phase: validation`; `validation_state: in_review`.
+**Status:** CMD-DESIGN-001, RD-01 and CD-CMD-FND-001 approved. CLI retirement
+and required finance are independently VERIFIED. Execute only the neutral
+foundation at approved source base `d003c4db`; no command migration/wiring.
+See [approval record](approval/foundation-readiness.md).
+`execution_phase: implementation`; `validation_state: not_ready`.
 
 The maintainer changed the working home on 2026-11-05 to this Agent Framework
 checkout; the shared command refactor remains the first phase. The full
@@ -86,10 +85,9 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Validate required finance and affected readiness delta, then
-decide Step 4's updated directive/base, RD-01 and architecture-readiness gate.
-RD-02 records the two separately repaired/dispositioned packaging issues rather
-than a defect waiver. The earlier
+**Next gate:** Implement and verify CMD-FND-001 under the exact approved
+directive, then freeze a candidate for fresh independent implementation review.
+RD-02 records the two separately VERIFIED packaging resolutions. The earlier
 [VERIFIED result](validation/step3/correction-report.md) covers `fcea84b8` only.
 The original
 [council result](validation/step3/council-round1.md) remains historical.

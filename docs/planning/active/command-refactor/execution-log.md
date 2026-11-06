@@ -539,3 +539,17 @@ proof, offline consistency check and clean default wheel resolution; it is not
 claimed as successful full regeneration. No network or upgrade is authorized.
 Execution phase validation; validation state in_review for this new unit.
 Foundation Step 4 and delivery remain unapproved.
+
+2026-11-06: Independent CD-CMD-DEP-001 review VERIFIED d003c4db31cc9b1e3d143fd8c0d8b930db50ab30;
+all DEP criteria pass, 12 focused tests and 129-distribution default replay,
+84 source/test hashes and all 16,876 protected hashes preserved. Recorded
+[report](validation/required-finance/report.md); full offline regeneration
+remains accurately disclosed as cache-limited, with exact lock delta validated.
+Chuck Russell then explicitly approved RD-01 and CD-CMD-FND-001. Recorded
+[foundation approval](approval/foundation-readiness.md), exact directive/API
+hashes and reviewed execution source base d003c4db. Only administrative evidence/
+authorization/status records follow that base before construction; verify product
+and approved-input equality and record actual builder starting HEAD. Execute
+CMD-FND-001 only, with fresh independent implementation validation required.
+No later migration, removal, client wiring or delivery authority is inferred.
+Execution phase implementation; validation state not_ready.

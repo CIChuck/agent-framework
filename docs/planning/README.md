@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Validate required finance metadata/default install after VERIFIED legacy launcher retirement; then Step 4 updated directive/base, RD-01 and validated RD-02 resolution; foundation construction unapproved |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | RD-01 and CD-CMD-FND-001 approved; implement and verify neutral foundation API-01 through API-06, then fresh independent candidate review; no migrations, client wiring or delivery |
 
 ## Completed
 

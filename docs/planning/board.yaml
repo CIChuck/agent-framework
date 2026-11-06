@@ -709,12 +709,14 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Validate required finance metadata/default install after VERIFIED legacy launcher retirement; then Step 4 updated directive/base, RD-01 and validated RD-02 resolution; foundation construction unapproved
+  next_gate: RD-01 and CD-CMD-FND-001 approved; implement and verify neutral foundation API-01 through API-06, then fresh independent candidate review; no migrations, client wiring or delivery
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
   validation:
   - docs/planning/active/command-refactor/validation/step3/correction-report.md
+  - docs/planning/active/command-refactor/validation/legacy-cli-removal/report.md
+  - docs/planning/active/command-refactor/validation/required-finance/report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2393,3 +2395,24 @@ events:
   action: requested finance mandatory for tools
   note: CD-CMD-DEP-001 binds required finance dependency, compatibility extra, exact existing lock edge additions and clean default proof. Prior CLI retirement VERIFIED at 06285ae4; this follow-on needs fresh validation. No provider requests, foundation construction or delivery authority.
   evidence: docs/planning/active/command-refactor/directives/CD-CMD-DEP-001-required-finance.md
+- task: friday-command-refactor
+  at: '2026-11-06T21:37:44+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded VERIFIED required finance dependency
+  note: Fresh independent CD-CMD-DEP-001 review VERIFIED d003c4db31cc9b1e3d143fd8c0d8b930db50ab30. Both specific packaging defects resolved; no full runtime or aggregate branch acceptance.
+  evidence: docs/planning/active/command-refactor/validation/required-finance/report.md
+- task: friday-command-refactor
+  at: '2026-11-06T21:37:44+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved RD-01
+  note: Direct instruction ok i approve rd-01; isolated foundation-first sequencing only. Required foundation proof and later family/client gates retained.
+  evidence: docs/planning/active/command-refactor/approval/foundation-readiness.md
+- task: friday-command-refactor
+  at: '2026-11-06T21:37:44+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact CD-CMD-FND-001
+  note: Direct instruction i approve cd-cmd-fnd-001 at proposed reviewed source base d003c4db31cc9b1e3d143fd8c0d8b930db50ab30. Exact directive/API hashes recorded; only foundation and specified integration allowed. No migration, handler wiring, removals or delivery.
+  evidence: docs/planning/active/command-refactor/approval/foundation-readiness.md
