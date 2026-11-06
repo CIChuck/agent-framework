@@ -97,6 +97,15 @@ finding against the source before changing code. Fix real findings and CI
 failures, distinguish repository failures from infrastructure flakes, and, when posting replies is authorized, explain dismissed false positives
 with reproducible evidence.
 
+Before pushing applicable generated work after a fix, rebase or conflict
+resolution, commit a stable candidate and pin its authority, directive, diff
+and required checks. Obtain a fresh-context, read-only
+[independent validator](../independent-code-validator.md) report with an
+evidence-backed `VERIFIED` outcome before delivery. Use a documented exemption
+only when applicable and recorded. Any subsequent candidate or authority change
+invalidates the review and requires fresh review before pushing; CI and bot
+results do not replace this gate. Preserve the user's push/merge authorization.
+
 If the repo has `.macroscope/check-run-agents/*.md`, read those rules before you
 reply to a Macroscope finding. Its findings cite them.
 
@@ -137,5 +146,5 @@ when `pr-wait` exits 0, or in T3 Code when the merge gate passes on the latest
 head. Merge only when the user explicitly requested it;
 otherwise report that the PR is ready. Right before a merge, run `git fetch` and
 check the PR again. Never merge when it is BEHIND or DIRTY, or when base commits
-that landed after the last green run touch this PR's files. Rebase, push, and
-wait for green again.
+that landed after the last green run touch this PR's files. Rebase, complete any
+required fresh independent validation, push, and wait for green again.
