@@ -2,10 +2,7 @@ diff --git a/scripts/friday-dev-board.py b/scripts/friday-dev-board.py
 index 0d72e21c..2bcb955d 100644
 --- a/scripts/friday-dev-board.py
 +++ b/scripts/friday-dev-board.py
-@@ -390,13 +390,18 @@ def _authority_backings(
-                     record["packet"], item_label + ".packet", directory=True
-                 )
-                 parts = PurePosixPath(packet).parts
+@@ -393,4 +393,8 @@ def _authority_backings(
 -                if (
 -                    len(parts) != 4
 -                    or parts[:2] != ("docs", "planning")
@@ -18,18 +15,11 @@ index 0d72e21c..2bcb955d 100644
 +                archived_history = packet == canonical + "historical/"
 +                if (state == "completed" and not planning_history) or (
 +                    state == "accepted" and not archived_history
-                 ):
-                     raise BoardError(
+@@ -399 +403,2 @@ def _authority_backings(
 -                        f"{item_label}.packet must identify one planning packet"
 +                        f"{item_label}.packet must identify its historical "
 +                        "planning packet or accepted archive history"
-                     )
-                 entry = AuthorityBacking(
-                     packet,
-@@ -554,6 +559,39 @@ def validate_board(board: dict[str, Any], root: Path) -> list[str]:
-                 errors.append(f"{label}: accepted work must have normal condition")
-             if not task.get("accepted_by") or not task.get("accepted_at"):
-                 errors.append(f"{label} lacks explicit acceptance evidence")
+@@ -556,0 +562,33 @@ def validate_board(board: dict[str, Any], root: Path) -> list[str]:
 +            validation = task.get("validation")
 +            if isinstance(validation, list):
 +                for number, entry in enumerate(validation):
@@ -63,17 +53,11 @@ index 0d72e21c..2bcb955d 100644
 +                    f"{label} has unregistered archive historical authority: "
 +                    f"{archive_history.relative_to(root)}"
 +                )
- 
-     for index, task in enumerate(tasks):
-         if not isinstance(task, dict):
 diff --git a/tests/integration/test_development_board.py b/tests/integration/test_development_board.py
 index 93c4b1b4..07ad0329 100644
 --- a/tests/integration/test_development_board.py
 +++ b/tests/integration/test_development_board.py
-@@ -491,8 +491,18 @@ def _historical_fixture(root: Path, state: str = "completed") -> list[dict[str,
-         if state == "completed"
-         else "docs/archive/completed/2026/example-task/"
-     )
+@@ -493,0 +494,10 @@ def _historical_fixture(root: Path, state: str = "completed") -> list[dict[str,
 +    backing = "docs/planning/active/example-task/"
 +    if state == "accepted":
 +        backing = canonical + "historical/"
@@ -84,43 +68,19 @@ index 93c4b1b4..07ad0329 100644
 +            row["path"] = row["path"].replace(
 +                "docs/planning/active/example-task/", backing, 1
 +            )
-     index = root / canonical / "README.md"
+@@ -495 +505 @@ def _historical_fixture(root: Path, state: str = "completed") -> list[dict[str,
 -    index.parent.mkdir(parents=True)
 +    index.parent.mkdir(parents=True, exist_ok=True)
-     index.write_text(f"# Synthetic closeout\n\nStatus: {state}\n", encoding="utf-8")
-     manifest_path = root / canonical / "historical-authority.json"
-     manifest_path.write_text(
-@@ -500,7 +510,7 @@ def _historical_fixture(root: Path, state: str = "completed") -> list[dict[str,
-             {
-                 "version": 1,
-                 "owner": "example-task",
+@@ -503 +513 @@ def _historical_fixture(root: Path, state: str = "completed") -> list[dict[str,
 -                "packet": "docs/planning/active/example-task/",
 +                "packet": backing,
-                 "files": files,
-             },
-             indent=2,
-@@ -523,7 +533,7 @@ def _historical_fixture(root: Path, state: str = "completed") -> list[dict[str,
-             "validation": ["synthetic VERIFIED"],
-             "authority_backing_packets": [
-                 {
+@@ -526 +536 @@ def _historical_fixture(root: Path, state: str = "completed") -> list[dict[str,
 -                    "packet": "docs/planning/active/example-task/",
 +                    "packet": backing,
-                     "manifest": manifest_path.relative_to(root).as_posix(),
-                     "manifest_sha256": _digest(manifest_path),
-                 }
-@@ -554,7 +564,7 @@ def test_explicit_historical_backing_preserves_one_canonical_packet(
-         assert _digest(tmp_path / row["path"]) == row["sha256"]
- 
- 
+@@ -557 +567 @@ def test_explicit_historical_backing_preserves_one_canonical_packet(
 -def test_actual_closeout_and_maintainer_acceptance_keep_original_authority(
 +def test_actual_closeout_and_maintainer_acceptance_archive_original_authority(
-     tmp_path: Path,
- ) -> None:
-     files = _historical_fixture(tmp_path)
-@@ -594,10 +604,23 @@ def test_actual_closeout_and_maintainer_acceptance_keep_original_authority(
-     archive = tmp_path / "docs/archive/completed/2026/example-task"
-     archive.parent.mkdir(parents=True)
-     review.rename(archive)
+@@ -596,0 +607,10 @@ def test_actual_closeout_and_maintainer_acceptance_keep_original_authority(
 +    active = tmp_path / "docs/planning/active/example-task"
 +    active.rename(archive / "historical")
 +    manifest_path = archive / "historical-authority.json"
@@ -131,21 +91,14 @@ index 93c4b1b4..07ad0329 100644
 +            "docs/planning/active/example-task/", manifest["packet"], 1
 +        )
 +    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
-     board = yaml.safe_load(board_path.read_text(encoding="utf-8"))
+@@ -598 +618,3 @@ def test_actual_closeout_and_maintainer_acceptance_keep_original_authority(
 -    board["tasks"][0]["authority_backing_packets"][0]["manifest"] = (
 +    backing = board["tasks"][0]["authority_backing_packets"][0]
 +    backing["packet"] = manifest["packet"]
 +    backing["manifest"] = (
-         "docs/archive/completed/2026/example-task/historical-authority.json"
-     )
+@@ -600,0 +623 @@ def test_actual_closeout_and_maintainer_acceptance_keep_original_authority(
 +    backing["manifest_sha256"] = _digest(manifest_path)
-     board_path.write_text(yaml.safe_dump(board, sort_keys=False), encoding="utf-8")
-     staged = board_path.read_bytes()
-     arguments = (
-@@ -623,7 +646,55 @@ def test_actual_closeout_and_maintainer_acceptance_keep_original_authority(
-     assert _load_task(tmp_path)["delivery_state"] == "local"
-     assert _run(tmp_path, "next").stdout.strip() == "NO_OPEN_TASK"
-     for row in files:
+@@ -626 +649,49 @@ def test_actual_closeout_and_maintainer_acceptance_keep_original_authority(
 -        assert _digest(tmp_path / row["path"]) == row["sha256"]
 +        relocated = row["path"].replace(
 +            "docs/planning/active/example-task/", manifest["packet"], 1
@@ -196,6 +149,3 @@ index 93c4b1b4..07ad0329 100644
 +    result = _run(tmp_path, "validate")
 +    assert result.returncode == 1
 +    assert "references missing evidence" in result.stderr
- 
- 
- @pytest.mark.parametrize(

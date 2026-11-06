@@ -34,7 +34,7 @@ Read [CD-CMD-CHK-001](directives/CD-CMD-CHK-001-checkpoint-reconciliation.md),
 the single bounded disposition prepared from the
 [aggregate CHANGES_REQUESTED report](validation/checkpoint/aggregate-report.md).
 Its source base is `dea496075de55060ad477820e04b71c78239cca0` and SHA-256 is
-`cf8ed0b8c088d7aba6067f518a3f6b46ccd56b672d454d6bff7461f794f1469a`.
+`d0cc21779452767862b52ca025db1fa11417e8481418d119aa8a0a875ef2823d`.
 
 AGG-001 needs an explicit one-time historical construction-authority exception
 for the existing two-file archival-board behavior. AGG-002 needs mechanical

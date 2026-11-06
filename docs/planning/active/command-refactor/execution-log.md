@@ -649,3 +649,10 @@ for a current explicit historical-authority exception plus five-file mechanical
 formatting; no code changed and no retrospective approval inferred. Maintainer
 publication/merge authority remains valid subject to these gates. Execution
 phase validation; validation state changes_requested. No push/PR/merge yet.
+
+2026-11-06: Changed only the review patch presentation to zero context so its
+blank context markers do not trigger whitespace checks when stored as a file.
+The exact base/candidate/two-file semantic delta is unchanged. Patch SHA-256 is
+now 1001e73202db0670f9e1f267876dfea3fc68650b91780bbe2f7bc46af0a3fe22; proposed CD-CMD-CHK-001 SHA-256 is
+d0cc21779452767862b52ca025db1fa11417e8481418d119aa8a0a875ef2823d. This supersedes the earlier proposal digest for
+approval purposes; no product source or authority exception has been approved.

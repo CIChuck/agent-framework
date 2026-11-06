@@ -26,7 +26,7 @@ The September adoption exception does not cover these later changes.
 
 Requested exception: explicitly permit retaining this existing archival behavior
 for the checkpoint, limited to the exact [two-file base-to-candidate delta](../validation/checkpoint/historical-archival-board.patch),
-SHA-256 `9274c700135c5b77a810ec1c45a2cc38dc3585d06c0924ba2a50a53b7a4cdabc`.
+SHA-256 `1001e73202db0670f9e1f267876dfea3fc68650b91780bbe2f7bc46af0a3fe22`.
 This is a current, one-time exception to the construction-directive chronology,
 not backdated approval or a claim that archival permission originally covered
 code generation. Existing checkpoint delivery permission alone does not supply
