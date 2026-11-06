@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | aggregate checkpoint validation then authorized push, PR and merge; create fresh retirement branch and refresh exact CD-CMD-RET-001 for approval before product changes |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | decide exact CD-CMD-CHK-001 for AGG-001 historical archival authority and AGG-002 formatting, then fresh aggregate verification before authorized checkpoint delivery |
 
 ## Completed
 

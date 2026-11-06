@@ -2,9 +2,9 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: Foundation accepted; maintainer-authorized checkpoint delivery in preparation
+Status: Foundation accepted; aggregate checkpoint findings await bounded disposition
 Execution phase: validation
-Validation state: pending (aggregate checkpoint; RET-001 remains not_ready)
+Validation state: changes_requested (aggregate checkpoint; RET-001 remains not_ready)
 
 This is the main next-step document. The [packet index](README.md) maps supporting
 files; the [board](../../board.yaml) owns initiative state. The whole initiative
@@ -27,6 +27,22 @@ foundation unit, not the whole feature branch.
 [construction approvals](approval/foundation-readiness.md) retain their original
 provenance. Old pending/draft labels in frozen documents describe earlier states;
 this checkpoint, board and append-only execution log record the later decisions.
+
+## Immediate next decision
+
+Read [CD-CMD-CHK-001](directives/CD-CMD-CHK-001-checkpoint-reconciliation.md),
+the single bounded disposition prepared from the
+[aggregate CHANGES_REQUESTED report](validation/checkpoint/aggregate-report.md).
+Its source base is `dea496075de55060ad477820e04b71c78239cca0` and SHA-256 is
+`cf8ed0b8c088d7aba6067f518a3f6b46ccd56b672d454d6bff7461f794f1469a`.
+
+AGG-001 needs an explicit one-time historical construction-authority exception
+for the existing two-file archival-board behavior. AGG-002 needs mechanical
+formatting of exactly five files with unchanged syntax trees. All 3,116 tests
+pass, including full Chat 826; this does not cure missing authority or a failed
+required format check. No source correction has begun. After approval, correct
+only those findings, obtain fresh independent verification and continue the
+already-authorized checkpoint push/PR/merge/new-branch sequence.
 
 ## Current checkpoint delivery
 

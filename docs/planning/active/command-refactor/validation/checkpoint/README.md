@@ -3,7 +3,7 @@
 Date: 2026-11-06
 Target: `master` in `CIChuck/agent-framework`
 Base: `c34269867be50f71923c93c95a63236a35505812`
-Status: candidate preparation; aggregate independent validation required before push
+Status: CHANGES_REQUESTED at dea49607; bounded maintainer disposition pending before correction/push
 
 ## Maintainer authorization and scope
 
@@ -78,3 +78,20 @@ recording administrative descendants separately. Keep frozen historical review
 requests/directives/reports intact. Present the exact retirement directive for
 approval before product work. The command-refactor initiative stays started;
 foundation delivery does not claim whole-feature acceptance.
+
+## Aggregate outcome and exact next decision
+
+The [independent aggregate report](aggregate-report.md) returned
+CHANGES_REQUESTED for AGG-001 (historical archival-board construction authority)
+and AGG-002 (five new formatting failures). All seven test lanes pass: 3,116
+tests total, including the full 826-test provider-free Chat control. Packaging,
+typing, focused lint and archive integrity pass; disclosed broad debt remains.
+[Durable receipts](aggregate-evidence.json) preserve the independent check evidence.
+
+The controller prepared [CD-CMD-CHK-001](../../directives/CD-CMD-CHK-001-checkpoint-reconciliation.md)
+for one explicit decision: permit retaining the exact inherited archival behavior
+under a current one-time construction-gate exception, and authorize the five-file
+AST-preserving formatter correction. No retrospective approval is inferred from
+the prior publication instruction. After exact approval, perform only that
+bounded correction and obtain fresh aggregate verification before delivery.
+No product source has been changed by this review/disposition preparation.

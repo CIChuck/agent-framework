@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: aggregate checkpoint validation then authorized push, PR and merge; create fresh retirement branch and refresh exact CD-CMD-RET-001 for approval before product changes
+  next_gate: decide exact CD-CMD-CHK-001 for AGG-001 historical archival authority and AGG-002 formatting, then fresh aggregate verification before authorized checkpoint delivery
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -2461,3 +2461,10 @@ events:
   action: authorized reviewed checkpoint delivery and fresh branch
   note: Direct instruction i agree with your recommendations. proceed authorizes classification, scoped commit/push/PR/aggregate checks/merge, then confirmed old-branch deletion and new retirement branch. Exclude unrelated working Chat configurations. Foundation acceptance retained; retirement and TUI construction not approved.
   evidence: docs/planning/active/command-refactor/validation/checkpoint/README.md
+- task: friday-command-refactor
+  at: '2026-11-06T23:37:30+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded checkpoint aggregate changes requested
+  note: Read-only aggregate review of dea49607 passed 3116 tests and all functional/package/archive checks but found missing exact historical archival-board construction authority and five new format failures. Prepared CD-CMD-CHK-001 for explicit current disposition and bounded correction; no product change, publication or inferred retrospective approval.
+  evidence: docs/planning/active/command-refactor/validation/checkpoint/aggregate-report.md

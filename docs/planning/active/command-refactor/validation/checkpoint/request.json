@@ -1,0 +1,83 @@
+{
+  "initiative": "friday-command-refactor",
+  "review_mode": "Full aggregate branch review before checkpoint delivery/merge. Not a foundation-only or delta review; not whole refactor/family/TUI acceptance.",
+  "repository": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "branch": "feature/command-refactor",
+  "base": "c34269867be50f71923c93c95a63236a35505812",
+  "candidate": "dea496075de55060ad477820e04b71c78239cca0",
+  "diff": "c34269867be50f71923c93c95a63236a35505812..dea496075de55060ad477820e04b71c78239cca0",
+  "authorization": "Chuck Russell explicitly agreed to checkpoint classification/commit/push/PR/aggregate review/merge/old-branch deletion/new retirement branch. RET-001 and TUI construction remain unapproved. See checkpoint README and current board event.",
+  "authority_sha256": {
+    "AGENTS.md": "f2849de487fbc9687dec75f013deda645b845ba01f6ffd80461cb44e5325b540",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/development-task-lifecycle.md": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/board.yaml": "43e6600c10488589feca3c11d8acd7652a259844719782924c87185b906418c5",
+    "docs/planning/active/command-refactor/authority.json": "36e5909ff16bca0902ce3293b058de96f005abf7feef05ee8f7b22a7c6602fb6",
+    "docs/planning/active/command-refactor/validation/checkpoint/README.md": "09b27bcf3f351a8460f8a3e06265d3c6087c75d078f8671881c480c535138627",
+    "docs/planning/active/command-refactor/build-plan.md": "17b47d41a58e556740fd7f67977a6e70ec04a0c2d52cabc613e48f744f1ca686",
+    "docs/planning/active/command-refactor/scope-decisions.md": "6760092e9d7b4f38a0e96d8109fde0e95cd8c3db0aeaf05c927801243dccb749",
+    "docs/planning/active/command-refactor/test-strategy.md": "32185dad44d39c8c9b323f166133a18cc383615a0a369560fb6cd66bfb1d5006",
+    "docs/planning/active/command-refactor/approval/foundation-design.md": "394424ba656e961b3633b1ecb94d1451283d4a4bbc684eaee085acc582ab8393",
+    "docs/planning/active/command-refactor/approval/foundation-readiness.md": "609958c0247c86fb7035d24214179d5c6a838a6da2cd4cb5dab64c39bdd41f24",
+    "docs/planning/active/command-refactor/shared-command-api.md": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+    "docs/dev-skills/independent-code-validator.md": "578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508",
+    "docs/planning/active/command-refactor/directives/CD-CMD-CLI-001-retire-legacy-launcher.md": "796dd5fdf933e2eb7bd27f5d495f5ce66d01a6106f44fec84f9e88c8945f25f0",
+    "docs/planning/active/command-refactor/directives/CD-CMD-RET-001-nine-command-retirement.md": "5be2c7af2384a1bc15a3f385dbca16807ec29d504e2c08e184f23cac4d8c1a66",
+    "docs/planning/active/command-refactor/directives/AMEND-CMD-MCP-001-001-2025-dialect-isolation.md": "03c229947a22768dd68e5da99fe29df8a94f19e996961e255737bc8f75f6e054",
+    "docs/planning/active/command-refactor/directives/CD-CMD-MCP-001-compatibility-exception.md": "fa3f3a9af0bdfe2acc145ad5df2fe5f30543a64b535c7a7fb0a7577db0b70dcd",
+    "docs/planning/active/command-refactor/directives/README.md": "a679d2b3c030ea4c3feaf49f4b3b21e9fad706f8211bc53ffe53ff2ec175375e",
+    "docs/planning/active/command-refactor/directives/CD-CMD-MCP-003-server-neutral-schema.md": "634f9576ec87676e38f22b40dbbc43e0961ca147d9a8ca61c175d89d669d8df8",
+    "docs/planning/active/command-refactor/directives/CD-CMD-DEP-001-required-finance.md": "b11546e5de2d94e8309e560dd3aafcf1484ea733d0808158b45af1bf1dd00c01",
+    "docs/planning/active/command-refactor/directives/AMEND-CMD-MCP-003-001-send-boundary.md": "620ee9d3670b3ef0ff347fd754d9f80246363d18ba4a6729b428f712fad12934",
+    "docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md": "cf61cab1bc18af071b4b2b9a98f335cf1685592ee647d3c80f60493a80598806",
+    "docs/planning/active/command-refactor/validation/VAL-CMD-FND-001-report.md": "3883aa49adf4934c3d1c4a8a2527f90ff4b5a5439cd3841c589bce4b43447579",
+    "docs/planning/active/command-refactor/validation/legacy-cli-removal/report.md": "4f53bb9472b3f321606ceeb23468874865224081a5e260eca0f2e73b2a080d30",
+    "docs/planning/active/command-refactor/validation/required-finance/report.md": "a66e6f5c9c6c709a95b3ce78d8e7073409e9f225de8c44becc12ae6b2c4ee5bc",
+    "docs/planning/active/command-refactor/validation/step3/correction-report.md": "695531b9db4a493c81dd6f61854f5fa2c66bb0abaeb698e05b674270a530fd1f"
+  },
+  "tracked_worktree_manifest": {
+    "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/command-checkpoint-6hdy_p86/candidate-worktree-sha256.json",
+    "sha256": "bb3cf3b9188fceb6c421d7550fe8c71cf61c9b7acea59ed8a27632424c6e4c92",
+    "count": 17051,
+    "note": "All tracked working files, including preserved dirty configurations; compare Git blobs for candidate files and separate two exclusions."
+  },
+  "protected_dirty_sha256": {
+    "packages/friday-chat/config.example.yaml": "c2f728c98adc5ca773bfdf3170d846a610f15d77eae9a380e1a815534b93c3e7",
+    "packages/friday-chat/models-config.example.yaml": "11e99116d885a431f085b6bd05b5bd30348eb37654fd4c9350a7cca58c527896"
+  },
+  "dirty_paths_allowed": [
+    "packages/friday-chat/config.example.yaml",
+    "packages/friday-chat/models-config.example.yaml"
+  ],
+  "changed_files": 15209,
+  "criteria": {
+    "AGG-01": "Read policies, full complete base-to-candidate diff, exact unit authorities and adoption/history. Every current product change must be governed; identify any missing or contradictory authority. Prior reports describe their frozen bytes and may be verified for exact equality, not accepted as blanket correctness.",
+    "AGG-02": "Review all MCP/core/runtime/Chat compatibility/schema/send-boundary changes and their interactions, tests, normalization/validation/security and retained runtime behavior. No pre-existing archive claims establish unreviewed source acceptance.",
+    "AGG-03": "Full foundation API01\u201306/package/root/cohort/lock contract and CLI/tools-finance fixes remain correct and cumulative; preserve 50/3 in current Chat, no nine retirements or new wiring.",
+    "AGG-04": "All required meaningful deterministic focused/regression/static/package/import/artifact tests supported; compare baseline debt honestly. Full provider-free Chat control before merge, CLI/foundation/cohort/board and affected MCP/Runtime suites.",
+    "AGG-05": "Governance board/lifecycle/archive changes, full historical authority manifests and relocation claims coherent. Validate all archive manifest entries, destination hashes and declared authority paths; inspect all changed application code/tests and representative archive material plus integrity manifests.",
+    "AGG-06": "Included TUI planning is documentation-only with historical approvals/receipts explicitly separated from current design-only authority. Link repairs change URLs only to actual historical Git objects. Current board/dashboard/checkpoint agree; RET draft remains unapproved.",
+    "AGG-07": "Two excluded working configurations remain byte-identical and never enter candidate; all unrelated state preserved. No application network/credentials/user stores or external mutation. No new secrets/private state/generator caches in published scope.",
+    "AGG-08": "Repository publication/merge readiness supported for this checkpoint, with exact base/candidate and honest remaining full-feature/P1/TUI/platform acceptance limits."
+  },
+  "required_checks": [
+    "Start/end HEAD, branch, working status, exact request/authority/all tracked-worktree manifest/protected configuration hashes. Candidate Git blobs vs working files except the two declared dirty examples. Full diff includes archives and policy/script changes; inspect all changed product source/tests and metadata.",
+    "Run uv --offline --frozen --no-sync --no-python-downloads --with-editable packages/friday-commands for package tools. Establish source origin/version. No root venv sync/downloads or lock regeneration. Temporary mypy cache; disable bytecode, pytest and Ruff caches.",
+    "Run all new foundation + cohort tests, full framework CLI tests and development-board integration tests; full affected MCP client tests and Runtime MCP tests plus Chat MCP tests. Run full provider-free Chat suite with current committed config/model examples and TERM=xterm-256color. Replicate the documented two-constant temporary collection plugin in own scratch; do not run/overwrite old p0 control scripts/receipts. Exclude only test_live_lmstudio.py as documented; report actual counts/skips. Application network guard before imports: deny external access, allow only disposable loopback test servers; no live provider/tool credentials or user stores.",
+    "Run focused Ruff/format/type checks appropriate to complete changed code. Required broad root Ruff/pytest must be reproduced or independently verified against frozen baseline; report root debt separately. AGENTS permits unrelated debt disclosure plus narrow meaningful checks, never imply broad success.",
+    "Board validate/next/show, documentation lifecycle, working/base-diff whitespace, package metadata and uv lock --check --offline. Inspect all accepted historical authority manifests/archive relocation hashes, planning transfer receipts and ten path-only link repairs. Ensure no ignored caches/user state or secrets in new archives (inspect archive member paths without unsafe extraction).",
+    "Validate applicable package metadata/dependency graph. Independently build/inspect affected package artifacts offline in own scratch (commands, Chat, CLI, tools, MCP/core/runtime as relevant); standalone foundation no-deps install/smoke and installed default Chat/tools/finance source equivalence/import/help/50/3 and retired launcher absence. Cached dependencies and prior required-finance frozen wheel profiles may be reused only after current source/artifact equality verification; report any unavailable full-cohort optimization dependency resolution as a cache limit, not success.",
+    "Current Chat metadata against pinned historical command-matrix.json remains exactly 50 names/3 aliases. No retired handler enters neutral foundation. Verify current foundation smoke/no external imports and exception/cancellation boundaries via new tests and independent probes as warranted. No aggregate feature completion inferred."
+  ],
+  "known_baselines": {
+    "root_ruff": "Prior 534 findings in 13 pre-existing unchanged files; independently establish base equality for findings before classifying.",
+    "root_pytest": "Existing Chat/CLI test_display.py import-file mismatch; source remains unchanged by checkpoint.",
+    "docs": "Four imported links were repaired with ten historical source URL changes; docs lifecycle should now pass 852 Markdown files.",
+    "historical_tests": "826 Chat and 155 CLI are older baseline counts, 319 foundation/checkpoint narrow passes earlier. Reproduce actual current full Chat; do not assume counts.",
+    "offline_cohort": "Optimization/dspy full-cohort dependency cache previously incomplete; targeted default Chat/CLI profile129 installed wheels exists in required-finance receipts.",
+    "remote": "No branch protection/rulesets or workflow files; actual PR requirements must be checked by controller later. Never treat missing CI as passing CI."
+  },
+  "permitted_effects": "Read-only source/authority/repository. Own scratch builds/venvs/temp fixtures and disposable loopback test servers allowed. No repo writes, source repairs/formatting, staging/commits, network registry/provider/tool calls, source/env sync, real user stores, credential disclosure, external GitHub actions, delegation or further review. No automatic remediation loop.",
+  "report": "Return exactly VERIFIED / CHANGES_REQUESTED / BLOCKED with independent reviewer/model/date/provenance, full identities/pins, AGG01\u201308 matrix, actual commands/exits/limits and concrete requirement-linked mandatory findings. Return final report; no repository report write. Send concise progress checkpoints."
+}

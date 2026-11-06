@@ -633,3 +633,19 @@ branch changes against master, including MCP fixes and historical archives,
 not just the accepted foundation. Freeze a stable candidate and obtain fresh
 read-only aggregate VERIFIED before delivery. Execution phase validation;
 validation state pending. Initiative stays started/local until actual delivery.
+
+2026-11-06: Fresh aggregate validator returned CHANGES_REQUESTED for
+candidate dea496075de55060ad477820e04b71c78239cca0 against master c3426986.
+[Report](validation/checkpoint/aggregate-report.md) records two mandatory findings:
+AGG-001, inherited post-adoption archival board script/test changes lack exact
+construction authority; AGG-002, five formatting regressions. All 3,116 tests
+pass, including controlled full Chat 826, and focused lint/type, artifacts,
+default 129-distribution installation, archive/transfer integrity and input
+preservation pass. Broad baseline debt and optional-cohort cache limits remain
+separate unsuccessful gates. All reviewed inputs and two excluded config files
+were preserved throughout. Recorded independent evidence and prepared exact
+CD-CMD-CHK-001 (SHA cf8ed0b8c088d7aba6067f518a3f6b46ccd56b672d454d6bff7461f794f1469a)
+for a current explicit historical-authority exception plus five-file mechanical
+formatting; no code changed and no retrospective approval inferred. Maintainer
+publication/merge authority remains valid subject to these gates. Execution
+phase validation; validation state changes_requested. No push/PR/merge yet.
