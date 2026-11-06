@@ -1,0 +1,39 @@
+{
+  "scope": "SKILL-MAINT-001",
+  "checks": {
+    "offline_regression": "6 tests passed; includes both readiness modes, four HTTP statuses, partial discovery, successful discovery and pending checks",
+    "original_helper_regression": {
+      "tests": 6,
+      "failures": 10,
+      "errors": 0,
+      "sha256": "90393f85b95b78bff1b039744bdfb09dc88ff2b430e1c3df687ee6f449c97214"
+    },
+    "metadata": {
+      "bundles": [
+        "babysit-pr",
+        "council",
+        "file-pr",
+        "full-send",
+        "full-stop",
+        "leaving-pr-comments",
+        "modernize",
+        "sol-loop",
+        "takeover"
+      ],
+      "unique_names": 22,
+      "broken_links": []
+    },
+    "new_test_lint_and_format": "passed",
+    "helper_lint": "one unchanged SIM115 at lock() open; baseline independently reproduced",
+    "bytecode": "existing Git ignore rules exclude __pycache__/ and *.pyc; no bytecode staged",
+    "preservation": {
+      "outside_skill_files_checked": 16916,
+      "changed": []
+    }
+  },
+  "limits": [
+    "Offline checks only; no live GitHub or provider calls.",
+    "Four existing broken documentation links under imported TUI evidence remain outside scope.",
+    "Repository .agents/skills discovery deployment remains pending."
+  ]
+}
