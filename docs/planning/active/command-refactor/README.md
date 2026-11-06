@@ -15,7 +15,7 @@ Exact foundation approvals and source base
 `d003c4db` remain in the [approval record](approval/foundation-readiness.md).
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). No command migration/wiring.
-`execution_phase: validation`; `validation_state: changes_requested` for the aggregate checkpoint. RET-001 remains not_ready.
+`execution_phase: remediation`; `validation_state: not_ready` for the approved aggregate correction. RET-001 remains not_ready.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
 
 The maintainer changed the working home on 2026-11-05 to this Agent Framework
@@ -90,13 +90,11 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Decide
-[CD-CMD-CHK-001](directives/CD-CMD-CHK-001-checkpoint-reconciliation.md) for the
-[aggregate findings](validation/checkpoint/aggregate-report.md), then bounded
-correction and fresh verification before authorized delivery. The historical
-archival-board authority exception must be explicit. RET-001 and TUI construction
-remain unapproved. The checkpoint delivery sequence remains authorized once the
-review gates pass.
+**Next gate:** Execute the explicitly approved
+[CD-CMD-CHK-001](directives/CD-CMD-CHK-001-checkpoint-reconciliation.md), with
+[recorded approval](approval/checkpoint-reconciliation.md), then fresh aggregate
+verification before the already-authorized checkpoint delivery. Retirement and
+TUI construction remain unapproved.
 
 The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
 refreshes baseline identity in this working home and records the current

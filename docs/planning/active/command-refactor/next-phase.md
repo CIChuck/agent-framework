@@ -2,9 +2,9 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: Foundation accepted; aggregate checkpoint findings await bounded disposition
-Execution phase: validation
-Validation state: changes_requested (aggregate checkpoint; RET-001 remains not_ready)
+Status: Foundation accepted; bounded checkpoint reconciliation explicitly approved
+Execution phase: remediation
+Validation state: not_ready (approved correction; RET-001 remains unapproved)
 
 This is the main next-step document. The [packet index](README.md) maps supporting
 files; the [board](../../board.yaml) owns initiative state. The whole initiative
@@ -28,19 +28,19 @@ foundation unit, not the whole feature branch.
 provenance. Old pending/draft labels in frozen documents describe earlier states;
 this checkpoint, board and append-only execution log record the later decisions.
 
-## Immediate next decision
+## Approved immediate correction
 
-Read [CD-CMD-CHK-001](directives/CD-CMD-CHK-001-checkpoint-reconciliation.md),
+Execute only the explicitly approved [CD-CMD-CHK-001](directives/CD-CMD-CHK-001-checkpoint-reconciliation.md),
 the single bounded disposition prepared from the
 [aggregate CHANGES_REQUESTED report](validation/checkpoint/aggregate-report.md).
 Its source base is `dea496075de55060ad477820e04b71c78239cca0` and SHA-256 is
 `d0cc21779452767862b52ca025db1fa11417e8481418d119aa8a0a875ef2823d`.
 
-AGG-001 needs an explicit one-time historical construction-authority exception
+[Chuck Russell approved](approval/checkpoint-reconciliation.md) the one-time historical construction-authority exception
 for the existing two-file archival-board behavior. AGG-002 needs mechanical
 formatting of exactly five files with unchanged syntax trees. All 3,116 tests
 pass, including full Chat 826; this does not cure missing authority or a failed
-required format check. No source correction has begun. After approval, correct
+required format check. The exact directive is now approved. Correct
 only those findings, obtain fresh independent verification and continue the
 already-authorized checkpoint push/PR/merge/new-branch sequence.
 

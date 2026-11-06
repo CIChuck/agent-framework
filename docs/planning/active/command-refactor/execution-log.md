@@ -656,3 +656,14 @@ The exact base/candidate/two-file semantic delta is unchanged. Patch SHA-256 is
 now 1001e73202db0670f9e1f267876dfea3fc68650b91780bbe2f7bc46af0a3fe22; proposed CD-CMD-CHK-001 SHA-256 is
 d0cc21779452767862b52ca025db1fa11417e8481418d119aa8a0a875ef2823d. This supersedes the earlier proposal digest for
 approval purposes; no product source or authority exception has been approved.
+
+2026-11-06: Chuck Russell explicitly responded “Approve CD-CMD-CHK-001”
+to the presented historical-exception/five-file-formatting/fresh-review scope.
+Recorded [exact approval](approval/checkpoint-reconciliation.md) at directive
+SHA d0cc21779452767862b52ca025db1fa11417e8481418d119aa8a0a875ef2823d, source base dea496075de55060ad477820e04b71c78239cca0,
+with administrative starting HEAD c8192fb34d302674454de799a0f0555aae6f2ef5. Verified approved source equality
+and both protected configurations before correction. This is a current,
+one-time archival-construction exception; original chronology is preserved.
+Execute only five-file formatter output with identical ASTs, freeze a new
+candidate and obtain fresh aggregate verification before already-authorized
+delivery. Execution phase remediation; validation state not_ready.

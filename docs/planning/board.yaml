@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: decide exact CD-CMD-CHK-001 for AGG-001 historical archival authority and AGG-002 formatting, then fresh aggregate verification before authorized checkpoint delivery
+  next_gate: execute approved CD-CMD-CHK-001 five-file mechanical correction and current historical exception, then fresh aggregate verification before authorized checkpoint delivery
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -2468,3 +2468,10 @@ events:
   action: recorded checkpoint aggregate changes requested
   note: Read-only aggregate review of dea49607 passed 3116 tests and all functional/package/archive checks but found missing exact historical archival-board construction authority and five new format failures. Prepared CD-CMD-CHK-001 for explicit current disposition and bounded correction; no product change, publication or inferred retrospective approval.
   evidence: docs/planning/active/command-refactor/validation/checkpoint/aggregate-report.md
+- task: friday-command-refactor
+  at: '2026-11-06T23:39:46+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact checkpoint reconciliation directive
+  note: Direct response Approve CD-CMD-CHK-001 explicitly approves its exact historical archival-board exception and five-file AST-preserving formatting, followed by fresh aggregate review and previously authorized delivery. No backdated authority or retirement approval inferred.
+  evidence: docs/planning/active/command-refactor/approval/checkpoint-reconciliation.md
