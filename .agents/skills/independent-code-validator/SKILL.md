@@ -1,0 +1,1 @@
+../../../docs/dev-skills/independent-code-validator.md

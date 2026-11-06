@@ -58,9 +58,20 @@ standalone discoverable skills:
 
 ## Local discovery and packaging
 
-This directory contains the maintained sources. Repository discovery entries
-under `.agents/skills/` have not yet been deployed. Keep bundled scripts and
-`agents/openai.yaml` alongside their skill when deploying; exclude `__pycache__/`
-and `*.pyc`, which are already ignored by the repository. Preserve the two
-reference templates as supporting documentation instead of installing them as
-standalone skills.
+This directory contains the maintained sources. On 2026-11-06, Chuck Russell
+authorized deploying them as repository-local discovery entries under
+`.agents/skills/`: 22 skills, comprising 10 linked bundles and 12 linked Markdown
+entry points. The [deployment receipt](../../.agents/skills-deployment.json)
+records each relative link and source hash. The two reference templates remain
+supporting documentation rather than standalone skills.
+
+Bundle links preserve scripts, references, tests and `agents/openai.yaml` beside
+their skill. No source copies or global installation are created. Repository
+ignore rules exclude `__pycache__/` and `*.pyc` from versioned deployment; local
+ignored caches in maintained source folders are not copied or staged.
+
+This deployment changes discovery links and this index only; skill instructions,
+product code and existing approval boundaries are unchanged. Checks cover link
+resolution, metadata, bundle-resource equality and preservation of unrelated
+files. Codex detects skill changes automatically; if they do not appear, restart
+the session. See [official skill documentation](https://learn.chatgpt.com/docs/build-skills).

@@ -1,0 +1,1 @@
+../../../docs/dev-skills/architecture-spec-author.md
