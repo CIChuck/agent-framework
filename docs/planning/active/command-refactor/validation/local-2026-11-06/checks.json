@@ -1,0 +1,29 @@
+{
+  "board": {
+    "command": "uv run python scripts/friday-dev-board.py validate",
+    "result": "passed: 36 tasks"
+  },
+  "cli": {
+    "command": "uv run pytest -q -ra packages/friday-cli/tests_cli",
+    "result": "155 passed in 0.23s"
+  },
+  "chat": {
+    "result": "826 passed, 1 warning in 45.12s",
+    "receipt": "full-control.json",
+    "log": "head-examples-xterm-full-chat.log"
+  },
+  "whitespace": {
+    "command": "git diff --check",
+    "returncode": 0,
+    "output": ""
+  },
+  "documentation_lifecycle": {
+    "result": "failed: four pre-existing links in imported TUI evidence",
+    "paths": [
+      "docs/planning/active/friday-tui/validation/N01B-04-before-code-export-path-characterization.md:37",
+      "docs/planning/active/friday-tui/validation/N01B-05-before-code-single-file-export-characterization.md:49",
+      "docs/planning/active/friday-tui/validation/N01B-06-before-code-all-session-export-characterization.md:37",
+      "docs/planning/active/friday-tui/validation/VAL-N01B-07-prepush-a196e95a.md:35"
+    ]
+  }
+}

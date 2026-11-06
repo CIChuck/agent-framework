@@ -1,0 +1,35 @@
+{
+  "initiative": "friday-tui",
+  "kind": "chat_only_runtime_mode_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-61: FRIDAY_CHAT_RUNTIME remains specific to the existing friday-chat launcher. TUI ignores it for mode selection, defaults to real for configured interactive startup and uses its own explicit --runtime fake when requested. No first-release TUI runtime-mode environment override; runtime YAML environment lookup and Chat behavior remain unchanged.",
+  "documents_sha256": {
+    "decisions.md": "ecad74154dd2616e2f9d62a69724771b118a072bbb0ae2b9a18a5dab4149c458",
+    "neutral-config-loader-contract.md": "ce0c342f4661516aaf77307de07596cc1a333984f7c4c4f1f158bfd8ea865b2a",
+    "startup-bootstrap-contract.md": "7d2d2d104235c4e40cc54258c0e7bb5a0ad88c7494df68658661c83f4a2a4632",
+    "replacement-plan.md": "7cf89d1390b0710dbe4422d624a53c59a5f797bd56e231706010fc1084ad40d7",
+    "README.md": "4c25679a84d93943703b8dbc2e5cec0b9c76fc935623712096aeffcf23ac6eeb",
+    "user-guide-requirements.md": "9ef928f43a5cbc2f433a9beac917bfe895e3c405e05106d66f36bfdffd6d9aa7",
+    "architecture-reset.md": "541b25d18bf77b62a57340b200699e09766c091fe5990c1166861433817715d0",
+    "authority.json": "86359415db7b54a02885bb32cb8272116bd639bc23f32a7f56aebd7a1ee5199a",
+    "execution-log.md": "138015ee49b3a52b0f52fa382afc3994f63c0e40c57da584a7fd6d5e611a14b4",
+    "docs/planning/board.yaml": "36bd890fc1bca4961b0fce629cfc6034a7b126939e8628414b9788c76e8a83a7",
+    "docs/planning/README.md": "5981e91828ae6748edc5c267e26c154d8b0601f400b3b81a8cf41c39271aec9d"
+  },
+  "checks": {
+    "existing_friday_chat_cli_pytest": "13 passed",
+    "existing_chat_mode_source_probe": "FRIDAY_CHAT_RUNTIME=fake overrides --runtime real to fake; real overrides fake to real; invalid value raises ValueError",
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "57 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "tui_mode_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted product decision and planning checks only. Existing Chat behavior was characterized read-only; this does not establish TUI implementation, after-code regression, installed-package verification, user UAT or release acceptance."
+}

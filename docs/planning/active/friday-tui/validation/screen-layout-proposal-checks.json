@@ -1,0 +1,23 @@
+{
+  "initiative": "friday-tui",
+  "kind": "planning_screen_layout_proposal",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "decision_status": "proposal; inline versus separate command result pane awaiting maintainer answer",
+  "documents_sha256": {
+    "screen-layout.md": "b2a6b5d009d49360a80652741b1feaaca9795ca05dc926b66f746b83cffe7cb8",
+    "README.md": "fa7e3bc155e19bc93ef8418b03f9a7b5921f149eeb2840c28f32781ff46698ce",
+    "architecture-reset.md": "8a50c133a1959025da3342b134e312172c357a68dc5a53e03057745439b8879d",
+    "execution-log.md": "85ae19f60b048dbf9406738cc61ac6ca1de8f72518da4afaf95a2563165d3340"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "16 valid before this receipt",
+    "packet_markdown_links": "13 files; no missing local targets",
+    "tracked_git_diff_check": "passed",
+    "changed_packet_trailing_whitespace": "passed"
+  },
+  "evidence_limit": "Screen design only. No TUI UI, automated behavior test, terminal UAT or maintainer layout approval was performed."
+}

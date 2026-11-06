@@ -1,0 +1,25 @@
+{
+  "initiative": "friday-tui",
+  "approved_by": "Chuck Russell",
+  "approved_at": "2026-11-05",
+  "source_request": "The maintainer identified Friday TUI as an active unit of work and requested alignment of planning location and board status; existing instructions restrict all work to planning documents.",
+  "approval_scope": "Active planning and document reconciliation only; command refactor remains the first phase.",
+  "work_state": "started",
+  "condition": "normal",
+  "implementation_authority": "design_only",
+  "branch": "feature/command-refactor",
+  "execution_phase": "planning",
+  "validation_state": "not_ready",
+  "allowed_changes": [
+    "docs/planning/active/friday-tui/**",
+    "docs/planning/board.yaml (Friday TUI planning status and event)",
+    "docs/planning/README.md (matching dashboard)",
+    "docs/planning/** (navigation and relocation receipts only)"
+  ],
+  "product_code_generation_authorized": false,
+  "workflow_code_generation_authorized": false,
+  "external_delivery_authorized": false,
+  "construction_gate": "Command-refactor acceptance and a separately approved exact construction directive are required before TUI construction.",
+  "historical_authority": "reconciliation/imported-authority-2026-11-05.json",
+  "historical_authority_note": "Imported approvals and implementation receipts retain their original work context and grant no current source inspection or construction authority."
+}

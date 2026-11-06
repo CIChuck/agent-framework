@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "initiative": "friday-command-refactor",
+  "maintainer": "Chuck Russell",
+  "date": "2026-11-06",
+  "decision": "Chuck Russell approved RD-01 and exact CD-CMD-FND-001 at reviewed source base d003c4db31cc9b1e3d143fd8c0d8b930db50ab30; execute only CMD-FND-001",
+  "branch": "feature/command-refactor",
+  "baseline": "c3426986",
+  "current_scope": "Approved neutral foundation API-01 through API-06, exact new package/tests and minimal root/cohort/artifact integration from CD-CMD-FND-001; no production handlers, command migration/removal or client wiring",
+  "product_code_authority": "Granted for CMD-FND-001 only under exact approved directive/API/base; prior separate CLI/finance metadata units VERIFIED",
+  "working_home": "agent-framework",
+  "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
+  "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
+  "baseline_kind": "baseline field retains historical source lineage; local product baseline must be refreshed",
+  "planning_transfer_decision": "maintainer changed direction: consolidate command-first and TUI planning in agent-framework; transfer planning documents only",
+  "planning_transfer_date": "2026-11-05",
+  "design_approval": {
+    "decision_id": "CMD-DESIGN-001",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-11-06",
+    "scope": "API-01 through API-06 and neutral foundation types/registry semantics only",
+    "api_sha256": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+    "record": "approval/foundation-design.md",
+    "independent_current_design_verdict": "not_recorded"
+  },
+  "pause": {
+    "before": "Approval-sequence Step 3: resolve prerequisites for the first implementation unit",
+    "requested_by": "Chuck Russell",
+    "requested_at": "2026-11-06",
+    "resume_requires": "Explicit maintainer direction after review",
+    "status": "resumed",
+    "resumed_at": "2026-11-06",
+    "resumed_by": "Chuck Russell",
+    "resume_instruction": "Proceed to step three."
+  },
+  "construction_directive_approval": "approved_for_CMD-FND-001_only",
+  "council_request": {
+    "requested_by": "Chuck Russell",
+    "scope": "Read-only evaluation of the frozen readiness review; no construction approval or automatic remediation loop",
+    "members": [
+      {
+        "provider": "Claude",
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      },
+      {
+        "provider": "OpenAI",
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      },
+      {
+        "provider": "Google Gemini via Antigravity",
+        "model": "gemini-4-argon-high",
+        "effort": "high"
+      }
+    ],
+    "result": {
+      "candidate": "95fdeadc0a0e4b9720cdb553e5b26756a438ab70",
+      "outcome": "CHANGES_REQUESTED",
+      "rounds": 1,
+      "report": "validation/step3/council-round1.md",
+      "open_findings": [
+        "CMD-RDY-001",
+        "CMD-RDY-002",
+        "CMD-RDY-003",
+        "CMD-RDY-004",
+        "CMD-RDY-005"
+      ],
+      "api_consistency": "All three reviewers support R-02 foundation API consistency; no standalone implementation or construction approval",
+      "remediation": "Superseded for current decision by authorized REM-CMD-STEP3-001 correction candidate; original finding report retained unchanged"
+    }
+  },
+  "remediation_authorization": {
+    "id": "REM-CMD-STEP3-001",
+    "approved_by": "Chuck Russell",
+    "date": "2026-11-06",
+    "instruction": "i Accept your recommendation. Proceed.",
+    "record": "remediation/REM-CMD-STEP3-001.md",
+    "decisions": {
+      "cohort": "Future foundation joins existing lock-step cohort as eighteenth project; no client dependency",
+      "ingest": "FILE-001 follows MAINT-001 and preserves shared admission",
+      "lock": "Draft permits bounded public Python package-registry access for explicit lock generation; no unrelated upgrades; frozen checks afterward"
+    },
+    "scope": "Correct five readiness findings in planning/evidence and obtain one fresh independent readiness validation; no additional full council automatically",
+    "lightweight_exemption": "Documentation/evidence only; diagnostic script operates in disposable offline environments; no runtime/product bytes change",
+    "construction_approval": "not_granted",
+    "RD-01_RD-02_approval": "not_granted",
+    "status": "correction candidate prepared for one fresh read-only independent readiness validation"
+  },
+  "legacy_cli_removal": {
+    "directive": "directives/CD-CMD-CLI-001-retire-legacy-launcher.md",
+    "approved_by": "Chuck Russell",
+    "date": "2026-11-06",
+    "instruction": "That should be removed from the TOML file. That is a legacy error.",
+    "disposition": "Retire friday console script; no replacement or app implementation. Historical entrypoint failures preserved; source-level component library remains.",
+    "status": "VERIFIED at 06285ae446f609f0546866b951dff611cbb447bf; report validation/legacy-cli-removal/report.md",
+    "foundation_approval": "not_granted"
+  },
+  "required_finance": {
+    "directive": "directives/CD-CMD-DEP-001-required-finance.md",
+    "requested_by": "Chuck Russell",
+    "date": "2026-11-06",
+    "instruction": "can't We change the declaration to make finance mandatory. Assume this would be a small change to the pyproject.toml file.",
+    "scope": "Required tools-to-finance dependency; preserve compatibility extra and all existing resolved versions; clean default wheel proof and fresh independent validation",
+    "status": "VERIFIED at d003c4db31cc9b1e3d143fd8c0d8b930db50ab30; report validation/required-finance/report.md",
+    "specific_baseline_disposition": "Finance imports now pass by required dependency; legacy launcher retired. RD-02 records validated resolutions, not a pending waiver. RD-01/foundation Step 4 remain unapproved."
+  },
+  "foundation_construction_approval": {
+    "approved_by": "Chuck Russell",
+    "date": "2026-11-06",
+    "instruction": "i approve cd-cmd-fnd-001",
+    "directive": "directives/CD-CMD-FND-001-neutral-foundation.md",
+    "directive_sha256": "cf61cab1bc18af071b4b2b9a98f335cf1685592ee647d3c80f60493a80598806",
+    "api_sha256": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+    "execution_source_base": "d003c4db31cc9b1e3d143fd8c0d8b930db50ab30",
+    "readiness_record": "approval/foundation-readiness.md",
+    "RD-01": "approved by Chuck Russell: ok i approve rd-01",
+    "RD-02": "resolved through independently VERIFIED CLI/finance units; no defect waiver",
+    "architecture_readiness": "Supplied exact-API readiness evidence accepted with CD approval; no API changes",
+    "preparation": "Only approval/evidence/status descendants may precede construction; verify product bytes and exact directive/API unchanged from approved source base, record actual builder starting HEAD",
+    "delivery": "No push/merge/release authority"
+  }
+}

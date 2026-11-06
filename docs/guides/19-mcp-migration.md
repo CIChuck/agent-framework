@@ -14,7 +14,7 @@ Friday targets the dated [MCP 2026-07-28 specification](https://modelcontextprot
 with explicit [2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)
 HTTP client compatibility. Friday implements a bounded tools profile.
 The dated specification, captured schema and role-specific requirements in the
-[upgrade contract](../planning/active/friday-mcp-protocol-upgrade/protocol-contract.md)
+[upgrade contract](../archive/completed/2026/friday-mcp-protocol-upgrade/historical/protocol-contract.md)
 control this upgrade. This is not a moving “latest” version selector or a claim
 that every optional MCP role is implemented.
 
@@ -261,7 +261,7 @@ retry. Adding MRTR requires a separate interaction, state and security design.
 
 ## Implementation references
 
-- [Pinned protocol contract](../planning/active/friday-mcp-protocol-upgrade/protocol-contract.md)
+- [Pinned protocol contract](../archive/completed/2026/friday-mcp-protocol-upgrade/historical/protocol-contract.md)
 - [Package metadata](../../packages/friday-mcp/pyproject.toml)
 - [Client transports](../../packages/friday-mcp/src/friday_mcp/client)
 - [Server profile](../../packages/friday-mcp/src/friday_mcp/server)

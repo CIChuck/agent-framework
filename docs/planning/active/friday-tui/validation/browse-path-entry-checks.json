@@ -1,0 +1,32 @@
+{
+  "initiative": "friday-tui",
+  "kind": "browse_path_entry_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-58: Browse supports both folder navigation and typed/pasted absolute, relative and home-shorthand paths to existing runtime configuration files. Relative entry uses the displayed Browse folder, initially the captured launch directory. Missing or invalid choices retain D-50 recovery; no automatic search, file creation or change to explicit --config.",
+  "documents_sha256": {
+    "startup-bootstrap-contract.md": "f275b22fa00815652b1e9f7571c7f8b12aaaa9530af6b4420d215fd0ec0721ec",
+    "README.md": "462ff775d15549da0f0c88dfd74fda8a36ccd95fb82db331f080b3f91d72d762",
+    "decisions.md": "493a1782071bf27c42733dc3820f916a4e485f22258bb17653bacb4b8da11f6c",
+    "replacement-plan.md": "b449e3a5c32815183ae809ca213bff8893c8f55711fa19b18a3738501aee717a",
+    "architecture-reset.md": "b7c8a4abae014ad0ab333c452bc0e40e831683db9fe9ef86b58dc36fcb132b1e",
+    "neutral-capability-map.md": "a5dac48a010a9861c21d1f7abfe09c97323ac9bf5c7ba0cf4ed50ff491af9bbe",
+    "user-guide-requirements.md": "01a2f29bdcd32372cdc1096e1ba0789d5812093f4c9c84746697f10ec15c32ad",
+    "authority.json": "b66fc6d7b29959bb0b163266861955ffe54bb48ca5846c3220def70dadb10c83",
+    "execution-log.md": "e3d5debbbc901949b74cb7be89b6322ed86175ff56d4b38887d9e85b74219015",
+    "docs/planning/board.yaml": "c02b165f12caf048704c7710ea2d0b676cff1f8447b7b03d313161ed30c04ea8",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "53 valid before this receipt",
+    "packet_markdown_links": "18 files; 160 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

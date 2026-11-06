@@ -15,10 +15,10 @@ fresh independent delta and aggregate review of product candidate
 `2155a0fc51f5b20dea4e35c6cfc70f1d52002735`.
 Evidence-only closeout commit: `00238817eeb76e971766651a552bfae685ac8c04`.
 
-- [Independent VERIFIED report](../../../../planning/active/friday-telemetry-rewire/validation/VAL-006/report.md), SHA-256 `b67d8271acfdd7f6b6f4d49d58220ce354423eaa5c8ebde9993694d26009e421`.
-- [Independent evidence](../../../../planning/active/friday-telemetry-rewire/validation/VAL-006/evidence.json), SHA-256 `a063afd3549bc842292368306cf160a6e8f19b290589e604fe47e6a9233b0733`.
-- [Execution closeout](../../../../planning/active/friday-telemetry-rewire/execution/REM-004-final/report.md).
-- [Continuing initiative packet](../../../../planning/active/friday-telemetry-rewire/README.md).
+- [Independent VERIFIED report](../friday-telemetry-rewire/historical/validation/VAL-006/report.md), SHA-256 `b67d8271acfdd7f6b6f4d49d58220ce354423eaa5c8ebde9993694d26009e421`.
+- [Independent evidence](../friday-telemetry-rewire/historical/validation/VAL-006/evidence.json), SHA-256 `a063afd3549bc842292368306cf160a6e8f19b290589e604fe47e6a9233b0733`.
+- [Execution closeout](../friday-telemetry-rewire/historical/execution/REM-004-final/report.md).
+- [Continuing initiative packet](../friday-telemetry-rewire/historical/README.md).
 
 Accepted behavior is strict default-disabled provider-neutral local Chat
 telemetry assembly, caller-owned injection, safe bounded runtime/application

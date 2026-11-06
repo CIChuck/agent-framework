@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "owner": "friday-readme-refresh",
+  "packet": "docs/archive/completed/2026/friday-readme-refresh/historical/",
+  "files": [
+    {
+      "path": "docs/archive/completed/2026/friday-readme-refresh/historical/README.md",
+      "sha256": "81dc55fb82cd994ae24b69a54b36af5b64643638e6fd261d7015ec71dda67a35",
+      "kind": "index"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-readme-refresh/historical/authority.json",
+      "sha256": "30034e9a414c68b65e2933b9bad1ab79b588b53d714cd71eadae9d87d653c1c0",
+      "kind": "authority"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-readme-refresh/historical/execution-log.md",
+      "sha256": "1f103875ff6661d3c6180785a494b3da7e403b0a48da2cbd34c0ebacf16abb85",
+      "kind": "approval"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-readme-refresh/historical/directives/CD-DOC-001-readme-refresh.md",
+      "sha256": "73a398a1ac03290817323c20fd06f4e7e831562ab1c5b6de8f045db023984f5c",
+      "kind": "directive"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-readme-refresh/historical/validation/final-review/report.md",
+      "sha256": "593a083c0887e0d2c0a69b110e7a1ac73890876e9a696fa026c4369f1024f057",
+      "kind": "report"
+    }
+  ]
+}

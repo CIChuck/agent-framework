@@ -1105,17 +1105,17 @@ async def test_2025_required_task_tools_excluded_without_enabling_tasks(capabili
 
 
 @pytest.mark.asyncio
-async def test_modern_http_headers_and_schema_are_captured_before_scheduling_exchange():
+async def test_modern_http_refresh_before_exchange_blocks_stale_call():
     peer = Peer()
     peer.tools[0]["outputSchema"] = {"type": "integer"}
     client, _, _ = make_client(peer)
+    release = asyncio.Event()
     await client.connect()
     try:
         adapter = MCPToolAdapter(client)
         old = (await adapter.get_tools())[0]
         start = client._start
         captured = asyncio.Event()
-        release = asyncio.Event()
 
         async def wait_before_issue(name, arguments, snapshot):
             captured.set()
@@ -1129,26 +1129,54 @@ async def test_modern_http_headers_and_schema_are_captured_before_scheduling_exc
         peer.tools[0]["inputSchema"]["properties"]["text"]["x-mcp-header"] = "Changed"
         peer.tools[0]["outputSchema"] = {"type": "string"}
         await client.refresh_tool_catalog()
-        peer.hook = (
-            lambda verb, headers, message: peer.rpc(
-                message, complete(content=[], structuredContent=7)
-            )
-            if message.get("method") == "tools/call"
-            else None
-        )
         release.set()
-        assert await running == "7"
-        _, headers, message = next(
-            r for r in peer.requests if r[2].get("method") == "tools/call"
-        )
-        assert b"mcp-param-text" in headers
-        assert b"mcp-param-changed" not in headers
-        assert message["params"]["arguments"] == {"text": "雪"}
+        with pytest.raises(MCPToolExecutionError) as stale:
+            await asyncio.wait_for(running, 1)
+        assert stale.value.failure_code == "catalog_unavailable"
+        assert "tools/call" not in peer.methods()
         assert client._start == start
         with pytest.raises(MCPToolExecutionError):
             await old.execute(text="again")
     finally:
+        release.set()
         await client.disconnect()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("profile", ["stdio", "2026-07-28", "2025-11-25"])
+async def test_generation_bound_call_retired_before_transport_dispatch(profile):
+    client, peer = refresh_peer(profile)
+    entered = asyncio.Event()
+    release = asyncio.Event()
+    running = None
+    await client.connect()
+    try:
+        old = (await MCPToolAdapter(client).get_tools())[0]
+        original = client._request_tool
+
+        async def wait_before_request(name, arguments, snapshot):
+            entered.set()
+            await release.wait()
+            return await original(name, arguments, snapshot)
+
+        client._request_tool = wait_before_request
+        running = asyncio.create_task(old.execute(text="held"))
+        await asyncio.wait_for(entered.wait(), 1)
+        await client.refresh_tool_catalog()
+        release.set()
+        with pytest.raises(MCPToolExecutionError) as stale:
+            await asyncio.wait_for(running, 1)
+        assert stale.value.failure_code == "catalog_unavailable"
+        assert sum(m.get("method") == "tools/call" for m in peer_messages(peer)) == 0
+
+        # Calls without a bound generation retain the existing raw call path.
+        await client.call_tool("echo", {"text": "raw"})
+        assert sum(m.get("method") == "tools/call" for m in peer_messages(peer)) == 1
+    finally:
+        release.set()
+        await client.disconnect()
+        if running is not None:
+            await asyncio.gather(running, return_exceptions=True)
 
 
 @pytest.mark.asyncio

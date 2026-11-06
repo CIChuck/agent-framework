@@ -1,0 +1,40 @@
+[
+  {
+    "control": "head-examples-original-term",
+    "example_source": "HEAD Git blobs; module constants redirected by temporary collection plugin",
+    "TERM": "dumb",
+    "returncode": 1,
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "-ra",
+      "-p",
+      "p0_controls",
+      "packages/friday-chat/tests_chat/compat/test_config_compatibility.py::test_repository_and_packaged_examples_share_model_bindings",
+      "packages/friday-chat/tests_chat/test_command_disposable_uat.py::test_real_app_cli_pty_command_uat_is_contained_and_provider_free",
+      "packages/friday-chat/tests_chat/test_display.py::test_production_clear_emits_control_sequence_through_pty"
+    ],
+    "stderr": ""
+  },
+  {
+    "control": "head-examples-xterm",
+    "example_source": "HEAD Git blobs; module constants redirected by temporary collection plugin",
+    "TERM": "xterm-256color",
+    "returncode": 0,
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "-ra",
+      "-p",
+      "p0_controls",
+      "packages/friday-chat/tests_chat/compat/test_config_compatibility.py::test_repository_and_packaged_examples_share_model_bindings",
+      "packages/friday-chat/tests_chat/test_command_disposable_uat.py::test_real_app_cli_pty_command_uat_is_contained_and_provider_free",
+      "packages/friday-chat/tests_chat/test_display.py::test_production_clear_emits_control_sequence_through_pty"
+    ],
+    "stderr": ""
+  }
+]

@@ -1,0 +1,3571 @@
+{
+  "head": "fc028f3bf128a610aae7d95b59afb4b601bec0eb",
+  "source_sha256": {
+    "packages/friday-chat/src/friday_chat/commands/__init__.py": "2187558fda44e40d898a2ce711dc1cefe560e248ba29b23a4b02caab81941690",
+    "packages/friday-chat/src/friday_chat/commands/contracts.py": "5931dac4ba41207710ca706bb5ab2932971da260ec9d2396ce5b62869cd4772d",
+    "packages/friday-chat/src/friday_chat/commands/files.py": "2c1555ad5ec48c5aab6cf3e14024a5591b86ace2b752f1420f273daf215c9f3c",
+    "packages/friday-chat/src/friday_chat/commands/maintenance.py": "fcaaeaaca0d03786392fb9bddc2afabd5f92ff37e4cc43eaf69c21f6d55ad813",
+    "packages/friday-chat/src/friday_chat/commands/memory.py": "5dd48d607044f39c9cac6a41bd0650e27a42bb7c165cd079831f42c7f36c48a0",
+    "packages/friday-chat/src/friday_chat/commands/orchestration.py": "ae62fa59b3505d70557248144bd2a5bf5623b2d88604ea21619e0dc5df1ea1ec",
+    "packages/friday-chat/src/friday_chat/commands/registry.py": "482556f39590a739586a42c79c182caf35435772761c1db84d8d32b185973ef3",
+    "packages/friday-chat/src/friday_chat/commands/security.py": "3003c52be09b4d8f4a6ac44547e7b8ccbc8add23b58ec48c46bce5c632eedff3",
+    "packages/friday-chat/src/friday_chat/commands/session.py": "f18cbafa158506f3d315edfaa3c232bd33841792ffb32b610c2a9a811e969308",
+    "packages/friday-chat/src/friday_chat/commands/speech.py": "4a4f589259e11cd515ba6b26c29fa42cf78e21f17ad8da19b1310d5a815ef154",
+    "packages/friday-chat/src/friday_chat/commands/tools.py": "3e5e53c886ff4266a30d3cf14a4438f5392d1a269e7a1f2e31bee9dd994a0956",
+    "packages/friday-chat/src/friday_chat/commands/transcript.py": "e02c6ab5c2f241b9126f1aa5206fbffa21daa4fa8e89dcb560675c0f74d300ab",
+    "packages/friday-chat/src/friday_chat/commands/workflow.py": "2d1cee8f13fb1ab87bbba8703feaf4969407c40d35c0fc1387b141a2f4afcc60",
+    "packages/friday-chat/tests_chat/compat/test_command_surface_parity.py": "48ba35d60bc3fd7a2161a3bb047f35a53c95e19cc97176b998954c3965e0872e",
+    "packages/friday-chat/tests_chat/compat/test_config_compatibility.py": "8e4412ebf1a5fc0a69f13dbcbaaeb8aaa9694a1a299400660966a44a394deb21",
+    "packages/friday-chat/tests_chat/compat/test_contract_coverage.py": "fad97198064d0f2e51a166bffd59f888db3eeff5d69c42d89ae846be5e4f3051",
+    "packages/friday-chat/tests_chat/compat/test_replay_parity.py": "19739078d71c9de5dbb64479abc82fc87f7df608445ee131afc47467e994d15e",
+    "packages/friday-chat/tests_chat/compat/test_safety_defaults.py": "ae26446aab27acfdc78e7f0bec3c90d2871c6d96ca3cbdb97e96790ffd2673a4",
+    "packages/friday-chat/tests_chat/compat/test_tool_loop_parity.py": "deafd1e2f686b5ca529cec2616c90fc79efec6e190f35fa18c1ca11a2d546778",
+    "packages/friday-chat/tests_chat/compat/test_turn_contract_parity.py": "d162ac6e0871486926239e7227a5f9cae86128208332fafc47c59c4003cf6077",
+    "packages/friday-chat/tests_chat/fixtures/mcp_execution_peer.py": "f972ff2b71dea5dcc89d988d358a9a21bcee1006d4e9bfade77ae3ba4135e1ac",
+    "packages/friday-chat/tests_chat/test_app_lifecycle.py": "f9ab3d2c7beb319ecf988a50cbdd80458b58ade5c5fa046e593eb1f8874d5ec1",
+    "packages/friday-chat/tests_chat/test_background_work.py": "84a7f72441775d9ddd1e462a6e8d849e27889a810692b985702bc4f8c1ed95dd",
+    "packages/friday-chat/tests_chat/test_cli.py": "86a9371df7ef1bc208a274d0cd93d389ffa3e4cb320213eef68b551fe557cfeb",
+    "packages/friday-chat/tests_chat/test_command_disposable_uat.py": "4bd3701f2e3858f794283424c7140e5adbe62001600c440dc7e2575d4a49b36b",
+    "packages/friday-chat/tests_chat/test_command_foundations.py": "1ddd0aaf3e032d4e8c39f125deca716d04f5edfdcebe9f4452e6e4f58b62d729",
+    "packages/friday-chat/tests_chat/test_command_production_adapters.py": "2e64638ef530ffedc59aac1648447e31f6d26d4265dfde02c4f5a4acd8cf2a4f",
+    "packages/friday-chat/tests_chat/test_command_registry.py": "b486ff314002ee1e88804a31ab206cbda6db121ba69a7f0ad2ecc6fd5aa165a4",
+    "packages/friday-chat/tests_chat/test_display.py": "deaca8320685c24aa59c6430c74de8c271c24191ece12d5b000d4f0d52723628",
+    "packages/friday-chat/tests_chat/test_files_replay_shell.py": "94443a42877ea53b35ca5f1f7d204d90ebf6e71ce8d59dd0cd92ab735f53daf7",
+    "packages/friday-chat/tests_chat/test_imports.py": "3d0ea782c58b6a2d1d7fa5b3f11f6056757cab210f156834896fff1ab8a61d2a",
+    "packages/friday-chat/tests_chat/test_input_sources.py": "cca27b6981aa1ab2b22f1c0523b38edce741233ba4ca1bb920462b91d8e60e48",
+    "packages/friday-chat/tests_chat/test_live_lmstudio.py": "185093850a1000b8caa71cfc3abd2418eff9ad897e3b1cf309d10f562b4ec7de",
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py": "515ae0988d9888c40b8fe15fae3e24aa9a5033974349ecafb3d90cc6f9aacbd8",
+    "packages/friday-chat/tests_chat/test_llm_config_migration.py": "642258f5ae79d711cd25ed47325487b010d651c104d8a7f4bd04ef859058393c",
+    "packages/friday-chat/tests_chat/test_llm_telemetry_injection.py": "4cacf450b2722c91a9b0bab6add483230170eecdacf8a1be52d6dd0686702b8c",
+    "packages/friday-chat/tests_chat/test_maintenance_commands.py": "6405dc2a5e4fcecb30e77502f2569adb86d3c8b1b4565a26a369fb083053cbf4",
+    "packages/friday-chat/tests_chat/test_mcp_chat_bridge.py": "e3f834037ee55a123d2b2ba2c9f77e10d99837cb7923111d3703e9bb79d6e4e3",
+    "packages/friday-chat/tests_chat/test_mcp_config_compatibility.py": "4fa6555dc1144c08042ffa6a1f4b019d89cb2933118bbf8dd9f860b9c153197d",
+    "packages/friday-chat/tests_chat/test_mcp_execution_security.py": "c0863818cb4c44e8f08a4a85b53b587708c6e6c7f4795ee57bdb3449c3f2ca8f",
+    "packages/friday-chat/tests_chat/test_mcp_execution_transcript.py": "29468e74ad3b8724b0f5802e254c4ed3c0d01381ed41defda268045adf0f63f4",
+    "packages/friday-chat/tests_chat/test_mcp_http_integration.py": "baa7a1be712e8c4ad2143526531c988835f162b566b6d558085f9c7f8d0c6714",
+    "packages/friday-chat/tests_chat/test_mcp_memory.py": "1a458eae116b407f228f5d5d5ca718f0f8a825d180ec72387fabdc4ac3909241",
+    "packages/friday-chat/tests_chat/test_mcp_turn_budget.py": "6a53befdca2a3270e83dadb7e168c84993575adb9f93223a654f8afe611b9277",
+    "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py": "43656d05af6eeef8f61bfb33213cde80bd40dbdce892c5edd374e2cd9bd223d0",
+    "packages/friday-chat/tests_chat/test_memory_telemetry.py": "27d1c9d87cbf0c8702bb9d19330dde78e944115daff9f7d4da2a0a89eb715a45",
+    "packages/friday-chat/tests_chat/test_orchestration_workflow.py": "47c6e1472875c362ff0d97df70c8f25b62eeba474ebd98c82afae19d9b1eeaf3",
+    "packages/friday-chat/tests_chat/test_release_helpers.py": "65f4ad70c2a1b523b92e302c864c42ac9e2d6693bf087f19f1242e01431b61b3",
+    "packages/friday-chat/tests_chat/test_reorganization_contracts.py": "6b6da2b5974f33701e6378020683fe86bd5fa69e926db73178319952db47f0f7",
+    "packages/friday-chat/tests_chat/test_reorganization_coordinator.py": "a9d969b7d9a895a15b5d57c214075a09d12c17f84948673fd971694bbf8ce2d7",
+    "packages/friday-chat/tests_chat/test_reorganization_foundations.py": "cce1d0d7fdff9ab54c261947f27d334bcd49b7443db1e11eac418e9ffd0805de",
+    "packages/friday-chat/tests_chat/test_reorganization_mutation.py": "07761954d4079bc801bbf5ecbea21a1d408cd190e328639028ce2b4310330b33",
+    "packages/friday-chat/tests_chat/test_reorganization_terminal.py": "a6655e95749d6585c5a3d42a8401958d702085461b4279583cd65b361e32a808",
+    "packages/friday-chat/tests_chat/test_runtime.py": "cf96b2b41093888f179a3184dc071577f1dd4abfcc50004dca2ba91183b94aff",
+    "packages/friday-chat/tests_chat/test_security_speech.py": "8f157eb263f1086568de8ab5abe92ddcecb23db7f909924b6369b44688e2bf60",
+    "packages/friday-chat/tests_chat/test_session_identity.py": "b9f2cd809c6a9eb580f277b9b4e0bc5360c5003a7dd17fe07656d0c6a7f645b8",
+    "packages/friday-chat/tests_chat/test_session_memory_commands.py": "09777ca42ee24820752a1ff170728601355e8ab2ff209f6be69f10fde88e5adf",
+    "packages/friday-chat/tests_chat/test_telemetry.py": "fd2280007a2f4e63d5a5f1ce800a95bca7ea876cc505a7e0402f14d3f3785f88",
+    "packages/friday-chat/tests_chat/test_telemetry_diagnostics.py": "1d09187104e453ee20c05f7db19566c2364a05a01fe79fedfc6ff1d10388ffe3",
+    "packages/friday-chat/tests_chat/test_tool_commands.py": "e8060e805a09d57fb8315c31652a9788da601f89192b09c3c16db39d6bd3a1a8",
+    "packages/friday-chat/tests_chat/test_tool_selection_budget.py": "cde9dbee5fa0e6840db32c07ea67efab90a9cd85cff8299b868a39983d64f6f6",
+    "packages/friday-chat/tests_chat/test_tool_telemetry.py": "3cc9aadc5a17f7c444d5b42cb01acf314fc0616d400f600029a480a8e79dbbe5",
+    "packages/friday-chat/tests_chat/test_transcript_export_commands.py": "520d160afb1302cb13595bc9e41ccc11f8c66c01820843be7c0b72e96ca11af2",
+    "packages/friday-chat/tests_chat/test_transcript_production_commands.py": "3ae8a909256be0aef772325982411326fde8e27510699f30db9d9e4ec70c4558",
+    "packages/friday-chat/tests_chat/test_turn_processing.py": "f9bbd6aef24f0bd85337bccedf5bc0e5313beb17c41417a08933d1c2a8d7911d",
+    "packages/friday-chat/tests_chat/test_turn_telemetry.py": "0d97ed24be91018216d41a7b268874c22976c611917ba3880454b212db671b66",
+    "packages/friday-cli/src/friday_cli/__init__.py": "eadaed2487f368077381633f1a4839ca20319263b9dc5137b2ff7a39c867a83a",
+    "packages/friday-cli/src/friday_cli/cancellation.py": "d2eec1d099f9a7e5fac6d0e74f7ca8ac0c3a7d415c560d457492517716054e5e",
+    "packages/friday-cli/src/friday_cli/cli_config.py": "59ebd0b41e37c8393ead51e9f9226ee4bf31f74cac4b9b25abb19162a5da0690",
+    "packages/friday-cli/src/friday_cli/commands.py": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+    "packages/friday-cli/src/friday_cli/container.py": "e3cdbdeb320f70ec13c3c153fe692a39abfef8ca5e702f33bb301d53a72aa4ee",
+    "packages/friday-cli/src/friday_cli/display.py": "f29cdd178d285f028340671a9adbb5c560ec861b454c1dad93ffbca5eb940fd5",
+    "packages/friday-cli/src/friday_cli/input.py": "5fd7bce06896c7c41bdb5c77d64cd7ce6d4050369056af079e0c5e9af4ee4f33",
+    "packages/friday-cli/src/friday_cli/main.py": "9ad308520575e2f677a9b5e86f283182984aa94475f7e481cce0e2c2573b98a5",
+    "packages/friday-cli/src/friday_cli/profiles.py": "949c03310b82b438afaf2bcc8334e7c5989e93f1b6d8776670472ac8230866cf",
+    "packages/friday-cli/src/friday_cli/progress.py": "7fdbf4123261f4cbcdeae08a3ca3fc6064c836ef8d0c3f5fb16471c4d26851af",
+    "packages/friday-cli/src/friday_cli/repl.py": "a3756fb97c7b597e064cb1d51694434c3c3934575f2ff0baa193750b21f4faae",
+    "packages/friday-cli/src/friday_cli/session.py": "91371d2f4905da0413e63d1c3a5b848020c6caee07c726a4807e0a811120321a",
+    "packages/friday-cli/tests_cli/test_cancellation.py": "db889c5e6eea97f7f118ad5a0e2428301d7cc056c6a3c1767cdd3f587f8d03be",
+    "packages/friday-cli/tests_cli/test_cli_config.py": "6d260fb06b4d23bd83c8379cb115f69b2b5859e89e8b45394e8a759e607bcd1a",
+    "packages/friday-cli/tests_cli/test_commands.py": "a08ef7c5ae8b35d40dd766b79d58a023546c6795feb95269d8d5ad242e39ad37",
+    "packages/friday-cli/tests_cli/test_display.py": "9fdc9454fefb766fa8a5ccd8423b235ec4c9fa7642212e363495562fbb58cdc6",
+    "packages/friday-cli/tests_cli/test_input.py": "0c546fc9bda30875750dc9a7df0d98d1bbfec5369d6faa0603b4c63b6a24c26b",
+    "packages/friday-cli/tests_cli/test_session.py": "2d2b21706ff4f853e176dac9ac130409320ddf7e6696d630c42b3fad39771c0e"
+  },
+  "commands": [
+    {
+      "case_id": "PAR-001",
+      "name": "agent",
+      "metadata": {
+        "name": "agent",
+        "description": "Show detailed agent information.",
+        "category": "orchestration",
+        "usage": "/agent [name]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "name",
+            "description": "Agent name; omit to inspect the active agent.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._agent_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1103,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.orchestrator",
+        "context.runtime.orchestrator.active_agent",
+        "context.runtime.orchestrator.describe_agent"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "context.runtime.orchestrator.describe_agent",
+        "str"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_orchestration_workflow.py",
+          "line": 34,
+          "test": "test_switch_agents_agent_and_status_commands",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-002",
+      "name": "agents",
+      "metadata": {
+        "name": "agents",
+        "description": "List available agents.",
+        "category": "orchestration",
+        "usage": "/agents",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._agents_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1085,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.orchestrator"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "', '.join",
+        "'\\n'.join",
+        "CommandResult",
+        "lines.append",
+        "sorted"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_orchestration_workflow.py",
+          "line": 34,
+          "test": "test_switch_agents_agent_and_status_commands",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-003",
+      "name": "clear",
+      "metadata": {
+        "name": "clear",
+        "description": "Clear conversation history.",
+        "category": "session",
+        "usage": "/clear",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._clear_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 260,
+      "direct_context_accesses": [
+        "context.history",
+        "context.history.clear",
+        "context.runtime",
+        "context.runtime.memory",
+        "context.runtime.memory.clear_session_memory"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "context.history.clear",
+        "context.runtime.memory.clear_session_memory"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 44,
+          "test": "test_history_and_clear_commands_use_session_state",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-004",
+      "name": "clear-tools",
+      "metadata": {
+        "name": "clear-tools",
+        "description": "Clear the pending manual set and restore automatic tool selection.",
+        "category": "tools",
+        "usage": "/clear-tools",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "remove",
+      "handler": "friday_chat.commands.tools.clear_tools_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/tools.py",
+      "line": 77,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.tool_selection",
+        "context.runtime.tool_selection.clear_manual"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "context.runtime.tool_selection.clear_manual"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+          "line": 201,
+          "test": "test_real_app_cli_pty_command_uat_is_contained_and_provider_free",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch",
+            "prohibit_provider_and_network_transports"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_tool_commands.py",
+          "line": 141,
+          "test": "test_inject_clear_and_tool_budget_commands",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_tool_selection_budget.py",
+          "line": 203,
+          "test": "test_manual_mode_persists_exact_set_until_clear_restores_automatic",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-005",
+      "name": "cls",
+      "metadata": {
+        "name": "cls",
+        "description": "Clear the terminal through the display boundary.",
+        "category": "session",
+        "usage": "/cls",
+        "aliases": [
+          "clearscreen"
+        ],
+        "arguments": [],
+        "detail": "Requests one clear-screen UI effect and emits no replacement text. Unavailable or failed display boundaries report an honest error."
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.session.cls_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/session.py",
+      "line": 13,
+      "direct_context_accesses": [],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+          "line": 201,
+          "test": "test_real_app_cli_pty_command_uat_is_contained_and_provider_free",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch",
+            "prohibit_provider_and_network_transports"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_production_adapters.py",
+          "line": 296,
+          "test": "test_clear_aliases_request_display_effect_without_false_output",
+          "parameters": [
+            "production_runtime"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_display.py",
+          "line": 330,
+          "test": "test_clear_aliases_share_one_empty_typed_effect",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_display.py",
+          "line": 342,
+          "test": "test_app_dispatches_clear_effect_without_replacement_output",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_display.py",
+          "line": 360,
+          "test": "test_unavailable_and_failed_clear_are_honest_and_sanitized",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-006",
+      "name": "compact",
+      "metadata": {
+        "name": "compact",
+        "description": "Manually trigger context compaction.",
+        "category": "memory",
+        "usage": "/compact",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._compact_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 755,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.config",
+        "context.runtime.config.memory",
+        "context.runtime.config.memory.compaction",
+        "context.runtime.config.memory.compaction.get",
+        "context.runtime.maintenance",
+        "context.runtime.maintenance.compact",
+        "context.runtime.maintenance.compaction_running",
+        "context.runtime.maintenance.flush_pending_extraction"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "_classify_error",
+        "context.runtime.config.memory.compaction.get",
+        "context.runtime.maintenance.compact",
+        "context.runtime.maintenance.flush_pending_extraction"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 613,
+          "test": "test_compact_flushes_pending_extraction_before_run",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 631,
+          "test": "test_compact_flush_failure_preserves_pending_turns_and_skips_compactor",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 647,
+          "test": "test_compact_disabled_and_running_guards",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-007",
+      "name": "context",
+      "metadata": {
+        "name": "context",
+        "description": "Show the assembled context payload.",
+        "category": "memory",
+        "usage": "/context [--debug] [--file]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "--debug",
+            "description": "Include detailed token diagnostics.",
+            "required": false,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "--file",
+            "description": "Export the context to a file.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._context_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 285,
+      "direct_context_accesses": [
+        "context.last_context"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "_build_context_text",
+        "_write_export_file",
+        "len"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_app_lifecycle.py",
+          "line": 583,
+          "test": "test_app_help_output_includes_usage_and_argument_descriptions",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 202,
+          "test": "test_focused_help_includes_structured_argument_details",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 165,
+          "test": "test_context_and_prompt_file_exports_are_fixed_and_safe",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-008",
+      "name": "debug",
+      "metadata": {
+        "name": "debug",
+        "description": "Show context assembly debug information.",
+        "category": "memory",
+        "usage": "/debug",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._debug_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 311,
+      "direct_context_accesses": [
+        "context.last_debug",
+        "context.last_debug.items",
+        "context.runtime",
+        "context.runtime.telemetry",
+        "context.runtime.telemetry.execution_snapshot"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "'\\n'.join",
+        "CommandResult",
+        "context.last_debug.items",
+        "context.runtime.telemetry.execution_snapshot",
+        "lines.extend",
+        "sorted"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_telemetry_diagnostics.py",
+          "line": 42,
+          "test": "test_failed_turn_visible_without_result",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_commands.py",
+          "line": 299,
+          "test": "test_execute_with_extra_kwargs",
+          "parameters": [
+            "self"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-009",
+      "name": "debug-budget",
+      "metadata": {
+        "name": "debug-budget",
+        "description": "Show token budget diagnostics.",
+        "category": "memory",
+        "usage": "/debug-budget",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._debug_budget_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 329,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.config",
+        "context.runtime.config.memory"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-010",
+      "name": "debug-retrieval",
+      "metadata": {
+        "name": "debug-retrieval",
+        "description": "Show retrieval diagnostics for a query.",
+        "category": "memory",
+        "usage": "/debug-retrieval <query>",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "query",
+            "description": "Retrieval query; remaining words are joined.",
+            "required": true,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._debug_retrieval_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 382,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.memory",
+        "context.runtime.memory.debug_retrieval"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "' '.join",
+        "'\\n'.join",
+        "CommandResult",
+        "_preview_text",
+        "context.runtime.memory.debug_retrieval",
+        "diagnostics.get",
+        "isinstance",
+        "len",
+        "lines.append",
+        "lines.extend",
+        "sorted",
+        "str"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-011",
+      "name": "delegate",
+      "metadata": {
+        "name": "delegate",
+        "description": "Delegate a task to another agent.",
+        "category": "orchestration",
+        "usage": "/delegate <agent> <task>",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "agent",
+            "description": "Target agent name.",
+            "required": true,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "task",
+            "description": "Task text; remaining words are joined.",
+            "required": true,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._delegate_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1117,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.orchestrator"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "' '.join",
+        "CommandResult",
+        "len",
+        "orchestrator.route",
+        "orchestrator.switch",
+        "str"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_orchestration_workflow.py",
+          "line": 51,
+          "test": "test_delegate_restores_prior_active_agent_on_success_and_failure",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-012",
+      "name": "entities",
+      "metadata": {
+        "name": "entities",
+        "description": "List graph entities and relationships.",
+        "category": "memory",
+        "usage": "/entities [nodes|name]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "nodes|name",
+            "description": "Use 'nodes' for node details or provide an entity name to inspect.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._entities_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 409,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.memory",
+        "context.runtime.memory.list_entities",
+        "context.runtime.memory.list_relationships"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "' '.join",
+        "'\\n'.join",
+        "CommandResult",
+        "_record_value",
+        "bool",
+        "context.runtime.memory.list_entities",
+        "context.runtime.memory.list_relationships",
+        "lines.append"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 126,
+          "test": "test_entities_command_lists_relationships",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_input.py",
+          "line": 204,
+          "test": "test_history_stores_multiple_entries",
+          "parameters": [
+            "self"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-013",
+      "name": "exit",
+      "metadata": {
+        "name": "exit",
+        "description": "Exit the chat session.",
+        "category": "session",
+        "usage": "/exit",
+        "aliases": [
+          "quit",
+          "q"
+        ],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._exit_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 252,
+      "direct_context_accesses": [],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_cli.py",
+          "line": 255,
+          "test": "test_cli_reports_local_telemetry_state",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch",
+            "enabled",
+            "state"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 187,
+          "test": "test_help_for_alias_resolves_canonical_command",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_telemetry.py",
+          "line": 244,
+          "test": "test_app_lifecycle_and_borrowed_provider_ownership",
+          "parameters": [
+            "monkeypatch"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_display.py",
+          "line": 133,
+          "test": "test_display_help",
+          "parameters": [
+            "self",
+            "captured_console"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-014",
+      "name": "export",
+      "metadata": {
+        "name": "export",
+        "description": "Export persisted entries from the current session.",
+        "category": "transcript",
+        "usage": "/export [csv|jsonl|markdown|md|training]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "format",
+            "description": "Output format for the current session export.",
+            "required": false,
+            "default": "markdown",
+            "choices": [
+              "csv",
+              "jsonl",
+              "markdown",
+              "md",
+              "training"
+            ]
+          }
+        ],
+        "detail": "Queries the current persisted transcript and writes a safely contained CSV, JSONL, Markdown, or training JSONL export. It never copies the live SQLite database."
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.transcript.export_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 107,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.transcript",
+        "context.runtime.transcript.query_entries",
+        "context.runtime.transcript.query_session",
+        "context.session_identity",
+        "context.session_identity.value"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "_missing_session_result",
+        "_record_count",
+        "_write_current_session_export",
+        "args[0].lower",
+        "context.runtime.transcript.query_entries",
+        "context.runtime.transcript.query_session",
+        "len"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_export_commands.py",
+          "line": 70,
+          "test": "test_current_session_export_formats",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 353,
+          "test": "test_exports_share_persisted_queries_and_safe_static_paths",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 433,
+          "test": "test_empty_missing_and_context_log_export_states_are_explicit",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 535,
+          "test": "test_query_and_partial_export_failures_are_sanitized",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_commands.py",
+          "line": 148,
+          "test": "test_parse_command_with_args",
+          "parameters": [
+            "self"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_commands.py",
+          "line": 278,
+          "test": "test_execute_with_default_arg",
+          "parameters": [
+            "self"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_commands.py",
+          "line": 337,
+          "test": "test_usage_with_optional_arg",
+          "parameters": [
+            "self"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-015",
+      "name": "export-prompts",
+      "metadata": {
+        "name": "export-prompts",
+        "description": "Export persisted captured prompts and responses for one session.",
+        "category": "transcript",
+        "usage": "/export-prompts [session_id]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "session_id",
+            "description": "Session identifier; omit for the current session.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": "Queries context-log records for the current or selected session and writes contained JSON. Empty output explains that transcript.capture_raw_prompts must be enabled."
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.transcript.export_prompts_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 145,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.transcript",
+        "context.runtime.transcript.query_context_logs",
+        "context.runtime.transcript.query_session",
+        "context.session_identity",
+        "context.session_identity.value"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "_missing_session_result",
+        "_record_count",
+        "_write_context_log_export",
+        "context.runtime.transcript.query_context_logs",
+        "context.runtime.transcript.query_session",
+        "len"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 98,
+          "test": "test_default_help_metadata_matches_handler_syntax",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_export_commands.py",
+          "line": 92,
+          "test": "test_export_prompts_handles_missing_context_log",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_export_commands.py",
+          "line": 106,
+          "test": "test_export_prompts_writes_context_log",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 353,
+          "test": "test_exports_share_persisted_queries_and_safe_static_paths",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 433,
+          "test": "test_empty_missing_and_context_log_export_states_are_explicit",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 535,
+          "test": "test_query_and_partial_export_failures_are_sanitized",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-016",
+      "name": "help",
+      "metadata": {
+        "name": "help",
+        "description": "Show available commands or focused command help.",
+        "category": "session",
+        "usage": "/help [command]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "command",
+            "description": "Command name or alias to inspect.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._help_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1346,
+      "direct_context_accesses": [
+        "context.registry"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "build_default_registry",
+        "isinstance",
+        "registry.render_help"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_app_lifecycle.py",
+          "line": 555,
+          "test": "test_session_initializes_lazily_on_first_chat_turn",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_app_lifecycle.py",
+          "line": 583,
+          "test": "test_app_help_output_includes_usage_and_argument_descriptions",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 41,
+          "test": "test_help_includes_every_registered_command_and_alias",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 64,
+          "test": "test_help_uses_legacy_verbose_category_format",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 187,
+          "test": "test_help_for_alias_resolves_canonical_command",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 202,
+          "test": "test_focused_help_includes_structured_argument_details",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 215,
+          "test": "test_reorganize_help_documents_exact_execution_and_recovery",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 229,
+          "test": "test_unknown_command_returns_registry_response",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_display.py",
+          "line": 122,
+          "test": "test_display_config_auto_loads_sibling_cli_config",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_display.py",
+          "line": 246,
+          "test": "test_ascii_startup_banner_uses_configurable_art_and_tips",
+          "parameters": [
+            "capsys"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_display.py",
+          "line": 296,
+          "test": "test_generic_output_sink_preserves_literal_help_arguments",
+          "parameters": [
+            "capsys"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 324,
+          "test": "test_meta_empty_state_is_actionable_and_read_only",
+          "parameters": [
+            "production_runtime"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_commands.py",
+          "line": 141,
+          "test": "test_parse_simple_command",
+          "parameters": [
+            "self"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_commands.py",
+          "line": 317,
+          "test": "test_usage_no_args",
+          "parameters": [
+            "self"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_commands.py",
+          "line": 361,
+          "test": "test_get_help",
+          "parameters": [
+            "self"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_display.py",
+          "line": 133,
+          "test": "test_display_help",
+          "parameters": [
+            "self",
+            "captured_console"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_input.py",
+          "line": 22,
+          "test": "test_completes_commands_starting_with_slash",
+          "parameters": [
+            "self"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_input.py",
+          "line": 126,
+          "test": "test_create_friday_input_handler",
+          "parameters": [
+            "self"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_input.py",
+          "line": 191,
+          "test": "test_history_file_created",
+          "parameters": [
+            "self"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_input.py",
+          "line": 204,
+          "test": "test_history_stores_multiple_entries",
+          "parameters": [
+            "self"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-017",
+      "name": "history",
+      "metadata": {
+        "name": "history",
+        "description": "Show conversation history.",
+        "category": "session",
+        "usage": "/history",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._history_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 271,
+      "direct_context_accesses": [
+        "context.history"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "'\\n'.join",
+        "CommandResult",
+        "enumerate",
+        "lines.append"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 44,
+          "test": "test_history_and_clear_commands_use_session_state",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_input.py",
+          "line": 22,
+          "test": "test_completes_commands_starting_with_slash",
+          "parameters": [
+            "self"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_input.py",
+          "line": 204,
+          "test": "test_history_stores_multiple_entries",
+          "parameters": [
+            "self"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-018",
+      "name": "ingest",
+      "metadata": {
+        "name": "ingest",
+        "description": "Ingest file content into vector memory.",
+        "category": "files",
+        "usage": "/ingest <path> [description] [--lines=N]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "path",
+            "description": "File path to ingest.",
+            "required": true,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "description",
+            "description": "Optional source description; remaining words are joined.",
+            "required": false,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "--lines=N",
+            "description": "Maximum number of source lines to ingest.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._ingest_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 812,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.memory",
+        "context.runtime.memory.ingest_document"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "' '.join",
+        "CommandResult",
+        "SmartFileReader",
+        "SmartFileReader().read",
+        "context.runtime.memory.ingest_document",
+        "parse_line_limit",
+        "str"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_files_replay_shell.py",
+          "line": 76,
+          "test": "test_ingest_records_source_metadata_and_list_ingested",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-019",
+      "name": "inject-payload",
+      "metadata": {
+        "name": "inject-payload",
+        "description": "Inject a test payload for security validation.",
+        "category": "security",
+        "usage": "/inject-payload <payload>",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "payload",
+            "description": "Test payload; remaining words are joined.",
+            "required": true,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "remove",
+      "handler": "friday_chat.commands.registry._inject_payload_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 992,
+      "direct_context_accesses": [
+        "context.injected_payload"
+      ],
+      "direct_assignments": [
+        "context.injected_payload"
+      ],
+      "direct_calls": [
+        "' '.join",
+        "CommandResult"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_security_speech.py",
+          "line": 67,
+          "test": "test_injected_payload_is_single_use",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-020",
+      "name": "inject-tools",
+      "metadata": {
+        "name": "inject-tools",
+        "description": "Set the exact manual tool schema set for subsequent turns.",
+        "category": "tools",
+        "usage": "/inject-tools <name> [name ...]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "name",
+            "description": "One or more whitespace-separated registered names accepted atomically within configured count and schema-token limits.",
+            "required": true,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": "Switches runtime selection to manual mode only after every name and the complete schema set pass validation. The accepted set remains model-bound until /clear-tools restores automatic selection."
+      },
+      "target": "remove",
+      "handler": "friday_chat.commands.tools.inject_tools_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/tools.py",
+      "line": 32,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.tool_selection",
+        "context.runtime.tools",
+        "context.runtime.tools.list_tools"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "'\\n'.join",
+        "CommandResult",
+        "_display_text",
+        "_selection_error_text",
+        "context.runtime.tools.list_tools",
+        "len",
+        "lines.append",
+        "lines.extend",
+        "selection.inject_manual",
+        "selection.synchronize_registered_tools",
+        "tuple",
+        "zip"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+          "line": 201,
+          "test": "test_real_app_cli_pty_command_uat_is_contained_and_provider_free",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch",
+            "prohibit_provider_and_network_transports"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 114,
+          "test": "test_remediated_command_help_documents_final_runtime_contracts",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_tool_commands.py",
+          "line": 141,
+          "test": "test_inject_clear_and_tool_budget_commands",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_tool_selection_budget.py",
+          "line": 203,
+          "test": "test_manual_mode_persists_exact_set_until_clear_restores_automatic",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-021",
+      "name": "insights",
+      "metadata": {
+        "name": "insights",
+        "description": "List durable insights.",
+        "category": "memory",
+        "usage": "/insights",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.memory.insights_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "line": 110,
+      "direct_context_accesses": [],
+      "direct_assignments": [],
+      "direct_calls": [
+        "_query_memory_record_result"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 181,
+          "test": "test_command_boundary_renders_at_most_one_hundred_typed_records",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-022",
+      "name": "lifecycle",
+      "metadata": {
+        "name": "lifecycle",
+        "description": "Run or inspect memory lifecycle processing.",
+        "category": "maintenance",
+        "usage": "/lifecycle [--execute] [--stats|--flush|--optimize]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "--execute",
+            "description": "Apply lifecycle changes instead of a dry run.",
+            "required": false,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "mode",
+            "description": "Inspect statistics, flush access data, or optimize lifecycle state.",
+            "required": false,
+            "default": null,
+            "choices": [
+              "--stats",
+              "--flush",
+              "--optimize"
+            ]
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._lifecycle_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 682,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.config",
+        "context.runtime.config.lifecycle",
+        "context.runtime.config.lifecycle.access_buffer",
+        "context.runtime.config.lifecycle.enabled",
+        "context.runtime.maintenance",
+        "context.runtime.maintenance.lifecycle"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "_classify_error",
+        "access_buffer.get",
+        "context.runtime.maintenance.lifecycle",
+        "set"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 565,
+          "test": "test_lifecycle_precedence_and_missing_access_buffer",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 583,
+          "test": "test_lifecycle_default_is_dry_run",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-023",
+      "name": "list-ingested",
+      "metadata": {
+        "name": "list-ingested",
+        "description": "List ingested document memory records.",
+        "category": "memory",
+        "usage": "/list-ingested",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._list_ingested_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 844,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.memory"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "'\\n'.join",
+        "CommandResult",
+        "getattr",
+        "lines.append"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_files_replay_shell.py",
+          "line": 76,
+          "test": "test_ingest_records_source_metadata_and_list_ingested",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-024",
+      "name": "memory",
+      "metadata": {
+        "name": "memory",
+        "description": "Show typed memory, transcript, session, and context statistics.",
+        "category": "memory",
+        "usage": "/memory",
+        "aliases": [],
+        "arguments": [],
+        "detail": "Reports public episodic, vector, graph, transcript, lifecycle, priming, app-session, and last-context metrics. Empty stores report zero; unavailable or unconfigured components are labeled honestly."
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.memory.memory_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "line": 31,
+      "direct_context_accesses": [
+        "context.history",
+        "context.last_budget_status",
+        "context.runtime",
+        "context.runtime.memory",
+        "context.runtime.memory.query_memory_statistics",
+        "context.runtime.session_identity",
+        "context.runtime.session_identity.value",
+        "context.runtime.transcript",
+        "context.runtime.transcript.query_entries",
+        "context.session",
+        "context.session.turn_ids",
+        "context.variables"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "MemoryDiagnosticWarning",
+        "MemoryMetric.available",
+        "MemoryMetric.unavailable",
+        "MemoryStatisticsSnapshot",
+        "_format_memory_statistics",
+        "_unavailable_store_statistics",
+        "context.runtime.memory.query_memory_statistics",
+        "context.runtime.transcript.query_entries",
+        "len",
+        "list",
+        "tuple",
+        "warnings.append"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+          "line": 201,
+          "test": "test_real_app_cli_pty_command_uat_is_contained_and_provider_free",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch",
+            "prohibit_provider_and_network_transports"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_production_adapters.py",
+          "line": 278,
+          "test": "test_memory_reports_seeded_real_episodic_count",
+          "parameters": [
+            "production_runtime"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 206,
+          "test": "test_memory_reports_exact_seeded_public_store_and_context_values",
+          "parameters": [
+            "production_runtime"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 341,
+          "test": "test_memory_partial_count_failure_retains_other_real_values",
+          "parameters": [
+            "production_runtime",
+            "monkeypatch"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 512,
+          "test": "test_app_retains_typed_budget_and_exposes_last_context_metrics",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 545,
+          "test": "test_memory_sanitizes_untrusted_session_identity",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-025",
+      "name": "meta",
+      "metadata": {
+        "name": "meta",
+        "description": "List active meta insights with lifecycle and provenance metadata.",
+        "category": "memory",
+        "usage": "/meta",
+        "aliases": [],
+        "arguments": [],
+        "detail": "Queries typed short- and long-term meta_insight records, excludes decayed records, and shows bounded synthesis provenance, source, confidence, and verification fields when available. It never runs synthesis or reorganization."
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.memory.meta_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "line": 136,
+      "direct_context_accesses": [],
+      "direct_assignments": [],
+      "direct_calls": [
+        "_query_memory_record_result"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+          "line": 201,
+          "test": "test_real_app_cli_pty_command_uat_is_contained_and_provider_free",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch",
+            "prohibit_provider_and_network_transports"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_production_adapters.py",
+          "line": 330,
+          "test": "test_meta_dispatches_seeded_real_adapter_record",
+          "parameters": [
+            "production_runtime"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 282,
+          "test": "test_meta_reads_inherited_synthesis_shape_across_active_collections",
+          "parameters": [
+            "production_runtime"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 324,
+          "test": "test_meta_empty_state_is_actionable_and_read_only",
+          "parameters": [
+            "production_runtime"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 368,
+          "test": "test_meta_partial_failure_returns_records_and_sanitized_warning",
+          "parameters": [
+            "production_runtime",
+            "monkeypatch"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 402,
+          "test": "test_meta_omits_oversized_scalar_lineage_before_json_parsing",
+          "parameters": [
+            "production_runtime",
+            "monkeypatch"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 466,
+          "test": "test_meta_inspects_only_bounded_prefix_of_oversized_decoded_lineage",
+          "parameters": [
+            "production_runtime",
+            "monkeypatch"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-026",
+      "name": "migrate",
+      "metadata": {
+        "name": "migrate",
+        "description": "Migrate existing memories to lifecycle metadata.",
+        "category": "maintenance",
+        "usage": "/migrate [--force|--execute|--stats]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "mode",
+            "description": "Execute migration or report dry-run statistics.",
+            "required": false,
+            "default": null,
+            "choices": [
+              "--force",
+              "--execute",
+              "--stats"
+            ]
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._migrate_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 722,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.config",
+        "context.runtime.config.memory",
+        "context.runtime.config.memory.persist_directory",
+        "context.runtime.maintenance",
+        "context.runtime.maintenance.migrate"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "_classify_error",
+        "context.runtime.maintenance.migrate",
+        "set"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 98,
+          "test": "test_default_help_metadata_matches_handler_syntax",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 594,
+          "test": "test_migrate_force_execute_alias_and_no_migration_needed",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-027",
+      "name": "prime",
+      "metadata": {
+        "name": "prime",
+        "description": "Load and show primed context.",
+        "category": "memory",
+        "usage": "/prime",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "remove",
+      "handler": "friday_chat.commands.registry._prime_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 365,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.config",
+        "context.runtime.config.memory",
+        "context.runtime.config.memory.priming"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "priming.get"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-028",
+      "name": "prompt",
+      "metadata": {
+        "name": "prompt",
+        "description": "Show the full formatted prompt sent to the LLM.",
+        "category": "memory",
+        "usage": "/prompt [--file]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "--file",
+            "description": "Export the prompt to a file.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._prompt_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 299,
+      "direct_context_accesses": [
+        "context.last_prompt"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "_build_prompt_text",
+        "_write_export_file"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 165,
+          "test": "test_context_and_prompt_file_exports_are_fixed_and_safe",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-029",
+      "name": "read",
+      "metadata": {
+        "name": "read",
+        "description": "Read a file with smart detection.",
+        "category": "files",
+        "usage": "/read <path> [--lines=N]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "path",
+            "description": "File path to read.",
+            "required": true,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "--lines=N",
+            "description": "Maximum number of lines to return.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._read_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 797,
+      "direct_context_accesses": [],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "SmartFileReader",
+        "SmartFileReader().read",
+        "format_file_read",
+        "parse_line_limit",
+        "str"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 98,
+          "test": "test_default_help_metadata_matches_handler_syntax",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_files_replay_shell.py",
+          "line": 25,
+          "test": "test_read_dispatches_supported_extensions",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_files_replay_shell.py",
+          "line": 54,
+          "test": "test_read_errors_and_malformed_line_limit",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-030",
+      "name": "recommend-tools",
+      "metadata": {
+        "name": "recommend-tools",
+        "description": "Recommend tools for a query.",
+        "category": "tools",
+        "usage": "/recommend-tools <query>",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "query",
+            "description": "Recommendation query; remaining words are joined.",
+            "required": true,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "remove",
+      "handler": "friday_chat.commands.registry._recommend_tools_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1293,
+      "direct_context_accesses": [],
+      "direct_assignments": [],
+      "direct_calls": [
+        "' '.join",
+        "' '.join(args).lower",
+        "'\\n'.join",
+        "CommandResult",
+        "_list_runtime_tools",
+        "f'{tool.name} {tool.description} {tool.category}'.lower",
+        "lines.append",
+        "query.split",
+        "scored.append",
+        "sorted",
+        "sum"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_mcp_chat_bridge.py",
+          "line": 152,
+          "test": "test_real_stdio_chat_turn_routes_exact_name_and_stops",
+          "parameters": [
+            "tmp_path",
+            "processes",
+            "caplog"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_tool_commands.py",
+          "line": 174,
+          "test": "test_recommend_tools_returns_scored_results",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-031",
+      "name": "reorganize",
+      "metadata": {
+        "name": "reorganize",
+        "description": "Preview or explicitly execute coordinated memory reorganization.",
+        "category": "maintenance",
+        "usage": "/reorganize [--execute] [--backup|--dedupe|--analyze|--prune|--synthesize|--verify] [--skip-synthesis] [--skip-verify] [--skip-lifecycle] [--force-reembed]\n       /reorganize --recover <run-id> [--execute]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "--execute",
+            "description": "Apply changes (exact flag required; a verified recovery bundle is always created first).",
+            "required": false,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "mode",
+            "description": "Run one reorganization step instead of the full operation.",
+            "required": false,
+            "default": null,
+            "choices": [
+              "--backup",
+              "--dedupe",
+              "--analyze",
+              "--prune",
+              "--synthesize",
+              "--verify"
+            ]
+          },
+          {
+            "name": "--skip-synthesis",
+            "description": "Skip synthesis during a full run.",
+            "required": false,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "--skip-verify",
+            "description": "Skip verification during a full run.",
+            "required": false,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "--skip-lifecycle",
+            "description": "Skip lifecycle processing.",
+            "required": false,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "--force-reembed",
+            "description": "Force eligible records to be re-embedded.",
+            "required": false,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "--recover <run-id>",
+            "description": "Inspect a retained run; add exact --execute to restore its recorded verified bundle.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": "The command is dry-run by default. Full mode runs dedupe, prune, synthesis, verification, and lifecycle unless a full-only skip flag is supplied. --analyze is read-only and rejects --execute. Every mutating mode first creates a verified Memory and Transcript recovery bundle; Transcript content is recovery-only and is never reorganized. Plain 'execute' and --no-backup are rejected. Recovery artifacts and the owner-only categorical log are retained; use the exact --recover forms shown above after recovery_required. Automatic exit reorganization is separately configurable and defaults to disabled."
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._reorganize_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 496,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.config",
+        "context.runtime.config.memory",
+        "context.runtime.config.memory.persist_directory"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "RecoveryRequest",
+        "ReorganizationMode",
+        "ReorganizationRequest",
+        "_CommandReorganizationProgress.for_context",
+        "_format_reorganization_result",
+        "_parse_reorganize_invocation",
+        "_reorganization_execute_refusal",
+        "_reorganization_failure_output",
+        "coordinator.recover",
+        "coordinator.run",
+        "getattr",
+        "isinstance",
+        "progress.acknowledge",
+        "str"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 215,
+          "test": "test_reorganize_help_documents_exact_execution_and_recovery",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 104,
+          "test": "test_reorganize_dry_run_default_and_execute_containment",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 136,
+          "test": "test_manual_and_exit_share_production_coordinator_capability",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 222,
+          "test": "test_backup_and_recovery_remain_available_without_mutation_adapter",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 373,
+          "test": "test_reorganize_rejects_plain_execute_token",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 386,
+          "test": "test_reorganize_rejects_no_backup_token",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 398,
+          "test": "test_reorganize_rejects_unknown_tokens",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 409,
+          "test": "test_reorganize_rejects_unknown_positional_tokens_before_preflight",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 420,
+          "test": "test_reorganize_rejects_duplicate_arguments",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 435,
+          "test": "test_reorganize_rejects_conflicting_mode_flags",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 447,
+          "test": "test_reorganize_rejects_full_only_flags_for_single_step_modes",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 457,
+          "test": "test_reorganize_rejects_execute_for_analyze_mode",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 467,
+          "test": "test_reorganize_single_step_mode_dispatches_in_dry_run",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 478,
+          "test": "test_reorganize_manual_default_ignores_mutating_maintenance_default",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 490,
+          "test": "test_reorganize_requires_persist_dir_and_reports_typed_capability",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 507,
+          "test": "test_reorganize_recovery_parser_and_execute_containment",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+          "line": 324,
+          "test": "test_meta_empty_state_is_actionable_and_read_only",
+          "parameters": [
+            "production_runtime"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_reorganization_terminal.py",
+          "line": 45,
+          "test": "test_provider_free_pty_acknowledges_before_bounded_progress_completes",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-032",
+      "name": "replay",
+      "metadata": {
+        "name": "replay",
+        "description": "Replay a transcript CSV.",
+        "category": "transcript",
+        "usage": "/replay <csv_path> [delay_seconds]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "csv_path",
+            "description": "Transcript CSV path.",
+            "required": true,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "delay_seconds",
+            "description": "Delay between replayed user turns.",
+            "required": false,
+            "default": "0",
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._replay_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 863,
+      "direct_context_accesses": [
+        "context.runtime"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "ReplayService",
+        "ReplayService(context.runtime).replay_csv",
+        "len",
+        "parse_replay_delay",
+        "str"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 98,
+          "test": "test_default_help_metadata_matches_handler_syntax",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_files_replay_shell.py",
+          "line": 120,
+          "test": "test_replay_command_handles_missing_invalid_and_empty_csv",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 530,
+          "test": "test_replay_waits_for_exclusive_maintenance_admission",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-033",
+      "name": "reset",
+      "metadata": {
+        "name": "reset",
+        "description": "Reset one or more memory stores.",
+        "category": "memory",
+        "usage": "/reset [graph|vector|episodic]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "store",
+            "description": "Memory store to reset; omit to reset every supported store.",
+            "required": false,
+            "default": null,
+            "choices": [
+              "graph",
+              "vector",
+              "episodic"
+            ]
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._reset_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 451,
+      "direct_context_accesses": [
+        "context.history",
+        "context.history.clear",
+        "context.last_budget_status",
+        "context.last_context",
+        "context.last_debug",
+        "context.last_prompt",
+        "context.runtime",
+        "context.runtime.maintenance",
+        "context.runtime.maintenance.archive_transcripts",
+        "context.runtime.maintenance.pending_extraction",
+        "context.runtime.maintenance.pending_extraction.clear",
+        "context.runtime.maintenance.reset_store",
+        "context.runtime.memory",
+        "context.runtime.memory.clear_session_memory"
+      ],
+      "direct_assignments": [
+        "context.last_budget_status",
+        "context.last_context",
+        "context.last_debug",
+        "context.last_prompt"
+      ],
+      "direct_calls": [
+        "'\\n'.join",
+        "CommandResult",
+        "_classify_error",
+        "context.history.clear",
+        "context.runtime.maintenance.archive_transcripts",
+        "context.runtime.maintenance.pending_extraction.clear",
+        "context.runtime.maintenance.reset_store",
+        "context.runtime.memory.clear_session_memory",
+        "lines.append"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 59,
+          "test": "test_reset_full_calls_all_stores_and_archives_transcripts",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 76,
+          "test": "test_reset_selective_calls_only_selected_store",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 90,
+          "test": "test_reset_store_failure_reports_and_continues",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_maintenance_commands.py",
+          "line": 663,
+          "test": "test_memory_store_clears_on_full_reset",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-034",
+      "name": "run-tool",
+      "metadata": {
+        "name": "run-tool",
+        "description": "Execute a named tool.",
+        "category": "tools",
+        "usage": "/run-tool <name> [json]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "name",
+            "description": "Registered tool name.",
+            "required": true,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "json",
+            "description": "JSON object containing tool parameters.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "remove",
+      "handler": "friday_chat.commands.registry._run_tool_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1247,
+      "direct_context_accesses": [
+        "context.injected_payload",
+        "context.runtime",
+        "context.runtime.tools",
+        "context.runtime.tools.call_tool",
+        "context.tool_ingestions",
+        "context.tool_ingestions.append",
+        "context.tool_lifecycle_records",
+        "context.tool_lifecycle_records.append",
+        "context.tool_results",
+        "context.tool_results.append"
+      ],
+      "direct_assignments": [
+        "context.injected_payload"
+      ],
+      "direct_calls": [
+        "' '.join",
+        "', '.join",
+        "CommandResult",
+        "_find_tool",
+        "_list_runtime_tools",
+        "_missing_required_parameters",
+        "_parse_tool_parameters",
+        "_sanitize_tool_result",
+        "_truncate_tool_output",
+        "context.runtime.tools.call_tool",
+        "context.tool_ingestions.append",
+        "context.tool_lifecycle_records.append",
+        "context.tool_results.append",
+        "isinstance",
+        "parsed.get"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_display.py",
+          "line": 296,
+          "test": "test_generic_output_sink_preserves_literal_help_arguments",
+          "parameters": [
+            "capsys"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_security_speech.py",
+          "line": 67,
+          "test": "test_injected_payload_is_single_use",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_tool_commands.py",
+          "line": 73,
+          "test": "test_run_tool_supports_json_and_plain_text_parameters",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_tool_commands.py",
+          "line": 86,
+          "test": "test_run_tool_validation_errors_are_user_facing",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_tool_commands.py",
+          "line": 105,
+          "test": "test_tool_sanitization_updates_security_stats",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_tool_commands.py",
+          "line": 125,
+          "test": "test_tool_result_truncation_lifecycle_and_ingestion_tracking",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-035",
+      "name": "security",
+      "metadata": {
+        "name": "security",
+        "description": "Show security status.",
+        "category": "security",
+        "usage": "/security",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._security_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 893,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.config",
+        "context.runtime.config.security",
+        "context.runtime.config.security.sanitization",
+        "context.security_stats"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "detection.get",
+        "quarantine.get",
+        "sanitization.get",
+        "wrapping.get"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_security_speech.py",
+          "line": 36,
+          "test": "test_security_status_and_local_tests_update_counters",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-036",
+      "name": "security-config",
+      "metadata": {
+        "name": "security-config",
+        "description": "Update security configuration.",
+        "category": "security",
+        "usage": "/security-config <sensitivity|action|wrapping> <value>",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "setting",
+            "description": "Security setting to update.",
+            "required": true,
+            "default": null,
+            "choices": [
+              "sensitivity",
+              "action",
+              "wrapping"
+            ]
+          },
+          {
+            "name": "value",
+            "description": "Validated value for the selected security setting.",
+            "required": true,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._security_config_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 953,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.config",
+        "context.runtime.config.security",
+        "context.runtime.config.security.sanitization"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "ValueError",
+        "dict",
+        "len",
+        "sanitization.clear",
+        "sanitization.get",
+        "sanitization.update",
+        "validate_security_update"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 98,
+          "test": "test_default_help_metadata_matches_handler_syntax",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_security_speech.py",
+          "line": 50,
+          "test": "test_security_config_update_success_and_rollback",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-037",
+      "name": "security-test",
+      "metadata": {
+        "name": "security-test",
+        "description": "Run local security sanitization tests.",
+        "category": "security",
+        "usage": "/security-test [instruction|delimiter|jailbreak|exfil|all]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "type",
+            "description": "Security sample type to run.",
+            "required": false,
+            "default": "all",
+            "choices": [
+              "instruction",
+              "delimiter",
+              "jailbreak",
+              "exfil",
+              "all"
+            ]
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._security_test_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 922,
+      "direct_context_accesses": [
+        "context.security_stats"
+      ],
+      "direct_assignments": [
+        "context.security_stats['blocked']",
+        "context.security_stats['detections']",
+        "context.security_stats['patterns_seen']",
+        "context.security_stats['total_scans']"
+      ],
+      "direct_calls": [
+        "'\\n'.join",
+        "CommandResult",
+        "len",
+        "lines.append",
+        "samples.items",
+        "sanitize_payload"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_security_speech.py",
+          "line": 36,
+          "test": "test_security_status_and_local_tests_update_counters",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-038",
+      "name": "sessions",
+      "metadata": {
+        "name": "sessions",
+        "description": "List persisted transcript sessions with current and primed markers.",
+        "category": "transcript",
+        "usage": "/sessions",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.transcript.sessions_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 32,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.transcript",
+        "context.runtime.transcript.query_session",
+        "context.runtime.transcript.query_sessions",
+        "context.session_identity",
+        "context.session_identity.value"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "', '.join",
+        "'\\n'.join",
+        "CommandResult",
+        "_primed_session_ids",
+        "context.runtime.transcript.query_session",
+        "context.runtime.transcript.query_sessions",
+        "lines.append",
+        "markers.append"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+          "line": 201,
+          "test": "test_real_app_cli_pty_command_uat_is_contained_and_provider_free",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch",
+            "prohibit_provider_and_network_transports"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_production_adapters.py",
+          "line": 225,
+          "test": "test_sessions_lists_seeded_persisted_session",
+          "parameters": [
+            "production_runtime"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_export_commands.py",
+          "line": 31,
+          "test": "test_sessions_and_transcript_commands_use_fake_transcript",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 234,
+          "test": "test_sessions_are_newest_first_mark_current_and_configured_primed",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 293,
+          "test": "test_transcript_handles_current_selected_untrusted_empty_and_archived",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 468,
+          "test": "test_two_app_invocations_share_wal_visible_store_with_distinct_ids",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 535,
+          "test": "test_query_and_partial_export_failures_are_sanitized",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-039",
+      "name": "set",
+      "metadata": {
+        "name": "set",
+        "description": "Set a scoped variable.",
+        "category": "session",
+        "usage": "/set <key> <value>",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "key",
+            "description": "Variable key to set.",
+            "required": true,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "value",
+            "description": "Variable value; remaining words are joined.",
+            "required": true,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "remove",
+      "handler": "friday_chat.commands.registry._set_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1333,
+      "direct_context_accesses": [
+        "context.variables"
+      ],
+      "direct_assignments": [
+        "context.variables[key]"
+      ],
+      "direct_calls": [
+        "' '.join",
+        "CommandResult",
+        "len"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 64,
+          "test": "test_vars_and_set_commands",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_commands.py",
+          "line": 155,
+          "test": "test_parse_command_with_multiple_args",
+          "parameters": [
+            "self"
+          ]
+        },
+        {
+          "file": "packages/friday-cli/tests_cli/test_commands.py",
+          "line": 325,
+          "test": "test_usage_with_required_arg",
+          "parameters": [
+            "self"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-040",
+      "name": "speech",
+      "metadata": {
+        "name": "speech",
+        "description": "Configure speech settings.",
+        "category": "speech",
+        "usage": "/speech [on|off|config|mode <live|file>|voice <name>|provider <elevenlabs|picovoice>]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "action",
+            "description": "Speech setting to inspect or update.",
+            "required": false,
+            "default": "config",
+            "choices": [
+              "on",
+              "off",
+              "config",
+              "mode",
+              "voice",
+              "provider"
+            ]
+          },
+          {
+            "name": "value",
+            "description": "Value required by mode, voice, or provider actions.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._speech_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1003,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.config",
+        "context.runtime.config.chat",
+        "context.runtime.config.chat.system_prompt",
+        "context.runtime.config.speech",
+        "context.runtime.speech",
+        "context.runtime.speech.cancel",
+        "context.runtime.speech.enabled"
+      ],
+      "direct_assignments": [
+        "context.runtime.config.chat.system_prompt",
+        "context.runtime.config.speech",
+        "context.runtime.speech.enabled"
+      ],
+      "direct_calls": [
+        "CommandResult",
+        "ValueError",
+        "_format_speech_config",
+        "add_speech_prompt_snippet",
+        "context.runtime.speech.cancel",
+        "dict",
+        "len",
+        "remove_speech_prompt_snippet",
+        "speech_config.model_copy"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_security_speech.py",
+          "line": 90,
+          "test": "test_speech_prompt_snippet_added_and_removed",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_security_speech.py",
+          "line": 123,
+          "test": "test_speech_command_updates_and_rollback",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_security_speech.py",
+          "line": 142,
+          "test": "test_speech_harness_disabled_enabled_and_cancellation",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-041",
+      "name": "speech-test",
+      "metadata": {
+        "name": "speech-test",
+        "description": "Run the speech validation harness.",
+        "category": "speech",
+        "usage": "/speech-test [once|loop]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "mode",
+            "description": "Run one speech test or request loop mode.",
+            "required": false,
+            "default": "once",
+            "choices": [
+              "once",
+              "loop"
+            ]
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._speech_test_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1054,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.config",
+        "context.runtime.config.speech",
+        "context.runtime.config.speech.enabled",
+        "context.runtime.speech",
+        "context.runtime.speech.speak"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "context.runtime.speech.speak"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_security_speech.py",
+          "line": 142,
+          "test": "test_speech_harness_disabled_enabled_and_cancellation",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-042",
+      "name": "status",
+      "metadata": {
+        "name": "status",
+        "description": "Show orchestrator status.",
+        "category": "orchestration",
+        "usage": "/status",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._status_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1140,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.orchestrator"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_orchestration_workflow.py",
+          "line": 34,
+          "test": "test_switch_agents_agent_and_status_commands",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-043",
+      "name": "summaries",
+      "metadata": {
+        "name": "summaries",
+        "description": "List turn summaries.",
+        "category": "memory",
+        "usage": "/summaries",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.memory.summaries_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "line": 123,
+      "direct_context_accesses": [],
+      "direct_assignments": [],
+      "direct_calls": [
+        "_query_memory_record_result"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_background_work.py",
+          "line": 367,
+          "test": "test_background_compaction_summary_is_visible_to_summaries_command",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-044",
+      "name": "switch",
+      "metadata": {
+        "name": "switch",
+        "description": "Switch active agent or show current agent status.",
+        "category": "orchestration",
+        "usage": "/switch [agent]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "agent",
+            "description": "Agent name; omit to show the active agent.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._switch_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1068,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.orchestrator"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "orchestrator.switch",
+        "str"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_orchestration_workflow.py",
+          "line": 34,
+          "test": "test_switch_agents_agent_and_status_commands",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-045",
+      "name": "timing",
+      "metadata": {
+        "name": "timing",
+        "description": "Show timing breakdown for the last turn.",
+        "category": "memory",
+        "usage": "/timing",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._timing_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 346,
+      "direct_context_accesses": [
+        "context.last_timing",
+        "context.last_timing.items",
+        "context.runtime",
+        "context.runtime.telemetry",
+        "context.runtime.telemetry.execution_snapshot"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "'\\n'.join",
+        "CommandResult",
+        "context.last_timing.items",
+        "context.runtime.telemetry.execution_snapshot",
+        "lines.append",
+        "lines.extend",
+        "sorted"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 77,
+          "test": "test_basic_memory_diagnostic_commands_with_fake_runtime",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-046",
+      "name": "tool-budget",
+      "metadata": {
+        "name": "tool-budget",
+        "description": "Inspect authoritative tool selection and schema-budget state.",
+        "category": "tools",
+        "usage": "/tool-budget",
+        "aliases": [],
+        "arguments": [],
+        "detail": "Distinguishes registered tools, pending manual selection, the most recent automatic selection, the last completed turn, and executed tools. Schema estimates and limits use tools.context.max_tools, tools.context.max_budget_ratio, memory.context_window, and memory.output_buffer."
+      },
+      "target": "remove",
+      "handler": "friday_chat.commands.tools.tool_budget_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/tools.py",
+      "line": 89,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.tool_selection",
+        "context.runtime.tools",
+        "context.runtime.tools.list_tools"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "', '.join",
+        "'\\n'.join",
+        "CommandResult",
+        "_display_text",
+        "_format_names",
+        "context.runtime.tools.list_tools",
+        "float",
+        "len",
+        "lines.append",
+        "state.manual_preview",
+        "state.synchronize_registered_tools",
+        "str"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+          "line": 201,
+          "test": "test_real_app_cli_pty_command_uat_is_contained_and_provider_free",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch",
+            "prohibit_provider_and_network_transports"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_production_adapters.py",
+          "line": 314,
+          "test": "test_tool_budget_reports_schemas_selected_for_real_turn",
+          "parameters": [
+            "production_runtime"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_mcp_chat_bridge.py",
+          "line": 152,
+          "test": "test_real_stdio_chat_turn_routes_exact_name_and_stops",
+          "parameters": [
+            "tmp_path",
+            "processes",
+            "caplog"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_mcp_turn_budget.py",
+          "line": 291,
+          "test": "test_retrieval_receives_exact_budget_before_model",
+          "parameters": [
+            "streaming"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_tool_commands.py",
+          "line": 141,
+          "test": "test_inject_clear_and_tool_budget_commands",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-047",
+      "name": "tools",
+      "metadata": {
+        "name": "tools",
+        "description": "List registered runtime tools and optionally filter by category.",
+        "category": "tools",
+        "usage": "/tools [category]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "category",
+            "description": "Optional runtime tool category filter.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._tools_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1197,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.mcp_tools",
+        "context.runtime.mcp_tools.rejection_lines",
+        "context.runtime.mcp_tools.status_lines",
+        "context.runtime.tool_selection",
+        "context.runtime.tool_selection.provider_export_rejections"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "', '.join",
+        "'\\n'.join",
+        "CommandResult",
+        "_list_runtime_tools",
+        "_tool_parameter_names",
+        "context.runtime.mcp_tools.rejection_lines",
+        "context.runtime.mcp_tools.status_lines",
+        "context.runtime.tool_selection.provider_export_rejections",
+        "len",
+        "lines.append",
+        "lines.extend",
+        "sorted"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+          "line": 201,
+          "test": "test_real_app_cli_pty_command_uat_is_contained_and_provider_free",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch",
+            "prohibit_provider_and_network_transports"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_mcp_chat_bridge.py",
+          "line": 152,
+          "test": "test_real_stdio_chat_turn_routes_exact_name_and_stops",
+          "parameters": [
+            "tmp_path",
+            "processes",
+            "caplog"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_mcp_http_integration.py",
+          "line": 143,
+          "test": "test_2025_draft7_docs_catalog_is_visible_in_chat_tools_command",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_tool_commands.py",
+          "line": 55,
+          "test": "test_tools_command_lists_and_filters_by_category",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-048",
+      "name": "transcript",
+      "metadata": {
+        "name": "transcript",
+        "description": "Show a persisted current or selected transcript, or export all sessions.",
+        "category": "transcript",
+        "usage": "/transcript [session_id|export]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "target",
+            "description": "Persisted session identifier to show, or export for all non-archived sessions.",
+            "required": false,
+            "default": "current session",
+            "choices": []
+          }
+        ],
+        "detail": "With no target, queries the runtime's current session identity. Selected identifiers are bound store-query values, never paths. The export target writes deterministic sessions.csv and entries.csv beneath a safely contained timestamped export directory."
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.transcript.transcript_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 78,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.transcript",
+        "context.runtime.transcript.query_entries",
+        "context.runtime.transcript.query_session",
+        "context.session_identity",
+        "context.session_identity.value"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "CommandResult",
+        "_export_all_sessions",
+        "_format_transcript",
+        "_missing_session_result",
+        "context.runtime.transcript.query_entries",
+        "context.runtime.transcript.query_session",
+        "len"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+          "line": 201,
+          "test": "test_real_app_cli_pty_command_uat_is_contained_and_provider_free",
+          "parameters": [
+            "tmp_path",
+            "monkeypatch",
+            "prohibit_provider_and_network_transports"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_production_adapters.py",
+          "line": 240,
+          "test": "test_transcript_reads_seeded_current_and_selected_sessions",
+          "parameters": [
+            "production_runtime"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 98,
+          "test": "test_default_help_metadata_matches_handler_syntax",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_command_registry.py",
+          "line": 114,
+          "test": "test_remediated_command_help_documents_final_runtime_contracts",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_export_commands.py",
+          "line": 31,
+          "test": "test_sessions_and_transcript_commands_use_fake_transcript",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_export_commands.py",
+          "line": 51,
+          "test": "test_transcript_export_writes_database_csv",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 293,
+          "test": "test_transcript_handles_current_selected_untrusted_empty_and_archived",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 353,
+          "test": "test_exports_share_persisted_queries_and_safe_static_paths",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 433,
+          "test": "test_empty_missing_and_context_log_export_states_are_explicit",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 468,
+          "test": "test_two_app_invocations_share_wal_visible_store_with_distinct_ids",
+          "parameters": [
+            "tmp_path"
+          ]
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "line": 535,
+          "test": "test_query_and_partial_export_failures_are_sanitized",
+          "parameters": [
+            "tmp_path"
+          ]
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-049",
+      "name": "vars",
+      "metadata": {
+        "name": "vars",
+        "description": "Show scoped variables.",
+        "category": "session",
+        "usage": "/vars",
+        "aliases": [],
+        "arguments": [],
+        "detail": null
+      },
+      "target": "remove",
+      "handler": "friday_chat.commands.registry._vars_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1321,
+      "direct_context_accesses": [
+        "context.variables",
+        "context.variables.items"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "'\\n'.join",
+        "CommandResult",
+        "context.variables.items",
+        "lines.extend",
+        "sorted"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "line": 64,
+          "test": "test_vars_and_set_commands",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    },
+    {
+      "case_id": "PAR-050",
+      "name": "workflow",
+      "metadata": {
+        "name": "workflow",
+        "description": "List, run, or control workflows.",
+        "category": "workflow",
+        "usage": "/workflow <list|run|status|approve|skip> [name] [key=value ...]",
+        "aliases": [],
+        "arguments": [
+          {
+            "name": "action",
+            "description": "Workflow operation.",
+            "required": true,
+            "default": null,
+            "choices": [
+              "list",
+              "run",
+              "status",
+              "approve",
+              "skip"
+            ]
+          },
+          {
+            "name": "name",
+            "description": "Workflow name for run, or an optional approval/skip identifier.",
+            "required": false,
+            "default": null,
+            "choices": []
+          },
+          {
+            "name": "key=value",
+            "description": "Optional workflow inputs for the run action.",
+            "required": false,
+            "default": null,
+            "choices": []
+          }
+        ],
+        "detail": null
+      },
+      "target": "extract; preserve semantics",
+      "handler": "friday_chat.commands.registry._workflow_handler",
+      "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "line": 1158,
+      "direct_context_accesses": [
+        "context.runtime",
+        "context.runtime.workflow"
+      ],
+      "direct_assignments": [],
+      "direct_calls": [
+        "'\\n'.join",
+        "CommandResult",
+        "_parse_workflow_inputs",
+        "len",
+        "lines.extend",
+        "str",
+        "workflow.approve",
+        "workflow.list_workflows",
+        "workflow.run_workflow",
+        "workflow.skip",
+        "workflow.status",
+        "workflows.items"
+      ],
+      "candidate_test_references": [
+        {
+          "file": "packages/friday-chat/tests_chat/test_orchestration_workflow.py",
+          "line": 68,
+          "test": "test_workflow_list_run_status_approve_and_skip",
+          "parameters": []
+        },
+        {
+          "file": "packages/friday-chat/tests_chat/test_orchestration_workflow.py",
+          "line": 91,
+          "test": "test_workflow_disabled_and_usage_messages",
+          "parameters": []
+        }
+      ],
+      "metadata_drift": {}
+    }
+  ],
+  "limits": "AST references are navigation aids, not proof of effects or case coverage. No handlers executed."
+}

@@ -1,0 +1,171 @@
+### 1. Outcome
+
+**`CHANGES_REQUESTED`** (limited to the Step 3 readiness review packet for `CMD-FND-001`; not implementation validation, not construction approval, and not P0/P1 closure).
+
+The proposed conditional foundation-only readiness architecture (**RD-01**, **RD-02**, **RD-03**) is technically defensible for constructing a standard-library-only `friday-framework-commands` (`friday_commands`) package with zero default handlers, zero client wiring, and zero runtime dependencies—**provided** the factual inaccuracies in how the readiness packet describes the default-install failure and `friday_tools.__init__` `sandbox` import (`VAL-STEP3-001`, violating mandatory criterion **R-05** / **AP-05**) are corrected before Step 4 human approval.
+
+---
+
+### 2. Candidate and Diff Identity
+
+- **Initiative:** `friday-command-refactor`
+- **Work Unit:** `CMD-FND-001 readiness / Step 3`
+- **Repository:** `/Users/chuckrussell/Dev/gendev/agent-framework`
+- **Branch:** `feature/command-refactor`
+- **Base Commit:** `bbbd90e05143137c5a1d49eacedb4125d254b8fb`
+- **Candidate Commit (`HEAD` at start and end):** `95fdeadc0a0e4b9720cdb553e5b26756a438ab70`
+- **Selected Diff Range:** `bbbd90e05143137c5a1d49eacedb4125d254b8fb..95fdeadc0a0e4b9720cdb553e5b26756a438ab70` (22 planning/validation files changed, 3,671 insertions, 99 deletions; 0 product source, test, config, or lockfile diffs)
+- **Dispatch Request:** [council-request.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/council-request.json) — SHA-256 `fc15a9d5f7439b96e3bd761bb2b16ae8cf404aa2748fbad98c622a6fd082765a` (verified at start and end)
+
+---
+
+### 3. Authority Manifest and Review Mode
+
+- **Review Mode:** Full scoped planning/readiness review plus approved foundation API consistency (`API-01`–`API-06`, `AP-01`–`AP-06`, `R-01`–`R-08`); not implementation validation.
+- **Approval Boundary:** [foundation-design.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/approval/foundation-design.md) (`CMD-DESIGN-001`) is approved for `API-01`–`API-06` only ([shared-command-api.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/shared-command-api.md) SHA-256 `e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74`). `RD-01`/`RD-02`, [CD-CMD-FND-001-neutral-foundation.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md), product source generation, P0/P1 closure, and feature acceptance are **not** approved.
+- **Pin Verification (Start and End):**
+  - **Authority pins:** 16/16 SHA-256 hashes in `authority_sha256` matched at start and end (including working-tree [board.yaml](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/board.yaml) `08d5ec970e9ef135406dffe421dab14750718112e722aedb8d1ce617eec0483c`).
+  - **Deliverable pins:** 22/22 SHA-256 hashes in `deliverable_sha256` matched at start and end.
+  - **Protected manifest:** `/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-command-step3-bhswluon/protected.json` SHA-256 `67bca816f731bf72753e8ac7ef38ce7ef6befdb42cac522c45c051614d5f69ed` and all **16,882** protected file hashes matched at start and end.
+  - **Source/test inventory:** All **84** source/test file SHA-256 hashes in [inventory.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/p0/inventory.json) matched at start and end.
+
+---
+
+### 4. Independence and Context Provenance
+
+- **Reviewer Identity / Harness / Model:** Google Gemini via Antigravity harness (`gemini-4-argon-high`), conversation `f186e9ca-3dd9-4416-a6f0-9a7d48a8a82f`.
+- **Review Context Timestamp:** `2026-11-06T14:09:22-05:00` (completed `2026-11-06T14:17:23-05:00`).
+- **Context Isolation:** Fresh read-only review context. No parent builder history, transcript, or private reasoning was supplied. Old review verdicts ([VAL-CMD-ARCH-001-report.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/VAL-CMD-ARCH-001-report.md), [COUNCIL-CMD-DESIGN-001-round2.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/COUNCIL-CMD-DESIGN-001-round2.md)) were treated strictly as historical context and not inherited for current bytes.
+- **Checkout Status:** On branch `feature/command-refactor` at `95fdeadc0a0e4b9720cdb553e5b26756a438ab70` with pre-existing preserved unrelated working-tree changes (`docs/planning/README.md`, `docs/planning/active/README.md`, `docs/planning/backlog/friday-tui-command-followups/README.md`, `docs/planning/board.yaml`, `docs/planning/deferred/friday-tui/README.md`, `packages/friday-chat/config.example.yaml`, `packages/friday-chat/models-config.example.yaml`, and untracked `docs/planning/active/command-refactor/directives/README.md`, `docs/planning/active/command-refactor/validation/step3/council-request.json`, `docs/planning/active/friday-tui/`, `docs/planning/reconciliation/`), all verified unchanged via `protected.json` and `authority_sha256`.
+
+---
+
+### 5. Mandatory Findings Ordered by Severity
+
+#### `VAL-STEP3-001` — Medium (Mandatory Criterion Violation: `R-05` / `AP-05`)
+
+- **Affected Files:**
+  - [readiness-review.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/readiness-review.md#L43-L57)
+  - [CD-CMD-FND-001-neutral-foundation.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md#L48-L52)
+  - [unit-map.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/unit-map.json#L881-L891)
+  - [execution-log.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/execution-log.md#L430-L433)
+- **Violated Authority and Exact Requirement:**
+  - [council-request.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/council-request.json#L54) (`R-05`: *"Default-install failure, augmented diagnostic results, generic CLI entry-point failure, blocked network attempt and offline-cache limitation are represented accurately"* and `required_checks[1]`: *"Inspect source packages and relevant existing tests as needed for the claims, including unconditional tools finance/sandbox imports and CLI main:app."*).
+  - [architecture-review-request.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/architecture-review-request.md#L25-L26) (`AP-05`: *"Existing evidence is represented faithfully"*).
+- **Evidence:**
+  1. **Which module import actually failed in the default 127-distribution install:**
+     - [readiness-review.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/readiness-review.md#L44-L45) states: *"Importing Chat failed with missing `friday_finance`: `friday_tools.__init__` imports finance unconditionally while finance is declared as an optional extra."* Similarly, [unit-map.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/unit-map.json#L883) states *"Chat import failed: missing friday_finance"*, [execution-log.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/execution-log.md#L431) states *"Chat import failed on missing friday_finance"*, and [CD-CMD-FND-001-neutral-foundation.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md#L48) states *"RD-02 records the default client import failure"*.
+     - However, in [probe.log](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/probe.log#L1-L36) and [installed_probe.py](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/installed_probe.py#L34-L125), lines 34–106 (`from friday_chat.commands.registry import ...`, `build_default_registry()`, all Chat parser/dispatch checks, and loading/running `friday-chat --help` via `friday_chat.cli:app`) and line 121 for `"friday_chat"` **all succeeded** in the default 127-package environment.
+     - The `ModuleNotFoundError: No module named 'friday_finance'` in [probe.log](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/probe.log#L14-L36) was raised at [installed_probe.py](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/installed_probe.py#L108-L121) when the loop over checked workspace packages called `importlib.import_module("friday_tools")`. (`friday-chat` declares `friday-framework-tools==0.1.0a4` as a core dependency in [packages/friday-chat/pyproject.toml](file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/pyproject.toml#L15), and [packages/friday-chat/src/friday_chat/adapters.py](file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/src/friday_chat/adapters.py#L2364-L2370) dynamically imports `friday_tools.*` modules when instantiating configured tools, which triggers `friday_tools.__init__`.)
+     - Reproduced in a clean disposable venv with only `friday-chat==0.1.0a4` and `friday-framework-cli==0.1.0a4` installed offline: `import friday_chat`, `import friday_chat.cli`, and `import friday_chat.commands.registry` all succeed (`OK`), whereas `import friday_tools` fails with `ModuleNotFoundError: No module named 'friday_finance'`.
+  2. **Inaccurate claim that `friday_tools.__init__` unconditionally imports the optional `sandbox` extra:**
+     - [readiness-review.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/readiness-review.md#L46-L47) states: *"Sandbox is also imported unconditionally; its default-profile failure was not reached independently in this first failing probe."*
+     - Inspection of [packages/friday-tools/src/friday_tools/__init__.py](file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-tools/src/friday_tools/__init__.py#L28-L34) shows `from .sandbox import (CommandSecurityError, FilesystemSandbox, PathSecurityError, SecurityError, ShellSandbox)`. That relative import resolves to the local module [packages/friday-tools/src/friday_tools/sandbox.py](file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-tools/src/friday_tools/sandbox.py#L1-L20) packaged inside `friday-framework-tools` itself, which imports only Python standard-library modules (`os`, `re`, `pathlib`, `tempfile`). It does **not** import the optional `friday_sandbox` (`friday-framework-sandbox`) distribution.
+     - Across all of `packages/friday-tools`, `friday_sandbox` is imported only lazily inside [`PythonExecuteTool.execute`](file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-tools/src/friday_tools/execution/python.py#L44-L50) (`try: from friday_sandbox.subprocess import SubprocessSandbox except ImportError: ...`).
+     - Reproduced in a disposable venv: installing `"friday-chat[finance]==0.1.0a4"` alone (without the `sandbox` extra) makes `import friday_tools` succeed (`OK`).
+- **Problem and Risk:**
+  - The Step 3 readiness packet asks the maintainer at Step 4 to approve **RD-02** based on an inaccurate root-cause description—stating that `friday_chat` itself fails to import in a default install and that `friday_tools.__init__` has an unreached default-profile import failure for the optional `sandbox` extra. Future migration/packaging directives relying on this readiness record would misidentify both the broken import boundary (`friday_tools` top-level package vs `friday_chat` top-level/CLI/registry) and the offending unconditional optional-extra import in `friday_tools.__init__` (`finance` only, not `sandbox`).
+- **Required Mitigation:**
+  - Update [readiness-review.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/readiness-review.md#L43-L57), [CD-CMD-FND-001-neutral-foundation.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md#L48-L52), [unit-map.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/unit-map.json#L881-L891), and [execution-log.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/execution-log.md#L430-L433) to state accurately that:
+    1. In the default 127-distribution install (`friday-chat==0.1.0a4` and `friday-framework-cli==0.1.0a4`), `friday_chat`, `friday_chat.cli:app` (`--help`), and `friday_chat.commands.registry` import and run statelessly, but importing Chat's declared core dependency `friday_tools` (checked by `installed_probe.py` and imported dynamically when Chat instantiates configured `friday_tools.*` tools) fails with `ModuleNotFoundError: No module named 'friday_finance'` because `friday_tools.__init__` unconditionally imports `.finance` (`friday_finance`), which is declared only as an optional extra.
+    2. `from .sandbox import ...` in `friday_tools.__init__` resolves to the internal stdlib-only module `friday_tools.sandbox` (not the optional `friday_sandbox` package, which is imported lazily in `friday_tools.execution.python`); the diagnostic probe installed `friday-chat[finance,sandbox]`, though `finance` is the only unconditional optional extra imported by `friday_tools.__init__`.
+- **Required Tests or Verification:**
+  - Re-verify `uv run --offline --no-sync python scripts/friday-dev-board.py validate`, `git diff --check`, and document hashes after updating the four planning/evidence-summary files.
+- **Documentation or Configuration Impact:**
+  - Documentation-only correction in the four Step 3 packet files above; no product source, test, or configuration changes.
+
+---
+
+### 6. Requirement-to-Evidence Matrix (`R-01`–`R-08` and `AP-01`–`AP-06`)
+
+| Criterion | Outcome | Evidence and Independent Assessment |
+| --- | --- | --- |
+| **R-01** (`AP-01`) | **PASS** | Approved [shared-command-api.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/shared-command-api.md) SHA-256 is unchanged (`e5ba883f...`). All 84 source/test file SHA-256 hashes in [inventory.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/p0/inventory.json) match the current checkout. The 9-retirement set (`clear-tools`, `inject-tools`, `recommend-tools`, `run-tool`, `tool-budget`, `inject-payload`, `prime`, `set`, `vars`), `/tools` retention, 41 canonical commands + 3 aliases (`clearscreen`, `quit`, `q`), retained quirks (`O-05`), neutral owner (`friday-commands` / `friday_commands`), and separate `friday-framework-cli` (`O-03`) are preserved across [scope-decisions.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/scope-decisions.md), [readiness-review.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/readiness-review.md), [par-coverage-ledger.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/par-coverage-ledger.md), and [unit-map.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/unit-map.json). |
+| **R-02** (`AP-01`–`AP-06`) | **PASS** (API design; see `R-05` for `AP-05` packet text) | Evaluated directly against current bytes of [shared-command-api.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/shared-command-api.md#L33-L162) (`e5ba883f...`) and [CD-CMD-FND-001-neutral-foundation.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md) (`80306666...`). Foundation dataclasses (`CommandArgument`, `CommandSpec`, `CommandRequest`, `CommandExecution`, `NoData`, `HelpData`, `ExitData`, `FoundationData`, `CommandError`, `UiEffect`, `CommandOutcome`, `DispatchResult`), runtime validation boundaries (`SOL3-ARCH-001`: exact `TypeError` vs `ValueError`, strict `type(value) is bool`, finite iterable snapshotting rejecting `str`/`bytes`/`bytearray`/`Mapping`, exact dataclass member types rejecting subclasses, `CommandRequest.name == spec.name` without renormalizing, `CommandOutcome` mutual exclusion and error `ui_effects` ban, `DispatchResult` `handled`/`outcome` pairing), one-pass normalization `N(text) = text.removeprefix("/").strip().lower()` (`SOL3-ARCH-002`), atomic canonical-spec reconstruction, frozen 9-row parser fixture table (corroborated against [`_parse_command_input`](file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/src/friday_chat/commands/registry.py#L1459-L1468)), and single awaited execution with exception/cancellation propagation are complete and coherent. |
+| **R-03** (`AP-04`) | **PASS** | `packages/friday-commands` does not exist (`test ! -e packages/friday-commands` verified) and no implementation is claimed verified. [CD-CMD-FND-001-neutral-foundation.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md#L73-L197) bounds exact allowed paths, positive/negative/boundary tests, `uv run --with-editable packages/friday-commands pytest -q packages/friday-commands/tests_commands`, Ruff/mypy/Chat/CLI/board/doc checks, and isolated `--no-deps` wheel installation (`python -I` outside checkout). |
+| **R-04** (`AP-06`) | **PASS** (with `VAL-STEP3-001` wording fix for RD-02) | **RD-01** and **RD-02** are explicitly labeled unapproved proposals requiring Step 4 human disposition ([readiness-review.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/readiness-review.md#L18-L35), [CD-CMD-FND-001-neutral-foundation.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md#L36-L55)). **Technical assessment:** (1) **RD-01 is defensible** because `CMD-FND-001` is a pure stdlib contract/registry unit with synthetic handlers only, zero migrated PAR cases, zero domain capabilities, and zero client changes; full `API-01`–`API-06`, neutral-import, and standalone-wheel proofs remain mandatory. *Reasons to reject or narrow RD-01:* A maintainer who wants zero risk of revisiting `CommandExecution`/`FoundationData`/`CommandError` when family contracts freeze could reject `RD-01` and require full P1 family schema closure first; if approved, `RD-01` should be explicitly narrowed so it applies **only** to `CMD-FND-001` and cannot be reused for `RET-001`, `PILOT-001`, or any family migration unit. (2) **RD-02 is defensible in substance** because pre-existing `friday_tools` optional-extra import defects and `friday_cli.main:app` absence do not affect building or testing a standalone stdlib-only `friday-framework-commands` wheel, provided `VAL-STEP3-001` is corrected so the disposition records the accurate root cause. |
+| **R-05** (`AP-05`) | **FAIL (`VAL-STEP3-001`)** | Wheel builds (17 wheels), augmented diagnostic probe results (131 distributions, 396 matched `.py` files across 13 Friday wheels, 50/3 metadata, parser/dispatch fixtures, `friday-chat --help`), `friday_cli.main:app` `AttributeError`, 1 blocked LiteLLM network call, and the offline `dspy-ai`/`dspy`/`xxhash` cache limitation for `friday-framework-optimization` are accurately represented and verified. **However**, the default-install failure description inaccurately states that importing `friday_chat` failed (when `friday_chat`, `friday_chat.cli`, and `friday_chat.commands.registry` imported cleanly and `importlib.import_module("friday_tools")` is what failed in [probe.log](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/probe.log#L20-L36)) and inaccurately claims that `friday_tools.__init__` unconditionally imports the optional `sandbox` extra (when `from .sandbox import ...` imports the local stdlib-only [packages/friday-tools/src/friday_tools/sandbox.py](file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-tools/src/friday_tools/sandbox.py), not `friday_sandbox`). |
+| **R-06** | **PASS** (note `unit-map.json:883` env text in `VAL-STEP3-001`) | Independently verified across [unit-map.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/unit-map.json), [par-coverage-ledger.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/par-coverage-ledger.md), and [inventory.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/p0/inventory.json): all 50 PAR cases (`PAR-001`–`PAR-050`) and 3 aliases (`clearscreen`, `quit`, `q`) are assigned exactly once; all 50 handler file paths, line numbers, and `def` names match actual source; 9 retirements map to `RET-001` (`disposition: "remove"`) and 41 retained commands map to 13 proposed units (`disposition: "extract; preserve semantics"`); `proposed_order` (`FND-001` -> `RET-001` -> `PILOT-001` -> ...) is a valid topological sort with 0 dependency violations; 8 cross-family scenarios (`SC-01`–`SC-08`) and 6 environment rows are explicit; all 50 rows keep `behavioral_signoff: "pending"`; and proposed units/capabilities explicitly carry no construction authority. |
+| **R-07** | **PASS** | Independently verified against [packages/friday-cli/src/friday_cli/commands.py](file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-cli/src/friday_cli/commands.py#L28-L358) and [packages/friday-cli/tests_cli/test_commands.py](file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-cli/tests_cli/test_commands.py): `friday_cli.commands.CommandRegistry` uses decorator/programmatic registration, mutable `ArgumentSpec`/`CommandInfo`, quote-stripping regex `_split_args`, `parse_input("/") -> (None, [])`, positional-to-kwargs `_build_kwargs` (`extra_args`), sync/async handlers, and `(bool, str | None)` return values with caught `TypeError`/`Exception`. Keeping `friday-framework-cli` separate without a speculative adapter or unapproved product fix is well-founded and obeys `O-03`. |
+| **R-08** | **PASS** | All 16 authority hashes, 22 deliverable hashes, 84 source/test inventory hashes, and 16,882 protected manifest hashes are unchanged at start and end. Product source, tests, package metadata, configs, and `uv.lock` have zero diff in `bbbd90e05143137c5a1d49eacedb4125d254b8fb..95fdeadc0a0e4b9720cdb553e5b26756a438ab70`. Process metadata (`execution_phase: planning`, `validation_state: pending`), board `next_gate`, proposed execution base, and the Step 4 human decision boundary are coherent across [board.yaml](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/board.yaml), [README.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/README.md), [next-phase.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/next-phase.md), [tactical-plan.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/tactical-plan.md), and [authority.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/authority.json). |
+
+---
+
+### 7. Commands Executed and Exact Results
+
+All commands were executed read-only with `PYTHONDONTWRITEBYTECODE=1` (and `--no-cache` for Ruff):
+
+1. **Verify `council-request.json` SHA-256, `HEAD`, and worktree status (start & end):**
+   ```sh
+   shasum -a 256 docs/planning/active/command-refactor/validation/step3/council-request.json && git rev-parse HEAD && git status --short --branch
+   ```
+   - **Result:** Exit `0`. SHA-256 `fc15a9d5f7439b96e3bd761bb2b16ae8cf404aa2748fbad98c622a6fd082765a`; `HEAD` `95fdeadc0a0e4b9720cdb553e5b26756a438ab70` on `feature/command-refactor`; identical worktree status at start and end.
+2. **Verify all authority, deliverable, and protected-manifest hashes (start & end):**
+   ```sh
+   PYTHONDONTWRITEBYTECODE=1 python3 -I -c '...'
+   ```
+   - **Result:** Exit `0`. `authority_mismatches: 0` (16/16), `deliverable_mismatches: 0` (22/22), `protected_manifest_sha_ok: True` (`67bca816f731bf72753e8ac7ef38ce7ef6befdb42cac522c45c051614d5f69ed`), `protected_files_checked: 16882 mismatches: 0`.
+3. **Verify 84 source/test hashes, 50 PAR cases, 3 aliases, 9 retirements, source line/def references, acyclic dependency order, 17 wheel hashes, and 396 installed wheel `.py` files:**
+   ```sh
+   PYTHONDONTWRITEBYTECODE=1 python3 -I -c '...'
+   ```
+   - **Result:** Exit `0`. `inventory_hash_count: 84 mismatches: 0`, `umap_commands_count: 50`, `source_ref_mismatches: 0 []`, `retirement_set_matches_9: True`, `aliases_ok: [('cls', 'clearscreen', 'PILOT-001'), ('exit', 'quit', 'PILOT-001'), ('exit', 'q', 'PILOT-001')]`, `dep_violations: 0 []`, `wheel_hash_mismatches: 0 total_wheels: 17`, `py_files_compared: 396 py_mismatches: 0`.
+4. **Ruff lint and format check on `installed_probe.py`:**
+   ```sh
+   PYTHONDONTWRITEBYTECODE=1 uv run --offline --no-sync ruff check --no-cache docs/planning/active/command-refactor/validation/step3/installed_probe.py
+   PYTHONDONTWRITEBYTECODE=1 uv run --offline --no-sync ruff format --no-cache --check docs/planning/active/command-refactor/validation/step3/installed_probe.py
+   ```
+   - **Result:** Exit `0`. `All checks passed!` and `1 file already formatted`.
+5. **Development board validation and git whitespace checks:**
+   ```sh
+   PYTHONDONTWRITEBYTECODE=1 uv run --offline --no-sync python scripts/friday-dev-board.py validate
+   git diff --check
+   git diff --check bbbd90e05143137c5a1d49eacedb4125d254b8fb..95fdeadc0a0e4b9720cdb553e5b26756a438ab70
+   ```
+   - **Result:** Exit `0`. `Development board validation passed: 36 tasks`; both `git diff --check` commands exited `0` with no output.
+6. **Documentation lifecycle check:**
+   ```sh
+   PYTHONDONTWRITEBYTECODE=1 uv run --offline --no-sync python scripts/check-documentation-lifecycle.py
+   ```
+   - **Result:** Exit `1` with **only** the four declared baseline broken links under `docs/planning/active/friday-tui/validation/` (`N01B-04-before-code-export-path-characterization.md:37`, `N01B-05-before-code-single-file-export-characterization.md:49`, `N01B-06-before-code-all-session-export-characterization.md:37`, `VAL-N01B-07-prepush-a196e95a.md:35`). Zero broken links in `docs/planning/active/command-refactor/`.
+7. **Reproduce `installed_probe.py` in isolated mode outside checkout using disposable environment into reviewer's own temporary directory (`mktemp -d`, removed after check):**
+   ```sh
+   /var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-command-step3-bhswluon/venv/bin/python -I docs/planning/active/command-refactor/validation/step3/installed_probe.py "$MY_TMP/repro-installed-probe.json" /Users/chuckrussell/Dev/gendev/agent-framework
+   ```
+   - **Result:** Exit `0`. Output JSON matched [installed-probe.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/installed-probe.json) across every field except `cwd` (`matches_installed_probe_except_cwd: True`), blocking 1 LiteLLM cost-map network attempt.
+8. **Disposable offline venv probe of default install (`friday-chat==0.1.0a4` + `friday-framework-cli==0.1.0a4`) vs `friday-chat[finance]==0.1.0a4` (in reviewer `mktemp -d`, removed after check):**
+   - **Result:** Exit `0`. Confirmed that in the 127-package default install, `friday_chat`, `friday_chat.cli`, `friday_chat.commands.registry`, and `friday_cli` import cleanly (`OK`), while `friday_tools` fails with `ModuleNotFoundError: No module named 'friday_finance'`; adding only `friday-chat[finance]==0.1.0a4` (without `sandbox`) makes `friday_tools` import cleanly (`OK`).
+
+---
+
+### 8. Skipped Checks and Reasons
+
+- **Full owning test suites (`packages/friday-chat/tests_chat` and `packages/friday-cli/tests_cli`):** Not rerun during this read-only Step 3 council review per `council-request.json` (`required_checks[3]` and `external_effects`); all 84 inventoried source/test file SHA-256 hashes were verified unchanged against the historical receipts (826 controlled Chat passes, 155 CLI passes).
+- **Live provider / tool / runtime-store construction:** Prohibited by `council-request.json` (`external_effects`).
+
+---
+
+### 9. Baseline Failures Versus Regressions
+
+- **Declared Pre-Existing Baseline Failures (not caused by candidate `95fdeadc0a0e4b9720cdb553e5b26756a438ab70`):**
+  1. `scripts/check-documentation-lifecycle.py` fails on the exact 4 unrelated broken links in `docs/planning/active/friday-tui/validation/` listed in `known_baseline`.
+  2. `friday_tools/__init__.py` unconditionally imports `.finance` (`friday_finance`), which is declared only as an optional extra (`friday-framework-tools[finance]` / `friday-chat[finance]`), causing `import friday_tools` to fail in a default `friday-chat` wheel installation.
+  3. `friday-framework-cli` declares console script `friday = "friday_cli.main:app"`, which raises `AttributeError: module 'friday_cli.main' has no attribute 'app'` because `packages/friday-cli/src/friday_cli/main.py` is a comment-only stub.
+  4. Offline installation of the full 17-wheel workspace cohort fails to resolve `friday-framework-optimization==0.1.0a4` (`dspy-ai>=2.0.0` / `dspy` / `xxhash`) from the local offline cache.
+- **Candidate Defect Found in Step 3 Packet:**
+  - `VAL-STEP3-001` (Medium, mandatory criterion `R-05` / `AP-05`): Misstatement in the Step 3 readiness packet that `friday_chat` import failed in the default install (rather than `friday_tools`) and that `friday_tools.__init__` unconditionally imports the optional `sandbox` extra (rather than the internal stdlib module `friday_tools.sandbox`).
+
+---
+
+### 10. Residual Risk and Advisory Observations
+
+- **Deferred P0/P1 obligations under `RD-01`:** Even if the maintainer approves `RD-01` for `CMD-FND-001`, all 50 PAR cases remain without complete per-class behavioral signoff, transitive failure/cancellation/progress probes, or frozen family capability schemas. None of those gates may be treated as closed when moving past `CMD-FND-001` to `RET-001`, `PILOT-001`, or family migrations.
+- **Deferred client packaging defects under `RD-02`:** Approving `RD-02` for `CMD-FND-001` does not make default `friday-chat` tool loading (`friday_tools`) or the `friday` console script (`friday_cli.main:app`) healthy; those must be remediated or explicitly dispositioned before affected client migration/delivery gates (`P4`/`P5`).
+
+---
+
+### 11. Recommended Next Gate
+
+1. Collect all three council reports for candidate `95fdeadc0a0e4b9720cdb553e5b26756a438ab70`.
+2. Present `VAL-STEP3-001` (and any findings from the other council providers) to the maintainer.
+3. Upon maintainer authorization, apply the bounded documentation correction for `VAL-STEP3-001` in [readiness-review.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/readiness-review.md), [CD-CMD-FND-001-neutral-foundation.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md), [unit-map.json](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/unit-map.json), and [execution-log.md](file:///Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/execution-log.md), freeze the updated candidate, and present **Step 4** (`CD-CMD-FND-001-neutral-foundation.md`, exact execution base SHA, and `RD-01`/`RD-02` dispositions) for explicit maintainer decision before any `packages/friday-commands/` code generation begins.

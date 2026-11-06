@@ -1,0 +1,10 @@
+Resolved 9 packages in 410ms
+linkify-it-py==2.2.0
+markdown-it-py==4.0.0
+mdit-py-plugins==0.6.1
+mdurl==0.1.2
+platformdirs==4.13.3
+pygments==2.19.2
+rich==14.2.0
+textual==8.2.8
+typing-extensions==4.15.0

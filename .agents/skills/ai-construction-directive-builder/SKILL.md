@@ -1,0 +1,1 @@
+../../../docs/dev-skills/ai-construction-directive-builder.md

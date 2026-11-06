@@ -1,0 +1,412 @@
+{
+  "date": "2026-11-06",
+  "source_base": "bbbd90e05143137c5a1d49eacedb4125d254b8fb",
+  "python": "3.13.10",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "wheel_build": {
+    "command": "uv build --all-packages --wheel --offline --out-dir TEMP/dist",
+    "exit": 0,
+    "wheels": [
+      {
+        "file": "friday_chat-0.1.0a4-py3-none-any.whl",
+        "sha256": "04d5dacefcc7ed5e549553adc3e80669a803ecea195bee2bb91248373a4f1dba",
+        "requires_dist": [
+          "friday-framework-agent==0.1.0a4",
+          "friday-framework-cli==0.1.0a4",
+          "friday-framework-core==0.1.0a4",
+          "friday-framework-llm==0.1.0a4",
+          "friday-framework-memory==0.1.0a4",
+          "friday-framework-runtime==0.1.0a4",
+          "friday-framework-tools==0.1.0a4",
+          "friday-framework-transcript==0.1.0a4",
+          "prompt-toolkit>=3.0.0",
+          "pydantic>=2.0",
+          "pyyaml>=6.0.0",
+          "rich>=13.0.0",
+          "typer>=0.9.0",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'",
+          "types-pyyaml>=6.0.12; extra == 'dev'",
+          "friday-framework-finance==0.1.0a4; extra == 'finance'",
+          "friday-framework-tools[finance]==0.1.0a4; extra == 'finance'",
+          "friday-framework-finance==0.1.0a4; extra == 'full'",
+          "friday-framework-moltbook==0.1.0a4; extra == 'full'",
+          "friday-framework-sandbox==0.1.0a4; extra == 'full'",
+          "friday-framework-speech==0.1.0a4; extra == 'full'",
+          "friday-framework-tools[finance]==0.1.0a4; extra == 'full'",
+          "friday-framework-tools[moltbook]==0.1.0a4; extra == 'full'",
+          "friday-framework-tools[sandbox]==0.1.0a4; extra == 'full'",
+          "friday-framework-moltbook==0.1.0a4; extra == 'moltbook'",
+          "friday-framework-tools[moltbook]==0.1.0a4; extra == 'moltbook'",
+          "friday-framework-sandbox==0.1.0a4; extra == 'sandbox'",
+          "friday-framework-tools[sandbox]==0.1.0a4; extra == 'sandbox'",
+          "friday-framework-speech==0.1.0a4; extra == 'speech'"
+        ]
+      },
+      {
+        "file": "friday_framework-0.1.0a4-py3-none-any.whl",
+        "sha256": "63b233f1ec42b072afbb2569e675dea6fbc2468d39872f70919be88ad2810a44",
+        "requires_dist": [
+          "friday-chat==0.1.0a4",
+          "friday-framework-agent==0.1.0a4",
+          "friday-framework-cli==0.1.0a4",
+          "friday-framework-core==0.1.0a4",
+          "friday-framework-llm==0.1.0a4",
+          "friday-framework-memory==0.1.0a4",
+          "friday-framework-runtime==0.1.0a4",
+          "friday-framework-telemetry==0.1.0a4",
+          "friday-framework-tools==0.1.0a4",
+          "friday-framework-transcript==0.1.0a4",
+          "friday-chat[finance,moltbook,sandbox,speech]==0.1.0a4; extra == 'all'",
+          "friday-framework-finance==0.1.0a4; extra == 'all'",
+          "friday-framework-llm[langfuse]==0.1.0a4; extra == 'all'",
+          "friday-framework-mcp==0.1.0a4; extra == 'all'",
+          "friday-framework-moltbook==0.1.0a4; extra == 'all'",
+          "friday-framework-optimization==0.1.0a4; extra == 'all'",
+          "friday-framework-sandbox==0.1.0a4; extra == 'all'",
+          "friday-framework-speech[elevenlabs,picovoice]==0.1.0a4; extra == 'all'",
+          "friday-framework-tools[all-adapters,all-formats,finance,moltbook,sandbox]==0.1.0a4; extra == 'all'",
+          "mypy>=1.10.0; extra == 'dev'",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'",
+          "respx>=0.20.0; extra == 'dev'",
+          "ruff>=0.4.0; extra == 'dev'",
+          "types-pyyaml>=6.0.12; extra == 'dev'",
+          "friday-framework-tools[documents]==0.1.0a4; extra == 'documents'",
+          "friday-chat[finance]==0.1.0a4; extra == 'finance'",
+          "friday-framework-finance==0.1.0a4; extra == 'finance'",
+          "friday-framework-tools[finance]==0.1.0a4; extra == 'finance'",
+          "friday-framework-llm[langfuse]==0.1.0a4; extra == 'langfuse'",
+          "friday-framework-mcp==0.1.0a4; extra == 'mcp'",
+          "friday-chat[moltbook]==0.1.0a4; extra == 'moltbook'",
+          "friday-framework-moltbook==0.1.0a4; extra == 'moltbook'",
+          "friday-framework-tools[moltbook]==0.1.0a4; extra == 'moltbook'",
+          "friday-framework-optimization==0.1.0a4; extra == 'optimization'",
+          "friday-chat[sandbox]==0.1.0a4; extra == 'sandbox'",
+          "friday-framework-sandbox==0.1.0a4; extra == 'sandbox'",
+          "friday-framework-tools[sandbox]==0.1.0a4; extra == 'sandbox'",
+          "friday-chat[speech]==0.1.0a4; extra == 'speech'",
+          "friday-framework-speech[elevenlabs,picovoice]==0.1.0a4; extra == 'speech'",
+          "friday-framework-tools[spreadsheets]==0.1.0a4; extra == 'spreadsheets'"
+        ]
+      },
+      {
+        "file": "friday_framework_agent-0.1.0a4-py3-none-any.whl",
+        "sha256": "f7897ebd49284802571899f3f0ce9da77aefd80f904f56a8737e7c0d7acc694f",
+        "requires_dist": [
+          "friday-framework-core==0.1.0a4",
+          "friday-framework-llm==0.1.0a4",
+          "friday-framework-memory==0.1.0a4",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'"
+        ]
+      },
+      {
+        "file": "friday_framework_cli-0.1.0a4-py3-none-any.whl",
+        "sha256": "9b0e3bc2deac50a49a841d2a9c779979c6e1847e83a7b9072b192d3d9e117ee3",
+        "requires_dist": [
+          "fastapi>=0.100.0",
+          "friday-framework-agent==0.1.0a4",
+          "friday-framework-core==0.1.0a4",
+          "friday-framework-llm==0.1.0a4",
+          "friday-framework-memory==0.1.0a4",
+          "friday-framework-runtime==0.1.0a4",
+          "prompt-toolkit>=3.0.0",
+          "pyyaml>=6.0.0",
+          "rich>=13.0.0",
+          "typer>=0.9.0",
+          "uvicorn>=0.23.0",
+          "httpx>=0.25.0; extra == 'dev'",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'"
+        ]
+      },
+      {
+        "file": "friday_framework_core-0.1.0a4-py3-none-any.whl",
+        "sha256": "12068ec137f455a0c60e3df98cb423f44f27d5e15c0370f26de01c0922f53d37",
+        "requires_dist": [
+          "friday-framework-telemetry==0.1.0a4",
+          "pydantic-settings>=2.0",
+          "pydantic>=2.0",
+          "structlog>=24.0.0",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'",
+          "opentelemetry-api>=1.20.0; extra == 'telemetry'",
+          "opentelemetry-exporter-otlp>=1.20.0; extra == 'telemetry'",
+          "opentelemetry-sdk>=1.20.0; extra == 'telemetry'"
+        ]
+      },
+      {
+        "file": "friday_framework_finance-0.1.0a4-py3-none-any.whl",
+        "sha256": "ffa8f5f8690d30e429e7c8e57624d7ea988fd132b279423faedf3ee61dc71600",
+        "requires_dist": [
+          "friday-framework-core==0.1.0a4",
+          "massive"
+        ]
+      },
+      {
+        "file": "friday_framework_llm-0.1.0a4-py3-none-any.whl",
+        "sha256": "20e1dcfce55d127a973bc5877241ac7f24b4db5e293154f9e62126f25dd19012",
+        "requires_dist": [
+          "friday-framework-core==0.1.0a4",
+          "friday-framework-telemetry==0.1.0a4",
+          "litellm==1.100.1",
+          "tenacity>=8.2.0",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'",
+          "langfuse<3.0,>=2.59; extra == 'langfuse'"
+        ]
+      },
+      {
+        "file": "friday_framework_mcp-0.1.0a4-py3-none-any.whl",
+        "sha256": "48b1529a86c095a5b4e8d779512c4e029b0fb16a3f14eb2dd44b95a2938feee7",
+        "requires_dist": [
+          "friday-framework-core==0.1.0a4",
+          "httpcore==1.0.9",
+          "httpx>=0.25.0",
+          "jsonschema==4.25.1",
+          "pydantic>=2.0.0",
+          "referencing==0.37.0",
+          "mcp==2.3.0; extra == 'dev'",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest-mock>=3.10.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'",
+          "fastapi>=0.100.0; extra == 'full'",
+          "friday-framework-agent==0.1.0a4; extra == 'full'",
+          "friday-framework-tools==0.1.0a4; extra == 'full'",
+          "uvicorn>=0.23.0; extra == 'full'",
+          "fastapi>=0.100.0; extra == 'server'",
+          "uvicorn>=0.23.0; extra == 'server'"
+        ]
+      },
+      {
+        "file": "friday_framework_memory-0.1.0a4-py3-none-any.whl",
+        "sha256": "72d68f2532d09451b56589f41f9493b85113d190a2fcda1b2131d30599c7db4f",
+        "requires_dist": [
+          "chromadb>=0.4.0",
+          "friday-framework-core==0.1.0a4",
+          "friday-framework-llm==0.1.0a4",
+          "networkx>=3.0",
+          "numpy>=1.24.0",
+          "tiktoken>=0.5.0",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'"
+        ]
+      },
+      {
+        "file": "friday_framework_moltbook-0.1.0a4-py3-none-any.whl",
+        "sha256": "74a292b78926096235f622624055d5706d157daff047904ddf1c5995929ec6e2",
+        "requires_dist": [
+          "httpx>=0.25.0",
+          "pydantic>=2.0.0",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'",
+          "respx>=0.20.0; extra == 'dev'"
+        ]
+      },
+      {
+        "file": "friday_framework_optimization-0.1.0a4-py3-none-any.whl",
+        "sha256": "826a889053d2f2a80855f26294a483077b3158cfec7a2e218e0ecedf1ddbf9a8",
+        "requires_dist": [
+          "dspy-ai>=2.0.0",
+          "friday-framework-memory==0.1.0a4",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'"
+        ]
+      },
+      {
+        "file": "friday_framework_runtime-0.1.0a4-py3-none-any.whl",
+        "sha256": "23a3fb5602a83be23859b9be35fbd226bc26f5e95638f36975581cb6f70c09ca",
+        "requires_dist": [
+          "friday-framework-agent==0.1.0a4",
+          "friday-framework-core==0.1.0a4",
+          "friday-framework-llm==0.1.0a4",
+          "friday-framework-mcp==0.1.0a4",
+          "friday-framework-memory==0.1.0a4",
+          "friday-framework-telemetry==0.1.0a4",
+          "friday-framework-transcript==0.1.0a4",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'"
+        ]
+      },
+      {
+        "file": "friday_framework_sandbox-0.1.0a4-py3-none-any.whl",
+        "sha256": "4381ed3e37853db84afee3db05ef3e4b1a8f980963b9a86965e4e19b2d5b8178",
+        "requires_dist": [
+          "docker>=7.0.0",
+          "pydantic>=2.0.0",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest-mock>=3.10.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'"
+        ]
+      },
+      {
+        "file": "friday_framework_speech-0.1.0a4-py3-none-any.whl",
+        "sha256": "0e688d49d27fc67b8620473fbc83bbe65cb554a81a363c6f42769cf3272af89e",
+        "requires_dist": [
+          "friday-framework-core==0.1.0a4",
+          "pydantic>=2.0.0",
+          "pyyaml>=6.0.0",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'",
+          "elevenlabs>=1.0.0; extra == 'elevenlabs'",
+          "pvcobra>=2.0.0; extra == 'picovoice'",
+          "pvleopard>=2.0.0; extra == 'picovoice'",
+          "pvorca>=0.1.0; extra == 'picovoice'",
+          "pvporcupine>=3.0.0; extra == 'picovoice'",
+          "pvrecorder>=1.2.0; extra == 'picovoice'",
+          "pvrhino>=2.0.0; extra == 'picovoice'",
+          "pvspeaker>=0.1.0; extra == 'picovoice'"
+        ]
+      },
+      {
+        "file": "friday_framework_telemetry-0.1.0a4-py3-none-any.whl",
+        "sha256": "36a61c779ab93c9b1d3a1f20dbfd6c80981de3c38087816235031ed2bd79e1fe",
+        "requires_dist": [
+          "pydantic>=2.0",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'",
+          "opentelemetry-api>=1.20.0; extra == 'otel'",
+          "opentelemetry-exporter-otlp>=1.20.0; extra == 'otel'",
+          "opentelemetry-sdk>=1.20.0; extra == 'otel'"
+        ]
+      },
+      {
+        "file": "friday_framework_tools-0.1.0a4-py3-none-any.whl",
+        "sha256": "498daf87da69462fc648b6565cb16650d5028c2905377f048de917885fc47ba0",
+        "requires_dist": [
+          "beautifulsoup4>=4.12.0",
+          "charset-normalizer>=3.3.0",
+          "friday-framework-core==0.1.0a4",
+          "gitpython>=3.1.0",
+          "httpx>=0.25.0",
+          "jinja2>=3.1.0",
+          "jsonpath-ng>=1.5.0",
+          "lxml>=4.9.0",
+          "markdownify>=0.11.0",
+          "psutil>=7.2.1",
+          "python-dateutil>=2.8.0",
+          "pyyaml>=6.0.0",
+          "anthropic>=0.25.0; extra == 'all-adapters'",
+          "langchain-core>=0.1.0; extra == 'all-adapters'",
+          "openai>=1.0.0; extra == 'all-adapters'",
+          "openpyxl>=3.1; extra == 'all-formats'",
+          "pypdf>=4.0; extra == 'all-formats'",
+          "python-docx>=1.0; extra == 'all-formats'",
+          "anthropic>=0.25.0; extra == 'anthropic'",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest-mock>=3.10.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'",
+          "respx>=0.20.0; extra == 'dev'",
+          "pypdf>=4.0; extra == 'documents'",
+          "python-docx>=1.0; extra == 'documents'",
+          "friday-framework-finance==0.1.0a4; extra == 'finance'",
+          "langchain-core>=0.1.0; extra == 'langchain'",
+          "friday-framework-llm==0.1.0a4; extra == 'llm'",
+          "friday-framework-moltbook==0.1.0a4; extra == 'moltbook'",
+          "openai>=1.0.0; extra == 'openai'",
+          "friday-framework-sandbox==0.1.0a4; extra == 'sandbox'",
+          "openpyxl>=3.1; extra == 'spreadsheets'"
+        ]
+      },
+      {
+        "file": "friday_framework_transcript-0.1.0a4-py3-none-any.whl",
+        "sha256": "4c23e780c134f6ccfec6a5561053c0c13253a9261bf5477a3d38ad363ef88e67",
+        "requires_dist": [
+          "aiosqlite>=0.19.0",
+          "friday-framework-core==0.1.0a4",
+          "pydantic>=2.0",
+          "pytest-asyncio>=0.23.0; extra == 'dev'",
+          "pytest>=8.0.0; extra == 'dev'"
+        ]
+      }
+    ]
+  },
+  "minimal_install": {
+    "command": "uv venv TEMP/venv --python .venv/bin/python; uv pip install --offline --python TEMP/venv/bin/python --find-links TEMP/dist friday-chat==0.1.0a4 friday-framework-cli==0.1.0a4",
+    "exit": 0,
+    "pip_check_exit": 0,
+    "package_count": 127,
+    "probe_exit": 1,
+    "failure": "ModuleNotFoundError: No module named friday_finance",
+    "log": "probe.log",
+    "failure_import": "friday_tools (explicit module-origin audit); Chat imports/help are not the failing boundary",
+    "provenance": "Historical first default run used an earlier unpinned script; probe.log remains unchanged. The augmented-only script hash below does not pin this historical default run.",
+    "superseded_for_current_default_profile_by": "default-profile/receipt.json"
+  },
+  "augmented_all_workspace_install": {
+    "exit": 1,
+    "classification": "offline cache/resolver limitation in optimization dspy dependencies; not a new product conflict or waiver",
+    "log": "augmented-install.log"
+  },
+  "extras_install": {
+    "command": "uv pip install --offline --python TEMP/venv/bin/python --find-links TEMP/dist friday-chat[finance,sandbox]==0.1.0a4",
+    "exit": 0,
+    "pip_check_exit": 0,
+    "package_count": 131,
+    "probe_exit": 0,
+    "probe_command": "TEMP/venv/bin/python -I validation/step3/installed_probe.py TEMP/installed-probe.json CHECKOUT_ROOT, cwd TEMP",
+    "metadata_drift": 0,
+    "network_attempts_blocked": 1,
+    "source_imports_from_checkout": false,
+    "wheel_python_files_compared": 396,
+    "matching_wheels": [
+      "friday_chat-0.1.0a4-py3-none-any.whl",
+      "friday_framework_agent-0.1.0a4-py3-none-any.whl",
+      "friday_framework_cli-0.1.0a4-py3-none-any.whl",
+      "friday_framework_core-0.1.0a4-py3-none-any.whl",
+      "friday_framework_finance-0.1.0a4-py3-none-any.whl",
+      "friday_framework_llm-0.1.0a4-py3-none-any.whl",
+      "friday_framework_mcp-0.1.0a4-py3-none-any.whl",
+      "friday_framework_memory-0.1.0a4-py3-none-any.whl",
+      "friday_framework_runtime-0.1.0a4-py3-none-any.whl",
+      "friday_framework_sandbox-0.1.0a4-py3-none-any.whl",
+      "friday_framework_telemetry-0.1.0a4-py3-none-any.whl",
+      "friday_framework_tools-0.1.0a4-py3-none-any.whl",
+      "friday_framework_transcript-0.1.0a4-py3-none-any.whl"
+    ],
+    "probe_source_sha256": "22db1b2826ef44caaef26640969568e8ea9b1d1f8593f42f7aa275d2a108af3e",
+    "probe_report_sha256": "f90ba6f8a929dced38f8ebc4072acb07b6c4d0b8e24673a1e95fac2c51c7e77f"
+  },
+  "preserved_historical_baselines": {
+    "source_test_hashes_matching": 84,
+    "source_inventory": "validation/p0/inventory.json",
+    "controlled_chat_passed": 826,
+    "generic_cli_passed": 155,
+    "rerun": false,
+    "reason": "Inventoried source/tests unchanged; prior local receipts are kept distinct from new isolated probes."
+  },
+  "approved_api_sha256": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+  "limits": [
+    "No product source/test/config changes.",
+    "No complete per-command behavior or P0/P1 completion.",
+    "No foundation package exists yet; its build/install/model/registry tests are future construction acceptance.",
+    "Augmented historical run recorded one blocked LiteLLM cost-map attempt. Corrected default-profile run separately recorded one blocked create_connection attempt. Historical first default run was unpinned and has no verified guard counter; do not combine counts or infer one attempt across all runs. No successful application network/provider request is claimed."
+  ],
+  "preservation": {
+    "outside_packet_files_checked": 16882,
+    "changed": []
+  },
+  "planning_checks": {
+    "assigned_cases": 50,
+    "retirements": 9,
+    "aliases": 3,
+    "scenario_owners": 8,
+    "dependency_order": "acyclic and all dependencies precede their units",
+    "approved_api_unchanged": true
+  },
+  "corrected_default_profile": {
+    "receipt": "default-profile/receipt.json",
+    "observations": "default-profile/observations.json",
+    "script": "default-profile/probe.py",
+    "package_count": 127,
+    "capture_exit": 0,
+    "capture_exit_meaning": "Expected known-defect baseline was captured; not healthy client acceptance",
+    "failed_module": "friday_tools",
+    "missing_dependency": "friday_finance",
+    "chat_imports_and_help": "passed; separate from runtime construction",
+    "generic_cli_entrypoint": "AttributeError: absent friday_cli.main:app",
+    "sandbox_boundary": "friday_tools.sandbox uses stdlib; optional friday_sandbox is imported lazily",
+    "network_attempts_blocked": 1
+  }
+}

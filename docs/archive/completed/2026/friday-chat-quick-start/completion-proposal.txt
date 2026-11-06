@@ -1,0 +1,27 @@
+# Friday Chat quick start for clone and PyPI users — completed for maintainer review
+
+**Status:** completed; awaiting maintainer acceptance
+
+**Work state:** completed
+
+**Validation:** verified
+
+**Delivery:** merged
+
+**Implementation authority:** closed
+
+**Date:** 2026-10-24
+
+The quick-start guide and delivery amendment passed independent VERIFIED review. The source was delivered in merged PR #10.
+
+- [Independent review](../../active/friday-chat-quick-start/validation/delivery-review/report.md)
+- [Delivery evidence](https://github.com/CIChuck/agent-framework/pull/10)
+- [Original planning packet and historical evidence](../../active/friday-chat-quick-start/README.md)
+- [Immutable authority backing manifest](historical-authority.json)
+
+**Known limit:** The original packet ends at the authorized push/PR/merge gate and was not updated after delivery; this review index records the later merge. No live provider call was part of the guide review.
+
+**Next gate:** Explicit maintainer lifecycle acceptance. This completion proposal
+and the delivery state do not themselves grant acceptance. The original packet
+remains at its frozen path as historical backing; this review index is the
+canonical current packet. Friday TUI and other initiatives are unaffected.

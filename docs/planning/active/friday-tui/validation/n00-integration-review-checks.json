@@ -1,0 +1,47 @@
+{
+  "initiative": "friday-tui",
+  "kind": "n00_integration_review_and_n01s_directive_proposal",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "result": "TUI-N00 command inventory and before-code baseline reviewed; first neutral session-identity construction directive drafted for maintainer review, not approved.",
+  "source_evidence": {
+    "command_inventory": "50 canonical Chat commands and 3 aliases; saved descriptions, categories, usage, arguments and details matched live registry; 50 PAR map rows matched once each.",
+    "config_gap": "Chat owns compatible application YAML; headless RuntimeConfig is different; neutral loader/facade remains a separate planned unit.",
+    "event_gap": "Friday LLM has typed reasoning/tool events, but current Chat text stream and retained MCP call records do not supply complete TUI Activity facts.",
+    "cleanup_gap": "Chat closes through MCP stop, maintenance coordinator and async clients; headless DI shutdown alone does not establish parity.",
+    "existing_cli_entrypoint": "uv run friday --help exits 1 with ImportError for app from friday_cli.main; this is an existing before-code limitation.",
+    "event_lifecycle_contract": "Draft neutral event and lifecycle proposal records source-backed boundaries and test gates; exact API/hooks and Force quit termination remain later directive work."
+  },
+  "documents_sha256": {
+    "n00-integration-review.md": "6fc3691c008b8bf760efbba1f44080045247e65d370df3fabfecd90d9ba95536",
+    "directives/CD-TUI-N01S-session-identity.md": "3531abaf8f04b3641cd835232080190d10690e2da9687c95928296c7b1198199",
+    "neutral-config-loader-contract.md": "a48271b80887d9b4c4ec0c4953fb3fbab511ae41a44fa210e4857d2ca0dea9bc",
+    "replacement-plan.md": "e3e0c3a753e639f941b5f7bcff0127e4c50bf5f746e57c74c9f81bc9a839126b",
+    "README.md": "157441ff5c91bebd9e28da315ccc5bac891082315209585cdaf0027db9f1301e",
+    "execution-log.md": "661cb6285193dc4bd762086754e09f22c50f4146cd481b688f9725eb7f98f1da",
+    "command-matrix.md": "77bdcccd5d3b0a01560c04b8a3ba28b0400a1333ef9b1bbeb5a8ec7a661a27db",
+    "neutral-capability-map.md": "b2258a10c76fff4615d6bbdaeb99b48db55b6be34d1e3cec42ebec7f9302382a",
+    "validation/command-matrix.json": "747f11b40a49ae1bb946355c47223beb7751a6a203a63a1559c25429f3392b65",
+    "docs/planning/board.yaml": "2a0825431cb7b32d2f6f3192a27351c5a3cfb0f4330efec9bf62da296df7e85f",
+    "docs/planning/README.md": "0e8991c4bab7958dc7056632fd564c0dfd35163840cd8d04c01c469ae0d37d5f",
+    "neutral-event-lifecycle-contract.md": "a25864334ad51247919ff2ed20dfb6ff88325ba86b9082b3c53baa645666be3a"
+  },
+  "checks": {
+    "focused_chat_runtime_tests": "108 passed",
+    "friday_cli_tests": "155 passed",
+    "chat_launcher": "friday-chat --version and --help exit 0; version 0.1.0a4",
+    "neutral_import_closure": "import friday_runtime loaded no friday_chat or friday_cli modules",
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "106 valid before this receipt",
+    "packet_markdown_links": "22 files; 222 local links; no missing targets",
+    "packet_trailing_whitespace": "22 files; passed",
+    "changed_path_allowlist": "passed; 139 paths before this receipt, all within TUI planning packet/board/dashboard/queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "no TUI or extraction product tests; read-only before-code baseline only",
+    "user_uat": "not run; no TUI candidate",
+    "documentation_lifecycle": "fails on six pre-existing absolute /private/tmp/telem-01/review links in unchanged friday-telemetry-rewire/validation/VAL-001/report.md; TUI packet links pass"
+  },
+  "evidence_limit": "Planning review and proposed directive only. N01S approval, code authority, after-code regressions, outside-checkout wheel checks, later contracts, Linux checks and user UAT remain open."
+}

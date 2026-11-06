@@ -1,0 +1,221 @@
+{
+  "date": "2026-11-06",
+  "authorization": "Chuck Russell: deploy them",
+  "scope": "Repository-local discovery links to maintained skill sources; no skill content, policy, product or global installation changes.",
+  "source_commit": "fab42956f92e154118888f5e6e10645bc0a9a71a",
+  "skills": [
+    {
+      "name": "ai-construction-directive-builder",
+      "source": "docs/dev-skills/ai-construction-directive-builder.md",
+      "kind": "flat",
+      "entry": ".agents/skills/ai-construction-directive-builder",
+      "link": ".agents/skills/ai-construction-directive-builder/SKILL.md",
+      "target": "../../../docs/dev-skills/ai-construction-directive-builder.md",
+      "source_sha256": "1b984a0b1c2cb083df6ac70cc9f66bc27960699b5378c2f2530751faa46fa259"
+    },
+    {
+      "name": "architecture-spec-author",
+      "source": "docs/dev-skills/architecture-spec-author.md",
+      "kind": "flat",
+      "entry": ".agents/skills/architecture-spec-author",
+      "link": ".agents/skills/architecture-spec-author/SKILL.md",
+      "target": "../../../docs/dev-skills/architecture-spec-author.md",
+      "source_sha256": "67a2d2eedd6bce30e7d13ff8cd8d66b931fc2ed8b577c02960ff2abed46fec5d"
+    },
+    {
+      "name": "babysit-pr",
+      "source": "docs/dev-skills/babysit-pr/SKILL.md",
+      "kind": "bundle",
+      "entry": ".agents/skills/babysit-pr",
+      "link": ".agents/skills/babysit-pr",
+      "target": "../../docs/dev-skills/babysit-pr",
+      "source_sha256": "2c7116d3fd5b42389c2b001f1dd1e50e1ca21812caca95202bdd053728545723"
+    },
+    {
+      "name": "code-conformance-reviewer",
+      "source": "docs/dev-skills/code-conformance-reviewer.md",
+      "kind": "flat",
+      "entry": ".agents/skills/code-conformance-reviewer",
+      "link": ".agents/skills/code-conformance-reviewer/SKILL.md",
+      "target": "../../../docs/dev-skills/code-conformance-reviewer.md",
+      "source_sha256": "d6be9486918c586781e526a1549a7c8d1dabf6e4a2c791318839e84a75c4c897"
+    },
+    {
+      "name": "council",
+      "source": "docs/dev-skills/council/SKILL.md",
+      "kind": "bundle",
+      "entry": ".agents/skills/council",
+      "link": ".agents/skills/council",
+      "target": "../../docs/dev-skills/council",
+      "source_sha256": "360493507c5f522d4a365f7f90f76c7eb37ad31ee36096a359c0715aae00b23c"
+    },
+    {
+      "name": "file-pr",
+      "source": "docs/dev-skills/file-pr/SKILL.md",
+      "kind": "bundle",
+      "entry": ".agents/skills/file-pr",
+      "link": ".agents/skills/file-pr",
+      "target": "../../docs/dev-skills/file-pr",
+      "source_sha256": "0347805197ff275866396a34522552dd307d74b43c016833e759ea9342f652fa"
+    },
+    {
+      "name": "friday-dev-board",
+      "source": "docs/dev-skills/friday-dev-board/SKILL.md",
+      "kind": "bundle",
+      "entry": ".agents/skills/friday-dev-board",
+      "link": ".agents/skills/friday-dev-board",
+      "target": "../../docs/dev-skills/friday-dev-board",
+      "source_sha256": "d5b1074961e982d2bb28cb9549e90f8a7ff24a10a5748cffec5dcef594b42a76"
+    },
+    {
+      "name": "full-send",
+      "source": "docs/dev-skills/full-send/SKILL.md",
+      "kind": "bundle",
+      "entry": ".agents/skills/full-send",
+      "link": ".agents/skills/full-send",
+      "target": "../../docs/dev-skills/full-send",
+      "source_sha256": "fc426108bdb0960ef2fd0aa5f571c4201738ec995fe81d4c1cc7a9171a3dcebe"
+    },
+    {
+      "name": "full-stop",
+      "source": "docs/dev-skills/full-stop/SKILL.md",
+      "kind": "bundle",
+      "entry": ".agents/skills/full-stop",
+      "link": ".agents/skills/full-stop",
+      "target": "../../docs/dev-skills/full-stop",
+      "source_sha256": "64ed87a7ab6e8ba69942aff640ba5e7b85587c71f9a28bd52fd3b1cff66774bd"
+    },
+    {
+      "name": "governance-security-spec",
+      "source": "docs/dev-skills/governance-security-spec.md",
+      "kind": "flat",
+      "entry": ".agents/skills/governance-security-spec",
+      "link": ".agents/skills/governance-security-spec/SKILL.md",
+      "target": "../../../docs/dev-skills/governance-security-spec.md",
+      "source_sha256": "30c327e667380b589fe38009a82caa82400e3e0726d802fea21245fa290db95f"
+    },
+    {
+      "name": "independent-code-validator",
+      "source": "docs/dev-skills/independent-code-validator.md",
+      "kind": "flat",
+      "entry": ".agents/skills/independent-code-validator",
+      "link": ".agents/skills/independent-code-validator/SKILL.md",
+      "target": "../../../docs/dev-skills/independent-code-validator.md",
+      "source_sha256": "578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508"
+    },
+    {
+      "name": "leaving-pr-comments",
+      "source": "docs/dev-skills/leaving-pr-comments/SKILL.md",
+      "kind": "bundle",
+      "entry": ".agents/skills/leaving-pr-comments",
+      "link": ".agents/skills/leaving-pr-comments",
+      "target": "../../docs/dev-skills/leaving-pr-comments",
+      "source_sha256": "2a4d24c1980af8b3b2076c686a9606cb69956bbe2c15be3236d45788926e75a8"
+    },
+    {
+      "name": "migration-refactor-analyst",
+      "source": "docs/dev-skills/migration-refactor-analyst.md",
+      "kind": "flat",
+      "entry": ".agents/skills/migration-refactor-analyst",
+      "link": ".agents/skills/migration-refactor-analyst/SKILL.md",
+      "target": "../../../docs/dev-skills/migration-refactor-analyst.md",
+      "source_sha256": "5bc50b98a1985f6de42f0d014f92efba403cf47f93e281ee5fdf5197324cdaae"
+    },
+    {
+      "name": "modernize",
+      "source": "docs/dev-skills/modernize/SKILL.md",
+      "kind": "bundle",
+      "entry": ".agents/skills/modernize",
+      "link": ".agents/skills/modernize",
+      "target": "../../docs/dev-skills/modernize",
+      "source_sha256": "48139e9c2856ceff5efc32676d9f9b1e44ba62d00fcb81e98255c2e82bcdadc6"
+    },
+    {
+      "name": "phase-build-planner",
+      "source": "docs/dev-skills/phase-build-planner.md",
+      "kind": "flat",
+      "entry": ".agents/skills/phase-build-planner",
+      "link": ".agents/skills/phase-build-planner/SKILL.md",
+      "target": "../../../docs/dev-skills/phase-build-planner.md",
+      "source_sha256": "a3e095efa9f6ef1a6ef7864997b2bd2dccb489f8dc2217b38889d1e4a68c528e"
+    },
+    {
+      "name": "prd-author",
+      "source": "docs/dev-skills/prd-author.md",
+      "kind": "flat",
+      "entry": ".agents/skills/prd-author",
+      "link": ".agents/skills/prd-author/SKILL.md",
+      "target": "../../../docs/dev-skills/prd-author.md",
+      "source_sha256": "dacf3a42bf79e49440730eb34929d93b72e91963e33005491e0b1b1771571875"
+    },
+    {
+      "name": "remediation-closeout",
+      "source": "docs/dev-skills/remediation-closeout.md",
+      "kind": "flat",
+      "entry": ".agents/skills/remediation-closeout",
+      "link": ".agents/skills/remediation-closeout/SKILL.md",
+      "target": "../../../docs/dev-skills/remediation-closeout.md",
+      "source_sha256": "1a12b3fcaaed1cce2bd8eb73c2e04baa008452948560442a6191f69b4cbb8608"
+    },
+    {
+      "name": "sol-loop",
+      "source": "docs/dev-skills/sol-loop/SKILL.md",
+      "kind": "bundle",
+      "entry": ".agents/skills/sol-loop",
+      "link": ".agents/skills/sol-loop",
+      "target": "../../docs/dev-skills/sol-loop",
+      "source_sha256": "68b0277a7be8c3f82ce3ba6aa1a8450afc94895a24cdcac3b19f6e8817455c1e"
+    },
+    {
+      "name": "tactical-implementation-planner",
+      "source": "docs/dev-skills/tactical-implementation-planner.md",
+      "kind": "flat",
+      "entry": ".agents/skills/tactical-implementation-planner",
+      "link": ".agents/skills/tactical-implementation-planner/SKILL.md",
+      "target": "../../../docs/dev-skills/tactical-implementation-planner.md",
+      "source_sha256": "272f9dd877289653180da1511b207a4ceb07bc4dbbe13d3913dc0c0ff5dcc62c"
+    },
+    {
+      "name": "takeover",
+      "source": "docs/dev-skills/takeover/SKILL.md",
+      "kind": "bundle",
+      "entry": ".agents/skills/takeover",
+      "link": ".agents/skills/takeover",
+      "target": "../../docs/dev-skills/takeover",
+      "source_sha256": "3e89c2ee6db2a39da4aa0001bf1ecbb6f00eb0ca6efc892ccc2b54a0a66d87de"
+    },
+    {
+      "name": "traceability-matrix",
+      "source": "docs/dev-skills/traceability-matrix.md",
+      "kind": "flat",
+      "entry": ".agents/skills/traceability-matrix",
+      "link": ".agents/skills/traceability-matrix/SKILL.md",
+      "target": "../../../docs/dev-skills/traceability-matrix.md",
+      "source_sha256": "3f81aef78d5cf8540cc43ddb282d7922adbc1b3c1ffd80bc2a70086bcfb36859"
+    },
+    {
+      "name": "vision-framing",
+      "source": "docs/dev-skills/vision-framing.md",
+      "kind": "flat",
+      "entry": ".agents/skills/vision-framing",
+      "link": ".agents/skills/vision-framing/SKILL.md",
+      "target": "../../../docs/dev-skills/vision-framing.md",
+      "source_sha256": "9dce6dd66b6514414f74524cc4ded5ca5ff5bd761c74cff74d9fe7d85021fcde"
+    }
+  ],
+  "reference_only": [
+    "docs/dev-skills/subagent-directives-template.md",
+    "docs/dev-skills/subagets=worktrees-template.md"
+  ],
+  "checks": {
+    "skill_count": 22,
+    "bundle_resources": "All maintained non-bytecode bundle files reachable through discovery entry with identical bytes.",
+    "source_hashes": "All SKILL.md entry bytes match maintained sources.",
+    "bytecode": "No bytecode copied; repository ignore rules continue to exclude source caches.",
+    "metadata_and_link_validation": "22 of 22 entries valid and resolved to the expected canonical source.",
+    "preservation": "16,950 source and unrelated files retained identical hashes; only discovery metadata and the index changed.",
+    "board": "passed: 36 tasks",
+    "documentation_lifecycle": "same four pre-existing broken links in imported TUI validation evidence; no new failure",
+    "whitespace": "passed"
+  }
+}

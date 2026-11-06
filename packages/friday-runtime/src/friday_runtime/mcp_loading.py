@@ -23,7 +23,7 @@ from friday_core.mcp import (
     MCPToolMetadata,
     build_mcp_metadata_index,
 )
-from friday_mcp.client import MCPClientManager
+from friday_mcp.client import MCPClientBase, MCPClientManager, MCPRefreshClient
 from friday_mcp.config import MCPConfig
 from friday_mcp.protocols import MCPClient
 from friday_telemetry import (
@@ -92,6 +92,7 @@ class MCPDiscoveredTool:
 
     server_id: str
     untrusted_definition_json: str = field(repr=False)
+    catalog_generation: int | None = None
 
 
 @dataclass
@@ -100,6 +101,7 @@ class _ServerResult:
     outcome: MCPLifecycleOutcome
     # Any is confined to the JSON-RPC boundary; never a diagnostic contract.
     tools: list[dict[str, Any]] = field(default_factory=list, repr=False)
+    catalog_generation: int | None = None
 
 
 class MCPRegistrationRegistry(Protocol):
@@ -598,12 +600,32 @@ class RuntimeMCPProvider:
             )
             self.emit_event("list_tools_start", server_id=server.name)
             try:
-                tools = await asyncio.wait_for(
-                    manager.get_client(server.name).list_tools(),
-                    timeout=max(0.0, deadline - asyncio.get_running_loop().time())
-                    if bounded_profile
-                    else timeout,
+                client = manager.get_client(server.name)
+                refresh_client = (
+                    client
+                    if isinstance(client, MCPRefreshClient)
+                    and (
+                        not isinstance(client, MCPClientBase)
+                        or client.supports_catalog_refresh
+                    )
+                    else None
                 )
+                discovery_timeout = (
+                    max(0.0, deadline - asyncio.get_running_loop().time())
+                    if bounded_profile
+                    else timeout
+                )
+                if refresh_client is not None:
+                    snapshot = await asyncio.wait_for(
+                        refresh_client.refresh_tool_catalog(), timeout=discovery_timeout
+                    )
+                    generation = snapshot.generation
+                    tools = snapshot.tools()
+                else:
+                    generation = None
+                    tools = await asyncio.wait_for(
+                        client.list_tools(), timeout=discovery_timeout
+                    )
                 if not isinstance(tools, list):
                     raise ValueError("Invalid MCP catalog")
                 self.emit_event(
@@ -620,7 +642,7 @@ class RuntimeMCPProvider:
                             30,
                         )
                     )
-                return _ServerResult(server, "connected", tools)
+                return _ServerResult(server, "connected", tools, generation)
             except asyncio.CancelledError:
                 self.emit_event(
                     "list_tools_failure",
@@ -656,7 +678,7 @@ class RuntimeMCPProvider:
         states: list[MCPServerDiscoveryState] = []
         lifecycle: list[MCPServerLifecycleDiagnostic] = []
         prepared: list[MCPDiscoveredTool] = []
-        connected = failed = discovered = rejected = schema_cost = 0
+        connected = failed = discovered = rejected = 0
         aggregate_codes: set[MCPDiagnosticCode] = set()
         required_failure = False
         for server in self._config.config.servers:
@@ -704,20 +726,21 @@ class RuntimeMCPProvider:
                             skip_counts.get("invalid_schema", 0) + 1
                         )
                         continue
-                    # One token per encoded byte is a conservative pre-registry
-                    # upper bound. WS-03 owns final schema/token accounting.
-                    if (
-                        size > limits.max_schema_bytes_per_tool
-                        or schema_cost + size > limits.max_schema_tokens
-                    ):
+                    # Raw discovery enforces the per-definition byte cap.
+                    # Shared model-facing cost is charged only after schema
+                    # admission in prepare_registration.
+                    if size > limits.max_schema_bytes_per_tool:
                         codes.add("schema_limit")
                         server_rejected += 1
                         skip_counts["schema_limit"] = (
                             skip_counts.get("schema_limit", 0) + 1
                         )
                         continue
-                    prepared.append(MCPDiscoveredTool(server.name, encoded))
-                    schema_cost += size
+                    prepared.append(
+                        MCPDiscoveredTool(
+                            server.name, encoded, result.catalog_generation
+                        )
+                    )
                 state: Literal["not_started", "connected", "failed"] = "connected"
             elif result.outcome in ("disabled", "auto_connect_disabled"):
                 state = "not_started"
@@ -742,6 +765,7 @@ class RuntimeMCPProvider:
                     server_id=server.name,
                     connection_state=state,
                     cache_timestamp=datetime.now(UTC) if state == "connected" else None,
+                    discovered_tools=len(result.tools) if state == "connected" else 0,
                     rejected_tools=server_rejected,
                     diagnostic_codes=tuple(sorted(codes)),
                 )

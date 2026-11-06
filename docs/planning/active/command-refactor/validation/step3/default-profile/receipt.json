@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "date": "2026-11-06T19:55:10+00:00",
+  "purpose": "Correct CMD-RDY-002 with a pinned default-profile baseline capture, not client acceptance",
+  "source_base": "bbbd90e05143137c5a1d49eacedb4125d254b8fb",
+  "correction_base": "e0eb3e9c718539b014174721c5d5086e5c94c393",
+  "commands": [
+    {
+      "argv": [
+        "uv",
+        "venv",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne/default-venv",
+        "--python",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python"
+      ],
+      "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne",
+      "exit": 0,
+      "log": "venv.log"
+    },
+    {
+      "argv": [
+        "uv",
+        "pip",
+        "install",
+        "--offline",
+        "--python",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne/default-venv/bin/python",
+        "--find-links",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-command-step3-bhswluon/dist",
+        "friday-chat==0.1.0a4",
+        "friday-framework-cli==0.1.0a4"
+      ],
+      "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne",
+      "exit": 0,
+      "log": "install.log"
+    },
+    {
+      "argv": [
+        "uv",
+        "pip",
+        "check",
+        "--offline",
+        "--python",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne/default-venv/bin/python"
+      ],
+      "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne",
+      "exit": 0,
+      "log": "dependency-check.log"
+    },
+    {
+      "argv": [
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne/default-venv/bin/python",
+        "-I",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/default-profile/probe.py",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/default-profile/observations.json",
+        "/Users/chuckrussell/Dev/gendev/agent-framework"
+      ],
+      "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne",
+      "exit": 0,
+      "log": "probe.log"
+    },
+    {
+      "argv": [
+        "uv",
+        "pip",
+        "list",
+        "--offline",
+        "--python",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne/default-venv/bin/python",
+        "--format",
+        "json"
+      ],
+      "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne",
+      "exit": 0,
+      "log": "installed.json"
+    }
+  ],
+  "environment": {
+    "python": "3.13.10",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "isolated": true,
+    "prefix": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne/default-venv",
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne",
+    "distributions": 127,
+    "default_version_difference_from_historical": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "files_sha256": {
+    "commands.json": "0e5dbcaeb5ca5f1b7b4961c89e279838709015f3b3c78a6f7fdb477b6c71aabf",
+    "dependency-check.log": "dea0519849b7db6ac73b4963286c18eccdce6eb4456bcb2f3e162f8975a6972a",
+    "install.log": "6073d912e17701241287998aaf1eed80457383b04fe70d8703424bb459d3a7a9",
+    "installed.json": "5e5b468b757f0c7ac1d78d5d520b0cc557e02e78aa4c55c374d92f120df6167e",
+    "observations.json": "050a0ba0db1cbdbc0d7f5696bca52c9c58509a4c376b03370ff14235e6e703ba",
+    "probe.log": "d5d6f129467a555e087243091b2ac5c80124f69ab90be4fd0733f94a84560f5c",
+    "probe.py": "b7311b952784544fb39af25277f032e5518dc621ab2bfc9104ff13a82cab164f",
+    "venv.log": "6e6be484f6cbbb599950a6ffcee4adfba8e950322d30979b6cf9a6fac497be4c"
+  },
+  "wheel_inputs": {
+    "source": "../receipt.json:wheel_build.wheels",
+    "count": 17,
+    "all_saved_wheel_hashes_checked": true
+  },
+  "observations": {
+    "probe_exit": 0,
+    "exit_meaning": "Capture matched expected baseline with known defects; not healthy clients",
+    "dependency_check_exit": 0,
+    "chat_and_cli_module_imports": "pass",
+    "chat_registry_names": 50,
+    "chat_registry_aliases": 3,
+    "chat_metadata_matches_historical_augmented_capture": true,
+    "chat_help": "stateless /help exit handled, entry-point --help exit 0",
+    "failed_module": "friday_tools",
+    "error": "ModuleNotFoundError: friday_finance",
+    "generic_cli_entrypoint": "friday_cli.main:app raises AttributeError",
+    "network_attempts_blocked": 1,
+    "network_events": [
+      {
+        "stage": "import:friday_chat",
+        "operation": "create_connection"
+      }
+    ]
+  },
+  "sandbox_source_assessment": {
+    "internal_module": "friday_tools.sandbox; imports stdlib modules only",
+    "optional_distribution": "friday_sandbox; imported lazily in friday_tools.execution.python.PythonExecuteTool.execute",
+    "interpretation": "Finance is the observed unconditional optional dependency; finance+sandbox diagnostic profile is not proof both extras are required"
+  },
+  "limits": "No product changes, runtime/store construction, configured tool execution, provider calls, full installed suites, terminal/audio UAT or supported-platform acceptance. Commands ran offline; attempted cost-map download blocked. Original logs and augmented capture unchanged."
+}

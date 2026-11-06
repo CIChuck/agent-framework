@@ -1,0 +1,27 @@
+# Friday 0.1.0a3 repository version bump — completed for maintainer review
+
+**Status:** completed; awaiting maintainer acceptance
+
+**Work state:** completed
+
+**Validation:** verified
+
+**Delivery:** released
+
+**Implementation authority:** closed
+
+**Date:** 2026-10-24
+
+The 0.1.0a3 source candidate was independently VERIFIED. The packet records production publication of all 17 distributions and 34 files and a clean production-only install.
+
+- [Independent review](../../active/friday-alpha3-version-bump/validation/report.md)
+- [Delivery evidence](../../../reference/releases/friday-package-cohort-0.1.0a3-release-evidence.md)
+- [Original planning packet and historical evidence](../../active/friday-alpha3-version-bump/README.md)
+- [Immutable authority backing manifest](historical-authority.json)
+
+**Known limit:** The original version-only unit did not include a GitHub release or source push; publication was separately authorized and evidenced.
+
+**Next gate:** Explicit maintainer lifecycle acceptance. This completion proposal
+and the delivery state do not themselves grant acceptance. The original packet
+remains at its frozen path as historical backing; this review index is the
+canonical current packet. Friday TUI and other initiatives are unaffected.

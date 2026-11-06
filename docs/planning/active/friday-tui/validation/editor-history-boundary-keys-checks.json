@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "editor_history_boundary_keys_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-74: with editor focus and no slash suggestions open, Up at the upper caret boundary recalls older entries; Down at the lower boundary while browsing moves newer and eventually restores the saved draft. Interior arrows move the caret; open slash suggestions take arrow priority. No F3/F4 history binding.",
+  "documents_sha256": {
+    "decisions.md": "69b3fe16976d2507e1c0ed53e20109503d377efbb3e2021260a3911cfa87d739",
+    "screen-layout.md": "6f27382760a71a6544c9419b8bede2521ea268586e36e4ef5e7b5d1595bccbd8",
+    "README.md": "c8a470a1992e1a065991200dd4c9cdb5ba5d35d1dfcb0771ab98190913614ff0",
+    "replacement-plan.md": "c9afd790aa37cd8ad0c3d01f28439a6fc920fe77bc74f5211e3d39c5d2c5c2a0",
+    "user-guide-requirements.md": "34f52aa621d4be030e9f580c5bea567047751fd0a4548b28c764066b280c2a1b",
+    "command-matrix.md": "76507eff859b637dc4c322a1cc633254f8ed53bd0ff68ea7f89ee795bded56be",
+    "authority.json": "6f2e9d68bfc34916b2dda7fe9e92e5f041c728191ba14e2dd09e6ed27c5f01bc",
+    "execution-log.md": "2a559be556490bb92915f2eb4d873d9ee6c93ceaefb9ea2e44d486684b8f738b",
+    "docs/planning/board.yaml": "fa87220088899876ffd21219f2d57f3cdd1c27c78c7aad38724d720f8386dc63",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "70 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only history-key decision and no product code change",
+    "tui_key_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted editor-history boundary-key decision and planning checks only. Physical terminal key behavior, TUI implementation, installed-package verification, user UAT and release acceptance remain unproven."
+}

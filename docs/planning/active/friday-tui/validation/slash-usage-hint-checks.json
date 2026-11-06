@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "slash_usage_hint_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-70: show a short contextual required/optional argument shape for a recognized slash command or subcommand from active TUI metadata. Update or clear it as syntax changes; the hint does not fill values, dispatch or call the runtime.",
+  "documents_sha256": {
+    "decisions.md": "ccba89fbe152ea8b8ff16e3f0d577c17b89d2f967a1fb0119a5f05be2cee4974",
+    "screen-layout.md": "553141dfdbcf6ab276b567b00eb01202630e301cf47830bbfc6ab3d650f42531",
+    "README.md": "be97ab81724804e88742917d50b98f6bd1087388b6411525501a7b0362d51f50",
+    "replacement-plan.md": "24055db5562939ca4643352966b6175d183da1d0c86691bdc64723ba860fd42f",
+    "user-guide-requirements.md": "fc6e9e1f010589b1538ba0c125037cfe5fbcdd02ebe4ec5da7d1d7bd864922c2",
+    "command-matrix.md": "5701fc17e2d6954c54e36154ef52d1b9798d140d0e8b52a07341abb2fbc3ae96",
+    "authority.json": "8c922dcc051c972c7c29f43ba59d948be85ac21c7450e3f1db9583437559bb60",
+    "execution-log.md": "4ceb7d6db227a7ea29b0f2fa3b04cb52d2481647f372a6f69a7c711ef8ca0e00",
+    "docs/planning/board.yaml": "2c07a614c41274a371c98330852e2d5445e0cf0d5cc508266f842cd57465fe85",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "66 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only usage-hint decision and no product code change",
+    "tui_usage_hint_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted contextual slash usage hint decision and planning checks only. No TUI implementation, command interaction test, installed-package verification, user UAT or release acceptance."
+}

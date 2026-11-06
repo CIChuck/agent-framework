@@ -1,0 +1,37 @@
+{
+  "initiative": "friday-tui",
+  "kind": "older_failed_prompt_successful_turn_cleanup_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-106: keep older failed-initial-prompt recovery while a different conversational turn is pending; only a successful completed-turn outcome clears the old recovery payload and Restore controls from the editor and any retained error notice. Failed or partial newer turns and slash commands do not by themselves clear it.",
+  "source_evidence": {
+    "maintainer_answer": "A to clearing the older failed-prompt recovery after a different conversational prompt completes successfully.",
+    "prior_decisions": "D-101 defines Restore and draft replacement; D-102 excludes the failed attempt from persisted transcripts; D-104/D-105 keep recovery available through view eviction or display clear.",
+    "unresolved_boundary": "A second simultaneously recoverable failure and explicit recovery dismissal remain separate decisions."
+  },
+  "documents_sha256": {
+    "decisions.md": "537a90eab6d15b3e27f3ac1d657fd2ebf6a7e491d8ff592df169a818f32713de",
+    "README.md": "fd426186d1f7c31d151c3c630cb746724d602f66c8a01f0ef7df72992bac8352",
+    "replacement-plan.md": "c972f84f509a6f0a5455f701f2a0a6cdccd6b8879e8f824ccc8dc7f5397dce2e",
+    "screen-layout.md": "e10d015939d02a598b686379206c1befeed1e5ce28e5e04607a39cd228ea8694",
+    "user-guide-requirements.md": "2c9c8973793ff232e5db612eb0b379f1d047e916edfb0eb6a5d38d1805355769",
+    "neutral-capability-map.md": "c7d29a28c1bc80d036b0c5bdaa1265e833ecb1e8955f763f36e5d0d4cb886a01",
+    "authority.json": "3399d0946768bd00ccb828ab4e54a543b65f6de2dc2b26ef1899b3ad9c17f210",
+    "execution-log.md": "1125aa747a334b5c0606d92ee33c7b5bee749b59fe06d609da38e4eef693bcde",
+    "docs/planning/board.yaml": "136fd0ac1754c5ce992276ce0f1f09e03e879167c44d266ca93b0dd471432b0f",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "102 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 131 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only decision and no product code change",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted cleanup of older failed-prompt recovery after a different successful conversational turn and planning checks only. Multiple pending recoveries, explicit dismissal, exact UI construction, installed behavior, terminal UAT and release acceptance remain open."
+}

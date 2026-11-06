@@ -1,0 +1,22 @@
+{
+  "base_lock_sha256": "f19d32b5bf811e448c5c0eb538758b27f16b820d1af4f2dbb37e1ac9e0b354b1",
+  "current_lock_sha256": "9dde76209f4e54bfb8a4dcc9acd728f01996b7bd0d64ace8877511f4172b3c45",
+  "package_count_before": 213,
+  "package_count_after": 213,
+  "only_changed_package": "friday-framework-tools",
+  "added_dependency": {
+    "name": "friday-framework-finance"
+  },
+  "added_requires_dist": {
+    "name": "friday-framework-finance",
+    "editable": "packages/friday-finance"
+  },
+  "complete_parsed_documents_equal_after_removing_exact_two_additions": true,
+  "all_other_package_records_options_versions_sources_graphs_artifacts_unchanged": true,
+  "tools_optional_dependencies_and_provides_extras_unchanged": true,
+  "tools_toml_only_expected_mandatory_dependency_added": true,
+  "tools_toml_finance_extra_preserved": true,
+  "uv_lock_check_command": "PYTHONDONTWRITEBYTECODE=1 uv lock --check --offline --no-python-downloads",
+  "uv_lock_check_exit_code": 0,
+  "uv_lock_check_stdout_stderr": "Resolved 213 packages in 5ms\n"
+}

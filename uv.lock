@@ -12,6 +12,7 @@ members = [
     "friday-framework",
     "friday-framework-agent",
     "friday-framework-cli",
+    "friday-framework-commands",
     "friday-framework-core",
     "friday-framework-finance",
     "friday-framework-llm",
@@ -926,6 +927,7 @@ dependencies = [
 [package.optional-dependencies]
 all = [
     { name = "friday-chat", extra = ["finance", "moltbook", "sandbox", "speech"] },
+    { name = "friday-framework-commands" },
     { name = "friday-framework-finance" },
     { name = "friday-framework-llm", extra = ["langfuse"] },
     { name = "friday-framework-mcp" },
@@ -996,6 +998,7 @@ requires-dist = [
     { name = "friday-chat", extras = ["speech"], marker = "extra == 'speech'", editable = "packages/friday-chat" },
     { name = "friday-framework-agent", editable = "packages/friday-agent" },
     { name = "friday-framework-cli", editable = "packages/friday-cli" },
+    { name = "friday-framework-commands", marker = "extra == 'all'", editable = "packages/friday-commands" },
     { name = "friday-framework-core", editable = "packages/friday-core" },
     { name = "friday-framework-finance", marker = "extra == 'all'", editable = "packages/friday-finance" },
     { name = "friday-framework-finance", marker = "extra == 'finance'", editable = "packages/friday-finance" },
@@ -1109,6 +1112,11 @@ requires-dist = [
     { name = "uvicorn", specifier = ">=0.23.0" },
 ]
 provides-extras = ["dev"]
+
+[[package]]
+name = "friday-framework-commands"
+version = "0.1.0a4"
+source = { editable = "packages/friday-commands" }
 
 [[package]]
 name = "friday-framework-core"
@@ -1470,6 +1478,7 @@ dependencies = [
     { name = "beautifulsoup4" },
     { name = "charset-normalizer" },
     { name = "friday-framework-core" },
+    { name = "friday-framework-finance" },
     { name = "gitpython" },
     { name = "httpx" },
     { name = "jinja2" },
@@ -1533,6 +1542,7 @@ requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.12.0" },
     { name = "charset-normalizer", specifier = ">=3.3.0" },
     { name = "friday-framework-core", editable = "packages/friday-core" },
+    { name = "friday-framework-finance", editable = "packages/friday-finance" },
     { name = "friday-framework-finance", marker = "extra == 'finance'", editable = "packages/friday-finance" },
     { name = "friday-framework-llm", marker = "extra == 'llm'", editable = "packages/friday-llm" },
     { name = "friday-framework-moltbook", marker = "extra == 'moltbook'", editable = "packages/friday-moltbook" },

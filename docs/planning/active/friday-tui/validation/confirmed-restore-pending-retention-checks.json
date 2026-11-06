@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "confirmed_restore_pending_retention_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-108: confirming Restore places an editable copy in the editor but retains the exact failed-prompt snapshot as one pending current-run recovery with unchanged chooser count/order. A later successful conversational turn clears all earlier pending recoveries; editor edits, admission, partial output, failed turns, commands and display clearing do not.",
+  "source_evidence": {
+    "maintainer_answer": "A to keeping the selected failed prompt in the chooser until a conversational turn succeeds.",
+    "prior_decisions": "D-41/D-101 protect the editor; D-102 excludes failed-attempt transcripts; D-106 clears older recovery on conversational success; D-107 presents multiple pending failures in one chooser.",
+    "unresolved_boundary": "Explicit user dismissal and a cap on pending failed-prompt recoveries remain separate decisions."
+  },
+  "documents_sha256": {
+    "decisions.md": "1781e9989db5b07a51d52af43dade2d4ea7d396211442575742f665f1ede4b6c",
+    "README.md": "d1cc486eb10b16c0c502198ca22d5148a445d8886fb18d788ac4c7eb0004c79a",
+    "replacement-plan.md": "ffcc470a4c79d86ec1a1646978b0f70b0c267fa3cc1033003baef93adbc05854",
+    "screen-layout.md": "547ff227b578b59fd72dfa44d5ff933df210765c81e1ae6e447db9c5209215f6",
+    "user-guide-requirements.md": "99ba7c55363c9167ea024dd45be5f72742b3edf12c6faa89f3259f77c49dea16",
+    "neutral-capability-map.md": "ffd0b4ffb70d7a66bb3a24d8570c474b485a7208d3e7ea4d6c9fb1096eef7d1e",
+    "authority.json": "5cfe507bd0d47ab2ab185db10b9be36f6c91fab927ce746cd5a1cdd7c66f2beb",
+    "execution-log.md": "018a2e9b935bc9273f3963960718a21a225bdc4ff6250da68074d85122b7010f",
+    "docs/planning/board.yaml": "97c67876c44f7e918501f220e44a551650f7b8610bbb42604a481a35239efcfe",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "104 valid before this receipt",
+    "decision_rows": "108 contiguous rows",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 133 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only decision and no product code change",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted selected-prompt recovery retention through editor restoration and planning checks only. Explicit dismissal, pending cap, exact UI construction, installed behavior, terminal UAT and release acceptance remain open."
+}

@@ -428,6 +428,8 @@ class StreamableHTTPMCPClient(MCPClientBase):
         primary: BaseException | None = None
         try:
             # The network stream records issue only after a successful header write.
+            if message is not None and message.get("method") == "tools/call":
+                self._guard_call_generation("tools/call")
             response = await pool.handle_async_request(
                 httpcore.Request(
                     "DELETE" if delete_session is not None else "POST",

@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_file_format_extraction_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-82: first-release attachment extracts real text/code/text-data and PDF, DOCX and XLSX content with installed readers; placeholders and empty-success attachments are excluded. Chat/CLI behavior remains unchanged. OCR, workbook scope and size/budget choices remain open.",
+  "source_evidence": {
+    "chat_read": "packages/friday-chat/src/friday_chat/commands/files.py uses placeholders for PDF, DOCX and XLSX",
+    "candidate_readers": "packages/friday-tools/src/friday_tools/filesystem/readers includes PDF, DOCX and XLSX readers; package extras contain their format dependencies",
+    "focused_reader_tests": "7 passed, 21 deselected; malformed-PDF case does not prove positive PDF extraction"
+  },
+  "documents_sha256": {
+    "decisions.md": "6f26e77bfc888f1135d7267409f5bcbc4422e30d250c34936f179775d6190830",
+    "screen-layout.md": "5fba02500b62dd28b86d07877de7faffb2baf4be75a59083684abba80aa795db",
+    "README.md": "3cc0d21c31391acc1d539b0b0e8d99069e061683b841341f336e7e47b656471b",
+    "replacement-plan.md": "28e67b2dc2d235a9897d972046bc4401ebf96fa789c54c604f23239ee930efd1",
+    "user-guide-requirements.md": "51bac20e340e95c47e3e3de2c087872cac145956ea384a8b1c2d60ba0f53f04b",
+    "neutral-capability-map.md": "883616da2edfee567c11daaab7a9589eaa1b204fe5913cf71f155d67144dfb93",
+    "authority.json": "5d334925591742eccfd039f3e96676e61e390a543e45c7fc25373e32ce803349",
+    "execution-log.md": "29ab0215bbdafcc90ccb49e36d3ed625ddc40d7d64fb9c45d78a36561683ba19",
+    "docs/planning/board.yaml": "b85a23f26ec0e06667838e317fe7f0e0f2f429b698aae543fb101edf28faeba2",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "78 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "existing_reader_tests": "7 passed, 21 deselected; limited baseline",
+    "tui_attachment_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted attachment format direction and planning checks only. Positive PDF extraction, TUI installation and attachment, scanned-PDF OCR decision, workbook scope, size/budget policy, terminal UAT and release acceptance remain open."
+}

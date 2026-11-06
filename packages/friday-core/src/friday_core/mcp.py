@@ -34,6 +34,8 @@ MCPDiagnosticCode = Literal[
     "connection_failed",
     "required_server_unavailable",
     "invalid_schema",
+    "unsupported_keyword",
+    "unsupported_reference",
     "tool_limit",
     "schema_limit",
     "name_collision",
@@ -259,6 +261,7 @@ class MCPServerDiscoveryState(_MCPContract):
     ] = "not_started"
     catalog_version: MCPSafeIdentifier | None = None
     cache_timestamp: datetime | None = None
+    discovered_tools: int = Field(default=0, ge=0)
     rejected_tools: int = Field(default=0, ge=0)
     filtered_tools: int = Field(default=0, ge=0)
     diagnostic_codes: tuple[MCPDiagnosticCode, ...] = ()

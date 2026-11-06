@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_pdf_renderer_package_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-88: the installed friday-tui package declares and supplies the cross-platform PDF page renderer for scanned-PDF OCR. Users install Tesseract and language packs separately, but no separate PDF renderer. Exact renderer selection and installed platform proof remain construction work.",
+  "source_evidence": {
+    "maintainer_answer": "A to including the PDF renderer with friday-tui",
+    "packaging_boundary": "Declared TUI package dependency; no dependency on Friday Chat or Friday CLI",
+    "existing_baseline": "No PDF page-rendering attachment path is implemented in this repository; current positive installed-package behavior has not been tested"
+  },
+  "documents_sha256": {
+    "decisions.md": "ca8eb9ae2f0b6861623ad736b47053faa5ebb052330e0d9a10aa6f463f750677",
+    "screen-layout.md": "2ef1fa0d389e8d600e1ed5fa5df057d67458c0fdff1e63fc0788844db9e144bf",
+    "README.md": "5a77b0e38326fd273dbc50e0b659c34182c9e9ec68709537dfbe3426b252cfbe",
+    "replacement-plan.md": "ba7962c6f4a8bbd04aa81c477029aeb1f3d3456b8997957e1352447aa2d4339a",
+    "user-guide-requirements.md": "52aa3f0dba37a5b35f162a53e4455da6823324fc16f34235f21f27f807820cad",
+    "neutral-capability-map.md": "82e00f70653db6d9e42883b4f909b8d03585957023f2ef16cdb502fb67e3a984",
+    "authority.json": "4f01ed1be8f3090f548bcb1886d2c5abdbd961371f98d8bb3fd422c6fb54dc1c",
+    "execution-log.md": "d4ff55afe5b0b69782c5dd4501420e63d1997b336bbf2d98e45e8a03b60b0dbd",
+    "docs/planning/board.yaml": "e3b1d47c134ac1a9d8a9296450e63044b11b72f98dc7896ae796402c8a4cf6d0",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "84 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "installed_pdf_rendering": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted renderer packaging direction and planning checks only. Exact rendering library, license/platform/native dependency proof, usable-text criterion, OCR-language validation bounds, workbook scope, size/time budgets, installed macOS/Linux behavior, terminal UAT and release acceptance remain open."
+}

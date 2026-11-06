@@ -44,7 +44,7 @@ This only renders terminal output. It makes no model requests and does not start
 
 `cli-config.yaml` configures theme colors, status icons and prompts. Load it through `load_cli_config` and rebuild the console with `reset_console` when changing an existing console. Runtime/model/tool configuration belongs to the application, not the terminal theme.
 
-The package metadata declares a historical `friday` console entry point, but `friday_cli.main` currently contains only a placeholder: that executable is not a working application entry point. Use `friday-chat --help` for the maintained chat CLI. Legacy container, REPL and server modules remain compatibility surfaces; prefer `friday_runtime.RuntimeKernel` for new headless applications.
+This component library provides no standalone console command. The legacy `friday` launcher declaration has been removed. Use `friday-chat --help` for the maintained chat CLI. Legacy container, REPL and server modules remain compatibility surfaces; prefer `friday_runtime.RuntimeKernel` for new headless applications.
 
 ## Development
 

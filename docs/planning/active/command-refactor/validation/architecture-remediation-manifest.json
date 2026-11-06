@@ -1,0 +1,29 @@
+{
+  "review_type": "bounded documentation remediation; fresh review required",
+  "prior_candidate": "fa94f180e95ba75022e81bb269b18543e6360e38",
+  "date": "2026-11-05",
+  "sha256": {
+    "AGENTS.md": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/board.yaml": "1ce558fc929127de5ca60d445a0952007f46bee939f9f29cf1f740b523e0813b",
+    "docs/planning/active/command-refactor/authority.json": "9103348fee351fce3e6cffd97f3838384632c12b91fe3863a90f99e41d3775e4",
+    "docs/planning/active/command-refactor/scope-decisions.md": "497c3dab7df323c6ac143a789658e9f3314df1168f7eae405335818d319b85d3",
+    "docs/planning/active/command-refactor/build-plan.md": "1ceeafe26b7f50d3ad50c0a554e1e9755b4a34638f7d4b5eaecf2eb55d26b7a3",
+    "docs/planning/active/command-refactor/phase-plan.md": "9838a8ead0cd5ed2f303cb750fb6a9ca7632d20a14f670f4668a92da6141f51d",
+    "docs/planning/active/command-refactor/tactical-plan.md": "d349c8656c61544c297f4c1f3b40b107d1a4cb0f64764def40ec208fc029b461",
+    "docs/planning/active/command-refactor/test-strategy.md": "1fdfdd69f81ceaadc80cc56077e3dd559948f14512d6052273ee3a45edaca149",
+    "docs/planning/active/command-refactor/command_refactor.md": "e9d0f6d67c0d3fd98c2c7ea39b42682ca61aeca8317e7327a78ada1d1e87d49f",
+    "docs/planning/active/command-refactor/command-inventory.md": "d6846ab4e600a475b6cd4f898c144b610eb917658f584fbc723e39d30c5cd654",
+    "docs/planning/active/command-refactor/command-matrix.md": "1a1746a42ba1d0ffab40973d74ceeade74c04fdfeffe1fdde11ddc3f883354a0",
+    "docs/planning/active/command-refactor/shared-command-architecture.md": "8ece30a47e2c7a31bb089d3a1260a8d7bc9e58083280aa61ffd5c15eca8bf670",
+    "docs/planning/active/command-refactor/shared-command-api.md": "66b47b0e566dfb0e54db559a4e79077075e2430908aeef7cedbffe7ea4605f79",
+    "docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md": "648d3ce07cb338cf22ded7fd22229e03bba2551cc294457f3e9d753493ca358d",
+    "docs/planning/active/command-refactor/validation/production-effects-audit.md": "20823f5a4d78ba4194ee7309e9b0946baae7c6474ddbb8d05e50196806413d27",
+    "docs/planning/active/command-refactor/validation/p0-failure-disposition.md": "1d83c8d8e7f92e5dbd1e677313db3475eb5dc51690f8514c85f7b680a0d3e2e1",
+    "docs/planning/active/command-refactor/authority/planning-review-2026-11-04.md": "b1a35cfa1a8c94e82e5974069686746d013064ed72d058a119b71992a61e5d39",
+    "docs/planning/active/command-refactor/approval/foundation-design.md": "0e315c9cacdf67c38bef54bd177792f4c67de8aaae14fd0776dbd417d312099d",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-DESIGN-001.md": "7a8e20e090ced0abc3fe275e93fc6d47d41e323de3bb496ffbd7f9198e62bcdc",
+    "docs/planning/active/command-refactor/validation/COUNCIL-CMD-DESIGN-001-round1.md": "6f1f5958884c9b2d0ec7253e0ad90c36e94a7ddca858063db382172c0fb10a68"
+  }
+}

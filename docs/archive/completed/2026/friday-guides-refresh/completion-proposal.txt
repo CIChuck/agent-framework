@@ -1,0 +1,27 @@
+# Current technical end-user guides for alpha3 — completed for maintainer review
+
+**Status:** completed; awaiting maintainer acceptance
+
+**Work state:** completed
+
+**Validation:** verified
+
+**Delivery:** merged
+
+**Implementation authority:** closed
+
+**Date:** 2026-10-24
+
+All 25 technical guides passed final independent VERIFIED review, including the resolved GUIDE findings. The source was delivered in merged PR #10.
+
+- [Independent review](../../active/friday-guides-refresh/validation/final-review/report.md)
+- [Delivery evidence](https://github.com/CIChuck/agent-framework/pull/10)
+- [Original planning packet and historical evidence](../../active/friday-guides-refresh/README.md)
+- [Immutable authority backing manifest](historical-authority.json)
+
+**Known limit:** The original closeout describes local delivery as of its writing; this review index records the later merge. Live provider, hardware and exhaustive external-link checks were outside the documentation unit.
+
+**Next gate:** Explicit maintainer lifecycle acceptance. This completion proposal
+and the delivery state do not themselves grant acceptance. The original packet
+remains at its frozen path as historical backing; this review index is the
+canonical current packet. Friday TUI and other initiatives are unaffected.

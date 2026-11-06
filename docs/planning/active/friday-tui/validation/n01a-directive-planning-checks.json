@@ -1,0 +1,32 @@
+{
+  "initiative": "friday-tui",
+  "kind": "n01a_directive_planning",
+  "branch": "feature/friday-tui",
+  "source_baseline": "26f5d090",
+  "authority": "design_only",
+  "directive": "docs/planning/active/friday-tui/directives/CD-TUI-N01A-neutral-config-loader.md",
+  "directive_status": "proposed; not approved for construction",
+  "documents_sha256": {
+    "docs/planning/active/friday-tui/neutral-config-loader-contract.md": "a2c5891baf7fc1657de6b971e1d6b3c07bfd319e061a447a7f1a1183b47f8481",
+    "docs/planning/active/friday-tui/directives/CD-TUI-N01A-neutral-config-loader.md": "ca1bd55343964183bb012117a878af22762f42be8ef885e54ff7fa4b181c9d3d",
+    "docs/planning/active/friday-tui/validation/N01A-before-code-characterization.md": "39e5b90742f362ef63c6c4688373e1db79f5fc4f03a64e38bf7fa836de92e1e0",
+    "docs/planning/active/friday-tui/README.md": "63bc5cc8b6ecdb0f975f3b327f6374d2875061b5316e8b4b538df2a38091572b",
+    "docs/planning/active/friday-tui/replacement-plan.md": "a3d8a625f9841f355d1775bad52c8258dd3bcccdee2bf6d7d6910079ddb15024",
+    "docs/planning/active/friday-tui/execution-log.md": "e513d24d95a4e026ff3169f7c8132eb628d15d3e664ffdec5639b9bdda0fabfa",
+    "docs/planning/board.yaml": "8814f89e64e3084b21a7c8230547dd437d7a3334e37518bd49e8ab3676e02462",
+    "docs/planning/README.md": "5eba688739f005d8aa372d903609c4d4dc26d2d832e60de9e717663af1eea590"
+  },
+  "checks": {
+    "before_code_focused_chat_runtime_friday_cli_tests": "369 passed",
+    "synthetic_characterization": "legacy, canonical symlink, diagnostics, file errors, environment and parser separation observed; synthetic values only",
+    "board_validation": "34 tasks; passed",
+    "dashboard_render_check": "passed",
+    "tracked_git_diff_check": "passed",
+    "documentation_lifecycle": "six pre-existing broken absolute links in unrelated telemetry VAL-001 report; no new link failures",
+    "product_source_changes": "none",
+    "after_code_tests": "not run; construction approval pending",
+    "installed_package_checks": "not run; construction approval pending",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Planning and read-only before-code evidence only; not product validation, maintainer construction approval, TUI UAT, acceptance or external delivery."
+}

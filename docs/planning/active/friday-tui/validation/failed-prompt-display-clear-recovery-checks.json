@@ -1,0 +1,37 @@
+{
+  "initiative": "friday-tui",
+  "kind": "failed_prompt_display_clear_recovery_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-105: /cls or /clearscreen clears the conversation error notice, latest prompt pin and Activity but retains a recoverable failed initial prompt and the editor-adjacent Restore failed prompt action for the current TUI run; a shortcut invoking the same display clear follows the same rule.",
+  "source_evidence": {
+    "maintainer_answer": "A to retaining the failed-prompt Restore action after /cls clears the visible conversation.",
+    "prior_decisions": "D-33 defines display clearing; D-101 protects a newer draft through Confirm/Cancel; D-102 makes failed-prompt recovery current-run only and excludes a failed-attempt transcript; D-104 places Restore beside the editor after notice eviction.",
+    "unresolved_boundary": "Recovery after a separate successful prompt or explicit dismissal is not set by D-105."
+  },
+  "documents_sha256": {
+    "decisions.md": "893b2f78da34c023618e4ebca8e92771756720be9af69742caddff51dafcf50f",
+    "README.md": "af173dba68db3d4e0e52434973f0f9c011303e6b7f64318496bfb4d662cbb4a5",
+    "replacement-plan.md": "7b163fb3c47918dcbfe5a097241d09e4432456e61cc0f0ccd072ebbcdfc0cabe",
+    "screen-layout.md": "5ff799dac03c9af57649553bb33b4abce4239dea180b21ad09669b3e23d06656",
+    "user-guide-requirements.md": "cdbdc26b276fcf25d7ef3d7ca150f1250a93aec7b4e9c004cdc2474378a9b42c",
+    "neutral-capability-map.md": "8ac9c78c7a30ab9bbc278e714fc6fd9f872914aaa7f3c6a49481f0a74c40b5e3",
+    "authority.json": "b10e9be17e3db1aa86df6487d0dc4bff67aca25ac947c32806d9536057796128",
+    "execution-log.md": "42ba13835cbb4b01ac2fae4b75616cb7a9bf58a76c71a2f9950f43284bcc4344",
+    "docs/planning/board.yaml": "13130f772a4740771f4e26ab5ceb5696617ad9f4e6bfb24e15a2ee3012184d9e",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "101 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 130 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only decision and no product code change",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted failed-prompt recovery across display clearing and planning checks only. Later successful-submission or explicit-dismissal behavior, exact UI construction, installed behavior, terminal UAT and release acceptance remain open."
+}

@@ -6,9 +6,9 @@ Product candidate: `5c3a0e6dc8ba995bad9e7dfb8c574f5dfd335bc8`.
 Evidence closeout: `09e0ba354f79121aebb03030ba7e011099b650c9`.
 
 [Exact acceptance decision,46 controls and frozen evidence hashes](acceptance-evidence.json).
-[Independent VAL-010](../../../../planning/active/friday-telemetry-rewire/validation/VAL-010/report.md).
-[Accepted unit closeout](../../../../planning/active/friday-telemetry-rewire/closeout-TELEM-04.md).
-[Initiative status](../../../../planning/active/friday-telemetry-rewire/README.md).
+[Independent VAL-010](../friday-telemetry-rewire/historical/validation/VAL-010/report.md).
+[Accepted unit closeout](../friday-telemetry-rewire/historical/closeout-TELEM-04.md).
+[Initiative status](../friday-telemetry-rewire/historical/README.md).
 
 All five REM-005 findings are resolved. Independent review covers the full unit
 and complete telemetry aggregate:132 focused,1,247 Chat/LLM/Telemetry,3,128 root

@@ -1,0 +1,71 @@
+[
+  {
+    "argv": [
+      "uv",
+      "venv",
+      "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne/default-venv",
+      "--python",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python"
+    ],
+    "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne",
+    "exit": 0,
+    "log": "venv.log"
+  },
+  {
+    "argv": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--python",
+      "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne/default-venv/bin/python",
+      "--find-links",
+      "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-command-step3-bhswluon/dist",
+      "friday-chat==0.1.0a4",
+      "friday-framework-cli==0.1.0a4"
+    ],
+    "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne",
+    "exit": 0,
+    "log": "install.log"
+  },
+  {
+    "argv": [
+      "uv",
+      "pip",
+      "check",
+      "--offline",
+      "--python",
+      "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne/default-venv/bin/python"
+    ],
+    "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne",
+    "exit": 0,
+    "log": "dependency-check.log"
+  },
+  {
+    "argv": [
+      "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne/default-venv/bin/python",
+      "-I",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/default-profile/probe.py",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/default-profile/observations.json",
+      "/Users/chuckrussell/Dev/gendev/agent-framework"
+    ],
+    "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne",
+    "exit": 0,
+    "log": "probe.log"
+  },
+  {
+    "argv": [
+      "uv",
+      "pip",
+      "list",
+      "--offline",
+      "--python",
+      "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne/default-venv/bin/python",
+      "--format",
+      "json"
+    ],
+    "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-step3-correction-vbu6tbne",
+    "exit": 0,
+    "log": "installed.json"
+  }
+]

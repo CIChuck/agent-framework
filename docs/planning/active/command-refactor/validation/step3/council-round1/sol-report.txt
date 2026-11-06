@@ -1,0 +1,76 @@
+CHANGES_REQUESTED
+
+Candidate: `95fdeadc0a0e4b9720cdb553e5b26756a438ab70`
+Base: `bbbd90e05143137c5a1d49eacedb4125d254b8fb`
+Diff: `bbbd90e05143137c5a1d49eacedb4125d254b8fb..95fdeadc0a0e4b9720cdb553e5b26756a438ab70` — 22 files; no product implementation changes.
+
+This is a full scoped readiness review under the frozen request, AGENTS.md, repository policies, and independent-code-validator procedure. Reviewer: OpenAI `gpt-6.1-sol`, high reasoning effort, 2026-11-06. Fresh reviewer context; no builder transcript or private reasoning supplied. A required memory lookup exposed historical review labels; those verdicts were not used as evidence. Exact context-creation time is unavailable.
+
+The proposed conditional foundation-only decision is technically defensible, but the packet contains one mandatory evidence correction.
+
+1. **STEP3-SOL-001 — Medium — Incorrect attribution of the default-install failure.**
+
+   **Requirement:** R-05 requires accurate representation of default-install failures and diagnostic results.
+
+   **Affected material:** [readiness-review.md:40](/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/readiness-review.md:40), the corresponding execution-log statement, and `validation/step3/unit-map.json`’s default-profile description.
+
+   **Evidence:** The summary states “Importing Chat failed.” The frozen [probe.log:15](/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/step3/probe.log:15) instead shows failure during the probe’s explicit module-origin imports, reaching `friday_tools.__init__`, then its unconditional finance import.
+
+   I independently installed the default Chat/CLI wheels offline into a fresh disposable environment containing 127 compatible distributions. Results:
+
+   ```text
+   friday_chat                   IMPORT PASS
+   friday_chat.commands.registry IMPORT PASS
+   friday_chat.cli               IMPORT PASS
+   friday_tools                  ModuleNotFoundError: No module named 'friday_finance'
+   Chat --help                   exit 0
+   ```
+
+   **Risk:** The Step 4 decision would disposition a broader client-import defect than the evidence establishes. Successful imports/help also do not establish full client/runtime health.
+
+   **Required mitigation:** Correct the summary and propagated descriptions to identify the failing `friday_tools` import. Preserve the observed dependency defect, generic CLI failure, runtime exclusions, and proposed RD-02 boundary. No product repair is required for this finding.
+
+   **Verification:** Reproduce using the saved [default import probe](/tmp/command-step3-sol-review.mVFThR/default_import_probe.py); its [output](/tmp/command-step3-sol-review.mVFThR/default-probe.log) records the results above. Corrected evidence should distinguish module imports, entry-point loading/help, and runtime execution.
+
+| Criterion | Outcome | Evidence and assessment |
+|---|---|---|
+| R-01 | VERIFIED | Scope decisions preserve nine retirements, 41 retained names/three aliases, `/tools`, retained quirks, neutral ownership, and separate CLI. |
+| R-02 | VERIFIED | Full approved API examined: explicit constructor validation, immutable snapshots, atomic canonical registration, one-pass normalization, parser fixtures, and execution/cancellation boundaries are coherent for this limited design. |
+| R-03 | VERIFIED | Draft directive bounds paths, synthetic tests, editable package-under-test installation, import checks, and standalone wheel proof. `packages/friday-commands` does not exist. |
+| R-04 | VERIFIED | RD-01/RD-02 are defensible proposals for an unwired, dependency-free foundation. They retain API-01–06 proof and require explicit Step 4 disposition; they are not effective approvals. |
+| R-05 | CHANGES_REQUESTED | STEP3-SOL-001. Other packaging, CLI, blocked-network and offline-cache limitations are accurately bounded. |
+| R-06 | VERIFIED | Independently checked 50 unique cases, source handler locations, unique unit assignments, three aliases, nine retirements, and dependency ordering. Eight scenario obligations and environment limits remain explicitly pending. |
+| R-07 | VERIFIED | CLI source/tests support preserving its distinct quotes, decorators, kwargs/defaults, sync/async execution and string-result contract. No speculative adapter is introduced. |
+| R-08 | VERIFIED | Start/end identity and hash checks match; proposed base and human decision boundary remain explicit. No protected input changed. |
+
+Commands and results:
+
+| Actual check | Result |
+|---|---|
+| `shasum -a 256 …/step3/council-request.json` | Expected `fc15a9d5…082765a` matched at start/end |
+| Python SHA-256 verification of request manifests | All 16 authority entries, 22 deliverable entries and 16,882 protected entries matched at start/end |
+| Inventory/source/ownership checks using Python JSON, AST and SHA-256 | All 84 inventory hashes matched; 50 handler locations and assignments passed; dependencies precede their units |
+| Wheel/archive comparison using Python `zipfile` | All 17 wheel hashes matched; 396 Python files across 13 installed wheels matched |
+| `uv run --offline --no-sync ruff check --no-cache docs/planning/active/command-refactor/validation/step3/installed_probe.py` | Exit 0 |
+| Matching `ruff format --check --no-cache` | Exit 0; one file already formatted |
+| `uv run --offline --no-sync python scripts/friday-dev-board.py validate` | Exit 0; 36 tasks |
+| `uv run --offline --no-sync python scripts/check-documentation-lifecycle.py` | Exit 1; exactly the four declared unrelated TUI broken links |
+| `git diff --check` and `git diff --check BASE..CANDIDATE` | Both exit 0 |
+
+All Python checks used `PYTHONDONTWRITEBYTECODE=1`.
+
+Disposable reproduction commands included:
+
+```sh
+uv pip install --offline --python "$REVIEW_TMP/venv/bin/python" \
+  --find-links "$FROZEN_TEMP/dist" \
+  friday-chat==0.1.0a4 friday-framework-cli==0.1.0a4
+
+uv pip check --offline --python "$REVIEW_TMP/venv/bin/python"
+```
+
+Installation and dependency checks passed. The isolated default probe produced the finding above. Re-running the pinned `installed_probe.py` with the existing augmented interpreter, outside the checkout using `-I`, exited zero: 50 names/three aliases, Chat help exit zero, generic CLI `AttributeError` for absent `main:app`, and one blocked network attempt. Independent output is in [augmented-probe.json](/tmp/command-step3-sol-review.mVFThR/augmented-probe.json).
+
+Full owning suites and the 17-wheel build were not rerun. Their receipts remain historical evidence; wheel hashes and installed-file equality were independently checked. Full-cohort offline resolution remains cache-limited. No runtime/store construction, live provider/tool execution, terminal/audio acceptance, foundation implementation verification, or P0/P1 closure was performed.
+
+The next gate is controller reconciliation of this finding and the other council reports, followed by an explicit human Step 4 decision on the exact directive/base and RD-01/RD-02. This pass grants no construction approval. No files were repaired, no evidence was overwritten, and no further review round was started.

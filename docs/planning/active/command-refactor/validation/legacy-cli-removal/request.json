@@ -1,0 +1,76 @@
+{
+  "initiative": "friday-command-refactor",
+  "unit": "CD-CMD-CLI-001",
+  "repository": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "branch": "feature/command-refactor",
+  "base": "144378ac0d0cc4c9b1f9f85511264f6919e23997",
+  "candidate": "06285ae446f609f0546866b951dff611cbb447bf",
+  "diff": "144378ac0d0cc4c9b1f9f85511264f6919e23997..06285ae446f609f0546866b951dff611cbb447bf",
+  "review_mode": "Full scoped work-unit review of exact legacy TOML script removal and affected readiness delta. No full council or foundation implementation review. Prior fcea84b8 readiness applies only to its old bytes; assess current changed scope independently, preserve unaffected approved API/source identity. Aggregate feature-branch implementation review remains before later merge.",
+  "authority_sha256": {
+    "AGENTS.md": "42b78384d37d41fbe95c3e80be69035cb41480b722a04e0f77dbccbf0d46d90d",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/reference/policies/development-task-lifecycle.md": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844",
+    "docs/planning/board.yaml": "28fc201676e33af1b6dd4d0f9b7fbf98fd70e6d4267d131dfafaa275119c8855",
+    "docs/planning/active/command-refactor/authority.json": "9337022939f0c01e35bc9909f5d3d58bce22e40834aca9f06e618fddc587676b",
+    "docs/planning/active/command-refactor/directives/CD-CMD-CLI-001-retire-legacy-launcher.md": "796dd5fdf933e2eb7bd27f5d495f5ce66d01a6106f44fec84f9e88c8945f25f0",
+    "docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md": "ab638790e9a290da3e84d2ec4e9bf4e3d23ea373a46ca8953037065f4a4e221f",
+    "docs/planning/active/command-refactor/shared-command-api.md": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+    "docs/planning/active/command-refactor/scope-decisions.md": "6760092e9d7b4f38a0e96d8109fde0e95cd8c3db0aeaf05c927801243dccb749",
+    "docs/dev-skills/independent-code-validator.md": "578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508"
+  },
+  "deliverable_sha256": {
+    "AGENTS.md": "42b78384d37d41fbe95c3e80be69035cb41480b722a04e0f77dbccbf0d46d90d",
+    "docs/planning/README.md": "ed29199e4ef711718c2dac4740f231b51e2faa4734bec2dd92fb4a360c7d4ac5",
+    "docs/planning/active/command-refactor/README.md": "b6d95bbf7b3c1aa4d851c1853c40e402080c5cf0b1d214356049610d4961c271",
+    "docs/planning/active/command-refactor/authority.json": "9337022939f0c01e35bc9909f5d3d58bce22e40834aca9f06e618fddc587676b",
+    "docs/planning/active/command-refactor/directives/CD-CMD-CLI-001-retire-legacy-launcher.md": "796dd5fdf933e2eb7bd27f5d495f5ce66d01a6106f44fec84f9e88c8945f25f0",
+    "docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md": "ab638790e9a290da3e84d2ec4e9bf4e3d23ea373a46ca8953037065f4a4e221f",
+    "docs/planning/active/command-refactor/execution-log.md": "081ad47de638b88aa4e41c051c37016a2f1c024d5aa5277a5af6bb058b4bcf9a",
+    "docs/planning/active/command-refactor/next-phase.md": "0c21191384dae85e5a7503fbc003a638afd2fcdc27ec068ddda8c0583104902e",
+    "docs/planning/active/command-refactor/readiness-review.md": "f060376caa3d3826567f5292a3617b5da66f5e570c4fa844f322c721b6f7e306",
+    "docs/planning/active/command-refactor/validation/legacy-cli-removal/artifacts-check.log": "d12254e9f70d6c915e989f14ba3bdc6c127c969381d9e3f408e04f3a330646cb",
+    "docs/planning/active/command-refactor/validation/legacy-cli-removal/build.log": "739700148be9fdb3572b3e6aa895354d8639a981a14700ee29dd79c3da4c81e9",
+    "docs/planning/active/command-refactor/validation/legacy-cli-removal/checks.json": "7dc9b383f1a7a150e50f7b011a8d5f19b3fc331a895411a07e048e773416a3bb",
+    "docs/planning/active/command-refactor/validation/legacy-cli-removal/cohort-and-cli-tests.log": "0f81c94605d11a18891e52f1f5bf78d2904a815bf8f31bbf5e00a0493c874994",
+    "docs/planning/active/command-refactor/validation/legacy-cli-removal/install.log": "899c66b8e4d04de6965fae2233e8bbe50acf55f05affa0299c2ab050898b1e43",
+    "docs/planning/active/command-refactor/validation/legacy-cli-removal/installed-metadata.log": "fea8ff77add2f103594776c4f63233aa62ea6677f18e6c9373f33e62f491f34e",
+    "docs/planning/active/command-refactor/validation/legacy-cli-removal/lock-check.log": "d459ef688f08f7fe585511d12248601ba0c2e349a6a82bf321750f555569aeb1",
+    "docs/planning/active/command-refactor/validation/legacy-cli-removal/metadata-check.log": "f8d6fca602cb9f52cb26655c104c83f670736fd10f36890cff0c90b3e5ff60f8",
+    "docs/planning/active/command-refactor/validation/legacy-cli-removal/receipt.json": "92aa593333f20f3ae856508b3fe7d67c8fd3fcef0a616bb0b8cf553abd578e7a",
+    "docs/planning/active/command-refactor/validation/legacy-cli-removal/venv.log": "b00c52d2d7382dc0d0a97a7593d0d978ad4a94a3dc8de188c0638db3cc618279",
+    "docs/planning/active/command-refactor/validation/step3/unit-map.json": "fbdc186b85da9c55811ef74e001f2dbcc194a7bd8090c39218eaf5f0edd3f036",
+    "docs/planning/board.yaml": "28fc201676e33af1b6dd4d0f9b7fbf98fd70e6d4267d131dfafaa275119c8855",
+    "packages/friday-cli/README.md": "a7e993ec679fc141758de2f5a2d319a9e84131842bd7f54d584d40a89523e062",
+    "packages/friday-cli/pyproject.toml": "d58972ec375674fee021dc36a0cbf3d6c1378da19cac6d09a55f47a1a51a4d29"
+  },
+  "protected_manifest": {
+    "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/protected-excluding-unit.json",
+    "sha256": "3b6d0e4dc0d6056d9c10c19ac3a90f6c3a8977c7c5456bda9faa5e9d3c495329",
+    "count": 16879,
+    "authorized_exclusions": [
+      "AGENTS.md",
+      "packages/friday-cli/pyproject.toml",
+      "packages/friday-cli/README.md"
+    ]
+  },
+  "working_tree_exception": "Shared board/dashboard retain unrelated pre-existing TUI edits; working hashes are pinned. Command-specific subset only committed. Other dirty files protected and unchanged.",
+  "criteria": {
+    "CLI-01": "Parsed CLI project TOML equals base after removing only project.scripts with friday=friday_cli.main:app. No replacement, version/dependency/lock/Python-source/test change.",
+    "CLI-02": "Fresh built wheel/sdist valid and clean no-deps installation advertises no console script and installs no friday executable. Package remains reusable library; supported friday-chat declaration unchanged.",
+    "CLI-03": "Current package/AGENTS/readiness/draft/SC08 identify launcher as intentionally retired by maintainer, not a client defect or feature to restore. Finance remains unresolved. Historical wheel/probe/review bytes retained.",
+    "CLI-04": "Existing CLI/cohort/metadata/artifact/lock checks substantiate narrow regression preservation; full foundation/P0/P1 or runtime health not inferred.",
+    "CLI-05": "All 84 source/test hashes and approved foundation API match. Affected proposed base and readiness authority/navigation are coherent; fresh result supplies only this removal/delta. Step 4/RD01/RD02 remain unapproved. Unrelated dirty bytes preserved."
+  },
+  "required_checks": [
+    "Verify HEAD/branch/request/authority/deliverable/protected pins start/end; inspect complete 23-file diff and exact approved CD before any verdict. Read AGENTS/policies and docs/dev-skills/independent-code-validator.md.",
+    "Independently compare parsed old/current TOML, inspect built wheel metadata and installed distribution/absence of launcher against receipt. Inspect all changed readiness/authority/description/map text; no obligation to recreate retired launcher may remain as current scope. Original raw logs/reviews are historical, not current failures.",
+    "Check unchanged source inventory 84 hashes, API hash, supported Chat scripts and uv.lock. Run scoped CLI/cohort tests offline with PYTHONDONTWRITEBYTECODE=1 and network containment before application imports; no cache writes. Inspect/optionally repeat package/artifact/lock commands in receipt. Do not sync repository venv or build foundation.",
+    "Run uv run --offline --no-sync python scripts/friday-dev-board.py validate, matching scripts/check-documentation-lifecycle.py; git diff --check and git diff --check BASE..CANDIDATE. Documentation baseline is exactly four declared unrelated TUI broken links. Use no caches and guarded temporary outputs only for optional application imports."
+  ],
+  "artifact_directory": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/dist",
+  "disposable_venv": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/venv",
+  "external_effects": "Read-only, no repository edits/format/stage/commit/board or external changes, no provider/tools/runtime/store construction, network or venv sync. Offline disposable metadata/build probes allowed in your own temp if needed. No subagents, remediation or further reviews.",
+  "report": "Return exactly VERIFIED/CHANGES_REQUESTED/BLOCKED with candidate/diff, authority/context/model provenance, all five criteria evidenced, reproducible mandatory findings if any, commands/exits/skips/baseline limits and next gate. Return as final response, write no repository file. One pass; no automatic loop."
+}

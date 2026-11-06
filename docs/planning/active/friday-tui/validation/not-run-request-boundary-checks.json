@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "not_run_request_boundary_and_command_inventory_reconciliation",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-32: Not run is shown only for an actual model or user tool request rejected before invocation; pre-request selection and budget exclusions produce no Activity entry",
+  "documentation_correction": "All 50 command-matrix rows now require equivalent behavior through independent TUI handlers and UI-neutral services, with TUI-specific presentation allowed; startup cases point to the active replacement plan.",
+  "documents_sha256": {
+    "README.md": "63cbb3a345fb6b71343e105e16c3207c79e54397109c04357b36d6e8b2854f97",
+    "decisions.md": "afe430bb5a0cb0b0d8f8896be8e16e3ba01e25473adc490e5a794d12523381d8",
+    "replacement-plan.md": "90a28076c7ba027ef50cd244ba309eb900d3fe0e263b09af146611be42672e6d",
+    "tool-activity-requirement.md": "7e20c046e46b56eef4d4aad45f524d638af67274bfd9e666d74e22e2131fc001",
+    "screen-layout.md": "cfeaa5721b31a20dc85c5f90e8e1af9638e03d6ca06e4fb2ccbf647adc1200b0",
+    "user-guide-requirements.md": "b1b2f176c77174f315b2363d90af7b887e961de01453f6a413b50d96ac47add0",
+    "architecture-reset.md": "aff9c35700340bacd8a006d87fe090df2ded4aef1247495c3d5674d3ce52e02b",
+    "command-matrix.md": "aaa93c7de1fc49251a2dd1ed4c96cc419c2e51f1dd00038c3ed499d9163de667",
+    "validation/command-matrix.json": "747f11b40a49ae1bb946355c47223beb7751a6a203a63a1559c25429f3392b65",
+    "authority.json": "a9c20a4df3f23319b3a7ebd8f0b7e939dbade185293ea7358f196613e63ff988",
+    "execution-log.md": "6df1a7d9d4cda3ea04311e27fc6ff1960b8407b2d31e94c0375556bf6ea05b86"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "source_registry_reconciliation": "48 default Chat registry commands plus help and exit match 50 inventory names and 3 aliases",
+    "command_obligations": "50/50 rows require independent TUI handlers and allow TUI presentation; no withdrawn same-handler obligations remain",
+    "packet_json": "25 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, terminal UAT, command parity proof, product acceptance or release is claimed."
+}

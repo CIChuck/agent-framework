@@ -1,0 +1,27 @@
+# Precise Python monorepo and package READMEs — completed for maintainer review
+
+**Status:** completed; awaiting maintainer acceptance
+
+**Work state:** completed
+
+**Validation:** verified
+
+**Delivery:** merged
+
+**Implementation authority:** closed
+
+**Date:** 2026-10-24
+
+All 17 README rewrites passed independent VERIFIED review. The source was delivered in merged PR #10.
+
+- [Independent review](../../active/friday-readme-refresh/validation/final-review/report.md)
+- [Delivery evidence](https://github.com/CIChuck/agent-framework/pull/10)
+- [Original planning packet and historical evidence](../../active/friday-readme-refresh/README.md)
+- [Immutable authority backing manifest](historical-authority.json)
+
+**Known limit:** The original packet still describes local-only delivery; this review index records the later merged state. No live providers or new PyPI alpha3 long descriptions were part of this documentation unit.
+
+**Next gate:** Explicit maintainer lifecycle acceptance. This completion proposal
+and the delivery state do not themselves grant acceptance. The original packet
+remains at its frozen path as historical backing; this review index is the
+canonical current packet. Friday TUI and other initiatives are unaffected.

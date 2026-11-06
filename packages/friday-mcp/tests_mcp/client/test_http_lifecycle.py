@@ -58,6 +58,7 @@ class WireStream(httpcore.AsyncNetworkStream):
         if self.reply is None and b"\r\n\r\n" in self.outgoing:
             head, body = bytes(self.outgoing).split(b"\r\n\r\n", 1)
             lines = head.split(b"\r\n")
+            self.connector.targets.append(lines[0].split()[1])
             headers = {
                 key.lower(): value
                 for key, value in (line.split(b": ", 1) for line in lines[1:])
@@ -124,6 +125,7 @@ class Peer(httpcore.AsyncNetworkBackend):
         self.connections = []
         self.tls = []
         self.requests = []
+        self.targets = []
         self.hook = None
         self.sessions = 0
         self.expire_once = False
@@ -275,6 +277,28 @@ async def test_profiles_and_exact_wire_headers_tls_and_borrowed_connector(versio
         await client.disconnect()
     assert all(stream.closed for stream in peer.streams)
     assert client.outstanding_http_owners == 0 and client._pool is None
+
+
+@pytest.mark.asyncio
+async def test_2025_query_is_sent_on_initialize_discovery_and_session_cleanup():
+    peer = Peer(HTTP_COMPAT_VERSION)
+    client = StreamableHTTPMCPClient(
+        "https://example.test/mcp?region=us-east-1",
+        protocol_version=HTTP_COMPAT_VERSION,
+        connector=peer,
+        resolver=Resolver(),
+    )
+    try:
+        await client.connect()
+        await client.list_tools()
+    finally:
+        await client.disconnect()
+    assert "initialize" in peer.methods()
+    assert "tools/list" in peer.methods()
+    assert "DELETE" in peer.methods()
+    assert peer.targets and all(
+        target == b"/mcp?region=us-east-1" for target in peer.targets
+    )
 
 
 @pytest.mark.asyncio
@@ -1118,7 +1142,12 @@ async def test_timed_out_recovery_retains_disconnected_state_until_explicit_conn
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    "dialect", [None, "https://json-schema.org/draft/2020-12/schema"]
+    "dialect",
+    [
+        None,
+        "https://json-schema.org/draft/2020-12/schema",
+        "http://json-schema.org/draft-07/schema#",
+    ],
 )
 async def test_2025_default_and_declared_input_dialect_are_validated_without_retrieval(
     dialect,
@@ -1126,6 +1155,11 @@ async def test_2025_default_and_declared_input_dialect_are_validated_without_ret
     peer = Peer(HTTP_COMPAT_VERSION)
     if dialect is not None:
         peer.tools[0]["inputSchema"]["$schema"] = dialect
+    if dialect == "http://json-schema.org/draft-07/schema#":
+        peer.tools[0]["inputSchema"]["properties"]["tuple"] = {
+            "type": "array",
+            "items": [{"type": "string"}],
+        }
     client, _, resolver = await ready_client(peer=peer)
     try:
         assert await client.call_tool("echo", {"text": "ok"}) == "ok"
@@ -1136,11 +1170,27 @@ async def test_2025_default_and_declared_input_dialect_are_validated_without_ret
 
 
 @pytest.mark.asyncio
+async def test_2025_malformed_draft7_input_schema_is_rejected_at_discovery():
+    peer = Peer(HTTP_COMPAT_VERSION)
+    peer.tools[0]["inputSchema"]["$schema"] = "http://json-schema.org/draft-07/schema#"
+    peer.tools[0]["inputSchema"]["properties"]["bad"] = {
+        "type": "not-a-json-schema-type"
+    }
+    client, _, _ = make_client(peer=peer)
+    try:
+        await client.connect()
+        with pytest.raises(ProtocolFailure):
+            await client.list_tools()
+        assert not client._catalog and not client._bindings
+    finally:
+        await client.disconnect()
+
+
+@pytest.mark.asyncio
 @pytest.mark.parametrize(
     "dialect",
     [
         "https://unsupported.example/unknown-schema",
-        "http://json-schema.org/draft-07/schema#",
         "",
         None,
         42,

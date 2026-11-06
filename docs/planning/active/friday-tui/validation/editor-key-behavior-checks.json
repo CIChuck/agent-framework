@@ -1,0 +1,27 @@
+{
+  "initiative": "friday-tui",
+  "kind": "editor_key_behavior_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-38: Enter submits the TUI editor draft; Ctrl+Enter inserts a newline without submitting when delivered distinctly; multiline paste never submits; focusable Submit and Insert newline actions provide fallbacks",
+  "documents_sha256": {
+    "README.md": "a52548225f78abbf20ae63d100fead762023e1f2d6102395f4ed6bbfc3088ed2",
+    "decisions.md": "52cf5e9f1c23c23ae115802a135e4258109156ecbcba9584634d9a97633a3b6c",
+    "replacement-plan.md": "48a8e8dad95d88c991425a0c68856c6ac904c04b440f54f31c55ef575c7853c9",
+    "screen-layout.md": "c5949a2077cee28e58933b5d2fa42f70e5d659ed41011a3a5a7a288eea0c2e35",
+    "user-guide-requirements.md": "60a0b9d71addfa4c353efd67e8b7b621ed5ef9ceae56b2809d4d70faf2bac60e",
+    "ux-configuration.md": "8a398a8646961e474b45a140a8467fb8327dd35df84657c7d4019668dc29efa6",
+    "authority.json": "f6ee9cc12c741e37a75889292168242fd1d2ec3e825300551a5b9442dab75ee2",
+    "execution-log.md": "edf04c81c88426f63542f4b3e3eb9bf103fafb29251ce84fae0f873a16e23597"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "31 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. Physical Ctrl+Enter delivery on macOS/Linux terminals, TUI implementation, product tests, UAT and release acceptance remain pending."
+}

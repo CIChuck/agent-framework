@@ -1,13 +1,11 @@
 """Bounded MCP registry admission, without discovery, persistence or RPCs.
 
-Schemas remain external content. This conservative inline subset rejects every
-unknown keyword: type, properties, required, additionalProperties, items,
-enum, const, default, allOf, anyOf, oneOf, not, title, description, minimum,
-maximum, exclusiveMinimum, exclusiveMaximum, multipleOf, minLength, maxLength,
-pattern, minItems, maxItems, uniqueItems, minProperties, maxProperties.
-References, identifiers, definitions, conditionals, formats and extensions are
-not implemented. Traversal is complete, at most depth 32 / 4096 JSON nodes,
-and constrained by the configured complete-definition byte cap.
+Schemas remain external content. The bounded profile admits the existing
+inline keywords plus `$defs`, local JSON Pointer `$ref` and `propertyNames`.
+External references, identifiers, conditionals, formats and extensions remain
+unsupported. Traversal is complete, at most depth 32 / 4096 JSON nodes,
+and constrained by the configured complete-definition byte cap. Reference
+analysis rejects cycles that never descend into an instance.
 
 Costs include category/tags added by the native registry, in both plain/OpenAI
 formats. A byte is conservatively budgeted as a token, not model-tokenizer parity.
@@ -29,8 +27,13 @@ from typing import Any, Literal, Protocol
 
 from friday_core.mcp import MCPDiagnosticCode, MCPToolMetadata, normalize_mcp_tool_name
 from friday_core.security import InjectionPatternLibrary
-from friday_mcp.client import header_bindings
+from friday_mcp.client import MCPClientBase, MCPRefreshClient, header_bindings
 from friday_mcp.client.adapter import MCPToolWrapper, MCPValidatedDefinition
+from friday_mcp.client.schema_validation import (
+    MCPReferenceError,
+    SchemaDialect,
+    validate_local_references,
+)
 from friday_mcp.protocols import MCPClient
 
 from friday_runtime.config import MCPRuntimeHTTPServerConfig, MCPToolProviderConfig
@@ -64,6 +67,9 @@ _KEYWORDS = frozenset(
         "uniqueItems",
         "minProperties",
         "maxProperties",
+        "$defs",
+        "$ref",
+        "propertyNames",
     ]
 )
 _TYPES = frozenset(
@@ -92,6 +98,9 @@ class MCPDiscoveryEntry(Protocol):
 
     @property
     def untrusted_definition_json(self) -> str: ...
+
+    @property
+    def catalog_generation(self) -> int | None: ...
 
 
 @dataclass(frozen=True)
@@ -240,6 +249,10 @@ class MCPRegistrationError(RuntimeError):
         self.decisions = tuple(decisions)
 
 
+class MCPUnsupportedKeywordError(ValueError):
+    """A bounded input schema uses a keyword outside the admitted profile."""
+
+
 def _encode(value: Any) -> str:
     # Any is confined to the JSON input/export boundary.
     return json.dumps(value, ensure_ascii=False, allow_nan=False, separators=(",", ":"))
@@ -329,7 +342,13 @@ def _semantic(value: Any) -> None:
             _semantic(child)
 
 
-def _schema(value: Any, *, root: bool = False, http_headers: bool = False) -> Any:
+def _schema(
+    value: Any,
+    *,
+    root: bool = False,
+    http_headers: bool = False,
+    allow_2025_draft7: bool = False,
+) -> Any:
     if isinstance(value, bool):
         return value
     allowed = (
@@ -337,13 +356,17 @@ def _schema(value: Any, *, root: bool = False, http_headers: bool = False) -> An
         | ({"$schema"} if root else set())
         | ({"x-mcp-header"} if http_headers else set())
     )
-    if not isinstance(value, dict) or not set(value) <= allowed:
-        raise ValueError("Unsupported MCP schema")
+    if not isinstance(value, dict):
+        raise ValueError("Invalid MCP schema")
+    if not set(value) <= allowed:
+        raise MCPUnsupportedKeywordError("Unsupported MCP schema keyword")
     result: dict[str, Any] = {}
     for key, child in value.items():
         _semantic_text(key)
         if key == "$schema":
-            if child != "https://json-schema.org/draft/2020-12/schema":
+            if child != "https://json-schema.org/draft/2020-12/schema" and not (
+                allow_2025_draft7 and child == "http://json-schema.org/draft-07/schema#"
+            ):
                 raise ValueError("Unsupported MCP schema dialect")
             continue
         if key == "x-mcp-header":
@@ -360,7 +383,14 @@ def _schema(value: Any, *, root: bool = False, http_headers: bool = False) -> An
             for name, sub in child.items():
                 _semantic_text(name)
                 result[key][name] = _schema(sub, http_headers=http_headers)
-        elif key in {"items", "additionalProperties", "not"}:
+        elif key == "$defs":
+            if not isinstance(child, dict):
+                raise ValueError("Invalid MCP definitions")
+            result[key] = {}
+            for name, sub in child.items():
+                _semantic_text(name)
+                result[key][name] = _schema(sub, http_headers=http_headers)
+        elif key in {"items", "additionalProperties", "not", "propertyNames"}:
             result[key] = _schema(child, http_headers=http_headers)
         elif key in {"allOf", "anyOf", "oneOf"}:
             if not isinstance(child, list) or not child:
@@ -368,7 +398,10 @@ def _schema(value: Any, *, root: bool = False, http_headers: bool = False) -> An
             result[key] = [_schema(sub, http_headers=http_headers) for sub in child]
         else:
             _semantic(child)
-            if key == "type":
+            if key == "$ref":
+                if not isinstance(child, str) or not child.startswith("#"):
+                    raise MCPReferenceError("Unsupported MCP reference")
+            elif key == "type":
                 types = child if isinstance(child, list) else [child]
                 if (
                     not types
@@ -422,7 +455,11 @@ def _schema(value: Any, *, root: bool = False, http_headers: bool = False) -> An
 
 
 def sanitize_definition(
-    raw: Mapping[str, Any], max_bytes: int, *, http_headers: bool = False
+    raw: Mapping[str, Any],
+    max_bytes: int,
+    *,
+    http_headers: bool = False,
+    allow_2025_draft7: bool = False,
 ) -> tuple[MCPValidatedDefinition, Literal["unchanged", "sanitized"]]:
     """Validate complete bounded JSON, redact annotations, preserve safe semantics."""
     if len(_encode(raw).encode("utf-8")) > max_bytes:
@@ -449,10 +486,24 @@ def sanitize_definition(
     clean_description = _annotation(description)
     if http_headers:
         header_bindings(parameters)
-    clean_parameters = _schema(parameters, root=True, http_headers=http_headers)
+    clean_parameters = _schema(
+        parameters,
+        root=True,
+        http_headers=http_headers,
+        allow_2025_draft7=allow_2025_draft7,
+    )
+    dialect: SchemaDialect = (
+        "draft7"
+        if parameters.get("$schema") == "http://json-schema.org/draft-07/schema#"
+        else "2020-12"
+    )
+    validate_local_references(clean_parameters, dialect)
     changed = clean_description != description or clean_parameters != parameters
     return MCPValidatedDefinition(
-        clean_description, _encode(clean_parameters)
+        clean_description,
+        _encode(clean_parameters),
+        canonical_json=_encode(parameters),
+        dialect=dialect,
     ), "sanitized" if changed else "unchanged"
 
 
@@ -482,7 +533,7 @@ def prepare_registration(
     limits = config.config.limits
     prefix = config.config.tool_name_prefix
     native = set(native_names)
-    contenders: list[tuple[str, str, dict[str, Any]]] = []
+    contenders: list[tuple[str, str, dict[str, Any], int | None]] = []
     decisions: list[MCPRegistrationDecision] = []
     seen: dict[str, MCPCollisionSource] = {}
     for entry in entries:
@@ -519,14 +570,14 @@ def prepare_registration(
             )
             raise MCPRegistrationError("name_collision", decisions) from None
         seen[name] = _mcp_collision_source(entry.server_id, raw["name"])
-        contenders.append((entry.server_id, name, raw))
+        contenders.append((entry.server_id, name, raw, entry.catalog_generation))
 
     wrappers: list[MCPToolWrapper] = []
     metadata: list[MCPToolMetadata] = []
     counts: dict[str, int] = {}
     cost = 0
     server_configs = {server.name: server for server in config.config.servers}
-    for server_id, name, raw in contenders:
+    for server_id, name, raw, catalog_generation in contenders:
         server = server_configs.get(server_id)
         try:
             definition, state = sanitize_definition(
@@ -534,7 +585,23 @@ def prepare_registration(
                 limits.max_schema_bytes_per_tool,
                 http_headers=isinstance(server, MCPRuntimeHTTPServerConfig)
                 and server.protocol_version == "2026-07-28",
+                allow_2025_draft7=isinstance(server, MCPRuntimeHTTPServerConfig)
+                and server.protocol_version == "2025-11-25",
             )
+        except MCPUnsupportedKeywordError:
+            decisions.append(
+                MCPRegistrationDecision(
+                    name, server_id, "rejected", "unsupported_keyword"
+                )
+            )
+            continue
+        except MCPReferenceError:
+            decisions.append(
+                MCPRegistrationDecision(
+                    name, server_id, "rejected", "unsupported_reference"
+                )
+            )
+            continue
         except (ValueError, TypeError, UnicodeError, RecursionError, OverflowError):
             decisions.append(
                 MCPRegistrationDecision(name, server_id, "rejected", "invalid_schema")
@@ -554,6 +621,27 @@ def prepare_registration(
                 )
             )
             continue
+        refresh_client = (
+            client
+            if isinstance(client, MCPRefreshClient)
+            and (
+                not isinstance(client, MCPClientBase) or client.supports_catalog_refresh
+            )
+            else None
+        )
+        if refresh_client is not None:
+            snapshot = refresh_client.current_catalog_snapshot
+            if (
+                type(catalog_generation) is not int
+                or snapshot is None
+                or snapshot.generation != catalog_generation
+            ):
+                decisions.append(
+                    MCPRegistrationDecision(
+                        name, server_id, "unavailable", "registration_failed"
+                    )
+                )
+                continue
         if (
             len(wrappers) >= limits.max_total_tools
             or counts.get(server_id, 0) >= limits.max_tools_per_server
@@ -573,7 +661,9 @@ def prepare_registration(
             schema_sanitization_state=state,
             filter_state="included",
         )
-        wrapper = MCPToolWrapper.from_validated(client, item, definition)
+        wrapper = MCPToolWrapper.from_validated(
+            client, item, definition, catalog_generation=catalog_generation
+        )
         size = exported_definition_size(wrapper)
         if (
             size > limits.max_schema_bytes_per_tool

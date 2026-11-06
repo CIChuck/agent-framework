@@ -287,19 +287,32 @@ def test_response_header_case_duplicates_charset_and_size():
     [
         "http://public.example/mcp",
         "https://user:secret@public.example/mcp",
-        "https://public.example/mcp?token=secret",
         "https://public.example/mcp#fragment",
+        "https://public.example/mcp?SENTINEL_QUERY#fragment",
         "https://127.0.0.1/mcp",
         "https://169.254.169.254/mcp",
         "https://public.example:444/mcp",
         "https://public.example/\r\nx",
         "https://public.example/雪",
         "https://[::ffff:127.0.0.1]/mcp",
+        "https://public.example/mcp?" + "x" * 4096,
     ],
 )
 def test_endpoint_rejection_is_pre_io_and_fixed(url):
-    with pytest.raises(ValueError, match="^Invalid MCP HTTP endpoint$"):
+    with pytest.raises(ValueError, match="^Invalid MCP HTTP endpoint$") as failure:
         HTTPEndpoint.parse(url, HTTPEndpointPolicy())
+    assert "SENTINEL" not in str(failure.value)
+
+
+@pytest.mark.parametrize(
+    "url",
+    [
+        "https://public.example/mcp?xyz",
+        "https://public.example/mcp?region=us-east-1",
+    ],
+)
+def test_endpoint_keeps_nonsecret_query(url):
+    assert HTTPEndpoint.parse(url, HTTPEndpointPolicy()).url == url
 
 
 def test_explicit_fixture_and_production_private_endpoint_policies():
@@ -411,6 +424,23 @@ def test_2024_opaque_metadata_and_input_dialect_defaults_are_preserved():
     assert validate_message(message, ProtocolLimits()) == message
 
 
+def test_draft7_tuple_schema_is_2025_only():
+    tool = {
+        "name": "tuple-tool",
+        "inputSchema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "properties": {"tuple": {"type": "array", "items": [{"type": "string"}]}},
+        },
+    }
+    with pytest.raises(ProtocolFailure):
+        ToolDefinition.parse(tool, ProtocolLimits())
+    assert (
+        ToolDefinition.parse(tool, ProtocolLimits(), compatibility=True).name
+        == "tuple-tool"
+    )
+
+
 def test_modern_dialect_and_reserved_result_metadata_remain_strict():
     with pytest.raises(ProtocolFailure) as dialect_failure:
         ToolDefinition.parse(
@@ -425,6 +455,19 @@ def test_modern_dialect_and_reserved_result_metadata_remain_strict():
             modern=True,
         )
     assert dialect_failure.value.failure_code == "unsupported_schema"
+    with pytest.raises(ProtocolFailure) as draft7_failure:
+        ToolDefinition.parse(
+            {
+                "name": "modern-draft7",
+                "inputSchema": {
+                    "type": "object",
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                },
+            },
+            ProtocolLimits(),
+            modern=True,
+        )
+    assert draft7_failure.value.failure_code == "unsupported_schema"
     message = {
         "jsonrpc": "2.0",
         "id": "x",

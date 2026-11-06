@@ -73,23 +73,29 @@ Packet location is derived from work state and condition:
 Moving a packet does not itself change its state. Repair backlinks, update the
 board, render the dashboard, and run validation in the same commit.
 
-## Immutable historical authority backing
+## Historical authority backing and archival
 
 A completed or accepted task still has exactly one canonical `packet`: its
-review index or accepted archive index. When frozen approvals, directives or
-reports must remain at their original planning paths, that task may explicitly
-register `authority_backing_packets`. Retained backing is historical evidence;
-it is not another current task, an approval, or permission to generate code.
-Ordinary undeclared planning packets remain validation errors.
+review index or accepted archive index. A completed task may retain frozen
+approvals, directives and reports at their original planning paths through an
+explicit `authority_backing_packets` declaration. At maintainer acceptance,
+move the entire historical packet into the canonical archive directory's
+`historical/` subtree. Accepted tasks declare that archive-local directory as
+their authority backing. No accepted task may leave a historical packet in
+`docs/planning/active/`. Historical backing is evidence, not another current
+task, an approval, or permission to generate code. Ordinary undeclared planning
+packets remain validation errors.
 
-Each entry contains `packet`, `manifest`, and `manifest_sha256`. `packet` names
-one original planning-lane directory. `manifest` is a repository-relative JSON
-file inside the owner's canonical review/archive directory; its SHA256 digest
+Each entry contains `packet`, `manifest`, and `manifest_sha256`. For completed
+work, `packet` names one original planning-lane directory. For accepted work,
+it names `<canonical archive packet>/historical/`. `manifest` is a
+repository-relative JSON file inside the owner's canonical review/archive
+directory; its SHA256 digest
 pins its exact bytes. The version1 manifest contains `version`, `owner` (task ID),
 `packet` (the same backing path), and `files`. Each file record has a repository-
 relative `path`, lowercase SHA256 `sha256`, and `kind`: `index`, `authority`,
 `approval`, `directive`, `report`, or additional `evidence`. The manifest must
-pin the original backing `README.md` as `index` and include authority, approval,
+pin the historical backing `README.md` as `index` and include authority, approval,
 directive and report records. File paths stay inside that backing directory.
 JSON is capped at1MiB and5..8192 unique file records; backing entries at1..64.
 
@@ -105,12 +111,35 @@ Prepare the canonical index, manifest and explicit board entry as one closeout
 transaction; run the ordinary transition command or controller's validated board
 save for the final state. Read-only validation will reject an incomplete staging
 state. The transition command validates its resulting board before saving it.
-Maintainer acceptance remains required: move only the canonical review index to
-the archive, update its manifest reference and digest, and record acceptance.
-Original backing file bytes stay immutable. An agent cannot accept work through
+Maintainer acceptance remains required: move the canonical review index and
+historical backing into the archive, update the manifest paths and digests, and
+record acceptance. Preserve file bytes where their relative links remain valid.
+When relocation requires link repairs, record each affected file's original and
+new SHA256 and the exact path-only change in an archive relocation receipt;
+preserve the original bytes in Git history. The receipt must identify the
+source commit and old/new packet paths. An agent cannot accept work through
 this metadata, and delivery state remains independent. Reopening requires an
 explicit valid current packet and authority reconciliation; historical backing
 never grants implementation authority.
+
+### Accepted archival transaction
+
+Record the maintainer's acceptance evidence and its supported date. An earlier
+acceptance date requires a contemporaneous receipt; when reconciling old work
+without one, record the current reconciliation date and explain the history in
+the board event. Keep delivery state unchanged.
+
+Move the canonical review index to `docs/archive/completed/<year>/<initiative>/`
+and the complete original planning packet into that archive's `historical/`
+subdirectory. Rebase incoming navigation and outgoing relative links. Keep
+unmodified historical file bytes intact; document any path-only link repairs in
+the relocation receipt with old and new hashes. Rebuild the archive-local
+authority manifest, update its board digest, packet path and current `validation`
+file references, render the board,
+and run board, documentation-link and applicable integration validation. Commit
+the file moves, receipt, board transition, and repaired links together. Accepted
+archive packets with a `historical/` subdirectory require a valid manifest; an
+accepted initiative may not retain its old `active/` directory.
 
 ## Initiative Packet
 

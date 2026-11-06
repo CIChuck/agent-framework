@@ -1,0 +1,27 @@
+# Friday 0.1.0a4 coordinated release — completed for maintainer review
+
+**Status:** completed; awaiting maintainer acceptance
+
+**Work state:** completed
+
+**Validation:** verified
+
+**Delivery:** released
+
+**Implementation authority:** closed
+
+**Date:** 2026-10-24
+
+The 0.1.0a4 release candidate passed fresh independent VERIFIED review. PR #11 merged, and the packet records production publication of all 17 distributions and 34 files plus a clean production-index install.
+
+- [Independent review](../../active/friday-alpha4-release/validation/independent-review/report.md)
+- [Delivery evidence](https://github.com/CIChuck/agent-framework/pull/11)
+- [Original planning packet and historical evidence](../../active/friday-alpha4-release/README.md)
+- [Immutable authority backing manifest](historical-authority.json)
+
+**Known limit:** Release verification and publication do not constitute maintainer lifecycle acceptance.
+
+**Next gate:** Explicit maintainer lifecycle acceptance. This completion proposal
+and the delivery state do not themselves grant acceptance. The original packet
+remains at its frozen path as historical backing; this review index is the
+canonical current packet. Friday TUI and other initiatives are unaffected.

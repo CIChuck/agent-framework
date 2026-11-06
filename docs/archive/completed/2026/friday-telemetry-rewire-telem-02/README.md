@@ -11,11 +11,11 @@ and approved A02. Evidence-only closeout is `10857936715f82049490e2f0e52671df307
 Independent VAL-007 reviews the full unit and complete aggregate from
 `2155a0fc51f5b20dea4e35c6cfc70f1d52002735`, with no numbered findings.
 
-- [Independent VERIFIED report](../../../../planning/active/friday-telemetry-rewire/validation/VAL-007/report.md).
-- [Independent evidence](../../../../planning/active/friday-telemetry-rewire/validation/VAL-007/evidence.json).
-- [Builder evidence](../../../../planning/active/friday-telemetry-rewire/execution/TELEM-02-final/report.md).
+- [Independent VERIFIED report](../friday-telemetry-rewire/historical/validation/VAL-007/report.md).
+- [Independent evidence](../friday-telemetry-rewire/historical/validation/VAL-007/evidence.json).
+- [Builder evidence](../friday-telemetry-rewire/historical/execution/TELEM-02-final/report.md).
 - [Exact acceptance and evidence hashes](acceptance-evidence.json).
-- [Continuing initiative](../../../../planning/active/friday-telemetry-rewire/README.md).
+- [Continuing initiative](../friday-telemetry-rewire/historical/README.md).
 
 Accepted behavior includes provider-neutral programmatic disabled/debug/OTel
 construction, provider-owned SDK context/parent/event semantics, bounded scalar

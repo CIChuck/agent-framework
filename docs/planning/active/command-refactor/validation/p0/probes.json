@@ -1,0 +1,108 @@
+{
+  "python": "3.13.10",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "chat_dispatch": {
+    "plain text": {
+      "handled": false,
+      "output": null,
+      "exit_requested": false,
+      "ui_effects": []
+    },
+    "/": {
+      "handled": true,
+      "output": "Unknown command: /. Type /help for available commands.",
+      "exit_requested": false,
+      "ui_effects": []
+    },
+    "/missing-command": {
+      "handled": true,
+      "output": "Unknown command: /missing-command. Type /help for available commands.",
+      "exit_requested": false,
+      "ui_effects": []
+    },
+    "/help exit": {
+      "handled": true,
+      "output": "/exit\nCategory: session\nUsage: /exit\nDescription: Exit the chat session.\nAliases: /quit, /q\nArguments: none",
+      "exit_requested": false,
+      "ui_effects": []
+    },
+    "/q": {
+      "handled": true,
+      "output": "Goodbye.",
+      "exit_requested": true,
+      "ui_effects": []
+    },
+    "/quit": {
+      "handled": true,
+      "output": "Goodbye.",
+      "exit_requested": true,
+      "ui_effects": []
+    },
+    "/clearscreen": {
+      "handled": true,
+      "output": "",
+      "exit_requested": false,
+      "ui_effects": [
+        "clear_screen"
+      ]
+    }
+  },
+  "parsing": {
+    "/read \"a b.txt\"": {
+      "chat": [
+        "read",
+        [
+          "\"a",
+          "b.txt\""
+        ]
+      ],
+      "generic_cli": [
+        "read",
+        [
+          "a b.txt"
+        ]
+      ]
+    },
+    "/": {
+      "chat": [
+        "",
+        []
+      ],
+      "generic_cli": [
+        null,
+        []
+      ]
+    },
+    "/HELP exit": {
+      "chat": [
+        "help",
+        [
+          "exit"
+        ]
+      ],
+      "generic_cli": [
+        "help",
+        [
+          "exit"
+        ]
+      ]
+    }
+  },
+  "entrypoints": [
+    {
+      "distribution": "friday-framework-cli",
+      "version": "0.1.0a4",
+      "name": "friday",
+      "target": "friday_cli.main:app",
+      "observation": "AttributeError: module 'friday_cli.main' has no attribute 'app'"
+    },
+    {
+      "distribution": "friday-chat",
+      "version": "0.1.0a4",
+      "name": "friday-chat",
+      "target": "friday_chat.cli:app",
+      "observation": "loads Typer; not invoked"
+    }
+  ],
+  "limits": "Current workspace environment, not isolated wheels. Only stateless in-memory dispatch probes; no provider or tool execution."
+}

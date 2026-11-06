@@ -8,7 +8,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Literal
 
-from jsonschema import Draft202012Validator
+from jsonschema import Draft7Validator, Draft202012Validator
 from referencing import Registry
 
 type JSONValue = (
@@ -26,6 +26,8 @@ type FailureCode = Literal[
 ]
 LEGACY_VERSION = "2024-11-05"
 MODERN_VERSION = "2026-07-28"
+DRAFT7_INPUT_SCHEMA = "http://json-schema.org/draft-07/schema#"
+DEFAULT_INPUT_SCHEMA = "https://json-schema.org/draft/2020-12/schema"
 META_PREFIX = "io.modelcontextprotocol/"
 # Only defined peer wire codes identify the modern era; local adapter codes do not.
 MODERN_WIRE_ERRORS = frozenset({-32020, -32021, -32022})
@@ -367,7 +369,7 @@ def validate_compatibility_fields(
             schema = tool.get("inputSchema")
             if isinstance(schema, dict) and (
                 "$schema" in schema
-                and schema["$schema"] != "https://json-schema.org/draft/2020-12/schema"
+                and schema["$schema"] not in (DRAFT7_INPUT_SCHEMA, DEFAULT_INPUT_SCHEMA)
             ):
                 raise ProtocolFailure("unsupported_schema")
             schema = tool.get("outputSchema")
@@ -971,7 +973,12 @@ class ToolDefinition:
 
     @classmethod
     def parse(
-        cls, value: object, limits: ProtocolLimits, *, modern: bool = False
+        cls,
+        value: object,
+        limits: ProtocolLimits,
+        *,
+        modern: bool = False,
+        compatibility: bool = False,
     ) -> ToolDefinition:
         frozen = FrozenJSON.from_value(value, limits)
         tool = frozen.object()
@@ -988,14 +995,17 @@ class ToolDefinition:
             raise ProtocolFailure()
         if modern:
             _tool_optional_fields(tool)
-        if (
-            modern
-            and "$schema" in schema
-            and schema["$schema"] != "https://json-schema.org/draft/2020-12/schema"
-        ):
+        if modern and "$schema" in schema and schema["$schema"] != DEFAULT_INPUT_SCHEMA:
             raise ProtocolFailure("unsupported_schema")
         try:
-            Draft202012Validator.check_schema(schema)
+            validator = (
+                Draft7Validator
+                if compatibility
+                and not modern
+                and schema.get("$schema") == DRAFT7_INPUT_SCHEMA
+                else Draft202012Validator
+            )
+            validator.check_schema(schema)
         except Exception:
             raise ProtocolFailure() from None
         output = (
@@ -1014,7 +1024,12 @@ class CatalogPage:
 
     @classmethod
     def parse(
-        cls, result: dict[str, JSONValue], modern: bool, limits: ProtocolLimits
+        cls,
+        result: dict[str, JSONValue],
+        modern: bool,
+        limits: ProtocolLimits,
+        *,
+        compatibility: bool = False,
     ) -> CatalogPage:
         result = FrozenJSON.from_value(result, limits).object()
         complete_result(result, modern)
@@ -1025,7 +1040,12 @@ class CatalogPage:
         if "nextCursor" in result and (not isinstance(cursor, str) or not cursor):
             raise ProtocolFailure()
         return cls(
-            tuple(ToolDefinition.parse(t, limits, modern=modern) for t in tools),
+            tuple(
+                ToolDefinition.parse(
+                    t, limits, modern=modern, compatibility=compatibility
+                )
+                for t in tools
+            ),
             cursor if isinstance(cursor, str) else None,
             CacheHint.parse(result, modern),
         )

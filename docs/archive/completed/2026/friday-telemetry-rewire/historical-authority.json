@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "owner": "friday-telemetry-rewire",
+  "packet": "docs/archive/completed/2026/friday-telemetry-rewire/historical/",
+  "files": [
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/README.md",
+      "sha256": "667bd8914544637f65c608669b6c9392aabe1cd2ce9de297a56220f49cbd11ae",
+      "kind": "index"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/authority-manifest-TELEM-04.yaml",
+      "sha256": "989ccd69a653a97b95ca0e8f520683f0a4686c440fc1e8796a980d35e56f81a0",
+      "kind": "authority"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/directives/CD-004-approval-record.md",
+      "sha256": "5e6a92960f4000055a4481499e2cb39e79d932303c5747528a3fd0ea8b020d31",
+      "kind": "approval"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/directives/CD-004-correlated-execution.md",
+      "sha256": "de736e9cd8bb0fafc07ecd840cf8f1db332204619bb9c83fa67044a809ceff6d",
+      "kind": "directive"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-010/report.md",
+      "sha256": "159ab62b00d2fa47f908faf719a3e916c4d0758e0e94312d072c7663c26ae638",
+      "kind": "report"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/closeout-TELEM-04.md",
+      "sha256": "c5ac222b0ccd4aa2bb26d26c2ccd4e96204fe4c6f227b5519e9919a3bede456b",
+      "kind": "evidence"
+    }
+  ]
+}

@@ -13,6 +13,8 @@ python -m pip install "friday-framework-tools==0.1.0a4"
 
 Friday distributions use the same release version; keep internal Friday dependencies aligned.
 
+Finance tools and their provider SDK are installed by default. Provider use still requires the relevant credentials and configuration. The `finance` extra remains available as a compatibility alias.
+
 ## Quick start: define and invoke a tool
 
 ```python
@@ -43,7 +45,8 @@ Native categories include filesystem, shell, web, git, text, data, code and memo
 | Extra | Purpose |
 | --- | --- |
 | `sandbox` | Sandbox-backed execution integration |
-| `finance`, `moltbook` | Corresponding provider integrations |
+| `finance` | Compatibility alias for the default finance dependency |
+| `moltbook` | Moltbook provider integration |
 | `documents`, `spreadsheets`, `all-formats` | Optional file-format dependencies |
 | `llm`, `langchain`, `anthropic`, `openai`, `all-adapters` | Schema/provider adapter dependencies |
 

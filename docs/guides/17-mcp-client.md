@@ -235,8 +235,17 @@ No default/auto HTTP version, legacy SSE fallback, OAuth discovery/login/refresh
 GET subscriptions, resources/prompts or server exposure is configured here.
 The target is the pinned MCP 2026-07-28 tools/transport specification plus the
 explicit 2025-11-25 compatibility profile, not every optional MCP feature.
+For 2025 tool discovery, input schemas may declare the exact Draft-07 URI
+`http://json-schema.org/draft-07/schema#` or the supported 2020-12 URI;
+Friday validates each declaration with its corresponding dialect. The 2026
+profile and output-schema restrictions are unchanged.
 
-Endpoints are ASCII HTTPS without userinfo, query, fragment or escaped host.
+Endpoints are ASCII HTTPS without userinfo, fragment or escaped host. Ordinary
+query strings are preserved on every request; for example,
+`https://example.com/mcp?region=us-east-1`. Do not place credentials or OAuth
+access tokens in a URL query string. Use `auth: bearer_env` and `credential_env`
+for bearer credentials; Friday cannot reliably identify secrets in arbitrary
+query values.
 TLS verifies the original hostname; no YAML flag changes trust or verification.
 Default port 443 and public addresses apply. Private destinations/non 443 ports
 need exact per-peer allowed_addresses/allowed_ports; hostnames/CIDR/wildcards and
@@ -261,8 +270,28 @@ budgets/retries. Runtime admission and Chat per-turn count/schema/result budgets
 still apply. Remote metadata accurately reports streamable_http/remote; peer
 instructions and annotations never grant policy or enter prompts automatically.
 
-The model-facing inline schema admits the canonical root 2020-12 declaration and
-validated modern HTTP x-mcp-header annotations, then removes those protocol fields.
+The bounded schema profile admits the canonical root 2020-12 declaration,
+or the exact Draft-07 declaration for a 2025-11-25 HTTP peer, and validated
+modern HTTP x-mcp-header annotations. Registration strips the admitted root
+dialect declaration and protocol header annotations before publication. A
+successful `tools/list` alone does not make a tool visible in `/tools mcp`:
+runtime registration still applies a bounded profile, filters and schema
+budgets. That profile includes `$defs`, same-document JSON Pointer `$ref`
+(including productive structural recursion), and `propertyNames`; unknown
+keywords, external references and pure reference cycles remain rejected.
+Discovery enforces raw per-definition limits, while rejected definitions do
+not consume the shared model-facing schema budget. `/tools mcp` shows registered
+tools, per-server discovered/registered/rejected counts, and fixed rejection
+codes. A registered advanced-schema tool is offered to the model only after
+that provider's export compatibility has been verified; `provider_export`
+marks one withheld from the model despite being registered. Friday also prints
+one count summary per server at startup. Local argument validation precedes
+each MCP call and rejects invalid or over-budget arguments without an RPC.
+Validation runs in an isolated worker with a hard deadline; `/tools mcp` can
+show `last_call_invalid_arguments` or `last_call_validation_limit` after a
+failed local call. The deadline begins before bounded input preflight and
+worker startup; large argument trees are rejected before full serialization.
+These fixed reasons do not expose the submitted values.
 The client retains its original catalog/wire bindings, including exact Unicode
 Base64 header encoding. Unsupported references/dialects/keywords remain rejected.
 Checked results use the same sanitation, quarantine, transcript correlation and
@@ -295,13 +324,22 @@ async def refresh_tools(adapter: MCPToolAdapter) -> None:
 
 A failed refresh clears usable cached definitions. Previously created wrappers
 fail with `catalog_unavailable` before issuing a call after failure, removal or
-reconnect. An already-issued call settles once against its captured output schema
-and HTTP header bindings. Refresh never replays a tool call. An explicit successful
-refresh creates new wrappers; code should replace its own programmatic references
+reconnect. Generation-bound calls are checked again immediately before stdio
+transport send or HTTP pool dispatch; a refresh before that dispatch prevents
+the stale RPC. An already-dispatched call settles once against its captured
+output schema and HTTP header bindings. Refresh never replays a tool call. An
+explicit successful refresh creates new wrappers; code should replace its own
+programmatic references
 after applying its existing admission rules. Custom clients implementing only the
 original MCPClient contract remain supported, without generation guarantees.
 
 Runtime and Chat retain startup/reconnect discovery and transactional registration.
+For refresh-capable clients, runtime discovery carries the returned catalog
+generation into registration. If another refresh changes that generation before
+registration, the stale definition is withheld. Registered wrappers retain the
+discovery generation, so a later refresh makes them unavailable before a tool
+call. Clients without the optional refresh contract retain their existing
+discovery behavior.
 They expose no in-place refresh YAML option or automatic list-change subscription.
 Use their public stop/start lifecycle for integrated rediscovery. Existing selection,
 filters, collision and schema/token budgets, provenance, quarantine, transcripts,

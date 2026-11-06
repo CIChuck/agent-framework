@@ -320,6 +320,7 @@ class MCPClientBase(ABC):
                 raise ConnectionError("MCP transport closed")
             if asyncio.get_running_loop().time() >= deadline:
                 raise TimeoutError("MCP request timed out")
+            self._guard_call_generation(method)
             await self._transport.send(message)
             return await future
 
@@ -479,6 +480,15 @@ class MCPClientBase(ABC):
         self._catalog_snapshot = None
         self._catalog = ()
 
+    def _guard_call_generation(self, method: str) -> None:
+        """Reject a retired generation before a bound tool request dispatches."""
+        generation = self._call_generation.get()
+        if method != "tools/call" or generation is None:
+            return
+        snapshot = self.current_catalog_snapshot
+        if snapshot is None or snapshot.generation != generation:
+            raise MCPToolExecutionError("catalog_unavailable")
+
     async def _stop_refreshes(self) -> None:
         tasks = set(self._refresh_tasks)
         for task in tasks:
@@ -580,6 +590,7 @@ class MCPClientBase(ABC):
                 FrozenJSON.from_value(response, self.limits).object(),
                 self._selected_version == MODERN_VERSION,
                 self.limits,
+                compatibility=self._selected_version == "2025-11-25",
             )
             if len(names) + len(page.tools) > self.limits.catalog_tools:
                 raise ProtocolFailure("limit_exceeded")

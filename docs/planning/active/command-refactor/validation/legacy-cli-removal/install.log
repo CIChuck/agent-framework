@@ -1,0 +1,5 @@
+Using Python 3.13.10 environment at: /var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/venv
+Resolved 1 package in 1ms
+Prepared 1 package in 4ms
+Installed 1 package in 1ms
+ + friday-framework-cli==0.1.0a4 (from file:///var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/dist/friday_framework_cli-0.1.0a4-py3-none-any.whl)

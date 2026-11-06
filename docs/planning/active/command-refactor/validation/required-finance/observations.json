@@ -1,0 +1,1231 @@
+{
+  "python": "3.13.10",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m",
+  "prefix": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/venv",
+  "isolated": true,
+  "module_origins": {
+    "friday_chat": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/venv/lib/python3.13/site-packages/friday_chat/__init__.py",
+    "friday_cli": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/venv/lib/python3.13/site-packages/friday_cli/__init__.py",
+    "friday_runtime": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/venv/lib/python3.13/site-packages/friday_runtime/__init__.py",
+    "friday_core": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/venv/lib/python3.13/site-packages/friday_core/__init__.py",
+    "friday_memory": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/venv/lib/python3.13/site-packages/friday_memory/__init__.py",
+    "friday_agent": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/venv/lib/python3.13/site-packages/friday_agent/__init__.py",
+    "friday_tools": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/venv/lib/python3.13/site-packages/friday_tools/__init__.py",
+    "friday_transcript": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/venv/lib/python3.13/site-packages/friday_transcript/__init__.py",
+    "friday_llm": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/venv/lib/python3.13/site-packages/friday_llm/__init__.py"
+  },
+  "installed_distributions": [
+    "GitPython==3.2.1",
+    "Jinja2==3.1.6",
+    "MarkupSafe==3.0.4",
+    "PyPika==0.51.1",
+    "PyYAML==6.0.3",
+    "Pygments==2.21.0",
+    "aiohappyeyeballs==2.7.1",
+    "aiohttp-retry==2.9.1",
+    "aiohttp==3.14.5",
+    "aiosignal==1.4.0",
+    "aiosqlite==0.22.1",
+    "annotated-doc==0.0.5",
+    "annotated-types==0.8.0",
+    "anyio==4.15.1",
+    "attrs==26.1.0",
+    "bcrypt==5.0.0",
+    "beautifulsoup4==4.15.0",
+    "boto3==1.43.114",
+    "botocore==1.43.114",
+    "build==1.6.1",
+    "certifi==2026.10.23",
+    "charset-normalizer==3.5.2",
+    "chromadb==1.5.9",
+    "click==8.5.0",
+    "distro==1.9.0",
+    "durationpy==0.11",
+    "fastapi==0.146.0",
+    "fastuuid==0.14.0",
+    "filelock==4.2.2",
+    "flatbuffers==25.12.19",
+    "friday-chat==0.1.0a4",
+    "friday-framework-agent==0.1.0a4",
+    "friday-framework-cli==0.1.0a4",
+    "friday-framework-core==0.1.0a4",
+    "friday-framework-finance==0.1.0a4",
+    "friday-framework-llm==0.1.0a4",
+    "friday-framework-mcp==0.1.0a4",
+    "friday-framework-memory==0.1.0a4",
+    "friday-framework-runtime==0.1.0a4",
+    "friday-framework-telemetry==0.1.0a4",
+    "friday-framework-tools==0.1.0a4",
+    "friday-framework-transcript==0.1.0a4",
+    "frozenlist==1.8.0",
+    "fsspec==2026.9.0",
+    "gitdb==4.0.12",
+    "googleapis-common-protos==1.75.5",
+    "grpcio==1.84.0",
+    "h11==0.16.0",
+    "hf-xet==1.7.0",
+    "httpcore2==2.16.0",
+    "httpcore==1.0.9",
+    "httptools==0.9.0",
+    "httpx2==2.16.0",
+    "httpx==0.28.1",
+    "huggingface_hub==2.2.0",
+    "idna==3.20",
+    "importlib_metadata==8.9.0",
+    "importlib_resources==7.1.0",
+    "jiter==0.17.0",
+    "jmespath==1.1.0",
+    "jsonpath-ng==1.15.0",
+    "jsonschema-specifications==2025.9.1",
+    "jsonschema==4.25.1",
+    "kubernetes==37.0.1",
+    "litellm==1.100.1",
+    "lxml==6.1.3",
+    "markdown-it-py==4.2.0",
+    "markdownify==1.2.3",
+    "massive==2.1.0",
+    "mdurl==0.1.2",
+    "mmh3==5.3.1",
+    "multidict==7.1.0",
+    "networkx==3.7",
+    "numpy==2.5.4",
+    "oauthlib==4.0.0",
+    "onnxruntime==1.31.0",
+    "openai==2.54.0",
+    "opentelemetry-api==1.45.1",
+    "opentelemetry-exporter-otlp-common==0.66b1",
+    "opentelemetry-exporter-otlp-proto-common==1.45.1",
+    "opentelemetry-exporter-otlp-proto-grpc==1.45.1",
+    "opentelemetry-proto==1.45.1",
+    "opentelemetry-sdk==1.45.1",
+    "opentelemetry-semantic-conventions==0.66b1",
+    "orjson==3.13.0",
+    "overrides==7.7.0",
+    "packaging==26.3",
+    "prompt_toolkit==3.0.53",
+    "propcache==0.5.4",
+    "protobuf==7.36.2",
+    "psutil==7.2.2",
+    "pybase64==1.5.1",
+    "pydantic-settings==2.16.0",
+    "pydantic==2.14.1",
+    "pydantic_core==2.50.1",
+    "pyproject_hooks==1.3.3",
+    "python-dateutil==2.9.0.post0",
+    "python-dotenv==1.2.4",
+    "referencing==0.37.0",
+    "regex==2026.9.29",
+    "requests-oauthlib==2.0.0",
+    "requests==2.34.2",
+    "rich==15.0.0",
+    "rpds-py==2026.9.1",
+    "s3transfer==0.19.2",
+    "shellingham==1.5.4",
+    "six==1.17.0",
+    "smmap==5.0.3",
+    "sniffio==1.3.1",
+    "soupsieve==3.0.3",
+    "starlette==1.10.0",
+    "structlog==26.1.0",
+    "tenacity==9.2.1",
+    "tiktoken==0.14.0",
+    "tokenizers==0.23.3",
+    "tqdm==4.70.1",
+    "truststore==0.10.5",
+    "typer==0.27.3",
+    "typing-inspection==0.4.4",
+    "typing_extensions==4.16.0",
+    "urllib3==2.8.0",
+    "uvicorn==0.54.0",
+    "uvloop==0.23.0",
+    "watchfiles==1.3.0",
+    "wcwidth==0.9.2",
+    "websocket-client==1.9.2",
+    "websockets==17.2",
+    "yarl==1.25.1",
+    "zipp==4.1.2"
+  ],
+  "chat_command_count": 50,
+  "chat_alias_count": 3,
+  "chat_metadata": {
+    "agent": {
+      "name": "agent",
+      "description": "Show detailed agent information.",
+      "category": "orchestration",
+      "usage": "/agent [name]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "name",
+          "description": "Agent name; omit to inspect the active agent.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "agents": {
+      "name": "agents",
+      "description": "List available agents.",
+      "category": "orchestration",
+      "usage": "/agents",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "clear": {
+      "name": "clear",
+      "description": "Clear conversation history.",
+      "category": "session",
+      "usage": "/clear",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "clear-tools": {
+      "name": "clear-tools",
+      "description": "Clear the pending manual set and restore automatic tool selection.",
+      "category": "tools",
+      "usage": "/clear-tools",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "cls": {
+      "name": "cls",
+      "description": "Clear the terminal through the display boundary.",
+      "category": "session",
+      "usage": "/cls",
+      "aliases": [
+        "clearscreen"
+      ],
+      "arguments": [],
+      "detail": "Requests one clear-screen UI effect and emits no replacement text. Unavailable or failed display boundaries report an honest error."
+    },
+    "compact": {
+      "name": "compact",
+      "description": "Manually trigger context compaction.",
+      "category": "memory",
+      "usage": "/compact",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "context": {
+      "name": "context",
+      "description": "Show the assembled context payload.",
+      "category": "memory",
+      "usage": "/context [--debug] [--file]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "--debug",
+          "description": "Include detailed token diagnostics.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--file",
+          "description": "Export the context to a file.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "debug": {
+      "name": "debug",
+      "description": "Show context assembly debug information.",
+      "category": "memory",
+      "usage": "/debug",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "debug-budget": {
+      "name": "debug-budget",
+      "description": "Show token budget diagnostics.",
+      "category": "memory",
+      "usage": "/debug-budget",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "debug-retrieval": {
+      "name": "debug-retrieval",
+      "description": "Show retrieval diagnostics for a query.",
+      "category": "memory",
+      "usage": "/debug-retrieval <query>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "query",
+          "description": "Retrieval query; remaining words are joined.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "delegate": {
+      "name": "delegate",
+      "description": "Delegate a task to another agent.",
+      "category": "orchestration",
+      "usage": "/delegate <agent> <task>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "agent",
+          "description": "Target agent name.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "task",
+          "description": "Task text; remaining words are joined.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "entities": {
+      "name": "entities",
+      "description": "List graph entities and relationships.",
+      "category": "memory",
+      "usage": "/entities [nodes|name]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "nodes|name",
+          "description": "Use 'nodes' for node details or provide an entity name to inspect.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "exit": {
+      "name": "exit",
+      "description": "Exit the chat session.",
+      "category": "session",
+      "usage": "/exit",
+      "aliases": [
+        "quit",
+        "q"
+      ],
+      "arguments": [],
+      "detail": null
+    },
+    "export": {
+      "name": "export",
+      "description": "Export persisted entries from the current session.",
+      "category": "transcript",
+      "usage": "/export [csv|jsonl|markdown|md|training]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "format",
+          "description": "Output format for the current session export.",
+          "required": false,
+          "default": "markdown",
+          "choices": [
+            "csv",
+            "jsonl",
+            "markdown",
+            "md",
+            "training"
+          ]
+        }
+      ],
+      "detail": "Queries the current persisted transcript and writes a safely contained CSV, JSONL, Markdown, or training JSONL export. It never copies the live SQLite database."
+    },
+    "export-prompts": {
+      "name": "export-prompts",
+      "description": "Export persisted captured prompts and responses for one session.",
+      "category": "transcript",
+      "usage": "/export-prompts [session_id]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "session_id",
+          "description": "Session identifier; omit for the current session.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": "Queries context-log records for the current or selected session and writes contained JSON. Empty output explains that transcript.capture_raw_prompts must be enabled."
+    },
+    "help": {
+      "name": "help",
+      "description": "Show available commands or focused command help.",
+      "category": "session",
+      "usage": "/help [command]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "command",
+          "description": "Command name or alias to inspect.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "history": {
+      "name": "history",
+      "description": "Show conversation history.",
+      "category": "session",
+      "usage": "/history",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "ingest": {
+      "name": "ingest",
+      "description": "Ingest file content into vector memory.",
+      "category": "files",
+      "usage": "/ingest <path> [description] [--lines=N]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "path",
+          "description": "File path to ingest.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "description",
+          "description": "Optional source description; remaining words are joined.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--lines=N",
+          "description": "Maximum number of source lines to ingest.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "inject-payload": {
+      "name": "inject-payload",
+      "description": "Inject a test payload for security validation.",
+      "category": "security",
+      "usage": "/inject-payload <payload>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "payload",
+          "description": "Test payload; remaining words are joined.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "inject-tools": {
+      "name": "inject-tools",
+      "description": "Set the exact manual tool schema set for subsequent turns.",
+      "category": "tools",
+      "usage": "/inject-tools <name> [name ...]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "name",
+          "description": "One or more whitespace-separated registered names accepted atomically within configured count and schema-token limits.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": "Switches runtime selection to manual mode only after every name and the complete schema set pass validation. The accepted set remains model-bound until /clear-tools restores automatic selection."
+    },
+    "insights": {
+      "name": "insights",
+      "description": "List durable insights.",
+      "category": "memory",
+      "usage": "/insights",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "lifecycle": {
+      "name": "lifecycle",
+      "description": "Run or inspect memory lifecycle processing.",
+      "category": "maintenance",
+      "usage": "/lifecycle [--execute] [--stats|--flush|--optimize]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "--execute",
+          "description": "Apply lifecycle changes instead of a dry run.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "mode",
+          "description": "Inspect statistics, flush access data, or optimize lifecycle state.",
+          "required": false,
+          "default": null,
+          "choices": [
+            "--stats",
+            "--flush",
+            "--optimize"
+          ]
+        }
+      ],
+      "detail": null
+    },
+    "list-ingested": {
+      "name": "list-ingested",
+      "description": "List ingested document memory records.",
+      "category": "memory",
+      "usage": "/list-ingested",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "memory": {
+      "name": "memory",
+      "description": "Show typed memory, transcript, session, and context statistics.",
+      "category": "memory",
+      "usage": "/memory",
+      "aliases": [],
+      "arguments": [],
+      "detail": "Reports public episodic, vector, graph, transcript, lifecycle, priming, app-session, and last-context metrics. Empty stores report zero; unavailable or unconfigured components are labeled honestly."
+    },
+    "meta": {
+      "name": "meta",
+      "description": "List active meta insights with lifecycle and provenance metadata.",
+      "category": "memory",
+      "usage": "/meta",
+      "aliases": [],
+      "arguments": [],
+      "detail": "Queries typed short- and long-term meta_insight records, excludes decayed records, and shows bounded synthesis provenance, source, confidence, and verification fields when available. It never runs synthesis or reorganization."
+    },
+    "migrate": {
+      "name": "migrate",
+      "description": "Migrate existing memories to lifecycle metadata.",
+      "category": "maintenance",
+      "usage": "/migrate [--force|--execute|--stats]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "mode",
+          "description": "Execute migration or report dry-run statistics.",
+          "required": false,
+          "default": null,
+          "choices": [
+            "--force",
+            "--execute",
+            "--stats"
+          ]
+        }
+      ],
+      "detail": null
+    },
+    "prime": {
+      "name": "prime",
+      "description": "Load and show primed context.",
+      "category": "memory",
+      "usage": "/prime",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "prompt": {
+      "name": "prompt",
+      "description": "Show the full formatted prompt sent to the LLM.",
+      "category": "memory",
+      "usage": "/prompt [--file]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "--file",
+          "description": "Export the prompt to a file.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "read": {
+      "name": "read",
+      "description": "Read a file with smart detection.",
+      "category": "files",
+      "usage": "/read <path> [--lines=N]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "path",
+          "description": "File path to read.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--lines=N",
+          "description": "Maximum number of lines to return.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "recommend-tools": {
+      "name": "recommend-tools",
+      "description": "Recommend tools for a query.",
+      "category": "tools",
+      "usage": "/recommend-tools <query>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "query",
+          "description": "Recommendation query; remaining words are joined.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "reorganize": {
+      "name": "reorganize",
+      "description": "Preview or explicitly execute coordinated memory reorganization.",
+      "category": "maintenance",
+      "usage": "/reorganize [--execute] [--backup|--dedupe|--analyze|--prune|--synthesize|--verify] [--skip-synthesis] [--skip-verify] [--skip-lifecycle] [--force-reembed]\n       /reorganize --recover <run-id> [--execute]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "--execute",
+          "description": "Apply changes (exact flag required; a verified recovery bundle is always created first).",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "mode",
+          "description": "Run one reorganization step instead of the full operation.",
+          "required": false,
+          "default": null,
+          "choices": [
+            "--backup",
+            "--dedupe",
+            "--analyze",
+            "--prune",
+            "--synthesize",
+            "--verify"
+          ]
+        },
+        {
+          "name": "--skip-synthesis",
+          "description": "Skip synthesis during a full run.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--skip-verify",
+          "description": "Skip verification during a full run.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--skip-lifecycle",
+          "description": "Skip lifecycle processing.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--force-reembed",
+          "description": "Force eligible records to be re-embedded.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--recover <run-id>",
+          "description": "Inspect a retained run; add exact --execute to restore its recorded verified bundle.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": "The command is dry-run by default. Full mode runs dedupe, prune, synthesis, verification, and lifecycle unless a full-only skip flag is supplied. --analyze is read-only and rejects --execute. Every mutating mode first creates a verified Memory and Transcript recovery bundle; Transcript content is recovery-only and is never reorganized. Plain 'execute' and --no-backup are rejected. Recovery artifacts and the owner-only categorical log are retained; use the exact --recover forms shown above after recovery_required. Automatic exit reorganization is separately configurable and defaults to disabled."
+    },
+    "replay": {
+      "name": "replay",
+      "description": "Replay a transcript CSV.",
+      "category": "transcript",
+      "usage": "/replay <csv_path> [delay_seconds]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "csv_path",
+          "description": "Transcript CSV path.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "delay_seconds",
+          "description": "Delay between replayed user turns.",
+          "required": false,
+          "default": "0",
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "reset": {
+      "name": "reset",
+      "description": "Reset one or more memory stores.",
+      "category": "memory",
+      "usage": "/reset [graph|vector|episodic]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "store",
+          "description": "Memory store to reset; omit to reset every supported store.",
+          "required": false,
+          "default": null,
+          "choices": [
+            "graph",
+            "vector",
+            "episodic"
+          ]
+        }
+      ],
+      "detail": null
+    },
+    "run-tool": {
+      "name": "run-tool",
+      "description": "Execute a named tool.",
+      "category": "tools",
+      "usage": "/run-tool <name> [json]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "name",
+          "description": "Registered tool name.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "json",
+          "description": "JSON object containing tool parameters.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "security": {
+      "name": "security",
+      "description": "Show security status.",
+      "category": "security",
+      "usage": "/security",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "security-config": {
+      "name": "security-config",
+      "description": "Update security configuration.",
+      "category": "security",
+      "usage": "/security-config <sensitivity|action|wrapping> <value>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "setting",
+          "description": "Security setting to update.",
+          "required": true,
+          "default": null,
+          "choices": [
+            "sensitivity",
+            "action",
+            "wrapping"
+          ]
+        },
+        {
+          "name": "value",
+          "description": "Validated value for the selected security setting.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "security-test": {
+      "name": "security-test",
+      "description": "Run local security sanitization tests.",
+      "category": "security",
+      "usage": "/security-test [instruction|delimiter|jailbreak|exfil|all]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "type",
+          "description": "Security sample type to run.",
+          "required": false,
+          "default": "all",
+          "choices": [
+            "instruction",
+            "delimiter",
+            "jailbreak",
+            "exfil",
+            "all"
+          ]
+        }
+      ],
+      "detail": null
+    },
+    "sessions": {
+      "name": "sessions",
+      "description": "List persisted transcript sessions with current and primed markers.",
+      "category": "transcript",
+      "usage": "/sessions",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "set": {
+      "name": "set",
+      "description": "Set a scoped variable.",
+      "category": "session",
+      "usage": "/set <key> <value>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "key",
+          "description": "Variable key to set.",
+          "required": true,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "value",
+          "description": "Variable value; remaining words are joined.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "speech": {
+      "name": "speech",
+      "description": "Configure speech settings.",
+      "category": "speech",
+      "usage": "/speech [on|off|config|mode <live|file>|voice <name>|provider <elevenlabs|picovoice>]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "action",
+          "description": "Speech setting to inspect or update.",
+          "required": false,
+          "default": "config",
+          "choices": [
+            "on",
+            "off",
+            "config",
+            "mode",
+            "voice",
+            "provider"
+          ]
+        },
+        {
+          "name": "value",
+          "description": "Value required by mode, voice, or provider actions.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "speech-test": {
+      "name": "speech-test",
+      "description": "Run the speech validation harness.",
+      "category": "speech",
+      "usage": "/speech-test [once|loop]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "mode",
+          "description": "Run one speech test or request loop mode.",
+          "required": false,
+          "default": "once",
+          "choices": [
+            "once",
+            "loop"
+          ]
+        }
+      ],
+      "detail": null
+    },
+    "status": {
+      "name": "status",
+      "description": "Show orchestrator status.",
+      "category": "orchestration",
+      "usage": "/status",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "summaries": {
+      "name": "summaries",
+      "description": "List turn summaries.",
+      "category": "memory",
+      "usage": "/summaries",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "switch": {
+      "name": "switch",
+      "description": "Switch active agent or show current agent status.",
+      "category": "orchestration",
+      "usage": "/switch [agent]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "agent",
+          "description": "Agent name; omit to show the active agent.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "timing": {
+      "name": "timing",
+      "description": "Show timing breakdown for the last turn.",
+      "category": "memory",
+      "usage": "/timing",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "tool-budget": {
+      "name": "tool-budget",
+      "description": "Inspect authoritative tool selection and schema-budget state.",
+      "category": "tools",
+      "usage": "/tool-budget",
+      "aliases": [],
+      "arguments": [],
+      "detail": "Distinguishes registered tools, pending manual selection, the most recent automatic selection, the last completed turn, and executed tools. Schema estimates and limits use tools.context.max_tools, tools.context.max_budget_ratio, memory.context_window, and memory.output_buffer."
+    },
+    "tools": {
+      "name": "tools",
+      "description": "List registered runtime tools and optionally filter by category.",
+      "category": "tools",
+      "usage": "/tools [category]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "category",
+          "description": "Optional runtime tool category filter.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "transcript": {
+      "name": "transcript",
+      "description": "Show a persisted current or selected transcript, or export all sessions.",
+      "category": "transcript",
+      "usage": "/transcript [session_id|export]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "target",
+          "description": "Persisted session identifier to show, or export for all non-archived sessions.",
+          "required": false,
+          "default": "current session",
+          "choices": []
+        }
+      ],
+      "detail": "With no target, queries the runtime's current session identity. Selected identifiers are bound store-query values, never paths. The export target writes deterministic sessions.csv and entries.csv beneath a safely contained timestamped export directory."
+    },
+    "vars": {
+      "name": "vars",
+      "description": "Show scoped variables.",
+      "category": "session",
+      "usage": "/vars",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "workflow": {
+      "name": "workflow",
+      "description": "List, run, or control workflows.",
+      "category": "workflow",
+      "usage": "/workflow <list|run|status|approve|skip> [name] [key=value ...]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "action",
+          "description": "Workflow operation.",
+          "required": true,
+          "default": null,
+          "choices": [
+            "list",
+            "run",
+            "status",
+            "approve",
+            "skip"
+          ]
+        },
+        {
+          "name": "name",
+          "description": "Workflow name for run, or an optional approval/skip identifier.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "key=value",
+          "description": "Optional workflow inputs for the run action.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    }
+  },
+  "parser_fixtures": {
+    "/": {
+      "chat": [
+        "",
+        []
+      ],
+      "generic_cli": [
+        null,
+        []
+      ]
+    },
+    "/HELP topic": {
+      "chat": [
+        "help",
+        [
+          "topic"
+        ]
+      ],
+      "generic_cli": [
+        "help",
+        [
+          "topic"
+        ]
+      ]
+    },
+    "//HELP topic": {
+      "chat": [
+        "help",
+        [
+          "topic"
+        ]
+      ],
+      "generic_cli": [
+        "/help",
+        [
+          "topic"
+        ]
+      ]
+    },
+    "///HELP topic": {
+      "chat": [
+        "/help",
+        [
+          "topic"
+        ]
+      ],
+      "generic_cli": [
+        "//help",
+        [
+          "topic"
+        ]
+      ]
+    },
+    "/ /HELP topic": {
+      "chat": [
+        "help",
+        [
+          "topic"
+        ]
+      ],
+      "generic_cli": [
+        "/help",
+        [
+          "topic"
+        ]
+      ]
+    },
+    "/   HELP  A B": {
+      "chat": [
+        "help",
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "generic_cli": [
+        "help",
+        [
+          "A",
+          "B"
+        ]
+      ]
+    },
+    "/read \"a b.txt\"": {
+      "chat": [
+        "read",
+        [
+          "\"a",
+          "b.txt\""
+        ]
+      ],
+      "generic_cli": [
+        "read",
+        [
+          "a b.txt"
+        ]
+      ]
+    }
+  },
+  "chat_dispatch": {
+    "plain text": {
+      "handled": false,
+      "result": null,
+      "exit_requested": false
+    },
+    " /HELP topic": {
+      "handled": false,
+      "result": null,
+      "exit_requested": false
+    },
+    "/": {
+      "handled": true,
+      "result": {
+        "output": "Unknown command: /. Type /help for available commands.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "exit_requested": false
+    },
+    "/missing-command": {
+      "handled": true,
+      "result": {
+        "output": "Unknown command: /missing-command. Type /help for available commands.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "exit_requested": false
+    },
+    "/help exit": {
+      "handled": true,
+      "result": {
+        "output": "/exit\nCategory: session\nUsage: /exit\nDescription: Exit the chat session.\nAliases: /quit, /q\nArguments: none",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "exit_requested": false
+    },
+    "/q": {
+      "handled": true,
+      "result": {
+        "output": "Goodbye.",
+        "handled": true,
+        "exit_requested": true,
+        "ui_effects": []
+      },
+      "exit_requested": true
+    },
+    "/quit": {
+      "handled": true,
+      "result": {
+        "output": "Goodbye.",
+        "handled": true,
+        "exit_requested": true,
+        "ui_effects": []
+      },
+      "exit_requested": true
+    },
+    "/clearscreen": {
+      "handled": true,
+      "result": {
+        "output": "",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": [
+          "clear_screen"
+        ]
+      },
+      "exit_requested": false
+    }
+  },
+  "generic_cli_calls": [
+    [
+      "sync",
+      "a b.txt"
+    ],
+    [
+      "async",
+      ""
+    ]
+  ],
+  "entrypoints": [
+    {
+      "distribution": "friday-chat",
+      "name": "friday-chat",
+      "target": "friday_chat.cli:app",
+      "load": "Typer",
+      "help_exit_code": 0,
+      "help_contains_usage": true
+    }
+  ],
+  "network_attempts_blocked": 2,
+  "limits": "Default dependency/import/registry/help proof only; no provider credentials, requests, runtime/store, full installed suites, terminal/audio UAT or foundation construction.",
+  "finance_import": "passed",
+  "finance_sdk_import": "passed",
+  "public_finance_tool_import": "passed without constructing provider client",
+  "tools_requires_finance": true,
+  "compatibility_finance_extra": true,
+  "retired_friday_launcher_present": false,
+  "network_events": [
+    "create_connection",
+    "audit:socket.bind"
+  ],
+  "registry_fixture_sha256": "22db1b2826ef44caaef26640969568e8ea9b1d1f8593f42f7aa275d2a108af3e",
+  "probe_sha256": "d8f373af8712a89638b508a16dfbaada12ff5a6a9a825133b556c26c91e96d50"
+}

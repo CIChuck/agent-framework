@@ -1,0 +1,92 @@
+{
+  "initiative": "friday-command-refactor",
+  "unit": "CMD-FND-001 readiness / Step 3",
+  "review_mode": "Full scoped planning/readiness review plus approved foundation API consistency; not implementation validation",
+  "repository": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "branch": "feature/command-refactor",
+  "base": "bbbd90e05143137c5a1d49eacedb4125d254b8fb",
+  "candidate": "95fdeadc0a0e4b9720cdb553e5b26756a438ab70",
+  "diff": "bbbd90e05143137c5a1d49eacedb4125d254b8fb..95fdeadc0a0e4b9720cdb553e5b26756a438ab70",
+  "primary_reading": [
+    "docs/planning/active/command-refactor/readiness-review.md",
+    "docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md",
+    "docs/planning/active/command-refactor/approval/foundation-design.md",
+    "docs/planning/active/command-refactor/shared-command-api.md"
+  ],
+  "authority_sha256": {
+    "AGENTS.md": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/development-task-lifecycle.md": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/board.yaml": "08d5ec970e9ef135406dffe421dab14750718112e722aedb8d1ce617eec0483c",
+    "docs/planning/active/command-refactor/approval/foundation-design.md": "394424ba656e961b3633b1ecb94d1451283d4a4bbc684eaee085acc582ab8393",
+    "docs/planning/active/command-refactor/shared-command-api.md": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+    "docs/planning/active/command-refactor/scope-decisions.md": "6760092e9d7b4f38a0e96d8109fde0e95cd8c3db0aeaf05c927801243dccb749",
+    "docs/planning/active/command-refactor/build-plan.md": "17b47d41a58e556740fd7f67977a6e70ec04a0c2d52cabc613e48f744f1ca686",
+    "docs/planning/active/command-refactor/phase-plan.md": "80a0d047432d6d6fc9c26229f0699f0dbf964334f66d784d93fd96607f117bf9",
+    "docs/planning/active/command-refactor/test-strategy.md": "32185dad44d39c8c9b323f166133a18cc383615a0a369560fb6cd66bfb1d5006",
+    "docs/planning/active/command-refactor/shared-command-architecture.md": "5667d21af163231c9f9154e2213af5126db546b606afb2ada53b77bdb57c9d33",
+    "docs/planning/active/command-refactor/validation/p0/inventory.json": "3f2ec73ca91f7c1cc5cfac1397ffe5a121ed010f78b7c387da3a50320cf9708e",
+    "docs/planning/active/command-refactor/validation/p0-failure-disposition.md": "1d83c8d8e7f92e5dbd1e677313db3475eb5dc51690f8514c85f7b680a0d3e2e1",
+    "docs/planning/active/command-refactor/validation/production-effects-audit.md": "20823f5a4d78ba4194ee7309e9b0946baae7c6474ddbb8d05e50196806413d27",
+    "docs/dev-skills/independent-code-validator.md": "578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508"
+  },
+  "deliverable_sha256": {
+    "docs/planning/README.md": "5a6797f77ed7246ea71bf2c232c313777d7b67a647830a9fa6fcb6c6774e67c0",
+    "docs/planning/active/command-refactor/README.md": "d3b601c1f6d31b8ae33c10aa49bd3a6b7c51cc538fc5e4569c27c3c461b7c595",
+    "docs/planning/active/command-refactor/approval/foundation-design.md": "394424ba656e961b3633b1ecb94d1451283d4a4bbc684eaee085acc582ab8393",
+    "docs/planning/active/command-refactor/authority.json": "e3ce742be0c60fc76b574322c7e519abc1c2d9403d0edb7754b0aaa87fb46322",
+    "docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md": "803066667bfde775cce8a0a6c598f029b4ff500770bbfc69e4406d3e23c72f56",
+    "docs/planning/active/command-refactor/execution-log.md": "2b3820a67d371862427b49910c5cf15bb15c1590d7e2f1a415a6dcda1026e6f3",
+    "docs/planning/active/command-refactor/next-phase.md": "e80b983d349957546d8494c09f4ba9eb80f69608df87b7c83104db2ff00ddb68",
+    "docs/planning/active/command-refactor/readiness-review.md": "76251dfeadd087feccc03a0adc97239cf27818bb7b502d6ef7519fc7170a683c",
+    "docs/planning/active/command-refactor/tactical-plan.md": "0e11f323c24f8d3aa9949eb816f0912aa5ea9b16d8a04a9f1b2b43efc630f611",
+    "docs/planning/active/command-refactor/validation/par-coverage-ledger.md": "ab5ba67fb3215fa6ccd2a74b096b060c009ccf11aeab4111c6fed8fe066b9373",
+    "docs/planning/active/command-refactor/validation/step3/augmented-install.log": "a6739e43cb03691c76435cd8410540884383f2347225b00df107137755a08db6",
+    "docs/planning/active/command-refactor/validation/step3/build.log": "fc862777ab3df844483234d40c8b929b5e2db319888a9a778c003032e6e298e4",
+    "docs/planning/active/command-refactor/validation/step3/extras-install.log": "aa225b3ac86e0f74531048527d4bf3d14510019eec07a7b0ac5a37207a7b70df",
+    "docs/planning/active/command-refactor/validation/step3/extras-probe.log": "7829281577fda9b56d85e5f75841c499aecd1351548bd2e8f5b1698be259693b",
+    "docs/planning/active/command-refactor/validation/step3/install.log": "99a712e15c4c7d93f78314ccdaca0c382557a8863210ca0ad6396080c974b9d4",
+    "docs/planning/active/command-refactor/validation/step3/installed-probe.json": "f90ba6f8a929dced38f8ebc4072acb07b6c4d0b8e24673a1e95fac2c51c7e77f",
+    "docs/planning/active/command-refactor/validation/step3/installed_probe.py": "22db1b2826ef44caaef26640969568e8ea9b1d1f8593f42f7aa275d2a108af3e",
+    "docs/planning/active/command-refactor/validation/step3/minimal-installed.json": "667f1549e1eb483ad26e62ec4b0c27586c1718bb098164333e6859fe2d50340b",
+    "docs/planning/active/command-refactor/validation/step3/probe.log": "b2927f1676b237adc2b0ec5cfdd76025eaf174b15e56eb7973928563848bc478",
+    "docs/planning/active/command-refactor/validation/step3/receipt.json": "e4356a0674e3650e2d888be4c0a0ea788640010f2a6dcd5fe0ce35f3723d0f7f",
+    "docs/planning/active/command-refactor/validation/step3/unit-map.json": "1a907929a109e60f2dd4fdb1796b61a155ec1f9d904a5b925054335542027526",
+    "docs/planning/board.yaml": "08d5ec970e9ef135406dffe421dab14750718112e722aedb8d1ce617eec0483c"
+  },
+  "protected_manifest": {
+    "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-command-step3-bhswluon/protected.json",
+    "sha256": "67bca816f731bf72753e8ac7ef38ce7ef6befdb42cac522c45c051614d5f69ed",
+    "count": 16882
+  },
+  "approval_boundary": "CMD-DESIGN-001 is directly approved for API-01 through API-06 only. Step 3 and this council are authorized. RD-01/RD-02, the construction directive, source generation, P0/P1 closure and feature acceptance are not approved. Evaluate the proposed readiness dispositions; do not infer them accepted.",
+  "criteria": {
+    "R-01": "Approved source/API identity and 9-retirement/41-name/3-alias scope, retained quirks, neutral owner and separate CLI are preserved.",
+    "R-02": "Current foundation API types, registration, normalization/parsing, execution and runtime invariants are precise/coherent; evaluate AP-01 through AP-06 design/readiness boundaries against current bytes, not old verdicts.",
+    "R-03": "Draft construction scope/paths/tests/import/wheel proof and package-under-test command are sufficient for the exact foundation-only unit; no new package currently exists or is claimed verified.",
+    "R-04": "Proposed RD-01/RD-02 are explicit, technically defensible for the no-handler/no-client/no-domain-dependency foundation, preserve all required foundation proof and require separate Step 4 human disposition. Evaluate reasons to reject or narrow the amendment; do not treat it as already effective or require deferred family implementation merely because it is described as future work.",
+    "R-05": "Default-install failure, augmented diagnostic results, generic CLI entry-point failure, blocked network attempt and offline-cache limitation are represented accurately; no full installed-client, whole-suite, P0/P1 or implementation success is claimed.",
+    "R-06": "All 50 cases and 3 aliases have proposed owners, 9 retirements are separately mapped, dependency order is coherent, scenario/environment obligations are explicit and deferred behavioral signoff is visible. Proposed family methods/units cannot acquire construction authority.",
+    "R-07": "CLI reuse assessment is source/test-backed and preserves its established API; no speculative adapter or unapproved product fix is introduced.",
+    "R-08": "Frozen inputs, product/configuration/dirty paths and approved API remain unchanged; process state, proposed execution base and next human Step 4 decision are coherent."
+  },
+  "required_checks": [
+    "Verify HEAD, selected committed diff, authority/deliverable pins and all protected hashes at start/end. Working board has preserved unrelated TUI edits; its exact current hash is pinned.",
+    "Inspect source packages and relevant existing tests as needed for the claims, including unconditional tools finance/sandbox imports and CLI main:app. Read full approved API and the proposed prerequisite amendment.",
+    "Check source inventory 84 hashes; independently validate 50 case/3 alias/9 retirement assignments, source references and acyclic dependency order.",
+    "Inspect new logs/receipts and prior baseline evidence; do not inherit claimed outcomes. Full owning suites were not rerun and all-class behavioral signoff remains open.",
+    "Run uv run --offline --no-sync ruff check docs/planning/active/command-refactor/validation/step3/installed_probe.py and matching ruff format --check.",
+    "Run uv run --offline --no-sync python scripts/friday-dev-board.py validate; uv run --offline --no-sync python scripts/check-documentation-lifecycle.py; git diff --check and git diff --check BASE..CANDIDATE.",
+    "If reproducing isolated probes, use the existing disposable environment, run outside the checkout with python -I, and direct outputs to your own temporary file. Do not overwrite any input evidence. Python files in 13 installed Friday wheels were compared against 396 locally built wheel files; independently inspect/recheck as useful. Offline disposable builds/installs are permitted, but no network, live providers, runtime/store construction or product fixes."
+  ],
+  "disposable_environment": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-command-step3-bhswluon/venv",
+  "wheel_directory": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-command-step3-bhswluon/dist",
+  "known_baseline": [
+    "Documentation lifecycle has exactly four unrelated broken links under docs/planning/active/friday-tui/validation: N01B-04-before-code-export-path-characterization.md:37, N01B-05-before-code-single-file-export-characterization.md:49, N01B-06-before-code-all-session-export-characterization.md:37, VAL-N01B-07-prepush-a196e95a.md:35.",
+    "Default installed Chat import and generic CLI entry-point defects are readiness findings/dispositions to evaluate, not green checks. Full-cohort offline resolver failure is an environment/cache limit."
+  ],
+  "external_effects": "Read-only council. No edits, formatting writes, commits, staging, board mutations, PR changes, push/merge/release, live provider/tool tests, secrets, or further delegation. Use PYTHONDONTWRITEBYTECODE=1 and no Ruff cache for checks. Model inference for this requested council is authorized; application live-provider validation is not.",
+  "round_budget": 1,
+  "report": "Return exactly VERIFIED, CHANGES_REQUESTED or BLOCKED for this limited readiness packet, with criterion results, candidate/diff, independence, reproducible findings (ID/severity/path/requirement/evidence/mitigation), commands/results, skipped checks, baseline limits and next gate. State whether the proposed conditional Step 4 decision is defensible; no construction approval or implementation verification. Do not fix findings or start further rounds. No builder history/private reasoning provided."
+}

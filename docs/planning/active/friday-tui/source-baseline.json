@@ -1,0 +1,346 @@
+{
+  "recorded_at": "2026-10-16T23:09:44.661083+00:00",
+  "git_commit": "c34269867be50f71923c93c95a63236a35505812",
+  "branch": "feature/friday-tui",
+  "source_release": "0.1.0a4",
+  "product_changes_since_commit": false,
+  "package_git_trees": {
+    "packages/friday-cli": "a2bbe7f1aed668a2bf95b2e4691a7257d9045d1e",
+    "packages/friday-chat": "be269f67aeca3016124ad9295b1eef3fa860d563"
+  },
+  "api_and_metadata_sha256": {
+    "packages/friday-chat/src/friday_chat/app.py": "a93581751af86642329d41a1258f4bbbada4b5aed26570adb2011abb165d37ec",
+    "packages/friday-chat/src/friday_chat/cli.py": "0e2590e8bd12c31552bdbeae333e6b46a9077e9fa6a9d1cdebec96955c8938d0",
+    "packages/friday-chat/src/friday_chat/display.py": "bb463f89ca3300c2fa1a566ce67bb7e30ec15b31c880ccb1987f4581611dcac1",
+    "packages/friday-chat/src/friday_chat/config.py": "734559482073fa66b2197604136d4fde805fc8f9e4ce7078f33df57c4a3c52d1",
+    "packages/friday-chat/src/friday_chat/runtime.py": "e3b54fb6f183f7171b5bc12bafc13a04b73133c176873bf20f959b3f3e645449",
+    "packages/friday-chat/src/friday_chat/session.py": "18da2913ddda2e6563151f1a1dbfeef3e53405a2979fe0ef78b454a01efee0a4",
+    "packages/friday-chat/src/friday_chat/replay.py": "c96b26b8eb9c5027b11f6f6f7ef09550d16a34b77dc2a82576290c8c6042bd21",
+    "packages/friday-chat/src/friday_chat/commands/registry.py": "21d4b4ff4dd9ae154f90e2b3753407d295a52d99c17d18fb0344c299f83506e7",
+    "packages/friday-chat/src/friday_chat/commands/contracts.py": "5931dac4ba41207710ca706bb5ab2932971da260ec9d2396ce5b62869cd4772d",
+    "packages/friday-chat/src/friday_chat/reorganization/coordinator.py": "02348795a8c04ac63f6119fad8c26a00d2611b671a99a71ee108bc95e013917f",
+    "packages/friday-cli/pyproject.toml": "c35659d710cd840f46a0574a9913d857642feab9ec002c4974bb2fc385066868",
+    "pyproject.toml": "f63adea253719a5961c260485e94cfc0deb979650ec1d350d6265594426ff9fd",
+    "uv.lock": "f19d32b5bf811e448c5c0eb538758b27f16b820d1af4f2dbb37e1ac9e0b354b1",
+    "scripts/check-package-metadata.py": "d010fe96e9a386f4db8614e9aaf409d0064b18c7cea7a16cd508140611788ba9",
+    "scripts/check-package-artifacts.py": "f624ffc04d8c94aee93e4728112d7393d305a2cdc21f8125949905b9d44e8267",
+    "tests/integration/test_package_cohort_metadata.py": "cbe3f6ab11c6833fc707a0225b10f1d4e8fb03f87eef6007302d272dc1e4c203"
+  },
+  "command_inventory_mode": "read-only AST inventory; names are not proof of behavioral parity",
+  "canonical_commands": [
+    {
+      "name": "agent",
+      "category": "orchestration",
+      "aliases": [],
+      "source_line": 2280
+    },
+    {
+      "name": "agents",
+      "category": "orchestration",
+      "aliases": [],
+      "source_line": 2279
+    },
+    {
+      "name": "clear",
+      "category": "session",
+      "aliases": [],
+      "source_line": 1841
+    },
+    {
+      "name": "clear-tools",
+      "category": "tools",
+      "aliases": [],
+      "source_line": 2156
+    },
+    {
+      "name": "cls",
+      "category": "session",
+      "aliases": [
+        "clearscreen"
+      ],
+      "source_line": 1842
+    },
+    {
+      "name": "compact",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1945
+    },
+    {
+      "name": "context",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1880
+    },
+    {
+      "name": "debug",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1898
+    },
+    {
+      "name": "debug-budget",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1899
+    },
+    {
+      "name": "debug-retrieval",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1951
+    },
+    {
+      "name": "delegate",
+      "category": "orchestration",
+      "aliases": [],
+      "source_line": 2289
+    },
+    {
+      "name": "entities",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1906
+    },
+    {
+      "name": "exit",
+      "category": "session",
+      "aliases": [
+        "quit",
+        "q"
+      ],
+      "source_line": 1367
+    },
+    {
+      "name": "export",
+      "category": "transcript",
+      "aliases": [],
+      "source_line": 1996
+    },
+    {
+      "name": "export-prompts",
+      "category": "transcript",
+      "aliases": [],
+      "source_line": 2015
+    },
+    {
+      "name": "help",
+      "category": "session",
+      "aliases": [],
+      "source_line": 1354
+    },
+    {
+      "name": "history",
+      "category": "session",
+      "aliases": [],
+      "source_line": 1853
+    },
+    {
+      "name": "ingest",
+      "category": "files",
+      "aliases": [],
+      "source_line": 2341
+    },
+    {
+      "name": "inject-payload",
+      "category": "security",
+      "aliases": [],
+      "source_line": 2222
+    },
+    {
+      "name": "inject-tools",
+      "category": "tools",
+      "aliases": [],
+      "source_line": 2137
+    },
+    {
+      "name": "insights",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1918
+    },
+    {
+      "name": "lifecycle",
+      "category": "maintenance",
+      "aliases": [],
+      "source_line": 2091
+    },
+    {
+      "name": "list-ingested",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1964
+    },
+    {
+      "name": "memory",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1869
+    },
+    {
+      "name": "meta",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1920
+    },
+    {
+      "name": "migrate",
+      "category": "maintenance",
+      "aliases": [],
+      "source_line": 2105
+    },
+    {
+      "name": "prime",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1897
+    },
+    {
+      "name": "prompt",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1890
+    },
+    {
+      "name": "read",
+      "category": "files",
+      "aliases": [],
+      "source_line": 2331
+    },
+    {
+      "name": "recommend-tools",
+      "category": "tools",
+      "aliases": [],
+      "source_line": 2162
+    },
+    {
+      "name": "reorganize",
+      "category": "maintenance",
+      "aliases": [],
+      "source_line": 2046
+    },
+    {
+      "name": "replay",
+      "category": "transcript",
+      "aliases": [],
+      "source_line": 2032
+    },
+    {
+      "name": "reset",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1932
+    },
+    {
+      "name": "run-tool",
+      "category": "tools",
+      "aliases": [],
+      "source_line": 2127
+    },
+    {
+      "name": "security",
+      "category": "security",
+      "aliases": [],
+      "source_line": 2188
+    },
+    {
+      "name": "security-config",
+      "category": "security",
+      "aliases": [],
+      "source_line": 2203
+    },
+    {
+      "name": "security-test",
+      "category": "security",
+      "aliases": [],
+      "source_line": 2189
+    },
+    {
+      "name": "sessions",
+      "category": "transcript",
+      "aliases": [],
+      "source_line": 1970
+    },
+    {
+      "name": "set",
+      "category": "session",
+      "aliases": [],
+      "source_line": 1855
+    },
+    {
+      "name": "speech",
+      "category": "speech",
+      "aliases": [],
+      "source_line": 2235
+    },
+    {
+      "name": "speech-test",
+      "category": "speech",
+      "aliases": [],
+      "source_line": 2256
+    },
+    {
+      "name": "status",
+      "category": "orchestration",
+      "aliases": [],
+      "source_line": 2303
+    },
+    {
+      "name": "summaries",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1919
+    },
+    {
+      "name": "switch",
+      "category": "orchestration",
+      "aliases": [],
+      "source_line": 2270
+    },
+    {
+      "name": "timing",
+      "category": "memory",
+      "aliases": [],
+      "source_line": 1905
+    },
+    {
+      "name": "tool-budget",
+      "category": "tools",
+      "aliases": [],
+      "source_line": 2175
+    },
+    {
+      "name": "tools",
+      "category": "tools",
+      "aliases": [],
+      "source_line": 2118
+    },
+    {
+      "name": "transcript",
+      "category": "transcript",
+      "aliases": [],
+      "source_line": 1976
+    },
+    {
+      "name": "vars",
+      "category": "session",
+      "aliases": [],
+      "source_line": 1854
+    },
+    {
+      "name": "workflow",
+      "category": "workflow",
+      "aliases": [],
+      "source_line": 2309
+    }
+  ],
+  "canonical_count": 50,
+  "alias_count": 3,
+  "behavioral_baseline_status": "not captured; required in TUI-00 before implementation",
+  "observations": [
+    "Display configuration resolver activates shared CLI configuration and resets the console.",
+    "Application registry/input/output/display injection boundaries exist.",
+    "Public operation-wide cancellation/shutdown and richer typed status events require design.",
+    "Startup replay and interactive replay have different runtime/exit behavior."
+  ]
+}

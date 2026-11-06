@@ -18,13 +18,13 @@ implementation_authority: not_granted
 Implement optional Langfuse export for Friday Chat using the accepted safe,
 provider-neutral telemetry contract. This item carries forward the optional
 TELEM-05 compatibility work from the
-[telemetry initiative](../../active/friday-telemetry-rewire/README.md).
+[telemetry initiative](../../../archive/completed/2026/friday-telemetry-rewire/historical/README.md).
 Core TELEM-01–04 remain accepted and closed; Langfuse is an optional destination.
 
 Chuck Russell requested this queue item on2026-10-11: "Let's add Langfuse
 implementation to the board. We'll queue that up and get to it after we do the
 MCP upgrade." Priority5 follows the
-[MCP protocol upgrade](../../active/friday-mcp-protocol-upgrade/README.md) at priority4.
+[MCP protocol upgrade](../../../archive/completed/2026/friday-mcp-protocol-upgrade/historical/README.md) at priority4.
 The board dependency requires that MCP initiative's acceptance before Langfuse
 execution. Other tasks retain their relative priority order.
 
@@ -49,7 +49,7 @@ Inspection at local HEAD46005353046553477417a730f05ff21ead64a00d:
   [runtime assembly](../../../../packages/friday-chat/src/friday_chat/runtime.py)
   do not call that helper. A configured enabled flag alone does not prove
   Langfuse trace delivery.
-- [Accepted TELEM-04](../../active/friday-telemetry-rewire/closeout-TELEM-04.md)
+- [Accepted TELEM-04](../../../archive/completed/2026/friday-telemetry-rewire/historical/closeout-TELEM-04.md)
   supplies validated events, causal execution context, bounded diagnostics and
   strict privacy. Its exact product is5c3a0e6; the acceptance record binds the
   [original independent evidence](../../../archive/completed/2026/friday-telemetry-rewire-telem-04/README.md).

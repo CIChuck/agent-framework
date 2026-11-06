@@ -1,0 +1,27 @@
+{
+  "initiative": "friday-tui",
+  "kind": "palette_draft_replacement_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-41: ask before replacing a nonempty unsent editor draft with a palette slash command. Cancel retains the draft exactly; Confirm replaces it without submitting. Empty editors fill directly.",
+  "documents_sha256": {
+    "README.md": "0c0ace799fc45dac5fd6a76fc2530469e415c49854c011d773efdde250949756",
+    "decisions.md": "5914b8a88edee8a939e16afc8c7c130f987d17e31109c5545c5693937910a77e",
+    "replacement-plan.md": "6dc6b927025ef5224946dfcb432e44614032686f45bdb8f612ff3539006ee135",
+    "screen-layout.md": "447fda15132a5188c7841e0658204067decb9b48f42c196a731a18ab3f0be456",
+    "user-guide-requirements.md": "15aa141556f57ab8474f686b5e24d6a5d7f935d9d28cfedf577d0f06cb4aa291",
+    "ux-configuration.md": "02db41994bc7994a12b298be2a67607d62c69e102d5040b04591053bf4ef8bb6",
+    "authority.json": "6103beffcdb1d6c7b78c356bfc47d883015313b16868bfccb0c7c0eb107c8c19",
+    "execution-log.md": "ecb757144f0a1a76a6d4ae91e6592d03b967fd298ef5685ef3c388a94cc3f577"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "34 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, product tests, UAT or release acceptance is claimed."
+}

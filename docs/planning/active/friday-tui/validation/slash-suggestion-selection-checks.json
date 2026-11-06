@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "slash_suggestion_selection_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-67: selecting an inline slash suggestion completes the selected command-name or alias token in the current draft, preserves following arguments and editor focus, and never dispatches. Enter or Submit remains separate; exact selection controls remain open.",
+  "documents_sha256": {
+    "decisions.md": "e3a6b8e621fccc58863b8ac1308616e387f46cecb693fb4f9e67a2712c9e736b",
+    "screen-layout.md": "c459dfcee61f6b658d8492ad81e8650d86483a5eb5a41f3649243bf88b56cea1",
+    "README.md": "0dec75d1005d279b173269accbd67bfef7719fcf41552a14dda7676a731a299d",
+    "replacement-plan.md": "e958d36b0606bdc675ba3ffdc191891383ea43cbe48460c8cb281d2f7176ae45",
+    "user-guide-requirements.md": "4c180c4d025e52b67f6bb31faa3c5c9b74b591ecb2d3eb13031034783032ae4a",
+    "command-matrix.md": "c6967ded242c72553a2030ad4e59c3bdcded58b0480373395c298e9a6392cdb5",
+    "authority.json": "4e083bb9f1364d6ec7b1d791e68b4627d2f2a7b9394a50c56ba3aa067fe32454",
+    "execution-log.md": "ded10777aff03178b67a0f0bcf912b4b02554713053fc8f57672c2199825b9b0",
+    "docs/planning/board.yaml": "27c3eb0bc1c6f8132e8f1a780ffd3a3eaa44e54ba77ecfce9cfca6a40aacc70d",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "63 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only inline-selection decision and no product code change",
+    "tui_suggestion_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted inline slash-suggestion selection decision and planning checks only. No TUI implementation, command interaction test, installed-package verification, user UAT or release acceptance."
+}

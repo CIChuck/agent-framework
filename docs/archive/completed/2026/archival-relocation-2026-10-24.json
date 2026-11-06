@@ -1,0 +1,632 @@
+{
+  "version": 1,
+  "source_commit": "bd1b875b3c56d5ddf998fdf3503a35ec2bb6c9fd",
+  "date": "2026-10-24",
+  "authority": "Maintainer direction to reconcile accepted completed projects and archive complete historical packets",
+  "moves": [
+    {
+      "from": "docs/planning/active/friday-telemetry-rewire/",
+      "to": "docs/archive/completed/2026/friday-telemetry-rewire/historical/"
+    },
+    {
+      "from": "docs/planning/active/friday-deprecated-credential-cleanup/",
+      "to": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/"
+    },
+    {
+      "from": "docs/planning/active/friday-alpha3-version-bump/",
+      "to": "docs/archive/completed/2026/friday-alpha3-version-bump/historical/"
+    },
+    {
+      "from": "docs/planning/active/friday-readme-refresh/",
+      "to": "docs/archive/completed/2026/friday-readme-refresh/historical/"
+    },
+    {
+      "from": "docs/planning/active/friday-guides-refresh/",
+      "to": "docs/archive/completed/2026/friday-guides-refresh/historical/"
+    },
+    {
+      "from": "docs/planning/active/friday-chat-quick-start/",
+      "to": "docs/archive/completed/2026/friday-chat-quick-start/historical/"
+    },
+    {
+      "from": "docs/planning/active/friday-alpha4-release/",
+      "to": "docs/archive/completed/2026/friday-alpha4-release/historical/"
+    },
+    {
+      "from": "docs/planning/active/friday-mcp-protocol-upgrade/",
+      "to": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/"
+    },
+    {
+      "from": "docs/planning/review/friday-telemetry-rewire/",
+      "to": "docs/archive/completed/2026/friday-telemetry-rewire/"
+    },
+    {
+      "from": "docs/planning/review/friday-deprecated-credential-cleanup/",
+      "to": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/"
+    },
+    {
+      "from": "docs/planning/review/friday-alpha3-version-bump/",
+      "to": "docs/archive/completed/2026/friday-alpha3-version-bump/"
+    },
+    {
+      "from": "docs/planning/review/friday-readme-refresh/",
+      "to": "docs/archive/completed/2026/friday-readme-refresh/"
+    },
+    {
+      "from": "docs/planning/review/friday-guides-refresh/",
+      "to": "docs/archive/completed/2026/friday-guides-refresh/"
+    },
+    {
+      "from": "docs/planning/review/friday-chat-quick-start/",
+      "to": "docs/archive/completed/2026/friday-chat-quick-start/"
+    },
+    {
+      "from": "docs/planning/review/friday-alpha4-release/",
+      "to": "docs/archive/completed/2026/friday-alpha4-release/"
+    }
+  ],
+  "link_repairs": [
+    {
+      "old_path": "docs/planning/active/friday-alpha3-version-bump/README.md",
+      "new_path": "docs/archive/completed/2026/friday-alpha3-version-bump/historical/README.md",
+      "sha256_before": "3bf032c4769813955b8686ee9f31fa3f5144073915c0b5466a20b0fb9196b648",
+      "sha256_after": "8a7775f8ada80ef7acfd16a667ea979b6e785f2b5ce144050fe103f5a4f1c0d6",
+      "links": [
+        {
+          "old": "../../../reference/releases/friday-package-cohort-0.1.0a3-release-evidence.md",
+          "new": "../../../../../reference/releases/friday-package-cohort-0.1.0a3-release-evidence.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-alpha4-release/README.md",
+      "new_path": "docs/archive/completed/2026/friday-alpha4-release/historical/README.md",
+      "sha256_before": "52a846c0b8df87e76a46d0e31b4f1e3d4c8e26dfc4277b1343acfbb887bf9da4",
+      "sha256_after": "d061ff330faacad9f227a553bf918a6c587b8150e38be7af7664215edb4ad998",
+      "links": [
+        {
+          "old": "../../../reference/releases/friday-package-cohort-0.1.0a4-release-evidence.md",
+          "new": "../../../../../reference/releases/friday-package-cohort-0.1.0a4-release-evidence.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-deprecated-credential-cleanup/validation/VAL-SEC-001/report.md",
+      "new_path": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/validation/VAL-SEC-001/report.md",
+      "sha256_before": "33fe3b3649b5a2da8017ff986b8a0003d6d392316662c69a4db2b0aee3567a3f",
+      "sha256_after": "58ce6f238cf61286461e8fac9f5a77e98e66e05f083b66540d708097e9922db0",
+      "links": [
+        {
+          "old": "../../../../../../AGENTS.md",
+          "new": "../../../../../../../../AGENTS.md"
+        },
+        {
+          "old": "../../../../../reference/policies/independent-validation-policy.md",
+          "new": "../../../../../../../reference/policies/independent-validation-policy.md"
+        },
+        {
+          "old": "../../../../../reference/policies/repository-engineering-policy.md",
+          "new": "../../../../../../../reference/policies/repository-engineering-policy.md"
+        },
+        {
+          "old": "../../../../../guides/security-configuration-guidelines.md",
+          "new": "../../../../../../../guides/security-configuration-guidelines.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-guides-refresh/review-and-changes.md",
+      "new_path": "docs/archive/completed/2026/friday-guides-refresh/historical/review-and-changes.md",
+      "sha256_before": "b50ba9dd07dafe46c65c757549b8761277830e1d959f4973b3a2bcf8c5618591",
+      "sha256_after": "0117c3cf5e330651f22ab9805fc27d150eaca175f5320d49315d2138da82cf5f",
+      "links": [
+        {
+          "old": "../../../guides/01-executive-summary.md",
+          "new": "../../../../../guides/01-executive-summary.md"
+        },
+        {
+          "old": "../../../guides/02-getting-started.md",
+          "new": "../../../../../guides/02-getting-started.md"
+        },
+        {
+          "old": "../../../guides/03-core-concepts.md",
+          "new": "../../../../../guides/03-core-concepts.md"
+        },
+        {
+          "old": "../../../guides/04-adaptive-memory.md",
+          "new": "../../../../../guides/04-adaptive-memory.md"
+        },
+        {
+          "old": "../../../guides/05-tools.md",
+          "new": "../../../../../guides/05-tools.md"
+        },
+        {
+          "old": "../../../guides/06-agents.md",
+          "new": "../../../../../guides/06-agents.md"
+        },
+        {
+          "old": "../../../guides/07-multi-agent.md",
+          "new": "../../../../../guides/07-multi-agent.md"
+        },
+        {
+          "old": "../../../guides/08-workflows.md",
+          "new": "../../../../../guides/08-workflows.md"
+        },
+        {
+          "old": "../../../guides/09-cli-reference.md",
+          "new": "../../../../../guides/09-cli-reference.md"
+        },
+        {
+          "old": "../../../guides/10-configuration.md",
+          "new": "../../../../../guides/10-configuration.md"
+        },
+        {
+          "old": "../../../guides/11-advanced-topics.md",
+          "new": "../../../../../guides/11-advanced-topics.md"
+        },
+        {
+          "old": "../../../guides/12-use-cases.md",
+          "new": "../../../../../guides/12-use-cases.md"
+        },
+        {
+          "old": "../../../guides/13-troubleshooting.md",
+          "new": "../../../../../guides/13-troubleshooting.md"
+        },
+        {
+          "old": "../../../guides/14-appendices.md",
+          "new": "../../../../../guides/14-appendices.md"
+        },
+        {
+          "old": "../../../guides/15-contributing.md",
+          "new": "../../../../../guides/15-contributing.md"
+        },
+        {
+          "old": "../../../guides/16-desktop-deployment.md",
+          "new": "../../../../../guides/16-desktop-deployment.md"
+        },
+        {
+          "old": "../../../guides/17-mcp-client.md",
+          "new": "../../../../../guides/17-mcp-client.md"
+        },
+        {
+          "old": "../../../guides/18-mcp-server.md",
+          "new": "../../../../../guides/18-mcp-server.md"
+        },
+        {
+          "old": "../../../guides/19-mcp-migration.md",
+          "new": "../../../../../guides/19-mcp-migration.md"
+        },
+        {
+          "old": "../../../guides/README.md",
+          "new": "../../../../../guides/README.md"
+        },
+        {
+          "old": "../../../guides/OUTLINE.md",
+          "new": "../../../../../guides/OUTLINE.md"
+        },
+        {
+          "old": "../../../guides/FRIDAY-FEATURES.md",
+          "new": "../../../../../guides/FRIDAY-FEATURES.md"
+        },
+        {
+          "old": "../../../guides/memory-management-guidelines.md",
+          "new": "../../../../../guides/memory-management-guidelines.md"
+        },
+        {
+          "old": "../../../guides/security-configuration-guidelines.md",
+          "new": "../../../../../guides/security-configuration-guidelines.md"
+        },
+        {
+          "old": "../../../guides/speech.md",
+          "new": "../../../../../guides/speech.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-mcp-protocol-upgrade/README.md",
+      "new_path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/README.md",
+      "sha256_before": "af1c1e6c9cc5a532a0d99cdab0674c449b7d8e689fbc9fed6f492c5d005d459b",
+      "sha256_after": "074702518ad9cc65cc0af9f25af5e7507efc79b90fc1d58b27563fc7f409118e",
+      "links": [
+        {
+          "old": "../../../archive/completed/2026/friday-telemetry-rewire-telem-04/README.md",
+          "new": "../../friday-telemetry-rewire-telem-04/README.md"
+        },
+        {
+          "old": "../../queued/friday-langfuse-integration/README.md",
+          "new": "../../../../../planning/queued/friday-langfuse-integration/README.md"
+        },
+        {
+          "old": "../../../archive/completed/2026/friday-mcp/README.md",
+          "new": "../../friday-mcp/README.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.md",
+      "new_path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/acceptance/MCP-UP-02B.md",
+      "sha256_before": "3227978e66825995a22435e32c312b39e5a25c28f4075bf7ccb2aed2afab9878",
+      "sha256_after": "c2ee4f7d3d8424453e18280f6b03f12f34e3f2736bc1ef02c803abae8e0e01d9",
+      "links": [
+        {
+          "old": "../../../../archive/completed/2026/friday-mcp-protocol-upgrade-up-02b/README.md",
+          "new": "../../../friday-mcp-protocol-upgrade-up-02b/README.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md",
+      "new_path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/build-plan.md",
+      "sha256_before": "042dc7dac9093d11b5c120a417d89e49136ed577464aa1a4b175389ee1ebb571",
+      "sha256_after": "e8ec46d338c071259f7e854b5ae96c6b2f482e4c17b26ed53e2552974a652a70",
+      "links": [
+        {
+          "old": "../../../../AGENTS.md",
+          "new": "../../../../../../AGENTS.md"
+        },
+        {
+          "old": "../../../reference/policies/repository-engineering-policy.md",
+          "new": "../../../../../reference/policies/repository-engineering-policy.md"
+        },
+        {
+          "old": "../../../reference/policies/development-task-lifecycle.md",
+          "new": "../../../../../reference/policies/development-task-lifecycle.md"
+        },
+        {
+          "old": "../../../reference/policies/independent-validation-policy.md",
+          "new": "../../../../../reference/policies/independent-validation-policy.md"
+        },
+        {
+          "old": "../../queued/friday-langfuse-integration/README.md",
+          "new": "../../../../../planning/queued/friday-langfuse-integration/README.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-client-core.md",
+      "new_path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/directives/CD-MCP-UP-001-client-core.md",
+      "sha256_before": "06839e00eecdb1c7e40e76562d32a3f53c7c1aea1095f508d767ef57d198e964",
+      "sha256_after": "c249bc811786d25b4cac0ad8858302637502c3858d1bb220db07d85b63f858dc",
+      "links": [
+        {
+          "old": "../../../../../AGENTS.md",
+          "new": "../../../../../../../AGENTS.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-002-streamable-http.md",
+      "new_path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/directives/CD-MCP-UP-002-streamable-http.md",
+      "sha256_before": "f69b275dd018e03ed8c7d05fa96f5b7d6ec34439c5c8d49d8f7ab2aab4887ea7",
+      "sha256_after": "277fd1d2610b6b049b8c7e7736bc100db1972676c9d4b34beacd6bd149926bc7",
+      "links": [
+        {
+          "old": "../../../../../AGENTS.md",
+          "new": "../../../../../../../AGENTS.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-003-runtime-yaml-chat.md",
+      "new_path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/directives/CD-MCP-UP-003-runtime-yaml-chat.md",
+      "sha256_before": "3576560f3076584d3bbd0ec69d5f7565481f0a1e50aba5e0c2d332c692bc1147",
+      "sha256_after": "30388a4ae7a8e2c491fccdaefadf49fc09978256f2001c7ede9ec4d7a1bb0c15",
+      "links": [
+        {
+          "old": "../../../../../AGENTS.md",
+          "new": "../../../../../../../AGENTS.md"
+        },
+        {
+          "old": "../../../../archive/completed/2026/friday-mcp-protocol-upgrade-up-02b/README.md",
+          "new": "../../../friday-mcp-protocol-upgrade-up-02b/README.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-004-results-manual-refresh.md",
+      "new_path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/directives/CD-MCP-UP-004-results-manual-refresh.md",
+      "sha256_before": "ea4bc460c1f06f21f77f9cfa9855412b5dfaeb5d83a4c7126be067c2dd9b4593",
+      "sha256_after": "42bb44d7261599277cb9127215e9a0247ee426c5408320aca1a8bdcfa8b5d8ed",
+      "links": [
+        {
+          "old": "../../../../../AGENTS.md",
+          "new": "../../../../../../../AGENTS.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/REM-MCP-UP-006-server-boundary-and-stdio-ownership.md",
+      "new_path": "docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical/directives/REM-MCP-UP-006-server-boundary-and-stdio-ownership.md",
+      "sha256_before": "b824e83681d847795020a8d2c1bac112877d67caa02f18d9029af7d35ed1442f",
+      "sha256_after": "33f3bc7f925b54913a3c058a29423b635f0be553b44d34801c58833e506aa902",
+      "links": [
+        {
+          "old": "../../../../reference/policies/independent-validation-policy.md",
+          "new": "../../../../../../reference/policies/independent-validation-policy.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-readme-refresh/review-and-standard.md",
+      "new_path": "docs/archive/completed/2026/friday-readme-refresh/historical/review-and-standard.md",
+      "sha256_before": "9c9fdddc4290d3da8dd53d8382150b9de6c7a6a97d8614ef77ea4acc3b7b6d80",
+      "sha256_after": "e2812d6a0edc48907b50efbf05f99ddb2a366ff05787eed11b7493fdf7aefef0",
+      "links": [
+        {
+          "old": "../../../../README.md",
+          "new": "../../../../../../README.md"
+        },
+        {
+          "old": "../../../../packages/friday-agent/README.md",
+          "new": "../../../../../../packages/friday-agent/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-chat/README.md",
+          "new": "../../../../../../packages/friday-chat/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-cli/README.md",
+          "new": "../../../../../../packages/friday-cli/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-core/README.md",
+          "new": "../../../../../../packages/friday-core/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-finance/README.md",
+          "new": "../../../../../../packages/friday-finance/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-llm/README.md",
+          "new": "../../../../../../packages/friday-llm/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-mcp/README.md",
+          "new": "../../../../../../packages/friday-mcp/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-memory/README.md",
+          "new": "../../../../../../packages/friday-memory/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-moltbook/README.md",
+          "new": "../../../../../../packages/friday-moltbook/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-optimization/README.md",
+          "new": "../../../../../../packages/friday-optimization/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-runtime/README.md",
+          "new": "../../../../../../packages/friday-runtime/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-sandbox/README.md",
+          "new": "../../../../../../packages/friday-sandbox/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-speech/README.md",
+          "new": "../../../../../../packages/friday-speech/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-telemetry/README.md",
+          "new": "../../../../../../packages/friday-telemetry/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-tools/README.md",
+          "new": "../../../../../../packages/friday-tools/README.md"
+        },
+        {
+          "old": "../../../../packages/friday-transcript/README.md",
+          "new": "../../../../../../packages/friday-transcript/README.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-telemetry-rewire/README.md",
+      "new_path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/README.md",
+      "sha256_before": "fd7927ba5e103edc37f98fd1a9a69714461d7fda300a6b414e8190360c914bb5",
+      "sha256_after": "667bd8914544637f65c608669b6c9392aabe1cd2ce9de297a56220f49cbd11ae",
+      "links": [
+        {
+          "old": "../../../archive/completed/2026/friday-telemetry-rewire-telem-04/README.md",
+          "new": "../../friday-telemetry-rewire-telem-04/README.md"
+        },
+        {
+          "old": "../../queued/friday-langfuse-integration/README.md",
+          "new": "../../../../../planning/queued/friday-langfuse-integration/README.md"
+        },
+        {
+          "old": "../../../archive/completed/2026/friday-telemetry-rewire-telem-03/README.md",
+          "new": "../../friday-telemetry-rewire-telem-03/README.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-telemetry-rewire/closeout-TELEM-02.md",
+      "new_path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/closeout-TELEM-02.md",
+      "sha256_before": "c6ea7fcde03c90afd58518514583e444d0f4b0b9ba40b702499bf1de5c2370ca",
+      "sha256_after": "880fa6ee825272213fd335cf6a414dbb1c64de6d9856e232abe22ac6db9a6cea",
+      "links": [
+        {
+          "old": "../../../archive/completed/2026/friday-telemetry-rewire-telem-02/README.md",
+          "new": "../../friday-telemetry-rewire-telem-02/README.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-telemetry-rewire/closeout-TELEM-03.md",
+      "new_path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/closeout-TELEM-03.md",
+      "sha256_before": "f82406a237312f6d4d7d19fa9e48cfbafa3c8571e4250414f425e09aab4f805f",
+      "sha256_after": "1e887800f54be48c16581b5f48ad7508f5d90effc8709360b150fe3405d0f3a4",
+      "links": [
+        {
+          "old": "../../../archive/completed/2026/friday-telemetry-rewire-telem-03/README.md",
+          "new": "../../friday-telemetry-rewire-telem-03/README.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-telemetry-rewire/closeout-TELEM-04.md",
+      "new_path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/closeout-TELEM-04.md",
+      "sha256_before": "bd9888e36cad4d95ee33cd8f59509cd2754c2bff480bc2e0281f2e3ceb1bfe30",
+      "sha256_after": "c5ac222b0ccd4aa2bb26d26c2ccd4e96204fe4c6f227b5519e9919a3bede456b",
+      "links": [
+        {
+          "old": "../../../archive/completed/2026/friday-telemetry-rewire-telem-04/README.md",
+          "new": "../../friday-telemetry-rewire-telem-04/README.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-telemetry-rewire/closeout.md",
+      "new_path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/closeout.md",
+      "sha256_before": "e13c0218b93910b66a0bb30a16d96eea8c96eb023b061d510d9274c7043280a1",
+      "sha256_after": "adbf10ace634ae76d303c09f682e61b09ad57a1768a0c16c09d108ab685f91f7",
+      "links": [
+        {
+          "old": "../../../archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+          "new": "../../friday-telemetry-rewire-telem-01/README.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-telemetry-rewire/execution-log.md",
+      "new_path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/execution-log.md",
+      "sha256_before": "12a7242e55f4721e7dfb7b9bbc90dff6fe4a40834ec2b5d5f1a5106a6b9d4dba",
+      "sha256_after": "f99274626a06b97084261bbfdaae9183229f48bef86cd267bb4008be2403d11a",
+      "links": [
+        {
+          "old": "../../../archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+          "new": "../../friday-telemetry-rewire-telem-01/README.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-execution-correlation.md",
+      "new_path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/remediation/REM-005-execution-correlation.md",
+      "sha256_before": "a1ef632771870931933ea3d0068f1ca6b9018ab50bdc1d53b965b0dba2d2f5ab",
+      "sha256_after": "07095897c4fca5c3a02b076bc40bafe9cf80a1e6d3571c50a840f616fc6deb46",
+      "links": [
+        {
+          "old": "../../../../reference/policies/independent-validation-policy.md",
+          "new": "../../../../../../reference/policies/independent-validation-policy.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md",
+      "new_path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-001/report.md",
+      "sha256_before": "7f59d23203f78e1696d040cc87c29e53e7051dcc0f4da7166cd7ea6e02b08c9b",
+      "sha256_after": "a55f74f4c1d7f70ad6c3e329cba3ee6bf5a4b181b9daeb353c2557f1ab64546c",
+      "links": [
+        {
+          "old": "/private/tmp/telem-01/review/packages/friday-telemetry/src/friday_telemetry/providers/composite.py",
+          "new": "../../../../../../../../packages/friday-telemetry/src/friday_telemetry/providers/composite.py"
+        },
+        {
+          "old": "/private/tmp/telem-01/review/packages/friday-telemetry/src/friday_telemetry/providers/composite.py",
+          "new": "../../../../../../../../packages/friday-telemetry/src/friday_telemetry/providers/composite.py"
+        },
+        {
+          "old": "/private/tmp/telem-01/review/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+          "new": "../../telemetry-contract.md"
+        },
+        {
+          "old": "/private/tmp/telem-01/review/docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+          "new": "../../directives/CD-001-local-telemetry-assembly.md"
+        },
+        {
+          "old": "/private/tmp/telem-01/review/packages/friday-chat/tests_chat/test_reorganization_terminal.py",
+          "new": "../../../../../../../../packages/friday-chat/tests_chat/test_reorganization_terminal.py"
+        },
+        {
+          "old": "/private/tmp/telem-01/review/docs/reference/policies/independent-validation-policy.md",
+          "new": "../../../../../../../reference/policies/independent-validation-policy.md"
+        }
+      ]
+    },
+    {
+      "old_path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-003/report.md",
+      "new_path": "docs/archive/completed/2026/friday-telemetry-rewire/historical/validation/VAL-003/report.md",
+      "sha256_before": "e3e8e4708f9b0b2cbefe7afa302926109f09e88c1bd9c92808ab3d76c0218f92",
+      "sha256_after": "13293f87570b2fca3d720286e868696bbd7dc2dfc92a1938daeae80d5fc64838",
+      "links": [
+        {
+          "old": "../../../../../reference/policies/independent-validation-policy.md",
+          "new": "../../../../../../../reference/policies/independent-validation-policy.md"
+        },
+        {
+          "old": "../../../../../../packages/friday-chat/tests_chat/test_reorganization_terminal.py",
+          "new": "../../../../../../../../packages/friday-chat/tests_chat/test_reorganization_terminal.py"
+        }
+      ]
+    }
+  ],
+  "navigation_files_updated": [
+    "docs/archive/completed/2026/friday-alpha3-version-bump/README.md",
+    "docs/archive/completed/2026/friday-alpha4-release/README.md",
+    "docs/archive/completed/2026/friday-chat-quick-start/README.md",
+    "docs/archive/completed/2026/friday-deprecated-credential-cleanup/README.md",
+    "docs/archive/completed/2026/friday-guides-refresh/README.md",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade-up-02b/README.md",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade-up-03/README.md",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade-up-04/README.md",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade-up-05/README.md",
+    "docs/archive/completed/2026/friday-mcp-protocol-upgrade/closeout.md",
+    "docs/archive/completed/2026/friday-readme-refresh/README.md",
+    "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+    "docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md",
+    "docs/archive/completed/2026/friday-telemetry-rewire-telem-03/README.md",
+    "docs/archive/completed/2026/friday-telemetry-rewire-telem-04/README.md",
+    "docs/archive/completed/2026/friday-telemetry-rewire/README.md",
+    "docs/guides/19-mcp-migration.md",
+    "docs/planning/README.md",
+    "docs/planning/active/README.md",
+    "docs/planning/blocked/human-in-the-loop/README.md",
+    "docs/planning/blocked/human-in-the-loop/design.md",
+    "docs/planning/queued/friday-board-delivery-reconciliation/README.md",
+    "docs/planning/queued/friday-langfuse-integration/README.md",
+    "docs/reference/releases/friday-package-cohort-0.1.0a3-release-evidence.md",
+    "docs/reference/releases/friday-package-cohort-0.1.0a4-release-evidence.md"
+  ],
+  "completion_proposals": [
+    {
+      "old_path": "docs/planning/review/friday-telemetry-rewire/README.md",
+      "archive_copy": "docs/archive/completed/2026/friday-telemetry-rewire/completion-proposal.txt",
+      "sha256": "6acfd4fd88aeb47b1b428693894dc1094020d4f08969e323a87b13d8d37e183a"
+    },
+    {
+      "old_path": "docs/planning/review/friday-deprecated-credential-cleanup/README.md",
+      "archive_copy": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/completion-proposal.txt",
+      "sha256": "790c6297026ebf0886fb5145a4239f63d4f52dd4c83dcd8a9939f6cbb3bec623"
+    },
+    {
+      "old_path": "docs/planning/review/friday-alpha3-version-bump/README.md",
+      "archive_copy": "docs/archive/completed/2026/friday-alpha3-version-bump/completion-proposal.txt",
+      "sha256": "40e88d206074f18b4e0cd7a731eb20e85a40875d1fbb8ee38722bb07ad70477d"
+    },
+    {
+      "old_path": "docs/planning/review/friday-readme-refresh/README.md",
+      "archive_copy": "docs/archive/completed/2026/friday-readme-refresh/completion-proposal.txt",
+      "sha256": "2720e3e856032f3104146434717159c79ec97e025d75da5cd404ff72977709e4"
+    },
+    {
+      "old_path": "docs/planning/review/friday-guides-refresh/README.md",
+      "archive_copy": "docs/archive/completed/2026/friday-guides-refresh/completion-proposal.txt",
+      "sha256": "64ec3fe56bcb3831b0a01a3f4777e856b11226faafefb685f2e495ba3fe2ecb9"
+    },
+    {
+      "old_path": "docs/planning/review/friday-chat-quick-start/README.md",
+      "archive_copy": "docs/archive/completed/2026/friday-chat-quick-start/completion-proposal.txt",
+      "sha256": "12ac2fb477ad72a55b0eef106766cd0a383bdeb32ca4b3e6ad83168b567382fc"
+    },
+    {
+      "old_path": "docs/planning/review/friday-alpha4-release/README.md",
+      "archive_copy": "docs/archive/completed/2026/friday-alpha4-release/completion-proposal.txt",
+      "sha256": "d2cdc221f01a304ff45cb163e91d6a02d57bcdaaec9393893f06040d642142d7"
+    }
+  ],
+  "board_validation_references_rebased": 103,
+  "completion_proposal_references_retargeted": 7
+}

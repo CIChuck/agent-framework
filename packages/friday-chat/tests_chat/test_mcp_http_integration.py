@@ -9,6 +9,8 @@ from pathlib import Path
 import pytest
 import yaml
 from friday_chat.adapters import FrameworkMemoryAdapter
+from friday_chat.app import FridayChatApp, ListInputSource, ListOutputSink
+from friday_chat.commands.registry import RegistryCommandContext, build_default_registry
 from friday_chat.config import load_friday_py_config
 from friday_chat.runtime import (
     FakeChatModel,
@@ -135,6 +137,82 @@ def real_chat_factory(
         and runtime.tools is runtime.mcp_tools
     )
     return runtime, model, collections, recorder
+
+
+@pytest.mark.asyncio
+async def test_2025_draft7_docs_catalog_is_visible_in_chat_tools_command(
+    tmp_path, monkeypatch
+):
+    helper = integration_helpers()
+    wire = helper.wire_helpers()
+    peer = wire.Peer("2025-11-25")
+    peer.tools = [
+        *helper.docs_draft7_catalog(),
+        {
+            "name": "recursive_tree",
+            "description": "Synthetic recursive tree",
+            "inputSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "$defs": {
+                    "node": {
+                        "type": "object",
+                        "propertyNames": {"pattern": "^[a-z]+$"},
+                        "properties": {"child": {"$ref": "#/$defs/node"}},
+                    }
+                },
+                "properties": {"tree": {"$ref": "#/$defs/node"}},
+            },
+        },
+        {
+            "name": "unsupported_shape",
+            "description": "Synthetic unsupported tool",
+            "inputSchema": {"type": "object", "if": {"type": "object"}},
+        },
+    ]
+    helper.controlled_factory(monkeypatch, peer, wire.Resolver())
+    runtime, _, _, _ = real_chat_factory(
+        tmp_path, monkeypatch, helper.public_remote_entry("2025-11-25")
+    )
+    expected = {f"mcp_remote_{tool['name']}" for tool in peer.tools[:-1]}
+    try:
+        await runtime.start_mcp_tools()
+        available = {
+            tool.name for tool in runtime.tools.list_tools() if tool.category == "mcp"
+        }
+        assert available == expected
+        assert runtime.mcp_tools.status_lines() == (
+            "MCP remote: discovered=7, registered=6, rejected=1",
+        )
+        registry = build_default_registry()
+        handled, result = await registry.execute(
+            "/tools mcp", RegistryCommandContext(runtime=runtime, registry=registry)
+        )
+        assert handled and result is not None
+        assert "Available tools (6 total):" in result.output
+        assert all(f"- {name}:" in result.output for name in expected)
+        assert "- mcp_remote_unsupported_shape: unsupported_keyword" in result.output
+        assert "- mcp_remote_recursive_tree: provider_export" in result.output
+        invalid = await runtime.tools.call_tool_record(
+            "mcp_remote_recursive_tree", {"tree": {"BAD": 1}}
+        )
+        assert invalid.mcp_provenance is not None
+        assert invalid.mcp_provenance.failure_code == "execution_error"
+        assert "- mcp_remote_recursive_tree: last_call_invalid_arguments" in (
+            runtime.mcp_tools.rejection_lines()
+        )
+        assert "tools/call" not in peer.methods()
+        sink = ListOutputSink()
+        app = FridayChatApp(
+            runtime=runtime, input_source=ListInputSource([]), output_sink=sink
+        )
+        await app.run()
+        assert (
+            sink.values.count("MCP remote: discovered=7, registered=6, rejected=1") == 1
+        )
+    finally:
+        await runtime.stop_mcp_tools()
+        await runtime.async_clients.close()
 
 
 @pytest.mark.asyncio

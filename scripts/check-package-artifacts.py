@@ -20,6 +20,7 @@ EXPECTED_WHEELS = {
     "friday_framework": None,
     "friday_framework_agent": "friday_agent",
     "friday_framework_cli": "friday_cli",
+    "friday_framework_commands": "friday_commands",
     "friday_framework_core": "friday_core",
     "friday_framework_finance": "friday_finance",
     "friday_framework_llm": "friday_llm",
@@ -90,7 +91,9 @@ def read_wheel_metadata(wheel: Path) -> email.message.Message:
             name for name in archive.namelist() if name.endswith(".dist-info/METADATA")
         ]
         if len(metadata_paths) != 1:
-            raise ValueError(f"expected exactly one METADATA file, found {metadata_paths}")
+            raise ValueError(
+                f"expected exactly one METADATA file, found {metadata_paths}"
+            )
         return email.message_from_bytes(archive.read(metadata_paths[0]))
 
 
@@ -137,7 +140,9 @@ def validate_wheel(
     if not wheel.name.endswith("-py3-none-any.whl"):
         errors.append(f"{wheel.name}: expected a universal py3-none-any wheel")
     names = archive_names(wheel)
-    if import_package and not any(name.startswith(f"{import_package}/") for name in names):
+    if import_package and not any(
+        name.startswith(f"{import_package}/") for name in names
+    ):
         errors.append(f"{wheel.name}: missing import package {import_package}")
     for expected_path in EXPECTED_WHEEL_PATHS.get(base, ()):
         if expected_path not in names:
@@ -173,6 +178,13 @@ def validate_wheel(
             expected_version,
         )
     )
+    if base == "friday_framework_commands":
+        if requirements:
+            errors.append(f"{wheel.name}: foundation must have no Requires-Dist")
+        if "friday_commands/py.typed" not in names:
+            errors.append(f"{wheel.name}: foundation py.typed missing")
+        if any(name.endswith(".dist-info/entry_points.txt") for name in names):
+            errors.append(f"{wheel.name}: foundation must have no entry points")
     if base == "friday_framework_llm":
         required_fragments = (
             f"friday-framework-core=={expected_version}",
@@ -180,7 +192,9 @@ def validate_wheel(
             "litellm==1.100.1",
         )
         for fragment in required_fragments:
-            if not any(requirement.startswith(fragment) for requirement in requirements):
+            if not any(
+                requirement.startswith(fragment) for requirement in requirements
+            ):
                 errors.append(f"{wheel.name}: missing exact dependency {fragment}")
     if base == "friday_chat":
         chat_required_fragments = (
@@ -201,7 +215,9 @@ def validate_wheel(
             f"friday-framework-tools[moltbook]=={expected_version}",
         )
         for fragment in chat_required_fragments:
-            if not any(requirement.startswith(fragment) for requirement in requirements):
+            if not any(
+                requirement.startswith(fragment) for requirement in requirements
+            ):
                 errors.append(f"{wheel.name}: missing exact dependency {fragment}")
         full_extra_fragments = (
             f"friday-framework-finance=={expected_version}",
@@ -247,7 +263,16 @@ def validate_sdist(
         return [f"{base}: expected one sdist, found {len(sdists)}"]
     names = archive_names(sdists[0])
     required_suffixes: tuple[str, ...] = ()
-    if base == "friday_framework_llm":
+    if base == "friday_framework_commands":
+        required_suffixes = (
+            "/pyproject.toml",
+            "/README.md",
+            "/src/friday_commands/__init__.py",
+            "/src/friday_commands/contracts.py",
+            "/src/friday_commands/registry.py",
+            "/src/friday_commands/py.typed",
+        )
+    elif base == "friday_framework_llm":
         required_suffixes = (
             "/pyproject.toml",
             "/README.md",
@@ -274,9 +299,13 @@ def validate_sdist(
     ]
 
 
-def validate_suspicious_paths(artifact_dir: Path, selected_bases: set[str]) -> list[str]:
+def validate_suspicious_paths(
+    artifact_dir: Path, selected_bases: set[str]
+) -> list[str]:
     errors: list[str] = []
-    artifacts = sorted(artifact_dir.glob("*.whl")) + sorted(artifact_dir.glob("*.tar.gz"))
+    artifacts = sorted(artifact_dir.glob("*.whl")) + sorted(
+        artifact_dir.glob("*.tar.gz")
+    )
     for artifact in artifacts:
         if not any(artifact.name.startswith(f"{base}-") for base in selected_bases):
             continue

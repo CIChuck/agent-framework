@@ -1,0 +1,166 @@
+.FF                                                                      [100%]
+=================================== FAILURES ===================================
+_______ test_real_app_cli_pty_command_uat_is_contained_and_provider_free _______
+
+tmp_path = PosixPath('/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pytest-of-chuckrussell/pytest-48/test_real_app_cli_pty_command_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11cd6da70>
+prohibit_provider_and_network_transports = None
+
+    async def test_real_app_cli_pty_command_uat_is_contained_and_provider_free(
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
+        prohibit_provider_and_network_transports: None,
+    ) -> None:
+        """Exercise the exact Gate F slash-command sequence through real adapters."""
+        if os.name != "posix":
+            pytest.skip("PTY command UAT requires a POSIX platform")
+
+        state_root = tmp_path / "friday-chat-command-uat"
+        state_root.mkdir()
+        monkeypatch.chdir(state_root)
+        config = _config_derived_from_example(state_root)
+        _assert_contained_config_paths(config, state_root)
+        monkeypatch.setattr(
+            adapters,
+            "build_framework_embedding_service",
+            lambda _config: FrameworkEmbeddingService(
+                service=DeterministicEmbeddingBackend()
+            ),
+        )
+        runtime = build_runtime(config, fake=False, session_id=CURRENT_SESSION_ID)
+        _assert_contained_runtime(runtime, state_root)
+        memory = _framework_memory(runtime)
+        transcript = _framework_transcript(runtime)
+        tools = _framework_tools(runtime)
+
+        await _seed_transcript(
+            transcript,
+            session_id=CURRENT_SESSION_ID,
+            user_message="current transcript UAT marker",
+            assistant_message="current assistant UAT marker",
+        )
+        await _seed_transcript(
+            transcript,
+            session_id=SEEDED_SESSION_ID,
+            user_message="selected transcript UAT marker",
+            assistant_message="selected assistant UAT marker",
+        )
+        await _seed_memory(memory)
+
+        model = SchemaRecordingChatModel()
+        runtime.chat_llm = model
+        automatic_turn = await TurnProcessor(runtime).process(
+            "echo this deterministic schema selection"
+        )
+        assert automatic_turn.selected_tool_names == ("echo",)
+        assert automatic_turn.tool_budget_snapshot is not None
+        assert model.tool_payloads == [(tools.definitions[0],)]
+        assert automatic_turn.tool_budget_snapshot.schema_bytes == (
+            canonical_tool_schema_bytes(model.tool_payloads[0])
+        )
+        assert tools.calls == []
+
+        commands = (
+            "/sessions",
+            "/transcript",
+            f"/transcript {SEEDED_SESSION_ID}",
+            "/memory",
+            "/meta",
+            "/tools",
+            "/tool-budget",
+            "/inject-tools echo",
+            "/tool-budget",
+            "/clear-tools",
+            "/cls",
+            "/clearscreen",
+            "/q",
+        )
+        scripted_prompt = ScriptedPrompt(commands)
+        master_fd, slave_fd = os.openpty()
+        pty_chunks: list[bytes] = []
+        reader = threading.Thread(
+            target=_drain_pty,
+            args=(master_fd, pty_chunks),
+            daemon=True,
+            name="friday-chat-uat-pty-reader",
+        )
+        try:
+            with os.fdopen(slave_fd, "w", encoding="utf-8", closefd=True) as slave:
+                console = Console(
+                    file=slave,
+                    force_terminal=True,
+                    color_system=None,
+                    width=240,
+                )
+                monkeypatch.setattr(display_module, "get_console", lambda: console)
+                cli_display = FridayCliDisplay(
+                    config=CLIConfig.defaults(),
+                    banner=BannerDisplayConfig(enabled=False),
+                )
+                recording_display = RecordingPtyDisplay(cli_display)
+                app = FridayChatApp(
+                    runtime=runtime,
+                    input_source=FridayCliInputSource(
+                        recording_display.prompt_text(
+                            user_name=config.chat.user_name,
+                        ),
+                        prompt_fn=scripted_prompt,
+                    ),
+                    output_sink=FridayCliOutputSink(),
+                    display=recording_display,
+                )
+
+                reader.start()
+                result = await app.run()
+                console.file.flush()
+            reader.join(timeout=5.0)
+            assert not reader.is_alive(), "PTY reader did not observe slave closure"
+            pty_bytes = b"".join(pty_chunks)
+        finally:
+            os.close(master_fd)
+
+        output = _strip_ansi(pty_bytes.decode("utf-8", errors="replace"))
+        assert result.exit_reason == "command_exit"
+        assert result.turns_processed == 0
+        assert scripted_prompt.index == len(commands)
+        assert scripted_prompt.prompts == [f"{config.chat.user_name}: "] * len(commands)
+        assert recording_display.clear_calls == 2
+>       assert pty_bytes.count(b"\x1b[2J") == 2
+E       AssertionError: assert 0 == 2
+E        +  where 0 = <built-in method count of bytes object at 0x7551e8dc00>(b'\x1b[2J')
+E        +    where <built-in method count of bytes object at 0x7551e8dc00> = b'Transcript sessions:\r\n- uat-seeded-session (1 turns) [primed]\r\n- uat-current-session (2 turns) [current]\r\nTran...election: 2685\r\n- memory_after_selection: 2609\r\n- selected_mcp_count: 0\r\nCleared injected tools.\r\nGoodbye.\r\n'.count
+
+/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/tests_chat/test_command_disposable_uat.py:320: AssertionError
+___________ test_production_clear_emits_control_sequence_through_pty ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11d74deb0>
+
+    @pytest.mark.skipif(os.name != "posix", reason="PTY smoke requires POSIX")
+    def test_production_clear_emits_control_sequence_through_pty(
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        import pty
+
+        master_fd, slave_fd = pty.openpty()
+        try:
+            with os.fdopen(slave_fd, "w", buffering=1, encoding="utf-8") as slave:
+                console = Console(file=slave, force_terminal=True, color_system="standard")
+                monkeypatch.setattr(display_module, "get_console", lambda: console)
+                display = FridayCliDisplay(
+                    resolve_display_config(config_path=None).config
+                )
+
+                display.clear_screen()
+                slave.flush()
+                ready, _, _ = select.select([master_fd], [], [], 1.0)
+>               assert ready == [master_fd]
+E               assert [] == [17]
+E
+E                 Right contains one more item: 17
+E                 Use -v to get more diff
+
+packages/friday-chat/tests_chat/test_display.py:414: AssertionError
+=========================== short test summary info ============================
+FAILED packages/friday-chat/tests_chat/test_command_disposable_uat.py::test_real_app_cli_pty_command_uat_is_contained_and_provider_free
+FAILED packages/friday-chat/tests_chat/test_display.py::test_production_clear_emits_control_sequence_through_pty
+2 failed, 1 passed in 2.76s

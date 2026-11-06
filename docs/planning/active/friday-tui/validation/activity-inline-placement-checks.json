@@ -1,0 +1,28 @@
+{
+  "initiative": "friday-tui",
+  "kind": "activity_inline_placement_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-45: place Activity inline within the originating conversation exchange or user-entered tool-command entry, before its final response/result. Keep the section collapsible and internally scrollable; no persistent side pane in the first release.",
+  "documents_sha256": {
+    "README.md": "630096e1ce74f2d462cc87cbf05bcd89a3ef23c0848da969323fe11a15c37f1f",
+    "decisions.md": "77591f2d716ee8a2b85f9e9f8cf8a69e4f7fcc79b85a1035fdc587a4804dafce",
+    "replacement-plan.md": "f125c0240121020b360a0cb943f205fe3d006d01e80017eec45c04b63134938f",
+    "screen-layout.md": "778b30eb7aa863d3a7c25e0ba052d3e8d5887358e7cb64cd67ac8f6e45c83ce5",
+    "tool-activity-requirement.md": "079fc732250736a469f2a937bd902883abeac8a7c7501df8ead8dec59347699a",
+    "user-guide-requirements.md": "c668ba112d1eba6918a0017102c4f5e9e0498718ed0ea234184b9857a1dc447d",
+    "ux-configuration.md": "3944df6e8f8e258a27484166d4f64eda89f833fded76bcaa8fc58024971e7eb9",
+    "authority.json": "4803844be41220b72414d8202217ccdd6620fe62bcca8aaa039165177e937252",
+    "execution-log.md": "99740f36560eb1fb95dc87da03b071fa8662980d130d6020e3182c0b3fe5c610"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "38 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. TUI implementation, product tests, terminal UAT and release acceptance remain pending."
+}

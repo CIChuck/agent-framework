@@ -1,0 +1,39 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_attachment_token_units_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-95: express both TUI attachment limits in estimated tokens of complete formatted model-input attachment text, including labels and OCR/formula content. These estimates are not provider-exact or a substitute for runtime context budgeting.",
+  "source_evidence": {
+    "maintainer_answer": "A to estimated tokens for per-file and combined limits",
+    "existing_neutral_estimator": "packages/friday-memory/src/friday_memory/context/token_estimator.py provides an approximate estimator by default and optional tiktoken-backed estimator",
+    "config_boundary": "D-94 places both optional settings under tui.attachments in the shared presentation file without CLI/runtime configuration changes"
+  },
+  "documents_sha256": {
+    "decisions.md": "cf706034953050671743dc6a63908c35c8ed81bde417acb201775d45230f999e",
+    "screen-layout.md": "2b15610c8f45b6eed83c56999b30c4a16e455af694eba4ed79efe996dcae81fe",
+    "README.md": "c3e1d92d5f074c03a01b722ce0a02653936a04fb6c8a2698521eadebdf1c7a1f",
+    "replacement-plan.md": "b7491365fd27508492404cc3e866fa6d9513f8a3f0c08ce5e6df90aa8474228c",
+    "user-guide-requirements.md": "d6e9aa4cd1e0e8351de479ee57b0bf60fec17720857d9540166e4f9f53e48c53",
+    "neutral-capability-map.md": "dbafc331c6535c507cc9fa4d5f2fe96886199fc09e4b04f4844ef0d979b393c4",
+    "ux-configuration.md": "d0fd1b41f0145ad0bd87039a5051e4b2ab8871dbb249fdb878c146e2053cc6d7",
+    "authority.json": "3da6a4865d60d8a21f347c9d3e7e0df594bf1619a5831a32ad8191fafbb83d2f",
+    "execution-log.md": "c219e9bc594166c2b544234efbbe2411963ff41fde0976a3fc7e34a93ba732b0",
+    "docs/planning/board.yaml": "62a34c156636da1e3ceb3ea9acd3defa0ef9b28cf31362ff8597925f8c0f79ee",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "92 valid including this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "token_limit_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted estimated-token units and planning checks only. Exact estimator/headroom, field names, numeric defaults/ranges, runtime context reservation, installed behavior, terminal UAT and release acceptance remain open."
+}

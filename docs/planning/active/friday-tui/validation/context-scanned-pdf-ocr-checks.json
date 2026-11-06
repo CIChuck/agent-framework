@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_scanned_pdf_ocr_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-83: first-release scanned/image-only PDF attachments use Tesseract OCR to provide actual text through the selected-file snapshot and model-context path. PDF page rendering and OCR failures must be visible; no empty-content success. Chat/CLI behavior remains unchanged. Mixed-page policy, languages, dependency distribution and budgets remain open.",
+  "source_evidence": {
+    "current_pdf_reader": "packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py extracts embedded text with pypdf and has no Tesseract or PDF page rasterization",
+    "local_mac_tool": "tesseract 5.5.2 found at /opt/homebrew/bin/tesseract; this is not installed-TUI or Linux evidence",
+    "native_renderer": "no pdftoppm found on this Mac; choose and test a cross-platform PDF page renderer during construction"
+  },
+  "documents_sha256": {
+    "decisions.md": "96fe2d6ed8128a40e6e94869efb2b0a7f741df8011bc1014bf29ee98064ee729",
+    "screen-layout.md": "de78c927750ae9fa08cc1bd37d07049860b93c094a7cb70b446d575851b638d7",
+    "README.md": "987d1d5b7ff9a946e1a79b60ced6738f32738a72a0ec778657f5306a4a3fadaf",
+    "replacement-plan.md": "d0c893d73e1e0a69be5c498dbd160f569f08918e7f8771c3de3457d512358934",
+    "user-guide-requirements.md": "ece88cbe351bf48c0c2302c7f61340a5d2c6e9bff6368f7ec00bb667c00fde18",
+    "neutral-capability-map.md": "b010f2cc7fac4b8a0bf07dbf119d9512d026241ab53eedf4ebe735b30fe2cb53",
+    "authority.json": "56b62d5eb59d94d96bba7aaf023724fb7b7aea2d408db1b8315a94763708ce54",
+    "execution-log.md": "8cef2e9856be7e4fcfcf42af468e2e72b2d14fbcf455007aa1a7b948b392ef21",
+    "docs/planning/board.yaml": "e0c8b7acdece5a0408e3e0bcfa064a5951bb46bfc4019549fd52360805ba34e2",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "79 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "ocr_attachment_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted Tesseract OCR direction and planning checks only. Renderer choice, dependency distribution, language support, mixed-page policy, size/time budgets, positive installed OCR attachment tests, terminal UAT and release acceptance remain open."
+}

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from collections.abc import Awaitable, Callable, Mapping, Sequence
 from copy import deepcopy
 from typing import Any, Literal, Protocol
@@ -9,6 +10,10 @@ from typing import Any, Literal, Protocol
 from friday_agent import DefaultToolRegistry
 from friday_core import TelemetryInterface
 from friday_core.mcp import MCPToolMetadata
+from friday_mcp.client.schema_validation import (
+    ArgumentFailureReason,
+    MCPArgumentValidationError,
+)
 from friday_runtime.config import MCPToolProviderConfig
 from friday_runtime.mcp_loading import RuntimeMCPProvider
 
@@ -37,6 +42,7 @@ class MCPChatRegistry:
         self.native = native
         self.provider = RuntimeMCPProvider(config, workspace_root, telemetry=telemetry)
         self.output_policy = MCPOutputPolicy(config.config.limits.max_result_bytes)
+        self._last_argument_failure: dict[str, ArgumentFailureReason] = {}
         self.registry = DefaultToolRegistry()
         for definition in native.list_tools():
             self.registry.register(
@@ -73,6 +79,7 @@ class MCPChatRegistry:
     async def stop(self) -> None:
         """Remove owned MCP entries and settle transports through the same owner."""
         await self.provider.stop()
+        self._last_argument_failure.clear()
 
     def list_tools(self) -> tuple[ToolDefinition, ...]:
         definitions = list(self.native.list_tools())
@@ -89,6 +96,36 @@ class MCPChatRegistry:
                 )
             )
         return tuple(definitions)
+
+    def status_lines(self) -> tuple[str, ...]:
+        """One safe count summary per configured server after startup."""
+        decisions = self.provider.registration_decisions
+        return tuple(
+            f"MCP {state.server_id}: discovered={state.discovered_tools}, "
+            f"registered={sum(d.server_id == state.server_id and d.reason == 'registered' for d in decisions)}, "
+            f"rejected={state.rejected_tools}"
+            for state in self.provider.discovery.servers
+        )
+
+    def rejection_lines(self, *, limit: int = 20) -> tuple[str, ...]:
+        """Inspectable fixed reasons without peer-supplied schema text."""
+        lines: list[str] = []
+        for decision in self.provider.registration_decisions:
+            if decision.reason not in {"rejected", "capped", "unavailable"}:
+                continue
+            name = decision.canonical_name or "unnamed"
+            if re.fullmatch(r"[a-z][a-z0-9_]{0,63}", name) is None:
+                name = "unnamed"
+            code = decision.code or "registration_failed"
+            lines.append(f"- {name}: {code}")
+            if len(lines) >= limit:
+                break
+        for name, reason in self._last_argument_failure.items():
+            if len(lines) >= limit:
+                break
+            if re.fullmatch(r"[a-z][a-z0-9_]{0,63}", name):
+                lines.append(f"- {name}: last_call_{reason}")
+        return tuple(lines)
 
     def get_context_block(self) -> str:
         return "Available tools:\n" + "\n".join(
@@ -150,9 +187,17 @@ class MCPChatRegistry:
         identifier = safe_mcp_call_id(
             call_id, used_call_ids if used_call_ids is not None else set()
         )
+        self._last_argument_failure.pop(name, None)
         try:
             # Exact original-name routing remains owned by the WS-03 callable.
             result = await self.registry.get_callable(name)(**arguments)
+        except MCPArgumentValidationError as exc:
+            self._last_argument_failure[name] = exc.reason
+            return self._observed(
+                self.output_policy.failed_record(
+                    metadata, identifier, "execution_error"
+                )
+            )
         except TimeoutError:
             return self._observed(
                 self.output_policy.failed_record(metadata, identifier, "timeout")

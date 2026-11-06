@@ -12,16 +12,16 @@ Source delivery: [PR #10](https://github.com/CIChuck/agent-framework/pull/10)
 merged the original branch as `465c5643`; [PR #11](https://github.com/CIChuck/agent-framework/pull/11)
 merged alpha4 as `489aed28`. Both remote source branches were deleted.
 Source candidate `e965917a` received a fresh independent
-[VERIFIED review](../../planning/active/friday-alpha4-release/validation/independent-review/report.md).
+[VERIFIED review](../../archive/completed/2026/friday-alpha4-release/historical/validation/independent-review/report.md).
 191 focused source tests, six installed Chat import checks, changed Python
 Ruff, focused Mypy, metadata, shell and offline lock checks passed.
 
 All 17 wheels and 17 source distributions passed strict Twine and repository
 artifact checks, including metadata, exact pins, packaged resources, source
 correspondence and sensitive-content checks. The
-[frozen SHA256 manifest](../../planning/active/friday-alpha4-release/validation/artifact-sha256.json)
+[frozen SHA256 manifest](../../archive/completed/2026/friday-alpha4-release/historical/validation/artifact-sha256.json)
 exactly matches all
-[production registry filenames and hashes](../../planning/active/friday-alpha4-release/validation/publication/published-files.json).
+[production registry filenames and hashes](../../archive/completed/2026/friday-alpha4-release/historical/validation/publication/published-files.json).
 Artifacts remain locally in ignored `dist/friday-package-cohort-0.1.0a4/`.
 
 Publication used the established dependency layers and the existing credential
@@ -37,9 +37,9 @@ as its only index, without local artifact links and with caching disabled.
 The command explicitly enables prereleases for the coordinated alpha pins.
 Initial index-propagation and prerelease-selection attempts installed no cohort;
 their command results are retained alongside the successful final installation.
-[Command results](../../planning/active/friday-alpha4-release/validation/publication/production-install-results.json),
-[outputs](../../planning/active/friday-alpha4-release/validation/publication/production-install-output.json)
-and the [installed dependency snapshot](../../planning/active/friday-alpha4-release/validation/publication/production-environment-versions.json)
+[Command results](../../archive/completed/2026/friday-alpha4-release/historical/validation/publication/production-install-results.json),
+[outputs](../../archive/completed/2026/friday-alpha4-release/historical/validation/publication/production-install-output.json)
+and the [installed dependency snapshot](../../archive/completed/2026/friday-alpha4-release/historical/validation/publication/production-environment-versions.json)
 confirm:
 
 - all 17 installed versions are exactly `0.1.0a4`, with the correct docs URL;

@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_tesseract_system_dependency_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-85: macOS/Linux users install Tesseract separately; friday-tui does not bundle or auto-install it. Missing executable yields an actionable error when OCR is needed while other attachment paths remain available. PDF-renderer distribution and OCR language-data policy remain open.",
+  "source_evidence": {
+    "maintainer_answer": "A to the system-installed versus bundled Tesseract question",
+    "current_reader": "packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py has embedded-text extraction only and no Tesseract dependency",
+    "local_mac": "Tesseract 5.5.2 present at /opt/homebrew/bin/tesseract; installed-TUI and Linux behavior not established"
+  },
+  "documents_sha256": {
+    "decisions.md": "5e72d09f8a62c78429f95c45ab6c23a6f1eed7c1e17c1fd3ef3482c4772397db",
+    "screen-layout.md": "38e9f6d0274bfb818252189df7fcd2d90bf9ee6c6ae226bba2ea0c3f99856021",
+    "README.md": "70af78fcc4ce1e21ffbbd8fa901bdc55fc560f164b8c74cd173b1940e5ee323d",
+    "replacement-plan.md": "31524945796b5ca1faa75491a69c74bd8f3468436813f28578008d16199ba620",
+    "user-guide-requirements.md": "093bdef4a0370118c5d680c34e46d94500d755bb9c4b825f026e6c412ab95ac8",
+    "neutral-capability-map.md": "a58f6927817faff40e6869b9dbf6e79c40a68e57a1ac1a0320da67ef4316b948",
+    "authority.json": "57ccd238e2edc63bf2c2a97d830e9ab35ce356a9c115c0288a36d7b3efca11f2",
+    "execution-log.md": "098ab06892eeb88cc9b5241edc3da42efce312d2107c2f9da1de5969e2da82a8",
+    "docs/planning/board.yaml": "ec6f44e736d75ab47402e5d5e39e3afb3ba4a2c2a9c0d777c5773c671174190c",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "81 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "installed_tesseract_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted system-installed Tesseract direction and planning checks only. PDF-renderer distribution, OCR language support, mixed-page failure policy, size/time budgets, installed OCR tests, terminal UAT and release acceptance remain open."
+}

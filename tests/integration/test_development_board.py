@@ -491,8 +491,18 @@ def _historical_fixture(root: Path, state: str = "completed") -> list[dict[str, 
         if state == "completed"
         else "docs/archive/completed/2026/example-task/"
     )
+    backing = "docs/planning/active/example-task/"
+    if state == "accepted":
+        backing = canonical + "historical/"
+        history = root / backing
+        history.parent.mkdir(parents=True)
+        active.rename(history)
+        for row in files:
+            row["path"] = row["path"].replace(
+                "docs/planning/active/example-task/", backing, 1
+            )
     index = root / canonical / "README.md"
-    index.parent.mkdir(parents=True)
+    index.parent.mkdir(parents=True, exist_ok=True)
     index.write_text(f"# Synthetic closeout\n\nStatus: {state}\n", encoding="utf-8")
     manifest_path = root / canonical / "historical-authority.json"
     manifest_path.write_text(
@@ -500,7 +510,7 @@ def _historical_fixture(root: Path, state: str = "completed") -> list[dict[str, 
             {
                 "version": 1,
                 "owner": "example-task",
-                "packet": "docs/planning/active/example-task/",
+                "packet": backing,
                 "files": files,
             },
             indent=2,
@@ -523,7 +533,7 @@ def _historical_fixture(root: Path, state: str = "completed") -> list[dict[str, 
             "validation": ["synthetic VERIFIED"],
             "authority_backing_packets": [
                 {
-                    "packet": "docs/planning/active/example-task/",
+                    "packet": backing,
                     "manifest": manifest_path.relative_to(root).as_posix(),
                     "manifest_sha256": _digest(manifest_path),
                 }
@@ -554,7 +564,7 @@ def test_explicit_historical_backing_preserves_one_canonical_packet(
         assert _digest(tmp_path / row["path"]) == row["sha256"]
 
 
-def test_actual_closeout_and_maintainer_acceptance_keep_original_authority(
+def test_actual_closeout_and_maintainer_acceptance_archive_original_authority(
     tmp_path: Path,
 ) -> None:
     files = _historical_fixture(tmp_path)
@@ -594,10 +604,23 @@ def test_actual_closeout_and_maintainer_acceptance_keep_original_authority(
     archive = tmp_path / "docs/archive/completed/2026/example-task"
     archive.parent.mkdir(parents=True)
     review.rename(archive)
+    active = tmp_path / "docs/planning/active/example-task"
+    active.rename(archive / "historical")
+    manifest_path = archive / "historical-authority.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["packet"] = "docs/archive/completed/2026/example-task/historical/"
+    for row in manifest["files"]:
+        row["path"] = row["path"].replace(
+            "docs/planning/active/example-task/", manifest["packet"], 1
+        )
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
     board = yaml.safe_load(board_path.read_text(encoding="utf-8"))
-    board["tasks"][0]["authority_backing_packets"][0]["manifest"] = (
+    backing = board["tasks"][0]["authority_backing_packets"][0]
+    backing["packet"] = manifest["packet"]
+    backing["manifest"] = (
         "docs/archive/completed/2026/example-task/historical-authority.json"
     )
+    backing["manifest_sha256"] = _digest(manifest_path)
     board_path.write_text(yaml.safe_dump(board, sort_keys=False), encoding="utf-8")
     staged = board_path.read_bytes()
     arguments = (
@@ -623,7 +646,55 @@ def test_actual_closeout_and_maintainer_acceptance_keep_original_authority(
     assert _load_task(tmp_path)["delivery_state"] == "local"
     assert _run(tmp_path, "next").stdout.strip() == "NO_OPEN_TASK"
     for row in files:
-        assert _digest(tmp_path / row["path"]) == row["sha256"]
+        relocated = row["path"].replace(
+            "docs/planning/active/example-task/", manifest["packet"], 1
+        )
+        assert _digest(tmp_path / relocated) == row["sha256"]
+    assert not active.exists()
+
+
+def test_accepted_task_cannot_leave_its_historical_folder_under_active(
+    tmp_path: Path,
+) -> None:
+    _historical_fixture(tmp_path, "accepted")
+    active = tmp_path / "docs/planning/active/example-task"
+    shutil.copytree(
+        tmp_path / "docs/archive/completed/2026/example-task/historical", active
+    )
+    result = _run(tmp_path, "validate")
+    assert result.returncode == 1
+    assert "retains historical authority under active" in result.stderr
+
+
+def test_archive_history_requires_hash_manifest(tmp_path: Path) -> None:
+    _historical_fixture(tmp_path, "accepted")
+    path = tmp_path / "docs/planning/board.yaml"
+    board = yaml.safe_load(path.read_text(encoding="utf-8"))
+    board["tasks"][0].pop("authority_backing_packets")
+    path.write_text(yaml.safe_dump(board, sort_keys=False), encoding="utf-8")
+    result = _run(tmp_path, "validate")
+    assert result.returncode == 1
+    assert "unregistered archive historical authority" in result.stderr
+
+
+def test_accepted_task_validation_file_must_resolve(tmp_path: Path) -> None:
+    _historical_fixture(tmp_path, "accepted")
+    path = tmp_path / "docs/planning/board.yaml"
+    board = yaml.safe_load(path.read_text(encoding="utf-8"))
+    task = board["tasks"][0]
+    task["validation"] = [
+        "docs/archive/completed/2026/example-task/historical/validation/"
+        "synthetic.txt: VERIFIED"
+    ]
+    path.write_text(yaml.safe_dump(board, sort_keys=False), encoding="utf-8")
+    assert _run(tmp_path, "validate").returncode == 0
+    task["validation"] = [
+        "docs/planning/active/example-task/validation/synthetic.txt: VERIFIED"
+    ]
+    path.write_text(yaml.safe_dump(board, sort_keys=False), encoding="utf-8")
+    result = _run(tmp_path, "validate")
+    assert result.returncode == 1
+    assert "references missing evidence" in result.stderr
 
 
 @pytest.mark.parametrize(

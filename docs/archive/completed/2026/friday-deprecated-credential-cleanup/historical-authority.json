@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "owner": "friday-deprecated-credential-cleanup",
+  "packet": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/",
+  "files": [
+    {
+      "path": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/README.md",
+      "sha256": "d96367f6c0c60fcbc508ddaa1f80842576288d31b116534007c30de3517731ca",
+      "kind": "index"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/authority-sec004.json",
+      "sha256": "2308a7b9c1784616d93376b7fa2fe9cc803cffe50fefcda32927855f36b3e558",
+      "kind": "authority"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/execution-log.md",
+      "sha256": "a99f3bc61367684245db64fbf95b1172abe9aeffaa93937da1faa8aefb4b9d50",
+      "kind": "approval"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/directives/CD-SEC-004-workspace-publication.md",
+      "sha256": "7d2035d45bab547780e051b754dc0db6dbe8e53d3b2fd7b5f8257b93722c814d",
+      "kind": "directive"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/validation/sec004-aggregate/report.md",
+      "sha256": "e75251b6818f336d56673c0b242160ce19edadaf721293f114face3d1210a219",
+      "kind": "report"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/delivery-evidence.json",
+      "sha256": "d2dc23b7d8058a1e881c758e5a094c2714b8f1be031f00a9e02e078f20934d4b",
+      "kind": "evidence"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-deprecated-credential-cleanup/historical/credential-rotation-confirmation.json",
+      "sha256": "ffdacca6b69e49678b56b422c911646a0f0aebfac30d9194e6b8985fe60d1205",
+      "kind": "evidence"
+    }
+  ]
+}

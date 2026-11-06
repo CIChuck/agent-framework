@@ -1,0 +1,115 @@
+......F................................................................. [  8%]
+.........F............................................F................. [ 17%]
+........................................................................ [ 26%]
+........................................................................ [ 34%]
+........................................................................ [ 43%]
+........................................................................ [ 52%]
+........................................................................ [ 61%]
+........................................................................ [ 69%]
+........................................................................ [ 78%]
+........................................................................ [ 87%]
+........................................................................ [ 95%]
+..................................                                       [100%]
+=================================== FAILURES ===================================
+__________ test_repository_and_packaged_examples_share_model_bindings __________
+
+    def test_repository_and_packaged_examples_share_model_bindings() -> None:
+        repository = _load_mapping(EXAMPLE_CONFIG)
+        packaged = _load_mapping(PACKAGED_EXAMPLE_CONFIG)
+        repository_library = _load_mapping(EXAMPLE_MODEL_LIBRARY)
+        packaged_library = _load_mapping(PACKAGED_EXAMPLE_MODEL_LIBRARY)
+
+>       assert repository_library == packaged_library
+E       AssertionError: assert {'credentials...l-library/v1'} == {'credentials...l-library/v1'}
+E
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'profiles': {'gemini25_flash_openrouter': {'dialect': 'openai_chat_completions', 'endpoint': 'openrouter', 'kind': 'c...{'dialect': 'openai_chat_completions', 'endpoint': 'moonshot', 'kind': 'chat', 'model': 'moonshot/kimi-k3', ...}, ...}} != {'profiles': {'gemini25_flash_openrouter': {'dialect': 'openai_chat_completions', 'endpoint': 'openrouter', 'kind': 'c...ai_embeddings', 'endpoint': 'local_lmstudio', 'kind': 'embedding', 'model': 'openai/nomic-embed-text-v1.5', ...}, ...}}
+E         Use -v to get more diff
+
+packages/friday-chat/tests_chat/compat/test_config_compatibility.py:117: AssertionError
+_______ test_real_app_cli_pty_command_uat_is_contained_and_provider_free _______
+
+tmp_path = PosixPath('/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pytest-of-chuckrussell/pytest-44/test_real_app_cli_pty_command_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11b41b3f0>
+prohibit_provider_and_network_transports = None
+
+    async def test_real_app_cli_pty_command_uat_is_contained_and_provider_free(
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
+        prohibit_provider_and_network_transports: None,
+    ) -> None:
+        """Exercise the exact Gate F slash-command sequence through real adapters."""
+        if os.name != "posix":
+            pytest.skip("PTY command UAT requires a POSIX platform")
+
+        state_root = tmp_path / "friday-chat-command-uat"
+        state_root.mkdir()
+        monkeypatch.chdir(state_root)
+        config = _config_derived_from_example(state_root)
+        _assert_contained_config_paths(config, state_root)
+        monkeypatch.setattr(
+            adapters,
+            "build_framework_embedding_service",
+            lambda _config: FrameworkEmbeddingService(
+                service=DeterministicEmbeddingBackend()
+            ),
+        )
+        runtime = build_runtime(config, fake=False, session_id=CURRENT_SESSION_ID)
+        _assert_contained_runtime(runtime, state_root)
+        memory = _framework_memory(runtime)
+        transcript = _framework_transcript(runtime)
+>       tools = _framework_tools(runtime)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/tests_chat/test_command_disposable_uat.py:226:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+runtime = FridayRuntime(session_identity=SessionIdentity(value='uat-current-session'), config=FridayChatConfig(model_library=Non....MCPChatRegistry object at 0x11b9b9be0>, telemetry=<friday_chat.telemetry.ChatTelemetryObserver object at 0x11b64a510>)
+
+    def _framework_tools(runtime: FridayRuntime) -> FrameworkToolRegistryAdapter:
+        if not isinstance(runtime.tools, FrameworkToolRegistryAdapter):
+>           raise TypeError("UAT requires FrameworkToolRegistryAdapter")
+E           TypeError: UAT requires FrameworkToolRegistryAdapter
+
+/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/tests_chat/test_command_disposable_uat.py:605: TypeError
+___________ test_production_clear_emits_control_sequence_through_pty ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11b014e50>
+
+    @pytest.mark.skipif(os.name != "posix", reason="PTY smoke requires POSIX")
+    def test_production_clear_emits_control_sequence_through_pty(
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        import pty
+
+        master_fd, slave_fd = pty.openpty()
+        try:
+            with os.fdopen(slave_fd, "w", buffering=1, encoding="utf-8") as slave:
+                console = Console(file=slave, force_terminal=True, color_system="standard")
+                monkeypatch.setattr(display_module, "get_console", lambda: console)
+                display = FridayCliDisplay(
+                    resolve_display_config(config_path=None).config
+                )
+
+                display.clear_screen()
+                slave.flush()
+                ready, _, _ = select.select([master_fd], [], [], 1.0)
+>               assert ready == [master_fd]
+E               assert [] == [77]
+E
+E                 Right contains one more item: 77
+E                 Use -v to get more diff
+
+packages/friday-chat/tests_chat/test_display.py:414: AssertionError
+=============================== warnings summary ===============================
+tests_chat/test_reorganization_mutation.py::test_litellm_provider_supplies_schema_and_parses_noisy_json
+  /Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/src/friday_chat/reorganization/mutation.py:245: DeprecationWarning: Legacy Memory LLM injection is deprecated; provide a TypedLLMClient
+    response = await complete_memory_request(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED packages/friday-chat/tests_chat/compat/test_config_compatibility.py::test_repository_and_packaged_examples_share_model_bindings
+FAILED packages/friday-chat/tests_chat/test_command_disposable_uat.py::test_real_app_cli_pty_command_uat_is_contained_and_provider_free
+FAILED packages/friday-chat/tests_chat/test_display.py::test_production_clear_emits_control_sequence_through_pty
+3 failed, 823 passed, 1 warning in 50.39s

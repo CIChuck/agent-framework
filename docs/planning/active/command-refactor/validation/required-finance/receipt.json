@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "date": "2026-11-06T21:23:08+00:00",
+  "directive": "directives/CD-CMD-DEP-001-required-finance.md",
+  "base": "06285ae446f609f0546866b951dff611cbb447bf",
+  "commands": "commands.json",
+  "checks": "checks.json",
+  "artifacts": [
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/.gitignore",
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_chat-0.1.0a4-py3-none-any.whl",
+      "sha256": "04d5dacefcc7ed5e549553adc3e80669a803ecea195bee2bb91248373a4f1dba"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework-0.1.0a4-py3-none-any.whl",
+      "sha256": "63b233f1ec42b072afbb2569e675dea6fbc2468d39872f70919be88ad2810a44"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_agent-0.1.0a4-py3-none-any.whl",
+      "sha256": "f7897ebd49284802571899f3f0ce9da77aefd80f904f56a8737e7c0d7acc694f"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_cli-0.1.0a4-py3-none-any.whl",
+      "sha256": "ae4f4e2d7560df11b3ffa9d6b581819ac8042c464d2da322c4188a21368c2426"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_cli-0.1.0a4.tar.gz",
+      "sha256": "2ecb496373c1e2fdd50c49ef80c131e72e1e45e66ec211bcef7ad7603731e598"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_core-0.1.0a4-py3-none-any.whl",
+      "sha256": "12068ec137f455a0c60e3df98cb423f44f27d5e15c0370f26de01c0922f53d37"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_finance-0.1.0a4-py3-none-any.whl",
+      "sha256": "ffa8f5f8690d30e429e7c8e57624d7ea988fd132b279423faedf3ee61dc71600"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_llm-0.1.0a4-py3-none-any.whl",
+      "sha256": "20e1dcfce55d127a973bc5877241ac7f24b4db5e293154f9e62126f25dd19012"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_mcp-0.1.0a4-py3-none-any.whl",
+      "sha256": "48b1529a86c095a5b4e8d779512c4e029b0fb16a3f14eb2dd44b95a2938feee7"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_memory-0.1.0a4-py3-none-any.whl",
+      "sha256": "72d68f2532d09451b56589f41f9493b85113d190a2fcda1b2131d30599c7db4f"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_moltbook-0.1.0a4-py3-none-any.whl",
+      "sha256": "74a292b78926096235f622624055d5706d157daff047904ddf1c5995929ec6e2"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_optimization-0.1.0a4-py3-none-any.whl",
+      "sha256": "826a889053d2f2a80855f26294a483077b3158cfec7a2e218e0ecedf1ddbf9a8"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_runtime-0.1.0a4-py3-none-any.whl",
+      "sha256": "23a3fb5602a83be23859b9be35fbd226bc26f5e95638f36975581cb6f70c09ca"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_sandbox-0.1.0a4-py3-none-any.whl",
+      "sha256": "4381ed3e37853db84afee3db05ef3e4b1a8f980963b9a86965e4e19b2d5b8178"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_speech-0.1.0a4-py3-none-any.whl",
+      "sha256": "0e688d49d27fc67b8620473fbc83bbe65cb554a81a363c6f42769cf3272af89e"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_telemetry-0.1.0a4-py3-none-any.whl",
+      "sha256": "36a61c779ab93c9b1d3a1f20dbfd6c80981de3c38087816235031ed2bd79e1fe"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_tools-0.1.0a4-py3-none-any.whl",
+      "sha256": "800048f0a73c1337786d96e0b1e151b21b0c75dfe50676ad43c3b4b9832c2ff3"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_tools-0.1.0a4.tar.gz",
+      "sha256": "939cd4e94e7f53738231d5e7c68d4cdcbe0d0e15a6e3091640a5c7742da81eb9"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist/friday_framework_transcript-0.1.0a4-py3-none-any.whl",
+      "sha256": "4c23e780c134f6ccfec6a5561053c0c13253a9261bf5477a3d38ad363ef88e67"
+    }
+  ],
+  "default_install": {
+    "extras_requested": [],
+    "installed_count": 129,
+    "finance_import": "passed",
+    "finance_sdk_import": "passed",
+    "public_tool_export": "passed without constructing provider client",
+    "tools_requires_finance": true,
+    "compatibility_finance_extra": true,
+    "retired_friday_launcher_present": false,
+    "chat_names": 50,
+    "chat_aliases": 3,
+    "chat_help_exit": 0,
+    "credentials_removed": [
+      "MASSIVE_API_KEY",
+      "POLYGON_API_KEY"
+    ],
+    "network_attempts_blocked": 2,
+    "network_events": [
+      "create_connection",
+      "audit:socket.bind"
+    ]
+  },
+  "lock": "Full offline generation failed on known litellm cache gap; exact two mechanical additions permitted by directive, parsed complete-lock equality and uv consistency pass; all 213 existing package resolutions retained. See offline-lock-failure.txt and lock-delta-proof.json.",
+  "limits": "No provider-client/runtime/store construction, live API/tool call, developer environment sync or foundation implementation. No runtime health/UAT/feature acceptance inferred. Historical probes/reviews preserved.",
+  "files_sha256": {
+    "artifacts-check-incomplete-input.log": "1c682d35e8cd55d93330e57446ee6bee5d1a3780db2641c32c261370c6652ef8",
+    "artifacts-check.log": "3841834af67152695fe83f5da409af77af859990df18b7595d207335d9ad6335",
+    "build.log": "1ebba9980e75b9fb2569d99d93d11875cba37a1789edee4b1504b99a54edbc1e",
+    "checks.json": "8f44ba3e278c09651d28c6f6f2a8932972ce4c35963478c12a16dda7f7004a37",
+    "commands.json": "5027530503361d33f46483963158f44f547a8e314052f408306f0d737f2eaf82",
+    "dependency-check.log": "6b69f7060ead9bdd1d681f432b1f61a8802eb74395805d700334bd21863d99d3",
+    "install.log": "3a66aeb567c02e0ca8549d5d6e99925b8a3eea543a71bab5e98176218d68ae16",
+    "installed.json": "d28035601c666363e90f90fa33a818a43fe4f3d1607f0b8afa0bcd0510c7bbb1",
+    "lock-check.log": "b52314dbf09eb81672de3a6d3eb49262a4a165e0fe3d7a6d9d5973239e64e61e",
+    "lock-delta-proof.json": "0c71a5fb4f6b0cc7d47ed005abb73d063bafdcf98806524a61d0a2fb900e4244",
+    "metadata-check.log": "f8d6fca602cb9f52cb26655c104c83f670736fd10f36890cff0c90b3e5ff60f8",
+    "observations.json": "f8c39b7d9ece8b0f7da44313ab25c7656c168d03f16b8beb2b277123c3d85704",
+    "offline-lock-check.log": "b52314dbf09eb81672de3a6d3eb49262a4a165e0fe3d7a6d9d5973239e64e61e",
+    "offline-lock-failure.txt": "2f8734c64da96a4d4034ad7e965679576f778fa9dadb8668f3c09a0d7a8e2c06",
+    "probe.log": "cf37ea0834d5ad2085ce0c35aa0c0f294507e2602d0c8a93a2b5c5f3ed45b5cb",
+    "probe.py": "d8f373af8712a89638b508a16dfbaada12ff5a6a9a825133b556c26c91e96d50",
+    "ruff-check.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "ruff-format.log": "fd2299c9f1c6dc869070883e281051bfe93aacf66c1a3b0069f45b4aa410ca50",
+    "tests.log": "3124d6df0c747c9c4523685d93a8d241d5d133598f93c84f9f86185b4a6eb2b7",
+    "venv.log": "60531e763ca55d588e5c7235ca90675327880ad8ad84f66a3a97809f27a5758a"
+  },
+  "check_results": "12 focused tools/cohort tests passed; 17-project metadata, selected tools/CLI wheel+sdist, lock and probe Ruff checks passed. Initial artifact check lacked the reused CLI sdist in scratch; copied validated archive and reran successfully; original failure log retained."
+}

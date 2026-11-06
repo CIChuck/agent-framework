@@ -1,0 +1,14 @@
+Command: PYTHONDONTWRITEBYTECODE=1 uv lock --offline --no-python-downloads
+Exit code: 1
+
+  × No solution found when resolving dependencies for split (markers:
+  │ python_full_version >= '3.13.4' and python_full_version < '3.14'):
+  ╰─▶ Because litellm==1.100.1 needs to be downloaded from a registry and
+      friday-framework-llm depends on litellm==1.100.1, we can conclude that
+      friday-framework-llm's requirements are unsatisfiable.
+      And because your workspace requires friday-framework-llm[dev], we can
+      conclude that your workspace's requirements are unsatisfiable.
+
+      hint: Packages were unavailable because the network was disabled. When
+      the network is disabled, registry packages may only be read from the
+      cache.

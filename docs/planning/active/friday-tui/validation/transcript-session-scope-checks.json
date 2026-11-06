@@ -1,0 +1,31 @@
+{
+  "initiative": "friday-tui",
+  "kind": "first_release_transcript_session_scope_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-34: show current transcript session and preserve /sessions and /transcript listing, inspection and export, but add no transcript-session switching control; /switch [agent] changes the active agent",
+  "source_behavior_reference": "friday_chat.commands.registry defines /sessions for listing, /transcript for viewing/export, and /switch [agent] for active-agent selection",
+  "documents_sha256": {
+    "README.md": "cacd14ed68398ff61c02a87f62ad77142a424b617c42be1eeb79ff176e8e1ad5",
+    "decisions.md": "1bfc32d37557e1d8874b7c56a6777c7d4c1ef4c3b636ea9f98f99d550b4334d8",
+    "replacement-plan.md": "6dccbc99ec7439c1e4820159095da18bd587570db5609f649245b48eb2907b4a",
+    "tool-activity-requirement.md": "377963401582cd5dcac8b44c8210562e3b22659f937356a2178e890322540cbf",
+    "screen-layout.md": "7af7b1a2d575837a6fa01f7a02100b063a0bff154d36710b7b08e278e2f8c07e",
+    "user-guide-requirements.md": "c07f49403a5ecec7de350a3c78f6f1042f92ea6141ebb821d0c4ed345122b8dd",
+    "architecture-reset.md": "532c135d6e7f35f0c05963d7734a11fde064c526c652551d21ceac9f2ab6e60f",
+    "command-matrix.md": "866ca2b2eeb8fba14f5eb69494b24f8653c4bb386db798275925052aac166bf0",
+    "authority.json": "dd5b6f8344e292ad708fb834f639762acd2625e56ba34a10a8119d24e2fbf9e0",
+    "execution-log.md": "b7685a79673de7e89c3f6e0062484daa2dc491f6ebdb80fc4d359ce8ef424d3f"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "27 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed",
+    "pending_session_switch_contract": "removed from active replacement plan and Activity requirement"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, terminal UAT, product acceptance or release is claimed."
+}

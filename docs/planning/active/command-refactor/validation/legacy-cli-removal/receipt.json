@@ -1,0 +1,98 @@
+{
+  "date": "2026-11-06T21:09:41+00:00",
+  "base": "144378ac0d0cc4c9b1f9f85511264f6919e23997",
+  "directive": "directives/CD-CMD-CLI-001-retire-legacy-launcher.md",
+  "metadata_change": "Exactly remove project.scripts friday=friday_cli.main:app; all other parsed TOML unchanged",
+  "commands": [
+    {
+      "argv": [
+        "uv",
+        "build",
+        "--offline",
+        "--package",
+        "friday-framework-cli",
+        "--out-dir",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/dist"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "log": "build.log"
+    },
+    {
+      "argv": [
+        "uv",
+        "venv",
+        "--python",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/venv"
+      ],
+      "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2",
+      "exit": 0,
+      "log": "venv.log"
+    },
+    {
+      "argv": [
+        "uv",
+        "pip",
+        "install",
+        "--offline",
+        "--no-index",
+        "--no-deps",
+        "--python",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/venv/bin/python",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/dist/friday_framework_cli-0.1.0a4-py3-none-any.whl"
+      ],
+      "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2",
+      "exit": 0,
+      "log": "install.log"
+    },
+    {
+      "argv": [
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/venv/bin/python",
+        "-I",
+        "-B",
+        "-c",
+        "from importlib.metadata import distribution; from pathlib import Path; import sys,json; d=distribution(\"friday-framework-cli\"); assert d.version==\"0.1.0a4\"; assert not [e for e in d.entry_points if e.group==\"console_scripts\"]; assert not (Path(sys.prefix)/\"bin\"/\"friday\").exists(); print(json.dumps({\"distribution\":d.metadata[\"Name\"],\"version\":d.version,\"console_scripts\":[],\"friday_executable_present\":False}))"
+      ],
+      "cwd": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2",
+      "exit": 0,
+      "log": "installed-metadata.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/dist/.gitignore",
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/dist/friday_framework_cli-0.1.0a4-py3-none-any.whl",
+      "sha256": "ae4f4e2d7560df11b3ffa9d6b581819ac8042c464d2da322c4188a21368c2426"
+    },
+    {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/dist/friday_framework_cli-0.1.0a4.tar.gz",
+      "sha256": "2ecb496373c1e2fdd50c49ef80c131e72e1e45e66ec211bcef7ad7603731e598"
+    }
+  ],
+  "installed_metadata": {
+    "distribution": "friday-framework-cli",
+    "version": "0.1.0a4",
+    "console_scripts": [],
+    "friday_executable_present": false
+  },
+  "limits": "Build/isolated install inspects metadata without application imports. Separate focused CLI/cohort tests run under a network audit guard. No finance repair, developer-environment sync, replacement launcher or foundation implementation. Historical wheels/logs/reviews retained; existing installations are not modified by this source change.",
+  "checks": "checks.json",
+  "source_inventory_hashes_matching": 84,
+  "protected_unrelated_files_unchanged": 16879,
+  "approved_api_sha256": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+  "evidence_sha256": {
+    "artifacts-check.log": "d12254e9f70d6c915e989f14ba3bdc6c127c969381d9e3f408e04f3a330646cb",
+    "build.log": "739700148be9fdb3572b3e6aa895354d8639a981a14700ee29dd79c3da4c81e9",
+    "checks.json": "7dc9b383f1a7a150e50f7b011a8d5f19b3fc331a895411a07e048e773416a3bb",
+    "cohort-and-cli-tests.log": "0f81c94605d11a18891e52f1f5bf78d2904a815bf8f31bbf5e00a0493c874994",
+    "install.log": "899c66b8e4d04de6965fae2233e8bbe50acf55f05affa0299c2ab050898b1e43",
+    "installed-metadata.log": "fea8ff77add2f103594776c4f63233aa62ea6677f18e6c9373f33e62f491f34e",
+    "lock-check.log": "d459ef688f08f7fe585511d12248601ba0c2e349a6a82bf321750f555569aeb1",
+    "metadata-check.log": "f8d6fca602cb9f52cb26655c104c83f670736fd10f36890cff0c90b3e5ff60f8",
+    "venv.log": "b00c52d2d7382dc0d0a97a7593d0d978ad4a94a3dc8de188c0638db3cc618279"
+  }
+}

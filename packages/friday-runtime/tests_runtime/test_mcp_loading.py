@@ -8,10 +8,13 @@ from unittest.mock import AsyncMock
 import pytest
 from friday_agent import DefaultToolRegistry
 from friday_core.profiles import MemoryProfile
-from friday_mcp.client.base import MCPClientBase
+from friday_mcp.client.base import MCPClientBase, MCPToolExecutionError
+from friday_mcp.client.catalog import MCPCatalogSnapshot
+from friday_mcp.client.protocol import ProtocolLimits, ToolDefinition
 from friday_runtime.config import MCPToolProviderConfig, RuntimeConfig, ToolsConfig
 from friday_runtime.kernel import RuntimeKernel
 from friday_runtime.mcp_loading import RuntimeMCPProvider
+from friday_runtime.mcp_registration import prepare_registration
 from friday_runtime.tool_loading import ToolProviderLoadError
 from friday_telemetry import DebugTelemetryRecorder
 
@@ -88,6 +91,74 @@ class TestClient(MCPClientBase):
             return self.tools
         finally:
             self.tracker["discovery_active"] -= 1
+
+
+@pytest.mark.asyncio
+async def test_catalog_refresh_cannot_rebind_discovered_schema(monkeypatch) -> None:
+    def snapshot(generation, value_type):
+        definition = {
+            "name": "probe",
+            "inputSchema": {
+                "type": "object",
+                "properties": {"value": {"type": value_type}},
+                "required": ["value"],
+            },
+        }
+        return MCPCatalogSnapshot(
+            generation, (ToolDefinition.parse(definition, ProtocolLimits()),)
+        )
+
+    class RefreshClient:
+        def __init__(self):
+            self.current_catalog_snapshot = snapshot(1, "integer")
+            self.rpc_calls = 0
+
+        async def refresh_tool_catalog(self):
+            return self.current_catalog_snapshot
+
+        async def list_tools(self):
+            raise AssertionError("refresh discovery must retain its snapshot")
+
+        async def call_tool_at_generation(self, name, arguments, generation):
+            if generation != self.current_catalog_snapshot.generation:
+                raise MCPToolExecutionError("catalog_unavailable")
+            self.rpc_calls += 1
+            return "called"
+
+        async def call_tool(self, name, arguments):
+            raise AssertionError("registered wrapper must use generation binding")
+
+    settings = MCPToolProviderConfig.from_dict(
+        {"enabled": True, "mode": "all", "config": {"servers": [server()]}}
+    )
+    provider = RuntimeMCPProvider(settings, ".")
+    client = RefreshClient()
+    manager = type("Manager", (), {"get_client": lambda self, name: client})()
+    provider.manager = manager
+    monkeypatch.setattr(provider, "_connect", AsyncMock())
+    configured_server = settings.config.servers[0]
+    discovered = await provider._discover(configured_server)
+    provider._publish({configured_server.name: discovered})
+    assert provider.prepared_tools[0].catalog_generation == 1
+
+    client.current_catalog_snapshot = snapshot(2, "string")
+    stale = prepare_registration(
+        settings, provider.prepared_tools, {"fake": client}, ()
+    )
+    assert not stale.wrappers
+    assert stale.decisions[0].code == "registration_failed"
+    assert client.rpc_calls == 0
+
+    client.current_catalog_snapshot = snapshot(1, "integer")
+    admitted = prepare_registration(
+        settings, provider.prepared_tools, {"fake": client}, ()
+    )
+    assert len(admitted.wrappers) == 1
+    client.current_catalog_snapshot = snapshot(2, "string")
+    with pytest.raises(MCPToolExecutionError) as failure:
+        await admitted.wrappers[0].execute(value=5)
+    assert failure.value.failure_code == "catalog_unavailable"
+    assert client.rpc_calls == 0
 
 
 def provider_config(servers=(), **config):
@@ -458,7 +529,6 @@ async def test_bounded_connect_and_discovery_concurrency(tmp_path, fake_clients)
         ({"max_tools_per_server": 1}, 2, "tool_limit"),
         ({"max_total_tools": 1}, 1, "tool_limit"),
         ({"max_schema_bytes_per_tool": 1}, 0, "schema_limit"),
-        ({"max_schema_tokens": 1}, 0, "schema_limit"),
     ],
 )
 async def test_discovery_caps_are_deterministic(
@@ -478,6 +548,22 @@ async def test_discovery_caps_are_deterministic(
     assert reason in provider.diagnostics.codes
     if expected == 1:
         assert provider.prepared_tools[0].server_id == "a"
+    await provider.stop()
+
+
+@pytest.mark.asyncio
+async def test_shared_schema_budget_is_deferred_until_registration(
+    tmp_path, fake_clients
+):
+    _, _, catalogs, _ = fake_clients
+    catalogs["a"] = [{"name": "probe", "inputSchema": {"type": "object"}}]
+    provider = RuntimeMCPProvider(
+        provider_config([server("a")], limits={"max_schema_tokens": 1}),
+        str(tmp_path),
+    )
+    await provider.start()
+    assert len(provider.prepared_tools) == 1
+    assert provider.diagnostics.rejected_tools == 0
     await provider.stop()
 
 

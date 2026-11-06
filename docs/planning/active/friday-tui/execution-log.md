@@ -1,0 +1,2972 @@
+# Friday TUI execution log
+
+Status: N03A-01 has a locally built independently installable
+Textual package and visible shell. Its
+[before-code characterization](validation/N03A-01-before-code-shell-characterization.md)
+and [exact directive](directives/CD-TUI-N03A-01-installable-shell.md) are
+approved for local construction. Automated checks and a macOS PTY smoke are
+recorded in [local checks](validation/N03A-01-local-checks.md). Its
+[first independent review](validation/VAL-N03A-01-first-f921eb4c.md)
+returned `CHANGES_REQUESTED` for stale current packet status and missing
+physical terminal UAT. The packet-state correction is bounded by
+[REM-TUI-N03A-01-01](remediation/REM-TUI-N03A-01-01.md); fresh review and
+physical macOS terminal UAT remain open. The N01B-09 local and
+automated Ubuntu gates remain independently VERIFIED.
+
+execution_phase: validation; validation_state: pending (N03A-01 packet-state correction awaits fresh review; physical terminal UAT open)
+
+## 2026-10-19 — N03A-01 first review and bounded packet correction
+
+Fresh-context read-only review of candidate `f921eb4c` returned
+[`CHANGES_REQUESTED`](validation/VAL-N03A-01-first-f921eb4c.md). The new
+package, 11 TUI tests, 155 CLI tests, 50 selected Chat tests and installed
+wheel checks passed independently; no code defect was demonstrated. The
+reviewer found stale current claims in the packet index and replacement plan
+and noted the missing required physical macOS terminal observations. Under
+[REM-TUI-N03A-01-01](remediation/REM-TUI-N03A-01-01.md), the current packet,
+plan and screen proposal now acknowledge the locally built no-backend shell
+and align current process fields to `validation`/`pending` for a fresh review.
+The first verdict remains historical. Product source is frozen; physical
+Ctrl+Enter, pointer, live resize, visual UAT and later runtime integration
+remain open. No delivery or acceptance is inferred.
+
+## 2026-10-19 — First installable shell built locally
+
+The new `packages/friday-tui` Textual package opens a navigable development
+shell with an editor, visible actions and honest no-backend Submit behavior.
+The [local check report](validation/N03A-01-local-checks.md) records 11 TUI,
+155 CLI and 50 selected Chat test passes, lock and archive inspection,
+isolated installed-wheel checks and a macOS PTY interaction smoke. The macOS
+Terminal UI could not be controlled through the available computer-use
+surface; physical Ctrl+Enter, pointer, live resize and visual UAT are not
+claimed. Freeze the local candidate and obtain independent read-only review.
+No push, PR, merge, release or Friday TUI initiative acceptance follows from
+this development milestone.
+
+## 2026-10-19 — N03A-01 exact local construction authorized
+
+Chuck Russell replied “approved” to the explicit request to approve the
+[N03A-01 directive](directives/CD-TUI-N03A-01-installable-shell.md). Authority
+is limited to the named new package paths, the TUI/Textual lock closure and
+scoped TUI planning/evidence. Build the visible no-backend shell, run local
+tests and installed-package checks, complete macOS terminal UAT, then freeze
+a candidate for fresh read-only independent review. No push or release is
+authorized.
+
+## 2026-10-19 — Package and visible-shell work moved next
+
+Chuck Russell questioned the prolonged neutral transcript sequence and then
+said “proceed” after the controller proposed starting the independent package
+next. The current root workspace, package conventions, neutral config loader,
+Chat-bound service assembly and Textual test surface were characterized
+[before code](validation/N03A-01-before-code-shell-characterization.md).
+The [proposed N03A-01 directive](directives/CD-TUI-N03A-01-installable-shell.md)
+defines an installable shell with editor, visible controls and honest
+no-backend behavior. Its implementation requires exact directive approval.
+Runtime assembly, real prompts, Activity, full `/` parity and TUI terminal
+UAT remain later bounded gates. Another speculative transcript unit is no
+longer the next gate. No product, test, package metadata, lock or workflow
+file changed in this planning step.
+
+execution_phase: planning; validation_state: not_ready (N03A-01 proposal only; N01B-09 gates verified).
+
+Status: N01B-09 corrected exact four-path session-ensure candidate
+`cda7419d` is independently VERIFIED locally, with product source frozen.
+The one authorized non-force push reached `371c1387` and is consumed;
+exact-source Ubuntu run 39307201390 completed/success and was
+[independently VERIFIED](validation/VAL-N01B-09-postrun-72cbc134.md).
+N01B-08 exact local
+write-effects candidate `8ac249d3` is independently
+VERIFIED with product source frozen; one authorized non-force push reached
+`c4a5faa6` and is consumed; exact-source Ubuntu run 39301138733 completed/
+success and was independently VERIFIED. N01B-07 exact local tool-record
+candidate `a196e95a` is independently
+VERIFIED with product source frozen; one authorized non-force push reached
+`4a646dc7` and is consumed; exact-source Ubuntu run 39294625340 completed/
+success and was independently VERIFIED;
+N01S/N01A and CI03
+independently verified; CI01/CI02 automated Linux
+gates reconciled green; TUI-N01B-01 contract and exact-source Ubuntu gate
+independently verified; TUI-N01B-02 local and exact-source Ubuntu gates
+independently verified; TUI-N01B-03 local and exact-source Ubuntu gates
+independently verified; TUI-N01B-04 local candidate `abeeb895` independently
+VERIFIED; authorized exact-source Ubuntu run 39268960501 independently
+VERIFIED; TUI-N01B-05 single-file export-effects candidate `c773f272` and
+exact-source Ubuntu run 39278047819 independently VERIFIED; N01B-06
+all-session export-effects candidate `e16aede6` independently VERIFIED locally;
+exact-source Ubuntu run 39284711876 on pushed aa8ae784 independently VERIFIED
+
+execution_phase: closeout; validation_state: verified (N01B-09 local and automated Ubuntu gates; TUI UAT open)
+
+## 2026-10-19 — N01B-09 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer
+[VERIFIED](validation/VAL-N01B-09-postrun-72cbc134.md) the authorized
+exact-source Ubuntu run and sole job against the live remote, saved log hashes,
+test counts, package boundary and unchanged four-path product/test blobs. The
+one non-force push is consumed. This closes N01B-09 local and automated
+Ubuntu gates only; installed TUI terminal UAT, later product units, initiative
+acceptance and additional delivery remain open. This status-only packet update
+requires a final independent delta audit.
+
+execution_phase: closeout; validation_state: verified (N01B-09 local and automated Ubuntu gates; TUI UAT open).
+
+## 2026-10-19 — N01B-09 authorized push and exact-source Ubuntu success
+
+Chuck Russell authorized one non-force push of exact local tip `371c1387`.
+The remote advanced from `c4a5faa6` to `371c1387` once. GitHub Actions
+[run 39307201390](validation/N01B-09-ubuntu-run-39307201390.md) and its sole
+job completed/success on that source. Saved logs show 21 neutral-loader/Chat
+facade, 414 Runtime, 872 Chat with 23 skips, and 155 unchanged CLI passes,
+plus repeated MCP, 13 wheels and installed package-boundary checks. The
+reviewed four source/test blobs remain identical. The one push is consumed;
+fresh-context read-only post-run reconciliation is next. Installed TUI
+terminal UAT, later product units, initiative acceptance and additional
+delivery remain open.
+
+execution_phase: validation; validation_state: pending (N01B-09 Ubuntu post-run review; TUI UAT open).
+
+## 2026-10-19 — N01B-09 corrected local candidate independently VERIFIED
+
+A fresh-context read-only reviewer
+[VERIFIED](validation/VAL-N01B-09-prepush-cda7419d.md) the documentation-only
+N01B09-01 correction and complete candidate `cda7419d` against approved
+authority base `ee9d667c`. All four source/test blobs match the first
+candidate `36028fbf`; the historical `CHANGES_REQUESTED` finding is resolved.
+The reviewer reran 22 focused tests, board/dashboard, static, lock, JSON,
+link and exact-path checks, and reconciled unchanged full-suite and installed
+wheel evidence. The local N01B-09 product source is frozen. One separately
+authorized non-force push is the next automated Ubuntu gate; installed TUI
+terminal UAT, later units and initiative acceptance remain open.
+
+execution_phase: closeout; validation_state: verified (N01B-09 local only; Ubuntu and UAT open).
+
+## 2026-10-19 — N01B09-01 current-status remediation
+
+Fresh-context read-only review of candidate `36028fbf` returned
+[`CHANGES_REQUESTED`](validation/VAL-N01B-09-prepush-36028fbf.md) for one
+process inconsistency: current packet headers said `verified` while the
+N01B-09 independent gate remained pending. The reviewer independently passed
+the code, test and installed-package checks. Under
+[REM-TUI-N01B-09-01](remediation/REM-TUI-N01B-09-01.md), the current process
+fields now say `pending`; N01B-08's verified history remains explicit.
+The first verdict is historical, not a pass. The corrected stable candidate
+needs a fresh read-only delta review and complete candidate reconciliation.
+
+execution_phase: validation; validation_state: pending (N01B-09 corrected candidate awaiting fresh review).
+
+## 2026-10-19 — N01B-09 local candidate checks passed, pending review
+
+The exact four-path session-ensure unit has 22 new passing tests, 414 full
+Runtime, 890 full Chat with five skips, and 155 unchanged CLI passes. Scoped
+Ruff/Mypy, offline lock, 17 wheels, and isolated installed Runtime-only and
+Chat persistence probes passed. The complete Runtime and Chat suites needed
+local loopback access for synthetic HTTP/TLS fixtures; initial sandboxed
+attempts failed at bind permission only. The [local check report](validation/N01B-09-local-checks.md)
+records the behavior comparisons and the existing SQLite archived-model
+reader limitation. Freeze the candidate for fresh-context read-only review.
+No additional push, exact-source Ubuntu run or installed TUI terminal UAT is
+inferred.
+
+execution_phase: validation; validation_state: pending (N01B-09 independent local review).
+
+## 2026-10-19 — N01B-09 exact local directive approved
+
+Chuck Russell replied “approved and authorized - proceed” after the controller
+linked the [exact four-path directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
+and requested its local Runtime/Chat source and test scope. This authorizes
+bounded local construction and scoped TUI evidence. An additional push, PR,
+merge, release, later product unit and installed TUI UAT acceptance remain
+outside this approval. The before-code source remains `c4a5faa6`.
+
+execution_phase: construction; validation_state: pending (N01B-09 local candidate).
+
+## 2026-10-19 — N01B-09 transcript session-ensure directive proposed
+
+Chuck Russell's “approved and authorized - proceed” advances the next
+bounded planning step after N01B-08. [Read-only characterization](validation/N01B-09-before-code-session-ensure-characterization.md)
+of Chat's session get-or-create path and disposable SQLite/fake-store
+failure probes found the current lazy snapshot, existing/ended reuse and
+ignored false-create behavior. Selected unchanged Chat, protected
+Runtime/Transcript/Chat and full `friday-cli` runs passed 41, 29 and 155
+tests respectively; the offline lock check passed. The [exact four-path
+directive](directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md)
+is proposed for a neutral Runtime effect with Chat delegation. Its
+source/test scope still needs explicit maintainer approval; no N01B-09
+product code, tests, additional push or UAT state changed.
+
+execution_phase: planning; validation_state: verified (N01B-08 gates only; N01B-09 proposal pending).
+
+## 2026-10-19 — N01B-08 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-08-postrun-3a5e05cf.md)
+the bounded automated Ubuntu gate on pushed `c4a5faa6`. The reviewer
+matched the live branch, run 39301138733 and sole job 118226328033 to
+the checked-out source, saved log hashes, test counts, wheel metadata and
+installed configuration boundary. Four N01B-08 product/test blobs still
+match local candidate `8ac249d3`. This closes only the N01B-08 automated
+Linux gate; the one push is consumed. Installed TUI terminal UAT, later
+product work, initiative acceptance, PR, merge, release and additional
+delivery remain open.
+
+execution_phase: planning; validation_state: verified (N01B-08 automated Ubuntu gate only).
+
+## 2026-10-19 — N01B-08 pushed exact-source Ubuntu run completed
+
+The one authorized non-force push advanced `origin/feature/friday-tui` from
+`4a646dc7` to `c4a5faa6`; push authority is consumed. GitHub Actions
+[run 39301138733](validation/N01B-08-ubuntu-run-39301138733.md) and sole
+job 118226328033 reported `completed/success` on that exact source. The
+saved logs show full Runtime 402, Chat 862 with 23 skips, unchanged CLI 155,
+repeated MCP, wheel and installed-configuration checks passing. Four
+N01B-08 product/test blobs match independently reviewed local candidate
+`8ac249d3`. A fresh-context independent post-run reconciliation must review
+the live run, saved logs and current status before the automated Ubuntu gate
+can be called VERIFIED. Installed TUI terminal UAT and later product work
+remain open; no additional push, PR, merge or release is authorized.
+
+execution_phase: validation; validation_state: pending (N01B-08 post-run review).
+
+## 2026-10-19 — one N01B-08 non-force push authorized
+
+Chuck Russell replied “approved and authorized - proceed” after the
+controller identified a separately authorized push as the next gate. The
+[final local status audit](validation/VAL-N01B-08-final-1c5a70a3.md)
+VERIFIED the post-verdict authority delta without changing the frozen
+four-path product candidate `8ac249d3`. The maintainer authorizes one
+non-force push of this source with scoped authorization evidence to
+`origin/feature/friday-tui` for exact-source Ubuntu verification. The live
+remote tip before authorization was `4a646dc7`; local evidence tip was
+`471b85e7`. This grants no additional push, later product work, PR, merge,
+release or installed TUI terminal UAT acceptance. The Ubuntu run and
+independent reconciliation remain open.
+
+execution_phase: validation; validation_state: pending (N01B-08 one-push Ubuntu gate).
+
+## 2026-10-19 — N01B-08 frozen local candidate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-08-prepush-8ac249d3.md)
+the exact four-path candidate `8ac249d3` against authority base `0268ec33`.
+Independent focused, full Runtime 402, Chat 880 with five skips, unchanged
+`friday-cli` 155, static, lock, board, wheel and isolated installed checks
+passed. The source is frozen. A stale replacement-plan sentence identified
+as a prose advisory is corrected in this post-verdict status commit; because
+that plan is controlling authority, a fresh read-only delta audit must
+reconcile the update. No additional push, exact-source Ubuntu verification,
+installed TUI terminal UAT or initiative acceptance is inferred.
+
+execution_phase: planning; validation_state: verified (N01B-08 local candidate; post-verdict status-delta audit open).
+
+## 2026-10-19 — N01B-08 local construction checks passed
+
+The exact four-path Runtime/Chat append/context-log effect extraction is
+ready to freeze. [Builder checks](validation/N01B-08-local-checks.md) passed:
+18 new tests, full Runtime 402, full Chat 880 with five skips, unchanged
+`friday-cli` 155, scoped Ruff/Mypy, offline lock, 17 wheels and isolated
+Runtime-only/Chat installed probes. Chat retains session/turn/entry policy,
+pending-state handling and MCP receipt readback. Freeze this source/test
+candidate for fresh-context read-only independent review; no additional
+push or installed TUI UAT is inferred.
+
+execution_phase: validation; validation_state: pending (N01B-08 independent review).
+
+## 2026-10-19 — N01B-08 exact local directive approved
+
+Chuck Russell replied “approved and authorized - proceed” after the
+controller linked [CD-TUI-N01B-08](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
+and requested approval of its four named Runtime/Chat source/test paths.
+The local append/context-log effect extraction and scoped evidence may now
+proceed on `feature/friday-tui`. The approved planning candidate is
+`bec5b875`; product source still matches pushed `4a646dc7`. No additional
+push, PR, merge, release or installed TUI UAT is authorized by this
+approval. Builder checks and fresh-context independent review remain open.
+
+execution_phase: implementation; validation_state: not_ready (N01B-08 local unit).
+
+## 2026-10-19 — N01B-08 transcript write-effects directive proposed
+
+Chuck Russell's “approved and authorized - proceed” advances the next
+bounded planning step after N01B-07. [Read-only characterization](validation/N01B-08-before-code-transcript-write-characterization.md)
+of the current Chat path and disposable SQLite failure/timing probes found
+that an entry can remain committed when the later context-log write fails.
+Relevant unchanged Chat, direct Runtime and full `friday-cli` runs passed
+113, 11 and 155 tests respectively; the offline lock check passed. The
+[exact four-path directive](directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md)
+is proposed for neutral Runtime append/context-log effects and Chat
+delegation. Its source/test scope still needs explicit maintainer approval;
+no product code, test, dependency, workflow, push or UAT state changed.
+
+execution_phase: planning; validation_state: verified (N01B-07 gates only; N01B-08 proposal pending).
+
+## 2026-10-19 — N01B-07 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-07-postrun-4fc8309d.md)
+the [completed/success run and sole job](validation/N01B-07-ubuntu-run-39294625340.md)
+against live remote, source and checkout `4a646dc7`. Freshly fetched log
+hashes matched the saved evidence, along with test counts, wheel metadata
+and installed configuration isolation. The N01B-07 automated Linux gate is
+closed; reviewed product source remains frozen at `a196e95a` and the one
+push is consumed. The next bounded N01B transcript-persistence unit needs
+source-backed characterization and separate exact directive approval.
+Installed TUI terminal UAT, later product units, initiative acceptance and
+further delivery remain open.
+
+execution_phase: planning; validation_state: verified (N01B-07 automated Ubuntu gate only).
+
+## 2026-10-19 — N01B-07 exact-source Ubuntu run succeeded, review pending
+
+The single authorized non-force push advanced `origin/feature/friday-tui`
+from `aa8ae784` to `4a646dc7`. The live remote, [run and sole
+job](validation/N01B-07-ubuntu-run-39294625340.md), printed source and
+checked-out SHA all match `4a646dc7`; GitHub reports both run and job
+`completed/success`. The saved logs record 21 loader/Chat facade, 393
+Runtime, 853 Chat with 23 skips, 155 unchanged `friday-cli`, repeated MCP,
+13 wheels and installed configuration-isolation passes. Product bytes still
+match independently reviewed candidate `a196e95a`. The push is consumed.
+Fresh-context read-only post-run reconciliation is required before closing
+the automated Linux gate. Installed TUI terminal UAT and later product units
+remain open.
+
+execution_phase: validation; validation_state: pending (N01B-07 independent post-run review).
+
+## 2026-10-19 — one N01B-07 non-force push authorized
+
+Chuck Russell replied “proceed” after the controller asked permission for one
+non-force push of branch tip `3d44b1cb` to `origin/feature/friday-tui` for
+exact-source Ubuntu verification. The live remote branch still pointed to
+`aa8ae784`. The reviewed product candidate `a196e95a` remains frozen; only
+this scoped authorization evidence may be added before the push. No PR,
+merge, release, later product unit or installed TUI terminal UAT is
+authorized. Record the push SHA and reconcile the run after the one push.
+
+execution_phase: validation; validation_state: pending (N01B-07 exact-source Ubuntu gate).
+
+## 2026-10-19 — N01B-07 local candidate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-07-prepush-a196e95a.md)
+stable candidate `a196e95a` against authority base `f78ab6aa` and the exact
+four-path directive. The reviewer independently reproduced the Runtime 393,
+Chat 871 with five skips, unchanged CLI 155, static/lock/board checks, 17
+wheels and isolated installed Runtime-only/Chat behavior. The N01B-07 local
+work unit is closed and product source is frozen. The next gate is a separately
+authorized non-force push of frozen source and scoped evidence, followed by
+exact-source Ubuntu reconciliation. No N01B-07 push, installed TUI terminal
+UAT, later product-unit approval or full initiative acceptance is recorded.
+
+execution_phase: closeout; validation_state: verified (N01B-07 local unit only).
+
+## 2026-10-19 — N01B-07 local candidate checks passed
+
+The two new Runtime tool-record stages and Chat delegation are confined to
+the [directive's four paths](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md).
+The [builder report](validation/N01B-07-local-checks.md) records 16 new
+passes, full Runtime 393, full Chat 871 with five skips, unchanged
+`friday-cli` 155, scoped Ruff/Mypy, 17 wheels and isolated installed
+Runtime-only and Chat persistence probes. The initial sandboxed full Runtime
+run failed nine existing HTTP fixtures on denied loopback bind; a complete
+rerun with synthetic loopback access passed 393/393. Product source is ready
+for a stable candidate commit and fresh-context read-only review. No push,
+exact-source Ubuntu run, installed TUI UAT or acceptance is inferred.
+
+execution_phase: validation; validation_state: pending (N01B-07 local independent review).
+
+## 2026-10-19 — N01B-07 exact local construction approved
+
+Chuck Russell replied “All deliverables are approved. Continue with the next
+task” after the controller identified the proposed [N01B-07
+directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md) as
+the next product gate. Before code work, the controller stated its
+interpretation as approval for the directive's four named local Runtime/Chat
+source/test paths. Source baseline `aa8ae784` remains frozen from N01B-06;
+N01B-07 construction and independent validation now proceed locally. No
+additional push, PR, merge, release, later unit or installed TUI UAT
+acceptance is authorized.
+
+execution_phase: implementation; validation_state: not_ready (N01B-07 local unit).
+
+## 2026-10-19 — N01B-06 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-06-postrun-3413c25f.md)
+the [completed/success run and sole job](validation/N01B-06-ubuntu-run-39284711876.md)
+against live remote, source and checkout `aa8ae784`, and independently
+matched the saved log hashes, test results, wheels and installed
+configuration boundary. The N01B-06 automated Linux gate is closed. The
+reviewed product source remains frozen at `e16aede6`; the one authorized
+push is consumed. The [N01B-07 directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
+is proposed only and needs separate exact approval before product code.
+Installed macOS/Linux TUI terminal UAT, controlled real-provider/tool
+testing, initiative acceptance and further delivery remain open.
+
+execution_phase: planning; validation_state: verified (N01B-06 automated Ubuntu gate only; N01B-07 proposed and TUI product/UAT open).
+
+## 2026-10-19 — N01B-06 exact-source Ubuntu run reports success
+
+GitHub run [39284711876](validation/N01B-06-ubuntu-run-39284711876.md)
+reports `completed/success` on source and checkout `aa8ae784`, matching
+the live remote branch. The full log archive records 21 loader, 382 Runtime,
+848 Chat with 23 skips, 155 unchanged CLI, repeated MCP, 13 wheels and
+installed configuration-isolation passes. The individual-job API lagged at
+`in_progress` after all steps succeeded and the complete archive became
+available; the [run report](validation/N01B-06-ubuntu-run-39284711876.md)
+records the hashes and boundary. Fresh independent post-run reconciliation
+is next. No installed TUI UAT or further delivery is inferred.
+
+execution_phase: validation; validation_state: in_review (N01B-06 Ubuntu post-run reconciliation).
+
+## 2026-10-19 — N01B-07 transcript tool-record directive proposed
+
+While the N01B-06 exact-source Ubuntu run awaits a terminal result, a
+read-only review of Chat's transcript write adapter separated pure MCP
+provenance preflight and tool-call/result construction from session, entry,
+raw-context-log and receipt effects. The [before-code characterization](validation/N01B-07-before-code-transcript-tool-record-characterization.md)
+records 63 unchanged transcript/identity, 85 MCP-memory/telemetry and 155
+unchanged `friday-cli` passes. The [exact N01B-07 directive](directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md)
+is proposed only. No N01B-07 source/test edit, additional push, PR, merge,
+release or installed TUI UAT is authorized. N01B-06's Ubuntu run and
+independent post-run reconciliation remain the current gate.
+
+execution_phase: validation; validation_state: pending (N01B-06 Ubuntu run; N01B-07 proposal only).
+
+## 2026-10-19 — N01B-06 authorized push and queued Ubuntu run
+
+The one authorized non-force push advanced `origin/feature/friday-tui` from
+`37298e48` to `aa8ae784`. GitHub created [run 39284711876](https://github.com/CIChuck/agent-framework/actions/runs/39284711876)
+on that exact SHA; the job is queued with no runner assigned or test result.
+The pushed product source matches independently reviewed `e16aede6`.
+Push authority is consumed. Reconcile the run and obtain a fresh independent
+post-run review before claiming the automated Linux gate. Installed TUI
+terminal UAT remains open.
+
+execution_phase: validation; validation_state: pending (N01B-06 Ubuntu run queued).
+
+## 2026-10-19 — N01B-06 exact-source Ubuntu push authorized
+
+Chuck Russell replied “Approved. Let's get moving on to the next task” after
+the controller identified one non-force push of the frozen N01B-06 branch tip
+`51793851` for exact-source Ubuntu verification. The controller stated this
+one-push interpretation before acting. Authority covers product candidate
+`e16aede6` plus a scoped evidence-only authorization commit. It does not
+authorize an additional push, PR, merge, release, later product unit or
+installed TUI UAT acceptance. The push and CI reconciliation are pending.
+
+execution_phase: planning; validation_state: verified (N01B-06 local gate only; authorized push pending).
+
+## 2026-10-19 — N01B-06 local candidate independently VERIFIED
+
+The exact four-path Runtime/Chat change and [builder checks](validation/N01B-06-local-checks.md)
+were committed at `e16aede6`. A fresh-context read-only reviewer
+[VERIFIED](validation/VAL-N01B-06-prepush-e16aede6.md) the frozen candidate
+against authority base `d6ababf1`: 262 focused/protected, 382 Runtime,
+866 Chat with five skips, 155 unchanged CLI tests, static checks, wheels
+and isolated installed Runtime/Chat effects passed. Product source is frozen;
+the post-verdict board and packet changes are evidence/status only. This
+closes the local N01B-06 gate. A non-force push for exact-source Ubuntu
+verification needs separate authorization. Installed TUI terminal UAT,
+later product units, full acceptance, PR, merge and release remain open.
+
+execution_phase: planning; validation_state: verified (N01B-06 local unit only).
+
+## 2026-10-19 — N01B-06 exact local construction approved
+
+Chuck Russell replied “approved continue with next steps” after the
+controller stated that N01B-06 awaited exact directive approval. Before
+code work, the controller linked the [directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
+and stated its four-path local-only interpretation. The approved scope is
+the two named Runtime/Chat source files and two named tests, plus scoped TUI
+evidence. No push, PR, merge, release, later unit or installed TUI UAT
+acceptance is authorized. Run focused tests, protected regressions,
+installed-wheel checks and independent review before closing this unit.
+
+execution_phase: implementation; validation_state: not_ready (N01B-06 local unit).
+
+## 2026-10-19 — N01B-06 all-session export-effects directive proposed
+
+After the maintainer requested the next tasks, read-only source review
+isolated Chat's remaining timestamped-directory and two-file export effects.
+The [before-code characterization](validation/N01B-06-before-code-all-session-export-characterization.md)
+records 253 unchanged focused/protected passes and disposable collision and
+partial-second-write probes. The [exact directive](directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md)
+is proposed for maintainer review. No N01B-06 product or test edit, further
+push, PR, merge, release or installed TUI UAT is authorized by this planning
+pass. N01B-05 source and its verified automated Ubuntu gate remain frozen.
+
+execution_phase: planning; validation_state: not_ready (N01B-06 proposal only).
+
+## 2026-10-19 — N01B-05 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-05-postrun-3d5695d8.md)
+the live GitHub run and job, pushed `37298e48` source, matching remote and
+saved-log hash, protected Runtime/Chat/unchanged CLI checks and scoped
+evidence-only post-run diff. This closes the N01B-05 automated Ubuntu gate.
+Product source remains frozen at candidate `c773f272`. The one push is
+consumed; a later bounded directive needs separate approval before product
+work. Installed macOS/Linux TUI terminal UAT, real-provider/tool run, full
+parity, maintainer acceptance and further delivery remain open.
+
+execution_phase: planning; validation_state: verified (N01B-05 work unit and automated Ubuntu gate only).
+
+## 2026-10-19 — N01B-05 exact-source Ubuntu run green
+
+The one authorized non-force push advanced `origin/feature/friday-tui` to
+`37298e48`; the [run report](validation/N01B-05-ubuntu-run-39278047819.md)
+records matching source and checkout SHAs, successful GitHub run/job status,
+377 Runtime, 844 Chat with 23 skips, unchanged CLI 155, repeated MCP, wheel
+and installed configuration checks. Reviewed product source still matches
+`c773f272`. The push authority is consumed. Fresh-context independent
+post-run reconciliation is next; installed TUI terminal UAT remains open.
+
+execution_phase: validation; validation_state: in_review (N01B-05 automated Ubuntu gate only).
+
+## 2026-10-19 — N01B-05 exact-source Ubuntu push authorized
+
+Chuck Russell replied “proceed” after the controller stated that the next
+step is one separately authorized non-force push of the frozen N01B-05 branch
+to `origin/feature/friday-tui` for exact-source Ubuntu verification. The
+controller stated this one-push interpretation before acting. Authority covers
+candidate `c773f272` and a scoped evidence-only authorization commit; it does
+not authorize another push, PR, merge, release, later product unit or installed
+TUI UAT acceptance. The [final local audit](validation/VAL-N01B-05-final-331b1680.md)
+confirmed source and tests remained frozen through closeout. The push and CI
+reconciliation are pending.
+
+execution_phase: planning; validation_state: verified (N01B-05 local gate only; authorized push pending).
+
+## 2026-10-19 — N01B-05 local candidate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-05-prepush-c773f272.md)
+the exact `13bc923f..c773f272` N01B-05 candidate: four approved source/test
+paths and scoped evidence, full protected suites, static checks, wheels and
+installed five/seven frozen export hashes. The source is frozen. Exact-source
+Ubuntu verification requires a separately authorized non-force branch push;
+installed TUI terminal UAT, later product units, maintainer acceptance and
+PR/merge/release remain open.
+
+execution_phase: planning; validation_state: verified (N01B-05 local work unit only).
+
+## 2026-10-19 — N01B-05 local construction checks passed
+
+The [local report](validation/N01B-05-local-checks.md) records 14 new tests,
+253 focused/protected passes, full Runtime 377, Chat 862 with five skips,
+unchanged CLI 155, Ruff, targeted Mypy, offline lock and 17 wheel builds.
+Isolated Runtime-only and Chat-installed probes retained all five and seven
+frozen hashes, respectively. Localhost integration fixtures passed when the
+full suites were rerun with loopback access. Freeze the exact four-path
+candidate and obtain fresh-context read-only independent review. No push,
+exact-source Ubuntu run or installed TUI UAT is inferred.
+
+execution_phase: validation; validation_state: in_review (N01B-05 local candidate).
+
+## 2026-10-19 — N01B-05 exact local construction approved
+
+Chuck Russell replied “continue” immediately after the controller linked the
+[exact N01B-05 directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
+and identified its approval as the next gate. The controller stated that
+interpretation before code work. Local authority covers the four named
+Runtime/Chat source/test paths and scoped packet evidence. It does not authorize
+a push, PR, merge, release, later N01B unit or installed TUI UAT.
+
+execution_phase: implementation; validation_state: not_ready (N01B-05 local unit).
+
+## 2026-10-19 — N01B-05 single-file export-effects directive proposed
+
+After the maintainer asked to continue from N01B-04 closeout, read-only
+[source characterization](validation/N01B-05-before-code-single-file-export-characterization.md)
+isolated the five fixed-name single-file exports from Chat-owned format/path
+decisions, Chat's export-result identity and the two-file all-session export.
+The unchanged focused/protected baseline passed 239 tests. The
+[N01B-05 directive](directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md)
+is proposed for exact maintainer approval. Only planning files, the scoped
+TUI board event and generated dashboard change. No product source, tests,
+package metadata, lock, workflow, push or TUI UAT is authorized by this
+planning pass.
+
+execution_phase: planning; validation_state: not_ready (N01B-05 proposal only).
+
+## 2026-10-19 — N01B-04 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context, read-only reviewer [VERIFIED](validation/VAL-N01B-04-postrun-27c84ad9.md)
+the live GitHub run/job metadata, saved job log, exact pushed and checked-out
+`4b2aadd2` SHA, post-run evidence-only diff and frozen product source. The
+automated Ubuntu gate is closed. The branch remains `started`; the next
+bounded N01B product unit needs a separately approved directive. Installed
+TUI terminal UAT, real-provider/tool testing and full initiative acceptance
+remain open, and no further push is authorized.
+
+execution_phase: planning; validation_state: verified (N01B-04 automated gate only).
+
+## 2026-10-19 — N01B-04 exact-source Ubuntu run green, pending independent review
+
+The one authorized non-force push advanced `origin/feature/friday-tui` from
+`f7950581` to `4b2aadd2`. Git remote and GitHub Actions metadata agree on
+the full pushed SHA; the [run report](validation/N01B-04-ubuntu-run-39268960501.md)
+records the matching checkout SHA, green full Runtime, Chat and unchanged
+`friday-cli` suites, repeated MCP checks, wheel metadata and installed
+configuration isolation. The pushed product source remains byte-identical to
+independently reviewed candidate `abeeb895`. The push authority is consumed.
+Independent post-run reconciliation is next; installed TUI terminal UAT and
+full initiative acceptance remain open.
+
+execution_phase: validation; validation_state: in_review (N01B-04 Ubuntu gate only).
+
+## 2026-10-19 — N01B-04 exact-source Ubuntu push authorized
+
+Chuck Russell replied “continue” immediately after the controller identified
+the separate non-force `feature/friday-tui` push for exact-source Ubuntu
+verification. The controller stated that interpretation before acting. This
+authorizes one branch push containing frozen product candidate `abeeb895` and
+this scoped evidence-only authorization record. It does not authorize another
+push, a PR, merge, release, later product unit or TUI UAT acceptance.
+
+execution_phase: planning; validation_state: verified (N01B-04 local only; Ubuntu run pending).
+
+## 2026-10-19 — N01B-04 local candidate independently VERIFIED
+
+A fresh-context, read-only reviewer [VERIFIED](validation/VAL-N01B-04-prepush-abeeb895.md)
+the exact local candidate `abeeb895` against its approved directive, pinned
+authority, four-path product diff and protected comparisons. The reviewer
+reproduced 13 new tests, 239 focused/protected tests, 365 Runtime passes,
+860 Chat passes with five skips, static checks, board/dashboard checks and
+isolated installed-wheel behavior, including seven frozen export hashes.
+The source remains frozen. A separately authorized branch push is required
+for an exact-source Ubuntu run; installed TUI terminal UAT and full initiative
+acceptance remain open.
+
+execution_phase: planning; validation_state: verified (N01B-04 local only).
+
+## 2026-10-19 — N01B-04 local candidate frozen for independent review
+
+Commit `abeeb8951914d5b63ca77be4f48a66ace256bfb3` freezes the exact
+four source/test paths and scoped packet changes against planning base
+`401d10583a19c1b1689cdeb7046d00e5352e5819`. The candidate is clean and
+the [local report](validation/N01B-04-local-checks.md) records its passing
+checks and installed-wheel comparison. Product source is frozen. A fresh-context,
+read-only reviewer must reconcile the directive, authority, candidate diff,
+test evidence and protected Chat/`friday-cli` behavior. No push or TUI terminal
+UAT is authorized by this candidate.
+
+execution_phase: validation; validation_state: in_review (N01B-04 local candidate only).
+
+## 2026-10-19 — N01B-04 local construction checks passed
+
+The [local report](validation/N01B-04-local-checks.md) records 13 new tests,
+the 239-pass protected comparison, full Runtime and Chat suites (365 and 860
+passes, with five Chat skips), Ruff and Mypy checks, and offline installed-wheel
+probes. Runtime imports the neutral path module without Chat/CLI installed.
+The installed Chat registry retained seven frozen export-file hashes and the
+`/context --file` and `/prompt --file` file/output behavior. Source remains in
+the four approved paths. Freeze a stable candidate and obtain fresh-context,
+read-only independent review before any delivery decision.
+
+execution_phase: implementation; validation_state: not_ready (N01B-04 local checks passed; candidate freeze next).
+
+## 2026-10-19 — N01B-04 exact local construction approved
+
+Chuck Russell replied "lets continue" to the explicit request to approve the
+[N01B-04 directive](directives/CD-TUI-N01B-04-neutral-export-destination-paths.md).
+The active scope is the four named Runtime/Chat source and test paths, plus
+scoped TUI packet evidence. Implementation and required comparisons may begin.
+No push, later product unit, terminal UAT or full TUI acceptance is inferred.
+
+execution_phase: implementation; validation_state: not_ready (N01B-04 local unit).
+
+## 2026-10-19 — N01B-04 next-unit directive proposed
+
+The maintainer asked for the next TUI task after N01B-03's exact-source Ubuntu
+closeout. Read-only [source characterization](validation/N01B-04-before-code-export-path-characterization.md)
+found a bounded Runtime seam for export-root creation and safe child paths;
+Chat's public `export_directory` also serves `/context --file` and
+`/prompt --file`, so those commands are protected. The unchanged focused and
+CLI comparison passed 226 tests, and a disposable traversal/symlink probe
+passed. The [exact N01B-04 directive](directives/CD-TUI-N01B-04-neutral-export-destination-paths.md)
+is proposed for separate maintainer approval. No product source/test edit,
+push, terminal UAT or full TUI acceptance follows from this planning pass.
+
+execution_phase: planning; validation_state: proposed (N01B-04 directive only; N01B-03 independently VERIFIED).
+
+## 2026-10-19 — N01B-03 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-03-postrun-9a68d0c7.md)
+the [green Ubuntu run](validation/N01B-03-ubuntu-run-39256858630.md) against
+pushed source `f7950581` and evidence-only packet candidate `9a68d0c7`.
+The reviewer matched the checkout, Runtime/Chat/unchanged `friday-cli` results,
+MCP repeats, wheels and installed configuration probe in the saved job log.
+The reviewer could not independently query live GitHub metadata, a limit
+recorded in the report; the controller had separately queried the successful
+run and job metadata. Product source remained byte-identical to the local
+reviewed candidate. N01B-03's automated Linux gate is closed. The next N01B
+product unit requires its own exact directive and approval; installed TUI
+terminal UAT, maintainer acceptance and further external delivery remain open.
+
+execution_phase: planning; validation_state: verified (N01B-03 local and Ubuntu gates only).
+
+## 2026-10-19 — N01B-03 authorized push and green exact-source Ubuntu run
+
+Chuck Russell replied "yes you may push" to the exact non-force branch-push
+question. The push advanced `origin/feature/friday-tui` from `07177e6c` to
+`f7950581`. [GitHub run 39256858630](validation/N01B-03-ubuntu-run-39256858630.md)
+reports that SHA as both its head and checked-out source; all steps passed.
+The log records 356 Runtime tests, 838 Chat passes with 23 skips, 155 unchanged
+`friday-cli` passes, repeated MCP checks, 13 wheels, Runtime metadata without
+Chat/CLI requirements, and installed configuration isolation. Its installed
+probe covers configuration, while the earlier independent local probe covers
+all seven new export byte digests. Fresh independent post-run reconciliation
+is the next gate. The push authority is consumed; no later product unit,
+further push, TUI terminal UAT or acceptance is inferred.
+
+execution_phase: validation; validation_state: pending (N01B-03 post-run reconciliation).
+
+## 2026-10-19 — N01B-03 local candidate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-03-prepush-782dedbb.md)
+clean candidate `782dedbb` against approved base `23fc6d16` and the four
+exact Runtime/Chat source/test paths. The independent 204-test protected
+comparison, full Runtime and Chat suites, static/lock/board checks, and
+isolated installed Runtime and Chat seven-file byte probes passed. The
+reviewer found no changes needed. N01B-03 product source is frozen, and no
+construction directive remains active. Its exact-source Ubuntu run requires
+a separately authorized branch push. Installed TUI terminal UAT, later N01B
+product work, maintainer acceptance, PR, merge and release remain open.
+
+execution_phase: planning; validation_state: verified (N01B-03 local unit only).
+
+## 2026-10-19 — N01B-03 local construction checks passed
+
+The four approved source/test paths now supply pure Runtime export
+serialization and Chat delegation. The [local report](validation/N01B-03-local-checks.md)
+records 204 focused/protected passes, full Runtime 356, full Chat 856 with
+five skips, unchanged `friday-cli` 155, static/lock gates and isolated wheel
+checks reproducing all seven frozen export hashes. The first sandboxed full
+Runtime attempt failed only at nine disposable `127.0.0.1` bind calls; its
+local-loopback rerun passed. Whole-file Chat formatting remains red on its
+pre-code source, while the edited ranges pass. The next gate is a stable
+candidate commit and fresh-context read-only independent review. No push,
+exact-source Ubuntu run or installed TUI terminal UAT is claimed.
+
+execution_phase: validation; validation_state: pending (N01B-03 independent review).
+
+## 2026-10-19 — N01B-03 exact directive approved
+
+Chuck Russell replied "approved" to the explicit
+[CD-TUI-N01B-03](directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md)
+question. The authority manifest activates only its four named Runtime/Chat
+source/test paths and scoped TUI packet/board evidence. The
+[before-code characterization](validation/N01B-03-before-code-characterization.md)
+is the protected comparison. The next gate is bounded implementation,
+local checks, a stable candidate commit and fresh independent review.
+The approval does not extend to Chat export file effects, a TUI executable,
+later N01B units or external delivery.
+
+execution_phase: implementation; validation_state: not_ready (N01B-03 construction begins).
+
+## 2026-10-19 — N01B-03 export serialization directive proposed
+
+Chuck Russell instructed "proceed to next step" after N01B-02's independent
+exact-source Ubuntu closeout. Source inspection isolated six pure transcript
+export content formats from Chat's command/file effects. The unchanged
+Runtime query/view, Chat transcript/export and protected `friday-cli` suite
+passed **195 tests** at clean `c1e38d94`; a disposable seven-file probe
+captured exact UTF-8 byte counts and SHA-256 values. The
+[before-code characterization](validation/N01B-03-before-code-characterization.md)
+and [proposed exact directive](directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md)
+limit the next candidate to one neutral serializer module, Chat delegation
+and two new test files. This is planning only: the directive awaits explicit
+maintainer approval, and no product source, test, workflow, metadata, lock or
+external state changed. Later export file effects, TUI construction and
+installed terminal UAT remain open.
+Board/dashboard validation, authority JSON parsing and all 212 checked
+changed-document local links passed. The repository-wide documentation
+lifecycle check remains red on six absolute `/private/tmp/telem-01/review`
+links in an unchanged telemetry validation report; this is the same
+before-code failure recorded in the N01B-02 planning pass.
+
+execution_phase: planning; validation_state: verified (N01B-02 only; N01B-03 approval pending).
+
+## 2026-10-19 — N01B-02 exact-source Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer
+[VERIFIED](validation/VAL-N01B-02-postrun-8e389def.md) pushed source
+`07177e6c`, green GitHub run `39248181260` and the post-run packet at
+`8e389def`. The review independently checked live run/job metadata and logs,
+all named steps and test counts, the docs-only packet delta, authority hashes,
+board/dashboard, links and clean state. The installed Ubuntu wheel probe covers
+the configuration facade; independently reviewed local installed-wheel checks
+cover N01B-02 transcript queries and Chat delegation on the byte-identical
+product source. This closes only N01B-02's automated Linux gate. No product
+directive is active; later N01B effects, installed terminal UAT, acceptance,
+PR, merge and release remain open. The authorized push is consumed.
+
+execution_phase: planning; validation_state: verified (N01B-02 automated Linux gate only).
+
+## 2026-10-19 — N01B-02 authorized push and green exact-source Ubuntu run
+
+Chuck Russell replied "authorized" to the exact non-force push question for
+`07177e6c` on `origin/feature/friday-tui`. The push advanced the branch from
+`f0e0786f` to `07177e6c`. GitHub [run
+39248181260](validation/N01B-02-ubuntu-run-39248181260.md) checked out that
+full SHA on Ubuntu 24.04.5 and passed every workflow step: full Runtime 352,
+full Chat 833 with 23 skips, unchanged `friday-cli` 155, repeated MCP checks,
+13 wheel builds, Runtime frontend-dependency isolation and installed
+configuration-facade checks. The Ubuntu workflow does not run an installed
+transcript-adapter-specific probe; local independently reviewed installed
+wheel checks cover that behavior on unchanged product source. Fresh read-only
+post-run reconciliation is the next gate. The one-shot push authority is
+consumed; no later product unit, PR, merge, release, terminal UAT or acceptance
+is implied.
+
+execution_phase: validation; validation_state: in_review (N01B-02 post-run reconciliation).
+
+## 2026-10-19 — N01B-02 independently VERIFIED for local pre-push readiness
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-02-prepush-e62f39ce.md)
+candidate `e62f39ce` against approved base `b58e8288` and the four exact
+source/test paths. The reviewer reproduced 195 focused/protected passes, full
+Runtime 352, full Chat 851 with five skips, unchanged `friday-cli` 155,
+static/lock/board gates and isolated installed-wheel direct-query, Chat command
+and export checks. There are no numbered findings. The neutral adapter and
+Chat delegation source is frozen; no product-code directive remains active.
+N01B-02 exact-source Ubuntu execution needs separate push authority. Installed
+TUI terminal UAT, later N01B effects, acceptance and external delivery remain
+open.
+
+execution_phase: planning; validation_state: verified (N01B-02 local pre-push gate only).
+
+## 2026-10-19 — N01B-02 local construction checks passed
+
+The four approved source/test paths now provide a UI-neutral persisted query
+adapter and Chat delegation while preserving Chat writes, exports and
+constructor. The [local report](validation/N01B-02-local-checks.md) records
+195 focused/protected passes, full Runtime 352, full Chat 851 with five skips,
+unchanged `friday-cli` 155, Ruff/Mypy/lock checks and isolated installed-wheel
+queries, Chat commands and export. Full-suite fixture tests required local
+loopback access; initial sandbox failures were `127.0.0.1` bind refusals, and
+both exact suites passed with that access. The changed Chat lines pass Ruff
+format range checks; whole-file formatting remains red on its before-code
+source. The next gate is a stable candidate commit and fresh-context,
+read-only independent review. No push, exact-source Ubuntu run or TUI terminal
+UAT is claimed.
+
+execution_phase: validation; validation_state: pending (N01B-02 independent review).
+
+## 2026-10-19 — N01B-02 exact directive approved
+
+Chuck Russell replied "CD-TUI-N01B-02 approved" to the explicit
+[directive](directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md)
+approval question. The authority manifest activates only the four named
+Runtime/Chat source/test paths and scoped TUI packet/board evidence. Its
+[171-pass baseline](validation/N01B-02-before-code-characterization.md) stays
+the protected comparison. The next gate is bounded implementation, local
+checks, a stable candidate commit and fresh independent review. Later N01B
+effects, TUI implementation and external delivery are outside this approval.
+
+execution_phase: implementation; validation_state: not_ready (N01B-02 construction begins).
+
+## 2026-10-18 — N01B-02 read-only baseline and exact directive proposed
+
+Chuck Russell instructed "PROCEED" after the next N01B neutral
+adapter/effects planning step was identified. Source inspection found the four
+persisted query methods and query-only helpers inside Chat's
+`FrameworkTranscriptAdapter`. Its writes, configuration, MCP provenance,
+finalization, fake store and command exports remain Chat-owned. The unchanged
+transcript, session-identity and `friday-cli` comparison suite passed **171 tests**
+on clean source `f0e0786f`. The
+[before-code characterization](validation/N01B-02-before-code-characterization.md)
+records exact paging, archive, ordering and context-log limit behavior. The
+[proposed CD-TUI-N01B-02](directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md)
+names four source/test paths, direct neutral tests, protected Chat/CLI
+comparisons, installed isolation and stop conditions. This planning pass
+changes only scoped packet/board/dashboard files; it does not activate the
+directive, edit product code, run terminal UAT or authorize external delivery.
+Board, dashboard, JSON, changed-document local links and staged diff checks
+passed. The repository-wide documentation lifecycle check remains red on six
+absolute `/private/tmp/telem-01/review` links in an unchanged telemetry review
+report; those links are present at the before-code HEAD.
+
+execution_phase: planning; validation_state: not_ready (N01B-02 exact directive approval pending).
+
+## 2026-10-18 — N01B-01 Ubuntu gate independently VERIFIED
+
+A fresh-context read-only reviewer [VERIFIED](validation/VAL-N01B-01-postrun-4febb6f6.md)
+the exact-source [Ubuntu run](validation/N01B-01-ubuntu-run-39190668231.md)
+and packet delta at `4febb6f6`. The reviewer cross-checked public GitHub
+run/job metadata, source and checkout SHA, full Runtime/Chat/unchanged CLI
+counts, repeated MCP passes, wheels and installed configuration isolation.
+The transcript-specific installed-wheel identity and pickle checks remain
+separate local pre-push evidence; no installed transcript-specific Linux probe
+is claimed. This closes the N01B-01 automated Linux gate, while the initiative
+remains `started`. Later product units and installed terminal UAT remain open.
+
+## 2026-10-18 — N01B-01 authorized push and exact-source Ubuntu success
+
+Chuck Russell replied "authorized" to the explicit request to push
+`feature/friday-tui` at `62d3ae3b` for the Ubuntu workflow. The remote branch
+matched the local tracking ref at `315a30e4` before the non-force push.
+The [final pre-push review](validation/VAL-N01B-01-final-closeout-35e297e8.md)
+VERIFIED product/authority candidate `35e297e8`; commit `62d3ae3b` added
+only its review evidence. [Ubuntu run 39190668231](validation/N01B-01-ubuntu-run-39190668231.md)
+checked out and passed on that exact pushed SHA. Full Runtime, Chat, unchanged
+`friday-cli`, repeated MCP, wheels, metadata and installed configuration
+isolation passed. The workflow does not directly assert installed transcript
+contract identity; independent local wheel checks cover that contract.
+Fresh post-run review remains pending before marking this unit fully
+reconciled. Installed terminal UAT and the TUI product remain open.
+
+## 2026-10-18 — N01B-01 corrected candidate independently VERIFIED pre-push
+
+Fresh-context read-only review of corrected candidate `edbcee92`
+[VERIFIED](validation/VAL-N01B-01-prepush-edbcee92.md) closure of both
+first-candidate findings and the complete bounded source/test diff. The
+reviewer independently reran 179 focused tests and checked static, lock,
+board, dashboard, links and scope. Earlier independent full Runtime/Chat/CLI
+and installed-wheel checks apply because product files did not change in
+remediation. This is pre-push readiness, not an exact-source Ubuntu run or
+TUI/UAT acceptance. A feature-branch push needs separate maintainer authority.
+
+## 2026-10-18 — N01B-01 first independent review requests documentation corrections
+
+The fresh-context, read-only reviewer returned
+[CHANGES_REQUESTED](validation/VAL-N01B-01-preflight-7e5241c8.md) on frozen
+candidate `7e5241c8`, finding N01B01-01 (stale N01A-only and pending-review
+text in the replacement plan) and N01B01-02 (missing exact reproduction
+commands in the builder report). Independent focused, full Runtime/Chat/CLI,
+static and installed-wheel checks passed, and no product-source defect was
+found. The bounded
+[remediation directive](remediation/REM-TUI-N01B-01-01.md) permits only those
+document/evidence corrections plus scoped packet and board state. Product
+source and tests remain frozen. A new commit and fresh independent review are
+required before a pre-push verdict.
+
+## 2026-10-18 — N01B-01 local candidate checks complete
+
+The [local report](validation/N01B-01-local-checks.md) records 179 focused
+passes, full Runtime 339, full Chat 848 with five skips, unchanged
+`friday-cli` 155, static/lock/board checks and isolated installed-wheel
+identity and import closure. Initial full-suite runner failures came only
+from denied local loopback binds; full suites passed when loopback was
+available. The four changed source/test paths match the approved directive.
+The next gate is a stable commit and fresh-context, read-only independent
+review. Exact-source N01B-01 Ubuntu verification and terminal UAT are not
+claimed.
+
+## 2026-10-18 — TUI-N01B-01 exact directive approved
+
+Chuck Russell answered "approved" to the explicit question about
+[CD-TUI-N01B-01](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md).
+The authority manifest activates only the neutral transcript-query contract
+and Chat compatibility-facade extraction on the four named source/test paths.
+All later N01B effects, TUI implementation and external delivery remain
+outside this approval. The before-code baseline is 171 unchanged tests; the
+next gate is bounded construction, local checks and fresh independent review.
+
+## 2026-10-18 — N01B-01 read-only baseline and exact directive proposed
+
+The source-backed [before-code characterization](validation/N01B-01-before-code-characterization.md)
+records the three Chat-owned frozen transcript query views, four-method async
+query protocol, five-name Chat export surface and historical pickle lookups.
+The unchanged focused transcript, identity and `friday-cli` suites passed
+**171 tests**. The proposed
+[CD-TUI-N01B-01](directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md)
+would move only those four read-only contracts to `friday-runtime`, retain
+same-object Chat re-exports, and leave actual query adapters, exports,
+commands, session state and close ownership for later directives. No N01B
+source/test edit, terminal UAT or external delivery occurred. Maintainer
+approval of this exact directive is the next product-code gate.
+
+## 2026-10-18 — CI02 Ubuntu run reached framework-source stop gate
+
+The fresh-context third pre-push review
+[VERIFIED](validation/VAL-TUI-CI02-preflight-49adbcb5.md) commit `49adbcb5`.
+The maintainer-authorized push triggered [Ubuntu run
+39181571549](validation/TUI-CI02-ubuntu-run-39181571549.md) on that exact
+source. Focused loader/Chat, full Chat, unchanged `friday-cli`, wheels,
+metadata and installed isolation passed. Full Runtime failed one auto/modern
+MCP case (333 passed), all three focused Runtime auto/modern repetitions
+failed with `connection_failed` after about 1.7 seconds, and all three
+direct SDK `auto` repetitions failed on legacy `initialize` with peer error
+`-32022`. The synthetic fixture timeout was not changed; CI02-C's direct-MCP
+pass and timeout-outcome conditions are false.
+
+A read-only local delayed-modern-peer check reproduced the same `-32022`
+pattern for `auto` while explicit `modern` connected. This supports an
+auto-negotiation timing hypothesis but does not prove the first Ubuntu probe
+outcome. [CD-TUI-CI03](directives/CD-TUI-CI03-mcp-auto-negotiation.md) is a
+separate proposed framework-source directive with a characterization-first
+gate. No new source, test or workflow edit is authorized until approval. CI01
+and CI02 are not marked complete, accepted or UAT-passed.
+
+## 2026-10-18 — TUI-CI02 exact scope approved
+
+Chuck Russell replied "approved" to the explicit request to approve
+`CD-TUI-CI02-linux-regression-remediation.md` and authorize committing and
+pushing the resulting reviewed candidate to `feature/friday-tui`. This grants
+only the directive's named tests, workflow, and packet/board evidence edits.
+The approved Linux `/reorganize` outcome is the existing safe refusal without
+mutation; the macOS behavior remains covered. MCP timeout adjustment remains
+conditional on the Ubuntu diagnosis and passing direct interoperability checks.
+No product-source, `friday-cli`, dependency, PR, merge, release, or TUI
+implementation authority follows from this approval.
+
+The local candidate now has ANSI-independent Chat help assertions, native
+macOS and injected-Linux `/reorganize` checks, failure-only synthetic MCP
+lifecycle/child diagnostics, and separate repeated Runtime/direct-MCP steps
+in the Linux workflow. [Local checks](validation/TUI-CI02-local-checks.md)
+passed after loopback access for synthetic HTTP fixtures; the Ubuntu outcome
+and CI02-C timeout decision remain open. The next gate is exact-candidate
+independent review before the authorized branch push.
+
+The first committed CI02 candidate `0bd4e441` received a fresh-context
+[CHANGES_REQUESTED preflight](validation/VAL-TUI-CI02-preflight-0bd4e441.md).
+Finding CI02-01 requires assertions for all six declared Chat help options.
+The authorized test-only correction now covers all six, with focused Chat
+46 passed, full Chat 845 passed/5 skipped, and focused Ruff/Mypy passing.
+The first verdict is not treated as a pass for the revised candidate; it needs
+fresh independent review.
+
+The second committed candidate `0aac67f6` also received a fresh-context
+[CHANGES_REQUESTED preflight](validation/VAL-TUI-CI02-preflight-0aac67f6.md):
+CI02-01 persisted because substring checks could match another option or
+description. The next bounded correction parses full option names from their
+rendered rows. A local deletion simulation confirms each expected option
+disappears from the parsed set when its row is removed. Focused Chat 46,
+full Chat 845 passed/5 skipped, and Ruff/Mypy on changed Chat tests passed.
+The next gate is a fresh pre-push review of the new committed candidate.
+
+## 2026-10-16 — activation and build planning
+
+Chuck Russell explicitly requested moving Friday TUI from queued to active,
+constructing a build plan from the revised README, asking project questions and
+opening a dedicated branch. Created `feature/friday-tui` from master `c3426986`,
+carrying the existing uncommitted README revisions without discarding them.
+
+Scope is design/planning only. Recorded the maintainer's scoped activation and
+agent start with `implementation_authority: design_only`; the new draft plan is
+not automatically approved. No product implementation, dependency installation,
+commit, push, merge or publication is included.
+
+Preserved requirements: current Friday Chat command parity; unchanged
+`friday-cli` implementation/features/behavior; extensible `/` commands; separate
+frontend state, adapters and command registration. Current source inventory is
+50 canonical commands and three aliases; this count is not an evolution ceiling.
+
+Moved the packet to `docs/planning/active/friday-tui/` and prepared the build
+plan, tactical sequence, decision register, authority and source baseline.
+Historical classification-ledger and frozen telemetry-evidence paths remain
+historical; they are not rewritten during this activation.
+
+The board transition helper grants full implementation authority by default;
+its existing validated save/controller was used to preserve the narrower
+`design_only` authority supported by the schema, without changing automation.
+Priority remains 14. The maintainer-selected TUI planning task does not authorize
+implementation of the separately queued Langfuse task returned by `next`.
+
+Read-only source inspection identified mutating display-config activation,
+missing operation-wide public stop/quit contracts, text-only status routing and
+different startup/interactive replay semantics. They are TUI-00 design items.
+Asked about OS support, multiline input and quit during mutations; answers are
+recorded in the decision register as they arrive.
+
+## 2026-10-16 planning stop point
+
+Build plan and tactical sequence are draft. Product choices and the exact
+integration contract must be reviewed before a product-code construction
+directive is approved. Planning checks are pending; product behavioral tests
+have not been run or claimed as passing for this documentation transaction.
+
+## 2026-10-16 — planning transaction verified
+
+Board/schema validation passed for all 34 tasks; generated dashboard is current.
+README inventory reconciles to 50 canonical commands and three aliases. Source
+hashes and protected CLI/Chat package trees are unchanged. Packet links/status,
+JSON, whitespace and exact changed-path scope pass. Other board tasks and all
+prior events remain unchanged. The full documentation checker reports only the
+six unchanged historical telemetry VAL-001 temporary-checkout links. Results are
+retained in `planning-checks.json`; they are planning checks, not a product
+implementation or behavioral validation result.
+
+The three product questions remain pending in `decisions.md`. Build and tactical
+plans remain draft. Current stop point: review those choices and the build plan,
+then approve exact TUI-00 construction scope before any product code generation.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — product decisions confirmed
+
+Chuck Russell explicitly answered:
+
+- Q-01: Support macOS and Linux initially.
+- Q-02: Use a multiline editor with an explicit submit shortcut.
+- Q-03: Quit at a safe stopping point, finishing any non-interruptible operation
+  and cleaning up before exiting.
+
+Recorded these as accepted choices in the decision register and planning
+authority; synchronized README, acceptance criteria, build requirements and
+tactical sequence. Concrete terminal/shortcut choices and operation-specific
+safe stopping contracts remain TUI-00 technical work. Earlier planning-check
+records remain unchanged as historical results; this update receives its own
+planning check record.
+
+Authority remains design_only. No product code, dependency, CLI behavior or
+release change is authorized by these product answers. Current next gate:
+finalize the TUI-00 technical integration contract, review the draft build plan
+and approve exact construction scope before product code generation.
+execution_phase: planning; validation_state: not_ready.
+
+Decision-update checks passed: board/dashboard, changed-document links, source
+hashes, JSON, whitespace and changed-path scope. Retained results in
+`decision-update-checks.json`; product authority remains design_only.
+
+## 2026-10-16 — concrete technical contract and first directive drafted
+
+The maintainer requested proceeding through the technical integration decisions
+and an explanation of the decision process. Prepared integration-contract.md,
+T-01 through T-08 rationale, an actual-registry command/argument matrix and draft
+CD-TUI-001. Synchronized README, build/tactical plans and the board's next gate.
+Technical choices remain proposals; no product authority is granted by drafting.
+
+Source inspection changed the proposed execution model from one UI loop to an
+owned backend loop/thread: current async file handlers perform synchronous reads.
+The worker keeps that work off the UI loop while preserving handlers and backend
+ordering. Runtime construction/use/closure stays on its owning backend loop;
+bounded ordered bridges carry input, output and metadata snapshots.
+
+Proposed Quit closes admission, completes admitted work, then wakes the existing
+input contract with EOF and waits for shared cleanup. This conservative safe
+boundary can wait for a slow invocation; no generic mid-operation cancellation
+is invented. The two proposed additive Chat APIs are a pure display-config
+reader and immutable categorical shutdown report. CD-TUI-001 limits construction
+to five Chat source/new-test paths, leaving CLI implementation, existing tests,
+widgets, dependencies, metadata and all other packages outside the unit.
+
+Textual 8.2.8 metadata and a dependency-only overlay resolve were inspected
+without installation or workspace changes. The overlay retains the existing
+rendering stack and adds Textual plus three transitive packages; it is not a
+full workspace solve or UI compatibility proof. Proposed keyboard defaults use
+Enter for newline, F2 submit with a focusable Submit fallback, and Ctrl+Q for
+safe Quit. Startup replay is an isolated fake-runtime view; interactive replay
+and existing CLI behavior stay under their current backend contracts.
+
+The unchanged source baseline passed 241 tests: 155 CLI and 86 selected Chat.
+Ruff and focused Mypy passed on app/display. Initial pytest collection collided
+on duplicate test_display.py names; importlib collection corrected the harness
+without edits or cache deletion. Preserved both logs. Existing editable package
+metadata still identifies alpha3 while checkout source is alpha4, so these are
+source tests, not a clean installed-release baseline. No environment sync ran.
+Neither Textual execution nor Linux/real terminal behavior was tested.
+
+Retained baseline, command metadata and resolution logs under validation/.
+Original source-baseline.json, planning-checks.json and decision-update-checks.json
+remain historical records. The new technical-contract-checks.json records this
+planning transaction. No product implementation, commit, push, PR, merge, release
+or publication occurred. Next gate: review the concrete contract/build plan and
+approve CD-TUI-001's exact scope before granting product-code authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — continuous testing and UAT added to the build contract
+
+Chuck Russell required testing as construction proceeds, testable phase subunits
+and explicit UAT. Added test-and-uat-plan.md and the unit-to-PAR map. The proposed
+breakdown has 24 bounded construction units, with behavior/failure/regression
+checks and independent candidate review before dependent implementation.
+
+Split draft CD-TUI-001 into 00A pure configuration and 00B shutdown reporting.
+Each has its own exact path subset, acceptance cases, commands and frozen review
+boundary; 00B uses verified 00A as its recorded base. No widget implementation
+starts before both interfaces are verified. Package/dependency checks occur
+when the package is first introduced and repeat for the final installed build.
+
+Added AC-13 and FR-10, synchronized requirements/build/tactical/contract documents
+and recorded D-05 as a maintainer requirement. The proposed five UAT checkpoints
+start at the usable shell and cover 14 scenario groups, including rolling
+command-family demonstrations, slow work, Quit, failure visibility, extension,
+keyboard/resize and final installed macOS/Linux workflows. Formal user approval
+is at the five milestone gates; blocking findings stop affected work when found.
+
+UAT records identify tester, candidate/artifacts, terminal/environment, fixtures,
+expected and actual results, defects and explicit checkpoint approval. Required
+failed/blocked/unrun UAT cannot pass a gate. Technical VERIFIED and automated
+headless/PTY tests do not replace real-user UAT or maintainer acceptance.
+
+All future construction units and UAT scenarios remain not_run; no signoff,
+implementation approval, test execution or live integration acceptance is
+claimed by this planning amendment. Existing 241-test results remain historical
+source-baseline evidence and were not rerun for documentation changes. Prior
+planning receipts and baseline logs are retained unchanged. Current authority
+remains design_only on feature/friday-tui; no product, dependency, existing test,
+commit/push or delivery changes are included. Checks for this amendment are
+recorded separately in incremental-testing-checks.json.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — shared runtime configuration boundary confirmed
+
+Chuck Russell clarified that the configuration surface remains compatible
+between CLI and TUI, with UI acting as UX over Friday runtime infrastructure.
+Recorded fixed requirement D-06 and acceptance AC-14/FR-11. Both frontends use
+the same current Chat configuration loader and runtime factory; runtime files
+need no translation, duplication, rewriting or frontend-specific override layer.
+
+The prior location/profile discussion remains a file-placement recommendation.
+Optional TUI settings cover presentation only. Automatic discovery, new startup
+precedence or setup generation remains a separate shared-contract proposal.
+Current explicit --config selection and existing path/environment rules remain
+controlling; portable profiles can use absolute configured data paths.
+
+Reconciled an actual draft inconsistency: the earlier TUI-only rejection of
+startup replay combined with config/runtime flags is withdrawn. Preserve the
+existing version-then-replay-then-configured-startup precedence, including the
+isolated default fake replay runtime and ignored options. Retaining a replay
+result view is still a presentation choice. No existing CLI code changes.
+
+Added CFG-01..06 to the startup test plan and shared-file/store-identity checks
+to UAT-01 and UAT-05. The 24-unit/five-UAT breakdown remains intact. No future
+case, user signoff, runtime test or implementation approval is claimed by this
+planning reconciliation. Retained all earlier evidence unchanged; current
+checks are recorded in shared-config-checks.json. Branch remains feature/friday-tui
+with design_only authority; no product, config, dependency or release changes.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — existing CLI presentation file extension proposed
+
+Chuck Russell asked to consider additional UX settings and specifically extend
+the CLI configuration file used by Friday Chat. Recorded D-07 and FR-12/AC-15;
+prepared ux-configuration.md with the current section inventory, additive YAML
+example, mapping/validation rules, UXCFG-01..08 and UAT coverage.
+
+The proposal keeps current theme/icons/prompt/response/banner/spinner fields and
+adds an optional versioned tui namespace in the same --cli-config-selected file.
+This supersedes the earlier separate tui-config.yaml suggestion. Proposed
+settings cover appearance/accessibility, layout, editor, keybindings, output and
+discovery; later notification/persistence/editing behavior needs separate scope.
+Runtime configuration remains shared and cannot be overridden from UX settings.
+
+Existing source selects known root sections and ignores additional ones. Three
+isolated probes on disposable copies confirmed unchanged legacy framework/Chat
+display values and byte-identical rendered assistant output with the proposed
+namespace, an invalid TUI-only shape and an unknown TUI-only version (all valid
+YAML). The CLI remains tolerant; a future TUI reader will validate its namespace
+without imposing new validation on CLI startup. Malformed YAML follows existing
+whole-file error rules. No user config or packaged template was modified.
+
+All 47 existing tests in CLI test_cli_config.py and Chat test_display.py passed
+using importlib collection, disposable fixtures and the prior offline guard.
+Retained the profile/result and log in validation/ux-config-compatibility.json
+and validation/ux-config-baseline.log. These are current-loader source checks,
+not execution of a TUI schema/setting or real-user UAT.
+
+Synchronized contract, README, build/tactical plans, decisions, authority and
+startup/interaction UAT references. CD-TUI-001's exact five paths/two API units
+remain unchanged; the later TUI-01A directive must bind the new settings reader.
+The 24-unit/five-UAT breakdown remains intact; fields/defaults and all TUI UX
+execution/signoff remain proposed/pending. Prior evidence is retained unchanged.
+Current amendment checks are in ux-configuration-checks.json. Authority remains
+design_only on feature/friday-tui; no product implementation or delivery change.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — UX configuration design accepted and documentation aligned
+
+Chuck Russell agreed with the suggested CLI presentation-file extension and
+requested that documentation match. Recorded approval of the existing file,
+optional versioned tui namespace, compatibility boundaries and documented UX
+option families. The separate TUI-file suggestion remains superseded.
+
+Aligned ux-configuration.md, README, decision register, integration contract,
+build/tactical/test plans and authority to distinguish accepted design from
+pending construction. Example YAML remains a design reference; exact field
+bounds, reader API and implementation paths must be bound in their directives.
+Later notifications, persistent preferences/history and preference editing
+remain deferred as stated. No new runtime override or CLI behavior change.
+
+The approval is for this design, not the whole build plan or CD-TUI-001 product
+scope, and is not implementation/UAT acceptance. Authority remains design_only
+on feature/friday-tui. Existing 47-test/three-probe evidence and earlier receipts
+remain unchanged; no runtime tests or UAT were rerun for this documentation
+update. Current checks are retained in ux-design-approval-checks.json.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — documentation-review decisions and architecture reset
+
+Chuck Russell chose normal slash-command dispatch for idle `/q` and `/quit`,
+busy rejection with editor retention, semantic command parity with TUI-specific
+presentation, automated Linux checks during construction with hands-on Linux
+terminal UAT before first-release acceptance, and ongoing parity as Chat slash
+commands evolve. He also chose an existing-file chooser when `--config` is
+absent.
+
+The maintainer clarified that `friday-tui` must be independently installable and
+must not depend on any CLI code, including `friday-chat` and `friday-cli`. The
+previous Chat-app/registry/handler integration architecture and both proposed
+Chat APIs in CD-TUI-001 conflict with this boundary. Recorded the controlling
+architecture-reset.md, withdrew that integration contract/directive, and marked
+the old unit sequence as reference material pending a replacement plan. Existing
+source probes and receipts remain historical evidence; they do not establish
+TUI implementation or UAT. Authority remains design_only on feature/friday-tui;
+no product, dependency, package metadata or release changes.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — TUI user documentation requirement added
+
+Chuck Russell required a new TUI guide that explains actual operation,
+interaction, commands and all associated everyday use, with configuration
+guidance updated for the TUI. He specified a user persona and plain language.
+Recorded D-14, AC-16 and user-guide-requirements.md. The guide will be drafted
+alongside implemented behavior and verified against the final installed
+macOS/Linux candidate through user UAT before acceptance. The detailed TUI
+settings reference may live in 10-configuration.md or the TUI guide; one
+location will own it and the other will link. Existing published guides remain
+unchanged until there is an executable to document. Authority remains
+design_only; no implementation or UAT result is claimed.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — TUI configuration reference placement confirmed
+
+Chuck Russell agreed that docs/guides/10-configuration.md will own the detailed
+`tui:` settings reference. The new TUI guide will explain task-focused setup
+and link to that reference; the configuration guide will link back to operating
+instructions. Recorded D-15 and updated the documentation requirements and
+authority. This is a guide-placement decision, not a claim that either guide
+already documents an implemented TUI. Product authority remains design_only.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — TUI screen layout proposed
+
+At the maintainer's request, drafted screen-layout.md to make the visible UI
+concrete before implementation: a compact header, optional context sidebar,
+chronological scrollable conversation and command results, fixed multiline
+editor/actions, and a concise status area. The proposal specifies prompt
+submission, streaming in place, busy draft retention, independent scrolling,
+help/palette overlays, responsive collapse, accessible controls and safe Quit.
+It uses only the independent TUI/runtime boundary; no Chat/CLI package code is
+an implementation dependency. Inline command results versus a separate result
+pane remains a stated design choice for maintainer review. No UI was built,
+tested or accepted by this planning draft; authority remains design_only.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — inline timeline and role colors accepted
+
+Chuck Russell selected inline command results in the conversation timeline and
+required different colors for user prompts and Friday responses. Updated the
+screen proposal, D-16, AC-07, UX configuration tests and user-guide requirement.
+Role labels and other visible distinctions accompany color for accessibility;
+dark/light/high-contrast and terminal color behavior remain test/UAT work. The
+exact accent palette and other layout details remain proposals. No TUI code or
+user UAT was performed; authority remains design_only.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — pinned prompt and reasoning display direction recorded
+
+Chuck Russell requested a fixed view of the latest accepted prompt while its
+response scrolls below, and a future hide/show option for thinking content.
+Recorded D-17/D-18, the pinned view in screen-layout.md and AC-07, and a
+separate reasoning-display-requirement.md. Current Friday LLM typed responses
+and events can carry provider-exposed reasoning; the Chat text adapter drops
+those events from visible streaming. The TUI requirement uses a UI-neutral path,
+keeps final-answer-only display as default, and does not change model
+generation or CLI behavior. First-release timing for the reasoning option
+awaits the maintainer's answer. No TUI code or UAT was performed;
+authority remains design_only.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — first-release reasoning visibility confirmed
+
+Chuck Russell answered that the provider-supplied reasoning display option is
+required in the first TUI release. Updated D-18, AC-17, the screen,
+configuration and user-guide requirements, architecture boundary and authority
+record. The first-release default remains final-answer-only. Provider-exposed
+reasoning is a distinct, bounded display when enabled; no CLI or runtime
+generation behavior changes. The option and UAT are requirements, not completed
+implementation or acceptance. Authority remains design_only.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — agentic tool-activity visibility requested
+
+Chuck Russell requested a rolling TUI log of tool calls and their parameters
+across multiple internal turns of an agentic loop. Recorded D-19 and
+tool-activity-requirement.md, with a proposed in-exchange Activity section
+and user-guide coverage. Source inspection distinguished provider-requested
+tool-call events from actual execution. Current Friday Agent emits telemetry
+but does not expose a complete UI-neutral tool-execution event contract; the
+TUI must not import Chat or CLI loops. First-release timing and parameter
+disclosure await maintainer answers. No product code or UAT was performed;
+authority remains design_only.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — tool activity and later reasoning sequence clarified
+
+Chuck Russell clarified that a model tool request is not proof of execution
+and that the scrolling UI need not show tool-result payloads. Revised D-19,
+added D-20, and updated the Activity, reasoning and user-guide requirements:
+show actual tool invocations with parameters/status, omit result content, then
+show only provider-exposed reasoning from subsequent model steps when the
+reasoning view is enabled. The final answer remains separate. This is a
+planning clarification, not a claim that every provider supplies reasoning
+or that the TUI event seam is implemented. First-release tool-log timing and
+parameter disclosure still await answers; authority remains design_only.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — first-release tool activity confirmed
+
+Chuck Russell confirmed that the rolling Activity log belongs in the first
+TUI release. Updated D-19, AC-18, the tool-activity requirement, architecture
+contract, user-guide requirement and authority record. First-release tests
+and macOS/Linux user UAT must cover actual tool invocations, parameters,
+status and later provider-exposed reasoning without tool-result payloads.
+The parameter-disclosure rule is the one remaining open question. This is a
+planning decision; product implementation and UAT remain pending under
+design_only authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — first-release parameter display confirmed
+
+Chuck Russell answered that no credential or sensitive-value filtering is
+needed for tool parameters at this stage; filtering may be considered later.
+Recorded D-21 and updated AC-18, the Activity display, architecture and guide
+requirements to show the parameters actually passed to each executed tool
+without TUI masking. This does not change runtime tool policy or add parameter
+persistence/export. The first-release scope and both open tool-activity choices
+are resolved. Product implementation and UAT remain pending under design_only
+authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — independent replacement plan and review answers reconciled
+
+Chuck Russell answered the remaining documentation-review questions one at a
+time. D-22 through D-30 record neutral extraction with separate Chat/TUI
+handlers, in-process-only Activity, a forward-only reasoning toggle, the
+manual `/run-tool` result exception, controlled real-provider/tool UAT,
+manual and delegated tool Activity, separate emergency Force quit, and
+rejected requests labeled `Not run` with their reason. D-20 now states the
+automatic-tool-result rule explicitly.
+
+The new [replacement plan](replacement-plan.md) is a draft independent
+integration, construction and test/UAT path. It supersedes the withdrawn
+Chat-dependent plans and directive as current planning guidance. The PRD,
+architecture, screen, Activity, reasoning, UX configuration and user-guide
+requirements were aligned to these decisions; the board's next gate points
+to the remaining capability map and exact technical contracts.
+
+This is planning work on `feature/friday-tui`. No product code, TUI package,
+terminal UAT, real-provider test, publication, construction directive or
+maintainer acceptance is claimed. Authority remains `design_only`.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — bounded oversized Activity parameters confirmed
+
+Chuck Russell selected a bounded, explicitly truncated preview when one tool
+parameter is too large for TUI Activity. The TUI discards the overflow instead
+of retaining a hidden full copy. This does not mask credentials or change the
+complete argument received by the tool. Recorded D-31 and aligned the PRD,
+replacement plan, Activity requirement, screen, architecture, user-guide
+requirements and authority record. Exact per-entry and total limits remain
+technical-contract work; no implementation or UAT is claimed.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — rejected request boundary clarified
+
+Chuck Russell chose to show `Not run` only when a model or user actually
+requested a tool and execution was rejected before invocation. Tool selection
+or budget exclusions before a request produce no `Not run` Activity entry.
+Recorded D-32 across the product, architecture, Activity, screen, guide and
+replacement-plan requirements, and corrected the active command inventory's
+Chat-handler obligations to match independent TUI handlers. No product code,
+UAT or construction approval is claimed.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — display clearing confirmed
+
+Chuck Russell chose to make `/cls` and `/clearscreen` clear the displayed
+conversation, pinned latest prompt and Activity view, while preserving
+session history and saved data. Recorded D-33 and aligned the requirements,
+screen layout, independent replacement plan, command matrix, user-guide
+requirements and acceptance cases. The display returns no replacement text;
+the pin resumes on the next accepted conversational prompt. No product code,
+UAT or construction approval is claimed.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — transcript-session switch excluded from first release
+
+Chuck Russell selected the existing-session inspection scope for the first
+TUI release: display the current transcript session, retain `/sessions` and
+`/transcript` behavior, and do not add a transcript-session switching
+control. `/switch [agent]` retains its active-agent meaning. Recorded D-34,
+removed the proposed session-switch Activity/UI contract and aligned the
+command and guide requirements. Product construction, command parity tests
+and UAT remain pending under `design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — visible Activity and reasoning copy confirmed
+
+Chuck Russell selected copy of selected visible Activity entries and shown
+provider reasoning. A truncated parameter contributes only its bounded preview
+and notice; the TUI cannot copy overflow it discarded or reasoning received
+while hidden. Recorded D-35 and aligned the product, Activity, reasoning,
+screen, user-guide and replacement-plan requirements. Copy is user-initiated;
+normal transcript/export behavior remains unchanged. No product code, UAT or
+construction approval is claimed.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — history browsing and return control confirmed
+
+Chuck Russell selected hiding the latest-prompt pin while browsing older
+conversation and requested a clickable return-to-bottom control. Recorded
+D-36: a visible, keyboard-focusable `Jump to latest` control returns to the
+bottom, restores the pin when one exists and resumes following new output.
+Scrolling back to the bottom has the same effect; new output does not move the
+view while history is being read. Aligned the screen mockup, product, UX
+configuration, user-guide, architecture, build-unit and UAT requirements.
+No product code, UAT or construction approval is claimed.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — bounded history eviction behavior confirmed
+
+Chuck Russell selected a visible notice when older conversation messages
+leave the bounded on-screen view, with `/transcript` as the route to messages
+that were saved. The UI must say when no saved transcript is available. There
+is no first-release `Load older` control, and transient Activity or provider
+reasoning must not be presented as recoverable transcript content. Recorded
+D-37 across the product, layout, UX configuration, guide and replacement-plan
+requirements. No product code, UAT or construction approval is claimed.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — editor key preference confirmed
+
+Chuck Russell changed the first-release multiline editor keys to `Enter` for
+submission and `Ctrl+Enter` for newline insertion. Recorded D-38, replacing the
+withdrawn Enter/F2 proposal in the current product, layout, UX configuration,
+user-guide and construction/UAT plan. Multiline paste must not submit, and
+visible focusable Submit and Insert newline actions are required. Physical
+key delivery on macOS and Linux terminals remains a UAT gate because some
+terminals may not distinguish `Ctrl+Enter` from `Enter`; document and exercise
+the fallback where necessary. No product code, terminal UAT or construction
+approval is claimed.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — newline fallback confirmed
+
+Chuck Russell selected option A for terminals that cannot distinguish
+`Ctrl+Enter` from `Enter`. The first-release fallback is the visible,
+clickable and keyboard-focusable Insert newline control; no second default
+newline shortcut is assigned. Recorded D-39 across the product, layout, UX
+configuration, user-guide and UAT planning documents. Physical terminal
+behavior and control activation still require macOS and Linux UAT. No product
+code or construction approval is claimed.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — slash-command palette selection confirmed
+
+Chuck Russell selected option A: choosing a `/` command in the palette fills
+and focuses the prompt editor for review and argument entry. Selection alone
+does not run the command; the user submits it separately with `Enter` or the
+Submit control. Recorded D-40 in the product, screen, UX configuration,
+user-guide and testable construction plan. Existing-draft replacement
+behavior remains a separate UI design choice. No product code, UAT or
+construction approval is claimed.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — palette replacement of an unsent draft confirmed
+
+Chuck Russell selected option A: when a palette `/` command would replace an
+unsent editor draft, ask first. Cancel keeps the draft exactly; Confirm
+replaces it and focuses the editor without running the command. An empty
+editor fills directly. Recorded D-41 and aligned product, screen, UX
+configuration, user-guide and construction/UAT evidence. Product code and
+UAT remain pending under `design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — Activity first-entry visibility confirmed
+
+Chuck Russell selected option A: Activity opens automatically with its first
+entry so the agent/tool log is visible. The user can collapse and reopen it;
+later entries accumulate while collapsed without forcing it open again.
+Recorded D-42 in the product, Activity requirement, screen, UX configuration,
+user-guide and construction/UAT plan. Auto-opening must not steal editor focus
+or pull a reader away from older conversation. Product code and UAT remain
+pending under `design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — collapsed Activity entry count confirmed
+
+Chuck Russell selected option A: the collapsed Activity header shows how many
+new entries arrived since collapse. The count increments for a newly appended
+entry, not a status update to an existing entry, and resets on reopen or
+`/cls`/`/clearscreen`. Bounded eviction remains visible so the count does
+not suggest all entries are still inspectable: an indicator appears in the
+collapsed header, with detail on reopen. Recorded D-43 across the
+product, Activity requirement, screen, UX configuration, guide and test plan.
+No product code or UAT is claimed; authority remains `design_only`.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — Activity scroll and return behavior confirmed
+
+Chuck Russell selected option A: scrolling up within expanded Activity pauses
+its following of new entries, leaving the earlier step in view. A visible,
+clickable and keyboard-focusable `Jump to latest Activity` control, or
+scrolling to the Activity bottom, resumes following. This control is separate
+from the conversation's `Jump to latest` and must not move the conversation
+or latest-prompt pin. Recorded D-44 across product, layout, Activity, UX,
+guide and test/UAT planning. No product code or UAT is claimed; authority
+remains `design_only`.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — Activity inline placement confirmed
+
+Chuck Russell selected option A: the Activity log belongs inline within
+the conversation exchange or user-entered tool-command entry that produced
+it, ahead of the final response or command result. Its own scroll and
+collapse controls keep a multi-step log inspectable on narrow terminals
+without a persistent side pane. Recorded D-45 across the product, screen,
+Activity requirement, UX configuration, guide and construction/UAT plan.
+No product code or UAT is claimed; authority remains `design_only`.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — older Activity state across prompts confirmed
+
+Chuck Russell selected option A: accepting a new conversational prompt
+does not auto-collapse older inline Activity sections. Each retains its
+chosen expanded or collapsed state while still in the bounded view, and
+the new exchange's Activity opens independently on its first entry.
+Recorded D-46 across product, screen, Activity requirement, UX
+configuration, guide and construction/UAT plan. No product code or UAT is
+claimed; authority remains `design_only`.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — source-backed neutral-capability map drafted
+
+Mapped all 50 Chat slash commands and the additional `@agent`, `!` and
+startup routes to proposed UI-neutral service seams. Source inspection
+confirmed that Chat's configuration loader, runtime assembly, many typed
+views and command effects remain in `friday-chat`; the headless
+`RuntimeKernel` alone does not establish command/configuration parity.
+Proposed a small first extraction of session identity into `friday-runtime`
+with Chat compatibility re-exports and unchanged-frontend regression checks.
+The map and first directive require review; no code change, product test,
+UAT or construction approval is claimed.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — TUI runtime startup default confirmed
+
+After the current `friday-chat --runtime` flag and fake default were explained,
+Chuck Russell selected A: configured interactive `friday-tui` starts the
+real provider-backed runtime unless `--runtime fake` is explicit. Recorded
+D-47 across the product, replacement plan, capability map, UX configuration,
+user-guide requirements and authority record. A failed real startup must not
+silently switch modes. This affects only the planned TUI; existing Chat and
+`friday-cli` defaults and behavior remain unchanged. No implementation or
+UAT is claimed under `design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — chooser initial search location confirmed
+
+Chuck Russell selected A: without `--config`, the first TUI chooser list
+comes from the captured launch working directory, with a Browse action
+for an existing runtime file elsewhere. No automatic user-directory or
+recursive search is added; an explicit `--config` path bypasses the list.
+Recorded D-48 in the product, architecture, replacement plan, capability
+map, user-guide requirements and authority record. Candidate classification
+and empty/invalid-file recovery remain to be bound. Existing CLI behavior,
+product code and UAT are unchanged under `design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — chooser candidate types confirmed
+
+Chuck Russell selected A after the roles of `config.yaml`, `models.yaml` and
+`cli-config.yaml` were explained. The launch-directory list should show
+likely Friday Chat runtime configuration YAML, including custom names, but
+exclude recognized model-library and presentation YAML. Browsing still
+accepts another existing path. Recorded D-49 in the product, architecture,
+replacement plan, capability map, guide requirements and authority record.
+The exact read-only classifier, empty list and invalid-file recovery remain
+bootstrap-contract work. No product code or UAT changed; authority remains
+`design_only`.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — invalid chooser selection recovery confirmed
+
+Chuck Russell selected A: if an existing file selected through the interactive
+chooser fails runtime-configuration validation, the chooser stays open and
+shows an actionable error with Retry, Browse and Quit. Retry rereads the
+selected path, allowing an external file correction. No runtime starts from
+that invalid file. Recorded D-50 in the product, architecture, replacement
+plan, capability map, guide requirements and authority record. Empty-list
+behavior, exact candidate classification, explicit `--config` errors and
+provider-startup failure UX remain to be bound. Product code, CLI behavior and
+UAT are unchanged under `design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — invalid explicit config handling confirmed
+
+Chuck Russell selected A: when an explicit `--config` file is invalid, the
+planned TUI reports the configuration error and exits nonzero. It does not
+open the chooser or start the runtime from that file. This matches the
+direction of the current Chat explicit-config error path while preserving
+the TUI's independent package boundary. Recorded D-51 in the product,
+architecture, replacement plan, capability map, guide requirements and
+authority record. The empty-list chooser case, exact candidate classifier
+and provider-startup failure UX remain open. Product code, CLI behavior and
+UAT are unchanged under `design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — empty initial chooser list confirmed
+
+Chuck Russell selected A: with no likely runtime configuration in the
+captured launch folder and no explicit `--config`, the chooser stays open,
+says no configurations were found there, and offers Browse to another
+existing file and Quit. It does not search elsewhere automatically, create
+a file or start the runtime. Recorded D-52 in the product, architecture,
+replacement plan, capability map, guide requirements and authority record.
+The exact candidate classifier and real-provider startup failure UX remain
+open. Product code, CLI behavior and UAT are unchanged under `design_only`
+authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — chooser real-runtime startup failure confirmed
+
+Chuck Russell selected A: if a chooser-selected configuration validates but
+real-runtime startup fails, close partially started services, show the
+startup error and return to the chooser with Retry of the selected file,
+Browse and Quit. Do not silently use fake. Failed cleanup must be reported
+without claiming that retry is safe; the exact failure-recovery mechanism
+belongs in the lifecycle contract. Recorded D-53 across the active plan.
+Explicit-path startup failure and exact chooser candidate classification
+remain open. Product code, CLI behavior and UAT are unchanged under
+`design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — explicit config real-runtime startup failure confirmed
+
+Chuck Russell selected A: after a valid explicit `--config`, failed real
+runtime startup cleans up any partial services, reports the failure and
+exits nonzero. It does not open the chooser or silently use fake mode.
+Cleanup failure must also be reported. Recorded D-54 across the active
+plan. Exact chooser candidate classification and lifecycle cleanup-failure
+mechanics remain technical-contract work. Product code, CLI behavior and
+UAT are unchanged under `design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — chooser candidate detection approach confirmed
+
+Chuck Russell selected A: the initial chooser list should use a shallow,
+read-only look at YAML top-level structure so runtime files with custom
+basenames can appear, while recognized model-library and CLI presentation
+files are excluded. Unrecognized files remain accessible through Browse.
+This inspection does not resolve credentials or start Friday. Recorded D-55
+across the active plan. The exact runtime signature and filesystem edge
+rules remain technical-contract work; no product code, CLI behavior or UAT
+changed under `design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — combined startup and cleanup failure confirmed
+
+Chuck Russell selected A: after a chooser-based real startup failure, if
+cleanup of partial services also fails, report both failures, restore the
+terminal as far as possible and exit nonzero. Do not offer in-process Retry
+or Browse while resource state is uncertain. Recorded D-56 across the
+active plan, acceptance checks and testable bootstrap unit. The exact
+cleanup and terminal-recovery mechanism remains technical-contract work.
+Product code, CLI behavior and UAT are unchanged under `design_only`
+authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — startup bootstrap contract drafted
+
+Consolidated accepted D-47 through D-56 into a draft
+`startup-bootstrap-contract.md` with a proposed read-only chooser signature,
+entry/failure outcome table and bounded bootstrap test groups. The proposal
+uses the current Chat config shape and packaged runtime/model-library/display
+examples as source evidence only; it grants no dependency on Chat code.
+Exact parser bounds, neutral loader/resource-close owners and a construction
+directive remain open. No product code, CLI behavior, UAT or release state
+changed; authority remains `design_only`.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — incomplete runtime-shaped candidates confirmed
+
+Chuck Russell selected A: a YAML file whose top-level structure looks like
+Friday runtime configuration remains in the initial chooser list even when
+incomplete, such as `llm:` without a required model. Full validation runs
+after selection, with the D-50 error and retry path. Recorded D-57 in the
+product and bootstrap contract, including its test matrix. Exact signature
+and parser boundaries still need technical review. Product code, CLI
+behavior and UAT remain unchanged under `design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — Browse path entry and folder navigation confirmed
+
+Chuck Russell selected A: the chooser's Browse action supports both folder
+navigation and typed or pasted paths to an existing runtime file. Absolute,
+relative and `~` home paths are covered; relative entry resolves from the
+folder shown in Browse, initially the captured launch directory. Missing or
+invalid selections remain in the chooser with D-50 recovery. Recorded D-58 in
+the startup contract, build unit, acceptance checks and future user-guide
+requirements. Product code, CLI behavior and UAT remain unchanged under
+`design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — on-demand chooser Refresh confirmed
+
+Chuck Russell accepted the recommended visible Refresh action for the
+no-`--config` chooser. Recorded D-59: Refresh rescans the captured launch
+folder's runtime candidates on demand, allowing newly added, removed or
+newly recognizable files to update the list, including empty-list recovery.
+The chooser does not watch the folder or silently update the list. Refresh
+does not validate a selected config or start services; D-50 Retry still rereads
+the selected path independently. Updated the startup test matrix and future
+user-guide requirements. Product code and UAT remain unchanged under
+`design_only` authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-16 — linked runtime candidates confirmed
+
+Chuck Russell accepted the recommendation to include a `.yaml`/`.yml`
+symbolic link directly in the launch folder when it resolves to a readable
+regular runtime-shaped file, even if the target is elsewhere. Recorded D-60;
+broken, cyclic, unreadable, directory-target and unrelated links stay out of
+automatic discovery but remain reachable through Browse and D-50 error
+recovery. This adds no directory scan, full validation or runtime startup
+during listing. Updated the bootstrap test matrix and user-guide requirements.
+Product code, CLI behavior and UAT remain unchanged under `design_only`
+authority.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — shared configuration loader proposal drafted
+
+Inspected the current Chat application-config loader, distinct headless
+`RuntimeConfig` parser, model-library path resolution, presentation-file
+selection and Chat assembly path anchors. Drafted
+`neutral-config-loader-contract.md` for one neutral Chat-compatible loader
+under `friday-runtime` with a Chat public-API facade. Separated loader work
+(TUI-N01A) from neutral effects/resource primitives (TUI-N01B), runtime
+assembly (TUI-N01C) and launcher/chooser behavior (TUI-N03A). This is a
+source-backed proposal, not a maintainer-approved API or directive.
+
+Before any code change, 103 focused Chat/runtime configuration and CLI tests
+and 155 `friday-cli` tests passed. These are characterization baselines, not
+after-code regression evidence, installed-package verification or UAT. The
+headless parser cannot be substituted for Chat runtime YAML as-is. Exact
+facade/error behavior, neutral assembly and close ownership, shallow chooser
+bounds and TUI runtime-mode environment handling remain open. Product code,
+dependency metadata and existing CLI behavior were not changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — Chat-only runtime-mode environment confirmed
+
+Chuck Russell agreed that `FRIDAY_CHAT_RUNTIME` remains specific to the
+existing `friday-chat` launcher. Recorded D-61: TUI configured interactive
+startup ignores that variable for mode selection, defaults to real when its
+own `--runtime` is omitted, and uses fake only when requested through its own
+`--runtime fake`. The first-release TUI has no runtime-mode environment
+override. This does not change runtime YAML environment interpolation,
+credential lookup or Chat's current override. Added mode-isolation checks to
+the bootstrap and acceptance plans. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — startup replay result retention confirmed
+
+Chuck Russell selected option A for startup replay: after a successful
+`friday-tui --replay FILE`, keep a read-only result screen visible until the
+user chooses Quit. Recorded D-62 and updated the startup contract, build
+sequence, command-route inventory, acceptance criteria and future user-guide
+requirements. The view shows at least the input file and processed-turn
+count; it admits no prompts or `/` commands and does not enter a configured
+interactive session. Version/replay/configuration precedence and isolated
+fake replay behavior remain the Chat compatibility baseline. Exact per-turn
+content and failure-view behavior still need a separate decision/contract.
+No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — startup replay summary content confirmed
+
+Chuck Russell selected option A for the completed startup replay screen:
+show the input file and processed-turn count, without a browsable turn-by-turn
+record in the first TUI release. Recorded D-63 across the startup contract,
+build plan, acceptance criteria and future user guide. This limits the
+result view only; replay execution, delay, D-62 read-only retention until
+Quit and interactive `/replay` remain as specified. Failure presentation
+is still open. No product code or UAT changed; `design_only` authority
+remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — startup replay failure view confirmed
+
+Chuck Russell selected option A for a failed startup replay: show the file
+and actionable error in a read-only TUI screen until Quit, then exit nonzero.
+Recorded D-64 across the startup contract, build plan, acceptance criteria
+and user-guide requirements. The chooser and configured interactive session
+do not open; the TUI does not silently retry or claim success. An explicit
+Retry action and exact error/cleanup categories remain technical-contract
+work. Existing Chat behavior is unchanged. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — startup replay Retry excluded
+
+Chuck Russell selected option A for no in-process Retry on a failed startup
+replay and accepted the recommended remaining replay direction. Recorded D-65:
+the read-only file/error screen offers Quit, then exits nonzero; after
+correcting the cause, the user relaunches. This does not affect chooser Retry
+or interactive `/replay`. The neutral service error mapping, partial-resource
+cleanup and associated tests remain technical directive work; no additional
+startup replay product-choice round is needed. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — automatic slash-command suggestions confirmed
+
+Chuck Russell selected option A for automatic command suggestions while
+typing a leading `/`. Recorded D-66 across the screen layout, command plan,
+acceptance criteria and user-guide requirements. Matches come from the TUI's
+active command registry, including aliases; showing them has no editor or
+command side effect and does not change accepted `Enter` submission behavior.
+Suggestion-selection controls remain a separate interaction decision. No
+product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — inline slash-suggestion selection confirmed
+
+Chuck Russell selected option A for choosing an inline suggestion to complete
+the command token in the current editor draft, with a separate Submit step.
+Recorded D-67 across the screen layout, build plan, acceptance criteria and
+future guide requirements. Following argument text and editor focus stay in
+place; selection has no command side effect. Exact keyboard and pointer
+selection controls remain open. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — inline suggestion keys confirmed
+
+Chuck Russell selected option A for `Up`/`Down` highlighting and `Tab`
+insertion while inline slash suggestions are open. Recorded D-68 across the
+screen, build and guide plans. `Enter` always submits the editor draft;
+without an open list, `Tab` moves focus. A list with no highlighted match
+cannot insert. Terminal key behavior and focus need macOS/Linux UAT; pointer
+and dismissal details remain technical UI work. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — slash-subcommand suggestions confirmed
+
+Chuck Russell selected option A for registered subcommand suggestions after a
+recognized `/` command name. Recorded D-69 across command discovery, screen,
+build, acceptance and future guide requirements. `/workflow r` can suggest
+`run` from active TUI metadata; the existing highlight/Tab fill-only flow
+applies to that token, while `Enter` remains Submit. Free-form argument values
+are not suggested. No product code or UAT changed; `design_only` authority
+remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — contextual slash usage hints confirmed
+
+Chuck Russell selected option A for short usage hints once a `/` command or
+subcommand is recognized. Recorded D-70 across command discovery, screen,
+build, acceptance and future guide requirements. Hints derive from active TUI
+metadata and show required/optional argument shapes, such as
+`/workflow run` → `<name> [key=value ...]`; they do not fill values or run
+commands. No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — editor-history content confirmed
+
+Chuck Russell selected option A for editor history to include accepted
+conversational prompts and submitted `/` commands. Recorded D-71 across the
+screen, build, acceptance and future guide requirements. Recall fills the
+editor for review and does not run an entry; unsent and busy-rejected drafts
+and output are not submitted entries. This is separate from `/history` and
+persisted transcripts. Restart persistence, other input routes, keys and
+unsent-draft restoration remain open. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — editor-history restart scope confirmed
+
+Chuck Russell selected option A for editor recall history to last only while
+the TUI is running. Recorded D-72 across the screen, build, acceptance and
+future guide requirements. A new launch starts with an empty recall list even
+when transcripts exist; no new history file or runtime-memory write is added.
+Existing `/history`, transcript, Chat and `friday-cli` behavior is unchanged.
+Other input routes, navigation keys and unsent-draft restoration remain open.
+No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — editor-history draft restoration confirmed
+
+Chuck Russell selected option A for preserving an unsent draft while browsing
+editor recall history. Recorded D-73 across the screen, build, acceptance and
+future guide requirements. Leaving history without submitting a recalled
+entry restores the original draft and editing position exactly. Browsed
+entries are editable copies and do not rewrite submitted history. Navigation
+keys and additional input routes remain open. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — editor-history boundary keys confirmed
+
+Chuck Russell selected option B: `Up`/`Down` at the multiline editor's caret
+boundaries traverse older/newer recall entries, instead of F3/F4. Recorded
+D-74 across the screen, build, acceptance and future guide requirements.
+Inside the editor, arrows move the caret; an open slash-suggestion list takes
+priority under D-68. Moving newer past the last recalled entry restores the
+unsent draft under D-73. Physical key/focus and wrapped-line behavior require
+terminal UAT. No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — additional editor-history routes confirmed
+
+Chuck Russell selected option A for accepted `@agent` messages and enabled,
+admitted `!` commands to join current-run editor recall history. Recorded
+D-75 across the screen, build, acceptance and future guide requirements.
+Recalling either fills the editor without routing or executing it; disabled
+or rejected routes are not submitted entries. The existing `!` enablement
+policy and CLI behavior remain unchanged. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — Context file browsing confirmed and file-context path checked
+
+Chuck Russell selected option B: include folder browsing and file selection
+in the first-release Context sidebar. Recorded D-76 and a separate testable
+TUI-N04C unit with AC-19 and future user-guide coverage. Read-only source
+inspection found that Chat `/read` displays file content, `/ingest` writes
+vector memory, and configured `file_read`/smart-read tools can return file
+content within a tool turn. None is a selected-file attachment carried into
+the next prompt. Five focused existing file-command/tool tests passed. Adding
+selected content to a TUI model turn requires an explicit product interaction
+decision and UI-neutral runtime contract, without TUI imports from Chat or
+`friday-cli`. No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — immediate attachment on file selection confirmed
+
+Chuck Russell selected option B: deliberate file selection in the first-release
+Context browser immediately initiates attachment to Friday's next eligible
+model turn; there is no separate Add to context control. Recorded D-77,
+AC-20, and distinct neutral-contract and UI test units TUI-N01D/TUI-N04D.
+Keyboard focus movement and list scrolling are navigation, while click or
+keyboard activation selects. Selection does not submit a prompt; attached or
+failed status must be visible. The attachment lifetime beyond the next
+accepted conversational turn, supported file types and size/budget policy
+remain to be decided. No product code or UAT changed; `design_only` authority
+remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — attached file retained across turns until removal
+
+Chuck Russell selected option B: an attached file remains active in Friday's
+TUI model context across later accepted conversational turns until the user
+explicitly removes it. Recorded D-78 and updated the Context screen, neutral
+contract unit, UI unit, AC-20 and future user-guide requirements. A visible,
+keyboard-focusable Remove action affects future turns only; it does not edit
+the source file, write memory or alter an already admitted turn. Behavior
+across exit/relaunch and additional selected files remains open. No product
+code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — attached files discarded on TUI exit
+
+Chuck Russell selected option A: every new TUI run starts with no active
+file attachments, even if an earlier transcript or runtime session is
+available. Recorded D-79 across the Context screen, neutral build unit,
+UI unit, AC-20 and future user-guide requirements. Attachments remain active
+across turns during a run under D-78, but are not restored from configuration,
+memory, transcripts or a new attachment-history file. Additional-file behavior
+remains open. No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — multiple distinct file attachments confirmed
+
+Chuck Russell selected option A: selecting another distinct file adds it
+alongside the current attachment rather than replacing it. Recorded D-80,
+individual Remove controls and two-file cases in the neutral/UI build units,
+AC-20, screen and future guide requirements. A later accepted turn must
+receive both until one is removed; removing one leaves the other active.
+Duplicate selection of the same file and aggregate context-budget behavior
+remain open. No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — selection-time file snapshot confirmed
+
+Chuck Russell selected option A: Friday keeps the file content captured when
+the user deliberately selects it, rather than rereading before every later
+prompt. Recorded D-81 across the neutral/UI build units, AC-20, screen and
+future guide requirements. Selecting the same file again refreshes that
+attachment in place without duplication; a failed refresh shows an error
+and leaves the last successful snapshot available. Tests must cover source
+edits/deletion after selection and successive turns. Format, size and
+aggregate context-budget choices remain open. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — first-release file-content formats confirmed
+
+Chuck Russell selected option B: the first TUI release attaches real content
+from readable text/code/text-data files and from PDF, DOCX and XLSX files.
+Recorded D-82 and added the neutral extraction unit TUI-N01E and AC-21.
+The source inventory found `friday-tools` reader candidates for the three
+document formats, while Chat `/read` still returns placeholders for them.
+Seven focused existing reader tests passed, but the PDF test does not prove
+positive text extraction; the future construction unit needs genuine positive
+fixtures and installed-dependency checks. Scanned-PDF OCR, spreadsheet scope,
+file size and aggregate context budget remain open. Chat/`friday-cli` behavior
+must stay unchanged. No product code or UAT changed; `design_only` authority
+remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — Tesseract OCR for scanned PDFs confirmed
+
+Chuck Russell selected option B and specified Tesseract. Recorded D-83:
+first-release selected-file attachment must obtain actual recognized text
+from scanned/image-only PDFs and carry it through the same snapshot/model
+context path as other attachments. Added separate neutral OCR unit TUI-N01F
+and AC-22, with positive image-only PDF/model-input evidence, negative
+renderer/OCR/language/empty/timeout cases, installed macOS/Linux checks and
+Chat/`friday-cli` regression protection. The existing Friday PDF reader uses
+pypdf embedded-text extraction only; no OCR or PDF page-rendering attachment
+path was found. Tesseract is installed on this Mac, but that does not verify
+the future installed TUI or Linux environment. Mixed-page policy, OCR
+languages, dependency distribution and size/time limits remain open. No
+product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — mixed-PDF page routing confirmed
+
+Chuck Russell selected option A for a PDF with selectable-text and scanned
+pages. Recorded D-84: use usable embedded text on a page, run Tesseract only
+for pages lacking it, and combine page content in original order without
+duplicate OCR text. Expanded TUI-N01F and AC-22 with separate page-routing
+checks and a genuine mixed-PDF fixture that verifies actual model input.
+The exact usable-text criterion and partial-page failure handling remain to
+be bound; this answer does not choose whole-file failure or partial success
+when one page cannot be read. No product code or UAT changed; `design_only`
+authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — system-installed Tesseract confirmed
+
+Chuck Russell selected option A: first-release macOS/Linux users install the
+Tesseract executable separately; the TUI package does not bundle, fetch or
+auto-install it. Recorded D-85 across OCR acceptance, the neutral OCR unit,
+screen behavior and future user-guide requirements. A missing executable
+must produce an actionable error only when OCR is needed; text and
+embedded-text attachment remain usable. Installed-package tests must cover
+both missing and present Tesseract, plus correction and relaunch. Distribution
+of the PDF page renderer, OCR languages and mixed-page failure policy remain
+open. No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — required OCR-page failure rejects PDF attachment
+
+Chuck Russell selected option A: if an otherwise readable PDF contains a
+page that needs OCR and that page cannot yield usable text, the entire new
+PDF attachment fails. Recorded D-86. The TUI must identify the failed page
+and cause without sending partial PDF content to a later model turn.
+A failed refresh keeps the last complete snapshot and error status; other
+attachments remain active. Expanded TUI-N01F and AC-22 with a mixed PDF
+fixture whose middle scanned page fails, plus model-input and refresh
+checks. OCR language, renderer distribution, usable-text criterion and
+size/time budgets remain open. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — configurable installed OCR languages confirmed
+
+Chuck Russell selected option B: PDF OCR defaults to English and lets TUI
+users select one or more installed Tesseract language packs through the
+common presentation file. Recorded D-87 and proposed
+`tui.attachments.ocr_languages: [eng]` in the additive configuration design.
+The TUI validates setting shape; a missing requested pack is named when OCR
+is needed, with no silent English fallback or partial PDF attachment. Added
+configuration and installed-OCR checks to TUI-N01F/N03A, AC-15/AC-22 and the
+user-guide requirements. This Mac currently lists `eng`, `osd` and `snum`;
+non-English installed-pack UAT requires a prepared environment. Renderer
+distribution, text-usability criteria, language-code bounds and size/time
+budgets remain open. No product code or UAT changed; `design_only` authority
+remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — PDF page renderer included with TUI package
+
+Chuck Russell selected option A: the independently installed `friday-tui`
+must supply the cross-platform PDF page renderer needed before Tesseract OCR
+through a declared package dependency. Recorded D-88. Fresh wheel/sdist
+installation checks on macOS and Linux must prove scanned-PDF rendering
+without a separate renderer installation. Tesseract and its selected language
+packs remain system-installed. The exact rendering library, licensing and
+platform/native dependency behavior require a bounded construction decision.
+No package dependencies, product code or UAT changed; `design_only` authority
+remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — all XLSX worksheets in TUI attachment confirmed
+
+Chuck Russell selected option A: a selected `.xlsx` workbook contributes
+content from every worksheet, labeled by sheet name, in workbook order. D-89
+makes that one attachment snapshot and includes non-active and hidden sheets.
+The current `friday-tools` reader defaults to the active sheet, though it
+accepts explicit sheet selection; the TUI's neutral extraction path must
+enumerate sheets without importing or changing Chat/CLI handlers. N01E and
+AC-21 now require a genuine multi-sheet fixture, non-first active sheet,
+distinct hidden-sheet content and proof in actual model input. Formula
+representation, sheet-read failure semantics and size/context limits remain
+open. No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-17 — unreadable XLSX sheet rejects workbook attachment
+
+Chuck Russell selected option A: if any sheet cannot be read, reject the whole
+new workbook attachment with the worksheet and cause named. Recorded D-90.
+No partial workbook text enters a model turn; a failed refresh keeps the last
+complete snapshot and other attached files remain active. A readable blank
+sheet is not itself a read failure, while an all-empty workbook cannot count
+as attached content. Expanded N01E and AC-21 with a failing middle-sheet
+fixture, actual model-input absence and failed-refresh checks. Formula
+representation and size/context limits remain open. No product code or UAT
+changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — XLSX formula and saved-result content confirmed
+
+Chuck Russell selected option A: attached workbook formula cells supply both
+the original expression and any result saved in the workbook, distinctly
+labeled with the sheet and cell. Recorded D-91. If no saved result exists, the
+formula remains visible and the missing saved result is explicit; the TUI does
+not calculate or fabricate a result. The current reader's `data_only=True`
+path yields saved results alone. N01E and AC-21 now require a neutral
+formula-aware extraction path and fixtures with numeric/text saved values and
+an absent saved value, checked in actual model input. Chat/CLI behavior stays
+unchanged. Size/context limits remain open. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — oversized file attachment rejection confirmed
+
+Chuck Russell selected option A: a selected file whose extracted content
+exceeds the TUI's per-file attachment bound is rejected as a whole with a
+visible size-limit message. Recorded D-92. No partial excerpt becomes an
+attachment or model input; a failed refresh preserves the last complete
+snapshot and other files remain attached. N01D/N01E/N01F and AC-20/21/22
+now require under/over-bound and reader-truncation checks, including the
+existing XLSX reader's default 1,000-data-row cap. Exact measurement and
+threshold, raw-file/processing safeguards and aggregate context budget need
+later contract decisions. No product code or UAT changed; `design_only`
+authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — combined attachment budget rejection confirmed
+
+Chuck Russell selected option A: if a new file would exceed the combined
+active-attachment budget, reject that file and retain all existing attached
+snapshots. Recorded D-93. The user can remove a file and retry; no automatic
+eviction, replacement or partial inclusion occurs. A refresh that would exceed
+the total keeps its previous complete snapshot with a visible limit error.
+N01D/N01E and AC-20/21 now require tests with individually valid files that
+exceed the budget together, unchanged model input after rejection, manual
+removal and retry, and failed-refresh retention. Exact aggregate measure,
+threshold and runtime context reservation remain contract work. No product
+code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — configurable attachment limits confirmed
+
+Chuck Russell selected option A: the first-release per-file and combined
+attachment bounds are optional, typed TUI-only settings under `tui.attachments`
+in the existing shared presentation file, with safe defaults. Recorded D-94.
+The existing CLI values, parser behavior and Friday runtime configuration stay
+unchanged, and the TUI reader does not import Chat/CLI loaders or rewrite the
+file. Updated the UX configuration design, N01D/N03A, AC-15/20 and the user
+configuration-guide requirements for omitted/default, valid custom and invalid
+setting tests. Exact setting names, measurement units and numeric bounds need
+later construction decisions. No product code or UAT changed; `design_only`
+authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — estimated-token attachment limits confirmed
+
+Chuck Russell selected option A: express both first-release attachment limits
+in estimated tokens. Recorded D-95. Count the complete formatted attachment
+text that reaches model input, including file/sheet labels, OCR and formula
+content; count a proposed refresh as a replacement, not a second copy. Token
+estimates may differ from provider counts and do not replace runtime context
+budgeting. Updated the configuration design, neutral admission/extraction
+units, AC-15/20 and user-guide requirements with deterministic estimator
+boundary tests and estimated-token error wording. The exact estimator,
+headroom, field names and numeric defaults/thresholds remain contract work.
+No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — fixed attachment-limit defaults confirmed
+
+Chuck Russell selected option A: omitted per-file and combined attachment
+limits use fixed conservative estimated-token defaults across models and
+providers. Recorded D-96. Known or unknown model context metadata and model
+switches do not recalculate these TUI admission defaults; explicit valid
+settings still override them. Friday runtime context budgeting remains
+separate, and the defaults do not guarantee every turn fits. Updated the
+configuration design, neutral-capability map, build units, acceptance and
+user-guide requirements to test identical defaults/admission outcomes with
+different or unknown model metadata. Exact numeric values, estimator, override
+ranges and headroom remain contract work. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — attachment-limit default values confirmed
+
+Chuck Russell selected option B: set omitted TUI attachment limits to 4,000
+estimated tokens per file and 8,000 estimated tokens combined. Recorded D-97.
+Exactly-at-limit content is admitted; above-limit content is rejected whole
+under D-92/D-93. The defaults remain fixed across models under D-96, while
+valid explicit settings override each limit independently. These values can
+consume nearly an 8,192-token model window before other context, so selected
+attachments do not guarantee that a later turn fits. Updated configuration,
+capability, build-plan, acceptance and user-guide requirements with numerical
+boundary tests. Exact field names, estimator, allowed override ranges and
+turn-level context behavior remain open. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — initial turn over-budget rejection confirmed
+
+Chuck Russell selected option A: after normal Friday context assembly, reject
+a first provider request that exceeds the selected model's effective input
+budget before calling the provider. Recorded D-98. The TUI shows estimated
+total, available budget and overage while preserving the exact editor draft
+and attachments for correction; the rejected attempt creates no accepted
+turn, transcript/editor-history entry, prompt pin, provider call or tool
+effect. This is a UI-neutral admission boundary for the TUI, not a change to
+Chat/CLI behavior or runtime configuration. Added a separate N01G testable
+unit and AC-23 with deterministic boundary, side-effect and installed-UAT
+checks. Exact estimator/reserve, provider rejection after a passing estimate
+and later agent-loop overage remain open. No product code or UAT changed;
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — older-turn compaction recovery confirmed
+
+Chuck Russell accepted the recommended first-release recovery: when an initial
+or later agent-loop conversational model request is over budget, use one
+eligible attempt through Friday's configured older-turn compaction service,
+then reassemble and recheck that request. Recorded D-99 and refined D-98,
+N01G and AC-23 so their no-provider/no-side-effect wording applies to the
+blocked conversational request, not to maintenance. A compaction run can use a
+separate model and persist memory changes. Added N01H and AC-24 for disabled,
+unavailable, ineligible, successful and ineffective paths, including a later
+step after a tool has run. No new active-loop compaction is in first release.
+No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — post-estimate provider context rejection confirmed
+
+Chuck Russell selected option A: if Friday's estimate passed but a provider
+reports a recognizable context-length rejection, show the provider error and
+leave correction and retry to the user. Recorded D-100, AC-25 and a separate
+N01I testable unit. An initial submitted draft and attachments remain available
+for correction without overwriting a newer unsent draft; a later failure after
+tools marks the turn incomplete and retains their Activity and effects. No
+TUI-triggered compaction or resend follows this post-send error. Friday's
+existing LLM transport retry policy and Chat/`friday-cli` behavior remain
+unchanged. Current `friday-llm` telemetry only groups bad requests under a
+broad `invalid_request` category; exact context-length classification,
+provider-detail display, transcript treatment and draft-recovery placement
+need a construction contract. No product code or UAT changed; `design_only`
+authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — failed prompt editor recovery confirmed
+
+Chuck Russell selected option A for a first request rejected by the provider
+for context length after a passing Friday estimate. Recorded D-101 and AC-26:
+restore the exact submitted prompt and caret automatically if the editor is
+empty; if the user typed a newer draft during the request, leave it untouched
+and show a visible Restore action. The action uses D-41's Confirm/Cancel
+replacement pattern and never submits. Updated N01I/N03B/N04A tests for empty
+and occupied editors, attachment preservation and terminal UAT. Action
+lifetime under view eviction and transcript treatment remain construction
+contract work. No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — failed initial request transcript exclusion confirmed
+
+Chuck Russell selected option A: a first conversational request rejected by
+the provider for context length after a passing estimate leaves no persisted
+failed-attempt transcript entry. Recorded D-102 and AC-27, with separate N01J
+neutral persistence tests. D-101's error and failed prompt remain recoverable
+in-process during the current TUI run; relaunch does not recover them from a
+transcript. A corrected successful user submission is a distinct turn recorded
+once. This does not erase provider telemetry or completed compaction effects.
+Later agent-loop failure after tools remains a separate persistence decision.
+No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — later incomplete-turn transcript exclusion confirmed
+
+Chuck Russell selected option A for a later agent-loop context failure after
+one or more tools have executed. Recorded D-103 and AC-28 with a separate N01K
+neutral persistence test unit. Both local overage after D-99 compaction/recheck
+and post-send provider rejection under D-100 stop further loop work, show an
+incomplete turn and retain prior Activity only in the bounded current TUI run.
+No incomplete-turn transcript entry is written, including a prompt/status-only
+record or serialized Activity. Existing completed transcripts stay intact;
+already executed tool effects, provider telemetry and compaction memory effects
+are not rolled back. No product code or UAT changed; `design_only` authority
+remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — failed-prompt Restore location after notice eviction confirmed
+
+Chuck Russell selected option A: if a failed initial provider-context error
+notice leaves the bounded conversation, keep `Restore failed prompt` beside the
+editor while that prompt remains recoverable in the current TUI run. Recorded
+D-104 and AC-29. The action is pointer- and keyboard-accessible, does not steal
+editor focus, and appears only for a recoverable failed prompt. D-41/D-101
+Confirm/Cancel still protects a newer draft; restoring never submits or calls
+the provider. Updated the screen layout, user-guide requirements, neutral
+capability map and N03B/N04A UI tests for eviction and narrow layouts.
+Explicit `/cls` treatment of editor recovery remains a separate decision.
+No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — failed-prompt recovery after display clear confirmed
+
+Chuck Russell selected option A: `/cls` clears the displayed conversation,
+pin and Activity but keeps a still-recoverable failed initial prompt and its
+`Restore failed prompt` action beside the editor during the current TUI run.
+The `/clearscreen` alias and bound display-clear shortcut have the same rule.
+Recorded D-105 and AC-30; updated the existing D-33/D-104 boundaries, screen
+layout, user-guide requirements, neutral map and N03B/N04A UI tests. The
+cleared error notice does not become a transcript record, and Restore still
+uses D-41/D-101 Confirm/Cancel without resubmitting. Behavior after a separate
+successful prompt or explicit dismissal remains a later decision. No product
+code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — successful newer turn clears older failed-prompt recovery
+
+Chuck Russell selected option A: when a different conversational turn completes
+successfully, clear the older failed initial prompt's in-process recovery and
+remove `Restore failed prompt` from the editor and any retained error notice.
+Recorded D-106 and AC-31. Admission and partial output do not clear recovery;
+a newer failed turn or slash command alone does not clear it. A retained old
+error remains non-actionable bounded display, with no failed-attempt transcript
+record. Updated the screen layout, guide requirements, neutral map and
+N03B/N04A test units for pending, failed and successful outcomes. Multiple
+simultaneous recoverable failures and explicit dismissal remain separate
+decisions. No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — multiple failed-prompt Restore chooser confirmed
+
+Chuck Russell selected option A for multiple pending failed initial
+provider-context prompts. Recorded D-107 and AC-32: one compact
+`Restore failed prompts (N)` control beside the editor opens a chooser of
+distinct recoverable prompts, newest first. One pending prompt uses the singular
+control; none shows no control. Opening, browsing or canceling the chooser
+leaves a newer editor draft unchanged; selecting a prompt still uses D-41/D-101
+Confirm/Cancel without submission. Updated screen layout, guide requirements,
+neutral capability map and N03B/N04A UI tests for two failures, focus,
+view clearing and narrow terminals. Disposition after confirmed restoration
+and a pending-count cap remain separate decisions. No product code or UAT
+changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — confirmed Restore retains pending original until success
+
+Chuck Russell selected option A: confirming Restore copies a failed prompt into
+the editor but keeps its exact original pending in the current-run recovery
+set. Recorded D-108 and AC-33. The chooser count and order do not change or
+duplicate; later editor edits or replacement cannot mutate the recoverable
+snapshot, and the user can restore it again. Only a successful conversational
+turn clears all earlier pending recoveries, whether that turn uses the restored
+prompt or another prompt. Cancel, partial output, failed turns, slash commands
+and display clearing do not. Updated screen layout, guide requirements,
+neutral capability map and N03B/N04A tests for repeated Restore, count and
+transcript boundaries. Explicit dismissal and a pending cap remain separate
+decisions. No product code or UAT changed; `design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — explicit failed-prompt Dismiss confirmed
+
+Chuck Russell selected option A and asked to stop spending time on failed-prompt
+options. Recorded D-109 and AC-34: each recoverable failed prompt offers a
+confirmed Dismiss action, removing only the selected current-run snapshot while
+leaving the editor draft/caret, including a restored copy, and attachments
+unchanged. The pending count and Restore controls update immediately; no
+provider request or failed-attempt transcript write occurs. Updated screen,
+guide, neutral-capability and N03B/N04A test requirements. A finite count/size
+bound and deterministic overflow behavior belong in the construction
+directive as implementation details, not another maintainer product question.
+Planning checks only; no product code or UAT changed. `design_only` authority
+remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — TUI-N00 source review and first directive drafted
+
+After the maintainer said to proceed to core integration work, rechecked
+`feature/friday-tui`, source revision `c3426986`, the board's `design_only`
+authority and the 50-command matrix. The saved command names, three aliases,
+usage and argument metadata match the live Chat registry; all 50 PAR cases
+remain in the neutral-capability map. Read-only baseline checks passed: 108
+focused Chat/Runtime tests and 155 `friday-cli` tests. The installed workspace
+`friday-chat` launcher reports `0.1.0a4` and help; the existing `friday`
+console entry exits with an `app` import error from `friday_cli.main`. These
+outcomes are a before-code baseline, not TUI or outside-checkout wheel proof.
+
+Recorded source-backed configuration, event and cleanup gaps in
+`n00-integration-review.md`; refined the neutral loader proposal with a
+diagnostic-rules parameter to preserve Chat's monkeypatch seam. Added a
+separate neutral event/lifecycle proposal with source boundaries and test
+gates for later units. Drafted
+`CD-TUI-N01S-session-identity.md` with exact paths, behavior, tests and stop
+conditions for the first independent neutral extraction. The directive is
+proposed, not approved; no product code, dependency, CLI behavior or UAT
+changed. Later loader, assembly, event and lifecycle units remain separately
+scoped. TUI packet links and board validation pass. The repository-wide
+documentation lifecycle checker remains failed on six pre-existing absolute
+links in the separate Friday telemetry review packet; that file is unchanged.
+`design_only` authority remains.
+execution_phase: planning; validation_state: not_ready.
+
+## 2026-10-18 — CD-TUI-N01S approved for identity-only implementation
+
+Chuck Russell answered "approved, proceed" to the explicit question approving
+CD-TUI-N01S and granting implementation authority for that session-identity
+slice only. Recorded the bounded grant in the directive, `authority.json` and
+board. The permitted product paths are the new Runtime identity module, the
+Chat session re-export module, and the new Runtime identity tests. All other
+TUI units remain design-only; no TUI release or UAT is implied. The next gate
+is local implementation, regression checks and fresh-context independent
+validation of a frozen candidate.
+execution_phase: implementation; validation_state: not_ready.
+
+## 2026-10-18 — TUI-N01S identity candidate implemented and locally checked
+
+Moved the immutable identity type, mismatch exception and resolver without
+behavior changes to `friday_runtime.session_identity`; `friday_chat.session`
+re-exports the same objects and retains `FridaySession`. Added focused Runtime
+tests for generation, validation, injection, mismatch, old Chat import/pickle
+class lookup and the neutral import boundary. No `friday-cli`, Chat command,
+package metadata, dependency or TUI implementation file changed.
+
+Local checks: 117 focused Chat/Runtime tests and 155 `friday-cli` tests passed.
+With local loopback enabled, all 324 Runtime tests passed and all 828 Chat
+tests passed (five skipped). Focused Ruff and Mypy on the three allowed files
+pass. Both affected wheels built, and importing them from a temporary install
+outside the checkout preserved the neutral import closure and Chat class
+identity; dependencies for that smoke were supplied by the existing workspace
+environment. `friday-chat --version` still reports `0.1.0a4`, its help exits
+zero, and `friday --help` retains its pre-existing `friday_cli.main.app` import
+failure. Repository-wide Ruff still reports 534 existing errors outside the
+three changed files; focused changed-file lint passes. No user UAT applies to
+this identity-only slice. Freeze a candidate commit and seek fresh-context
+independent validation before claiming verification or completion.
+execution_phase: validation; validation_state: pending.
+
+## 2026-10-18 — TUI-N01S independently VERIFIED
+
+Fresh-context read-only reviewer `/root/n01s_independent_validation` returned
+`VERIFIED` with no findings for frozen candidate `073134f9` against base
+`793aa084`; the complete report is
+`validation/VAL-N01S-session-identity.md`. The reviewer independently checked
+the authority hashes, exact diff, required and broader tests, changed-file
+lint/type checks, wheel inclusion, outside-checkout import closure and launcher
+baselines. The shared checkout stayed clean throughout review. This closes
+the N01S work-unit validation gate only; the Friday TUI initiative remains
+`started`, and full product UAT/acceptance remains pending. Returned current
+implementation authority to `design_only` for later units. The next gate is
+review and separate approval of an exact N01A neutral-loader directive before
+another product-code edit.
+execution_phase: planning; validation_state: verified.
+
+## 2026-10-18 — TUI-N01A neutral-loader directive prepared
+
+Rechecked the `feature/friday-tui` branch at `26f5d090`, the board, authority
+manifest and current Chat/Runtime loader. All 369 focused Chat, Runtime and
+`friday-cli` configuration/CLI tests passed unchanged. A disposable synthetic
+probe characterized legacy and canonical loading, Chat diagnostic-map
+replacement, warning order, environment failures, invalid-file categories,
+raw relative paths, symlink target catalog anchoring and the different
+headless `RuntimeConfig` parser. No live provider request or real credential
+was used.
+
+Bound the N01A neutral API and Chat compatibility facade in
+`neutral-config-loader-contract.md`, retained the before-code evidence in
+`validation/N01A-before-code-characterization.md`, and proposed
+`directives/CD-TUI-N01A-neutral-config-loader.md` with exact source/test/
+package-metadata paths, after-code checks and stop conditions. N01A excludes
+the chooser, service assembly, command effects and TUI UI. This planning
+transaction grants no product-code authority, user UAT, acceptance or
+delivery. The next gate is maintainer review and explicit scoped approval of
+the proposed directive, followed by a board/manifest grant before source
+edits.
+execution_phase: planning; validation_state: verified (TUI-N01S only).
+
+## 2026-10-18 — CD-TUI-N01A approved for loader-only implementation
+
+Chuck Russell answered "approved" to the explicit question approving
+CD-TUI-N01A and granting implementation authority for its exact neutral
+configuration-loader scope. Recorded the grant in the directive, board and
+authority manifest. This is the shared application YAML loader, Chat facade,
+two focused new test files, Runtime direct dependency declarations and the
+resulting lockfile entry only. The independent TUI package, chooser, runtime
+assembly and command effects remain out of scope. Rechecked the clean branch
+and current source before editing. The next gate is local implementation,
+protected Chat/CLI and installed-package checks, a frozen candidate commit
+and fresh-context independent validation.
+execution_phase: implementation; validation_state: not_ready.
+
+## 2026-10-18 — TUI-N01A implemented and locally checked
+
+Moved the typed application YAML models, parser and diagnostics into
+`friday_runtime.application_config` and kept `friday_chat.config` as a facade
+with the existing import names, traceability map, diagnostic-key monkeypatch
+behavior and loader signature. Added the neutral rule snapshot API and direct
+Runtime Pydantic/PyYAML package requirements with a scoped lockfile update.
+No `friday-cli` or other product module changed. The moved 34 classes and
+seven unchanged helpers are AST-identical to the before-code Chat source.
+
+Local checks passed: 334 Runtime tests; 839 Chat tests with five skipped;
+155 `friday-cli` tests; and 113 cross-package telemetry, MCP and integration
+tests. Changed-file Ruff/Mypy, lock check, package metadata check, board
+validation and diff check pass. Runtime and Chat wheels built. A fresh
+outside-checkout venv installed the Runtime wheel with its declared closure
+and loaded no Chat/CLI package; the installed Chat wheel then shared the
+same classes and config results. `uv pip check` found 127 compatible
+packages. `friday-chat` version/help and the existing `friday --help` import
+failure match the checkout baseline. Detailed evidence is in
+`validation/N01A-local-checks.md`.
+
+Actual automated Linux execution remains unverified because this macOS host
+has no running Docker daemon or usable local Docker app. This is a disclosed
+N01A validation limit, not a claim of Linux coverage or user UAT. Freeze the
+candidate for a fresh-context independent review of the exact scope and
+evidence before any later TUI unit.
+execution_phase: validation; validation_state: pending.
+
+## 2026-10-18 — TUI-N01A independent review BLOCKED on Linux evidence
+
+Committed frozen candidate `4a5311f2340adfbbf9cd5c4289db325e6b420b6b`
+from base `ab56cbc61ac8f9ec54fc8d6e0b1753fe18411332`. Fresh-context,
+read-only reviewer `/root/n01a_independent_validation` examined the exact
+directive, authority hashes and diff and returned `BLOCKED` with no code
+finding. Independent focused, full Runtime/Chat/`friday-cli`, cross-package,
+static, wheel and installed-import checks passed; full evidence and residual
+limits are in `validation/VAL-N01A-neutral-config-loader.md`.
+
+Blocker B-01 is the mandatory automated Linux neutral-loader smoke in
+CD-TUI-N01A gate 4. The host is macOS and no working local Docker/Linux runner
+exists. Run and retain that smoke against the unchanged candidate, including
+installed-wheel frontend isolation, then obtain fresh-context independent
+closure. Do not mark N01A verified, start a dependent construction unit or
+infer TUI UAT, maintainer acceptance or delivery. The overall initiative
+remains `started` with a normal scheduling condition so unrelated planning
+can continue; only N01A validation is blocked. N01A-only source authority is
+still recorded, but the candidate stays frozen pending the Linux gate.
+execution_phase: validation; validation_state: blocked.
+
+## 2026-10-18 — Maintainer defers Linux smoke for N01A closeout
+
+Chuck Russell directed, "Let's postpone testing on Linux for now. Close N01A."
+The directive now records an approved waiver of its automated Linux smoke
+only as a prerequisite for closing this frozen N01A work unit. The Linux check
+has not run and remains required for later TUI cross-platform/release
+acceptance. The previous independent `BLOCKED` report remains historical.
+The product candidate stays `4a5311f2340adfbbf9cd5c4289db325e6b420b6b`;
+no source, test, package or lock file changed. Amended authority must receive
+a fresh-context read-only review before N01A is called `VERIFIED` or closed.
+execution_phase: validation; validation_state: pending.
+
+## 2026-10-18 — TUI-N01A independently VERIFIED and closed
+
+Fresh-context, read-only reviewer `/root/n01a_waiver_validation` returned
+`VERIFIED` for frozen product candidate
+`4a5311f2340adfbbf9cd5c4289db325e6b420b6b` under the bounded
+maintainer Linux-smoke deferral. The full work-unit report is
+`validation/VAL-N01A-waiver-closeout.md`; the earlier `BLOCKED` report is
+retained as historical evidence. No product source, test, package metadata
+or lock file changed after the candidate. Linux has not run and remains a
+cross-platform and final-candidate release gate.
+
+Closed N01A only and returned the current board/manifest implementation
+authority to `design_only`. The Friday TUI initiative remains `started`;
+later units need separate approval. No TUI UAT, full-initiative acceptance,
+push, merge, release or publication is inferred. Stop after this unit.
+execution_phase: planning; validation_state: verified (TUI-N01A only).
+
+## 2026-10-18 — Linux GitHub Actions work unit proposed
+
+The maintainer asked for the next steps after discussing Linux testing on
+GitHub Actions. Prepared `directives/CD-TUI-CI01-linux-actions.md` as a
+design-only proposal for an Ubuntu workflow covering the deferred N01A smoke,
+installed-wheel isolation and protected Runtime/Chat/`friday-cli` regressions.
+No workflow, package source, test or lockfile changed; no Linux run or remote
+delivery has occurred. The board remains `started` with design-only authority
+pending review and explicit approval of the exact CI scope.
+execution_phase: planning; validation_state: verified (TUI-N01A only).
+
+## 2026-10-18 — TUI-CI01 approved for bounded workflow implementation
+
+Chuck Russell replied "approved" to the explicit TUI-CI01 directive question.
+This grants implementation authority for `.github/workflows/friday-tui-linux.yml`
+and the directive's exact scoped planning/evidence paths only. N01A remains
+closed under its Linux-smoke waiver; no later TUI product unit is authorized.
+External delivery remains unauthorized. Start CI workflow construction and
+local checks before freezing a candidate for a separately authorized GitHub
+Actions run and independent review.
+execution_phase: implementation; validation_state: pending (TUI-CI01).
+
+## 2026-10-18 — TUI-CI01 workflow locally checked
+
+Added only `.github/workflows/friday-tui-linux.yml` for automation. Its
+focused loader/facade checks, separate Runtime/Chat/`friday-cli` suites and
+isolated installed-wheel check all passed locally on macOS. Syntax, lock,
+board, dashboard and changed-path checks passed. The detailed
+`validation/TUI-CI01-local-checks.md` records exact counts and the inherited
+six-link documentation checker debt. No Linux/Actions run has occurred.
+Freeze the candidate for separately authorized branch delivery and a real
+Ubuntu run; then obtain independent read-only review of the exact candidate
+and Linux evidence. No TUI product implementation or user UAT is inferred.
+execution_phase: validation; validation_state: pending (TUI-CI01 Linux run).
+
+## 2026-10-18 — TUI-CI01 first-candidate preflight and remediation
+
+Fresh-context read-only review of committed candidate `7d97aacd` returned
+`CHANGES_REQUESTED`: CI01-01 identified `runner.temp` in job-level `env`,
+where GitHub cannot resolve it; CI01-02 identified PR logs that omitted the
+source head SHA. Retained the full finding record in
+`validation/VAL-TUI-CI01-preflight-7d97aacd.md` and assigned both findings in
+the approved directive's `RD-TUI-CI01-01` bounded remediation addendum.
+
+Moved temporary paths to consuming step environments and logged the PR source
+SHA (or push SHA) beside the tested checkout SHA, preserving PR merge testing.
+Reran workflow context-scope, YAML, Bash and embedded-Python checks; all
+passed. Package code, tests, metadata, lockfile and the tested wheel/import
+scripts were unchanged. The corrected workflow needs a new committed
+candidate, fresh read-only review, separately authorized branch push and an
+actual green Ubuntu run before TUI-CI01 can be `VERIFIED`.
+execution_phase: validation; validation_state: pending (TUI-CI01 Linux run).
+
+## 2026-10-18 — Authorized TUI-CI01 push and first Ubuntu failure
+
+Chuck Russell answered "yes, authorized" to the separate question approving
+the `feature/friday-tui` push for its Ubuntu Actions run. Pushed preflight
+candidate `e3e2e974b22d193794dc5420cbad29a36b40e3e8` to `origin`; board
+delivery moved from `local` to `pushed`. The [first run](validation/TUI-CI01-ubuntu-run-39172562601.md)
+on Ubuntu 24.04.5 / Python 3.13.12 / uv 0.11.3 passed the 21 focused tests
+but failed while collecting full Runtime tests because `cryptography` was
+absent. Chat, CLI and installed-wheel checks were skipped. This run is not
+Linux verification.
+
+The test import is in an existing Runtime test; `uv.lock` already resolves
+`cryptography` through `friday-framework-mcp[dev]`. Added bounded
+`RD-TUI-CI01-02` to select both root and MCP `dev` extras in the workflow's
+locked sync. Offline export/dry-run confirms the selected closure includes
+`mcp`, `cryptography` and `pytest-mock`; workflow syntax, board, dashboard and
+lock checks pass. No protected product or test path changed. Freeze and
+review the corrected candidate, then rerun Actions for its new SHA.
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).
+
+## 2026-10-18 — TUI-CI01 packet-state preflight correction
+
+Fresh-context read-only review of `3086f7d7` returned `CHANGES_REQUESTED`
+for CI01-03: this log's current header still named N01A as awaiting review,
+and the board's next gate still included the already completed locked MCP
+dependency correction. Retained the finding in
+`validation/VAL-TUI-CI01-preflight-3086f7d7.md` and assigned it in
+`RD-TUI-CI01-03` of the directive. Updated only the log's current status and
+the board's next gate, then regenerated the dashboard. The workflow and all
+package paths remain unchanged from `3086f7d7`. A fresh review and green
+Ubuntu run for the new candidate remain required.
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).
+
+## 2026-10-18 — TUI-CI01 second Ubuntu run and finance closure correction
+
+Fresh-context preflight of `7a41004a` verified the packet correction and
+workflow readiness only; recorded in `validation/VAL-TUI-CI01-preflight-7a41004a.md`.
+The authorized branch push triggered Ubuntu run
+[`39173445329`](https://github.com/CIChuck/agent-framework/actions/runs/39173445329)
+on source and checkout `7a41004a`. The 21 focused tests passed. Full Runtime
+reported 331 passed, three failed. Two failures reflect missing
+`friday_finance` in the selected test environment; one synthetic MCP stdio
+case failed without a disclosed lifecycle outcome. Later Chat/CLI and wheel
+steps were skipped. `validation/TUI-CI01-ubuntu-run-39173445329.md` retains
+the evidence and `RD-TUI-CI01-04` bounds the workflow-only finance correction.
+The MCP result must be inspected in the next full Ubuntu run. No Linux
+verification claim is made.
+execution_phase: validation; validation_state: changes_requested (TUI-CI01 Ubuntu Runtime failures).
+
+## 2026-10-18 — TUI-CI01 finance-candidate packet-state correction
+
+Fresh-context review of `89a875ac` returned `CHANGES_REQUESTED` for
+CI01-04. It found no workflow issue but identified a mismatch between the
+packet index's pending state, this log's current `changes_requested` header
+and the board's obsolete finance-correction next gate. The finding is in
+`validation/VAL-TUI-CI01-preflight-89a875ac.md` and is assigned in
+`RD-TUI-CI01-05`. Reconciled the current state as pending a complete
+Ubuntu rerun; updated the board next gate and regenerated the dashboard.
+The workflow remains identical to `89a875ac`. The prior MCP failure is
+unresolved until the next full Runtime result. Fresh preflight is required.
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).
+
+## 2026-10-18 — TUI-CI01 third Ubuntu run and bounded diagnostic correction
+
+Fresh-context preflight verified `505c4c1d` for workflow readiness only;
+recorded in `validation/VAL-TUI-CI01-preflight-505c4c1d.md`. The authorized
+push triggered Ubuntu run
+[`39174159031`](https://github.com/CIChuck/agent-framework/actions/runs/39174159031)
+on matching source and checkout SHAs. Focused tests passed (21); Runtime
+reported 331 passed and three failed. The two tool-discovery cases now
+failed on an omitted `friday_moltbook` import, and the synthetic MCP
+`auto`/modern stdio case failed again. Later independent checks were
+skipped. The evidence is in `validation/TUI-CI01-ubuntu-run-39174159031.md`.
+`RD-TUI-CI01-06` adds the existing Moltbook package to CI selection,
+retains independent suites/wheel checks after earlier test failures, and
+runs the MCP case separately for diagnosis. The workflow remains read-only
+and no product/test source changed. A complete Linux run and final
+independent review remain open.
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).
+
+## 2026-10-18 — TUI-CI01 current-authority preflight correction
+
+Fresh-context review of `49acc931` returned `CHANGES_REQUESTED` for
+CI01-05 and CI01-06; the workflow and locked closure passed preflight.
+The packet README still described old `design_only` authority and future
+Linux-runner availability, while the board still named a finance-corrected
+candidate already tested. The findings are retained in
+`validation/VAL-TUI-CI01-preflight-49acc931.md` and assigned in
+`RD-TUI-CI01-07`. Updated the README's current-state wording and made the
+board next gate refer to the current CI01 candidate's full Ubuntu run and
+work-unit review. The workflow remains unchanged from `49acc931`; a fresh
+read-only review is required before pushing the corrected packet.
+execution_phase: validation; validation_state: pending (TUI-CI01 Ubuntu rerun).
+
+## 2026-10-18 — TUI-CI01 fourth Ubuntu run and protected-source stop
+
+Pushed packet candidate `94f968143ee9890cf761b0e3be9004735e5a6aaf`
+under the recorded branch-push authorization. GitHub Actions run
+[`39175010441`](https://github.com/CIChuck/agent-framework/actions/runs/39175010441)
+exercised all independent checks. The focused neutral loader/Chat facade
+tests passed 21/21; the unchanged `friday-cli` suite passed 155/155; all 13
+local wheels built; Runtime wheel metadata, outside-checkout Runtime
+isolation and installed Chat facade checks passed. Full Runtime reported 333
+passed and one MCP `auto`/modern stdio failure; a standalone invocation of
+that case also failed. Full Chat reported 816 passed, five failed and 23
+skipped. Four failures involve `/reorganize` on Linux, where the existing
+lease registry rejects non-Darwin execution; one is a help-output assertion.
+The complete findings and exact source/run are in
+`validation/TUI-CI01-ubuntu-run-39175010441.md`.
+
+The CI workflow's dependency and installed-wheel checks now run, but the
+required full-suite Linux gate remains red. The CI01 directive forbids package
+source/test edits; stop at that boundary and require a separately scoped,
+maintainer-approved directive for the Runtime/MCP and Chat compatibility
+work before another green-run claim. No TUI product code, protected package
+source, tests, metadata or lockfile changed.
+execution_phase: validation; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope).
+
+## 2026-10-18 — TUI-CI01 independent post-run review
+
+Fresh-context, read-only review of committed evidence candidate `a7519db2`
+returned `CHANGES_REQUESTED` with findings CI01-07 through CI01-10. It
+confirmed the workflow and planning diff stayed in CI01 scope and that the
+focused, unchanged CLI, wheel and installed-isolation checks passed. Full
+Runtime and Chat suites remain red, and the reviewed post-run evidence commit
+does not have its own green exact-candidate run. The report is
+`validation/VAL-TUI-CI01-final-a7519db2.md`. The next gate is a separately
+approved remediation directive for the Runtime/MCP and Chat Linux issues;
+no protected source or test edit is authorized by this review.
+execution_phase: validation; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope).
+
+## 2026-10-18 — TUI-CI01 pushed review packet and fifth Ubuntu run
+
+Pushed evidence/review commit `927dacc81d21a6e119a0c06bb8a2443d069157f5`
+under the recorded CI01 branch-push authorization. [Actions run
+`39175828523`](https://github.com/CIChuck/agent-framework/actions/runs/39175828523)
+tested that exact source and checkout. It failed the same Runtime MCP
+`auto`/modern case in both the full suite (333 passed, one failed) and its
+standalone diagnostic. Chat again had 816 passed, five failed and 23 skipped;
+the five failures were the same help assertion and four `/reorganize` cases.
+The focused 21 tests, unchanged `friday-cli` 155 tests, 13 wheel builds,
+Runtime wheel metadata and isolated installed-package checks passed. This
+confirms the failed gate on the pushed packet commit without granting source
+or test authority.
+execution_phase: validation; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope).
+
+## 2026-10-18 — Proposed TUI-CI02 Linux remediation directive
+
+From CI01 findings CI01-07 through CI01-10, drafted
+`directives/CD-TUI-CI02-linux-regression-remediation.md` for a test/workflow-
+only diagnostic and correction path. Local reproduction with
+`GITHUB_ACTIONS=true` or `FORCE_COLOR=1` shows the help assertion misses
+visibly present `--version` because ANSI styling splits the raw substring;
+stripping ANSI restores the assertion. The current Chat lease registry
+deliberately rejects Linux maintenance, so the proposed initial behavior is
+to retain safe refusal and test it explicitly. The MCP lifecycle outcome
+remains unknown; the proposal gates any synthetic timeout change on captured
+Ubuntu evidence and stops for a new framework directive if product code is
+needed. The maintainer's "approved continue" authorized this planning pass;
+CI02's exact construction scope remains unapproved. No product, test or
+workflow file changed in this pass.
+execution_phase: planning; validation_state: changes_requested (TUI-CI01 Linux failures outside approved scope; CI02 approval pending).
+
+## 2026-10-18 — CI03 shared-MCP directive approved
+
+Chuck Russell replied "approved" to the exact CD-TUI-CI03 source/test/optional
+workflow scope and independently reviewed feature-branch push request. The
+board and authority manifest now activate CI03-A characterization before any
+shared-MCP source edit. If the timeout followed by `-32022` sequence is not
+confirmed, source work stops for a revised directive. CI01/CI02 Linux gates
+remain open. No TUI product unit, PR, merge, release or acceptance is implied.
+
+execution_phase: implementation; validation_state: not_ready (CI03-A characterization pending).
+
+## 2026-10-18 — CI03 local characterization and regression gate
+
+The new owned-stdio synthetic test failed before source correction and
+confirmed the first `server/discover` timeout followed by legacy `initialize`
+error `-32022`, with no tool call and complete child cleanup. The bounded
+`auto` retry now passes its positive and negative cases. Full local MCP,
+Runtime, Chat and unchanged `friday-cli` regressions, three direct stdio runs,
+Ruff, targeted Mypy, lock check, workflow parse, board validation and diff
+checks passed. The [local report](validation/TUI-CI03-local-checks.md) records
+counts and the sandbox loopback rerun. The candidate awaits a committed
+freeze, fresh-context independent review and exact-source Ubuntu verification.
+
+execution_phase: validation; validation_state: pending (CI03 independent review and Ubuntu run).
+
+## 2026-10-18 — CI03 pre-push review and green exact-source Ubuntu run
+
+A fresh-context read-only reviewer returned
+[VERIFIED for pre-push readiness](validation/VAL-TUI-CI03-preflight-315a30e4.md)
+on candidate `315a30e4`; no findings were recorded. The authorized push set
+`origin/feature/friday-tui` to that exact SHA. [Ubuntu run
+39183895627](validation/TUI-CI03-ubuntu-run-39183895627.md) then passed the
+full Runtime, repeated Runtime and direct MCP auto cases, full Chat, unchanged
+`friday-cli`, wheel metadata and installed Runtime isolation gates. The exact
+source matches the pre-push review. A fresh final independent review must
+reconcile the CI03 work unit and previously red CI01/CI02 Linux gates before
+their validation state is closed. This is infrastructure validation, not TUI
+terminal UAT, PR/merge/release or maintainer acceptance.
+
+execution_phase: validation; validation_state: pending (final CI03/CI01/CI02 reconciliation review).
+
+## 2026-10-18 — CI03 infrastructure unit VERIFIED and closed
+
+A second fresh-context read-only reviewer returned
+[VERIFIED](validation/VAL-TUI-CI03-final-676700f5.md) for the bounded CI03
+source/workflow work and the previously red CI01/CI02 automated Linux gates.
+The reviewer matched the [green Ubuntu job](validation/TUI-CI03-ubuntu-run-39183895627.md)
+to pushed source `315a30e4`; the post-run commit `676700f5` contains only
+planning and evidence. CI03 is closed as an infrastructure work unit. The
+Friday TUI initiative remains `started`; no TUI executable or product UAT is
+claimed. N01B needs a separate exact directive and maintainer approval before
+product code generation. No further push, PR, merge, release or maintainer
+acceptance was authorized by this closeout. This post-verdict record changes
+only packet, board and generated dashboard files; the reviewed and green
+source/workflow candidate remains `315a30e4`.
+
+execution_phase: planning; validation_state: verified (CI03 infrastructure only; TUI product/UAT not ready).
+
+## 2026-11-05 — Active planning restored in Agent Framework
+
+The maintainer identified Friday TUI as active work following the planning-only
+transfer. Moved this packet from `deferred/friday-tui` to `active/friday-tui`;
+board and dashboard now record `started`, normal condition and `design_only`
+authority on the existing command-refactor planning branch. The command refactor
+remains first. TUI construction still requires command-refactor acceptance and
+separate directive approval. No source inspection, code evaluation, repository
+script or source test was performed. Historical receipts were preserved.

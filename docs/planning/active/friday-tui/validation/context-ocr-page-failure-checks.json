@@ -1,0 +1,37 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_ocr_page_failure_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-86: if any PDF page requiring OCR cannot yield usable text, reject the entire new PDF attachment with a page-specific cause and no partial model input. Failed refresh retains the last complete snapshot; other attachments remain active.",
+  "source_evidence": {
+    "maintainer_answer": "A to whole-PDF rejection versus partial attachment on a failed scanned page",
+    "prior_contract": "D-81 retains the last successful snapshot on refresh failure; D-84 sets page-selective OCR in original order"
+  },
+  "documents_sha256": {
+    "decisions.md": "a2ce72f075309cb0148e1e88c3bcfcddc309b470ca74c4dbaeb8cb98a75a3994",
+    "screen-layout.md": "179bac904f0649d46cc9dcddcbca7b1d4d205da9aedd9b1d364d3b99076ef69a",
+    "README.md": "05a477592459dabafb623248ff356635d2f3d8d6aa6d03200e2610278c60ef4c",
+    "replacement-plan.md": "ba03c74f2209b8cf09bf6758b7bdbd5a1edd3e0c8d0924c2a01116d3e150d88e",
+    "user-guide-requirements.md": "a22428adf9b7588446ac202645bb4faafc2ac6889d0a50c02cfb6418ca1ab689",
+    "neutral-capability-map.md": "6d2c94aa3644228c182f4d4ab289c9945c63c23f42bd9df061bc9e9917e39c7a",
+    "authority.json": "14270e44d99264ca54f4ddd775a038da81439d608f17d377cbbdd285e3505563",
+    "execution-log.md": "ee9081950507301bd52de8b5700f76f5b2b2cc2922497581b95370bd8cc2a430",
+    "docs/planning/board.yaml": "0fd069a807702baaafb4796d118cb52cbdd4045399aeb62d1d9034b33087eb0b",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "82 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "ocr_page_failure_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted whole-PDF failure semantics and planning checks only. Usable-text criterion, OCR languages, renderer distribution, size/time budgets, installed OCR attachment tests, terminal UAT and release acceptance remain open."
+}

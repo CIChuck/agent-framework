@@ -64,6 +64,7 @@ langfuse = [
     "friday-framework-llm[langfuse]==0.1.0a4",
 ]
 all = [
+    "friday-framework-commands==0.1.0a4",
     "friday-framework-speech[picovoice,elevenlabs]==0.1.0a4",
     "friday-framework-finance==0.1.0a4",
     "friday-framework-sandbox==0.1.0a4",
@@ -103,6 +104,7 @@ friday-framework-mcp = { workspace = true }
 friday-framework-optimization = { workspace = true }
 friday-framework-transcript = { workspace = true }
 friday-framework-cli = { workspace = true }
+friday-framework-commands = { workspace = true }
 friday-chat = { workspace = true }
 friday-framework-runtime = { workspace = true }
 friday-framework-telemetry = { workspace = true }

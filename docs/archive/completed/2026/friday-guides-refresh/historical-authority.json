@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "owner": "friday-guides-refresh",
+  "packet": "docs/archive/completed/2026/friday-guides-refresh/historical/",
+  "files": [
+    {
+      "path": "docs/archive/completed/2026/friday-guides-refresh/historical/README.md",
+      "sha256": "f33a1ba2d7d9628e9e2b8c86d7bda26b142a95a11de9adc1789ac23a06d6020e",
+      "kind": "index"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-guides-refresh/historical/authority.json",
+      "sha256": "573a1c4148a4321ca4cb06b7f8d2421dc662588c653e12935fc286fe9d668ac2",
+      "kind": "authority"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-guides-refresh/historical/execution-log.md",
+      "sha256": "49a95402a53976c425c73575ce39c315830d0eedb7adb8a24b2227a90d5628c9",
+      "kind": "approval"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-guides-refresh/historical/directives/CD-GUIDE-001-guides-refresh.md",
+      "sha256": "0c064f647a47c0d2ac82b34e83bf9a3ee9a812c1d3ce13b650b9c203f4b7d3ee",
+      "kind": "directive"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-guides-refresh/historical/validation/final-review/report.md",
+      "sha256": "14a50c72aa2f031cd2ceb0d266d1d4d54692041583fe68a553fa87db13ffa359",
+      "kind": "report"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-guides-refresh/historical/closeout.md",
+      "sha256": "4aa2914754df9b4ee752380e76a003bde862f3702900b01f3dbc546df5ac4906",
+      "kind": "evidence"
+    }
+  ]
+}

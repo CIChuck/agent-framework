@@ -1,0 +1,35 @@
+{
+  "initiative": "friday-tui",
+  "kind": "startup_replay_failure_view_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-64: on startup replay failure, keep a read-only file/error screen until Quit, then exit nonzero. Do not automatically retry or enter the config chooser or interactive session. Explicit Retry and cleanup/error details remain open.",
+  "documents_sha256": {
+    "decisions.md": "662cd071fa5fe91d70aab167f7d2add6aff1d65bc1414d95e30bc90fbecbc8ce",
+    "startup-bootstrap-contract.md": "fd8775796981b6002ce1c41bfb923e37eff4cb95c2f0fb18d65dfb6efbb6d05b",
+    "replacement-plan.md": "2468c962b49e511ef4fbdd773a80db5151ee46f3375bfc0e15b6a8feb5041080",
+    "README.md": "8a03cffdb41cdc45da882049410b1f9d581407e0c97747ddf12f09e3d08df87a",
+    "user-guide-requirements.md": "36ea971a8a6616f557a953d15f15d73194f8cac53d14e08ae09f7bfa0650ec53",
+    "architecture-reset.md": "5422c3c2924f4f1859be7edda7b2db1eb415197b14947d4263e722e14e60c77e",
+    "command-matrix.md": "e63ce0f45555b0974d154552373c9514be578e1af7bdad3bbceebd3574cbd509",
+    "authority.json": "391f123e524479147d9f7f087a3cdd8b87a69a387c2a3c9c82c03b967c0e393a",
+    "execution-log.md": "bf116d48f10c8e420687ded474688f5aae25a6c06036b766a9168ac526a73780",
+    "docs/planning/board.yaml": "9e52c73df08b86dc1339447af9bc163343e9295d9306cc0f041b5dec128bf84b",
+    "docs/planning/README.md": "af10016114e2d83f8a8d635a220497a164dd4d5303e7e74534d672012cf539fa"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "60 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only failure-view decision and no product code change",
+    "existing_chat_replay_baseline": "23 existing Chat CLI/replay tests passed in the earlier D-62 review",
+    "tui_replay_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted failure-view decision and planning checks only. No neutral replay service or TUI implementation, after-code CLI regression, installed-package verification, user UAT or release acceptance."
+}

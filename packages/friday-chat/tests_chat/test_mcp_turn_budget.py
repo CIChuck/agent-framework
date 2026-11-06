@@ -89,6 +89,35 @@ def state(
     )
 
 
+def test_extended_mcp_schema_requires_verified_provider_export() -> None:
+    definition = ToolDefinition(
+        "mcp_peer_recursive",
+        "Recursive tree tool",
+        {
+            "type": "object",
+            "$defs": {"node": {"type": "object", "propertyNames": {"pattern": "^[a-z]+$"}}},
+            "properties": {"tree": {"$ref": "#/$defs/node"}},
+        },
+        "mcp",
+    )
+    cfg = config()
+    provenance = {definition.name: metadata(definition)}
+    unknown = ToolSelectionState(cfg, (definition,), mcp_metadata=provenance)
+    result = unknown.select_for_turn("use recursive tree tool")
+    assert not result.definitions
+    assert result.budget.rejections[0].reason is ToolRejectionReason.PROVIDER_EXPORT
+
+    verified = ToolSelectionState(
+        cfg,
+        (definition,),
+        mcp_metadata=provenance,
+        provider_schema_support=True,
+    )
+    offered = verified.select_for_turn("use recursive tree tool")
+    assert offered.definitions == (definition,)
+    assert offered.definitions[0].input_schema["$defs"] == definition.input_schema["$defs"]
+
+
 @pytest.mark.parametrize(
     "definitions",
     [

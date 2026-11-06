@@ -71,13 +71,14 @@ Packages expose public interfaces and typed models so applications can choose pr
 
 ## Package map
 
-The workspace contains the root `friday-framework` distribution and these 16 members:
+The workspace contains the root `friday-framework` distribution and these 17 members:
 
 | Directory / README | PyPI distribution | Python import | Purpose |
 | --- | --- | --- | --- |
 | [friday-agent](https://github.com/CIChuck/agent-framework/blob/master/packages/friday-agent/README.md) | `friday-framework-agent` | `friday_agent` | Agent profiles, orchestration and workflows |
 | [friday-chat](https://github.com/CIChuck/agent-framework/blob/master/packages/friday-chat/README.md) | `friday-chat` | `friday_chat` | Terminal chat application |
 | [friday-cli](https://github.com/CIChuck/agent-framework/blob/master/packages/friday-cli/README.md) | `friday-framework-cli` | `friday_cli` | Reusable terminal components; historical executable is a placeholder |
+| [friday-commands](https://github.com/CIChuck/agent-framework/blob/master/packages/friday-commands/README.md) | `friday-framework-commands` | `friday_commands` | Neutral stdlib command models and injected-handler registry; no executable or default handlers |
 | [friday-core](https://github.com/CIChuck/agent-framework/blob/master/packages/friday-core/README.md) | `friday-framework-core` | `friday_core` | Shared contracts, logging and security primitives |
 | [friday-finance](https://github.com/CIChuck/agent-framework/blob/master/packages/friday-finance/README.md) | `friday-framework-finance` | `friday_finance` | Massive financial-data client |
 | [friday-llm](https://github.com/CIChuck/agent-framework/blob/master/packages/friday-llm/README.md) | `friday-framework-llm` | `friday_llm` | Chat, embeddings and typed model requests |

@@ -1,0 +1,1 @@
+../../../docs/dev-skills/prd-author.md

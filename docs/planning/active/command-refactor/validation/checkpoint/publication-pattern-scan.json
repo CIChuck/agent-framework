@@ -1,0 +1,6 @@
+{
+  "scope": "Proposed checkpoint worktree files; common private-key/provider token patterns; filenames only in findings; not a complete secret-detection guarantee.",
+  "files": 15178,
+  "bytes": 297087200,
+  "findings": []
+}
