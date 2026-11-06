@@ -709,7 +709,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Corrected Step 3 readiness VERIFIED at fcea84b8; maintainer Step 4 decision on exact directive/base, RD-01/RD-02 and architecture readiness required before construction
+  next_gate: Validate maintainer-approved legacy framework CLI launcher removal and affected readiness delta; then Step 4 updated directive/base and RD-01/RD-02 decision; foundation construction unapproved
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -2379,3 +2379,10 @@ events:
   action: recorded VERIFIED corrected Step 3 readiness
   note: Fresh independent validation of fcea84b879995735308e5be18cfed6cbb82a0b17 closes CMD-RDY-001 through CMD-RDY-005 and passes R-01 through R-08 for limited readiness. Step 4 directive/base/RD-01/RD-02 and architecture-readiness decisions remain with the maintainer; no implementation or delivery approval.
   evidence: docs/planning/active/command-refactor/validation/step3/correction-report.md
+- task: friday-command-refactor
+  at: '2026-11-06T21:10:34+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact legacy framework CLI launcher removal
+  note: Identified friday=friday_cli.main:app as a legacy TOML error and instructed removal. CD-CMD-CLI-001 binds that exact metadata deletion, related descriptions/readiness disposition and fresh validation; no replacement launcher, finance repair or foundation construction.
+  evidence: docs/planning/active/command-refactor/directives/CD-CMD-CLI-001-retire-legacy-launcher.md

@@ -924,7 +924,7 @@
       "proof": "FND-001 and later migrations retain source-level generic CLI quote parsing, sync/async dispatch and public exports; FND-001 separately proves its own neutral wheel. No unapproved shared-registry adapter.",
       "verification_owner": "Source-level generic CLI regression for FND-001 and every later migration unit",
       "deferred_installed_client_proof": {
-        "obligation": "Load and exercise the declared generic friday client entry point after its baseline missing-app defect is repaired or explicitly dispositioned. No healthy installed-client claim from FND-001.",
+        "obligation": "Load and exercise declared supported application entry points, including friday-chat, before affected delivery. Framework CLI is a component library; the maintainer retired its legacy friday launcher under CD-CMD-CLI-001. Do not recreate that launcher or treat its old missing-app observation as a remaining defect.",
         "gate": "Affected installed-client migration/delivery gate (P4/P5), before affected delivery; separate approved directive/disposition required",
         "foundation_owner": false
       }
@@ -938,13 +938,13 @@
     },
     {
       "environment": "Default Chat/CLI wheels, declared dependencies only",
-      "state": "Fresh corrected capture: 127 distributions; dependency check, Chat/registry/CLI module imports, stateless help and Chat entry-point --help pass. Explicit friday_tools import fails: missing friday_finance. Generic friday entry-point loading fails: absent friday_cli.main:app.",
+      "state": "Historical pre-retirement capture: 127 distributions; dependency check and Chat/registry/CLI module imports/help pass; friday_tools import fails on friday_finance. Legacy friday load failure belongs to old wheel; launcher now intentionally retired by CD-CMD-CLI-001.",
       "foundation_construction": "Baseline limitation; not a healthy client profile or future client shipping proof.",
       "evidence": "validation/step3/default-profile/receipt.json"
     },
     {
       "environment": "Chat finance+sandbox extras, isolated wheels",
-      "state": "installed 131 distributions; Chat registry/help probes pass; generic friday entry point fails",
+      "state": "Historical pre-retirement capture: 131 distributions; Chat registry/help pass; legacy friday load failure observed in old wheel. Launcher now intentionally retired by CD-CMD-CLI-001.",
       "foundation_construction": "Diagnostic augmented profile only; neither the minimum extras set nor full/default runtime health was proved. Local friday_tools.sandbox is stdlib-only; optional friday_sandbox is lazy."
     },
     {

@@ -1,7 +1,7 @@
 # Step 3 — foundation readiness review
 
 Date: 2026-11-06
-Status: CORRECTED READINESS CANDIDATE — fresh validation pending; Step 4 unapproved
+Status: Legacy launcher retired by maintainer; metadata/readiness delta validation pending; Step 4 unapproved
 Scope: CMD-FND-001, API-01–API-06 only
 
 All three reviewers requested changes to candidate `95fdeadc`. Chuck Russell
@@ -9,6 +9,11 @@ authorized the [bounded correction](remediation/REM-CMD-STEP3-001.md) after
 reading the [consolidated result](validation/step3/council-round1.md). This revised
 packet addresses those five findings and requires fresh independent validation.
 The old council is historical evidence, not a verdict on these changed bytes.
+The correction packet was subsequently VERIFIED at `fcea84b8`. The maintainer
+then identified the framework CLI launcher as a legacy error and approved its
+removal under [CD-CMD-CLI-001](directives/CD-CMD-CLI-001-retire-legacy-launcher.md).
+This latest metadata/readiness delta requires its own fresh validation; no
+foundation API or implementation approval is inferred.
 
 This is the maintainer's single readiness summary. The
 [next-phase checkpoint](next-phase.md) remains the main handoff. CMD-DESIGN-001
@@ -32,7 +37,7 @@ continue to block construction. No current or later gate is silently waived.
 | ID | Step 4 decision/disposition | Proposed treatment |
 | --- | --- | --- |
 | RD-01 | Permit a foundation-only unit before full family-contract/P1 closure. | Defer per-command all-class behavioral signoff, final family schemas/service relocation, host progress/cancellation, installed-client acceptance and final scenario/platform approval until before their affected migration directives. Do not defer any API-01–API-06 test, neutral-import proof, standalone foundation wheel proof or independent review for FND-001. No frontend/domain dependency, handler or compatibility shim may enter FND-001. |
-| RD-02 | Disposition observed client packaging/entry-point limits for this isolated unit. | Record the default-profile `friday_tools` import failure on missing `friday_finance` and generic CLI entry-point failure as baseline defects. Installation/dependency checks and Chat imports/help pass separately. No client repair is needed to construct an unwired zero-dependency foundation. Before affected client migration/delivery, repair through separate authorized work or obtain its explicit required disposition. This cannot qualify full client/runtime health or refactor acceptance. |
+| RD-02 | Disposition the remaining default tools/finance defect for this isolated unit. | Record the default-profile `friday_tools` import failure on missing `friday_finance` as an unresolved baseline defect. Installation/dependency checks and Chat imports/help pass separately. The framework CLI's legacy `friday` launcher was explicitly retired by the maintainer under CD-CMD-CLI-001; it is not a feature to restore. Before affected client migration/delivery, repair or explicitly disposition the remaining finance defect. This cannot qualify full client/runtime health or refactor acceptance. |
 | RD-03 | Review the proposed unit/order map as planning input. | Every baseline name and alias now has a proposed owner. Foundation first, separate retirement next, then a help/exit/cls pilot and dependency-ordered families. Only FND-001 is being prepared for construction; no future unit, retirement timing implementation or capability schema is approved by this map. |
 
 ## Evidence resolved in Step 3
@@ -41,7 +46,7 @@ continue to block construction. No current or later gate is silently waived.
   match the current checkout. The existing controlled 826-test Chat and
   155-test CLI receipts remain historical local evidence; those complete suites
   were not rerun. No new whole-suite or all-class PAR claim is made.
-- **Packaging:** all 17 existing workspace wheels build offline from source
+- **Historical packaging:** all 17 workspace wheels built offline from source
   baseline `bbbd90e05143137c5a1d49eacedb4125d254b8fb`. Wheel hashes and declared
   requirements are recorded in [the receipt](validation/step3/receipt.json).
 - **Corrected default profile:** a fresh environment installed Chat/CLI and
@@ -64,10 +69,13 @@ continue to block construction. No current or later gate is silently waived.
   `--help` exits zero. This is not a default-install, full runtime or terminal-UAT
   pass or proof of the minimum extras needed. See historical
   [observations](validation/step3/installed-probe.json).
-- **Generic CLI limitation:** its wheel declares `friday_cli.main:app`, but
-  loading that entry point raises AttributeError because `app` is absent. Its
-  registry imports pass in the corrected default profile; synthetic dispatch
-  was observed in the historical augmented environment.
+- **Framework CLI launcher disposition:** historical wheels declared
+  `friday_cli.main:app`, which failed because `app` is absent. The maintainer
+  identified the declaration as a legacy error and instructed its removal.
+  Current package metadata provides no standalone `friday` command; no `app`
+  implementation or replacement launcher is planned. The CLI library and its
+  existing registry API remain. New artifact proof belongs to CD-CMD-CLI-001;
+  the old default/augmented outputs retain their historical failure observations.
 - **Containment:** probes used no runtime/store construction or live tool/model
   execution. The augmented probe recorded one LiteLLM cost-map download attempt;
   the socket guard blocked it and the library used its local backup. The new
@@ -88,7 +96,7 @@ only that augmented run. Original `probe.log` came from an earlier unpinned
 script revision and is retained as historical evidence, not reproducible-script
 proof. Raw logs and exact dependency versions support these bounded claims.
 
-## Generic CLI reuse assessment
+## Framework CLI reuse assessment
 
 Keep the generic CLI registry/API separate as O-03 requires. Source
 `friday_cli/commands.py` exposes decorators/programmatic registration,
@@ -131,8 +139,9 @@ The map also defines eight future cross-family scenario obligations: memory and
 maintenance; transcript/export/replay; tool/security/retirement; orchestration
 and workflow; read/ingestion; speech/diagnostics; host help/clear/exit; and generic
 CLI preservation. SC-05 explicitly preserves ingest admission. SC-08 requires
-source-level CLI regression for FND-001; installed generic CLI entry-point proof
-remains mandatory at the later affected client delivery gate. They have owners
+source-level framework CLI regression for FND-001; installed supported application
+entry-point proof remains at the later affected client delivery gate. It does
+not require restoring the intentionally retired `friday` launcher. They have owners
 and dependencies, not new passing receipts.
 
 ## Environments and remaining gates
@@ -160,13 +169,15 @@ integration and cohort/artifact checks, explicit registry access and controlled
 lock generation, followed by frozen checks and package-under-test installation.
 Workspace membership alone is not treated as an import/install guarantee.
 
-The proposed execution base is the corrected frozen candidate supplied in the
-fresh validation request, rather than the superseded `95fdeadc` council
-candidate. It is a planning/evidence-only successor of the source baseline;
-product-source equality must be rechecked at Step 4 and before construction.
+The proposed execution base is the updated frozen candidate supplied in the
+CD-CMD-CLI-001 delta-validation request. It includes the approved legacy launcher
+metadata removal after readiness candidate `fcea84b8`; that sole product-metadata
+change and its documentation must be distinguished from unchanged Python source.
+Source identity must be rechecked at Step 4 and before construction.
 No package under `packages/friday-commands/` has been generated.
 
-Next gate: fresh independent validation of all five corrections and R-01–R-08
-readiness criteria, then the exact Step 4 directive/base and RD-01/RD-02
-decisions. Correction authorization is not construction approval. No automatic
+Next gate: fresh independent validation of CD-CMD-CLI-001 and the affected
+readiness delta, then the updated Step 4 directive/base and RD-01/RD-02
+decisions. Earlier correction validation remains historical for `fcea84b8`.
+The launcher retirement is not foundation construction approval. No automatic
 review/remediation loop, product construction or external delivery follows.

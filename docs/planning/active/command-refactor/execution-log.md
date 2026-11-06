@@ -508,3 +508,18 @@ validation state verified for readiness only. Work state remains started/local.
 Next: explicit Step 4 decision on exact directive/base, RD-01/RD-02 and
 architecture-readiness disposition. No construction, full P0/P1 closure,
 feature acceptance, aggregate implementation approval or external delivery.
+
+2026-11-06: Chuck Russell identified the framework CLI's friday launcher
+registration as a legacy error and explicitly instructed its removal from TOML.
+Recorded [CD-CMD-CLI-001](directives/CD-CMD-CLI-001-retire-legacy-launcher.md)
+for that exact metadata deletion and related disposition. Removed only the
+project.scripts table from packages/friday-cli/pyproject.toml; no Python source,
+API, dependency, lock, finance loading or replacement app changed. Rebuilt CLI
+wheel/sdist offline; isolated no-dependencies install advertises no console
+script and creates no friday executable. Historical probes/reviews still
+describe their old wheels. Updated current readiness/draft/SC-08 text so the
+retired launcher is not a missing feature to restore. Its retirement does not
+close the separate tools/finance defect. Prior fcea84b8 readiness remains
+historical; freeze this metadata/readiness delta for fresh independent review.
+Execution phase validation; validation state in_review. Foundation Step 4,
+RD-01/RD-02, implementation acceptance and external delivery remain unapproved.

@@ -1,0 +1,55 @@
+[
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--no-sync",
+      "python",
+      "-B",
+      "-c",
+      "import sys,pytest\ndef guard(event,args):\n if event in {\"socket.connect\",\"socket.getaddrinfo\",\"socket.gethostbyname\",\"socket.gethostbyaddr\",\"socket.sendto\"}: raise RuntimeError(\"Network disabled for CLI metadata verification\")\nsys.addaudithook(guard)\nraise SystemExit(pytest.main([\"-p\",\"no:cacheprovider\",\"-q\",*sys.argv[1:]]))",
+      "tests/integration/test_package_cohort_metadata.py",
+      "packages/friday-cli/tests_cli"
+    ],
+    "exit": 0,
+    "log": "cohort-and-cli-tests.log"
+  },
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--no-sync",
+      "python",
+      "scripts/check-package-metadata.py"
+    ],
+    "exit": 0,
+    "log": "metadata-check.log"
+  },
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--no-sync",
+      "python",
+      "scripts/check-package-artifacts.py",
+      "--package",
+      "friday_framework_cli",
+      "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-legacy-cli-removal-i4f7xpq2/dist"
+    ],
+    "exit": 0,
+    "log": "artifacts-check.log"
+  },
+  {
+    "argv": [
+      "uv",
+      "lock",
+      "--check",
+      "--offline"
+    ],
+    "exit": 0,
+    "log": "lock-check.log"
+  }
+]

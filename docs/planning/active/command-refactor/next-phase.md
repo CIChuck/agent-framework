@@ -2,9 +2,9 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: Corrected Step 3 readiness VERIFIED at fcea84b8; awaiting Step 4 decision
-Execution phase: planning
-Validation state: verified
+Status: Legacy framework CLI launcher retired; fresh metadata/readiness delta validation pending
+Execution phase: validation
+Validation state: in_review
 
 This is the main next-step document. The [packet index](README.md) maps the
 supporting files. Current planning lives in Agent Framework; earlier TUI-folder
@@ -31,7 +31,7 @@ It does not approve the whole contract, the construction directive or P0/P1 exit
 | --- | --- | --- |
 | 1 | Reconcile navigation and freeze the design inputs; obtain required independent design-readiness evidence. | Navigation reconciled and approved API input pinned. All three Step 3 reviewers support foundation API consistency; overall readiness is CHANGES_REQUESTED, not construction approval. |
 | 2 | Maintainer decides CMD-DESIGN-001. | APPROVED on 2026-11-06 by direct instruction. This decision does not fabricate independent review evidence. |
-| 3 | Resolve applicable P0/P1 prerequisites for the first implementation unit. | All five corrections and R-01–R-08 readiness criteria VERIFIED for `fcea84b8`. Full P0/P1 is not closed; RD-01/RD-02 remain proposed dispositions. |
+| 3 | Resolve applicable P0/P1 prerequisites for the first implementation unit. | Prior readiness VERIFIED at `fcea84b8`. The subsequent maintainer-approved legacy launcher removal and affected readiness delta require fresh validation. Full P0/P1 stays open; RD-01/RD-02 remain proposed. |
 | 4 | Maintainer approves the exact CD-CMD-FND-001 directive, execution base and readiness disposition. | Draft; not approved. |
 | 5 | Execute separately approved units, verify frozen candidates, then obtain feature acceptance. | Future work; product construction unauthorized. |
 
@@ -43,8 +43,11 @@ assessment, pinned default-profile evidence, proposed case/unit map and Step 4
 decisions. The [original council result](validation/step3/council-round1.md)
 remains historical for `95fdeadc`; the authorized
 [correction record](remediation/REM-CMD-STEP3-001.md) defines the five changes.
-The reviewed deliverables retain their pre-review labels and exact bytes;
-the validation report and this process checkpoint record the subsequent result.
+The maintainer has since identified the framework CLI launcher declaration as a
+legacy error and approved [its removal](directives/CD-CMD-CLI-001-retire-legacy-launcher.md).
+The revised RD-02 and scenario map do not require that launcher to be restored.
+Historical reports and raw probes retain their exact prior observations; fresh
+validation must bind this updated metadata/readiness candidate before Step 4.
 The table below remains the broader roadmap; full P0/P1 closure is not claimed.
 
 | Item | Existing record | Outstanding beyond this readiness assessment |
@@ -75,8 +78,10 @@ and MAINT-001 before FILE-001. Fresh review VERIFIED candidate
 `fcea84b879995735308e5be18cfed6cbb82a0b17`. Step 4 must approve the exact
 directive/base, explicitly disposition RD-01/RD-02 and record whether this
 review satisfies the architecture-readiness gate for the pinned API. The
-proposed reviewed execution base is that full candidate SHA; subsequent
-administrative result records do not expand the reviewed construction scope.
+proposed execution base must now be the updated legacy-removal validation
+candidate, because its product metadata and readiness disposition changed after
+`fcea84b8`. The old verdict cannot verify this delta. No replacement CLI launcher
+or finance fix is authorized; the remaining finance defect still needs RD-02.
 No automatic additional council/remediation loop or product build follows.
 
 The initiative remains started/planning; completion, acceptance and delivery

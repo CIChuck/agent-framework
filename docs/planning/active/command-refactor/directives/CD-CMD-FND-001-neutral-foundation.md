@@ -10,11 +10,12 @@ Historical source baseline inspected: `25d2dcb6`; exact local execution base
 and applicable local baselines must be frozen at approval. This imported draft
 is not a construction authorization for either checkout.
 
-Current product-source baseline: `bbbd90e05143137c5a1d49eacedb4125d254b8fb`.
-The proposed execution base is the fresh corrected readiness-validation
-candidate supplied by full SHA in its correction-validation dispatch, with
-matching product bytes. The original round-one council candidate is historical,
-not the proposed execution base. Step 4 must record the new exact base before
+Python-source baseline: `bbbd90e05143137c5a1d49eacedb4125d254b8fb`; the later
+[approved CLI cleanup](CD-CMD-CLI-001-retire-legacy-launcher.md) removes only its
+legacy launcher metadata and updates documentation. The proposed execution base
+is the updated candidate supplied by full SHA in that cleanup's delta-validation
+request, after readiness candidate `fcea84b8`. Historical council/build inputs
+remain historical. Step 4 must record the new exact base before
 execution; a later base/authority change requires revalidation. Approved API
 input SHA-256:
 `e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74`.
@@ -54,12 +55,14 @@ RD-02 records distinct default-profile results: Chat, its registry and generic
 CLI modules import, and Chat help loads; an explicit `friday_tools` import fails
 on missing `friday_finance`. The local `friday_tools.sandbox` module uses the
 standard library; the optional `friday_sandbox` distribution is imported lazily
-and is a separate surface. The absent generic CLI `app` remains an installed
-entry-point limitation. None of these observations proves runtime health.
+and is a separate surface. The framework CLI's legacy `friday` launcher was
+explicitly retired by the maintainer under CD-CMD-CLI-001; it must not be
+restored or treated as a missing application feature. Its earlier failure is
+historical artifact evidence. None of these observations proves runtime health.
 Do not fix clients or widen their dependencies here. The diagnostic
 finance+sandbox install does not establish the minimum extras required or
-repair the default tools import. Required installed-client packaging/entry-point
-dispositions remain before affected delivery gates, separately from FND-001's
+repair the default tools import. Required supported-application packaging and
+entry-point dispositions remain before affected delivery gates, separately from FND-001's
 source-level CLI regression and foundation wheel proof (SC-08). This amendment
 cannot approve future migrations or whole-refactor exit.
 
@@ -70,8 +73,8 @@ typed metadata/requests/outcomes and a registry supporting injected handlers.
 Implement exactly the foundation types/signatures in the approved API revision.
 
 Do not add production default handlers, wire Chat/TUI, move any handler, remove
-any of the nine names yet, alter generic CLI, fix the missing generic CLI entry
-point, change example configs, add provider/domain transports, alter persistence
+any of the nine names yet, alter framework CLI behavior or reinstate its retired
+launcher, change example configs, add provider/domain transports, alter persistence
 or admission gates, implement family capabilities, or expose a new executable.
 No push, PR, merge, release or deployment is authorized by this directive.
 
@@ -437,7 +440,8 @@ Run it from the disposable directory (the subshell preserves the caller's cwd):
 
 Include its contents/hash in the report. Never use the workspace overlay or a
 source path for this proof. This is foundation installation proof; installed
-Chat and generic CLI entry-point acceptance remain separate later obligations.
+Supported Chat application entry-point acceptance remains a separate later
+obligation. The framework CLI library has no standalone launcher to restore.
 Record exact commands/results, wheel/sdist hashes, tool versions, environment,
 counts, skips, baseline failures and protected-file preservation in the report.
 

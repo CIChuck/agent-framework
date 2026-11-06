@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-06",
-  "decision": "Chuck Russell authorized bounded correction of CMD-RDY-001 through CMD-RDY-005 and fresh independent readiness validation; Step 4 remains unapproved",
+  "decision": "Chuck Russell explicitly retired the legacy framework CLI friday launcher; execute CD-CMD-CLI-001, verify metadata removal and revalidate affected readiness delta. Foundation Step 4 remains unapproved.",
   "branch": "feature/command-refactor",
   "baseline": "c3426986",
-  "current_scope": "Planning contracts/process and isolated offline default-profile capture only; no product source/tests/metadata/lock/configuration changes",
+  "current_scope": "Exactly remove legacy framework CLI project.scripts metadata and reconcile descriptions/readiness disposition; no Python source/tests/dependencies/lock changes or finance/foundation implementation.",
   "product_code_authority": "Not granted by the foundation design decision; separate approved construction directive and applicable readiness are required",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -86,5 +86,14 @@
     "construction_approval": "not_granted",
     "RD-01_RD-02_approval": "not_granted",
     "status": "correction candidate prepared for one fresh read-only independent readiness validation"
+  },
+  "legacy_cli_removal": {
+    "directive": "directives/CD-CMD-CLI-001-retire-legacy-launcher.md",
+    "approved_by": "Chuck Russell",
+    "date": "2026-11-06",
+    "instruction": "That should be removed from the TOML file. That is a legacy error.",
+    "disposition": "Retire friday console script; no replacement or app implementation. Historical entrypoint failures preserved; source-level component library remains.",
+    "status": "implemented; independent validation pending",
+    "foundation_approval": "not_granted"
   }
 }
