@@ -87,7 +87,14 @@ For a `MODERNIZE` disposition:
    and no already-landed behavior was reintroduced.
 5. Run the repository's focused checks for the touched area. Distinguish real
    failures from pre-existing or infrastructure failures.
-6. Push with `--force-with-lease` tied to the previously observed remote head.
+6. For applicable generated work, freeze the final candidate commit after
+   rebasing and conflict resolution. Pin its authority, directive, diff and
+   required checks, then obtain a fresh-context, read-only
+   [independent validator](../independent-code-validator.md) report with an
+   evidence-backed `VERIFIED` outcome before delivery. Use a documented
+   exemption only when applicable and recorded. A subsequent candidate or
+   authority change invalidates review and requires fresh review before pushing.
+7. Push with `--force-with-lease` tied to the previously observed remote head.
    If the lease fails, fetch and reassess rather than overwriting new work.
 
 Do not merge the PR.

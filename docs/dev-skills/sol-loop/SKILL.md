@@ -126,7 +126,15 @@ no concern of your own. Stuck: an item stays disputed after two replies,
 or budget ends. Show both sides in 2-3 lines each. The user decides.
 Budget end is not approval.
 
-Do not push during the loop. Push after agreement only if the user asked
+For applicable generated work, advisory agreement does not complete the formal
+delivery gate. Commit a stable candidate, pin its authority, directive, diff and
+required checks, then obtain a fresh-context, read-only
+[independent validator](../independent-code-validator.md) report with an
+evidence-backed `VERIFIED` outcome before delivery. Use a documented exemption
+only when applicable and recorded. A subsequent candidate or authority change
+invalidates review and requires fresh review before pushing.
+
+Do not push during the loop. Push after agreement and applicable formal validation only if the user asked
 to push, ship, or update the PR. If you push to a PR, add above the model
 blurb:
 
