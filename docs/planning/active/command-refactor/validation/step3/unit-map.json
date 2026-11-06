@@ -938,9 +938,9 @@
     },
     {
       "environment": "Default Chat/CLI wheels, declared dependencies only",
-      "state": "Historical pre-retirement capture: 127 distributions; dependency check and Chat/registry/CLI module imports/help pass; friday_tools import fails on friday_finance. Legacy friday load failure belongs to old wheel; launcher now intentionally retired by CD-CMD-CLI-001.",
-      "foundation_construction": "Baseline limitation; not a healthy client profile or future client shipping proof.",
-      "evidence": "validation/step3/default-profile/receipt.json"
+      "state": "Current required-finance default capture: 129 distributions; dependency check, tools/finance/SDK imports, 50/3 registry/dispatch and Chat help pass. Retired framework friday launcher absent. Historical pre-repair failures remain in old receipts.",
+      "foundation_construction": "Packaging/import baseline proof only; no full runtime/client acceptance. Both specific packaging defects resolved through separate approved units, subject to fresh dependency validation.",
+      "evidence": "validation/required-finance/receipt.json"
     },
     {
       "environment": "Chat finance+sandbox extras, isolated wheels",

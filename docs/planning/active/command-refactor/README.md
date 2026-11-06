@@ -10,10 +10,11 @@ approval, construction authority or code validation is inferred.
 **Working home:** `agent-framework`, branch `feature/command-refactor`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-DESIGN-001 approved; prior readiness VERIFIED at `fcea84b8`.
-The maintainer subsequently retired the legacy framework CLI launcher under
-[CD-CMD-CLI-001](directives/CD-CMD-CLI-001-retire-legacy-launcher.md).
-That exact metadata/readiness delta awaits fresh validation; Step 4 remains
-unapproved. `execution_phase: validation`; `validation_state: in_review`.
+Legacy framework CLI retirement is VERIFIED at `06285ae4`. The maintainer then
+requested mandatory finance under
+[CD-CMD-DEP-001](directives/CD-CMD-DEP-001-required-finance.md); clean default
+imports now pass and its dependency/readiness delta awaits fresh validation.
+Step 4 remains unapproved. `execution_phase: validation`; `validation_state: in_review`.
 
 The maintainer changed the working home on 2026-11-05 to this Agent Framework
 checkout; the shared command refactor remains the first phase. The full
@@ -85,9 +86,10 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Validate the approved legacy-launcher removal and affected
-readiness delta, then decide Step 4's updated exact directive/base, RD-01/RD-02
-and architecture-readiness dispositions. The earlier
+**Next gate:** Validate required finance and affected readiness delta, then
+decide Step 4's updated directive/base, RD-01 and architecture-readiness gate.
+RD-02 records the two separately repaired/dispositioned packaging issues rather
+than a defect waiver. The earlier
 [VERIFIED result](validation/step3/correction-report.md) covers `fcea84b8` only.
 The original
 [council result](validation/step3/council-round1.md) remains historical.

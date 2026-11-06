@@ -709,7 +709,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Validate maintainer-approved legacy framework CLI launcher removal and affected readiness delta; then Step 4 updated directive/base and RD-01/RD-02 decision; foundation construction unapproved
+  next_gate: Validate required finance metadata/default install after VERIFIED legacy launcher retirement; then Step 4 updated directive/base, RD-01 and validated RD-02 resolution; foundation construction unapproved
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -2386,3 +2386,10 @@ events:
   action: approved exact legacy framework CLI launcher removal
   note: Identified friday=friday_cli.main:app as a legacy TOML error and instructed removal. CD-CMD-CLI-001 binds that exact metadata deletion, related descriptions/readiness disposition and fresh validation; no replacement launcher, finance repair or foundation construction.
   evidence: docs/planning/active/command-refactor/directives/CD-CMD-CLI-001-retire-legacy-launcher.md
+- task: friday-command-refactor
+  at: '2026-11-06T21:24:17+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: requested finance mandatory for tools
+  note: CD-CMD-DEP-001 binds required finance dependency, compatibility extra, exact existing lock edge additions and clean default proof. Prior CLI retirement VERIFIED at 06285ae4; this follow-on needs fresh validation. No provider requests, foundation construction or delivery authority.
+  evidence: docs/planning/active/command-refactor/directives/CD-CMD-DEP-001-required-finance.md

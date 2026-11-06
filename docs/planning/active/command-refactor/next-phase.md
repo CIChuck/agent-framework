@@ -2,7 +2,7 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: Legacy framework CLI launcher retired; fresh metadata/readiness delta validation pending
+Status: Legacy launcher retirement VERIFIED; required-finance default proof passes; dependency validation pending
 Execution phase: validation
 Validation state: in_review
 
@@ -29,9 +29,9 @@ It does not approve the whole contract, the construction directive or P0/P1 exit
 
 | Step | Action | Current state |
 | --- | --- | --- |
-| 1 | Reconcile navigation and freeze the design inputs; obtain required independent design-readiness evidence. | Navigation reconciled and approved API input pinned. All three Step 3 reviewers support foundation API consistency; overall readiness is CHANGES_REQUESTED, not construction approval. |
+| 1 | Reconcile navigation and freeze the design inputs; obtain required independent design-readiness evidence. | Approved API pinned; foundation consistency supported. Corrected packet VERIFIED at `fcea84b8`; subsequent packaging units need their own validation. No construction approval inferred. |
 | 2 | Maintainer decides CMD-DESIGN-001. | APPROVED on 2026-11-06 by direct instruction. This decision does not fabricate independent review evidence. |
-| 3 | Resolve applicable P0/P1 prerequisites for the first implementation unit. | Prior readiness VERIFIED at `fcea84b8`. The subsequent maintainer-approved legacy launcher removal and affected readiness delta require fresh validation. Full P0/P1 stays open; RD-01/RD-02 remain proposed. |
+| 3 | Resolve applicable P0/P1 prerequisites for the first implementation unit. | Prior readiness VERIFIED at `fcea84b8`; legacy retirement VERIFIED at `06285ae4`. Required finance default imports pass; fresh dependency validation pending. RD-01 remains proposed; RD-02 records separate packaging resolutions. Full P0/P1 remains open. |
 | 4 | Maintainer approves the exact CD-CMD-FND-001 directive, execution base and readiness disposition. | Draft; not approved. |
 | 5 | Execute separately approved units, verify frozen candidates, then obtain feature acceptance. | Future work; product construction unauthorized. |
 
@@ -45,9 +45,13 @@ remains historical for `95fdeadc`; the authorized
 [correction record](remediation/REM-CMD-STEP3-001.md) defines the five changes.
 The maintainer has since identified the framework CLI launcher declaration as a
 legacy error and approved [its removal](directives/CD-CMD-CLI-001-retire-legacy-launcher.md).
-The revised RD-02 and scenario map do not require that launcher to be restored.
-Historical reports and raw probes retain their exact prior observations; fresh
-validation must bind this updated metadata/readiness candidate before Step 4.
+The [CLI removal](validation/legacy-cli-removal/report.md) is now VERIFIED.
+The maintainer then requested finance mandatory for tools. The
+[current default proof](validation/required-finance/receipt.json) installs
+finance/SDK without extras and imports tools successfully. RD-02 now records
+these two separate resolutions rather than a pending defect waiver; fresh
+dependency validation must bind the updated candidate before Step 4. Historical
+reports/probes retain their exact prior observations.
 The table below remains the broader roadmap; full P0/P1 closure is not claimed.
 
 | Item | Existing record | Outstanding beyond this readiness assessment |
@@ -63,7 +67,8 @@ The table below remains the broader roadmap; full P0/P1 closure is not claimed.
 
 1. [Fresh validation result](validation/step3/correction-report.md): exact
    candidate, closure of the five findings, supporting checks and limits.
-2. [Readiness review](readiness-review.md): corrected evidence and RD-01/RD-02.
+2. [Readiness review](readiness-review.md): current evidence, RD-01 proposal and
+   RD-02 resolution record; fresh dependency delta validation is pending.
 3. [Draft foundation directive](directives/CD-CMD-FND-001-neutral-foundation.md):
    exact paths, package integration, tests, lock procedure and stop conditions.
 
@@ -76,14 +81,15 @@ Chuck Russell accepted bounded corrections and fresh validation. The corrected
 draft selects the existing package cohort, an explicit controlled lock procedure
 and MAINT-001 before FILE-001. Fresh review VERIFIED candidate
 `fcea84b879995735308e5be18cfed6cbb82a0b17`. Step 4 must approve the exact
-directive/base, explicitly disposition RD-01/RD-02 and record whether this
+directive/base, explicitly approve RD-01, record validated RD-02 resolution and whether this
 review satisfies the architecture-readiness gate for the pinned API. The
-proposed execution base must now be the updated legacy-removal validation
+proposed execution base must now be the updated required-finance validation
 candidate, because its product metadata and readiness disposition changed after
 `fcea84b8`. The old verdict cannot verify this delta. No replacement CLI launcher
-or finance fix is authorized; the remaining finance defect still needs RD-02.
+is authorized by foundation approval. Finance repair is separately authorized
+under CD-CMD-DEP-001; its current default import proof needs fresh validation.
 No automatic additional council/remediation loop or product build follows.
 
-The initiative remains started/planning; completion, acceptance and delivery
+The initiative remains started/local; completion, acceptance and delivery
 are separate decisions. TUI construction remains gated on command-refactor
 acceptance and separate authorization.

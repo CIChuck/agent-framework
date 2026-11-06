@@ -11,10 +11,11 @@ and applicable local baselines must be frozen at approval. This imported draft
 is not a construction authorization for either checkout.
 
 Python-source baseline: `bbbd90e05143137c5a1d49eacedb4125d254b8fb`; the later
-[approved CLI cleanup](CD-CMD-CLI-001-retire-legacy-launcher.md) removes only its
-legacy launcher metadata and updates documentation. The proposed execution base
-is the updated candidate supplied by full SHA in that cleanup's delta-validation
-request, after readiness candidate `fcea84b8`. Historical council/build inputs
+[approved CLI cleanup](CD-CMD-CLI-001-retire-legacy-launcher.md) retires its
+launcher, and [required finance correction](CD-CMD-DEP-001-required-finance.md)
+adds the tools dependency and exact lock edges. The proposed execution base
+is the updated candidate supplied by full SHA in the finance validation request,
+after readiness candidate `fcea84b8`. Historical council/build inputs
 remain historical. Step 4 must record the new exact base before
 execution; a later base/authority change requires revalidation. Approved API
 input SHA-256:
@@ -39,8 +40,9 @@ maintainer must explicitly confirm this foundation-only unit's readiness.
 ## Proposed foundation-only prerequisite amendment — not approved
 
 The [Step 3 readiness review](../readiness-review.md) defines RD-01 and RD-02.
-Step 4 must explicitly approve both the directive and those scoped dispositions;
-approval of CMD-DESIGN-001 alone supplies neither. Until then the existing full
+Step 4 must explicitly approve this directive and RD-01, and record validated
+RD-02 resolution from the separately approved packaging units. Approval of
+CMD-DESIGN-001 alone supplies no construction authority. Until then the existing full
 P0/P1 gate continues to block construction.
 
 RD-01 would permit only this standard-library, synthetic-handler foundation
@@ -51,17 +53,16 @@ units. All 50 cases/three aliases have proposed owners in the readiness map;
 none migrates here. No API-01–API-06, neutral-import, runtime-invariant,
 standalone-wheel or fresh-independent-review obligation is deferred.
 
-RD-02 records distinct default-profile results: Chat, its registry and generic
-CLI modules import, and Chat help loads; an explicit `friday_tools` import fails
-on missing `friday_finance`. The local `friday_tools.sandbox` module uses the
-standard library; the optional `friday_sandbox` distribution is imported lazily
-and is a separate surface. The framework CLI's legacy `friday` launcher was
-explicitly retired by the maintainer under CD-CMD-CLI-001; it must not be
-restored or treated as a missing application feature. Its earlier failure is
-historical artifact evidence. None of these observations proves runtime health.
-Do not fix clients or widen their dependencies here. The diagnostic
-finance+sandbox install does not establish the minimum extras required or
-repair the default tools import. Required supported-application packaging and
+RD-02 records resolution through separate approved units: the framework CLI
+launcher is retired by CD-CMD-CLI-001, and finance is mandatory for tools under
+CD-CMD-DEP-001. Current default wheel proof imports tools/finance/SDK without
+extras or credentials, retains 50/3 and Chat help, and installs no retired
+launcher. Record the fresh dependency validation at Step 4; these two resolved
+issues need no deferred defect waiver or launcher restoration. Historical
+failure/augmented probes remain historical. Local `friday_tools.sandbox` uses
+stdlib; optional `friday_sandbox` remains lazy and separate. None of this proves
+runtime health. Do not add more client dependencies or repairs in FND-001.
+Required supported-application packaging and
 entry-point dispositions remain before affected delivery gates, separately from FND-001's
 source-level CLI regression and foundation wheel proof (SC-08). This amendment
 cannot approve future migrations or whole-refactor exit.

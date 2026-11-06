@@ -11,6 +11,8 @@ keywords = ["ai", "agents", "tools", "llm", "automation"]
 dependencies = [
     # Core protocols
     "friday-framework-core==0.1.0a4",
+    # Finance integration
+    "friday-framework-finance==0.1.0a4",
     # HTTP & Web
     "httpx>=0.25.0",
     "beautifulsoup4>=4.12.0",

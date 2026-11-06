@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-06",
-  "decision": "Chuck Russell explicitly retired the legacy framework CLI friday launcher; execute CD-CMD-CLI-001, verify metadata removal and revalidate affected readiness delta. Foundation Step 4 remains unapproved.",
+  "decision": "Chuck Russell requested finance mandatory in tools metadata; execute CD-CMD-DEP-001 after verified legacy launcher removal. Foundation Step 4 remains unapproved.",
   "branch": "feature/command-refactor",
   "baseline": "c3426986",
-  "current_scope": "Exactly remove legacy framework CLI project.scripts metadata and reconcile descriptions/readiness disposition; no Python source/tests/dependencies/lock changes or finance/foundation implementation.",
-  "product_code_authority": "Not granted by the foundation design decision; separate approved construction directive and applicable readiness are required",
+  "current_scope": "Required finance dependency and exact lock graph additions, matching README/readiness evidence/process; no Python behavior, handler/API/foundation implementation or live provider execution.",
+  "product_code_authority": "Only separately approved CD-CMD-CLI-001 and CD-CMD-DEP-001 metadata units; foundation construction remains unapproved",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -93,7 +93,16 @@
     "date": "2026-11-06",
     "instruction": "That should be removed from the TOML file. That is a legacy error.",
     "disposition": "Retire friday console script; no replacement or app implementation. Historical entrypoint failures preserved; source-level component library remains.",
-    "status": "implemented; independent validation pending",
+    "status": "VERIFIED at 06285ae446f609f0546866b951dff611cbb447bf; report validation/legacy-cli-removal/report.md",
     "foundation_approval": "not_granted"
+  },
+  "required_finance": {
+    "directive": "directives/CD-CMD-DEP-001-required-finance.md",
+    "requested_by": "Chuck Russell",
+    "date": "2026-11-06",
+    "instruction": "can't We change the declaration to make finance mandatory. Assume this would be a small change to the pyproject.toml file.",
+    "scope": "Required tools-to-finance dependency; preserve compatibility extra and all existing resolved versions; clean default wheel proof and fresh independent validation",
+    "status": "implemented with clean default wheel proof; fresh independent validation pending",
+    "specific_baseline_disposition": "Finance imports now pass by required dependency; legacy launcher retired. RD-02 records validated resolutions, not a pending waiver. RD-01/foundation Step 4 remain unapproved."
   }
 }

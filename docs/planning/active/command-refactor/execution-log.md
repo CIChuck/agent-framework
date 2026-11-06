@@ -523,3 +523,19 @@ close the separate tools/finance defect. Prior fcea84b8 readiness remains
 historical; freeze this metadata/readiness delta for fresh independent review.
 Execution phase validation; validation state in_review. Foundation Step 4,
 RD-01/RD-02, implementation acceptance and external delivery remain unapproved.
+
+2026-11-06: Fresh independent review VERIFIED CD-CMD-CLI-001 candidate
+06285ae446f609f0546866b951dff611cbb447bf: exact launcher metadata deletion,
+no replacement, 158 guarded CLI/cohort tests and package/artifact/lock checks.
+[Result](validation/legacy-cli-removal/report.md) is preserved for that candidate.
+The maintainer then requested finance mandatory in tools metadata. Recorded
+[CD-CMD-DEP-001](directives/CD-CMD-DEP-001-required-finance.md) for a separate
+remediator to add only the required dependency, preserve the finance extra for
+compatibility and retain every resolved version. Finance/provider Python code
+and foundation API/implementation stay unchanged. Full offline lock generation
+hit the existing litellm==1.100.1 cache gap. Controller disposition permits only
+the two exact already-authorized lock edge/metadata additions, semantic equality
+proof, offline consistency check and clean default wheel resolution; it is not
+claimed as successful full regeneration. No network or upgrade is authorized.
+Execution phase validation; validation state in_review for this new unit.
+Foundation Step 4 and delivery remain unapproved.

@@ -1,7 +1,7 @@
 # Step 3 — foundation readiness review
 
 Date: 2026-11-06
-Status: Legacy launcher retired by maintainer; metadata/readiness delta validation pending; Step 4 unapproved
+Status: Finance made mandatory; fresh dependency/readiness delta validation pending; Step 4 unapproved
 Scope: CMD-FND-001, API-01–API-06 only
 
 All three reviewers requested changes to candidate `95fdeadc`. Chuck Russell
@@ -12,8 +12,12 @@ The old council is historical evidence, not a verdict on these changed bytes.
 The correction packet was subsequently VERIFIED at `fcea84b8`. The maintainer
 then identified the framework CLI launcher as a legacy error and approved its
 removal under [CD-CMD-CLI-001](directives/CD-CMD-CLI-001-retire-legacy-launcher.md).
-This latest metadata/readiness delta requires its own fresh validation; no
-foundation API or implementation approval is inferred.
+The CLI removal was VERIFIED at `06285ae4`. The maintainer then requested
+mandatory finance in tools under
+[CD-CMD-DEP-001](directives/CD-CMD-DEP-001-required-finance.md). A fresh default
+wheel installation now imports tools/finance/SDK successfully without extras or
+credentials. This new dependency/readiness delta requires fresh validation;
+foundation API/implementation approval is not inferred.
 
 This is the maintainer's single readiness summary. The
 [next-phase checkpoint](next-phase.md) remains the main handoff. CMD-DESIGN-001
@@ -37,7 +41,7 @@ continue to block construction. No current or later gate is silently waived.
 | ID | Step 4 decision/disposition | Proposed treatment |
 | --- | --- | --- |
 | RD-01 | Permit a foundation-only unit before full family-contract/P1 closure. | Defer per-command all-class behavioral signoff, final family schemas/service relocation, host progress/cancellation, installed-client acceptance and final scenario/platform approval until before their affected migration directives. Do not defer any API-01–API-06 test, neutral-import proof, standalone foundation wheel proof or independent review for FND-001. No frontend/domain dependency, handler or compatibility shim may enter FND-001. |
-| RD-02 | Disposition the remaining default tools/finance defect for this isolated unit. | Record the default-profile `friday_tools` import failure on missing `friday_finance` as an unresolved baseline defect. Installation/dependency checks and Chat imports/help pass separately. The framework CLI's legacy `friday` launcher was explicitly retired by the maintainer under CD-CMD-CLI-001; it is not a feature to restore. Before affected client migration/delivery, repair or explicitly disposition the remaining finance defect. This cannot qualify full client/runtime health or refactor acceptance. |
+| RD-02 | Record resolution of the two specific baseline defects through separately approved work. | CD-CMD-CLI-001 retires the legacy launcher; CD-CMD-DEP-001 makes finance required by tools. Fresh default wheel proof now imports tools/finance/SDK, preserves 50/3 and Chat help, and installs no retired launcher. After fresh dependency validation, these two issues need no defect waiver or later restoration. Record the resolution evidence at Step 4; broader runtime/client acceptance remains unproved and governed by RD-01/later gates. |
 | RD-03 | Review the proposed unit/order map as planning input. | Every baseline name and alias now has a proposed owner. Foundation first, separate retirement next, then a help/exit/cls pilot and dependency-ordered families. Only FND-001 is being prepared for construction; no future unit, retirement timing implementation or capability schema is approved by this map. |
 
 ## Evidence resolved in Step 3
@@ -49,7 +53,7 @@ continue to block construction. No current or later gate is silently waived.
 - **Historical packaging:** all 17 workspace wheels built offline from source
   baseline `bbbd90e05143137c5a1d49eacedb4125d254b8fb`. Wheel hashes and declared
   requirements are recorded in [the receipt](validation/step3/receipt.json).
-- **Corrected default profile:** a fresh environment installed Chat/CLI and
+- **Historical corrected default profile:** a fresh environment installed Chat/CLI and
   their declared dependencies (127 distributions); dependency checking passed.
   `friday_chat`, its registry/CLI, `friday_cli`/commands/main and `friday_runtime`
   import from the disposable venv. Stateless `/help exit` and Chat entry-point
@@ -60,6 +64,14 @@ continue to block construction. No current or later gate is silently waived.
   local stdlib-only module, separate from optional `friday_sandbox`, imported
   lazily during Python-tool execution. See the pinned
   [default-profile receipt](validation/step3/default-profile/receipt.json).
+- **Current required-finance default profile:** the new tools wheel declares
+  finance without an extra marker, retaining `[finance]` as a compatibility
+  alias. Default Chat/CLI resolution installs 129 distributions including
+  finance/SDK. Under a network guard, tools, finance and SDK imports pass
+  without credentials; stateless registry/parser/dispatch fixtures, 50 names/
+  three aliases and Chat help pass. Framework CLI advertises no console script
+  or retired launcher. This is packaging/import proof, not provider execution
+  or full runtime health. See [current proof](validation/required-finance/receipt.json).
 - **Augmented diagnostic install:** adding Chat's finance+sandbox extras yielded
   131 distributions. From outside the checkout, isolated Python loaded all
   checked Friday modules from the disposable environment. Installed metadata
@@ -170,14 +182,14 @@ lock generation, followed by frozen checks and package-under-test installation.
 Workspace membership alone is not treated as an import/install guarantee.
 
 The proposed execution base is the updated frozen candidate supplied in the
-CD-CMD-CLI-001 delta-validation request. It includes the approved legacy launcher
-metadata removal after readiness candidate `fcea84b8`; that sole product-metadata
-change and its documentation must be distinguished from unchanged Python source.
+CD-CMD-DEP-001 validation request. It includes the approved legacy launcher
+retirement, required finance metadata and exact lock edge additions after
+`fcea84b8`. These metadata changes must be distinguished from unchanged Python source.
 Source identity must be rechecked at Step 4 and before construction.
 No package under `packages/friday-commands/` has been generated.
 
-Next gate: fresh independent validation of CD-CMD-CLI-001 and the affected
-readiness delta, then the updated Step 4 directive/base and RD-01/RD-02
-decisions. Earlier correction validation remains historical for `fcea84b8`.
+Next gate: fresh independent validation of CD-CMD-DEP-001 and the affected
+readiness delta, then Step 4's updated directive/base, RD-01 and recorded RD-02
+resolution. Earlier validation remains historical for its frozen candidates.
 The launcher retirement is not foundation construction approval. No automatic
 review/remediation loop, product construction or external delivery follows.

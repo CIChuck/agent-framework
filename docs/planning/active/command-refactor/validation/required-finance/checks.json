@@ -1,0 +1,106 @@
+[
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--no-sync",
+      "python",
+      "-B",
+      "-c",
+      "import sys\ndef guard(event,args):\n if event in {\"socket.connect\",\"socket.bind\",\"socket.getaddrinfo\",\"socket.gethostbyname\",\"socket.gethostbyaddr\",\"socket.sendto\"}: raise RuntimeError(\"Network disabled for dependency verification\")\nsys.addaudithook(guard)\nimport pytest\nraise SystemExit(pytest.main([\"-p\",\"no:cacheprovider\",\"-q\",*sys.argv[1:]]))",
+      "tests/integration/test_package_cohort_metadata.py",
+      "packages/friday-tools/tests_tools/test_base.py",
+      "packages/friday-tools/tests_tools/test_protocols.py"
+    ],
+    "exit": 0,
+    "log": "tests.log"
+  },
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--no-sync",
+      "python",
+      "scripts/check-package-metadata.py"
+    ],
+    "exit": 0,
+    "log": "metadata-check.log"
+  },
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--no-sync",
+      "python",
+      "scripts/check-package-artifacts.py",
+      "--package",
+      "friday_framework_tools",
+      "--package",
+      "friday_framework_cli",
+      "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist"
+    ],
+    "exit": 1,
+    "log": "artifacts-check-incomplete-input.log",
+    "classification": "Scratch artifact set initially lacked already-validated CLI sdist; copied unchanged source archive from legacy proof and reran."
+  },
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--no-sync",
+      "python",
+      "scripts/check-package-artifacts.py",
+      "--package",
+      "friday_framework_tools",
+      "--package",
+      "friday_framework_cli",
+      "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-required-finance-svkppz3m/dist"
+    ],
+    "exit": 0,
+    "log": "artifacts-check.log"
+  },
+  {
+    "argv": [
+      "uv",
+      "lock",
+      "--check",
+      "--offline",
+      "--no-python-downloads"
+    ],
+    "exit": 0,
+    "log": "lock-check.log"
+  },
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--no-sync",
+      "ruff",
+      "check",
+      "--no-cache",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/required-finance/probe.py"
+    ],
+    "exit": 0,
+    "log": "ruff-check.log"
+  },
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--no-sync",
+      "ruff",
+      "format",
+      "--check",
+      "--no-cache",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/required-finance/probe.py"
+    ],
+    "exit": 0,
+    "log": "ruff-format.log"
+  }
+]
