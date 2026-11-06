@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | characterize Chat and friday-framework-cli baselines, decide supported names and CLI reuse boundary, review exact shared contract and first construction directive |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | PAUSED before Step 3 for maintainer review; CMD-DESIGN-001 approved; prerequisite work and construction remain gated |
 
 ## Completed
 

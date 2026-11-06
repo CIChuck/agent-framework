@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-10-24'
+updated: '2026-11-06'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -709,7 +709,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: characterize Chat and friday-framework-cli baselines, decide supported names and CLI reuse boundary, review exact shared contract and first construction directive
+  next_gate: PAUSED before Step 3 for maintainer review; CMD-DESIGN-001 approved; prerequisite work and construction remain gated
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -2343,3 +2343,10 @@ events:
   action: relocated accepted historical authority
   note: Moved previously accepted MCP authority evidence from the active lane into its accepted archive packet under the maintainer-approved archival process; acceptance date and delivery state are unchanged.
   evidence: docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical-authority.json; docs/archive/completed/2026/archival-relocation-2026-10-24.json
+- task: friday-command-refactor
+  at: '2026-11-06T18:04:07+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved CMD-DESIGN-001; paused before Step 3
+  note: Direct limited foundation design approval (API-01 through API-06 and types/registry semantics). Pause before first-unit prerequisite engineering/readiness work for review. No construction approval, P0/P1 closure, independent VERIFIED, feature acceptance or external delivery authority.
+  evidence: docs/planning/active/command-refactor/approval/foundation-design.md; docs/planning/active/command-refactor/next-phase.md

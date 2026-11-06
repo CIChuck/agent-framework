@@ -1,99 +1,60 @@
 # Shared command refactor — tactical plan
 
-**Maintainer decision update — 2026-11-04:** Apply the resolved
-[O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
-nine complete removals, `/tools` retained, a 41/3 target, shared
-`friday-commands` ownership, preserved generic CLI behavior and retained-command
-quirks. Earlier proposals below are superseded where they conflict. Exact API,
-capability mapping, baseline evidence and construction approval remain pending.
+Date: 2026-11-06
+Branch: `feature/command-refactor`
+Status: Foundation design approved; PAUSED before approval-sequence Step 3
+Execution phase: planning
+Validation state: not_ready
 
-**Status:** P0 source characterization and P1 contract preparation are active,
-not complete. No product-code unit is authorized without an approved exact
-construction directive.
+The [next-phase checkpoint](next-phase.md) is the main handoff and reading order.
+Chuck Russell approved [CMD-DESIGN-001](approval/foundation-design.md) and paused
+before resolving prerequisites for the first implementation unit. The table
+below records existing partial outputs and future work; it is not permission
+to resume that work. Step 3 in the approval sequence is distinct from phase P3.
 
-**Branch:** `feature/command-refactor`, branched from `master` at `c3426986`
-and independent of `feature/friday-tui`. The [development board](../../board.yaml)
-controls task state. The [build plan](build-plan.md) sets scope, the
-[phase plan](phase-plan.md) sets exit gates, the
-[architecture proposal](shared-command-architecture.md) supplies the candidate
-package boundary, and the [test strategy](test-strategy.md) sets evidence
-classes. The canonical [refactor intent](command_refactor.md),
-[scored inventory](command-inventory.md) and [source matrix](command-matrix.md)
-remain the inputs to each tactical unit.
+## Governing documents
 
-## Active work — P0 and P1
+The [board](../../board.yaml) controls task state. The [build plan](build-plan.md)
+sets initiative scope; [scope decisions](scope-decisions.md) record O-01–O-05.
+The [phase plan](phase-plan.md) sets exits, the
+[architecture](shared-command-architecture.md) defines candidate boundaries,
+the [API](shared-command-api.md) contains the approved limited foundation input
+and deferred contract material, and the [test strategy](test-strategy.md) sets
+evidence classes.
 
-1. **Create the source evidence ledger (P0).** Recheck the live Friday Chat
-   registry against all 50 PAR IDs and three aliases. For each case, record the
-   current handler, parsing/help, service and state/effect paths, applicable
-   positive/invalid/unavailable/error cases, disposable fixture, exact baseline
-   command/result and any evidence gap. Keep the as-built matrix intact; put
-   the ledger at `validation/par-coverage-ledger.md`. A name or help entry is
-   not behavior proof.
-2. **Freeze Chat and generic CLI baselines (P0).** Capture source commits,
-   package metadata, exact owning-suite commands, counts, skips and known
-   failures. Characterize `friday-framework-cli`'s generic registry, public
-   API, completion and installed entry point separately from Chat slash
-   dispatch. Record Chat's use of `friday_cli` display utilities without
-   treating that dependency as a command-handler dependency. Distinguish the
-   generic CLI's declared entry point from its observed complete surface.
-   Run effectful probes only on disposable stores.
-3. **Apply the supported-surface decisions (P1).** Use the recorded
-   [decision register](scope-decisions.md) for nine selected retirements, complete old-name removal and preserved Chat
-   quirks. These product choices are resolved; verify their technical mapping. Explicitly reconcile the inventory's `/security-test` retirement
-   score with the approved nine-name scope, which currently retains it. Record
-   the retained/retired target and compatibility exceptions
-   separately from the frozen 50-command source matrix. Reconcile planned
-   help, guides and legacy fixtures. Keep C-01 through C-06 and behavior
-   enhancements in the backlog.
-4. **Review the shared contract and service owners (P1).** Decide the proposed
-   `packages/friday-commands/` location or an explicit alternative; define
-   registry/API, typed requests/results, errors, progress, cancellation and
-   UI-effect intents. Map Chat-owned reorganization, replay, security, speech,
-   tool and other service dependencies to public Runtime/domain operations or
-   narrow injected capabilities. Check one-way package imports. Decide whether
-   the separate `friday-framework-cli` can reuse a compatible primitive through
-   an adapter; if none is safe, record source-backed reasons and its protected
-   regression baseline. Obtain independent architecture review and maintainer
-   approval of the exact contract.
-5. **Prepare the first bounded unit (P1).** Assign every PAR case and alias to
-   a retained family or the retirement unit, with dependency and risk notes.
-   Fix the retirement unit's order relative to family migrations. Define the
-   cross-family scenario map and supported package/runtime environments. Select
-   the foundation pilot from this map and prepare its exact construction
-   directive. P1 closes only when the [phase gate](phase-plan.md)
-   and the directive are approved; this plan does not select a pilot by itself.
+The original [intent](command_refactor.md), [inventory](command-inventory.md)
+and [matrix](command-matrix.md) remain product-intent inputs. The recorded
+decisions control nine removals, tools retention, 41 names/three aliases, neutral
+command ownership, separate CLI preservation and retained-command quirks.
 
-The current work is steps 1–5. The PAR ledger, baseline receipts, contract,
-unit/scenario maps and first directive are required outputs, not completed
-evidence. No handler migration, nine-name retirement, help change or package
-source edit follows from this tactical plan alone.
+## P0/P1 output checklist — paused
 
-## Later execution — after the P1 gate
+| Work area | Already exists | Open after resumption |
+| --- | --- | --- |
+| Source characterization | [PAR ledger](validation/par-coverage-ledger.md), source inventory and 50-name/three-alias matrix. | Per-case behavior assertions, transitive service/effect and failure-order mapping, exact fixtures and unresolved-case dispositions. Extend the ledger rather than creating a replacement. |
+| Chat and CLI baselines | [Initial baseline](validation/p0-baseline.md), [failure controls](validation/p0-failure-disposition.md), and [local refresh](validation/local-2026-11-06/README.md). | Applicable installed entry-point/wheel and supported-environment proof, case-level evidence and limitation dispositions. Preserve existing receipts; write future results separately. |
+| Product decisions | O-01–O-05 resolved in the decision register. | Apply the retained/retired policy to case ownership, guides/help and the retirement unit. Enhancements stay in the backlog. |
+| Technical contract | Architecture proposal, API draft and approved foundation-only design. | Applicable current-design review evidence, family payload/capability schemas, service-owner mapping, compatible CLI reuse assessment, progress/cancellation and full-contract approval. |
+| Unit readiness | Draft CD-CMD-FND-001 and required phase/test criteria. | Complete unit/scenario/environment maps and retirement ordering; bind the first unit to exact input revisions and baseline evidence; obtain explicit disposition for any foundation-only deferral. |
 
-| Phase | Tactical action and receipt |
-| --- | --- |
-| P2 — Shared foundation | Execute only approved foundation/pilot directives. For each frozen candidate, compare assigned PAR behavior, Chat text/effects, protected generic-CLI behavior, installed wheels and import direction; record independent read-only `VERIFIED` review and cumulative ledger coverage. |
-| P3 — Family migration and retirement | Move retained families in the approved dependency order. Run the nine-name retirement as its own unit at the P1-approved position. Require before/after effect evidence, unchanged other names/aliases, negative former-effect tests, approved old-name/help/guide handling, cumulative regressions and no duplicate active handler. |
-| P4 — Cross-family integration | Run the P1 scenario map through the installed shared owner and Friday Chat outside the checkout. Run the generic CLI's protected installed regression and any approved shared adapter. Check dependency closure and state/error/effect interactions; reconcile every failure, skip or deviation with P0 and approved exceptions. |
-| P5 — Aggregate review and handoff | Freeze one aggregate candidate; run exact full Friday Chat and `friday-framework-cli` suites, static/type, build, installed-client and PAR-ledger comparisons in the P1-supported environments. Record counts/limits, independent `VERIFIED` review and separate maintainer acceptance. Only then prepare the accepted commit/API/version, target surface, receipts and known limits for the deferred TUI branch. TUI parity and physical terminal UAT remain later TUI gates. |
+No new baseline, source inspection, contract drafting, scenario mapping or
+readiness work was performed by the approval-recording continuation. P0/P1
+remain incomplete. The broad board authority does not approve CD-CMD-FND-001.
 
-## Exact directive and evidence boundary
+## Construction and later phases
 
-Before a P2–P3 source unit, its proposed directive must name the phase and
-[scope decisions](scope-decisions.md), assigned PAR cases and aliases, baseline
-receipts, approved contract revision, allowed source/test/doc paths, non-goals,
-service and package boundaries, fixtures, exact checks and expected results,
-compatibility exceptions, installed-client gates, stop conditions and
-independent review criteria. Check it against the three canonical intent files
-and resolve conflicts before requesting approval. Do not submit the unit while
-its applicable baseline evidence, service owner or compatibility exception is
-unresolved.
+After explicit resumption, Step 3 produces a concise readiness summary for the
+maintainer, linked to exact evidence and unresolved decisions. The maintainer
+then separately approves the construction directive and execution base (Step 4).
+No source generation follows from CMD-DESIGN-001 alone.
 
-After implementation, record the actual candidate commit and diff, test
-receipts, deviations and fresh-context read-only review in the
-[execution log](execution-log.md) and unit evidence. A candidate commit cannot
-be supplied before code exists. Any source remediation found in P4 or P5 needs
-a new bounded directive and a refreshed candidate review. A changed candidate
-or controlling authority requires fresh validation. `VERIFIED` is separate
-from maintainer acceptance, delivery and the later TUI handoff.
+The [phase plan](phase-plan.md) retains the detailed P2–P5 sequence: foundation,
+retained-family migration and nine-name retirement, cross-family/installed
+integration, aggregate review and maintainer acceptance. Each source unit needs
+its own approved directive, assigned PAR cases, applicable baseline receipts,
+allowed files, checks, stop conditions and fresh independent review.
+
+Keep candidate/diff identities, test receipts, deviations and review outcomes
+in the [execution log](execution-log.md) and unit evidence. A changed candidate
+or authority requires fresh validation. TUI integration and terminal UAT remain
+separate later acceptance work.

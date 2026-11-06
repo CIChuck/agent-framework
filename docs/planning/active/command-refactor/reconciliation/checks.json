@@ -1,0 +1,19 @@
+{
+  "scope": "document-only consolidation; no product verification or acceptance",
+  "source_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
+  "target_before_commit": "3687cae7165c89e7fa8348214867de203f19de6d",
+  "imported_archive_files_verified": 67,
+  "imported_files_unchanged": 46,
+  "protected_target_dirty_files_verified": 14,
+  "protected_source_dirty_files_verified": 3,
+  "unchanged_product_files_verified": 801,
+  "relative_document_links_resolved": 328,
+  "board_validation": "passed: 36 tasks",
+  "documentation_lifecycle": "passed: 836 Markdown files",
+  "historical_source_test_hashes": {
+    "matching": 78,
+    "different": 6,
+    "missing": 0
+  },
+  "notes": "Original source snapshots and manifests preserved; changed local working authority needs local review. No historical source test/review result transfers."
+}

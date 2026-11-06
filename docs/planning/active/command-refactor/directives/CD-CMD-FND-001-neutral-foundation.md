@@ -6,7 +6,9 @@ Status: DRAFT — not approved; product implementation not authorized
 Initiative: `friday-command-refactor`
 Work unit: `CMD-FND-001`; proposed P2 foundation slice, not P2 completion
 Branch: `feature/command-refactor`
-Baseline inspected: `25d2dcb6`; exact execution base must be frozen at approval
+Historical source baseline inspected: `25d2dcb6`; exact local execution base
+and applicable local baselines must be frozen at approval. This imported draft
+is not a construction authorization for either checkout.
 
 ## Role, authority and entry conditions
 

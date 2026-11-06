@@ -1,5 +1,13 @@
 # Shared command API — P1 review draft
 
+**Working-folder update — 2026-11-05:** The maintainer changed direction:
+current command-first and Friday TUI planning is consolidated in the
+`agent-framework` folder. Earlier TUI-folder directions are superseded for
+current work. This transfer changes documents only; imported implementation
+claims, reviews and test receipts retain their original provenance. No design
+approval, construction authority or code validation is inferred.
+
+
 Date: 2026-11-04
 Revision: 2026-11-05 — SOL3-ARCH-001/002 and parser-fixture clarification
 Status: Proposed; not approved technical authority; no construction authorization

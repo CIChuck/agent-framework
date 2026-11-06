@@ -2,10 +2,32 @@
   "version": 1,
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
-  "date": "2026-10-24",
-  "decision": "execute command refactor first on a branch independent of Friday TUI; defer TUI development until command refactor is completed, tested, and accepted",
+  "date": "2026-11-06",
+  "decision": "CMD-DESIGN-001 directly approved by Chuck Russell; pause before Step 3 for review",
   "branch": "feature/command-refactor",
   "baseline": "c3426986",
-  "current_scope": "design, source characterization and exact construction-directive preparation",
-  "product_code_authority": "requires a separately approved exact construction directive"
+  "current_scope": "Administrative approval recording and navigation reconciliation only; prerequisite engineering/readiness work paused before Step 3",
+  "product_code_authority": "Not granted by the foundation design decision; separate approved construction directive and applicable readiness are required",
+  "working_home": "agent-framework",
+  "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
+  "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
+  "baseline_kind": "baseline field retains historical source lineage; local product baseline must be refreshed",
+  "planning_transfer_decision": "maintainer changed direction: consolidate command-first and TUI planning in agent-framework; transfer planning documents only",
+  "planning_transfer_date": "2026-11-05",
+  "design_approval": {
+    "decision_id": "CMD-DESIGN-001",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-11-06",
+    "scope": "API-01 through API-06 and neutral foundation types/registry semantics only",
+    "api_sha256": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+    "record": "approval/foundation-design.md",
+    "independent_current_design_verdict": "not_recorded"
+  },
+  "pause": {
+    "before": "Approval-sequence Step 3: resolve prerequisites for the first implementation unit",
+    "requested_by": "Chuck Russell",
+    "requested_at": "2026-11-06",
+    "resume_requires": "Explicit maintainer direction after review"
+  },
+  "construction_directive_approval": "not_granted"
 }

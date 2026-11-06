@@ -1,5 +1,13 @@
 # Shared command refactor — phase plan
 
+**Working-folder update — 2026-11-05:** The maintainer changed direction:
+current command-first and Friday TUI planning is consolidated in the
+`agent-framework` folder. Earlier TUI-folder directions are superseded for
+current work. This transfer changes documents only; imported implementation
+claims, reviews and test receipts retain their original provenance. No design
+approval, construction authority or code validation is inferred.
+
+
 **Maintainer decision update — 2026-11-04:** Apply the resolved
 [O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
 nine complete removals, `/tools` retained, a 41/3 target, shared

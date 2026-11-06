@@ -1,5 +1,10 @@
 # Amendment 001 — isolate Draft-07 validation to MCP 2025
 
+**Historical source-work directive:** This directive and its recorded approvals
+describe work on the imported source branch. They do not authorize construction
+in the current TUI checkout. See [reconciliation provenance](../reconciliation/README.md);
+the original bytes are preserved in its source snapshot.
+
 **Status:** approved by Chuck Russell on 2026-10-25 in the conversation;
 implementation and validation pending.
 

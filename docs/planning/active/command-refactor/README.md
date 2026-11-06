@@ -1,43 +1,36 @@
-# Shared Friday command refactor
+# Shared Friday command refactor — TUI effort, first phase
 
-**Maintainer decision update — 2026-11-04:** Apply the resolved
-[O-01–O-05 decisions](scope-decisions.md#maintainer-decisions--2026-11-04):
-nine complete removals, `/tools` retained, a 41/3 target, shared
-`friday-commands` ownership, preserved generic CLI behavior and retained-command
-quirks. Earlier proposals below are superseded where they conflict. Exact API,
-capability mapping, baseline evidence and construction approval remain pending.
+**Working-folder update — 2026-11-05:** The maintainer changed direction:
+current command-first and Friday TUI planning is consolidated in the
+`agent-framework` folder. Earlier TUI-folder directions are superseded for
+current work. This transfer changes documents only; imported implementation
+claims, reviews and test receipts retain their original provenance. No design
+approval, construction authority or code validation is inferred.
 
-**Status:** started; approved scope; contract characterization underway
-
-**Board ID:** `friday-command-refactor`
-
-**Branch:** `feature/command-refactor` (independent baseline `c3426986`,
-the current `master` at branch reconstruction)
-
-**Implementation authority:** task scope granted for design and
-characterization; product code still requires an exact approved construction
-directive.
-
+**Working home:** `agent-framework`, branch `feature/command-refactor`.
+**Board ID:** `friday-command-refactor`.
+**Status:** CMD-DESIGN-001 approved on 2026-11-06; paused before Step 3
+(first-unit prerequisite work). Construction approval remains pending.
 `execution_phase: planning`; `validation_state: not_ready`.
 
-**Date:** 2026-10-25
+The maintainer changed the working home on 2026-11-05 to this Agent Framework
+checkout; the shared command refactor remains the first phase. The full
+packet is now local. Its separate logical contract, regression and acceptance
+gates remain; TUI construction stays deferred until command-refactor acceptance.
 
-The maintained slash-command refactor is a framework and terminal-client work
-unit with its own architecture, migration, compatibility and independent
-validation gates. Friday TUI consumes its accepted result at the command
-integration phase; the refactor is not a TUI construction subunit. The existing
-Friday Chat command surface is the source baseline. Both Friday Chat and the
-separate `friday-framework-cli` require explicit regression coverage; the
-exact direct-consumer role of `friday-framework-cli` must be settled in the
-command contract before implementation.
+[Reconciliation record](reconciliation/README.md) and [import manifest](reconciliation/import-manifest.json)
+identify the source commit, preserved snapshots, protected drafts and baseline
+differences. The old separate-checkout direction is superseded for current work.
+Imported source-test results and review verdicts describe their original commit.
+The later [direct foundation design approval](approval/foundation-design.md) is
+recorded separately; construction remains unauthorized.
 
-The canonical `feature/command-refactor` branch contains no Friday TUI package
-source or TUI implementation history. TUI development is deferred until this
-refactor is completed, tested, and accepted. The TUI branch's handoff index is
-only a reference; command implementation belongs on
-`feature/command-refactor`. Earlier TUI decisions and effect-map notes at
-`01cbaa0b` are historical input. The reviewed command contract in this packet
-will control implementation.
+The recorded product decisions remain: nine complete removals, `/tools` retained,
+41 canonical names/three aliases, shared neutral command ownership, preserved
+generic CLI and retained-command quirks. Foundation API-01–API-06 is approved;
+the complete contract and remaining P0/P1 work are still open. That work is
+paused before Step 3. Current documentation authority comes from this checkout's
+AGENTS, policies, board and the maintainer's reconciliation instruction.
 
 ## Canonical planning chain
 
@@ -81,19 +74,23 @@ They are separate from the shared-command contract and from each other:
 registration determines which tools exist in Chat, while per-turn selection
 determines which registered schemas the model receives. Both proposals remain
 planning only.
-There is no approved technical contract yet; the architecture proposal must
-be reviewed at P1. Package ownership and CLI preservation are decided; exact
-API, capability mapping and compatible primitive reuse evidence remain pending.
+The complete technical contract is not approved; the foundation design approval
+covers only API-01–API-06. Remaining family contracts, capability mapping and
+compatible primitive reuse evidence remain P1 obligations after resumption.
 
 **Current decision boundary:** Retain the current behavior of every maintained
 command that survives the nine selected retirements. The exact API and compatible CLI primitive reuse must be reconciled in an
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Characterize current Chat and separate CLI behavior, settle
-the exact shared contract under the recorded maintainer decisions, then
-review the exact command contract and first bounded construction directive.
-No command source change is authorized by activation alone.
+**Next gate:** Maintainer review at the pause before Step 3. Read the
+[next-phase checkpoint](next-phase.md) for the completed/open checklist and
+reading order. Do not resume prerequisite engineering or product construction
+without the corresponding direction and approval.
+
+The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
+refreshes baseline identity in this working home and records the current
+planning/review boundary. Historical evidence remains preserved separately.
 
 The [next-phase checkpoint](next-phase.md) identifies the bounded P0/P1
 continuation and the review stop before product construction.
@@ -109,14 +106,16 @@ Review inputs now include the [production/effect audit](validation/production-ef
 [draft first directive](directives/CD-CMD-FND-001-neutral-foundation.md).
 Family port signatures, installed proof and gate approval remain open.
 
-## Foundation design remediation — fresh review pending
+## Foundation design — approved; Step 3 paused
 
 [CMD-DESIGN-001](approval/foundation-design.md) is revised under the maintainer's
 2026-11-05 authorization to resolve the three [council findings](validation/COUNCIL-CMD-DESIGN-001-round1.md).
 The [remediation record](remediation/REM-CMD-DESIGN-001.md) maps each correction
 and validation. Earlier VERIFIED reports cover older bytes only. A fresh review
-of the corrected candidate is pending. Overall execution remains planning, with
-P0/P1 incomplete and product construction unauthorized. No design approval is recorded.
+of the corrected candidate is not recorded. On 2026-11-06 Chuck Russell directly
+approved CMD-DESIGN-001 and paused before Step 3. Overall execution remains
+planning, with P0/P1 incomplete and product construction unauthorized. Human
+approval does not supply an independent VERIFIED result.
 
 Round 2 results and the narrow residual pruning-review correction are recorded
 in [the council report](validation/COUNCIL-CMD-DESIGN-001-round2.md). The correction

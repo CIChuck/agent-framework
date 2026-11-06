@@ -389,3 +389,36 @@ in command-pruning-review.md remained. Under the existing authorization to
 resolve SOL3-ARCH-003, corrected that wording and historical section labels after
 all reviews completed. API/directive/approval bytes unchanged; no new delegation,
 product code, construction or design approval. Prior verdicts remain historical.
+
+2026-11-05: Maintainer clarified the TUI checkout is the warehouse for the whole
+effort, with command refactoring first, and authorized document-only reconciliation.
+Imported the complete command packet and exact source snapshot; updated current
+location authority/board/navigation to feature/friday-tui. Historical evidence
+and branch decisions remain provenance, not local verification. Existing TUI
+drafts and source-checkout dirty edits are preserved. No product source merge,
+phase closure, design approval or construction grant. See reconciliation/README.md.
+
+2026-11-06: Resumed command-first planning in Agent Framework under the
+maintainer's continuation request. Corrected active directive/evidence indexes
+that still named the old TUI working home. Wrote a separate
+[local continuation receipt](validation/local-2026-11-06/README.md): all 84
+inventoried source/test hashes match; generic CLI passed 155 tests; controlled
+Chat passed 826 tests with one existing warning, committed examples and xterm.
+Historical evidence and unrelated dirty work are preserved. This is a
+documentation-only continuation; `execution_phase: planning` and
+`validation_state: not_ready` remain. Fresh scoped design-readiness review and
+the maintainer's design/directive decisions remain gates before construction.
+
+2026-11-06: Chuck Russell directly approved CMD-DESIGN-001 and instructed a pause
+before Step 3 for review. Recorded the exact limited foundation input hash in
+[the approval record](approval/foundation-design.md), aligned authority/board
+and the packet index, and reconciled the [next-phase](next-phase.md) and
+[tactical](tactical-plan.md) checklists to distinguish existing partial outputs
+from open obligations. Step 3 is the approval-sequence prerequisite/readiness
+work, not tactical task 3 or phase P3. No fresh independent design verdict is
+claimed or requirement waived. CD-CMD-FND-001 remains draft/unapproved;
+P0/P1 remain incomplete. No prerequisite engineering, source inspection/probe,
+new baseline run, contract drafting or product change was started. Pause here
+until explicit maintainer resumption. Execution remains planning and validation
+state not_ready. This documentation-only administrative continuation was
+explicitly authorized by the maintainer; it changes no runtime behavior.
