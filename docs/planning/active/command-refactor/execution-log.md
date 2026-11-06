@@ -667,3 +667,15 @@ one-time archival-construction exception; original chronology is preserved.
 Execute only five-file formatter output with identical ASTs, freeze a new
 candidate and obtain fresh aggregate verification before already-authorized
 delivery. Execution phase remediation; validation state not_ready.
+
+2026-11-06: Approved CD-CMD-CHK-001 correction complete. Recorded current
+explicit AGG-001 historical exception without backdating or changing board-test
+behavior. Applied only five named Ruff-format outputs for AGG-002; all five
+AST fingerprints match their pre-correction values. 325 focused tests, 34-file
+Ruff, five-file format and 18-source mypy pass. Board/docs/lock/whitespace pass;
+configs and all outside-scope product bytes preserved. [Correction report](validation/checkpoint/correction-report.md)
+and machine receipts record actual argv/results/AST hashes. Freeze a stable
+candidate for fresh independent full aggregate review, including explicit
+current-input equivalence for prior receipts. Prior CHANGES_REQUESTED remains
+historical until a new verdict. Execution phase validation; validation state
+in_review. Existing delivery authority remains conditional on verified readiness.

@@ -420,9 +420,7 @@ def test_http_union_rejects_bad_shapes_including_disabled_before_effects(
     ["https://example.com/mcp?xyz", "https://example.com/mcp?region=us-east-1"],
 )
 def test_http_union_accepts_query_endpoint(url):
-    provider = MCPToolProviderConfig.from_dict(
-        remote_stanza([remote_server(url=url)])
-    )
+    provider = MCPToolProviderConfig.from_dict(remote_stanza([remote_server(url=url)]))
     assert provider.config.servers[0].url == url
 
 

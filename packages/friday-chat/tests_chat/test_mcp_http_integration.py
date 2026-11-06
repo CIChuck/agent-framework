@@ -207,9 +207,9 @@ async def test_2025_draft7_docs_catalog_is_visible_in_chat_tools_command(
             runtime=runtime, input_source=ListInputSource([]), output_sink=sink
         )
         await app.run()
-        assert sink.values.count(
-            "MCP remote: discovered=7, registered=6, rejected=1"
-        ) == 1
+        assert (
+            sink.values.count("MCP remote: discovered=7, registered=6, rejected=1") == 1
+        )
     finally:
         await runtime.stop_mcp_tools()
         await runtime.async_clients.close()

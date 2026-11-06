@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: execute approved CD-CMD-CHK-001 five-file mechanical correction and current historical exception, then fresh aggregate verification before authorized checkpoint delivery
+  next_gate: fresh aggregate verification of approved CD-CMD-CHK-001 correction, then authorized checkpoint push, PR, merge and fresh retirement branch; no retirement implementation
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -2475,3 +2475,10 @@ events:
   action: approved exact checkpoint reconciliation directive
   note: Direct response Approve CD-CMD-CHK-001 explicitly approves its exact historical archival-board exception and five-file AST-preserving formatting, followed by fresh aggregate review and previously authorized delivery. No backdated authority or retirement approval inferred.
   evidence: docs/planning/active/command-refactor/approval/checkpoint-reconciliation.md
+- task: friday-command-refactor
+  at: '2026-11-06T23:42:09+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared exact checkpoint correction candidate
+  note: Current explicit historical exception recorded; five named format outputs have identical ASTs. 325 focused tests, 34-file lint, five-file format and 18-source mypy pass. Configs preserved. Await fresh full aggregate verification before authorized delivery; no new feature or retirement.
+  evidence: docs/planning/active/command-refactor/validation/checkpoint/correction-report.md

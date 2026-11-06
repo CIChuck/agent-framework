@@ -565,9 +565,10 @@ def validate_board(board: dict[str, Any], root: Path) -> list[str]:
                     if not isinstance(entry, str):
                         continue
                     evidence_path = entry.split(" (", 1)[0].split(": ", 1)[0]
-                    if not evidence_path.startswith("docs/") or not Path(
-                        evidence_path
-                    ).suffix:
+                    if (
+                        not evidence_path.startswith("docs/")
+                        or not Path(evidence_path).suffix
+                    ):
                         continue
                     relative = Path(evidence_path)
                     if (

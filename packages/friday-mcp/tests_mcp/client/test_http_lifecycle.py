@@ -1172,9 +1172,7 @@ async def test_2025_default_and_declared_input_dialect_are_validated_without_ret
 @pytest.mark.asyncio
 async def test_2025_malformed_draft7_input_schema_is_rejected_at_discovery():
     peer = Peer(HTTP_COMPAT_VERSION)
-    peer.tools[0]["inputSchema"]["$schema"] = (
-        "http://json-schema.org/draft-07/schema#"
-    )
+    peer.tools[0]["inputSchema"]["$schema"] = "http://json-schema.org/draft-07/schema#"
     peer.tools[0]["inputSchema"]["properties"]["bad"] = {
         "type": "not-a-json-schema-type"
     }

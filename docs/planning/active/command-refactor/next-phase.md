@@ -3,8 +3,8 @@
 Date: 2026-11-06
 Branch: `feature/command-refactor`
 Status: Foundation accepted; bounded checkpoint reconciliation explicitly approved
-Execution phase: remediation
-Validation state: not_ready (approved correction; RET-001 remains unapproved)
+Execution phase: validation
+Validation state: in_review (corrected aggregate; RET-001 remains unapproved)
 
 This is the main next-step document. The [packet index](README.md) maps supporting
 files; the [board](../../board.yaml) owns initiative state. The whole initiative
@@ -28,7 +28,7 @@ foundation unit, not the whole feature branch.
 provenance. Old pending/draft labels in frozen documents describe earlier states;
 this checkpoint, board and append-only execution log record the later decisions.
 
-## Approved immediate correction
+## Corrected checkpoint awaiting fresh review
 
 Execute only the explicitly approved [CD-CMD-CHK-001](directives/CD-CMD-CHK-001-checkpoint-reconciliation.md),
 the single bounded disposition prepared from the
@@ -99,3 +99,9 @@ Legacy CLI launcher retirement and mandatory finance remain separately VERIFIED
 at `06285ae4` and `d003c4db`; RD-02 needs no defect waiver. No push, PR, merge,
 release, deployment or TUI construction is authorized by retirement planning. The
 later explicit checkpoint instruction supplies only the delivery authority above.
+
+The approved five-file correction is complete; all ASTs are unchanged and 325
+focused tests/static checks pass. [Correction evidence](validation/checkpoint/correction-report.md)
+is builder evidence. The immediate action is fresh aggregate verification,
+then the already-authorized delivery sequence. No repeated approval is needed
+for that delivery once its review and actual PR gates pass.

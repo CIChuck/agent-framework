@@ -369,8 +369,7 @@ def validate_compatibility_fields(
             schema = tool.get("inputSchema")
             if isinstance(schema, dict) and (
                 "$schema" in schema
-                and schema["$schema"]
-                not in (DRAFT7_INPUT_SCHEMA, DEFAULT_INPUT_SCHEMA)
+                and schema["$schema"] not in (DRAFT7_INPUT_SCHEMA, DEFAULT_INPUT_SCHEMA)
             ):
                 raise ProtocolFailure("unsupported_schema")
             schema = tool.get("outputSchema")
@@ -996,11 +995,7 @@ class ToolDefinition:
             raise ProtocolFailure()
         if modern:
             _tool_optional_fields(tool)
-        if (
-            modern
-            and "$schema" in schema
-            and schema["$schema"] != DEFAULT_INPUT_SCHEMA
-        ):
+        if modern and "$schema" in schema and schema["$schema"] != DEFAULT_INPUT_SCHEMA:
             raise ProtocolFailure("unsupported_schema")
         try:
             validator = (
