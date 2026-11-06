@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Step 3 active; prepare and freeze foundation readiness for requested Claude, OpenAI Sol and Gemini council; Step 4 construction approval pending |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Step 3 council CHANGES_REQUESTED; decide bounded correction of five readiness findings and package-cohort membership before Step 4; no construction approval |
 
 ## Completed
 

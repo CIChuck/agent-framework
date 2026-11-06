@@ -709,7 +709,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Step 3 active; prepare and freeze foundation readiness for requested Claude, OpenAI Sol and Gemini council; Step 4 construction approval pending
+  next_gate: Step 3 council CHANGES_REQUESTED; decide bounded correction of five readiness findings and package-cohort membership before Step 4; no construction approval
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -2357,3 +2357,10 @@ events:
   action: resumed Step 3; requested readiness council
   note: Authorized prerequisite/readiness preparation and read-only Claude Opus, OpenAI Sol and Google Gemini evaluation. Step 4 approval and all product construction remain separate.
   evidence: docs/planning/active/command-refactor/authority.json
+- task: friday-command-refactor
+  at: '2026-11-06T19:22:51+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded Step 3 readiness council; CHANGES_REQUESTED
+  note: All three requested providers completed one read-only round on 95fdeadc0a0e4b9720cdb553e5b26756a438ab70. Five findings remain open; bounded correction and cohort decisions precede Step 4. No automatic remediation, further council round, product construction or external delivery.
+  evidence: docs/planning/active/command-refactor/validation/step3/council-round1.md

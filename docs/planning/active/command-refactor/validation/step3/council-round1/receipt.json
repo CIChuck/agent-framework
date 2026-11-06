@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "initiative": "friday-command-refactor",
+  "work_unit": "CMD-FND-001 readiness / Step 3",
+  "collected_at": "2026-11-06T19:23:24+00:00",
+  "base": "bbbd90e05143137c5a1d49eacedb4125d254b8fb",
+  "reviewed_candidate": "95fdeadc0a0e4b9720cdb553e5b26756a438ab70",
+  "request_path": "docs/planning/active/command-refactor/validation/step3/council-request.json",
+  "request_sha256": "fc15a9d5f7439b96e3bd761bb2b16ae8cf404aa2748fbad98c622a6fd082765a",
+  "rounds": 1,
+  "outcome": "CHANGES_REQUESTED",
+  "reports": {
+    "claude": {
+      "path": "docs/planning/active/command-refactor/validation/step3/council-round1/claude-report.txt",
+      "sha256": "deb588cb23a3a7ad09fc71a2fc41e51faa61469c2b621650974b3ecdd4610d62",
+      "outcome": "CHANGES_REQUESTED"
+    },
+    "sol": {
+      "path": "docs/planning/active/command-refactor/validation/step3/council-round1/sol-report.txt",
+      "sha256": "82c08922fcf170679938f14300ea7a37f41f7901e785e7debbffb3a2f1a4229e",
+      "outcome": "CHANGES_REQUESTED"
+    },
+    "gemini": {
+      "path": "docs/planning/active/command-refactor/validation/step3/council-round1/gemini-report.txt",
+      "sha256": "eeab704ac08d574ca559c5dc92d0658fdf1972f2b8877e66a6757a4b0ae93fab",
+      "outcome": "CHANGES_REQUESTED"
+    }
+  },
+  "open_findings": [
+    "CMD-RDY-001",
+    "CMD-RDY-002",
+    "CMD-RDY-003",
+    "CMD-RDY-004",
+    "CMD-RDY-005"
+  ],
+  "collection_checks": {
+    "pre_collection_request_authority_deliverable_pins": "matched: request, 16 authority, 22 deliverable entries",
+    "protected_file_hashes": "16882 checked unchanged before and after collection edits",
+    "unchanged_unique_frozen_inputs_after_collection": 29,
+    "board_validate": "passed: 36 tasks",
+    "git_diff_check": "passed",
+    "documentation_lifecycle": "four declared unrelated TUI broken links; no command-refactor broken links after receipt creation",
+    "owning_suites": "not rerun; historical receipts only",
+    "product_changes": "none",
+    "remediation": "not started",
+    "additional_review_round": "not started"
+  },
+  "report_export": "Original reviewer text exported to UTF-8 .txt with trailing whitespace normalized and a single terminal newline. Wording, links, line references and qualifications preserved; exact original formatting remains in the linked threads.",
+  "collection_change_scope": "Adds request/report records and updates process/navigation only. Reviewed directive, API, unit map, script, logs and receipts remain unchanged. Original council applies only to reviewed candidate, not this collection descendant.",
+  "construction_approval": "not_granted"
+}

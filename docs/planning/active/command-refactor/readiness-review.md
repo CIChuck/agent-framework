@@ -1,14 +1,20 @@
 # Step 3 — foundation readiness review
 
 Date: 2026-11-06
-Status: COUNCIL REVIEW CANDIDATE — Step 4 approval pending
+Status: REVIEWED — CHANGES_REQUESTED; frozen assessment below remains uncorrected
 Scope: CMD-FND-001, API-01–API-06 only
+
+Read the [consolidated council result](validation/step3/council-round1.md) first.
+All three reviewers requested changes to candidate `95fdeadc`; five consolidated
+findings must be addressed before Step 4. In particular, the default import and
+sandbox claims below are disputed and must not be used as approval evidence.
+This banner records the review outcome; it does not repair the frozen assessment.
 
 This is the maintainer's single readiness summary. The
 [next-phase checkpoint](next-phase.md) remains the main handoff. CMD-DESIGN-001
 is approved, but product construction and the proposed prerequisite amendment
 below are not. The requested Claude Opus / OpenAI Sol / Google Gemini council
-will assess this frozen packet read-only before the Step 4 decision.
+assessed the frozen packet read-only. Step 4 remains unapproved.
 
 ## Recommendation and decision boundary
 

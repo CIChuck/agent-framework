@@ -3,7 +3,7 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-06",
-  "decision": "Step 3 resumed by Chuck Russell; prepare foundation readiness for three-provider council review",
+  "decision": "Step 3 readiness council complete; CHANGES_REQUESTED on candidate 95fdeadc0a0e4b9720cdb553e5b26756a438ab70; bounded correction decision precedes Step 4",
   "branch": "feature/command-refactor",
   "baseline": "c3426986",
   "current_scope": "Read-only source assessment, disposable offline baseline/build/install probes, unit/dependency/environment planning and a draft readiness handoff; no product source/test/configuration changes",
@@ -53,6 +53,21 @@
         "model": "gemini-4-argon-high",
         "effort": "high"
       }
-    ]
+    ],
+    "result": {
+      "candidate": "95fdeadc0a0e4b9720cdb553e5b26756a438ab70",
+      "outcome": "CHANGES_REQUESTED",
+      "rounds": 1,
+      "report": "validation/step3/council-round1.md",
+      "open_findings": [
+        "CMD-RDY-001",
+        "CMD-RDY-002",
+        "CMD-RDY-003",
+        "CMD-RDY-004",
+        "CMD-RDY-005"
+      ],
+      "api_consistency": "All three reviewers support R-02 foundation API consistency; no standalone implementation or construction approval",
+      "remediation": "not_started; no automatic remediation or further council round authorized by this pass"
+    }
   }
 }

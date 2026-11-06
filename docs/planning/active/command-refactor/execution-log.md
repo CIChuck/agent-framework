@@ -444,3 +444,21 @@ disposable local builds/installs and a capture script; it changes no product
 source, tests, configuration or runtime behavior. Freeze this candidate for one
 read-only three-provider council pass; no automatic remediation loop or product
 construction follows. Execution phase planning; validation state pending.
+
+2026-11-06: The requested single readiness council pass completed against
+candidate `95fdeadc0a0e4b9720cdb553e5b26756a438ab70`, base `bbbd90e0`.
+Claude Opus 5.5, GPT-6.1 Sol and Gemini 4 Argon High each returned
+CHANGES_REQUESTED. Saved the original reports and
+[consolidated result](validation/step3/council-round1.md), with five open
+findings: package-cohort integration scope/checks, default-install evidence
+and probe provenance, ingest admission ordering, lock/registry procedure,
+and the SC-08 installed-entry-point boundary. The earlier Step 3 paragraph's
+Chat import attribution and sandbox implication are disputed; use the council
+result before relying on the original readiness assessment. No correction to
+the reviewed directive, unit map or raw evidence was performed. API consistency
+is supported, but overall readiness and Step 4 remain unapproved. Recorded
+review outcome/navigation only, with product and protected dirty bytes
+preserved. Next: maintainer disposition of the proposed bounded correction
+plan and cohort membership, then corrected frozen evidence/fresh validation
+before Step 4. No automatic remediation, further council pass, product code or
+external delivery. Execution phase planning; validation state changes_requested.

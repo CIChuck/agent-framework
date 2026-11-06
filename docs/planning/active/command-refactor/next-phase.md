@@ -2,9 +2,9 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: Step 3 readiness packet prepared; requested council review pending; Step 4 not approved
+Status: Step 3 council complete — CHANGES_REQUESTED; five findings open; Step 4 not approved
 Execution phase: planning
-Validation state: pending
+Validation state: changes_requested
 
 This is the main next-step document. The [packet index](README.md) maps the
 supporting files. Current planning lives in Agent Framework; earlier TUI-folder
@@ -29,16 +29,18 @@ It does not approve the whole contract, the construction directive or P0/P1 exit
 
 | Step | Action | Current state |
 | --- | --- | --- |
-| 1 | Reconcile navigation and freeze the design inputs; obtain required independent design-readiness evidence. | Navigation reconciled and approved API input pinned. No fresh independent verdict for current design bytes is recorded; earlier reports remain historical. |
+| 1 | Reconcile navigation and freeze the design inputs; obtain required independent design-readiness evidence. | Navigation reconciled and approved API input pinned. All three Step 3 reviewers support foundation API consistency; overall readiness is CHANGES_REQUESTED, not construction approval. |
 | 2 | Maintainer decides CMD-DESIGN-001. | APPROVED on 2026-11-06 by direct instruction. This decision does not fabricate independent review evidence. |
-| 3 | Resolve applicable P0/P1 prerequisites for the first implementation unit. | Readiness assessment prepared; three-provider council requested. RD-01/RD-02 are proposed dispositions, not approved exceptions. |
+| 3 | Resolve applicable P0/P1 prerequisites for the first implementation unit. | All three council reports returned CHANGES_REQUESTED; five consolidated findings remain open. RD-01/RD-02 remain proposed dispositions. |
 | 4 | Maintainer approves the exact CD-CMD-FND-001 directive, execution base and readiness disposition. | Draft; not approved. |
 | 5 | Execute separately approved units, verify frozen candidates, then obtain feature acceptance. | Future work; product construction unauthorized. |
 
 ## Existing work and remaining obligations
 
-Read [readiness-review.md](readiness-review.md) first for the Step 3 assessment,
-new isolated evidence, proposed case/unit map and explicit Step 4 decisions.
+Read the [consolidated council result](validation/step3/council-round1.md) first.
+Then read [readiness-review.md](readiness-review.md) for the original Step 3
+assessment, isolated evidence, proposed case/unit map and Step 4 decisions.
+The reviewed draft remains uncorrected; the council report identifies its errors.
 The table below remains the broader roadmap; full P0/P1 closure is not claimed.
 
 | Item | Existing record | Outstanding beyond this readiness assessment |
@@ -52,18 +54,21 @@ The table below remains the broader roadmap; full P0/P1 closure is not claimed.
 
 ## Reading order for the next decision
 
-1. [Readiness review](readiness-review.md): assess evidence, proposed scoped
-   deferrals and the council results when available.
+1. [Council result](validation/step3/council-round1.md), then
+   [readiness review](readiness-review.md): assess the five required corrections,
+   evidence and proposed scoped deferrals.
 2. [Phase plan](phase-plan.md), P0/P1: review what readiness requires.
 3. [Tactical plan](tactical-plan.md): review existing outputs versus remaining work.
 4. [Test strategy](test-strategy.md): review the required evidence classes.
 5. [Draft foundation directive](directives/CD-CMD-FND-001-neutral-foundation.md),
    especially entry conditions, allowed paths, checks and stop conditions.
 
-The requested council evaluates the same frozen readiness candidate read-only.
-After all three reports, the maintainer decides Step 4: exact directive/base and
-RD-01/RD-02 dispositions. Proposed exceptions do not permit construction. Stop
-for mandatory findings or decisions; no automatic remediation or build follows.
+The single requested council pass is complete against candidate `95fdeadc`.
+First decide bounded planning/evidence correction and package-cohort membership;
+the report supplies the proposed scope and acceptance checks. After corrections,
+freeze a new candidate and determine fresh validation scope before Step 4's
+exact directive/base and RD-01/RD-02 decisions. No automatic remediation,
+additional council round or product build follows this pass.
 
 The initiative remains started/planning; completion, acceptance and delivery
 are separate decisions. TUI construction remains gated on command-refactor

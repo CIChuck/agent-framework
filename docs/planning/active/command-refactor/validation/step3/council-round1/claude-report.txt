@@ -1,0 +1,120 @@
+CHANGES_REQUESTED
+
+## Candidate and scope
+- **Candidate:** `95fdeadc0a0e4b9720cdb553e5b26756a438ab70`
+- **Base and diff:** `bbbd90e05143137c5a1d49eacedb4125d254b8fb`, reviewed as `bbbd90e0..95fdeadc`. It covers 22 files, all under `docs/planning/`.
+- **Review mode:** one scoped readiness review with an API consistency check. This is not implementation validation.
+- **Pins, start and end:**
+  - The request SHA-256 `fc15a9d5…765a` matches.
+  - All 16 authority pins and 22 deliverable pins match.
+  - The protected manifest hash matches, and all 16,882 protected files match with none missing.
+  - HEAD and the 11-line dirty-path listing did not change. `packages/friday-commands` does not exist.
+
+## Independence
+- **Reviewer:** Claude Code review sub-agent, model `claude-opus-5-5`, on 2026-11-06.
+- **Context:** fresh. I received no builder history or private reasoning.
+- **Exception:** I reviewed in the shared checkout, which is not detached and has preserved dirty paths. I made no repository edits. Probes used copies and a venv in my scratchpad, plus the uv cache outside the repository.
+
+## Mandatory findings
+
+**VAL-001 — High — R-03: the draft directive cannot add the package without failing an existing test**
+- **Paths:** `directives/CD-CMD-FND-001-neutral-foundation.md:94`, `:203-204`; `tests/integration/test_package_cohort_metadata.py:81`, and the cohort set near the top of that file.
+- **Requirement:** the directive must define sufficient scope and tests. It says no root metadata edit is expected, and it stops if existing source or tests must change.
+- **Evidence:**
+  - The cohort test asserts exactly 17 projects and an exact distribution-name set.
+  - At the candidate it passes (`3 passed`).
+  - In a `git archive` copy with a stub `packages/friday-commands/pyproject.toml`, it fails: `assert 18 == 17`, `1 failed, 2 passed`.
+- **Why it matters:**
+  - The package cannot be added without either this failure or an edit outside the allowed paths.
+  - The directive's checks omit this test, so the regression would go unseen unless the builder trips the stop condition.
+  - If the package joins the cohort, `test_root_all_extra_covers_every_package_distribution` also requires a root `all` extra edit. `scripts/check-package-artifacts.py` `EXPECTED_WHEELS` would need updating too.
+  - The stub was also not importable without the overlay (`ModuleNotFoundError` in the existing workspace environment), so root `uv run pytest` would hit a collection error. Root `uv run pytest` is a policy gate.
+- **Mitigation:** decide whether `friday-framework-commands` joins the lock-step cohort, then amend the allowed paths and the root-metadata statement. Add the cohort test and `scripts/check-package-metadata.py` to the verification commands.
+
+**VAL-002 — Medium — R-05, R-04: the default-install failure is misdescribed**
+- **Paths:** `readiness-review.md:41-45`; directive `:51`; `validation/step3/unit-map.json:934`; `execution-log.md:431`; `validation/step3/receipt.json:331`.
+- **Requirement:** R-05 requires accurate representation of the default-install failure.
+- **Evidence from my own 127-distribution default install, using the same wheels and `-I` outside the checkout:**
+  - `friday_chat`, `friday_chat.commands.registry`, `friday_chat.cli`, `friday_cli`, `friday_cli.commands`, `friday_cli.main` and `friday_runtime` all import.
+  - `friday-chat --help` exits 0, `build_default_registry()` gives 50 names and 3 aliases, and `/help exit` is handled. `friday_tools` stays unloaded through all of that.
+  - Only `import friday_tools` fails, at `friday_tools/__init__.py:19` → `finance/massive.py:13`.
+  - The committed probe fails only when its module-origin loop reaches `friday_tools`, at line 149. The steps before it ran without raising.
+- **The sandbox claim is also wrong:**
+  - `from .sandbox import` is the local stdlib-only `friday_tools/sandbox.py`.
+  - `friday_sandbox` is imported lazily, at `execution/python.py:47`.
+  - With only `friday_finance` stubbed and no `friday_sandbox` installed, `friday_tools` imports. The request's "unconditional sandbox imports" premise has the same error.
+- **The default-probe evidence does not trace to the committed script:**
+  - `probe.log` shows frames at lines 121 and 143, but the committed `installed_probe.py` has `import_module(name)` at 149 and `asyncio.run` at 194.
+  - The receipt pins a probe hash only for the extras run, so the default run came from an unpinned earlier script. `readiness-review.md:65` nonetheless calls the committed script the reproducible probe.
+- **Likely real impact (source reading, not executed):** `friday_runtime/tool_loading.py:58-65` turns this import failure into `ToolProviderLoadError` during runtime tool discovery. Runtime construction was out of scope.
+- **Mitigation:** restate the defect as a `friday_tools` import failure on finance only, with runtime tool discovery as the likely affected path. Correct RD-02's supporting text, the unit map, the log and the receipt. Rerun the default probe with a pinned script. The finance+sandbox profile should stay labelled diagnostic, but it is not shown to be the minimum needed.
+
+**VAL-003 — Medium — R-06: `/ingest` is ordered before the admission contract it needs**
+- **Paths:** `validation/step3/unit-map.json:109` (FILE-001); `readiness-review.md:100-101`; `packages/friday-chat/src/friday_chat/commands/registry.py:76-86`, `:188-193`; `validation/production-effects-audit.md:49`.
+- **Requirement:** R-06 requires a coherent dependency order.
+- **Evidence:**
+  - `ingest` is in `_SHARED_ADMISSION_COMMANDS`, and dispatch wraps it in `gate.shared(...)`.
+  - The production audit records this too.
+  - FILE-001 depends only on MEMQ-001 and runs before MAINT-001, and neither FILE-001's description nor its entry dependency mentions admission. The map names admission only under MAINT-001, REPLAY-001 and scenarios SC-02/SC-03.
+  - The graph is acyclic, so this is a missing dependency rather than a cycle.
+- **Mitigation:** make the neutral admission capability a FILE-001 prerequisite, or move FILE-001 after the unit that owns it. Name preservation of ingest admission in that unit.
+
+**VAL-004 — Medium — R-03: the first verification command needs unstated registry access**
+- **Paths:** directive `:75`, `:162`; `docs/reference/policies/independent-validation-policy.md`, Construction Directive Gate ("verification commands and permitted external services").
+- **Evidence:**
+  - `uv lock --check --offline` passes at the candidate.
+  - With the stub package added, `uv lock --offline` fails because `litellm==1.100.1 needs to be downloaded from a registry`.
+  - The overlay itself works once sync is bypassed: `uv run --offline --no-sync --with-editable` passed a stub test, and `uv build --offline --package friday-framework-commands` succeeded.
+- **Why it matters:** the directive's plain `uv run --with-editable` command has to relock. The directive neither authorizes registry access nor proves that the relock changes only the new package.
+- **Mitigation:** name the permitted registry access, or the procedure for producing the lock change, and require a `uv.lock` diff proof.
+
+**VAL-005 — Low — R-06, R-04: SC-08 assigns FND-001 a proof RD-02 excludes**
+- **Paths:** `validation/step3/unit-map.json:918-922`; directive packaging section.
+- **Evidence:** SC-08 lists FND-001 as owner of a proof including "installed entry point". The directive says FND-001 does not repair or prove client entry points, and that entry point is the known failure (`friday_cli.main:app`).
+- **Mitigation:** limit SC-08's FND-001 obligation to source-level CLI regression and defer the installed entry point to its later gate.
+
+## Criterion results
+
+| ID | Result | Evidence |
+| --- | --- | --- |
+| R-01 | PASS | The API hash is unchanged and its diff is empty. There are 9 retirements, 41 retained names and 3 aliases. Scope decisions match. The owner is neutral and the CLI stays separate. |
+| R-02 | PASS | I checked all parser fixtures by hand against `registry.py:1459-1468`. Dispatch uses no second normalization, so `///HELP` stays unknown, as the API says. Constructor, registration, atomicity and handler-return rules are precise. AP-01–AP-06 boundaries hold. |
+| R-03 | **FAIL** | VAL-001, VAL-004. Test, import and wheel proof design is otherwise sufficient. No package is claimed to exist. |
+| R-04 | PASS with correction | RD-01 is defensible and defers no foundation proof. RD-02 is sound in substance, but its evidence is wrong (VAL-002). Both remain proposals. |
+| R-05 | **FAIL** | VAL-002. The CLI `app` failure, the blocked network attempt and the offline `dspy` limit are accurate. No whole-suite or P0/P1 success is claimed. |
+| R-06 | **FAIL** | Mechanics pass: 50 cases, 3 aliases and 9 retirements assigned once, handler lines verified, ledger agrees with the map, graph acyclic, no unit authorized. VAL-003 and VAL-005 remain. |
+| R-07 | PASS | `friday_cli/commands.py` confirms registration, kwargs, sync/async handling and caught errors. The installed probe recorded quoted-alias behavior. No adapter is introduced. |
+| R-08 | PASS | The diff touches only `docs/planning/`, and protected bytes are unchanged. Board and packet state agree, and Step 4 is still separate. |
+
+## Commands and results
+- `uv run --offline --no-sync ruff check --no-cache …/installed_probe.py`: passed.
+- `ruff format --no-cache --check` on the same file: already formatted.
+- `friday-dev-board.py validate`: passed, 36 tasks.
+- `check-documentation-lifecycle.py`: exit 1, with exactly the four declared broken links.
+- `git diff --check` and `git diff --check BASE..CANDIDATE`: both clean.
+- Source inventory: all 84 hashes match.
+- Wheels: 17 match the receipt. All 430 non-metadata members match base blobs, which covers the claimed 396 Python files.
+- `installed-probe.json`: 131 distributions, `-I`, 50/3, 7 parser fixtures, 9 origins in the venv, 1 blocked network attempt.
+- Probes VAL-001, VAL-002 and VAL-004 are as cited above. `check-package-metadata.py` validated 18 projects with the stub.
+
+## Skipped checks and limits
+- I did not rerun the full owning suites, as the request allowed, so the 826 and 155 counts remain historical receipts.
+- I did not rebuild the wheels or rerun the augmented probe. I inspected those outputs instead.
+- For the default profile I built my own venv, because the supplied one already has extras installed.
+- I did not run online `uv lock`, runtime construction, terminal UAT, or Linux/Windows checks.
+
+## Baseline versus regressions
+- The four documentation links are the declared baseline.
+- The generic `friday` entry-point failure and the `friday_tools` import failure are product baseline defects.
+- The candidate is documentation-only and introduces no product regression.
+- VAL-001 is a regression the drafted construction would introduce.
+
+## Residual risk and advisories
+- The directive requires independent architecture review to be "satisfied or explicitly amended", but no Step 4 row says how that is met. Step 4 should state whether council results satisfy it for the current API bytes.
+- The receipt says one blocked network attempt, but `probe.log` shows a second in the default run. The guard also leaves `connect_ex` and DNS unpatched.
+- `AGENTS.md` and the root README package lists will go stale once the package lands.
+
+## Next gate
+The conditional foundation-only decision is defensible in principle, but not on this frozen packet. RD-01 can stand. RD-02 needs corrected evidence. CD-CMD-FND-001 should not be approved until VAL-001 and VAL-004 are resolved.
+
+Next, the controller collects the other council reports and takes these findings to the maintainer, who decides whether to authorize bounded correction. Any changed candidate needs fresh review. This report grants no construction approval, closes no P0/P1 gate, and is not implementation verification.

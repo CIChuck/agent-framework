@@ -9,9 +9,9 @@ approval, construction authority or code validation is inferred.
 
 **Working home:** `agent-framework`, branch `feature/command-refactor`.
 **Board ID:** `friday-command-refactor`.
-**Status:** CMD-DESIGN-001 approved; Step 3 resumed and readiness packet prepared
-for the requested three-provider council. Step 4 construction approval pending.
-`execution_phase: planning`; `validation_state: pending`.
+**Status:** CMD-DESIGN-001 approved; all three Step 3 council reports returned
+CHANGES_REQUESTED. Five consolidated findings remain open; Step 4 is not ready
+for approval. `execution_phase: planning`; `validation_state: changes_requested`.
 
 The maintainer changed the working home on 2026-11-05 to this Agent Framework
 checkout; the shared command refactor remains the first phase. The full
@@ -83,9 +83,9 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Collect the requested Claude Opus, OpenAI Sol and Google Gemini
-read-only council reviews of the frozen [readiness packet](readiness-review.md),
-then present the Step 4 directive/base and proposed prerequisite dispositions.
+**Next gate:** Read the [consolidated council result](validation/step3/council-round1.md)
+and decide bounded correction of its five findings, including package-cohort
+membership, before Step 4 directive/base and prerequisite dispositions.
 The [next-phase checkpoint](next-phase.md) remains the main handoff. Product
 construction is not approved.
 
