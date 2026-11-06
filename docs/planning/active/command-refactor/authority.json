@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-06",
-  "decision": "Step 3 readiness council complete; CHANGES_REQUESTED on candidate 95fdeadc0a0e4b9720cdb553e5b26756a438ab70; bounded correction decision precedes Step 4",
+  "decision": "Chuck Russell authorized bounded correction of CMD-RDY-001 through CMD-RDY-005 and fresh independent readiness validation; Step 4 remains unapproved",
   "branch": "feature/command-refactor",
   "baseline": "c3426986",
-  "current_scope": "Read-only source assessment, disposable offline baseline/build/install probes, unit/dependency/environment planning and a draft readiness handoff; no product source/test/configuration changes",
+  "current_scope": "Planning contracts/process and isolated offline default-profile capture only; no product source/tests/metadata/lock/configuration changes",
   "product_code_authority": "Not granted by the foundation design decision; separate approved construction directive and applicable readiness are required",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -67,7 +67,24 @@
         "CMD-RDY-005"
       ],
       "api_consistency": "All three reviewers support R-02 foundation API consistency; no standalone implementation or construction approval",
-      "remediation": "not_started; no automatic remediation or further council round authorized by this pass"
+      "remediation": "Superseded for current decision by authorized REM-CMD-STEP3-001 correction candidate; original finding report retained unchanged"
     }
+  },
+  "remediation_authorization": {
+    "id": "REM-CMD-STEP3-001",
+    "approved_by": "Chuck Russell",
+    "date": "2026-11-06",
+    "instruction": "i Accept your recommendation. Proceed.",
+    "record": "remediation/REM-CMD-STEP3-001.md",
+    "decisions": {
+      "cohort": "Future foundation joins existing lock-step cohort as eighteenth project; no client dependency",
+      "ingest": "FILE-001 follows MAINT-001 and preserves shared admission",
+      "lock": "Draft permits bounded public Python package-registry access for explicit lock generation; no unrelated upgrades; frozen checks afterward"
+    },
+    "scope": "Correct five readiness findings in planning/evidence and obtain one fresh independent readiness validation; no additional full council automatically",
+    "lightweight_exemption": "Documentation/evidence only; diagnostic script operates in disposable offline environments; no runtime/product bytes change",
+    "construction_approval": "not_granted",
+    "RD-01_RD-02_approval": "not_granted",
+    "status": "correction candidate prepared for one fresh read-only independent readiness validation"
   }
 }

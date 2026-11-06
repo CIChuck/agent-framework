@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "date": "2026-11-06T20:12:15+00:00",
+  "unit": "REM-CMD-STEP3-001",
+  "base": "e0eb3e9c718539b014174721c5d5086e5c94c393",
+  "authorization": "Chuck Russell: i Accept your recommendation. Proceed.",
+  "construction_approval": "not_granted",
+  "approved_api_sha256": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+  "findings": {
+    "CMD-RDY-001": {
+      "change": "Draft permits eighteenth-project cohort integration and focused cohort/metadata/artifact checks; no actual product metadata/test edits",
+      "paths": [
+        "directives/CD-CMD-FND-001-neutral-foundation.md"
+      ]
+    },
+    "CMD-RDY-002": {
+      "change": "Fresh pinned default profile separates Chat imports/help, tools/finance failure and generic CLI entry-point failure; summary/map/RD02/receipt/log corrected",
+      "evidence": "validation/step3/default-profile/receipt.json",
+      "runtime_health_claimed": false
+    },
+    "CMD-RDY-003": {
+      "change": "MAINT-001 precedes FILE-001 and is explicit prerequisite; ingest admission and scenario owner retained",
+      "paths": [
+        "validation/step3/unit-map.json",
+        "readiness-review.md"
+      ]
+    },
+    "CMD-RDY-004": {
+      "change": "Draft permits bounded public PyPI/artifact access only after Step 4; explicit lock generation, semantic equality proof and frozen/no-sync checks; no current registry/lock mutation",
+      "paths": [
+        "directives/CD-CMD-FND-001-neutral-foundation.md"
+      ]
+    },
+    "CMD-RDY-005": {
+      "change": "SC08 foundation source-level regression/own-wheel proof separate from required later installed-client acceptance",
+      "paths": [
+        "validation/step3/unit-map.json",
+        "directives/CD-CMD-FND-001-neutral-foundation.md",
+        "readiness-review.md"
+      ]
+    }
+  },
+  "local_checks": {
+    "board": "36 tasks valid",
+    "documentation_lifecycle": "exact four declared unrelated TUI broken links; no command-refactor broken links",
+    "new_probe_ruff": "lint and format check passed",
+    "whitespace": "git diff --check passed",
+    "map": "50 unique cases, 9 retirement mappings, 3 aliases, 8 scenarios; dependency order acyclic and FILE follows MAINT; ledger unit assignments agree",
+    "source_inventory": "all 84 hashes match",
+    "api": "unchanged",
+    "default_profile": "fresh offline 127 distributions, matching historical default versions, dependency check passed; expected known defects captured with isolated module origins and metadata 50/3",
+    "historical_inputs": "original council request/reports/collection receipt, original raw logs and augmented script/output preserved",
+    "protected_files": {
+      "count": 16882,
+      "changed": []
+    },
+    "owning_suites": "not rerun; counts remain historical"
+  },
+  "separate_remediator": {
+    "agent": "readiness_directive_remediation",
+    "edited_only": "directives/CD-CMD-FND-001-neutral-foundation.md",
+    "checks": "Fenced shell/Python syntax and embedded semantic lock comparison tested in memory; expected additions accepted and six unrelated version/source/dependency/member changes rejected; no product files changed",
+    "controller_followup": "Added explicit focused Ruff command after reviewing draft; current hash is pinned by correction review request"
+  },
+  "root_collection_diagnostics": {
+    "provenance": "Separate remediator tool transcript only; no durable raw log. Diagnostic observations, not frozen-candidate validation or network-isolation evidence. No runtime-health or successful-network claim is based on these checks.",
+    "default_command": "uv run --frozen --no-sync --offline pytest --collect-only -q",
+    "default_result": "exit 2; 5923 tests collected, duplicate Chat/CLI test_display module mismatch",
+    "plain_importlib_command": "uv run --frozen --no-sync --offline pytest --collect-only -qq --import-mode=importlib",
+    "plain_importlib_result": "exit 2; two Chat sibling test_mcp_execution_security imports missing",
+    "limits": "Initial diagnostic imports had no application-network guard, bytecode-write guard or disabled pytest cache; uv --offline only constrained uv traffic. Protected-file hashes still match. No import-path workaround or policy waiver adopted."
+  },
+  "next_gate": "Fresh read-only independent review of delta and full R-01 through R-08 readiness packet. No product implementation or external delivery; Step 4 directive/base/RD01/RD02 remain pending."
+}

@@ -329,7 +329,10 @@
     "package_count": 127,
     "probe_exit": 1,
     "failure": "ModuleNotFoundError: No module named friday_finance",
-    "log": "probe.log"
+    "log": "probe.log",
+    "failure_import": "friday_tools (explicit module-origin audit); Chat imports/help are not the failing boundary",
+    "provenance": "Historical first default run used an earlier unpinned script; probe.log remains unchanged. The augmented-only script hash below does not pin this historical default run.",
+    "superseded_for_current_default_profile_by": "default-profile/receipt.json"
   },
   "augmented_all_workspace_install": {
     "exit": 1,
@@ -378,7 +381,7 @@
     "No product source/test/config changes.",
     "No complete per-command behavior or P0/P1 completion.",
     "No foundation package exists yet; its build/install/model/registry tests are future construction acceptance.",
-    "One LiteLLM cost-map network attempt was blocked and fell back locally; no network/provider request succeeded."
+    "Augmented historical run recorded one blocked LiteLLM cost-map attempt. Corrected default-profile run separately recorded one blocked create_connection attempt. Historical first default run was unpinned and has no verified guard counter; do not combine counts or infer one attempt across all runs. No successful application network/provider request is claimed."
   ],
   "preservation": {
     "outside_packet_files_checked": 16882,
@@ -391,5 +394,19 @@
     "scenario_owners": 8,
     "dependency_order": "acyclic and all dependencies precede their units",
     "approved_api_unchanged": true
+  },
+  "corrected_default_profile": {
+    "receipt": "default-profile/receipt.json",
+    "observations": "default-profile/observations.json",
+    "script": "default-profile/probe.py",
+    "package_count": 127,
+    "capture_exit": 0,
+    "capture_exit_meaning": "Expected known-defect baseline was captured; not healthy client acceptance",
+    "failed_module": "friday_tools",
+    "missing_dependency": "friday_finance",
+    "chat_imports_and_help": "passed; separate from runtime construction",
+    "generic_cli_entrypoint": "AttributeError: absent friday_cli.main:app",
+    "sandbox_boundary": "friday_tools.sandbox uses stdlib; optional friday_sandbox is imported lazily",
+    "network_attempts_blocked": 1
   }
 }

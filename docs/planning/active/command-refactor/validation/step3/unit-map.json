@@ -13,8 +13,8 @@
     "SESSION-001",
     "DIAG-001",
     "MEMQ-001",
-    "FILE-001",
     "MAINT-001",
+    "FILE-001",
     "TRANSCRIPT-001",
     "REPLAY-001",
     "TOOLS-001",
@@ -106,19 +106,6 @@
       "status": "proposed; no migration directive or capability schema approved"
     },
     {
-      "id": "FILE-001",
-      "title": "Read and ingestion",
-      "commands": [
-        "read",
-        "ingest"
-      ],
-      "depends_on": [
-        "MEMQ-001"
-      ],
-      "ownership_and_stop": "Reviewed reader/ingestion capabilities; preserve whitespace path grammar, source identity and storage ownership.",
-      "status": "proposed; no migration directive or capability schema approved"
-    },
-    {
       "id": "MAINT-001",
       "title": "Memory and maintenance effects",
       "commands": [
@@ -133,6 +120,20 @@
         "SESSION-001"
       ],
       "ownership_and_stop": "Public maintenance/admission/coordinator seams; exact stage, late-error, cancellation and recovery proofs required.",
+      "status": "proposed; no migration directive or capability schema approved"
+    },
+    {
+      "id": "FILE-001",
+      "title": "Read and ingestion",
+      "commands": [
+        "read",
+        "ingest"
+      ],
+      "depends_on": [
+        "MEMQ-001",
+        "MAINT-001"
+      ],
+      "ownership_and_stop": "Reviewed reader/ingestion capabilities; preserve whitespace path grammar, source identity, storage ownership and existing shared maintenance admission for ingest. MAINT-001 admission capability must be reviewed before FILE-001; no new admission implementation unit.",
       "status": "proposed; no migration directive or capability schema approved"
     },
     {
@@ -891,10 +892,11 @@
       "id": "SC-05",
       "units": [
         "FILE-001",
-        "MEMQ-001"
+        "MEMQ-001",
+        "MAINT-001"
       ],
-      "proof": "Read/ingest/list source identity and whitespace path compatibility, invalid extension/limit, storage failures.",
-      "verification_owner": "FILE-001, MEMQ-001"
+      "proof": "Read/ingest/list source identity and whitespace path compatibility, invalid extension/limit and storage failures; ingest retains shared maintenance admission and rejection behavior.",
+      "verification_owner": "FILE-001, MEMQ-001, MAINT-001 (admission prerequisite)"
     },
     {
       "id": "SC-06",
@@ -919,8 +921,13 @@
       "units": [
         "FND-001"
       ],
-      "proof": "Separate generic CLI quotes, sync/async dispatch, public exports and installed entry point; no unapproved shared-registry adapter.",
-      "verification_owner": "Cross-cutting generic CLI regression for FND-001 and every later migration unit"
+      "proof": "FND-001 and later migrations retain source-level generic CLI quote parsing, sync/async dispatch and public exports; FND-001 separately proves its own neutral wheel. No unapproved shared-registry adapter.",
+      "verification_owner": "Source-level generic CLI regression for FND-001 and every later migration unit",
+      "deferred_installed_client_proof": {
+        "obligation": "Load and exercise the declared generic friday client entry point after its baseline missing-app defect is repaired or explicitly dispositioned. No healthy installed-client claim from FND-001.",
+        "gate": "Affected installed-client migration/delivery gate (P4/P5), before affected delivery; separate approved directive/disposition required",
+        "foundation_owner": false
+      }
     }
   ],
   "environment_matrix": [
@@ -931,13 +938,14 @@
     },
     {
       "environment": "Default Chat/CLI wheels, declared dependencies only",
-      "state": "installed 127 distributions; dependency check passed; Chat import failed: missing friday_finance",
-      "foundation_construction": "Baseline limitation; not a healthy client profile or future client shipping proof."
+      "state": "Fresh corrected capture: 127 distributions; dependency check, Chat/registry/CLI module imports, stateless help and Chat entry-point --help pass. Explicit friday_tools import fails: missing friday_finance. Generic friday entry-point loading fails: absent friday_cli.main:app.",
+      "foundation_construction": "Baseline limitation; not a healthy client profile or future client shipping proof.",
+      "evidence": "validation/step3/default-profile/receipt.json"
     },
     {
       "environment": "Chat finance+sandbox extras, isolated wheels",
       "state": "installed 131 distributions; Chat registry/help probes pass; generic friday entry point fails",
-      "foundation_construction": "Diagnostic augmented profile only; no default-install or full runtime/UAT claim."
+      "foundation_construction": "Diagnostic augmented profile only; neither the minimum extras set nor full/default runtime health was proved. Local friday_tools.sandbox is stdlib-only; optional friday_sandbox is lazy."
     },
     {
       "environment": "Full 17-wheel workspace cohort",

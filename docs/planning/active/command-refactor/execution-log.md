@@ -462,3 +462,33 @@ preserved. Next: maintainer disposition of the proposed bounded correction
 plan and cohort membership, then corrected frozen evidence/fresh validation
 before Step 4. No automatic remediation, further council pass, product code or
 external delivery. Execution phase planning; validation state changes_requested.
+
+2026-11-06: Chuck Russell accepted the controller recommendation and authorized
+[REM-CMD-STEP3-001](remediation/REM-CMD-STEP3-001.md): bounded planning/evidence
+correction followed by fresh independent validation. The draft now selects
+existing-cohort integration for the future foundation, an explicit controlled
+lock/registry procedure, FILE-001 after MAINT-001 with shared ingest admission,
+and source-level CLI proof separate from later installed-entry-point acceptance.
+No product metadata/tests/lock/source were changed. A separate remediator
+handled the draft package-boundary/verification amendment under repository
+policy; the controller handled mechanical map/evidence/process corrections.
+
+Correction to the original Step 3 entry: default Chat/registry/CLI imports and
+Chat help pass. Explicit friday_tools import fails on missing friday_finance;
+friday_tools.sandbox is a local stdlib module, not optional friday_sandbox.
+The original default probe log was from an earlier unpinned script. It remains
+unchanged, as do the augmented script/output and original council records.
+A fresh 127-distribution default install passes dependency checks and reproduces
+the narrow tools/finance and generic CLI missing-app defects with a pinned
+[new probe/receipt](validation/step3/default-profile/receipt.json). Versions
+match the historical default installation; metadata remains 50 names/three
+aliases. The current run blocks one create_connection attempt; augmented and
+original-default runs retain their own separate network/provenance limits.
+No runtime/store construction, configured tool execution or client repair was
+performed by the isolated default-profile probe. Separate root-collection
+diagnostics and their weaker containment are disclosed in the correction
+receipt; they are not frozen validation evidence. Execution phase planning;
+validation state in_review. Freeze corrected
+inputs for one fresh read-only independent readiness pass over the five fixes
+and all R-01–R-08 criteria. Full feature-branch aggregate implementation review,
+Step 4 construction approval, RD-01/RD-02 disposition and delivery remain open.

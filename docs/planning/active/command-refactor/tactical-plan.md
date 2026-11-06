@@ -2,15 +2,17 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: Step 3 readiness packet prepared; requested council pending; Step 4 not approved
+Status: Authorized Step 3 corrections; fresh validation pending; Step 4 not approved
 Execution phase: planning
-Validation state: pending
+Validation state: in_review
 
 The [next-phase checkpoint](next-phase.md) is the main handoff and reading order.
 Chuck Russell approved [CMD-DESIGN-001](approval/foundation-design.md) and paused
 before prerequisite work, then explicitly resumed Step 3 on 2026-11-06 and
-requested the three-provider council. [readiness-review.md](readiness-review.md)
-is the current assessment. Step 3 is distinct from phase P3; no product
+requested the three-provider council. Its CHANGES_REQUESTED result led to
+maintainer-authorized [bounded corrections](remediation/REM-CMD-STEP3-001.md).
+[readiness-review.md](readiness-review.md) is the corrected assessment, awaiting
+fresh independent validation. Step 3 is distinct from phase P3; no product
 construction or prerequisite exception is approved.
 
 ## Governing documents
@@ -48,7 +50,8 @@ approve CD-CMD-FND-001.
 ## Construction and later phases
 
 Step 3 has produced a concise readiness summary with evidence and unresolved
-decisions. The requested council reviews that candidate read-only. The maintainer
+decisions. The completed council remains historical for candidate `95fdeadc`.
+Corrected evidence and draft scope require fresh validation; the maintainer
 then separately approves the construction directive and execution base (Step 4).
 No source generation follows from CMD-DESIGN-001 alone.
 
