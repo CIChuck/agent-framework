@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: fresh aggregate verification of approved CD-CMD-CHK-001 correction, then authorized checkpoint push, PR, merge and fresh retirement branch; no retirement implementation
+  next_gate: corrected aggregate checkpoint VERIFIED at 51334a5b; execute authorized push, PR, actual-requirements check, merge and fresh retirement branch; no retirement implementation
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -720,6 +720,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/legacy-cli-removal/report.md
   - docs/planning/active/command-refactor/validation/required-finance/report.md
   - docs/planning/active/command-refactor/validation/VAL-CMD-FND-001-report.md
+  - docs/planning/active/command-refactor/validation/checkpoint/verified-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2482,3 +2483,10 @@ events:
   action: prepared exact checkpoint correction candidate
   note: Current explicit historical exception recorded; five named format outputs have identical ASTs. 325 focused tests, 34-file lint, five-file format and 18-source mypy pass. Configs preserved. Await fresh full aggregate verification before authorized delivery; no new feature or retirement.
   evidence: docs/planning/active/command-refactor/validation/checkpoint/correction-report.md
+- task: friday-command-refactor
+  at: '2026-11-06T23:58:06+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded corrected aggregate verification
+  note: Fresh read-only review VERIFIED 51334a5b for all eight aggregate criteria, closed AGG-001/002, 3116 current tests and package/archive/default-install proof pass. Source and protected inputs preserved. Existing checkpoint push/PR/merge/new-branch authority remains valid; retirement and TUI construction remain unapproved.
+  evidence: docs/planning/active/command-refactor/validation/checkpoint/verified-report.md

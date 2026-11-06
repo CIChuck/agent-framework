@@ -2,9 +2,9 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: Foundation accepted; bounded checkpoint reconciliation explicitly approved
-Execution phase: validation
-Validation state: in_review (corrected aggregate; RET-001 remains unapproved)
+Status: Corrected aggregate checkpoint VERIFIED; authorized delivery next
+Execution phase: closeout
+Validation state: verified (aggregate checkpoint; RET-001 remains unapproved)
 
 This is the main next-step document. The [packet index](README.md) maps supporting
 files; the [board](../../board.yaml) owns initiative state. The whole initiative
@@ -105,3 +105,14 @@ focused tests/static checks pass. [Correction evidence](validation/checkpoint/co
 is builder evidence. The immediate action is fresh aggregate verification,
 then the already-authorized delivery sequence. No repeated approval is needed
 for that delivery once its review and actual PR gates pass.
+
+## Fresh aggregate result
+
+The [fresh independent report](validation/checkpoint/verified-report.md) VERIFIED
+candidate `51334a5b3f92ca7922976f1c0f3aa15443ae61e6`, closed AGG-001/002 and
+independently passed all 3,116 tests plus current package/installed/archive/static
+proof. [Exact receipts](validation/checkpoint/verified-evidence.json) are retained.
+The controller confirmed the full freeze before evidence/status-only closeout.
+Proceed with the existing authorized push/PR/requirements/merge/new-branch
+sequence. No further checkpoint permission is needed; exact remote identities
+and actual PR requirements must still be checked. RET-001 remains unapproved.

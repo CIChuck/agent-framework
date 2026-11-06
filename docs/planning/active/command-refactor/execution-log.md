@@ -679,3 +679,16 @@ candidate for fresh independent full aggregate review, including explicit
 current-input equivalence for prior receipts. Prior CHANGES_REQUESTED remains
 historical until a new verdict. Execution phase validation; validation state
 in_review. Existing delivery authority remains conditional on verified readiness.
+
+2026-11-06: Fresh aggregate validator VERIFIED 51334a5b3f92ca7922976f1c0f3aa15443ae61e6
+against master c3426986, independently closing AGG-001/002 under the exact current
+exception/formatting approval. All AGG-01–08 pass; 3,116 tests, current fresh
+artifacts/default129 installation, source/installed equivalence, archive/transfer
+integrity and protected inputs pass. Broad baseline and optional-cohort limits
+remain accurately disclosed. [Fresh report](validation/checkpoint/verified-report.md)
+and [durable receipts](validation/checkpoint/verified-evidence.json) retain the
+full evidence. Controller independently verified all input/manifest/protected
+hashes before evidence-only closeout. No code/tests/API/metadata/lock/directive
+or approved scope change follows. Proceed with already-authorized checkpoint
+push/PR/actual-requirements check/merge/new branch; no new development approved.
+Execution phase closeout; validation state verified. Initiative remains started.

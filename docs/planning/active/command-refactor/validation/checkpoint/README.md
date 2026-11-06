@@ -3,7 +3,7 @@
 Date: 2026-11-06
 Target: `master` in `CIChuck/agent-framework`
 Base: `c34269867be50f71923c93c95a63236a35505812`
-Status: CHANGES_REQUESTED at dea49607; bounded maintainer disposition pending before correction/push
+Status: corrected aggregate VERIFIED at 51334a5b; authorized delivery next
 
 ## Maintainer authorization and scope
 
@@ -95,3 +95,12 @@ AST-preserving formatter correction. No retrospective approval is inferred from
 the prior publication instruction. After exact approval, perform only that
 bounded correction and obtain fresh aggregate verification before delivery.
 No product source has been changed by this review/disposition preparation.
+
+## Superseding corrected result
+
+The [fresh aggregate report](verified-report.md) VERIFIED `51334a5b` after exact
+maintainer exception approval and five AST-preserving format corrections.
+AGG-001/002 are closed; 3,116 current tests and cumulative package/archive proof
+pass. The earlier report describes its frozen candidate only. Controller
+closeout changes evidence/status only; reviewed source/directives/scope remain
+unchanged. Continue authorized delivery after actual remote/PR checks.
