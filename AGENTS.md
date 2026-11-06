@@ -76,7 +76,7 @@ never substitutes for approval or acceptance. The complete transition contract
 is [docs/reference/policies/development-task-lifecycle.md](docs/reference/policies/development-task-lifecycle.md).
 
 ## Project Structure & Module Organization
-- `packages/` contains the workspace libraries. The current package set includes `friday-core`, `friday-telemetry`, `friday-llm`, `friday-transcript`, `friday-memory`, `friday-agent`, `friday-runtime`, `friday-cli`, `friday-tools`, `friday-sandbox`, `friday-mcp`, `friday-speech`, `friday-finance`, `friday-moltbook`, and `friday-optimization`.
+- `packages/` contains the workspace libraries. The current package set includes `friday-core`, `friday-telemetry`, `friday-llm`, `friday-transcript`, `friday-memory`, `friday-agent`, `friday-runtime`, `friday-cli`, `friday-commands`, `friday-tools`, `friday-sandbox`, `friday-mcp`, `friday-speech`, `friday-finance`, `friday-moltbook`, and `friday-optimization`. `friday-commands` is the neutral standard-library command foundation with injected handlers and no executable.
 - `friday-runtime` is the current headless assembly layer. Prefer `RuntimeKernel` and `RuntimeConfig` for full-stack composition work.
 - `friday-cli` contains terminal display/input/session components, compatibility container code, REPL/server hooks, and FastAPI-related modules. It provides no standalone console command; the legacy `friday` launcher declaration was removed. Use the separate `friday-chat` application for maintained chat CLI behavior.
 - `friday-memory` is the central memory package: controller, adapters, context assembly, lifecycle, retrieval, ingestion, maintenance, and multi-agent memory.

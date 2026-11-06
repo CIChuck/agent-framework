@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | RD-01 and CD-CMD-FND-001 approved; implement and verify neutral foundation API-01 through API-06, then fresh independent candidate review; no migrations, client wiring or delivery |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | CMD-FND-001 implemented and builder checks complete; fresh independent API-01 through API-06 implementation review pending before maintainer acceptance; no migrations, wiring or delivery |
 
 ## Completed
 

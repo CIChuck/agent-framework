@@ -2,13 +2,18 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: RD-01 and CD-CMD-FND-001 approved; implement isolated foundation only
-Execution phase: implementation
-Validation state: not_ready
+Status: CMD-FND-001 implemented; frozen-candidate independent review pending
+Execution phase: validation
+Validation state: in_review
 
 This is the main next-step document. The [packet index](README.md) maps supporting
 files; the [board](../../board.yaml) owns initiative state. Work remains started
 and local. The current authorized unit is CMD-FND-001 only.
+
+The [foundation unit report](validation/CMD-FND-001-report.md) records completed
+builder tests, static checks, controlled lock and isolated artifact proof.
+The next action is fresh independent implementation validation, not a later
+migration or a new construction unit. Builder evidence is not acceptance.
 
 ## Recorded approvals
 

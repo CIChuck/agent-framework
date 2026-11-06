@@ -553,3 +553,24 @@ and approved-input equality and record actual builder starting HEAD. Execute
 CMD-FND-001 only, with fresh independent implementation validation required.
 No later migration, removal, client wiring or delivery authority is inferred.
 Execution phase implementation; validation state not_ready.
+
+2026-11-06: CMD-FND-001 builder implementation/checks complete under exact
+approved directive hash cf61cab1bc18af071b4b2b9a98f335cf1685592ee647d3c80f60493a80598806
+and unchanged API hash e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74.
+Approved source baseline d003c4db; administrative builder start 1b4756b7,
+with product/input equality verified before editing. Created only the neutral
+stdlib models/registry and exact new-package/cohort/root/artifact integration.
+Controlled registry resolution adds only new member and root all references;
+old resolutions unchanged. Tests: 145 new/cohort, 19 selected Chat and 155 CLI;
+focused static checks, 18-project metadata, current wheel/sdist and isolated
+no-deps smoke pass. Malformed artifacts missing typing, adding a requirement
+or entry point are refused. Guarded current Chat metadata remains 50/3 with
+zero JSON-value drift; all 84 inventoried source/test hashes remain unchanged.
+Broad Ruff reports 534 findings in 13 unchanged files, root pytest stops at
+existing CLI/Chat test_display collision, and docs retain exactly four TUI
+broken links. No baseline is presented as a green broad gate. Protected inputs
+remain unchanged. [Unit report](validation/CMD-FND-001-report.md) binds actual
+commands, tool/environment versions, artifact hashes, limits and raw receipts.
+Freeze this candidate for fresh read-only implementation validation before
+acceptance; no handlers/client wiring/removals or later unit authorized.
+Execution phase validation; validation state in_review.

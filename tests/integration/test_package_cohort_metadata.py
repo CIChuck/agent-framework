@@ -16,6 +16,7 @@ COHORT_DISTRIBUTIONS = {
     "friday-framework",
     "friday-framework-agent",
     "friday-framework-cli",
+    "friday-framework-commands",
     "friday-framework-core",
     "friday-framework-finance",
     "friday-framework-llm",
@@ -69,16 +70,14 @@ def _dependencies(project: dict[str, object]) -> list[str]:
     if isinstance(optional, dict):
         for dependencies in optional.values():
             if isinstance(dependencies, list):
-                values.extend(
-                    value for value in dependencies if isinstance(value, str)
-                )
+                values.extend(value for value in dependencies if isinstance(value, str))
     return values
 
 
 def test_all_friday_projects_and_internal_pins_are_lockstep() -> None:
     paths = _project_paths()
 
-    assert len(paths) == 17
+    assert len(paths) == 18
     project_names = {
         tomllib.loads(path.read_text(encoding="utf-8"))["project"]["name"]
         for path in paths
@@ -113,9 +112,7 @@ def test_exported_runtime_versions_match_source_metadata() -> None:
     projects = {
         project["name"]: project["version"]
         for path in _project_paths()
-        for project in [
-            tomllib.loads(path.read_text(encoding="utf-8"))["project"]
-        ]
+        for project in [tomllib.loads(path.read_text(encoding="utf-8"))["project"]]
     }
     for distribution, relative_path in VERSION_FILES.items():
         module = ast.parse(
@@ -133,3 +130,41 @@ def test_exported_runtime_versions_match_source_metadata() -> None:
             and isinstance(node.value.value, str)
         ]
         assert versions == [projects[distribution]]
+
+
+def test_command_foundation_metadata_and_complete_artifact_inventory() -> None:
+    package = REPOSITORY_ROOT / "packages/friday-commands"
+    project = tomllib.loads((package / "pyproject.toml").read_text())["project"]
+    assert project["dependencies"] == []
+    assert project.get("optional-dependencies", {}) == {}
+    assert project.get("scripts", {}) == {}
+    assert project.get("gui-scripts", {}) == {}
+    assert (package / "src/friday_commands/py.typed").is_file()
+    root = tomllib.loads((REPOSITORY_ROOT / "pyproject.toml").read_text())
+    assert (
+        "friday-framework-commands==0.1.0a4"
+        in root["project"]["optional-dependencies"]["all"]
+    )
+    assert root["tool"]["uv"]["sources"]["friday-framework-commands"] == {
+        "workspace": True
+    }
+    assert not any(
+        Requirement(value).name == "friday-framework-commands"
+        for value in root["project"]["dependencies"]
+    )
+    tree = ast.parse(
+        (REPOSITORY_ROOT / "scripts/check-package-artifacts.py").read_text()
+    )
+    inventories = [
+        ast.literal_eval(node.value)
+        for node in tree.body
+        if isinstance(node, ast.Assign)
+        and any(
+            isinstance(target, ast.Name) and target.id == "EXPECTED_WHEELS"
+            for target in node.targets
+        )
+    ]
+    assert len(inventories) == 1
+    inventory = inventories[0]
+    assert {name.replace("_", "-") for name in inventory} == COHORT_DISTRIBUTIONS
+    assert inventory["friday_framework_commands"] == "friday_commands"

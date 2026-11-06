@@ -709,7 +709,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: RD-01 and CD-CMD-FND-001 approved; implement and verify neutral foundation API-01 through API-06, then fresh independent candidate review; no migrations, client wiring or delivery
+  next_gate: CMD-FND-001 implemented and builder checks complete; fresh independent API-01 through API-06 implementation review pending before maintainer acceptance; no migrations, wiring or delivery
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -2416,3 +2416,10 @@ events:
   action: approved exact CD-CMD-FND-001
   note: Direct instruction i approve cd-cmd-fnd-001 at proposed reviewed source base d003c4db31cc9b1e3d143fd8c0d8b930db50ab30. Exact directive/API hashes recorded; only foundation and specified integration allowed. No migration, handler wiring, removals or delivery.
   evidence: docs/planning/active/command-refactor/approval/foundation-readiness.md
+- task: friday-command-refactor
+  at: '2026-11-06T22:24:55+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared CMD-FND-001 implementation candidate
+  note: Approved neutral foundation and specified cohort integration implemented. 145 new/cohort, 19 selected Chat and 155 CLI tests pass; focused typing/lint/format, strict lock delta, standalone wheel and three artifact refusal probes pass. Existing broad lint/root pytest/TUI-link debt disclosed. Await fresh independent implementation review; no later unit or delivery authority.
+  evidence: docs/planning/active/command-refactor/validation/CMD-FND-001-report.md
