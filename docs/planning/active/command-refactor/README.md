@@ -9,11 +9,12 @@ approval, construction authority or code validation is inferred.
 
 **Working home:** `agent-framework`, branch `feature/command-refactor`.
 **Board ID:** `friday-command-refactor`.
-**Status:** CMD-FND-001 implemented with builder checks complete; fresh
-independent implementation review pending. Exact approvals and source base
+**Status:** CMD-FND-001 implemented and independently VERIFIED at `b4fc199e`;
+foundation unit ready for maintainer acceptance. Exact approvals and source base
 `d003c4db` remain in the [approval record](approval/foundation-readiness.md).
-See [unit evidence](validation/CMD-FND-001-report.md). No command migration/wiring.
-`execution_phase: validation`; `validation_state: in_review`.
+See [independent result](validation/VAL-CMD-FND-001-report.md) and
+[builder evidence](validation/CMD-FND-001-report.md). No command migration/wiring.
+`execution_phase: closeout`; `validation_state: verified` for CMD-FND-001 only.
 
 The maintainer changed the working home on 2026-11-05 to this Agent Framework
 checkout; the shared command refactor remains the first phase. The full
@@ -31,8 +32,9 @@ recorded separately; the later exact foundation construction approval is in
 The recorded product decisions remain: nine complete removals, `/tools` retained,
 41 canonical names/three aliases, shared neutral command ownership, preserved
 generic CLI and retained-command quirks. Foundation API-01–API-06 is approved;
-the complete contract and remaining P0/P1 work are still open. That work is
-resumed only for readiness preparation/review. Current authority comes from this checkout's
+the complete contract and remaining P0/P1 work are still open. The approved
+foundation is implemented and verified; later construction needs separate
+authority. Current authority comes from this checkout's
 AGENTS, policies, board and the maintainer's reconciliation instruction.
 
 ## Canonical planning chain
@@ -86,21 +88,21 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Fresh independent implementation validation of the frozen
-CMD-FND-001 candidate against the approved directive and API-01–API-06.
+**Next gate:** Maintainer acceptance of the independently VERIFIED CMD-FND-001
+candidate `b4fc199e`, then separate approval of any next construction unit.
 RD-02 records the two separately VERIFIED packaging resolutions. The earlier
 [VERIFIED result](validation/step3/correction-report.md) covers `fcea84b8` only.
 The original
 [council result](validation/step3/council-round1.md) remains historical.
-The [next-phase checkpoint](next-phase.md) remains the main handoff. Product
-construction is not approved.
+The [next-phase checkpoint](next-phase.md) remains the main handoff. Later
+construction and delivery are not approved.
 
 The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
 refreshes baseline identity in this working home and records the current
 planning/review boundary. Historical evidence remains preserved separately.
 
-The [next-phase checkpoint](next-phase.md) identifies the bounded P0/P1
-continuation and the review stop before product construction.
+The [next-phase checkpoint](next-phase.md) identifies the current unit's
+acceptance boundary and remaining P0/P1 gates.
 
 Initial P0 observations are in the [source ledger](validation/par-coverage-ledger.md)
 and [baseline receipt](validation/p0-baseline.md). The initial dirty-worktree Chat baseline was red. The
@@ -109,8 +111,9 @@ tests using committed examples and xterm. Case-level behavior and installed-pack
 proof remain open.
 
 Review inputs now include the [production/effect audit](validation/production-effects-audit.md),
-[foundation API draft](shared-command-api.md) and
-[draft first directive](directives/CD-CMD-FND-001-neutral-foundation.md).
+[approved foundation API](shared-command-api.md) and
+[approved first directive](directives/CD-CMD-FND-001-neutral-foundation.md).
+Their frozen historical labels are superseded by the exact human approval record.
 Family port signatures, installed proof and gate approval remain open.
 
 ## Foundation design approved; corrected readiness verified
@@ -127,8 +130,9 @@ authorized REM-CMD-STEP3-001; its corrected packet is now independently VERIFIED
 at `fcea84b8`. Construction approval remains separate.
 At that earlier checkpoint execution remained planning with P0/P1 incomplete
 and construction unauthorized. The later explicit CD-CMD-FND-001 approval
-permits only the foundation unit now awaiting independent review. Human
-approval does not supply an independent VERIFIED result.
+permits only the foundation unit. That unit now has its own fresh independent
+[VERIFIED implementation result](validation/VAL-CMD-FND-001-report.md).
+Human acceptance remains separate.
 
 Round 2 results and the narrow residual pruning-review correction are recorded
 in [the council report](validation/COUNCIL-CMD-DESIGN-001-round2.md). The correction

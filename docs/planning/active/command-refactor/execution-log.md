@@ -574,3 +574,26 @@ commands, tool/environment versions, artifact hashes, limits and raw receipts.
 Freeze this candidate for fresh read-only implementation validation before
 acceptance; no handlers/client wiring/removals or later unit authorized.
 Execution phase validation; validation state in_review.
+
+2026-11-06: Fresh-context read-only validator
+`/root/foundation_implementation_validation` independently VERIFIED frozen
+CMD-FND-001 candidate `b4fc199eeef3c63a5cf9a8b960cf61c0116170ad`, implementation
+base `1b4756b7` and approved source base `d003c4db`. All API-01–API-06 and
+FND-01–FND-04 criteria pass with no mandatory findings. Independent checks
+reproduced 145 foundation/cohort, 19 selected Chat and 155 CLI tests, focused
+typing/lint/format, 18-project metadata, exact lock equality, fresh offline
+wheel/sdist/install, three artifact refusals and 24 extra adversarial assertions.
+All request, authority, deliverable, external and 16,876 protected hashes match
+at start/end; 84 inventory files and current 50/3 metadata remain unchanged.
+The controller repeated the final freeze check before recording the result.
+[Independent report](validation/VAL-CMD-FND-001-report.md) and
+[durable machine receipts](validation/CMD-FND-001-evidence.json) preserve the
+full evidence and limits. Root Ruff's 534 findings/13 unchanged files, the
+existing root pytest collection collision and four unrelated TUI links remain
+unsuccessful broad baselines, with no implicit waiver. Full Chat/runtime/live/
+platform acceptance remains excluded. Only evidence/status closeout follows:
+reviewed code/tests/root metadata/lock, approved API/directive and builder report
+remain frozen. Initiative stays started/local because later command work is
+incomplete; foundation unit is ready for maintainer acceptance. No later
+directive, wiring/migration/removal, aggregate approval or delivery is inferred.
+Execution phase closeout; validation state verified for CMD-FND-001 only.

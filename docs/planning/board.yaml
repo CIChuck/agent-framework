@@ -709,7 +709,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: CMD-FND-001 implemented and builder checks complete; fresh independent API-01 through API-06 implementation review pending before maintainer acceptance; no migrations, wiring or delivery
+  next_gate: CMD-FND-001 independently VERIFIED at b4fc199e; maintainer acceptance of foundation unit, then separate directive approval for next construction unit; no migrations, wiring or delivery
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -717,6 +717,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/step3/correction-report.md
   - docs/planning/active/command-refactor/validation/legacy-cli-removal/report.md
   - docs/planning/active/command-refactor/validation/required-finance/report.md
+  - docs/planning/active/command-refactor/validation/VAL-CMD-FND-001-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2423,3 +2424,10 @@ events:
   action: prepared CMD-FND-001 implementation candidate
   note: Approved neutral foundation and specified cohort integration implemented. 145 new/cohort, 19 selected Chat and 155 CLI tests pass; focused typing/lint/format, strict lock delta, standalone wheel and three artifact refusal probes pass. Existing broad lint/root pytest/TUI-link debt disclosed. Await fresh independent implementation review; no later unit or delivery authority.
   evidence: docs/planning/active/command-refactor/validation/CMD-FND-001-report.md
+- task: friday-command-refactor
+  at: '2026-11-06T22:39:33+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded CMD-FND-001 independent verification
+  note: Fresh-context read-only review VERIFIED b4fc199eeef3c63a5cf9a8b960cf61c0116170ad against exact approved API and directive, all ten criteria, 319 scoped tests and standalone artifact proof. No mandatory findings. Existing broad lint, root collection and TUI-link limits retained. Foundation ready for maintainer acceptance; initiative started/local, later units and delivery unapproved.
+  evidence: docs/planning/active/command-refactor/validation/VAL-CMD-FND-001-report.md

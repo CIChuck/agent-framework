@@ -2,9 +2,9 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: CMD-FND-001 implemented; frozen-candidate independent review pending
-Execution phase: validation
-Validation state: in_review
+Status: CMD-FND-001 independently VERIFIED; ready for maintainer acceptance
+Execution phase: closeout
+Validation state: verified (CMD-FND-001 only)
 
 This is the main next-step document. The [packet index](README.md) maps supporting
 files; the [board](../../board.yaml) owns initiative state. Work remains started
@@ -12,8 +12,13 @@ and local. The current authorized unit is CMD-FND-001 only.
 
 The [foundation unit report](validation/CMD-FND-001-report.md) records completed
 builder tests, static checks, controlled lock and isolated artifact proof.
-The next action is fresh independent implementation validation, not a later
-migration or a new construction unit. Builder evidence is not acceptance.
+Fresh independent implementation validation [VERIFIED](validation/VAL-CMD-FND-001-report.md)
+candidate `b4fc199eeef3c63a5cf9a8b960cf61c0116170ad`, with no mandatory findings.
+All 319 scoped tests, focused static checks, exact lock proof and isolated
+artifact checks passed independently. Existing broad Ruff, root pytest
+collection and four TUI-link failures remain disclosed in the report.
+The next action is maintainer acceptance of this foundation unit. A later unit
+requires its own scope/directive approval. Validation is not acceptance.
 
 ## Recorded approvals
 
@@ -31,7 +36,7 @@ Approval/evidence-only preparation descendants must preserve all product bytes
 and exact directive/API from the approved source base before construction.
 Record their actual starting HEAD and equality check in the unit receipt.
 
-## Current execution order
+## Completed foundation execution
 
 1. Confirm board/branch, approved input hashes and protected dirty-file hashes.
 2. Implement only [CD-CMD-FND-001](directives/CD-CMD-FND-001-neutral-foundation.md):
@@ -43,6 +48,12 @@ Record their actual starting HEAD and equality check in the unit receipt.
 5. Commit a frozen foundation candidate and obtain fresh independent read-only
    implementation validation. Stop for findings or maintainer acceptance;
    do not automatically migrate commands or execute later units.
+
+These five steps are complete for `b4fc199e`. The
+[request](validation/CMD-FND-001-request.json) pins the reviewed inputs;
+[durable receipts](validation/CMD-FND-001-evidence.json) retain exact commands,
+logs and independent probe scripts. Later closeout changes record status only
+and preserve the reviewed product, tests, metadata, lock, API and directive.
 
 ## Reading order for this unit
 
