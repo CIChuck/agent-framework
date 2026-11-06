@@ -1,0 +1,73 @@
+{
+  "unit": "SKILL-MAINT-001",
+  "initiative": "development-skill-maintenance; tooling-only maintenance, not command-refactor product construction",
+  "repository": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "base": "f6f018150391dcf0ffa870258250f254eb22d899",
+  "candidate": "a66fb276dab6e1abdb5aba83c119c116389b6396",
+  "mode": "final delta and aggregate scoped confirmation",
+  "diff": "f6f018150391dcf0ffa870258250f254eb22d899..a66fb276dab6e1abdb5aba83c119c116389b6396",
+  "directive": "docs/dev-skills/babysit-pr/references/maintenance-2026-11-06.md",
+  "authority_sha256": {
+    "AGENTS.md": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/development-task-lifecycle.md": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/board.yaml": "d76eccdb88ab54fd90398627db93713a812d72f6f6e018285fb73dcc6d9d44ce",
+    "docs/dev-skills/independent-code-validator.md": "578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508"
+  },
+  "candidate_sha256": {
+    "docs/dev-skills/README.md": "1808fe455c8f026dbb9d9ade2d74ad17634feb241121a2ebc5b897ae4fe3562c",
+    "docs/dev-skills/babysit-pr/SKILL.md": "2c7116d3fd5b42389c2b001f1dd1e50e1ca21812caca95202bdd053728545723",
+    "docs/dev-skills/babysit-pr/references/checks-2026-11-06.json": "647c6bd65db4c615034a855afc6ee47b02a2a423397e7f68bb579d426ca90ace",
+    "docs/dev-skills/babysit-pr/references/maintenance-2026-11-06.md": "e9f87efa296bdfe8f88559dc91abcca538971271cd988ab716553de77dd59b77",
+    "docs/dev-skills/babysit-pr/scripts/pr-wait": "646827458a2411de816cb22cae75122629607e6b2d4600dc1f567859e561304d",
+    "docs/dev-skills/babysit-pr/tests/test_pr_wait.py": "b1015cd95a44f338607a84de5aacdebed34d633110785540d3e2cd5f40c90757",
+    "docs/dev-skills/council/SKILL.md": "360493507c5f522d4a365f7f90f76c7eb37ad31ee36096a359c0715aae00b23c",
+    "docs/dev-skills/file-pr/SKILL.md": "0347805197ff275866396a34522552dd307d74b43c016833e759ea9342f652fa",
+    "docs/dev-skills/full-send/SKILL.md": "fc426108bdb0960ef2fd0aa5f571c4201738ec995fe81d4c1cc7a9171a3dcebe",
+    "docs/dev-skills/full-send/agents/openai.yaml": "8a1e8ce04a774a8a2e469cecf5e45a9cec4d3438b4c587cf166c2f78206390d2",
+    "docs/dev-skills/full-stop/SKILL.md": "64ed87a7ab6e8ba69942aff640ba5e7b85587c71f9a28bd52fd3b1cff66774bd",
+    "docs/dev-skills/full-stop/agents/openai.yaml": "6029e872a883aa06aad3426ab58289df016e4b0d23485719c71152603fec7d35",
+    "docs/dev-skills/leaving-pr-comments/SKILL.md": "2a4d24c1980af8b3b2076c686a9606cb69956bbe2c15be3236d45788926e75a8",
+    "docs/dev-skills/leaving-pr-comments/agents/openai.yaml": "f89fa0d9ae1c3e973b3e9ecb50549faee62fd1a0e59973bade68802c74183fdb",
+    "docs/dev-skills/modernize/SKILL.md": "48139e9c2856ceff5efc32676d9f9b1e44ba62d00fcb81e98255c2e82bcdadc6",
+    "docs/dev-skills/modernize/agents/openai.yaml": "6675e91e10f2b264fe1a027072f6d9f46299f781011e248a5ba075fc1f764e09",
+    "docs/dev-skills/sol-loop/SKILL.md": "68b0277a7be8c3f82ce3ba6aa1a8450afc94895a24cdcac3b19f6e8817455c1e",
+    "docs/dev-skills/takeover/SKILL.md": "3e89c2ee6db2a39da4aa0001bf1ecbb6f00eb0ca6efc892ccc2b54a0a66d87de"
+  },
+  "approval": "Chuck Russell: Proceed with the improvements. Scope: watcher unknown requirements, waiting alignment, formal validation step, skill index, bytecode exclusion. Imported workflows were copied by the maintainer and are included in this candidate.",
+  "criteria": [
+    "Either protection query failure must prevent green/ready, including partial discovery and ambiguous 404; success cases preserved.",
+    "T3 watcher wait/turn-yield and unwatch instructions agree.",
+    "Applicable work explicitly freezes and obtains fresh-context independent VERIFIED before delivery; changed candidate requires fresh review.",
+    "Index includes selected workflows and distinguishes reference templates.",
+    "No bytecode staged; unrelated dirty work and product files preserved."
+  ],
+  "checks": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s docs/dev-skills/babysit-pr/tests -v",
+    "uv run ruff check docs/dev-skills/babysit-pr/tests/test_pr_wait.py",
+    "uv run ruff format --check docs/dev-skills/babysit-pr/tests/test_pr_wait.py",
+    "Validate nine imported bundles using /Users/chuckrussell/.codex/skills/.system/skill-creator/scripts/quick_validate.py; all skill metadata names/links.",
+    "uv run python scripts/friday-dev-board.py validate",
+    "uv run python scripts/check-documentation-lifecycle.py",
+    "git diff --check"
+  ],
+  "known_baseline": [
+    "Four broken links in docs/planning/active/friday-tui/validation, excluded from this scoped maintenance.",
+    "Imported helper lock() has pre-existing SIM115; compare against baseline-pr-wait in this request directory, hash in checks receipt. No new lint issue permitted."
+  ],
+  "protected_before": "protected.json in this request directory; hash all paths and ensure unchanged",
+  "external_effects": "none; no live GitHub, provider, credentials, PR mutation, push, merge, release, deployment or additional delegation",
+  "review_output": "Return report to controller only; controller will store evidence as closeout metadata.",
+  "independence": "Fresh no-history context; no implementer transcript or private reasoning.",
+  "prior_finding": {
+    "id": "VAL-SKILL-MAINT-002",
+    "candidate": "c82461a405c02706a629d3ed83f1c1d1e67751fa",
+    "severity": "medium",
+    "affected": "docs/dev-skills/babysit-pr/SKILL.md:94-98,115-124,135-141",
+    "requirement": "Explicit frozen candidate, authority/directive/diff/check pins, fresh read-only independent VERIFIED before delivery of applicable generated work; subsequent candidate/authority change invalidates review; documented exemptions only when applicable and recorded.",
+    "observation": "Standalone babysit instructed fixes and a rebase/push sequence without explicitly inserting that gate.",
+    "required_verification": "Inspect standalone babysit delivery and interaction with full-send/full-stop; confirm aggregate formal gate and other maintenance criteria."
+  },
+  "historical_finding_resolved_by_prior_review": "VAL-SKILL-MAINT-001: modernize and sol-loop sequences; still independently inspect current bytes."
+}
