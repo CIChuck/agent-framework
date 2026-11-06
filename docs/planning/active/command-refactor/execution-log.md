@@ -617,3 +617,19 @@ API/directive changed. Preserve historical review/authority labels as frozen
 provenance; the main checkpoint and board own the current handoff.
 Initiative remains started/local. Execution phase planning; validation state
 not_ready for RET-001; foundation result remains VERIFIED and accepted.
+
+2026-11-06: Chuck Russell agreed to the proposed checkpoint delivery sequence
+and directed “i agree with your recommendations. proceed”. This explicitly
+supplies checkpoint commit/push/PR/merge authority, followed by confirmed old-
+branch deletion and a fresh retirement branch. It does not approve RET-001 or
+TUI source. [Checkpoint scope](validation/checkpoint/README.md) includes all
+existing branch work and the earlier authorized planning transfers. Exclude
+and preserve the two unrelated Chat example configurations. Repaired ten
+historical source links in four imported TUI reports, with old/new hashes and
+exact verified source commits in the relocation receipt; no source copied.
+Board validation passes 36 tasks and documentation lifecycle passes 851 files
+before adding this checkpoint record. Aggregate inspection must cover all
+branch changes against master, including MCP fixes and historical archives,
+not just the accepted foundation. Freeze a stable candidate and obtain fresh
+read-only aggregate VERIFIED before delivery. Execution phase validation;
+validation state pending. Initiative stays started/local until actual delivery.

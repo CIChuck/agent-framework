@@ -1,0 +1,31 @@
+{
+  "initiative": "friday-tui",
+  "kind": "chooser_empty_list_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-52: with no likely runtime-config files in the captured launch folder and no explicit --config, keep the chooser open with a clear no-configurations-found message and Browse and Quit. Do not search elsewhere automatically, create a file or start the runtime.",
+  "documents_sha256": {
+    "README.md": "ca0b9e07b4862a7e571ecd3518696b3c2f109dd9d1c89c98077aa6eea5b6ea4d",
+    "decisions.md": "75b12b89123205dec26f6bb54040753ce83fdb6d066d81919e5848ed3a04f654",
+    "replacement-plan.md": "02b81f8c73d61b4d1f4e9d4af7f477d6f28fc6555fd8ac4f96b9926c853aa247",
+    "architecture-reset.md": "3704d9813efb1b0844e745894da1c7329281c1c5a1a61d726f86661fa782c895",
+    "neutral-capability-map.md": "3772a80e0655a3d4045c6a738eb0c553140ff7b1eeceb80b6fba63c5bf237183",
+    "user-guide-requirements.md": "4335762dc4036ec68ae324f7b504de5f6fd8ded967c95a8593d39a03d98dbfc3",
+    "authority.json": "8d9e2135aa69e9b258dadf9afc434ec04381955c92fce7cdf18fad7cbb715666",
+    "execution-log.md": "59c0ee0995599696862a5500577155fb0d1d3fff27bf4078b6cc21bb06284fc1",
+    "docs/planning/board.yaml": "b3aaef68f04f3128e5d462b854e8d2139a919a969bce8d6aecff26e66b9b8e5c",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "46 valid before this receipt",
+    "packet_markdown_links": "17 files; 151 local links; no missing targets",
+    "packet_trailing_whitespace": "17 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

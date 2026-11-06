@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_oversized_file_rejection_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-92: reject a selected file as a whole with a visible size-limit error if its extracted content exceeds the TUI per-file attachment bound. No excerpt or partial new model input; failed refresh retains the last complete snapshot. Exact metric and threshold remain open.",
+  "source_evidence": {
+    "maintainer_answer": "A to rejecting an oversized file rather than attaching a marked excerpt",
+    "reader_baseline": "friday-tools XLSX reader defaults to 1,000 data rows and reports truncated output; PDF/DOCX readers can also report truncation",
+    "implementation_boundary": "Neutral TUI attachment behavior only; existing Chat /read and friday-cli behavior stay unchanged"
+  },
+  "documents_sha256": {
+    "decisions.md": "b65fd3b33be90679a9ce40f62c6a3c1b7282af8c6752123a7d4cae64ca25b09a",
+    "screen-layout.md": "75fde7f09ef33bc2ca73b2b5e4694903660486715cd37cc63faa3b848ad0a2c1",
+    "README.md": "21d97ae377dbabf4085f533915cc4546d1fc64772da0cd2546abef848a3b14ec",
+    "replacement-plan.md": "6918bd8a35cf58bfee49390c6f2e7f8f69647c4d852432cd9412a05de65d9e72",
+    "user-guide-requirements.md": "9f915a674c772ab75e5f9120088d8be06bee9842dfeb8f4f1c78ffde7736155d",
+    "neutral-capability-map.md": "74dd5e3e8dbbcdf13bf07290810191b1f1b0598491b4819543199a1318af8807",
+    "authority.json": "e8d3f401d5b38f2ab5790a9c783e4706d7872c7a32043d2a332c18b1912d716c",
+    "execution-log.md": "357ee5d4d16d0b5736a46d3a70a2ef966b626c9bbb2f9a9df807c9344cd8a923",
+    "docs/planning/board.yaml": "b679b4173ce8416321839f5399c7ae581a6a95d6d19c250c5ef2db9f6ce24738",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "88 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "oversized_attachment_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted whole-file over-limit outcome and planning checks only. Numeric metric/threshold, raw-file and processing safeguards, aggregate model-context budget, installed attachment behavior, terminal UAT and release acceptance remain open."
+}

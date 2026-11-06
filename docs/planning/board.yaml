@@ -216,16 +216,18 @@ tasks:
 - id: friday-tui
   title: Friday TUI
   priority: 14
-  work_state: queued
-  condition: deferred
-  implementation_authority: not_granted
-  packet: docs/planning/deferred/friday-tui/
-  next_gate: resume only after the separate command refactor is completed, fully tested, and accepted; reconcile the independent TUI branch and its existing work before further development
-  delivery_state: not_started
-  branch: null
+  work_state: started
+  condition: normal
+  implementation_authority: design_only
+  packet: docs/planning/active/friday-tui/
+  next_gate: review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization
+  delivery_state: local
+  branch: feature/command-refactor
   depends_on: []
   validation: []
   legacy_import: true
+  approved_by: Chuck Russell
+  approved_at: '2026-11-05'
 - id: friday-speech
   title: Friday Speech
   priority: 15
@@ -709,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: CMD-FND-001 accepted; review and approve exact CD-CMD-RET-001 including RET-GATE-01 through RET-GATE-03 before nine-command retirement; then pilot contract; no delivery
+  next_gate: aggregate checkpoint validation then authorized push, PR and merge; create fresh retirement branch and refresh exact CD-CMD-RET-001 for approval before product changes
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -2347,6 +2349,20 @@ events:
   action: relocated accepted historical authority
   note: Moved previously accepted MCP authority evidence from the active lane into its accepted archive packet under the maintainer-approved archival process; acceptance date and delivery state are unchanged.
   evidence: docs/archive/completed/2026/friday-mcp-protocol-upgrade/historical-authority.json; docs/archive/completed/2026/archival-relocation-2026-10-24.json
+- task: friday-tui
+  at: '2026-11-05'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved active planning and lifted planning deferral
+  note: Maintainer identified Friday TUI as an active unit of work. Scope is planning documents only; source inspection, evaluation and changes remain excluded. Command refactor is first and TUI construction remains separately gated.
+  evidence: docs/planning/active/friday-tui/authority.json
+- task: friday-tui
+  at: '2026-11-05'
+  actor: Codex
+  actor_role: agent
+  action: started authorized planning; condition deferred -> normal
+  note: Relocated packet to active and aligned board, dashboard and current authority on the existing command-refactor planning branch. Imported implementation receipts are historical only.
+  evidence: docs/planning/reconciliation/2026-11-05-tui-active-planning/README.md
 - task: friday-command-refactor
   at: '2026-11-06T18:04:07+00:00'
   actor: Chuck Russell
@@ -2438,3 +2454,10 @@ events:
   action: accepted CMD-FND-001 foundation
   note: Direct instruction approved, proceed what's next steps? accepts VERIFIED b4fc199eeef3c63a5cf9a8b960cf61c0116170ad foundation only. Initiative remains started/local. Controller prepared draft CD-CMD-RET-001 with separate retirement-order, P1 and state-preservation decisions for exact approval; no retirement or later implementation inferred.
   evidence: docs/planning/active/command-refactor/execution-log.md
+- task: friday-command-refactor
+  at: '2026-11-06T23:16:52+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized reviewed checkpoint delivery and fresh branch
+  note: Direct instruction i agree with your recommendations. proceed authorizes classification, scoped commit/push/PR/aggregate checks/merge, then confirmed old-branch deletion and new retirement branch. Exclude unrelated working Chat configurations. Foundation acceptance retained; retirement and TUI construction not approved.
+  evidence: docs/planning/active/command-refactor/validation/checkpoint/README.md

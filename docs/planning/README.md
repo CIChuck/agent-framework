@@ -20,7 +20,6 @@ Directory placement does not grant implementation authority.
 | 11 | [Friday startup context](queued/friday-startup-context/) | normal | not_granted | not_started | review and approve the draft feature plan |
 | 12 | [Friday Web Chat](queued/friday-web-chat/) | normal | not_granted | not_started | review and approve the draft product plan |
 | 13 | [Friday API](queued/friday-api/) | normal | not_granted | not_started | review architecture and approve a bounded phase |
-| 14 | [Friday TUI](deferred/friday-tui/) | deferred | not_granted | not_started | resume only after the separate command refactor is completed, fully tested, and accepted; reconcile the independent TUI branch and its existing work before further development |
 | 15 | [Friday Speech](queued/friday-speech/) | normal | not_granted | not_started | review provider security and approve the draft plan |
 | 18 | [Human in the Loop](blocked/human-in-the-loop/) | blocked | not_granted | not_started | resolve the high-priority architecture contradictions |
 | 19 | [Model-aware reasoning control](deferred/model-aware-reasoning-control/) | deferred | not_granted | not_started | explicit maintainer decision to reopen design |
@@ -43,7 +42,8 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | CMD-FND-001 accepted; review and approve exact CD-CMD-RET-001 including RET-GATE-01 through RET-GATE-03 before nine-command retirement; then pilot contract; no delivery |
+| 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | aggregate checkpoint validation then authorized push, PR and merge; create fresh retirement branch and refresh exact CD-CMD-RET-001 for approval before product changes |
 
 ## Completed
 

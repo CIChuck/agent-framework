@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "slash_subcommand_suggestion_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-69: after a recognized slash command and space, offer registered subcommand matches from active TUI metadata as the next token is typed. Reuse Up/Down and Tab fill-only behavior; Enter submits. Do not suggest free-form values or query runtime services for matches.",
+  "documents_sha256": {
+    "decisions.md": "b0529d0c4bf8996614d241c43b562cb14695d6b8cd0ad0e4a0b94511615ec001",
+    "screen-layout.md": "cfd84e70848732c843114131ca0f26b5c82745c26c97dabe9553b1ddb6c7b75d",
+    "README.md": "9c090b25c1bb032a50f0e5117e97874808b423eb059021deefbfb16cfdfb46c0",
+    "replacement-plan.md": "1fcc57ed2ea86be18043778e59331ba909e70cf28beff1dec7ccd9dd7bfbb2c1",
+    "user-guide-requirements.md": "a410223bcdfc5a2d566f00c91ee9c7cf332be7d50639420b7e875a1290bdd424",
+    "command-matrix.md": "37510b400f2e895ce16c864b606d02d1f247203d45165e0d54f20fd012450247",
+    "authority.json": "ad6f256eca9c4c65c6a44e71f98ac3c8ba90672caff25d1e53618dcb0b7d9a3d",
+    "execution-log.md": "7194df01a3f8d3e061366600967e5fae073a831814a142a8697f68b2132fc550",
+    "docs/planning/board.yaml": "dbdc3b7c5c140ae49e8ce471dee9f7d9ad77f3dfc843125666004b8639a3b255",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "65 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only subcommand-suggestion decision and no product code change",
+    "tui_suggestion_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted declared subcommand suggestion decision and planning checks only. No TUI implementation, command interaction test, installed-package verification, user UAT or release acceptance."
+}

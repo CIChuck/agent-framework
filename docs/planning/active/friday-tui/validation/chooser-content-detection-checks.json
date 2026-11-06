@@ -1,0 +1,32 @@
+{
+  "initiative": "friday-tui",
+  "kind": "chooser_shallow_content_detection_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-55: shallow, read-only inspection of YAML top-level structure identifies likely Friday runtime configurations regardless of filename stem; recognized model-library and presentation files are excluded. Unrecognized files remain reachable through Browse. No credential resolution, service-reference loading, full runtime validation or startup occurs during listing. Exact key signature and filesystem edge rules remain technical-contract work.",
+  "source_reference": "packages/friday-chat/src/friday_chat/config.py:36-57,658-698,702-781; packages/friday-chat/{config.example.yaml,models-config.example.yaml,cli-config.example.yaml}; read-only examples of runtime/library/presentation shapes",
+  "documents_sha256": {
+    "README.md": "ada35fa886f64ef3ba591c272eb4d0a2a8786d10fa457f9763a1fa80f63e1e9c",
+    "decisions.md": "13e1e93564e134b6f2eaf79b4375683abd332875c4b2e079bb12c473e36f3e42",
+    "replacement-plan.md": "4450dab903db23f371311ec96402f14b754a7c0ff4bfd7d7d3b31c3997704d3a",
+    "architecture-reset.md": "8588e5acee1dfc5fb45fb880b4d777cc5b9ac9e12849693bf37b655c0c80db6d",
+    "neutral-capability-map.md": "60658eab63673606005d31c221fabfb0fb05992b48e86aac6d4f35fe072341ef",
+    "user-guide-requirements.md": "e20dbed249b75f4f6a65a5bc7aaa78305326b68404fc4bfac2d1052ec16b6e62",
+    "authority.json": "3ca6cb63cd792d624fc5c635f16c4cea41d43190c56e18f2fc1caeb96ff5bf73",
+    "execution-log.md": "a5cc4973d79d3f4437bc1e283805580cb4d551e5386fd4d9d31556ec2ad8d784",
+    "docs/planning/board.yaml": "8559cab108dc0fc087caa53c1629b7c35182146fe6f364759c7621b05fdf84c7",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "49 valid before this receipt",
+    "packet_markdown_links": "17 files; 151 local links; no missing targets",
+    "packet_trailing_whitespace": "17 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

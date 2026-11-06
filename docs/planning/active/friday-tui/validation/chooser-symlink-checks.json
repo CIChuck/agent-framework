@@ -1,0 +1,32 @@
+{
+  "initiative": "friday-tui",
+  "kind": "chooser_symlink_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-60: include direct-child .yaml/.yml symbolic links resolving to readable regular runtime-shaped files in initial and refreshed chooser lists, including outside-folder targets. Broken, cyclic, unreadable, directory-target and unrelated links are Browse-only with D-50 recovery. No recursive scan, full validation or runtime start during listing.",
+  "documents_sha256": {
+    "startup-bootstrap-contract.md": "2a65627fac3f0839480908fe6b3e47d6ee4d7c4c4cc88ce923a951b8ad275057",
+    "README.md": "1b9066981bb1e598e9ec4d5192e57aa098509be771421da8fcdfcb28a391ece1",
+    "decisions.md": "82f99b2acd6729cc241815ed91ed282c8a90770f02528bf2307d95ede7d41bd3",
+    "replacement-plan.md": "a88862920205d42a0d0954ce9727aa294c26edbc83d7203e4ec45dfa2bca972e",
+    "architecture-reset.md": "de6059c0b6c733eb743ffd0fbc4c4114667f26625b6188f4c41ac2e81ba28862",
+    "neutral-capability-map.md": "762b0891533f0527e7d1091dd36ff0055dfc2f98f218810b09a263fcab7a485d",
+    "user-guide-requirements.md": "29263c837361d398751c63880a88322d26550382287b2fdf7cf7e6ea9927a497",
+    "authority.json": "72d48acd2101d8f0c7dbd0165ede748e6ae0da43a8a0097c0468a4094afc564c",
+    "execution-log.md": "a3b4f379c71f175408bf5058efb0daf6eef617b794611ef1d02d04af3dd54e23",
+    "docs/planning/board.yaml": "bb21b49288cea0f82f9ace5e86c25c1132528abbfc36ccc5b184a76320642119",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "55 valid before this receipt",
+    "packet_markdown_links": "18 files; 160 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

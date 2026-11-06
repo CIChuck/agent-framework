@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "multiple_failed_prompt_restore_chooser_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-107: when two or more failed initial provider-context prompts remain recoverable, one editor-adjacent Restore failed prompts (N) control opens a keyboard/pointer chooser of distinct pending prompts newest first; retained error notices have no separate Restore controls in that state.",
+  "source_evidence": {
+    "maintainer_answer": "A to one Restore failed prompts count control and newest-first chooser instead of separate actions beside the editor.",
+    "prior_decisions": "D-101/D-41 protect newer drafts on restoration; D-102 keeps recovery current-run only with no failed-attempt transcript; D-104/D-105 preserve access after notice eviction or display clear; D-106 retains earlier recovery while a different turn fails.",
+    "unresolved_boundary": "Disposition of a selected entry after Confirm and a cap on pending recoveries remain separate decisions."
+  },
+  "documents_sha256": {
+    "decisions.md": "32b2e38ecac56e4a6dcaee7cd5e019bdfc995bbcb6c235b8df247aae0e5f410d",
+    "README.md": "1b913d9ad89a9d696a3c30058a1b607e94216af11e67e56e70887f1ae30c57bf",
+    "replacement-plan.md": "66fb769943dd7ddfdc1ea585ac0326a1d44bc9382d5665f49db59303f5231b2d",
+    "screen-layout.md": "cc40cc0d8d0a147e4451cd4754d11e82751a2fa3163a1ad58441bfd107d5e928",
+    "user-guide-requirements.md": "9257ed16a6eebd627d09ff2b89cdcb21e856aec5610386fdfbcf9baf8ea9a8d8",
+    "neutral-capability-map.md": "afcfdfada6f5cec8daa972c866ddd5b3cb6d01a9504af4933d33ebf347f0606c",
+    "authority.json": "868c8ff1c0f89c66888be7b8a0dd12ebf8a3a882540878121f5f532480111be5",
+    "execution-log.md": "20d9a25f4e3e7ec1f1ec20e76e5f62c4c3f147ea80b770c6d81698ead23dc6d6",
+    "docs/planning/board.yaml": "6457a104a7e675ccd8c720651fc87fb1c00e253c92d6b5a71f97f571874b4de7",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "103 valid before this receipt",
+    "decision_rows": "107 contiguous rows",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 132 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only decision and no product code change",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted multi-prompt recovery chooser and planning checks only. Selected-entry disposition, pending cap, exact UI construction, installed behavior, terminal UAT and release acceptance remain open."
+}

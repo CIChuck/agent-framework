@@ -1,0 +1,41 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_file_browsing_decision_and_attachment_source_check",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-76: first-release Context sidebar includes read-only folder browsing and file selection. Whether selection itself adds file content to model context or requires a separate action, and for how long, remain open.",
+  "source_evidence": {
+    "chat_read": "packages/friday-chat/src/friday_chat/commands/registry.py::_read_handler formats file content as command output",
+    "chat_ingest": "packages/friday-chat/src/friday_chat/commands/registry.py::_ingest_handler stores file content in vector memory",
+    "chat_context": "packages/friday-chat/src/friday_chat/commands/registry.py::_context_handler shows or exports assembled context",
+    "smart_file": "packages/friday-tools/src/friday_tools/filesystem/smart_read.py::SmartFileReadTool.Input.add_to_context controls returned tool content",
+    "normal_turn": "packages/friday-chat/src/friday_chat/turns/processor.py::_prepare_turn takes user text and retrieved memory without a selected-file attachment",
+    "conclusion": "No current Chat UI action registers a selected file for a later prompt; a TUI attachment needs a new UI-neutral contract."
+  },
+  "documents_sha256": {
+    "decisions.md": "6e8a5563e3c763cb4fc8e6be3df8d0199dc047007ad941f6ccfdaaf87a3a0827",
+    "screen-layout.md": "b9450c89b4ed99d029aa7371919a70565bf4b667b54930ccc29cfa4a7641ee7e",
+    "README.md": "ca597ea0ad6ae2667bdff66d09e7ec972d758a18a41c31a0fc9b26484936bbc7",
+    "replacement-plan.md": "cdee0042b86528036d94ebe0d67dc25bcb00bd1b0f7679e1d5bbb6842b816685",
+    "user-guide-requirements.md": "52c3f51f5d96c16e761837f64dc03d9bada0a86a64f585a5d32e0055485ffa59",
+    "neutral-capability-map.md": "0908d7d7d6cb2ba5253821ae80257484ed4aff000f58892fc0b3ac5648bd8788",
+    "authority.json": "943079e1c29d7ff5949ac49606f27d7643927e4dc54c0aabcd2eaabd74b22086",
+    "execution-log.md": "4aaca2bc037d23b19c12df01be32b2f533b6f502e0917cf14b5cfd520921bd48",
+    "docs/planning/board.yaml": "677e29e8e313c2002a9b0f66449935f5f86e77b8b7f0e802e642b32423879910",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "existing_file_command_and_tool_tests": "passed; 5 focused tests",
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "72 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "existing focused tests only; no TUI implementation or product code change",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "File-browsing product choice and source-backed gap assessment only. Selected-file context interaction, attachment lifetime, runtime contract, TUI implementation, terminal UAT and release acceptance remain open."
+}

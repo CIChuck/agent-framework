@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-06",
+  "authority": "Maintainer-approved checkpoint preparation; link repairs only. No imported source/implementation verdict promoted.",
+  "records": [
+    {
+      "path": "docs/planning/active/friday-tui/validation/N01B-04-before-code-export-path-characterization.md",
+      "before_sha256": "5d393b4064fdd60cb3850a467dedea149739af3d70386a2c05f270b27c165067",
+      "after_sha256": "60f3a3010c217ae0171dad5c33504a0a2c1252e8514cb66fa849ebb5148c03c7",
+      "link_repairs": [
+        {
+          "before": "../../../../../packages/friday-chat/tests_chat/test_transcript_export_format_delegation.py",
+          "after": "https://github.com/CIChuck/agent-framework/blob/3b91c5b55a567fd5225a6430bf27fbaef35fefbf/packages/friday-chat/tests_chat/test_transcript_export_format_delegation.py",
+          "source_commit": "3b91c5b55a567fd5225a6430bf27fbaef35fefbf"
+        },
+        {
+          "before": "../../../../../packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "after": "https://github.com/CIChuck/agent-framework/blob/3b91c5b55a567fd5225a6430bf27fbaef35fefbf/packages/friday-chat/tests_chat/test_session_memory_commands.py",
+          "source_commit": "3b91c5b55a567fd5225a6430bf27fbaef35fefbf"
+        }
+      ]
+    },
+    {
+      "path": "docs/planning/active/friday-tui/validation/N01B-05-before-code-single-file-export-characterization.md",
+      "before_sha256": "5d5cf68442ca08d79ebd4e3b683d9d4d72f6a4a657603ec303786e857f8be2d3",
+      "after_sha256": "335f7895e307499ba87103a0d1c07916098523dc3c3389b8a478a1424d615ffa",
+      "link_repairs": [
+        {
+          "before": "../../../../../packages/friday-chat/tests_chat/test_transcript_query_facade.py",
+          "after": "https://github.com/CIChuck/agent-framework/blob/887e43a02d7213e65436b1d85bfafbe255ac865c/packages/friday-chat/tests_chat/test_transcript_query_facade.py",
+          "source_commit": "887e43a02d7213e65436b1d85bfafbe255ac865c"
+        },
+        {
+          "before": "../../../../../packages/friday-chat/tests_chat/test_transcript_export_path_delegation.py",
+          "after": "https://github.com/CIChuck/agent-framework/blob/887e43a02d7213e65436b1d85bfafbe255ac865c/packages/friday-chat/tests_chat/test_transcript_export_path_delegation.py",
+          "source_commit": "887e43a02d7213e65436b1d85bfafbe255ac865c"
+        },
+        {
+          "before": "../../../../../packages/friday-chat/tests_chat/test_transcript_export_format_delegation.py",
+          "after": "https://github.com/CIChuck/agent-framework/blob/887e43a02d7213e65436b1d85bfafbe255ac865c/packages/friday-chat/tests_chat/test_transcript_export_format_delegation.py",
+          "source_commit": "887e43a02d7213e65436b1d85bfafbe255ac865c"
+        }
+      ]
+    },
+    {
+      "path": "docs/planning/active/friday-tui/validation/N01B-06-before-code-all-session-export-characterization.md",
+      "before_sha256": "2f3f488b42c114deeaac6081beb7ccec6b10816ef45f16b29594bf95db199131",
+      "after_sha256": "2d7e1cac53ed728b347f73cc27e72263fe72182cbf7713920f88dfb79f19e16e",
+      "link_repairs": [
+        {
+          "before": "../../../../../packages/friday-chat/tests_chat/test_transcript_export_path_delegation.py",
+          "after": "https://github.com/CIChuck/agent-framework/blob/010849f531d2bbc08569d1825eec7e34f4db5489/packages/friday-chat/tests_chat/test_transcript_export_path_delegation.py",
+          "source_commit": "010849f531d2bbc08569d1825eec7e34f4db5489"
+        },
+        {
+          "before": "../../../../../packages/friday-chat/tests_chat/test_transcript_export_format_delegation.py",
+          "after": "https://github.com/CIChuck/agent-framework/blob/010849f531d2bbc08569d1825eec7e34f4db5489/packages/friday-chat/tests_chat/test_transcript_export_format_delegation.py",
+          "source_commit": "010849f531d2bbc08569d1825eec7e34f4db5489"
+        },
+        {
+          "before": "../../../../../packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "after": "https://github.com/CIChuck/agent-framework/blob/010849f531d2bbc08569d1825eec7e34f4db5489/packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+          "source_commit": "010849f531d2bbc08569d1825eec7e34f4db5489"
+        }
+      ]
+    },
+    {
+      "path": "docs/planning/active/friday-tui/validation/VAL-N01B-07-prepush-a196e95a.md",
+      "before_sha256": "ccffc36a0ac9dd8f0b0a305fd1ff32fc90c0bf9b5577799d76effa25830756ea",
+      "after_sha256": "f2b7ffd17e499b244a88fe79c12263c2861963b06ddc9a9497ad751e1c07d8d7",
+      "link_repairs": [
+        {
+          "before": "../../../../../packages/friday-runtime/src/friday_runtime/transcript_tool_records.py",
+          "after": "https://github.com/CIChuck/agent-framework/blob/a196e95ab17120b6ee9d86d88ee9283485e1eb4f/packages/friday-runtime/src/friday_runtime/transcript_tool_records.py",
+          "source_commit": "a196e95ab17120b6ee9d86d88ee9283485e1eb4f"
+        },
+        {
+          "before": "../../../../../packages/friday-chat/src/friday_chat/adapters.py",
+          "after": "https://github.com/CIChuck/agent-framework/blob/a196e95ab17120b6ee9d86d88ee9283485e1eb4f/packages/friday-chat/src/friday_chat/adapters.py",
+          "source_commit": "a196e95ab17120b6ee9d86d88ee9283485e1eb4f"
+        }
+      ]
+    }
+  ]
+}

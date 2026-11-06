@@ -1,0 +1,32 @@
+{
+  "initiative": "friday-tui",
+  "kind": "incomplete_chooser_candidate_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-57: runtime-shaped YAML remains visible in the initial chooser list even when incomplete, such as llm without a required model. Listing does not prevalidate completeness; full validation on selection uses D-50 error and retry behavior. Unrecognized files remain available through Browse.",
+  "documents_sha256": {
+    "startup-bootstrap-contract.md": "b9c431e742e5d55c03796e66916d3678c0b0227f9d7eed1c86e249d2a6532f48",
+    "README.md": "a327bfd7a6c787ae8ae1144cd3c6ee39ab9b8b0078d3f05642ecfbf502f385ed",
+    "decisions.md": "ebb26f421fcdaa03552f987203463966037abc6aedea747a595011d880f3eae9",
+    "replacement-plan.md": "b0244e869aac3224afa55781be8cd7612282c8edd0fac2e31bcaea8a16b1d7f5",
+    "architecture-reset.md": "60e89835f53fae6f62717c4614a9e702e759dc75dfd01c29956750ba21c18c64",
+    "neutral-capability-map.md": "2304b4671d9d0c6418572d33df7743f7444bd399c0aeb7727a3f26a8396278ae",
+    "user-guide-requirements.md": "8394a6506c76daf162c92b61177315ad6fd702b750630454a102cd52e3bd12f9",
+    "authority.json": "6812f3098827dd58c34c786a87472cf96d9353dc1c573232b55ed630560f5a5a",
+    "execution-log.md": "20b5909e58f5fe151b7ba70d583c1c14980c916b9ad1ca95b795f6d255b99c58",
+    "docs/planning/board.yaml": "42c88b27204a30b886ed0b3777c8e8ced834cef574af1e658ecae7fe25e78f12",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "52 valid before this receipt",
+    "packet_markdown_links": "18 files; 161 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only amendment"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, CLI behavior comparison after code change, user UAT or release acceptance."
+}

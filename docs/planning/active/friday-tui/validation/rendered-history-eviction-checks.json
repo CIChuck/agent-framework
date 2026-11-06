@@ -1,0 +1,28 @@
+{
+  "initiative": "friday-tui",
+  "kind": "bounded_rendered_history_eviction_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-37: show a notice when older conversation messages are evicted from the bounded on-screen view; direct to /transcript only if saved, report unavailability honestly, add no first-release Load older control, and do not claim transient Activity or reasoning is recoverable",
+  "documents_sha256": {
+    "README.md": "4b8ebbd9899adcf25267f622cde2a3114fe4fce0eb30f0f7e8f3cf4fcd041178",
+    "decisions.md": "ba3ad8058720c7cb5a9310054f8c7a4bfe09505e1622b6d985de65cecd2d68a5",
+    "replacement-plan.md": "218733429d5ce2aa923b1e9c5fe6372b3c89561ac1aceec8abedaa7b55214f5c",
+    "screen-layout.md": "27ed61a6e646c558f1c9d6a11130602bc72f29db72af6b677e767627fa27ec13",
+    "user-guide-requirements.md": "117c54dda62bfadfa392d1f3b279cd8492e7e0d55c588417547481fc372b0c9b",
+    "architecture-reset.md": "351fd7505f31fbfefa62ece09b44871f722ad629bb03c05bffe16bcd82e2bbdd",
+    "ux-configuration.md": "358ba964ae2e446c994fa4697f714bc5c21d5761f3a6012f3052c4a26478c45a",
+    "authority.json": "014c70abd8e060cb044ccd2484192b478de7667e675368a41577b432e28042e6",
+    "execution-log.md": "37570a2a6c84ce4aa7b8ff6f6bb3a03171deb0fdd20cd873f127eb5c6c8e365f"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "30 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. No TUI implementation, terminal UAT, product acceptance or release is claimed."
+}

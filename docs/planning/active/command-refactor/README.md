@@ -15,7 +15,7 @@ Exact foundation approvals and source base
 `d003c4db` remain in the [approval record](approval/foundation-readiness.md).
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). No command migration/wiring.
-`execution_phase: planning`; `validation_state: not_ready` for RET-001.
+`execution_phase: validation`; `validation_state: pending` for the aggregate checkpoint. RET-001 remains not_ready.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
 
 The maintainer changed the working home on 2026-11-05 to this Agent Framework
@@ -90,16 +90,12 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Review and approve
-[CD-CMD-RET-001](directives/CD-CMD-RET-001-nine-command-retirement.md), including
-its bounded retirement-order/P1 disposition and state-preservation decisions.
-Then retire nine commands directly from Chat before the pilot migration.
-RD-02 records the two separately VERIFIED packaging resolutions. The earlier
-[VERIFIED result](validation/step3/correction-report.md) covers `fcea84b8` only.
-The original
-[council result](validation/step3/council-round1.md) remains historical.
-The [next-phase checkpoint](next-phase.md) remains the main handoff. Later
-construction and delivery are not approved.
+**Next gate:** Aggregate validation and delivery of the accepted foundation
+checkpoint to `master`, under the maintainer's explicit checkpoint instruction.
+See [checkpoint scope](validation/checkpoint/README.md). After merge, create
+`feature/command-retirement` and present the exact retirement directive for
+approval. Foundation acceptance remains recorded; retirement/TUI construction
+and whole-feature acceptance remain separate.
 
 The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
 refreshes baseline identity in this working home and records the current

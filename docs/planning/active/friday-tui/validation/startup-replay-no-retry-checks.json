@@ -1,0 +1,34 @@
+{
+  "initiative": "friday-tui",
+  "kind": "startup_replay_no_retry_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-65: first-release failed startup replay offers Quit only, with no in-process Retry. After correcting the cause, relaunch. Preserve D-64 error view and nonzero exit; neutral error/cleanup details remain directive work.",
+  "documents_sha256": {
+    "decisions.md": "55d86d538ecee67b72f8753fd66ffe146f33303be1324cd057b3b54e633ce89c",
+    "startup-bootstrap-contract.md": "f6edd0dbea60b40902ed733c379de0637563f7d1b86d36afbf5bbdf9f692bde2",
+    "replacement-plan.md": "cd553583a5e876dd6ecf0de6a9bebd9fc7018a65288d5f95992eec50e35a86eb",
+    "README.md": "21f4f2f84c607efefad527e8d3d9be9b08d9a2db96edf16c0696be65afe0b916",
+    "user-guide-requirements.md": "c2842caa4c41272192495a8065d1b2a8a1c81712dab271a17ac7a2c6eba90da9",
+    "architecture-reset.md": "53833d3e523b933ca8ad3475b7fbedb49024325bd006db24c0bc38dfe67cdd69",
+    "command-matrix.md": "12f4b9cd13c308ad5cd027a4b25386f05fb2352ce0fb30e80da658f1b910707b",
+    "authority.json": "01f691998ff25267959009beb66c56740d982a29bb73c6bdefade48b6eea2ba5",
+    "execution-log.md": "41bd4e349297da8ac01f1d06e20a0e2b88dfb0b7dfd3f91eb5360f3f337264e3",
+    "docs/planning/board.yaml": "918f4709be89c1a2cea609dc7e0a2a635d0c7671963ed97baf408efed38d7fe6",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "61 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only no-Retry decision and no product code change",
+    "tui_replay_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted no-Retry startup replay failure decision and planning checks only. No neutral replay service or TUI implementation, after-code CLI regression, installed-package verification, user UAT or release acceptance."
+}

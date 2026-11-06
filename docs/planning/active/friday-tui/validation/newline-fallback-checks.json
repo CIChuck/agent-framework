@@ -1,0 +1,27 @@
+{
+  "initiative": "friday-tui",
+  "kind": "newline_fallback_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-39: where Ctrl+Enter is indistinguishable from Enter, the visible clickable keyboard-focusable Insert newline control is the first-release fallback; no second default newline shortcut",
+  "documents_sha256": {
+    "README.md": "b74871acf9dde3af49e06ae1d1ed262b91c0ca7172c482843aeb2056376a5f44",
+    "decisions.md": "c83511ca90122b3fa0c94525838dc755b56e439d0453bf17582cb6752fa0a908",
+    "replacement-plan.md": "c5bab8e5b0785c713e6ec02383eac9d676ec76fa63e16bf0b1f8414417e5ebae",
+    "screen-layout.md": "75f0680afe32973b452052143527a4084bdd79033e4184111a56e22141b081bc",
+    "user-guide-requirements.md": "11c9276528654f7695bc17ae8cf1cf0786763864e20047ef7de13ddb0c7fddbe",
+    "ux-configuration.md": "7212b458714f4021bc07324f32309d86ed6dc27a3532c26948c058eed1aff458",
+    "authority.json": "7d7a25ae7a3705cd332eed39a42720d9e063eec8f30bc9eb6a5cbe125a6d7d30",
+    "execution-log.md": "51626b827398668566d8dc161390a2cd70f1123ab1a01d1e8f14c9ccb150aef4"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "32 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. Physical terminal key delivery, control interaction, TUI implementation, product tests, UAT and release acceptance remain pending."
+}

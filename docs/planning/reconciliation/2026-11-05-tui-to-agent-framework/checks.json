@@ -1,0 +1,12 @@
+{
+  "scope": "planning-document integrity only; no code evaluation",
+  "source_documents_preserved": 322,
+  "transferred_document_hashes_verified": 280,
+  "document_links_resolved": 1300,
+  "non_document_links_not_inspected": 75,
+  "original_destination_backlog_saved": true,
+  "repository_scripts_executed": false,
+  "source_tests_executed": false,
+  "source_files_modified": false,
+  "source_folder_documents_deleted": false
+}

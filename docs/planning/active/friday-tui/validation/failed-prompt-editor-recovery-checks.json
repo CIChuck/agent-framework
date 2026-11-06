@@ -1,0 +1,39 @@
+{
+  "initiative": "friday-tui",
+  "kind": "failed_prompt_editor_recovery_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-101: after an initial post-send provider context-length rejection, restore the submitted prompt and caret automatically if the editor is empty. If a newer draft is present, preserve it and expose a Restore failed prompt action that uses confirm/cancel before replacing nonempty text; neither path submits or changes attachments.",
+  "source_evidence": {
+    "maintainer_answer": "A to automatic empty-editor restoration and a Restore action when a newer draft exists.",
+    "prior_decision": "D-100 requires user-directed correction/retry after a recognizable provider context-length rejection and preservation of the submitted draft without overwriting a newer unsent draft.",
+    "existing_ux_rule": "D-41 establishes confirm/cancel before replacing a nonempty unsent editor draft from the command palette; D-101 applies that pattern to Restore failed prompt.",
+    "busy_editor_rule": "The screen-layout plan permits editing a new draft while Friday processes the submitted request, so failed-prompt recovery must inspect editor state when the error arrives."
+  },
+  "documents_sha256": {
+    "decisions.md": "6638152776a074acba404138b72027a18b56ced259596e47d959f36af62ee1c3",
+    "README.md": "0151093c5490ab3ca6875789ef242a9a79cf7274ad6608c05ce8beb5d1edaa9c",
+    "replacement-plan.md": "a6e657dd3336fc965e5a87045a91ad4bb7e5cb9181af93da53b981f51fdf42eb",
+    "screen-layout.md": "219b3dfd3675fd50302135e0afd3bf251ef7c38d655e6ff836bc1e79cb171299",
+    "user-guide-requirements.md": "ada24f3656de7ea78833aa4bfc26d9b7a530336498ede1479d671c9a1d18090f",
+    "neutral-capability-map.md": "d106223859bafdeb8b383c2a95be8de99ac8bc1c49b171af6dc5160ff69f06d2",
+    "authority.json": "29c7895ed5e9721f59b2cfae5c50fe072f6e4e5b400a55ff012278a9847f1ca0",
+    "execution-log.md": "7926a38b8febcd1b85442a5bf9b66bfc4615db773cc4021391874161f6bc1be0",
+    "docs/planning/board.yaml": "daed2653c422523529c331654e3f94e8cb494f62771284341c58e8ff580f0c2b",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "97 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; 126 paths before this receipt, within planning packet, board, dashboard and queued-to-active move",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "editor_recovery_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted editor recovery behavior and planning checks only. Restore-action lifetime under view eviction, transcript treatment, provider-error classification, installed behavior, terminal UAT and release acceptance remain open."
+}

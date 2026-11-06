@@ -1,0 +1,28 @@
+{
+  "initiative": "friday-tui",
+  "kind": "activity_scroll_return_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-44: expanded Activity follows new entries only at its own bottom; scrolling up pauses. A clickable keyboard-focusable Jump to latest Activity control or scrolling back down resumes without moving conversation or pinned prompt.",
+  "documents_sha256": {
+    "README.md": "556be3f77798d1c9612798a3bbb4da4c7a2390c8ee01f822ae9b6cbfb4fb80b9",
+    "decisions.md": "77b4ba2276e0c977199e1a2af97843d0db8477f48c40453902320415aa9ac9db",
+    "replacement-plan.md": "80c06a253b0b6d75d356b5470171ae2be594c129531885600045a89240bc3b21",
+    "screen-layout.md": "b29de749f2a011ddb731ca6de4a185331c79a9a65ab748bf4d7a28b348f1a099",
+    "tool-activity-requirement.md": "90b2d21bff1de82dca24cc97aac3f333da1c7cce8421ac1ad6bb11a85de1a8d9",
+    "user-guide-requirements.md": "ffc2618a6c3c0c7d17a775d4a90b9466d6e9af2c57935721130171315e800841",
+    "ux-configuration.md": "f85adbb9a7c27b894ca819cf51e5a54b3170e47a24749f2a0238bd922c32ad98",
+    "authority.json": "b44b6614ea07e36dc28ad9ddb4dedfb0bc66e4274c28772a1ea21a3529bde493",
+    "execution-log.md": "9ee837a248d7797eea7aae210e9f90e44eae9e2c8f5ed6e008eec46c325b38c8"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "37 valid before this receipt",
+    "packet_markdown_links": "16 files; 146 local links; no missing targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. Activity implementation, product tests, terminal UAT and release acceptance remain pending."
+}

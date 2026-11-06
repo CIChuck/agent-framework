@@ -1,0 +1,28 @@
+{
+  "initiative": "friday-tui",
+  "kind": "planning_pinned_prompt_reasoning_display_requirements",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "decision_status": "Pinned latest accepted prompt and hidden/shown provider-exposed reasoning display are first-release requirements; default final-answer-only. Product implementation and UAT remain pending.",
+  "documents_sha256": {
+    "screen-layout.md": "caa9e5bc7b2b3fa46dd52082fe1e11067d7d978aafe20b585592c6a089938e5c",
+    "reasoning-display-requirement.md": "48c9ad2e91b53186360d4ced71d8036b1025992b310596601bea5882cfa4239d",
+    "decisions.md": "4082d137391508ceb35883c1b2c7112805eadf52fd0f06c6c4e2aa45459baf47",
+    "architecture-reset.md": "7659b3d958ed401ad2f7595f51e35d5e2167cc50dc65024a1f4cff1477b3ac96",
+    "README.md": "52dd7d839183e4592f6fb8343fe242f237c82573275bfc0282dc164072ed5603",
+    "ux-configuration.md": "8d91c3283e65e29bc2fa75b625a8a045eef4d21fb3b6bbc9f44a9ebf21e0f9e6",
+    "user-guide-requirements.md": "bca154d0f33e3b9f2aede2f1d57669923e7b7ed7af5834155273e5da8e5f55b3",
+    "authority.json": "0b657fd2db3ad03c930f9d9f71eb7506ee4ea12e7b8ca8f79cd3c5d54fc9b102",
+    "execution-log.md": "5e955afde20668bae8f13a005748b45069c13f8b01154f8b725bcc92b08731dc"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "18 valid before this receipt",
+    "packet_markdown_links": "14 files; no missing local targets",
+    "tracked_git_diff_check": "passed",
+    "packet_trailing_whitespace": "passed"
+  },
+  "evidence_limit": "Planning documentation and current source inspection only. No TUI behavior, provider compatibility, terminal UAT, or product acceptance has been verified."
+}

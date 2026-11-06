@@ -1,0 +1,37 @@
+{
+  "initiative": "friday-tui",
+  "kind": "startup_bootstrap_contract_planning",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "scope": "Draft standalone startup bootstrap contract consolidating accepted D-47 through D-56, proposed content-based chooser signature, route/error state table and testable bootstrap groups. Exact technical shapes and construction authority remain open.",
+  "source_references": [
+    "packages/friday-chat/src/friday_chat/config.py",
+    "packages/friday-chat/src/friday_chat/cli.py",
+    "packages/friday-chat/config.example.yaml",
+    "packages/friday-chat/models-config.example.yaml",
+    "packages/friday-chat/cli-config.example.yaml",
+    "packages/friday-runtime/src/friday_runtime/model_library.py"
+  ],
+  "documents_sha256": {
+    "startup-bootstrap-contract.md": "11c34a66b03ae994033aa8166160c8c7b21076f4554f168bbd78b267de1b8916",
+    "README.md": "6177f220aafc298a293955167e19e4c2ce9806322e6d17744fbdc40c1a5335d1",
+    "replacement-plan.md": "18ae689e14d78aa65d1c7c34ae62184de10ce43448fc3238e5a86ceae6e19899",
+    "authority.json": "329af5c7dbf7af90e2103c27d3a20f44df251979cb5bca660a06fedbe755bd52",
+    "execution-log.md": "0f338ce5ead605166df5ba887ca41cebdcb267aa0c8bbbc5b97fa0f07a2c78db",
+    "docs/planning/board.yaml": "d765483fd8c02f630eeecda00f6ec0527e838f0e8ef95f5aa81d8dec5ca93494",
+    "docs/planning/README.md": "e230f90ae52a7a0d4d3c2e6cfe49572c79c12d782d4241d574cee64e6f3c6ec4"
+  },
+  "checks": {
+    "decision_coverage": "D-47 through D-56 referenced",
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "51 valid before this receipt",
+    "packet_markdown_links": "18 files; 161 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not run; planning-only drafting"
+  },
+  "evidence_limit": "Planning/source inspection and documentation checks only. No TUI implementation, product regression tests, user UAT, construction approval or release acceptance."
+}

@@ -1,0 +1,27 @@
+{
+  "initiative": "friday-tui",
+  "kind": "planning_inline_timeline_role_colors",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "Inline command results in the conversation timeline; distinct user/Friday colors with labels and non-color cues. Exact palette and other details remain construction/UAT work.",
+  "documents_sha256": {
+    "screen-layout.md": "f11aadc9b999969ecbff08d68450db2b1eeb34fd879acaa3f16dd321d58bec9d",
+    "decisions.md": "28d49d1354a4a2f5767e4082895dc01e16ac77ce2a8fab7ad7e3bf827d15f925",
+    "architecture-reset.md": "20465920ed38b16ff8861d578f4365a4b1d57e604ecdc464d46d219d95a39116",
+    "README.md": "a30651595eb499565aca0696c910cda462f1bdcee47cbbcacd63b588d381620c",
+    "ux-configuration.md": "5e26d302630784cd33fb096a097c78d9bd43da843c8feb7d58acfc336453ac63",
+    "user-guide-requirements.md": "d428c878a707e47aae6f23a167f326244f32a7b48f9a253ae1dd7b310d2ae620",
+    "authority.json": "d8bd00c98fbea4e772c5c9672a80a92d2f2d9dd21f7df567d8bec766483bbd42",
+    "execution-log.md": "4acff871db10eaa33837cddc8af3e2047c048b8c8b3457227626ea38902ba7de"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "17 valid before this receipt",
+    "packet_markdown_links": "13 files; no missing local targets",
+    "tracked_git_diff_check": "passed",
+    "changed_packet_trailing_whitespace": "passed"
+  },
+  "evidence_limit": "Design decision and planning documentation only. No UI implementation, color contrast measurement, terminal UAT or user acceptance of the final TUI was performed."
+}

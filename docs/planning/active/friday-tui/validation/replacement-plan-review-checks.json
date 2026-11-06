@@ -1,0 +1,31 @@
+{
+  "initiative": "friday-tui",
+  "kind": "independent_replacement_plan_and_maintainer_answers",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "decisions_recorded": "D-22 through D-30; D-20 clarified for automatic tool results",
+  "draft_status": "replacement plan drafted for review; command capability map, exact technical contracts and directive still pending",
+  "documents_sha256": {
+    "README.md": "d9ebe3a43ff188362849bbe57b1cb0c11cdd400e2898235b3095259f9f0aa857",
+    "replacement-plan.md": "e6c9138cad36223cb84829fb2bd5ace15d2ff200db7bffba2dcffe2754c546d6",
+    "decisions.md": "2067496ddcb49afd288d077b0b82301dcb69fefaa692ba84ecee8dc39738d6a6",
+    "architecture-reset.md": "6e68062b667117072ff8558c905d856112a4b25aeb1f94b60d20ca98f1ac93aa",
+    "screen-layout.md": "99fc221dafd9e80b2f9a5cae4fc4a25f62a390d8c6c0b86a201367597f9dff77",
+    "tool-activity-requirement.md": "55d2a7bdab67ce6a6ad6d406ab38def8060060462d39a45b1a9e69728d0cf912",
+    "reasoning-display-requirement.md": "ad98b69433c6940c4f9b82be8b555b1fa2ae87822ff117258e600efdf1d53ba4",
+    "ux-configuration.md": "9165d7816ba7b0922c5b4fa5cd2d8561c82a8c0214a3b3b50792cf574cfa897c",
+    "user-guide-requirements.md": "a3feede8a4fbc43100c1ea60cb114631c2a97aec4126176dd7665db03d942c76",
+    "execution-log.md": "bf04224e25235c53a1ddfb7cd972a6b33a0617d84eba70dda40d58e0eb9b1ab5",
+    "authority.json": "002f937056a99800f816669dffc387917acc60cae97cde8f707d3ace94fa98d9"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_next_gate": "matched board.yaml before this receipt",
+    "packet_json": "23 valid before this receipt",
+    "packet_markdown_links": "16 files; no missing local targets",
+    "tracked_git_diff_check": "passed",
+    "packet_trailing_whitespace": "16 files; passed"
+  },
+  "evidence_limit": "Planning documentation checks only. No product implementation, installed TUI, terminal UAT, controlled real-provider run, release acceptance or publication is claimed."
+}

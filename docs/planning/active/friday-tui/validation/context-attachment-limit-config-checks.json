@@ -1,0 +1,38 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_attachment_limit_configuration_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-94: optional typed per-file and combined attachment limits with safe defaults are TUI-only settings under tui.attachments in the existing shared presentation file. Exact field names, units and numeric bounds remain contract work; CLI and Friday runtime configuration stay unchanged.",
+  "source_evidence": {
+    "maintainer_answer": "A to configurable attachment limits with defaults in the shared TUI presentation namespace",
+    "existing_config_direction": "ux-configuration.md already accepts an optional versioned tui namespace in cli-config.yaml or the --cli-config target, with CLI compatibility",
+    "related_decisions": "D-92 rejects an oversized individual file; D-93 rejects an over-budget proposed combined attachment set"
+  },
+  "documents_sha256": {
+    "decisions.md": "ba146eee11f456a1ef165ab65d52afb069504b379d95539ffb1ed5e73c667f05",
+    "README.md": "0b1884271724b8545bb5833732989915c68c53831f60be6d41871385a03c7f02",
+    "replacement-plan.md": "922c21d9bd33e8680ca982c3de079752f4c083da50a3accc642e22b2c2f967d6",
+    "user-guide-requirements.md": "67935841c0751dfb37a0e1b08c14429ab11db6cc77d0797128039c27a4e95255",
+    "neutral-capability-map.md": "27b30b30609aab7c96031283b722221b4c6b06b7f1e5aee7ef2ff6591b6c1617",
+    "ux-configuration.md": "bf75f78fc33d835b0d45ac903a58ad583a6029b2eb225516d5c313c78a2840ca",
+    "authority.json": "eb7165bf1918d744a5f82e6e5549643a86cd7b6f7561511fbcb0a8763e45f3e5",
+    "execution-log.md": "f6f0c0499044b2146e4d37e601e3689bf8620f153e1f0a87b55939d90df76c22",
+    "docs/planning/board.yaml": "80b88d26119b45b390d8e17cff251d195ae76501dd9b35b627bf7fc03603c59c",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "90 valid before this receipt",
+    "packet_markdown_links": "19 files; 183 local links; no missing targets",
+    "packet_trailing_whitespace": "19 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "config_limit_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted TUI-only configurable limit direction and planning checks only. Exact field names, measurement units, numeric defaults/ranges, context reservation, installed configuration behavior, terminal UAT and release acceptance remain open."
+}

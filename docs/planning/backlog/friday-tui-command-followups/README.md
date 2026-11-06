@@ -11,8 +11,8 @@ migrates the current retained commands with their existing
 behavior. A change to command behavior, syntax, or user interaction needs its own
 later decision and bounded work item. This packet records those follow-ups; it
 does not change the [accepted first-release command matrix](../../active/command-refactor/command-matrix.md)
-or the deferred [Friday TUI gate](../../deferred/friday-tui/README.md).
-The six selected command retirements are part of the shared command
+or the separate [Friday TUI construction gate](../../active/friday-tui/README.md).
+The nine selected command retirements are part of the shared command
 refactor plan rather than this follow-up backlog.
 
 | ID | Follow-up | Question or review outcome needed |
@@ -27,6 +27,13 @@ refactor plan rather than this follow-up backlog.
 | CMD-F08 | Evaluate explicit file-to-context attachment from a slash command. | Preserve display-only `/read` during migration; decide syntax, attachment lifetime and Chat/TUI scope separately. |
 | CMD-F09 | Reassess `/migrate` after the first TUI version. | Retain the current `/migrate` command in the first TUI version. Decide any later retirement against actual storage-migration needs. |
 | CMD-F10 | Evaluate command consolidation proposals C-01 through C-06. | Preserve current command names, aliases, syntax and effects during the refactor. Later evaluate the six scored proposals independently, including compatibility for old names and any session-restoration dependency. |
+| CMD-F11 | Add a configurable live tool-call trace for Friday Chat and the later TUI. | Make the existing `logging.tools_debug` setting in `config.yaml` an effective on/off switch. When enabled, show each attempted native or MCP call, its tool name, call ID, bounded argument view and outcome as the loop runs. Define redaction before exposing argument values; keep raw MCP arguments out of persistent logs, transcript exports and telemetry. When disabled, show no trace. Cover both successful and failed calls, multiple calls per turn, and frontend parity. |
+
+`logging.tools_debug` is currently parsed but not consumed by Friday Chat's tool
+loop. The example config sets it to `true`, while the typed default is `false`.
+Implementing CMD-F11 therefore changes visible behavior for users of that
+example config. Decide the exact bounded argument presentation and whether the
+example should remain enabled before the construction directive is approved.
 
 The maintainer asked to disregard the inventory comment about transcript model
 identification; it creates no backlog item here. Promotion of any row requires a

@@ -1,0 +1,28 @@
+{
+  "initiative": "friday-tui",
+  "kind": "oversized_activity_parameter_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-31: show a bounded, explicitly truncated preview for an oversized tool parameter and discard overflow from TUI memory; complete tool input and no credential masking remain unchanged",
+  "documents_sha256": {
+    "README.md": "7edb5e960a1a87d0bebb687a295291a027a1d51c4b5949ae2ea96c019b9b9e63",
+    "replacement-plan.md": "1e26ab169d8f88e53fb2c0f4526243751b7561c8de0a1e45719c3bee2c354d8b",
+    "decisions.md": "b19ef8105f7d9bbcd035e85f0a649fa1d981f343c7146366235c8f15bf9fb9ac",
+    "tool-activity-requirement.md": "cfc2a03de7e12ddc4d40dcdadf1500cc2340c7847d87eff9f6ce3ac83cd7bf89",
+    "screen-layout.md": "51d17d92468ca46aa4354d5fded08941223bf686a5315b5a176e42c487575651",
+    "user-guide-requirements.md": "88fdb4e7e89a36af5b2135b3c3b9a61a3492f4d6ec411f1cae81a3da1d899c79",
+    "architecture-reset.md": "cde615e42574ac16f42ef41da17c088cb3d9c451dcc1f98695c7361c95905ca7",
+    "authority.json": "42de272b3138f88cfdf5be8e70b7829c044924842a5128a62e0f78020ed60735",
+    "execution-log.md": "e4df070f84141e18a7f78a667c3babff3cf596a199d2144558e5ce6caaba2110"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "24 valid before this receipt",
+    "packet_markdown_links": "16 files; no missing local targets",
+    "packet_trailing_whitespace": "16 files; passed",
+    "tracked_git_diff_check": "passed"
+  },
+  "evidence_limit": "Planning decision and documentation checks only. Exact caps, TUI implementation, terminal UAT and product acceptance remain pending."
+}

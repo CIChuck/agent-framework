@@ -1,0 +1,39 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_ocr_language_selection_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-87: PDF OCR defaults to English and lets TUI users select one or more installed Tesseract language packs through an optional TUI-only setting in the shared presentation file. Missing requested packs fail OCR attachment by name without silent fallback; CLI and Friday runtime configuration stay unchanged.",
+  "source_evidence": {
+    "maintainer_answer": "B to configurable installed OCR languages with English default",
+    "local_mac_language_inventory": "tesseract --list-langs listed eng, osd and snum; no non-English natural-language pack was verified here",
+    "configuration_boundary": "docs/planning/active/friday-tui/ux-configuration.md proposes tui.attachments.ocr_languages with default [eng] and no CLI loader dependency"
+  },
+  "documents_sha256": {
+    "decisions.md": "14c2f7b77687f02d6760e686714743f5c0ab7ce6e5496772158063bd39a9e959",
+    "screen-layout.md": "eed0e6975dd8d3e96abb38db5310e81550337356ad0e42934f33c9ebb50669dc",
+    "README.md": "89e5b792f2a671b09704a8d6a274d536cc7dd6a1c4d0ffe27dae32c7bb822550",
+    "replacement-plan.md": "6e7a05ed5a6d256aab6aa4c3f5abcb28f5bad8f64766290cd7f7025ca14b5251",
+    "user-guide-requirements.md": "75230d9b91b020db515c44158eb9791a7dd7aafe4cbe82b8acec30c7da6d8722",
+    "neutral-capability-map.md": "f360162dfa390529cfdf781111a498e7dc95cf3da824ec89c88703d070f0b18e",
+    "ux-configuration.md": "74effd966ed4a910f9dbb2df1791ec29fbd70a9984ac61055e81355f60921e71",
+    "authority.json": "f8323b1bc933a5767cec24d50619d191ed51a4117fe03c936e0e306fb6969673",
+    "execution-log.md": "e2fbf1ff645a43b34e0ba911ee64676e36d748e216a3c25865ad578cc4c810c4",
+    "docs/planning/board.yaml": "c5870f3551a7af4ebc85b3258986a18608dda40bc8e03c4398c45fba3817aa27",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "83 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only decision and no product code change",
+    "ocr_language_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted configurable installed OCR language direction and planning checks only. Exact language-code validation, PDF-renderer distribution, text-usability criterion, size/time budgets, installed multilingual OCR tests, terminal UAT and release acceptance remain open."
+}

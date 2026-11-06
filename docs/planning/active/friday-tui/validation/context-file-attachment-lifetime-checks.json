@@ -1,0 +1,33 @@
+{
+  "initiative": "friday-tui",
+  "kind": "context_file_attachment_lifetime_decision",
+  "branch": "feature/friday-tui",
+  "source_baseline": "c34269867be50f71923c93c95a63236a35505812",
+  "authority": "design_only",
+  "accepted_decision": "D-78: once attached, a file stays active in TUI model context across later accepted conversational turns until explicit removal. A visible keyboard-focusable Remove action stops future inclusion without changing the source file, runtime memory or an already admitted turn. Relaunch and additional-file behavior remain open.",
+  "documents_sha256": {
+    "decisions.md": "ba3aa814367355d3a91dba860ce216ebee62a54ce536b2ecfffa7f1b76f3b9a3",
+    "screen-layout.md": "14379f83536bcf2d01af0f1ab419f2681bf53c2007f12c3090f811569986805c",
+    "README.md": "aa9781cec0dcb373cef8016eef7c676843c31935ffcbf6dd8868c9ee5f20a872",
+    "replacement-plan.md": "58d86abce42563b1868d09288ac1898b7b862eb5596e374306272b0f9449fa3b",
+    "user-guide-requirements.md": "8ec3befbbf8a3a7d06f67401a49648f650c1677220999919da4bd1a2620adb9a",
+    "neutral-capability-map.md": "723a1ad8dd03b8efba3c0f92d5292b31b9db52bd126e50781025e1167ee54217",
+    "authority.json": "04bb5680da51a27b39119d0eb9447ef9a2955602a5120ddbc664e7e48757aced",
+    "execution-log.md": "004cef10417779c0f238adc895fc10e5ee70aa218202642e2397f6459ac36806",
+    "docs/planning/board.yaml": "f3c9aa6c0c707ee1cc5ffa5bccec1ae4356f5ad1fe704112262b211803dbbcd2",
+    "docs/planning/README.md": "e368cf83105ee5b7fb66cf153f5e6ca5f1ab1133b8bb54c394e408232c71f833"
+  },
+  "checks": {
+    "board_validation": "passed; 34 tasks",
+    "dashboard_render_check": "passed",
+    "packet_json": "74 valid before this receipt",
+    "packet_markdown_links": "18 files; 177 local links; no missing targets",
+    "packet_trailing_whitespace": "18 files; passed",
+    "changed_path_allowlist": "passed; planning packet, board, dashboard and queued-to-active move only",
+    "tracked_git_diff_check": "passed",
+    "product_tests": "not rerun; planning-only attachment-lifetime decision and no product code change",
+    "tui_attachment_behavior": "not tested; no TUI implementation exists",
+    "user_uat": "not run; no TUI candidate"
+  },
+  "evidence_limit": "Accepted across-turn attachment lifetime and planning checks only. Relaunch, additional-file, file-size/type, implementation, terminal UAT and release acceptance remain open."
+}

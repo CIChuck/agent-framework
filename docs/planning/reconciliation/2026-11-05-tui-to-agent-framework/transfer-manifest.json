@@ -1,0 +1,2070 @@
+{
+  "date": "2026-11-05",
+  "source_planning_root": "/Users/chuckrussell/Dev/gendev/agent-framework-friday-tui/docs/planning",
+  "destination_planning_root": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning",
+  "scope": "planning documents only; no code inspection/evaluation/modification",
+  "source_document_sha256": {
+    "docs/planning/deferred/friday-tui/README.md": "cdab231c98d8eca45ab544127022e0ee0962ba734d03df3e9bb751285d1e9331",
+    "docs/planning/deferred/friday-tui/architecture-reset.md": "a8097a84fe58bc4f76be51ea9ae1830e031acf69d19fefa663b5e0ea0194bc1c",
+    "docs/planning/deferred/friday-tui/authority.json": "0a2b84ae2cc67ccfc2a48e62e94d0d036adabf1dd73c21511a678b5859b01df9",
+    "docs/planning/deferred/friday-tui/build-plan.md": "4fe2d902e97a0800e48fc04dabaeb34e722f2c02e62af9f7ec40d0ac691f4327",
+    "docs/planning/deferred/friday-tui/command-handoff.md": "200e2a2061edabc442a4d1729275c7c7cd52d7d19af99bdd9e01fade76cfd716",
+    "docs/planning/deferred/friday-tui/decision-update-checks.json": "0fa8c00fa7fcb9c9e9daa4ebd56b1357f0b29e0f23bbd1b04dbcd7bf78ba4fec",
+    "docs/planning/deferred/friday-tui/decisions.md": "b6675730ce8ecd2ae805c5f92579072d7be8ff5aef763ba93959d0fd34ec3a28",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-001-shared-presentation-contracts.md": "6422e1b1d783307c96b5616f30733f46aa0be25c5cc403cb3b611f4cca74c07e",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-CI01-linux-actions.md": "428ef83df61277e8ed9942f6acd6cf3b8c421e7c14858b1e599fcc489b087018",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-CI02-linux-regression-remediation.md": "1b9e1c64e3cf486d32a3fce6cb92428ae26f9275709476e92afe20f4adef0ec4",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-CI03-mcp-auto-negotiation.md": "7549602208d70704e586ba8d2ca0874c887081a77f4b0fe257b8ce5beaab5e1d",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N01A-neutral-config-loader.md": "372e6fad7f81cc8529806572e1060202e03b804c256103ac94c83eb0a1a1fe1a",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md": "ba55b804a1e94cfd389c822f9f5df3d872800dca445438252b3936795d8cdf06",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md": "9db792eb7d50ff129057f28bcbabc2da9e2e003e9ce931d03efdecb65fdf508f",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md": "e83625e66202c1e5ce71f91195030b77f3520823e79dec6f035f830728db8163",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-04-neutral-export-destination-paths.md": "71fe2072bd1566067e1b2d9b99f22b27aae05d55928ccece6780fc75bbce5ed3",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md": "7c1dfa5b8f3135f9d5ea18e2a86efb0008251cdc13294ed8d2faebf402d91bcb",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md": "0681a1259c349ac19d75854ca1c8f99fd77ee79819aeab1433a2ef12d4c89d40",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md": "9dc7c8d3c16f6546859cd76bd7eb53c95598a7ff840977c1ebbb4e81eb248100",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md": "fbb5a93aaec274cac05442976333c0ebf30b1c37f2c53911b81ca8075c6c77e7",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md": "61bd71ab34cd2f461ee68a2f2ea3a7fc2852d10d56cb950818389ff012fa75e3",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N01S-session-identity.md": "2d444dc3c49e736b565e090e2edbdb630b1e5b4604bfd8ee7a646aed8e2c10c6",
+    "docs/planning/deferred/friday-tui/directives/CD-TUI-N03A-01-installable-shell.md": "4f9385f83b5ef0fd3f59cf37ebe5574ac794ae979d89d9bc4532157c79df1de1",
+    "docs/planning/deferred/friday-tui/execution-log.md": "07ef2ee0289dee8b4b7340de529631fa284be9ef82e66a9edd1239d404ab53a4",
+    "docs/planning/deferred/friday-tui/incremental-testing-checks.json": "8301c7f7c511d9443db6925fce5f66a1df0b58d0ba641acf54a50fe12affc622",
+    "docs/planning/deferred/friday-tui/integration-contract.md": "ff7c27d2a7dc40500aa866af2b0c1bc9520b1f675e848b154108c58731389c1c",
+    "docs/planning/deferred/friday-tui/n00-integration-review.md": "0fd6fcf1e5fda8e893bb11aa9d44b533a5e2d2dff94cecc7b4f129f0b09651d1",
+    "docs/planning/deferred/friday-tui/neutral-capability-map.md": "3acd034c747335172cbed8d491b6ba06115f58c3a3d967c42bacfa920f5e461c",
+    "docs/planning/deferred/friday-tui/neutral-config-loader-contract.md": "dd9fa22da72cf15005d6ec0a1e1f38ce933c7a6a971848693fdeaefda97b0f87",
+    "docs/planning/deferred/friday-tui/neutral-event-lifecycle-contract.md": "a25864334ad51247919ff2ed20dfb6ff88325ba86b9082b3c53baa645666be3a",
+    "docs/planning/deferred/friday-tui/planning/phase-build-plan.md": "41f2ad8b443777d1999edb9ce8d0c9ef6eba2bed7259d09c109f556bc25886ae",
+    "docs/planning/deferred/friday-tui/planning-checks.json": "35a3b4d6eda1e5cb11d9946ca5f65cf8152b796fd793f70e56bbfd59e13f2586",
+    "docs/planning/deferred/friday-tui/prd/README.md": "49a349feb2c88e78c9a4c801d4992f929089ac975c4c73300fa20d0ae17a45f9",
+    "docs/planning/deferred/friday-tui/reasoning-display-requirement.md": "2af3301e6d74fbba460f9b2182b911d25f67dab98e31fa1abe3688c780a6d3e3",
+    "docs/planning/deferred/friday-tui/remediation/REM-TUI-N01B-01-01.md": "432d97298eac98de7c63627992eedaaf5a86c7a16d764369ed2a5d829e023c3f",
+    "docs/planning/deferred/friday-tui/remediation/REM-TUI-N01B-09-01.md": "866f960c36b3048a76b2f4e5b303eb0d2851cbf68992d3459d08c5662b8fa6c5",
+    "docs/planning/deferred/friday-tui/remediation/REM-TUI-N03A-01-01.md": "96785eb53d0d6472840e39dbb036b4a15fe685b9f232d34ad4770e864f5bea0e",
+    "docs/planning/deferred/friday-tui/replacement-plan.md": "6442bade87646bdecf096a04e49f209b74bc5d31031e3c97050844e1d98dc9a9",
+    "docs/planning/deferred/friday-tui/screen-layout.md": "62592dfaade2671b217d35cde4a576f78731f28fdbbd181c8d2f3c2b54ac3763",
+    "docs/planning/deferred/friday-tui/shared-config-checks.json": "56d38d440938ba5541cebd087a2d5a90e07045b7291b7af7e59bac6fb9f0f34c",
+    "docs/planning/deferred/friday-tui/source-baseline.json": "addde405302ac06170be1a0a37827a08011783a3080a2e7ab04f0b8b761de43b",
+    "docs/planning/deferred/friday-tui/startup-bootstrap-contract.md": "f6edd0dbea60b40902ed733c379de0637563f7d1b86d36afbf5bbdf9f692bde2",
+    "docs/planning/deferred/friday-tui/tactical-plan.md": "1f49baa60f0a0f840f40f85ba4c059350cc92d83f42d8d08f8f2ddf4f28fa73c",
+    "docs/planning/deferred/friday-tui/technical-contract-checks.json": "a0912056e693def6bcf48f550a9db35c30e0fd5a6174698230b0d4f6dea0c593",
+    "docs/planning/deferred/friday-tui/test-and-uat-plan.md": "0e220e649ad97dc8216e674f0266dfa7261885d763f28fa8b5e1fdc43ff8dd54",
+    "docs/planning/deferred/friday-tui/tool-activity-requirement.md": "218bf589497e693de67403562e41339cf99f13d5dcadd5d1c461a9beeacb4354",
+    "docs/planning/deferred/friday-tui/user-guide-requirements.md": "e7543229ec39751555ed77ddd8daaed86f90df588914443e59c5a9a6d89c0742",
+    "docs/planning/deferred/friday-tui/ux-configuration-checks.json": "7a8fc68d0ddf668882d2ed7f7f3a6ca074d504d3d161387a83860de1a2e63a35",
+    "docs/planning/deferred/friday-tui/ux-configuration.md": "465cfefd40b21a1404e02db96a5c554ea7def53a6db9e567f0ac5a853647f9ff",
+    "docs/planning/deferred/friday-tui/ux-design-approval-checks.json": "5c629768f83cf7c9c1a269e02b4dae71be3cdb32bf3324eccd7fe5d71f0832cd",
+    "docs/planning/deferred/friday-tui/validation/N01A-before-code-characterization.md": "39e5b90742f362ef63c6c4688373e1db79f5fc4f03a64e38bf7fa836de92e1e0",
+    "docs/planning/deferred/friday-tui/validation/N01A-local-checks.md": "8bb0a8dd63a83238914a726565cddb0dccb34516888ed356d7a0190d81917e7d",
+    "docs/planning/deferred/friday-tui/validation/N01B-01-before-code-characterization.md": "b8b2944d26bec25fd9823e77b4eb6a00889c61b366567a617b37533e8bf47610",
+    "docs/planning/deferred/friday-tui/validation/N01B-01-local-checks.md": "67c4498a1bcd22ed4246b45ff785143e69e295ebab224c78a912bf523124c68f",
+    "docs/planning/deferred/friday-tui/validation/N01B-01-ubuntu-run-39190668231.md": "f4c7a51f462d65d9c3b0ce586f7c424aabeab4236d86185c3eb0c0bf5828917e",
+    "docs/planning/deferred/friday-tui/validation/N01B-02-before-code-characterization.md": "c5bf0ada19cc285ca96bd4f132761a5a21d536c505af9d677e43b0004277a23e",
+    "docs/planning/deferred/friday-tui/validation/N01B-02-local-checks.md": "f5e3bcda726a5c858f0ad2a00b40d2906214602c37f3cea183846e1234f28aa9",
+    "docs/planning/deferred/friday-tui/validation/N01B-02-ubuntu-run-39248181260.md": "66d39aa76f12ad1de60d565c353520c1288cedcd9c38a01d67daf7b872587f53",
+    "docs/planning/deferred/friday-tui/validation/N01B-03-before-code-characterization.md": "8a5f9f182bef51d992015d53bb71bca4913b0788c2dca8070f6d262709345db7",
+    "docs/planning/deferred/friday-tui/validation/N01B-03-local-checks.md": "eb2268e39331f5688668b336db3c33cbf10c6f439093c782890e25ebe8b83b8f",
+    "docs/planning/deferred/friday-tui/validation/N01B-03-ubuntu-run-39256858630.md": "145b09397418c310520809d5cf3728737d892e8787f8b29d45313cc69dbedae4",
+    "docs/planning/deferred/friday-tui/validation/N01B-04-before-code-export-path-characterization.md": "5d393b4064fdd60cb3850a467dedea149739af3d70386a2c05f270b27c165067",
+    "docs/planning/deferred/friday-tui/validation/N01B-04-local-checks.md": "a75b42587655d02ebebf3dc78e794ad22d49d58e2ccd37a7aac24836aaa8adfb",
+    "docs/planning/deferred/friday-tui/validation/N01B-04-ubuntu-run-39268960501.md": "ae0388169a4fe1b93790ebd58837f581ff55a4fcb8c0b13be7543ddf1b5c5e46",
+    "docs/planning/deferred/friday-tui/validation/N01B-05-before-code-single-file-export-characterization.md": "5d5cf68442ca08d79ebd4e3b683d9d4d72f6a4a657603ec303786e857f8be2d3",
+    "docs/planning/deferred/friday-tui/validation/N01B-05-local-checks.md": "1773eab4d1e6e1e0ba1f2c79559800f34d44d4133d5c97a8d48418715013d963",
+    "docs/planning/deferred/friday-tui/validation/N01B-05-ubuntu-run-39278047819.md": "bcbc8b46676f9470669767e46cf76cc00510afefdc4e7aeda4a5d29cc5017309",
+    "docs/planning/deferred/friday-tui/validation/N01B-06-before-code-all-session-export-characterization.md": "2f3f488b42c114deeaac6081beb7ccec6b10816ef45f16b29594bf95db199131",
+    "docs/planning/deferred/friday-tui/validation/N01B-06-local-checks.md": "0521f475a778a319ad181355aa7148d107219b20653a12385128702ff0278ba0",
+    "docs/planning/deferred/friday-tui/validation/N01B-06-ubuntu-run-39284711876.md": "3018a24ab25f690ed2ec68800adeb8ec4119a76a4b9037cc841ece4c2a8cd497",
+    "docs/planning/deferred/friday-tui/validation/N01B-07-before-code-transcript-tool-record-characterization.md": "73d2dd3eb349f18d9ed3f1e6bb437f00e960f8931f5353b521049e5bf6bb6a20",
+    "docs/planning/deferred/friday-tui/validation/N01B-07-local-checks.md": "cfba4f22b305f23dcd90e3a63b66cd7fde6730e0308fd16bbefc5fe7a807fcbd",
+    "docs/planning/deferred/friday-tui/validation/N01B-07-ubuntu-run-39294625340.md": "abdc7786433f62951cc7d85ffc886ab347a2128e0bcb43260f20788a88c8b7ec",
+    "docs/planning/deferred/friday-tui/validation/N01B-08-before-code-transcript-write-characterization.md": "7350dc0f1e053dcc5b0e5a5431e2c91389054cf0ce70dff1ec83a8d142b5a6b7",
+    "docs/planning/deferred/friday-tui/validation/N01B-08-local-checks.md": "146b4717edc3429ce16cc6f649e2954ef22a54c46fd703abd3d6c90564062f7d",
+    "docs/planning/deferred/friday-tui/validation/N01B-08-ubuntu-run-39301138733.md": "a602ea7f97674ae3ef70bb95b9cb82d7c22208f78f5293230037f451f05d0174",
+    "docs/planning/deferred/friday-tui/validation/N01B-09-before-code-session-ensure-characterization.md": "72f919fc17169c4c596d8efb3db514546fce4b2373ac67548ff350aa49ed7ff2",
+    "docs/planning/deferred/friday-tui/validation/N01B-09-local-checks.md": "396e74ec0a1b215019a3dc0407a9952cab231d5723d6c88ab03d13927fe179ae",
+    "docs/planning/deferred/friday-tui/validation/N01B-09-ubuntu-run-39307201390.md": "45fcd778c663d6fb18ce4f2fe8d5624a9cb2c6d7f1a3c215c43175dbe6e7f09d",
+    "docs/planning/deferred/friday-tui/validation/N03A-01-before-code-shell-characterization.md": "7c2a7f3dd58b00cba455c5bf8576b92913728672ef67fcc33679265704705c52",
+    "docs/planning/deferred/friday-tui/validation/N03A-01-local-checks.md": "91400365a098016b1f1b2f40f6fc4b429b3d92cb69fa04416f3fd27d4f132389",
+    "docs/planning/deferred/friday-tui/validation/TUI-CI01-local-checks.md": "da957b260914515880cbdbbcd7a62e3325374ed2d8b2b0ff9586822c2a940437",
+    "docs/planning/deferred/friday-tui/validation/TUI-CI01-ubuntu-run-39172562601.md": "fcbb38a09650f22b120eeac1ef580c99932d937488e1b1dd1b116a373b9c7605",
+    "docs/planning/deferred/friday-tui/validation/TUI-CI01-ubuntu-run-39173445329.md": "9b2e0379084f01a9fe1c5aa4b35f13de9a7e6488574dccd3eebb476418d7c974",
+    "docs/planning/deferred/friday-tui/validation/TUI-CI01-ubuntu-run-39174159031.md": "90eba145623fd04ecbeceddef6a7c6f497ad20d97837241554bb2ada5eaafdd6",
+    "docs/planning/deferred/friday-tui/validation/TUI-CI01-ubuntu-run-39175010441.md": "c051373088777df1996121da6edbacc5fc3e43a23b53bf9c89700f0b7b811b2d",
+    "docs/planning/deferred/friday-tui/validation/TUI-CI02-before-code-diagnosis.md": "63dbb749c9d087f40e7cc8f1043ed70b2d09d4ccf74d134172510f94e10252da",
+    "docs/planning/deferred/friday-tui/validation/TUI-CI02-local-checks.md": "d84827ac5263c6c9fff0369c1ab968e3154f4274665150b17bf1a8bf61238420",
+    "docs/planning/deferred/friday-tui/validation/TUI-CI02-ubuntu-run-39181571549.md": "523f4cd78edef7ab55ec1bc5a5900b1bb1cfd9cc53f50ff74464ca53c4e309db",
+    "docs/planning/deferred/friday-tui/validation/TUI-CI03-local-checks.md": "4efbfa79b926249b6f4cf50749f11603a473bf7efafc9d3d7a439d7ebdb3cc9e",
+    "docs/planning/deferred/friday-tui/validation/TUI-CI03-ubuntu-run-39183895627.md": "ad7d6a41962fd6961b6f3919544b03d7a9c5b8a1299bdd01477eb0eaff598356",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01A-neutral-config-loader.md": "7ee2c2fca6916c43cef9ef837efc8e8b1c674c704ecc84b6a9aa154ce7d7f6c0",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01A-waiver-closeout.md": "9bdb3c776b119bbddc7e34b70714aa77b7b551a28d3c485b3f694efc81fadb17",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-01-final-closeout-35e297e8.md": "67b49886a6f0d2a548c219dfa568c875de71e093a1fadfec3cd9ed6e3e57be80",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-01-final-linux-closeout-96724ec3.md": "1f9f125f8e934f7c2a28e4414632411c5c73556a7399c42b58a3d0bf03a4b81f",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-01-postrun-4febb6f6.md": "00c553af971072b23df1218b701cd2db3e8dcd128d26eba6a6dfd1d672ca847c",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-01-preflight-7e5241c8.md": "46ac9629f832b24a86b16496394fe3be0347253e656cf0cbf789c5fea28b7b8b",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-01-prepush-edbcee92.md": "500751414ab0ed72cefb8df437a1da632f07fa68d344d75d197170af193409a2",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-02-final-a3d0d961.md": "07317ff266767db384ad32265429106e4b9d7c7d4d04875c11202dee0fe580e1",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-02-final-closeout-c6049a15.md": "aabfeebd2d683d2980fb33de1e147449476376dbc9872668ec09e9ea62ba409f",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-02-postrun-8e389def.md": "71a050c83155e1c52b8c674887215d2a88eeba2a4397690452f68dbfa9b3dfbe",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-02-prepush-e62f39ce.md": "0987c0626783f232594fb7a7e1c980c630b7d0506a59ef46a0e3d060e824af07",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-03-postrun-9a68d0c7.md": "3b155da25df446a149237702884f3240d2a6e9eda1ba57f24de45e8e7fa1b813",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-03-prepush-782dedbb.md": "994c0a51f12576c3b04c8132a4378461d6014a251f4ac0c648e434c5a2b86f4a",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-04-postrun-27c84ad9.md": "67d63c8b18c63b39b9d48864f09087b49b9a7cfbeba91597ce3769ea51d96984",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-04-prepush-abeeb895.md": "42122e921ed1cb452732f7d7b42a783cee44d9bf1873b15a85e0588943807fc3",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-05-final-331b1680.md": "2b487cfeb1c3c4814bd49cd5300ee0f620c0bb70531eebefbc8ed6886bf711b3",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-05-final-5710a1eb.md": "598ec977b3411efba9be91a67f38a2ade22751271f0eb22dea44571a813174fa",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-05-postrun-3d5695d8.md": "ff2f396ae0e3244851087ceb286da0a065ab7ae8968d077315b75966cd3b8b01",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-05-prepush-authority-06abf49b.md": "1777e0199a9d505efef1e19e7a4bf245374525ac05e632a4de939a354dccb06e",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-05-prepush-c773f272.md": "2ebb81b7f12aae804b26e4a3e44aff3fef1285badf85c2d18f4e76e8f5a6fec0",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-06-final-9ce5b32f.md": "289e881fd666458987c6df370f14cb490d0532f81efec3b04c699be08f551cf5",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-06-final-a986d150.md": "333af50a2bb823047febd2bc535a6a5ae9e3c6844e404d35eda0074cb454b290",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-06-postrun-3413c25f.md": "251efe1826c85006d3365238e9c4a507bcaf916f4ac16189c1bd62875e014995",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-06-prepush-e16aede6.md": "b1501d3389cc848e3a4cbd9ac1d2fb06818fe76588d21a32740c470b2f981a80",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-06-push-preflight-c394025a.md": "bb417890f88239f745f05c390d73f94f936a5de702e19451fdfbe66030a374ff",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-07-final-069514b5.md": "9524a5ddba6db4b4474397afbae59b66ecc7709869554350b0fc68ea7663fa6f",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-07-final-2e8fa81d.md": "258802ca4ce285a2ad439574e31dbe2cb0431b04726923d5e683925816b74ec3",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-07-postrun-4fc8309d.md": "d8419e6df482e17cae33eb597e7d520cc6524e665c0f426d6d51a9790b7bceb4",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-07-prepush-a196e95a.md": "ccffc36a0ac9dd8f0b0a305fd1ff32fc90c0bf9b5577799d76effa25830756ea",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-07-push-authority-e8fdfcb4.md": "aee0c4afaa4b78b9a20f4dae1631319e456fe8ddb5ea9392ac334e44424603ca",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-08-final-1c5a70a3.md": "03bd7309cc31df7712f76353de4df563d007dc5880b81576d41b270fcbc7c7bc",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-08-final-6d3adbd5.md": "0024eef42b2b4ffe33da6554894f58dda0bb18353830a3caadfe7e360ad9b5ba",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-08-postrun-3a5e05cf.md": "0ea9b09a72092761659ea43cb12683d6f349cda7aaf9ea4317469a06dbeaaffd",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-08-prepush-8ac249d3.md": "9c469f60aeca3fa32ab37bd53fd2382be1370cfae0c41402bd8cc6f34f9993a3",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-08-push-authority-a97cbbc3.md": "680b14bc3de0a84ada45b087a4a15bad370b2fee9a0dbfa8168deab15d15c489",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-09-final-f0e53788.md": "cdd799e084a53b014cd10bb1b6d09ed91320e662a64ba9906f5c3f9147b1d7ba",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-09-final-ubuntu-f1b14cf7.md": "6f03f59c1d8767d02d318c97993e01954668c1be26a08fc7431186756b4ad985",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-09-postrun-72cbc134.md": "1f2a697a8ce4f63e16b3657e4c6f6529fe769d03aca640e072cba633d28df825",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-09-prepush-36028fbf.md": "f5b464e432caf5c128d420814d86012022387e0701904df89d4698896ee41b29",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01B-09-prepush-cda7419d.md": "2b72802516b45cbde7fb88b9c82236f83ed166aab83b190dddb32eb110720877",
+    "docs/planning/deferred/friday-tui/validation/VAL-N01S-session-identity.md": "3237d767a6d19c5ee6c063304797fa0381f4a5483f73e04a68d05aa915f321e9",
+    "docs/planning/deferred/friday-tui/validation/VAL-N03A-01-first-f921eb4c.md": "16dfc76ea32922c020faf3f79256e806f8365f379eeb0033b96b52f729e5f79a",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-final-a7519db2.md": "4143b200d9a47e9038390f1eefc47c7bc6e682fdab74e479b1bfe6a90bca062c",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-3086f7d7.md": "84ec543deda8e39bf9e7bd5d3fabebdd965ef517cbd3c785f3146bd9b24e2324",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-49acc931.md": "02b82c87c3ddd8c139c2da1f78c9eb3b87396a02125de5701670d21b37f1c586",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-505c4c1d.md": "a28a119218409156ad07b717acbe6f7371658944e3bab7a9680cb9db9995da4f",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-7a41004a.md": "87213bd275421ed43e70590a86803110b75b130941b7d558d54bb6713bdb5d16",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-7d97aacd.md": "ca3b8ee83e8fdc51e479bfa07e4c11f822c46673c1705e9203fe4f29eba85dfc",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-89a875ac.md": "f914b14363ddc039824f43a355af7bdbcba075ab9055642064cc637dce4f8b29",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI02-preflight-0aac67f6.md": "5ecfb69be12af7be3ab1e20c6549d9f99572cfcac3b874096b47217daf39ebb3",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI02-preflight-0bd4e441.md": "6cfbbc6923a3745bf6c3f1a7c3cef67b979484377c9e4b68919dc6d0c62d40ad",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI02-preflight-49adbcb5.md": "bdc34a5e7c6ccfec5e755bf02ff1f3c1459c347ce04bfa85cb730bb7f700a684",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI03-final-676700f5.md": "d76077fd6e84a67ae5739ae47447c8a09ffa592b04cdd4b9e32b08841a6e7bd0",
+    "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI03-preflight-315a30e4.md": "c7f6a241b5ed783d8b1951250295a554ec8dbe83242b5f9f7b5a41b6662fba39",
+    "docs/planning/deferred/friday-tui/validation/activity-first-entry-visibility-checks.json": "4e11b2c03e2a5c2b7d89508f95abe4f65b8aaa7419722dfed34cb6cc8d487470",
+    "docs/planning/deferred/friday-tui/validation/activity-inline-placement-checks.json": "4a78a587b17860f526ad2eb26b23bf47345b4d7e90ebf1f5e34e4c4d6ef03b74",
+    "docs/planning/deferred/friday-tui/validation/activity-scroll-return-checks.json": "2dfc62e9bf75c6cb5754cf11fdeb73ff87028747943b515bb8b658f9599da358",
+    "docs/planning/deferred/friday-tui/validation/architecture-reset-checks.json": "2a3b42847eb625e27a4d34877b91fd57981791046c6d28d55725cb5de124fbf1",
+    "docs/planning/deferred/friday-tui/validation/baseline-collection-collision.log": "aa16f924aa32a9853e27526d14c0cd0e643c331c6b81061fc1c80bee225eafd8",
+    "docs/planning/deferred/friday-tui/validation/baseline-mypy.log": "f9b031e5c45aa702cd4fef028d465551cb20a2c4698e0913c7b00766b20ac4d8",
+    "docs/planning/deferred/friday-tui/validation/baseline-pytest.log": "c622b2308004b4d28e7776641fa68a603688a8c590a085b04b3775d6279a22e1",
+    "docs/planning/deferred/friday-tui/validation/baseline-ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "docs/planning/deferred/friday-tui/validation/browse-path-entry-checks.json": "04053622553440f5ea5df071bdaf2c7053bfe3f4d4f4bb2fd755cf5282d7a06f",
+    "docs/planning/deferred/friday-tui/validation/chat-only-runtime-mode-checks.json": "0678e6c6ad7ab787f963d16d4afbe54fcb89911344e9d241518355b7aea03b39",
+    "docs/planning/deferred/friday-tui/validation/chooser-candidate-types-checks.json": "d88197593c7a7c6703df5087114ce75161f1875a439d6cea82cec9649a593ad9",
+    "docs/planning/deferred/friday-tui/validation/chooser-content-detection-checks.json": "d1952dfe5e7b0f683deaba4db435cdfe4b0c3824295dce92a77b9b6131464530",
+    "docs/planning/deferred/friday-tui/validation/chooser-empty-list-checks.json": "d5e322582ebfaa74132e937868173a062a21d88e92eef3334194326b00ca6918",
+    "docs/planning/deferred/friday-tui/validation/chooser-initial-location-checks.json": "8638fd117cd0fef1168320cb8057162dbc95648f778088e1fd278eb80921e7b6",
+    "docs/planning/deferred/friday-tui/validation/chooser-invalid-selection-checks.json": "c0117f72e3280700f8b77e80187939811c2452ffd4daa92f0cc4f38475fccbc7",
+    "docs/planning/deferred/friday-tui/validation/chooser-real-start-failure-checks.json": "b90406b61d32cf08cbba1560c0e1136851d11ef88a9536d7615fea6997155190",
+    "docs/planning/deferred/friday-tui/validation/chooser-refresh-checks.json": "7773f03efbed320c68a6693f6fd5f442a2c50ea24160e1ab1f3076022c87138e",
+    "docs/planning/deferred/friday-tui/validation/chooser-start-cleanup-failure-checks.json": "63c19296861ba8302ee1ea0bd90b9a6c48e028624afcd16ba7c6b7803d976183",
+    "docs/planning/deferred/friday-tui/validation/chooser-symlink-checks.json": "736a271201b3f058fdad5b8156e8fe1f106fbbe6a2642caa7628e0bb25655803",
+    "docs/planning/deferred/friday-tui/validation/collapsed-activity-count-checks.json": "2f015e0e0d215f4f80f130fdc26cdc00896e8bb8a3c35689311e41d59b42b2b5",
+    "docs/planning/deferred/friday-tui/validation/configuration-guide-placement-checks.json": "4db1cd5fcdb576aafd2ca38ba7490f29174d6839455258e4fd1b6af539a6b98f",
+    "docs/planning/deferred/friday-tui/validation/confirmed-restore-pending-retention-checks.json": "a288446ceff1da1b434923b59681efa59b071a40461cda71a70b8846a17e65eb",
+    "docs/planning/deferred/friday-tui/validation/context-aggregate-attachment-rejection-checks.json": "ce3240b69266ec408b007a92f1550b0b224c10b33e1dbd6da5e4139020dd33a6",
+    "docs/planning/deferred/friday-tui/validation/context-attachment-default-values-checks.json": "e1987d9d3adf0631bf8b2b87c72440f6e71766d34952092a14eb3e2318ca7f58",
+    "docs/planning/deferred/friday-tui/validation/context-attachment-fixed-defaults-checks.json": "ab45bef7bd217d35eb9862dcf12aa6886dc88ed3ebf4bcd8a39df51e0e36ed50",
+    "docs/planning/deferred/friday-tui/validation/context-attachment-limit-config-checks.json": "15f7164810e2cb5cef7c629b82cfb4d80262f65abc13748180578054b8d0979a",
+    "docs/planning/deferred/friday-tui/validation/context-attachment-token-units-checks.json": "c07cd5070c4504e9449b8c4bbca40a9728145f13e5be4926a8483a80c1d8c7bd",
+    "docs/planning/deferred/friday-tui/validation/context-file-attachment-lifetime-checks.json": "70ef1f5be3ddedf730dee4f149e09b6a06cde70c7211450bc7db56f239a833ae",
+    "docs/planning/deferred/friday-tui/validation/context-file-browsing-checks.json": "5b8636a80b96da9865e785bef4974d813729d2043fd9eb039333d16bf6ee367f",
+    "docs/planning/deferred/friday-tui/validation/context-file-format-extraction-checks.json": "2fb60b2b680b58b8a9df8f51e59db79990b02ceb0d587000aeb02ea6a836afd5",
+    "docs/planning/deferred/friday-tui/validation/context-file-relaunch-scope-checks.json": "5d9520ea632c94db9ab6959d32a496864586c6e19248241d4465beacfe46692c",
+    "docs/planning/deferred/friday-tui/validation/context-file-selection-attachment-checks.json": "778844ef50b2ce5748a2a5b2b8c4da930252d022b596ee3b53af0d50c5bedd26",
+    "docs/planning/deferred/friday-tui/validation/context-file-snapshot-checks.json": "ac11f5bbf9de8421b5a86d5dae28a09f85c08f188a069e570ad27297d7772514",
+    "docs/planning/deferred/friday-tui/validation/context-mixed-pdf-page-routing-checks.json": "e914adeb5719f8d443ce9ca2ce86150c49d0ea811a9894a1e39d2e08a22ed408",
+    "docs/planning/deferred/friday-tui/validation/context-multiple-file-attachments-checks.json": "68aaf0752600ab77e24f793ed866db8394fd0cd99515a3772bf154b2ddf12559",
+    "docs/planning/deferred/friday-tui/validation/context-ocr-language-selection-checks.json": "5613c04a5d7900b2f1c1360c6f5c1fdaecd171b1312bdd379fdca60d6f17afdc",
+    "docs/planning/deferred/friday-tui/validation/context-ocr-page-failure-checks.json": "1a8ad6f6d2cc8ceb05ecfb985439058e861135f1d781cbd6040aa4a7cce90e84",
+    "docs/planning/deferred/friday-tui/validation/context-older-turn-compaction-recovery-checks.json": "2ba68e5390e2dc7bbc91759d84cde21582aaa199b661cf32ac19f11e4b1fac36",
+    "docs/planning/deferred/friday-tui/validation/context-oversized-file-rejection-checks.json": "08164abf4e80ed9ba8decb6c5cef14c9b4a85e45fc2bf6f7519a196cca38e150",
+    "docs/planning/deferred/friday-tui/validation/context-pdf-renderer-package-checks.json": "eab844fc6cd818eb0b6d0beac82f0ac9dbddb765a7a5f34be19766b9fb33b076",
+    "docs/planning/deferred/friday-tui/validation/context-scanned-pdf-ocr-checks.json": "eaca04808a895ba951ede1a729ec06462c43e815cd83c91c630f48f040582511",
+    "docs/planning/deferred/friday-tui/validation/context-tesseract-system-dependency-checks.json": "771aab743251472d4eae604ba0aa760d56dac4669e1a7ca60a92cf256db2056a",
+    "docs/planning/deferred/friday-tui/validation/context-turn-preflight-rejection-checks.json": "878f473496fd0e6bc3d451e455605b7182f60161622f2b40d2eee000dbc9222b",
+    "docs/planning/deferred/friday-tui/validation/context-xlsx-all-worksheets-checks.json": "f1675f44dd6d667e95df8c69d3020aa0011f94cbe955e0b880559b63548e877d",
+    "docs/planning/deferred/friday-tui/validation/context-xlsx-formula-result-checks.json": "dca8e29d92331c9cea450c2f92720bc64ee0bf4d70ab43d995d79ff6783ed196",
+    "docs/planning/deferred/friday-tui/validation/context-xlsx-sheet-failure-checks.json": "14236c346dd9d4e125180e3974b5863c0c54b9b3bd49d4dc141aeab1a209a7a2",
+    "docs/planning/deferred/friday-tui/validation/display-clear-behavior-checks.json": "2eafbba9ae9ddbc74df9d53a9b3fe2aad82b8672624ceafe65297d2c079f28bf",
+    "docs/planning/deferred/friday-tui/validation/editor-history-additional-routes-checks.json": "f3ac27a975e8445593a9028bc4d9fb005f3a4f95658c527ae9dfa6b08928be84",
+    "docs/planning/deferred/friday-tui/validation/editor-history-boundary-keys-checks.json": "5e07762a329d6c5002aab32d1ce49da19ad7e28db7bf7cf6d5c1be9fbb77b15e",
+    "docs/planning/deferred/friday-tui/validation/editor-history-content-checks.json": "52943244627606466f58adc15aa1501e6e10fe05444b0aac108439b803e6e45e",
+    "docs/planning/deferred/friday-tui/validation/editor-history-draft-restoration-checks.json": "6adfa6d827952a00554caea530cdcdf1bdf403907e11f23581dc523145205c38",
+    "docs/planning/deferred/friday-tui/validation/editor-history-session-scope-checks.json": "2cc00e472b20c4a2b96b963ee4d503343d41d64878cce616f935d4facd5d5f00",
+    "docs/planning/deferred/friday-tui/validation/editor-key-behavior-checks.json": "af6d6434f0d574a7c8f47de01fd7fa70b915089e0657d2edf8976f04d4ca445a",
+    "docs/planning/deferred/friday-tui/validation/explicit-config-invalid-checks.json": "901492c4c61da6e2f33a7e92716201e17fb93de3533605a3ca1a5f5a0764986e",
+    "docs/planning/deferred/friday-tui/validation/explicit-real-start-failure-checks.json": "d36558db2b09c4bcb45f4eaaa1da10895f94dee011e209ef3d16936778b98608",
+    "docs/planning/deferred/friday-tui/validation/failed-initial-transcript-exclusion-checks.json": "5d7e6572620ae67329e08526dc3036c400ed1ba437144477d56ed0446c424985",
+    "docs/planning/deferred/friday-tui/validation/failed-prompt-display-clear-recovery-checks.json": "5ccd9f5bb1f2ff1e78e88e4a94e4f0b2806811d2b5d33d519c47341a97a94d1e",
+    "docs/planning/deferred/friday-tui/validation/failed-prompt-editor-recovery-checks.json": "5a369ba5bfd5e8f7b1ab623ea43f3c5e1dd492ff3ccb5f759637990a311f703e",
+    "docs/planning/deferred/friday-tui/validation/failed-prompt-explicit-dismissal-checks.json": "0afb783ac81c14393de022df59028ac575b41a9dcab8d2471c63af021c3ed74c",
+    "docs/planning/deferred/friday-tui/validation/failed-prompt-restore-location-checks.json": "fe60c11b815333ee3c63606965dfacc4475c606b9d98a528416645f0f4b7e174",
+    "docs/planning/deferred/friday-tui/validation/history-return-control-checks.json": "7e68f97bd66547e6d7491a4699bd0c4d23bb93a1e0aeac480998c6def385481f",
+    "docs/planning/deferred/friday-tui/validation/incomplete-chooser-candidate-checks.json": "b0919328d2f915c7756d3e548e630051238a3ab1ac30f7a518cab7d3e541f34b",
+    "docs/planning/deferred/friday-tui/validation/inline-timeline-role-colors-checks.json": "b6d690acbbd4590c22bc50e531a5c5f0bfc6093fa2f66ee1bf52923ff901e33b",
+    "docs/planning/deferred/friday-tui/validation/later-incomplete-transcript-exclusion-checks.json": "3f774fb4dd59acf02c35cbecd8b95772263f56ddd39e89d214285b55755c5894",
+    "docs/planning/deferred/friday-tui/validation/multiple-failed-prompt-restore-chooser-checks.json": "5996a3a6382234158b4f12cd487a1d2f206a1e1358dad1eae9de9c18fc4bf2bd",
+    "docs/planning/deferred/friday-tui/validation/n00-integration-review-checks.json": "72af35d3b86588a0b24463016ed358d74579ea333059ef9e39cf14e0d348e4b0",
+    "docs/planning/deferred/friday-tui/validation/n01a-directive-planning-checks.json": "84b4c2a556312083994dd30ba1a6ee72df0c8b0d3b7a1a244ffb1aa8db52fad5",
+    "docs/planning/deferred/friday-tui/validation/neutral-capability-map-checks.json": "4c567fa3251939eca7bf6ca753010386da079e8bcf5ffa969436856bb4ccf506",
+    "docs/planning/deferred/friday-tui/validation/neutral-config-loader-contract-checks.json": "bf049316126058c3f6876e11b9e494d0930ab96a1b2c7ba3ef11ff04cf09d401",
+    "docs/planning/deferred/friday-tui/validation/newline-fallback-checks.json": "afdb3018cc36aff04677596eb695dd82aaadeb560d7845a858fe93c8486d63f6",
+    "docs/planning/deferred/friday-tui/validation/not-run-request-boundary-checks.json": "1423c43beddf2f8a9a105f26a940d7d04a6fca970969be449754de279fe97b19",
+    "docs/planning/deferred/friday-tui/validation/older-activity-state-checks.json": "cae0e9f2925a2b8c88da5d7836a3b63aa588df194130107503939e121feb75bc",
+    "docs/planning/deferred/friday-tui/validation/older-failed-prompt-successful-turn-cleanup-checks.json": "5c42c815f77ab04eb88d6351105d6d9e54d591937255b9b8d96f1c49d5265864",
+    "docs/planning/deferred/friday-tui/validation/oversized-activity-parameter-checks.json": "699dbcce23ee1ff0ca69f1cfc7d5d2ff971b4644423e823cc534c0c8517cb1fa",
+    "docs/planning/deferred/friday-tui/validation/palette-command-selection-checks.json": "4bf3df118d99319388e4a22e1f1a32b48663ebd337c2163d7f0145ed6cabb3cb",
+    "docs/planning/deferred/friday-tui/validation/palette-draft-replacement-checks.json": "7fb4f15b73864f91b2f1ed8061ccd42af1f2a4cfc06ec86fbd8d1d7c4af7dcdb",
+    "docs/planning/deferred/friday-tui/validation/pinned-prompt-reasoning-requirements-checks.json": "4fa0941148e23d7fcc936b7ffa154cbca844a4d39f0ba3c3533e5398f64f187e",
+    "docs/planning/deferred/friday-tui/validation/provider-context-rejection-recovery-checks.json": "2bea6fd1eea197418a946080dd5ba60967c01a9ea2481bb416d02f88f9994c64",
+    "docs/planning/deferred/friday-tui/validation/rendered-history-eviction-checks.json": "7e03ab89ea82c3e877e8282e531e8b2e51521ca1dac1bca8bb3ecf7717feca5f",
+    "docs/planning/deferred/friday-tui/validation/replacement-plan-review-checks.json": "7922d21d436267a199f296179aa2c5a2c220238fc7026b1e374f9439c4de2f9f",
+    "docs/planning/deferred/friday-tui/validation/screen-layout-proposal-checks.json": "96417b0c9ebfea7791a46fe7f912372cb5fee4e2153eb2231fbde341ff925c53",
+    "docs/planning/deferred/friday-tui/validation/slash-subcommand-suggestion-checks.json": "25f144b93c57243b126267a4bd1ecf056bd93fb261ef7e9d39fcecd841d5a859",
+    "docs/planning/deferred/friday-tui/validation/slash-suggestion-key-checks.json": "a8114fb1ed64caa0238019d46113cd779d458e2926c4c32254ae318f546b5b4a",
+    "docs/planning/deferred/friday-tui/validation/slash-suggestion-selection-checks.json": "71f704a70d8514e9d3bd99607a4c376a5fada9fe28bea102720ad32132f002ec",
+    "docs/planning/deferred/friday-tui/validation/slash-suggestion-visibility-checks.json": "713145326663a2a1e3618d38e5e41edc219046900ab4e69055e22443aaf5a514",
+    "docs/planning/deferred/friday-tui/validation/slash-usage-hint-checks.json": "580af4c28a4be1b1d7316e797b55eb8fb996a075024983a00dd89c64d8abc547",
+    "docs/planning/deferred/friday-tui/validation/startup-bootstrap-contract-checks.json": "7c9fe76abf975861096afb7b22e960896a7aae300bfd8b19b4a872b3f74f08d7",
+    "docs/planning/deferred/friday-tui/validation/startup-replay-failure-view-checks.json": "6af4f4f759ac75a622e2965982b527c5a2f627cd5a6d7175a6e08b91a8bdff08",
+    "docs/planning/deferred/friday-tui/validation/startup-replay-no-retry-checks.json": "0e1002ac5f7568630123e9f076956ae5508f56466ddcefb6ff16a2851c1c7344",
+    "docs/planning/deferred/friday-tui/validation/startup-replay-result-checks.json": "6315b93aee6c7cd4dd9cfab88a70dd8313eccd20e6be1d4a1d3d3bdb21e8c9a5",
+    "docs/planning/deferred/friday-tui/validation/startup-replay-summary-checks.json": "f588a3be57ed6debd8b539d5e7173ce12fe435c6cc6c851a767eb541fcd57f85",
+    "docs/planning/deferred/friday-tui/validation/technical-evidence.json": "5258fe6c6efd0c6dbb4085176eb989258b2e7e7053b7c08296aedd8c336df4f3",
+    "docs/planning/deferred/friday-tui/validation/test-unit-map.json": "35803c5bc1050e2382fc9bba82b9211b9ef3e4790c33f470b20ea7e73d11e94d",
+    "docs/planning/deferred/friday-tui/validation/textual-overlay.txt": "89d98dfdc3228c63a7286c3cefa3004140caa3db5929aa12a6c29042fbc23d81",
+    "docs/planning/deferred/friday-tui/validation/textual-resolution.log": "6f803ceb7736bf50db05f0428b63d020edecc8e5b4e3b2d3b2d4878f50175a55",
+    "docs/planning/deferred/friday-tui/validation/tool-activity-first-release-checks.json": "a2dd7159afde5a9a5b3e3acd9eda5a6e8e18fdc6b9d1fc86afafe1804b292c72",
+    "docs/planning/deferred/friday-tui/validation/tool-activity-parameters-checks.json": "d76d9fde75a1b78af00d643eea9f198bc8e8e468dfa989102af6b3b58051f4da",
+    "docs/planning/deferred/friday-tui/validation/tool-activity-requirement-checks.json": "dc76f7d8f72666acac6dafa4d475a1ae7e44f44a435f011a28b8142a0d553a62",
+    "docs/planning/deferred/friday-tui/validation/tool-activity-sequence-clarification-checks.json": "0210f62c26f3719a745766fbdb3c9dd2c2f79aa5d922a25892695b18d012b157",
+    "docs/planning/deferred/friday-tui/validation/transcript-session-scope-checks.json": "ab4cf264f60e82a6b748bfef25a9afaad8b43d2f85474a0ffa61250964698b73",
+    "docs/planning/deferred/friday-tui/validation/tui-runtime-default-checks.json": "97ae4997da1610e39f8ae7710f27b3ec1266f2409192036052e177848bcf50d8",
+    "docs/planning/deferred/friday-tui/validation/user-guide-requirements-checks.json": "3c6cf7944b97175046a89bbfbf2e8b4176c2ae09a45d9331d85d8b47379bb2e8",
+    "docs/planning/deferred/friday-tui/validation/ux-config-baseline.log": "0217d5771d6b3b3c9443a719918d20b4bd430f5f49754828c66ebcc33d39655f",
+    "docs/planning/deferred/friday-tui/validation/ux-config-compatibility.json": "cf6b34c171675bbc2e4606d6eb02f84e5e45e8a88e43907e3df630dde9dfda70",
+    "docs/planning/deferred/friday-tui/validation/visible-copy-behavior-checks.json": "ea26216f5553f14f1eab91d78b671182992c3091b67150f2fea133844e1f2bc1",
+    "docs/planning/deferred/friday-tui/vision/README.md": "622c071361fe168035d6e590393d5fd62d99478ed89e1db448635fce401545f4",
+    "docs/planning/active/command-refactor/README.md": "a48bdb526d65baefa671373418eba885026354ad8948d46bd9fd84289719719e",
+    "docs/planning/active/command-refactor/approval/foundation-design.md": "ad56dc9177f3635d91e3a49befd3b4323c548ead2d55ab3cc50711142666cc04",
+    "docs/planning/active/command-refactor/authority/planning-review-2026-11-04.md": "b1a35cfa1a8c94e82e5974069686746d013064ed72d058a119b71992a61e5d39",
+    "docs/planning/active/command-refactor/authority.json": "d2f4ffcd995aedfb39d8a1b1929d3e2ebec5114b7bdb687a2bdadd5d2cc63707",
+    "docs/planning/active/command-refactor/branch-isolation.md": "e5ff95083c3e904257241a265188e7b935bbc778f430487c92958dd8e8621880",
+    "docs/planning/active/command-refactor/build-plan.md": "3aec88da3576a892482221227fa9d4ed8eebf4dda37d3fa07dd0043d32a04f20",
+    "docs/planning/active/command-refactor/command-inventory.md": "aa46b975b4b060b6a257f40d4e24f8db0d3e1dd3dad61c8cd60699b3a671afb4",
+    "docs/planning/active/command-refactor/command-matrix.md": "9684766844dd91388824747919d9282cc6e5312d85aa363990e9b84c28381970",
+    "docs/planning/active/command-refactor/command-pruning-review.md": "1eb2d91d30677b7a7a3de9e8be932f69b341712ad2989afe8689a323bbf11faf",
+    "docs/planning/active/command-refactor/command_refactor.md": "8b3b9deba8b7fe03120ec95f2c6e8a968df7421d5c06e40b4906b5f2f85956b6",
+    "docs/planning/active/command-refactor/directives/AMEND-CMD-MCP-001-001-2025-dialect-isolation.md": "03c229947a22768dd68e5da99fe29df8a94f19e996961e255737bc8f75f6e054",
+    "docs/planning/active/command-refactor/directives/AMEND-CMD-MCP-003-001-send-boundary.md": "620ee9d3670b3ef0ff347fd754d9f80246363d18ba4a6729b428f712fad12934",
+    "docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md": "43844cb1734daf408d27a197fadbe2c4f4e4ac7ffd5aa462d000f77b77829aa3",
+    "docs/planning/active/command-refactor/directives/CD-CMD-MCP-001-compatibility-exception.md": "fa3f3a9af0bdfe2acc145ad5df2fe5f30543a64b535c7a7fb0a7577db0b70dcd",
+    "docs/planning/active/command-refactor/directives/CD-CMD-MCP-003-server-neutral-schema.md": "634f9576ec87676e38f22b40dbbc43e0961ca147d9a8ca61c175d89d669d8df8",
+    "docs/planning/active/command-refactor/directives/README.md": "1572a93c76de7fe3c41fac972ae61bfeb6ad47ce70b922704f47beef5edc2d63",
+    "docs/planning/active/command-refactor/execution-log.md": "a209ca05e0b78ede879b64ab34eeae40312e9ddc9bd310ad704ab80b4d308f41",
+    "docs/planning/active/command-refactor/mcp-schema-engineering-matrix.md": "ce933848078603a4e9e14a27bf82e7d0fe2e6c1ba6d162d2af8dbd7408904f24",
+    "docs/planning/active/command-refactor/next-phase.md": "8ff3dd04129c707cda5ff5324c43f0a8c0ec0d2f2ce909f5c0d73e8ec60960e2",
+    "docs/planning/active/command-refactor/phase-plan.md": "8a3f4cebbc5895ee9ae2b14f061304fe0daf373f8ad35670c8af51fb1e99c4fe",
+    "docs/planning/active/command-refactor/proposals/mcp-schema-compatibility.md": "9c77e2ddb44c9d66eaf88a840ed6a7232fb7c0eeb21e9cdf1831137af1bb14a8",
+    "docs/planning/active/command-refactor/proposals/mcp-tool-turn-continuity.md": "e4a6972b484c96cae6034d580a6493e6d20679ac4d7363baa55786e2f77ed308",
+    "docs/planning/active/command-refactor/reconciliation/README.md": "791cc4277de6b483f1fb5ff6623975fe9201b80a08313a7881a0caf60404cb9b",
+    "docs/planning/active/command-refactor/reconciliation/checks.json": "29869259110a6dad78412aeb6c8375bead190939d800d777208accc8b3dc3222",
+    "docs/planning/active/command-refactor/reconciliation/import-manifest.json": "92a18a6c4ac559fcc692691309b9e4c0402ecb048bcda308245dc5d94fd96d9e",
+    "docs/planning/active/command-refactor/reconciliation/source-authority.json": "9103348fee351fce3e6cffd97f3838384632c12b91fe3863a90f99e41d3775e4",
+    "docs/planning/active/command-refactor/reconciliation/source-backlog-working-draft.md.txt": "404b94f2c4773b6597946e7cbb1679f2040901078f1e86c625155c95cf586c95",
+    "docs/planning/active/command-refactor/reconciliation/source-command-packet.tar.gz": "839acf23b40d724672046d75d327cf870b69daf3ba94775ac252f8812ee465c4",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-DESIGN-001.md": "0a523450f8d2ca5eea4d6613cb82aa1661cfbbbbe9fd0994e52211330d353cd7",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-MCP-002-2025-draft7-registration.md": "75723824e691fd3af437e95cdd374142169112d734256120029dbbf9f669e303",
+    "docs/planning/active/command-refactor/scope-decisions.md": "a582243d1d59138518915efba45ee4197070de070eb0d65a4f00f3c91bc39928",
+    "docs/planning/active/command-refactor/shared-command-api.md": "bffda0471318928c8d2f7e39c221c92894569d9af252410bfd676cb7902630e7",
+    "docs/planning/active/command-refactor/shared-command-architecture.md": "d5b3ada995b0bef4d07e450915d895fba5f0e890e089364be1cd6105fdf169f2",
+    "docs/planning/active/command-refactor/tactical-plan.md": "556f367d2e5e4c19c17bb7c9ec241b5053ac37e260719250087be23a5885d542",
+    "docs/planning/active/command-refactor/test-strategy.md": "ea9bd6dbabe67f0d45b95369181fad5754c2d5ea70a50e471d12b518b0bf8bb0",
+    "docs/planning/active/command-refactor/validation/COUNCIL-CMD-DESIGN-001-round1.md": "6f1f5958884c9b2d0ec7253e0ad90c36e94a7ddca858063db382172c0fb10a68",
+    "docs/planning/active/command-refactor/validation/COUNCIL-CMD-DESIGN-001-round2.md": "43a3e2d6257a8316784b198ca99b231e6b7ca1ced170cb1c3b9dfead19529108",
+    "docs/planning/active/command-refactor/validation/FIND-CMD-MCP-002-registration-gap.md": "31712cddd978f07110e6bbc1516a9b239129cba28d4bff595a4760824affc435",
+    "docs/planning/active/command-refactor/validation/README.md": "b836bc2cd1d3fe37b0c9fe97e12c6417ee2df5c9b4dde558e8f5efe344300ea4",
+    "docs/planning/active/command-refactor/validation/VAL-CMD-ARCH-001-report.md": "283135eac5c25f5c99162909b15d7dacd275428cb764dc64ce2e7c4b2c088b54",
+    "docs/planning/active/command-refactor/validation/VAL-CMD-MCP-001-report.md": "eae6d5e8fba9464ad516e17a5be7060632bea2713f13e0c032d02a61e7188d6e",
+    "docs/planning/active/command-refactor/validation/VAL-CMD-MCP-002-report.md": "653143e5ecec0a9e7c45029df3a6137954f13e3db794c2f5a6d9c853b6216417",
+    "docs/planning/active/command-refactor/validation/VAL-CMD-MCP-003-interim-review.md": "be6555cf81e8d06d751449705c57264ab9e027e74b8ae50bbd7ca2ff725c79d6",
+    "docs/planning/active/command-refactor/validation/VAL-CMD-MCP-003-report.md": "340646d8126fe760f6518cfc189216803bdd306a29b64deb1c10744998ce6e5e",
+    "docs/planning/active/command-refactor/validation/architecture-remediation-manifest.json": "2da4b8bb78f07b2fb924a7fe58fe50804652b3d28391cbc9eaa966db8e5be212",
+    "docs/planning/active/command-refactor/validation/architecture-remediation-request.md": "b9c64ba05644d8e934143188c26c0659b6d24ebf542074bd8f6bb6db08ee0b8a",
+    "docs/planning/active/command-refactor/validation/architecture-review-manifest.json": "d76b05d4be320cda7a76206771270864f5c160ea2cdecde195a4e37df5fdef72",
+    "docs/planning/active/command-refactor/validation/architecture-review-request.md": "e5e8519fb7befdc42d7251b0689698efb0fea4a89385a2ec3628f19ecbfbc0e7",
+    "docs/planning/active/command-refactor/validation/behavior-assertion-audit.md": "0fc23c41d01cc24f7e4fed1ae8c75cf0e7c05f026254335fbcfb7dfdeafceb53",
+    "docs/planning/active/command-refactor/validation/command-matrix.json": "87c7880b21bbd7b02f227a7f93373dc3acc67db91e3ced18fd65511c34081f85",
+    "docs/planning/active/command-refactor/validation/default-behavior-audit.md": "4b02ed25cbe657de7f128e51e4eaaffb640935b3f9bd7afb8632c39c39c9aad8",
+    "docs/planning/active/command-refactor/validation/p0/baseline.log": "f9aa486e2dc9c1616e5c4014429bfefd947da05cf5a0e20108d0610473aed544",
+    "docs/planning/active/command-refactor/validation/p0/baseline.xml": "14400e6a24d5a393d0362c834ecfe036cf0a4c70f71706564c62041250566a53",
+    "docs/planning/active/command-refactor/validation/p0/chat.log": "b3d4fe1daaef8ff8d6b648d7376cca176f3ff01aba63c1ccb64df96c37802039",
+    "docs/planning/active/command-refactor/validation/p0/chat.xml": "98f5608b36f6816e9ea606bdae6d80de760426b4e46227cc55bceec1e43aa322",
+    "docs/planning/active/command-refactor/validation/p0/cli.log": "de66e5abd5e8b584fdb224bef1b09111217e6f26259111524178aae394512413",
+    "docs/planning/active/command-refactor/validation/p0/cli.xml": "a5e93490dcfc9d12ff2d0078250632e8c55a24c434a7bb5a57f6204e5c8fe851",
+    "docs/planning/active/command-refactor/validation/p0/failure-controls.json": "c5fcda8e24188c8ca1a8934de3707bd303cf18a2b4d63f076375cde7ff9c2c2e",
+    "docs/planning/active/command-refactor/validation/p0/full-control.json": "ec52450c16ba3b4906f885867c5e540de75b35e9641f59e7abd2584c0b71d7f0",
+    "docs/planning/active/command-refactor/validation/p0/head-examples-original-term.log": "4256efefbd7b6b640d4ff07476d6ea53915bcc561f45577bd84bd149a16a1381",
+    "docs/planning/active/command-refactor/validation/p0/head-examples-xterm-full-chat.log": "eb13844a7e28bbaab3d4977e122998530a5c00499be600199cc5a4636f3da77e",
+    "docs/planning/active/command-refactor/validation/p0/head-examples-xterm.log": "1b415d1977d98806713495be9044408df873b8b4939392164c659401bb728c84",
+    "docs/planning/active/command-refactor/validation/p0/inventory.json": "3f2ec73ca91f7c1cc5cfac1397ffe5a121ed010f78b7c387da3a50320cf9708e",
+    "docs/planning/active/command-refactor/validation/p0/no-runtime.json": "7c43d096d0b5d7bcb6f93dff5d76c3d4c168840bca2e04705057772783754069",
+    "docs/planning/active/command-refactor/validation/p0/probes.json": "eeeb868184ae7146d86a8f0915b15a9ec50171b0ca89bcb464a127eb579a8d09",
+    "docs/planning/active/command-refactor/validation/p0/worktree-inputs.json": "1081f7fb56834e3f2a2b63e2b0d70aa16efec32192f470f0b4dab5d5473c1052",
+    "docs/planning/active/command-refactor/validation/p0-baseline.md": "eea2192394bdf3e8506b9c8f952f3be5b732c595b4f8f2bb4ed48ba5f6dbade1",
+    "docs/planning/active/command-refactor/validation/p0-failure-disposition.md": "1d83c8d8e7f92e5dbd1e677313db3475eb5dc51690f8514c85f7b680a0d3e2e1",
+    "docs/planning/active/command-refactor/validation/par-coverage-ledger.md": "ae4693253394243d8c937ff7c964bece8cdb2d184b99e00c626545a9ce050e08",
+    "docs/planning/active/command-refactor/validation/production-effects-audit.md": "20823f5a4d78ba4194ee7309e9b0946baae7c6474ddbb8d05e50196806413d27",
+    "docs/planning/active/command-refactor/validation/pruning-wording-correction.json": "52e21b1c281c94a3034a8de5ed808492b744b5d484ed810e025d54f26d500cae"
+  },
+  "transferred_or_reconciled": [
+    {
+      "path": "docs/planning/deferred/friday-tui/README.md",
+      "source_sha256": "cdab231c98d8eca45ab544127022e0ee0962ba734d03df3e9bb751285d1e9331",
+      "destination_before_sha256": "f9f574de16d0df9a7104ba206787fbefd4c6395ba3612ab883056942cbf65fd6",
+      "destination_after_sha256": "65dea1d99358313d8d5126d1ed79c2f537ab1a1108ed2ecfae3b5ef1a1c75a84"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/architecture-reset.md",
+      "source_sha256": "a8097a84fe58bc4f76be51ea9ae1830e031acf69d19fefa663b5e0ea0194bc1c",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "a8097a84fe58bc4f76be51ea9ae1830e031acf69d19fefa663b5e0ea0194bc1c"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/authority.json",
+      "source_sha256": "0a2b84ae2cc67ccfc2a48e62e94d0d036adabf1dd73c21511a678b5859b01df9",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0a2b84ae2cc67ccfc2a48e62e94d0d036adabf1dd73c21511a678b5859b01df9"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/build-plan.md",
+      "source_sha256": "4fe2d902e97a0800e48fc04dabaeb34e722f2c02e62af9f7ec40d0ac691f4327",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "4fe2d902e97a0800e48fc04dabaeb34e722f2c02e62af9f7ec40d0ac691f4327"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/command-handoff.md",
+      "source_sha256": "200e2a2061edabc442a4d1729275c7c7cd52d7d19af99bdd9e01fade76cfd716",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "c891098ee88b3c6d3a5f6d03dc29ff9736f17814146b8ae1c2a78be76576dd7c"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/decision-update-checks.json",
+      "source_sha256": "0fa8c00fa7fcb9c9e9daa4ebd56b1357f0b29e0f23bbd1b04dbcd7bf78ba4fec",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0fa8c00fa7fcb9c9e9daa4ebd56b1357f0b29e0f23bbd1b04dbcd7bf78ba4fec"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/decisions.md",
+      "source_sha256": "b6675730ce8ecd2ae805c5f92579072d7be8ff5aef763ba93959d0fd34ec3a28",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "b6675730ce8ecd2ae805c5f92579072d7be8ff5aef763ba93959d0fd34ec3a28"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-001-shared-presentation-contracts.md",
+      "source_sha256": "6422e1b1d783307c96b5616f30733f46aa0be25c5cc403cb3b611f4cca74c07e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "6422e1b1d783307c96b5616f30733f46aa0be25c5cc403cb3b611f4cca74c07e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-CI01-linux-actions.md",
+      "source_sha256": "428ef83df61277e8ed9942f6acd6cf3b8c421e7c14858b1e599fcc489b087018",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "428ef83df61277e8ed9942f6acd6cf3b8c421e7c14858b1e599fcc489b087018"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-CI02-linux-regression-remediation.md",
+      "source_sha256": "1b9e1c64e3cf486d32a3fce6cb92428ae26f9275709476e92afe20f4adef0ec4",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "1b9e1c64e3cf486d32a3fce6cb92428ae26f9275709476e92afe20f4adef0ec4"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-CI03-mcp-auto-negotiation.md",
+      "source_sha256": "7549602208d70704e586ba8d2ca0874c887081a77f4b0fe257b8ce5beaab5e1d",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7549602208d70704e586ba8d2ca0874c887081a77f4b0fe257b8ce5beaab5e1d"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N01A-neutral-config-loader.md",
+      "source_sha256": "372e6fad7f81cc8529806572e1060202e03b804c256103ac94c83eb0a1a1fe1a",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "372e6fad7f81cc8529806572e1060202e03b804c256103ac94c83eb0a1a1fe1a"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-01-neutral-transcript-query-contracts.md",
+      "source_sha256": "ba55b804a1e94cfd389c822f9f5df3d872800dca445438252b3936795d8cdf06",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ba55b804a1e94cfd389c822f9f5df3d872800dca445438252b3936795d8cdf06"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-02-neutral-transcript-query-adapter.md",
+      "source_sha256": "9db792eb7d50ff129057f28bcbabc2da9e2e003e9ce931d03efdecb65fdf508f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "9db792eb7d50ff129057f28bcbabc2da9e2e003e9ce931d03efdecb65fdf508f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-03-neutral-transcript-export-serialization.md",
+      "source_sha256": "e83625e66202c1e5ce71f91195030b77f3520823e79dec6f035f830728db8163",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "e83625e66202c1e5ce71f91195030b77f3520823e79dec6f035f830728db8163"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-04-neutral-export-destination-paths.md",
+      "source_sha256": "71fe2072bd1566067e1b2d9b99f22b27aae05d55928ccece6780fc75bbce5ed3",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "71fe2072bd1566067e1b2d9b99f22b27aae05d55928ccece6780fc75bbce5ed3"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-05-neutral-single-file-export-effects.md",
+      "source_sha256": "7c1dfa5b8f3135f9d5ea18e2a86efb0008251cdc13294ed8d2faebf402d91bcb",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7c1dfa5b8f3135f9d5ea18e2a86efb0008251cdc13294ed8d2faebf402d91bcb"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-06-neutral-all-session-export-effects.md",
+      "source_sha256": "0681a1259c349ac19d75854ca1c8f99fd77ee79819aeab1433a2ef12d4c89d40",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0681a1259c349ac19d75854ca1c8f99fd77ee79819aeab1433a2ef12d4c89d40"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-07-neutral-transcript-tool-records.md",
+      "source_sha256": "9dc7c8d3c16f6546859cd76bd7eb53c95598a7ff840977c1ebbb4e81eb248100",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "9dc7c8d3c16f6546859cd76bd7eb53c95598a7ff840977c1ebbb4e81eb248100"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-08-neutral-transcript-write-effects.md",
+      "source_sha256": "fbb5a93aaec274cac05442976333c0ebf30b1c37f2c53911b81ca8075c6c77e7",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "fbb5a93aaec274cac05442976333c0ebf30b1c37f2c53911b81ca8075c6c77e7"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N01B-09-neutral-transcript-session-ensure.md",
+      "source_sha256": "61bd71ab34cd2f461ee68a2f2ea3a7fc2852d10d56cb950818389ff012fa75e3",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "61bd71ab34cd2f461ee68a2f2ea3a7fc2852d10d56cb950818389ff012fa75e3"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N01S-session-identity.md",
+      "source_sha256": "2d444dc3c49e736b565e090e2edbdb630b1e5b4604bfd8ee7a646aed8e2c10c6",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2d444dc3c49e736b565e090e2edbdb630b1e5b4604bfd8ee7a646aed8e2c10c6"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/directives/CD-TUI-N03A-01-installable-shell.md",
+      "source_sha256": "4f9385f83b5ef0fd3f59cf37ebe5574ac794ae979d89d9bc4532157c79df1de1",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "4f9385f83b5ef0fd3f59cf37ebe5574ac794ae979d89d9bc4532157c79df1de1"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/execution-log.md",
+      "source_sha256": "07ef2ee0289dee8b4b7340de529631fa284be9ef82e66a9edd1239d404ab53a4",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "07ef2ee0289dee8b4b7340de529631fa284be9ef82e66a9edd1239d404ab53a4"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/incremental-testing-checks.json",
+      "source_sha256": "8301c7f7c511d9443db6925fce5f66a1df0b58d0ba641acf54a50fe12affc622",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "8301c7f7c511d9443db6925fce5f66a1df0b58d0ba641acf54a50fe12affc622"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/integration-contract.md",
+      "source_sha256": "ff7c27d2a7dc40500aa866af2b0c1bc9520b1f675e848b154108c58731389c1c",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ff7c27d2a7dc40500aa866af2b0c1bc9520b1f675e848b154108c58731389c1c"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/n00-integration-review.md",
+      "source_sha256": "0fd6fcf1e5fda8e893bb11aa9d44b533a5e2d2dff94cecc7b4f129f0b09651d1",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0fd6fcf1e5fda8e893bb11aa9d44b533a5e2d2dff94cecc7b4f129f0b09651d1"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/neutral-capability-map.md",
+      "source_sha256": "3acd034c747335172cbed8d491b6ba06115f58c3a3d967c42bacfa920f5e461c",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "3acd034c747335172cbed8d491b6ba06115f58c3a3d967c42bacfa920f5e461c"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/neutral-config-loader-contract.md",
+      "source_sha256": "dd9fa22da72cf15005d6ec0a1e1f38ce933c7a6a971848693fdeaefda97b0f87",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "dd9fa22da72cf15005d6ec0a1e1f38ce933c7a6a971848693fdeaefda97b0f87"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/neutral-event-lifecycle-contract.md",
+      "source_sha256": "a25864334ad51247919ff2ed20dfb6ff88325ba86b9082b3c53baa645666be3a",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "a25864334ad51247919ff2ed20dfb6ff88325ba86b9082b3c53baa645666be3a"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/planning/phase-build-plan.md",
+      "source_sha256": "41f2ad8b443777d1999edb9ce8d0c9ef6eba2bed7259d09c109f556bc25886ae",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "41f2ad8b443777d1999edb9ce8d0c9ef6eba2bed7259d09c109f556bc25886ae"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/planning-checks.json",
+      "source_sha256": "35a3b4d6eda1e5cb11d9946ca5f65cf8152b796fd793f70e56bbfd59e13f2586",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "35a3b4d6eda1e5cb11d9946ca5f65cf8152b796fd793f70e56bbfd59e13f2586"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/prd/README.md",
+      "source_sha256": "49a349feb2c88e78c9a4c801d4992f929089ac975c4c73300fa20d0ae17a45f9",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "85e5d4afd1d83f1a1f394643bf23e0bb96197dd26f7328170dd099cdac199997"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/reasoning-display-requirement.md",
+      "source_sha256": "2af3301e6d74fbba460f9b2182b911d25f67dab98e31fa1abe3688c780a6d3e3",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2af3301e6d74fbba460f9b2182b911d25f67dab98e31fa1abe3688c780a6d3e3"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/remediation/REM-TUI-N01B-01-01.md",
+      "source_sha256": "432d97298eac98de7c63627992eedaaf5a86c7a16d764369ed2a5d829e023c3f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "432d97298eac98de7c63627992eedaaf5a86c7a16d764369ed2a5d829e023c3f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/remediation/REM-TUI-N01B-09-01.md",
+      "source_sha256": "866f960c36b3048a76b2f4e5b303eb0d2851cbf68992d3459d08c5662b8fa6c5",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "866f960c36b3048a76b2f4e5b303eb0d2851cbf68992d3459d08c5662b8fa6c5"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/remediation/REM-TUI-N03A-01-01.md",
+      "source_sha256": "96785eb53d0d6472840e39dbb036b4a15fe685b9f232d34ad4770e864f5bea0e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "96785eb53d0d6472840e39dbb036b4a15fe685b9f232d34ad4770e864f5bea0e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/replacement-plan.md",
+      "source_sha256": "6442bade87646bdecf096a04e49f209b74bc5d31031e3c97050844e1d98dc9a9",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "6442bade87646bdecf096a04e49f209b74bc5d31031e3c97050844e1d98dc9a9"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/screen-layout.md",
+      "source_sha256": "62592dfaade2671b217d35cde4a576f78731f28fdbbd181c8d2f3c2b54ac3763",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "62592dfaade2671b217d35cde4a576f78731f28fdbbd181c8d2f3c2b54ac3763"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/shared-config-checks.json",
+      "source_sha256": "56d38d440938ba5541cebd087a2d5a90e07045b7291b7af7e59bac6fb9f0f34c",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "56d38d440938ba5541cebd087a2d5a90e07045b7291b7af7e59bac6fb9f0f34c"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/source-baseline.json",
+      "source_sha256": "addde405302ac06170be1a0a37827a08011783a3080a2e7ab04f0b8b761de43b",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "addde405302ac06170be1a0a37827a08011783a3080a2e7ab04f0b8b761de43b"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/startup-bootstrap-contract.md",
+      "source_sha256": "f6edd0dbea60b40902ed733c379de0637563f7d1b86d36afbf5bbdf9f692bde2",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "f6edd0dbea60b40902ed733c379de0637563f7d1b86d36afbf5bbdf9f692bde2"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/tactical-plan.md",
+      "source_sha256": "1f49baa60f0a0f840f40f85ba4c059350cc92d83f42d8d08f8f2ddf4f28fa73c",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "1f49baa60f0a0f840f40f85ba4c059350cc92d83f42d8d08f8f2ddf4f28fa73c"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/technical-contract-checks.json",
+      "source_sha256": "a0912056e693def6bcf48f550a9db35c30e0fd5a6174698230b0d4f6dea0c593",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "a0912056e693def6bcf48f550a9db35c30e0fd5a6174698230b0d4f6dea0c593"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/test-and-uat-plan.md",
+      "source_sha256": "0e220e649ad97dc8216e674f0266dfa7261885d763f28fa8b5e1fdc43ff8dd54",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0e220e649ad97dc8216e674f0266dfa7261885d763f28fa8b5e1fdc43ff8dd54"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/tool-activity-requirement.md",
+      "source_sha256": "218bf589497e693de67403562e41339cf99f13d5dcadd5d1c461a9beeacb4354",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "218bf589497e693de67403562e41339cf99f13d5dcadd5d1c461a9beeacb4354"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/user-guide-requirements.md",
+      "source_sha256": "e7543229ec39751555ed77ddd8daaed86f90df588914443e59c5a9a6d89c0742",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "e7543229ec39751555ed77ddd8daaed86f90df588914443e59c5a9a6d89c0742"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/ux-configuration-checks.json",
+      "source_sha256": "7a8fc68d0ddf668882d2ed7f7f3a6ca074d504d3d161387a83860de1a2e63a35",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7a8fc68d0ddf668882d2ed7f7f3a6ca074d504d3d161387a83860de1a2e63a35"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/ux-configuration.md",
+      "source_sha256": "465cfefd40b21a1404e02db96a5c554ea7def53a6db9e567f0ac5a853647f9ff",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "465cfefd40b21a1404e02db96a5c554ea7def53a6db9e567f0ac5a853647f9ff"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/ux-design-approval-checks.json",
+      "source_sha256": "5c629768f83cf7c9c1a269e02b4dae71be3cdb32bf3324eccd7fe5d71f0832cd",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5c629768f83cf7c9c1a269e02b4dae71be3cdb32bf3324eccd7fe5d71f0832cd"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01A-before-code-characterization.md",
+      "source_sha256": "39e5b90742f362ef63c6c4688373e1db79f5fc4f03a64e38bf7fa836de92e1e0",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "39e5b90742f362ef63c6c4688373e1db79f5fc4f03a64e38bf7fa836de92e1e0"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01A-local-checks.md",
+      "source_sha256": "8bb0a8dd63a83238914a726565cddb0dccb34516888ed356d7a0190d81917e7d",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "8bb0a8dd63a83238914a726565cddb0dccb34516888ed356d7a0190d81917e7d"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-01-before-code-characterization.md",
+      "source_sha256": "b8b2944d26bec25fd9823e77b4eb6a00889c61b366567a617b37533e8bf47610",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "b8b2944d26bec25fd9823e77b4eb6a00889c61b366567a617b37533e8bf47610"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-01-local-checks.md",
+      "source_sha256": "67c4498a1bcd22ed4246b45ff785143e69e295ebab224c78a912bf523124c68f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "67c4498a1bcd22ed4246b45ff785143e69e295ebab224c78a912bf523124c68f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-01-ubuntu-run-39190668231.md",
+      "source_sha256": "f4c7a51f462d65d9c3b0ce586f7c424aabeab4236d86185c3eb0c0bf5828917e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "f4c7a51f462d65d9c3b0ce586f7c424aabeab4236d86185c3eb0c0bf5828917e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-02-before-code-characterization.md",
+      "source_sha256": "c5bf0ada19cc285ca96bd4f132761a5a21d536c505af9d677e43b0004277a23e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "c5bf0ada19cc285ca96bd4f132761a5a21d536c505af9d677e43b0004277a23e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-02-local-checks.md",
+      "source_sha256": "f5e3bcda726a5c858f0ad2a00b40d2906214602c37f3cea183846e1234f28aa9",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "f5e3bcda726a5c858f0ad2a00b40d2906214602c37f3cea183846e1234f28aa9"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-02-ubuntu-run-39248181260.md",
+      "source_sha256": "66d39aa76f12ad1de60d565c353520c1288cedcd9c38a01d67daf7b872587f53",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "66d39aa76f12ad1de60d565c353520c1288cedcd9c38a01d67daf7b872587f53"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-03-before-code-characterization.md",
+      "source_sha256": "8a5f9f182bef51d992015d53bb71bca4913b0788c2dca8070f6d262709345db7",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "8a5f9f182bef51d992015d53bb71bca4913b0788c2dca8070f6d262709345db7"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-03-local-checks.md",
+      "source_sha256": "eb2268e39331f5688668b336db3c33cbf10c6f439093c782890e25ebe8b83b8f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "eb2268e39331f5688668b336db3c33cbf10c6f439093c782890e25ebe8b83b8f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-03-ubuntu-run-39256858630.md",
+      "source_sha256": "145b09397418c310520809d5cf3728737d892e8787f8b29d45313cc69dbedae4",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "145b09397418c310520809d5cf3728737d892e8787f8b29d45313cc69dbedae4"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-04-before-code-export-path-characterization.md",
+      "source_sha256": "5d393b4064fdd60cb3850a467dedea149739af3d70386a2c05f270b27c165067",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5d393b4064fdd60cb3850a467dedea149739af3d70386a2c05f270b27c165067"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-04-local-checks.md",
+      "source_sha256": "a75b42587655d02ebebf3dc78e794ad22d49d58e2ccd37a7aac24836aaa8adfb",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "a75b42587655d02ebebf3dc78e794ad22d49d58e2ccd37a7aac24836aaa8adfb"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-04-ubuntu-run-39268960501.md",
+      "source_sha256": "ae0388169a4fe1b93790ebd58837f581ff55a4fcb8c0b13be7543ddf1b5c5e46",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ae0388169a4fe1b93790ebd58837f581ff55a4fcb8c0b13be7543ddf1b5c5e46"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-05-before-code-single-file-export-characterization.md",
+      "source_sha256": "5d5cf68442ca08d79ebd4e3b683d9d4d72f6a4a657603ec303786e857f8be2d3",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5d5cf68442ca08d79ebd4e3b683d9d4d72f6a4a657603ec303786e857f8be2d3"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-05-local-checks.md",
+      "source_sha256": "1773eab4d1e6e1e0ba1f2c79559800f34d44d4133d5c97a8d48418715013d963",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "1773eab4d1e6e1e0ba1f2c79559800f34d44d4133d5c97a8d48418715013d963"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-05-ubuntu-run-39278047819.md",
+      "source_sha256": "bcbc8b46676f9470669767e46cf76cc00510afefdc4e7aeda4a5d29cc5017309",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "bcbc8b46676f9470669767e46cf76cc00510afefdc4e7aeda4a5d29cc5017309"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-06-before-code-all-session-export-characterization.md",
+      "source_sha256": "2f3f488b42c114deeaac6081beb7ccec6b10816ef45f16b29594bf95db199131",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2f3f488b42c114deeaac6081beb7ccec6b10816ef45f16b29594bf95db199131"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-06-local-checks.md",
+      "source_sha256": "0521f475a778a319ad181355aa7148d107219b20653a12385128702ff0278ba0",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0521f475a778a319ad181355aa7148d107219b20653a12385128702ff0278ba0"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-06-ubuntu-run-39284711876.md",
+      "source_sha256": "3018a24ab25f690ed2ec68800adeb8ec4119a76a4b9037cc841ece4c2a8cd497",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "3018a24ab25f690ed2ec68800adeb8ec4119a76a4b9037cc841ece4c2a8cd497"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-07-before-code-transcript-tool-record-characterization.md",
+      "source_sha256": "73d2dd3eb349f18d9ed3f1e6bb437f00e960f8931f5353b521049e5bf6bb6a20",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "73d2dd3eb349f18d9ed3f1e6bb437f00e960f8931f5353b521049e5bf6bb6a20"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-07-local-checks.md",
+      "source_sha256": "cfba4f22b305f23dcd90e3a63b66cd7fde6730e0308fd16bbefc5fe7a807fcbd",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "cfba4f22b305f23dcd90e3a63b66cd7fde6730e0308fd16bbefc5fe7a807fcbd"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-07-ubuntu-run-39294625340.md",
+      "source_sha256": "abdc7786433f62951cc7d85ffc886ab347a2128e0bcb43260f20788a88c8b7ec",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "abdc7786433f62951cc7d85ffc886ab347a2128e0bcb43260f20788a88c8b7ec"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-08-before-code-transcript-write-characterization.md",
+      "source_sha256": "7350dc0f1e053dcc5b0e5a5431e2c91389054cf0ce70dff1ec83a8d142b5a6b7",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7350dc0f1e053dcc5b0e5a5431e2c91389054cf0ce70dff1ec83a8d142b5a6b7"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-08-local-checks.md",
+      "source_sha256": "146b4717edc3429ce16cc6f649e2954ef22a54c46fd703abd3d6c90564062f7d",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "146b4717edc3429ce16cc6f649e2954ef22a54c46fd703abd3d6c90564062f7d"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-08-ubuntu-run-39301138733.md",
+      "source_sha256": "a602ea7f97674ae3ef70bb95b9cb82d7c22208f78f5293230037f451f05d0174",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "a602ea7f97674ae3ef70bb95b9cb82d7c22208f78f5293230037f451f05d0174"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-09-before-code-session-ensure-characterization.md",
+      "source_sha256": "72f919fc17169c4c596d8efb3db514546fce4b2373ac67548ff350aa49ed7ff2",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "72f919fc17169c4c596d8efb3db514546fce4b2373ac67548ff350aa49ed7ff2"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-09-local-checks.md",
+      "source_sha256": "396e74ec0a1b215019a3dc0407a9952cab231d5723d6c88ab03d13927fe179ae",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "396e74ec0a1b215019a3dc0407a9952cab231d5723d6c88ab03d13927fe179ae"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N01B-09-ubuntu-run-39307201390.md",
+      "source_sha256": "45fcd778c663d6fb18ce4f2fe8d5624a9cb2c6d7f1a3c215c43175dbe6e7f09d",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "45fcd778c663d6fb18ce4f2fe8d5624a9cb2c6d7f1a3c215c43175dbe6e7f09d"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N03A-01-before-code-shell-characterization.md",
+      "source_sha256": "7c2a7f3dd58b00cba455c5bf8576b92913728672ef67fcc33679265704705c52",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7c2a7f3dd58b00cba455c5bf8576b92913728672ef67fcc33679265704705c52"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/N03A-01-local-checks.md",
+      "source_sha256": "91400365a098016b1f1b2f40f6fc4b429b3d92cb69fa04416f3fd27d4f132389",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "91400365a098016b1f1b2f40f6fc4b429b3d92cb69fa04416f3fd27d4f132389"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/TUI-CI01-local-checks.md",
+      "source_sha256": "da957b260914515880cbdbbcd7a62e3325374ed2d8b2b0ff9586822c2a940437",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "da957b260914515880cbdbbcd7a62e3325374ed2d8b2b0ff9586822c2a940437"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/TUI-CI01-ubuntu-run-39172562601.md",
+      "source_sha256": "fcbb38a09650f22b120eeac1ef580c99932d937488e1b1dd1b116a373b9c7605",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "fcbb38a09650f22b120eeac1ef580c99932d937488e1b1dd1b116a373b9c7605"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/TUI-CI01-ubuntu-run-39173445329.md",
+      "source_sha256": "9b2e0379084f01a9fe1c5aa4b35f13de9a7e6488574dccd3eebb476418d7c974",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "9b2e0379084f01a9fe1c5aa4b35f13de9a7e6488574dccd3eebb476418d7c974"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/TUI-CI01-ubuntu-run-39174159031.md",
+      "source_sha256": "90eba145623fd04ecbeceddef6a7c6f497ad20d97837241554bb2ada5eaafdd6",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "90eba145623fd04ecbeceddef6a7c6f497ad20d97837241554bb2ada5eaafdd6"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/TUI-CI01-ubuntu-run-39175010441.md",
+      "source_sha256": "c051373088777df1996121da6edbacc5fc3e43a23b53bf9c89700f0b7b811b2d",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "c051373088777df1996121da6edbacc5fc3e43a23b53bf9c89700f0b7b811b2d"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/TUI-CI02-before-code-diagnosis.md",
+      "source_sha256": "63dbb749c9d087f40e7cc8f1043ed70b2d09d4ccf74d134172510f94e10252da",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "63dbb749c9d087f40e7cc8f1043ed70b2d09d4ccf74d134172510f94e10252da"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/TUI-CI02-local-checks.md",
+      "source_sha256": "d84827ac5263c6c9fff0369c1ab968e3154f4274665150b17bf1a8bf61238420",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "d84827ac5263c6c9fff0369c1ab968e3154f4274665150b17bf1a8bf61238420"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/TUI-CI02-ubuntu-run-39181571549.md",
+      "source_sha256": "523f4cd78edef7ab55ec1bc5a5900b1bb1cfd9cc53f50ff74464ca53c4e309db",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "523f4cd78edef7ab55ec1bc5a5900b1bb1cfd9cc53f50ff74464ca53c4e309db"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/TUI-CI03-local-checks.md",
+      "source_sha256": "4efbfa79b926249b6f4cf50749f11603a473bf7efafc9d3d7a439d7ebdb3cc9e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "4efbfa79b926249b6f4cf50749f11603a473bf7efafc9d3d7a439d7ebdb3cc9e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/TUI-CI03-ubuntu-run-39183895627.md",
+      "source_sha256": "ad7d6a41962fd6961b6f3919544b03d7a9c5b8a1299bdd01477eb0eaff598356",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ad7d6a41962fd6961b6f3919544b03d7a9c5b8a1299bdd01477eb0eaff598356"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01A-neutral-config-loader.md",
+      "source_sha256": "7ee2c2fca6916c43cef9ef837efc8e8b1c674c704ecc84b6a9aa154ce7d7f6c0",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7ee2c2fca6916c43cef9ef837efc8e8b1c674c704ecc84b6a9aa154ce7d7f6c0"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01A-waiver-closeout.md",
+      "source_sha256": "9bdb3c776b119bbddc7e34b70714aa77b7b551a28d3c485b3f694efc81fadb17",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "9bdb3c776b119bbddc7e34b70714aa77b7b551a28d3c485b3f694efc81fadb17"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-01-final-closeout-35e297e8.md",
+      "source_sha256": "67b49886a6f0d2a548c219dfa568c875de71e093a1fadfec3cd9ed6e3e57be80",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "67b49886a6f0d2a548c219dfa568c875de71e093a1fadfec3cd9ed6e3e57be80"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-01-final-linux-closeout-96724ec3.md",
+      "source_sha256": "1f9f125f8e934f7c2a28e4414632411c5c73556a7399c42b58a3d0bf03a4b81f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "1f9f125f8e934f7c2a28e4414632411c5c73556a7399c42b58a3d0bf03a4b81f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-01-postrun-4febb6f6.md",
+      "source_sha256": "00c553af971072b23df1218b701cd2db3e8dcd128d26eba6a6dfd1d672ca847c",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "00c553af971072b23df1218b701cd2db3e8dcd128d26eba6a6dfd1d672ca847c"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-01-preflight-7e5241c8.md",
+      "source_sha256": "46ac9629f832b24a86b16496394fe3be0347253e656cf0cbf789c5fea28b7b8b",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "46ac9629f832b24a86b16496394fe3be0347253e656cf0cbf789c5fea28b7b8b"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-01-prepush-edbcee92.md",
+      "source_sha256": "500751414ab0ed72cefb8df437a1da632f07fa68d344d75d197170af193409a2",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "500751414ab0ed72cefb8df437a1da632f07fa68d344d75d197170af193409a2"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-02-final-a3d0d961.md",
+      "source_sha256": "07317ff266767db384ad32265429106e4b9d7c7d4d04875c11202dee0fe580e1",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "07317ff266767db384ad32265429106e4b9d7c7d4d04875c11202dee0fe580e1"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-02-final-closeout-c6049a15.md",
+      "source_sha256": "aabfeebd2d683d2980fb33de1e147449476376dbc9872668ec09e9ea62ba409f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "aabfeebd2d683d2980fb33de1e147449476376dbc9872668ec09e9ea62ba409f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-02-postrun-8e389def.md",
+      "source_sha256": "71a050c83155e1c52b8c674887215d2a88eeba2a4397690452f68dbfa9b3dfbe",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "71a050c83155e1c52b8c674887215d2a88eeba2a4397690452f68dbfa9b3dfbe"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-02-prepush-e62f39ce.md",
+      "source_sha256": "0987c0626783f232594fb7a7e1c980c630b7d0506a59ef46a0e3d060e824af07",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0987c0626783f232594fb7a7e1c980c630b7d0506a59ef46a0e3d060e824af07"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-03-postrun-9a68d0c7.md",
+      "source_sha256": "3b155da25df446a149237702884f3240d2a6e9eda1ba57f24de45e8e7fa1b813",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "3b155da25df446a149237702884f3240d2a6e9eda1ba57f24de45e8e7fa1b813"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-03-prepush-782dedbb.md",
+      "source_sha256": "994c0a51f12576c3b04c8132a4378461d6014a251f4ac0c648e434c5a2b86f4a",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "994c0a51f12576c3b04c8132a4378461d6014a251f4ac0c648e434c5a2b86f4a"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-04-postrun-27c84ad9.md",
+      "source_sha256": "67d63c8b18c63b39b9d48864f09087b49b9a7cfbeba91597ce3769ea51d96984",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "67d63c8b18c63b39b9d48864f09087b49b9a7cfbeba91597ce3769ea51d96984"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-04-prepush-abeeb895.md",
+      "source_sha256": "42122e921ed1cb452732f7d7b42a783cee44d9bf1873b15a85e0588943807fc3",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "42122e921ed1cb452732f7d7b42a783cee44d9bf1873b15a85e0588943807fc3"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-05-final-331b1680.md",
+      "source_sha256": "2b487cfeb1c3c4814bd49cd5300ee0f620c0bb70531eebefbc8ed6886bf711b3",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2b487cfeb1c3c4814bd49cd5300ee0f620c0bb70531eebefbc8ed6886bf711b3"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-05-final-5710a1eb.md",
+      "source_sha256": "598ec977b3411efba9be91a67f38a2ade22751271f0eb22dea44571a813174fa",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "598ec977b3411efba9be91a67f38a2ade22751271f0eb22dea44571a813174fa"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-05-postrun-3d5695d8.md",
+      "source_sha256": "ff2f396ae0e3244851087ceb286da0a065ab7ae8968d077315b75966cd3b8b01",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ff2f396ae0e3244851087ceb286da0a065ab7ae8968d077315b75966cd3b8b01"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-05-prepush-authority-06abf49b.md",
+      "source_sha256": "1777e0199a9d505efef1e19e7a4bf245374525ac05e632a4de939a354dccb06e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "1777e0199a9d505efef1e19e7a4bf245374525ac05e632a4de939a354dccb06e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-05-prepush-c773f272.md",
+      "source_sha256": "2ebb81b7f12aae804b26e4a3e44aff3fef1285badf85c2d18f4e76e8f5a6fec0",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2ebb81b7f12aae804b26e4a3e44aff3fef1285badf85c2d18f4e76e8f5a6fec0"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-06-final-9ce5b32f.md",
+      "source_sha256": "289e881fd666458987c6df370f14cb490d0532f81efec3b04c699be08f551cf5",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "289e881fd666458987c6df370f14cb490d0532f81efec3b04c699be08f551cf5"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-06-final-a986d150.md",
+      "source_sha256": "333af50a2bb823047febd2bc535a6a5ae9e3c6844e404d35eda0074cb454b290",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "333af50a2bb823047febd2bc535a6a5ae9e3c6844e404d35eda0074cb454b290"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-06-postrun-3413c25f.md",
+      "source_sha256": "251efe1826c85006d3365238e9c4a507bcaf916f4ac16189c1bd62875e014995",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "251efe1826c85006d3365238e9c4a507bcaf916f4ac16189c1bd62875e014995"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-06-prepush-e16aede6.md",
+      "source_sha256": "b1501d3389cc848e3a4cbd9ac1d2fb06818fe76588d21a32740c470b2f981a80",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "b1501d3389cc848e3a4cbd9ac1d2fb06818fe76588d21a32740c470b2f981a80"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-06-push-preflight-c394025a.md",
+      "source_sha256": "bb417890f88239f745f05c390d73f94f936a5de702e19451fdfbe66030a374ff",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "bb417890f88239f745f05c390d73f94f936a5de702e19451fdfbe66030a374ff"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-07-final-069514b5.md",
+      "source_sha256": "9524a5ddba6db4b4474397afbae59b66ecc7709869554350b0fc68ea7663fa6f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "9524a5ddba6db4b4474397afbae59b66ecc7709869554350b0fc68ea7663fa6f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-07-final-2e8fa81d.md",
+      "source_sha256": "258802ca4ce285a2ad439574e31dbe2cb0431b04726923d5e683925816b74ec3",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "258802ca4ce285a2ad439574e31dbe2cb0431b04726923d5e683925816b74ec3"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-07-postrun-4fc8309d.md",
+      "source_sha256": "d8419e6df482e17cae33eb597e7d520cc6524e665c0f426d6d51a9790b7bceb4",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "d8419e6df482e17cae33eb597e7d520cc6524e665c0f426d6d51a9790b7bceb4"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-07-prepush-a196e95a.md",
+      "source_sha256": "ccffc36a0ac9dd8f0b0a305fd1ff32fc90c0bf9b5577799d76effa25830756ea",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ccffc36a0ac9dd8f0b0a305fd1ff32fc90c0bf9b5577799d76effa25830756ea"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-07-push-authority-e8fdfcb4.md",
+      "source_sha256": "aee0c4afaa4b78b9a20f4dae1631319e456fe8ddb5ea9392ac334e44424603ca",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "aee0c4afaa4b78b9a20f4dae1631319e456fe8ddb5ea9392ac334e44424603ca"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-08-final-1c5a70a3.md",
+      "source_sha256": "03bd7309cc31df7712f76353de4df563d007dc5880b81576d41b270fcbc7c7bc",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "03bd7309cc31df7712f76353de4df563d007dc5880b81576d41b270fcbc7c7bc"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-08-final-6d3adbd5.md",
+      "source_sha256": "0024eef42b2b4ffe33da6554894f58dda0bb18353830a3caadfe7e360ad9b5ba",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0024eef42b2b4ffe33da6554894f58dda0bb18353830a3caadfe7e360ad9b5ba"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-08-postrun-3a5e05cf.md",
+      "source_sha256": "0ea9b09a72092761659ea43cb12683d6f349cda7aaf9ea4317469a06dbeaaffd",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0ea9b09a72092761659ea43cb12683d6f349cda7aaf9ea4317469a06dbeaaffd"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-08-prepush-8ac249d3.md",
+      "source_sha256": "9c469f60aeca3fa32ab37bd53fd2382be1370cfae0c41402bd8cc6f34f9993a3",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "9c469f60aeca3fa32ab37bd53fd2382be1370cfae0c41402bd8cc6f34f9993a3"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-08-push-authority-a97cbbc3.md",
+      "source_sha256": "680b14bc3de0a84ada45b087a4a15bad370b2fee9a0dbfa8168deab15d15c489",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "680b14bc3de0a84ada45b087a4a15bad370b2fee9a0dbfa8168deab15d15c489"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-09-final-f0e53788.md",
+      "source_sha256": "cdd799e084a53b014cd10bb1b6d09ed91320e662a64ba9906f5c3f9147b1d7ba",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "cdd799e084a53b014cd10bb1b6d09ed91320e662a64ba9906f5c3f9147b1d7ba"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-09-final-ubuntu-f1b14cf7.md",
+      "source_sha256": "6f03f59c1d8767d02d318c97993e01954668c1be26a08fc7431186756b4ad985",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "6f03f59c1d8767d02d318c97993e01954668c1be26a08fc7431186756b4ad985"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-09-postrun-72cbc134.md",
+      "source_sha256": "1f2a697a8ce4f63e16b3657e4c6f6529fe769d03aca640e072cba633d28df825",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "1f2a697a8ce4f63e16b3657e4c6f6529fe769d03aca640e072cba633d28df825"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-09-prepush-36028fbf.md",
+      "source_sha256": "f5b464e432caf5c128d420814d86012022387e0701904df89d4698896ee41b29",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "f5b464e432caf5c128d420814d86012022387e0701904df89d4698896ee41b29"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01B-09-prepush-cda7419d.md",
+      "source_sha256": "2b72802516b45cbde7fb88b9c82236f83ed166aab83b190dddb32eb110720877",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2b72802516b45cbde7fb88b9c82236f83ed166aab83b190dddb32eb110720877"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N01S-session-identity.md",
+      "source_sha256": "3237d767a6d19c5ee6c063304797fa0381f4a5483f73e04a68d05aa915f321e9",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "3237d767a6d19c5ee6c063304797fa0381f4a5483f73e04a68d05aa915f321e9"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-N03A-01-first-f921eb4c.md",
+      "source_sha256": "16dfc76ea32922c020faf3f79256e806f8365f379eeb0033b96b52f729e5f79a",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "16dfc76ea32922c020faf3f79256e806f8365f379eeb0033b96b52f729e5f79a"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-final-a7519db2.md",
+      "source_sha256": "4143b200d9a47e9038390f1eefc47c7bc6e682fdab74e479b1bfe6a90bca062c",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "4143b200d9a47e9038390f1eefc47c7bc6e682fdab74e479b1bfe6a90bca062c"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-3086f7d7.md",
+      "source_sha256": "84ec543deda8e39bf9e7bd5d3fabebdd965ef517cbd3c785f3146bd9b24e2324",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "84ec543deda8e39bf9e7bd5d3fabebdd965ef517cbd3c785f3146bd9b24e2324"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-49acc931.md",
+      "source_sha256": "02b82c87c3ddd8c139c2da1f78c9eb3b87396a02125de5701670d21b37f1c586",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "02b82c87c3ddd8c139c2da1f78c9eb3b87396a02125de5701670d21b37f1c586"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-505c4c1d.md",
+      "source_sha256": "a28a119218409156ad07b717acbe6f7371658944e3bab7a9680cb9db9995da4f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "a28a119218409156ad07b717acbe6f7371658944e3bab7a9680cb9db9995da4f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-7a41004a.md",
+      "source_sha256": "87213bd275421ed43e70590a86803110b75b130941b7d558d54bb6713bdb5d16",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "87213bd275421ed43e70590a86803110b75b130941b7d558d54bb6713bdb5d16"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-7d97aacd.md",
+      "source_sha256": "ca3b8ee83e8fdc51e479bfa07e4c11f822c46673c1705e9203fe4f29eba85dfc",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ca3b8ee83e8fdc51e479bfa07e4c11f822c46673c1705e9203fe4f29eba85dfc"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI01-preflight-89a875ac.md",
+      "source_sha256": "f914b14363ddc039824f43a355af7bdbcba075ab9055642064cc637dce4f8b29",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "f914b14363ddc039824f43a355af7bdbcba075ab9055642064cc637dce4f8b29"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI02-preflight-0aac67f6.md",
+      "source_sha256": "5ecfb69be12af7be3ab1e20c6549d9f99572cfcac3b874096b47217daf39ebb3",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5ecfb69be12af7be3ab1e20c6549d9f99572cfcac3b874096b47217daf39ebb3"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI02-preflight-0bd4e441.md",
+      "source_sha256": "6cfbbc6923a3745bf6c3f1a7c3cef67b979484377c9e4b68919dc6d0c62d40ad",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "6cfbbc6923a3745bf6c3f1a7c3cef67b979484377c9e4b68919dc6d0c62d40ad"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI02-preflight-49adbcb5.md",
+      "source_sha256": "bdc34a5e7c6ccfec5e755bf02ff1f3c1459c347ce04bfa85cb730bb7f700a684",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "bdc34a5e7c6ccfec5e755bf02ff1f3c1459c347ce04bfa85cb730bb7f700a684"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI03-final-676700f5.md",
+      "source_sha256": "d76077fd6e84a67ae5739ae47447c8a09ffa592b04cdd4b9e32b08841a6e7bd0",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "d76077fd6e84a67ae5739ae47447c8a09ffa592b04cdd4b9e32b08841a6e7bd0"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/VAL-TUI-CI03-preflight-315a30e4.md",
+      "source_sha256": "c7f6a241b5ed783d8b1951250295a554ec8dbe83242b5f9f7b5a41b6662fba39",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "c7f6a241b5ed783d8b1951250295a554ec8dbe83242b5f9f7b5a41b6662fba39"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/activity-first-entry-visibility-checks.json",
+      "source_sha256": "4e11b2c03e2a5c2b7d89508f95abe4f65b8aaa7419722dfed34cb6cc8d487470",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "4e11b2c03e2a5c2b7d89508f95abe4f65b8aaa7419722dfed34cb6cc8d487470"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/activity-inline-placement-checks.json",
+      "source_sha256": "4a78a587b17860f526ad2eb26b23bf47345b4d7e90ebf1f5e34e4c4d6ef03b74",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "4a78a587b17860f526ad2eb26b23bf47345b4d7e90ebf1f5e34e4c4d6ef03b74"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/activity-scroll-return-checks.json",
+      "source_sha256": "2dfc62e9bf75c6cb5754cf11fdeb73ff87028747943b515bb8b658f9599da358",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2dfc62e9bf75c6cb5754cf11fdeb73ff87028747943b515bb8b658f9599da358"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/architecture-reset-checks.json",
+      "source_sha256": "2a3b42847eb625e27a4d34877b91fd57981791046c6d28d55725cb5de124fbf1",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2a3b42847eb625e27a4d34877b91fd57981791046c6d28d55725cb5de124fbf1"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/baseline-collection-collision.log",
+      "source_sha256": "aa16f924aa32a9853e27526d14c0cd0e643c331c6b81061fc1c80bee225eafd8",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "aa16f924aa32a9853e27526d14c0cd0e643c331c6b81061fc1c80bee225eafd8"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/baseline-mypy.log",
+      "source_sha256": "f9b031e5c45aa702cd4fef028d465551cb20a2c4698e0913c7b00766b20ac4d8",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "f9b031e5c45aa702cd4fef028d465551cb20a2c4698e0913c7b00766b20ac4d8"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/baseline-pytest.log",
+      "source_sha256": "c622b2308004b4d28e7776641fa68a603688a8c590a085b04b3775d6279a22e1",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "c622b2308004b4d28e7776641fa68a603688a8c590a085b04b3775d6279a22e1"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/baseline-ruff.log",
+      "source_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/browse-path-entry-checks.json",
+      "source_sha256": "04053622553440f5ea5df071bdaf2c7053bfe3f4d4f4bb2fd755cf5282d7a06f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "04053622553440f5ea5df071bdaf2c7053bfe3f4d4f4bb2fd755cf5282d7a06f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/chat-only-runtime-mode-checks.json",
+      "source_sha256": "0678e6c6ad7ab787f963d16d4afbe54fcb89911344e9d241518355b7aea03b39",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0678e6c6ad7ab787f963d16d4afbe54fcb89911344e9d241518355b7aea03b39"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/chooser-candidate-types-checks.json",
+      "source_sha256": "d88197593c7a7c6703df5087114ce75161f1875a439d6cea82cec9649a593ad9",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "d88197593c7a7c6703df5087114ce75161f1875a439d6cea82cec9649a593ad9"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/chooser-content-detection-checks.json",
+      "source_sha256": "d1952dfe5e7b0f683deaba4db435cdfe4b0c3824295dce92a77b9b6131464530",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "d1952dfe5e7b0f683deaba4db435cdfe4b0c3824295dce92a77b9b6131464530"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/chooser-empty-list-checks.json",
+      "source_sha256": "d5e322582ebfaa74132e937868173a062a21d88e92eef3334194326b00ca6918",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "d5e322582ebfaa74132e937868173a062a21d88e92eef3334194326b00ca6918"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/chooser-initial-location-checks.json",
+      "source_sha256": "8638fd117cd0fef1168320cb8057162dbc95648f778088e1fd278eb80921e7b6",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "8638fd117cd0fef1168320cb8057162dbc95648f778088e1fd278eb80921e7b6"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/chooser-invalid-selection-checks.json",
+      "source_sha256": "c0117f72e3280700f8b77e80187939811c2452ffd4daa92f0cc4f38475fccbc7",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "c0117f72e3280700f8b77e80187939811c2452ffd4daa92f0cc4f38475fccbc7"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/chooser-real-start-failure-checks.json",
+      "source_sha256": "b90406b61d32cf08cbba1560c0e1136851d11ef88a9536d7615fea6997155190",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "b90406b61d32cf08cbba1560c0e1136851d11ef88a9536d7615fea6997155190"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/chooser-refresh-checks.json",
+      "source_sha256": "7773f03efbed320c68a6693f6fd5f442a2c50ea24160e1ab1f3076022c87138e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7773f03efbed320c68a6693f6fd5f442a2c50ea24160e1ab1f3076022c87138e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/chooser-start-cleanup-failure-checks.json",
+      "source_sha256": "63c19296861ba8302ee1ea0bd90b9a6c48e028624afcd16ba7c6b7803d976183",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "63c19296861ba8302ee1ea0bd90b9a6c48e028624afcd16ba7c6b7803d976183"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/chooser-symlink-checks.json",
+      "source_sha256": "736a271201b3f058fdad5b8156e8fe1f106fbbe6a2642caa7628e0bb25655803",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "736a271201b3f058fdad5b8156e8fe1f106fbbe6a2642caa7628e0bb25655803"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/collapsed-activity-count-checks.json",
+      "source_sha256": "2f015e0e0d215f4f80f130fdc26cdc00896e8bb8a3c35689311e41d59b42b2b5",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2f015e0e0d215f4f80f130fdc26cdc00896e8bb8a3c35689311e41d59b42b2b5"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/configuration-guide-placement-checks.json",
+      "source_sha256": "4db1cd5fcdb576aafd2ca38ba7490f29174d6839455258e4fd1b6af539a6b98f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "4db1cd5fcdb576aafd2ca38ba7490f29174d6839455258e4fd1b6af539a6b98f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/confirmed-restore-pending-retention-checks.json",
+      "source_sha256": "a288446ceff1da1b434923b59681efa59b071a40461cda71a70b8846a17e65eb",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "a288446ceff1da1b434923b59681efa59b071a40461cda71a70b8846a17e65eb"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-aggregate-attachment-rejection-checks.json",
+      "source_sha256": "ce3240b69266ec408b007a92f1550b0b224c10b33e1dbd6da5e4139020dd33a6",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ce3240b69266ec408b007a92f1550b0b224c10b33e1dbd6da5e4139020dd33a6"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-attachment-default-values-checks.json",
+      "source_sha256": "e1987d9d3adf0631bf8b2b87c72440f6e71766d34952092a14eb3e2318ca7f58",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "e1987d9d3adf0631bf8b2b87c72440f6e71766d34952092a14eb3e2318ca7f58"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-attachment-fixed-defaults-checks.json",
+      "source_sha256": "ab45bef7bd217d35eb9862dcf12aa6886dc88ed3ebf4bcd8a39df51e0e36ed50",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ab45bef7bd217d35eb9862dcf12aa6886dc88ed3ebf4bcd8a39df51e0e36ed50"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-attachment-limit-config-checks.json",
+      "source_sha256": "15f7164810e2cb5cef7c629b82cfb4d80262f65abc13748180578054b8d0979a",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "15f7164810e2cb5cef7c629b82cfb4d80262f65abc13748180578054b8d0979a"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-attachment-token-units-checks.json",
+      "source_sha256": "c07cd5070c4504e9449b8c4bbca40a9728145f13e5be4926a8483a80c1d8c7bd",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "c07cd5070c4504e9449b8c4bbca40a9728145f13e5be4926a8483a80c1d8c7bd"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-file-attachment-lifetime-checks.json",
+      "source_sha256": "70ef1f5be3ddedf730dee4f149e09b6a06cde70c7211450bc7db56f239a833ae",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "70ef1f5be3ddedf730dee4f149e09b6a06cde70c7211450bc7db56f239a833ae"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-file-browsing-checks.json",
+      "source_sha256": "5b8636a80b96da9865e785bef4974d813729d2043fd9eb039333d16bf6ee367f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5b8636a80b96da9865e785bef4974d813729d2043fd9eb039333d16bf6ee367f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-file-format-extraction-checks.json",
+      "source_sha256": "2fb60b2b680b58b8a9df8f51e59db79990b02ceb0d587000aeb02ea6a836afd5",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2fb60b2b680b58b8a9df8f51e59db79990b02ceb0d587000aeb02ea6a836afd5"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-file-relaunch-scope-checks.json",
+      "source_sha256": "5d9520ea632c94db9ab6959d32a496864586c6e19248241d4465beacfe46692c",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5d9520ea632c94db9ab6959d32a496864586c6e19248241d4465beacfe46692c"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-file-selection-attachment-checks.json",
+      "source_sha256": "778844ef50b2ce5748a2a5b2b8c4da930252d022b596ee3b53af0d50c5bedd26",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "778844ef50b2ce5748a2a5b2b8c4da930252d022b596ee3b53af0d50c5bedd26"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-file-snapshot-checks.json",
+      "source_sha256": "ac11f5bbf9de8421b5a86d5dae28a09f85c08f188a069e570ad27297d7772514",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ac11f5bbf9de8421b5a86d5dae28a09f85c08f188a069e570ad27297d7772514"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-mixed-pdf-page-routing-checks.json",
+      "source_sha256": "e914adeb5719f8d443ce9ca2ce86150c49d0ea811a9894a1e39d2e08a22ed408",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "e914adeb5719f8d443ce9ca2ce86150c49d0ea811a9894a1e39d2e08a22ed408"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-multiple-file-attachments-checks.json",
+      "source_sha256": "68aaf0752600ab77e24f793ed866db8394fd0cd99515a3772bf154b2ddf12559",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "68aaf0752600ab77e24f793ed866db8394fd0cd99515a3772bf154b2ddf12559"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-ocr-language-selection-checks.json",
+      "source_sha256": "5613c04a5d7900b2f1c1360c6f5c1fdaecd171b1312bdd379fdca60d6f17afdc",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5613c04a5d7900b2f1c1360c6f5c1fdaecd171b1312bdd379fdca60d6f17afdc"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-ocr-page-failure-checks.json",
+      "source_sha256": "1a8ad6f6d2cc8ceb05ecfb985439058e861135f1d781cbd6040aa4a7cce90e84",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "1a8ad6f6d2cc8ceb05ecfb985439058e861135f1d781cbd6040aa4a7cce90e84"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-older-turn-compaction-recovery-checks.json",
+      "source_sha256": "2ba68e5390e2dc7bbc91759d84cde21582aaa199b661cf32ac19f11e4b1fac36",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2ba68e5390e2dc7bbc91759d84cde21582aaa199b661cf32ac19f11e4b1fac36"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-oversized-file-rejection-checks.json",
+      "source_sha256": "08164abf4e80ed9ba8decb6c5cef14c9b4a85e45fc2bf6f7519a196cca38e150",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "08164abf4e80ed9ba8decb6c5cef14c9b4a85e45fc2bf6f7519a196cca38e150"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-pdf-renderer-package-checks.json",
+      "source_sha256": "eab844fc6cd818eb0b6d0beac82f0ac9dbddb765a7a5f34be19766b9fb33b076",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "eab844fc6cd818eb0b6d0beac82f0ac9dbddb765a7a5f34be19766b9fb33b076"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-scanned-pdf-ocr-checks.json",
+      "source_sha256": "eaca04808a895ba951ede1a729ec06462c43e815cd83c91c630f48f040582511",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "eaca04808a895ba951ede1a729ec06462c43e815cd83c91c630f48f040582511"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-tesseract-system-dependency-checks.json",
+      "source_sha256": "771aab743251472d4eae604ba0aa760d56dac4669e1a7ca60a92cf256db2056a",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "771aab743251472d4eae604ba0aa760d56dac4669e1a7ca60a92cf256db2056a"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-turn-preflight-rejection-checks.json",
+      "source_sha256": "878f473496fd0e6bc3d451e455605b7182f60161622f2b40d2eee000dbc9222b",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "878f473496fd0e6bc3d451e455605b7182f60161622f2b40d2eee000dbc9222b"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-xlsx-all-worksheets-checks.json",
+      "source_sha256": "f1675f44dd6d667e95df8c69d3020aa0011f94cbe955e0b880559b63548e877d",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "f1675f44dd6d667e95df8c69d3020aa0011f94cbe955e0b880559b63548e877d"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-xlsx-formula-result-checks.json",
+      "source_sha256": "dca8e29d92331c9cea450c2f92720bc64ee0bf4d70ab43d995d79ff6783ed196",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "dca8e29d92331c9cea450c2f92720bc64ee0bf4d70ab43d995d79ff6783ed196"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/context-xlsx-sheet-failure-checks.json",
+      "source_sha256": "14236c346dd9d4e125180e3974b5863c0c54b9b3bd49d4dc141aeab1a209a7a2",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "14236c346dd9d4e125180e3974b5863c0c54b9b3bd49d4dc141aeab1a209a7a2"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/display-clear-behavior-checks.json",
+      "source_sha256": "2eafbba9ae9ddbc74df9d53a9b3fe2aad82b8672624ceafe65297d2c079f28bf",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2eafbba9ae9ddbc74df9d53a9b3fe2aad82b8672624ceafe65297d2c079f28bf"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/editor-history-additional-routes-checks.json",
+      "source_sha256": "f3ac27a975e8445593a9028bc4d9fb005f3a4f95658c527ae9dfa6b08928be84",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "f3ac27a975e8445593a9028bc4d9fb005f3a4f95658c527ae9dfa6b08928be84"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/editor-history-boundary-keys-checks.json",
+      "source_sha256": "5e07762a329d6c5002aab32d1ce49da19ad7e28db7bf7cf6d5c1be9fbb77b15e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5e07762a329d6c5002aab32d1ce49da19ad7e28db7bf7cf6d5c1be9fbb77b15e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/editor-history-content-checks.json",
+      "source_sha256": "52943244627606466f58adc15aa1501e6e10fe05444b0aac108439b803e6e45e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "52943244627606466f58adc15aa1501e6e10fe05444b0aac108439b803e6e45e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/editor-history-draft-restoration-checks.json",
+      "source_sha256": "6adfa6d827952a00554caea530cdcdf1bdf403907e11f23581dc523145205c38",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "6adfa6d827952a00554caea530cdcdf1bdf403907e11f23581dc523145205c38"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/editor-history-session-scope-checks.json",
+      "source_sha256": "2cc00e472b20c4a2b96b963ee4d503343d41d64878cce616f935d4facd5d5f00",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2cc00e472b20c4a2b96b963ee4d503343d41d64878cce616f935d4facd5d5f00"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/editor-key-behavior-checks.json",
+      "source_sha256": "af6d6434f0d574a7c8f47de01fd7fa70b915089e0657d2edf8976f04d4ca445a",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "af6d6434f0d574a7c8f47de01fd7fa70b915089e0657d2edf8976f04d4ca445a"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/explicit-config-invalid-checks.json",
+      "source_sha256": "901492c4c61da6e2f33a7e92716201e17fb93de3533605a3ca1a5f5a0764986e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "901492c4c61da6e2f33a7e92716201e17fb93de3533605a3ca1a5f5a0764986e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/explicit-real-start-failure-checks.json",
+      "source_sha256": "d36558db2b09c4bcb45f4eaaa1da10895f94dee011e209ef3d16936778b98608",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "d36558db2b09c4bcb45f4eaaa1da10895f94dee011e209ef3d16936778b98608"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/failed-initial-transcript-exclusion-checks.json",
+      "source_sha256": "5d7e6572620ae67329e08526dc3036c400ed1ba437144477d56ed0446c424985",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5d7e6572620ae67329e08526dc3036c400ed1ba437144477d56ed0446c424985"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/failed-prompt-display-clear-recovery-checks.json",
+      "source_sha256": "5ccd9f5bb1f2ff1e78e88e4a94e4f0b2806811d2b5d33d519c47341a97a94d1e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5ccd9f5bb1f2ff1e78e88e4a94e4f0b2806811d2b5d33d519c47341a97a94d1e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/failed-prompt-editor-recovery-checks.json",
+      "source_sha256": "5a369ba5bfd5e8f7b1ab623ea43f3c5e1dd492ff3ccb5f759637990a311f703e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5a369ba5bfd5e8f7b1ab623ea43f3c5e1dd492ff3ccb5f759637990a311f703e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/failed-prompt-explicit-dismissal-checks.json",
+      "source_sha256": "0afb783ac81c14393de022df59028ac575b41a9dcab8d2471c63af021c3ed74c",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0afb783ac81c14393de022df59028ac575b41a9dcab8d2471c63af021c3ed74c"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/failed-prompt-restore-location-checks.json",
+      "source_sha256": "fe60c11b815333ee3c63606965dfacc4475c606b9d98a528416645f0f4b7e174",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "fe60c11b815333ee3c63606965dfacc4475c606b9d98a528416645f0f4b7e174"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/history-return-control-checks.json",
+      "source_sha256": "7e68f97bd66547e6d7491a4699bd0c4d23bb93a1e0aeac480998c6def385481f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7e68f97bd66547e6d7491a4699bd0c4d23bb93a1e0aeac480998c6def385481f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/incomplete-chooser-candidate-checks.json",
+      "source_sha256": "b0919328d2f915c7756d3e548e630051238a3ab1ac30f7a518cab7d3e541f34b",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "b0919328d2f915c7756d3e548e630051238a3ab1ac30f7a518cab7d3e541f34b"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/inline-timeline-role-colors-checks.json",
+      "source_sha256": "b6d690acbbd4590c22bc50e531a5c5f0bfc6093fa2f66ee1bf52923ff901e33b",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "b6d690acbbd4590c22bc50e531a5c5f0bfc6093fa2f66ee1bf52923ff901e33b"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/later-incomplete-transcript-exclusion-checks.json",
+      "source_sha256": "3f774fb4dd59acf02c35cbecd8b95772263f56ddd39e89d214285b55755c5894",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "3f774fb4dd59acf02c35cbecd8b95772263f56ddd39e89d214285b55755c5894"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/multiple-failed-prompt-restore-chooser-checks.json",
+      "source_sha256": "5996a3a6382234158b4f12cd487a1d2f206a1e1358dad1eae9de9c18fc4bf2bd",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5996a3a6382234158b4f12cd487a1d2f206a1e1358dad1eae9de9c18fc4bf2bd"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/n00-integration-review-checks.json",
+      "source_sha256": "72af35d3b86588a0b24463016ed358d74579ea333059ef9e39cf14e0d348e4b0",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "72af35d3b86588a0b24463016ed358d74579ea333059ef9e39cf14e0d348e4b0"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/n01a-directive-planning-checks.json",
+      "source_sha256": "84b4c2a556312083994dd30ba1a6ee72df0c8b0d3b7a1a244ffb1aa8db52fad5",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "84b4c2a556312083994dd30ba1a6ee72df0c8b0d3b7a1a244ffb1aa8db52fad5"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/neutral-capability-map-checks.json",
+      "source_sha256": "4c567fa3251939eca7bf6ca753010386da079e8bcf5ffa969436856bb4ccf506",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "4c567fa3251939eca7bf6ca753010386da079e8bcf5ffa969436856bb4ccf506"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/neutral-config-loader-contract-checks.json",
+      "source_sha256": "bf049316126058c3f6876e11b9e494d0930ab96a1b2c7ba3ef11ff04cf09d401",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "bf049316126058c3f6876e11b9e494d0930ab96a1b2c7ba3ef11ff04cf09d401"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/newline-fallback-checks.json",
+      "source_sha256": "afdb3018cc36aff04677596eb695dd82aaadeb560d7845a858fe93c8486d63f6",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "afdb3018cc36aff04677596eb695dd82aaadeb560d7845a858fe93c8486d63f6"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/not-run-request-boundary-checks.json",
+      "source_sha256": "1423c43beddf2f8a9a105f26a940d7d04a6fca970969be449754de279fe97b19",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "1423c43beddf2f8a9a105f26a940d7d04a6fca970969be449754de279fe97b19"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/older-activity-state-checks.json",
+      "source_sha256": "cae0e9f2925a2b8c88da5d7836a3b63aa588df194130107503939e121feb75bc",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "cae0e9f2925a2b8c88da5d7836a3b63aa588df194130107503939e121feb75bc"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/older-failed-prompt-successful-turn-cleanup-checks.json",
+      "source_sha256": "5c42c815f77ab04eb88d6351105d6d9e54d591937255b9b8d96f1c49d5265864",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5c42c815f77ab04eb88d6351105d6d9e54d591937255b9b8d96f1c49d5265864"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/oversized-activity-parameter-checks.json",
+      "source_sha256": "699dbcce23ee1ff0ca69f1cfc7d5d2ff971b4644423e823cc534c0c8517cb1fa",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "699dbcce23ee1ff0ca69f1cfc7d5d2ff971b4644423e823cc534c0c8517cb1fa"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/palette-command-selection-checks.json",
+      "source_sha256": "4bf3df118d99319388e4a22e1f1a32b48663ebd337c2163d7f0145ed6cabb3cb",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "4bf3df118d99319388e4a22e1f1a32b48663ebd337c2163d7f0145ed6cabb3cb"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/palette-draft-replacement-checks.json",
+      "source_sha256": "7fb4f15b73864f91b2f1ed8061ccd42af1f2a4cfc06ec86fbd8d1d7c4af7dcdb",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7fb4f15b73864f91b2f1ed8061ccd42af1f2a4cfc06ec86fbd8d1d7c4af7dcdb"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/pinned-prompt-reasoning-requirements-checks.json",
+      "source_sha256": "4fa0941148e23d7fcc936b7ffa154cbca844a4d39f0ba3c3533e5398f64f187e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "4fa0941148e23d7fcc936b7ffa154cbca844a4d39f0ba3c3533e5398f64f187e"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/provider-context-rejection-recovery-checks.json",
+      "source_sha256": "2bea6fd1eea197418a946080dd5ba60967c01a9ea2481bb416d02f88f9994c64",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "2bea6fd1eea197418a946080dd5ba60967c01a9ea2481bb416d02f88f9994c64"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/rendered-history-eviction-checks.json",
+      "source_sha256": "7e03ab89ea82c3e877e8282e531e8b2e51521ca1dac1bca8bb3ecf7717feca5f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7e03ab89ea82c3e877e8282e531e8b2e51521ca1dac1bca8bb3ecf7717feca5f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/replacement-plan-review-checks.json",
+      "source_sha256": "7922d21d436267a199f296179aa2c5a2c220238fc7026b1e374f9439c4de2f9f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7922d21d436267a199f296179aa2c5a2c220238fc7026b1e374f9439c4de2f9f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/screen-layout-proposal-checks.json",
+      "source_sha256": "96417b0c9ebfea7791a46fe7f912372cb5fee4e2153eb2231fbde341ff925c53",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "96417b0c9ebfea7791a46fe7f912372cb5fee4e2153eb2231fbde341ff925c53"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/slash-subcommand-suggestion-checks.json",
+      "source_sha256": "25f144b93c57243b126267a4bd1ecf056bd93fb261ef7e9d39fcecd841d5a859",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "25f144b93c57243b126267a4bd1ecf056bd93fb261ef7e9d39fcecd841d5a859"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/slash-suggestion-key-checks.json",
+      "source_sha256": "a8114fb1ed64caa0238019d46113cd779d458e2926c4c32254ae318f546b5b4a",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "a8114fb1ed64caa0238019d46113cd779d458e2926c4c32254ae318f546b5b4a"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/slash-suggestion-selection-checks.json",
+      "source_sha256": "71f704a70d8514e9d3bd99607a4c376a5fada9fe28bea102720ad32132f002ec",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "71f704a70d8514e9d3bd99607a4c376a5fada9fe28bea102720ad32132f002ec"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/slash-suggestion-visibility-checks.json",
+      "source_sha256": "713145326663a2a1e3618d38e5e41edc219046900ab4e69055e22443aaf5a514",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "713145326663a2a1e3618d38e5e41edc219046900ab4e69055e22443aaf5a514"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/slash-usage-hint-checks.json",
+      "source_sha256": "580af4c28a4be1b1d7316e797b55eb8fb996a075024983a00dd89c64d8abc547",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "580af4c28a4be1b1d7316e797b55eb8fb996a075024983a00dd89c64d8abc547"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/startup-bootstrap-contract-checks.json",
+      "source_sha256": "7c9fe76abf975861096afb7b22e960896a7aae300bfd8b19b4a872b3f74f08d7",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "7c9fe76abf975861096afb7b22e960896a7aae300bfd8b19b4a872b3f74f08d7"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/startup-replay-failure-view-checks.json",
+      "source_sha256": "6af4f4f759ac75a622e2965982b527c5a2f627cd5a6d7175a6e08b91a8bdff08",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "6af4f4f759ac75a622e2965982b527c5a2f627cd5a6d7175a6e08b91a8bdff08"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/startup-replay-no-retry-checks.json",
+      "source_sha256": "0e1002ac5f7568630123e9f076956ae5508f56466ddcefb6ff16a2851c1c7344",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0e1002ac5f7568630123e9f076956ae5508f56466ddcefb6ff16a2851c1c7344"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/startup-replay-result-checks.json",
+      "source_sha256": "6315b93aee6c7cd4dd9cfab88a70dd8313eccd20e6be1d4a1d3d3bdb21e8c9a5",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "6315b93aee6c7cd4dd9cfab88a70dd8313eccd20e6be1d4a1d3d3bdb21e8c9a5"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/startup-replay-summary-checks.json",
+      "source_sha256": "f588a3be57ed6debd8b539d5e7173ce12fe435c6cc6c851a767eb541fcd57f85",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "f588a3be57ed6debd8b539d5e7173ce12fe435c6cc6c851a767eb541fcd57f85"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/technical-evidence.json",
+      "source_sha256": "5258fe6c6efd0c6dbb4085176eb989258b2e7e7053b7c08296aedd8c336df4f3",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "5258fe6c6efd0c6dbb4085176eb989258b2e7e7053b7c08296aedd8c336df4f3"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/test-unit-map.json",
+      "source_sha256": "35803c5bc1050e2382fc9bba82b9211b9ef3e4790c33f470b20ea7e73d11e94d",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "35803c5bc1050e2382fc9bba82b9211b9ef3e4790c33f470b20ea7e73d11e94d"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/textual-overlay.txt",
+      "source_sha256": "89d98dfdc3228c63a7286c3cefa3004140caa3db5929aa12a6c29042fbc23d81",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "89d98dfdc3228c63a7286c3cefa3004140caa3db5929aa12a6c29042fbc23d81"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/textual-resolution.log",
+      "source_sha256": "6f803ceb7736bf50db05f0428b63d020edecc8e5b4e3b2d3b2d4878f50175a55",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "6f803ceb7736bf50db05f0428b63d020edecc8e5b4e3b2d3b2d4878f50175a55"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/tool-activity-first-release-checks.json",
+      "source_sha256": "a2dd7159afde5a9a5b3e3acd9eda5a6e8e18fdc6b9d1fc86afafe1804b292c72",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "a2dd7159afde5a9a5b3e3acd9eda5a6e8e18fdc6b9d1fc86afafe1804b292c72"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/tool-activity-parameters-checks.json",
+      "source_sha256": "d76d9fde75a1b78af00d643eea9f198bc8e8e468dfa989102af6b3b58051f4da",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "d76d9fde75a1b78af00d643eea9f198bc8e8e468dfa989102af6b3b58051f4da"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/tool-activity-requirement-checks.json",
+      "source_sha256": "dc76f7d8f72666acac6dafa4d475a1ae7e44f44a435f011a28b8142a0d553a62",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "dc76f7d8f72666acac6dafa4d475a1ae7e44f44a435f011a28b8142a0d553a62"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/tool-activity-sequence-clarification-checks.json",
+      "source_sha256": "0210f62c26f3719a745766fbdb3c9dd2c2f79aa5d922a25892695b18d012b157",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0210f62c26f3719a745766fbdb3c9dd2c2f79aa5d922a25892695b18d012b157"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/transcript-session-scope-checks.json",
+      "source_sha256": "ab4cf264f60e82a6b748bfef25a9afaad8b43d2f85474a0ffa61250964698b73",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ab4cf264f60e82a6b748bfef25a9afaad8b43d2f85474a0ffa61250964698b73"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/tui-runtime-default-checks.json",
+      "source_sha256": "97ae4997da1610e39f8ae7710f27b3ec1266f2409192036052e177848bcf50d8",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "97ae4997da1610e39f8ae7710f27b3ec1266f2409192036052e177848bcf50d8"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/user-guide-requirements-checks.json",
+      "source_sha256": "3c6cf7944b97175046a89bbfbf2e8b4176c2ae09a45d9331d85d8b47379bb2e8",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "3c6cf7944b97175046a89bbfbf2e8b4176c2ae09a45d9331d85d8b47379bb2e8"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/ux-config-baseline.log",
+      "source_sha256": "0217d5771d6b3b3c9443a719918d20b4bd430f5f49754828c66ebcc33d39655f",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "0217d5771d6b3b3c9443a719918d20b4bd430f5f49754828c66ebcc33d39655f"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/ux-config-compatibility.json",
+      "source_sha256": "cf6b34c171675bbc2e4606d6eb02f84e5e45e8a88e43907e3df630dde9dfda70",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "cf6b34c171675bbc2e4606d6eb02f84e5e45e8a88e43907e3df630dde9dfda70"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/validation/visible-copy-behavior-checks.json",
+      "source_sha256": "ea26216f5553f14f1eab91d78b671182992c3091b67150f2fea133844e1f2bc1",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "ea26216f5553f14f1eab91d78b671182992c3091b67150f2fea133844e1f2bc1"
+    },
+    {
+      "path": "docs/planning/deferred/friday-tui/vision/README.md",
+      "source_sha256": "622c071361fe168035d6e590393d5fd62d99478ed89e1db448635fce401545f4",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "622c071361fe168035d6e590393d5fd62d99478ed89e1db448635fce401545f4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/README.md",
+      "source_sha256": "a48bdb526d65baefa671373418eba885026354ad8948d46bd9fd84289719719e",
+      "destination_before_sha256": "c9ff3dcdfe548210b8b4a813abbabae714c2d7c5a63c539fb839a68989f437dd",
+      "destination_after_sha256": "8f55d732f35a058127a781ee434706c3c1c69c8c5e3e760ef7024c6ad86c6172"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/approval/foundation-design.md",
+      "source_sha256": "ad56dc9177f3635d91e3a49befd3b4323c548ead2d55ab3cc50711142666cc04",
+      "destination_before_sha256": "0e315c9cacdf67c38bef54bd177792f4c67de8aaae14fd0776dbd417d312099d",
+      "destination_after_sha256": "b761b4b94fd82048dafd18c55b8fd66f88026ded187474cda4dad0e2dedec2f7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/authority.json",
+      "source_sha256": "d2f4ffcd995aedfb39d8a1b1929d3e2ebec5114b7bdb687a2bdadd5d2cc63707",
+      "destination_before_sha256": "9103348fee351fce3e6cffd97f3838384632c12b91fe3863a90f99e41d3775e4",
+      "destination_after_sha256": "3970dfd1d03ec40e4cb0ea5d6dbe5d9fc5ec0b249d0c4fd22c2e9e208d4387bc"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/branch-isolation.md",
+      "source_sha256": "e5ff95083c3e904257241a265188e7b935bbc778f430487c92958dd8e8621880",
+      "destination_before_sha256": "3f3d3343cfd9e7ae02c0c9fa8a4e12c38c69a5cad1a28f3db2a5fdc9ff4e45c9",
+      "destination_after_sha256": "2c631a66c6a0127c01b5f5253adde58bdaa7d7260e5cae13a8e88ee2f539c693"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/build-plan.md",
+      "source_sha256": "3aec88da3576a892482221227fa9d4ed8eebf4dda37d3fa07dd0043d32a04f20",
+      "destination_before_sha256": "1ceeafe26b7f50d3ad50c0a554e1e9755b4a34638f7d4b5eaecf2eb55d26b7a3",
+      "destination_after_sha256": "17b47d41a58e556740fd7f67977a6e70ec04a0c2d52cabc613e48f744f1ca686"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/command-inventory.md",
+      "source_sha256": "aa46b975b4b060b6a257f40d4e24f8db0d3e1dd3dad61c8cd60699b3a671afb4",
+      "destination_before_sha256": "d6846ab4e600a475b6cd4f898c144b610eb917658f584fbc723e39d30c5cd654",
+      "destination_after_sha256": "a671de2837683cab999dcc4ad8d03f1fe0d2158ba5bcbf2de38dc9fdd5b9a8da"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/command-matrix.md",
+      "source_sha256": "9684766844dd91388824747919d9282cc6e5312d85aa363990e9b84c28381970",
+      "destination_before_sha256": "1a1746a42ba1d0ffab40973d74ceeade74c04fdfeffe1fdde11ddc3f883354a0",
+      "destination_after_sha256": "ae7c969b07001f29ec94058612c396fad3cd9d9b6b87c65d2a142cf088e8470d"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/command_refactor.md",
+      "source_sha256": "8b3b9deba8b7fe03120ec95f2c6e8a968df7421d5c06e40b4906b5f2f85956b6",
+      "destination_before_sha256": "e9d0f6d67c0d3fd98c2c7ea39b42682ca61aeca8317e7327a78ada1d1e87d49f",
+      "destination_after_sha256": "4723c0cf6185668d7fb62b21a756eb40b2a0a823f1f83095732bded7c9d2e4c5"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/AMEND-CMD-MCP-001-001-2025-dialect-isolation.md",
+      "source_sha256": "03c229947a22768dd68e5da99fe29df8a94f19e996961e255737bc8f75f6e054",
+      "destination_before_sha256": "3d62158c36e6f8b07e9b2fc18b78133f6e459012b3047b9826e4b169b0569ee6",
+      "destination_after_sha256": "03c229947a22768dd68e5da99fe29df8a94f19e996961e255737bc8f75f6e054"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/AMEND-CMD-MCP-003-001-send-boundary.md",
+      "source_sha256": "620ee9d3670b3ef0ff347fd754d9f80246363d18ba4a6729b428f712fad12934",
+      "destination_before_sha256": "b94dd24545974bf0bce2efa17e1181d590ce2de6de92aa05c38e5d1d3c46e073",
+      "destination_after_sha256": "620ee9d3670b3ef0ff347fd754d9f80246363d18ba4a6729b428f712fad12934"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-FND-001-neutral-foundation.md",
+      "source_sha256": "43844cb1734daf408d27a197fadbe2c4f4e4ac7ffd5aa462d000f77b77829aa3",
+      "destination_before_sha256": "648d3ce07cb338cf22ded7fd22229e03bba2551cc294457f3e9d753493ca358d",
+      "destination_after_sha256": "46a8027d416c39390563d8cd13f852f4cc7b29783fb04c39cbf38e71eb9db400"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-MCP-001-compatibility-exception.md",
+      "source_sha256": "fa3f3a9af0bdfe2acc145ad5df2fe5f30543a64b535c7a7fb0a7577db0b70dcd",
+      "destination_before_sha256": "e382ec995b3d57b9b272f2e072a37b512d3dfc1e4be41b3cc8a8ca5eed9119d3",
+      "destination_after_sha256": "fa3f3a9af0bdfe2acc145ad5df2fe5f30543a64b535c7a7fb0a7577db0b70dcd"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-MCP-003-server-neutral-schema.md",
+      "source_sha256": "634f9576ec87676e38f22b40dbbc43e0961ca147d9a8ca61c175d89d669d8df8",
+      "destination_before_sha256": "267dfac31ce6830559d8ab1b09e2351e697077efae1c097c7c1b895c19847694",
+      "destination_after_sha256": "634f9576ec87676e38f22b40dbbc43e0961ca147d9a8ca61c175d89d669d8df8"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/README.md",
+      "source_sha256": "1572a93c76de7fe3c41fac972ae61bfeb6ad47ce70b922704f47beef5edc2d63",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "1572a93c76de7fe3c41fac972ae61bfeb6ad47ce70b922704f47beef5edc2d63"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/execution-log.md",
+      "source_sha256": "a209ca05e0b78ede879b64ab34eeae40312e9ddc9bd310ad704ab80b4d308f41",
+      "destination_before_sha256": "aca56772204192987af00609a89d64ae3e90b58faf6a1424b244e385fc4db39e",
+      "destination_after_sha256": "a209ca05e0b78ede879b64ab34eeae40312e9ddc9bd310ad704ab80b4d308f41"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/next-phase.md",
+      "source_sha256": "8ff3dd04129c707cda5ff5324c43f0a8c0ec0d2f2ce909f5c0d73e8ec60960e2",
+      "destination_before_sha256": "bdbfe5798b2b97a409fb12b42c82ad2124f53d912d3dbf28499bf7c0730c17c5",
+      "destination_after_sha256": "65f87d99793377a1d0061e42ad5028fc1f556a6d0c3671a58468f3a3f83e48f9"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/phase-plan.md",
+      "source_sha256": "8a3f4cebbc5895ee9ae2b14f061304fe0daf373f8ad35670c8af51fb1e99c4fe",
+      "destination_before_sha256": "9838a8ead0cd5ed2f303cb750fb6a9ca7632d20a14f670f4668a92da6141f51d",
+      "destination_after_sha256": "80a0d047432d6d6fc9c26229f0699f0dbf964334f66d784d93fd96607f117bf9"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/reconciliation/README.md",
+      "source_sha256": "791cc4277de6b483f1fb5ff6623975fe9201b80a08313a7881a0caf60404cb9b",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "45b8b14a506425c98aacd11b3f803ae709bb56376f7ebf2baa723ce84c4dfbc0"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/reconciliation/checks.json",
+      "source_sha256": "29869259110a6dad78412aeb6c8375bead190939d800d777208accc8b3dc3222",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "29869259110a6dad78412aeb6c8375bead190939d800d777208accc8b3dc3222"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/reconciliation/import-manifest.json",
+      "source_sha256": "92a18a6c4ac559fcc692691309b9e4c0402ecb048bcda308245dc5d94fd96d9e",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "92a18a6c4ac559fcc692691309b9e4c0402ecb048bcda308245dc5d94fd96d9e"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/reconciliation/source-authority.json",
+      "source_sha256": "9103348fee351fce3e6cffd97f3838384632c12b91fe3863a90f99e41d3775e4",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "9103348fee351fce3e6cffd97f3838384632c12b91fe3863a90f99e41d3775e4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/reconciliation/source-backlog-working-draft.md.txt",
+      "source_sha256": "404b94f2c4773b6597946e7cbb1679f2040901078f1e86c625155c95cf586c95",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "404b94f2c4773b6597946e7cbb1679f2040901078f1e86c625155c95cf586c95"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/reconciliation/source-command-packet.tar.gz",
+      "source_sha256": "839acf23b40d724672046d75d327cf870b69daf3ba94775ac252f8812ee465c4",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "839acf23b40d724672046d75d327cf870b69daf3ba94775ac252f8812ee465c4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/scope-decisions.md",
+      "source_sha256": "a582243d1d59138518915efba45ee4197070de070eb0d65a4f00f3c91bc39928",
+      "destination_before_sha256": "497c3dab7df323c6ac143a789658e9f3314df1168f7eae405335818d319b85d3",
+      "destination_after_sha256": "6760092e9d7b4f38a0e96d8109fde0e95cd8c3db0aeaf05c927801243dccb749"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/shared-command-api.md",
+      "source_sha256": "bffda0471318928c8d2f7e39c221c92894569d9af252410bfd676cb7902630e7",
+      "destination_before_sha256": "66b47b0e566dfb0e54db559a4e79077075e2430908aeef7cedbffe7ea4605f79",
+      "destination_after_sha256": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/shared-command-architecture.md",
+      "source_sha256": "d5b3ada995b0bef4d07e450915d895fba5f0e890e089364be1cd6105fdf169f2",
+      "destination_before_sha256": "8ece30a47e2c7a31bb089d3a1260a8d7bc9e58083280aa61ffd5c15eca8bf670",
+      "destination_after_sha256": "5667d21af163231c9f9154e2213af5126db546b606afb2ada53b77bdb57c9d33"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/tactical-plan.md",
+      "source_sha256": "556f367d2e5e4c19c17bb7c9ec241b5053ac37e260719250087be23a5885d542",
+      "destination_before_sha256": "d349c8656c61544c297f4c1f3b40b107d1a4cb0f64764def40ec208fc029b461",
+      "destination_after_sha256": "44fe9d575cf42defc7dfb57b69febf98583ccfd93814fb150817ed9856c9b053"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/test-strategy.md",
+      "source_sha256": "ea9bd6dbabe67f0d45b95369181fad5754c2d5ea70a50e471d12b518b0bf8bb0",
+      "destination_before_sha256": "1fdfdd69f81ceaadc80cc56077e3dd559948f14512d6052273ee3a45edaca149",
+      "destination_after_sha256": "32185dad44d39c8c9b323f166133a18cc383615a0a369560fb6cd66bfb1d5006"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/README.md",
+      "source_sha256": "b836bc2cd1d3fe37b0c9fe97e12c6417ee2df5c9b4dde558e8f5efe344300ea4",
+      "destination_before_sha256": null,
+      "destination_after_sha256": "b836bc2cd1d3fe37b0c9fe97e12c6417ee2df5c9b4dde558e8f5efe344300ea4"
+    }
+  ],
+  "unchanged_destination_documents": [
+    "docs/planning/active/command-refactor/authority/planning-review-2026-11-04.md",
+    "docs/planning/active/command-refactor/command-pruning-review.md",
+    "docs/planning/active/command-refactor/mcp-schema-engineering-matrix.md",
+    "docs/planning/active/command-refactor/proposals/mcp-schema-compatibility.md",
+    "docs/planning/active/command-refactor/proposals/mcp-tool-turn-continuity.md",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-DESIGN-001.md",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-MCP-002-2025-draft7-registration.md",
+    "docs/planning/active/command-refactor/validation/COUNCIL-CMD-DESIGN-001-round1.md",
+    "docs/planning/active/command-refactor/validation/COUNCIL-CMD-DESIGN-001-round2.md",
+    "docs/planning/active/command-refactor/validation/FIND-CMD-MCP-002-registration-gap.md",
+    "docs/planning/active/command-refactor/validation/VAL-CMD-ARCH-001-report.md",
+    "docs/planning/active/command-refactor/validation/VAL-CMD-MCP-001-report.md",
+    "docs/planning/active/command-refactor/validation/VAL-CMD-MCP-002-report.md",
+    "docs/planning/active/command-refactor/validation/VAL-CMD-MCP-003-interim-review.md",
+    "docs/planning/active/command-refactor/validation/VAL-CMD-MCP-003-report.md",
+    "docs/planning/active/command-refactor/validation/architecture-remediation-manifest.json",
+    "docs/planning/active/command-refactor/validation/architecture-remediation-request.md",
+    "docs/planning/active/command-refactor/validation/architecture-review-manifest.json",
+    "docs/planning/active/command-refactor/validation/architecture-review-request.md",
+    "docs/planning/active/command-refactor/validation/behavior-assertion-audit.md",
+    "docs/planning/active/command-refactor/validation/command-matrix.json",
+    "docs/planning/active/command-refactor/validation/default-behavior-audit.md",
+    "docs/planning/active/command-refactor/validation/p0/baseline.log",
+    "docs/planning/active/command-refactor/validation/p0/baseline.xml",
+    "docs/planning/active/command-refactor/validation/p0/chat.log",
+    "docs/planning/active/command-refactor/validation/p0/chat.xml",
+    "docs/planning/active/command-refactor/validation/p0/cli.log",
+    "docs/planning/active/command-refactor/validation/p0/cli.xml",
+    "docs/planning/active/command-refactor/validation/p0/failure-controls.json",
+    "docs/planning/active/command-refactor/validation/p0/full-control.json",
+    "docs/planning/active/command-refactor/validation/p0/head-examples-original-term.log",
+    "docs/planning/active/command-refactor/validation/p0/head-examples-xterm-full-chat.log",
+    "docs/planning/active/command-refactor/validation/p0/head-examples-xterm.log",
+    "docs/planning/active/command-refactor/validation/p0/inventory.json",
+    "docs/planning/active/command-refactor/validation/p0/no-runtime.json",
+    "docs/planning/active/command-refactor/validation/p0/probes.json",
+    "docs/planning/active/command-refactor/validation/p0/worktree-inputs.json",
+    "docs/planning/active/command-refactor/validation/p0-baseline.md",
+    "docs/planning/active/command-refactor/validation/p0-failure-disposition.md",
+    "docs/planning/active/command-refactor/validation/par-coverage-ledger.md",
+    "docs/planning/active/command-refactor/validation/production-effects-audit.md",
+    "docs/planning/active/command-refactor/validation/pruning-wording-correction.json"
+  ],
+  "excluded_non_document_files": [
+    "docs/planning/active/command-refactor/validation/p0/capture_inventory.py",
+    "docs/planning/active/command-refactor/validation/p0/isolate_failures.py",
+    "docs/planning/active/command-refactor/validation/p0/probe_contracts.py",
+    "docs/planning/active/command-refactor/validation/p0/probe_no_runtime.py"
+  ],
+  "destination_backlog_before_sha256": "404b94f2c4773b6597946e7cbb1679f2040901078f1e86c625155c95cf586c95",
+  "source_preserved": true,
+  "document_link_corrections": [
+    {
+      "path": "docs/planning/deferred/friday-tui/prd/README.md",
+      "reason": "obsolete planning/command-matrix.md link redirected to the existing local command-refactor matrix"
+    }
+  ]
+}

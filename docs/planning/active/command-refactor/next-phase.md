@@ -2,9 +2,9 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: Foundation accepted; retirement directive prepared for review
-Execution phase: planning
-Validation state: not_ready (RET-001; foundation remains VERIFIED and accepted)
+Status: Foundation accepted; maintainer-authorized checkpoint delivery in preparation
+Execution phase: validation
+Validation state: pending (aggregate checkpoint; RET-001 remains not_ready)
 
 This is the main next-step document. The [packet index](README.md) maps supporting
 files; the [board](../../board.yaml) owns initiative state. The whole initiative
@@ -27,6 +27,18 @@ foundation unit, not the whole feature branch.
 [construction approvals](approval/foundation-readiness.md) retain their original
 provenance. Old pending/draft labels in frozen documents describe earlier states;
 this checkpoint, board and append-only execution log record the later decisions.
+
+## Current checkpoint delivery
+
+Chuck Russell authorized the proposed checkpoint commit/push/PR/merge and
+fresh-branch sequence. First obtain aggregate independent verification of the
+whole current branch, then publish/merge its checkpoint. See the
+[exact scope and exclusions](validation/checkpoint/README.md). Preserve the two
+unrelated working Chat example configurations; include authorized planning
+transfers. After merge, create `feature/command-retirement` from updated master
+and refresh the draft's branch/source identity before its approval. Existing
+frozen work-unit reports remain candidate-specific. This supersedes earlier
+no-delivery labels for this checkpoint only; no retirement construction follows.
 
 ## Next steps, in order
 
@@ -69,4 +81,5 @@ sequencing disposition. No product source changed during this preparation.
 
 Legacy CLI launcher retirement and mandatory finance remain separately VERIFIED
 at `06285ae4` and `d003c4db`; RD-02 needs no defect waiver. No push, PR, merge,
-release, deployment or TUI construction is authorized.
+release, deployment or TUI construction is authorized by retirement planning. The
+later explicit checkpoint instruction supplies only the delivery authority above.
