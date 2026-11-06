@@ -9,12 +9,14 @@ approval, construction authority or code validation is inferred.
 
 **Working home:** `agent-framework`, branch `feature/command-refactor`.
 **Board ID:** `friday-command-refactor`.
-**Status:** CMD-FND-001 implemented and independently VERIFIED at `b4fc199e`;
-foundation unit ready for maintainer acceptance. Exact approvals and source base
+**Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and
+accepted by Chuck Russell. Preparing RET-001; its exact directive is not approved.
+Exact foundation approvals and source base
 `d003c4db` remain in the [approval record](approval/foundation-readiness.md).
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). No command migration/wiring.
-`execution_phase: closeout`; `validation_state: verified` for CMD-FND-001 only.
+`execution_phase: planning`; `validation_state: not_ready` for RET-001.
+The foundation's VERIFIED result and acceptance remain separate completed evidence.
 
 The maintainer changed the working home on 2026-11-05 to this Agent Framework
 checkout; the shared command refactor remains the first phase. The full
@@ -88,8 +90,10 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Maintainer acceptance of the independently VERIFIED CMD-FND-001
-candidate `b4fc199e`, then separate approval of any next construction unit.
+**Next gate:** Review and approve
+[CD-CMD-RET-001](directives/CD-CMD-RET-001-nine-command-retirement.md), including
+its bounded retirement-order/P1 disposition and state-preservation decisions.
+Then retire nine commands directly from Chat before the pilot migration.
 RD-02 records the two separately VERIFIED packaging resolutions. The earlier
 [VERIFIED result](validation/step3/correction-report.md) covers `fcea84b8` only.
 The original
@@ -132,7 +136,9 @@ At that earlier checkpoint execution remained planning with P0/P1 incomplete
 and construction unauthorized. The later explicit CD-CMD-FND-001 approval
 permits only the foundation unit. That unit now has its own fresh independent
 [VERIFIED implementation result](validation/VAL-CMD-FND-001-report.md).
-Human acceptance remains separate.
+Chuck Russell subsequently accepted the verified foundation by direct instruction
+“approved, proceed what's next steps?”; see the execution log. The complete
+refactor remains started/local and later construction is separately gated.
 
 Round 2 results and the narrow residual pruning-review correction are recorded
 in [the council report](validation/COUNCIL-CMD-DESIGN-001-round2.md). The correction

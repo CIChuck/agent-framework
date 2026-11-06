@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | CMD-FND-001 independently VERIFIED at b4fc199e; maintainer acceptance of foundation unit, then separate directive approval for next construction unit; no migrations, wiring or delivery |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | CMD-FND-001 accepted; review and approve exact CD-CMD-RET-001 including RET-GATE-01 through RET-GATE-03 before nine-command retirement; then pilot contract; no delivery |
 
 ## Completed
 

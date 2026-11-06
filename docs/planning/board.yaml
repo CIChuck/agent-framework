@@ -709,7 +709,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: CMD-FND-001 independently VERIFIED at b4fc199e; maintainer acceptance of foundation unit, then separate directive approval for next construction unit; no migrations, wiring or delivery
+  next_gate: CMD-FND-001 accepted; review and approve exact CD-CMD-RET-001 including RET-GATE-01 through RET-GATE-03 before nine-command retirement; then pilot contract; no delivery
   delivery_state: local
   branch: feature/command-refactor
   depends_on: []
@@ -2431,3 +2431,10 @@ events:
   action: recorded CMD-FND-001 independent verification
   note: Fresh-context read-only review VERIFIED b4fc199eeef3c63a5cf9a8b960cf61c0116170ad against exact approved API and directive, all ten criteria, 319 scoped tests and standalone artifact proof. No mandatory findings. Existing broad lint, root collection and TUI-link limits retained. Foundation ready for maintainer acceptance; initiative started/local, later units and delivery unapproved.
   evidence: docs/planning/active/command-refactor/validation/VAL-CMD-FND-001-report.md
+- task: friday-command-refactor
+  at: '2026-11-06T22:50:19+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted CMD-FND-001 foundation
+  note: Direct instruction approved, proceed what's next steps? accepts VERIFIED b4fc199eeef3c63a5cf9a8b960cf61c0116170ad foundation only. Initiative remains started/local. Controller prepared draft CD-CMD-RET-001 with separate retirement-order, P1 and state-preservation decisions for exact approval; no retirement or later implementation inferred.
+  evidence: docs/planning/active/command-refactor/execution-log.md

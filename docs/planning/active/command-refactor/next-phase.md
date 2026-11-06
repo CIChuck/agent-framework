@@ -2,83 +2,71 @@
 
 Date: 2026-11-06
 Branch: `feature/command-refactor`
-Status: CMD-FND-001 independently VERIFIED; ready for maintainer acceptance
-Execution phase: closeout
-Validation state: verified (CMD-FND-001 only)
+Status: Foundation accepted; retirement directive prepared for review
+Execution phase: planning
+Validation state: not_ready (RET-001; foundation remains VERIFIED and accepted)
 
 This is the main next-step document. The [packet index](README.md) maps supporting
-files; the [board](../../board.yaml) owns initiative state. Work remains started
-and local. The current authorized unit is CMD-FND-001 only.
+files; the [board](../../board.yaml) owns initiative state. The whole initiative
+remains started/local. No next construction directive has been approved yet.
 
-The [foundation unit report](validation/CMD-FND-001-report.md) records completed
-builder tests, static checks, controlled lock and isolated artifact proof.
-Fresh independent implementation validation [VERIFIED](validation/VAL-CMD-FND-001-report.md)
-candidate `b4fc199eeef3c63a5cf9a8b960cf61c0116170ad`, with no mandatory findings.
+## Accepted foundation
+
+Chuck Russell accepted CMD-FND-001 by direct instruction:
+“approved, proceed what's next steps?” This follows the foundation-only
+[VERIFIED report](validation/VAL-CMD-FND-001-report.md) for
+`b4fc199eeef3c63a5cf9a8b960cf61c0116170ad`, with no mandatory findings.
 All 319 scoped tests, focused static checks, exact lock proof and isolated
-artifact checks passed independently. Existing broad Ruff, root pytest
-collection and four TUI-link failures remain disclosed in the report.
-The next action is maintainer acceptance of this foundation unit. A later unit
-requires its own scope/directive approval. Validation is not acceptance.
+artifact checks passed independently. Existing broad Ruff, root pytest collection
+and four unrelated TUI-link failures remain documented. Acceptance covers the
+foundation unit, not the whole feature branch.
 
-## Recorded approvals
+[Builder report](validation/CMD-FND-001-report.md),
+[frozen review request](validation/CMD-FND-001-request.json),
+[durable receipts](validation/CMD-FND-001-evidence.json) and
+[construction approvals](approval/foundation-readiness.md) retain their original
+provenance. Old pending/draft labels in frozen documents describe earlier states;
+this checkpoint, board and append-only execution log record the later decisions.
 
-- CMD-DESIGN-001: API-01–API-06 and neutral foundation types/registry semantics.
-- RD-01: Chuck Russell approved the foundation-first sequencing amendment.
-- CD-CMD-FND-001: Chuck Russell approved the exact directive and proposed reviewed
-  source base `d003c4db31cc9b1e3d143fd8c0d8b930db50ab30`.
-- [Approval record](approval/foundation-readiness.md) and [authority](authority.json)
-  bind the exact directive/API hashes and accepted readiness evidence. Their
-  human decisions supersede old draft/unapproved labels in frozen review inputs.
+## Next steps, in order
 
-The approved API hash remains
-`e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74`.
-Approval/evidence-only preparation descendants must preserve all product bytes
-and exact directive/API from the approved source base before construction.
-Record their actual starting HEAD and equality check in the unit receipt.
+1. **Review and approve [CD-CMD-RET-001](directives/CD-CMD-RET-001-nine-command-retirement.md).**
+   It removes the nine previously selected names directly from current Chat,
+   before PILOT-001. Its requested approval includes RET-GATE-01–03: the bounded
+   retirement-before-full-family-P1 sequence, preserved runtime behavior and
+   explicit orphan-state/metric treatment. RD-01 alone does not authorize it.
+2. **Implement and validate RET-001 after that approval.** Capture before/after
+   evidence; remove registration/help/name exposure and exclusively dead command
+   code; update affected tests and guides. Prove 41 canonical names/three aliases,
+   ordinary unknown responses and no former effects. Preserve `/tools`, startup
+   priming, runtime config, budgets/native/MCP execution and retained diagnostics.
+   Freeze the candidate, obtain fresh independent review, then present acceptance.
+3. **Prepare and approve PILOT-001.** Define catalog ownership, Chat routing,
+   rendering and exit/clear lifecycle seams before moving help/exit/cls and the
+   quit/q/clearscreen aliases into the shared implementation.
+4. **Proceed through retained families and final integration.** Complete each
+   affected P0/P1 contract/evidence gate, then use separate bounded directives in
+   dependency order. Cross-family/installed proof, aggregate review and final
+   refactor acceptance precede resuming TUI development.
 
-## Completed foundation execution
+## Single next approval
 
-1. Confirm board/branch, approved input hashes and protected dirty-file hashes.
-2. Implement only [CD-CMD-FND-001](directives/CD-CMD-FND-001-neutral-foundation.md):
-   stdlib models, registry/parsing and injected-handler dispatch; no defaults.
-3. Add the required minimal cohort/root/artifact integration and meaningful
-   constructor, registry, parsing, one-execution and import-boundary tests.
-4. Run the directive's controlled lock, focused/static/regression, artifact
-   rejection and isolated wheel checks. Disclose known broad-check baselines.
-5. Commit a frozen foundation candidate and obtain fresh independent read-only
-   implementation validation. Stop for findings or maintainer acceptance;
-   do not automatically migrate commands or execute later units.
+Read the [retirement directive](directives/CD-CMD-RET-001-nine-command-retirement.md).
+Its embedded case/effect table, scope, three prerequisite decisions and verification
+plan are the current review material; supporting sources are linked there.
 
-These five steps are complete for `b4fc199e`. The
-[request](validation/CMD-FND-001-request.json) pins the reviewed inputs;
-[durable receipts](validation/CMD-FND-001-evidence.json) retain exact commands,
-logs and independent probe scripts. Later closeout changes record status only
-and preserve the reviewed product, tests, metadata, lock, API and directive.
+- Proposed product/source base: `08b1900defda3150f30027bec30998360515b72d`.
+- Directive SHA-256: `5be2c7af2384a1bc15a3f385dbca16807ec29d504e2c08e184f23cac4d8c1a66`.
+- Foundation API SHA-256 remains
+  `e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74`.
 
-## Reading order for this unit
+This draft is prepared for a decision, not approved by this continuation.
+The historical [unit map](validation/step3/unit-map.json) remains proposed and
+cannot approve later units. Full family schemas, service ownership, progress/
+cancellation and supported-environment/client scenarios remain required before
+those affected migrations. This retirement draft requests only its own bounded
+sequencing disposition. No product source changed during this preparation.
 
-1. [Exact approved directive](directives/CD-CMD-FND-001-neutral-foundation.md).
-2. [Pinned foundation API](shared-command-api.md), API-01–API-06 only.
-3. [Human approvals](approval/foundation-readiness.md).
-4. [Test strategy](test-strategy.md) and [execution log](execution-log.md) for
-   evidence classes, baseline constraints and actual progress.
-
-The [phase plan](phase-plan.md), [tactical plan](tactical-plan.md),
-[scope decisions](scope-decisions.md) and proposed case/unit map remain broader
-references; they cannot widen this unit's approved paths or behavior.
-
-## Resolved packaging issues and remaining gates
-
-Legacy framework CLI launcher retirement is [VERIFIED](validation/legacy-cli-removal/report.md)
-at `06285ae4`. Required tools-to-finance dependency is
-[VERIFIED](validation/required-finance/report.md) at `d003c4db`: default installation
-imports tools/finance/SDK, preserves 50/3 and Chat help, and installs no retired
-launcher. RD-02 records these resolutions, not a deferred defect waiver.
-
-RD-01 permits only the isolated foundation before full family/P1 closure. All
-foundation tests, neutral-import/wheel proof and fresh review remain mandatory.
-Detailed family contracts, per-case behavioral signoff, service ownership,
-progress/cancellation, supported client/platform scenarios, nine retirements,
-client/TUI wiring, aggregate implementation review and feature acceptance
-remain required before their affected later units. They are not approved here.
-No push, PR, merge, release or deployment is authorized.
+Legacy CLI launcher retirement and mandatory finance remain separately VERIFIED
+at `06285ae4` and `d003c4db`; RD-02 needs no defect waiver. No push, PR, merge,
+release, deployment or TUI construction is authorized.

@@ -597,3 +597,23 @@ remain frozen. Initiative stays started/local because later command work is
 incomplete; foundation unit is ready for maintainer acceptance. No later
 directive, wiring/migration/removal, aggregate approval or delivery is inferred.
 Execution phase closeout; validation state verified for CMD-FND-001 only.
+
+2026-11-06: Chuck Russell accepted the independently VERIFIED CMD-FND-001
+foundation by direct instruction “approved, proceed what's next steps?”
+Acceptance applies to candidate b4fc199eeef3c63a5cf9a8b960cf61c0116170ad and its
+foundation-only validation, not the entire command refactor or later units.
+Recorded the acceptance and prepared
+[CD-CMD-RET-001](directives/CD-CMD-RET-001-nine-command-retirement.md) for the
+next separate decision, with proposed product source base
+08b1900defda3150f30027bec30998360515b72d and directive SHA-256
+5be2c7af2384a1bc15a3f385dbca16807ec29d504e2c08e184f23cac4d8c1a66.
+The draft binds nine assigned PAR cases, ordinary unknown/no-effect treatment,
+41/3 retained metadata, orphan-state/metric decisions, exact affected paths,
+underlying runtime/tool preservation, controlled test/installed evidence and
+fresh independent review. Its RET-GATE-01–03 dispositions are requested, not
+inferred from foundation approval: RD-01 does not authorize retirement before
+full family/P1 closure. No product code, tests, lock, dependency or approved
+API/directive changed. Preserve historical review/authority labels as frozen
+provenance; the main checkpoint and board own the current handoff.
+Initiative remains started/local. Execution phase planning; validation state
+not_ready for RET-001; foundation result remains VERIFIED and accepted.
