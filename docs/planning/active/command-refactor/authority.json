@@ -240,8 +240,11 @@
     "contract_sha256": "e625123b8222262fb02b32aeadb2cae5c91d18ff573f04763b0af7ea3f22eb8c",
     "directive": "directives/CD-CMD-PILOT-001-help-exit-clear.md",
     "directive_sha256": "b85be3a04035e1f8318cc6566f7767aad00355b61c49e2650c6327981fd2a982",
-    "design_approval": "not_granted",
-    "construction_approval": "not_granted"
+    "design_approval": "granted",
+    "construction_approval": "granted",
+    "approval_record": "approval/pilot.md",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-11-07T19:59:20+00:00"
   },
   "additional_correction_authorization": {
     "authorized_by": "Chuck Russell",
@@ -297,5 +300,26 @@
     ],
     "construction_approval": "not_granted",
     "required_readiness_outcome": "VERIFIED before proposing exact pilot contract/directive approval"
+  },
+  "pilot_construction": {
+    "unit": "PILOT-001",
+    "approval": "approval/pilot.md",
+    "approval_sha256": "32f20a7f96e4de77e8e9e8230888841c789750a46e364561e69d6cf5d637a626",
+    "instruction": "I approved the documents, invoke the council after each deliverable.",
+    "approved_at": "2026-11-07T19:59:20+00:00",
+    "approved_by": "Chuck Russell",
+    "administrative_start": "2655c3de043f24f3d6dfcd7e06f2bf980f14eacc",
+    "product_baseline": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
+    "branch": "feature/command-retirement",
+    "state": "started",
+    "current_deliverable": "D1 neutral pilot (G1) after G0",
+    "council_after_each_deliverable": true,
+    "deliverables": {
+      "D1": "Shared neutral API/handlers and standalone tests (G1)",
+      "D2": "Chat integration, dependency/lock edges, compatibility/lifecycle (G2-G3)",
+      "D3": "Regression, source/assertion/doc proof, clean artifacts/default installs (G4-G5)"
+    },
+    "delivery": "local only; no push/PR/merge/release authorization",
+    "acceptance": "not_granted"
   }
 }

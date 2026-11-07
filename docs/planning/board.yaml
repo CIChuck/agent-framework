@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Approve exact PILOT-001 contract and additive API, then CD-CMD-PILOT-001 (or both together); readiness VERIFIED; construction remains unapproved
+  next_gate: Execute approved PILOT-001 G0 baseline and D1 neutral handlers/tests (G1), then fresh three-provider council before Chat integration
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2563,3 +2563,10 @@ events:
   action: recorded final independent pilot readiness verification
   note: Fresh delta and aggregate review VERIFIED dcb982cf after the two authorized corrections; all three council score targets were already met in round four. Exact contract and directive approval is next. Initiative remains started/local; no pilot construction, acceptance or delivery approval inferred.
   evidence: docs/planning/active/command-refactor/validation/pilot/final-readiness-validation.md
+- task: friday-command-refactor
+  at: '2026-11-07T19:59:20+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved pilot contract and directive with council after each deliverable
+  note: Exact approval covers additive API and PILOT-001 construction. D1 neutral, D2 Chat/lifecycle, D3 regression/installed proof each require a fresh council before advancing. Final acceptance and external delivery remain separate.
+  evidence: docs/planning/active/command-refactor/approval/pilot.md

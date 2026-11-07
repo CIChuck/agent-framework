@@ -166,3 +166,10 @@ One explicit approval of both exact documents is sufficient. After approval is
 recorded, execute only the help/exit/cls pilot through G0-G5, then independent
 implementation verification and maintainer acceptance. Construction remains
 unapproved until that instruction; initiative and delivery remain started/local.
+
+Current maintainer approval: both exact documents are approved together in
+[approval/pilot.md](approval/pilot.md). Pilot construction is started on the
+existing feature branch. G0 baseline precedes D1 neutral handlers/tests; a
+three-provider council follows each D1/D2/D3 deliverable before advancement.
+Earlier not-approved labels retain historical provenance. Final pilot
+acceptance and external delivery remain separate gates.

@@ -962,3 +962,12 @@ chat-style absolute path:line links. Preserve exact raw report text/SHA in
 final-readiness-validation.json and normalize only Markdown link destinations
 to repository-relative paths with line anchors. No reviewed authority or
 deliverable bytes changed; repeat board/docs/whitespace checks.
+
+2026-11-07T19:59:20+00:00: Chuck Russell approved both exact pilot documents and requested council
+after every deliverable. Record approval/pilot.md and current construction
+authority before source edits. Product equality to 7b80ca01 is verified at
+administrative HEAD 2655c3de. Deliver D1 neutral API/tests (G1), D2 Chat
+integration/lifecycle (G2-G3), D3 regression/artifact/default-install proof
+(G4-G5), each followed by a frozen three-provider council. Start G0 baseline
+and inventories, preserve dirty examples and all frozen design/harness bytes.
+No construction beyond this pilot or external delivery is authorized.

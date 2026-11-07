@@ -153,3 +153,9 @@ the next approval gate: [pilot contract](pilot-command-contract.md) followed by
 [CD-CMD-PILOT-001](directives/CD-CMD-PILOT-001-help-exit-clear.md), or both together.
 The two fixes and aggregate readiness are now [independently VERIFIED](validation/pilot/final-readiness-validation.md).
 Pilot construction remains unapproved.
+
+Current pilot construction is [approved](approval/pilot.md). D1 covers neutral
+handlers/tests, D2 Chat integration/lifecycle, D3 regression/artifact/installed
+proof. A fresh council follows each deliverable; no later family or delivery
+is approved. Historical pending-approval paragraphs above are superseded by
+this exact maintainer record.
