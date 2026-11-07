@@ -77,8 +77,6 @@ def _tool(
     )
 
 
-
-
 @dataclass
 class SchemaRecordingModel:
     """Provider-free model recording the exact definitions bound per call."""
