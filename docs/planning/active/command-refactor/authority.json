@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "RET-001 accepted; amended pilot contract/directive and runnable diagnostic harness ready for independent council; product construction not approved",
+  "decision": "PILOT-001 contract and directive approved; D1 neutral implementation in validation; council reconciliation precedes D2 and D3",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Review pilot contract first, then construction directive; accepted RET-001 remains closed",
-  "product_code_authority": "No new construction authority; RET-001 accepted, pilot/family/TUI and delivery remain unapproved",
+  "current_scope": "Approved PILOT-001 D1 shared handlers/tests are implemented and in council review; D2 Chat integration and D3 regression/installed proof remain pending",
+  "product_code_authority": "Exact pilot construction approved in approval/pilot.md; council after each deliverable before advancement. Remaining families, TUI, final acceptance and external delivery are unapproved.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -326,7 +326,19 @@
       "gate": "G1 passed; fresh three-provider council pending",
       "evidence": "validation/pilot/implementation/d1/evidence.json",
       "scope": "PILOT-01/02 only; no Chat wiring or installed candidate claim",
-      "acceptance": "not_granted"
+      "acceptance": "not_granted",
+      "administrative_remediation": {
+        "finding": "D1-SOL-002",
+        "scope": "Reconcile required current process fields in index/execution log; align related preapproval authority summary (ARGON-D1-ADV-003). Product, tests and frozen approved documents unchanged.",
+        "council_round": 2,
+        "prior_reports": "validation/pilot/implementation/d1/council-round1.json"
+      }
     }
+  },
+  "historical_preapproval_summary": {
+    "source_candidate": "667bccc8e8917d3668960d15395dddfd1fc78d19",
+    "decision": "RET-001 accepted; amended pilot contract/directive and runnable diagnostic harness ready for independent council; product construction not approved",
+    "current_scope": "Review pilot contract first, then construction directive; accepted RET-001 remains closed",
+    "product_code_authority": "No new construction authority; RET-001 accepted, pilot/family/TUI and delivery remain unapproved"
   }
 }

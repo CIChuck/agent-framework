@@ -1,0 +1,74 @@
+{
+  "candidate": "667bccc8e8917d3668960d15395dddfd1fc78d19",
+  "scope": "Approved pilot current-status documentation and review protocol only; no runtime/test/dependency/lock/frozen-design changes.",
+  "authorization": "Existing exact PILOT-001 approval and requested council after each deliverable; bounded non-destructive reconciliation under council/independent-validation policy.",
+  "findings": [
+    {
+      "ids": [
+        "D1-SOL-002",
+        "ARGON-D1-ADV-003"
+      ],
+      "classification": "mandatory process fields; related advisory current summary",
+      "disposition": "applied_pending_fresh_council",
+      "fix": "Current packet index and latest append-only execution-log fields are validation/in_review for D1 implementation. Align related current authority summary with existing exact pilot approval, preserving former header text as historical provenance.",
+      "acceptance": "Programmatic latest-field agreement in both documents; board/dashboard D1 council gate; docs lifecycle and whitespace; product/test/frozen-input hash equality."
+    },
+    {
+      "ids": [
+        "D1-SOL-001"
+      ],
+      "classification": "administrative integrity stop, not implementation defect",
+      "disposition": "reconciled; fresh full Sol review completed",
+      "fix": "Document exact intended SHA256(git ls-files -s -z stdout) rather than raw .git/index. All logical index and content pins matched; raw stat-cache representation was never the pinned input.",
+      "acceptance": "All new requests use index_entries_sha256, explicit index_digest_command and GIT_OPTIONAL_LOCKS=0."
+    },
+    {
+      "ids": [
+        "CLD-D1-01"
+      ],
+      "classification": "low nonblocking test suggestion",
+      "disposition": "deferred to D2 test work",
+      "fix": "Optionally trace CommandRequest attribute reads for exit/cls; current behavior independently conforms."
+    },
+    {
+      "ids": [
+        "CLD-D1-02",
+        "ARGON-D1-ADV-002"
+      ],
+      "classification": "low nonblocking standalone assertion suggestion",
+      "disposition": "deferred to D2/D3 test work",
+      "fix": "Optionally tighten standalone focused canonical/unknown payload assertions; current in-process tests already cover payloads."
+    },
+    {
+      "ids": [
+        "CLD-D1-03"
+      ],
+      "classification": "nonblocking guard profile advisory",
+      "disposition": "recorded; no D1 change",
+      "fix": "Standalone source subprocess uses -I and does no application I/O. G5 installed probes must explicitly preload the guard per approved directive."
+    },
+    {
+      "ids": [
+        "CLD-D1-04",
+        "ARGON-D1-ADV-001"
+      ],
+      "classification": "nonblocking protocol-violating catalog exception consistency",
+      "disposition": "deferred; no promised behavior change",
+      "fix": "Invalid port results propagate errors; no exception class promised for broken catalogs. Do not add new validation semantics opportunistically."
+    },
+    {
+      "ids": [
+        "CLD-D1-05"
+      ],
+      "classification": "nonblocking request clarity and optional test typing",
+      "disposition": "index clarification applied; optional test annotations deferred",
+      "fix": "Explicit logical-index algorithm in new frozen request. Source mypy passes; test negative-type cases are intentional and test mypy is not a gate."
+    }
+  ],
+  "non_goals": [
+    "No shared implementation or test changes",
+    "No approved contract/directive/baseline/harness edits",
+    "No D2/D3 implementation or acceptance/delivery before applicable gates"
+  ],
+  "review": "Fresh full three-provider D1 round two against the corrected frozen candidate; delta finding closure plus aggregate D1 conformance."
+}

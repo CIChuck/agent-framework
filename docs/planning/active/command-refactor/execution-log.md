@@ -986,3 +986,24 @@ attempts, with corrected final receipts. Existing foundation/Chat code, all
 existing tests, approved design/harness and dirty examples remain unchanged.
 Freeze D1 for the requested three-provider council; do not start D2 until review
 reconciliation. Candidate wheel/default-installed pilot proof remains D3.
+
+D1 council round-one reconciliation: Claude VERIFIED 9.3/10, OpenAI
+CHANGES_REQUESTED 9.5/10, Gemini VERIFIED 9.8/10. All product requirements
+and G1 checks are verified; D1-SOL-002 is a mandatory process-field correction.
+The first Sol context stopped on a raw-versus-semantic index digest mismatch;
+all logical index/content pins match and its fresh full context completed.
+Exact reports, including the blocked administrative attempt, remain in
+validation/pilot/implementation/d1/council-round1.json.
+
+Bounded D1-SOL-002 remediation: current packet index fields are reconciled and
+this latest execution-log entry supplies their current counterpart.
+`execution_phase: validation`; `validation_state: in_review` for PILOT-001 D1
+neutral implementation only. G1 is implemented; D2 Chat integration and D3
+regression/installed proof remain pending until council reconciliation.
+Related preapproval authority summary fields are aligned with the existing
+approval/pilot.md grant, preserving their original wording in a historical
+summary object. No new authority or runtime/test change is introduced.
+Historical log entries remain untouched. Fresh round-two request explicitly
+pins SHA256 of exact git ls-files -s -z stdout and requires GIT_OPTIONAL_LOCKS=0.
+Optional test/catalog/subprocess advisories stay deferred. Freeze the amended
+metadata-only candidate for a fresh full D1 council before starting D2.
