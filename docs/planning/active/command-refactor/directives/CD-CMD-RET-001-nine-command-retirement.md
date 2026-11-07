@@ -4,6 +4,7 @@ Date: 2026-11-06
 Status: **DRAFT — awaiting exact maintainer approval; no construction authorized**
 Initiative: `friday-command-refactor`
 Unit: `RET-001` / `CMD-RET-001`
+Execution branch: `feature/command-retirement`
 
 ## Objective and authority
 
@@ -18,7 +19,7 @@ The [foundation implementation](../validation/VAL-CMD-FND-001-report.md) is VERI
 at `b4fc199eeef3c63a5cf9a8b960cf61c0116170ad` and subsequently accepted by Chuck
 Russell in the [execution log](../execution-log.md). Acceptance covers that unit.
 
-Proposed product/source base: `08b1900defda3150f30027bec30998360515b72d`. Before approval, bind this exact directive hash and source commit.
+Proposed product/source base: `6f291ca5755a616d9185c86dff104b660a1fba8c`. Before approval, bind this exact directive hash and source commit.
 Subsequent approval/status-only commits may precede execution only after a
 product/input equality check records the actual starting HEAD. New product
 changes or directive changes require reconciliation rather than silent rebasing.

@@ -1,118 +1,68 @@
 # Command refactor — next-phase checkpoint
 
 Date: 2026-11-06
-Branch: `feature/command-refactor`
-Status: Corrected aggregate checkpoint VERIFIED; authorized delivery next
-Execution phase: closeout
-Validation state: verified (aggregate checkpoint; RET-001 remains unapproved)
+Branch: `feature/command-retirement`
+Status: Foundation checkpoint merged; retirement directive ready for approval
+Execution phase: planning
+Validation state: not_ready (RET-001); merged checkpoint independently VERIFIED
 
-This is the main next-step document. The [packet index](README.md) maps supporting
-files; the [board](../../board.yaml) owns initiative state. The whole initiative
-remains started/local. No next construction directive has been approved yet.
+This is the main next-step document. The [board](../../board.yaml) owns initiative
+state and the [packet index](README.md) maps supporting material. The overall
+command refactor remains started. Its completed checkpoint is merged; the next
+unit and its administrative branch preparation are local.
 
-## Accepted foundation
+## Completed checkpoint
 
-Chuck Russell accepted CMD-FND-001 by direct instruction:
-“approved, proceed what's next steps?” This follows the foundation-only
-[VERIFIED report](validation/VAL-CMD-FND-001-report.md) for
-`b4fc199eeef3c63a5cf9a8b960cf61c0116170ad`, with no mandatory findings.
-All 319 scoped tests, focused static checks, exact lock proof and isolated
-artifact checks passed independently. Existing broad Ruff, root pytest collection
-and four unrelated TUI-link failures remain documented. Acceptance covers the
-foundation unit, not the whole feature branch.
+[PR #13](https://github.com/CIChuck/agent-framework/pull/13) merged into master at
+`6f291ca5755a616d9185c86dff104b660a1fba8c`. The old `feature/command-refactor` branch was deleted locally and
+remotely after merge/tree/ancestry confirmation. The new branch starts at that
+merge. Two unrelated working Chat example configurations remain byte-identical,
+uncommitted and excluded from the PR.
 
-[Builder report](validation/CMD-FND-001-report.md),
-[frozen review request](validation/CMD-FND-001-request.json),
-[durable receipts](validation/CMD-FND-001-evidence.json) and
-[construction approvals](approval/foundation-readiness.md) retain their original
-provenance. Old pending/draft labels in frozen documents describe earlier states;
-this checkpoint, board and append-only execution log record the later decisions.
+The [fresh independent aggregate report](validation/checkpoint/verified-report.md)
+VERIFIED candidate `51334a5b3f92ca7922976f1c0f3aa15443ae61e6`, with 3,116 tests
+and current package/default-install/archive proof. Only evidence/status closeout
+followed before publication. [Delivery receipt](validation/checkpoint/delivery.json)
+records exact base/head/merge and remote gates: clean mergeability, no configured
+checks, protection, rulesets, requested reviews or unresolved threads. Missing CI
+is not described as a passing CI run. Existing root Ruff/pytest/format and
+optional-cohort cache limitations remain in the report.
 
-## Corrected checkpoint awaiting fresh review
-
-Execute only the explicitly approved [CD-CMD-CHK-001](directives/CD-CMD-CHK-001-checkpoint-reconciliation.md),
-the single bounded disposition prepared from the
-[aggregate CHANGES_REQUESTED report](validation/checkpoint/aggregate-report.md).
-Its source base is `dea496075de55060ad477820e04b71c78239cca0` and SHA-256 is
-`d0cc21779452767862b52ca025db1fa11417e8481418d119aa8a0a875ef2823d`.
-
-[Chuck Russell approved](approval/checkpoint-reconciliation.md) the one-time historical construction-authority exception
-for the existing two-file archival-board behavior. AGG-002 needs mechanical
-formatting of exactly five files with unchanged syntax trees. All 3,116 tests
-pass, including full Chat 826; this does not cure missing authority or a failed
-required format check. The exact directive is now approved. Correct
-only those findings, obtain fresh independent verification and continue the
-already-authorized checkpoint push/PR/merge/new-branch sequence.
-
-## Current checkpoint delivery
-
-Chuck Russell authorized the proposed checkpoint commit/push/PR/merge and
-fresh-branch sequence. First obtain aggregate independent verification of the
-whole current branch, then publish/merge its checkpoint. See the
-[exact scope and exclusions](validation/checkpoint/README.md). Preserve the two
-unrelated working Chat example configurations; include authorized planning
-transfers. After merge, create `feature/command-retirement` from updated master
-and refresh the draft's branch/source identity before its approval. Existing
-frozen work-unit reports remain candidate-specific. This supersedes earlier
-no-delivery labels for this checkpoint only; no retirement construction follows.
+The foundation was accepted separately. Its no-default-handler neutral package,
+required-finance metadata and legacy CLI launcher retirement are delivered.
+Current Chat still has 50 canonical commands and three aliases. No command has
+been retired or migrated, and no TUI source was added.
 
 ## Next steps, in order
 
-1. **Review and approve [CD-CMD-RET-001](directives/CD-CMD-RET-001-nine-command-retirement.md).**
-   It removes the nine previously selected names directly from current Chat,
-   before PILOT-001. Its requested approval includes RET-GATE-01–03: the bounded
-   retirement-before-full-family-P1 sequence, preserved runtime behavior and
-   explicit orphan-state/metric treatment. RD-01 alone does not authorize it.
-2. **Implement and validate RET-001 after that approval.** Capture before/after
-   evidence; remove registration/help/name exposure and exclusively dead command
-   code; update affected tests and guides. Prove 41 canonical names/three aliases,
-   ordinary unknown responses and no former effects. Preserve `/tools`, startup
-   priming, runtime config, budgets/native/MCP execution and retained diagnostics.
-   Freeze the candidate, obtain fresh independent review, then present acceptance.
-3. **Prepare and approve PILOT-001.** Define catalog ownership, Chat routing,
-   rendering and exit/clear lifecycle seams before moving help/exit/cls and the
-   quit/q/clearscreen aliases into the shared implementation.
-4. **Proceed through retained families and final integration.** Complete each
-   affected P0/P1 contract/evidence gate, then use separate bounded directives in
-   dependency order. Cross-family/installed proof, aggregate review and final
-   refactor acceptance precede resuming TUI development.
+1. **Approve [CD-CMD-RET-001](directives/CD-CMD-RET-001-nine-command-retirement.md).**
+   It removes the nine selected slash commands directly from Chat before the
+   pilot. Approval includes RET-GATE-01–03: bounded retirement ordering/P1
+   disposition, preserved runtime behavior and orphan-state/metric treatment.
+2. **Implement and validate RET-001 after exact approval.** Capture before/after
+   evidence, remove registrations/help/exclusively dead command code, and update
+   affected tests/guides. Prove 41 canonical names/three aliases and ordinary
+   unknown responses with no former effects. Preserve retained behavior,
+   startup priming, configuration, budgets/native/MCP execution and diagnostics.
+   Freeze the candidate, obtain fresh independent review and present acceptance.
+3. **Prepare PILOT-001.** Define catalog/host routing/rendering/exit/clear seams,
+   then approve its own directive before moving help/exit/cls and aliases.
+4. **Migrate retained families and integrate.** Close affected P0/P1 contracts,
+   use bounded directives, then cumulative installed/cross-family proof and
+   aggregate review before full command-refactor acceptance and TUI resumption.
 
-## Single next approval
+## Exact next approval
 
-Read the [retirement directive](directives/CD-CMD-RET-001-nine-command-retirement.md).
-Its embedded case/effect table, scope, three prerequisite decisions and verification
-plan are the current review material; supporting sources are linked there.
-
-- Proposed product/source base: `08b1900defda3150f30027bec30998360515b72d`.
-- Directive SHA-256: `5be2c7af2384a1bc15a3f385dbca16807ec29d504e2c08e184f23cac4d8c1a66`.
+- Source base: `6f291ca5755a616d9185c86dff104b660a1fba8c` (merged master).
+- Directive SHA-256: `a8646a4bbd2c0275bca74d5430a9169b053f45490c34621aa144f224b0f79e28`.
 - Foundation API SHA-256 remains
   `e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74`.
 
-This draft is prepared for a decision, not approved by this continuation.
-The historical [unit map](validation/step3/unit-map.json) remains proposed and
-cannot approve later units. Full family schemas, service ownership, progress/
-cancellation and supported-environment/client scenarios remain required before
-those affected migrations. This retirement draft requests only its own bounded
-sequencing disposition. No product source changed during this preparation.
-
-Legacy CLI launcher retirement and mandatory finance remain separately VERIFIED
-at `06285ae4` and `d003c4db`; RD-02 needs no defect waiver. No push, PR, merge,
-release, deployment or TUI construction is authorized by retirement planning. The
-later explicit checkpoint instruction supplies only the delivery authority above.
-
-The approved five-file correction is complete; all ASTs are unchanged and 325
-focused tests/static checks pass. [Correction evidence](validation/checkpoint/correction-report.md)
-is builder evidence. The immediate action is fresh aggregate verification,
-then the already-authorized delivery sequence. No repeated approval is needed
-for that delivery once its review and actual PR gates pass.
-
-## Fresh aggregate result
-
-The [fresh independent report](validation/checkpoint/verified-report.md) VERIFIED
-candidate `51334a5b3f92ca7922976f1c0f3aa15443ae61e6`, closed AGG-001/002 and
-independently passed all 3,116 tests plus current package/installed/archive/static
-proof. [Exact receipts](validation/checkpoint/verified-evidence.json) are retained.
-The controller confirmed the full freeze before evidence/status-only closeout.
-Proceed with the existing authorized push/PR/requirements/merge/new-branch
-sequence. No further checkpoint permission is needed; exact remote identities
-and actual PR requirements must still be checked. RET-001 remains unapproved.
+Only branch/source identity changed in the draft; its retirement scope and
+verification requirements are unchanged. This administrative handoff introduces
+no product/test/dependency/lock change and grants no construction approval.
+Record actual administrative descendants and source equality before any future
+unit starts. Historical approvals/reports/requests retain their exact candidate
+provenance; current working references are updated in board/authority/index.
+The prior checkpoint publication authority is consumed for PR #13; new retirement
+publication and exact implementation authority are not inferred.

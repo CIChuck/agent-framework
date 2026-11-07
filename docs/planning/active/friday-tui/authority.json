@@ -7,7 +7,7 @@
   "work_state": "started",
   "condition": "normal",
   "implementation_authority": "design_only",
-  "branch": "feature/command-refactor",
+  "branch": "feature/command-retirement",
   "execution_phase": "planning",
   "validation_state": "not_ready",
   "allowed_changes": [
@@ -21,5 +21,6 @@
   "external_delivery_authorized": false,
   "construction_gate": "Command-refactor acceptance and a separately approved exact construction directive are required before TUI construction.",
   "historical_authority": "reconciliation/imported-authority-2026-11-05.json",
-  "historical_authority_note": "Imported approvals and implementation receipts retain their original work context and grant no current source inspection or construction authority."
+  "historical_authority_note": "Imported approvals and implementation receipts retain their original work context and grant no current source inspection or construction authority.",
+  "current_branch_handoff": "Planning home follows the explicitly authorized post-PR13 retirement branch. No TUI construction/delivery scope expansion."
 }

@@ -7,7 +7,7 @@ current work. This transfer changes documents only; imported implementation
 claims, reviews and test receipts retain their original provenance. No design
 approval, construction authority or code validation is inferred.
 
-**Working home:** `agent-framework`, branch `feature/command-refactor`.
+**Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and
 accepted by Chuck Russell. Preparing RET-001; its exact directive is not approved.
@@ -15,7 +15,8 @@ Exact foundation approvals and source base
 `d003c4db` remain in the [approval record](approval/foundation-readiness.md).
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). No command migration/wiring.
-`execution_phase: closeout`; `validation_state: verified` for the corrected aggregate checkpoint. RET-001 remains not_ready.
+`execution_phase: planning`; `validation_state: not_ready` for RET-001.
+The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
 
 The maintainer changed the working home on 2026-11-05 to this Agent Framework
@@ -90,11 +91,13 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Publish and merge the independently
-[VERIFIED checkpoint](validation/checkpoint/verified-report.md), then create the
-fresh retirement branch and refresh its draft before approval. All checkpoint
-delivery actions are explicitly authorized; retirement/TUI construction remains
-unapproved. Whole-command-refactor acceptance remains separate.
+**Next gate:** Review and approve
+[CD-CMD-RET-001](directives/CD-CMD-RET-001-nine-command-retirement.md) at the new
+merged source baseline. [PR #13](https://github.com/CIChuck/agent-framework/pull/13)
+merged the independently VERIFIED checkpoint; the old branch is deleted and
+`feature/command-retirement` is prepared locally. See the
+[delivery receipt](validation/checkpoint/delivery.json) and
+[main checkpoint](next-phase.md). No retirement/TUI construction is approved.
 
 The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
 refreshes baseline identity in this working home and records the current

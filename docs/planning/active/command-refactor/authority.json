@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-06",
-  "decision": "Chuck Russell approved RD-01 and exact CD-CMD-FND-001 at reviewed source base d003c4db31cc9b1e3d143fd8c0d8b930db50ab30; execute only CMD-FND-001",
-  "branch": "feature/command-refactor",
+  "decision": "Foundation accepted and independently verified checkpoint merged through PR13; next RET-001 directive remains proposed/unapproved",
+  "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Approved neutral foundation API-01 through API-06, exact new package/tests and minimal root/cohort/artifact integration from CD-CMD-FND-001; no production handlers, command migration/removal or client wiring",
-  "product_code_authority": "Granted for CMD-FND-001 only under exact approved directive/API/base; prior separate CLI/finance metadata units VERIFIED",
+  "current_scope": "RET-001 planning/source-base refresh only on fresh retirement branch; no retirement, retained migration or TUI construction authorized",
+  "product_code_authority": "Earlier CMD-FND-001 and CD-CMD-CHK-001 approvals are completed historical units; next product changes require exact CD-CMD-RET-001 approval",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -119,5 +119,14 @@
     "architecture_readiness": "Supplied exact-API readiness evidence accepted with CD approval; no API changes",
     "preparation": "Only approval/evidence/status descendants may precede construction; verify product bytes and exact directive/API unchanged from approved source base, record actual builder starting HEAD",
     "delivery": "No push/merge/release authority"
+  },
+  "checkpoint_handoff": {
+    "pr_url": "https://github.com/CIChuck/agent-framework/pull/13",
+    "merge_commit": "6f291ca5755a616d9185c86dff104b660a1fba8c",
+    "retirement_branch": "feature/command-retirement",
+    "retirement_directive_sha256": "a8646a4bbd2c0275bca74d5430a9169b053f45490c34621aa144f224b0f79e28",
+    "retirement_directive_approval": "not_granted",
+    "record": "validation/checkpoint/delivery.json",
+    "note": "New branch and source baseline refresh are explicitly authorized delivery closeout; historical directive/API approvals and reviewed candidates remain unchanged."
   }
 }

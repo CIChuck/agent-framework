@@ -222,7 +222,7 @@ tasks:
   packet: docs/planning/active/friday-tui/
   next_gate: review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization
   delivery_state: local
-  branch: feature/command-refactor
+  branch: feature/command-retirement
   depends_on: []
   validation: []
   legacy_import: true
@@ -711,9 +711,9 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: corrected aggregate checkpoint VERIFIED at 51334a5b; execute authorized push, PR, actual-requirements check, merge and fresh retirement branch; no retirement implementation
+  next_gate: PR13 checkpoint merged; fresh feature/command-retirement prepared from master; approve refreshed exact CD-CMD-RET-001 and RET-GATE-01 through 03 before implementation
   delivery_state: local
-  branch: feature/command-refactor
+  branch: feature/command-retirement
   depends_on: []
   validation:
   - docs/planning/active/command-refactor/validation/step3/correction-report.md
@@ -2490,3 +2490,10 @@ events:
   action: recorded corrected aggregate verification
   note: Fresh read-only review VERIFIED 51334a5b for all eight aggregate criteria, closed AGG-001/002, 3116 current tests and package/archive/default-install proof pass. Source and protected inputs preserved. Existing checkpoint push/PR/merge/new-branch authority remains valid; retirement and TUI construction remain unapproved.
   evidence: docs/planning/active/command-refactor/validation/checkpoint/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-07T00:02:32+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivered verified checkpoint and prepared fresh branch
+  note: Authorized PR13 merged at 6f291ca5755a616d9185c86dff104b660a1fba8c; published 7b344b01 contains reviewed 51334a5b plus evidence-only closeout. Confirmed clean remote gates and tree/ancestry, then deleted merged old branch locally/remotely and created feature/command-retirement. Remaining initiative work is local/started; checkpoint delivery is merged in receipt. Refreshed draft source identity only; no retirement or TUI code approved. Both working example configs preserved and excluded.
+  evidence: docs/planning/active/command-refactor/validation/checkpoint/delivery.json
