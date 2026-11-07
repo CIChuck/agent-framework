@@ -910,3 +910,14 @@ invalid ambient uv settings. Chat 1,038, Commands/cohort 145 and CLI 155 pass;
 Historical review/evidence bytes are retained. Record revision 4 proposal hashes
 and freeze for one fresh full three-provider council. No product construction
 or delivery is authorized; further mandatory findings return to the maintainer.
+
+Round-four controller closeout: all three reviews completed against f7035bbd.
+Scores OpenAI 9.0, Claude 9.0, Gemini 9.5 meet the requested minimum, but each
+formal verdict is CHANGES_REQUESTED. Consolidated two mandatory issues and
+advisories in validation/pilot/round4-reconciliation.md; exact reports retained
+in council-round4.json. End freeze matched request, HEAD/status/index, all 36
+pins and all 17,094 protected hashes. No contract/directive/harness or product
+bytes changed after freeze. The stale embedded contract hash was missed by the
+builder; a cross-document equality assertion is included in the proposed fix.
+The explicit extra correction pass/review is consumed. Return findings for
+maintainer disposition; no new correction cycle or construction started.

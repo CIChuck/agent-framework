@@ -146,4 +146,7 @@ not verify the current corrected readiness candidate.
 
 Current additional readiness correction: [round-three findings and dispositions](validation/pilot/council-remediation-round3.json),
 [round-four diagnostic evidence](validation/pilot/harness-evidence-round4.json).
-Fresh full council review is pending; pilot construction remains unapproved.
+Round-four council is complete: all scores meet 9, but all verdicts request
+changes. See the [consolidated result](validation/pilot/council-round4.json) and
+[proposed correction plan](validation/pilot/round4-reconciliation.md). Await
+maintainer disposition; pilot construction remains unapproved.

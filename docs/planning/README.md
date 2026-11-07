@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Council review of amended PILOT-001 contract, directive and diagnostic harness; then exact maintainer approval; no product construction or delivery |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Maintainer disposition of two PILOT-001 round-four findings after extra authorized council; no further correction cycle, product construction or delivery |
 
 ## Completed
 

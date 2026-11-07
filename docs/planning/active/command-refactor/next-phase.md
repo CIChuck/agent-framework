@@ -128,3 +128,13 @@ records ten source, six receipt and two origin controls; two offline artifact
 trials produce identical hashes, including a poisoned-ambient replay. All 196
 observations and 1,338 scoped baseline tests pass. Fresh full round-four council
 is next. Product design/construction approval and delivery remain not granted.
+
+
+Round-four council is complete: OpenAI 9.0/10, Claude 9.0/10 and Gemini 9.5/10;
+all three return CHANGES_REQUESTED. [Consolidated report](validation/pilot/council-round4.json)
+and [bounded proposed correction plan](validation/pilot/round4-reconciliation.md)
+record two open defects: an embedded-equals attached-path receipt bypass and
+the directive's stale contract hash. Source provenance is verified closed.
+The explicit extra pass is consumed; await maintainer disposition before any
+further correction/review cycle. No contract/directive/harness correction was
+applied after review. Pilot construction and delivery remain not granted.

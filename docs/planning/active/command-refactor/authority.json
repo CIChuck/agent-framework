@@ -191,7 +191,7 @@
     "pilot_design_approval": "not_granted",
     "pilot_construction_approval": "not_granted",
     "delivery": "local only",
-    "status": "Additional explicitly authorized correction pass complete; fresh full round-four council pending",
+    "status": "Round-four council CHANGES_REQUESTED; scores all at least 9; awaiting maintainer disposition after explicitly authorized extra pass",
     "evidence": "validation/pilot/harness-evidence-round4.json",
     "corrections": "validation/pilot/council-remediation-round3.json",
     "round_two_followup": {
@@ -247,5 +247,24 @@
     "product_construction": "not_granted",
     "delivery": "local only",
     "validation": "Adversarial source/type/mode controls, offline bundle replay, scoped suites, hashes, board/docs and fresh council"
+  },
+  "pilot_readiness_round4": {
+    "candidate": "f7035bbdd1b18c6301848b4214398d8adfbe18ed",
+    "outcome": "CHANGES_REQUESTED",
+    "scores": {
+      "openai": 9.0,
+      "claude": 9.0,
+      "gemini": 9.5
+    },
+    "score_target_met": true,
+    "report": "validation/pilot/council-round4.json",
+    "reconciliation": "validation/pilot/round4-reconciliation.md",
+    "open_findings": [
+      "SOL-R4-PILOT-001",
+      "SOL-R4-PILOT-002 / CLD-R4-01 / ARGON-R4-001"
+    ],
+    "next_gate": "Maintainer disposition of two bounded corrections; no further automated correction/review cycle or pilot construction authorized",
+    "construction_approval": "not_granted",
+    "delivery": "local only"
   }
 }

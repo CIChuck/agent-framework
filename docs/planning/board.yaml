@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Council review of amended PILOT-001 contract, directive and diagnostic harness; then exact maintainer approval; no product construction or delivery
+  next_gate: Maintainer disposition of two PILOT-001 round-four findings after extra authorized council; no further correction cycle, product construction or delivery
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -722,6 +722,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/VAL-CMD-FND-001-report.md
   - docs/planning/active/command-refactor/validation/checkpoint/verified-report.md
   - docs/planning/active/command-refactor/validation/retirement/verified-report.md
+  - docs/planning/active/command-refactor/validation/pilot/round4-reconciliation.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2540,3 +2541,10 @@ events:
   action: prepared proposed pilot contract and construction directive
   note: Maintainer proceed authorizes planning only. Two review documents define help/exit/cls ownership, adapters, compatibility, tests and clean installed proof. Read contract first then directive; neither is approved. Product and protected examples unchanged; initiative started/local.
   evidence: docs/planning/active/command-refactor/next-phase.md
+- task: friday-command-refactor
+  at: '2026-11-07T17:14:01+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded round-four pilot readiness council and returned findings
+  note: All scores meet 9 but all verdicts request changes. Two mandatory findings remain; extra authorized correction pass is consumed. Await maintainer disposition; no further automated remediation, construction or delivery. Reviewed contract, directive, harness and protected examples preserved.
+  evidence: docs/planning/active/command-refactor/validation/pilot/round4-reconciliation.md
