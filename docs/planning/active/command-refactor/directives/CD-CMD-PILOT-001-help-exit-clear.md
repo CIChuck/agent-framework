@@ -329,8 +329,14 @@ Do not pass bare `--python-version 3.13`, which targets an unsupported patch
 level. Its resolver command supplies `--python <actual interpreter>` and
 `--python-version 3.13.10`; target/native wheel tags come from that interpreter.
 
-The helper verifies package build inputs and root metadata against the named
-Git revision, then executes these fully recorded operations:
+Before any build or fetch, the helper resolves the revision to a canonical
+commit and requires exact whole-export inventory equality with Git: no extra
+files or directories, missing files, changed blobs, file/symlink substitutions,
+executable-mode drift, escaping symlinks or special files. It constructs its own
+private `git archive`, verifies the same complete inventory and builds only
+from that private export. An end check requires that export to remain unchanged.
+A negative control must reject an extra package source or data file before any
+build/fetch. It then executes these fully recorded operations:
 
 1. `uv export --frozen --offline --no-dev --package friday-chat --no-editable`
    with hashes retained. Preserve conditional versions such as both `grpcio`
@@ -345,7 +351,7 @@ Git revision, then executes these fully recorded operations:
    source/build lineage, not by pretending it has a wheel hash in `uv.lock`.
    Any other source-only dependency stops the unit for an amendment.
 4. Build every required workspace distribution from the clean Git export with
-   `uv build --offline --no-python-downloads --package <name>`. Put Chat and
+   `uv --no-config build --offline --no-python-downloads --python <driver interpreter> --package <name>`. Put Chat and
    Commands in `g5-dist` and other selected workspace artifacts in
    `workspace-wheels`; third-party files never supply workspace packages.
 5. Compile the default profile with marker-aware lock constraints, exact target
@@ -358,7 +364,9 @@ its actual candidate revision and add `--require-pilot-edge`, which checks the
 unconditional required Commands dependency in the built Chat wheel metadata.
 Use a new, empty output directory for each run. The helper's driver may fetch
 only pinned public artifacts; all build/resolver/install child processes are
-sanitized, guarded, offline, no-index and use its fresh local cache.
+sanitized, guarded, offline, no-index and use its fresh local cache. Ambient
+`UV_*` and `VIRTUAL_ENV` settings are removed; every uv child uses `--no-config`,
+and every build uses the explicit driver interpreter.
 
 ```sh
 # G0 baseline trial; PILOT_SOURCE/PILOT_REVISION identify the clean before export.
@@ -368,8 +376,11 @@ sanitized, guarded, offline, no-index and use its fresh local cache.
 ```
 
 `bundle-report.json` records every actual argv/exit, exact target/environment,
-all input source/build-tool hashes, fetched artifact hashes, PyPika lineage and
-output artifact/profile hashes. Per-command logs remain alongside it. The
+the helper hash and uv version, canonical revision, complete source inventory
+with types/modes/blob hashes, private archive hash, input build-tool hashes,
+fetched artifact hashes, PyPika lineage and output artifact/profile hashes.
+The large complete inventory stays in scratch, with its count and digest in
+the embedded report so reviewers can reconstruct it from Git. Per-command logs remain alongside it. The
 preparation baseline trial proves the artifact machinery, not an implemented
 pilot or its future installed behavior. G5 must additionally run the specified
 `installed_probe.py`, including pilot handler/delegation and source-member
@@ -399,8 +410,11 @@ insufficient without these closure/dependency checks.
 
 Run probes outside the checkout using the installed interpreter with `-I` and
 explicitly load the pinned guard before imports (`-I` ignores PYTHONPATH).
-Check every changed installed source member against both Git and built wheel,
-and sdist contents against clean Git, including unchanged config templates.
+Check every changed installed source member against both Git and built wheel.
+Compare the complete package source/data member sets and bytes in the Chat and
+Commands wheels and sdists against clean Git, including unchanged templates;
+reject additional members outside the declared generated metadata. Check all
+loaded Friday module file and namespace origins, refusing missing origins.
 Probe PILOT-01–10's installed subset, module origins, exact metadata and outputs;
 spy on shared calls so a bundled legacy implementation cannot pass by output
 coincidence. No terminal/provider/store construction during import/help proof.

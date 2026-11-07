@@ -31,16 +31,27 @@ def main() -> None:
     }
     reserved.update(
         path.resolve()
-        for pattern in ("*.json", "*.log")
-        for path in scratch.glob(pattern)
+        for path in scratch.iterdir()
+        if path.suffix.casefold() in (".json", ".log")
     )
+
+    def comparable(path: Path) -> str:
+        text = str(path.resolve())
+        return text.casefold() if sys.platform == "darwin" else text
+
+    reserved_names = {comparable(path) for path in reserved}
     for argument in sys.argv[2:]:
-        value = (
-            argument.split("=", 1)[1]
-            if argument.startswith("-") and "=" in argument
-            else argument
-        )
-        if not value.startswith("-") and Path(value).resolve() in reserved:
+        if argument.startswith("-") and "=" in argument:
+            value = argument.split("=", 1)[1]
+        elif (
+            argument.startswith("-")
+            and not argument.startswith("--")
+            and len(argument) > 2
+        ):
+            value = argument[2:].removeprefix("=")
+        else:
+            value = argument
+        if not value.startswith("-") and comparable(Path(value)) in reserved_names:
             raise SystemExit("Command argument collides with a runner receipt path")
     sys.argv[1] = stem
     # A unique basetemp prevents pytest from cleaning unrelated numbered temp

@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "round3_candidate": "2c3db9d8f05dbe453f5288fbf9305fade3068574",
+  "authorization": "Chuck Russell: Perform another correction pass, followed by a council review. One extra pass after the two-cycle escalation; no product construction.",
+  "scope": "Diagnostic and proposed planning assets only",
+  "corrections": {
+    "SOL-R3-PILOT-001": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Exact whole-export reverse inventory, file/symlink types, executable modes and Git blobs are required before productive children. A private canonical Git archive is independently verified, used exclusively for builds and verified again afterward. Ten source controls include the reported exploit CLI failing with no build commands or downloads."
+    },
+    "OPUS-R3-01": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Same complete inventory and private archive correction as SOL-R3-PILOT-001; source/data/root-config extras, file kinds, executable mode, bytes, special files and empty extra directories have refusal controls."
+    },
+    "OPUS-R3-02": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Resolve and case-fold reserved receipt paths on Darwin and inspect attached short-option tails, including -oPATH and -o=PATH. Six negative controls preserve the victim receipt."
+    },
+    "OPUS-R3-A1": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Resolve one canonical commit, remove ambient UV_* and VIRTUAL_ENV, pass uv --no-config and explicit build Python. Report helper SHA, uv version, interpreter, archive and complete inventory hashes. Poisoned ambient replay passes with all 154 artifact hashes and profile hash identical."
+    },
+    "OPUS-R3-A2": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Installed origin probe checks namespace paths and refuses missing origins. Two injected module controls both fail as required."
+    },
+    "OPUS-R3-A3": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Current correction and status prose uses normal spaces; immutable historical evidence/reports remain unchanged."
+    },
+    "ARGON-R3-ADV-001": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Complete source inventory, canonical revision, private Git archive, namespace origin coverage and explicit artifact provenance are now required and exercised."
+    },
+    "ARGON-R3-ADV-002": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Retain the exercised scratch-only REVIEW_REPO override for synthetic SQLite tests. Document sqlite3.connect/dbapi2.connect as supported fixture routes; direct sqlite3.Connection/native I/O are outside the audit containment profile and prohibited as bypasses."
+    }
+  },
+  "baseline_revision": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
+  "fresh_full_review_required": true
+}

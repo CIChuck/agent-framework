@@ -886,3 +886,27 @@ Current lock-derived profile membership/version differences from historical
 Record revision3 hashes and freeze for full fresh round3. This is the second
 remediation cycle; unresolved findings after that review return to the maintainer.
 Execution phase planning; validation state in_review for design/harness only.
+
+2026-11-07: Chuck Russell explicitly authorized “Perform another correction pass,
+followed by a council review.” after the cycle-limit escalation. All round-three
+reports are complete and the controller end freeze matches 17,091 hashes.
+Combined result remains CHANGES_REQUESTED (Sol 8.8, Claude 9.1, Gemini 9.8).
+The additional pass fixes the provenance finding, receipt case/short-option
+bypasses and bounded reproducibility advisories. No product construction is
+approved. A strict inventory draft in external scratch passed the clean export
+and nine malformed inventory/type/mode/content cases before repository edits.
+Gemini's raw R05 sentence about /clear being retired is incorrect; /clear remains
+retained and outside this pilot. Governing source inventory/contract unchanged.
+
+Additional authorized correction pass complete: exact whole-export inventory
+checks reject the reported extra-source exploit before builds/fetch; private
+canonical Git archive inputs are checked before and after builds. Ten source,
+six receipt alias/option and two namespace-origin controls pass. Ambient uv
+settings are removed, all uv children use --no-config and builds specify the
+driver interpreter. Two offline 13-workspace/125-locked-artifact trials pass
+and produce identical 154 artifact hashes/profile hash, including deliberately
+invalid ambient uv settings. Chat 1,038, Commands/cohort 145 and CLI 155 pass;
+18 guard and 11 comparator controls and all 196 frozen observations pass.
+Historical review/evidence bytes are retained. Record revision 4 proposal hashes
+and freeze for one fresh full three-provider council. No product construction
+or delivery is authorized; further mandatory findings return to the maintainer.

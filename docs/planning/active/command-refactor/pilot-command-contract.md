@@ -247,18 +247,31 @@ This is Python audit containment, not an OS sandbox for arbitrary native I/O.
 On Darwin, protected paths use case folding. Connections also receive a SQLite
 authorizer: protected ATTACH/VACUUM INTO destinations and unresolved
 parameterized attachment destinations are denied. Fixtures must not remove
-that authorizer to bypass a refusal.
+that authorizer to bypass a refusal. The supported fixture route is
+`sqlite3.connect`/`sqlite3.dbapi2.connect`; fixtures must not use the direct
+`sqlite3.Connection` constructor or native I/O to evade the guard.
 All fixtures must still explicitly use scratch. Capture rejects any loaded
 `friday*` module whose file or namespace origin escapes the verified export.
-The runner checks positional and `--option=value` argument paths against every
-existing top-level scratch JSON/log file and current receipt names, preserving
+The runner checks positional, `--option=value` and attached short-option
+(`-oPATH`/`-o=PATH`) argument paths against every existing top-level scratch
+JSON/log file and current receipt names. Resolved paths are case-folded on
+Darwin. It preserves
 earlier receipts by assigning a new suffix to repeated run names. Invoke the
 read-only comparator directly as documented when reading scratch JSON inputs.
 
 The materialized `bundle.py` provides the lock-derived artifact recipe and a
 baseline end-to-end trial at exact Python 3.13.10. It fetches target artifacts
-only by lock URL/hash, builds workspace wheels from Git, records PyPika's locked
-sdist-to-wheel lineage, compiles hash-pinned profiles and checks isolated installs.
+only by lock URL/hash. Before any build or fetch, it requires exact whole-export
+file/directory inventory, Git blob bytes, regular/symlink types and executable
+modes; extra source/data/config files, directories or special files are refused.
+Symlinks must remain inside the export. It then creates its own archive from the
+canonical Git commit, verifies the identical inventory and builds only from that
+private export, verifying it again after all builds. The report pins the archive,
+full inventory, helper, uv version, interpreter and artifacts. Build children use
+explicit Python, `uv --no-config` and a cleared ambient `UV_*` environment.
+PyPika's locked sdist-to-wheel lineage, hash-pinned profiles and isolated installs
+are recorded. Installed origin checks include namespace paths and reject
+modules with no origin.
 It can replay entirely offline from retained raw artifacts. G5 must repeat
 against the implementation and additionally prove installed pilot behavior.
 

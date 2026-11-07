@@ -9,8 +9,10 @@ import json
 import os
 import platform
 import re
+import stat
 import subprocess
 import sys
+import tarfile
 import tomllib
 import urllib.request
 import zipfile
@@ -25,6 +27,79 @@ from packaging.utils import canonicalize_name, parse_wheel_filename
 
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def verify_export(source: Path, revision: str) -> dict[str, dict[str, str]]:
+    source = source.resolve()
+    expected = {}
+    directories = set()
+    for row in (
+        subprocess.check_output(["git", "ls-tree", "-r", "-z", revision])
+        .decode()
+        .split("\0")
+    ):
+        if not row:
+            continue
+        attributes, name = row.split("\t", 1)
+        mode, kind, oid = attributes.split()
+        directories.update(
+            str(parent) for parent in Path(name).parents if str(parent) != "."
+        )
+        if kind == "commit":
+            directories.add(name)
+        elif kind == "blob" and mode in ("100644", "100755", "120000"):
+            expected[name] = (mode, oid)
+        else:
+            raise RuntimeError("Unsupported Git input type: " + name)
+    if not expected:
+        raise RuntimeError("Empty Git input inventory")
+    actual = {}
+    actual_directories = set()
+
+    def walk(directory: Path) -> None:
+        for entry in os.scandir(directory):
+            relative = str(Path(entry.path).relative_to(source))
+            mode = entry.stat(follow_symlinks=False).st_mode
+            if stat.S_ISDIR(mode):
+                actual_directories.add(relative)
+                walk(Path(entry.path))
+            elif stat.S_ISREG(mode) or stat.S_ISLNK(mode):
+                actual[relative] = mode
+            else:
+                raise RuntimeError("Unsupported filesystem input type: " + relative)
+
+    walk(source)
+    extra = sorted(set(actual) - set(expected))
+    missing = sorted(set(expected) - set(actual))
+    extra_directories = sorted(actual_directories - directories)
+    if extra or missing or extra_directories:
+        raise RuntimeError(
+            "Git inventory mismatch: extra="
+            + repr(extra[:5])
+            + "; missing="
+            + repr(missing[:5])
+            + "; extra_dirs="
+            + repr(extra_directories[:5])
+        )
+    manifest = {}
+    for name, (mode, oid) in expected.items():
+        path = source / name
+        is_link = stat.S_ISLNK(actual[name])
+        if is_link != (mode == "120000"):
+            raise RuntimeError("Git input type mismatch: " + name)
+        if not is_link and bool(actual[name] & stat.S_IXUSR) != (mode == "100755"):
+            raise RuntimeError("Git input executable mode mismatch: " + name)
+        if is_link and not path.resolve().is_relative_to(source):
+            raise RuntimeError("Git input symlink escapes export: " + name)
+        data = os.fsencode(os.readlink(path)) if is_link else path.read_bytes()
+        if hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest() != oid:
+            raise RuntimeError("Git input content mismatch: " + name)
+        manifest[name] = {
+            "mode": mode,
+            "git_blob": oid,
+            "sha256": hashlib.sha256(data).hexdigest(),
+        }
+    return manifest
 
 
 def main() -> None:
@@ -51,6 +126,13 @@ def main() -> None:
         .decode()
         .strip()
     ).resolve()
+    revision = (
+        subprocess.check_output(
+            ["git", "rev-parse", "--verify", args.revision + "^{commit}"]
+        )
+        .decode()
+        .strip()
+    )
     source, output, prepared = (
         args.source.resolve(),
         args.output.resolve(),
@@ -67,7 +149,8 @@ def main() -> None:
         raise SystemExit("Use an empty bundle output directory")
     report = {
         "profile": "macOS/arm64/CPython-3.13.10",
-        "revision": args.revision,
+        "revision": revision,
+        "requested_revision": args.revision,
         "commands": [],
         "downloads": [],
         "workspace_wheels": {},
@@ -80,7 +163,8 @@ def main() -> None:
             word in key.upper()
             for word in ("API_KEY", "TOKEN", "SECRET", "PASSWORD", "CREDENTIAL")
         )
-        and key.upper() not in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY")
+        and not key.upper().startswith("UV_")
+        and key.upper() not in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "VIRTUAL_ENV")
     }
     environment.update(
         UV_OFFLINE="1",
@@ -95,7 +179,7 @@ def main() -> None:
         UV_PYTHON_DOWNLOADS="never",
     )
     environment["SOURCE_DATE_EPOCH"] = (
-        subprocess.check_output(["git", "show", "-s", "--format=%ct", args.revision])
+        subprocess.check_output(["git", "show", "-s", "--format=%ct", revision])
         .decode()
         .strip()
     )
@@ -111,10 +195,17 @@ def main() -> None:
         )
     }
     report["python"] = sys.version
+    report["uv_version"] = (
+        subprocess.check_output(["uv", "--version"], env=environment).decode().strip()
+    )
+    report["helper_sha256"] = digest(Path(__file__))
 
-    def run(label: str, command: list[str]) -> str:
+    def run(label: str, command: list[str], directory: Path | None = None) -> str:
+        if command[0] == "uv":
+            command = [command[0], "--no-config", *command[1:]]
+        cwd = source if directory is None else directory
         result = subprocess.run(
-            command, cwd=source, env=environment, text=True, capture_output=True
+            command, cwd=cwd, env=environment, text=True, capture_output=True
         )
         text = result.stdout + result.stderr
         (output / (label + ".log")).write_text(text)
@@ -122,7 +213,7 @@ def main() -> None:
             {
                 "label": label,
                 "argv": command,
-                "cwd": str(source),
+                "cwd": str(cwd),
                 "exit": result.returncode,
             }
         )
@@ -158,34 +249,41 @@ def main() -> None:
         return target
 
     try:
-        # Protect every package build input, not just importable Python files.
-        source_hashes = {}
-        for entry in (
-            subprocess.check_output(["git", "ls-tree", "-r", "-z", args.revision])
-            .decode()
-            .split("\0")
-        ):
-            if not entry:
-                continue
-            attributes, name = entry.split("\t", 1)
-            if not (
-                name.startswith("packages/")
-                or name in ("pyproject.toml", "uv.lock", "README.md", "LICENSE")
-            ):
-                continue
-            if attributes.split()[1] != "blob":
-                continue
-            path = source / name
-            data = (
-                os.readlink(path).encode() if path.is_symlink() else path.read_bytes()
+        # Reject polluted caller exports before any build, fetch or uv command.
+        supplied_inventory = verify_export(source, revision)
+        report["supplied_source"] = str(source)
+        archive = output / "verified-source.tar"
+        run(
+            "git-archive",
+            ["git", "archive", "--format=tar", "--output", str(archive), revision],
+            directory=checkout,
+        )
+        private_source = output / "verified-source"
+        private_source.mkdir()
+        with tarfile.open(archive) as tar:
+            tar.extractall(private_source, filter="data")
+        inventory = verify_export(private_source, revision)
+        if inventory != supplied_inventory:
+            raise RuntimeError(
+                "Private Git archive differs from verified caller export"
             )
-            if (
-                hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest()
-                != attributes.split()[2]
-            ):
-                raise RuntimeError("Build input differs from Git: " + name)
-            source_hashes[name] = hashlib.sha256(data).hexdigest()
-        report["source_hashes"] = source_hashes
+        source = private_source.resolve()
+        inventory_file = output / "source-inventory.json"
+        inventory_file.write_text(
+            json.dumps(inventory, sort_keys=True, indent=2) + "\n"
+        )
+        report["source_inventory"] = {
+            "files_and_symlinks": len(inventory),
+            "path": str(inventory_file),
+            "sha256": digest(inventory_file),
+            "archive_sha256": digest(archive),
+        }
+        report["source_hashes"] = {
+            name: row["sha256"]
+            for name, row in inventory.items()
+            if name.startswith("packages/")
+            or name in ("pyproject.toml", "uv.lock", "README.md", "LICENSE")
+        }
         report["build_tools"] = {
             p.name: digest(p) for p in (prepared / "wheelhouse").glob("*.whl")
         }
@@ -283,6 +381,8 @@ def main() -> None:
                     [
                         "uv",
                         "build",
+                        "--python",
+                        sys.executable,
                         "--wheel",
                         "--offline",
                         "--no-python-downloads",
@@ -321,6 +421,8 @@ def main() -> None:
                 [
                     "uv",
                     "build",
+                    "--python",
+                    sys.executable,
                     "--offline",
                     "--no-python-downloads",
                     "--package",
@@ -459,7 +561,14 @@ def main() -> None:
                 )
             else:
                 code += "import friday_tools,friday_finance\nfrom friday_chat.commands.registry import build_default_registry\nr=build_default_registry()\nif len(r.canonical_names())!=41 or len(r.command_names())!=44: raise RuntimeError('surface changed')\nprint('isolated default imports and 41/3 catalog passed')\n"
-            code += "from pathlib import Path\nfor n,m in tuple(sys.modules.items()):\n if n.startswith('friday') and m is not None and getattr(m,'__file__',None) and not Path(m.__file__).resolve().is_relative_to(Path(sys.prefix).resolve()): raise RuntimeError('installed origin escaped: '+n)\n"
+            code += (
+                "from pathlib import Path\n"
+                "for n,m in tuple(sys.modules.items()):\n"
+                " if not n.startswith('friday') or m is None: continue\n"
+                " f=getattr(m,'__file__',None)\n"
+                " paths=[f] if f else list(getattr(m,'__path__',()))\n"
+                " if not paths or any(not Path(p).resolve().is_relative_to(Path(sys.prefix).resolve()) for p in paths): raise RuntimeError('installed origin escaped: '+n)\n"
+            )
             run("probe-" + lane, [interpreter, "-I", "-c", code])
         report["artifacts"] = {
             str(p.relative_to(output)): digest(p)
@@ -467,6 +576,9 @@ def main() -> None:
             for p in directory.iterdir()
             if p.is_file()
         }
+        if verify_export(source, revision) != inventory:
+            raise RuntimeError("Private build input inventory changed during execution")
+        report["source_inputs_preserved"] = True
         report["status"] = "passed"
         print(
             f"Closed bundle passed: {len(workspace)} workspace builds, {len(selected)} locked third-party artifacts, both isolated installs",

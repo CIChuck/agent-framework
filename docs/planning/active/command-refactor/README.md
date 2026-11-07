@@ -143,3 +143,7 @@ Round 2 results and the narrow residual pruning-review correction are recorded
 in [the council report](validation/COUNCIL-CMD-DESIGN-001-round2.md). The correction
 had controller checks only at that historical checkpoint; those verdicts do
 not verify the current corrected readiness candidate.
+
+Current additional readiness correction: [round-three findings and dispositions](validation/pilot/council-remediation-round3.json),
+[round-four diagnostic evidence](validation/pilot/harness-evidence-round4.json).
+Fresh full council review is pending; pilot construction remains unapproved.

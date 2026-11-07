@@ -111,3 +111,20 @@ All 196 observations remain identical. The current locked baseline profile has
 assembled historical 129-member profile. No product/dependency/lock change is
 inferred. Actual pilot implementation and its G5 behavior proof remain pending.
 Fresh full round-three council review is required for this corrected candidate.
+
+
+Round three: OpenAI CHANGES_REQUESTED 8.8/10, Claude CHANGES_REQUESTED 9.1/10,
+Gemini VERIFIED 9.8/10. The combined result remains CHANGES_REQUESTED,
+regardless of scores. [Reports](validation/pilot/council-round3.json) retain all
+findings; the controller corrects one raw report's mistaken retirement wording:
+`/clear` is retained, while `/cls` is the pilot clear-screen command.
+
+Chuck Russell explicitly authorized one further correction pass and council
+after the two-cycle escalation. [Corrections](validation/pilot/council-remediation-round3.json)
+now require exact whole-export inventory/types/modes and a private verified Git
+archive, case-folded/short-option receipt protection, explicit uv/Python inputs
+and complete installed namespace origins. [Round-four evidence](validation/pilot/harness-evidence-round4.json)
+records ten source, six receipt and two origin controls; two offline artifact
+trials produce identical hashes, including a poisoned-ambient replay. All 196
+observations and 1,338 scoped baseline tests pass. Fresh full round-four council
+is next. Product design/construction approval and delivery remain not granted.

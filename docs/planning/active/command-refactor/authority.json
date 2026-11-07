@@ -191,11 +191,11 @@
     "pilot_design_approval": "not_granted",
     "pilot_construction_approval": "not_granted",
     "delivery": "local only",
-    "status": "Second bounded remediation complete; fresh full round-three council pending",
-    "evidence": "validation/pilot/harness-evidence-round3.json",
-    "corrections": "validation/pilot/council-remediation-round2.json",
+    "status": "Additional explicitly authorized correction pass complete; fresh full round-four council pending",
+    "evidence": "validation/pilot/harness-evidence-round4.json",
+    "corrections": "validation/pilot/council-remediation-round3.json",
     "round_two_followup": {
-      "scope": "Resolve SOL-R2-PILOT-001 and CLD-R2-01 through06 plus Gemini advisories; materialize and exercise a baseline artifact-bundle recipe, extend controls, then one full fresh council round",
+      "scope": "Resolve SOL-R2-PILOT-001 and CLD-R2-01 through 06 plus Gemini advisories; materialize and exercise a baseline artifact-bundle recipe, extend controls, then one full fresh council round",
       "external_services": "Public pypi.org metadata for exact setuptools/wheel build pins; files.pythonhosted.org for hash-pinned build tools and target default-dependency artifacts from unchanged uv.lock only",
       "product_construction": "not_granted",
       "validation": "Actual cold baseline bundle/compile/install controls plus scoped suites, no user/global installs or cache cleanup"
@@ -220,15 +220,32 @@
       "candidate": "911f7dbd39c4ae36fa20b6aae1dc82fbfdf1a1f3",
       "contract_sha256": "c2c5b94079f466d0cf7d8331d0941fc9451e2d8e390d0e288e3b81ec9997f973",
       "directive_sha256": "3033ea657b125a6308647e5b8cac6c1acf885cc113d4bbd2e32ffd4b76c620fe"
+    },
+    {
+      "revision": 3,
+      "candidate": "2c3db9d8f05dbe453f5288fbf9305fade3068574",
+      "contract_sha256": "e9cf8af3c0fc5e164de35c27d01e428ac9a912f0f957c21c40648c2334dc86d3",
+      "directive_sha256": "ef22f4d2adbcf50a54958946f722131ddd7e8fa5b2247fad9c9f1a6a638fee1f"
     }
   ],
   "pilot_current_proposal": {
-    "revision": 3,
+    "revision": 4,
     "contract": "pilot-command-contract.md",
-    "contract_sha256": "e9cf8af3c0fc5e164de35c27d01e428ac9a912f0f957c21c40648c2334dc86d3",
+    "contract_sha256": "e625123b8222262fb02b32aeadb2cae5c91d18ff573f04763b0af7ea3f22eb8c",
     "directive": "directives/CD-CMD-PILOT-001-help-exit-clear.md",
-    "directive_sha256": "ef22f4d2adbcf50a54958946f722131ddd7e8fa5b2247fad9c9f1a6a638fee1f",
+    "directive_sha256": "9797df6b9bf45950cb59514d05bef4c78f37b50ca30e8b77d8f8ca29ba11b2bc",
     "design_approval": "not_granted",
     "construction_approval": "not_granted"
+  },
+  "additional_correction_authorization": {
+    "authorized_by": "Chuck Russell",
+    "date": "2026-11-07",
+    "instruction": "Perform another correction pass, followed by a council review.",
+    "after_round": 3,
+    "scope": "One additional bounded diagnostic/planning correction pass for consolidated round-three findings, including exact source inventory/private Git archive builds, receipt aliases/options and reproducibility advisories; followed by a full fresh three-provider council",
+    "prior_cycle_escalation": "Explicit maintainer direction extends the earlier two-cycle automation limit for this pass only",
+    "product_construction": "not_granted",
+    "delivery": "local only",
+    "validation": "Adversarial source/type/mode controls, offline bundle replay, scoped suites, hashes, board/docs and fresh council"
   }
 }
