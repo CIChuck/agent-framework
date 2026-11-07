@@ -10,7 +10,7 @@ approval, construction authority or code validation is inferred.
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and
-accepted by Chuck Russell. Preparing RET-001; its exact directive is not approved.
+accepted by Chuck Russell. Exact strengthened RET-001 is now approved and implemented locally; final checks and independent review remain pending.
 Exact foundation approvals and source base
 `d003c4db` remain in the [approval record](approval/foundation-readiness.md).
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
@@ -91,13 +91,10 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Review and approve
-[CD-CMD-RET-001](directives/CD-CMD-RET-001-nine-command-retirement.md) at the new
-merged source baseline. [PR #13](https://github.com/CIChuck/agent-framework/pull/13)
-merged the independently VERIFIED checkpoint; the old branch is deleted and
-`feature/command-retirement` is prepared locally. See the
-[delivery receipt](validation/checkpoint/delivery.json) and
-[main checkpoint](next-phase.md). No retirement/TUI construction is approved.
+**Next gate:** Complete the approved RET-001 after-change and clean installed
+checks, freeze the candidate and obtain fresh independent validation. See
+[exact approval](approval/command-retirement.md) and the [unit evidence](validation/retirement/README.md).
+No pilot/TUI construction or external delivery is approved.
 
 The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
 refreshes baseline identity in this working home and records the current

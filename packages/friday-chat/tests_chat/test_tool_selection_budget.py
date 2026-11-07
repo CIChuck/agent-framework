@@ -10,13 +10,7 @@ from typing import Any, cast
 import pytest
 from friday_chat.adapters import FrameworkMemoryAdapter
 from friday_chat.app import FridayChatApp, ListInputSource, ListOutputSink
-from friday_chat.commands.contracts import CommandMetadata
-from friday_chat.commands.registry import RegistryCommandContext, build_default_registry
-from friday_chat.commands.tools import (
-    clear_tools_handler,
-    inject_tools_handler,
-    tool_budget_handler,
-)
+from friday_chat.commands.registry import RegistryCommandContext
 from friday_chat.config import FridayChatConfig
 from friday_chat.runtime import FakeMemoryController, FakeToolRegistry, build_runtime
 from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
@@ -83,13 +77,6 @@ def _tool(
     )
 
 
-def _metadata() -> CommandMetadata:
-    return CommandMetadata(
-        name="inject-tools",
-        description="test",
-        category="tools",
-        usage="/inject-tools <names>",
-    )
 
 
 @dataclass
@@ -204,15 +191,10 @@ async def test_manual_mode_persists_exact_set_until_clear_restores_automatic() -
     runtime = build_runtime(_config(include_in_context=True))
     model = SchemaRecordingModel()
     runtime.chat_llm = model
-    registry = build_default_registry()
-    command_context = RegistryCommandContext(runtime=runtime, registry=registry)
-
-    handled, injected = await registry.execute("/inject-tools echo", command_context)
-    assert handled is True
-    assert injected is not None
+    runtime.tool_selection.inject_manual(("echo",))
     first = await TurnProcessor(runtime).process("What date is it?")
     second = await TurnProcessor(runtime).process("remember this note")
-    await registry.execute("/clear-tools", command_context)
+    runtime.tool_selection.clear_manual()
     automatic = await TurnProcessor(runtime).process("What date is it?")
 
     assert first.selected_tool_names == ("echo",)
@@ -309,29 +291,21 @@ async def test_tool_budget_reports_no_turn_manual_selected_and_executed_states()
     None
 ):
     runtime = build_runtime(_config())
-    registry = build_default_registry()
-    context = RegistryCommandContext(runtime=runtime, registry=registry)
-
-    before = await tool_budget_handler(context, (), _metadata())
-    await inject_tools_handler(context, ("echo",), _metadata())
-    manual = await tool_budget_handler(context, (), _metadata())
-
+    state = runtime.tool_selection
+    assert state.mode is ToolSelectionMode.AUTOMATIC
+    assert state.last_turn_snapshot is None
+    manual = state.inject_manual(("echo",))
+    assert manual.mode is ToolSelectionMode.MANUAL
+    assert state.manual_names == ("echo",)
+    assert state.last_turn_snapshot is None
     runtime.chat_llm = SchemaRecordingModel()
     turn = await TurnProcessor(runtime).process("unrelated request")
-    after = await tool_budget_handler(context, (), _metadata())
-
-    assert "mode: automatic" in before.output
-    assert "estimate_source: automatic_pre_turn" in before.output
-    assert "last_selected: not yet selected" in before.output
-    assert "mode: manual" in manual.output
-    assert "pending_manual: 1 (echo)" in manual.output
-    assert "estimate_source: pending_manual" in manual.output
-    assert "last_selected: not yet selected" in manual.output
     assert turn.selected_tool_names == ("echo",)
-    assert "last_completed_mode: manual" in after.output
-    assert "last_selected: 1 (echo)" in after.output
-    assert "executed: none" in after.output
-    assert f"last_schema_tokens: {turn.tool_schema_tokens}" in after.output
+    assert state.last_turn_snapshot is turn.tool_budget_snapshot
+    assert turn.tool_budget_snapshot is not None
+    assert turn.tool_budget_snapshot.mode is ToolSelectionMode.MANUAL
+    assert state.last_executed_names == ()
+    assert turn.tool_budget_snapshot.schema_tokens == turn.tool_schema_tokens
 
 
 async def test_clear_uses_prior_automatic_estimate_and_keeps_last_manual_turn() -> None:
@@ -348,13 +322,11 @@ async def test_clear_uses_prior_automatic_estimate_and_keeps_last_manual_turn() 
     runtime.tools = FakeToolRegistry((automatic_tool, manual_tool))
     runtime.chat_llm = SchemaRecordingModel()
     processor = TurnProcessor(runtime)
-    context = RegistryCommandContext(runtime=runtime)
-
     automatic_turn = await processor.process("automatic request")
-    await inject_tools_handler(context, ("manual_tool",), _metadata())
+    runtime.tool_selection.inject_manual(("manual_tool",))
     manual_turn = await processor.process("automatic request")
-    await clear_tools_handler(context, (), _metadata())
-    output = (await tool_budget_handler(context, (), _metadata())).output
+    runtime.tool_selection.clear_manual()
+    state = runtime.tool_selection
 
     assert automatic_turn.selected_tool_names == ("automatic_tool",)
     assert manual_turn.selected_tool_names == ("manual_tool",)
@@ -363,15 +335,8 @@ async def test_clear_uses_prior_automatic_estimate_and_keeps_last_manual_turn() 
         automatic_turn.tool_budget_snapshot
     )
     assert runtime.tool_selection.last_turn_snapshot is manual_turn.tool_budget_snapshot
-    assert "mode: automatic" in output
-    assert "pending_manual: none" in output
-    assert "estimate_source: last_automatic" in output
-    assert "automatic_selected: 1 (automatic_tool)" in output
-    assert f"automatic_schema_tokens: {automatic_turn.tool_schema_tokens}" in output
-    assert f"estimated_schema_tokens: {automatic_turn.tool_schema_tokens}" in output
-    assert "last_completed_mode: manual" in output
-    assert "last_selected: 1 (manual_tool)" in output
-    assert f"last_schema_tokens: {manual_turn.tool_schema_tokens}" in output
+    assert state.mode is ToolSelectionMode.AUTOMATIC
+    assert state.manual_names == ()
 
 
 async def test_clear_without_prior_automatic_turn_reports_honest_pre_turn_state() -> (
@@ -381,55 +346,34 @@ async def test_clear_without_prior_automatic_turn_reports_honest_pre_turn_state(
     runtime = build_runtime(_config())
     runtime.tools = FakeToolRegistry((manual_tool,))
     runtime.chat_llm = SchemaRecordingModel()
-    context = RegistryCommandContext(runtime=runtime)
-
-    await inject_tools_handler(context, ("manual_tool",), _metadata())
+    runtime.tool_selection.synchronize_registered_tools(runtime.tools.list_tools())
+    runtime.tool_selection.inject_manual(("manual_tool",))
     manual_turn = await TurnProcessor(runtime).process("anything")
-    await clear_tools_handler(context, (), _metadata())
-    output = (await tool_budget_handler(context, (), _metadata())).output
+    runtime.tool_selection.clear_manual()
+    state = runtime.tool_selection
 
     assert runtime.tool_selection.last_automatic_snapshot is None
     assert runtime.tool_selection.last_turn_snapshot is manual_turn.tool_budget_snapshot
-    assert "mode: automatic" in output
-    assert "pending_manual: none" in output
-    assert "estimate_source: automatic_pre_turn" in output
-    assert "automatic_selected: not yet selected" in output
-    assert "automatic_schema_tokens: not available" in output
-    assert "estimated_schema_tokens: 0" in output
-    assert "utilization_pct: 0.0" in output
-    assert "last_completed_mode: manual" in output
-    assert "last_selected: 1 (manual_tool)" in output
-    assert f"last_schema_tokens: {manual_turn.tool_schema_tokens}" in output
+    assert state.mode is ToolSelectionMode.AUTOMATIC
+    assert state.manual_names == ()
 
 
 async def test_disabled_and_empty_registries_offer_zero_schemas() -> None:
     disabled = build_runtime(_config(enabled=False))
     disabled_result = await TurnProcessor(disabled).process("echo")
-    disabled_budget = await tool_budget_handler(
-        RegistryCommandContext(runtime=disabled),
-        (),
-        _metadata(),
-    )
     assert disabled_result.selected_tool_names == ()
     assert disabled_result.tool_schema_tokens == 0
     assert disabled_result.tool_budget_snapshot is not None
     assert disabled_result.tool_budget_snapshot.mode is ToolSelectionMode.DISABLED
-    assert "mode: disabled" in disabled_budget.output
-    assert "estimated_schema_tokens: 0" in disabled_budget.output
-
+    assert disabled_result.tool_budget_snapshot.schema_tokens == 0
     empty = build_runtime(_config())
     empty.tools = FakeToolRegistry(())
     empty_result = await TurnProcessor(empty).process("echo")
-    empty_budget = await tool_budget_handler(
-        RegistryCommandContext(runtime=empty),
-        (),
-        _metadata(),
-    )
     assert empty_result.selected_tool_names == ()
     assert empty_result.tool_schema_tokens == 0
     assert empty_result.tool_budget_snapshot is not None
     assert empty_result.tool_budget_snapshot.schema_bytes == b""
-    assert "registered: none" in empty_budget.output
+    assert empty_result.tool_budget_snapshot.registered_names == ()
 
 
 async def test_zero_output_buffer_and_tiny_context_reach_retrieval_exactly() -> None:
@@ -475,23 +419,21 @@ async def test_command_display_sanitizes_and_bounds_untrusted_tool_metadata() ->
     tool = _tool(unsafe_name, category=unsafe_category)
     runtime = build_runtime(_config())
     runtime.tools = FakeToolRegistry((tool,))
-    context = RegistryCommandContext(runtime=runtime)
-
-    injected = await inject_tools_handler(context, (unsafe_name,), _metadata())
+    runtime.tool_selection.synchronize_registered_tools((tool,))
+    runtime.tool_selection.inject_manual((unsafe_name,))
     selection = runtime.tool_selection.select_for_turn("anything")
     runtime.tool_selection.record_completed_turn(selection.budget, (unsafe_name,))
-    budget = await tool_budget_handler(context, (), _metadata())
-    rejected = await inject_tools_handler(
-        context,
-        ("missing\x1b[31m" + "z" * 10000,),
-        _metadata(),
-    )
-
-    combined_output = injected.output + budget.output + rejected.output
-    assert "\x1b" not in combined_output
-    assert "\n\x1b[2J" not in combined_output
-    assert len(rejected.output) < 300
-    assert "- executed: 1 (" in budget.output
+    with pytest.raises(ToolSelectionError):
+        runtime.tool_selection.inject_manual(("missing\x1b[31m" + "z" * 10000,))
+    context = RegistryCommandContext(runtime=runtime)
+    for command in ("inject-tools", "tool-budget", "clear-tools"):
+        _, result = await context.registry.execute(f"/{command} {unsafe_name}", context)
+        assert result is not None
+        assert (
+            result.output
+            == f"Unknown command: /{command}. Type /help for available commands."
+        )
+        assert "\x1b" not in result.output
     assert selection.budget.selected_names == (unsafe_name,)
     assert selection.budget.selected_categories == (unsafe_category,)
     assert selection.budget.schema_bytes == canonical_tool_schema_bytes((tool,))

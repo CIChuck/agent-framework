@@ -33,7 +33,7 @@
     "resumed_by": "Chuck Russell",
     "resume_instruction": "Proceed to step three."
   },
-  "construction_directive_approval": "approved_for_CMD-FND-001_only",
+  "construction_directive_approval": "approved_for_CMD-RET-001_only; previous approved units retain historical provenance",
   "council_request": {
     "requested_by": "Chuck Russell",
     "scope": "Read-only evaluation of the frozen readiness review; no construction approval or automatic remediation loop",

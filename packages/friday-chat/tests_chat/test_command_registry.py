@@ -130,21 +130,10 @@ def test_remediated_command_help_documents_final_runtime_contracts() -> None:
     assert commands["transcript"].usage == "/transcript [session_id|export]"
     assert commands["transcript"].arguments[0].name == "target"
     assert "bound store-query values" in (commands["transcript"].detail or "")
-    assert "never copies the live SQLite database" in (
-        commands["export"].detail or ""
-    )
-    assert "transcript.capture_raw_prompts" in (
-        commands["export-prompts"].detail or ""
-    )
+    assert "never copies the live SQLite database" in (commands["export"].detail or "")
+    assert "transcript.capture_raw_prompts" in (commands["export-prompts"].detail or "")
 
-    assert commands["inject-tools"].usage == "/inject-tools <name> [name ...]"
-    assert commands["inject-tools"].arguments[0].required is True
-    assert "accepted atomically" in commands["inject-tools"].arguments[0].description
-    assert "manual mode" in (commands["inject-tools"].detail or "")
-    assert "restore automatic" in commands["clear-tools"].description
-    assert "authoritative tool selection" in commands["tool-budget"].description
-    assert commands["tool-budget"].detail is not None
-    assert "tools.context.max_budget_ratio" in commands["tool-budget"].detail
+
 
 
 @pytest.mark.parametrize(

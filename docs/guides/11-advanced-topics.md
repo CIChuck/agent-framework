@@ -97,7 +97,7 @@ percentage cost savings were not measured release guarantees.
 Tune one mechanism at a time:
 
 1. Reduce unnecessary tool schemas and oversized results before shrinking useful
-   memory. Inspect `/tool-budget` and the actual formatted prompt.
+   memory. Inspect the actual formatted prompt in a controlled synthetic run.
 2. Align priming retrieval with supporting-context limits; retrieving more than
    can be formatted wastes latency and embedding/query work.
 3. Bound prior-session and current-session history; retained older turns compete

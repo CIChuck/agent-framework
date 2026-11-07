@@ -23,7 +23,6 @@ uses the same processor, and scanning does not contain arbitrary code.
 | Framework agent `AgentOutputProcessor` | Uses Core sanitizer and optional raw-detection quarantine | Requires a non-default tool category; generic observation may include tool/pattern identifiers |
 | Integrated Chat MCP results | Fixed high-sensitivity block policy, bounded checked result/provenance, argument-echo removal and escaped envelope | Separate MCP policy; not controlled by arbitrary generic security flags |
 | Chat `/security-test` | Deterministic substring/escaping sample helper | Not the Core scanner or a comprehensive attack test |
-| Chat manual native `/run-tool` | Its own limited script-pattern handling | Not general prompt-injection or secret redaction |
 | Other native tools/persistence | Depends on the specific caller/loop | Do not infer all-path sanitization from the MCP contract |
 
 The older guide described a target architecture as universal current behavior.
@@ -109,7 +108,7 @@ Chat command helper's values, not the Core model's full vocabulary. The command
 updates Chat's in-memory configuration mapping, not the YAML file or every
 constructed processor.
 
-`/security-test` and `/inject-payload` are local validation aids. Their success
+`/security-test` is a local validation aid. Its success
 does not prove a model-driven native tool, MCP peer, memory ingest and transcript
 export all use the same path. Test the actual path you deploy with synthetic
 content before making a coverage claim.

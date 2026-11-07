@@ -321,10 +321,11 @@ async def test_tool_budget_reports_schemas_selected_for_real_turn(
     )
     assert turn.tool_schema_tokens > 0
 
-    result = await _execute(production_runtime, "/tool-budget")
-
-    assert "echo" in result
-    assert str(turn.tool_schema_tokens) in result
+    snapshot = turn.tool_budget_snapshot
+    assert snapshot is not None
+    assert "echo" in snapshot.selected_names
+    assert snapshot.schema_tokens == turn.tool_schema_tokens
+    assert production_runtime.tool_selection.last_turn_snapshot is snapshot
 
 
 async def test_meta_dispatches_seeded_real_adapter_record(

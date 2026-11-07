@@ -7,7 +7,6 @@ import re
 from collections.abc import Awaitable, Callable, Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
 
 from friday_chat.commands.contracts import (
     CommandArgument,
@@ -35,14 +34,6 @@ from friday_chat.commands.memory import (
     record_value as _record_value,
 )
 from friday_chat.commands.session import cls_handler
-from friday_chat.commands.tools import (
-    clear_tools_handler,
-    inject_tools_handler,
-    tool_budget_handler,
-)
-from friday_chat.commands.tools import (
-    find_tool as _find_tool,
-)
 from friday_chat.commands.tools import (
     list_runtime_tools as _list_runtime_tools,
 )
@@ -81,7 +72,6 @@ _SHARED_ADMISSION_COMMANDS = frozenset(
         "compact",
         "ingest",
         "replay",
-        "run-tool",
     }
 )
 
@@ -362,21 +352,6 @@ async def _timing_handler(
     return CommandResult(output="\n".join(lines))
 
 
-async def _prime_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    priming = context.runtime.config.memory.priming if context.runtime is not None else {}
-    previous_sessions = priming.get("previous_sessions", 0)
-    enabled = priming.get("enabled", False)
-    return CommandResult(
-        output=(
-            "Primed context:\n"
-            f"- enabled: {enabled}\n"
-            f"- previous_sessions: {previous_sessions}"
-        )
-    )
 
 
 async def _debug_retrieval_handler(
@@ -989,15 +964,6 @@ async def _security_config_handler(
     return CommandResult(output=f"Updated security {kind} to {value}.")
 
 
-async def _inject_payload_handler(
-    context: CommandContext,
-    args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    if not args:
-        return CommandResult(output="Usage: /inject-payload <payload>")
-    context.injected_payload = " ".join(args)
-    return CommandResult(output="Stored payload for next tool result.")
 
 
 async def _speech_handler(
@@ -1244,103 +1210,12 @@ async def _tools_handler(
     return CommandResult(output="\n".join(lines))
 
 
-async def _run_tool_handler(
-    context: CommandContext,
-    args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    if context.runtime is None:
-        return CommandResult(output="Error: Tool registry not initialized.")
-    if not args:
-        available = ", ".join(tool.name for tool in _list_runtime_tools(context))
-        return CommandResult(
-            output=f"Usage: /run-tool <tool_name> [params]\nAvailable tools: {available}"
-        )
-
-    tool_name = args[0]
-    tool = _find_tool(context, tool_name)
-    if tool is None:
-        available = ", ".join(tool.name for tool in _list_runtime_tools(context))
-        return CommandResult(output=f"Unknown tool: {tool_name}\nAvailable tools: {available}")
-    if not tool.category or tool.category == "uncategorized":
-        return CommandResult(output=f"Tool '{tool_name}' is missing a category.")
-
-    params_text = " ".join(args[1:])
-    parsed = _parse_tool_parameters(tool, params_text)
-    if isinstance(parsed, str):
-        return CommandResult(output=parsed)
-
-    missing = _missing_required_parameters(tool, parsed)
-    if missing:
-        return CommandResult(
-            output=f"Missing required parameters for {tool.name}: {', '.join(missing)}"
-        )
-
-    raw_result = await context.runtime.tools.call_tool(tool.name, parsed)
-    if context.injected_payload is not None:
-        raw_result = f"{raw_result}\n{context.injected_payload}"
-        context.injected_payload = None
-    llm_output, memory_output = _sanitize_tool_result(context, raw_result)
-    llm_output = _truncate_tool_output(context, llm_output)
-    context.tool_results.append(memory_output)
-    context.tool_lifecycle_records.append(tool.name)
-    source_path = parsed.get("path") or parsed.get("file_path")
-    if isinstance(source_path, str) and source_path:
-        context.tool_ingestions.append(source_path)
-    return CommandResult(output=f"Tool {tool.name} result:\n{llm_output}")
 
 
-async def _recommend_tools_handler(
-    context: CommandContext,
-    args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    if not args:
-        return CommandResult(output="Usage: /recommend-tools <query>")
-
-    query = " ".join(args).lower()
-    tools = _list_runtime_tools(context)
-    scored: list[tuple[int, ToolDefinition]] = []
-    for tool in tools:
-        haystack = f"{tool.name} {tool.description} {tool.category}".lower()
-        score = sum(1 for word in query.split() if word in haystack)
-        scored.append((score, tool))
-    ranked = sorted(scored, key=lambda item: (-item[0], item[1].name))[:5]
-
-    lines = ["Recommended tools:"]
-    for score, tool in ranked:
-        confidence = "high" if score else "low"
-        reason = "matched query terms" if score else "available fallback"
-        lines.append(
-            f"- {tool.name}: score={score}, confidence={confidence}, "
-            f"category={tool.category}, reason={reason}"
-        )
-    return CommandResult(output="\n".join(lines))
 
 
-async def _vars_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    if not context.variables:
-        return CommandResult(output="No scoped variables.")
-    lines = ["Scoped variables:"]
-    lines.extend(f"- {key}: {value}" for key, value in sorted(context.variables.items()))
-    return CommandResult(output="\n".join(lines))
 
 
-async def _set_handler(
-    context: CommandContext,
-    args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    if len(args) < 2:
-        return CommandResult(output="Usage: /set <key> <value>")
-    key = args[0]
-    value = " ".join(args[1:])
-    context.variables[key] = value
-    return CommandResult(output=f"Set {key}.")
 
 
 async def _help_handler(
@@ -1414,7 +1289,6 @@ BASIC_COMMAND_HANDLERS: dict[str, CommandHandler] = {
     "debug": _debug_handler,
     "debug-budget": _debug_budget_handler,
     "timing": _timing_handler,
-    "prime": _prime_handler,
     "debug-retrieval": _debug_retrieval_handler,
     "entities": _entities_handler,
     "insights": insights_handler,
@@ -1432,7 +1306,6 @@ BASIC_COMMAND_HANDLERS: dict[str, CommandHandler] = {
     "security": _security_handler,
     "security-test": _security_test_handler,
     "security-config": _security_config_handler,
-    "inject-payload": _inject_payload_handler,
     "speech": _speech_handler,
     "speech-test": _speech_test_handler,
     "switch": _switch_handler,
@@ -1446,13 +1319,6 @@ BASIC_COMMAND_HANDLERS: dict[str, CommandHandler] = {
     "export": export_handler,
     "export-prompts": export_prompts_handler,
     "tools": _tools_handler,
-    "run-tool": _run_tool_handler,
-    "inject-tools": inject_tools_handler,
-    "clear-tools": clear_tools_handler,
-    "recommend-tools": _recommend_tools_handler,
-    "tool-budget": tool_budget_handler,
-    "vars": _vars_handler,
-    "set": _set_handler,
 }
 
 
@@ -1749,78 +1615,14 @@ def _tool_parameter_names(tool: ToolDefinition) -> list[str]:
     return [str(name) for name in properties]
 
 
-def _parse_tool_parameters(
-    tool: ToolDefinition,
-    params_text: str,
-) -> dict[str, Any] | str:
-    if not params_text:
-        return {}
-    if params_text.strip().startswith("{"):
-        try:
-            parsed = json.loads(params_text)
-        except json.JSONDecodeError as exc:
-            return (
-                f"Invalid JSON parameters: {exc}\n"
-                f'Example: /run-tool {tool.name} {{"param": "value"}}'
-            )
-        if not isinstance(parsed, dict):
-            return "Tool parameters must be a JSON object."
-        return parsed
-
-    parameter_name = _plain_text_parameter_name(tool)
-    if parameter_name is None:
-        return f"Tool '{tool.name}' does not support plain text parameters."
-    return {parameter_name: params_text}
 
 
-def _plain_text_parameter_name(tool: ToolDefinition) -> str | None:
-    properties = tool.input_schema.get("properties", {})
-    required = tool.input_schema.get("required", [])
-    if not isinstance(properties, dict) or not properties:
-        return None
-    if not isinstance(required, list):
-        required = []
-    if "message" in properties:
-        return "message"
-    if len(required) == 1 and isinstance(required[0], str):
-        return required[0]
-    if len(properties) == 1 or not required:
-        return str(next(iter(properties)))
-    return None
 
 
-def _missing_required_parameters(
-    tool: ToolDefinition,
-    parameters: dict[str, Any],
-) -> list[str]:
-    required = tool.input_schema.get("required", [])
-    if not isinstance(required, list):
-        return []
-    return [str(name) for name in required if str(name) not in parameters]
 
 
-def _sanitize_tool_result(context: CommandContext, raw_result: str) -> tuple[str, str]:
-    context.security_stats["total_scans"] += 1
-    if "<script" not in raw_result.lower():
-        return raw_result, raw_result
-
-    context.security_stats["detections"] += 1
-    context.security_stats["blocked"] += 1
-    context.security_stats["patterns_seen"] += 1
-    llm_output = raw_result.replace("<", "&lt;").replace(">", "&gt;")
-    memory_output = raw_result.replace("<script", "[script").replace("</script>", "")
-    return llm_output, memory_output
 
 
-def _truncate_tool_output(context: CommandContext, output: str) -> str:
-    max_chars = 50000
-    if context.runtime is not None:
-        raw_max = context.runtime.config.tools.loop.get("max_tool_result_chars")
-        if isinstance(raw_max, int) and raw_max > 0:
-            max_chars = raw_max
-    if len(output) <= max_chars:
-        return output
-    return output[:max_chars] + "\n[truncated]"
 
 
 @dataclass(frozen=True)
@@ -1867,21 +1669,6 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         ),
     ),
     CommandSpec("history", "Show conversation history.", "session", "/history"),
-    CommandSpec("vars", "Show scoped variables.", "session", "/vars"),
-    CommandSpec(
-        "set",
-        "Set a scoped variable.",
-        "session",
-        "/set <key> <value>",
-        arguments=(
-            _argument("key", "Variable key to set.", required=True),
-            _argument(
-                "value",
-                "Variable value; remaining words are joined.",
-                required=True,
-            ),
-        ),
-    ),
     CommandSpec(
         "memory",
         "Show typed memory, transcript, session, and context statistics.",
@@ -1910,7 +1697,6 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "/prompt [--file]",
         arguments=(_argument("--file", "Export the prompt to a file."),),
     ),
-    CommandSpec("prime", "Load and show primed context.", "memory", "/prime"),
     CommandSpec("debug", "Show context assembly debug information.", "memory", "/debug"),
     CommandSpec(
         "debug-budget",
@@ -2140,67 +1926,6 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
             _argument("category", "Optional runtime tool category filter."),
         ),
     ),
-    CommandSpec(
-        "run-tool",
-        "Execute a named tool.",
-        "tools",
-        "/run-tool <name> [json]",
-        arguments=(
-            _argument("name", "Registered tool name.", required=True),
-            _argument("json", "JSON object containing tool parameters."),
-        ),
-    ),
-    CommandSpec(
-        "inject-tools",
-        "Set the exact manual tool schema set for subsequent turns.",
-        "tools",
-        "/inject-tools <name> [name ...]",
-        arguments=(
-            _argument(
-                "name",
-                "One or more whitespace-separated registered names accepted "
-                "atomically within configured count and schema-token limits.",
-                required=True,
-            ),
-        ),
-        detail=(
-            "Switches runtime selection to manual mode only after every name and "
-            "the complete schema set pass validation. The accepted set remains "
-            "model-bound until /clear-tools restores automatic selection."
-        ),
-    ),
-    CommandSpec(
-        "clear-tools",
-        "Clear the pending manual set and restore automatic tool selection.",
-        "tools",
-        "/clear-tools",
-    ),
-    CommandSpec(
-        "recommend-tools",
-        "Recommend tools for a query.",
-        "tools",
-        "/recommend-tools <query>",
-        arguments=(
-            _argument(
-                "query",
-                "Recommendation query; remaining words are joined.",
-                required=True,
-            ),
-        ),
-    ),
-    CommandSpec(
-        "tool-budget",
-        "Inspect authoritative tool selection and schema-budget state.",
-        "tools",
-        "/tool-budget",
-        detail=(
-            "Distinguishes registered tools, pending manual selection, the most "
-            "recent automatic selection, the last completed turn, and executed "
-            "tools. Schema estimates and limits use tools.context.max_tools, "
-            "tools.context.max_budget_ratio, memory.context_window, and "
-            "memory.output_buffer."
-        ),
-    ),
     CommandSpec("security", "Show security status.", "security", "/security"),
     CommandSpec(
         "security-test",
@@ -2231,19 +1956,6 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
             _argument(
                 "value",
                 "Validated value for the selected security setting.",
-                required=True,
-            ),
-        ),
-    ),
-    CommandSpec(
-        "inject-payload",
-        "Inject a test payload for security validation.",
-        "security",
-        "/inject-payload <payload>",
-        arguments=(
-            _argument(
-                "payload",
-                "Test payload; remaining words are joined.",
                 required=True,
             ),
         ),

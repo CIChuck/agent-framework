@@ -62,7 +62,6 @@ services; appearance in help is not proof that a backend is real or available.
 | `/list-ingested` | memory | List ingested document memory records. |
 | `/memory` | memory | Show typed memory, transcript, session, and context statistics. |
 | `/meta` | memory | List active meta insights with lifecycle and provenance metadata. |
-| `/prime` | memory | Load and show primed context. |
 | `/prompt [--file]` | memory | Show the full formatted prompt sent to the LLM. |
 | `/reset [graph\|vector\|episodic]` | memory | Reset one or more memory stores. |
 | `/summaries` | memory | List turn summaries. |
@@ -72,22 +71,14 @@ services; appearance in help is not proof that a backend is real or available.
 | `/delegate <agent> <task>` | orchestration | Delegate a task to another agent. |
 | `/status` | orchestration | Show orchestrator status. |
 | `/switch [agent]` | orchestration | Switch active agent or show current agent status. |
-| `/inject-payload <payload>` | security | Inject a test payload for security validation. |
 | `/security` | security | Show security status. |
 | `/security-config <sensitivity\|action\|wrapping> <value>` | security | Update security configuration. |
 | `/security-test [instruction\|delimiter\|jailbreak\|exfil\|all]` | security | Run local security sanitization tests. |
 | `/clear` | session | Clear conversation history. |
 | `/cls` | session | Clear the terminal through the display boundary. |
 | `/history` | session | Show conversation history. |
-| `/set <key> <value>` | session | Set a scoped variable. |
-| `/vars` | session | Show scoped variables. |
 | `/speech [on\|off\|config\|mode <live\|file>\|voice <name>\|provider <elevenlabs\|picovoice>]` | speech | Configure speech settings. |
 | `/speech-test [once\|loop]` | speech | Run the speech validation harness. |
-| `/clear-tools` | tools | Clear the pending manual set and restore automatic tool selection. |
-| `/inject-tools <name> [name ...]` | tools | Set manual tool names; configured `tools.context.required_tools` remain included. |
-| `/recommend-tools <query>` | tools | Recommend tools for a query. |
-| `/run-tool <name> [json]` | tools | Execute a named tool. |
-| `/tool-budget` | tools | Inspect authoritative tool selection and schema-budget state. |
 | `/tools [category]` | tools | List registered runtime tools and optionally filter by category. |
 | `/export [csv\|jsonl\|markdown\|md\|training]` | transcript | Export persisted entries from the current session. |
 | `/export-prompts [session_id]` | transcript | Export persisted captured prompts and responses for one session. |
@@ -101,15 +92,13 @@ services; appearance in help is not proof that a backend is real or available.
 
 `/clear` clears current conversation history/session memory through the runtime;
 it is not a wipe of every durable store. `/cls` only requests a terminal clear.
-`/history` shows the current in-process history. `/vars` and `/set` operate on
-command-context variables, not arbitrary persistent application configuration.
+`/history` shows the current in-process history.
 
 `/context` shows the last assembled payload and `/prompt` shows the formatted
 model prompt when available. `--file` writes an export. These can contain
 private text even when telemetry is disabled. `/debug` and `/timing` include
 local execution summaries; `/debug-budget` currently reports configured context
-window/output buffer rather than a full per-section accounting. `/tool-budget`
-provides the authoritative tool-selection snapshot.
+window/output buffer rather than a full per-section accounting.
 
 `/entities` supports `nodes` or a name, not the old `--limit` reference syntax.
 There is no current `/facts` command. `/insights`, `/summaries`, `/meta` and
@@ -135,20 +124,15 @@ neither is a safe retry mechanism for uncertain mutations.
 
 ## Tool commands
 
-`/tools` inspects registered tools; `/recommend-tools` recommends candidates.
-`/inject-tools` replaces the manually requested names for subsequent turns;
-`tools.context.required_tools` remain included. Manual mode suppresses optional
-automatic choices. The union of required and manually selected names must fit
-admission, count and schema budgets. These are Chat context settings, separate
-from agent-profile `required_tools`.
-`/clear-tools` restores automatic selection. Inspect `/tool-budget` after changing
-that set. A required/manual set can fail when names or budgets are invalid.
+`/tools [category]` inspects registered tools and optionally filters by category.
+It does not execute a tool. Chat selects model-facing schemas using its configured
+context policy; `tools.context.required_tools` and schema budgets still apply.
+These settings are separate from agent-profile `required_tools`.
 
-`/run-tool <name> [json]` **executes** the tool. The JSON is an object of arguments;
-use a harmless tool and synthetic data for diagnostics. Filesystem, shell,
+Normal tool execution uses provider function-call records. Filesystem, shell,
 finance, web and integration tools can read/write data, use network services
-or incur charges. The manual native path and model-driven MCP path do not
-share every output-sanitization guarantee; see [security](security-configuration-guidelines.md).
+or incur charges. Inspect the actual execution and output-processing path;
+see [security](security-configuration-guidelines.md).
 
 ## Commands that change memory
 
@@ -196,8 +180,8 @@ with explicitly provisioned credentials/devices; see [speech](speech.md).
 The Chat `/security-test` command exercises deterministic sample handling,
 not a comprehensive attack test. Its runtime update vocabulary differs from
 Core `SanitizationConfig`; an accepted `/security-config` update does not
-prove every tool path adopted it. `/inject-payload` stages a synthetic payload
-for tool-result testing and should be used only in a disposable session.
+prove every tool path adopted it. Test actual tool-result paths using synthetic
+content in a disposable environment.
 See [security configuration](security-configuration-guidelines.md).
 
 ## Implementation references

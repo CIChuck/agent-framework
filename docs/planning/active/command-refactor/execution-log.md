@@ -737,3 +737,13 @@ Verified source equality and preserved dirty hashes/assertion inventory before
 code edits. Execute this unit only, including RET-GATE-01–03; capture current
 before results and immutable evidence. No future construction or delivery.
 Execution phase implementation; validation state not_ready.
+
+RET-001 implementation: before suites826/145/155 pass, approved guard self-tests
+and exact original metadata-fields/Git-source proof pass. Removed exact allowed
+source symbols/catalog entries/four fields; no parser/registry blacklist or
+retained-handler change. Updated23 mapped test nodes, kept496 original node ASTs
+identical, added216 no-effect cases and exact catalog/field/custom-registry checks;
+updated seven allowed guides. Working Chat1038 passes. New schema-projection and
+test-fixture errors were corrected/disclosed in unit evidence; no product fix
+beyond approved removals. Final frozen after checks and clean Git packaging
+remain required. Execution phase implementation; validation state not_ready.

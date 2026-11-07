@@ -70,117 +70,16 @@ async def test_tools_command_lists_and_filters_by_category() -> None:
     assert "Available categories: memory, utility" in missing_tools.output
 
 
-async def test_run_tool_supports_json_and_plain_text_parameters() -> None:
-    registry = build_default_registry()
-    context = _context()
-
-    _, json_result = await registry.execute('/run-tool echo {"text": "hello"}', context)
-    _, plain_result = await registry.execute("/run-tool remember durable note", context)
-
-    assert json_result is not None
-    assert json_result.output == "Tool echo result:\nhello"
-    assert plain_result is not None
-    assert "remembered: durable note" in plain_result.output
 
 
-async def test_run_tool_validation_errors_are_user_facing() -> None:
-    registry = build_default_registry()
-    context = _context()
-
-    _, unknown = await registry.execute("/run-tool missing {}", context)
-    _, invalid_json = await registry.execute("/run-tool echo {not-json", context)
-    _, missing_required = await registry.execute("/run-tool echo {}", context)
-    _, no_runtime = await registry.execute("/run-tool echo hi", RegistryCommandContext())
-
-    assert unknown is not None
-    assert "Unknown tool: missing" in unknown.output
-    assert invalid_json is not None
-    assert "Invalid JSON parameters" in invalid_json.output
-    assert missing_required is not None
-    assert missing_required.output == "Missing required parameters for echo: text"
-    assert no_runtime is not None
-    assert no_runtime.output == "Error: Tool registry not initialized."
 
 
-async def test_tool_sanitization_updates_security_stats() -> None:
-    registry = build_default_registry()
-    context = _context()
-
-    _, result = await registry.execute(
-        "/run-tool echo <script>alert(1)</script>",
-        context,
-    )
-
-    assert result is not None
-    assert "&lt;script&gt;" in result.output
-    assert context.security_stats == {
-        "total_scans": 1,
-        "detections": 1,
-        "blocked": 1,
-        "patterns_seen": 1,
-    }
-    assert "<script" not in context.tool_results[0]
 
 
-async def test_tool_result_truncation_lifecycle_and_ingestion_tracking() -> None:
-    registry = build_default_registry()
-    context = _context(max_tool_result_chars=5)
-
-    _, result = await registry.execute(
-        '/run-tool echo {"text": "hello world", "path": "/tmp/source.txt"}',
-        context,
-    )
-
-    assert result is not None
-    assert "hello\n[truncated]" in result.output
-    assert context.tool_results == ["hello world"]
-    assert context.tool_lifecycle_records == ["echo"]
-    assert context.tool_ingestions == ["/tmp/source.txt"]
 
 
-async def test_inject_clear_and_tool_budget_commands() -> None:
-    registry = build_default_registry()
-    context = _context()
-
-    _, rejected_result = await registry.execute(
-        "/inject-tools echo missing",
-        context,
-    )
-    _, rejected_budget = await registry.execute("/tool-budget", context)
-    _, inject_result = await registry.execute("/inject-tools echo", context)
-    _, budget_result = await registry.execute("/tool-budget", context)
-    _, clear_result = await registry.execute("/clear-tools", context)
-    _, cleared_budget = await registry.execute("/tool-budget", context)
-
-    assert rejected_result is not None
-    assert "unknown_tool" in rejected_result.output
-    assert "Manual selection unchanged" in rejected_result.output
-    assert rejected_budget is not None
-    assert "mode: automatic" in rejected_budget.output
-    assert "pending_manual: none" in rejected_budget.output
-    assert inject_result is not None
-    assert "- echo (utility)" in inject_result.output
-    assert budget_result is not None
-    assert "mode: manual" in budget_result.output
-    assert "pending_manual: 1 (echo)" in budget_result.output
-    assert "max_budget_ratio: 0.250" in budget_result.output
-    assert clear_result is not None
-    assert clear_result.output == "Cleared injected tools."
-    assert cleared_budget is not None
-    assert "mode: automatic" in cleared_budget.output
-    assert "pending_manual: none" in cleared_budget.output
 
 
-async def test_recommend_tools_returns_scored_results() -> None:
-    registry = build_default_registry()
-    context = _context()
-
-    _, result = await registry.execute("/recommend-tools record memory note", context)
-
-    assert result is not None
-    assert result.output.startswith("Recommended tools:")
-    assert "remember" in result.output
-    assert "score=" in result.output
 
 
 async def test_tool_loop_executes_explicit_function_call_records() -> None:

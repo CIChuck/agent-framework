@@ -31,9 +31,6 @@ def test_affected_handlers_are_owned_by_their_category_modules() -> None:
         "transcript": "friday_chat.commands.transcript",
         "export": "friday_chat.commands.transcript",
         "export-prompts": "friday_chat.commands.transcript",
-        "inject-tools": "friday_chat.commands.tools",
-        "clear-tools": "friday_chat.commands.tools",
-        "tool-budget": "friday_chat.commands.tools",
     }
 
     assert {

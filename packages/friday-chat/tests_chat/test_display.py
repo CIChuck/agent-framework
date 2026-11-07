@@ -298,12 +298,10 @@ async def test_generic_output_sink_preserves_literal_help_arguments(
 ) -> None:
     sink = FridayCliOutputSink()
 
-    await sink.write(
-        "Usage: /help [command]\nUsage: /run-tool <name> [json]"
-    )
+    await sink.write("Usage: /help [command]\nUsage: /tools [category]")
 
     assert capsys.readouterr().out == (
-        "Usage: /help [command]\nUsage: /run-tool <name> [json]\n"
+        "Usage: /help [command]\nUsage: /tools [category]\n"
     )
 
 

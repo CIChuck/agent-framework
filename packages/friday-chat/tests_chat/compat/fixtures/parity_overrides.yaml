@@ -6,6 +6,10 @@ accepted_differences:
     decision: >
       FridayV2 does not parse model-output text tool calls during the initial
       parity pass. Tool execution is driven by provider function-call records
-      or direct /run-tool invocation.
+      with the manual slash execution path retired by CD-CMD-RET-001.
     evidence: docs/archive/completed/2026/friday-chat-v2/friday-chat-v2-behavioral-contracts.md
+  - id: nine-command-retirement
+    decision: Complete removal; ordinary unknown responses, no former effects or compatibility redirects.
+    commands: [clear-tools, inject-tools, recommend-tools, run-tool, tool-budget, inject-payload, prime, set, vars]
+    evidence: docs/planning/active/command-refactor/directives/CD-CMD-RET-001-nine-command-retirement.md
 simple_command_exemptions: []

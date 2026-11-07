@@ -63,18 +63,22 @@ async def test_history_and_clear_commands_use_session_state() -> None:
 
 async def test_vars_and_set_commands() -> None:
     registry = build_default_registry()
-    context = RegistryCommandContext(registry=registry)
+    context = RegistryCommandContext(
+        runtime=_runtime(), registry=registry, variables={"project": "Friday V2"}
+    )
+    for command in ("/set project replaced", "/vars"):
+        handled, result = await registry.execute(command, context)
+        assert handled and result is not None
+        assert result.output.startswith("Unknown command:")
+        assert context.variables == {"project": "Friday V2"}
+    _, memory = await registry.execute("/memory", context)
+    assert memory is not None
+    assert "scoped_variables: 1" in memory.output
 
-    _, set_result = await registry.execute("/set project Friday V2", context)
-    _, vars_result = await registry.execute("/vars", context)
 
-    assert set_result is not None
-    assert set_result.output == "Set project."
-    assert vars_result is not None
-    assert "- project: Friday V2" in vars_result.output
-
-
-async def test_basic_memory_diagnostic_commands_with_fake_runtime(tmp_path: Path) -> None:
+async def test_basic_memory_diagnostic_commands_with_fake_runtime(
+    tmp_path: Path,
+) -> None:
     runtime = _runtime(tmp_path)
     registry = build_default_registry()
     context = RegistryCommandContext(
@@ -95,7 +99,6 @@ async def test_basic_memory_diagnostic_commands_with_fake_runtime(tmp_path: Path
         "/debug",
         "/debug-budget",
         "/timing",
-        "/prime",
         "/debug-retrieval hello",
         "/entities",
         "/insights",
@@ -114,7 +117,8 @@ async def test_basic_memory_diagnostic_commands_with_fake_runtime(tmp_path: Path
     assert "retrieved_memory_count" in command_outputs["/debug"]
     assert "context_window: 1000" in command_outputs["/debug-budget"]
     assert "last_turn: 0.125s" in command_outputs["/timing"]
-    assert "previous_sessions: 2" in command_outputs["/prime"]
+    assert runtime.config.memory.priming["previous_sessions"] == 2
+    assert "previous_sessions: 2" in command_outputs["/memory"]
     assert "Retrieval diagnostics:" in command_outputs["/debug-retrieval hello"]
     assert command_outputs["/entities"] == "No entities found."
     assert command_outputs["/insights"] == "No insights found."
