@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Independent final PILOT-001 delta and aggregate readiness verification; then exact contract and directive approval; construction remains unapproved
+  next_gate: Approve exact PILOT-001 contract and additive API, then CD-CMD-PILOT-001 (or both together); readiness VERIFIED; construction remains unapproved
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -723,6 +723,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/checkpoint/verified-report.md
   - docs/planning/active/command-refactor/validation/retirement/verified-report.md
   - docs/planning/active/command-refactor/validation/pilot/round4-reconciliation.md
+  - docs/planning/active/command-refactor/validation/pilot/final-readiness-validation.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2555,3 +2556,10 @@ events:
   action: authorized continuing bounded readiness corrections and fresh validation
   note: Let's continue follows the proposed two-fix plan. Close the receipt-path and contract-pin findings with independent verification; four council rounds already meet the score target. No pilot construction or delivery approval inferred.
   evidence: docs/planning/active/command-refactor/authority.json
+- task: friday-command-refactor
+  at: '2026-11-07T17:36:51+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded final independent pilot readiness verification
+  note: Fresh delta and aggregate review VERIFIED dcb982cf after the two authorized corrections; all three council score targets were already met in round four. Exact contract and directive approval is next. Initiative remains started/local; no pilot construction, acceptance or delivery approval inferred.
+  evidence: docs/planning/active/command-refactor/validation/pilot/final-readiness-validation.md

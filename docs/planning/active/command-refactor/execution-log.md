@@ -942,3 +942,23 @@ comparator 11 refusals pass, and all 196 baseline observations match. Proposal
 revision 5 preserves contract bytes; cross-document live/embedded/authority
 contract hashes and current directive digest agree. Freeze this bounded
 correction for a separate fresh delta and aggregate readiness validator.
+
+Final readiness validation VAL-CMD-PILOT-FINAL-001 returned VERIFIED against
+dcb982cf9190306c2156c3a8050ac4d5469792be. Both named corrections and all seven
+aggregate readiness criteria pass. Validator independently exercised 48 receipt
+collision refusals with zero child markers/unchanged victims, 12 allowed outputs
+and repeated-receipt preservation, binding equality, fresh guard/comparator
+controls and all 196 baseline observations. Full owning suites/artifacts were
+inspected historical receipts, not rerun; future pilot tests remain obligations.
+Controller end freeze matches HEAD/status/index, request, 39 authority/deliverable
+pins and all 17,097 protected hashes. Review outcome is stored separately in
+validation/pilot/final-readiness-validation.md; the reviewed authority, contract,
+directive, harness, evidence and original dirty configurations remain unchanged.
+Current next gate is exact pilot contract/API and directive approval, sequentially
+or together. No pilot code, acceptance or delivery was authorized or started.
+
+Report storage adaptation: documentation lifecycle rejected the validator's
+chat-style absolute path:line links. Preserve exact raw report text/SHA in
+final-readiness-validation.json and normalize only Markdown link destinations
+to repository-relative paths with line anchors. No reviewed authority or
+deliverable bytes changed; repeat board/docs/whitespace checks.

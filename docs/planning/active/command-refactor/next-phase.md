@@ -147,3 +147,22 @@ attached short-option paths. No new full council round is being opened. After
 verification, read/approve the pilot contract first and CD-CMD-PILOT-001 second
 (or approve both exact documents together); then execute only the bounded
 help/exit/cls pilot through G0-G5. No construction approval is inferred yet.
+
+Final bounded correction and aggregate readiness verification are **VERIFIED**
+at `dcb982cf9190306c2156c3a8050ac4d5469792be`; see the
+[final independent report](validation/pilot/final-readiness-validation.md).
+The four-round council history is retained: the fourth three-provider council
+met all score targets, and the later focused independent check closes the two
+remaining findings without reopening the council.
+
+The next approvals, in order, are:
+
+1. [Pilot contract](pilot-command-contract.md), including its additive shared API
+   and ownership boundary; SHA-256 `e625123b8222262fb02b32aeadb2cae5c91d18ff573f04763b0af7ea3f22eb8c`.
+2. [CD-CMD-PILOT-001](directives/CD-CMD-PILOT-001-help-exit-clear.md); SHA-256
+   `b85be3a04035e1f8318cc6566f7767aad00355b61c49e2650c6327981fd2a982`.
+
+One explicit approval of both exact documents is sufficient. After approval is
+recorded, execute only the help/exit/cls pilot through G0-G5, then independent
+implementation verification and maintainer acceptance. Construction remains
+unapproved until that instruction; initiative and delivery remain started/local.

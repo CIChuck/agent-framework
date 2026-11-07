@@ -147,7 +147,9 @@ not verify the current corrected readiness candidate.
 Current additional readiness correction: [round-three findings and dispositions](validation/pilot/council-remediation-round3.json),
 [round-four diagnostic evidence](validation/pilot/harness-evidence-round4.json).
 Round-four council is complete: all scores meet 9, but all verdicts request
-changes. See the [consolidated result](validation/pilot/council-round4.json) and
+changes at that reviewed candidate. See the [consolidated result](validation/pilot/council-round4.json) and
 [proposed correction plan](validation/pilot/round4-reconciliation.md). Await
-the authorized two-fix closeout and focused independent verification; pilot
-construction remains unapproved.
+the next approval gate: [pilot contract](pilot-command-contract.md) followed by
+[CD-CMD-PILOT-001](directives/CD-CMD-PILOT-001-help-exit-clear.md), or both together.
+The two fixes and aggregate readiness are now [independently VERIFIED](validation/pilot/final-readiness-validation.md).
+Pilot construction remains unapproved.
