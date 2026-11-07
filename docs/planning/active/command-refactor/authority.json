@@ -312,7 +312,7 @@
     "product_baseline": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
     "branch": "feature/command-retirement",
     "state": "started",
-    "current_deliverable": "D1 neutral pilot (G1) after G0",
+    "current_deliverable": "D1 neutral API/tests complete; council pending before D2",
     "council_after_each_deliverable": true,
     "deliverables": {
       "D1": "Shared neutral API/handlers and standalone tests (G1)",
@@ -320,6 +320,13 @@
       "D3": "Regression, source/assertion/doc proof, clean artifacts/default installs (G4-G5)"
     },
     "delivery": "local only; no push/PR/merge/release authorization",
-    "acceptance": "not_granted"
+    "acceptance": "not_granted",
+    "deliverable1": {
+      "state": "in_review",
+      "gate": "G1 passed; fresh three-provider council pending",
+      "evidence": "validation/pilot/implementation/d1/evidence.json",
+      "scope": "PILOT-01/02 only; no Chat wiring or installed candidate claim",
+      "acceptance": "not_granted"
+    }
   }
 }

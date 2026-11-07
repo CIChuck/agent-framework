@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Execute approved PILOT-001 G0 baseline and D1 neutral handlers/tests (G1), then fresh three-provider council before Chat integration
+  next_gate: Fresh three-provider council for PILOT-001 D1 neutral handlers/tests; reconcile before D2 Chat integration
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []

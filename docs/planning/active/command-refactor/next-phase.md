@@ -173,3 +173,10 @@ existing feature branch. G0 baseline precedes D1 neutral handlers/tests; a
 three-provider council follows each D1/D2/D3 deliverable before advancement.
 Earlier not-approved labels retain historical provenance. Final pilot
 acceptance and external delivery remain separate gates.
+
+Current deliverable checkpoint: D1 neutral API/handlers and standalone tests
+(G1) are implemented; [builder evidence](validation/pilot/implementation/d1/evidence.json)
+records 217 passing Commands/cohort tests and exact source/assertion preservation.
+The next gate is a fresh three-provider D1 council. D2 Chat integration/lifecycle
+starts only after D1 council reconciliation; D3 full regression/installed proof
+and final maintainer acceptance remain outstanding.

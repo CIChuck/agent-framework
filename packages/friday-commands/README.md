@@ -1,8 +1,9 @@
 # Friday Commands
 
 Frontend-neutral, standard-library-only command contracts and a registry for
-injected asynchronous handlers. The package has no default commands, runtime
-dependencies, executable, provider access or frontend integration.
+injected asynchronous handlers, plus opt-in help, exit and clear-screen pilot
+handlers. Registries start empty. The package has no runtime dependencies,
+executable, provider access or frontend integration.
 
 Distribution: `friday-framework-commands==0.1.0a4`. Import: `friday_commands`.
 Python: 3.13.4 or newer. Part of the lock-step Friday package cohort.
@@ -31,6 +32,13 @@ leading slash dispatches; arguments split on whitespace, preserving quote
 fragments rather than applying shell parsing. Exceptions and cancellation from
 handlers propagate; hosts own rendering, UI effects and lifecycle.
 
-This foundation does not migrate or replace the existing Chat or framework CLI
-registries. Command-family capabilities and handlers require separate reviewed
-contracts. See the repository command-refactor approval and foundation directive.
+The pilot exports `PILOT_SPECS`, `HelpCatalog`, `describe_help` and
+`build_pilot_handlers`. Register the specs and handlers explicitly in a consumer
+registry. The injected synchronous catalog supplies help snapshots and exact-key
+lookups; general help is sorted, focused help resolves one normalized key, and
+unknown focus returns a typed error. Exit and clear only return typed lifecycle
+or UI-effect requests. Hosts own rendering, shutdown and effect application.
+
+The existing Chat and framework CLI registries remain separate. Chat integration
+is a subsequent pilot deliverable; other command families require separately
+reviewed contracts. See the command-refactor pilot contract and directive.

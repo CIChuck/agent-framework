@@ -159,3 +159,6 @@ handlers/tests, D2 Chat integration/lifecycle, D3 regression/artifact/installed
 proof. A fresh council follows each deliverable; no later family or delivery
 is approved. Historical pending-approval paragraphs above are superseded by
 this exact maintainer record.
+
+D1 neutral pilot implementation is at its [council checkpoint](validation/pilot/implementation/d1/evidence.json).
+G1 has 217 passing Commands/cohort tests; Chat integration is pending D1 review.

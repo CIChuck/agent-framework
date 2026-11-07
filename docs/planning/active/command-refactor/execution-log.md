@@ -971,3 +971,18 @@ integration/lifecycle (G2-G3), D3 regression/artifact/default-install proof
 (G4-G5), each followed by a frozen three-provider council. Start G0 baseline
 and inventories, preserve dirty examples and all frozen design/harness bytes.
 No construction beyond this pilot or external delivery is authorized.
+
+PILOT-001 D1 builder checkpoint: G0 fresh guard/comparator/capture controls pass,
+196 observations match, 13 baseline workspace builds and 125 locked artifacts
+pass both isolated install lanes. Baseline Chat 1,038, foundation/cohort 145 and
+CLI 155 pass. Baseline root lint has 534 findings; root test_display collection
+conflict is retained and unwaived. Before source/assertion inventory captured.
+D1 adds the four approved exports, exact pilot metadata and injected typed
+handlers without Chat changes. G1 entire Commands/cohort suite passes 217 tests
+(72 new pilot cases), including normal and optimized standalone source dispatch.
+Mypy checks all four neutral source files; focused Ruff/format pass. New-test
+collection/instrumentation and parameter-edit failures are retained as historical
+attempts, with corrected final receipts. Existing foundation/Chat code, all
+existing tests, approved design/harness and dirty examples remain unchanged.
+Freeze D1 for the requested three-provider council; do not start D2 until review
+reconciliation. Candidate wheel/default-installed pilot proof remains D3.
