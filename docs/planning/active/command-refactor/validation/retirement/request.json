@@ -1,0 +1,93 @@
+{
+  "initiative": "friday-command-refactor",
+  "unit": "RET-001/CD-CMD-RET-001",
+  "repository": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "branch": "feature/command-retirement",
+  "base": "6f291ca5755a616d9185c86dff104b660a1fba8c",
+  "candidate": "f896ef536efcc45d569f4231edfc39baab09bbc8",
+  "diff": "6f291ca5755a616d9185c86dff104b660a1fba8c..f896ef536efcc45d569f4231edfc39baab09bbc8",
+  "artifact_candidate": "97e75b062aa5f826fbf9e528bb18dd18b747804e",
+  "artifact_to_candidate_proof": "Only evidence/status docs differ; no package/source/tests/metadata/lock changes after artifact candidate. Verify independently.",
+  "review_mode": "Full scoped retirement implementation review including complete directive/approval/source/test/guide/evidence diff, all nine PAR cases and retained regressions. Not whole-feature/P1/pilot/TUI acceptance.",
+  "authority_sha256": {
+    "AGENTS.md": "f2849de487fbc9687dec75f013deda645b845ba01f6ffd80461cb44e5325b540",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/reference/policies/development-task-lifecycle.md": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844",
+    "docs/planning/board.yaml": "1c65423cfc230663d28adcac61179d733fef25d81c96ade8b1e530093107d1b5",
+    "docs/planning/active/command-refactor/authority.json": "d7b075a3be5148df74956bf1ad7f64912457cd94d23fef9a1ae6739835422f1c",
+    "docs/planning/active/command-refactor/directives/CD-CMD-RET-001-nine-command-retirement.md": "b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df",
+    "docs/planning/active/command-refactor/approval/command-retirement.md": "eff0124d2f67809b682a8f0ba8db04a57e55e03e8901d023a7dcb9111c8f5134",
+    "docs/planning/active/command-refactor/build-plan.md": "17b47d41a58e556740fd7f67977a6e70ec04a0c2d52cabc613e48f744f1ca686",
+    "docs/planning/active/command-refactor/tactical-plan.md": "041317476f473de9f2203944b37ef90c53b2e689fb14b82afd024d37dfef9950",
+    "docs/planning/active/command-refactor/scope-decisions.md": "6760092e9d7b4f38a0e96d8109fde0e95cd8c3db0aeaf05c927801243dccb749",
+    "docs/planning/active/command-refactor/test-strategy.md": "32185dad44d39c8c9b323f166133a18cc383615a0a369560fb6cd66bfb1d5006",
+    "docs/planning/active/command-refactor/shared-command-api.md": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+    "docs/planning/active/command-refactor/validation/command-matrix.json": "87c7880b21bbd7b02f227a7f93373dc3acc67db91e3ced18fd65511c34081f85",
+    "docs/dev-skills/independent-code-validator.md": "578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508"
+  },
+  "worktree_manifest": {
+    "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/review-worktree.json",
+    "sha256": "c345cbcf25f07dc9beb7092c08920e9774fd8f9569ef6bd1cad709becb790645",
+    "count": 17069,
+    "convention": "File bytes dereferenced; directory symlinks omitted and Git tree identity separately checked."
+  },
+  "git_tree_sha256": "f4dc8361c7fb6c1d0a06ffe9785084a81570e24e489acb95e24ea8e7de69cb29",
+  "protected_dirty_sha256": {
+    "packages/friday-chat/config.example.yaml": "c2f728c98adc5ca773bfdf3170d846a610f15d77eae9a380e1a815534b93c3e7",
+    "packages/friday-chat/models-config.example.yaml": "11e99116d885a431f085b6bd05b5bd30348eb37654fd4c9350a7cca58c527896"
+  },
+  "external_receipts_sha256": {
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/before-files.json": "a62e8b4be93f58be7e0a4c569ca717e3cd502a6a224e2f9b619eff044f43e211",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/before-metadata.json": "ecc0e008884a0af6d2685bcd63050522734ea4935cf5493066f2dee2e02c4955",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/before-results.json": "4f47d8fdcaaf4236ea8a722d2dc0be624f6a83418aaa8537d64ae270bf7b73ee",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/after-final-results.json": "f54aa797f3f488ed3e43a034f7ef4031a71170e3d267c1a9cd81eb4a8058761b",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/source-ast-proof.json": "63a29eec2d45ffcbf0830d6080b11254f3d4b4c7ac1bb0efbad3e48afed2cda6",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/artifacts.json": "49ad3906d2fbf187ff0634c1908eea48b125d0510571f922adc27d174318eb93",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/installed-proof.json": "c7f79b47b9ea54e66a010f3dffe16903fa9dc6d2f47e58fdf7756707cf85d468",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/installed-probe.py": "111053337cac5c875cfd0a58e9d8cc03dbcda7531e0b92eb840179ed542e4099",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/installed-probe-complete-command.json": "10e2bec19e006e9f60363722a3b330b90a88a42cf3cd2b9d101b89272ceb6ba6",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/run.py": "409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/sitecustomize.py": "8365940b2d00a21061c00f671304b29f4c4ba1e9b344a1f4c38c5365de41631f",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/controls.py": "d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/baseline-limit-proof.json": "37608fee46dac40ca46a11f292199f50efefbcc8d362f90eebd29c7a0b721d39"
+  },
+  "criteria": {
+    "RET-01": "Exact approval, RET-GATE-01\u201303, baseline/admin product equality, source/authority freeze and authorized scope; no future construction/delivery.",
+    "RET-02": "Exact nine catalog/handler removals, exact source symbol/field/import/admission changes; all retained source/class ASTs and behavior preserved; no blacklist/parser/wiring/dependency changes.",
+    "RET-03": "Exact41 metadata records and3aliases from independently pinned seven-field oracle projection; independent parser variants/ordinary unknown/no service/read/write/callback/UI/exit effects, custom registry extension.",
+    "RET-04": "Every changed/retired legacy assertion accounted for under fixed map;519 prior nodes,496 AST-identical,23 mapped; shared runtime selection/budget/model-byte/retrieval/security/PTY/cleanup guarantees retained through actual APIs; no weak assertions/new skips/xfails or test-only reimplementation of removed logic.",
+    "RET-05": "Retained /tools categories/MCP diagnostics, /memory variables/priming and shared native/MCP/runtime/config/CLI behavior intact; only4 exact CommandContext fields removed, similarly named transcript fields untouched.",
+    "RET-06": "Seven current guides accurate and no old names advertised; original historical fixtures/snapshots/manifests/old reports unchanged; nine PAR cases own this unit, correct pending-review state.",
+    "RET-07": "Before and after functional/static/baseline checks meaningful:826->1038 full controlled Chat,145 foundation/cohort,155 CLI; lint/types,docs/metadata/lock/whitespace. Reproduce/attribute root534 lint, single root collision and37->36 formatting without new regression.",
+    "RET-08": "Clean committed Git artifact inputs, wheel/sdist/source equality, default129 dependency/version profile and isolated-I imports/41/3/unknown/no-effects/help/finance/no launcher proof. Offline missing local wheels rebuilt11 unchanged workspace packages is explicitly permitted; initial failed diagnostic is not installation success.",
+    "RET-09": "No outside-path/source/test drift or unrelated dirty/config/store mutation; start/end all pins. Independent limits honest; no full-feature/live/platform acceptance."
+  },
+  "required_checks": [
+    "Read every controlling policy, approved directive including exact symbol/test maps/recipes/oracles, explicit approval, original source base/current diff and complete new evidence. Verify all source/authority/current files/candidate blobs/protected inputs start/end; untracked request sidecar is controller-owned.",
+    "Review all changed product/test/guide files and assertion-disposition ledger. Independently compare original/current ASTs and each changed assertion meaning, not only counts. The matrix includes case_id/tui_parity_status/obligations planning columns; runtime metadata equality projects name,description,category,usage,aliases,arguments,detail with JSON tuple normalization.",
+    "Use exactly the directive offline/frozen/no-sync editable overlay. Own scratch cache clone if necessary; no root .venv sync or registry traffic. Disable bytecode/pytest/Ruff caches and put mypy output in scratch. Pinned run/controls/sitecustomize plus exact DNS/bind supplement in task scratch can be copied only after hash checks. Audit guard self-tests before application imports.",
+    "Rerun current full provider-free Chat with committed example/xterm two-constant controls (exclude only test_live_lmstudio.py), foundation/cohort and framework CLI. Run focused lint/mypy/format and board/docs/metadata/offline-lock/working+diff whitespace. Broad debt must be directly independently reproduced or verified against matched baseline receipts/source; no implicit green full-suite claim.",
+    "Independently probe exact nine/41/3/metadata/parser behavior and former-effect absence beyond implementation helpers; all retained source definitions/class ASTs should match source base except exact4fields. Confirm runtime public snapshot test replacements preserve shared contracts and do not invent new rendering/sanitization behavior.",
+    "Inspect/reproduce artifacts from pinned Git export; current final-dist12workspace wheels/sdists and isolated installed129 profile exist for own copied scratch use. Source/artifact equality and negative proof may be independently replayed after pins; no overwrites of inputs. Compare current candidate equivalence to artifact candidate. Isolated probes must guard imports before side effects; current scope demands clean committed configs, not the dirty examples.",
+    "Verify source/test/guide path allowlist and all outside-scope bytes unchanged, original fixtures/historical review inputs immutable, every source/helper/field consumer disposition correct and no default command retired into foundation. Guide/ledger/currentboard process state agree. Return full criterion matrix/evidence/concrete findings/commands/skips/baseline exclusions and next gate; write no repository report."
+  ],
+  "evidence_paths": {
+    "unit_report": "docs/planning/active/command-refactor/validation/retirement/README.md",
+    "durable_receipts": "docs/planning/active/command-refactor/validation/retirement/receipts.json",
+    "assertion_ledger": "docs/planning/active/command-refactor/validation/retirement/assertion-disposition.json",
+    "scratch": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y",
+    "artifacts": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/final-dist",
+    "clean_git_export": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/candidate-final-git",
+    "installed": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-retirement-8py3ou5y/installed"
+  },
+  "known_limits": {
+    "root_lint": "534 before/after findings outside changed focus; must verify base equality",
+    "root_pytest": "single existing Chat/CLI test_display import collision",
+    "format": "whole broad Chat scope37 baseline failures ->36 after; one test formatting regression fixed with identical ASTs; no new failed file",
+    "harness": "First metadata probe used enriched planning rows incorrectly; corrected from frozen Git and projected metadata. Two initial test fixtures corrected setup only. Packaging initial missing local agentwheel resolved by permitted offline unchanged-workspace builds; initial nested-template/root-gitignore mapping mistakes corrected in scratch. All failed diagnostics retained, no false success claim.",
+    "excluded": "No live provider/tool/user-store, full optional-cohort, terminal/audio/Linux/Windows/P1/full-feature/TUI acceptance. Existing checkpoint delivery authority was consumed; this unit has no publication authority."
+  },
+  "permitted_effects": "Read-only frozen repository/authority/evidence. Own scratch offline builds/venvs/probes and disposable owned loopback fixtures permitted. No source/tests/docs/config mutation, env sync, lock regeneration, downloads, providers/credentials/real stores, GitHub/branch/stage/commit operations, subagents, remediation or automatic further review. Preserve original logs/artifacts/venv; use own copies.",
+  "report": "Return exactly VERIFIED/CHANGES_REQUESTED/BLOCKED with fresh identity/model when known, request/candidate/diff and pin audit, RET01\u201309 matrix, commands/results, mandatory findings tied to exact authority, skips/limits and next gate. No builder reasoning supplied. Send concise meaningful progress."
+}

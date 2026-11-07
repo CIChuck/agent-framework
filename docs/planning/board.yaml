@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: RET-001 builder checked with1038 Chat tests and isolated41/3 proof; fresh independent validation then maintainer acceptance; no pilot or delivery
+  next_gate: RET-001 independently VERIFIED at f896ef53; maintainer acceptance then separate PILOT-001 contract/directive approval; no delivery
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -721,6 +721,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/required-finance/report.md
   - docs/planning/active/command-refactor/validation/VAL-CMD-FND-001-report.md
   - docs/planning/active/command-refactor/validation/checkpoint/verified-report.md
+  - docs/planning/active/command-refactor/validation/retirement/verified-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2518,3 +2519,10 @@ events:
   action: prepared nine-command retirement validation candidate
   note: Approved exact removals and mapped test/guide updates implemented;1038 Chat/145 foundation-cohort/155 CLI pass, clean candidate-Git artifacts and129-profile41/3/no-effect proof pass. Baselines and diagnostic corrections disclosed; configs preserved. Await fresh review and acceptance; no delivery or pilot.
   evidence: docs/planning/active/command-refactor/validation/retirement/README.md
+- task: friday-command-refactor
+  at: '2026-11-07T02:37:21+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent retirement verification
+  note: Fresh read-only RET01 through09 review VERIFIED f896ef53;1338 scoped tests and clean installed41/3/no-effect/source/assertion proof pass, no mandatory findings. Protected configs unchanged. Baselines and remaining gates disclosed; ready for maintainer acceptance, no pilot or delivery authorization.
+  evidence: docs/planning/active/command-refactor/validation/retirement/verified-report.md

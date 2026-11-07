@@ -759,3 +759,19 @@ for. [Report](validation/retirement/README.md) discloses controller harness/
 fixture corrections and exact evidence; no product scope drift. Freeze current
 candidate for fresh independent validation. Execution phase validation;
 validation state in_review. No pilot/delivery/acceptance inferred.
+
+Fresh read-only independent review VERIFIED RET-001 candidate
+f896ef536efcc45d569f4231edfc39baab09bbc8, source base6f291ca5. All RET-01–09
+criteria pass with no mandatory findings; 1038 Chat/145 foundation-cohort/155 CLI
+passes reproduced. Independent source AST,519-function/2260-assertion, exact
+41/3 metadata,216 negatives plus80 strict-context probes, clean Git artifacts,
+129-profile/default imports and390 wheel/668 sdist source matches pass. All
+17069 current-input hashes/authority/request/external/protected pins held. The
+controller independently repeated the complete end freeze before closeout.
+[Independent report](validation/retirement/verified-report.md) and retained raw
+receipts document actual commands/limits. Nine PAR removal rows are VERIFIED;
+remaining family/P1/TUI/feature gates stay open. Only evidence/status closeout
+follows; no source/tests/metadata/lock/API/directive change. Initiative stays
+started/local. RET-001 ready for maintainer acceptance, not self-accepted.
+Execution phase closeout; validation state verified. No publication or next-unit
+construction authority inferred.
