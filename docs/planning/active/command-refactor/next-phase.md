@@ -1,12 +1,14 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: RET-001 independently VERIFIED; ready for maintainer acceptance
-Execution phase: closeout
-Validation state: verified (RET-001 only)
+Status: RET-001 accepted; next pilot contract/directive gate
+Execution phase: planning
+Validation state: not_ready (PILOT-001); RET-001 verified and accepted
 
 The [board](../../board.yaml) owns initiative state. The entire refactor remains
-started; this bounded retirement unit is implemented and verified locally.
+started; this bounded retirement unit is implemented, verified and accepted locally.
+Chuck Russell directly accepted it on 2026-11-07; the
+[acceptance record](approval/command-retirement.md) preserves that decision.
 
 ## Current result
 
@@ -37,11 +39,10 @@ API or directive change follows the reviewed candidate.
 
 ## Next steps
 
-1. Maintainer acceptance of RET-001.
-2. Prepare/review PILOT-001: catalog ownership, help/exit/clear routing, rendering
+1. Prepare/review PILOT-001: catalog ownership, help/exit/clear routing, rendering
    and lifecycle boundaries, aliases and verification. Obtain its exact design/
    construction approval before implementing any migration.
-3. Proceed through the remaining family/P0/P1 gates and bounded directives;
+2. Proceed through the remaining family/P0/P1 gates and bounded directives;
    final integration/aggregate review precedes full refactor acceptance and TUI
    resumption.
 
@@ -50,4 +51,5 @@ this unit. The prior foundation checkpoint was delivered in PR #13; its delivery
 authority is consumed. Both original uncommitted example configurations remain
 byte-identical and excluded. Historical directive draft/pending labels describe
 pre-approval/review states; current approval/report/board/checkpoint govern this
-handoff. Independent verification is not maintainer acceptance.
+handoff. RET-001 acceptance is recorded separately from independent verification; it does
+not accept the entire refactor or supply future construction/delivery approval.

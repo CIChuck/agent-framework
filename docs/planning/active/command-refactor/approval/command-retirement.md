@@ -18,3 +18,12 @@ commits contain administrative/documentation preparation only. Protected working
 examples and all tracked source/test inputs are hashed; before-change assertions
 are captured before source edits. Record actual builder starting HEAD after this
 approval preparation. No next pilot/family/TUI unit or delivery is approved.
+
+## Maintainer acceptance — 2026-11-07
+
+Chuck Russell directly responded “accepted” after the independent VERIFIED
+result for `f896ef536efcc45d569f4231edfc39baab09bbc8`. Acceptance covers RET-001's nine-command retirement,
+prescribed tests/guides and recorded evidence. The implementation remains local
+on feature/command-retirement. This accepts the bounded unit, not the entire
+command refactor. It grants no pilot/family/TUI construction or external delivery.
+Recorded at: 2026-11-07T13:40:31+00:00.

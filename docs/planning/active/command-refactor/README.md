@@ -10,12 +10,13 @@ approval, construction authority or code validation is inferred.
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and
-accepted by Chuck Russell. Exact strengthened RET-001 is now approved and implemented locally; independently VERIFIED at `f896ef53`; maintainer acceptance pending.
+accepted by Chuck Russell. Exact strengthened RET-001 is now approved and implemented locally; independently VERIFIED at `f896ef53` and accepted by Chuck Russell on 2026-11-07.
 Exact foundation approvals and source base
 `d003c4db` remain in the [approval record](approval/foundation-readiness.md).
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). No command migration/wiring.
-`execution_phase: closeout`; `validation_state: verified` for RET-001.
+`execution_phase: planning`; `validation_state: not_ready` for PILOT-001.
+RET-001 remains independently VERIFIED and accepted.
 The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
 
@@ -91,10 +92,10 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Maintainer acceptance of independently
-[VERIFIED RET-001](validation/retirement/verified-report.md). Then separately
-prepare/review PILOT-001 catalog, routing and rendering/lifecycle contracts.
-The retirement is local; no publication, pilot or TUI construction is approved.
+**Next gate:** Prepare/review PILOT-001 catalog ownership, Chat routing,
+help/exit/clear rendering/lifecycle contracts and exact construction directive.
+RET-001 is accepted. No pilot/family/TUI construction or publication is approved.
+See the [main checkpoint](next-phase.md).
 
 The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
 refreshes baseline identity in this working home and records the current

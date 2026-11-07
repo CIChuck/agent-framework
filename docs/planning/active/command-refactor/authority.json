@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-06",
-  "decision": "Chuck Russell approved exact strengthened CD-CMD-RET-001 including RET-GATE-01\u201303; execute bounded nine-command retirement only",
+  "decision": "RET-001 independently VERIFIED and accepted; next gate is separate PILOT-001 contract/directive preparation and approval",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Exact CD-CMD-RET-001 nine-name retirement and prescribed code/test/guide/evidence changes",
-  "product_code_authority": "Granted for CD-CMD-RET-001 only; future pilot/family/TUI units and delivery not authorized",
+  "current_scope": "Accepted retirement unit closed; next pilot requires separately reviewed contracts and approved directive",
+  "product_code_authority": "No new construction authority; RET-001 accepted, pilot/family/TUI and delivery remain unapproved",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -142,5 +142,14 @@
     "directive_sha256": "b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df",
     "source_base": "6f291ca5755a616d9185c86dff104b660a1fba8c",
     "record": "approval/command-retirement.md"
+  },
+  "retirement_acceptance": {
+    "accepted_by": "Chuck Russell",
+    "date": "2026-11-07",
+    "instruction": "accepted",
+    "candidate": "f896ef536efcc45d569f4231edfc39baab09bbc8",
+    "independent_report": "validation/retirement/verified-report.md",
+    "record": "approval/command-retirement.md",
+    "scope": "RET-001 only; whole refactor remains started, delivery local"
   }
 }
