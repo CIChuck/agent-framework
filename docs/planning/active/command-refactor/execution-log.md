@@ -712,3 +712,20 @@ branch/source references and delivery records, with board/docs/hash/whitespace
 validation. Initiative remains started; remaining unit local, checkpoint merged.
 Execution phase planning; validation state not_ready for RET-001. Exact retirement
 directive approval is the next gate; no command removal or TUI construction began.
+
+2026-11-06: Chuck Russell directed “Strengthened the document i approve your
+recommendations.” Applied the five proposed drift controls in CD-CMD-RET-001:
+exact removal/retention symbols and four orphan fields with caller evidence;
+pinned 50-to-41 metadata/alias and parser/no-effect oracles; fixed assertion
+preservation map; pinned reviewed harness plus DNS/bind containment and exact
+check recipes; candidate-Git-only artifact inputs, frozen129 profile and
+installed equality; current docs baseline and explicit disposable loopback
+permissions. Updated draft SHA-256 b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df; source base remains merged6f291ca5.
+Validated shell/embedded-Python/guard syntax, source helper names, oracle/profile/
+harness pins and 41/3 set derivation without running the recipes. This is a
+maintainer-authorized documentation-only lightweight revision: owner Chuck
+Russell, date2026-11-06, scope directive/handoff/current hash/status only, no
+runtime/test/dependency/lock change. Validate board/docs/whitespace and protected
+config/source equality before handoff. Exact RET construction approval remains
+not_granted; no code generated or retirement begun. Execution phase planning;
+validation state not_ready for RET-001.

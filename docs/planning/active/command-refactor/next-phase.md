@@ -54,7 +54,7 @@ been retired or migrated, and no TUI source was added.
 ## Exact next approval
 
 - Source base: `6f291ca5755a616d9185c86dff104b660a1fba8c` (merged master).
-- Directive SHA-256: `a8646a4bbd2c0275bca74d5430a9169b053f45490c34621aa144f224b0f79e28`.
+- Directive SHA-256: `b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df`.
 - Foundation API SHA-256 remains
   `e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74`.
 
@@ -66,3 +66,14 @@ unit starts. Historical approvals/reports/requests retain their exact candidate
 provenance; current working references are updated in board/authority/index.
 The prior checkpoint publication authority is consumed for PR #13; new retirement
 publication and exact implementation authority are not inferred.
+
+## Directive strengthening
+
+The maintainer authorized the five recommended drift-control improvements.
+They are incorporated in the same directive: exact symbol/field disposition,
+assertion-preservation map, pinned behavior/harness/profile oracles, explicit
+before/after verification commands, clean candidate-Git builds and contained
+loopback fixtures. Shell/Python recipe syntax and all referenced pins were
+checked without running implementation/test recipes. No product code changed.
+This is approval of the document revision; exact construction approval remains
+the next gate. The updated hash above supersedes the earlier draft hash.

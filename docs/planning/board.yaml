@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: PR13 checkpoint merged; fresh feature/command-retirement prepared from master; approve refreshed exact CD-CMD-RET-001 and RET-GATE-01 through 03 before implementation
+  next_gate: approve strengthened exact CD-CMD-RET-001 with symbol/state/test oracles and pinned verification, including RET-GATE-01 through 03; no implementation yet
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2497,3 +2497,10 @@ events:
   action: delivered verified checkpoint and prepared fresh branch
   note: Authorized PR13 merged at 6f291ca5755a616d9185c86dff104b660a1fba8c; published 7b344b01 contains reviewed 51334a5b plus evidence-only closeout. Confirmed clean remote gates and tree/ancestry, then deleted merged old branch locally/remotely and created feature/command-retirement. Remaining initiative work is local/started; checkpoint delivery is merged in receipt. Refreshed draft source identity only; no retirement or TUI code approved. Both working example configs preserved and excluded.
   evidence: docs/planning/active/command-refactor/validation/checkpoint/delivery.json
+- task: friday-command-refactor
+  at: '2026-11-07T02:03:16+00:00'
+  actor: Codex
+  actor_role: agent
+  action: strengthened retirement directive under maintainer instruction
+  note: Applied approved documentation recommendations in the same directive; exact cleanup, test/assertion map, pinned oracles and executable check recipes, clean Git build inputs and fixture/baseline rules. No product/test/config changes or construction approval inferred.
+  evidence: docs/planning/active/command-refactor/directives/CD-CMD-RET-001-nine-command-retirement.md

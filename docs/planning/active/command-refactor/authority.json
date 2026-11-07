@@ -124,9 +124,16 @@
     "pr_url": "https://github.com/CIChuck/agent-framework/pull/13",
     "merge_commit": "6f291ca5755a616d9185c86dff104b660a1fba8c",
     "retirement_branch": "feature/command-retirement",
-    "retirement_directive_sha256": "a8646a4bbd2c0275bca74d5430a9169b053f45490c34621aa144f224b0f79e28",
+    "retirement_directive_sha256": "b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df",
     "retirement_directive_approval": "not_granted",
     "record": "validation/checkpoint/delivery.json",
     "note": "New branch and source baseline refresh are explicitly authorized delivery closeout; historical directive/API approvals and reviewed candidates remain unchanged."
+  },
+  "retirement_directive_strengthening": {
+    "authorized_by": "Chuck Russell",
+    "instruction": "Strengthened the document i approve your recommendations.",
+    "scope": "Documentation only: exact cleanup/state/test map, pinned oracles/harness, reproducible commands, Git-clean artifact inputs and current baseline/fixture permissions.",
+    "construction_approval": "not_granted",
+    "directive_sha256": "b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df"
   }
 }
