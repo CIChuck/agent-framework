@@ -1,0 +1,32 @@
+{
+  "candidate": "0f5c2715183bc5e2d19f1a1ea2801e30c64f0a09",
+  "scope": "Second bounded metadata-only D1 remediation; no source/test/dependency/lock/frozen authority changes",
+  "findings": [
+    {
+      "ids": [
+        "R2-CLD-D1-001",
+        "ARGON-D1-R2-ADV-001"
+      ],
+      "disposition": "applied_pending_fresh_council",
+      "fix": "Live next-phase header now validation/in_review for D1 implementation, with D2/D3 pending. Current next steps are separated from explicitly historical retirement/preapproval narrative.",
+      "tests": "Programmatic field agreement across next-phase header, packet index, latest log, current authority and board; source/test/frozen-input hash preservation; board/dashboard/docs/whitespace."
+    },
+    {
+      "ids": [
+        "R2-CLD-D1-ADV-01"
+      ],
+      "disposition": "related status summary aligned",
+      "fix": "Current construction_directive_approval reflects the exact existing PILOT-001 approval; former string preserved under historical_preapproval_summary."
+    },
+    {
+      "ids": [
+        "ARGON-D1-R2-ADV-002"
+      ],
+      "disposition": "optional assertion tightening stays deferred per round-one map"
+    }
+  ],
+  "previous_next_phase_header": "Status: RET-001 accepted; amended pilot contract/directive and harness in council review\nExecution phase: planning\nValidation state: in_review (PILOT-001 design/harness); product implementation not started; RET-001 verified and accepted",
+  "previous_construction_directive_approval": "approved_for_CMD-RET-001_only; previous approved units retain historical provenance",
+  "no_new_authority": true,
+  "review": "Fresh full three-provider D1 round 3; delta closure plus aggregate conformance. If another mandatory issue survives this second unsuccessful remediation cycle, return it to maintainer rather than automatically looping."
+}

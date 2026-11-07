@@ -1,16 +1,34 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: RET-001 accepted; amended pilot contract/directive and harness in council review
-Execution phase: planning
-Validation state: in_review (PILOT-001 design/harness); product implementation not started; RET-001 verified and accepted
+Status: PILOT-001 approved; D1 neutral implementation in council validation; D2 and D3 pending
+Execution phase: validation
+Validation state: in_review (PILOT-001 D1 implementation); G1 implemented; D2/G2-G3 and D3/G4-G5 pending; RET-001 remains accepted
+
+## Current next steps
+
+1. Reconcile the fresh D1 council on the corrected status metadata. D1 code and
+   tests are unchanged; do not start D2 until mandatory findings are closed.
+2. Continue the already approved D2 Chat adapter, dependency/lock edge,
+   compatibility and lifecycle work (G2-G3), then invoke its own council.
+3. Deliver the approved D3 full regression, source/assertion preservation,
+   clean artifact and default installed proof (G4-G5), then invoke its council.
+4. Present the entire pilot for maintainer acceptance. Remaining command
+   families, TUI work and external delivery still require separate authority.
+
+The exact [pilot approval](approval/pilot.md), live header above and current
+board govern this handoff. The older checkpoint narrative below preserves the
+sequence of prior decisions; its pre-approval labels are historical and do not
+replace the current PILOT-001 construction grant.
+
+## Historical checkpoints
 
 The [board](../../board.yaml) owns initiative state. The entire refactor remains
 started; this bounded retirement unit is implemented, verified and accepted locally.
 Chuck Russell directly accepted it on 2026-11-07; the
 [acceptance record](approval/command-retirement.md) preserves that decision.
 
-## Current result
+### Accepted RET-001 result — historical checkpoint
 
 The [fresh independent report](validation/retirement/verified-report.md) VERIFIED
 candidate `f896ef536efcc45d569f4231edfc39baab09bbc8` against merged source base
@@ -37,7 +55,7 @@ candidate-specific evidence. The controller rechecked all frozen hashes before
 recording evidence/status-only closeout. No product, test, dependency, lock,
 API or directive change follows the reviewed candidate.
 
-## Next steps
+### Historical pre-approval sequence
 
 1. Read and approve the [PILOT-001 contract](pilot-command-contract.md): three
    shared definitions/handlers, catalog ownership, Chat routing/rendering,

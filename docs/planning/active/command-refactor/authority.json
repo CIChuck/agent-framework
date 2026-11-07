@@ -33,7 +33,7 @@
     "resumed_by": "Chuck Russell",
     "resume_instruction": "Proceed to step three."
   },
-  "construction_directive_approval": "approved_for_CMD-RET-001_only; previous approved units retain historical provenance",
+  "construction_directive_approval": "approved_for_PILOT-001 via approval/pilot.md; prior foundation and RET-001 approvals remain historical accepted-unit authority. Council after each deliverable; no other family, TUI or delivery approval.",
   "council_request": {
     "requested_by": "Chuck Russell",
     "scope": "Read-only evaluation of the frozen readiness review; no construction approval or automatic remediation loop",
@@ -332,6 +332,12 @@
         "scope": "Reconcile required current process fields in index/execution log; align related preapproval authority summary (ARGON-D1-ADV-003). Product, tests and frozen approved documents unchanged.",
         "council_round": 2,
         "prior_reports": "validation/pilot/implementation/d1/council-round1.json"
+      },
+      "administrative_remediation_round2": {
+        "finding": "R2-CLD-D1-001",
+        "related_advisory": "R2-CLD-D1-ADV-01",
+        "scope": "Live next-phase header and clearly separated current/historical sequence; existing directive approval summary aligned. No product or test changes.",
+        "review": "Fresh D1 full council round 3 after second bounded metadata remediation."
       }
     }
   },
@@ -339,6 +345,7 @@
     "source_candidate": "667bccc8e8917d3668960d15395dddfd1fc78d19",
     "decision": "RET-001 accepted; amended pilot contract/directive and runnable diagnostic harness ready for independent council; product construction not approved",
     "current_scope": "Review pilot contract first, then construction directive; accepted RET-001 remains closed",
-    "product_code_authority": "No new construction authority; RET-001 accepted, pilot/family/TUI and delivery remain unapproved"
+    "product_code_authority": "No new construction authority; RET-001 accepted, pilot/family/TUI and delivery remain unapproved",
+    "construction_directive_approval": "approved_for_CMD-RET-001_only; previous approved units retain historical provenance"
   }
 }

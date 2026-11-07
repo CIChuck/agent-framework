@@ -1007,3 +1007,18 @@ Historical log entries remain untouched. Fresh round-two request explicitly
 pins SHA256 of exact git ls-files -s -z stdout and requires GIT_OPTIONAL_LOCKS=0.
 Optional test/catalog/subprocess advisories stay deferred. Freeze the amended
 metadata-only candidate for a fresh full D1 council before starting D2.
+
+D1 round-two council: OpenAI VERIFIED 9.5/10, Claude CHANGES_REQUESTED 9.3/10,
+Gemini VERIFIED 9.7/10. D1-SOL-002 is closed. R2-CLD-D1-001 identifies the live
+next-phase header still showing planning/product-not-started; related approval
+summary wording is advisory. Exact reports are retained in d1/council-round2.json.
+Second bounded administrative remediation aligns that header and separates
+current next actions from historical preapproval narrative. Existing exact
+PILOT-001 construction approval is reflected in its current authority summary,
+with former strings preserved historically. Runtime, tests, approved design,
+harness, dependency/lock and dirty examples remain unchanged.
+`execution_phase: validation`; `validation_state: in_review` for D1 neutral
+implementation. D2 and D3 remain pending. Audit index/header/log/authority/board
+current summaries together, then freeze for fresh full D1 council round three.
+This is the second bounded metadata remediation. Any mandatory issue surviving
+that review returns to the maintainer under the two-cycle rule.
