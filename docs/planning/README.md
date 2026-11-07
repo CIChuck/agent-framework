@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | approve strengthened exact CD-CMD-RET-001 with symbol/state/test oracles and pinned verification, including RET-GATE-01 through 03; no implementation yet |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | execute approved exact CD-CMD-RET-001 with before-after and installed evidence, then fresh independent validation before maintainer acceptance; no delivery |
 
 ## Completed
 

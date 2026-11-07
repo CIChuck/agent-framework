@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-06",
-  "decision": "Foundation accepted and independently verified checkpoint merged through PR13; next RET-001 directive remains proposed/unapproved",
+  "decision": "Chuck Russell approved exact strengthened CD-CMD-RET-001 including RET-GATE-01\u201303; execute bounded nine-command retirement only",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "RET-001 planning/source-base refresh only on fresh retirement branch; no retirement, retained migration or TUI construction authorized",
-  "product_code_authority": "Earlier CMD-FND-001 and CD-CMD-CHK-001 approvals are completed historical units; next product changes require exact CD-CMD-RET-001 approval",
+  "current_scope": "Exact CD-CMD-RET-001 nine-name retirement and prescribed code/test/guide/evidence changes",
+  "product_code_authority": "Granted for CD-CMD-RET-001 only; future pilot/family/TUI units and delivery not authorized",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -125,7 +125,7 @@
     "merge_commit": "6f291ca5755a616d9185c86dff104b660a1fba8c",
     "retirement_branch": "feature/command-retirement",
     "retirement_directive_sha256": "b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df",
-    "retirement_directive_approval": "not_granted",
+    "retirement_directive_approval": "approved",
     "record": "validation/checkpoint/delivery.json",
     "note": "New branch and source baseline refresh are explicitly authorized delivery closeout; historical directive/API approvals and reviewed candidates remain unchanged."
   },
@@ -135,5 +135,12 @@
     "scope": "Documentation only: exact cleanup/state/test map, pinned oracles/harness, reproducible commands, Git-clean artifact inputs and current baseline/fixture permissions.",
     "construction_approval": "not_granted",
     "directive_sha256": "b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df"
+  },
+  "retirement_construction_approval": {
+    "approved_by": "Chuck Russell",
+    "instruction": "i approve the document proceed.",
+    "directive_sha256": "b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df",
+    "source_base": "6f291ca5755a616d9185c86dff104b660a1fba8c",
+    "record": "approval/command-retirement.md"
   }
 }

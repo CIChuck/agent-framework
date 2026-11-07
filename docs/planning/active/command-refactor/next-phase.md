@@ -3,7 +3,7 @@
 Date: 2026-11-06
 Branch: `feature/command-retirement`
 Status: Foundation checkpoint merged; retirement directive ready for approval
-Execution phase: planning
+Execution phase: implementation
 Validation state: not_ready (RET-001); merged checkpoint independently VERIFIED
 
 This is the main next-step document. The [board](../../board.yaml) owns initiative

@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: approve strengthened exact CD-CMD-RET-001 with symbol/state/test oracles and pinned verification, including RET-GATE-01 through 03; no implementation yet
+  next_gate: execute approved exact CD-CMD-RET-001 with before-after and installed evidence, then fresh independent validation before maintainer acceptance; no delivery
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2504,3 +2504,10 @@ events:
   action: strengthened retirement directive under maintainer instruction
   note: Applied approved documentation recommendations in the same directive; exact cleanup, test/assertion map, pinned oracles and executable check recipes, clean Git build inputs and fixture/baseline rules. No product/test/config changes or construction approval inferred.
   evidence: docs/planning/active/command-refactor/directives/CD-CMD-RET-001-nine-command-retirement.md
+- task: friday-command-refactor
+  at: '2026-11-07T02:06:07+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact strengthened retirement directive
+  note: Direct instruction i approve the document proceed binds the strengthened directive and RET-GATE-01 through 03; retire exactly nine names, preserve retained contracts, then independent validation. No pilot or delivery approval.
+  evidence: docs/planning/active/command-refactor/approval/command-retirement.md
