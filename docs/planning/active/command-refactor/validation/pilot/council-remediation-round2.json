@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "round2_candidate": "911f7dbd39c4ae36fa20b6aae1dc82fbfdf1a1f3",
+  "authorization": "Existing explicit maintainer instruction to apply council feedback; scoped followup in authority",
+  "scope": "Planning/diagnostic assets only",
+  "corrections": {
+    "SOL-R2-PILOT-001": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Exact Python3.13.10 profile constant and interpreter check; unsupported3.13 negative/supported3.13.10 positive resolver control, plus full locked closure compile/install."
+    },
+    "CLD-R2-01": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Materialized bundle.py: hashed UV lock export, target tag/marker selection, files.pythonhosted.org lock/export hash verification, selected workspace build commands, pinned setuptools/wheel PyPika source build and lineage, hash-pinned compile/install/check; cold and fully offline baseline trial pass."
+    },
+    "CLD-R2-02": {
+      "status": "applied_pending_fresh_review",
+      "correction": "G1 full Commands/cohort suite, G2 command foundations included, G3 entire app lifecycle and production-adapter suites plus named node mapping; full acceptance closure distinguished from earlier subsets."
+    },
+    "CLD-R2-03": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Darwin case-folded protected paths; SQLite authorizer denies protected/unknown ATTACH and VACUUM INTO; eighteen negative controls including actual synthetic SQL operations, all scoped suites pass."
+    },
+    "CLD-R2-04": {
+      "status": "applied_pending_fresh_review",
+      "correction": "All existing top-level scratch JSON/log paths reserved; equals-joined options inspected; negative controls preserve prior receipt bytes."
+    },
+    "CLD-R2-05": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Truthy non-string focus outside declared str|None API has no legacy exception-type guarantee; preserved falsy extensions remain explicit."
+    },
+    "CLD-R2-06": {
+      "status": "applied_pending_fresh_review",
+      "correction": "New bundle report input/source/build-tool and output hashes; capture uses Git top-level for checkout refusal; comparator rejects both identities missing."
+    },
+    "ARGON-R2-ADV-001": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Equals-joined receipt path refusal implemented and exercised."
+    },
+    "ARGON-R2-ADV-002": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Current correction prose uses explicit identifier ranges with spaces; historical raw reports/logs retain provenance."
+    }
+  },
+  "baseline_revision": {
+    "old_sha256": "645b27cd87a52942d20068462903c0c1f1f42c0dde50e61da97f0b5a8c83d7cf",
+    "new_sha256": "48c3161cf1a0467c7e95ac11a85de0972d46421b5a9318ee618651f7cc7ad7f1",
+    "capture_sha256": "96f3f53c970fe1051a2b498250cce397ea952101483982103e9419391f4c3c4a",
+    "all196_observations_preserved": true,
+    "source_base": "7b80ca01489a52608aafb54b626b74fbb36efbe3"
+  },
+  "fresh_full_review_required": true
+}

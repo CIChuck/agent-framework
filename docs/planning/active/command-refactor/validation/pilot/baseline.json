@@ -1683,7 +1683,7 @@
     }
   },
   "provenance": {
-    "capture_sha256": "eb19a8b5c2da9906b39276c8641dc1b7ec0d29091be1193bf3d9f147a17fcdd4",
+    "capture_sha256": "96f3f53c970fe1051a2b498250cce397ea952101483982103e9419391f4c3c4a",
     "module_origins": {
       "friday_agent": [
         "packages/friday-agent/src/friday_agent/__init__.py"

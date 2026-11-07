@@ -10,7 +10,7 @@ Repository AGENTS, engineering/lifecycle/independent-validation policies and
 the board control execution. The approved foundation and accepted retirement
 unit remain controlling inputs. This directive implements only the proposed
 [pilot contract](../pilot-command-contract.md), hash
-`c2c5b94079f466d0cf7d8331d0941fc9451e2d8e390d0e288e3b81ec9997f973`.
+`e9cf8af3c0fc5e164de35c27d01e428ac9a912f0f957c21c40648c2334dc86d3`.
 Approve that contract first, then this exact directive; an explicit approval
 of both together is also sufficient. Record both hashes, approver, date and
 instruction in authority/approval records before generating product code.
@@ -139,14 +139,14 @@ Required test ownership (all paths relative to their package test tree):
 | PILOT-04 | Chat `test_command_pilot.py`, `test_command_registry.py`. |
 | PILOT-05 | Chat `test_command_pilot.py`, including legacy falsy focuses `False`, `0`, `[]`. |
 | PILOT-06 | Chat `test_command_pilot.py`. |
-| PILOT-07 | Chat `test_command_pilot.py`, `test_session_memory_commands.py`; run unchanged cleanup tests in `test_app_lifecycle.py`. |
-| PILOT-08 | Chat `test_command_pilot.py`, `test_display.py`, including existing PTY proof. |
+| PILOT-07 | Chat `test_command_pilot.py`, `test_session_memory_commands.py`, `test_command_production_adapters.py`; unchanged `test_app_lifecycle.py` nodes `test_session_initializes_lazily_on_first_chat_turn`, `test_app_help_output_includes_usage_and_argument_descriptions`, `test_command_only_session_does_not_initialize_chat_defaults`, `test_async_clients_close_after_background_and_llm_maintenance`. |
+| PILOT-08 | Chat `test_command_pilot.py`, `test_display.py` (including PTY), and `test_command_production_adapters.py::test_clear_aliases_request_display_effect_without_false_output`. |
 | PILOT-09 | All three full suites; unchanged retirement negatives; Chat `test_command_foundations.py`; source/assertion disposition. |
 | PILOT-10 | Commands `test_pilot.py` standalone cases plus a recorded `validation/pilot/installed_probe.py` for both installed environments, metadata/closure/origin/source proofs and invocation spies. |
 
 ## Reproducible check environment
 
-During this authorized harness preparation, run only startup, guard, comparison, baseline capture, unchanged baseline suites and the unchanged Commands G0 artifact control below. New pilot tests and after-change checks wait for construction approval. Use a fresh
+During this authorized harness preparation, run only startup, guard, comparison, baseline capture, unchanged baseline suites and the unchanged baseline artifact controls and bundle trial below. New pilot tests and after-change checks wait for construction approval. Use a fresh
 scratch directory per before/after lane. Extract only `run.py`, `controls.py`
 and `sitecustomize.py` from the pinned retirement receipt's `files` object,
 checking their text hashes before writing/executing them:
@@ -165,23 +165,23 @@ Verify the guard blocks external DNS/connect/send/connect_ex and Python open/
 SQLite access to known user/repository `.friday` stores before application
 imports, including subprocesses. The historical helper hashes below are input
 pins; `prepare.py` appends the pilot guard extension and records its hash and
-the combined guard hash in `bootstrap.json`. SQLite file URIs are covered.
+the combined guard hash in `bootstrap.json`. SQLite file URIs and Darwin case variants are covered. A SQLite authorizer also denies protected or unresolved ATTACH/VACUUM INTO destinations; do not override it in fixtures to force a pass.
 Real SQLite refusal probes use a synthetic repo in scratch, never a real user
 database. This is Python audit containment, not an OS sandbox for arbitrary
 native I/O; every fixture must use scratch explicitly. Only locally bound
 disposable loopback servers are allowed. Failed controls stop testing.
 
 The materialized [preparer](../validation/pilot/harness/prepare.py) extracts these
-helpers, verifies six public build wheels against
+helpers, verifies eight public build wheels against
 [build-tools.json](../validation/pilot/harness/build-tools.json) and supplies
 `pilot_run.py`, a wrapper around the unchanged historical runner. The wrapper
 sets `UV_FIND_LINKS` to the closed wheelhouse, `UV_NO_INDEX=1` and the local
-LiteLLM cost-map option. It also refuses receipt/output path collisions and
+LiteLLM cost-map option. It also checks positional and equals-joined arguments against all existing top-level scratch JSON/log files and
 suffixes repeated run labels to preserve earlier receipts and gives each pytest run a unique scratch `--basetemp`. This removes the fresh-cache startup defect without
 changing production metadata or relying on a prior global build cache.
 [build-requirements.txt](../validation/pilot/harness/build-requirements.txt)
-records all six exact versions and allowed distribution hashes. Registry access
-for `--fetch-build-tools` is limited to the six pinned HTTPS wheel URLs at
+records all eight exact versions and allowed distribution hashes. Registry access
+for `--fetch-build-tools` is limited to the eight pinned HTTPS wheel URLs at
 `files.pythonhosted.org`; no credentials or application services are needed.
 
 ```sh
@@ -197,7 +197,7 @@ python3 -B "$PILOT_HARNESS/compare.py" --selftest
 ```
 
 The repository test `.venv` and its existing locked development dependencies
-are prerequisites; the six wheels bootstrap build tooling only. Record the
+are prerequisites; the eight wheels bootstrap build tooling only. Record the
 interpreter, uv version and installed distribution inventory. Do not claim this
 workspace test environment is the later isolated default-install proof.
 
@@ -233,9 +233,9 @@ A new failure or broader collection loss is a regression and stops completion.
 ## Incremental gates and baseline comparison
 
 The frozen baseline is [baseline.json](../validation/pilot/baseline.json), SHA-256
-`645b27cd87a52942d20068462903c0c1f1f42c0dde50e61da97f0b5a8c83d7cf`.
+`48c3161cf1a0467c7e95ac11a85de0972d46421b5a9318ee618651f7cc7ad7f1`.
 Its capture program is `harness/capture.py`, SHA-256
-`eb19a8b5c2da9906b39276c8641dc1b7ec0d29091be1193bf3d9f147a17fcdd4`.
+`96f3f53c970fe1051a2b498250cce397ea952101483982103e9419391f4c3c4a`.
 Do not edit either after construction approval. If a harness defect is found,
 stop for an explicit amendment and regenerate/review the baseline from the
 unchanged before revision, never the new implementation.
@@ -244,7 +244,7 @@ unchanged before revision, never the new implementation.
 | --- | --- |
 | G0 — harness | Offline startup from fresh scratch, guard and comparator controls, clean-Git baseline reproduction, and cold-cache unchanged Commands artifact build/install control below. Current preparation supplies this evidence; no new APIs are claimed implemented. |
 | G1 — neutral | Add and pass `tests_commands/test_pilot.py`: shared specs/handlers, typed outcomes, catalog calls, standalone consumer and error/cancellation cases (PILOT-01/02). |
-| G2 — Chat | Add and pass `tests_chat/test_command_pilot.py`; rerun registry/retirement tests. Prove real delegation plus metadata, custom registries, projection, parser and exact baseline comparison (PILOT-03–06/09). |
+| G2 — Chat | Add and pass `tests_chat/test_command_pilot.py`; rerun registry/foundation/retirement tests. Prove real delegation plus metadata, custom registries, projection, parser and exact baseline comparison (PILOT-03–06 and the Chat subset of PILOT-09; full PILOT-09 closes at G4). |
 | G3 — lifecycle | Pass exit/clear app tests, ordering, once-only cleanup and PTY/display checks (PILOT-07/08). |
 | G4 — regression | All three full suites, unchanged assertion/source proof and focused lint/types; enumerate broader baseline failures rather than declaring them green. |
 | G5 — installed | Clean Git artifacts/default closure, PILOT-10 installed subset, then frozen candidate and independent review. |
@@ -255,10 +255,15 @@ skip tests. Expected failing new tests may guide implementation during a stage;
 all must pass before advancing. Do not xfail them or weaken the oracle.
 
 ```sh
-python3 -B "$PILOT_SCRATCH/pilot_run.py" g1-fast python -B -m pytest -p no:cacheprovider -q packages/friday-commands/tests_commands/test_pilot.py packages/friday-commands/tests_commands/test_import_boundary.py
-python3 -B "$PILOT_SCRATCH/pilot_run.py" g2-fast python -B -m pytest -p controls -p no:cacheprovider -q packages/friday-chat/tests_chat/test_command_pilot.py packages/friday-chat/tests_chat/test_command_registry.py packages/friday-chat/tests_chat/test_command_retirements.py
-python3 -B "$PILOT_SCRATCH/pilot_run.py" g3-fast python -B -m pytest -p controls -p no:cacheprovider -q packages/friday-chat/tests_chat/test_command_pilot.py packages/friday-chat/tests_chat/test_display.py packages/friday-chat/tests_chat/test_session_memory_commands.py packages/friday-chat/tests_chat/test_app_lifecycle.py::test_async_clients_close_after_background_and_llm_maintenance
+python3 -B "$PILOT_SCRATCH/pilot_run.py" g1-fast python -B -m pytest -p no:cacheprovider -q packages/friday-commands/tests_commands tests/integration/test_package_cohort_metadata.py
+python3 -B "$PILOT_SCRATCH/pilot_run.py" g2-fast python -B -m pytest -p controls -p no:cacheprovider -q packages/friday-chat/tests_chat/test_command_pilot.py packages/friday-chat/tests_chat/test_command_registry.py packages/friday-chat/tests_chat/test_command_foundations.py packages/friday-chat/tests_chat/test_command_retirements.py
+python3 -B "$PILOT_SCRATCH/pilot_run.py" g3-fast python -B -m pytest -p controls -p no:cacheprovider -q packages/friday-chat/tests_chat/test_command_pilot.py packages/friday-chat/tests_chat/test_display.py packages/friday-chat/tests_chat/test_session_memory_commands.py packages/friday-chat/tests_chat/test_command_production_adapters.py packages/friday-chat/tests_chat/test_app_lifecycle.py
 ```
+
+G1 deliberately runs the entire small Commands suite, including new pilot and
+import-boundary tests. G3 deliberately runs the entire app-lifecycle and
+production-adapter files, not just the EOF-only cleanup node. This covers the
+existing `/help`, `/q`, `/cls` and `/clearscreen` application paths before G4.
 
 For baseline reproduction, set `PILOT_REVISION` to the frozen before commit.
 For the G2/G5 after comparison, set it to the actual committed candidate.
@@ -286,7 +291,7 @@ with tarfile.open(scratch / ('source-' + os.environ['PILOT_PHASE'] + '.tar')) as
     archive.extractall(os.environ['PILOT_SOURCE'], filter='data')
 PY
 python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-capture" python -B "$PILOT_HARNESS/capture.py" "$PILOT_SOURCE" "$PILOT_SCRATCH/capture-$PILOT_PHASE.json" --revision "$PILOT_REVISION"
-python3 -B "$PILOT_HARNESS/compare.py" docs/planning/active/command-refactor/validation/pilot/baseline.json "$PILOT_SCRATCH/capture-$PILOT_PHASE.json" --baseline-sha256 645b27cd87a52942d20068462903c0c1f1f42c0dde50e61da97f0b5a8c83d7cf
+python3 -B "$PILOT_HARNESS/compare.py" docs/planning/active/command-refactor/validation/pilot/baseline.json "$PILOT_SCRATCH/capture-$PILOT_PHASE.json" --baseline-sha256 48c3161cf1a0467c7e95ac11a85de0972d46421b5a9318ee618651f7cc7ad7f1
 ```
 
 The comparator rejects altered values, list order, missing/extra groups and
@@ -317,69 +322,59 @@ export PILOT_PYTHON
 )
 ```
 
-For G5, use the committed candidate export and a different empty build cache:
+The authoritative G5 preparation recipe is the materialized
+[bundle.py](../validation/pilot/harness/bundle.py). It requires the exact
+macOS/arm64 **Python 3.13.10** interpreter (`>=3.13.4` is the package floor).
+Do not pass bare `--python-version 3.13`, which targets an unsupported patch
+level. Its resolver command supplies `--python <actual interpreter>` and
+`--python-version 3.13.10`; target/native wheel tags come from that interpreter.
+
+The helper verifies package build inputs and root metadata against the named
+Git revision, then executes these fully recorded operations:
+
+1. `uv export --frozen --offline --no-dev --package friday-chat --no-editable`
+   with hashes retained. Preserve conditional versions such as both `grpcio`
+   entries; evaluate the selected artifacts for the recorded target.
+2. Select compatible third-party wheels from `uv.lock`, fetch only their exact
+   `files.pythonhosted.org` URLs and verify both lock and export SHA-256 hashes.
+   There is no implicit global cache or unpinned registry resolution.
+3. For the sole approved source-only package, `pypika==0.48.9`, verify the locked
+   sdist hash and build its wheel offline using pinned `setuptools==75.8.0` and
+   `wheel==0.45.1` from the eight-tool closed build bundle. Record input sdist,
+   build-tool and output-wheel hashes. A generated wheel is validated by this
+   source/build lineage, not by pretending it has a wheel hash in `uv.lock`.
+   Any other source-only dependency stops the unit for an amendment.
+4. Build every required workspace distribution from the clean Git export with
+   `uv build --offline --no-python-downloads --package <name>`. Put Chat and
+   Commands in `g5-dist` and other selected workspace artifacts in
+   `workspace-wheels`; third-party files never supply workspace packages.
+5. Compile the default profile with marker-aware lock constraints, exact target
+   Python and wheel hashes, using only the three local wheel directories.
+   Install separate neutral/default Chat venvs with `--require-hashes --no-deps`,
+   then require both `uv pip check` and guarded `-I` imports/origin checks.
+
+Run this trial at G0 against the unchanged baseline export. At G5, repeat with
+its actual candidate revision and add `--require-pilot-edge`, which checks the
+unconditional required Commands dependency in the built Chat wheel metadata.
+Use a new, empty output directory for each run. The helper's driver may fetch
+only pinned public artifacts; all build/resolver/install child processes are
+sanitized, guarded, offline, no-index and use its fresh local cache.
 
 ```sh
-(
-  cd "$PILOT_SOURCE"
-  export UV_FIND_LINKS="$PILOT_SCRATCH/wheelhouse" UV_NO_INDEX=1 UV_OFFLINE=1
-  export UV_CACHE_DIR="$PILOT_SCRATCH/g5-build-cache"
-  uv build --offline --no-python-downloads --package friday-framework-commands --out-dir "$PILOT_SCRATCH/g5-dist"
-  uv build --offline --no-python-downloads --package friday-chat --out-dir "$PILOT_SCRATCH/g5-dist"
-  uv venv --offline --no-python-downloads --python "$PILOT_PYTHON" "$PILOT_SCRATCH/g5-neutral"
-  uv venv --offline --no-python-downloads --python "$PILOT_PYTHON" "$PILOT_SCRATCH/g5-chat"
-)
+# G0 baseline trial; PILOT_SOURCE/PILOT_REVISION identify the clean before export.
+"$PILOT_PYTHON" -B "$PILOT_HARNESS/bundle.py" "$PILOT_SOURCE" "$PILOT_SCRATCH/baseline-bundle" "$PILOT_SCRATCH" --revision "$PILOT_REVISION" --fetch
+# G5: new candidate export/revision; reuse verified raw artifacts fully offline.
+"$PILOT_PYTHON" -B "$PILOT_HARNESS/bundle.py" "$PILOT_SOURCE" "$PILOT_SCRATCH/candidate-bundle" "$PILOT_SCRATCH" --revision "$PILOT_REVISION" --artifacts "$PILOT_SCRATCH/baseline-bundle/locked-artifacts" --require-pilot-edge
 ```
 
-The implementation must first materialize and hash `default-profile.txt`,
-`workspace-wheels` and `third-party-wheels`: exact default dependency closure
-from candidate wheel metadata under unchanged lock-version constraints, clean
-Git-derived workspace wheels and hash-verified locked third-party wheels.
-These are explicit G5 prerequisites, not existing preparation artifacts.
-The workspace wheelhouse excludes the two changed distributions supplied by
-`g5-dist`; the third-party wheelhouse contains no workspace distribution.
-Generate the frozen profile from those artifacts, not the development venv:
+`bundle-report.json` records every actual argv/exit, exact target/environment,
+all input source/build-tool hashes, fetched artifact hashes, PyPika lineage and
+output artifact/profile hashes. Per-command logs remain alongside it. The
+preparation baseline trial proves the artifact machinery, not an implemented
+pilot or its future installed behavior. G5 must additionally run the specified
+`installed_probe.py`, including pilot handler/delegation and source-member
+checks; the helper's basic imports/catalog check does not replace that proof.
 
-```sh
-(
-  cd "$PILOT_SOURCE"
-  export UV_CACHE_DIR="$PILOT_SCRATCH/g5-lock-export-cache" UV_OFFLINE=1
-  uv export --frozen --offline --no-dev --package friday-chat --no-emit-workspace --no-hashes --format requirements-txt --output-file "$PILOT_SCRATCH/default-version-constraints.txt"
-)
-python3 -B - <<'PY'
-import os, pathlib, tomllib
-scratch = pathlib.Path(os.environ['PILOT_SCRATCH'])
-source = pathlib.Path(os.environ['PILOT_SOURCE'])
-packages = tomllib.loads((source / 'uv.lock').read_text())['package']
-with (scratch / 'default-version-constraints.txt').open('a') as constraints:
-    for package in packages:
-        if set(package.get('source', {})) & {'editable', 'virtual'}:
-            constraints.write(package['name'] + '==' + package['version'] + '\n')
-(scratch / 'default-root.in').write_text('friday-chat==0.1.0a4\n')
-PY
-(
-  export UV_FIND_LINKS="$PILOT_SCRATCH/wheelhouse" UV_NO_INDEX=1 UV_OFFLINE=1
-  export UV_CACHE_DIR="$PILOT_SCRATCH/g5-profile-cache"
-  uv pip compile --offline --no-index --only-binary :all: --python-version 3.13 --python-platform aarch64-apple-darwin --find-links "$PILOT_SCRATCH/g5-dist" --find-links "$PILOT_SCRATCH/workspace-wheels" --find-links "$PILOT_SCRATCH/third-party-wheels" --constraint "$PILOT_SCRATCH/default-version-constraints.txt" --output-file "$PILOT_SCRATCH/default-profile.txt" "$PILOT_SCRATCH/default-root.in"
-)
-```
-
-This is the current macOS/arm64/Python 3.13 profile; do not claim cross-platform
-proof. Required transitive dependency extras remain part of closure; no optional
-Chat extra is selected. The frozen export preserves version markers (the lock
-already contains two `grpcio` versions); do not flatten all lock entries into
-one unconditional pin per name. With these inputs frozen, install and check:
-
-```sh
-(
-  export UV_FIND_LINKS="$PILOT_SCRATCH/wheelhouse" UV_NO_INDEX=1 UV_OFFLINE=1
-  export UV_CACHE_DIR="$PILOT_SCRATCH/g5-install-cache"
-  uv pip install --offline --no-index --python "$PILOT_SCRATCH/g5-neutral/bin/python" --find-links "$PILOT_SCRATCH/g5-dist" friday-framework-commands==0.1.0a4
-  uv pip install --offline --no-index --no-deps --python "$PILOT_SCRATCH/g5-chat/bin/python" --find-links "$PILOT_SCRATCH/g5-dist" --find-links "$PILOT_SCRATCH/workspace-wheels" --find-links "$PILOT_SCRATCH/third-party-wheels" -r "$PILOT_SCRATCH/default-profile.txt"
-  uv pip check --offline --python "$PILOT_SCRATCH/g5-neutral/bin/python"
-  uv pip check --offline --python "$PILOT_SCRATCH/g5-chat/bin/python"
-)
-```
 Stop if resolution needs a version change or an unapproved extra. All artifact
 commands record actual environment, argv, cwd, exit, input/output hashes.
 Validate each pair using `scripts/check-package-artifacts.py` with package
@@ -396,8 +391,8 @@ constraints and include the new required Commands edge. The prior installed
 profile's 129-member count is historical evidence, not a new resolver target;
 derive and verify the current locked closure rather than adding extras to reach
 a count. Record and explain any membership difference from that historical profile.
-Install cached third-party artifacts offline; record any permitted registry
-fetch of missing locked artifacts separately, then repeat installation offline.
+Use only the explicitly fetched, hash-verified artifact bundle; repeat the
+bundle trial offline before candidate handoff. Do not rely on an ambient cache.
 Require `uv pip check --offline`, compare installed metadata with declared closure
 and prove commands is a required Chat edge. `--no-deps` installation alone is
 insufficient without these closure/dependency checks.

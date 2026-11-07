@@ -56,7 +56,9 @@ instances, raising `TypeError` before inspecting request fields; wrong canonical
 names then raise `ValueError`. `describe_help` accepts only `None` or a string
 focus, including subclasses; other values (even falsy values) raise `TypeError`
 before reading the catalog. This defines new shared boundaries without changing
-legacy Chat registration or its existing falsy-focus handling.
+legacy Chat registration or its existing falsy-focus handling. Truthy non-string
+focuses are outside the declared legacy `str | None` API; their old exception
+type (for example `AttributeError` for `5`) is not a compatibility guarantee.
 
 `PILOT_SPECS` contains exact baseline metadata, including ordered aliases,
 argument fields, punctuation and the `cls` detail paragraph. Move these values
@@ -219,9 +221,10 @@ user-store access is necessary. The directive specifies cases and verification.
 ## PC-07 — runnable harness and incremental gates
 
 The preparation assets in `validation/pilot/harness/` are diagnostic tooling,
-not the pilot implementation. They prepare a fresh scratch runner using six
+not the pilot implementation. They prepare a fresh scratch runner using eight
 exact hash-pinned public build wheels, including Hatchling's `editables` hook
-dependency. After bootstrap, the runner uses only that wheelhouse with indexes
+dependency and pinned setuptools/wheel for the source-only PyPika build.
+After bootstrap, the runner uses only that wheelhouse with indexes
 disabled and offline execution. An existing verified wheelhouse can bootstrap
 another empty scratch directory without network access. Unprepared empty caches
 must not be assumed to contain build dependencies.
@@ -241,10 +244,23 @@ The pilot guard retains the historical Python-open checks and adds
 and repository's `.friday` trees. Test real SQLite refusal only against a fake
 repository inside scratch; use audit-only probes for real protected roots.
 This is Python audit containment, not an OS sandbox for arbitrary native I/O.
+On Darwin, protected paths use case folding. Connections also receive a SQLite
+authorizer: protected ATTACH/VACUUM INTO destinations and unresolved
+parameterized attachment destinations are denied. Fixtures must not remove
+that authorizer to bypass a refusal.
 All fixtures must still explicitly use scratch. Capture rejects any loaded
 `friday*` module whose file or namespace origin escapes the verified export.
-The runner refuses receipt/output path collisions and preserves earlier
-receipts by assigning a new suffix to repeated run names.
+The runner checks positional and `--option=value` argument paths against every
+existing top-level scratch JSON/log file and current receipt names, preserving
+earlier receipts by assigning a new suffix to repeated run names. Invoke the
+read-only comparator directly as documented when reading scratch JSON inputs.
+
+The materialized `bundle.py` provides the lock-derived artifact recipe and a
+baseline end-to-end trial at exact Python 3.13.10. It fetches target artifacts
+only by lock URL/hash, builds workspace wheels from Git, records PyPika's locked
+sdist-to-wheel lineage, compiles hash-pinned profiles and checks isolated installs.
+It can replay entirely offline from retained raw artifacts. G5 must repeat
+against the implementation and additionally prove installed pilot behavior.
 
 Build with successive gates: harness/baseline readiness; shared-handler tests;
 Chat adapter/compatibility tests; app lifecycle/effect tests; full regression

@@ -859,3 +859,30 @@ and added three legacy falsy focuses from the same source commit. Historical
 failed attempts and current final gates have explicit roles in round-two
 receipts. Proposal revisions retain initial and round-one hashes separately;
 current hashes live in pilot_current_proposal. Freeze for full round-two council.
+
+2026-11-07: Round-two end freeze matches all 17,087 protected file hashes at
+911f7dbd. Council: OpenAI CHANGES_REQUESTED 8.8/10, Claude CHANGES_REQUESTED
+8.5/10, Gemini VERIFIED 9.8/10. Retained reports in council-round2.json. Under
+existing explicit feedback authority, correct the exact Python patch target,
+source-only PyPika/locked artifact preparation, actual app-path fast coverage and
+bounded advisories. Diagnostic preparation may fetch only exact locked public
+artifacts plus two pinned build tools into scratch, build from clean baseline
+Git, and prove bundle resolution/install before another full council round.
+No product implementation, global environment change or delivery is authorized.
+
+Second bounded council remediation: SOL-R2-PILOT-001 and CLD-R2-01 through
+CLD-R2-06 plus ARGON-R2 advisories addressed. The materialized bundle recipe
+verified 125 lock/export-hashed target artifacts, built 13 baseline workspace
+packages and PyPika from its locked sdist with eight pinned build tools,
+compiled at Python 3.13.10 and passed both isolated installs and guarded imports.
+A fresh full offline replay also passes. Full Chat 1,038, foundation/cohort 145
+and CLI 155 pass with strengthened case/SQL/receipt controls; 18 guard and 11
+comparator refusals pass. The initial ATTACH authorizer prototype could not
+resolve a parameterized destination; its failed self-test is retained, and the
+corrected guard denies unresolved attachments. No user store was probed.
+All 196 frozen observations remain identical after the Git-root output fix.
+Current lock-derived profile membership/version differences from historical
+129 are explicitly recorded; current source and uv.lock remain byte-identical.
+Record revision3 hashes and freeze for full fresh round3. This is the second
+remediation cycle; unresolved findings after that review return to the maintainer.
+Execution phase planning; validation state in_review for design/harness only.

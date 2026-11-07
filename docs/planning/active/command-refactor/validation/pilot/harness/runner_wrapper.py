@@ -29,8 +29,18 @@ def main() -> None:
         for name in (requested, stem)
         for extension in (".json", ".log")
     }
+    reserved.update(
+        path.resolve()
+        for pattern in ("*.json", "*.log")
+        for path in scratch.glob(pattern)
+    )
     for argument in sys.argv[2:]:
-        if not argument.startswith("-") and Path(argument).resolve() in reserved:
+        value = (
+            argument.split("=", 1)[1]
+            if argument.startswith("-") and "=" in argument
+            else argument
+        )
+        if not value.startswith("-") and Path(value).resolve() in reserved:
             raise SystemExit("Command argument collides with a runner receipt path")
     sys.argv[1] = stem
     # A unique basetemp prevents pytest from cleaning unrelated numbered temp

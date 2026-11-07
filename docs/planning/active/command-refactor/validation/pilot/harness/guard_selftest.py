@@ -24,6 +24,21 @@ def main() -> None:
             "sqlite3.connect", str(Path(os.environ["REVIEW_REPO"]) / ".friday/probe.db")
         ),
     }
+    if sys.platform == "darwin":
+        attempts.update(
+            {
+                "sqlite_home_case": lambda: sys.audit(
+                    "sqlite3.connect", str(Path.home() / ".FRIDAY/probe.db")
+                ),
+                "sqlite_repo_case": lambda: sys.audit(
+                    "sqlite3.connect",
+                    str(Path(os.environ["REVIEW_REPO"]) / ".Friday/probe.db"),
+                ),
+                "open_home_case": lambda: sys.audit(
+                    "open", str(Path.home() / ".FRIDAY/probe.db"), "r", 0
+                ),
+            }
+        )
     with (
         socket.socket() as connection,
         socket.socket(type=socket.SOCK_DGRAM) as datagram,
@@ -56,11 +71,14 @@ def main() -> None:
     (fake / ".friday").mkdir(parents=True, exist_ok=True)
     environment = dict(os.environ, REVIEW_REPO=str(fake))
     database = fake / ".friday/probe.db"
-    for value in (
+    sqlite_values = [
         str(database),
         "file:" + str(database),
         "file:" + str(database).replace(".friday", "%2Efriday"),
-    ):
+    ]
+    if sys.platform == "darwin":
+        sqlite_values.append(str(database).replace(".friday", ".FRIDAY"))
+    for value in sqlite_values:
         code = (
             "import sqlite3,sys\n"
             "try: sqlite3.connect(sys.argv[1], uri=True)\n"
@@ -73,12 +91,29 @@ def main() -> None:
         )
         if database.exists():
             raise RuntimeError("SQLite refusal created a protected fixture file")
+    for statement in ("ATTACH DATABASE ? AS protected", "VACUUM INTO ?"):
+        code = (
+            "import sqlite3,sys\nc=sqlite3.connect(':memory:')\n"
+            "try: c.execute(sys.argv[1], (sys.argv[2],))\n"
+            "except sqlite3.DatabaseError as error:\n"
+            " if 'authoriz' not in str(error): raise\n"
+            "else: raise RuntimeError('SQLite authorizer protection failed')\n"
+        )
+        subprocess.run(
+            [sys.executable, "-B", "-c", code, statement, str(database)],
+            env=environment,
+            check=True,
+        )
+        if database.exists():
+            raise RuntimeError(
+                "SQL authorizer refusal created a protected fixture file"
+            )
     with sqlite3.connect(":memory:"):
         pass
     with sqlite3.connect(Path(os.environ["REVIEW_SCRATCH"]) / "allowed-sqlite.db"):
         pass
     print(
-        f"Guard passed {len(attempts) + 3} refusal controls, loopback and scratch/memory SQLite controls"
+        f"Guard passed {len(attempts) + len(sqlite_values) + 2} refusal controls, loopback and scratch/memory SQLite controls"
     )
 
 

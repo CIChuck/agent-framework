@@ -97,3 +97,17 @@ Current corrected G0 evidence is [round-two harness receipts](validation/pilot/h
 [Correction map](validation/pilot/council-remediation.json) binds every council
 finding and the explicit baseline regeneration. The older receipt paragraph
 above describes round one. No product construction approval is granted.
+
+Round two: OpenAI CHANGES_REQUESTED 8.8/10, Claude CHANGES_REQUESTED 8.5/10,
+Gemini VERIFIED 9.8/10. The combined readiness decision remains CHANGES_REQUESTED.
+[Current corrections](validation/pilot/council-remediation-round2.json) and
+[round-three evidence](validation/pilot/harness-evidence-round3.json) now include
+an executable artifact-bundle recipe: 13 workspace builds, 125 hash-verified
+locked third-party artifacts, PyPika source-to-wheel lineage, exact Python
+3.13.10 profile compilation and both isolated installs, repeated offline.
+All 1,338 scoped baseline tests, 18 guard and 11 comparator refusals pass.
+All 196 observations remain identical. The current locked baseline profile has
+137 distributions; the report enumerates its differences from the separately
+assembled historical 129-member profile. No product/dependency/lock change is
+inferred. Actual pilot implementation and its G5 behavior proof remain pending.
+Fresh full round-three council review is required for this corrected candidate.

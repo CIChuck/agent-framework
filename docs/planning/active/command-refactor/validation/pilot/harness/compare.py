@@ -25,6 +25,13 @@ def observations(document: object) -> dict[str, object]:
         raise ValueError("Missing or unexpected observation group")
     if not isinstance(document["provenance"], dict):
         raise ValueError("Missing provenance")
+    identity = document["provenance"].get("capture_sha256")
+    if (
+        not isinstance(identity, str)
+        or len(identity) != 64
+        or any(c not in "0123456789abcdef" for c in identity)
+    ):
+        raise ValueError("Missing or malformed capture identity")
     return result
 
 
@@ -48,7 +55,7 @@ def compare(before: object, after: object) -> None:
 def selftest() -> None:
     baseline = {
         "schema": 1,
-        "provenance": {"revision": "before", "capture_sha256": "frozen-script"},
+        "provenance": {"revision": "before", "capture_sha256": "0" * 64},
         "observations": dict.fromkeys(sorted(GROUPS), {"sample": ["a", "b"]}),
     }
     compare(baseline, copy.deepcopy(baseline))
@@ -67,11 +74,17 @@ def selftest() -> None:
     extra["observations"]["unexpected"] = []
     mutations.append(extra)
     changed_program = copy.deepcopy(baseline)
-    changed_program["provenance"]["capture_sha256"] = "different-script"
+    changed_program["provenance"]["capture_sha256"] = "1" * 64
     mutations.append(changed_program)
     missing_program = copy.deepcopy(baseline)
     del missing_program["provenance"]["capture_sha256"]
     mutations.append(missing_program)
+    try:
+        compare(missing_program, copy.deepcopy(missing_program))
+    except ValueError:
+        pass
+    else:
+        raise RuntimeError("Comparator accepted two captures without identity")
     typed_before = copy.deepcopy(baseline)
     typed_after = copy.deepcopy(baseline)
     typed_before["observations"]["dispatch"] = {"handled": True}
@@ -89,7 +102,7 @@ def selftest() -> None:
             continue
         raise RuntimeError("Comparator accepted an intentionally damaged capture")
     print(
-        f"Comparator passed identity/provenance controls and {len(mutations) + 1} refusal controls"
+        f"Comparator passed identity/provenance controls and {len(mutations) + 2} refusal controls"
     )
 
 

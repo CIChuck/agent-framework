@@ -178,7 +178,7 @@
     "instruction": "Apply your changes, then invoke the council to validate the final results. Take the feedback from the council and apply it. Make sure the council gives us a 9 or better on our scoring.",
     "scope": "Amend proposed pilot contract/directive; add and exercise diagnostic harness, baseline/comparison fixtures, incremental gates and review evidence under validation/pilot; reconcile current planning status; apply bounded council feedback and re-review",
     "lightweight_exemption": "Diagnostic planning harness only, isolated scratch and fake runtime; no packages source/tests/config/metadata/lock edits. Exact maintainer instruction authorizes preparation and testing of these diagnostic assets, not pilot product construction.",
-    "external_services": "Public pypi.org/files.pythonhosted.org only to seed six exact hash-pinned build tools into scratch; delegate review providers via requested council. No live application services.",
+    "external_services": "Requested review providers; public pypi.org metadata for eight exact build-tool pins; files.pythonhosted.org for those wheels and unchanged-lock target artifact files only. No live application services.",
     "council": {
       "providers": [
         "Claude Opus 5.5 high",
@@ -191,9 +191,16 @@
     "pilot_design_approval": "not_granted",
     "pilot_construction_approval": "not_granted",
     "delivery": "local only",
-    "status": "bounded round-one corrections applied; fresh full round-two review pending",
-    "evidence": "validation/pilot/harness-evidence-round2.json",
-    "corrections": "validation/pilot/council-remediation.json"
+    "status": "Second bounded remediation complete; fresh full round-three council pending",
+    "evidence": "validation/pilot/harness-evidence-round3.json",
+    "corrections": "validation/pilot/council-remediation-round2.json",
+    "round_two_followup": {
+      "scope": "Resolve SOL-R2-PILOT-001 and CLD-R2-01 through06 plus Gemini advisories; materialize and exercise a baseline artifact-bundle recipe, extend controls, then one full fresh council round",
+      "external_services": "Public pypi.org metadata for exact setuptools/wheel build pins; files.pythonhosted.org for hash-pinned build tools and target default-dependency artifacts from unchanged uv.lock only",
+      "product_construction": "not_granted",
+      "validation": "Actual cold baseline bundle/compile/install controls plus scoped suites, no user/global installs or cache cleanup"
+    },
+    "initial_external_services_record": "Public pypi.org/files.pythonhosted.org only to seed six exact hash-pinned build tools into scratch; delegate review providers via requested council. No live application services."
   },
   "pilot_proposal_revisions": [
     {
@@ -207,14 +214,20 @@
       "candidate": "3952d213c6be360c2b8b638c0474d8142fa4bb20",
       "contract_sha256": "3215089eeaf9298566b677949bbbcaddde91ab00dc08aea37c971547ed3e4b54",
       "directive_sha256": "a5fe8be287d8118214d3149180a4a50266f113b6e70abce34dfbe2fcee21cca2"
+    },
+    {
+      "revision": 2,
+      "candidate": "911f7dbd39c4ae36fa20b6aae1dc82fbfdf1a1f3",
+      "contract_sha256": "c2c5b94079f466d0cf7d8331d0941fc9451e2d8e390d0e288e3b81ec9997f973",
+      "directive_sha256": "3033ea657b125a6308647e5b8cac6c1acf885cc113d4bbd2e32ffd4b76c620fe"
     }
   ],
   "pilot_current_proposal": {
-    "revision": 2,
+    "revision": 3,
     "contract": "pilot-command-contract.md",
-    "contract_sha256": "c2c5b94079f466d0cf7d8331d0941fc9451e2d8e390d0e288e3b81ec9997f973",
+    "contract_sha256": "e9cf8af3c0fc5e164de35c27d01e428ac9a912f0f957c21c40648c2334dc86d3",
     "directive": "directives/CD-CMD-PILOT-001-help-exit-clear.md",
-    "directive_sha256": "3033ea657b125a6308647e5b8cac6c1acf885cc113d4bbd2e32ffd4b76c620fe",
+    "directive_sha256": "ef22f4d2adbcf50a54958946f722131ddd7e8fa5b2247fad9c9f1a6a638fee1f",
     "design_approval": "not_granted",
     "construction_approval": "not_granted"
   }

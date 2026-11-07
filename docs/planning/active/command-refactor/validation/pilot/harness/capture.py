@@ -305,7 +305,12 @@ def main() -> None:
     args = parser.parse_args()
     source = args.source_root.resolve()
     output = args.output.resolve()
-    if output.is_relative_to(Path.cwd().resolve()) or output.is_relative_to(source):
+    checkout = Path(
+        subprocess.check_output(["git", "rev-parse", "--show-toplevel"])
+        .decode()
+        .strip()
+    ).resolve()
+    if output.is_relative_to(checkout) or output.is_relative_to(source):
         raise SystemExit("Capture output must be outside checkout and export")
     if output.exists():
         raise SystemExit("Refusing to overwrite an existing capture")
