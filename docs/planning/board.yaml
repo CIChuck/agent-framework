@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Fresh three-provider council for PILOT-001 D1 neutral handlers/tests; reconcile before D2 Chat integration
+  next_gate: Maintainer disposition of VAL-D1-R3-001 sorting-test coverage gap after two D1 remediation cycles; one-line proposal prepared; D2 pending
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2570,3 +2570,10 @@ events:
   action: approved pilot contract and directive with council after each deliverable
   note: Exact approval covers additive API and PILOT-001 construction. D1 neutral, D2 Chat/lifecycle, D3 regression/installed proof each require a fresh council before advancing. Final acceptance and external delivery remain separate.
   evidence: docs/planning/active/command-refactor/approval/pilot.md
+- task: friday-command-refactor
+  at: '2026-11-07T20:51:12+00:00'
+  actor: Codex
+  actor_role: agent
+  action: returned unresolved D1 sorting-test finding after council cycle limit
+  note: Round-three scores Claude 9.4, Sol 9.5 and Gemini 9.8 all meet target; runtime conforms but mandatory VAL-D1-R3-001 remains. Scratch one-line proposal passes correct source and rejects no-sort mutant. Await maintainer direction for further correction/review; existing pilot approval retained, D2 pending.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d1/maintainer-decision.md

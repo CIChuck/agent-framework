@@ -1022,3 +1022,19 @@ implementation. D2 and D3 remain pending. Audit index/header/log/authority/board
 current summaries together, then freeze for fresh full D1 council round three.
 This is the second bounded metadata remediation. Any mandatory issue surviving
 that review returns to the maintainer under the two-cycle rule.
+
+D1 third council consolidated: OpenAI VERIFIED 9.5/10, Claude CHANGES_REQUESTED
+9.4/10, Gemini VERIFIED 9.8/10. All metadata findings are closed and runtime
+behavior conforms. VAL-D1-R3-001 is a required coverage gap: reversing the
+help/exit/cls metadata yields already sorted input, so a no-sort mutant survives
+the general-help test. Scores/majority do not override that finding. Controller
+confirmed current-test/no-sort passes, proposed scratch-test/current-code passes,
+and proposed scratch-test/no-sort fails both focus cases. The repository test
+is untouched. Exact reports and targeted proposal evidence are retained in
+d1/council-round3.json; maintainer-decision.md gives the one-line proposed fix.
+End freeze matched HEAD/status/index, all 29 pins and all 17,108 protected hashes.
+`execution_phase: validation`; `validation_state: changes_requested` for D1.
+The two unsuccessful remediation cycles are exhausted. Return VAL-D1-R3-001
+for maintainer disposition; no further automated fix/review cycle or D2 begins.
+Existing exact pilot construction approval remains granted; this is an
+additional correction-cycle decision, not a request to reapprove the pilot.

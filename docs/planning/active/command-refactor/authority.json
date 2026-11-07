@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "PILOT-001 contract and directive approved; D1 neutral implementation in validation; council reconciliation precedes D2 and D3",
+  "decision": "PILOT-001 approved; D1 runtime conforms but mandatory sorting-test coverage finding remains after two remediation cycles; maintainer disposition required",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Approved PILOT-001 D1 shared handlers/tests are implemented and in council review; D2 Chat integration and D3 regression/installed proof remain pending",
+  "current_scope": "D1 validation changes_requested for VAL-D1-R3-001; proposed one-line test fix is prepared in scratch only; D2 and D3 pending",
   "product_code_authority": "Exact pilot construction approved in approval/pilot.md; council after each deliverable before advancement. Remaining families, TUI, final acceptance and external delivery are unapproved.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -312,7 +312,7 @@
     "product_baseline": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
     "branch": "feature/command-retirement",
     "state": "started",
-    "current_deliverable": "D1 neutral API/tests complete; council pending before D2",
+    "current_deliverable": "D1 awaiting maintainer disposition of VAL-D1-R3-001 after third council",
     "council_after_each_deliverable": true,
     "deliverables": {
       "D1": "Shared neutral API/handlers and standalone tests (G1)",
@@ -322,8 +322,8 @@
     "delivery": "local only; no push/PR/merge/release authorization",
     "acceptance": "not_granted",
     "deliverable1": {
-      "state": "in_review",
-      "gate": "G1 passed; fresh three-provider council pending",
+      "state": "changes_requested",
+      "gate": "Maintainer disposition after two unsuccessful remediation cycles",
       "evidence": "validation/pilot/implementation/d1/evidence.json",
       "scope": "PILOT-01/02 only; no Chat wiring or installed candidate claim",
       "acceptance": "not_granted",
@@ -338,6 +338,20 @@
         "related_advisory": "R2-CLD-D1-ADV-01",
         "scope": "Live next-phase header and clearly separated current/historical sequence; existing directive approval summary aligned. No product or test changes.",
         "review": "Fresh D1 full council round 3 after second bounded metadata remediation."
+      },
+      "council_round3": {
+        "candidate": "19d0b9d1885bfcd89b410d3903968af3ae17b046",
+        "outcome": "CHANGES_REQUESTED",
+        "scores": {
+          "claude": 9.4,
+          "openai": 9.5,
+          "gemini": 9.8
+        },
+        "open_finding": "VAL-D1-R3-001",
+        "record": "validation/pilot/implementation/d1/council-round3.json",
+        "decision": "validation/pilot/implementation/d1/maintainer-decision.md",
+        "remediation_authorization": "additional pass not granted",
+        "product_construction_approval": "existing exact PILOT-001 approval retained"
       }
     }
   },

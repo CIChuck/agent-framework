@@ -1,25 +1,26 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 approved; D1 neutral implementation in council validation; D2 and D3 pending
+Status: PILOT-001 approved; D1 sorting-test finding awaits maintainer direction; D2 and D3 pending
 Execution phase: validation
-Validation state: in_review (PILOT-001 D1 implementation); G1 implemented; D2/G2-G3 and D3/G4-G5 pending; RET-001 remains accepted
+Validation state: changes_requested (PILOT-001 D1); VAL-D1-R3-001 open after two remediation cycles; D2/G2-G3 and D3/G4-G5 pending; RET-001 remains accepted
 
 ## Current next steps
 
-1. Reconcile the fresh D1 council on the corrected status metadata. D1 code and
-   tests are unchanged; do not start D2 until mandatory findings are closed.
-2. Continue the already approved D2 Chat adapter, dependency/lock edge,
-   compatibility and lifecycle work (G2-G3), then invoke its own council.
-3. Deliver the approved D3 full regression, source/assertion preservation,
-   clean artifact and default installed proof (G4-G5), then invoke its council.
-4. Present the entire pilot for maintainer acceptance. Remaining command
-   families, TUI work and external delivery still require separate authority.
+1. Review the [bounded sorting-test decision](validation/pilot/implementation/d1/maintainer-decision.md).
+   One mandatory coverage gap remains despite correct runtime behavior and
+   council scores of 9.4/9.5/9.8. The proposed one-line fix is not applied.
+2. Maintainer direction is required for an additional bounded correction and
+   fresh council after the two-cycle escalation. Existing pilot approval is
+   retained; D2 starts only after D1 conformance reconciliation.
+3. Continue approved D2 Chat integration/lifecycle (G2-G3) and D3 full
+   regression/installed proof (G4-G5), each followed by its own council.
+4. Present the complete pilot for maintainer acceptance. Later families,
+   TUI work and external delivery still require separate authority.
 
-The exact [pilot approval](approval/pilot.md), live header above and current
-board govern this handoff. The older checkpoint narrative below preserves the
-sequence of prior decisions; its pre-approval labels are historical and do not
-replace the current PILOT-001 construction grant.
+The [exact pilot approval](approval/pilot.md), live header and board govern this
+handoff. Earlier checkpoint narrative below is historical and does not replace
+the current grant or the mandatory review/cycle-limit gates.
 
 ## Historical checkpoints
 
