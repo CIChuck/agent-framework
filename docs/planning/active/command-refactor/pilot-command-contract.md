@@ -154,9 +154,10 @@ Map shared outcomes to the existing Chat `CommandResult`:
 
 | Shared result | Chat result and owner |
 | --- | --- |
-| General/focused `HelpData` | Existing generated help text; no exit/effect. |
-| Unknown-help error | `Unknown command: /{normalized}. Type /help for available commands.` |
-| `ExitData(True)` | `output='Goodbye.'`, `exit_requested=True`, no effect. Existing `execute` sets the context flag. |
+| General `HelpData` (`focused_name=None`, no effects) | Existing generated help text; no exit/effect. Empty command tuples are valid. |
+| Focused `HelpData` (exactly one spec, `focused_name=spec.name`, no effects) | Existing focused text; no exit/effect. Other focus/command cardinalities are invalid. |
+| Unknown-help error (`unknown_command`, `usage=None`, no effects) | `Unknown command: /{normalized}. Type /help for available commands.` |
+| `ExitData(True)` with no effects | `output='Goodbye.'`, `exit_requested=True`, no effect. Existing `execute` sets the context flag. |
 | `NoData` plus one clear effect | `output=''`, one Chat `CLEAR_SCREEN`, no exit. |
 
 These successful results retain `handled=True`. Adapter helpers accept only
@@ -198,6 +199,36 @@ clean Git-export builds and default installed Chat dependency closure outside
 the checkout. Tests must prove shared delegation, not merely matching output
 from an accidentally retained Chat implementation. No live provider or real
 user-store access is necessary. The directive specifies cases and verification.
+
+## PC-07 — runnable harness and incremental gates
+
+The preparation assets in `validation/pilot/harness/` are diagnostic tooling,
+not the pilot implementation. They prepare a fresh scratch runner using six
+exact hash-pinned public build wheels, including Hatchling's `editables` hook
+dependency. After bootstrap, the runner uses only that wheelhouse with indexes
+disabled and offline execution. An existing verified wheelhouse can bootstrap
+another empty scratch directory without network access. Unprepared empty caches
+must not be assumed to contain build dependencies.
+
+Before any product edit, `capture.py` verifies Python source bytes against the
+specified Git revision and captures metadata, help, parsed dispatch outcomes,
+custom registry cases and fake-app lifecycle traces. The frozen
+`validation/pilot/baseline.json` is the expected result; do not regenerate it
+from new behavior. Capture-program and baseline hashes are frozen for the unit.
+`compare.py` requires the expected baseline hash and compares all observation
+groups exactly, including list order and boolean versus integer types. Source
+provenance may differ; the capture-program identity must remain identical.
+Its self-test must reject deliberately damaged observations;
+the injected guard must pass its own refusal and allowed-loopback controls.
+
+Build with successive gates: harness/baseline readiness; shared-handler tests;
+Chat adapter/compatibility tests; app lifecycle/effect tests; full regression
+suites; then clean installed-package proof. Run the focused tests repeatedly
+within each implementation stage, and advance only when its cases pass. Product
+tests for new APIs are added under the approved directive; they are not claimed
+to exist or pass during this preparation. There is no permission to skip an
+earlier gate, replace a failing baseline, weaken assertions or relax isolation.
+The directive supplies commands, exact test locations and required handoffs.
 
 Approval covers this pilot profile only. It does not approve remaining family
 contracts, close full P0/P1 gates, accept the entire refactor, authorize TUI work

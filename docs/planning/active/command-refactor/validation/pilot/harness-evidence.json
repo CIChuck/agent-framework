@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "scope": "PILOT-001 diagnostic harness readiness; no pilot implementation",
+  "product_source_base": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
+  "baseline_sha256": "30d5ae72c0ccc2a47845c6a5110da93a198a217ccc38f2e75250fe337782b8c7",
+  "harness_hashes": {
+    "build-requirements.txt": "915c86fb483b9d879890758cf8d244db9720df282015517d92cc7200b211a873",
+    "build-tools.json": "981f75700e1b018d5f9da998ba519deb8123822781e507fe6c928ba6faa3bd7c",
+    "capture.py": "8910d67902ceef692b519612a7e0a2286eb7bce2dcfc53cac0226c591e6d9b2e",
+    "compare.py": "539f72804fedffd0c57a64f5315699a61d5f2752224c4e9e61f78caeba0ce168",
+    "guard_selftest.py": "a6f560bc0d1debbb1a2fbbf08f473813504bc640a66d342ff6170edc9780943c",
+    "prepare.py": "0ad415edd1b27d2119b604a15fc03a978713c0f97e07b384a58033932c83f3fb"
+  },
+  "observation_counts": {
+    "metadata": 41,
+    "help": 59,
+    "dispatch": 29,
+    "custom": 61,
+    "lifecycle": 3
+  },
+  "checks": {
+    "cold_offline_startup_after_bootstrap": "passed",
+    "offline_bootstrap_from_verified_wheelhouse": "passed",
+    "guard_refusal_controls": 7,
+    "guard_loopback_control": "passed",
+    "comparison_refusal_controls": 8,
+    "baseline_reproduction": "passed",
+    "altered_export_refusal": "passed",
+    "chat_tests": 1038,
+    "foundation_cohort_tests": 145,
+    "cli_tests": 155
+  },
+  "limits": [
+    "No new pilot API/adapter or its future tests implemented",
+    "No new product artifact/default-install proof performed",
+    "Root lint/collection/format failures remain historical baseline debt; not rerun by this diagnostic change",
+    "Public six-wheel bootstrap fetches are explicit; all application/test runs offline and guarded",
+    "Early cache-only bootstrap approaches failed and were replaced by closed wheelhouse; raw receipts preserved"
+  ],
+  "files": {
+    "pilot-final-r1/baseline-capture-final.json": {
+      "sha256": "eb6ae080839a79a95fd77a81f1cc61afc87cc7199a9cb9429f639df23327c15f",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"docs/planning/active/command-refactor/validation/pilot/harness/capture.py\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-repro-round1b/baseline-source\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-final-r1/baseline-final.json\",\n    \"--revision\",\n    \"7b80ca01489a52608aafb54b626b74fbb36efbe3\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 2.26\n}"
+    },
+    "pilot-final-r1/baseline-capture-final.log": {
+      "sha256": "a24cb2fd1a0bc8da5c111bc69a9ca877ff73760dfc8c6c1c2bb82d03a0528c10",
+      "text": "Captured: {'metadata': 41, 'help': 59, 'dispatch': 29, 'custom': 61, 'lifecycle': 3}\n"
+    },
+    "pilot-final-r1/baseline-capture.json": {
+      "sha256": "e709bb9dee554edb96b424ecb436ce6033c8e3fd4d15576cb4d7543df71cf6d8",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"docs/planning/active/command-refactor/validation/pilot/harness/capture.py\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-repro-round1b/baseline-source\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-final-r1/baseline.json\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 1.81\n}"
+    },
+    "pilot-final-r1/baseline-capture.log": {
+      "sha256": "a24cb2fd1a0bc8da5c111bc69a9ca877ff73760dfc8c6c1c2bb82d03a0528c10",
+      "text": "Captured: {'metadata': 41, 'help': 59, 'dispatch': 29, 'custom': 61, 'lifecycle': 3}\n"
+    },
+    "pilot-final-r1/baseline-chat.json": {
+      "sha256": "391bffa2ddad0fac36c91df77fc94552eda1681a82c88af3b8f6fcc00e037f40",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"-m\",\n    \"pytest\",\n    \"-p\",\n    \"controls\",\n    \"-p\",\n    \"no:cacheprovider\",\n    \"-q\",\n    \"packages/friday-chat/tests_chat\",\n    \"--ignore=packages/friday-chat/tests_chat/test_live_lmstudio.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 49.0\n}"
+    },
+    "pilot-final-r1/baseline-chat.log": {
+      "sha256": "342e7793824e2b9993bf1a0c0a040d5a8e728f9baedfb9aadde50d5631643451",
+      "text": "........................................................................ [  6%]\n........................................................................ [ 13%]\n........................................................................ [ 20%]\n........................................................................ [ 27%]\n........................................................................ [ 34%]\n........................................................................ [ 41%]\n........................................................................ [ 48%]\n........................................................................ [ 55%]\n........................................................................ [ 62%]\n........................................................................ [ 69%]\n........................................................................ [ 76%]\n........................................................................ [ 83%]\n........................................................................ [ 90%]\n........................................................................ [ 97%]\n..............................                                           [100%]\n=============================== warnings summary ===============================\ntests_chat/test_reorganization_mutation.py::test_litellm_provider_supplies_schema_and_parses_noisy_json\n  /Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/src/friday_chat/reorganization/mutation.py:245: DeprecationWarning: Legacy Memory LLM injection is deprecated; provide a TypedLLMClient\n    response = await complete_memory_request(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n1038 passed, 1 warning in 47.10s\n"
+    },
+    "pilot-final-r1/baseline-cli.json": {
+      "sha256": "3811414ba491a2189a71e324f687c619880688f2f651e60492302075e9da40c4",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"-m\",\n    \"pytest\",\n    \"-p\",\n    \"no:cacheprovider\",\n    \"-q\",\n    \"packages/friday-cli/tests_cli\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.56\n}"
+    },
+    "pilot-final-r1/baseline-cli.log": {
+      "sha256": "de66e5abd5e8b584fdb224bef1b09111217e6f26259111524178aae394512413",
+      "text": "........................................................................ [ 46%]\n........................................................................ [ 92%]\n...........                                                              [100%]\n155 passed in 0.21s\n"
+    },
+    "pilot-final-r1/baseline-foundation.json": {
+      "sha256": "fdd218a2d3e16d4b06210e67dbb96169bcdee7a5af6da00159b01b52957f2869",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"-m\",\n    \"pytest\",\n    \"-p\",\n    \"no:cacheprovider\",\n    \"-q\",\n    \"packages/friday-commands/tests_commands\",\n    \"tests/integration/test_package_cohort_metadata.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.55\n}"
+    },
+    "pilot-final-r1/baseline-foundation.log": {
+      "sha256": "20126d9239038d9f2720cdb90f5225c33b6aba874f3a43187151a928c3a789e7",
+      "text": "........................................................................ [ 49%]\n........................................................................ [ 99%]\n.                                                                        [100%]\n145 passed in 0.22s\n"
+    },
+    "pilot-final-r1/baseline-replay.json": {
+      "sha256": "63e48d31b075002af258b2f922c5813fce56d5a87ae7ed3fc45b4c252c2091fd",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/harness/capture.py\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-final-r1/replay-source\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-final-r1/replay.json\",\n    \"--revision\",\n    \"7b80ca01489a52608aafb54b626b74fbb36efbe3\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 2.89\n}"
+    },
+    "pilot-final-r1/baseline-replay.log": {
+      "sha256": "a24cb2fd1a0bc8da5c111bc69a9ca877ff73760dfc8c6c1c2bb82d03a0528c10",
+      "text": "Captured: {'metadata': 41, 'help': 59, 'dispatch': 29, 'custom': 61, 'lifecycle': 3}\n"
+    },
+    "pilot-final-r1/bootstrap.json": {
+      "sha256": "13b01686a094b99a274a7be4e17a19d2a91fab4c01e99fd5b4f1f694353e46b5",
+      "text": "{\n  \"wheel_fetches\": [\n    {\n      \"name\": \"editables\",\n      \"version\": \"0.5\",\n      \"filename\": \"editables-0.5-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/6b/be/0f2f4a5e8adc114a02b63d92bf8edbfa24db6fc602fca83c885af2479e0e/editables-0.5-py3-none-any.whl\",\n      \"sha256\": \"61e5ffa82629e0d8bfe09bc44a07db3c1ab8ed1ce78a6980732870f19b5e7d4c\"\n    },\n    {\n      \"name\": \"hatchling\",\n      \"version\": \"1.27.0\",\n      \"filename\": \"hatchling-1.27.0-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/08/e7/ae38d7a6dfba0533684e0b2136817d667588ae3ec984c1a4e5df5eb88482/hatchling-1.27.0-py3-none-any.whl\",\n      \"sha256\": \"d3a2f3567c4f926ea39849cdf924c7e99e6686c9c8e288ae1037c8fa2a5d937b\"\n    },\n    {\n      \"name\": \"packaging\",\n      \"version\": \"24.2\",\n      \"filename\": \"packaging-24.2-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/88/ef/eb23f262cca3c0c4eb7ab1933c3b1f03d021f2c48f54763065b6f0e321be/packaging-24.2-py3-none-any.whl\",\n      \"sha256\": \"09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759\"\n    },\n    {\n      \"name\": \"pathspec\",\n      \"version\": \"0.12.1\",\n      \"filename\": \"pathspec-0.12.1-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/cc/20/ff623b09d963f88bfde16306a54e12ee5ea43e9b597108672ff3a408aad6/pathspec-0.12.1-py3-none-any.whl\",\n      \"sha256\": \"a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08\"\n    },\n    {\n      \"name\": \"pluggy\",\n      \"version\": \"1.6.0\",\n      \"filename\": \"pluggy-1.6.0-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/54/20/4d324d65cc6d9205fabedc306948156824eb9f0ee1633355a8f7ec5c66bf/pluggy-1.6.0-py3-none-any.whl\",\n      \"sha256\": \"e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746\"\n    },\n    {\n      \"name\": \"trove-classifiers\",\n      \"version\": \"2026.9.21.13\",\n      \"filename\": \"trove_classifiers-2026.9.21.13-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/30/81/0da8afb52a71d0a4f2bd3152357b1a441e393b286374802b9d3addab4ab5/trove_classifiers-2026.9.21.13-py3-none-any.whl\",\n      \"sha256\": \"8b1ff4f9c191b1040b71c37f1e445ab99732911e3cd91de52838453a854d7a17\"\n    }\n  ],\n  \"registry_access\": false,\n  \"requirements_sha256\": \"915c86fb483b9d879890758cf8d244db9720df282015517d92cc7200b211a873\",\n  \"build_manifest_sha256\": \"981f75700e1b018d5f9da998ba519deb8123822781e507fe6c928ba6faa3bd7c\",\n  \"wrapper_sha256\": \"cc685b234be5791ecbe99877adfe2b1baea5b0d1cccdaa802caaf006a9cf1b4e\",\n  \"helper_hashes\": {\n    \"run.py\": \"409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af\",\n    \"controls.py\": \"d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d\",\n    \"sitecustomize.py\": \"8365940b2d00a21061c00f671304b29f4c4ba1e9b344a1f4c38c5365de41631f\"\n  }\n}\n"
+    },
+    "pilot-final-r1/guard-selftest.json": {
+      "sha256": "b79ac4420b48ea82907bd1927f393d5fae08a520e778e08f11ded072690341c4",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"docs/planning/active/command-refactor/validation/pilot/harness/guard_selftest.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.05\n}"
+    },
+    "pilot-final-r1/guard-selftest.log": {
+      "sha256": "6fbf7f914a6d60f2911d607e697e88ec1ffb6133cc70e03d0ef4a086f156672e",
+      "text": "Guard passed 7 refusal controls and disposable loopback control\n"
+    },
+    "pilot-final-r1/offline-startup.json": {
+      "sha256": "82b41eece5acdccb4f8cf9f7c82e44c1590c058708b64f40f31aa177e402e7bf",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"-c\",\n    \"import friday_commands; print('offline editable startup passed')\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.3\n}"
+    },
+    "pilot-final-r1/offline-startup.log": {
+      "sha256": "20eef36c3d6b87162f472d88afbbb64f134b610042bd6ede9ca0ae3d23887b15",
+      "text": "   Building friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\n      Built friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\nInstalled 1 package in 1ms\noffline editable startup passed\n"
+    },
+    "pilot-final-r1/source-refusal.json": {
+      "sha256": "30d5fd9fccbc1166a1c507e4c6c83035e8e27ce28525e215ec0c55462a3a7679",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/harness/capture.py\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-final-r1/replay-source\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-final-r1/should-not-exist.json\",\n    \"--revision\",\n    \"7b80ca01489a52608aafb54b626b74fbb36efbe3\"\n  ],\n  \"exit\": 1,\n  \"seconds\": 0.12\n}"
+    },
+    "pilot-final-r1/source-refusal.log": {
+      "sha256": "2f7c1f33e1bf26d7ba372dc0085d92e3b2213fab2e9665fbf67f78ed915fa0f3",
+      "text": "Export differs from Git revision: packages/friday-chat/src/friday_chat/app.py\n"
+    },
+    "pilot-repro-round1/bootstrap.json": {
+      "sha256": "26fce216a6f7ba382dfda8e72df838a81fae89375e17d009002c886e60e0310a",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"pip\",\n    \"install\",\n    \"--no-config\",\n    \"--only-binary\",\n    \":all:\",\n    \"--require-hashes\",\n    \"--no-deps\",\n    \"--index-url\",\n    \"https://pypi.org/simple\",\n    \"--cache-dir\",\n    \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-repro-round1/uv-cache\",\n    \"--target\",\n    \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-repro-round1/build-seed\",\n    \"--python\",\n    \"/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python\",\n    \"-r\",\n    \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-repro-round1/build-requirements.txt\"\n  ],\n  \"exit\": 0,\n  \"registry_access\": true,\n  \"requirements_sha256\": \"915c86fb483b9d879890758cf8d244db9720df282015517d92cc7200b211a873\",\n  \"helper_hashes\": {\n    \"run.py\": \"409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af\",\n    \"controls.py\": \"d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d\",\n    \"sitecustomize.py\": \"8365940b2d00a21061c00f671304b29f4c4ba1e9b344a1f4c38c5365de41631f\"\n  }\n}\n"
+    },
+    "pilot-repro-round1/bootstrap.log": {
+      "sha256": "b3b6e55eaacecd52486b7f80c30bfda0f838f57c3b41be5e34d5a86797be109a",
+      "text": "Using CPython 3.13.10 interpreter at: .venv/bin/python\nResolved 6 packages in 109ms\nPrepared 6 packages in 210ms\nInstalled 6 packages in 6ms\n + editables==0.5\n + hatchling==1.27.0\n + packaging==24.2\n + pathspec==0.12.1\n + pluggy==1.6.0\n + trove-classifiers==2026.9.21.13\n"
+    },
+    "pilot-repro-round1/offline-startup-second.json": {
+      "sha256": "e0775e34617e05ca59055cacb32d51a7d92fe6873cbea810bdf12f3984a45498",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"-c\",\n    \"import friday_commands; print(\\\"offline startup passed\\\")\"\n  ],\n  \"exit\": 1,\n  \"seconds\": 0.06\n}"
+    },
+    "pilot-repro-round1/offline-startup-second.log": {
+      "sha256": "fe6e964eeadcbafd035f5bdc6795c523058ccab57451d67cd2ae3bd354e5c3af",
+      "text": "   Building friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\n  \u00d7 Failed to build `friday-framework-commands @\n  \u2502 file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands`\n  \u251c\u2500\u25b6 Failed to resolve requirements from `build-system.requires`\n  \u251c\u2500\u25b6 No solution found when resolving: `hatchling`\n  \u2570\u2500\u25b6 Because only the following versions of hatchling are available:\n          hatchling==0.8.0\n          hatchling==0.8.1\n          hatchling==0.8.2\n          hatchling==0.9.0\n          hatchling==0.10.0\n          hatchling==0.11.0\n          hatchling==0.11.1\n          hatchling==0.11.2\n          hatchling==0.11.3\n          hatchling==0.12.0\n          hatchling==0.13.0\n          hatchling==0.14.0\n          hatchling==0.15.0\n          hatchling==0.16.0\n          hatchling==0.17.0\n          hatchling==0.18.0\n          hatchling==0.19.0\n          hatchling==0.20.0\n          hatchling==0.20.1\n          hatchling==0.21.0\n          hatchling==0.21.1\n          hatchling==0.22.0\n          hatchling==0.23.0\n          hatchling==0.24.0\n          hatchling==0.25.0\n          hatchling==0.25.1\n          hatchling==1.0.0\n          hatchling==1.1.0\n          hatchling==1.2.0\n          hatchling==1.3.0\n          hatchling==1.3.1\n          hatchling==1.4.0\n          hatchling==1.4.1\n          hatchling==1.5.0\n          hatchling==1.6.0\n          hatchling==1.7.0\n          hatchling==1.7.1\n          hatchling==1.8.0\n          hatchling==1.8.1\n          hatchling==1.9.0\n          hatchling==1.10.0\n          hatchling==1.11.0\n          hatchling==1.11.1\n          hatchling==1.12.0\n          hatchling==1.12.1\n          hatchling==1.12.2\n          hatchling==1.13.0\n          hatchling==1.14.0\n          hatchling==1.14.1\n          hatchling==1.15.0\n          hatchling==1.16.0\n          hatchling==1.16.1\n          hatchling==1.17.0\n          hatchling==1.17.1\n          hatchling==1.18.0\n          hatchling==1.19.0\n          hatchling==1.19.1\n          hatchling==1.20.0\n          hatchling==1.21.0\n          hatchling==1.21.1\n          hatchling==1.22.0\n          hatchling==1.22.1\n          hatchling==1.22.2\n          hatchling==1.22.3\n          hatchling==1.22.4\n          hatchling==1.22.5\n          hatchling==1.23.0\n          hatchling==1.24.0\n          hatchling==1.24.1\n          hatchling==1.24.2\n          hatchling==1.25.0\n          hatchling==1.26.0\n          hatchling==1.26.1\n          hatchling==1.26.2\n          hatchling==1.26.3\n          hatchling==1.27.0\n          hatchling==1.28.0\n          hatchling==1.29.0\n          hatchling==1.30.0\n          hatchling==1.30.1\n          hatchling==1.31.0\n          hatchling==1.32.0\n          hatchling==1.32.1\n          hatchling==1.32.3\n          hatchling==1.32.4\n          hatchling==1.33.0\n      and hatchling<=1.3.1 needs to be downloaded from a registry, we can\n      conclude that hatchling<=1.3.1 cannot be used.\n      And because hatchling==1.4.0 was yanked (reason: Building wheels from\n      sdists is broken) and hatchling>=1.4.1,<=1.19.0 needs to be downloaded\n      from a registry, we can conclude that hatchling>=1.4.1,<=1.19.0 cannot\n      be used.\n      And because hatchling==1.19.1 was yanked (reason:\n      https://github.com/pypa/hatch/issues/1129) and\n      hatchling>=1.20.0,<=1.21.1 needs to be downloaded from a registry, we\n      can conclude that hatchling>=1.20.0,<=1.21.1 cannot be used.\n      And because hatchling>=1.22.0,<=1.22.1 was yanked (reason: Broken builds\n      from sdists) and hatchling>=1.22.2,<=1.25.0 needs to be downloaded from\n      a registry, we can conclude that hatchling>=1.22.2,<=1.25.0 cannot be\n      used.\n      And because hatchling==1.26.0 was yanked (reason: Incompatible with\n      currently released Hatch) and hatchling>=1.26.1,<=1.26.2 was yanked\n      (reason: Upload issues), we can conclude that hatchling>=1.26.1,<=1.26.2\n      cannot be used.\n      And because hatchling>=1.26.3,<=1.29.0 needs to be downloaded from a\n      registry and hatchling==1.30.0 was yanked (reason: the default core\n      metadata version was increased to 2.5 and some major projects like twine\n      do not yet support it), we can conclude that hatchling<1.30.1 cannot\n      be used.\n      And because hatchling>=1.30.1,<=1.32.0 needs to be downloaded from a\n      registry and hatchling==1.32.1 was yanked (reason: Broken by change to\n      types), we can conclude that hatchling<1.32.3 cannot be used.\n      And because hatchling>=1.32.3 needs to be downloaded from a registry\n      and you require hatchling, we can conclude that your requirements are\n      unsatisfiable.\n\n      hint: Packages were unavailable because the network was disabled. When\n      the network is disabled, registry packages may only be read from the\n      cache.\n"
+    },
+    "pilot-repro-round1/offline-startup.json": {
+      "sha256": "9f48b64c635ad9a2b20ec4413de66694df920ff2a4a2112558cb0391fafb722a",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"-c\",\n    \"import friday_commands; print('offline editable startup passed')\"\n  ],\n  \"exit\": 1,\n  \"seconds\": 0.08\n}"
+    },
+    "pilot-repro-round1/offline-startup.log": {
+      "sha256": "fe6e964eeadcbafd035f5bdc6795c523058ccab57451d67cd2ae3bd354e5c3af",
+      "text": "   Building friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\n  \u00d7 Failed to build `friday-framework-commands @\n  \u2502 file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands`\n  \u251c\u2500\u25b6 Failed to resolve requirements from `build-system.requires`\n  \u251c\u2500\u25b6 No solution found when resolving: `hatchling`\n  \u2570\u2500\u25b6 Because only the following versions of hatchling are available:\n          hatchling==0.8.0\n          hatchling==0.8.1\n          hatchling==0.8.2\n          hatchling==0.9.0\n          hatchling==0.10.0\n          hatchling==0.11.0\n          hatchling==0.11.1\n          hatchling==0.11.2\n          hatchling==0.11.3\n          hatchling==0.12.0\n          hatchling==0.13.0\n          hatchling==0.14.0\n          hatchling==0.15.0\n          hatchling==0.16.0\n          hatchling==0.17.0\n          hatchling==0.18.0\n          hatchling==0.19.0\n          hatchling==0.20.0\n          hatchling==0.20.1\n          hatchling==0.21.0\n          hatchling==0.21.1\n          hatchling==0.22.0\n          hatchling==0.23.0\n          hatchling==0.24.0\n          hatchling==0.25.0\n          hatchling==0.25.1\n          hatchling==1.0.0\n          hatchling==1.1.0\n          hatchling==1.2.0\n          hatchling==1.3.0\n          hatchling==1.3.1\n          hatchling==1.4.0\n          hatchling==1.4.1\n          hatchling==1.5.0\n          hatchling==1.6.0\n          hatchling==1.7.0\n          hatchling==1.7.1\n          hatchling==1.8.0\n          hatchling==1.8.1\n          hatchling==1.9.0\n          hatchling==1.10.0\n          hatchling==1.11.0\n          hatchling==1.11.1\n          hatchling==1.12.0\n          hatchling==1.12.1\n          hatchling==1.12.2\n          hatchling==1.13.0\n          hatchling==1.14.0\n          hatchling==1.14.1\n          hatchling==1.15.0\n          hatchling==1.16.0\n          hatchling==1.16.1\n          hatchling==1.17.0\n          hatchling==1.17.1\n          hatchling==1.18.0\n          hatchling==1.19.0\n          hatchling==1.19.1\n          hatchling==1.20.0\n          hatchling==1.21.0\n          hatchling==1.21.1\n          hatchling==1.22.0\n          hatchling==1.22.1\n          hatchling==1.22.2\n          hatchling==1.22.3\n          hatchling==1.22.4\n          hatchling==1.22.5\n          hatchling==1.23.0\n          hatchling==1.24.0\n          hatchling==1.24.1\n          hatchling==1.24.2\n          hatchling==1.25.0\n          hatchling==1.26.0\n          hatchling==1.26.1\n          hatchling==1.26.2\n          hatchling==1.26.3\n          hatchling==1.27.0\n          hatchling==1.28.0\n          hatchling==1.29.0\n          hatchling==1.30.0\n          hatchling==1.30.1\n          hatchling==1.31.0\n          hatchling==1.32.0\n          hatchling==1.32.1\n          hatchling==1.32.3\n          hatchling==1.32.4\n          hatchling==1.33.0\n      and hatchling<=1.3.1 needs to be downloaded from a registry, we can\n      conclude that hatchling<=1.3.1 cannot be used.\n      And because hatchling==1.4.0 was yanked (reason: Building wheels from\n      sdists is broken) and hatchling>=1.4.1,<=1.19.0 needs to be downloaded\n      from a registry, we can conclude that hatchling>=1.4.1,<=1.19.0 cannot\n      be used.\n      And because hatchling==1.19.1 was yanked (reason:\n      https://github.com/pypa/hatch/issues/1129) and\n      hatchling>=1.20.0,<=1.21.1 needs to be downloaded from a registry, we\n      can conclude that hatchling>=1.20.0,<=1.21.1 cannot be used.\n      And because hatchling>=1.22.0,<=1.22.1 was yanked (reason: Broken builds\n      from sdists) and hatchling>=1.22.2,<=1.25.0 needs to be downloaded from\n      a registry, we can conclude that hatchling>=1.22.2,<=1.25.0 cannot be\n      used.\n      And because hatchling==1.26.0 was yanked (reason: Incompatible with\n      currently released Hatch) and hatchling>=1.26.1,<=1.26.2 was yanked\n      (reason: Upload issues), we can conclude that hatchling>=1.26.1,<=1.26.2\n      cannot be used.\n      And because hatchling>=1.26.3,<=1.29.0 needs to be downloaded from a\n      registry and hatchling==1.30.0 was yanked (reason: the default core\n      metadata version was increased to 2.5 and some major projects like twine\n      do not yet support it), we can conclude that hatchling<1.30.1 cannot\n      be used.\n      And because hatchling>=1.30.1,<=1.32.0 needs to be downloaded from a\n      registry and hatchling==1.32.1 was yanked (reason: Broken by change to\n      types), we can conclude that hatchling<1.32.3 cannot be used.\n      And because hatchling>=1.32.3 needs to be downloaded from a registry\n      and you require hatchling, we can conclude that your requirements are\n      unsatisfiable.\n\n      hint: Packages were unavailable because the network was disabled. When\n      the network is disabled, registry packages may only be read from the\n      cache.\n"
+    },
+    "pilot-repro-round1b/baseline-capture.json": {
+      "sha256": "d267c454a78d7f74a510f01a82aaaa0369d40efbb09b3c1bd8227f04d7d99355",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"docs/planning/active/command-refactor/validation/pilot/harness/capture.py\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-repro-round1b/baseline-source\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-repro-round1b/baseline.json\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 2.15\n}"
+    },
+    "pilot-repro-round1b/baseline-capture.log": {
+      "sha256": "2f530227b50dc6037af1c974c128416222aa8f7d48f88ec1ceb844dc25ae6d41",
+      "text": "09:26:05 - LiteLLM:WARNING: get_model_cost_map.py:454 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: Retirement DNS guard blocked destination. Falling back to local backup.\nCaptured: {'metadata': 41, 'help': 59, 'dispatch': 29, 'custom': 61, 'lifecycle': 3}\n"
+    },
+    "pilot-repro-round1b/bootstrap.json": {
+      "sha256": "c26960f8ac6548f66b8c78ee4e7fd9e67d63f8f4743a478f7b5715dc1bdbe195",
+      "text": "{\n  \"wheel_fetches\": [\n    {\n      \"name\": \"editables\",\n      \"version\": \"0.5\",\n      \"filename\": \"editables-0.5-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/6b/be/0f2f4a5e8adc114a02b63d92bf8edbfa24db6fc602fca83c885af2479e0e/editables-0.5-py3-none-any.whl\",\n      \"sha256\": \"61e5ffa82629e0d8bfe09bc44a07db3c1ab8ed1ce78a6980732870f19b5e7d4c\"\n    },\n    {\n      \"name\": \"hatchling\",\n      \"version\": \"1.27.0\",\n      \"filename\": \"hatchling-1.27.0-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/08/e7/ae38d7a6dfba0533684e0b2136817d667588ae3ec984c1a4e5df5eb88482/hatchling-1.27.0-py3-none-any.whl\",\n      \"sha256\": \"d3a2f3567c4f926ea39849cdf924c7e99e6686c9c8e288ae1037c8fa2a5d937b\"\n    },\n    {\n      \"name\": \"packaging\",\n      \"version\": \"24.2\",\n      \"filename\": \"packaging-24.2-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/88/ef/eb23f262cca3c0c4eb7ab1933c3b1f03d021f2c48f54763065b6f0e321be/packaging-24.2-py3-none-any.whl\",\n      \"sha256\": \"09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759\"\n    },\n    {\n      \"name\": \"pathspec\",\n      \"version\": \"0.12.1\",\n      \"filename\": \"pathspec-0.12.1-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/cc/20/ff623b09d963f88bfde16306a54e12ee5ea43e9b597108672ff3a408aad6/pathspec-0.12.1-py3-none-any.whl\",\n      \"sha256\": \"a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08\"\n    },\n    {\n      \"name\": \"pluggy\",\n      \"version\": \"1.6.0\",\n      \"filename\": \"pluggy-1.6.0-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/54/20/4d324d65cc6d9205fabedc306948156824eb9f0ee1633355a8f7ec5c66bf/pluggy-1.6.0-py3-none-any.whl\",\n      \"sha256\": \"e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746\"\n    },\n    {\n      \"name\": \"trove-classifiers\",\n      \"version\": \"2026.9.21.13\",\n      \"filename\": \"trove_classifiers-2026.9.21.13-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/30/81/0da8afb52a71d0a4f2bd3152357b1a441e393b286374802b9d3addab4ab5/trove_classifiers-2026.9.21.13-py3-none-any.whl\",\n      \"sha256\": \"8b1ff4f9c191b1040b71c37f1e445ab99732911e3cd91de52838453a854d7a17\"\n    }\n  ],\n  \"registry_access\": true,\n  \"requirements_sha256\": \"915c86fb483b9d879890758cf8d244db9720df282015517d92cc7200b211a873\",\n  \"build_manifest_sha256\": \"981f75700e1b018d5f9da998ba519deb8123822781e507fe6c928ba6faa3bd7c\",\n  \"wrapper_sha256\": \"033592725aed466dec7c27bbfa1ecf56cd25832a1adaf2d5160f164ac2a138cb\",\n  \"helper_hashes\": {\n    \"run.py\": \"409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af\",\n    \"controls.py\": \"d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d\",\n    \"sitecustomize.py\": \"8365940b2d00a21061c00f671304b29f4c4ba1e9b344a1f4c38c5365de41631f\"\n  }\n}\n"
+    },
+    "pilot-repro-round1b/guard-selftest.json": {
+      "sha256": "b79ac4420b48ea82907bd1927f393d5fae08a520e778e08f11ded072690341c4",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"docs/planning/active/command-refactor/validation/pilot/harness/guard_selftest.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.05\n}"
+    },
+    "pilot-repro-round1b/guard-selftest.log": {
+      "sha256": "6fbf7f914a6d60f2911d607e697e88ec1ffb6133cc70e03d0ef4a086f156672e",
+      "text": "Guard passed 7 refusal controls and disposable loopback control\n"
+    },
+    "pilot-repro-round1b/offline-startup.json": {
+      "sha256": "1b36538342f4d4559fed655653f6e70bae759db893a33a7a124b7c0ae1c60c42",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"-c\",\n    \"import friday_commands; print('offline editable startup passed')\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.31\n}"
+    },
+    "pilot-repro-round1b/offline-startup.log": {
+      "sha256": "20eef36c3d6b87162f472d88afbbb64f134b610042bd6ede9ca0ae3d23887b15",
+      "text": "   Building friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\n      Built friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\nInstalled 1 package in 1ms\noffline editable startup passed\n"
+    },
+    "pilot-repro-offline/bootstrap.json": {
+      "sha256": "c6e011588ca688914edbcee82ef981816cc560da6eb44a74e7c044106645835c",
+      "text": "{\n  \"wheel_fetches\": [\n    {\n      \"name\": \"editables\",\n      \"version\": \"0.5\",\n      \"filename\": \"editables-0.5-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/6b/be/0f2f4a5e8adc114a02b63d92bf8edbfa24db6fc602fca83c885af2479e0e/editables-0.5-py3-none-any.whl\",\n      \"sha256\": \"61e5ffa82629e0d8bfe09bc44a07db3c1ab8ed1ce78a6980732870f19b5e7d4c\"\n    },\n    {\n      \"name\": \"hatchling\",\n      \"version\": \"1.27.0\",\n      \"filename\": \"hatchling-1.27.0-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/08/e7/ae38d7a6dfba0533684e0b2136817d667588ae3ec984c1a4e5df5eb88482/hatchling-1.27.0-py3-none-any.whl\",\n      \"sha256\": \"d3a2f3567c4f926ea39849cdf924c7e99e6686c9c8e288ae1037c8fa2a5d937b\"\n    },\n    {\n      \"name\": \"packaging\",\n      \"version\": \"24.2\",\n      \"filename\": \"packaging-24.2-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/88/ef/eb23f262cca3c0c4eb7ab1933c3b1f03d021f2c48f54763065b6f0e321be/packaging-24.2-py3-none-any.whl\",\n      \"sha256\": \"09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759\"\n    },\n    {\n      \"name\": \"pathspec\",\n      \"version\": \"0.12.1\",\n      \"filename\": \"pathspec-0.12.1-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/cc/20/ff623b09d963f88bfde16306a54e12ee5ea43e9b597108672ff3a408aad6/pathspec-0.12.1-py3-none-any.whl\",\n      \"sha256\": \"a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08\"\n    },\n    {\n      \"name\": \"pluggy\",\n      \"version\": \"1.6.0\",\n      \"filename\": \"pluggy-1.6.0-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/54/20/4d324d65cc6d9205fabedc306948156824eb9f0ee1633355a8f7ec5c66bf/pluggy-1.6.0-py3-none-any.whl\",\n      \"sha256\": \"e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746\"\n    },\n    {\n      \"name\": \"trove-classifiers\",\n      \"version\": \"2026.9.21.13\",\n      \"filename\": \"trove_classifiers-2026.9.21.13-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/30/81/0da8afb52a71d0a4f2bd3152357b1a441e393b286374802b9d3addab4ab5/trove_classifiers-2026.9.21.13-py3-none-any.whl\",\n      \"sha256\": \"8b1ff4f9c191b1040b71c37f1e445ab99732911e3cd91de52838453a854d7a17\"\n    }\n  ],\n  \"registry_access\": false,\n  \"requirements_sha256\": \"915c86fb483b9d879890758cf8d244db9720df282015517d92cc7200b211a873\",\n  \"build_manifest_sha256\": \"981f75700e1b018d5f9da998ba519deb8123822781e507fe6c928ba6faa3bd7c\",\n  \"wrapper_sha256\": \"033592725aed466dec7c27bbfa1ecf56cd25832a1adaf2d5160f164ac2a138cb\",\n  \"helper_hashes\": {\n    \"run.py\": \"409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af\",\n    \"controls.py\": \"d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d\",\n    \"sitecustomize.py\": \"8365940b2d00a21061c00f671304b29f4c4ba1e9b344a1f4c38c5365de41631f\"\n  }\n}\n"
+    },
+    "pilot-repro-offline/offline-startup.json": {
+      "sha256": "1dab83ab1ad9e6b7006780e64f038215ced1d1da455b26e3f33a8542f1154ea7",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"-c\",\n    \"import friday_commands; print('offline editable startup passed')\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.29\n}"
+    },
+    "pilot-repro-offline/offline-startup.log": {
+      "sha256": "20eef36c3d6b87162f472d88afbbb64f134b610042bd6ede9ca0ae3d23887b15",
+      "text": "   Building friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\n      Built friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\nInstalled 1 package in 1ms\noffline editable startup passed\n"
+    }
+  },
+  "comparison_receipts": [
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "docs/planning/active/command-refactor/validation/pilot/harness/compare.py",
+        "--selftest"
+      ],
+      "exit": 0,
+      "stdout": "Comparator passed identity/provenance controls and 8 refusal controls\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "docs/planning/active/command-refactor/validation/pilot/harness/compare.py",
+        "docs/planning/active/command-refactor/validation/pilot/baseline.json",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-final-r1/replay.json",
+        "--baseline-sha256",
+        "30d5ae72c0ccc2a47845c6a5110da93a198a217ccc38f2e75250fe337782b8c7"
+      ],
+      "exit": 0,
+      "stdout": "All five observation groups match exactly\n"
+    }
+  ]
+}

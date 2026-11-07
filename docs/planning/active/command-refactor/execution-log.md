@@ -807,3 +807,27 @@ Compared all 17,072 pre-existing tracked files: only six allowed current
 navigation/status records changed, plus the two new proposal documents. Product,
 tests, dependency/lock, frozen authorities/evidence and both protected working
 examples remain byte-identical. No implementation checks run or claimed.
+
+2026-11-07: Chuck Russell authorized the three recommended harness improvements,
+then a three-provider council and bounded remediation toward independent scores
+of at least9/10. Recorded exact diagnostic/planning exemption and external
+service limits in authority before generating harness assets. Product pilot
+implementation remains unapproved. Existing runner fresh-cache startup failure
+is reproduced (missing hatchling, then editables); seed all six hash-pinned
+build tools in scratch and prove an offline launch. Preserve all package/source/
+test/config/metadata/lock bytes and frozen historical evidence. Council verdicts
+and advisory scores remain distinct from human approval or acceptance.
+
+Harness amendment candidate: closed six-wheel hash-pinned bootstrap replaces
+cache-only startup; explicit offline replay from another fresh scratch passes.
+Materialized capture/compare/guard diagnostics and G0 throughG5 fast commands;
+193 observations from clean Git 7b80ca01, full Python source/blob proof, replay
+comparison and deliberate source mismatch rejection pass. Guard seven refusal
+and loopback controls pass; comparator eight refusal controls pass, preserving
+boolean/integer distinctions. Revised runner passes1038 Chat/145 foundation/
+cohort/155 CLI; product and dirty examples remain unchanged. Early missing-
+backend/editables/cache-resolution attempts are disclosed in raw receipts.
+Freeze amended proposals and diagnostic evidence for fresh three-provider
+council; each reviewer scores independently out of10 and returns readiness
+verdict with findings. No requested threshold is treated as an earned score.
+Execution phase planning; validation state in_review (design/harness only).

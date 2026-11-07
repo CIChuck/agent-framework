@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Review and approve proposed PILOT-001 contract first, then CD-CMD-PILOT-001; RET-001 accepted; no pilot construction or delivery
+  next_gate: Council review of amended PILOT-001 contract, directive and diagnostic harness; then exact maintainer approval; no product construction or delivery
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []

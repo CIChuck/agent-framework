@@ -15,7 +15,7 @@ Exact foundation approvals and source base
 `d003c4db` remain in the [approval record](approval/foundation-readiness.md).
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). No command migration/wiring.
-`execution_phase: planning`; `validation_state: not_ready` for PILOT-001.
+`execution_phase: planning`; `validation_state: in_review` for PILOT-001 design/harness only; product implementation is not started.
 RET-001 remains independently VERIFIED and accepted.
 The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
@@ -94,6 +94,7 @@ policy are settled by O-01–O-05. Consolidation remains backlog work.
 
 **Next gate:** Read/approve the proposed [PILOT-001 contract](pilot-command-contract.md),
 then [CD-CMD-PILOT-001](directives/CD-CMD-PILOT-001-help-exit-clear.md).
+The amended packet and runnable diagnostic harness are in council review.
 They define catalog ownership, Chat routing, help/exit/clear rendering/lifecycle
 and exact construction/verification scope. Both remain unapproved.
 RET-001 is accepted. No pilot/family/TUI construction or publication is approved.

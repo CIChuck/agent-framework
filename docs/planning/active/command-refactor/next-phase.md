@@ -1,9 +1,9 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: RET-001 accepted; proposed pilot contract/directive ready for review
+Status: RET-001 accepted; amended pilot contract/directive and harness in council review
 Execution phase: planning
-Validation state: not_ready (PILOT-001); RET-001 verified and accepted
+Validation state: in_review (PILOT-001 design/harness); product implementation not started; RET-001 verified and accepted
 
 The [board](../../board.yaml) owns initiative state. The entire refactor remains
 started; this bounded retirement unit is implemented, verified and accepted locally.
@@ -69,3 +69,13 @@ exemption under repository policy, not an exemption for the future pilot.
 Controller validation comprises source/protected-file hashes, proposal pins,
 embedded-code syntax, board/dashboard, documentation links and whitespace.
 No implementation tests or independent product review are claimed for this draft.
+
+The 2026-11-07 harness amendment now supplies runnable diagnostic scripts,
+a frozen baseline with 193 observations and explicit G0–G5 incremental gates.
+[Harness receipts](validation/pilot/harness-evidence.json) record fresh/offline
+startup, seven guard refusals, comparator controls, clean-Git reproduction and
+source-tamper rejection; the revised runner passes 1,038 Chat,145 foundation/
+cohort and155 CLI baseline tests. No pilot API/adapter is implemented. Council
+review and bounded feedback are authorized separately; scores do not grant
+construction approval. Historical documentation-only limits above describe the
+initial draft; the later exact diagnostic exemption is in current authority.

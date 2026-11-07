@@ -2,7 +2,7 @@
 
 Status: **draft; construction approval not granted**. Owner: Chuck Russell.
 Prepared 2026-11-07. Unit: PILOT-001; branch: `feature/command-retirement`.
-The instruction “proceed” authorizes preparing this packet, not implementing it.
+The preparation instruction and later harness/council amendment authorize diagnostic tooling and review only; pilot product construction remains unapproved.
 
 ## Authority and required approval
 
@@ -10,7 +10,7 @@ Repository AGENTS, engineering/lifecycle/independent-validation policies and
 the board control execution. The approved foundation and accepted retirement
 unit remain controlling inputs. This directive implements only the proposed
 [pilot contract](../pilot-command-contract.md), hash
-`ef0af6e9c5300906594191ee18ea2b195ef4ae525fcd6898a644bdcc961c958d`.
+`3215089eeaf9298566b677949bbbcaddde91ab00dc08aea37c971547ed3e4b54`.
 Approve that contract first, then this exact directive; an explicit approval
 of both together is also sufficient. Record both hashes, approver, date and
 instruction in authority/approval records before generating product code.
@@ -39,7 +39,7 @@ contains 41 canonical names/three aliases; it is not the historical 50-name app.
 
 ## Objective, paths and non-goals
 
-Implement PC-01–PC-06 without observable Chat behavior changes. Shared behavior
+Implement PC-01–PC-07 without observable Chat behavior changes. Shared behavior
 must execute in the maintained Chat application, not only in synthetic tests.
 
 | Allowed product path | Exact change |
@@ -119,7 +119,7 @@ checks to establish which shared code ran and how often.
 | ID | Required proof |
 | --- | --- |
 | PILOT-01 | Exact three shared specs and immutable handler-map keys; no implicit registration; all prior foundation tests still pass. Standalone neutral registry executes each pilot/alias without Chat, CLI, runtime, Rich, providers or stores. |
-| PILOT-02 | General help snapshots canonical specs, sorts once and calls only `specs`; focused help calls only exact-key lookup, resolves aliases and preserves canonical focus. Unknown error has the normalized name and no effect. No-arg, empty, whitespace-only and extra-arg cases obey PC-01. Catalog failure and cancellation propagate once. Wrong canonical request names raise before any catalog read. |
+| PILOT-02 | General help returns a canonically sorted snapshot and calls only `specs` once; focused help calls only exact-key lookup, resolves aliases and preserves canonical focus. Unknown error has the normalized name and no effect. No-arg, empty, whitespace-only and extra-arg cases obey PC-01. Catalog failure and cancellation propagate once. Wrong canonical request names raise before any catalog read. |
 | PILOT-03 | Exact 41/3 metadata projection and all baseline general/focused help strings, including every canonical command, all three aliases, all nine removed names and a new unknown. Preserve category/name ordering, details, argument/default/choices text and blank lines. Empty/multiple-category custom catalogs also match. |
 | PILOT-04 | Text fixtures include ordinary text, leading-space noncommands, `/`, `/ HELP`, `//HELP`, `///HELP`, `/ /HELP`, mixed case, tabs/newlines, `/help q`, `/help /q`, `/help //q`, `/help exit ignored`, and quote tokens. Preserve current whitespace splitting and one normalization; do not adopt CLI shell parsing. Compare exact handled/output/exit/effects against baseline. |
 | PILOT-05 | Custom empty registry; explicit custom help/exit/cls and retired-name handlers; context registry different from dispatch registry; plain context default-help fallback; direct `render_help(None)`, `render_help('')`, `render_help(' ')`; registered empty alias and slash-retaining names. Delegating wrappers also work when explicitly registered under another name, as before. |
@@ -131,7 +131,7 @@ checks to establish which shared code ran and how often.
 
 ## Reproducible check environment
 
-Do not run these implementation checks during document preparation. Use a fresh
+During this authorized harness preparation, run only startup, guard, comparison, baseline capture and unchanged baseline suites. New pilot tests and after-change checks wait for construction approval. Use a fresh
 scratch directory per before/after lane. Extract only `run.py`, `controls.py`
 and `sitecustomize.py` from the pinned retirement receipt's `files` object,
 checking their text hashes before writing/executing them:
@@ -150,52 +150,50 @@ Verify the guard blocks external DNS/connect/send/connect_ex and real user
 stores before imports, including subprocesses; only locally bound disposable
 loopback test servers are allowed. A failed guard self-test stops testing.
 
-The extraction/preflight recipe is:
+The materialized [preparer](../validation/pilot/harness/prepare.py) extracts these
+helpers, verifies six public build wheels against
+[build-tools.json](../validation/pilot/harness/build-tools.json) and supplies
+`pilot_run.py`, a wrapper around the unchanged historical runner. The wrapper
+sets `UV_FIND_LINKS` to the closed wheelhouse, `UV_NO_INDEX=1` and the local
+LiteLLM cost-map option. This removes the fresh-cache startup defect without
+changing production metadata or relying on a prior global build cache.
+[build-requirements.txt](../validation/pilot/harness/build-requirements.txt)
+records all six exact versions and allowed distribution hashes. Registry access
+for `--fetch-build-tools` is limited to the six pinned HTTPS wheel URLs at
+`files.pythonhosted.org`; no credentials or application services are needed.
 
 ```sh
 PILOT_PHASE=before               # after for committed implementation
 PILOT_SCRATCH=$(mktemp -d -t friday-pilot-check)
-export PILOT_PHASE PILOT_SCRATCH
-python3 -B - <<'PY'
-import hashlib, json, os, pathlib, subprocess
-scratch = pathlib.Path(os.environ['PILOT_SCRATCH'])
-bundle = pathlib.Path('docs/planning/active/command-refactor/validation/retirement/receipts.json')
-if hashlib.sha256(bundle.read_bytes()).hexdigest() != '7d0d557f7e4593110b3eb75a6e191dfa3119a8c980947cf4e57360192adab767':
-    raise SystemExit('Frozen retirement receipt changed')
-files = json.loads(bundle.read_text())['files']
-pins = {
-    'run.py': '409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af',
-    'controls.py': 'd62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d',
-    'sitecustomize.py': '8365940b2d00a21061c00f671304b29f4c4ba1e9b344a1f4c38c5365de41631f',
-}
-for name, expected in pins.items():
-    text = files[name]['text']
-    if hashlib.sha256(text.encode()).hexdigest() != expected:
-        raise SystemExit(f'Harness hash mismatch: {name}')
-    (scratch / name).write_text(text)
-for name in ('config.example.yaml', 'models-config.example.yaml'):
-    content = subprocess.check_output([
-        'git', 'show', '7b80ca01489a52608aafb54b626b74fbb36efbe3:packages/friday-chat/' + name
-    ])
-    (scratch / name).write_bytes(content)
-PY
+PILOT_HARNESS="$PWD/docs/planning/active/command-refactor/validation/pilot/harness"
+export PILOT_PHASE PILOT_SCRATCH PILOT_HARNESS
+python3 -B "$PILOT_HARNESS/prepare.py" "$PILOT_SCRATCH" --fetch-build-tools
+# For fully offline bootstrap instead, use an existing verified wheelhouse:
+# python3 -B "$PILOT_HARNESS/prepare.py" "$PILOT_SCRATCH" --wheelhouse /absolute/path/to/wheelhouse
+python3 -B "$PILOT_SCRATCH/pilot_run.py" guard-selftest python -B "$PILOT_HARNESS/guard_selftest.py"
+python3 -B "$PILOT_HARNESS/compare.py" --selftest
 ```
+
+The repository test `.venv` and its existing locked development dependencies
+are prerequisites; the six wheels bootstrap build tooling only. Record the
+interpreter, uv version and installed distribution inventory. Do not claim this
+workspace test environment is the later isolated default-install proof.
 
 With `PILOT_SCRATCH` naming that directory and `PILOT_PHASE` equal to `before`
 or `after`, execute these commands from the repository root. The runner records
 each argv, exit, elapsed time and raw log; supply the current source identity too.
 
 ```sh
-python3 -B "$PILOT_SCRATCH/run.py" "$PILOT_PHASE-chat" python -B -m pytest -p controls -p no:cacheprovider -q packages/friday-chat/tests_chat --ignore=packages/friday-chat/tests_chat/test_live_lmstudio.py
-python3 -B "$PILOT_SCRATCH/run.py" "$PILOT_PHASE-foundation" python -B -m pytest -p no:cacheprovider -q packages/friday-commands/tests_commands tests/integration/test_package_cohort_metadata.py
-python3 -B "$PILOT_SCRATCH/run.py" "$PILOT_PHASE-cli" python -B -m pytest -p no:cacheprovider -q packages/friday-cli/tests_cli
-python3 -B "$PILOT_SCRATCH/run.py" "$PILOT_PHASE-lint" ruff check --no-cache packages/friday-commands/src packages/friday-commands/tests_commands packages/friday-chat/src/friday_chat/commands/registry.py packages/friday-chat/src/friday_chat/commands/session.py
-python3 -B "$PILOT_SCRATCH/run.py" "$PILOT_PHASE-types" mypy packages/friday-commands/src packages/friday-chat/src/friday_chat/commands/registry.py packages/friday-chat/src/friday_chat/commands/session.py
-python3 -B "$PILOT_SCRATCH/run.py" "$PILOT_PHASE-root-lint" ruff check --no-cache .
-python3 -B "$PILOT_SCRATCH/run.py" "$PILOT_PHASE-root-tests" python -B -m pytest -p controls -p no:cacheprovider -q
-python3 -B "$PILOT_SCRATCH/run.py" "$PILOT_PHASE-metadata" python -B scripts/check-package-metadata.py
-python3 -B "$PILOT_SCRATCH/run.py" "$PILOT_PHASE-board" python -B scripts/friday-dev-board.py validate
-python3 -B "$PILOT_SCRATCH/run.py" "$PILOT_PHASE-docs" python -B scripts/check-documentation-lifecycle.py
+python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-chat" python -B -m pytest -p controls -p no:cacheprovider -q packages/friday-chat/tests_chat --ignore=packages/friday-chat/tests_chat/test_live_lmstudio.py
+python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-foundation" python -B -m pytest -p no:cacheprovider -q packages/friday-commands/tests_commands tests/integration/test_package_cohort_metadata.py
+python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-cli" python -B -m pytest -p no:cacheprovider -q packages/friday-cli/tests_cli
+python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-lint" ruff check --no-cache packages/friday-commands/src packages/friday-commands/tests_commands packages/friday-chat/src/friday_chat/commands/registry.py packages/friday-chat/src/friday_chat/commands/session.py
+python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-types" mypy packages/friday-commands/src packages/friday-chat/src/friday_chat/commands/registry.py packages/friday-chat/src/friday_chat/commands/session.py
+python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-root-lint" ruff check --no-cache .
+python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-root-tests" python -B -m pytest -p controls -p no:cacheprovider -q
+python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-metadata" python -B scripts/check-package-metadata.py
+python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-board" python -B scripts/friday-dev-board.py validate
+python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-docs" python -B scripts/check-documentation-lifecycle.py
 uv lock --check --offline
 git diff --check
 ```
@@ -209,6 +207,66 @@ actual current counts. New tests increase counts; totals alone prove nothing.
 Root Ruff/pytest and older formatting were failing at RET-001. Reproduce and
 enumerate current failures; report them as failed gates, never blanket success.
 A new failure or broader collection loss is a regression and stops completion.
+
+## Incremental gates and baseline comparison
+
+The frozen baseline is [baseline.json](../validation/pilot/baseline.json), SHA-256
+`30d5ae72c0ccc2a47845c6a5110da93a198a217ccc38f2e75250fe337782b8c7`.
+Its capture program is `harness/capture.py`, SHA-256
+`8910d67902ceef692b519612a7e0a2286eb7bce2dcfc53cac0226c591e6d9b2e`.
+Do not edit either after construction approval. If a harness defect is found,
+stop for an explicit amendment and regenerate/review the baseline from the
+unchanged before revision, never the new implementation.
+
+| Gate | Required result before advancing |
+| --- | --- |
+| G0 — harness | Offline startup from fresh scratch, guard and comparator controls, clean-Git baseline reproduction. Current preparation supplies this evidence; no new APIs are claimed implemented. |
+| G1 — neutral | Add and pass `tests_commands/test_pilot.py`: shared specs/handlers, typed outcomes, catalog calls, standalone consumer and error/cancellation cases (PILOT-01/02). |
+| G2 — Chat | Add and pass `tests_chat/test_command_pilot.py`; rerun registry/retirement tests. Prove real delegation plus metadata, custom registries, projection, parser and exact baseline comparison (PILOT-03–06/09). |
+| G3 — lifecycle | Pass exit/clear app tests, ordering, once-only cleanup and PTY/display checks (PILOT-07/08). |
+| G4 — regression | All three full suites, unchanged assertion/source proof and focused lint/types; enumerate broader baseline failures rather than declaring them green. |
+| G5 — installed | Clean Git artifacts/default closure, PILOT-10 installed subset, then frozen candidate and independent review. |
+
+After construction approval and creation of each named new test file, these are
+fast iteration commands. A missing test file is a failed gate, not a reason to
+skip tests. Expected failing new tests may guide implementation during a stage;
+all must pass before advancing. Do not xfail them or weaken the oracle.
+
+```sh
+python3 -B "$PILOT_SCRATCH/pilot_run.py" g1-fast python -B -m pytest -p no:cacheprovider -q packages/friday-commands/tests_commands/test_pilot.py
+python3 -B "$PILOT_SCRATCH/pilot_run.py" g2-fast python -B -m pytest -p controls -p no:cacheprovider -q packages/friday-chat/tests_chat/test_command_pilot.py packages/friday-chat/tests_chat/test_command_registry.py packages/friday-chat/tests_chat/test_command_retirements.py
+python3 -B "$PILOT_SCRATCH/pilot_run.py" g3-fast python -B -m pytest -p controls -p no:cacheprovider -q packages/friday-chat/tests_chat/test_display.py packages/friday-chat/tests_chat/test_session_memory_commands.py::test_exit_alias_requests_app_shutdown packages/friday-chat/tests_chat/test_app_lifecycle.py::test_async_clients_close_after_background_and_llm_maintenance
+```
+
+For baseline reproduction, set `PILOT_REVISION` to the frozen before commit.
+For the G2/G5 after comparison, set it to the actual committed candidate. Export
+into a new directory per capture. The capture verifies every workspace Python
+source blob against that revision before imports, and verifies module origins.
+Its five groups contain 41 metadata records, 59 help cases, 29 dispatch cases,
+61 custom compatibility cases and three fake-app lifecycle traces.
+
+```sh
+PILOT_REVISION=7b80ca01489a52608aafb54b626b74fbb36efbe3  # actual candidate for after
+export PILOT_REVISION
+PILOT_SOURCE="$PILOT_SCRATCH/source-$PILOT_PHASE"
+export PILOT_SOURCE
+mkdir "$PILOT_SOURCE"
+git archive --format=tar --output "$PILOT_SCRATCH/source-$PILOT_PHASE.tar" "$PILOT_REVISION"
+python3 -B - <<'PY'
+import os, pathlib, tarfile
+scratch = pathlib.Path(os.environ['PILOT_SCRATCH'])
+with tarfile.open(scratch / ('source-' + os.environ['PILOT_PHASE'] + '.tar')) as archive:
+    archive.extractall(os.environ['PILOT_SOURCE'], filter='data')
+PY
+python3 -B "$PILOT_SCRATCH/pilot_run.py" "$PILOT_PHASE-capture" python -B "$PILOT_HARNESS/capture.py" "$PILOT_SOURCE" "$PILOT_SCRATCH/capture-$PILOT_PHASE.json" --revision "$PILOT_REVISION"
+python3 -B "$PILOT_HARNESS/compare.py" docs/planning/active/command-refactor/validation/pilot/baseline.json "$PILOT_SCRATCH/capture-$PILOT_PHASE.json" --baseline-sha256 30d5ae72c0ccc2a47845c6a5110da93a198a217ccc38f2e75250fe337782b8c7
+```
+
+The comparator rejects altered values, list order, missing/extra groups and
+boolean/integer substitutions. It also rejects a different capture program;
+provenance differences such as source location/revision are expected. The
+capture is a compatibility oracle; additional new-API/spy tests are required
+because equal text alone cannot prove shared ownership or once-only invocation.
 
 ## Artifact proof and handoff
 

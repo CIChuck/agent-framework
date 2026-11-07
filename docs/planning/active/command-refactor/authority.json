@@ -3,7 +3,7 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "RET-001 accepted; proposed PILOT-001 contract and exact directive prepared for maintainer review, no construction approval",
+  "decision": "RET-001 accepted; amended pilot contract/directive and runnable diagnostic harness ready for independent council; product construction not approved",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
   "current_scope": "Review pilot contract first, then construction directive; accepted RET-001 remains closed",
@@ -159,9 +159,9 @@
     "scope": "Planning only: pilot contract/directive and current board/dashboard/README/next-phase/authority/execution-log records",
     "source_base": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
     "contract": "pilot-command-contract.md",
-    "contract_sha256": "ef0af6e9c5300906594191ee18ea2b195ef4ae525fcd6898a644bdcc961c958d",
+    "contract_sha256": "3215089eeaf9298566b677949bbbcaddde91ab00dc08aea37c971547ed3e4b54",
     "directive": "directives/CD-CMD-PILOT-001-help-exit-clear.md",
-    "directive_sha256": "797178a18200a4e854b8ece064622f42f2cfeb21cfad335dc92f0cd69deb745e",
+    "directive_sha256": "a5fe8be287d8118214d3149180a4a50266f113b6e70abce34dfbe2fcee21cca2",
     "design_approval": "not_granted",
     "construction_approval": "not_granted",
     "approval_order": [
@@ -170,5 +170,27 @@
     ],
     "lightweight_exemption": "Documentation-only preparation under maintainer proceed; no product/test/config/package/lock/frozen evidence edits; controller validates hashes, syntax, board/docs and whitespace",
     "delivery": "No push/PR/merge/release authority"
+  },
+  "pilot_harness_amendment": {
+    "authorized_by": "Chuck Russell",
+    "date": "2026-11-07",
+    "instruction": "Apply your changes, then invoke the council to validate the final results. Take the feedback from the council and apply it. Make sure the council gives us a 9 or better on our scoring.",
+    "scope": "Amend proposed pilot contract/directive; add and exercise diagnostic harness, baseline/comparison fixtures, incremental gates and review evidence under validation/pilot; reconcile current planning status; apply bounded council feedback and re-review",
+    "lightweight_exemption": "Diagnostic planning harness only, isolated scratch and fake runtime; no packages source/tests/config/metadata/lock edits. Exact maintainer instruction authorizes preparation and testing of these diagnostic assets, not pilot product construction.",
+    "external_services": "Public pypi.org/files.pythonhosted.org only to seed six exact hash-pinned build tools into scratch; delegate review providers via requested council. No live application services.",
+    "council": {
+      "providers": [
+        "Claude Opus 5.5 high",
+        "OpenAI GPT-6.1 Sol high",
+        "Gemini 4 Argon High"
+      ],
+      "target_score": 9,
+      "score_policy": "Each reviewer scores independently; do not require favorable findings. Full fresh round after changes; escalate after two unsuccessful remediation cycles."
+    },
+    "pilot_design_approval": "not_granted",
+    "pilot_construction_approval": "not_granted",
+    "delivery": "local only",
+    "status": "candidate prepared for fresh three-provider design/harness-readiness council",
+    "evidence": "validation/pilot/harness-evidence.json"
   }
 }
