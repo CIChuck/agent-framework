@@ -747,3 +747,15 @@ updated seven allowed guides. Working Chat1038 passes. New schema-projection and
 test-fixture errors were corrected/disclosed in unit evidence; no product fix
 beyond approved removals. Final frozen after checks and clean Git packaging
 remain required. Execution phase implementation; validation state not_ready.
+
+RET-001 builder verification complete:1038 Chat/145 foundation-cohort/155 CLI
+pass; focused lint/types, metadata/board/docs/lock and exact negative/metadata
+proof pass. Format37->36 with no new file failures; root534 lint and one root
+collection collision remain baseline. Clean candidate-Git Chat artifacts and
+offline129 installed profile pass41/3,216 no-effect cases,390 installed/Git/wheel
+source members, aliases/help/finance and retired launcher absence. All retained
+source ASTs and496 original test node ASTs preserved;23 mapped nodes accounted
+for. [Report](validation/retirement/README.md) discloses controller harness/
+fixture corrections and exact evidence; no product scope drift. Freeze current
+candidate for fresh independent validation. Execution phase validation;
+validation state in_review. No pilot/delivery/acceptance inferred.

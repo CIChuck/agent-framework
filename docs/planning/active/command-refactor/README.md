@@ -10,12 +10,12 @@ approval, construction authority or code validation is inferred.
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and
-accepted by Chuck Russell. Exact strengthened RET-001 is now approved and implemented locally; final checks and independent review remain pending.
+accepted by Chuck Russell. Exact strengthened RET-001 is now approved and implemented locally; builder checks complete; independent review pending.
 Exact foundation approvals and source base
 `d003c4db` remain in the [approval record](approval/foundation-readiness.md).
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). No command migration/wiring.
-`execution_phase: implementation`; `validation_state: not_ready` for RET-001.
+`execution_phase: validation`; `validation_state: in_review` for RET-001.
 The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
 

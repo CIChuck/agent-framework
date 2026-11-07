@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: execute approved exact CD-CMD-RET-001 with before-after and installed evidence, then fresh independent validation before maintainer acceptance; no delivery
+  next_gate: RET-001 builder checked with1038 Chat tests and isolated41/3 proof; fresh independent validation then maintainer acceptance; no pilot or delivery
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2511,3 +2511,10 @@ events:
   action: approved exact strengthened retirement directive
   note: Direct instruction i approve the document proceed binds the strengthened directive and RET-GATE-01 through 03; retire exactly nine names, preserve retained contracts, then independent validation. No pilot or delivery approval.
   evidence: docs/planning/active/command-refactor/approval/command-retirement.md
+- task: friday-command-refactor
+  at: '2026-11-07T02:22:22+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared nine-command retirement validation candidate
+  note: Approved exact removals and mapped test/guide updates implemented;1038 Chat/145 foundation-cohort/155 CLI pass, clean candidate-Git artifacts and129-profile41/3/no-effect proof pass. Baselines and diagnostic corrections disclosed; configs preserved. Await fresh review and acceptance; no delivery or pilot.
+  evidence: docs/planning/active/command-refactor/validation/retirement/README.md
