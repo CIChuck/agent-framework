@@ -4,6 +4,9 @@ from __future__ import annotations
 
 import os
 import socket
+import sqlite3
+import subprocess
+import sys
 from pathlib import Path
 
 
@@ -14,6 +17,12 @@ def main() -> None:
         "repo_store": lambda: (
             Path(os.environ["REVIEW_REPO"]) / ".friday/pilot-probe"
         ).read_text(),
+        "sqlite_home_audit": lambda: sys.audit(
+            "sqlite3.connect", str(Path.home() / ".friday/probe.db")
+        ),
+        "sqlite_repo_audit": lambda: sys.audit(
+            "sqlite3.connect", str(Path(os.environ["REVIEW_REPO"]) / ".friday/probe.db")
+        ),
     }
     with (
         socket.socket() as connection,
@@ -41,8 +50,35 @@ def main() -> None:
         client.connect(server.getsockname())
         accepted, _ = server.accept()
         accepted.close()
+    # Actual SQLite refusal probes use a synthetic repo under scratch. A broken
+    # guard can create only our disposable fixture, never a real user database.
+    fake = Path(os.environ["REVIEW_SCRATCH"]) / "sqlite-guard-fixture"
+    (fake / ".friday").mkdir(parents=True, exist_ok=True)
+    environment = dict(os.environ, REVIEW_REPO=str(fake))
+    database = fake / ".friday/probe.db"
+    for value in (
+        str(database),
+        "file:" + str(database),
+        "file:" + str(database).replace(".friday", "%2Efriday"),
+    ):
+        code = (
+            "import sqlite3,sys\n"
+            "try: sqlite3.connect(sys.argv[1], uri=True)\n"
+            "except RuntimeError as error:\n"
+            " if 'guard blocked' not in str(error): raise\n"
+            "else: raise RuntimeError('SQLite protection failed')\n"
+        )
+        subprocess.run(
+            [sys.executable, "-B", "-c", code, value], env=environment, check=True
+        )
+        if database.exists():
+            raise RuntimeError("SQLite refusal created a protected fixture file")
+    with sqlite3.connect(":memory:"):
+        pass
+    with sqlite3.connect(Path(os.environ["REVIEW_SCRATCH"]) / "allowed-sqlite.db"):
+        pass
     print(
-        f"Guard passed {len(attempts)} refusal controls and disposable loopback control"
+        f"Guard passed {len(attempts) + 3} refusal controls, loopback and scratch/memory SQLite controls"
     )
 
 

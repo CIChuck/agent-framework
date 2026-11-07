@@ -831,3 +831,31 @@ Freeze amended proposals and diagnostic evidence for fresh three-provider
 council; each reviewer scores independently out of10 and returns readiness
 verdict with findings. No requested threshold is treated as an earned score.
 Execution phase planning; validation state in_review (design/harness only).
+
+2026-11-07: Round-one end freeze matched all 17,082 tracked file hashes and
+candidate 3952d213. Council: Claude CHANGES_REQUESTED 8.3/10; OpenAI VERIFIED
+9.4/10; Gemini VERIFIED 9.5/10. Raw reports retained in council-round1.json.
+Under the existing explicit feedback authorization, applied CLA-PILOT-01 through
+06 and ARGON-PILOT-001 through003 within diagnostic/planning scope: cold-cache
+artifact recipe/control, SQLite audit extension and refusal probes, full fast-
+gate coverage and ID-to-file map, local WIP commit permission, complete source/
+data and module-origin verification, API type/catalog clarifications, collision
+refusal and capture-identity controls. Historical proposal hashes/receipts remain
+available by candidate and explicit revision history. Current narratives use
+normal spacing; earlier compact raw log entries retain original provenance.
+An intermediate broad open-path hook passed tests but raised a pytest teardown
+false positive for descriptor-relative temporary paths. Restricted the extension
+to the missing SQLite event and assigned pytest a unique scratch basetemp. This
+attempt is retained as historical diagnostic evidence; final suites re-run with
+the corrected guard/wrapper. No package source/tests/config/metadata/lock edits.
+Execution phase planning; validation state in_review for corrected design/harness.
+
+Corrected harness final checks: all 1,038 Chat, 145 foundation/cohort and 155 CLI
+tests pass with unique scratch basetemp and SQLite guard extension; no teardown
+error. Twelve guard and ten comparator refusal controls, cold baseline Commands
+wheel/sdist/venv/install/check, YAML and module-origin rejection, protected-output
+and receipt-collision controls pass. Retained original 193 baseline observations
+and added three legacy falsy focuses from the same source commit. Historical
+failed attempts and current final gates have explicit roles in round-two
+receipts. Proposal revisions retain initial and round-one hashes separately;
+current hashes live in pilot_current_proposal. Freeze for full round-two council.

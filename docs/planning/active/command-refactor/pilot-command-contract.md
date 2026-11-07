@@ -51,12 +51,23 @@ Each returned handler implements the existing async handler protocol. It accepts
 the canonical request for its own command; a different request name raises
 `ValueError` before reading the catalog. Arguments retain the rules below.
 `CommandExecution` is accepted but unused; these commands require no session ID.
+The new shared handlers require exact `CommandRequest` and `CommandExecution`
+instances, raising `TypeError` before inspecting request fields; wrong canonical
+names then raise `ValueError`. `describe_help` accepts only `None` or a string
+focus, including subclasses; other values (even falsy values) raise `TypeError`
+before reading the catalog. This defines new shared boundaries without changing
+legacy Chat registration or its existing falsy-focus handling.
 
 `PILOT_SPECS` contains exact baseline metadata, including ordered aliases,
 argument fields, punctuation and the `cls` detail paragraph. Move these values
 from Chat; do not independently retype or revise them. Its order is not a new
 display-order rule. A consumer opts in by registering these specs and handlers
 in its own registry; importing the package still creates no default registry.
+For a standalone neutral consumer, implement `HelpCatalog.specs()` from the
+neutral registry's `specs()` snapshot and `lookup_key` with an exact map built
+from each snapshot's canonical names and aliases. Do not use `resolve()` for
+already normalized keys; it normalizes again. Refresh the map from the current
+snapshot for each lookup if registration remains mutable.
 
 ## PC-01 — catalog and help selection
 
@@ -90,6 +101,9 @@ fallback catalogs, fabricated output or silent omission of an entry.
 Neither handler reads the catalog, runtime, stores, history, session, terminal
 or network. Neither exits the process, mutates context, prints text or applies
 an effect. Their lifecycle requests belong to the host.
+Chat's exit and cls wrappers pass a private immutable empty catalog adapter
+(`specs()` returns `()`, `lookup_key(...)` returns `None`) to the factory; no
+default registry or context access is needed. This is not a fifth shared export.
 
 ## PC-03 — Chat dispatch and public compatibility
 
@@ -117,6 +131,8 @@ Help keeps the existing context selection: a `RegistryCommandContext` uses
 `registry.render_help(...)` uses that registry and calls `describe_help` plus
 the Chat renderer synchronously. It must not run an event loop or invoke a
 coroutine. The catalog adapter must not call `render_help` or create a recursion.
+Before calling the strict shared helper, Chat maps a legacy falsy focus to
+`None`, preserving existing general-help behavior for direct legacy callers.
 
 Custom registries stay empty until explicit registration. Explicit custom
 handlers, including handlers named `help`, `exit`, `cls` or a retired spelling,
@@ -167,7 +183,7 @@ must not read context/runtime for exit or clear, including session identity.
 
 ## PC-05 — application lifecycle and preserved boundaries
 
-Leave `ChatApp` production source unchanged. It applies a clear effect once at
+Leave `FridayChatApp` production source unchanged. It applies a clear effect once at
 the display boundary, before nonempty command output. Preserve the missing
 display message `Unable to clear the terminal: display is unavailable.` and
 the caught-failure message `Unable to clear the terminal.`. An empty successful
@@ -211,7 +227,7 @@ another empty scratch directory without network access. Unprepared empty caches
 must not be assumed to contain build dependencies.
 
 Before any product edit, `capture.py` verifies Python source bytes against the
-specified Git revision and captures metadata, help, parsed dispatch outcomes,
+specified Git revision (all files under package `src/`, including data) and captures metadata, help, parsed dispatch outcomes,
 custom registry cases and fake-app lifecycle traces. The frozen
 `validation/pilot/baseline.json` is the expected result; do not regenerate it
 from new behavior. Capture-program and baseline hashes are frozen for the unit.
@@ -220,6 +236,15 @@ groups exactly, including list order and boolean versus integer types. Source
 provenance may differ; the capture-program identity must remain identical.
 Its self-test must reject deliberately damaged observations;
 the injected guard must pass its own refusal and allowed-loopback controls.
+The pilot guard retains the historical Python-open checks and adds
+`sqlite3.connect` path checks, including SQLite file URIs, for the actual user's
+and repository's `.friday` trees. Test real SQLite refusal only against a fake
+repository inside scratch; use audit-only probes for real protected roots.
+This is Python audit containment, not an OS sandbox for arbitrary native I/O.
+All fixtures must still explicitly use scratch. Capture rejects any loaded
+`friday*` module whose file or namespace origin escapes the verified export.
+The runner refuses receipt/output path collisions and preserves earlier
+receipts by assigning a new suffix to repeated run names.
 
 Build with successive gates: harness/baseline readiness; shared-handler tests;
 Chat adapter/compatibility tests; app lifecycle/effect tests; full regression

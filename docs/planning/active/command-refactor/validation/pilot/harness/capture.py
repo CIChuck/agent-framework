@@ -49,7 +49,19 @@ async def capture(source: Path) -> dict[str, object]:
     if len(registry.canonical_names()) != 41 or len(registry.command_names()) != 44:
         raise RuntimeError("Expected the accepted 41-name, three-alias surface")
     names = sorted(registry.command_names())
-    focuses = [None, "", " ", *names, *RETIRED, "unknown-pilot-name", "/q", "//q"]
+    focuses = [
+        None,
+        "",
+        " ",
+        False,
+        0,
+        [],
+        *names,
+        *RETIRED,
+        "unknown-pilot-name",
+        "/q",
+        "//q",
+    ]
     help_rows = [
         {"focus": focus, "output": registry.render_help(focus)} for focus in focuses
     ]
@@ -247,21 +259,23 @@ async def capture(source: Path) -> dict[str, object]:
     lifecycle = [
         await capture_lifecycle(kind) for kind in ("available", "missing", "failed")
     ]
+    importlib.import_module("friday_commands")
     origins = {}
-    for name in (
-        "friday_chat.commands.registry",
-        "friday_chat.commands.session",
-        "friday_chat.commands.contracts",
-        "friday_chat.app",
-        "friday_chat.runtime",
-    ):
-        origin = Path(importlib.import_module(name).__file__).resolve()
-        if not origin.is_relative_to(source):
+    for name, module in tuple(sys.modules.items()):
+        if not name.startswith("friday") or module is None:
+            continue
+        filename = getattr(module, "__file__", None)
+        locations = [filename] if filename else list(getattr(module, "__path__", ()))
+        if not locations:
+            raise RuntimeError(f"Missing module origin: {name}")
+        resolved = [Path(location).resolve() for location in locations]
+        if any(not origin.is_relative_to(source) for origin in resolved):
             raise RuntimeError(f"Module escaped clean export: {name}")
-        origins[name] = str(origin.relative_to(source))
+        origins[name] = [str(origin.relative_to(source)) for origin in resolved]
     source_hashes = {
         str(path.relative_to(source)): hashlib.sha256(path.read_bytes()).hexdigest()
-        for path in sorted((source / "packages").glob("*/src/**/*.py"))
+        for path in sorted((source / "packages").glob("*/src/**/*"))
+        if path.is_file()
     }
     return {
         "schema": 1,
@@ -290,17 +304,23 @@ def main() -> None:
     parser.add_argument("--revision", required=True)
     args = parser.parse_args()
     source = args.source_root.resolve()
+    output = args.output.resolve()
+    if output.is_relative_to(Path.cwd().resolve()) or output.is_relative_to(source):
+        raise SystemExit("Capture output must be outside checkout and export")
+    if output.exists():
+        raise SystemExit("Refusing to overwrite an existing capture")
     entries = subprocess.check_output(["git", "ls-tree", "-r", "-z", args.revision])
     expected = {}
     for entry in entries.decode().split("\0"):
         if not entry:
             continue
         attributes, name = entry.split("\t", 1)
-        if name.startswith("packages/") and "/src/" in name and name.endswith(".py"):
+        if name.startswith("packages/") and "/src/" in name:
             expected[name] = attributes.split()[2]
     actual = {
         str(path.relative_to(source))
-        for path in (source / "packages").glob("*/src/**/*.py")
+        for path in (source / "packages").glob("*/src/**/*")
+        if path.is_file()
     }
     if not expected or actual != set(expected):
         raise SystemExit("Export source inventory differs from Git revision")

@@ -48,12 +48,12 @@ def compare(before: object, after: object) -> None:
 def selftest() -> None:
     baseline = {
         "schema": 1,
-        "provenance": {"revision": "before"},
+        "provenance": {"revision": "before", "capture_sha256": "frozen-script"},
         "observations": dict.fromkeys(sorted(GROUPS), {"sample": ["a", "b"]}),
     }
     compare(baseline, copy.deepcopy(baseline))
     provenance_only = copy.deepcopy(baseline)
-    provenance_only["provenance"] = {"revision": "after"}
+    provenance_only["provenance"]["revision"] = "after"
     compare(baseline, provenance_only)
     mutations = []
     for key in sorted(GROUPS):
@@ -66,6 +66,12 @@ def selftest() -> None:
     extra = copy.deepcopy(baseline)
     extra["observations"]["unexpected"] = []
     mutations.append(extra)
+    changed_program = copy.deepcopy(baseline)
+    changed_program["provenance"]["capture_sha256"] = "different-script"
+    mutations.append(changed_program)
+    missing_program = copy.deepcopy(baseline)
+    del missing_program["provenance"]["capture_sha256"]
+    mutations.append(missing_program)
     typed_before = copy.deepcopy(baseline)
     typed_after = copy.deepcopy(baseline)
     typed_before["observations"]["dispatch"] = {"handled": True}

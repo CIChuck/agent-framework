@@ -621,6 +621,18 @@
         "output": "Unknown command: /. Type /help for available commands."
       },
       {
+        "focus": false,
+        "output": "Available commands:\nUse /help <command> for focused details.\n\nFILES\n-\n/ingest\n  Description: Ingest file content into vector memory.\n  Usage: /ingest <path> [description] [--lines=N]\n  Arguments:\n    - path [required]: File path to ingest.\n    - description [optional]: Optional source description; remaining words are joined.\n    - --lines=N [optional]: Maximum number of source lines to ingest.\n\n/read\n  Description: Read a file with smart detection.\n  Usage: /read <path> [--lines=N]\n  Arguments:\n    - path [required]: File path to read.\n    - --lines=N [optional]: Maximum number of lines to return.\n\nMAINTENANCE\n-\n/lifecycle\n  Description: Run or inspect memory lifecycle processing.\n  Usage: /lifecycle [--execute] [--stats|--flush|--optimize]\n  Arguments:\n    - --execute [optional]: Apply lifecycle changes instead of a dry run.\n    - mode [optional] (choices=--stats, --flush, --optimize): Inspect statistics, flush access data, or optimize lifecycle state.\n\n/migrate\n  Description: Migrate existing memories to lifecycle metadata.\n  Usage: /migrate [--force|--execute|--stats]\n  Arguments:\n    - mode [optional] (choices=--force, --execute, --stats): Execute migration or report dry-run statistics.\n\n/reorganize\n  Description: Preview or explicitly execute coordinated memory reorganization.\n  Usage: /reorganize [--execute] [--backup|--dedupe|--analyze|--prune|--synthesize|--verify] [--skip-synthesis] [--skip-verify] [--skip-lifecycle] [--force-reembed]\n       /reorganize --recover <run-id> [--execute]\n  Arguments:\n    - --execute [optional]: Apply changes (exact flag required; a verified recovery bundle is always created first).\n    - mode [optional] (choices=--backup, --dedupe, --analyze, --prune, --synthesize, --verify): Run one reorganization step instead of the full operation.\n    - --skip-synthesis [optional]: Skip synthesis during a full run.\n    - --skip-verify [optional]: Skip verification during a full run.\n    - --skip-lifecycle [optional]: Skip lifecycle processing.\n    - --force-reembed [optional]: Force eligible records to be re-embedded.\n    - --recover <run-id> [optional]: Inspect a retained run; add exact --execute to restore its recorded verified bundle.\n\nMEMORY\n-\n/compact\n  Description: Manually trigger context compaction.\n  Usage: /compact\n  Arguments: none\n\n/context\n  Description: Show the assembled context payload.\n  Usage: /context [--debug] [--file]\n  Arguments:\n    - --debug [optional]: Include detailed token diagnostics.\n    - --file [optional]: Export the context to a file.\n\n/debug\n  Description: Show context assembly debug information.\n  Usage: /debug\n  Arguments: none\n\n/debug-budget\n  Description: Show token budget diagnostics.\n  Usage: /debug-budget\n  Arguments: none\n\n/debug-retrieval\n  Description: Show retrieval diagnostics for a query.\n  Usage: /debug-retrieval <query>\n  Arguments:\n    - query [required]: Retrieval query; remaining words are joined.\n\n/entities\n  Description: List graph entities and relationships.\n  Usage: /entities [nodes|name]\n  Arguments:\n    - nodes|name [optional]: Use 'nodes' for node details or provide an entity name to inspect.\n\n/insights\n  Description: List durable insights.\n  Usage: /insights\n  Arguments: none\n\n/list-ingested\n  Description: List ingested document memory records.\n  Usage: /list-ingested\n  Arguments: none\n\n/memory\n  Description: Show typed memory, transcript, session, and context statistics.\n  Usage: /memory\n  Arguments: none\n\n/meta\n  Description: List active meta insights with lifecycle and provenance metadata.\n  Usage: /meta\n  Arguments: none\n\n/prompt\n  Description: Show the full formatted prompt sent to the LLM.\n  Usage: /prompt [--file]\n  Arguments:\n    - --file [optional]: Export the prompt to a file.\n\n/reset\n  Description: Reset one or more memory stores.\n  Usage: /reset [graph|vector|episodic]\n  Arguments:\n    - store [optional] (choices=graph, vector, episodic): Memory store to reset; omit to reset every supported store.\n\n/summaries\n  Description: List turn summaries.\n  Usage: /summaries\n  Arguments: none\n\n/timing\n  Description: Show timing breakdown for the last turn.\n  Usage: /timing\n  Arguments: none\n\nORCHESTRATION\n-\n/agent\n  Description: Show detailed agent information.\n  Usage: /agent [name]\n  Arguments:\n    - name [optional]: Agent name; omit to inspect the active agent.\n\n/agents\n  Description: List available agents.\n  Usage: /agents\n  Arguments: none\n\n/delegate\n  Description: Delegate a task to another agent.\n  Usage: /delegate <agent> <task>\n  Arguments:\n    - agent [required]: Target agent name.\n    - task [required]: Task text; remaining words are joined.\n\n/status\n  Description: Show orchestrator status.\n  Usage: /status\n  Arguments: none\n\n/switch\n  Description: Switch active agent or show current agent status.\n  Usage: /switch [agent]\n  Arguments:\n    - agent [optional]: Agent name; omit to show the active agent.\n\nSECURITY\n-\n/security\n  Description: Show security status.\n  Usage: /security\n  Arguments: none\n\n/security-config\n  Description: Update security configuration.\n  Usage: /security-config <sensitivity|action|wrapping> <value>\n  Arguments:\n    - setting [required] (choices=sensitivity, action, wrapping): Security setting to update.\n    - value [required]: Validated value for the selected security setting.\n\n/security-test\n  Description: Run local security sanitization tests.\n  Usage: /security-test [instruction|delimiter|jailbreak|exfil|all]\n  Arguments:\n    - type [optional] (default=all, choices=instruction, delimiter, jailbreak, exfil, all): Security sample type to run.\n\nSESSION\n-\n/clear\n  Description: Clear conversation history.\n  Usage: /clear\n  Arguments: none\n\n/cls (aliases: /clearscreen)\n  Description: Clear the terminal through the display boundary.\n  Usage: /cls\n  Arguments: none\n\n/exit (aliases: /quit, /q)\n  Description: Exit the chat session.\n  Usage: /exit\n  Arguments: none\n\n/help\n  Description: Show available commands or focused command help.\n  Usage: /help [command]\n  Arguments:\n    - command [optional]: Command name or alias to inspect.\n\n/history\n  Description: Show conversation history.\n  Usage: /history\n  Arguments: none\n\nSPEECH\n-\n/speech\n  Description: Configure speech settings.\n  Usage: /speech [on|off|config|mode <live|file>|voice <name>|provider <elevenlabs|picovoice>]\n  Arguments:\n    - action [optional] (default=config, choices=on, off, config, mode, voice, provider): Speech setting to inspect or update.\n    - value [optional]: Value required by mode, voice, or provider actions.\n\n/speech-test\n  Description: Run the speech validation harness.\n  Usage: /speech-test [once|loop]\n  Arguments:\n    - mode [optional] (default=once, choices=once, loop): Run one speech test or request loop mode.\n\nTOOLS\n-\n/tools\n  Description: List registered runtime tools and optionally filter by category.\n  Usage: /tools [category]\n  Arguments:\n    - category [optional]: Optional runtime tool category filter.\n\nTRANSCRIPT\n-\n/export\n  Description: Export persisted entries from the current session.\n  Usage: /export [csv|jsonl|markdown|md|training]\n  Arguments:\n    - format [optional] (default=markdown, choices=csv, jsonl, markdown, md, training): Output format for the current session export.\n\n/export-prompts\n  Description: Export persisted captured prompts and responses for one session.\n  Usage: /export-prompts [session_id]\n  Arguments:\n    - session_id [optional]: Session identifier; omit for the current session.\n\n/replay\n  Description: Replay a transcript CSV.\n  Usage: /replay <csv_path> [delay_seconds]\n  Arguments:\n    - csv_path [required]: Transcript CSV path.\n    - delay_seconds [optional] (default=0): Delay between replayed user turns.\n\n/sessions\n  Description: List persisted transcript sessions with current and primed markers.\n  Usage: /sessions\n  Arguments: none\n\n/transcript\n  Description: Show a persisted current or selected transcript, or export all sessions.\n  Usage: /transcript [session_id|export]\n  Arguments:\n    - target [optional] (default=current session): Persisted session identifier to show, or export for all non-archived sessions.\n\nWORKFLOW\n-\n/workflow\n  Description: List, run, or control workflows.\n  Usage: /workflow <list|run|status|approve|skip> [name] [key=value ...]\n  Arguments:\n    - action [required] (choices=list, run, status, approve, skip): Workflow operation.\n    - name [optional]: Workflow name for run, or an optional approval/skip identifier.\n    - key=value [optional]: Optional workflow inputs for the run action."
+      },
+      {
+        "focus": 0,
+        "output": "Available commands:\nUse /help <command> for focused details.\n\nFILES\n-\n/ingest\n  Description: Ingest file content into vector memory.\n  Usage: /ingest <path> [description] [--lines=N]\n  Arguments:\n    - path [required]: File path to ingest.\n    - description [optional]: Optional source description; remaining words are joined.\n    - --lines=N [optional]: Maximum number of source lines to ingest.\n\n/read\n  Description: Read a file with smart detection.\n  Usage: /read <path> [--lines=N]\n  Arguments:\n    - path [required]: File path to read.\n    - --lines=N [optional]: Maximum number of lines to return.\n\nMAINTENANCE\n-\n/lifecycle\n  Description: Run or inspect memory lifecycle processing.\n  Usage: /lifecycle [--execute] [--stats|--flush|--optimize]\n  Arguments:\n    - --execute [optional]: Apply lifecycle changes instead of a dry run.\n    - mode [optional] (choices=--stats, --flush, --optimize): Inspect statistics, flush access data, or optimize lifecycle state.\n\n/migrate\n  Description: Migrate existing memories to lifecycle metadata.\n  Usage: /migrate [--force|--execute|--stats]\n  Arguments:\n    - mode [optional] (choices=--force, --execute, --stats): Execute migration or report dry-run statistics.\n\n/reorganize\n  Description: Preview or explicitly execute coordinated memory reorganization.\n  Usage: /reorganize [--execute] [--backup|--dedupe|--analyze|--prune|--synthesize|--verify] [--skip-synthesis] [--skip-verify] [--skip-lifecycle] [--force-reembed]\n       /reorganize --recover <run-id> [--execute]\n  Arguments:\n    - --execute [optional]: Apply changes (exact flag required; a verified recovery bundle is always created first).\n    - mode [optional] (choices=--backup, --dedupe, --analyze, --prune, --synthesize, --verify): Run one reorganization step instead of the full operation.\n    - --skip-synthesis [optional]: Skip synthesis during a full run.\n    - --skip-verify [optional]: Skip verification during a full run.\n    - --skip-lifecycle [optional]: Skip lifecycle processing.\n    - --force-reembed [optional]: Force eligible records to be re-embedded.\n    - --recover <run-id> [optional]: Inspect a retained run; add exact --execute to restore its recorded verified bundle.\n\nMEMORY\n-\n/compact\n  Description: Manually trigger context compaction.\n  Usage: /compact\n  Arguments: none\n\n/context\n  Description: Show the assembled context payload.\n  Usage: /context [--debug] [--file]\n  Arguments:\n    - --debug [optional]: Include detailed token diagnostics.\n    - --file [optional]: Export the context to a file.\n\n/debug\n  Description: Show context assembly debug information.\n  Usage: /debug\n  Arguments: none\n\n/debug-budget\n  Description: Show token budget diagnostics.\n  Usage: /debug-budget\n  Arguments: none\n\n/debug-retrieval\n  Description: Show retrieval diagnostics for a query.\n  Usage: /debug-retrieval <query>\n  Arguments:\n    - query [required]: Retrieval query; remaining words are joined.\n\n/entities\n  Description: List graph entities and relationships.\n  Usage: /entities [nodes|name]\n  Arguments:\n    - nodes|name [optional]: Use 'nodes' for node details or provide an entity name to inspect.\n\n/insights\n  Description: List durable insights.\n  Usage: /insights\n  Arguments: none\n\n/list-ingested\n  Description: List ingested document memory records.\n  Usage: /list-ingested\n  Arguments: none\n\n/memory\n  Description: Show typed memory, transcript, session, and context statistics.\n  Usage: /memory\n  Arguments: none\n\n/meta\n  Description: List active meta insights with lifecycle and provenance metadata.\n  Usage: /meta\n  Arguments: none\n\n/prompt\n  Description: Show the full formatted prompt sent to the LLM.\n  Usage: /prompt [--file]\n  Arguments:\n    - --file [optional]: Export the prompt to a file.\n\n/reset\n  Description: Reset one or more memory stores.\n  Usage: /reset [graph|vector|episodic]\n  Arguments:\n    - store [optional] (choices=graph, vector, episodic): Memory store to reset; omit to reset every supported store.\n\n/summaries\n  Description: List turn summaries.\n  Usage: /summaries\n  Arguments: none\n\n/timing\n  Description: Show timing breakdown for the last turn.\n  Usage: /timing\n  Arguments: none\n\nORCHESTRATION\n-\n/agent\n  Description: Show detailed agent information.\n  Usage: /agent [name]\n  Arguments:\n    - name [optional]: Agent name; omit to inspect the active agent.\n\n/agents\n  Description: List available agents.\n  Usage: /agents\n  Arguments: none\n\n/delegate\n  Description: Delegate a task to another agent.\n  Usage: /delegate <agent> <task>\n  Arguments:\n    - agent [required]: Target agent name.\n    - task [required]: Task text; remaining words are joined.\n\n/status\n  Description: Show orchestrator status.\n  Usage: /status\n  Arguments: none\n\n/switch\n  Description: Switch active agent or show current agent status.\n  Usage: /switch [agent]\n  Arguments:\n    - agent [optional]: Agent name; omit to show the active agent.\n\nSECURITY\n-\n/security\n  Description: Show security status.\n  Usage: /security\n  Arguments: none\n\n/security-config\n  Description: Update security configuration.\n  Usage: /security-config <sensitivity|action|wrapping> <value>\n  Arguments:\n    - setting [required] (choices=sensitivity, action, wrapping): Security setting to update.\n    - value [required]: Validated value for the selected security setting.\n\n/security-test\n  Description: Run local security sanitization tests.\n  Usage: /security-test [instruction|delimiter|jailbreak|exfil|all]\n  Arguments:\n    - type [optional] (default=all, choices=instruction, delimiter, jailbreak, exfil, all): Security sample type to run.\n\nSESSION\n-\n/clear\n  Description: Clear conversation history.\n  Usage: /clear\n  Arguments: none\n\n/cls (aliases: /clearscreen)\n  Description: Clear the terminal through the display boundary.\n  Usage: /cls\n  Arguments: none\n\n/exit (aliases: /quit, /q)\n  Description: Exit the chat session.\n  Usage: /exit\n  Arguments: none\n\n/help\n  Description: Show available commands or focused command help.\n  Usage: /help [command]\n  Arguments:\n    - command [optional]: Command name or alias to inspect.\n\n/history\n  Description: Show conversation history.\n  Usage: /history\n  Arguments: none\n\nSPEECH\n-\n/speech\n  Description: Configure speech settings.\n  Usage: /speech [on|off|config|mode <live|file>|voice <name>|provider <elevenlabs|picovoice>]\n  Arguments:\n    - action [optional] (default=config, choices=on, off, config, mode, voice, provider): Speech setting to inspect or update.\n    - value [optional]: Value required by mode, voice, or provider actions.\n\n/speech-test\n  Description: Run the speech validation harness.\n  Usage: /speech-test [once|loop]\n  Arguments:\n    - mode [optional] (default=once, choices=once, loop): Run one speech test or request loop mode.\n\nTOOLS\n-\n/tools\n  Description: List registered runtime tools and optionally filter by category.\n  Usage: /tools [category]\n  Arguments:\n    - category [optional]: Optional runtime tool category filter.\n\nTRANSCRIPT\n-\n/export\n  Description: Export persisted entries from the current session.\n  Usage: /export [csv|jsonl|markdown|md|training]\n  Arguments:\n    - format [optional] (default=markdown, choices=csv, jsonl, markdown, md, training): Output format for the current session export.\n\n/export-prompts\n  Description: Export persisted captured prompts and responses for one session.\n  Usage: /export-prompts [session_id]\n  Arguments:\n    - session_id [optional]: Session identifier; omit for the current session.\n\n/replay\n  Description: Replay a transcript CSV.\n  Usage: /replay <csv_path> [delay_seconds]\n  Arguments:\n    - csv_path [required]: Transcript CSV path.\n    - delay_seconds [optional] (default=0): Delay between replayed user turns.\n\n/sessions\n  Description: List persisted transcript sessions with current and primed markers.\n  Usage: /sessions\n  Arguments: none\n\n/transcript\n  Description: Show a persisted current or selected transcript, or export all sessions.\n  Usage: /transcript [session_id|export]\n  Arguments:\n    - target [optional] (default=current session): Persisted session identifier to show, or export for all non-archived sessions.\n\nWORKFLOW\n-\n/workflow\n  Description: List, run, or control workflows.\n  Usage: /workflow <list|run|status|approve|skip> [name] [key=value ...]\n  Arguments:\n    - action [required] (choices=list, run, status, approve, skip): Workflow operation.\n    - name [optional]: Workflow name for run, or an optional approval/skip identifier.\n    - key=value [optional]: Optional workflow inputs for the run action."
+      },
+      {
+        "focus": [],
+        "output": "Available commands:\nUse /help <command> for focused details.\n\nFILES\n-\n/ingest\n  Description: Ingest file content into vector memory.\n  Usage: /ingest <path> [description] [--lines=N]\n  Arguments:\n    - path [required]: File path to ingest.\n    - description [optional]: Optional source description; remaining words are joined.\n    - --lines=N [optional]: Maximum number of source lines to ingest.\n\n/read\n  Description: Read a file with smart detection.\n  Usage: /read <path> [--lines=N]\n  Arguments:\n    - path [required]: File path to read.\n    - --lines=N [optional]: Maximum number of lines to return.\n\nMAINTENANCE\n-\n/lifecycle\n  Description: Run or inspect memory lifecycle processing.\n  Usage: /lifecycle [--execute] [--stats|--flush|--optimize]\n  Arguments:\n    - --execute [optional]: Apply lifecycle changes instead of a dry run.\n    - mode [optional] (choices=--stats, --flush, --optimize): Inspect statistics, flush access data, or optimize lifecycle state.\n\n/migrate\n  Description: Migrate existing memories to lifecycle metadata.\n  Usage: /migrate [--force|--execute|--stats]\n  Arguments:\n    - mode [optional] (choices=--force, --execute, --stats): Execute migration or report dry-run statistics.\n\n/reorganize\n  Description: Preview or explicitly execute coordinated memory reorganization.\n  Usage: /reorganize [--execute] [--backup|--dedupe|--analyze|--prune|--synthesize|--verify] [--skip-synthesis] [--skip-verify] [--skip-lifecycle] [--force-reembed]\n       /reorganize --recover <run-id> [--execute]\n  Arguments:\n    - --execute [optional]: Apply changes (exact flag required; a verified recovery bundle is always created first).\n    - mode [optional] (choices=--backup, --dedupe, --analyze, --prune, --synthesize, --verify): Run one reorganization step instead of the full operation.\n    - --skip-synthesis [optional]: Skip synthesis during a full run.\n    - --skip-verify [optional]: Skip verification during a full run.\n    - --skip-lifecycle [optional]: Skip lifecycle processing.\n    - --force-reembed [optional]: Force eligible records to be re-embedded.\n    - --recover <run-id> [optional]: Inspect a retained run; add exact --execute to restore its recorded verified bundle.\n\nMEMORY\n-\n/compact\n  Description: Manually trigger context compaction.\n  Usage: /compact\n  Arguments: none\n\n/context\n  Description: Show the assembled context payload.\n  Usage: /context [--debug] [--file]\n  Arguments:\n    - --debug [optional]: Include detailed token diagnostics.\n    - --file [optional]: Export the context to a file.\n\n/debug\n  Description: Show context assembly debug information.\n  Usage: /debug\n  Arguments: none\n\n/debug-budget\n  Description: Show token budget diagnostics.\n  Usage: /debug-budget\n  Arguments: none\n\n/debug-retrieval\n  Description: Show retrieval diagnostics for a query.\n  Usage: /debug-retrieval <query>\n  Arguments:\n    - query [required]: Retrieval query; remaining words are joined.\n\n/entities\n  Description: List graph entities and relationships.\n  Usage: /entities [nodes|name]\n  Arguments:\n    - nodes|name [optional]: Use 'nodes' for node details or provide an entity name to inspect.\n\n/insights\n  Description: List durable insights.\n  Usage: /insights\n  Arguments: none\n\n/list-ingested\n  Description: List ingested document memory records.\n  Usage: /list-ingested\n  Arguments: none\n\n/memory\n  Description: Show typed memory, transcript, session, and context statistics.\n  Usage: /memory\n  Arguments: none\n\n/meta\n  Description: List active meta insights with lifecycle and provenance metadata.\n  Usage: /meta\n  Arguments: none\n\n/prompt\n  Description: Show the full formatted prompt sent to the LLM.\n  Usage: /prompt [--file]\n  Arguments:\n    - --file [optional]: Export the prompt to a file.\n\n/reset\n  Description: Reset one or more memory stores.\n  Usage: /reset [graph|vector|episodic]\n  Arguments:\n    - store [optional] (choices=graph, vector, episodic): Memory store to reset; omit to reset every supported store.\n\n/summaries\n  Description: List turn summaries.\n  Usage: /summaries\n  Arguments: none\n\n/timing\n  Description: Show timing breakdown for the last turn.\n  Usage: /timing\n  Arguments: none\n\nORCHESTRATION\n-\n/agent\n  Description: Show detailed agent information.\n  Usage: /agent [name]\n  Arguments:\n    - name [optional]: Agent name; omit to inspect the active agent.\n\n/agents\n  Description: List available agents.\n  Usage: /agents\n  Arguments: none\n\n/delegate\n  Description: Delegate a task to another agent.\n  Usage: /delegate <agent> <task>\n  Arguments:\n    - agent [required]: Target agent name.\n    - task [required]: Task text; remaining words are joined.\n\n/status\n  Description: Show orchestrator status.\n  Usage: /status\n  Arguments: none\n\n/switch\n  Description: Switch active agent or show current agent status.\n  Usage: /switch [agent]\n  Arguments:\n    - agent [optional]: Agent name; omit to show the active agent.\n\nSECURITY\n-\n/security\n  Description: Show security status.\n  Usage: /security\n  Arguments: none\n\n/security-config\n  Description: Update security configuration.\n  Usage: /security-config <sensitivity|action|wrapping> <value>\n  Arguments:\n    - setting [required] (choices=sensitivity, action, wrapping): Security setting to update.\n    - value [required]: Validated value for the selected security setting.\n\n/security-test\n  Description: Run local security sanitization tests.\n  Usage: /security-test [instruction|delimiter|jailbreak|exfil|all]\n  Arguments:\n    - type [optional] (default=all, choices=instruction, delimiter, jailbreak, exfil, all): Security sample type to run.\n\nSESSION\n-\n/clear\n  Description: Clear conversation history.\n  Usage: /clear\n  Arguments: none\n\n/cls (aliases: /clearscreen)\n  Description: Clear the terminal through the display boundary.\n  Usage: /cls\n  Arguments: none\n\n/exit (aliases: /quit, /q)\n  Description: Exit the chat session.\n  Usage: /exit\n  Arguments: none\n\n/help\n  Description: Show available commands or focused command help.\n  Usage: /help [command]\n  Arguments:\n    - command [optional]: Command name or alias to inspect.\n\n/history\n  Description: Show conversation history.\n  Usage: /history\n  Arguments: none\n\nSPEECH\n-\n/speech\n  Description: Configure speech settings.\n  Usage: /speech [on|off|config|mode <live|file>|voice <name>|provider <elevenlabs|picovoice>]\n  Arguments:\n    - action [optional] (default=config, choices=on, off, config, mode, voice, provider): Speech setting to inspect or update.\n    - value [optional]: Value required by mode, voice, or provider actions.\n\n/speech-test\n  Description: Run the speech validation harness.\n  Usage: /speech-test [once|loop]\n  Arguments:\n    - mode [optional] (default=once, choices=once, loop): Run one speech test or request loop mode.\n\nTOOLS\n-\n/tools\n  Description: List registered runtime tools and optionally filter by category.\n  Usage: /tools [category]\n  Arguments:\n    - category [optional]: Optional runtime tool category filter.\n\nTRANSCRIPT\n-\n/export\n  Description: Export persisted entries from the current session.\n  Usage: /export [csv|jsonl|markdown|md|training]\n  Arguments:\n    - format [optional] (default=markdown, choices=csv, jsonl, markdown, md, training): Output format for the current session export.\n\n/export-prompts\n  Description: Export persisted captured prompts and responses for one session.\n  Usage: /export-prompts [session_id]\n  Arguments:\n    - session_id [optional]: Session identifier; omit for the current session.\n\n/replay\n  Description: Replay a transcript CSV.\n  Usage: /replay <csv_path> [delay_seconds]\n  Arguments:\n    - csv_path [required]: Transcript CSV path.\n    - delay_seconds [optional] (default=0): Delay between replayed user turns.\n\n/sessions\n  Description: List persisted transcript sessions with current and primed markers.\n  Usage: /sessions\n  Arguments: none\n\n/transcript\n  Description: Show a persisted current or selected transcript, or export all sessions.\n  Usage: /transcript [session_id|export]\n  Arguments:\n    - target [optional] (default=current session): Persisted session identifier to show, or export for all non-archived sessions.\n\nWORKFLOW\n-\n/workflow\n  Description: List, run, or control workflows.\n  Usage: /workflow <list|run|status|approve|skip> [name] [key=value ...]\n  Arguments:\n    - action [required] (choices=list, run, status, approve, skip): Workflow operation.\n    - name [optional]: Workflow name for run, or an optional approval/skip identifier.\n    - key=value [optional]: Optional workflow inputs for the run action."
+      },
+      {
         "focus": "agent",
         "output": "/agent\nCategory: orchestration\nUsage: /agent [name]\nDescription: Show detailed agent information.\nArguments:\n  - name [optional]: Agent name; omit to inspect the active agent."
       },
@@ -1671,13 +1683,785 @@
     }
   },
   "provenance": {
-    "capture_sha256": "8910d67902ceef692b519612a7e0a2286eb7bce2dcfc53cac0226c591e6d9b2e",
+    "capture_sha256": "eb19a8b5c2da9906b39276c8641dc1b7ec0d29091be1193bf3d9f147a17fcdd4",
     "module_origins": {
-      "friday_chat.app": "packages/friday-chat/src/friday_chat/app.py",
-      "friday_chat.commands.contracts": "packages/friday-chat/src/friday_chat/commands/contracts.py",
-      "friday_chat.commands.registry": "packages/friday-chat/src/friday_chat/commands/registry.py",
-      "friday_chat.commands.session": "packages/friday-chat/src/friday_chat/commands/session.py",
-      "friday_chat.runtime": "packages/friday-chat/src/friday_chat/runtime.py"
+      "friday_agent": [
+        "packages/friday-agent/src/friday_agent/__init__.py"
+      ],
+      "friday_agent.autonomous": [
+        "packages/friday-agent/src/friday_agent/autonomous.py"
+      ],
+      "friday_agent.base": [
+        "packages/friday-agent/src/friday_agent/base.py"
+      ],
+      "friday_agent.copilot": [
+        "packages/friday-agent/src/friday_agent/copilot.py"
+      ],
+      "friday_agent.interactive": [
+        "packages/friday-agent/src/friday_agent/interactive.py"
+      ],
+      "friday_agent.llm_completion": [
+        "packages/friday-agent/src/friday_agent/llm_completion.py"
+      ],
+      "friday_agent.loader": [
+        "packages/friday-agent/src/friday_agent/loader.py"
+      ],
+      "friday_agent.orchestrator": [
+        "packages/friday-agent/src/friday_agent/orchestrator.py"
+      ],
+      "friday_agent.profile": [
+        "packages/friday-agent/src/friday_agent/profile.py"
+      ],
+      "friday_agent.prompting": [
+        "packages/friday-agent/src/friday_agent/prompting.py"
+      ],
+      "friday_agent.registry": [
+        "packages/friday-agent/src/friday_agent/registry.py"
+      ],
+      "friday_agent.repl_base": [
+        "packages/friday-agent/src/friday_agent/repl_base.py"
+      ],
+      "friday_agent.security": [
+        "packages/friday-agent/src/friday_agent/security/__init__.py"
+      ],
+      "friday_agent.security.output_processor": [
+        "packages/friday-agent/src/friday_agent/security/output_processor.py"
+      ],
+      "friday_agent.skills": [
+        "packages/friday-agent/src/friday_agent/skills.py"
+      ],
+      "friday_agent.tools": [
+        "packages/friday-agent/src/friday_agent/tools/__init__.py"
+      ],
+      "friday_agent.tools.builtins": [
+        "packages/friday-agent/src/friday_agent/tools/builtins.py"
+      ],
+      "friday_agent.tools.registry": [
+        "packages/friday-agent/src/friday_agent/tools/registry.py"
+      ],
+      "friday_agent.workflows": [
+        "packages/friday-agent/src/friday_agent/workflows/__init__.py"
+      ],
+      "friday_agent.workflows.engine": [
+        "packages/friday-agent/src/friday_agent/workflows/engine.py"
+      ],
+      "friday_agent.workflows.loader": [
+        "packages/friday-agent/src/friday_agent/workflows/loader.py"
+      ],
+      "friday_agent.workflows.models": [
+        "packages/friday-agent/src/friday_agent/workflows/models.py"
+      ],
+      "friday_chat": [
+        "packages/friday-chat/src/friday_chat/__init__.py"
+      ],
+      "friday_chat.app": [
+        "packages/friday-chat/src/friday_chat/app.py"
+      ],
+      "friday_chat.background": [
+        "packages/friday-chat/src/friday_chat/background.py"
+      ],
+      "friday_chat.commands": [
+        "packages/friday-chat/src/friday_chat/commands/__init__.py"
+      ],
+      "friday_chat.commands.contracts": [
+        "packages/friday-chat/src/friday_chat/commands/contracts.py"
+      ],
+      "friday_chat.commands.files": [
+        "packages/friday-chat/src/friday_chat/commands/files.py"
+      ],
+      "friday_chat.commands.memory": [
+        "packages/friday-chat/src/friday_chat/commands/memory.py"
+      ],
+      "friday_chat.commands.registry": [
+        "packages/friday-chat/src/friday_chat/commands/registry.py"
+      ],
+      "friday_chat.commands.session": [
+        "packages/friday-chat/src/friday_chat/commands/session.py"
+      ],
+      "friday_chat.commands.tools": [
+        "packages/friday-chat/src/friday_chat/commands/tools.py"
+      ],
+      "friday_chat.commands.transcript": [
+        "packages/friday-chat/src/friday_chat/commands/transcript.py"
+      ],
+      "friday_chat.config": [
+        "packages/friday-chat/src/friday_chat/config.py"
+      ],
+      "friday_chat.display": [
+        "packages/friday-chat/src/friday_chat/display.py"
+      ],
+      "friday_chat.input_sources": [
+        "packages/friday-chat/src/friday_chat/input_sources.py"
+      ],
+      "friday_chat.memory_mcp": [
+        "packages/friday-chat/src/friday_chat/memory_mcp.py"
+      ],
+      "friday_chat.memory_views": [
+        "packages/friday-chat/src/friday_chat/memory_views.py"
+      ],
+      "friday_chat.reorganization": [
+        "packages/friday-chat/src/friday_chat/reorganization/__init__.py"
+      ],
+      "friday_chat.reorganization.artifacts": [
+        "packages/friday-chat/src/friday_chat/reorganization/artifacts.py"
+      ],
+      "friday_chat.reorganization.assembly": [
+        "packages/friday-chat/src/friday_chat/reorganization/assembly.py"
+      ],
+      "friday_chat.reorganization.contracts": [
+        "packages/friday-chat/src/friday_chat/reorganization/contracts.py"
+      ],
+      "friday_chat.reorganization.coordinator": [
+        "packages/friday-chat/src/friday_chat/reorganization/coordinator.py"
+      ],
+      "friday_chat.reorganization.durability": [
+        "packages/friday-chat/src/friday_chat/reorganization/durability.py"
+      ],
+      "friday_chat.reorganization.gate": [
+        "packages/friday-chat/src/friday_chat/reorganization/gate.py"
+      ],
+      "friday_chat.reorganization.layout": [
+        "packages/friday-chat/src/friday_chat/reorganization/layout.py"
+      ],
+      "friday_chat.reorganization.lease": [
+        "packages/friday-chat/src/friday_chat/reorganization/lease.py"
+      ],
+      "friday_chat.reorganization.preflight": [
+        "packages/friday-chat/src/friday_chat/reorganization/preflight.py"
+      ],
+      "friday_chat.replay": [
+        "packages/friday-chat/src/friday_chat/replay.py"
+      ],
+      "friday_chat.runtime": [
+        "packages/friday-chat/src/friday_chat/runtime.py"
+      ],
+      "friday_chat.security": [
+        "packages/friday-chat/src/friday_chat/security.py"
+      ],
+      "friday_chat.session": [
+        "packages/friday-chat/src/friday_chat/session.py"
+      ],
+      "friday_chat.shell": [
+        "packages/friday-chat/src/friday_chat/shell.py"
+      ],
+      "friday_chat.speech": [
+        "packages/friday-chat/src/friday_chat/speech.py"
+      ],
+      "friday_chat.telemetry": [
+        "packages/friday-chat/src/friday_chat/telemetry.py"
+      ],
+      "friday_chat.tools": [
+        "packages/friday-chat/src/friday_chat/tools/__init__.py"
+      ],
+      "friday_chat.tools.loop": [
+        "packages/friday-chat/src/friday_chat/tools/loop.py"
+      ],
+      "friday_chat.tools.mcp": [
+        "packages/friday-chat/src/friday_chat/tools/mcp.py"
+      ],
+      "friday_chat.tools.output": [
+        "packages/friday-chat/src/friday_chat/tools/output.py"
+      ],
+      "friday_chat.tools.registry": [
+        "packages/friday-chat/src/friday_chat/tools/registry.py"
+      ],
+      "friday_chat.tools.schemas": [
+        "packages/friday-chat/src/friday_chat/tools/schemas.py"
+      ],
+      "friday_chat.tools.selection": [
+        "packages/friday-chat/src/friday_chat/tools/selection.py"
+      ],
+      "friday_chat.transcripts": [
+        "packages/friday-chat/src/friday_chat/transcripts.py"
+      ],
+      "friday_chat.turns": [
+        "packages/friday-chat/src/friday_chat/turns/__init__.py"
+      ],
+      "friday_chat.turns.metrics": [
+        "packages/friday-chat/src/friday_chat/turns/metrics.py"
+      ],
+      "friday_chat.turns.models": [
+        "packages/friday-chat/src/friday_chat/turns/models.py"
+      ],
+      "friday_chat.turns.processor": [
+        "packages/friday-chat/src/friday_chat/turns/processor.py"
+      ],
+      "friday_chat.turns.telemetry": [
+        "packages/friday-chat/src/friday_chat/turns/telemetry.py"
+      ],
+      "friday_cli": [
+        "packages/friday-cli/src/friday_cli/__init__.py"
+      ],
+      "friday_cli.cancellation": [
+        "packages/friday-cli/src/friday_cli/cancellation.py"
+      ],
+      "friday_cli.cli_config": [
+        "packages/friday-cli/src/friday_cli/cli_config.py"
+      ],
+      "friday_cli.commands": [
+        "packages/friday-cli/src/friday_cli/commands.py"
+      ],
+      "friday_cli.display": [
+        "packages/friday-cli/src/friday_cli/display.py"
+      ],
+      "friday_cli.input": [
+        "packages/friday-cli/src/friday_cli/input.py"
+      ],
+      "friday_cli.progress": [
+        "packages/friday-cli/src/friday_cli/progress.py"
+      ],
+      "friday_cli.session": [
+        "packages/friday-cli/src/friday_cli/session.py"
+      ],
+      "friday_commands": [
+        "packages/friday-commands/src/friday_commands/__init__.py"
+      ],
+      "friday_commands.contracts": [
+        "packages/friday-commands/src/friday_commands/contracts.py"
+      ],
+      "friday_commands.registry": [
+        "packages/friday-commands/src/friday_commands/registry.py"
+      ],
+      "friday_core": [
+        "packages/friday-core/src/friday_core/__init__.py"
+      ],
+      "friday_core.config": [
+        "packages/friday-core/src/friday_core/config.py"
+      ],
+      "friday_core.exceptions": [
+        "packages/friday-core/src/friday_core/exceptions.py"
+      ],
+      "friday_core.interfaces": [
+        "packages/friday-core/src/friday_core/interfaces/__init__.py"
+      ],
+      "friday_core.interfaces.agent": [
+        "packages/friday-core/src/friday_core/interfaces/agent.py"
+      ],
+      "friday_core.interfaces.context": [
+        "packages/friday-core/src/friday_core/interfaces/context.py"
+      ],
+      "friday_core.interfaces.lab": [
+        "packages/friday-core/src/friday_core/interfaces/lab.py"
+      ],
+      "friday_core.interfaces.llm": [
+        "packages/friday-core/src/friday_core/interfaces/llm.py"
+      ],
+      "friday_core.interfaces.memory": [
+        "packages/friday-core/src/friday_core/interfaces/memory.py"
+      ],
+      "friday_core.interfaces.registry": [
+        "packages/friday-core/src/friday_core/interfaces/registry.py"
+      ],
+      "friday_core.interfaces.runtime": [
+        "packages/friday-core/src/friday_core/interfaces/runtime.py"
+      ],
+      "friday_core.interfaces.tools": [
+        "packages/friday-core/src/friday_core/interfaces/tools.py"
+      ],
+      "friday_core.interfaces.transcript": [
+        "packages/friday-core/src/friday_core/interfaces/transcript.py"
+      ],
+      "friday_core.logging": [
+        "packages/friday-core/src/friday_core/logging.py"
+      ],
+      "friday_core.mcp": [
+        "packages/friday-core/src/friday_core/mcp.py"
+      ],
+      "friday_core.profiles": [
+        "packages/friday-core/src/friday_core/profiles.py"
+      ],
+      "friday_core.security": [
+        "packages/friday-core/src/friday_core/security/__init__.py"
+      ],
+      "friday_core.security.config": [
+        "packages/friday-core/src/friday_core/security/config.py"
+      ],
+      "friday_core.security.markers": [
+        "packages/friday-core/src/friday_core/security/markers.py"
+      ],
+      "friday_core.security.patterns": [
+        "packages/friday-core/src/friday_core/security/patterns.py"
+      ],
+      "friday_core.security.quarantine": [
+        "packages/friday-core/src/friday_core/security/quarantine.py"
+      ],
+      "friday_core.security.sanitizer": [
+        "packages/friday-core/src/friday_core/security/sanitizer.py"
+      ],
+      "friday_core.telemetry": [
+        "packages/friday-core/src/friday_core/telemetry.py"
+      ],
+      "friday_llm": [
+        "packages/friday-llm/src/friday_llm/__init__.py"
+      ],
+      "friday_llm.capabilities": [
+        "packages/friday-llm/src/friday_llm/capabilities.py"
+      ],
+      "friday_llm.circuit_breaker": [
+        "packages/friday-llm/src/friday_llm/circuit_breaker.py"
+      ],
+      "friday_llm.config": [
+        "packages/friday-llm/src/friday_llm/config.py"
+      ],
+      "friday_llm.embeddings": [
+        "packages/friday-llm/src/friday_llm/embeddings.py"
+      ],
+      "friday_llm.exceptions": [
+        "packages/friday-llm/src/friday_llm/exceptions.py"
+      ],
+      "friday_llm.generation": [
+        "packages/friday-llm/src/friday_llm/generation.py"
+      ],
+      "friday_llm.langfuse_integration": [
+        "packages/friday-llm/src/friday_llm/langfuse_integration.py"
+      ],
+      "friday_llm.lifecycle": [
+        "packages/friday-llm/src/friday_llm/lifecycle.py"
+      ],
+      "friday_llm.model_library": [
+        "packages/friday-llm/src/friday_llm/model_library.py"
+      ],
+      "friday_llm.pricing": [
+        "packages/friday-llm/src/friday_llm/pricing.py"
+      ],
+      "friday_llm.protocols": [
+        "packages/friday-llm/src/friday_llm/protocols.py"
+      ],
+      "friday_llm.provider_options": [
+        "packages/friday-llm/src/friday_llm/provider_options.py"
+      ],
+      "friday_llm.requests": [
+        "packages/friday-llm/src/friday_llm/requests.py"
+      ],
+      "friday_llm.service": [
+        "packages/friday-llm/src/friday_llm/service.py"
+      ],
+      "friday_llm.streaming": [
+        "packages/friday-llm/src/friday_llm/streaming.py"
+      ],
+      "friday_llm.targets": [
+        "packages/friday-llm/src/friday_llm/targets.py"
+      ],
+      "friday_llm.telemetry": [
+        "packages/friday-llm/src/friday_llm/telemetry.py"
+      ],
+      "friday_llm.telemetry_helper": [
+        "packages/friday-llm/src/friday_llm/telemetry_helper.py"
+      ],
+      "friday_llm.telemetry_models": [
+        "packages/friday-llm/src/friday_llm/telemetry_models.py"
+      ],
+      "friday_llm.translation": [
+        "packages/friday-llm/src/friday_llm/translation.py"
+      ],
+      "friday_mcp": [
+        "packages/friday-mcp/src/friday_mcp/__init__.py"
+      ],
+      "friday_mcp.client": [
+        "packages/friday-mcp/src/friday_mcp/client/__init__.py"
+      ],
+      "friday_mcp.client.adapter": [
+        "packages/friday-mcp/src/friday_mcp/client/adapter.py"
+      ],
+      "friday_mcp.client.base": [
+        "packages/friday-mcp/src/friday_mcp/client/base.py"
+      ],
+      "friday_mcp.client.catalog": [
+        "packages/friday-mcp/src/friday_mcp/client/catalog.py"
+      ],
+      "friday_mcp.client.http": [
+        "packages/friday-mcp/src/friday_mcp/client/http.py"
+      ],
+      "friday_mcp.client.http_policy": [
+        "packages/friday-mcp/src/friday_mcp/client/http_policy.py"
+      ],
+      "friday_mcp.client.http_protocol": [
+        "packages/friday-mcp/src/friday_mcp/client/http_protocol.py"
+      ],
+      "friday_mcp.client.manager": [
+        "packages/friday-mcp/src/friday_mcp/client/manager.py"
+      ],
+      "friday_mcp.client.protocol": [
+        "packages/friday-mcp/src/friday_mcp/client/protocol.py"
+      ],
+      "friday_mcp.client.schema_validation": [
+        "packages/friday-mcp/src/friday_mcp/client/schema_validation.py"
+      ],
+      "friday_mcp.client.sse": [
+        "packages/friday-mcp/src/friday_mcp/client/sse.py"
+      ],
+      "friday_mcp.client.stdio": [
+        "packages/friday-mcp/src/friday_mcp/client/stdio.py"
+      ],
+      "friday_mcp.config": [
+        "packages/friday-mcp/src/friday_mcp/config.py"
+      ],
+      "friday_mcp.protocols": [
+        "packages/friday-mcp/src/friday_mcp/protocols.py"
+      ],
+      "friday_mcp.utils": [
+        "packages/friday-mcp/src/friday_mcp/utils/__init__.py"
+      ],
+      "friday_mcp.utils.schema": [
+        "packages/friday-mcp/src/friday_mcp/utils/schema.py"
+      ],
+      "friday_memory": [
+        "packages/friday-memory/src/friday_memory/__init__.py"
+      ],
+      "friday_memory.adapters": [
+        "packages/friday-memory/src/friday_memory/adapters/__init__.py"
+      ],
+      "friday_memory.adapters.episodic": [
+        "packages/friday-memory/src/friday_memory/adapters/episodic.py"
+      ],
+      "friday_memory.adapters.graph": [
+        "packages/friday-memory/src/friday_memory/adapters/graph.py"
+      ],
+      "friday_memory.adapters.null_graph": [
+        "packages/friday-memory/src/friday_memory/adapters/null_graph.py"
+      ],
+      "friday_memory.adapters.simple_vector": [
+        "packages/friday-memory/src/friday_memory/adapters/simple_vector.py"
+      ],
+      "friday_memory.adapters.vector": [
+        "packages/friday-memory/src/friday_memory/adapters/vector.py"
+      ],
+      "friday_memory.context": [
+        "packages/friday-memory/src/friday_memory/context/__init__.py"
+      ],
+      "friday_memory.context.assembler": [
+        "packages/friday-memory/src/friday_memory/context/assembler.py"
+      ],
+      "friday_memory.context.budget_monitor": [
+        "packages/friday-memory/src/friday_memory/context/budget_monitor.py"
+      ],
+      "friday_memory.context.cache_config": [
+        "packages/friday-memory/src/friday_memory/context/cache_config.py"
+      ],
+      "friday_memory.context.consolidator": [
+        "packages/friday-memory/src/friday_memory/context/consolidator.py"
+      ],
+      "friday_memory.context.extraction_filter": [
+        "packages/friday-memory/src/friday_memory/context/extraction_filter.py"
+      ],
+      "friday_memory.context.extractor": [
+        "packages/friday-memory/src/friday_memory/context/extractor.py"
+      ],
+      "friday_memory.context.layout": [
+        "packages/friday-memory/src/friday_memory/context/layout.py"
+      ],
+      "friday_memory.context.ontology": [
+        "packages/friday-memory/src/friday_memory/context/ontology.py"
+      ],
+      "friday_memory.context.passage_router": [
+        "packages/friday-memory/src/friday_memory/context/passage_router.py"
+      ],
+      "friday_memory.context.token_estimator": [
+        "packages/friday-memory/src/friday_memory/context/token_estimator.py"
+      ],
+      "friday_memory.context.tool_manager": [
+        "packages/friday-memory/src/friday_memory/context/tool_manager.py"
+      ],
+      "friday_memory.controller": [
+        "packages/friday-memory/src/friday_memory/controller/__init__.py"
+      ],
+      "friday_memory.controller.memory_controller": [
+        "packages/friday-memory/src/friday_memory/controller/memory_controller.py"
+      ],
+      "friday_memory.ingestion": [
+        "packages/friday-memory/src/friday_memory/ingestion/__init__.py"
+      ],
+      "friday_memory.ingestion.chunker": [
+        "packages/friday-memory/src/friday_memory/ingestion/chunker.py"
+      ],
+      "friday_memory.ingestion.large_file_processor": [
+        "packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py"
+      ],
+      "friday_memory.ingestion.pipeline": [
+        "packages/friday-memory/src/friday_memory/ingestion/pipeline.py"
+      ],
+      "friday_memory.ingestion.tool_ingester": [
+        "packages/friday-memory/src/friday_memory/ingestion/tool_ingester.py"
+      ],
+      "friday_memory.json_response": [
+        "packages/friday-memory/src/friday_memory/json_response.py"
+      ],
+      "friday_memory.lifecycle": [
+        "packages/friday-memory/src/friday_memory/lifecycle/__init__.py"
+      ],
+      "friday_memory.lifecycle.decay": [
+        "packages/friday-memory/src/friday_memory/lifecycle/decay.py"
+      ],
+      "friday_memory.lifecycle.migration": [
+        "packages/friday-memory/src/friday_memory/lifecycle/migration.py"
+      ],
+      "friday_memory.lifecycle.promotion": [
+        "packages/friday-memory/src/friday_memory/lifecycle/promotion.py"
+      ],
+      "friday_memory.lifecycle.stages": [
+        "packages/friday-memory/src/friday_memory/lifecycle/stages.py"
+      ],
+      "friday_memory.lifecycle.tool_content": [
+        "packages/friday-memory/src/friday_memory/lifecycle/tool_content.py"
+      ],
+      "friday_memory.llm_completion": [
+        "packages/friday-memory/src/friday_memory/llm_completion.py"
+      ],
+      "friday_memory.maintenance": [
+        "packages/friday-memory/src/friday_memory/maintenance/__init__.py"
+      ],
+      "friday_memory.maintenance.analyzer": [
+        "packages/friday-memory/src/friday_memory/maintenance/analyzer.py"
+      ],
+      "friday_memory.maintenance.backup": [
+        "packages/friday-memory/src/friday_memory/maintenance/backup.py"
+      ],
+      "friday_memory.maintenance.compactor": [
+        "packages/friday-memory/src/friday_memory/maintenance/compactor.py"
+      ],
+      "friday_memory.maintenance.fact_checker": [
+        "packages/friday-memory/src/friday_memory/maintenance/fact_checker.py"
+      ],
+      "friday_memory.maintenance.incremental": [
+        "packages/friday-memory/src/friday_memory/maintenance/incremental.py"
+      ],
+      "friday_memory.maintenance.logger": [
+        "packages/friday-memory/src/friday_memory/maintenance/logger.py"
+      ],
+      "friday_memory.maintenance.models": [
+        "packages/friday-memory/src/friday_memory/maintenance/models.py"
+      ],
+      "friday_memory.maintenance.mutation": [
+        "packages/friday-memory/src/friday_memory/maintenance/mutation.py"
+      ],
+      "friday_memory.maintenance.pruner": [
+        "packages/friday-memory/src/friday_memory/maintenance/pruner.py"
+      ],
+      "friday_memory.maintenance.recovery": [
+        "packages/friday-memory/src/friday_memory/maintenance/recovery.py"
+      ],
+      "friday_memory.maintenance.recovery_models": [
+        "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py"
+      ],
+      "friday_memory.maintenance.reorganizer": [
+        "packages/friday-memory/src/friday_memory/maintenance/reorganizer.py"
+      ],
+      "friday_memory.maintenance.synthesizer": [
+        "packages/friday-memory/src/friday_memory/maintenance/synthesizer.py"
+      ],
+      "friday_memory.models": [
+        "packages/friday-memory/src/friday_memory/models/__init__.py"
+      ],
+      "friday_memory.models.budget": [
+        "packages/friday-memory/src/friday_memory/models/budget.py"
+      ],
+      "friday_memory.models.graph": [
+        "packages/friday-memory/src/friday_memory/models/graph.py"
+      ],
+      "friday_memory.models.llm_responses": [
+        "packages/friday-memory/src/friday_memory/models/llm_responses.py"
+      ],
+      "friday_memory.models.mcp": [
+        "packages/friday-memory/src/friday_memory/models/mcp.py"
+      ],
+      "friday_memory.models.payload": [
+        "packages/friday-memory/src/friday_memory/models/payload.py"
+      ],
+      "friday_memory.models.session": [
+        "packages/friday-memory/src/friday_memory/models/session.py"
+      ],
+      "friday_memory.models.tools": [
+        "packages/friday-memory/src/friday_memory/models/tools.py"
+      ],
+      "friday_memory.models.vector_metadata": [
+        "packages/friday-memory/src/friday_memory/models/vector_metadata.py"
+      ],
+      "friday_memory.multi_agent": [
+        "packages/friday-memory/src/friday_memory/multi_agent/__init__.py"
+      ],
+      "friday_memory.multi_agent.controller": [
+        "packages/friday-memory/src/friday_memory/multi_agent/controller.py"
+      ],
+      "friday_memory.multi_agent.coordinator": [
+        "packages/friday-memory/src/friday_memory/multi_agent/coordinator.py"
+      ],
+      "friday_memory.multi_agent.journal": [
+        "packages/friday-memory/src/friday_memory/multi_agent/journal.py"
+      ],
+      "friday_memory.multi_agent.models": [
+        "packages/friday-memory/src/friday_memory/multi_agent/models.py"
+      ],
+      "friday_memory.multi_agent.observability": [
+        "packages/friday-memory/src/friday_memory/multi_agent/observability.py"
+      ],
+      "friday_memory.multi_agent.policy": [
+        "packages/friday-memory/src/friday_memory/multi_agent/policy.py"
+      ],
+      "friday_memory.multi_agent.scratchpad": [
+        "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py"
+      ],
+      "friday_memory.retrieval": [
+        "packages/friday-memory/src/friday_memory/retrieval/__init__.py"
+      ],
+      "friday_memory.retrieval.access_buffer": [
+        "packages/friday-memory/src/friday_memory/retrieval/access_buffer.py"
+      ],
+      "friday_memory.retrieval.collection_manager": [
+        "packages/friday-memory/src/friday_memory/retrieval/collection_manager.py"
+      ],
+      "friday_memory.retrieval.factor_computer": [
+        "packages/friday-memory/src/friday_memory/retrieval/factor_computer.py"
+      ],
+      "friday_memory.retrieval.graph_scorer": [
+        "packages/friday-memory/src/friday_memory/retrieval/graph_scorer.py"
+      ],
+      "friday_memory.retrieval.inclusion_scorer": [
+        "packages/friday-memory/src/friday_memory/retrieval/inclusion_scorer.py"
+      ],
+      "friday_memory.retrieval.mcp": [
+        "packages/friday-memory/src/friday_memory/retrieval/mcp.py"
+      ],
+      "friday_memory.temporal": [
+        "packages/friday-memory/src/friday_memory/temporal.py"
+      ],
+      "friday_runtime": [
+        "packages/friday-runtime/src/friday_runtime/__init__.py"
+      ],
+      "friday_runtime.config": [
+        "packages/friday-runtime/src/friday_runtime/config.py"
+      ],
+      "friday_runtime.di": [
+        "packages/friday-runtime/src/friday_runtime/di.py"
+      ],
+      "friday_runtime.kernel": [
+        "packages/friday-runtime/src/friday_runtime/kernel.py"
+      ],
+      "friday_runtime.mcp_clients": [
+        "packages/friday-runtime/src/friday_runtime/mcp_clients.py"
+      ],
+      "friday_runtime.mcp_loading": [
+        "packages/friday-runtime/src/friday_runtime/mcp_loading.py"
+      ],
+      "friday_runtime.mcp_registration": [
+        "packages/friday-runtime/src/friday_runtime/mcp_registration.py"
+      ],
+      "friday_runtime.model_library": [
+        "packages/friday-runtime/src/friday_runtime/model_library.py"
+      ],
+      "friday_runtime.tool_loading": [
+        "packages/friday-runtime/src/friday_runtime/tool_loading.py"
+      ],
+      "friday_telemetry": [
+        "packages/friday-telemetry/src/friday_telemetry/__init__.py"
+      ],
+      "friday_telemetry.attributes": [
+        "packages/friday-telemetry/src/friday_telemetry/attributes.py"
+      ],
+      "friday_telemetry.config": [
+        "packages/friday-telemetry/src/friday_telemetry/config.py"
+      ],
+      "friday_telemetry.factory": [
+        "packages/friday-telemetry/src/friday_telemetry/factory.py"
+      ],
+      "friday_telemetry.helpers": [
+        "packages/friday-telemetry/src/friday_telemetry/helpers/__init__.py"
+      ],
+      "friday_telemetry.helpers.correlation": [
+        "packages/friday-telemetry/src/friday_telemetry/helpers/correlation.py"
+      ],
+      "friday_telemetry.helpers.llm": [
+        "packages/friday-telemetry/src/friday_telemetry/helpers/llm.py"
+      ],
+      "friday_telemetry.helpers.mcp": [
+        "packages/friday-telemetry/src/friday_telemetry/helpers/mcp.py"
+      ],
+      "friday_telemetry.helpers.memory": [
+        "packages/friday-telemetry/src/friday_telemetry/helpers/memory.py"
+      ],
+      "friday_telemetry.helpers.safe_llm": [
+        "packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py"
+      ],
+      "friday_telemetry.interface": [
+        "packages/friday-telemetry/src/friday_telemetry/interface.py"
+      ],
+      "friday_telemetry.lifecycle": [
+        "packages/friday-telemetry/src/friday_telemetry/lifecycle.py"
+      ],
+      "friday_telemetry.models": [
+        "packages/friday-telemetry/src/friday_telemetry/models/__init__.py"
+      ],
+      "friday_telemetry.models.common": [
+        "packages/friday-telemetry/src/friday_telemetry/models/common.py"
+      ],
+      "friday_telemetry.models.execution": [
+        "packages/friday-telemetry/src/friday_telemetry/models/execution.py"
+      ],
+      "friday_telemetry.models.llm": [
+        "packages/friday-telemetry/src/friday_telemetry/models/llm.py"
+      ],
+      "friday_telemetry.models.llm_events": [
+        "packages/friday-telemetry/src/friday_telemetry/models/llm_events.py"
+      ],
+      "friday_telemetry.models.mcp": [
+        "packages/friday-telemetry/src/friday_telemetry/models/mcp.py"
+      ],
+      "friday_telemetry.models.memory": [
+        "packages/friday-telemetry/src/friday_telemetry/models/memory.py"
+      ],
+      "friday_telemetry.providers": [
+        "packages/friday-telemetry/src/friday_telemetry/providers/__init__.py"
+      ],
+      "friday_telemetry.providers.composite": [
+        "packages/friday-telemetry/src/friday_telemetry/providers/composite.py"
+      ],
+      "friday_telemetry.providers.debug": [
+        "packages/friday-telemetry/src/friday_telemetry/providers/debug.py"
+      ],
+      "friday_telemetry.providers.otel": [
+        "packages/friday-telemetry/src/friday_telemetry/providers/otel.py"
+      ],
+      "friday_telemetry.records": [
+        "packages/friday-telemetry/src/friday_telemetry/records.py"
+      ],
+      "friday_transcript": [
+        "packages/friday-transcript/src/friday_transcript/__init__.py"
+      ],
+      "friday_transcript.correlation": [
+        "packages/friday-transcript/src/friday_transcript/correlation.py"
+      ],
+      "friday_transcript.exporters": [
+        "packages/friday-transcript/src/friday_transcript/exporters/__init__.py"
+      ],
+      "friday_transcript.exporters.csv": [
+        "packages/friday-transcript/src/friday_transcript/exporters/csv.py"
+      ],
+      "friday_transcript.exporters.jsonl": [
+        "packages/friday-transcript/src/friday_transcript/exporters/jsonl.py"
+      ],
+      "friday_transcript.exporters.markdown": [
+        "packages/friday-transcript/src/friday_transcript/exporters/markdown.py"
+      ],
+      "friday_transcript.models": [
+        "packages/friday-transcript/src/friday_transcript/models/__init__.py"
+      ],
+      "friday_transcript.models.snapshot": [
+        "packages/friday-transcript/src/friday_transcript/models/snapshot.py"
+      ],
+      "friday_transcript.models.transcript": [
+        "packages/friday-transcript/src/friday_transcript/models/transcript.py"
+      ],
+      "friday_transcript.stores": [
+        "packages/friday-transcript/src/friday_transcript/stores/__init__.py"
+      ],
+      "friday_transcript.stores.jsonl": [
+        "packages/friday-transcript/src/friday_transcript/stores/jsonl.py"
+      ],
+      "friday_transcript.stores.protocol": [
+        "packages/friday-transcript/src/friday_transcript/stores/protocol.py"
+      ],
+      "friday_transcript.stores.sqlite": [
+        "packages/friday-transcript/src/friday_transcript/stores/sqlite.py"
+      ]
     },
     "python": "3.13.10 (main, Dec  2 2025, 22:01:27) [Clang 21.1.4 ]",
     "revision": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
@@ -1724,6 +2508,9 @@
       "packages/friday-chat/src/friday_chat/commands/workflow.py": "2d1cee8f13fb1ab87bbba8703feaf4969407c40d35c0fc1387b141a2f4afcc60",
       "packages/friday-chat/src/friday_chat/config.py": "734559482073fa66b2197604136d4fde805fc8f9e4ce7078f33df57c4a3c52d1",
       "packages/friday-chat/src/friday_chat/config_templates/__init__.py": "c9a571210b78e15e2724888e0ace8ab5a8bcc561e7dbc314c174251948fb311a",
+      "packages/friday-chat/src/friday_chat/config_templates/cli-config.example.yaml": "4d513ca9e00fddc76f9cf037afe93b496d379b233c875e0c013d2d61ca953c69",
+      "packages/friday-chat/src/friday_chat/config_templates/config.example.yaml": "6fecbd23bb6b15dbe68d7bf4dbb8dfe14a431f74c68efa5379a545b13671c110",
+      "packages/friday-chat/src/friday_chat/config_templates/models-config.example.yaml": "57a8d0d047833b6501415e149560d90a0437dc229f5e7891fa408aa3d17744c1",
       "packages/friday-chat/src/friday_chat/display.py": "bb463f89ca3300c2fa1a566ce67bb7e30ec15b31c880ccb1987f4581611dcac1",
       "packages/friday-chat/src/friday_chat/exports.py": "2ddef61dae39fbdfb3999875b5be51885381bb820a7e84edea25d828ef4f5cad",
       "packages/friday-chat/src/friday_chat/input_sources.py": "090f07ca17ed22763cfdc39168b5697c3ca0f1a031a267b1c288a4c7e1afa32d",
@@ -1776,6 +2563,7 @@
       "packages/friday-cli/src/friday_cli/session.py": "91371d2f4905da0413e63d1c3a5b848020c6caee07c726a4807e0a811120321a",
       "packages/friday-commands/src/friday_commands/__init__.py": "7ba86bb94f888697d02f783068a06b1aa08b95e2ac30b76d39ff95a4449bf2dc",
       "packages/friday-commands/src/friday_commands/contracts.py": "9e605cf89d97244cb4857b3aae6ee775f4b8d7c600a91fefcd76d629196acca1",
+      "packages/friday-commands/src/friday_commands/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "packages/friday-commands/src/friday_commands/registry.py": "665689c349deadb917eef90fb4e7cf0a85d3e9450c014126f91173f9ee773162",
       "packages/friday-core/src/friday_core/__init__.py": "5343759de1e349d6060e9258fa336333d83e557273d7c68c84a7f9a913a6ecb0",
       "packages/friday-core/src/friday_core/config.py": "9b5b693a8b2b5b50ebbbf839cb2845afc84404e51e3fd28f035cd648ffb0e0a9",
@@ -1812,6 +2600,7 @@
       "packages/friday-finance/src/friday_finance/providers/massive/modules/equities.py": "1d8b4df8c200da1e73ac07fdd5bfb255b54d7669e0e86067021d2e38bf01fb88",
       "packages/friday-finance/src/friday_finance/providers/massive/modules/indicators.py": "2e7c92fa66cc085d425f067c6d804e283a82fb5c0327088d219143c9f493253d",
       "packages/friday-finance/src/friday_finance/providers/massive/registry.py": "6e2bb0b9a48c0995d5303656b60b914a3462558add3a13323a39739740acf05d",
+      "packages/friday-llm/src/.DS_Store": "2dcdfc5d225add48466b8cc82bfd097c792ed47ff28f7a91542025b02692c19e",
       "packages/friday-llm/src/friday_llm/__init__.py": "df8c538447bb0b1bf2b2d8e2397e4f16b91f9b258088edac4dcddcf33a4403fc",
       "packages/friday-llm/src/friday_llm/capabilities.py": "78f1138a39cad74d56abef6fb20828109ce3f9f8f31a5ea7344559c779872b8f",
       "packages/friday-llm/src/friday_llm/circuit_breaker.py": "b42ec5b77721dce9d0e09e1032a79d40e4bf393c26f64a035f5b49ab80fdd501",

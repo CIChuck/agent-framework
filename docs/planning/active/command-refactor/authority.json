@@ -159,9 +159,9 @@
     "scope": "Planning only: pilot contract/directive and current board/dashboard/README/next-phase/authority/execution-log records",
     "source_base": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
     "contract": "pilot-command-contract.md",
-    "contract_sha256": "3215089eeaf9298566b677949bbbcaddde91ab00dc08aea37c971547ed3e4b54",
+    "contract_sha256": "ef0af6e9c5300906594191ee18ea2b195ef4ae525fcd6898a644bdcc961c958d",
     "directive": "directives/CD-CMD-PILOT-001-help-exit-clear.md",
-    "directive_sha256": "a5fe8be287d8118214d3149180a4a50266f113b6e70abce34dfbe2fcee21cca2",
+    "directive_sha256": "797178a18200a4e854b8ece064622f42f2cfeb21cfad335dc92f0cd69deb745e",
     "design_approval": "not_granted",
     "construction_approval": "not_granted",
     "approval_order": [
@@ -169,7 +169,8 @@
       "exact construction directive"
     ],
     "lightweight_exemption": "Documentation-only preparation under maintainer proceed; no product/test/config/package/lock/frozen evidence edits; controller validates hashes, syntax, board/docs and whitespace",
-    "delivery": "No push/PR/merge/release authority"
+    "delivery": "No push/PR/merge/release authority",
+    "record_kind": "historical initial proposal at 2bb3c6cf; current hashes in pilot_current_proposal"
   },
   "pilot_harness_amendment": {
     "authorized_by": "Chuck Russell",
@@ -190,7 +191,31 @@
     "pilot_design_approval": "not_granted",
     "pilot_construction_approval": "not_granted",
     "delivery": "local only",
-    "status": "candidate prepared for fresh three-provider design/harness-readiness council",
-    "evidence": "validation/pilot/harness-evidence.json"
+    "status": "bounded round-one corrections applied; fresh full round-two review pending",
+    "evidence": "validation/pilot/harness-evidence-round2.json",
+    "corrections": "validation/pilot/council-remediation.json"
+  },
+  "pilot_proposal_revisions": [
+    {
+      "revision": 0,
+      "candidate": "2bb3c6cf",
+      "contract_sha256": "ef0af6e9c5300906594191ee18ea2b195ef4ae525fcd6898a644bdcc961c958d",
+      "directive_sha256": "797178a18200a4e854b8ece064622f42f2cfeb21cfad335dc92f0cd69deb745e"
+    },
+    {
+      "revision": 1,
+      "candidate": "3952d213c6be360c2b8b638c0474d8142fa4bb20",
+      "contract_sha256": "3215089eeaf9298566b677949bbbcaddde91ab00dc08aea37c971547ed3e4b54",
+      "directive_sha256": "a5fe8be287d8118214d3149180a4a50266f113b6e70abce34dfbe2fcee21cca2"
+    }
+  ],
+  "pilot_current_proposal": {
+    "revision": 2,
+    "contract": "pilot-command-contract.md",
+    "contract_sha256": "c2c5b94079f466d0cf7d8331d0941fc9451e2d8e390d0e288e3b81ec9997f973",
+    "directive": "directives/CD-CMD-PILOT-001-help-exit-clear.md",
+    "directive_sha256": "3033ea657b125a6308647e5b8cac6c1acf885cc113d4bbd2e32ffd4b76c620fe",
+    "design_approval": "not_granted",
+    "construction_approval": "not_granted"
   }
 }

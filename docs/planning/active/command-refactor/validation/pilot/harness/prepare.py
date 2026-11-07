@@ -80,15 +80,14 @@ def main() -> None:
         (wheelhouse / filename).write_bytes(content)
     # Leave the historical runner unchanged. Its wrapper exports an explicit
     # wheel source and disables indexes for every subsequent offline build.
-    wrapper = (
-        "import os, pathlib, runpy\n"
-        "scratch = pathlib.Path(__file__).resolve().parent\n"
-        "os.environ['UV_FIND_LINKS'] = str(scratch / 'wheelhouse')\n"
-        "os.environ['UV_NO_INDEX'] = '1'\n"
-        "os.environ['LITELLM_LOCAL_MODEL_COST_MAP'] = 'True'\n"
-        "runpy.run_path(str(scratch / 'run.py'), run_name='__main__')\n"
-    )
+    wrapper = Path(__file__).with_name("runner_wrapper.py").read_text()
     (scratch / "pilot_run.py").write_text(wrapper)
+    extension = Path(__file__).with_name("guard_extension.py").read_bytes()
+    (scratch / "pilot_guard.py").write_bytes(extension)
+    with (scratch / "sitecustomize.py").open("a") as guard:
+        guard.write(
+            "\nfrom pilot_guard import install as _install_pilot_guard\n_install_pilot_guard()\n"
+        )
     environment = {
         key: value
         for key, value in os.environ.items()
@@ -105,6 +104,10 @@ def main() -> None:
         "requirements_sha256": hashlib.sha256(requirements.read_bytes()).hexdigest(),
         "build_manifest_sha256": hashlib.sha256(manifest.read_bytes()).hexdigest(),
         "wrapper_sha256": hashlib.sha256(wrapper.encode()).hexdigest(),
+        "guard_extension_sha256": hashlib.sha256(extension).hexdigest(),
+        "combined_guard_sha256": hashlib.sha256(
+            (scratch / "sitecustomize.py").read_bytes()
+        ).hexdigest(),
         "helper_hashes": PINS,
     }
     (scratch / "bootstrap.json").write_text(json.dumps(receipt, indent=2) + "\n")

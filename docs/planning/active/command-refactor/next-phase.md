@@ -71,11 +71,29 @@ embedded-code syntax, board/dashboard, documentation links and whitespace.
 No implementation tests or independent product review are claimed for this draft.
 
 The 2026-11-07 harness amendment now supplies runnable diagnostic scripts,
-a frozen baseline with 193 observations and explicit G0–G5 incremental gates.
+an initial frozen baseline with 193 observations and explicit G0–G5 incremental gates.
 [Harness receipts](validation/pilot/harness-evidence.json) record fresh/offline
 startup, seven guard refusals, comparator controls, clean-Git reproduction and
-source-tamper rejection; the revised runner passes 1,038 Chat,145 foundation/
-cohort and155 CLI baseline tests. No pilot API/adapter is implemented. Council
+source-tamper rejection; the revised runner passes 1,038 Chat, 145 foundation/
+cohort and 155 CLI baseline tests. No pilot API/adapter is implemented. Council
 review and bounded feedback are authorized separately; scores do not grant
 construction approval. Historical documentation-only limits above describe the
 initial draft; the later exact diagnostic exemption is in current authority.
+
+Round-one council reconciliation: OpenAI VERIFIED 9.4/10, Gemini VERIFIED 9.5/10,
+Claude CHANGES_REQUESTED 8.3/10. The combined disposition is CHANGES_REQUESTED;
+no majority vote overrides reproducible mandatory findings. Authorized bounded
+corrections now cover closed-wheelhouse artifact commands, SQLite audit guards,
+exact test ownership and complete gate commands, local G2 commits, all export
+source/data and loaded-module origins, explicit shared type rules/catalogs,
+receipt collisions, capture-identity controls and evidence revision history.
+The regenerated baseline comes from the same unchanged Git revision, preserving
+all original observations and adding three legacy falsy-focus cases (196 total).
+Fresh full three-provider review is required for the corrected candidate.
+
+Current corrected G0 evidence is [round-two harness receipts](validation/pilot/harness-evidence-round2.json):
+12 refusal controls, 10 comparison controls, cold artifact build/install and all
+1,338 scoped baseline tests pass with the final scratch-isolated runner.
+[Correction map](validation/pilot/council-remediation.json) binds every council
+finding and the explicit baseline regeneration. The older receipt paragraph
+above describes round one. No product construction approval is granted.
