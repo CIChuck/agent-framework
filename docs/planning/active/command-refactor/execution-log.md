@@ -786,3 +786,24 @@ approval. No source, test, config, dependency, lock or frozen validation report
 changed; original working examples remain protected. Execution phase planning;
 validation state not_ready for PILOT-001, RET-001 remains VERIFIED/accepted.
 Recorded at 2026-11-07T13:40:31+00:00. No construction or external delivery initiated.
+
+2026-11-07: Under Chuck Russell's “proceed” for next-gate preparation, drafted
+[PILOT-001 contract](pilot-command-contract.md) and
+[CD-CMD-PILOT-001](directives/CD-CMD-PILOT-001-help-exit-clear.md).
+Planning baseline 7b80ca01489a52608aafb54b626b74fbb36efbe3. Proposed additive API moves
+only help/exit/cls definitions and typed behavior; Chat keeps parsing, text,
+custom registry compatibility and app lifecycle, while the other 38 handlers
+remain unchanged. Directive binds exact baseline fixtures/assertions, source
+limits, all retirement negatives, regression and clean installed proofs plus
+fresh independent implementation validation. Review contract first, then exact
+directive. No design/construction approval inferred from preparation. Recorded
+documentation-only exemption and hashes in current authority/checkpoint; no
+source/test/config/lock/frozen evidence change or publication. Execution phase
+planning; validation state not_ready (PILOT-001); RET-001 remains accepted.
+
+Planning-only verification passes: board 36 tasks, documentation lifecycle 862
+Markdown files, proposal/hash pins, embedded Python/shell syntax and whitespace.
+Compared all 17,072 pre-existing tracked files: only six allowed current
+navigation/status records changed, plus the two new proposal documents. Product,
+tests, dependency/lock, frozen authorities/evidence and both protected working
+examples remain byte-identical. No implementation checks run or claimed.

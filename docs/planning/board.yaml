@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-11-06'
+updated: '2026-11-07'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: RET-001 accepted; prepare and review PILOT-001 catalog, routing, rendering and lifecycle contracts plus exact directive before approval; no construction or delivery
+  next_gate: Review and approve proposed PILOT-001 contract first, then CD-CMD-PILOT-001; RET-001 accepted; no pilot construction or delivery
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2533,3 +2533,10 @@ events:
   action: accepted RET-001 retirement unit
   note: Direct instruction accepted follows independent VERIFIED f896ef53 and1338 passing scoped tests. Acceptance covers RET-001 only; entire initiative remains started/local. Next pilot contract/directive needs separate approval; no publication or new construction inferred.
   evidence: docs/planning/active/command-refactor/approval/command-retirement.md
+- task: friday-command-refactor
+  at: '2026-11-07T13:56:17Z'
+  actor: Codex
+  actor_role: agent
+  action: prepared proposed pilot contract and construction directive
+  note: Maintainer proceed authorizes planning only. Two review documents define help/exit/cls ownership, adapters, compatibility, tests and clean installed proof. Read contract first then directive; neither is approved. Product and protected examples unchanged; initiative started/local.
+  evidence: docs/planning/active/command-refactor/next-phase.md

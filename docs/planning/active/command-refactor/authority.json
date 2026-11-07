@@ -2,11 +2,11 @@
   "version": 1,
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
-  "date": "2026-11-06",
-  "decision": "RET-001 independently VERIFIED and accepted; next gate is separate PILOT-001 contract/directive preparation and approval",
+  "date": "2026-11-07",
+  "decision": "RET-001 accepted; proposed PILOT-001 contract and exact directive prepared for maintainer review, no construction approval",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Accepted retirement unit closed; next pilot requires separately reviewed contracts and approved directive",
+  "current_scope": "Review pilot contract first, then construction directive; accepted RET-001 remains closed",
   "product_code_authority": "No new construction authority; RET-001 accepted, pilot/family/TUI and delivery remain unapproved",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -151,5 +151,24 @@
     "independent_report": "validation/retirement/verified-report.md",
     "record": "approval/command-retirement.md",
     "scope": "RET-001 only; whole refactor remains started, delivery local"
+  },
+  "pilot_preparation": {
+    "authorized_by": "Chuck Russell",
+    "date": "2026-11-07",
+    "instruction": "proceed",
+    "scope": "Planning only: pilot contract/directive and current board/dashboard/README/next-phase/authority/execution-log records",
+    "source_base": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
+    "contract": "pilot-command-contract.md",
+    "contract_sha256": "ef0af6e9c5300906594191ee18ea2b195ef4ae525fcd6898a644bdcc961c958d",
+    "directive": "directives/CD-CMD-PILOT-001-help-exit-clear.md",
+    "directive_sha256": "797178a18200a4e854b8ece064622f42f2cfeb21cfad335dc92f0cd69deb745e",
+    "design_approval": "not_granted",
+    "construction_approval": "not_granted",
+    "approval_order": [
+      "pilot contract including additive API/ownership review",
+      "exact construction directive"
+    ],
+    "lightweight_exemption": "Documentation-only preparation under maintainer proceed; no product/test/config/package/lock/frozen evidence edits; controller validates hashes, syntax, board/docs and whitespace",
+    "delivery": "No push/PR/merge/release authority"
   }
 }

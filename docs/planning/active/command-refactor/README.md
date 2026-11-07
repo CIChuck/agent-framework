@@ -92,8 +92,10 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Prepare/review PILOT-001 catalog ownership, Chat routing,
-help/exit/clear rendering/lifecycle contracts and exact construction directive.
+**Next gate:** Read/approve the proposed [PILOT-001 contract](pilot-command-contract.md),
+then [CD-CMD-PILOT-001](directives/CD-CMD-PILOT-001-help-exit-clear.md).
+They define catalog ownership, Chat routing, help/exit/clear rendering/lifecycle
+and exact construction/verification scope. Both remain unapproved.
 RET-001 is accepted. No pilot/family/TUI construction or publication is approved.
 See the [main checkpoint](next-phase.md).
 

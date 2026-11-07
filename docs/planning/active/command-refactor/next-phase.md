@@ -1,7 +1,7 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: RET-001 accepted; next pilot contract/directive gate
+Status: RET-001 accepted; proposed pilot contract/directive ready for review
 Execution phase: planning
 Validation state: not_ready (PILOT-001); RET-001 verified and accepted
 
@@ -39,10 +39,17 @@ API or directive change follows the reviewed candidate.
 
 ## Next steps
 
-1. Prepare/review PILOT-001: catalog ownership, help/exit/clear routing, rendering
-   and lifecycle boundaries, aliases and verification. Obtain its exact design/
-   construction approval before implementing any migration.
-2. Proceed through the remaining family/P0/P1 gates and bounded directives;
+1. Read and approve the [PILOT-001 contract](pilot-command-contract.md): three
+   shared definitions/handlers, catalog ownership, Chat routing/rendering,
+   lifecycle effects, custom-registry compatibility and required dependency.
+2. Read and approve [CD-CMD-PILOT-001](directives/CD-CMD-PILOT-001-help-exit-clear.md):
+   exact paths, baseline capture, assertion preservation, regression cases,
+   installed artifacts, independent review and stop conditions. Explicitly
+   approving both exact documents together is sufficient. Neither is approved
+   yet; the instruction to prepare this packet grants no construction authority.
+3. After both approvals, record their hashes and execute only that pilot. Stop
+   after fresh independent verification for bounded maintainer acceptance.
+4. Proceed through the remaining family/P0/P1 gates and bounded directives;
    final integration/aggregate review precedes full refactor acceptance and TUI
    resumption.
 
@@ -53,3 +60,12 @@ byte-identical and excluded. Historical directive draft/pending labels describe
 pre-approval/review states; current approval/report/board/checkpoint govern this
 handoff. RET-001 acceptance is recorded separately from independent verification; it does
 not accept the entire refactor or supply future construction/delivery approval.
+
+The planning-only preparation was authorized by Chuck Russell's 2026-11-07
+“proceed”. Its scope is the two proposed documents and current board/packet
+navigation/authority/log records; no product, test, configuration, dependency,
+lock or frozen evidence byte changes. This is the documentation-only lightweight
+exemption under repository policy, not an exemption for the future pilot.
+Controller validation comprises source/protected-file hashes, proposal pins,
+embedded-code syntax, board/dashboard, documentation links and whitespace.
+No implementation tests or independent product review are claimed for this draft.
