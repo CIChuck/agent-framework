@@ -138,3 +138,12 @@ the directive's stale contract hash. Source provenance is verified closed.
 The explicit extra pass is consumed; await maintainer disposition before any
 further correction/review cycle. No contract/directive/harness correction was
 applied after review. Pilot construction and delivery remain not granted.
+
+Maintainer continuation authorizes the proposed two-fix closeout and focused
+independent delta plus aggregate readiness verification. The contract remains
+unchanged at e625123b; proposal revision 5 updates only the directive binding
+and existing receipt prose. Long equals-option parsing no longer truncates
+attached short-option paths. No new full council round is being opened. After
+verification, read/approve the pilot contract first and CD-CMD-PILOT-001 second
+(or approve both exact documents together); then execute only the bounded
+help/exit/cls pilot through G0-G5. No construction approval is inferred yet.

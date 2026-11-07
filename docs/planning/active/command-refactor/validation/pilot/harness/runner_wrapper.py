@@ -41,7 +41,7 @@ def main() -> None:
 
     reserved_names = {comparable(path) for path in reserved}
     for argument in sys.argv[2:]:
-        if argument.startswith("-") and "=" in argument:
+        if argument.startswith("--") and "=" in argument:
             value = argument.split("=", 1)[1]
         elif (
             argument.startswith("-")

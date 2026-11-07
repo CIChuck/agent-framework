@@ -10,7 +10,7 @@ Repository AGENTS, engineering/lifecycle/independent-validation policies and
 the board control execution. The approved foundation and accepted retirement
 unit remain controlling inputs. This directive implements only the proposed
 [pilot contract](../pilot-command-contract.md), hash
-`e9cf8af3c0fc5e164de35c27d01e428ac9a912f0f957c21c40648c2334dc86d3`.
+`e625123b8222262fb02b32aeadb2cae5c91d18ff573f04763b0af7ea3f22eb8c`.
 Approve that contract first, then this exact directive; an explicit approval
 of both together is also sufficient. Record both hashes, approver, date and
 instruction in authority/approval records before generating product code.
@@ -176,8 +176,11 @@ helpers, verifies eight public build wheels against
 [build-tools.json](../validation/pilot/harness/build-tools.json) and supplies
 `pilot_run.py`, a wrapper around the unchanged historical runner. The wrapper
 sets `UV_FIND_LINKS` to the closed wheelhouse, `UV_NO_INDEX=1` and the local
-LiteLLM cost-map option. It also checks positional and equals-joined arguments against all existing top-level scratch JSON/log files and
-suffixes repeated run labels to preserve earlier receipts and gives each pytest run a unique scratch `--basetemp`. This removes the fresh-cache startup defect without
+LiteLLM cost-map option. It also checks positional, long `--option=value` and
+short attached `-oPATH`/`-o=PATH` arguments against all existing top-level scratch
+JSON/log files, preserving embedded `=` in paths and folding case on Darwin.
+It suffixes repeated run labels to preserve earlier receipts and gives each
+pytest run a unique scratch `--basetemp`. This removes the fresh-cache startup defect without
 changing production metadata or relying on a prior global build cache.
 [build-requirements.txt](../validation/pilot/harness/build-requirements.txt)
 records all eight exact versions and allowed distribution hashes. Registry access

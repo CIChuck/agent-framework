@@ -921,3 +921,24 @@ bytes changed after freeze. The stale embedded contract hash was missed by the
 builder; a cross-document equality assertion is included in the proposed fix.
 The explicit extra correction pass/review is consumed. Return findings for
 maintainer disposition; no new correction cycle or construction started.
+
+2026-11-07: Chuck Russell confirmed that the council scores meet the goal and
+instructed "Let's continue. What's the next step?" after the proposed two-fix
+plan and fresh-validation question. Proceed with only the embedded-equals
+receipt-path fix and live contract pin, plus existing receipt-prose alignment
+and focused regression evidence. Use a separate remediator for the repeated
+receipt failure, then one fresh read-only validator for delta and aggregate
+readiness. Do not repeat the full three-provider council or infer a waiver,
+product construction, acceptance or delivery. Contract bytes stay unchanged.
+
+Separate remediator completed only the parsing branch, directive binding and
+receipt prose. Its real argparse controls reproduce eight old -oPATH overwrites
+and preserve eight existing old -o=PATH refusals; the corrected wrapper refuses
+36 collision attempts before child execution, preserving receipt hashes, and
+passes 14 allowed commands plus repeated-label preservation. The first driver
+wrongly expected old -o=PATH to exploit too; that failed expectation and corrected
+driver are retained as historical/control evidence. Controller guard 18 and
+comparator 11 refusals pass, and all 196 baseline observations match. Proposal
+revision 5 preserves contract bytes; cross-document live/embedded/authority
+contract hashes and current directive digest agree. Freeze this bounded
+correction for a separate fresh delta and aggregate readiness validator.

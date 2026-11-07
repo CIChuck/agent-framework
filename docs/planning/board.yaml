@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Maintainer disposition of two PILOT-001 round-four findings after extra authorized council; no further correction cycle, product construction or delivery
+  next_gate: Independent final PILOT-001 delta and aggregate readiness verification; then exact contract and directive approval; construction remains unapproved
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2548,3 +2548,10 @@ events:
   action: recorded round-four pilot readiness council and returned findings
   note: All scores meet 9 but all verdicts request changes. Two mandatory findings remain; extra authorized correction pass is consumed. Await maintainer disposition; no further automated remediation, construction or delivery. Reviewed contract, directive, harness and protected examples preserved.
   evidence: docs/planning/active/command-refactor/validation/pilot/round4-reconciliation.md
+- task: friday-command-refactor
+  at: '2026-11-07T17:17:42+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized continuing bounded readiness corrections and fresh validation
+  note: Let's continue follows the proposed two-fix plan. Close the receipt-path and contract-pin findings with independent verification; four council rounds already meet the score target. No pilot construction or delivery approval inferred.
+  evidence: docs/planning/active/command-refactor/authority.json

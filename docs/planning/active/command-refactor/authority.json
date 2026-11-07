@@ -191,7 +191,7 @@
     "pilot_design_approval": "not_granted",
     "pilot_construction_approval": "not_granted",
     "delivery": "local only",
-    "status": "Round-four council CHANGES_REQUESTED; scores all at least 9; awaiting maintainer disposition after explicitly authorized extra pass",
+    "status": "Final bounded corrections applied; independent readiness disposition is owned by validation/pilot/final-readiness-validation.md; pilot construction remains unapproved",
     "evidence": "validation/pilot/harness-evidence-round4.json",
     "corrections": "validation/pilot/council-remediation-round3.json",
     "round_two_followup": {
@@ -226,14 +226,20 @@
       "candidate": "2c3db9d8f05dbe453f5288fbf9305fade3068574",
       "contract_sha256": "e9cf8af3c0fc5e164de35c27d01e428ac9a912f0f957c21c40648c2334dc86d3",
       "directive_sha256": "ef22f4d2adbcf50a54958946f722131ddd7e8fa5b2247fad9c9f1a6a638fee1f"
+    },
+    {
+      "revision": 4,
+      "candidate": "f7035bbdd1b18c6301848b4214398d8adfbe18ed",
+      "contract_sha256": "e625123b8222262fb02b32aeadb2cae5c91d18ff573f04763b0af7ea3f22eb8c",
+      "directive_sha256": "9797df6b9bf45950cb59514d05bef4c78f37b50ca30e8b77d8f8ca29ba11b2bc"
     }
   ],
   "pilot_current_proposal": {
-    "revision": 4,
+    "revision": 5,
     "contract": "pilot-command-contract.md",
     "contract_sha256": "e625123b8222262fb02b32aeadb2cae5c91d18ff573f04763b0af7ea3f22eb8c",
     "directive": "directives/CD-CMD-PILOT-001-help-exit-clear.md",
-    "directive_sha256": "9797df6b9bf45950cb59514d05bef4c78f37b50ca30e8b77d8f8ca29ba11b2bc",
+    "directive_sha256": "b85be3a04035e1f8318cc6566f7767aad00355b61c49e2650c6327981fd2a982",
     "design_approval": "not_granted",
     "construction_approval": "not_granted"
   },
@@ -263,8 +269,33 @@
       "SOL-R4-PILOT-001",
       "SOL-R4-PILOT-002 / CLD-R4-01 / ARGON-R4-001"
     ],
-    "next_gate": "Maintainer disposition of two bounded corrections; no further automated correction/review cycle or pilot construction authorized",
+    "next_gate": "Authorized bounded two-fix correction, then independent delta and aggregate readiness verification; afterward exact contract/directive approval",
     "construction_approval": "not_granted",
     "delivery": "local only"
+  },
+  "final_readiness_correction_authorization": {
+    "authorized_by": "Chuck Russell",
+    "date": "2026-11-07",
+    "instruction": "You had greater-than-nine scores across the board, and I believe that was our goal.  Let's continue. What's the next step?",
+    "interpretation": "Continue the immediately proposed two-fix plan and fresh validation; no waiver of findings and no pilot construction approval inferred.",
+    "scope": "SOL-R4-PILOT-001 and duplicate contract-pin findings SOL-R4-PILOT-002 / CLD-R4-01 / ARGON-R4-001; align existing receipt prose; preserve contract API/bytes and deferred advisories.",
+    "validation": "One fresh independent read-only validator performs the bounded correction delta plus aggregate readiness review. Four completed three-provider council rounds remain historical; no new full council is requested.",
+    "limits": "One bounded correction pass and independent validation, no product/test/dependency/lock edits or external delivery."
+  },
+  "final_readiness_correction": {
+    "status": "applied; independent readiness verdict recorded separately in named report",
+    "report": "validation/pilot/final-readiness-validation.md",
+    "evidence": "validation/pilot/final-two-fix-evidence.json",
+    "changes": [
+      "Separate long equals-option parsing from attached short-option paths, preserving equals inside PATH.",
+      "Bind the directive to the unchanged current contract; align existing receipt prose and enforce cross-document equality before review freeze."
+    ],
+    "deferred": [
+      "Clustered short-option parsing",
+      "Prepared-lane/uv executable hardening",
+      "Git environment hardening"
+    ],
+    "construction_approval": "not_granted",
+    "required_readiness_outcome": "VERIFIED before proposing exact pilot contract/directive approval"
   }
 }
