@@ -321,8 +321,7 @@ async def retained_session_neutral_behavior() -> dict:
 
 async def installed_diagnostic_observations(destination):
     import importlib.util
-    from contextlib import suppress
-from dataclasses import asdict
+    from dataclasses import asdict
     from types import SimpleNamespace as NS
 
     from friday_chat.commands import registry as reg
