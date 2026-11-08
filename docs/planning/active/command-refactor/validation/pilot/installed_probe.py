@@ -98,8 +98,18 @@ def artifact_members(args: argparse.Namespace, distribution: str, package: str) 
                 "Installed/Git byte mismatch: " + name,
             )
         wheel_metadata = email.message_from_bytes(archive.read(dist_info + "METADATA"))
+        if package == "friday_chat":
+            require(
+                archive.read(dist_info + "licenses/LICENSE")
+                == (project / "LICENSE").read_bytes(),
+                "Wheel license differs from Git",
+            )
     with tarfile.open(sdist) as archive:
-        files = [member for member in archive.getmembers() if member.isfile()]
+        files = archive.getmembers()
+        require(
+            all(member.isfile() for member in files),
+            "Unrecognized sdist member type",
+        )
         prefix = f"{slug}-0.1.0a4/"
         require(
             all(member.name.startswith(prefix) for member in files),
@@ -107,10 +117,11 @@ def artifact_members(args: argparse.Namespace, distribution: str, package: str) 
         )
         contents = {}
         for member in files:
-            require(member.name not in contents, "Duplicate sdist member")
+            name = member.name.removeprefix(prefix)
+            require(name not in contents, "Duplicate sdist member")
             handle = archive.extractfile(member)
             require(handle is not None, "Unreadable sdist file")
-            contents[member.name.removeprefix(prefix)] = handle.read()
+            contents[name] = handle.read()
         project_files = {
             str(path.relative_to(project)): path.read_bytes()
             for path in project.rglob("*")
