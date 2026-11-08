@@ -1691,3 +1691,19 @@ has been executed or accepted through this documentation change.
 - Root Ruff534, sole root test_display conflict and registry formatting remain
   failed/unwaived. Source tests are not candidate installed proof. Fresh delta
   then full D2 round2 council is next; D3/UAT/acceptance/delivery remain pending.
+
+
+## 2026-11-08T22:13:01.853184+00:00 — DIAG D2 round2 VERIFIED; begin approved D3
+
+- `execution_phase: implementation`; `validation_state: pending` for D3.
+- [D2 reconciliation](validation/diagnostics/implementation/d2/verified-report.md):
+  Sol/Astra/Claude VERIFIED9.7/9.7/9.5, both named findings independently closed
+  at `b3ca2c85964b082a1a6b65ffe2c7b5aa442fa6f9`. Frozen pins/index/status and all17199 protected entries
+  rechecked. Original raw reports/evidence and ignored synthetic exports retained.
+- Non-blocking advisories are mapped without another D2 repair loop. D3 retains
+  all existing product/test bytes and hashes, adds only the approved installed
+  DIAG probe/evidence and bounded PAR status. Build/replay exact committed source
+  from closed inputs; prove actual isolated behavior and refusal controls in both
+  optimization modes, with retained pilot/SESSION semantics and no spoofed API.
+- Fresh final D3 plus bounded aggregate council precedes human acceptance. UAT,
+  later families, P0/P1, full-refactor/TUI and all external delivery remain pending.

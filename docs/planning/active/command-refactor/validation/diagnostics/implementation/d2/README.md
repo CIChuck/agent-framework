@@ -1,3 +1,14 @@
+# DIAG-001 D2 — independently VERIFIED
+
+Execution phase: closeout. Validation state: verified (bounded D2 only).
+[Council reconciliation](verified-report.md) records Sol/Astra/Claude
+VERIFIED9.7/9.7/9.5 at `b3ca2c85`, closing both findings.
+[Raw reports](council-round2.json), original/correction evidence and ignored
+export inventories remain preserved. D3 follows under existing approval;
+installed proof, UAT, human acceptance and delivery remain separate.
+
+## Preserved correction and review history
+
 # DIAG-001 D2 — correction cycle1 / council round2
 
 Execution phase: validation. Validation state: in_review.

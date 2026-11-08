@@ -1,27 +1,23 @@
-# DIAG-001 — D2 correction validation checkpoint
+# DIAG-001 — D3 construction checkpoint
 
 Branch: `feature/command-retirement`
-Execution phase: validation
-Validation state: in_review (D2 correction cycle1 / council round2)
+Execution phase: implementation
+Validation state: pending (D3); D1/D2 independently verified
 
-[Correction map](validation/diagnostics/implementation/d2/council-remediation-round1.json) and
-[current evidence](validation/diagnostics/implementation/d2/README.md) bind product/test source `54e35947f8ee157ddab0b50f7e9e9e1db415f0ae`.
-The two round1 findings are implemented pending independent closure: once-only
-context formatting with an invocation-local matching rendered body, and DG-T08
-private-cwd file isolation. D1 and other product bytes remain frozen.
+[D2 reconciliation](validation/diagnostics/implementation/d2/verified-report.md):
+Sol/Astra/Claude VERIFIED9.7/9.7/9.5, both findings closed at `b3ca2c85`.
+No additional approval is needed for D3 under the existing exact directive.
 
-The old formatter fails the new assertions (39 pass/2 fail); corrected named41,
-Commands478, D2-fast538, D3-fast166 and full Chat1338 pass. Twenty-one private
-mutants have real call-assertion witnesses and unchanged519 control. Dedicated
-legacy/ignored-outcome tests launch from repository cwd; ignored exports retain
-all original bytes/modes/timestamps and new exports stay inside pytest scratch.
-68 exact DIAG+four approved refusals, SESSION25 and pilot196 remain exact.
+Keep D1/D2 product/test bytes frozen. Implement only the new installed DIAG
+probe and evidence/status/PAR records. Retain accepted helper hashes and SESSION
+semantics with only the approved neutral export-list append. Run full owning
+regressions, closed candidate bundle/replay, actual isolated normal/optimized
+installed probes and inventory/origin/archive refusal controls. Preserve ignored
+exports and both dirty examples. Root debt stays failed/unwaived.
 
-Keep original evidence, round1 reports and both ignored synthetic export files;
-no cleanup authority exists. Claude's error-metadata advisory remains deferred.
-Reconcile fresh Sol/Astra/Claude delta plus full bounded D2 round2 before D3.
-D3 current candidate builds/replay/installed proof, UAT, acceptance, later families,
-TUI and delivery remain pending. Known root debt stays failed/unwaived.
+Then freeze fresh Sol/Astra/Claude D3 plus complete bounded DIAG aggregate council,
+reconcile all mandatory findings and stop for human acceptance. UAT remains
+unperformed; later families, P0/P1, full-refactor/TUI and delivery stay separate.
 
 ### Preserved prior planning checkpoint
 

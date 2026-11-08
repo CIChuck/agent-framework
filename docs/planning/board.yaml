@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile DIAG D2 cycle1/round2 Sol/Astra/Claude delta/full council before D3 installed proof
+  next_gate: DIAG D3 full regression, candidate artifact/replay/installed proof and fresh final Sol/Astra/Claude aggregate council before acceptance
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -731,6 +731,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/session/implementation/d2/verified-report.md
   - docs/planning/active/command-refactor/validation/session/implementation/d3/verified-report.md
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/verified-report.md
+  - docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/verified-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2808,3 +2809,10 @@ events:
   action: froze DIAG D2 correction cycle1 for round2 council
   note: Both named findings implemented; private-cwd exports and once-only context formatting proved.41/478/538/166/1338 pass,21 mutants and519 control. D3/acceptance/delivery pending.
   evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/council-remediation-round1.json
+- task: friday-command-refactor
+  at: '2026-11-08T22:13:01+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG D2 round2 VERIFIED; begin D3
+  note: All three closed both findings;9.7/9.7/9.5. Existing approval authorizes D3. Preserve ignored exports, dirty examples and D1/D2 bytes. Final aggregate council and human acceptance pending.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/verified-report.md

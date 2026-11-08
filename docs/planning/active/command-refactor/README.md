@@ -16,12 +16,13 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: validation`; `validation_state: in_review` (DIAG D2 cycle1/round2).
-[Both corrections are implemented](validation/diagnostics/implementation/d2/council-remediation-round1.json)
-with fresh regressions and export-isolation proof. Original reports/evidence
-and ignored synthetic exports are preserved. Fresh Sol/Astra/Claude delta then
-full D2 aggregate review is required before D3. D1 remains verified; D3 installed
-proof and human acceptance stay pending. SESSION-001 remains accepted and verified.
+`execution_phase: implementation`; `validation_state: pending` for DIAG D3.
+[D2 is independently VERIFIED](validation/diagnostics/implementation/d2/verified-report.md)
+at `b3ca2c85` by Sol/Astra/Claude (9.7/9.7/9.5), closing both findings.
+Existing approval permits full regression, clean candidate builds/replay and
+installed DIAG proof with retained pilot/SESSION checks. Fresh final aggregate
+council and bounded human acceptance remain pending. Ignored synthetic exports
+are preserved; no cleanup or delivery is authorized. SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
 [Bounded SESSION acceptance](approval/session-acceptance.md) is recorded from Chuck Russell's
@@ -106,7 +107,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude D2 cycle1/round2 delta and aggregate council before D3.
+**Next gate:** Complete DIAG D3 candidate artifact/installed proof and fresh final aggregate council before human acceptance.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)
