@@ -1,25 +1,33 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: SESSION-001 D1–D3 and bounded aggregate VERIFIED and accepted
-Execution phase: closeout
-Validation state: verified (accepted SESSION-001); broader initiative remains started/local
+Status: DIAG-001 proposed contract/directive prepared; exact approval pending
+Execution phase: planning
+Validation state: not_ready (DIAG-001); SESSION-001 remains accepted/verified
 
 ## Current checkpoint and next gate
 
-Chuck Russell [accepted SESSION-001](approval/session-acceptance.md) after Sol 9.7,
-Astra 9.7 and Claude 9.6 independently VERIFIED candidate `112e657f` with no
-mandatory findings. D1–D3, all 1730 scoped tests, 25 SESSION/196 pilot observations,
-clean matching artifacts and installed normal/optimized proof are complete.
-Historical invalid Astra execution and its successful fresh reissue remain recorded.
+Chuck Russell's “proceed” after the proposed next-step handoff authorizes
+DIAG-001 preparation only. Read the [contract](diagnostics-command-contract.md),
+then [CD-CMD-DIAG-001](directives/CD-CMD-DIAG-001-context-diagnostics.md).
+Approve both exact documents before product/test implementation; approving
+them together is sufficient. They explicitly propose seven new closed outcome
+variants, fourteen additive exports, the narrow old export assertion update,
+and two declared-type decisions. No DIAG implementation is started.
 
-Await maintainer direction for the next bounded unit. Its scope/contract/directive
-requires separate approval before construction; acceptance starts no new unit or
-external delivery automatically. The [council roster](approval/council-roster.md)
-remains Sol/Astra/Claude. Known root debt remains failed/unwaived.
+[Preparation evidence](validation/diagnostics/preparation.json) binds clean
+accepted source `9dbcec54`, six metadata records and 72 repeated synthetic cases,
+including scratch file effects/access/await/failure behavior. Guard/source/
+comparator controls pass; related Chat244 and Commands/cohort278 pass.
+The future D1–D3 proof and councils are obligations, not completed validation.
+The [current council roster](approval/council-roster.md) is Sol/Astra/Claude.
 
-PILOT and SESSION are accepted internal units. The overall initiative, remaining
-families, P0/P1, TUI and full-refactor acceptance remain open; delivery stays local.
+Chuck Russell [accepted SESSION-001](approval/session-acceptance.md) after Sol9.7,
+Astra9.7 and Claude9.6 VERIFIED the bounded aggregate; its 1730 scoped passes,
+artifacts and installed proof remain accepted historical evidence. PILOT,
+RET and foundation acceptance remain closed. Root debt stays failed/unwaived.
+The initiative remains started/local; remaining families, P0/P1, full-refactor,
+TUI and external delivery stay separate gates.
 
 ## Historical checkpoints
 

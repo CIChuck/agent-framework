@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Await maintainer direction for next bounded unit; SESSION-001 VERIFIED and accepted |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Approve proposed DIAG-001 contract and CD-CMD-DIAG-001 before construction; SESSION-001 remains accepted |
 
 ## Completed
 

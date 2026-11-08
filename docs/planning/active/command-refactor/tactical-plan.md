@@ -2,19 +2,30 @@
 
 Date: 2026-11-08
 Branch: `feature/command-retirement`
-Status: SESSION D1–D3 and bounded aggregate VERIFIED and accepted
-Execution phase: closeout
-Validation state: verified (accepted SESSION-001; initiative remains started/local)
+Status: DIAG-001 contract/directive prepared; exact approval pending
+Execution phase: planning
+Validation state: not_ready (DIAG-001; accepted SESSION-001 retained)
 
-## Current SESSION-001 checkpoint
+## Current DIAG-001 preparation checkpoint
 
-Chuck Russell [accepted SESSION-001](approval/session-acceptance.md) after the
-[independent aggregate verification](validation/session/implementation/d3/verified-report.md):
-Sol 9.7, Astra 9.7 and Claude 9.6, no mandatory findings. The original reports
-and historical pending labels remain frozen before this subsequent decision.
-The [next-phase checkpoint](next-phase.md) now awaits separate maintainer direction
-for a next bounded unit. The [council roster](approval/council-roster.md) remains
-Sol/Astra/Claude. Broader work and external delivery remain separate.
+The maintainer authorized preparation after the next-step proposal. The
+[contract](diagnostics-command-contract.md) and
+[directive](directives/CD-CMD-DIAG-001-context-diagnostics.md) define only six
+diagnostics, shared typed outcomes, host projection/rendering/file ownership,
+compatibility decisions, exact paths and D1–D3 gates. Approval of both exact
+bytes precedes any implementation. [Preparation](validation/diagnostics/preparation.json)
+contains 72 repeatable source cases, six metadata records and guarded controls;
+244 related Chat and 278 Commands/cohort cases pass. Product bytes stay unchanged.
+
+After approval: reproduce D0 inputs/inventories, implement D1 neutral handlers
+and models, reconcile Sol/Astra/Claude council; then D2 Chat adapters and its
+council; then D3 full regression/build/installed proof and complete bounded
+aggregate council. Stop for human DIAG acceptance. No step is credited early.
+
+SESSION-001 remains [accepted](approval/session-acceptance.md), following its
+[independent aggregate verification](validation/session/implementation/d3/verified-report.md).
+The [next-phase checkpoint](next-phase.md), board and authority own current
+state. Later families, P0/P1, TUI and external delivery remain separate.
 
 ## Historical Step 3 planning checkpoint
 

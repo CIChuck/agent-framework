@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-11-07'
+updated: '2026-11-08'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Await maintainer direction for next bounded unit; SESSION-001 VERIFIED and accepted
+  next_gate: Approve proposed DIAG-001 contract and CD-CMD-DIAG-001 before construction; SESSION-001 remains accepted
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2744,3 +2744,10 @@ events:
   action: accepted bounded SESSION-001 D1–D3 and aggregate
   note: Direct accepted instruction follows Sol 9.7, Astra 9.7 and Claude 9.6 VERIFIED results. Broader initiative stays started/local; no next-unit or external delivery authority.
   evidence: docs/planning/active/command-refactor/approval/session-acceptance.md
+- task: friday-command-refactor
+  at: '2026-11-08T19:15:18+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared DIAG-001 diagnostics contract and exact directive
+  note: Maintainer proceed authorizes preparation only. Six metadata records/72 synthetic cases repeat; guarded Chat244 and Commands-cohort278 pass. Proposed type boundaries and export assertion evolution need exact approval; no product/test/config/lock change. SESSION remains accepted; Sol/Astra/Claude after each future deliverable.
+  evidence: docs/planning/active/command-refactor/diagnostics-command-contract.md

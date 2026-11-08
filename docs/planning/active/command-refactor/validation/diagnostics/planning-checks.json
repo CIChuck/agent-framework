@@ -1,0 +1,91 @@
+{
+  "unit": "DIAG-001",
+  "kind": "controller_documentation_only_preparation_checks",
+  "recorded_at": "2026-11-08T19:16:51.818225+00:00",
+  "source_revision": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
+  "scratch": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-preparation-5ptjdb2n",
+  "checks": {
+    "protected_non_docs_files": 1249,
+    "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
+    "embedded_receipts": 44,
+    "metadata": 6,
+    "cases": 72,
+    "source_files": 439,
+    "directive_input_pins": 18,
+    "execution_log_append_only": true,
+    "only_non_docs_status": [
+      "packages/friday-chat/config.example.yaml",
+      "packages/friday-chat/models-config.example.yaml"
+    ],
+    "original_dirty_hashes": {
+      "packages/friday-chat/config.example.yaml": "c2f728c98adc5ca773bfdf3170d846a610f15d77eae9a380e1a815534b93c3e7",
+      "packages/friday-chat/models-config.example.yaml": "11e99116d885a431f085b6bd05b5bd30348eb37654fd4c9350a7cca58c527896"
+    },
+    "precommit_logical_index": "a1b55aaa70c128a2ca961f1b0265f953c41861c3bf761f2cb2c0c8fc091f7feb",
+    "current_state": "DIAG planning/not_ready; exact two-document approval pending; SESSION accepted; started/local",
+    "directive_shell_syntax": "zsh -n passed",
+    "contract_python_blocks": 2,
+    "materialization_command": "executed exact embedded heredoc; all three scratch files hash-verified",
+    "new_api_classes": 11
+  },
+  "status": "passed (documentation-only controller checks; not independent product validation)",
+  "limits": [
+    "No independent council or product implementation claim.",
+    "Historical baseline failures remain failed/unwaived."
+  ],
+  "commands": [
+    {
+      "argv": [
+        ".venv/bin/python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 888 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "previous_check_attempts": [
+    {
+      "check": "documentation lifecycle before report existed",
+      "result": "failed on planned planning-checks.json link; report now materialized"
+    },
+    {
+      "check": "initial controller report assembly",
+      "result": "KeyError for uninitialized previous_check_attempts; corrected controller and all protected/hash checks rerun successfully"
+    }
+  ]
+}

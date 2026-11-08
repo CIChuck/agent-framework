@@ -16,7 +16,12 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: closeout`; `validation_state: verified` for SESSION-001.
+`execution_phase: planning`; `validation_state: not_ready` for DIAG-001.
+The proposed [diagnostics contract](diagnostics-command-contract.md) and
+[construction directive](directives/CD-CMD-DIAG-001-context-diagnostics.md)
+are prepared for maintainer approval. “Proceed” authorized preparation only;
+DIAG product/test implementation is not approved.
+SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
 [Bounded SESSION acceptance](approval/session-acceptance.md) is recorded from Chuck Russell's
@@ -101,13 +106,14 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Read/approve the proposed [PILOT-001 contract](pilot-command-contract.md),
-then [CD-CMD-PILOT-001](directives/CD-CMD-PILOT-001-help-exit-clear.md).
-The amended packet and runnable diagnostic harness are in council review.
-They define catalog ownership, Chat routing, help/exit/clear rendering/lifecycle
-and exact construction/verification scope. Both remain unapproved.
-RET-001 is accepted. No pilot/family/TUI construction or publication is approved.
-See the [main checkpoint](next-phase.md).
+**Next gate:** Approve the proposed [DIAG-001 contract](diagnostics-command-contract.md)
+and [CD-CMD-DIAG-001](directives/CD-CMD-DIAG-001-context-diagnostics.md), together
+or in that order, before implementation. They cover six context diagnostics,
+fixed exports, explicit typed-boundary decisions and D1–D3 councils using
+Sol/Astra/Claude. [Source preparation](validation/diagnostics/preparation.json)
+records 72 cases, six metadata records and 244 Chat/278 Commands-cohort passes.
+SESSION/PILOT/RET/foundation acceptance stays recorded; no later family, TUI or
+publication authority is granted. See the [main checkpoint](next-phase.md).
 
 The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
 refreshes baseline identity in this working home and records the current

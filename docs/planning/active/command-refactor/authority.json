@@ -2,12 +2,12 @@
   "version": 1,
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
-  "date": "2026-11-07",
-  "decision": "SESSION-001 D1\u2013D3 and bounded aggregate VERIFIED and accepted by Chuck Russell",
+  "date": "2026-11-08",
+  "decision": "DIAG-001 contract/directive and source preparation ready for exact maintainer approval; SESSION-001 remains accepted",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Accepted SESSION-001 closeout; await separate maintainer direction for a next bounded unit",
-  "product_code_authority": "SESSION-001 construction completed, independently verified and accepted. No new family or external delivery authority.",
+  "current_scope": "DIAG-001 planning preparation only: context, prompt, debug, debug-budget, debug-retrieval, timing",
+  "product_code_authority": "No DIAG construction approval. Accepted SESSION/pilot/foundation/retirements remain retained; no later-family/TUI/external delivery authority.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -33,7 +33,7 @@
     "resumed_by": "Chuck Russell",
     "resume_instruction": "Proceed to step three."
   },
-  "construction_directive_approval": "SESSION-001 approved by approval/session-views.md; existing accepted foundation/retirement/pilot retained. No later family or delivery approval.",
+  "construction_directive_approval": "Existing SESSION and earlier approvals are retained historically; DIAG-001 contract/directive are proposed and require exact subsequent approval.",
   "council_request": {
     "requested_by": "Chuck Russell",
     "scope": "Read-only evaluation of the frozen readiness review; no construction approval or automatic remediation loop",
@@ -710,5 +710,39 @@
     "record": "approval/council-roster.md",
     "sha256": "80c8e25ed071503313e9b3c97d93d2fb3712d29de6822e22b539d7b3a3fa8e02",
     "instruction": "for The remaining council tasks use only GPT 6.1-Sol,  GPT-6-Astra  and Claude Opus 5.5."
+  },
+  "accepted_session_checkpoint_before_DIAG": {
+    "decision": "SESSION-001 D1\u2013D3 and bounded aggregate VERIFIED and accepted by Chuck Russell",
+    "current_scope": "Accepted SESSION-001 closeout; await separate maintainer direction for a next bounded unit",
+    "product_code_authority": "SESSION-001 construction completed, independently verified and accepted. No new family or external delivery authority."
+  },
+  "diagnostics_preparation": {
+    "unit": "DIAG-001",
+    "state": "proposed_approval_pending",
+    "requested_by": "Chuck Russell",
+    "instruction": "proceed",
+    "recorded_at": "2026-11-08T19:15:18.619715+00:00",
+    "responding_to": "Prepare DIAG-001 contract and directive; implementation waits for approval of both documents",
+    "source_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
+    "contract": "diagnostics-command-contract.md",
+    "contract_sha256": "14dd68f6cc2c5dfbba7f31c19305eeeec68a00598b3b1a1740806832b621be62",
+    "directive": "directives/CD-CMD-DIAG-001-context-diagnostics.md",
+    "directive_sha256": "1a9a506020b8d5faa0b864c053b1085e8f8c15c8feab8a4c0f59d4293677ee47",
+    "preparation_evidence": "validation/diagnostics/preparation.json",
+    "preparation_evidence_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
+    "execution_phase": "planning",
+    "validation_state": "not_ready",
+    "design_approval": "not_granted",
+    "construction_approval": "not_granted",
+    "implementation": "not_started",
+    "lightweight_exemption": "Maintainer proceed authorizes planning/evidence/current-state preparation and guarded synthetic source characterization only; product/test/config/dependency/lock behavior cannot change. Controller verifies protected hashes, embedded evidence, docs/board and whitespace.",
+    "council_after_each_deliverable": true,
+    "council_members": [
+      "GPT-6.1 Sol/high",
+      "GPT-6 Astra/high",
+      "Claude Opus 5.5/high"
+    ],
+    "accepted_session": "approval/session-acceptance.md",
+    "delivery": "local only"
   }
 }

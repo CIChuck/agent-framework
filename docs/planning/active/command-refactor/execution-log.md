@@ -1449,3 +1449,39 @@ collection and registry formatting remain failed/unwaived. The broader initiativ
 stays started/local and retains its active packet. Await separate direction and
 approved scope/directive for a next unit; no later-family/P0/P1/TUI/full-refactor
 acceptance or push/PR/merge/release authority follows.
+
+
+## 2026-11-08T19:15:18.619715+00:00 — DIAG-001 planning preparation after maintainer proceed
+
+- `execution_phase: planning`; `validation_state: not_ready` for DIAG-001.
+- Chuck Russell's “proceed” responds to preparing the diagnostics contract and
+  directive after accepted SESSION-001. It authorizes proposed documents,
+  current navigation/authority/status and guarded synthetic characterization
+  only. No DIAG product/test/config/metadata/lock edit or construction approval.
+- Source baseline: `9dbcec54773f10274eea058e5d59edb0ce53b6cc`,
+  `feature/command-retirement`; accepted SESSION/pilot/retirement/foundation
+  evidence and both dirty example hashes preserved. Initiative stays started/local.
+- Proposed contract: [diagnostics-command-contract.md](diagnostics-command-contract.md),
+  SHA256 `14dd68f6cc2c5dfbba7f31c19305eeeec68a00598b3b1a1740806832b621be62`. Proposed directive:
+  [CD-CMD-DIAG-001](directives/CD-CMD-DIAG-001-context-diagnostics.md),
+  SHA256 `1a9a506020b8d5faa0b864c053b1085e8f8c15c8feab8a4c0f59d4293677ee47`. Exact approval of both is the next gate.
+- [Preparation](validation/diagnostics/preparation.json), SHA256 `1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55`:
+  six metadata records; 72 repeated source cases from 439 Git-verified src files,
+  260 loaded Friday module roots; exact events/defaults/exceptions and synthetic
+  export bytes. 244 related Chat and 278 Commands/cohort tests pass. Guard18,
+  comparator10 and two pre-import source refusal controls pass.
+- Truthy non-string selected cached context/prompt refusal and direct non-string
+  args are explicit proposed decisions, not unreported parity. The old SESSION
+  exact export assertion needs only its named additive literal extension; all
+  other existing test ASTs stay frozen. These choices await exact approval.
+- Historical preliminary captures/controller stderr-log bookkeeping error stay
+  labeled in evidence. Final capture selects the correct old/new export-helper
+  module for safe failure injection; final baseline/replay/refusals use that hash.
+- D0–D5 and independent D1/D2/D3 Sol/Astra/Claude councils remain future duties.
+  No new council was dispatched for this documentation preparation. Existing
+  root Ruff534/root collection/registry-format debt remains failed/unwaived,
+  inspected historically rather than rerun for documentation edits.
+- Lightweight scope cannot alter runtime behavior. Final documentation/board,
+  exact protected-byte, syntax/hash and whitespace checks are recorded in
+  [planning checks](validation/diagnostics/planning-checks.json). No acceptance,
+  later family, full-refactor/P0/P1/TUI or external delivery granted.
