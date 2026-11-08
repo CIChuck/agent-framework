@@ -848,7 +848,8 @@ async def neutral_diagnostics(args) -> dict:
     for spec in shared.DIAGNOSTIC_SPECS:
         registry.register(spec, handlers[spec.name])
     require(
-        registry.specs() == shared.DIAGNOSTIC_SPECS,
+        registry.specs()
+        == tuple(sorted(shared.DIAGNOSTIC_SPECS, key=lambda spec: spec.name)),
         "Explicit diagnostic registration changed",
     )
     for name in NAMES:
