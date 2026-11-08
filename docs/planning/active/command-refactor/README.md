@@ -16,12 +16,13 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: implementation`; `validation_state: pending` for DIAG-001 D1.
-Chuck Russell [approved both exact DIAG documents](approval/diagnostics.md) and
-instructed code generation. D0 verifies baselines before D1 neutral models,
-exports, handlers and tests. Sol/Astra/Claude council precedes D2 Chat integration;
-D3 artifact/installed proof and bounded acceptance remain pending.
-SESSION-001 remains accepted and verified.
+`execution_phase: validation`; `validation_state: in_review` for DIAG-001 D1.
+The [exact approval](approval/diagnostics.md) is recorded. D1 neutral models,
+exports, handlers and 200 new cases are implemented at `7cab1f0f`; 478
+Commands/cohort tests and current Chat1297/CLI155 regressions pass. The
+[D1 evidence](validation/diagnostics/implementation/d1/README.md) is frozen for
+Sol/Astra/Claude council round1, to be reconciled before D2. D2/D3 and bounded
+DIAG acceptance remain pending. SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
 [Bounded SESSION acceptance](approval/session-acceptance.md) is recorded from Chuck Russell's
@@ -106,12 +107,11 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Complete DIAG-001 D0/D1 under the
-[exact approval](approval/diagnostics.md),
-[contract](diagnostics-command-contract.md) and
-[directive](directives/CD-CMD-DIAG-001-context-diagnostics.md); freeze D1 for the
-Sol/Astra/Claude council and reconcile before D2. D3 and human DIAG acceptance
-remain pending. See the [main checkpoint](next-phase.md).
+**Next gate:** Fresh Sol/Astra/Claude council for
+[DIAG D1](validation/diagnostics/implementation/d1/README.md); reconcile all
+mandatory findings before D2 under the existing exact approval. D2 Chat wiring,
+D3 installed proof and human DIAG acceptance remain pending. See the
+[main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)
 provides 17 individually runnable interface, diagnostics, export, usability and

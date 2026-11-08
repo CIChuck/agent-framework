@@ -1,27 +1,29 @@
 # Shared command refactor — tactical plan
 
 Branch: `feature/command-retirement`
-Status: Exact DIAG-001 contract/directive approved; D0/D1 construction underway
-Execution phase: implementation
-Validation state: pending (DIAG-001 D1); D2/D3 and acceptance pending
+Status: DIAG-001 D1 neutral implementation in fresh council round1
+Execution phase: validation
+Validation state: in_review (DIAG-001 D1); D2/D3 and acceptance pending
 
 ## Current DIAG-001 checkpoint
 
-Chuck Russell [approved both exact documents](approval/diagnostics.md) and
-instructed code generation. Reproduce D0 baseline observations/inventories and
-closed build, then implement only D1 neutral schemas, specs, port, handlers and
-tests. [CD-CMD-DIAG-001](directives/CD-CMD-DIAG-001-context-diagnostics.md) and the
-[contract](diagnostics-command-contract.md) bind scope and required checks.
+The [exact approval](approval/diagnostics.md) supplies construction authority.
+D0 baselines/closed build and D1 neutral implementation are recorded in
+[D1 evidence](validation/diagnostics/implementation/d1/README.md): 478 neutral/
+cohort passes including 200 new cases; 14 origin-verified mutation refusals;
+current Chat1297/CLI155 regressions and all 72 DIAG/25 SESSION/196 pilot source
+observations match. Source is `7cab1f0f90a868a34de3faa4f763ce3b31352f8b`; source/static/preservation checks pass.
 
-Freeze the D1 candidate and obtain fresh Sol/Astra/Claude reviews before D2.
-After reconciliation proceed to D2 Chat integration and its council, then D3
-full regressions/artifact/installed proof and complete bounded aggregate council.
-Stop for bounded human DIAG acceptance; the initiative remains started/local.
+Next gate: fresh Sol/Astra/Claude council round1 and controller reconciliation
+before D2. D2 Chat port/wrappers/exports and D3 owning regression/candidate build/
+installed proof then receive their separate councils under the same approval.
+No candidate installed-DIAG or host delegation completion is claimed now.
 
-SESSION/pilot/retirement/foundation acceptance remains retained. The
-[UAT roadmap](uat/friday-chat-user-acceptance-roadmap.md) supports later manual
-checks; every case remains NOT RUN. Known root debt stays failed/unwaived.
-No later-family/full-refactor/P0/P1/TUI or delivery authority is inferred.
+The initiative remains started/local; accepted SESSION/pilot/retirement/foundation
+remain retained. Known root debt stays failed/unwaived. The
+[UAT roadmap](uat/friday-chat-user-acceptance-roadmap.md) is NOT RUN. Stop for
+bounded human DIAG acceptance after the final aggregate review; later-family,
+full-refactor/P0/P1/TUI and delivery remain separate gates.
 
 ### Preserved prior planning checkpoint
 

@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | DIAG-001 D0/D1 implementation under exact approval; freeze for Sol/Astra/Claude council before D2 |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh Sol/Astra/Claude DIAG-001 D1 council round1; reconcile before D2 Chat integration |
 
 ## Completed
 

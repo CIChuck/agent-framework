@@ -1520,3 +1520,33 @@ has been executed or accepted through this documentation change.
 - Reproduce D0 in fresh external scratch, then D1 neutral-only implementation.
   Current source/test inventory is `/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d1-nmr1x7ad/before-inventory.json`.
   Fresh D1 council is required before D2. No DIAG acceptance/delivery granted.
+
+
+## 2026-11-08T20:16:14.788459+00:00 — DIAG-001 D1 neutral implementation frozen for council
+
+- `execution_phase: validation`; `validation_state: in_review` (D1 round1).
+- Exact approval retained. Construction base `b2f5b8f01f6b177c0a9519ff000036599417ad6e`; product source
+  `7cab1f0f90a868a34de3faa4f763ce3b31352f8b`; evidence/status-only candidate descendants follow.
+- [D1 evidence](validation/diagnostics/implementation/d1/README.md): eleven
+  models, seven added closed data variants, fourteen appended exports, six
+  opt-in handlers and 200 new cases. D1 Commands/cohort478, Chat1297 and CLI155
+  pass; current source captures match 72 DIAG / 25 SESSION / 196 pilot rows.
+- Guard18/comparator10 and source/prebuild controls pass. Closed D0 baseline
+  build verifies 13 workspace builds/125 locked inputs/154 artifacts and two
+  installs; it is not a DIAG candidate installed proof.
+- Fourteen final private mutants are refused by named test-call assertions;
+  unchanged private control478 passes. Canonical origins/hashes match before,
+  session finish and after. Earlier six constructor-tripwire test failures,
+  import/format attempts and intermediate450/457 passes are historical evidence.
+- All 1245 protected non-doc original files match. All 279 original test files
+  retain3028 test-prefixed definitions/9190 assertions; only the named fourteen-
+  export literal append changes old test bytes, with remaining AST identical.
+  Both original dirty example hashes remain unchanged/unstaged.
+- Scoped lint, five-file format, ten-source mypy, metadata/lock pass. Root Ruff534,
+  sole root test_display collection conflict (6868=6668+200) and legacy registry
+  formatting remain failed/unwaived; no whole-repository-green claim.
+- Fresh read-only Sol/Astra/Claude council and controller reconciliation precede
+  D2. D2 host routing/four cache refusals/exports and D3 candidate installed proof
+  remain pending. Shared-checkout review exception is recorded in the frozen
+  request, with private reviewer scratch/caches and optional Git locks disabled.
+- UAT remains NOT RUN. No DIAG acceptance/later family/TUI or delivery granted.

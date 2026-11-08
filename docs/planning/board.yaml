@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: DIAG-001 D0/D1 implementation under exact approval; freeze for Sol/Astra/Claude council before D2
+  next_gate: Fresh Sol/Astra/Claude DIAG-001 D1 council round1; reconcile before D2 Chat integration
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2758,3 +2758,10 @@ events:
   action: approved exact DIAG-001 contract and directive; begin code generation
   note: Direct approval of both pending documents. D0 then D1 neutral implementation; fresh Sol/Astra/Claude council after every deliverable. Existing acceptances retained; no DIAG acceptance or external delivery.
   evidence: docs/planning/active/command-refactor/approval/diagnostics.md
+- task: friday-command-refactor
+  at: '2026-11-08T20:16:14+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze DIAG-001 D1 neutral implementation for council round1
+  note: Exact approval retained. D1 478 passes/200 new; 14 final private mutation refusals; Chat1297/CLI155 and 72/25/196 source observations match. Baseline debt unwaived; D2/D3 and acceptance pending.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/README.md

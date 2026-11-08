@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "Exact DIAG-001 contract/directive approved by Chuck Russell; D0 and D1 construction authorized",
+  "decision": "DIAG-001 D1 neutral implementation frozen for Sol/Astra/Claude council; no independent result yet",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "DIAG-001 D0 baseline verification then D1 neutral models/specs/handlers/tests; D2/D3 follow reconciled councils",
-  "product_code_authority": "Granted only under approval/diagnostics.md and exact CD-CMD-DIAG-001; no DIAG acceptance or external delivery",
+  "current_scope": "DIAG-001 D1 validation/in_review round1; reconcile council before D2",
+  "product_code_authority": "Exact DIAG construction approval retained; D2 gated on D1 council reconciliation; no acceptance or delivery",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -730,11 +730,11 @@
     "directive_sha256": "1a9a506020b8d5faa0b864c053b1085e8f8c15c8feab8a4c0f59d4293677ee47",
     "preparation_evidence": "validation/diagnostics/preparation.json",
     "preparation_evidence_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
-    "execution_phase": "planning",
-    "validation_state": "not_ready",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
     "design_approval": "granted_by_subsequent_exact_record",
     "construction_approval": "granted_by_subsequent_exact_record",
-    "implementation": "not_started",
+    "implementation": "D1 neutral implementation recorded in diagnostics_construction; preparation evidence remains frozen",
     "lightweight_exemption": "Maintainer proceed authorizes planning/evidence/current-state preparation and guarded synthetic source characterization only; product/test/config/dependency/lock behavior cannot change. Controller verifies protected hashes, embedded evidence, docs/board and whitespace.",
     "council_after_each_deliverable": true,
     "council_members": [
@@ -744,7 +744,12 @@
     ],
     "accepted_session": "approval/session-acceptance.md",
     "delivery": "local only",
-    "approval_record": "approval/diagnostics.md"
+    "approval_record": "approval/diagnostics.md",
+    "historical_preapproval_process_fields": {
+      "execution_phase": "planning",
+      "validation_state": "not_ready",
+      "implementation": "not_started"
+    }
   },
   "diagnostics_construction": {
     "unit": "DIAG-001",
@@ -758,12 +763,20 @@
     "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
     "product_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
     "controller_start": "d0c729f43534bb79a3db70852ec08028ddb631ec",
-    "state": "implementation",
-    "execution_phase": "implementation",
-    "validation_state": "pending",
-    "current_deliverable": "D0 baseline verification then D1 neutral implementation",
+    "state": "validation",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
+    "current_deliverable": "D1 council round1 before D2",
     "deliverable1": {
-      "state": "implementation"
+      "state": "in_review",
+      "round": 1,
+      "product_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
+      "evidence": "validation/diagnostics/implementation/d1/evidence.json",
+      "neutral_tests": 478,
+      "new_cases": 200,
+      "mutation_refusals": 14,
+      "Chat_DIAG": "pending D2",
+      "candidate_installed_proof": "pending D3"
     },
     "deliverable2": {
       "state": "pending"
@@ -778,6 +791,8 @@
       "Claude Opus 5.5/high"
     ],
     "acceptance": "not_granted",
-    "delivery": "local only"
+    "delivery": "local only",
+    "construction_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
+    "product_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b"
   }
 }
