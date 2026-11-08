@@ -16,9 +16,10 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: implementation`; `validation_state: not_ready` for PILOT-001 D2.
+`execution_phase: validation`; `validation_state: in_review` for PILOT-001 D2.
 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
-council. D2 Chat integration/lifecycle is started; D3 and acceptance are pending.
+council. D2 Chat integration/lifecycle is implemented and in council review; D3 and
+acceptance are pending.
 RET-001 remains independently VERIFIED and accepted.
 The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
@@ -167,6 +168,7 @@ D1 neutral pilot implementation is at its [council checkpoint](validation/pilot/
 G1 has 217 passing Commands/cohort tests; Chat integration is pending D1 review.
 
 Current pilot checkpoint: [D1 council is VERIFIED](validation/pilot/implementation/d1/council-round4.json).
-D2 Chat integration/lifecycle is now in implementation under the existing
-[exact approval](approval/pilot.md), with its own council before D3. Historical
-D1 escalation/proposal records above do not replace this current checkpoint.
+[D2 evidence](validation/pilot/implementation/d2/README.md) records G2 400, G3
+218 and exact frozen behavior preservation. D2 council precedes D3 under the
+[exact pilot approval](approval/pilot.md). Historical checkpoints above do not
+change current validation or acceptance state.

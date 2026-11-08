@@ -1,21 +1,19 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 D1 council VERIFIED; D2 Chat integration/lifecycle started; D3 pending
-Execution phase: implementation
-Validation state: not_ready (PILOT-001 D2); D1 verified at eacef5b0; D3/G4-G5 and whole-pilot acceptance pending
+Status: PILOT-001 D1 VERIFIED; D2 implemented and in council validation; D3 pending
+Execution phase: validation
+Validation state: in_review (PILOT-001 D2); D1 verified; D3/G4-G5 and whole-pilot acceptance pending
 
 ## Current next steps
 
-1. Implement the approved D2 Chat metadata/catalog adapters, help/exit/cls
-   delegation and required exact Commands dependency/lock edge. Preserve Chat
-   parsing, custom registries, formatting, other 38 commands and app lifecycle.
-2. Pass G2 compatibility and G3 lifecycle/PTY gates, retain unchanged source/
-   assertions and frozen baseline comparison, then freeze for D2's own council.
-3. After D2 council reconciliation, deliver D3 full regression, clean candidate
+1. Reconcile the fresh three-provider council for D2 Chat integration/lifecycle.
+   [D2 evidence](validation/pilot/implementation/d2/README.md) records G2/G3,
+   frozen before/after compatibility and unchanged source/assertion checks.
+2. After D2 council reconciliation, deliver D3 full regression, clean candidate
    artifacts and default installed proof (G4-G5), followed by its own council.
-4. Present the complete pilot for maintainer acceptance. Later families,
-   TUI work and external delivery still require separate authority.
+3. Present the complete pilot for maintainer acceptance. Later families, TUI
+   work and external delivery still require separate authority.
 
 The [exact pilot approval](approval/pilot.md) authorizes this sequence. D1's
 [reconciled council result](validation/pilot/implementation/d1/council-round4.json)

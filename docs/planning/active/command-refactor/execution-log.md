@@ -1073,3 +1073,24 @@ before-source/test inventory; modify only approved Chat adapter/three wrappers/
 metadata projections/dependency edge and add new compatibility/lifecycle tests.
 `execution_phase: implementation`; `validation_state: not_ready` for D2.
 A fresh three-provider council follows D2 G2/G3 before D3 begins.
+
+2026-11-08T01:02:50+00:00: PILOT-001 D2 implemented at 99f19f69. Chat now
+projects the three shared definitions, builds exact-key catalog views, delegates
+one typed canonical request to the selected shared handler and retains Chat
+rendering, parser, dispatch and app lifecycle ownership. Required Commands
+metadata/workspace source and only Chat's two lock edges changed; every existing
+resolved distribution/version/source and other lock record is unchanged.
+G2 passes 400 tests (162 new); G3 passes 218 including PTY/app lifecycle. Exact
+clean-Git before/after captures match all 196 frozen observations. Preserved:
+58 existing Chat test files, 858 definitions including classes, 2,262 assertions,
+all retained registry definitions/38 default specs and all other package source.
+Moved renderer bodies are AST-identical; app/contracts and D1 remain unchanged.
+Seven-file explicit cross-package mypy, affected Ruff and new-file/session format
+pass. Root Ruff remains 534 and root pytest retains the sole test_display
+collection mismatch; registry format fails in both lanes. These are failed,
+unwaived baseline gates. Initial new-test normalization expectation is retained
+as a historical attempt; final tests and frozen expectations are unchanged.
+Evidence: validation/pilot/implementation/d2/evidence.json and README.md.
+`execution_phase: validation`; `validation_state: in_review` for D2.
+Freeze for fresh three-provider D2 council; D3 G4/G5, whole-pilot acceptance and
+external delivery remain pending. No candidate-wheel/default-installed claim.

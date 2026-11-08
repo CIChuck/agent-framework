@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Implement approved PILOT-001 D2 Chat integration and lifecycle; pass G2-G3, then fresh three-provider council before D3
+  next_gate: Fresh three-provider D2 council on Chat integration/lifecycle; G2-G3 and frozen comparison passed; reconcile before D3 G4-G5
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2592,3 +2592,10 @@ events:
   action: reconciled VERIFIED D1 council and started approved D2
   note: Claude 9.6, Sol 9.5 and Gemini 9.8 all VERIFIED eacef5b0; sorting coverage finding closed. D2 proceeds under existing exact pilot approval; G2/G3 and its own council precede D3. No whole-pilot acceptance or delivery inferred.
   evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d1/council-round4.json
+- task: friday-command-refactor
+  at: '2026-11-08T01:02:50+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze PILOT-001 D2 for council
+  note: G2 400 and G3 218 passed; 196 frozen observations exact; required dependency/lock only. D1 verified, D3 and acceptance pending. No external delivery.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/evidence.json
