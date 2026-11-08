@@ -2,18 +2,18 @@
 
 Date: 2026-11-08
 Branch: `feature/command-retirement`
-Status: PILOT accepted; SESSION D1/D2 VERIFIED, approved D3 proof
-Execution phase: implementation
-Validation state: not_ready (D3; final council and acceptance pending)
+Status: PILOT accepted; SESSION D1/D2 VERIFIED, D3 in final council
+Execution phase: validation
+Validation state: in_review (D3 round1; acceptance pending)
 
 ## Current SESSION-001 execution
 
 The [exact approval](approval/session-views.md) covers the frozen contract/directive.
-[D2](validation/session/implementation/d2/verified-report.md) is independently
-VERIFIED after D1; current order is S4/S5, candidate installed proof, fresh D3
-and full bounded aggregate council, then human acceptance. The
-[next-phase checkpoint](next-phase.md) owns the detailed sequence.
-Gemini is quota unavailable/no score, no retry/substitute. Broader work remains open.
+[D3](validation/session/implementation/d3/README.md) now has fresh S4/S5 artifacts,
+replay and installed proof. Obtain fresh available Claude/Sol D3 plus complete
+bounded aggregate review, reconcile unavailable Gemini/no score, then stop for
+human SESSION acceptance. [Next-phase](next-phase.md) owns current order.
+Broader command families/P0/P1/TUI and external delivery remain open.
 
 ## Historical Step 3 planning checkpoint
 

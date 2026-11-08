@@ -3,7 +3,7 @@
 Historical source-map date: 2026-11-04
 Historical source HEAD: `fc028f3bf128a610aae7d95b59afb4b601bec0eb`
 
-Status: historical P0 source map; nine retirements accepted. Pilot D1-D3 independently verified and accepted; remaining families and P0/P1 signoff open.
+Status: historical P0 source map; nine retirements accepted. Pilot D1-D3 independently verified and accepted; SESSION D3 builder proof in final council; remaining families and P0/P1 signoff open.
 
 The [Step 3 readiness review](../readiness-review.md) and
 [unit/scenario/environment map](step3/unit-map.json) assign all 50 cases and three
@@ -38,7 +38,7 @@ was exercised. Direct accesses omit transitive helper effects.
 | --- | --- | --- | --- | ---: | --- | --- |
 | PAR-001 | `/agent` — extract | `friday_chat.commands.registry._agent_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:1103) | context.runtime, context.runtime.orchestrator, context.runtime.orchestrator.active_agent, context.runtime.orchestrator.describe_agent | 1 | ORCH-001 | Open before owning unit |
 | PAR-002 | `/agents` — extract | `friday_chat.commands.registry._agents_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:1085) | context.runtime, context.runtime.orchestrator | 1 | ORCH-001 | Open before owning unit |
-| PAR-003 | `/clear` — extract | `friday_chat.commands.registry._clear_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:260) | context.history, context.history.clear, context.runtime, context.runtime.memory | 1 | SESSION-001 | Open before owning unit |
+| PAR-003 | `/clear` — extract | `friday_chat.commands.registry._clear_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:260) | context.history, context.history.clear, context.runtime, context.runtime.memory | 1 | SESSION-001 | SESSION D1/D2 VERIFIED; D3 S4/S5 builder proof passed, fresh aggregate council pending (session/implementation/d3/README.md); acceptance pending |
 | PAR-004 | `/clear-tools` — remove | `friday_chat.commands.tools.clear_tools_handler` (packages/friday-chat/src/friday_chat/commands/tools.py:77) | context.runtime, context.runtime.tool_selection, context.runtime.tool_selection.clear_manual | 3 | RET-001 | Removal VERIFIED and accepted 2026-11-07 (retirement/verified-report.md) |
 | PAR-005 | `/cls` — extract | `friday_chat.commands.session.cls_handler` (packages/friday-chat/src/friday_chat/commands/session.py:13) | See helper calls in inventory | 5 | PILOT-001 | D1-D3 independently VERIFIED at eb216421; PILOT-001 accepted (../approval/pilot-acceptance.md) |
 | PAR-006 | `/compact` — extract | `friday_chat.commands.registry._compact_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:755) | context.runtime, context.runtime.config, context.runtime.config.memory, context.runtime.config.memory.compaction | 3 | MAINT-001 | Open before owning unit |
@@ -52,7 +52,7 @@ was exercised. Direct accesses omit transitive helper effects.
 | PAR-014 | `/export` — extract | `friday_chat.commands.transcript.export_handler` (packages/friday-chat/src/friday_chat/commands/transcript.py:107) | context.runtime, context.runtime.transcript, context.runtime.transcript.query_entries, context.runtime.transcript.query_session | 7 | TRANSCRIPT-001 | Open before owning unit |
 | PAR-015 | `/export-prompts` — extract | `friday_chat.commands.transcript.export_prompts_handler` (packages/friday-chat/src/friday_chat/commands/transcript.py:145) | context.runtime, context.runtime.transcript, context.runtime.transcript.query_context_logs, context.runtime.transcript.query_session | 6 | TRANSCRIPT-001 | Open before owning unit |
 | PAR-016 | `/help` — extract | `friday_chat.commands.registry._help_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:1346) | context.registry | 20 | PILOT-001 | D1-D3 independently VERIFIED at eb216421; PILOT-001 accepted (../approval/pilot-acceptance.md) |
-| PAR-017 | `/history` — extract | `friday_chat.commands.registry._history_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:271) | context.history | 3 | SESSION-001 | Open before owning unit |
+| PAR-017 | `/history` — extract | `friday_chat.commands.registry._history_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:271) | context.history | 3 | SESSION-001 | SESSION D1/D2 VERIFIED; D3 S4/S5 builder proof passed, fresh aggregate council pending (session/implementation/d3/README.md); acceptance pending |
 | PAR-018 | `/ingest` — extract | `friday_chat.commands.registry._ingest_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:812) | context.runtime, context.runtime.memory, context.runtime.memory.ingest_document | 1 | FILE-001 | Open before owning unit |
 | PAR-019 | `/inject-payload` — remove | `friday_chat.commands.registry._inject_payload_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:992) | context.injected_payload | 1 | RET-001 | Removal VERIFIED and accepted 2026-11-07 (retirement/verified-report.md) |
 | PAR-020 | `/inject-tools` — remove | `friday_chat.commands.tools.inject_tools_handler` (packages/friday-chat/src/friday_chat/commands/tools.py:32) | context.runtime, context.runtime.tool_selection, context.runtime.tools, context.runtime.tools.list_tools | 4 | RET-001 | Removal VERIFIED and accepted 2026-11-07 (retirement/verified-report.md) |

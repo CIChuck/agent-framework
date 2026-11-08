@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Execute approved SESSION D3 S4/S5 and installed proof; fresh aggregate council before acceptance
+  next_gate: Fresh available Claude/Sol SESSION D3 and complete bounded aggregate council; reconcile before human acceptance
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2722,3 +2722,10 @@ events:
   action: reconciled SESSION D2 council; begin approved D3
   note: Sol VERIFIED 9.7 and Claude VERIFIED 9.6; no mandatory findings. Gemini unavailable/no score; available coverage reconciled. Acceptance remains pending.
   evidence: docs/planning/active/command-refactor/validation/session/implementation/d2/council-round1.json
+- task: friday-command-refactor
+  at: '2026-11-08T17:06:21+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze SESSION D3 installed proof and complete bounded aggregate for final council
+  note: S4 1730 passes; both bundles build 13 workspace distributions with 125 locked inputs and match 154 hashes; installed proof and 42 refusal controls pass. Gemini unavailable/no score; acceptance pending.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d3/evidence.json

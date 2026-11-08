@@ -1387,3 +1387,27 @@ lock and frozen authorities unchanged during reconciliation. Root Ruff 534,
 root test_display collection and legacy registry format remain failed/unwaived.
 `execution_phase: implementation`; `validation_state: not_ready` for D3.
 SESSION acceptance, later families and external delivery remain separate.
+
+2026-11-08T17:06:21+00:00: SESSION D3 builder proof complete. D3 base `3cc7ef3376672b36ae1147298ccd55841f9a0145`;
+artifact/probe source `8bb61e2c65ff33bc806050f0a55610b02533aa8e`. Fresh S4 passes 1297 Chat,
+278 Commands/cohort, 155 CLI (1730 total), focused lint/seven-file format/nine-source
+mypy. Current clean export matches 25 SESSION and 196 pilot observations. Two
+closed offline trials each build 13 workspace distributions with 125 locked inputs;
+all 154 actual artifact hashes/profile match. Closures remain 1/138 with exact
+accepted profile versions. Two wheels/two sdists validate. Pinned pilot and new
+SESSION probes pass actual isolated normal/optimized lanes, including 68 source
+members / 146 sdist files and bound file/search-path origins in parent/entry child.
+Every installed SESSION row requires one canonical call and exact parsed args;
+injected shared outcomes are consumed. 32 copied-installation/origin refusals,
+10 archive refusals and an exact extra-source prebuild refusal pass; clean copied
+controls pass. Interpreter/package roots are verified before each mutation.
+Initial probe lint/development and read-only 0444-versus-Git 0644 permission error
+are labeled historical; current check uses Git executable bits, bytes and types.
+No failed setup earns refusal credit. All 795 D3 original files/all 279 current
+tests remain unchanged; aggregate retained ASTs and 783 non-allowlisted preparation
+files match. Only PAR-003/017 gain current evidence; no broader signoff. Root Ruff
+534, sole root test_display collection and legacy registry format remain failed/
+unwaived. Evidence: validation/session/implementation/d3/. `execution_phase: validation`;
+`validation_state: in_review` for D3 round1/full bounded aggregate. Fresh available
+Claude/Sol council precedes acceptance; Gemini remains quota unavailable/no score,
+no retry/substitute. No SESSION acceptance or delivery authority is inferred.

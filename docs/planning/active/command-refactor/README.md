@@ -16,10 +16,10 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: implementation`; `validation_state: not_ready` for SESSION D3.
-SESSION D1/D2 are independently VERIFIED; [D2 reconciliation](validation/session/implementation/d2/verified-report.md)
-records Sol 9.7/Claude 9.6, no mandatory findings. Approved D3 proof is in progress;
-fresh final council and bounded maintainer acceptance remain pending.
+`execution_phase: validation`; `validation_state: in_review` for SESSION D3 round1.
+SESSION D1/D2 are independently VERIFIED. [D3 proof](validation/session/implementation/d3/README.md)
+records passing S4/S5 and installed normal/optimized lanes; fresh final aggregate
+council and human acceptance remain pending. Gemini is unavailable/no score.
 PILOT-001 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
 council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
 VERIFIED at `eb216421` by Claude and Sol, both 9.6/10, and now
@@ -189,6 +189,5 @@ tests. It is reference evidence, not another approval document. Later families,
 P0/P1 and TUI remain open; delivery is local only.
 
 Current SESSION-001 construction is [approved](approval/session-views.md).
-D1/D2 are independently VERIFIED. D3 owes S4/S5 artifacts and installed proof,
-then fresh available-member aggregate council before SESSION acceptance.
-Gemini remains quota unavailable/no score without retry/substitute.
+D1/D2 are independently VERIFIED. D3 and the complete bounded SESSION aggregate
+are frozen for fresh available-member council. SESSION acceptance remains pending.

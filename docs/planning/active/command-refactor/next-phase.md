@@ -1,25 +1,22 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: SESSION D1/D2 VERIFIED; approved D3 artifact and installed proof
-Execution phase: implementation
-Validation state: not_ready (D3); final council and SESSION acceptance pending
+Status: SESSION D1/D2 VERIFIED; D3 and complete bounded aggregate in final council
+Execution phase: validation
+Validation state: in_review (D3 round1); human SESSION acceptance pending
 
 ## Current next steps
 
-1. Execute approved D3 S4/S5: full owning after-suites and preservation, clean
-   candidate bundle plus replay, exact accepted 138-distribution profile.
-2. Run the pinned pilot installed proof and new SESSION proof in actual isolated
-   normal/optimized lanes, including complete inventories, bound origins and
-   private copied-installation refusal controls. Use distinct receipt labels.
-3. Freeze D3 for fresh available Claude/Sol D3 plus full bounded aggregate review,
-   reconcile Gemini unavailable/no score, then stop for maintainer acceptance.
+1. Obtain fresh available Claude/Sol review of [D3](validation/session/implementation/d3/README.md)
+   and the complete bounded SESSION aggregate. Artifact/probe source is 8bb61e2c;
+   only evidence/status follows it. All 1730 source tests and installed lanes pass.
+2. Reconcile both reports and Gemini quota unavailable/no-score coverage; no retry,
+   substitute or third-review claim. A changed candidate needs fresh review.
+3. After VERIFIED, stop for bounded maintainer SESSION acceptance. Later families,
+   P0/P1, TUI and external delivery remain separate. Known root debt is unwaived.
 
-[D2](validation/session/implementation/d2/verified-report.md) is independently
-VERIFIED by Sol 9.7 and Claude 9.6 with no mandatory findings. No Gemini retry,
-substitute, third score or waiver is asserted. Known root debt remains unwaived.
-PILOT remains accepted; initiative stays started/local. No SESSION acceptance,
-later-family/P0/P1/TUI or external delivery grant.
+PILOT remains accepted; SESSION D1/D2 remain independently VERIFIED. The initiative
+stays started/local. D3 construction approval already exists; acceptance does not.
 
 ## Historical checkpoints
 
