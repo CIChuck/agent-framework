@@ -87,6 +87,17 @@ Local telemetry is disabled by default. Enabled Chat telemetry supplies bounded 
 
 Embedding applications can inject a borrowed `TelemetryInterface` through `build_runtime(config, telemetry=...)`; Chat does not close that provider. Remote exporter assembly and provider-neutral Langfuse integration remain separate work. The legacy `langfuse` section is not activated by local debug telemetry. Persistence diagnostics distinguish an intermediate write from full-turn success; they do not promise atomic rollback.
 
+The six diagnostics (`/context`, `/prompt`, `/debug`, `/debug-budget`, `/timing`,
+`/debug-retrieval`) delegate to opt-in shared Commands handlers. Chat projects
+runtime/telemetry facts and renders their typed results. `/context --file` and
+`/prompt --file` overwrite `friday_context.txt` and `friday_prompt.txt` in the
+existing resolved export directory; context exports include `--debug` output.
+Retrieval awaits the existing public memory capability once. Exceptions and
+cancellation propagate without retry or rollback. Truthy non-string cached
+context/prompt values and direct non-string command arguments raise `TypeError`;
+falsy caches retain fallback behavior. These boundaries do not change parsing,
+registration, runtime service ownership or telemetry defaults.
+
 ## Development
 
 Work from the monorepo root after the [shared contributor setup](https://github.com/CIChuck/agent-framework/blob/master/README.md#development).

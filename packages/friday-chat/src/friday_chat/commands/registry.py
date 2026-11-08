@@ -6,7 +6,6 @@ import json
 import re
 from collections.abc import Awaitable, Callable, Iterable
 from dataclasses import dataclass, field
-from pathlib import Path
 
 from friday_chat.commands.contracts import (
     CommandArgument,
@@ -16,6 +15,7 @@ from friday_chat.commands.contracts import (
     CommandResult,
     CommandUiEffect,
 )
+from friday_chat.commands.diagnostics import diagnostic_metadata, invoke_diagnostic
 from friday_chat.commands.files import (
     SmartFileReader,
     format_file_read,
@@ -26,9 +26,6 @@ from friday_chat.commands.memory import (
     memory_handler,
     meta_handler,
     summaries_handler,
-)
-from friday_chat.commands.memory import (
-    preview_text as _preview_text,
 )
 from friday_chat.commands.memory import (
     record_value as _record_value,
@@ -50,9 +47,6 @@ from friday_chat.commands.session import cls_handler
 from friday_chat.commands.session_views import invoke_session, session_metadata
 from friday_chat.commands.tools import (
     list_runtime_tools as _list_runtime_tools,
-)
-from friday_chat.commands.transcript import (
-    export_directory as _export_directory,
 )
 from friday_chat.commands.transcript import (
     export_handler,
@@ -256,13 +250,7 @@ async def _context_handler(
     args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    text = context.last_context or _build_context_text(context)
-    if "--debug" in args:
-        text = f"{text}\n\nDebug:\n- characters: {len(text)}"
-    if "--file" in args:
-        path = _write_export_file(context, "context", text)
-        text = f"{text}\n\nExported context to {path}"
-    return CommandResult(output=text)
+    return await invoke_diagnostic("context", args, context)
 
 
 async def _prompt_handler(
@@ -270,11 +258,7 @@ async def _prompt_handler(
     args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    text = context.last_prompt or _build_prompt_text(context)
-    if "--file" in args:
-        path = _write_export_file(context, "prompt", text)
-        text = f"{text}\n\nExported prompt to {path}"
-    return CommandResult(output=text)
+    return await invoke_diagnostic("prompt", args, context)
 
 
 async def _debug_handler(
@@ -282,17 +266,7 @@ async def _debug_handler(
     _args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    execution = context.runtime.telemetry.execution_snapshot() if context.runtime is not None and context.runtime.telemetry is not None else None
-    if not context.last_debug and not (execution and execution.turns):
-        return CommandResult(output="No debug information recorded.")
-    lines = ["Debug information:"]
-    lines.extend(f"- {key}: {value}" for key, value in sorted(context.last_debug.items()))
-    if execution and execution.turns:
-        turn = execution.turns[-1]
-        lines.extend([f"- turn: {turn.turn_ref}", f"- outcome: {turn.outcome}",
-                      f"- persistence: {turn.persistence}", f"- completed_tools: {turn.completed_tools}",
-                      f"- failed_tools: {turn.failed_tools}"])
-    return CommandResult(output="\n".join(lines))
+    return await invoke_diagnostic("debug", _args, context)
 
 
 async def _debug_budget_handler(
@@ -300,16 +274,7 @@ async def _debug_budget_handler(
     _args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    memory = context.runtime.config.memory if context.runtime is not None else None
-    context_window = memory.context_window if memory is not None else None
-    output_buffer = memory.output_buffer if memory is not None else None
-    return CommandResult(
-        output=(
-            "Token budget:\n"
-            f"- context_window: {context_window or 'unknown'}\n"
-            f"- output_buffer: {output_buffer or 'unknown'}"
-        )
-    )
+    return await invoke_diagnostic("debug-budget", _args, context)
 
 
 async def _timing_handler(
@@ -317,18 +282,7 @@ async def _timing_handler(
     _args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    execution = context.runtime.telemetry.execution_snapshot() if context.runtime is not None and context.runtime.telemetry is not None else None
-    if not context.last_timing and not (execution and execution.turns):
-        return CommandResult(output="No timing data recorded.")
-    lines = ["Timing:"]
-    lines.extend(
-        f"- {key}: {value:.3f}s" for key, value in sorted(context.last_timing.items())
-    )
-    if execution and execution.turns:
-        turn = execution.turns[-1]
-        lines.append(f"- observed_turn: {turn.duration_ms / 1000:.3f}s ({turn.outcome}, persistence={turn.persistence})")
-        lines.extend(f"- {kind}/{outcome}: {count}" for kind, outcome, count in execution.counters)
-    return CommandResult(output="\n".join(lines))
+    return await invoke_diagnostic("timing", _args, context)
 
 
 
@@ -338,26 +292,7 @@ async def _debug_retrieval_handler(
     args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    if context.runtime is None:
-        return CommandResult(output="Memory runtime is not initialized.")
-    if not args:
-        return CommandResult(output="Usage: /debug-retrieval <query>")
-    query = " ".join(args)
-    diagnostics = await context.runtime.memory.debug_retrieval(query)
-    snippets = diagnostics.get("snippets", [])
-    debug_info = diagnostics.get("debug_info", {})
-    lines = [
-        "Retrieval diagnostics:",
-        f"- query: {query}",
-        f"- result_count: {len(snippets) if isinstance(snippets, list) else 0}",
-    ]
-    if isinstance(debug_info, dict):
-        for key in sorted(debug_info):
-            lines.append(f"- {key}: {debug_info[key]}")
-    if isinstance(snippets, list) and snippets:
-        lines.append("Results:")
-        lines.extend(f"- {_preview_text(str(snippet))}" for snippet in snippets[:10])
-    return CommandResult(output="\n".join(lines))
+    return await invoke_diagnostic("debug-retrieval", args, context)
 
 
 async def _entities_handler(
@@ -1308,36 +1243,10 @@ def _normalize_command_name(name: str) -> str:
     return name.removeprefix("/").strip().lower()
 
 
-def _build_context_text(context: CommandContext) -> str:
-    sections = ["Context payload:"]
-    if context.runtime is not None and context.runtime.tool_context:
-        sections.append(context.runtime.tool_context)
-    else:
-        sections.append("No tool context injected.")
-    sections.append(f"History turns: {len(context.history)}")
-    return "\n".join(sections)
 
 
-def _build_prompt_text(context: CommandContext) -> str:
-    system_prompt = (
-        context.runtime.config.chat.system_prompt
-        if context.runtime is not None
-        else "You are Friday."
-    )
-    sections = [f"System: {system_prompt}"]
-    if context.history:
-        user_message, assistant_message = context.history[-1]
-        sections.append(f"User: {user_message}")
-        sections.append(f"Friday: {assistant_message}")
-    return "\n".join(sections)
 
 
-def _write_export_file(context: CommandContext, kind: str, text: str) -> Path:
-    export_directory = _export_directory(context)
-    export_directory.mkdir(parents=True, exist_ok=True)
-    path = export_directory / f"friday_{kind}.txt"
-    path.write_text(text, encoding="utf-8")
-    return path
 
 
 _REORGANIZE_MODE_FLAGS = {
@@ -1601,6 +1510,19 @@ def _session_definition(name: str) -> CommandSpec:
     )
 
 
+def _diagnostic_definition(name: str) -> CommandSpec:
+    metadata = diagnostic_metadata(name)
+    return CommandSpec(
+        metadata.name,
+        metadata.description,
+        metadata.category,
+        metadata.usage,
+        metadata.aliases,
+        metadata.arguments,
+        metadata.detail,
+    )
+
+
 DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     _session_definition("clear"),
     _pilot_definition("cls"),
@@ -1616,31 +1538,11 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
             "zero; unavailable or unconfigured components are labeled honestly."
         ),
     ),
-    CommandSpec(
-        "context",
-        "Show the assembled context payload.",
-        "memory",
-        "/context [--debug] [--file]",
-        arguments=(
-            _argument("--debug", "Include detailed token diagnostics."),
-            _argument("--file", "Export the context to a file."),
-        ),
-    ),
-    CommandSpec(
-        "prompt",
-        "Show the full formatted prompt sent to the LLM.",
-        "memory",
-        "/prompt [--file]",
-        arguments=(_argument("--file", "Export the prompt to a file."),),
-    ),
-    CommandSpec("debug", "Show context assembly debug information.", "memory", "/debug"),
-    CommandSpec(
-        "debug-budget",
-        "Show token budget diagnostics.",
-        "memory",
-        "/debug-budget",
-    ),
-    CommandSpec("timing", "Show timing breakdown for the last turn.", "memory", "/timing"),
+    _diagnostic_definition("context"),
+    _diagnostic_definition("prompt"),
+    _diagnostic_definition("debug"),
+    _diagnostic_definition("debug-budget"),
+    _diagnostic_definition("timing"),
     CommandSpec(
         "entities",
         "List graph entities and relationships.",
@@ -1686,19 +1588,7 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "memory",
         "/compact",
     ),
-    CommandSpec(
-        "debug-retrieval",
-        "Show retrieval diagnostics for a query.",
-        "memory",
-        "/debug-retrieval <query>",
-        arguments=(
-            _argument(
-                "query",
-                "Retrieval query; remaining words are joined.",
-                required=True,
-            ),
-        ),
-    ),
+    _diagnostic_definition("debug-retrieval"),
     CommandSpec(
         "list-ingested",
         "List ingested document memory records.",

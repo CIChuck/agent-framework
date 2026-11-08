@@ -73,6 +73,12 @@ port results fail without coercion; selected text must be a string. Direct
 requests retain the existing string-only argument boundary. All 24 earlier
 exports retain their order, with the fourteen diagnostics names appended.
 
-This is the neutral diagnostics deliverable. Chat diagnostics wiring and
-candidate installed-artifact proof are subsequent DIAG deliverables; the
-accepted pilot and session integrations remain in place.
+Chat now delegates all six diagnostics through its typed port. Chat retains
+legacy field projection, English output, telemetry/runtime reads and fixed UTF-8
+exports; shared handlers own flags, capability order and awaited retrieval.
+Candidate installed-artifact proof remains the separate DIAG D3 gate.
+
+The DIAG standalone tests explicitly preload the pinned audit guard. Run the
+Commands suite through a freshly prepared `validation/pilot/harness/prepare.py`
+lane and its `pilot_run.py`, as specified in CD-CMD-DIAG-001. A plain pytest run
+does not supply the guard required by those three standalone cases.
