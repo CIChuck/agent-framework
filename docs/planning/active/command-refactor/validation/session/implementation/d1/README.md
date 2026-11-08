@@ -1,6 +1,19 @@
 # SESSION-001 D1 — neutral models and handlers
 
 Execution phase: `validation`. Validation state: `in_review` (D1 only).
+[Corrected export-test evidence](export-fix-evidence.json) is current for
+round 2 after [VAL-SD1-001](../../../../remediation/REM-CMD-SESSION-D1-001-export-surface.md).
+The exact ordered 24-name assertion passes S1 (278 tests), lint and format.
+Extra/missing/reordered/duplicate exports each cause one test-call failure with
+277 other cases passing; old tests let extra/missing controls pass. Runtime
+bytes and every other test AST remain unchanged. Fresh Claude/Sol review and
+Gemini's unavailable/no-score disposition must be reconciled before D2.
+
+The original builder evidence below remains historical; its subset-only export
+test was superseded by this correction, not silently rewritten.
+
+## Original D1 builder checkpoint
+
 The [exact approval](../../../../approval/session-views.md) covers the frozen
 contract/directive despite their preserved draft labels. D2 Chat integration,
 D3 installed candidate proof and SESSION acceptance remain pending.

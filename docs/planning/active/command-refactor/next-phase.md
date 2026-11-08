@@ -1,23 +1,23 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: SESSION-001 D1 neutral implementation in fresh council review; D2/D3 pending
+Status: SESSION-001 D1 export assertion corrected; fresh available-member round 2 review
 Execution phase: validation
-Validation state: in_review (SESSION-001 D1 implementation only)
+Validation state: in_review (D1 correction cycle1); D2/D3 pending reconciliation
 
 ## Current next steps
 
-1. Obtain fresh three-provider D1 council on the [neutral implementation](validation/session/implementation/d1/README.md)
-   and exact approval/contract/directive. D1 has278 passing Commands/cohort cases;
-   S0 baseline and D1 source compatibility/preservation are recorded separately.
-2. Reconcile all results before beginning approved Chat D2 integration. D2 and
-   D3 remain future deliverables, each followed by its own council.
-3. Stop after final independent SESSION verification for bounded maintainer
-   acceptance. No later family/P0/P1/TUI or external delivery is authorized.
+1. Obtain fresh Claude/Sol delta plus full bounded D1 review of the
+   [export-test correction](validation/session/implementation/d1/export-fix-evidence.json).
+   Current S1 has 278 passing cases; four private export mutants are refused.
+2. Reconcile both current reports and unavailable Gemini/no-score disposition
+   under the recorded council availability before advancing to approved D2.
+   No retry or replacement is planned; no human waiver is invented.
+3. SESSION acceptance and external delivery remain separate. D1 construction
+   is already approved; its current mandatory finding needs independent closure.
 
-PILOT-001 remains accepted; original review/authority bytes remain frozen. The
-initiative stays started/local. Earlier draft labels are superseded by the
-[exact SESSION approval](approval/session-views.md), not by passing tests.
+PILOT-001 remains accepted. The original reports and contract/directive are
+immutable; the initiative remains started/local with D2/D3 pending this review.
 
 ## Historical checkpoints
 
@@ -107,7 +107,7 @@ The regenerated baseline comes from the same unchanged Git revision, preserving
 all original observations and adding three legacy falsy-focus cases (196 total).
 Fresh full three-provider review is required for the corrected candidate.
 
-Current corrected G0 evidence is [round-two harness receipts](validation/pilot/harness-evidence-round2.json):
+Current corrected G0 evidence is [round-two harness receipts](validation/pilot/harness-evidence-round 2.json):
 12 refusal controls, 10 comparison controls, cold artifact build/install and all
 1,338 scoped baseline tests pass with the final scratch-isolated runner.
 [Correction map](validation/pilot/council-remediation.json) binds every council
@@ -116,7 +116,7 @@ above describes round one. No product construction approval is granted.
 
 Round two: OpenAI CHANGES_REQUESTED 8.8/10, Claude CHANGES_REQUESTED 8.5/10,
 Gemini VERIFIED 9.8/10. The combined readiness decision remains CHANGES_REQUESTED.
-[Current corrections](validation/pilot/council-remediation-round2.json) and
+[Current corrections](validation/pilot/council-remediation-round 2.json) and
 [round-three evidence](validation/pilot/harness-evidence-round3.json) now include
 an executable artifact-bundle recipe: 13 workspace builds, 125 hash-verified
 locked third-party artifacts, PyPika source-to-wheel lineage, exact Python

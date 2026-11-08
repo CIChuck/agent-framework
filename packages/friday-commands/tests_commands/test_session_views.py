@@ -195,15 +195,33 @@ def test_session_specs_and_factory_are_immutable() -> None:
             detail=None,
         ),
     )
-    added = {
+    # Future approved API expansions must explicitly revise this unit's surface.
+    assert api.__all__ == [
+        "PILOT_SPECS",
         "SESSION_SPECS",
-        "HistoryTurn",
+        "CommandArgument",
+        "CommandError",
+        "CommandExecution",
+        "CommandHandler",
+        "CommandOutcome",
+        "CommandRegistry",
+        "CommandRequest",
+        "CommandSpec",
+        "DispatchResult",
+        "ExitData",
+        "FoundationData",
+        "HelpCatalog",
+        "HelpData",
         "HistoryData",
+        "HistoryTurn",
+        "NoData",
         "SessionClearedData",
         "SessionPort",
+        "UiEffect",
+        "build_pilot_handlers",
         "build_session_handlers",
-    }
-    assert added <= set(api.__all__)
+        "describe_help",
+    ]
     assert CommandRegistry().names() == frozenset()
     first = build_session_handlers(NoReads())
     second = build_session_handlers(NoReads())

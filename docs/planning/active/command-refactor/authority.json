@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "Approved SESSION-001 D1 neutral implementation in fresh council validation; D2/D3 pending preceding review",
+  "decision": "SESSION D1 export test corrected; fresh available Claude/Sol round2 and coverage reconciliation before D2",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "SESSION-001 D1 validation/in_review only, shared models/handlers/source tests and preservation; Chat extraction and candidate installed proof remain later deliverables",
+  "current_scope": "SESSION D1 validation/in_review, export-test correction cycle1; runtime behavior unchanged, D2/D3 pending",
   "product_code_authority": "Exact SESSION-001 contract/directive approved; implement D1 then council before D2, with no other family/TUI/delivery authority.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -547,7 +547,7 @@
     "preparation_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "product_baseline": "38a0c58a0b533edc29908992c8c6ee64fa04eb20",
     "state": "started",
-    "current_deliverable": "D1 S0/S1 neutral implementation council review",
+    "current_deliverable": "D1 corrected export assertion council round2",
     "council_after_each_deliverable": true,
     "council_members": [
       "Claude Opus 5.5/high",
@@ -557,11 +557,34 @@
     "deliverable1": {
       "state": "in_review",
       "scope": "SESSION-01\u201304; D1 preservation/compatibility subset only",
-      "evidence": "validation/session/implementation/d1/evidence.json",
+      "evidence": "validation/session/implementation/d1/export-fix-evidence.json",
       "source_revision": "4065a150cbfcacbcf71c6aab05e05d2920bf48e5",
       "S0": "passed scoped baseline; known root debt remains failed/unwaived",
-      "gate": "Fresh three-provider D1 council reconciliation before Chat D2",
-      "acceptance": "not_granted"
+      "gate": "Fresh available Claude/Sol delta and aggregate D1 review; record unavailable Gemini and reconcile before D2",
+      "acceptance": "not_granted",
+      "council_round1": {
+        "candidate": "363d67a4f26ef49ab83b1ebb5b06c9ab143d2b31",
+        "outcome": "CHANGES_REQUESTED",
+        "scores": {
+          "claude": 9.2,
+          "openai": 9.6,
+          "gemini": null
+        },
+        "record": "validation/session/implementation/d1/council-round1.json"
+      },
+      "remediation": {
+        "cycle": 1,
+        "directive": "remediation/REM-CMD-SESSION-D1-001-export-surface.md",
+        "directive_sha256": "5e016ba9f583d3378600cc30d74365807d64f0c48c0dc4628c13abd46f88d782",
+        "findings": [
+          "VAL-SD1-001"
+        ],
+        "state": "implemented_pending_fresh_review",
+        "evidence": "validation/session/implementation/d1/export-fix-evidence.json",
+        "map": "validation/session/implementation/d1/council-remediation-round1.json"
+      },
+      "historical_evidence": "validation/session/implementation/d1/evidence.json",
+      "council_round": 2
     },
     "deliverable2": {
       "state": "pending_D1_review"
@@ -571,6 +594,21 @@
     },
     "acceptance": "not_granted",
     "delivery": "local only",
-    "source_revision": "4065a150cbfcacbcf71c6aab05e05d2920bf48e5"
+    "source_revision": "4065a150cbfcacbcf71c6aab05e05d2920bf48e5",
+    "council_availability": {
+      "selected_members": [
+        "Claude Opus 5.5/high",
+        "GPT-6.1 Sol/high",
+        "Gemini 4 Argon High"
+      ],
+      "available": [
+        "Claude Opus5.5/high",
+        "GPT-6.1 Sol/high"
+      ],
+      "unavailable": {
+        "Gemini4 Argon High": "Antigravity quota; no review/score; no retry/replacement"
+      },
+      "disposition": "Reconcile available reports and unreachable-provider coverage before D2; no invented human waiver."
+    }
   }
 }

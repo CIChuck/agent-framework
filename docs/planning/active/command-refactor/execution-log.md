@@ -1303,3 +1303,33 @@ registry format remain failed/unwaived. S0 build is baseline machinery only,
 not a D1 candidate wheel. Evidence: validation/session/implementation/d1/.
 `execution_phase: validation`; `validation_state: in_review` for SESSION D1.
 Fresh three-provider council precedes Chat D2. No SESSION acceptance/delivery.
+
+2026-11-08T15:46:06+00:00: SESSION D1 round1 reconciled: Sol VERIFIED 9.6, Claude
+CHANGES_REQUESTED 9.2 for VAL-SD1-001, Gemini quota unavailable/no score. Product
+behavior conforms; the named test asserts only new-name presence and misses
+extra/prior-export loss. Before writes all 17159 protected contents and every
+frozen pin/candidate/status/index matched. Existing approval and SESSION-01
+authorize the bounded exact 24-name assertion correction; no runtime edits.
+Record remediation/REM-CMD-SESSION-D1-001-export-surface.md. Rerun S1/lint/format
+and canonical-origin missing/extra mutation controls. Clarify test-definition
+counting in metadata, preserve historical evidence, then fresh Claude/Sol delta
+plus full D1 review. Gemini will not be retried/replaced; availability coverage
+must be reconciled before D2. `execution_phase: remediation`;
+`validation_state: changes_requested` for D1. No acceptance/delivery authority.
+
+2026-11-08T15:51:19+00:00: VAL-SD1-001 test-only correction implemented. Exact ordered 24
+export names replace subset membership; normalization proves every other test
+AST node/parameter/body/assertion unchanged. Runtime/model/Chat/metadata/lock
+and all frozen old evidence remain byte-identical. Fresh S1=278, focused Ruff
+and changed-test format pass; guard 18 refusal controls pass. Private unchanged
+control 278 passes. Extra/missing/reordered/duplicate export mutants each fail
+exactly the named assertion with 277 passes and no setup errors; before-fix
+extra/missing tests still pass. Canonical module origins and bytes are checked
+before/after pytest. Clarified count algorithm for 2,999 test_-prefixed function
+definitions and 9,072 syntactic assertions in 277 original files; no collection
+claim is inferred. Current evidence: validation/session/implementation/d1/export-fix-evidence.json.
+`execution_phase: validation`; `validation_state: in_review` for D1 cycle1/
+round 2. Fresh available Claude/Sol delta/full D1 reviews precede D2; record
+Gemini quota unavailable/no score without retry/replacement, and reconcile
+coverage under the existing unreachable-provider instruction. No new human
+waiver, SESSION acceptance, runtime change or delivery is asserted.

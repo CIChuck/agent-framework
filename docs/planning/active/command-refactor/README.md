@@ -16,10 +16,11 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: validation`; `validation_state: in_review` for SESSION-001 D1.
-The approved neutral models/handlers and 61 new tests pass builder checks and
-await fresh council. D2/D3 remain pending. Accepted PILOT-001 remains VERIFIED.
-D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
+`execution_phase: validation`; `validation_state: in_review` for SESSION-001 D1 correction cycle1.
+The exact export assertion now passes current checks; fresh available-member
+round-two review and coverage reconciliation precede D2. Accepted PILOT-001
+remains VERIFIED.
+PILOT-001 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
 council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
 VERIFIED at `eb216421` by Claude and Sol, both 9.6/10, and now
 [accepted by Chuck Russell](approval/pilot-acceptance.md).
@@ -147,7 +148,7 @@ Chuck Russell subsequently accepted the verified foundation by direct instructio
 refactor remains started/local and later construction is separately gated.
 
 Round 2 results and the narrow residual pruning-review correction are recorded
-in [the council report](validation/COUNCIL-CMD-DESIGN-001-round2.md). The correction
+in [the council report](validation/COUNCIL-CMD-DESIGN-001-round 2.md). The correction
 had controller checks only at that historical checkpoint; those verdicts do
 not verify the current corrected readiness candidate.
 
@@ -169,7 +170,7 @@ this exact maintainer record.
 
 D1 neutral handlers, D2 Chat integration and D3 regression/installed proof are
 independently verified. [Reconciled pilot verification](validation/pilot/implementation/d3/verified-report.md)
-records the current result; [exact council reports](validation/pilot/implementation/d3/council-round2.json)
+records the current result; [exact council reports](validation/pilot/implementation/d3/council-round 2.json)
 and [current evidence](validation/pilot/implementation/d3/remediation-evidence.json)
 preserve the reviewed candidate and limits. Both D3 findings are closed.
 Chuck Russell has [accepted PILOT-001](approval/pilot-acceptance.md).
@@ -188,7 +189,7 @@ tests. It is reference evidence, not another approval document. Later families,
 P0/P1 and TUI remain open; delivery is local only.
 
 Current SESSION-001 construction is [approved](approval/session-views.md).
-[D1 neutral implementation evidence](validation/session/implementation/d1/README.md)
-is in fresh council review. S0 passed scoped baseline checks; D1 passes 278
-Commands/cohort cases and compatibility/preservation checks. Reconcile the D1
-council before Chat D2 integration. D3 and SESSION acceptance remain pending.
+[Corrected D1 evidence](validation/session/implementation/d1/export-fix-evidence.json)
+is frozen for fresh Claude/Sol round-two review. The [bounded correction](remediation/REM-CMD-SESSION-D1-001-export-surface.md)
+preserves runtime and all other tests. Gemini remains unavailable due quota,
+without score/retry/replacement. Reconcile current reviews and coverage before D2.

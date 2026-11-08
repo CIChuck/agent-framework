@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Fresh three-provider SESSION-001 D1 council on neutral models/handlers and preservation; reconcile before Chat D2
+  next_gate: Fresh available Claude/Sol D1 round 2 review of exact export assertion; reconcile reports and unavailable Gemini before D2
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -725,7 +725,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/pilot/round4-reconciliation.md
   - docs/planning/active/command-refactor/validation/pilot/final-readiness-validation.md
   - docs/planning/active/command-refactor/validation/pilot/implementation/d1/council-round4.json
-  - docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round2.json
+  - docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round 2.json
   - docs/planning/active/command-refactor/validation/pilot/implementation/d3/verified-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
@@ -2628,7 +2628,7 @@ events:
   actor_role: agent
   action: reconciled VERIFIED D2 council and started approved D3
   note: Claude 9.7, Sol 9.6 and Gemini 9.8 all VERIFIED d5a29faf. Metadata finding closed. D3 proceeds under original pilot authority, followed by its own council; no whole-pilot acceptance or delivery inferred.
-  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round2.json
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round 2.json
 - task: friday-command-refactor
   at: '2026-11-08T02:12:24+00:00'
   actor: Codex
@@ -2647,7 +2647,7 @@ events:
   at: '2026-11-08T02:55:38+00:00'
   actor: Codex
   actor_role: agent
-  action: froze D3 installed-proof correction cycle1 for two-member council round2
+  action: froze D3 installed-proof correction cycle1 for two-member council round 2
   note: Both required proof corrections implemented; full scoped 1600 tests and clean builds/installations pass. Fresh Claude/Sol closure required before acceptance; delivery remains local.
   evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d3/remediation-evidence.json
 - task: friday-command-refactor
@@ -2685,3 +2685,17 @@ events:
   action: froze SESSION-001 D1 neutral implementation for council review
   note: Approved D1 only; 278 neutral/cohort tests, compatibility and preservation pass. D2/D3 and SESSION acceptance pending; no delivery.
   evidence: docs/planning/active/command-refactor/validation/session/implementation/d1/README.md
+- task: friday-command-refactor
+  at: '2026-11-08T15:46:06+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled SESSION D1 round1 and opened export-test remediation cycle1
+  note: Sol VERIFIED 9.6; Claude CHANGES_REQUESTED 9.2 for one mandatory test gap. Gemini quota unavailable, no score/retry/replacement. Runtime behavior conforms; bounded test/evidence correction only.
+  evidence: docs/planning/active/command-refactor/remediation/REM-CMD-SESSION-D1-001-export-surface.md
+- task: friday-command-refactor
+  at: '2026-11-08T15:51:19+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze corrected SESSION D1 export assertion for available-member round 2
+  note: S1=278; missing/extra/reordered/duplicate exports rejected by one assertion. Runtime unchanged. Fresh reviews and Gemini availability disposition precede D2.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d1/export-fix-evidence.json

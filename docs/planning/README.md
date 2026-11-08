@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh three-provider SESSION-001 D1 council on neutral models/handlers and preservation; reconcile before Chat D2 |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh available Claude/Sol D1 round 2 review of exact export assertion; reconcile reports and unavailable Gemini before D2 |
 
 ## Completed
 
