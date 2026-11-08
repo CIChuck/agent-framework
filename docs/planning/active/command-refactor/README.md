@@ -19,7 +19,8 @@ predates the separately approved pilot wiring work.
 `execution_phase: closeout`; `validation_state: verified` for PILOT-001.
 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
 council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
-VERIFIED at `eb216421` by Claude and Sol, both 9.6/10; acceptance is pending.
+VERIFIED at `eb216421` by Claude and Sol, both 9.6/10, and now
+[accepted by Chuck Russell](approval/pilot-acceptance.md).
 RET-001 remains independently VERIFIED and accepted.
 The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
@@ -169,5 +170,7 @@ independently verified. [Reconciled pilot verification](validation/pilot/impleme
 records the current result; [exact council reports](validation/pilot/implementation/d3/council-round2.json)
 and [current evidence](validation/pilot/implementation/d3/remediation-evidence.json)
 preserve the reviewed candidate and limits. Both D3 findings are closed.
-Maintainer acceptance of PILOT-001 is the next gate. The broader refactor,
-later families, P0/P1 and TUI remain open; delivery is local only.
+Chuck Russell has [accepted PILOT-001](approval/pilot-acceptance.md). The next
+proposed unit is SESSION-001 (`/history`, `/clear`), requiring its own approved
+contract/directive before implementation. The broader refactor, P0/P1 and TUI
+remain open; delivery is local only.

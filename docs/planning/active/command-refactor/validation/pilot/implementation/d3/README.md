@@ -4,7 +4,8 @@ Execution phase: `closeout`. Validation state: `verified` (PILOT-001 D1-D3).
 Claude Opus 5.5 and GPT-6.1 Sol both VERIFIED candidate `eb216421`, each 9.6/10.
 Both named findings are independently closed and no mandatory findings remain.
 See [reconciled verification](verified-report.md) and [exact reports](council-round2.json).
-Pilot acceptance and delivery remain pending.
+Chuck Russell has [accepted the pilot](../../../../approval/pilot-acceptance.md).
+The broader initiative remains started; delivery is local only.
 
 [Current evidence](remediation-evidence.json) records 1,228 Chat, 217
 Commands/cohort and 155 CLI tests passing again, all 196 source observations

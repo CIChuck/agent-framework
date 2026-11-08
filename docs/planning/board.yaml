@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Maintainer acceptance of independently VERIFIED PILOT-001; later command families require separate bounded directive approval
+  next_gate: Prepare SESSION-001 history/clear contract and bounded directive for maintainer review; PILOT-001 accepted, next-family implementation not yet approved
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2657,3 +2657,10 @@ events:
   action: reconciled independently VERIFIED PILOT-001 D3 and bounded aggregate
   note: Claude and Sol both VERIFIED at 9.6; D3-SOL-001/002 closed. Pilot acceptance pending; entire refactor stays started, delivery local. No runtime/test/dependency/lock changes in closeout.
   evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d3/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-08T04:33:01+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted bounded PILOT-001 help/exit/clear-screen implementation
+  note: Direct approved response to pilot acceptance handoff. D1-D3 independently VERIFIED; entire initiative remains started/local. Next family needs separate contract/directive approval; no delivery authorized.
+  evidence: docs/planning/active/command-refactor/approval/pilot-acceptance.md

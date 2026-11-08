@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "PILOT-001 D3 and complete bounded pilot independently VERIFIED by Claude/Sol round2; maintainer acceptance pending",
+  "decision": "Chuck Russell accepted independently VERIFIED PILOT-001; broader command refactor remains started/local",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "PILOT-001 closeout/verified; record independent evidence and present bounded pilot acceptance, no further product changes",
+  "current_scope": "Record bounded pilot acceptance and prepare next SESSION-001 planning gate; no later-family construction or delivery granted",
   "product_code_authority": "Exact pilot construction approved in approval/pilot.md; council after each deliverable before advancement. Remaining families, TUI, final acceptance and external delivery are unapproved.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -311,8 +311,8 @@
     "administrative_start": "2655c3de043f24f3d6dfcd7e06f2bf980f14eacc",
     "product_baseline": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
     "branch": "feature/command-retirement",
-    "state": "verified",
-    "current_deliverable": "All D1-D3 deliverables independently verified; bounded maintainer acceptance pending",
+    "state": "accepted",
+    "current_deliverable": "PILOT-001 D1-D3 accepted; next family requires separate approved contract/directive",
     "council_after_each_deliverable": true,
     "deliverables": {
       "D1": "Shared neutral API/handlers and standalone tests (G1)",
@@ -320,13 +320,13 @@
       "D3": "Regression, source/assertion/doc proof, clean artifacts/default installs (G4-G5)"
     },
     "delivery": "local only; no push/PR/merge/release authorization",
-    "acceptance": "not_granted",
+    "acceptance": "granted",
     "deliverable1": {
       "state": "verified",
       "gate": "D1 council reconciled; approved D2 may proceed",
       "evidence": "validation/pilot/implementation/d1/sort-fix-evidence.json",
       "scope": "PILOT-01/02 only; no Chat wiring or installed candidate claim",
-      "acceptance": "not_granted",
+      "acceptance": "granted_under_PILOT-001",
       "administrative_remediation": {
         "finding": "D1-SOL-002",
         "scope": "Reconcile required current process fields in index/execution log; align related preapproval authority summary (ARGON-D1-ADV-003). Product, tests and frozen approved documents unchanged.",
@@ -382,13 +382,14 @@
         },
         "record": "validation/pilot/implementation/d1/council-round4.json",
         "whole_pilot_acceptance": "not_granted"
-      }
+      },
+      "acceptance_record": "approval/pilot-acceptance.md"
     },
     "deliverable2": {
       "state": "verified",
       "scope": "Approved PC-03 through PC-06 Chat adapter/dependency edge; PILOT-03 through08 plus bounded Chat preservation subset of PILOT-09",
       "gate": "D2 council reconciled; approved D3 may proceed",
-      "acceptance": "not_granted",
+      "acceptance": "granted_under_PILOT-001",
       "evidence": "validation/pilot/implementation/d2/remediation-evidence.json",
       "source_revision": "5bec927c40d3cf9863cd89353360f740e911d300",
       "council_round1": {
@@ -434,13 +435,14 @@
           "gemini": 9.8
         },
         "record": "validation/pilot/implementation/d2/council-round2.json"
-      }
+      },
+      "acceptance_record": "approval/pilot-acceptance.md"
     },
     "deliverable3": {
       "state": "verified",
       "scope": "Approved G4-G5 full regression, source/assertion/docs proof, clean Git artifact/default-install closure and installed_probe.py",
-      "gate": "Maintainer acceptance of the bounded pilot",
-      "acceptance": "not_granted",
+      "gate": "Bounded pilot accepted; next family requires separate approved contract/directive",
+      "acceptance": "granted_under_PILOT-001",
       "evidence": "validation/pilot/implementation/d3/remediation-evidence.json",
       "artifact_source_revision": "70ebef3a1bafc8b6269abd0fd4dbb7d4a7bac7a3",
       "council_round1": {
@@ -479,7 +481,8 @@
           "D3-SOL-001",
           "D3-SOL-002"
         ]
-      }
+      },
+      "acceptance_record": "approval/pilot-acceptance.md"
     },
     "council_members_for_D3": {
       "approval": "approval/pilot-two-member-council.md",
@@ -492,7 +495,16 @@
       "count": 2
     },
     "verified_candidate": "eb216421e533b98d5d025f74a5bc0ea177d2f5ec",
-    "verified_report": "validation/pilot/implementation/d3/verified-report.md"
+    "verified_report": "validation/pilot/implementation/d3/verified-report.md",
+    "acceptance_record": {
+      "record": "approval/pilot-acceptance.md",
+      "sha256": "7968c499d768bcf632afaebb5d0ec0accf24cdcf385690453f6db05e33f8f618",
+      "accepted_by": "Chuck Russell",
+      "recorded_at": "2026-11-08T04:33:01+00:00",
+      "instruction": "approved",
+      "candidate": "eb216421e533b98d5d025f74a5bc0ea177d2f5ec",
+      "scope": "PILOT-001 help/exit/clear-screen D1-D3 only"
+    }
   },
   "historical_preapproval_summary": {
     "source_candidate": "667bccc8e8917d3668960d15395dddfd1fc78d19",

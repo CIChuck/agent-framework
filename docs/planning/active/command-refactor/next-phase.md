@@ -1,24 +1,26 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 independently VERIFIED; bounded maintainer acceptance pending
+Status: PILOT-001 independently VERIFIED and accepted by Chuck Russell; SESSION-001 planning next
 Execution phase: closeout
-Validation state: verified (PILOT-001 D1-D3); acceptance pending
+Validation state: verified (accepted PILOT-001 D1-D3); next family not authorized
 
 ## Current next steps
 
-1. Review [reconciled pilot verification](validation/pilot/implementation/d3/verified-report.md).
-   Claude and Sol independently VERIFIED the current bounded aggregate, both
-   9.6/10; D3-SOL-001/002 are closed and no mandatory findings remain.
-2. Obtain Chuck Russell's explicit acceptance of PILOT-001. Record that decision
-   separately from independent verification; no acceptance has been inferred.
-3. Select the next command-family unit and obtain its required bounded directive
-   approval. Later families, P0/P1, TUI, full-refactor acceptance and external
-   delivery remain separate gates.
+1. PILOT-001 is [accepted by Chuck Russell](approval/pilot-acceptance.md).
+   The [independent verification](validation/pilot/implementation/d3/verified-report.md)
+   and exact reports remain unchanged; their former pending-acceptance labels
+   are superseded by the subsequent acceptance record.
+2. Prepare SESSION-001 (`/history`, `/clear`) contract, compatibility/test scope
+   and bounded construction directive for maintainer review. The Step 3 order
+   remains a proposal; no SESSION-001 implementation is approved yet.
+3. Obtain the required exact approvals before implementing that next unit.
+   Later families, P0/P1, TUI, full-refactor acceptance and delivery remain
+   separate gates.
 
-The initiative stays started/local. No product/test/dependency/lock change
-follows the verified candidate. Historical checkpoints below retain provenance
-and do not override the current result or supply later construction authority.
+The initiative stays started/local. Pilot acceptance changes records only;
+source, tests, dependencies, lock and frozen evidence remain unchanged. The
+active initiative packet is retained until whole-initiative closeout.
 
 ## Historical checkpoints
 

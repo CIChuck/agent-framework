@@ -1232,3 +1232,17 @@ pilot evidence rows are updated; P0/P1/later families/TUI remain open.
 `execution_phase: closeout`; `validation_state: verified` for PILOT-001.
 The broader initiative stays started/local. Bounded pilot acceptance is not
 granted; Chuck Russell's explicit decision is next. No push/PR/merge/release.
+
+2026-11-08T04:33:01+00:00: Chuck Russell directly responded “approved” to the bounded
+PILOT-001 acceptance handoff. Recorded approval/pilot-acceptance.md, reviewed
+candidate `eb216421e533b98d5d025f74a5bc0ea177d2f5ec`, preceding metadata HEAD `1c72e1bab2bf19a12a5a519de62606c083d03bd7`.
+Acceptance covers help/exit/clear-screen D1-D3 only, following Claude/Sol both
+VERIFIED 9.6/10 and 1,600 scoped passing tests. Both D3 findings remain closed.
+Historical reports and original approvals retain exact bytes; earlier pending-
+acceptance labels are superseded by this later human decision. No new product,
+test, dependency, lock or harness changes; both dirty examples are preserved.
+`execution_phase: closeout`; `validation_state: verified` for accepted PILOT-001.
+The entire refactor remains started/local, so this active initiative packet is
+retained. Next proposed planning unit: SESSION-001 (/history and /clear), with
+separate contract/directive approval before implementation. No next-family,
+P0/P1, TUI, full-refactor acceptance or push/PR/merge/release is authorized.
