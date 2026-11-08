@@ -55,7 +55,7 @@ def _to_shared(metadata: CommandMetadata) -> SharedCommandSpec:
         metadata.usage,
         metadata.aliases,
         arguments,
-        metadata.detail,
+        metadata.detail or None,
     )
 
 

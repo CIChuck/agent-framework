@@ -16,10 +16,10 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: validation`; `validation_state: changes_requested` for PILOT-001 D2.
+`execution_phase: remediation`; `validation_state: not_ready` for PILOT-001 D2.
 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
-council. D2 council found one custom-metadata compatibility issue; the proposed bounded
-contract decision is pending. D3 and acceptance remain pending.
+council. The bounded metadata amendment is approved; D2 correction and tests are in
+progress. D3 and acceptance remain pending.
 RET-001 remains independently VERIFIED and accepted.
 The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
@@ -167,7 +167,8 @@ this exact maintainer record.
 D1 neutral pilot implementation is at its [council checkpoint](validation/pilot/implementation/d1/evidence.json).
 G1 has 217 passing Commands/cohort tests; Chat integration is pending D1 review.
 
-Current pilot checkpoint: [D2 council reconciliation](validation/pilot/implementation/d2/council-round1.json)
-is CHANGES_REQUESTED for one independently reproduced custom-metadata finding.
-Read and approve the [bounded metadata decision and correction plan](remediation/REM-CMD-PILOT-D2-001-metadata-compatibility.md)
-before remediation. D1 remains verified; D3, acceptance and delivery remain pending.
+Current pilot checkpoint: the [bounded D2 amendment is approved](approval/pilot-metadata-compatibility.md).
+Apply the exact metadata correction/tests, pass the prescribed gates and obtain
+fresh D2 council review. The [round-one finding](validation/pilot/implementation/d2/council-round1.json)
+remains historical evidence until corrected bytes are independently verified.
+D1 remains verified; D3, acceptance and external delivery remain pending.

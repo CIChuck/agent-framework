@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Maintainer decision on proposed REM-CMD-PILOT-D2-001 metadata compatibility amendment; then bounded correction and fresh D2 council before D3
+  next_gate: Execute approved REM-CMD-PILOT-D2-001 metadata correction and tests; pass G2-G3 and preservation checks, then fresh D2 council before D3
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2606,3 +2606,10 @@ events:
   action: reconciled D2 council and proposed metadata contract decision
   note: Claude 8.7 CHANGES_REQUESTED; Sol 9.6 and Gemini 9.9 VERIFIED. Mandatory custom-detail finding independently reproduced. No product correction or D3 before explicit PC-04 decision; original pilot approval retained.
   evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round1.json
+- task: friday-command-refactor
+  at: '2026-11-08T01:28:24+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved bounded D2 metadata compatibility amendment
+  note: Explicit approval of REM-CMD-PILOT-D2-001 and its exact hash; bounded correction/tests/checks and fresh three-provider D2 council. No D2 acceptance or external delivery; D3 remains gated by D2 reconciliation.
+  evidence: docs/planning/active/command-refactor/approval/pilot-metadata-compatibility.md

@@ -1111,3 +1111,14 @@ validation/pilot/implementation/d2/detail-characterization.json. No product,
 test, dependency, frozen contract/directive/harness or dirty-example byte changed.
 `execution_phase: validation`; `validation_state: changes_requested` for D2.
 Await the exact proposed decision; D3 and whole-pilot acceptance remain pending.
+
+2026-11-08T01:28:24+00:00: Chuck Russell explicitly approved
+remediation/REM-CMD-PILOT-D2-001-metadata-compatibility.md, exact SHA256
+fb1408a6e833b73981aa79f0fce8a57d18e9d24aa8f4c11838fd734335973964. Recorded in approval/pilot-metadata-compatibility.md.
+This resolves the PC-04 stop for a metadata contract decision: preserve falsy
+detail and explicitly bound unsupported non-string text. Apply only the named
+adapter/new-test changes, add explicit asyncio markers and rerun the required
+checks before one fresh three-provider D2 council pass. Original approved
+contract/directive/harness/baseline and prior evidence remain immutable.
+`execution_phase: remediation`; `validation_state: not_ready` for D2.
+This is construction/amendment authority, not D2 acceptance or external delivery.

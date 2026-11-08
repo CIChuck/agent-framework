@@ -60,6 +60,13 @@ RETIRED = (
     "vars",
 )
 
+DETAIL_BASE_ROWS = json.loads(
+    (
+        Path(__file__).resolve().parents[3]
+        / "docs/planning/active/command-refactor/validation/pilot/implementation/d2/detail-characterization.json"
+    ).read_text()
+)["results"]["base"]["rows"]
+
 
 def spy_factory(monkeypatch):
     """Wrap the real shared factory and async handlers, rather than fake output."""
@@ -108,6 +115,7 @@ def test_every_frozen_help_string(row):
 
 
 @pytest.mark.parametrize("row", ORACLE["dispatch"], ids=lambda row: row["input"])
+@pytest.mark.asyncio
 async def test_every_frozen_parser_and_dispatch_result(row):
     registry = build_default_registry()
     context = RegistryCommandContext(registry=registry)
@@ -138,6 +146,7 @@ async def test_every_frozen_parser_and_dispatch_result(row):
         ("/clearscreen extra", "cls", ("extra",)),
     ],
 )
+@pytest.mark.asyncio
 async def test_dispatch_parses_once_and_awaits_one_canonical_shared_handler(
     monkeypatch, text, name, args
 ):
@@ -175,6 +184,7 @@ async def test_dispatch_parses_once_and_awaits_one_canonical_shared_handler(
     ("name", "handler"),
     [("help", _help_handler), ("exit", _exit_handler), ("cls", cls_handler)],
 )
+@pytest.mark.asyncio
 async def test_renamed_compatibility_wrappers_use_shared_spec(
     monkeypatch, name, handler
 ):
@@ -192,6 +202,7 @@ async def test_renamed_compatibility_wrappers_use_shared_spec(
     assert calls[0][1].args == ("extra",)
 
 
+@pytest.mark.asyncio
 async def test_help_uses_context_catalog_or_fresh_default_for_plain_context(
     monkeypatch,
 ):
@@ -240,6 +251,7 @@ def test_synchronous_help_calls_shared_selector_once_without_an_event_loop(
 
 
 @pytest.mark.parametrize("name", ["help", "exit", "cls", *RETIRED])
+@pytest.mark.asyncio
 async def test_custom_handlers_remain_authoritative(monkeypatch, name):
     def forbidden(*_args):
         pytest.fail("A custom handler must not enter the shared pilot")
@@ -331,6 +343,92 @@ def test_bad_choice_still_raises_but_is_not_projected_for_other_focus():
 
 
 @pytest.mark.parametrize(
+    ("label", "detail"),
+    [
+        ("False", False),
+        ("zero", 0),
+        ("empty-string", ""),
+        ("empty-list", []),
+        ("False", None),
+        ("valid-string", "Extra detail."),
+    ],
+)
+@pytest.mark.parametrize("focus", [None, "report"])
+@pytest.mark.asyncio
+async def test_detail_projection_matches_old_direct_and_shared_async_help(
+    monkeypatch, label, detail, focus
+):
+    factories, calls, outcomes = spy_factory(monkeypatch)
+    registry = CommandRegistry()
+    registry.register("report", description="Report.", category="custom", detail=detail)
+    expected = next(
+        row["output"]
+        for row in DETAIL_BASE_ROWS
+        if row["case"] == "detail:" + label and row["focus"] == focus
+    )
+    assert registry.commands["report"].detail is detail
+    assert registry.render_help(focus) == expected
+    result = await _help_handler(
+        RegistryCommandContext(registry=registry),
+        () if focus is None else (focus,),
+        registry.commands["report"],
+    )
+    assert result == CommandResult(expected)
+    assert len(factories) == len(calls) == len(outcomes) == 1
+    assert calls[0][0] == "help"
+    assert outcomes[0].data.commands[0].detail == (detail or None)
+    assert registry.commands["report"].detail is detail
+
+
+def assert_invalid_projection_stays_lazy(registry):
+    registry.register("safe", description="Safe.", category="custom")
+    assert registry.render_help("safe").startswith("/safe\n")
+    assert registry.render_help("unknown") == (
+        "Unknown command: /unknown. Type /help for available commands."
+    )
+
+
+@pytest.mark.parametrize("detail", [5, ["x"], b"extra"])
+@pytest.mark.parametrize("focus", [None, "report"])
+def test_approved_boundary_rejects_truthy_non_string_detail_at_help_only(detail, focus):
+    registry = CommandRegistry()
+    registry.register("report", description="Report.", category="custom", detail=detail)
+    assert registry.commands["report"].detail is detail
+    with pytest.raises(TypeError):
+        registry.render_help(focus)
+    assert_invalid_projection_stays_lazy(registry)
+
+
+@pytest.mark.parametrize("field", ["name", "description"])
+@pytest.mark.parametrize("focus", [None, "report"])
+def test_approved_boundary_rejects_byte_argument_text_at_help_only(field, focus):
+    fields = {"name": "item", "description": "Item."}
+    fields[field] = b"value"
+    argument = CommandArgument(**fields)
+    registry = CommandRegistry()
+    registry.register(
+        "report", description="Report.", category="custom", arguments=(argument,)
+    )
+    assert registry.commands["report"].arguments[0] is argument
+    with pytest.raises(TypeError):
+        registry.render_help(focus)
+    assert_invalid_projection_stays_lazy(registry)
+
+
+@pytest.mark.parametrize("field", ["description", "category", "usage"])
+@pytest.mark.parametrize("focus", [None, "report"])
+def test_approved_boundary_rejects_byte_command_text_at_help_only(field, focus):
+    fields = {"description": "Report.", "category": "custom", "usage": "/report"}
+    fields[field] = b"value"
+    registry = CommandRegistry()
+    registry.register("report", **fields)
+    assert getattr(registry.commands["report"], field) == b"value"
+    with pytest.raises(TypeError):
+        registry.render_help(focus)
+    assert_invalid_projection_stays_lazy(registry)
+
+
+@pytest.mark.parametrize(
     "outcome",
     [
         None,
@@ -379,6 +477,7 @@ def test_adapter_accepts_only_the_five_documented_shapes():
 
 
 @pytest.mark.parametrize("handler", [_exit_handler, cls_handler])
+@pytest.mark.asyncio
 async def test_exit_and_clear_never_read_context_or_legacy_metadata(
     monkeypatch, handler
 ):
@@ -399,6 +498,7 @@ async def test_exit_and_clear_never_read_context_or_legacy_metadata(
 @pytest.mark.parametrize(
     "error", [RuntimeError("pilot failure"), asyncio.CancelledError()]
 )
+@pytest.mark.asyncio
 async def test_handler_failure_and_cancellation_propagate_once(
     monkeypatch, handler, error
 ):
@@ -423,6 +523,7 @@ async def test_handler_failure_and_cancellation_propagate_once(
 
 @pytest.mark.parametrize("clear_name", ["cls", "clearscreen"])
 @pytest.mark.parametrize("display_kind", ["ok", "missing", "failed"])
+@pytest.mark.asyncio
 async def test_real_app_shared_help_clear_exit_keep_order_and_once_only_cleanup(
     monkeypatch, clear_name, display_kind
 ):
@@ -487,6 +588,7 @@ async def test_real_app_shared_help_clear_exit_keep_order_and_once_only_cleanup(
     assert all("private terminal detail" not in value for value in output.values)
 
 
+@pytest.mark.asyncio
 async def test_app_applies_shared_clear_effect_before_command_output(monkeypatch):
     original_factory = shared.build_pilot_handlers
     events = []

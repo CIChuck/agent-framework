@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Maintainer decision on proposed REM-CMD-PILOT-D2-001 metadata compatibility amendment; then bounded correction and fresh D2 council before D3 |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Execute approved REM-CMD-PILOT-D2-001 metadata correction and tests; pass G2-G3 and preservation checks, then fresh D2 council before D3 |
 
 ## Completed
 
