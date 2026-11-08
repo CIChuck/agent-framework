@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "DIAG D1 verified; D2 Chat integration frozen for Sol/Astra/Claude round1, D3 and acceptance pending",
+  "decision": "DIAG D2 round1 CHANGES_REQUESTED: two bounded compatibility/isolation findings; cycle1 remediation",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "DIAG D2 validation/in_review under existing exact approval; reconcile council before D3",
+  "current_scope": "Only Chat diagnostics rendering and new test isolation correction; D1 and other product bytes frozen",
   "product_code_authority": "Exact DIAG approval remains effective; no acceptance or external delivery",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -763,9 +763,9 @@
     "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
     "product_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
     "controller_start": "d0c729f43534bb79a3db70852ec08028ddb631ec",
-    "state": "validation",
-    "execution_phase": "validation",
-    "validation_state": "in_review",
+    "state": "remediation",
+    "execution_phase": "remediation",
+    "validation_state": "changes_requested",
     "current_deliverable": "D2 Chat diagnostics integration",
     "deliverable1": {
       "state": "verified",
@@ -792,7 +792,7 @@
       "acceptance": "not_granted"
     },
     "deliverable2": {
-      "state": "in_review",
+      "state": "changes_requested",
       "round": 1,
       "base": "559c86a22651ca99fc4560a5ef40d7b6f2ea2f4f",
       "product_source": "5d98b32878212e4d2b0d3ca6b39bb28bda5c6f84",
@@ -808,8 +808,15 @@
       "SESSION_observations": 25,
       "pilot_observations": 196,
       "mutant_refusals": 19,
-      "next_gate": "Reconcile all three fresh D2 council reports before D3",
-      "acceptance": "not_granted"
+      "next_gate": "Correct both findings, then fresh Sol/Astra/Claude delta plus full D2 council before D3",
+      "acceptance": "not_granted",
+      "council": "validation/diagnostics/implementation/d2/council-round1.json",
+      "remediation_cycle": 1,
+      "remediation_directive": "remediation/REM-CMD-DIAG-D2-001-context-format-and-test-isolation.md",
+      "mandatory_findings": [
+        "DIAG-D2-ASTRA-001",
+        "VAL-001"
+      ]
     },
     "deliverable3": {
       "state": "pending"

@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile DIAG D2 Sol/Astra/Claude round1 council before D3 candidate artifacts and installed proof
+  next_gate: 'DIAG D2 cycle1: correct context formatting and private-cwd test isolation; fresh Sol/Astra/Claude delta/full council before D3'
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2794,3 +2794,10 @@ events:
   action: froze DIAG D2 Chat integration for council round1
   note: D1 preserved; Commands478/D2-fast538/D3-fast166/Chat1338/CLI155, DIAG68+4 approved refusals, SESSION25 and pilot196. D3/UAT/acceptance/delivery pending.
   evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/README.md
+- task: friday-command-refactor
+  at: '2026-11-08T21:44:52+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG D2 round1 CHANGES_REQUESTED
+  note: 'Two mandatory findings: cached formatter duplication and fallback test export isolation. Ignored exports disclosed/preserved. Bounded REM recorded; no D3/acceptance/delivery.'
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/council-round1.json

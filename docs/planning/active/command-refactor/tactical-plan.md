@@ -1,31 +1,25 @@
-# Shared command refactor — tactical plan
+# DIAG-001 — D2 correction checkpoint
 
 Branch: `feature/command-retirement`
-Status: DIAG D2 Chat integration in independent council validation
-Execution phase: validation
-Validation state: in_review (DIAG D2 round1); D3 and acceptance pending
+Execution phase: remediation
+Validation state: changes_requested (D2 correction cycle1)
 
-## Current DIAG-001 checkpoint
+[Round1 council](validation/diagnostics/implementation/d2/council-round1.json):
+Sol VERIFIED9.7; Astra CHANGES_REQUESTED8.6; Claude CHANGES_REQUESTED9.0.
+Two mandatory findings remain. Astra's observable formatting failure controls
+the duplicate Claude advisory classification; scores and majority do not decide
+conformance. [Bounded remediation](remediation/REM-CMD-DIAG-D2-001-context-format-and-test-isolation.md)
+permits only the new Chat diagnostics module/test plus evidence/status records.
 
-[D1 reconciliation](validation/diagnostics/implementation/d1/verified-report.md)
-is VERIFIED. [D2 evidence](validation/diagnostics/implementation/d2/README.md)
-records typed Chat projection/rendering, fixed exports and one shared invocation
-for context, prompt, debug, debug-budget, timing and debug-retrieval.
-Product/test source: `5d98b32878212e4d2b0d3ca6b39bb28bda5c6f84`; D2 base: `559c86a22651ca99fc4560a5ef40d7b6f2ea2f4f`.
+Preserve the two ignored synthetic files under repository `exports/`. Their
+initial builder mutation writes and later observed rewrites are disclosed, not
+cleanup authority. Hash/metadata snapshots will prove no additional writes.
 
-Seven exact DG-T08–14 nodes carry 41 cases. Commands478, D2-fast538,
-D3-fast166, full Chat1338 and CLI155 pass. Clean-source captures establish
-68 exact DIAG rows + four approved cache refusals, SESSION25 and pilot196.
-Nineteen private mutants have call-phase assertion witnesses and canonical
-origin/hash receipts; unchanged combined control passes519. Earlier test-double,
-lint and mutation-credit attempts remain historical.
-
-The existing [exact approval](approval/diagnostics.md) remains effective.
-Reconcile fresh Sol/Astra/Claude round1 before D3. D3 current candidate builds,
-replay and installed DIAG proof, human UAT and bounded acceptance stay pending.
-Known root Ruff534/root collection test_display conflict/registry formatting
-remain failed and unwaived. Initiative stays started/local. No later-family,
-TUI, full-refactor or external delivery is authorized.
+Correct context rendering reuse and DG-T08 cwd isolation; retain all D1 bytes,
+neutral contracts, registry and other tests. Prove old-fail/new-pass, rerun gates,
+source captures/preservation/mutations and freeze a fresh Sol/Astra/Claude delta
+plus full D2 review. D3/UAT/acceptance and all external delivery stay pending.
+Known root debt remains failed/unwaived; initiative remains started/local.
 
 ### Preserved prior planning checkpoint
 

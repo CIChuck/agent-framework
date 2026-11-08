@@ -1,3 +1,21 @@
+# DIAG-001 D2 — round1 CHANGES_REQUESTED; correction cycle1
+
+Execution phase: remediation. Validation state: changes_requested.
+[Raw council and reconciliation](council-round1.json) identify two mandatory
+findings. The [bounded correction](../../../../remediation/REM-CMD-DIAG-D2-001-context-format-and-test-isolation.md)
+requires once-only cached context formatting and private-cwd fallback tests.
+Original evidence is retained as historical and does not close either finding.
+
+The unsafe mutation lane created/overwrote ignored repository
+`exports/friday_context.txt` and `exports/friday_prompt.txt` with synthetic bytes.
+Both currently have SHA256 `3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d`.
+Builder-created files and subsequent observed rewrites are disclosed; later
+attribution beyond the observed windows is not asserted. They remain untouched;
+only the maintainer may authorize cleanup. Final correction evidence will bind
+before/after metadata and hashes as well as tracked/dirty state.
+
+## Historical round1 implementation freeze
+
 # DIAG-001 D2 — Chat diagnostics integration
 
 Execution phase: validation. Validation state: in_review (council round 1).

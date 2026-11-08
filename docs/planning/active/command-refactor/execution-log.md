@@ -1640,3 +1640,30 @@ has been executed or accepted through this documentation change.
 - Fresh Sol/Astra/Claude D2 council is next; reconcile all reports before D3.
   D3 candidate artifact/installed proof, UAT, human acceptance and delivery remain
   pending. No additional construction approval is required within this directive.
+
+
+## 2026-11-08T21:44:52.045821+00:00 — DIAG D2 round1 reconciled; bounded correction cycle1
+
+- `execution_phase: remediation`; `validation_state: changes_requested`.
+- Sol VERIFIED9.7, Astra CHANGES_REQUESTED8.6, Claude CHANGES_REQUESTED9.0.
+  [Raw reports](validation/diagnostics/implementation/d2/council-round1.json)
+  remain preserved. Two mandatory findings: DIAG-D2-ASTRA-001 (accepted context
+  formatter called twice on debug export) and VAL-001 (DG-T08 fallback writes
+  can escape scratch). Claude ADV-1 is subsumed by the mandatory formatter
+  finding; ADV-2 is deferred, and only actual assertion mutant witnesses count.
+- [REM-CMD-DIAG-D2-001](remediation/REM-CMD-DIAG-D2-001-context-format-and-test-isolation.md) records a bounded conformance correction under
+  existing exact approval. Only new Chat diagnostics.py/test file may change
+  outside docs; no schema/D1/registry/dependency/fixture changes or new feature.
+- Disclosure: unsafe builder legacy-engine mutation runs wrote synthetic ignored
+  repository exports/friday_context.txt and friday_prompt.txt. Both are six
+  bytes with SHA256 3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d.
+  Claude also observed later rewrites after the freeze; precise external writer
+  attribution is not established. Prior tracked manifests did not cover ignored
+  exports, so tracked integrity alone did not prove review/environment isolation.
+  Files are inventoried with timestamps/modes/hashes and preserved. No cleanup,
+  restoration or deletion is authorized or performed.
+- All three reviews are terminal. Original frozen request/pins/index/status and
+  all17199 protected contents rechecked before reconciliation. Keep both dirty
+  examples unchanged. Old scripts/receipts remain read-only; use fresh scratch.
+- New regression/isolation proof, gates and fresh delta/full D2 council precede
+  D3. No acceptance, delivery or broader authority is granted.
