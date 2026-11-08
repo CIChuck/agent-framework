@@ -16,10 +16,10 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: implementation`; `validation_state: not_ready` for PILOT-001 D3.
+`execution_phase: validation`; `validation_state: in_review` for PILOT-001 D3.
 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
-council. D2 is independently VERIFIED at `d5a29faf`; approved D3 regression and installed
-proof are now in progress. Whole-pilot acceptance remains pending.
+council. D2 is independently VERIFIED at `d5a29faf`; D3 regression and installed proof
+pass builder checks and are in fresh council review. Acceptance remains pending.
 RET-001 remains independently VERIFIED and accepted.
 The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
@@ -167,7 +167,7 @@ this exact maintainer record.
 D1 neutral pilot implementation is at its [council checkpoint](validation/pilot/implementation/d1/evidence.json).
 G1 has 217 passing Commands/cohort tests; Chat integration is pending D1 review.
 
-Current pilot checkpoint: [D2 council is VERIFIED](validation/pilot/implementation/d2/council-round2.json)
-by all three providers. D3 G4/G5 regression and installed-candidate proof are
-now started under the existing exact approval, with their own council before
-maintainer acceptance. Later families, TUI and external delivery remain gated.
+Current pilot checkpoint: [D3 builder evidence](validation/pilot/implementation/d3/README.md)
+passes full regression and isolated installed proof; fresh D3 council precedes
+maintainer acceptance. [D2 is verified](validation/pilot/implementation/d2/council-round2.json).
+No remaining family, TUI or external delivery is authorized by these results.

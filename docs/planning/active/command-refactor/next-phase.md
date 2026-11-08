@@ -1,18 +1,16 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 D1 and D2 VERIFIED; D3 regression/installed proof started
-Execution phase: implementation
-Validation state: not_ready (PILOT-001 D3); whole-pilot acceptance pending
+Status: PILOT-001 D1/D2 VERIFIED; D3 regression/installed proof in council validation
+Execution phase: validation
+Validation state: in_review (PILOT-001 D3); bounded pilot acceptance pending
 
 ## Current next steps
 
-1. Complete approved D3 G4 full Chat/Commands/CLI regression, preservation and
-   documentation checks, followed by G5 clean candidate artifacts, default
-   dependency closure and installed behavior/source-member proof.
-2. Freeze D3 and obtain its own fresh three-provider council.
-3. Present the full pilot for maintainer acceptance. Later families, TUI work
-   and external delivery remain separately unapproved.
+1. Reconcile the fresh three-provider D3 council against the stable candidate and
+   [regression/installed evidence](validation/pilot/implementation/d3/README.md).
+2. If verified, present the bounded pilot for maintainer acceptance. Later
+   command families, TUI, full refactor acceptance and delivery remain separate.
 
 D1 and [D2](validation/pilot/implementation/d2/council-round2.json) are independently
 verified. The original [pilot approval](approval/pilot.md) and exact

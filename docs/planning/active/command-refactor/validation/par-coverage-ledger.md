@@ -1,14 +1,17 @@
 # PAR source coverage ledger
 
-Date: 2026-11-04
-Source HEAD: `fc028f3bf128a610aae7d95b59afb4b601bec0eb`
+Historical source-map date: 2026-11-04
+Historical source HEAD: `fc028f3bf128a610aae7d95b59afb4b601bec0eb`
 
-Status: P0 source map with 2026-11-06 proposed unit assignments; behavioral case-level signoff remains open.
+Status: historical P0 source map; nine retirements accepted. Pilot D1/D2 independently verified, D3 builder proof in council review; remaining families and P0/P1 signoff open.
 
 The [Step 3 readiness review](../readiness-review.md) and
 [unit/scenario/environment map](step3/unit-map.json) assign all 50 cases and three
-aliases. These are proposed owners, not approved migration directives. FND-001
-migrates no case; its foundation-only prerequisite amendment needs Step 4 approval.
+aliases. Those original assignments were proposals, not construction authority.
+Foundation and retirement have since been independently verified and accepted.
+The exact pilot approval and metadata amendment now govern only its three cases;
+[D3 builder evidence](pilot/implementation/d3/README.md) is pending independent
+council and acceptance. Historical handler locations below describe the old map.
 
 Authority: [resolved decisions](../scope-decisions.md) and [next-phase checkpoint](../next-phase.md).
 
@@ -30,13 +33,13 @@ was exercised. Direct accesses omit transitive helper effects.
 
 [Baseline receipt](p0-baseline.md) records actual suite and probe results.
 
-| Case | Name / target | Handler | Direct state/service access (abridged) | Candidate test nodes | Proposed unit | Behavioral signoff |
+| Case | Name / target | Historical Chat handler | Direct state/service access (abridged) | Candidate test nodes | Proposed unit | Behavioral signoff |
 | --- | --- | --- | --- | ---: | --- | --- |
 | PAR-001 | `/agent` — extract | `friday_chat.commands.registry._agent_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:1103) | context.runtime, context.runtime.orchestrator, context.runtime.orchestrator.active_agent, context.runtime.orchestrator.describe_agent | 1 | ORCH-001 | Open before owning unit |
 | PAR-002 | `/agents` — extract | `friday_chat.commands.registry._agents_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:1085) | context.runtime, context.runtime.orchestrator | 1 | ORCH-001 | Open before owning unit |
 | PAR-003 | `/clear` — extract | `friday_chat.commands.registry._clear_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:260) | context.history, context.history.clear, context.runtime, context.runtime.memory | 1 | SESSION-001 | Open before owning unit |
 | PAR-004 | `/clear-tools` — remove | `friday_chat.commands.tools.clear_tools_handler` (packages/friday-chat/src/friday_chat/commands/tools.py:77) | context.runtime, context.runtime.tool_selection, context.runtime.tool_selection.clear_manual | 3 | RET-001 | Removal VERIFIED and accepted 2026-11-07 (retirement/verified-report.md) |
-| PAR-005 | `/cls` — extract | `friday_chat.commands.session.cls_handler` (packages/friday-chat/src/friday_chat/commands/session.py:13) | See helper calls in inventory | 5 | PILOT-001 | Open before owning unit |
+| PAR-005 | `/cls` — extract | `friday_chat.commands.session.cls_handler` (packages/friday-chat/src/friday_chat/commands/session.py:13) | See helper calls in inventory | 5 | PILOT-001 | D1/D2 VERIFIED; D3 regression/installed proof passed, council pending (pilot/implementation/d3/README.md) |
 | PAR-006 | `/compact` — extract | `friday_chat.commands.registry._compact_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:755) | context.runtime, context.runtime.config, context.runtime.config.memory, context.runtime.config.memory.compaction | 3 | MAINT-001 | Open before owning unit |
 | PAR-007 | `/context` — extract | `friday_chat.commands.registry._context_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:285) | context.last_context | 4 | DIAG-001 | Open before owning unit |
 | PAR-008 | `/debug` — extract | `friday_chat.commands.registry._debug_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:311) | context.last_debug, context.last_debug.items, context.runtime, context.runtime.telemetry | 3 | DIAG-001 | Open before owning unit |
@@ -44,10 +47,10 @@ was exercised. Direct accesses omit transitive helper effects.
 | PAR-010 | `/debug-retrieval` — extract | `friday_chat.commands.registry._debug_retrieval_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:382) | context.runtime, context.runtime.memory, context.runtime.memory.debug_retrieval | 1 | DIAG-001 | Open before owning unit |
 | PAR-011 | `/delegate` — extract | `friday_chat.commands.registry._delegate_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:1117) | context.runtime, context.runtime.orchestrator | 1 | ORCH-001 | Open before owning unit |
 | PAR-012 | `/entities` — extract | `friday_chat.commands.registry._entities_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:409) | context.runtime, context.runtime.memory, context.runtime.memory.list_entities, context.runtime.memory.list_relationships | 3 | MEMQ-001 | Open before owning unit |
-| PAR-013 | `/exit` — extract | `friday_chat.commands.registry._exit_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:252) | See helper calls in inventory | 4 | PILOT-001 | Open before owning unit |
+| PAR-013 | `/exit` — extract | `friday_chat.commands.registry._exit_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:252) | See helper calls in inventory | 4 | PILOT-001 | D1/D2 VERIFIED; D3 regression/installed proof passed, council pending (pilot/implementation/d3/README.md) |
 | PAR-014 | `/export` — extract | `friday_chat.commands.transcript.export_handler` (packages/friday-chat/src/friday_chat/commands/transcript.py:107) | context.runtime, context.runtime.transcript, context.runtime.transcript.query_entries, context.runtime.transcript.query_session | 7 | TRANSCRIPT-001 | Open before owning unit |
 | PAR-015 | `/export-prompts` — extract | `friday_chat.commands.transcript.export_prompts_handler` (packages/friday-chat/src/friday_chat/commands/transcript.py:145) | context.runtime, context.runtime.transcript, context.runtime.transcript.query_context_logs, context.runtime.transcript.query_session | 6 | TRANSCRIPT-001 | Open before owning unit |
-| PAR-016 | `/help` — extract | `friday_chat.commands.registry._help_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:1346) | context.registry | 20 | PILOT-001 | Open before owning unit |
+| PAR-016 | `/help` — extract | `friday_chat.commands.registry._help_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:1346) | context.registry | 20 | PILOT-001 | D1/D2 VERIFIED; D3 regression/installed proof passed, council pending (pilot/implementation/d3/README.md) |
 | PAR-017 | `/history` — extract | `friday_chat.commands.registry._history_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:271) | context.history | 3 | SESSION-001 | Open before owning unit |
 | PAR-018 | `/ingest` — extract | `friday_chat.commands.registry._ingest_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:812) | context.runtime, context.runtime.memory, context.runtime.memory.ingest_document | 1 | FILE-001 | Open before owning unit |
 | PAR-019 | `/inject-payload` — remove | `friday_chat.commands.registry._inject_payload_handler` (packages/friday-chat/src/friday_chat/commands/registry.py:992) | context.injected_payload | 1 | RET-001 | Removal VERIFIED and accepted 2026-11-07 (retirement/verified-report.md) |
@@ -91,15 +94,16 @@ was exercised. Direct accesses omit transitive helper effects.
 
 ## Open evidence obligations
 
-Each of the 50 rows remains **case-level review pending**: inspect the candidate
+Rows not explicitly verified/accepted remain **case-level review pending**: inspect the candidate
 test assertions, assign exact positive/invalid/unavailable/cancellation/error
 nodes or document why a class is inapplicable, and link actual receipts.
 Use existing tmp_path/fake-runtime fixtures where applicable; effectful probes
 must use disposable stores. Do not infer coverage from suite totals or literals.
 
-The nine removal rows retain before-change behavior evidence only; after-change
-unknown-name, no-effect and discovery-removal checks belong to an approved
-retirement directive. No handler migration or retirement occurred in P0.
+The nine removal rows were independently verified and accepted under RET-001.
+No handler migration or retirement occurred during the historical P0 capture.
+The three pilot rows now have bounded source/installed builder evidence and
+D1/D2 verification; D3 council and pilot acceptance remain pending.
 
 Before construction: finish the transitive service/effect and failure-order map,
 freeze exact fixture/result expectations, assign migration families and cross-family

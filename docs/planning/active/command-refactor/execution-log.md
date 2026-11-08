@@ -1158,3 +1158,27 @@ Retain the future archival fixture-path advisory; the initiative remains active
 through the rest of command refactor, so no packet move is part of this pilot.
 `execution_phase: implementation`; `validation_state: not_ready` for D3.
 D2 verification is not whole-pilot acceptance or external delivery authority.
+
+2026-11-08T02:12:24+00:00: D3 builder G4/G5 complete. Full after-suites pass: Chat 1,228,
+Commands/cohort 217, CLI 155; frozen 196 observations match. No package/test/root
+metadata/dependency/lock/script bytes changed during D3 (785 preserved files,
+59 Chat test/fixture files, 2,347 assertions). New installed_probe.py is committed
+at artifact-source revision 32fc8ced. Two final offline trials each build 13
+workspace distributions, verify 125 locked third-party inputs/PyPika lineage,
+compile hashes and install neutral/default Chat lanes. All 154 artifact/profile
+hashes agree across final replay. Neutral closure 1, default closure 138; the only
+addition to locked D1's 137 is Commands. Historical 129 profile differences are
+explicitly recorded, not used as a resolver target.
+Installed/Git/wheel/sdist full source/data inventories and bytes pass (66 source
+members, 141 sdist files), required Commands metadata/pip checks/origins/help/
+finance import proof pass, with no diagnostic extras or legacy executable.
+Canonical shared invocation spies and injected outcomes prove ownership.
+Normal and optimized probes pass both lanes; six origin/archive refusals pass
+per mode, plus extra Git-input refusal before build/fetch. First control helper
+mismatched an error substring and is retained as a historical control attempt;
+its corrected runs receive rejection credit. Initial successful build trials
+precede final probe hardening and are labeled initial_trial, not final G5 proof.
+Evidence: validation/pilot/implementation/d3/evidence.json. PAR-005, PAR-013 and PAR-016 have
+bounded builder/independent-stage updates only; no broad P0/P1 signoff.
+`execution_phase: validation`; `validation_state: in_review` for D3.
+Freeze for its fresh three-provider council. Acceptance and delivery pending.
