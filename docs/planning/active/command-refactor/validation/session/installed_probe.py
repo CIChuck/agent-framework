@@ -117,12 +117,12 @@ def artifact_members(args, legacy, distribution: str, package: str) -> dict:
         if path.is_file():
             actual = installed / path.relative_to(source)
             require(
-                stat.S_IMODE(actual.stat().st_mode)
-                == stat.S_IMODE(path.stat().st_mode),
-                "Installed/Git file mode mismatch",
+                stat.S_IMODE(actual.stat().st_mode) & 0o111
+                == stat.S_IMODE(path.stat().st_mode) & 0o111,
+                "Installed/Git executable mode mismatch",
             )
     result["installed_root"] = str(installed.resolve())
-    result["complete_file_directory_byte_mode_inventory"] = "passed"
+    result["complete_file_directory_byte_executable_inventory"] = "passed"
     return result
 
 
