@@ -1550,3 +1550,23 @@ has been executed or accepted through this documentation change.
   remain pending. Shared-checkout review exception is recorded in the frozen
   request, with private reviewer scratch/caches and optional Git locks disabled.
 - UAT remains NOT RUN. No DIAG acceptance/later family/TUI or delivery granted.
+
+
+## 2026-11-08T20:34:08.600420+00:00 — DIAG D1 round1 reconciliation and test-only cycle1
+
+- `execution_phase: remediation`; `validation_state: changes_requested`.
+- [Council](validation/diagnostics/implementation/d1/council-round1.json) settled:
+  Sol VERIFIED9.7, Astra VERIFIED9.7, Claude CHANGES_REQUESTED8.4 at `bc553cb097d3f62586b0d1808100bc186a5a67c9`.
+  All original reports are preserved verbatim with hashes. Two mandatory test
+  gaps govern; no majority/score overrides requirements, no runtime defect found.
+- [Remediation](remediation/REM-CMD-DIAG-D1-001-test-coverage.md) binds both findings
+  once: named DG-T01–07 full-row assertions plus coverage map, and all38 binding
+  identities. Mechanical changes stay in the new DIAG test/evidence/current
+  status under existing approved scope; no new human construction approval is
+  needed. Runtime/API/Chat/dependencies/frozen authority/old tests stay unchanged.
+- Also address bounded advisory candidate-export lock receipt and standalone
+  source-origin assertion. Preserve original D1 evidence and old scratch.
+- Fresh private correction scratch: `/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-d1-coverage-fix-yzmmbihv`. Prove five targeted named-node
+  mutation refusals and unchanged control, full D1/static/preservation checks;
+  freeze a new candidate for fresh Sol/Astra/Claude delta plus full D1 round2.
+  D2/D3, UAT, acceptance and delivery remain pending.

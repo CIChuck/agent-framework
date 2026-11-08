@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Fresh Sol/Astra/Claude DIAG-001 D1 council round1; reconcile before D2 Chat integration
+  next_gate: DIAG D1 cycle1 test-only fixes; fresh Sol/Astra/Claude round2 before D2
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2765,3 +2765,10 @@ events:
   action: froze DIAG-001 D1 neutral implementation for council round1
   note: Exact approval retained. D1 478 passes/200 new; 14 final private mutation refusals; Chat1297/CLI155 and 72/25/196 source observations match. Baseline debt unwaived; D2/D3 and acceptance pending.
   evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/README.md
+- task: friday-command-refactor
+  at: '2026-11-08T20:34:08+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG D1 round1; begin bounded test-only remediation cycle1
+  note: Sol/Astra VERIFIED9.7; Claude CHANGES_REQUESTED8.4. Mandatory named-node coverage/all-binding gaps govern. Existing exact approval covers mechanical correction; runtime/old tests remain frozen; fresh council before D2.
+  evidence: docs/planning/active/command-refactor/remediation/REM-CMD-DIAG-D1-001-test-coverage.md

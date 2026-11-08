@@ -1,29 +1,25 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: DIAG-001 D1 neutral implementation in fresh council round1
-Execution phase: validation
-Validation state: in_review (DIAG-001 D1); D2/D3 and acceptance pending
+Status: DIAG D1 council round1 CHANGES_REQUESTED; test-only remediation cycle1
+Execution phase: remediation
+Validation state: changes_requested (DIAG-001 D1); D2/D3 and acceptance pending
 
 ## Current DIAG-001 checkpoint
 
-The [exact approval](approval/diagnostics.md) supplies construction authority.
-D0 baselines/closed build and D1 neutral implementation are recorded in
-[D1 evidence](validation/diagnostics/implementation/d1/README.md): 478 neutral/
-cohort passes including 200 new cases; 14 origin-verified mutation refusals;
-current Chat1297/CLI155 regressions and all 72 DIAG/25 SESSION/196 pilot source
-observations match. Source is `7cab1f0f90a868a34de3faa4f763ce3b31352f8b`; source/static/preservation checks pass.
+[Round-one council](validation/diagnostics/implementation/d1/council-round1.json):
+Sol/Astra VERIFIED9.7 each; Claude CHANGES_REQUESTED8.4. Mandatory test traceability
+and binding-identity gaps govern the combined result; no runtime defect was found.
 
-Next gate: fresh Sol/Astra/Claude council round1 and controller reconciliation
-before D2. D2 Chat port/wrappers/exports and D3 owning regression/candidate build/
-installed proof then receive their separate councils under the same approval.
-No candidate installed-DIAG or host delegation completion is claimed now.
+Perform [bounded test-only remediation](remediation/REM-CMD-DIAG-D1-001-test-coverage.md)
+under the existing [exact approval](approval/diagnostics.md). Complete each named
+DG-T row and all38 binding identities, retain prior assertions and runtime bytes,
+prove named-node mutation refusals, rerun D1/static/preservation checks, then
+freeze for fresh Sol/Astra/Claude delta plus full D1 round2. D2 waits for council
+reconciliation. D2/D3, UAT and acceptance remain pending; initiative started/local.
 
-The initiative remains started/local; accepted SESSION/pilot/retirement/foundation
-remain retained. Known root debt stays failed/unwaived. The
-[UAT roadmap](uat/friday-chat-user-acceptance-roadmap.md) is NOT RUN. Stop for
-bounded human DIAG acceptance after the final aggregate review; later-family,
-full-refactor/P0/P1/TUI and delivery remain separate gates.
+Accepted earlier units and known failed/unwaived root debt remain unchanged.
+No later-family/TUI/full-refactor or external delivery authority is granted.
 
 ### Preserved prior planning checkpoint
 

@@ -1,3 +1,14 @@
+# DIAG-001 D1 — council remediation checkpoint
+
+Execution phase: remediation. Validation state: changes_requested (cycle1).
+[Round-one reconciliation](council-round1.json) records Sol/Astra VERIFIED9.7 and
+Claude CHANGES_REQUESTED8.4. Two mandatory test-evidence gaps require
+[test-only correction](../../../../remediation/REM-CMD-DIAG-D1-001-test-coverage.md)
+and fresh round2 before D2. Product code is unchanged; original evidence below
+is historical for the reviewed test bytes and remains preserved.
+
+## Historical original D1 builder checkpoint
+
 # DIAG-001 D1 — neutral diagnostics implementation
 
 Execution phase: validation. Validation state: in_review (D1 council round 1).
