@@ -665,6 +665,11 @@ async def neutral_diagnostics(args) -> dict:
         args.source
         / "packages/friday-commands/tests_commands/fixtures/diagnostics-metadata.json"
     )
+    require(
+        digest(fixture)
+        == "71d61907f68708184ba9173b80ba1d07158a8814f24b1fd834166483ae86d765",
+        "Neutral diagnostic fixture drift",
+    )
     expected = json.loads(fixture.read_text())
     require(
         json_value({spec.name: asdict(spec) for spec in shared.DIAGNOSTIC_SPECS})
@@ -839,6 +844,26 @@ async def neutral_diagnostics(args) -> dict:
             result == api.CommandOutcome(data) and events == expected_calls,
             "Neutral diagnostic orchestration changed: " + name,
         )
+    registry = api.CommandRegistry()
+    for spec in shared.DIAGNOSTIC_SPECS:
+        registry.register(spec, handlers[spec.name])
+    require(
+        registry.specs() == shared.DIAGNOSTIC_SPECS,
+        "Explicit diagnostic registration changed",
+    )
+    for name in NAMES:
+        events.clear()
+        result = await registry.execute_text(
+            "/" + name.upper() + " query", api.CommandExecution()
+        )
+        require(
+            result.handled
+            and result.outcome is not None
+            and result.outcome.error is None
+            and not result.outcome.ui_effects,
+            "Installed neutral registry dispatch failed: " + name,
+        )
+    events.clear()
     events.clear()
     require(
         (
