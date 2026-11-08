@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "SESSION D3 builder proof complete; fresh final available-member aggregate council before acceptance",
+  "decision": "SESSION D1\u2013D3 and complete bounded aggregate independently VERIFIED; bounded maintainer acceptance pending",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "SESSION D3 validation/in_review, S4/S5 and complete bounded aggregate; human acceptance pending",
-  "product_code_authority": "Exact SESSION-001 contract/directive approved; implement D1 then council before D2, with no other family/TUI/delivery authority.",
+  "current_scope": "SESSION-001 closeout/verified; acceptance handoff only, no later-family or delivery work",
+  "product_code_authority": "Exact SESSION construction approval exercised through D1\u2013D3; independently verified and awaiting bounded human acceptance. No additional unit or delivery authority.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -529,7 +529,7 @@
     "preparation_evidence_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "design_approval": "granted_by_subsequent_exact_approval",
     "construction_approval": "granted_by_subsequent_exact_approval",
-    "product_implementation": "D1/D2 independently verified; D3 builder proof complete in final council review",
+    "product_implementation": "D1\u2013D3 and complete bounded SESSION aggregate independently verified; maintainer acceptance pending",
     "tests": "Historical preparation-era observations are preserved in historical_preparation_tests; current D1/D2 conformance is recorded in session_construction.",
     "pilot_acceptance": "approval/pilot-acceptance.md",
     "delivery": "local only",
@@ -547,13 +547,13 @@
     "directive_sha256": "1fd4b3cf0a2de5ad180e9c3c3d06e7bb5d239bb3516ccca60fb7376041a96b46",
     "preparation_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "product_baseline": "38a0c58a0b533edc29908992c8c6ee64fa04eb20",
-    "state": "started",
-    "current_deliverable": "D3 S4/S5 and aggregate council round1",
+    "state": "verified_awaiting_maintainer_acceptance",
+    "current_deliverable": "D1\u2013D3 complete; bounded SESSION acceptance handoff",
     "council_after_each_deliverable": true,
     "council_members": [
-      "Claude Opus 5.5/high",
       "GPT-6.1 Sol/high",
-      "Gemini 4 Argon High"
+      "GPT-6 Astra/high",
+      "Claude Opus 5.5/high"
     ],
     "deliverable1": {
       "state": "verified",
@@ -620,7 +620,7 @@
       "verified_report": "validation/session/implementation/d2/verified-report.md"
     },
     "deliverable3": {
-      "state": "in_review",
+      "state": "verified",
       "scope": "SESSION-09/10, S4/S5 plus complete bounded SESSION aggregate",
       "D3_base": "3cc7ef3376672b36ae1147298ccd55841f9a0145",
       "aggregate_base": "1b1f703bd5af1c86bfd95a3e5c5fc72acf71a7a7",
@@ -628,13 +628,39 @@
       "evidence": "validation/session/implementation/d3/evidence.json",
       "probe": "validation/session/installed_probe.py",
       "council_round": 1,
-      "gate": "Fresh available Claude/Sol D3 plus aggregate council, reconcile before bounded maintainer acceptance",
-      "acceptance": "not_granted"
+      "gate": "Council reconciled; bounded human SESSION acceptance next",
+      "acceptance": "not_granted",
+      "council_round1": {
+        "candidate": "112e657fe3aebec97af00875583ff85abaaacd04",
+        "outcome": "VERIFIED",
+        "scores": {
+          "GPT-6.1 Sol": 9.7,
+          "GPT-6 Astra": 9.7,
+          "Claude Opus 5.5": 9.6
+        },
+        "record": "validation/session/implementation/d3/council-round1.json",
+        "Astra_isolation_reissue": "SESSION-D3-ASTRA-001 closed; initial invalid review excluded"
+      }
     },
     "acceptance": "not_granted",
     "delivery": "local only",
     "source_revision": "4065a150cbfcacbcf71c6aab05e05d2920bf48e5",
     "council_availability": {
+      "selected_members": [
+        "GPT-6.1 Sol/high",
+        "GPT-6 Astra/high",
+        "Claude Opus 5.5/high"
+      ],
+      "current_reviews": "All three requested models supplied valid independent results; invalid initial Astra execution excluded.",
+      "record": "validation/session/implementation/d3/council-round1.json",
+      "historical_Gemini": "Quota unavailable in prior dispatch, no score; later direct roster instruction supersedes future membership."
+    },
+    "historical_council_members": [
+      "Claude Opus 5.5/high",
+      "GPT-6.1 Sol/high",
+      "Gemini 4 Argon High"
+    ],
+    "historical_council_availability": {
       "selected_members": [
         "Claude Opus 5.5/high",
         "GPT-6.1 Sol/high",
@@ -648,6 +674,27 @@
         "Gemini4 Argon High": "Antigravity quota; no review/score; no retry/replacement"
       },
       "disposition": "Both available members independently reproduced full bounded D2. Council unreachable-provider instruction is met by reporting unavailable coverage without substitution. Reconciled available coverage permits the already-approved D3; no third review, human waiver or acceptance is inferred."
+    },
+    "verified_candidate": "112e657fe3aebec97af00875583ff85abaaacd04",
+    "verified_report": "validation/session/implementation/d3/verified-report.md"
+  },
+  "historical_unit_summary_fields": [
+    {
+      "recorded_at": "2026-11-08T17:56:58+00:00",
+      "field": "product_code_authority",
+      "value": "Exact SESSION-001 contract/directive approved; implement D1 then council before D2, with no other family/TUI/delivery authority.",
+      "superseded_by": "Verified SESSION construction complete; human acceptance pending"
     }
+  ],
+  "remaining_council_roster": {
+    "members": [
+      "GPT-6.1 Sol/high",
+      "GPT-6 Astra/high",
+      "Claude Opus 5.5/high"
+    ],
+    "requested_by": "Chuck Russell",
+    "record": "approval/council-roster.md",
+    "sha256": "80c8e25ed071503313e9b3c97d93d2fb3712d29de6822e22b539d7b3a3fa8e02",
+    "instruction": "for The remaining council tasks use only GPT 6.1-Sol,  GPT-6-Astra  and Claude Opus 5.5."
   }
 }

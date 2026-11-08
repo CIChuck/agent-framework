@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Fresh available Claude/Sol SESSION D3 and complete bounded aggregate council; reconcile before human acceptance
+  next_gate: Human bounded SESSION-001 acceptance; D1–D3 and aggregate VERIFIED by Sol/Astra/Claude
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -729,6 +729,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/pilot/implementation/d3/verified-report.md
   - docs/planning/active/command-refactor/validation/session/implementation/d1/verified-report.md
   - docs/planning/active/command-refactor/validation/session/implementation/d2/verified-report.md
+  - docs/planning/active/command-refactor/validation/session/implementation/d3/verified-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2729,3 +2730,10 @@ events:
   action: froze SESSION D3 installed proof and complete bounded aggregate for final council
   note: S4 1730 passes; both bundles build 13 workspace distributions with 125 locked inputs and match 154 hashes; installed proof and 42 refusal controls pass. Gemini unavailable/no score; acceptance pending.
   evidence: docs/planning/active/command-refactor/validation/session/implementation/d3/evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T17:56:58+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled SESSION D3 and aggregate council; bounded human acceptance pending
+  note: Sol VERIFIED 9.7, Astra fresh isolation reissue VERIFIED 9.7, Claude VERIFIED 9.6. No mandatory findings; invalid Astra run preserved and excluded. Current remaining roster is Sol/Astra/Claude by direct maintainer instruction. No delivery or next-unit authority.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d3/verified-report.md

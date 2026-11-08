@@ -1411,3 +1411,25 @@ unwaived. Evidence: validation/session/implementation/d3/. `execution_phase: val
 `validation_state: in_review` for D3 round1/full bounded aggregate. Fresh available
 Claude/Sol council precedes acceptance; Gemini remains quota unavailable/no score,
 no retry/substitute. No SESSION acceptance or delivery authority is inferred.
+
+2026-11-08T17:56:58+00:00: SESSION D3 and complete bounded aggregate council reconciled at
+`112e657fe3aebec97af00875583ff85abaaacd04`. Sol VERIFIED 9.7, Claude VERIFIED 9.6 and fresh Astra
+VERIFIED 9.7; no mandatory findings remain. Before writes all 17184 protected
+contents, original pins, 206 evidence files, logical index, HEAD/branch/status and
+both dirty examples matched. The first Astra execution is invalid procedure
+history for SESSION-D3-ASTRA-001, excluded from signoff. Fresh full review and
+controller audit confirm private mypy targets and all 1340 supplied-cache entries/
+1267 files unchanged. No cleanup/restoration. The private executor's only change
+routes MYPY_CACHE_DIR to its own scratch; guards/wrapper/bootstrap and command
+semantics remain identical. Earlier private-layout/cold-cache test attempts are
+preserved; corrected full 1297 Chat rerun passed without source/test/timeout edits.
+All three requested models independently reproduced 1730 source passes, clean
+builds/installed proof and bounded aggregate criteria. Exact reports/requests,
+roster update and procedural reconciliation: D3 council-round1.json. Frozen
+technical evidence remains unchanged. Record approval/council-roster.md from
+the maintainer's later explicit Sol/Astra/Claude direction; historical Gemini
+records stay intact. Only PAR-003/017 gain verified SESSION evidence. Root Ruff
+534, root test_display collection and legacy registry formatting stay failed/
+unwaived. `execution_phase: closeout`; `validation_state: verified` for SESSION.
+The unit awaits bounded human acceptance; initiative remains started/local.
+No later family, P0/P1/TUI acceptance or push/PR/merge/release follows automatically.

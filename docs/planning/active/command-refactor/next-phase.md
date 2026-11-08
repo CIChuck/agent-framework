@@ -1,22 +1,25 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: SESSION D1/D2 VERIFIED; D3 and complete bounded aggregate in final council
-Execution phase: validation
-Validation state: in_review (D3 round1); human SESSION acceptance pending
+Status: SESSION-001 D1–D3 and bounded aggregate VERIFIED; human acceptance pending
+Execution phase: closeout
+Validation state: verified (SESSION-001); initiative remains started/local
 
 ## Current next steps
 
-1. Obtain fresh available Claude/Sol review of [D3](validation/session/implementation/d3/README.md)
-   and the complete bounded SESSION aggregate. Artifact/probe source is 8bb61e2c;
-   only evidence/status follows it. All 1730 source tests and installed lanes pass.
-2. Reconcile both reports and Gemini quota unavailable/no-score coverage; no retry,
-   substitute or third-review claim. A changed candidate needs fresh review.
-3. After VERIFIED, stop for bounded maintainer SESSION acceptance. Later families,
-   P0/P1, TUI and external delivery remain separate. Known root debt is unwaived.
+1. Review the [SESSION acceptance handoff](validation/session/implementation/d3/verified-report.md).
+   Sol 9.7, Astra 9.7 and Claude 9.6 independently VERIFIED reviewed candidate 112e657f,
+   with no mandatory findings. Astra's invalid first execution is preserved;
+   its fresh full isolation reissue supplies current signoff.
+2. Chuck Russell decides bounded SESSION-001 acceptance (`/history`, `/clear`).
+   Construction approval and independent verification do not record acceptance.
+3. After an explicit decision, record it separately. A next family requires its
+   own authorized scope/directive; no delivery or new unit starts automatically.
 
-PILOT remains accepted; SESSION D1/D2 remain independently VERIFIED. The initiative
-stays started/local. D3 construction approval already exists; acceptance does not.
+All 1730 scoped tests, 25 SESSION/196 pilot observations, two matching closed builds
+and installed normal/optimized proof pass. Known root debt remains unwaived.
+The [remaining council roster](approval/council-roster.md) is Sol/Astra/Claude.
+PILOT stays accepted; the broader initiative, P0/P1 and TUI remain open.
 
 ## Historical checkpoints
 

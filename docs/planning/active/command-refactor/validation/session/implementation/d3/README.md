@@ -1,5 +1,15 @@
 # SESSION-001 D3 — artifact and installed proof candidate
 
+Current result: [independently VERIFIED](verified-report.md) at `112e657f` by
+Sol/Astra/Claude (9.7/9.7/9.6). No mandatory findings remain; human acceptance pending.
+Execution phase: closeout
+Validation state: verified (human acceptance pending)
+
+## Historical builder checkpoint
+
+The earlier builder checkpoint below retains historical provenance.
+
+
 Execution phase: validation
 Validation state: in_review
 

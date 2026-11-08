@@ -2,18 +2,18 @@
 
 Date: 2026-11-08
 Branch: `feature/command-retirement`
-Status: PILOT accepted; SESSION D1/D2 VERIFIED, D3 in final council
-Execution phase: validation
-Validation state: in_review (D3 round1; acceptance pending)
+Status: SESSION D1–D3 and bounded aggregate VERIFIED; human acceptance pending
+Execution phase: closeout
+Validation state: verified (SESSION-001; broader initiative remains started/local)
 
-## Current SESSION-001 execution
+## Current SESSION-001 checkpoint
 
-The [exact approval](approval/session-views.md) covers the frozen contract/directive.
-[D3](validation/session/implementation/d3/README.md) now has fresh S4/S5 artifacts,
-replay and installed proof. Obtain fresh available Claude/Sol D3 plus complete
-bounded aggregate review, reconcile unavailable Gemini/no score, then stop for
-human SESSION acceptance. [Next-phase](next-phase.md) owns current order.
-Broader command families/P0/P1/TUI and external delivery remain open.
+The [bounded acceptance handoff](validation/session/implementation/d3/verified-report.md)
+is ready: Sol 9.7, Astra 9.7 and Claude 9.6, all VERIFIED, no mandatory findings.
+The fresh Astra isolation reissue closes its procedural blocker; invalid history
+is retained. The [roster instruction](approval/council-roster.md) governs remaining
+councils. [Next-phase](next-phase.md) awaits the maintainer's acceptance decision.
+No further construction, later-family/P0/P1/TUI or external delivery follows.
 
 ## Historical Step 3 planning checkpoint
 

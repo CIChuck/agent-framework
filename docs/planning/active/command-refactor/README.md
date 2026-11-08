@@ -16,10 +16,11 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: validation`; `validation_state: in_review` for SESSION D3 round1.
-SESSION D1/D2 are independently VERIFIED. [D3 proof](validation/session/implementation/d3/README.md)
-records passing S4/S5 and installed normal/optimized lanes; fresh final aggregate
-council and human acceptance remain pending. Gemini is unavailable/no score.
+`execution_phase: closeout`; `validation_state: verified` for SESSION-001.
+SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
+`112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
+[Bounded acceptance handoff](validation/session/implementation/d3/verified-report.md)
+awaits Chuck Russell's decision. The initiative remains started/local.
 PILOT-001 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
 council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
 VERIFIED at `eb216421` by Claude and Sol, both 9.6/10, and now
@@ -188,6 +189,8 @@ observations, exact replay and 434 related Chat/217 Commands-cohort passing
 tests. It is reference evidence, not another approval document. Later families,
 P0/P1 and TUI remain open; delivery is local only.
 
-Current SESSION-001 construction is [approved](approval/session-views.md).
-D1/D2 are independently VERIFIED. D3 and the complete bounded SESSION aggregate
-are frozen for fresh available-member council. SESSION acceptance remains pending.
+SESSION-001 construction was [approved](approval/session-views.md) and is now
+[independently VERIFIED](validation/session/implementation/d3/verified-report.md).
+Bounded human acceptance remains pending. The [current council roster](approval/council-roster.md)
+is Sol/Astra/Claude; earlier Gemini dispatch wording is historical.
+No later-family, TUI or external delivery work is authorized by this handoff.

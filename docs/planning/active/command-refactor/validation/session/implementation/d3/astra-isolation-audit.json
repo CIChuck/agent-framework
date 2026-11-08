@@ -1,0 +1,24 @@
+{
+  "recorded_at": "2026-11-08T17:56:58+00:00",
+  "result": "passed",
+  "original_candidate": "112e657fe3aebec97af00875583ff85abaaacd04",
+  "all_original_frozen_pins_match": true,
+  "protected_contents": 17184,
+  "all206_evidence_text_and_raw_hashes_match": true,
+  "cache": {
+    "snapshot_sha256": "29fa1f291d167aea4972f4c33e4c28eee8efa9ac395a2bd827aba8ea059441b8",
+    "entries": 1340,
+    "files": 1267,
+    "all_modes_mtime_sizes_hashes_unchanged": true,
+    "cleaned_or_restored": false
+  },
+  "Astra_private_executor": {
+    "original_run_sha256": "409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af",
+    "private_run_sha256": "314c973d1405657094af57288acbac1b186bc1d24b9f98806827133a66a6a583",
+    "only_AST_difference": "MYPY_CACHE_DIR keyword value in env.update redirects output to private scratch; normalization restores whole AST equality. All command flags/guard behavior unchanged.",
+    "private_cache_target": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/astra-fresh-session-35ge9wv8/mypy",
+    "guard_bootstrap_wrapper_match_original": true,
+    "actual_diff": "--- original materialized run.py\n+++ Astra own private run.py\n@@ -3,7 +3,7 @@\n s=Path(__file__).parent\n name=sys.argv[1];args=sys.argv[2:]\n env={k:v for k,v in os.environ.items() if not any(t in k.upper() for t in (\"API_KEY\",\"TOKEN\",\"SECRET\",\"PASSWORD\",\"CREDENTIAL\")) and k.upper() not in (\"HTTP_PROXY\",\"HTTPS_PROXY\",\"ALL_PROXY\")}\n-env.update(PYTHONDONTWRITEBYTECODE=\"1\",PYTHONPATH=str(s),TERM=\"xterm-256color\",REVIEW_REPO=os.getcwd(),REVIEW_SCRATCH=str(s),UV_OFFLINE=\"1\",UV_NO_SYNC=\"1\",UV_CACHE_DIR=str(s/\"uv-cache\"),UV_PYTHON_DOWNLOADS=\"never\",XDG_CACHE_HOME=str(s/\"cache\"),MYPY_CACHE_DIR=str(s/\"mypy-cache\"),PYTEST_ADDOPTS=\"-p no:cacheprovider\",HF_HUB_OFFLINE=\"1\",TRANSFORMERS_OFFLINE=\"1\",ANONYMIZED_TELEMETRY=\"False\",FRIDAY_TELEMETRY_ENABLED=\"false\")\n+env.update(PYTHONDONTWRITEBYTECODE=\"1\",PYTHONPATH=str(s),TERM=\"xterm-256color\",REVIEW_REPO=os.getcwd(),REVIEW_SCRATCH=str(s),UV_OFFLINE=\"1\",UV_NO_SYNC=\"1\",UV_CACHE_DIR=str(s/\"uv-cache\"),UV_PYTHON_DOWNLOADS=\"never\",XDG_CACHE_HOME=str(s/\"cache\"),MYPY_CACHE_DIR='/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/astra-fresh-session-35ge9wv8/mypy',PYTEST_ADDOPTS=\"-p no:cacheprovider\",HF_HUB_OFFLINE=\"1\",TRANSFORMERS_OFFLINE=\"1\",ANONYMIZED_TELEMETRY=\"False\",FRIDAY_TELEMETRY_ENABLED=\"false\")\n cmd=[\"uv\",\"run\",\"--offline\",\"--frozen\",\"--no-sync\",\"--no-python-downloads\",\"--with-editable\",\"packages/friday-commands\",*args]\n t=time.time()\n with (s/(name+\".log\")).open(\"w\") as f:r=subprocess.run(cmd,env=env,stdout=f,stderr=subprocess.STDOUT)\n"
+  },
+  "disposition": "The invalid Astra review is excluded from signoff. Its fresh full reissue has a verified private output target and leaves preserved supplied cache unchanged. This closes the procedural finding without a product, supplied-input or governing-construction change."
+}
