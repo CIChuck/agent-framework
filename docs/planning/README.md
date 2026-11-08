@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Maintainer disposition of VAL-D1-R3-001 sorting-test coverage gap after two D1 remediation cycles; one-line proposal prepared; D2 pending |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh three-provider D1 round-four council on authorized sorting-test correction; G1 and no-sort mutant proof pass; D2 pending |
 
 ## Completed
 

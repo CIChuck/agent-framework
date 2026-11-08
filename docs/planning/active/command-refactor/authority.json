@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "PILOT-001 approved; D1 runtime conforms but mandatory sorting-test coverage finding remains after two remediation cycles; maintainer disposition required",
+  "decision": "PILOT-001 approved; authorized D1 sorting-test correction applied and verified by G1/mutation controls; fresh council round four pending",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "D1 validation changes_requested for VAL-D1-R3-001; proposed one-line test fix is prepared in scratch only; D2 and D3 pending",
+  "current_scope": "D1 validation/in_review after one-line fixture correction; no runtime change; D2 and D3 pending",
   "product_code_authority": "Exact pilot construction approved in approval/pilot.md; council after each deliverable before advancement. Remaining families, TUI, final acceptance and external delivery are unapproved.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -312,7 +312,7 @@
     "product_baseline": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
     "branch": "feature/command-retirement",
     "state": "started",
-    "current_deliverable": "D1 awaiting maintainer disposition of VAL-D1-R3-001 after third council",
+    "current_deliverable": "D1 authorized sorting-test correction applied; council round four pending",
     "council_after_each_deliverable": true,
     "deliverables": {
       "D1": "Shared neutral API/handlers and standalone tests (G1)",
@@ -322,8 +322,8 @@
     "delivery": "local only; no push/PR/merge/release authorization",
     "acceptance": "not_granted",
     "deliverable1": {
-      "state": "changes_requested",
-      "gate": "Maintainer disposition after two unsuccessful remediation cycles",
+      "state": "in_review",
+      "gate": "Fresh three-provider D1 round-four council on authorized test-only correction",
       "evidence": "validation/pilot/implementation/d1/evidence.json",
       "scope": "PILOT-01/02 only; no Chat wiring or installed candidate claim",
       "acceptance": "not_granted",
@@ -352,6 +352,24 @@
         "decision": "validation/pilot/implementation/d1/maintainer-decision.md",
         "remediation_authorization": "additional pass not granted",
         "product_construction_approval": "existing exact PILOT-001 approval retained"
+      },
+      "additional_test_correction_authorization": {
+        "approved_by": "Chuck Russell",
+        "approved_at": "2026-11-08T00:28:59+00:00",
+        "instruction": "authorized",
+        "responding_to": "One-line VAL-D1-R3-001 fixture correction and one fresh council pass after the two-cycle escalation.",
+        "scope": "Catalog(tuple(reversed(PILOT_SPECS))) -> Catalog(PILOT_SPECS) only in the existing sorting test; full G1/lint/format and no-sort mutation proof; metadata/evidence reconciliation.",
+        "cycle_extension": "One additional bounded correction pass and fresh three-provider council. No optional-advisory repairs or additional automatic loop.",
+        "administrative_base": "5347b858a9f0c6ba80f6fdd32c3eb62a3ab0cd46",
+        "existing_pilot_approval": "retained; D2 remains pending D1 council reconciliation"
+      },
+      "sort_test_correction": {
+        "finding": "VAL-D1-R3-001",
+        "state": "applied_pending_council",
+        "evidence": "validation/pilot/implementation/d1/sort-fix-evidence.json",
+        "G1_passed": 217,
+        "no_sort_mutant": "2 required sorting cases fail; other 215 pass",
+        "runtime_change": false
       }
     }
   },

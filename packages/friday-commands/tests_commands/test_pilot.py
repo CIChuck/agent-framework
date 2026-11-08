@@ -90,7 +90,7 @@ def test_factory_does_not_read_catalog_or_register_defaults() -> None:
 
 @pytest.mark.parametrize("focus", [None, ""])
 def test_general_help_sorts_one_catalog_snapshot(focus: str | None) -> None:
-    catalog = Catalog(tuple(reversed(PILOT_SPECS)))
+    catalog = Catalog(PILOT_SPECS)
     outcome = describe_help(catalog, focus)
     assert isinstance(outcome.data, HelpData)
     assert tuple(spec.name for spec in outcome.data.commands) == ("cls", "exit", "help")

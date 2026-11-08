@@ -1,26 +1,26 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 approved; D1 sorting-test finding awaits maintainer direction; D2 and D3 pending
+Status: PILOT-001 approved; authorized D1 sorting-test correction applied; council round four pending; D2 and D3 pending
 Execution phase: validation
-Validation state: changes_requested (PILOT-001 D1); VAL-D1-R3-001 open after two remediation cycles; D2/G2-G3 and D3/G4-G5 pending; RET-001 remains accepted
+Validation state: in_review (PILOT-001 D1); G1 and no-sort mutation proof pass; D2/G2-G3 and D3/G4-G5 pending; RET-001 remains accepted
 
 ## Current next steps
 
-1. Review the [bounded sorting-test decision](validation/pilot/implementation/d1/maintainer-decision.md).
-   One mandatory coverage gap remains despite correct runtime behavior and
-   council scores of 9.4/9.5/9.8. The proposed one-line fix is not applied.
-2. Maintainer direction is required for an additional bounded correction and
-   fresh council after the two-cycle escalation. Existing pilot approval is
-   retained; D2 starts only after D1 conformance reconciliation.
+1. Reconcile the authorized fresh D1 council. The one-line VAL-D1-R3-001
+   correction is applied; G1 passes 217 tests, lint/format pass, and the no-sort
+   mutant is rejected by exactly the two sorting cases. Runtime is unchanged.
+2. Freeze D1 for the authorized fresh three-provider council pass. D2 begins
+   only after D1 conformance reconciliation. Optional advisory repairs and
+   another automatic correction loop are outside this bounded authorization.
 3. Continue approved D2 Chat integration/lifecycle (G2-G3) and D3 full
    regression/installed proof (G4-G5), each followed by its own council.
 4. Present the complete pilot for maintainer acceptance. Later families,
    TUI work and external delivery still require separate authority.
 
-The [exact pilot approval](approval/pilot.md), live header and board govern this
-handoff. Earlier checkpoint narrative below is historical and does not replace
-the current grant or the mandatory review/cycle-limit gates.
+The [exact pilot approval](approval/pilot.md), current additional authorization
+in authority.json, live header and board govern this handoff. Earlier
+checkpoint narrative below is historical.
 
 ## Historical checkpoints
 

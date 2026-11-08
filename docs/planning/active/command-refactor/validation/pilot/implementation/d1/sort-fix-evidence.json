@@ -1,0 +1,252 @@
+{
+  "finding": "VAL-D1-R3-001",
+  "authorization": "Chuck Russell: authorized (one-line fixture fix and one fresh council pass)",
+  "administrative_base": "5347b858a9f0c6ba80f6fdd32c3eb62a3ab0cd46",
+  "scope": "Only test fixture changed; runtime/assertions/design/dependencies/lock/harness unchanged",
+  "test_before_sha256": "a24550047d774e541e3a8996de12d4ae1c658cde2705dc7f76f142eef5ae77cb",
+  "test_after_sha256": "6ba9f73fc29365242494509450491b55b8ca2cc1b11de90b8bb145dd5ce9e54f",
+  "exact_change": {
+    "before": "    catalog = Catalog(tuple(reversed(PILOT_SPECS)))",
+    "after": "    catalog = Catalog(PILOT_SPECS)"
+  },
+  "result": {
+    "current_G1_passed": 217,
+    "no_sort_mutant_failed": 2,
+    "no_sort_mutant_passed": 215,
+    "failed_nodes": [
+      "test_general_help_sorts_one_catalog_snapshot[None]",
+      "test_general_help_sorts_one_catalog_snapshot[]"
+    ],
+    "runtime_source_origin_verified": true,
+    "lint": "passed",
+    "format": "passed"
+  },
+  "verification": {
+    "finding": "VAL-D1-R3-001",
+    "scope": "Authorized one-line fixture only; no runtime changes",
+    "corrected_G1": {
+      "label": "g1-sort-fixed",
+      "argv": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "-B",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pilot_run.py",
+        "g1-sort-fixed",
+        "python",
+        "-B",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "packages/friday-commands/tests_commands",
+        "tests/integration/test_package_cohort_metadata.py"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "output": "{\"command\": [\"uv\", \"run\", \"--offline\", \"--frozen\", \"--no-sync\", \"--no-python-downloads\", \"--with-editable\", \"packages/friday-commands\", \"python\", \"-B\", \"-m\", \"pytest\", \"-p\", \"no:cacheprovider\", \"-q\", \"packages/friday-commands/tests_commands\", \"tests/integration/test_package_cohort_metadata.py\", \"--basetemp\", \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pytest-tmp/g1-sort-fixed\"], \"exit\": 0, \"seconds\": 1.03}\n........................................................................ [ 33%]\n........................................................................ [ 66%]\n........................................................................ [ 99%]\n.                                                                        [100%]\n217 passed in 0.45s\n\n"
+    },
+    "checks": [
+      {
+        "label": "no-sort-mutant-final",
+        "argv": [
+          "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+          "-B",
+          "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pilot_run.py",
+          "no-sort-mutant-final",
+          "python",
+          "-B",
+          "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe_canonical.py",
+          "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant-src"
+        ],
+        "exit": 1,
+        "expected_exit": 1,
+        "output": "{\"command\": [\"uv\", \"run\", \"--offline\", \"--frozen\", \"--no-sync\", \"--no-python-downloads\", \"--with-editable\", \"packages/friday-commands\", \"python\", \"-B\", \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe_canonical.py\", \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant-src\"], \"exit\": 1, \"seconds\": 1.12}\nVERIFIED_MUTANT_ORIGIN /private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant-src/friday_commands/__init__.py\n........................................................................ [ 33%]\n...................................FF................................... [ 66%]\n........................................................................ [ 99%]\n.                                                                        [100%]\n=================================== FAILURES ===================================\n______________ test_general_help_sorts_one_catalog_snapshot[None] ______________\n\nfocus = None\n\n    @pytest.mark.parametrize(\"focus\", [None, \"\"])\n    def test_general_help_sorts_one_catalog_snapshot(focus: str | None) -> None:\n        catalog = Catalog(PILOT_SPECS)\n        outcome = describe_help(catalog, focus)\n        assert isinstance(outcome.data, HelpData)\n>       assert tuple(spec.name for spec in outcome.data.commands) == (\"cls\", \"exit\", \"help\")\nE       AssertionError: assert ('help', 'exit', 'cls') == ('cls', 'exit', 'help')\nE         \nE         At index 0 diff: 'help' != 'cls'\nE         Use -v to get more diff\n\npackages/friday-commands/tests_commands/test_pilot.py:96: AssertionError\n________________ test_general_help_sorts_one_catalog_snapshot[] ________________\n\nfocus = ''\n\n    @pytest.mark.parametrize(\"focus\", [None, \"\"])\n    def test_general_help_sorts_one_catalog_snapshot(focus: str | None) -> None:\n        catalog = Catalog(PILOT_SPECS)\n        outcome = describe_help(catalog, focus)\n        assert isinstance(outcome.data, HelpData)\n>       assert tuple(spec.name for spec in outcome.data.commands) == (\"cls\", \"exit\", \"help\")\nE       AssertionError: assert ('help', 'exit', 'cls') == ('cls', 'exit', 'help')\nE         \nE         At index 0 diff: 'help' != 'cls'\nE         Use -v to get more diff\n\npackages/friday-commands/tests_commands/test_pilot.py:96: AssertionError\n=========================== short test summary info ============================\nFAILED packages/friday-commands/tests_commands/test_pilot.py::test_general_help_sorts_one_catalog_snapshot[None]\nFAILED packages/friday-commands/tests_commands/test_pilot.py::test_general_help_sorts_one_catalog_snapshot[]\n2 failed, 215 passed in 0.47s\n\n"
+      },
+      {
+        "label": "sort-fix-lint",
+        "argv": [
+          "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+          "-B",
+          "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pilot_run.py",
+          "sort-fix-lint",
+          "ruff",
+          "check",
+          "--no-cache",
+          "packages/friday-commands/src",
+          "packages/friday-commands/tests_commands/test_pilot.py"
+        ],
+        "exit": 0,
+        "expected_exit": 0,
+        "output": "{\"command\": [\"uv\", \"run\", \"--offline\", \"--frozen\", \"--no-sync\", \"--no-python-downloads\", \"--with-editable\", \"packages/friday-commands\", \"ruff\", \"check\", \"--no-cache\", \"packages/friday-commands/src\", \"packages/friday-commands/tests_commands/test_pilot.py\"], \"exit\": 0, \"seconds\": 0.08}\nAll checks passed!\n\n"
+      },
+      {
+        "label": "sort-fix-format",
+        "argv": [
+          "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+          "-B",
+          "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pilot_run.py",
+          "sort-fix-format",
+          "ruff",
+          "format",
+          "--check",
+          "--no-cache",
+          "packages/friday-commands/tests_commands/test_pilot.py"
+        ],
+        "exit": 0,
+        "expected_exit": 0,
+        "output": "{\"command\": [\"uv\", \"run\", \"--offline\", \"--frozen\", \"--no-sync\", \"--no-python-downloads\", \"--with-editable\", \"packages/friday-commands\", \"ruff\", \"format\", \"--check\", \"--no-cache\", \"packages/friday-commands/tests_commands/test_pilot.py\"], \"exit\": 0, \"seconds\": 0.04}\n1 file already formatted\n\n"
+      }
+    ],
+    "mutation_program": "from pathlib import Path\nimport sys\nsys.path.insert(0, sys.argv[1])\nimport friday_commands\nactual = Path(friday_commands.__file__).resolve()\nexpected = (Path(sys.argv[1]) / 'friday_commands/__init__.py').resolve()\nif actual != expected:\n raise RuntimeError(f'Wrong package under mutation test: {actual} != {expected}')\nprint('VERIFIED_MUTANT_ORIGIN', actual, flush=True)\nimport pytest\nraise SystemExit(pytest.main(['-p', 'no:cacheprovider', '-q', 'packages/friday-commands/tests_commands', 'tests/integration/test_package_cohort_metadata.py']))\n",
+    "mutation_program_sha256": "3f2b756f684262ca1be647b581dab5406b7d7b6d8ab43e03b93aa8653b83add3",
+    "historical_control_attempts": [
+      {
+        "role": "historical_control_setup_failure",
+        "cause": "Scratch helper placeholder also changed a string marker, causing SyntaxError.",
+        "receipt": {
+          "label": "no-sort-mutant-rejected",
+          "argv": [
+            "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+            "-B",
+            "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pilot_run.py",
+            "no-sort-mutant-rejected",
+            "python",
+            "-B",
+            "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe.py"
+          ],
+          "exit": 1,
+          "expected_exit": 1,
+          "output": "{\"command\": [\"uv\", \"run\", \"--offline\", \"--frozen\", \"--no-sync\", \"--no-python-downloads\", \"--with-editable\", \"packages/friday-commands\", \"python\", \"-B\", \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe.py\"], \"exit\": 1, \"seconds\": 0.05}\n  File \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe.py\", line 7\n    print('VERIFIED_'/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant-src'_ORIGIN', friday_commands.__file__, flush=True)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax. Perhaps you forgot a comma?\n\n"
+        }
+      },
+      {
+        "role": "historical_control_setup_failure",
+        "cause": "Scratch helper compared canonical /private/var path with unresolved /var alias; fixed by canonicalizing both paths.",
+        "receipt": {
+          "label": "no-sort-mutant-verified",
+          "argv": [
+            "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+            "-B",
+            "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pilot_run.py",
+            "no-sort-mutant-verified",
+            "python",
+            "-B",
+            "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe.py"
+          ],
+          "exit": 1,
+          "expected_exit": 1,
+          "output": "{\"command\": [\"uv\", \"run\", \"--offline\", \"--frozen\", \"--no-sync\", \"--no-python-downloads\", \"--with-editable\", \"packages/friday-commands\", \"python\", \"-B\", \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe.py\"], \"exit\": 1, \"seconds\": 0.06}\nTraceback (most recent call last):\n  File \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe.py\", line 6, in <module>\n    raise RuntimeError('Wrong package under mutation test')\nRuntimeError: Wrong package under mutation test\n\n"
+        }
+      }
+    ],
+    "repository_test_sha256": "6ba9f73fc29365242494509450491b55b8ca2cc1b11de90b8bb145dd5ce9e54f",
+    "mutant_pilot_sha256": "36b3678007f310f2fa2f9b393b817d1aa46912850d9a4598264a1a79dbdb7e3d"
+  },
+  "files": {
+    "prepare.json": {
+      "role": "control",
+      "sha256": "9ecaec519491c40336caa2f39ffbb431518b36bbba4cb61a5d607fc367423804",
+      "text": "{\n  \"label\": \"prepare\",\n  \"argv\": [\n    \"/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python\",\n    \"-B\",\n    \"/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/harness/prepare.py\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared\",\n    \"--wheelhouse\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-build-d1-zmbky5zq/prepared/wheelhouse\"\n  ],\n  \"exit\": 0,\n  \"expected_exit\": 0,\n  \"output\": \"{\\\"command\\\": [\\\"uv\\\", \\\"run\\\", \\\"--offline\\\", \\\"--frozen\\\", \\\"--no-sync\\\", \\\"--no-python-downloads\\\", \\\"--with-editable\\\", \\\"packages/friday-commands\\\", \\\"python\\\", \\\"-B\\\", \\\"-c\\\", \\\"import friday_commands; print('offline editable startup passed')\\\"], \\\"exit\\\": 0, \\\"seconds\\\": 0.47}\\n   Building friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\\n      Built friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\\nInstalled 1 package in 1ms\\noffline editable startup passed\\n\\nPrepared /private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared; subsequent runner commands are offline\\n\"\n}\n"
+    },
+    "g1-sort-fixed.json": {
+      "role": "final_gate",
+      "sha256": "a74caf88cfa4a36aa216a6801663733a35ca3835fe22525d27f1ca36288d2bc9",
+      "text": "{\n  \"label\": \"g1-sort-fixed\",\n  \"argv\": [\n    \"/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python\",\n    \"-B\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pilot_run.py\",\n    \"g1-sort-fixed\",\n    \"python\",\n    \"-B\",\n    \"-m\",\n    \"pytest\",\n    \"-p\",\n    \"no:cacheprovider\",\n    \"-q\",\n    \"packages/friday-commands/tests_commands\",\n    \"tests/integration/test_package_cohort_metadata.py\"\n  ],\n  \"exit\": 0,\n  \"expected_exit\": 0,\n  \"output\": \"{\\\"command\\\": [\\\"uv\\\", \\\"run\\\", \\\"--offline\\\", \\\"--frozen\\\", \\\"--no-sync\\\", \\\"--no-python-downloads\\\", \\\"--with-editable\\\", \\\"packages/friday-commands\\\", \\\"python\\\", \\\"-B\\\", \\\"-m\\\", \\\"pytest\\\", \\\"-p\\\", \\\"no:cacheprovider\\\", \\\"-q\\\", \\\"packages/friday-commands/tests_commands\\\", \\\"tests/integration/test_package_cohort_metadata.py\\\", \\\"--basetemp\\\", \\\"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pytest-tmp/g1-sort-fixed\\\"], \\\"exit\\\": 0, \\\"seconds\\\": 1.03}\\n........................................................................ [ 33%]\\n........................................................................ [ 66%]\\n........................................................................ [ 99%]\\n.                                                                        [100%]\\n217 passed in 0.45s\\n\\n\"\n}\n"
+    },
+    "no-sort-mutant-final.json": {
+      "role": "negative_control",
+      "sha256": "3dca9466946b14e4e4abebcd84ee4c1dd0c8f3ff9d0740f31d91a77c791ec6e4",
+      "text": "{\n  \"label\": \"no-sort-mutant-final\",\n  \"argv\": [\n    \"/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python\",\n    \"-B\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pilot_run.py\",\n    \"no-sort-mutant-final\",\n    \"python\",\n    \"-B\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe_canonical.py\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant-src\"\n  ],\n  \"exit\": 1,\n  \"expected_exit\": 1,\n  \"output\": \"{\\\"command\\\": [\\\"uv\\\", \\\"run\\\", \\\"--offline\\\", \\\"--frozen\\\", \\\"--no-sync\\\", \\\"--no-python-downloads\\\", \\\"--with-editable\\\", \\\"packages/friday-commands\\\", \\\"python\\\", \\\"-B\\\", \\\"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe_canonical.py\\\", \\\"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant-src\\\"], \\\"exit\\\": 1, \\\"seconds\\\": 1.12}\\nVERIFIED_MUTANT_ORIGIN /private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant-src/friday_commands/__init__.py\\n........................................................................ [ 33%]\\n...................................FF................................... [ 66%]\\n........................................................................ [ 99%]\\n.                                                                        [100%]\\n=================================== FAILURES ===================================\\n______________ test_general_help_sorts_one_catalog_snapshot[None] ______________\\n\\nfocus = None\\n\\n    @pytest.mark.parametrize(\\\"focus\\\", [None, \\\"\\\"])\\n    def test_general_help_sorts_one_catalog_snapshot(focus: str | None) -> None:\\n        catalog = Catalog(PILOT_SPECS)\\n        outcome = describe_help(catalog, focus)\\n        assert isinstance(outcome.data, HelpData)\\n>       assert tuple(spec.name for spec in outcome.data.commands) == (\\\"cls\\\", \\\"exit\\\", \\\"help\\\")\\nE       AssertionError: assert ('help', 'exit', 'cls') == ('cls', 'exit', 'help')\\nE         \\nE         At index 0 diff: 'help' != 'cls'\\nE         Use -v to get more diff\\n\\npackages/friday-commands/tests_commands/test_pilot.py:96: AssertionError\\n________________ test_general_help_sorts_one_catalog_snapshot[] ________________\\n\\nfocus = ''\\n\\n    @pytest.mark.parametrize(\\\"focus\\\", [None, \\\"\\\"])\\n    def test_general_help_sorts_one_catalog_snapshot(focus: str | None) -> None:\\n        catalog = Catalog(PILOT_SPECS)\\n        outcome = describe_help(catalog, focus)\\n        assert isinstance(outcome.data, HelpData)\\n>       assert tuple(spec.name for spec in outcome.data.commands) == (\\\"cls\\\", \\\"exit\\\", \\\"help\\\")\\nE       AssertionError: assert ('help', 'exit', 'cls') == ('cls', 'exit', 'help')\\nE         \\nE         At index 0 diff: 'help' != 'cls'\\nE         Use -v to get more diff\\n\\npackages/friday-commands/tests_commands/test_pilot.py:96: AssertionError\\n=========================== short test summary info ============================\\nFAILED packages/friday-commands/tests_commands/test_pilot.py::test_general_help_sorts_one_catalog_snapshot[None]\\nFAILED packages/friday-commands/tests_commands/test_pilot.py::test_general_help_sorts_one_catalog_snapshot[]\\n2 failed, 215 passed in 0.47s\\n\\n\"\n}\n"
+    },
+    "sort-fix-lint.json": {
+      "role": "final_gate",
+      "sha256": "27c44dfa502a90747c7da3eaffd92d78ee1a54f4328b36031e1c20a393093ab3",
+      "text": "{\n  \"label\": \"sort-fix-lint\",\n  \"argv\": [\n    \"/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python\",\n    \"-B\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pilot_run.py\",\n    \"sort-fix-lint\",\n    \"ruff\",\n    \"check\",\n    \"--no-cache\",\n    \"packages/friday-commands/src\",\n    \"packages/friday-commands/tests_commands/test_pilot.py\"\n  ],\n  \"exit\": 0,\n  \"expected_exit\": 0,\n  \"output\": \"{\\\"command\\\": [\\\"uv\\\", \\\"run\\\", \\\"--offline\\\", \\\"--frozen\\\", \\\"--no-sync\\\", \\\"--no-python-downloads\\\", \\\"--with-editable\\\", \\\"packages/friday-commands\\\", \\\"ruff\\\", \\\"check\\\", \\\"--no-cache\\\", \\\"packages/friday-commands/src\\\", \\\"packages/friday-commands/tests_commands/test_pilot.py\\\"], \\\"exit\\\": 0, \\\"seconds\\\": 0.08}\\nAll checks passed!\\n\\n\"\n}\n"
+    },
+    "sort-fix-format.json": {
+      "role": "final_gate",
+      "sha256": "a4c0c110e041109009dcd7003b67a30f9d80df950b0141bded6e4deafe8bea0d",
+      "text": "{\n  \"label\": \"sort-fix-format\",\n  \"argv\": [\n    \"/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python\",\n    \"-B\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pilot_run.py\",\n    \"sort-fix-format\",\n    \"ruff\",\n    \"format\",\n    \"--check\",\n    \"--no-cache\",\n    \"packages/friday-commands/tests_commands/test_pilot.py\"\n  ],\n  \"exit\": 0,\n  \"expected_exit\": 0,\n  \"output\": \"{\\\"command\\\": [\\\"uv\\\", \\\"run\\\", \\\"--offline\\\", \\\"--frozen\\\", \\\"--no-sync\\\", \\\"--no-python-downloads\\\", \\\"--with-editable\\\", \\\"packages/friday-commands\\\", \\\"ruff\\\", \\\"format\\\", \\\"--check\\\", \\\"--no-cache\\\", \\\"packages/friday-commands/tests_commands/test_pilot.py\\\"], \\\"exit\\\": 0, \\\"seconds\\\": 0.04}\\n1 file already formatted\\n\\n\"\n}\n"
+    },
+    "prepared/bootstrap.json": {
+      "role": "control",
+      "sha256": "935e992cbd1c50ef4f2717d8f19ea11a270f672d9e5a0e498494d64f9c2e5186",
+      "text": "{\n  \"wheel_fetches\": [\n    {\n      \"name\": \"editables\",\n      \"version\": \"0.5\",\n      \"filename\": \"editables-0.5-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/6b/be/0f2f4a5e8adc114a02b63d92bf8edbfa24db6fc602fca83c885af2479e0e/editables-0.5-py3-none-any.whl\",\n      \"sha256\": \"61e5ffa82629e0d8bfe09bc44a07db3c1ab8ed1ce78a6980732870f19b5e7d4c\"\n    },\n    {\n      \"name\": \"hatchling\",\n      \"version\": \"1.27.0\",\n      \"filename\": \"hatchling-1.27.0-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/08/e7/ae38d7a6dfba0533684e0b2136817d667588ae3ec984c1a4e5df5eb88482/hatchling-1.27.0-py3-none-any.whl\",\n      \"sha256\": \"d3a2f3567c4f926ea39849cdf924c7e99e6686c9c8e288ae1037c8fa2a5d937b\"\n    },\n    {\n      \"name\": \"packaging\",\n      \"version\": \"24.2\",\n      \"filename\": \"packaging-24.2-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/88/ef/eb23f262cca3c0c4eb7ab1933c3b1f03d021f2c48f54763065b6f0e321be/packaging-24.2-py3-none-any.whl\",\n      \"sha256\": \"09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759\"\n    },\n    {\n      \"name\": \"pathspec\",\n      \"version\": \"0.12.1\",\n      \"filename\": \"pathspec-0.12.1-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/cc/20/ff623b09d963f88bfde16306a54e12ee5ea43e9b597108672ff3a408aad6/pathspec-0.12.1-py3-none-any.whl\",\n      \"sha256\": \"a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08\"\n    },\n    {\n      \"name\": \"pluggy\",\n      \"version\": \"1.6.0\",\n      \"filename\": \"pluggy-1.6.0-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/54/20/4d324d65cc6d9205fabedc306948156824eb9f0ee1633355a8f7ec5c66bf/pluggy-1.6.0-py3-none-any.whl\",\n      \"sha256\": \"e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746\"\n    },\n    {\n      \"name\": \"trove-classifiers\",\n      \"version\": \"2026.9.21.13\",\n      \"filename\": \"trove_classifiers-2026.9.21.13-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/30/81/0da8afb52a71d0a4f2bd3152357b1a441e393b286374802b9d3addab4ab5/trove_classifiers-2026.9.21.13-py3-none-any.whl\",\n      \"sha256\": \"8b1ff4f9c191b1040b71c37f1e445ab99732911e3cd91de52838453a854d7a17\"\n    },\n    {\n      \"name\": \"setuptools\",\n      \"version\": \"75.8.0\",\n      \"filename\": \"setuptools-75.8.0-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/69/8a/b9dc7678803429e4a3bc9ba462fa3dd9066824d3c607490235c6a796be5a/setuptools-75.8.0-py3-none-any.whl\",\n      \"sha256\": \"e3982f444617239225d675215d51f6ba05f845d4eec313da4418fdbb56fb27e3\"\n    },\n    {\n      \"name\": \"wheel\",\n      \"version\": \"0.45.1\",\n      \"filename\": \"wheel-0.45.1-py3-none-any.whl\",\n      \"url\": \"https://files.pythonhosted.org/packages/0b/2c/87f3254fd8ffd29e4c02732eee68a83a1d3c346ae39bc6822dcbcb697f2b/wheel-0.45.1-py3-none-any.whl\",\n      \"sha256\": \"708e7481cc80179af0e556bbf0cc00b8444c7321e2700b8d8580231d13017248\"\n    }\n  ],\n  \"registry_access\": false,\n  \"requirements_sha256\": \"7fc40f9e2000109be576c2810389a801891ba9f1d52cecf52d2f2303794c0455\",\n  \"build_manifest_sha256\": \"ae1ed479e97ae20bc9d81822dc70aae9b822df04b12e70ea8e9aa0cdbe0c7300\",\n  \"wrapper_sha256\": \"acd0f1aac5bc372bc7357d5a74563730a17955d13b74062c23cfe8f4b8cdc178\",\n  \"guard_extension_sha256\": \"e04eea8bc9722defe3ea89212385f8befda03e051b9816b305e1b9f73ff94681\",\n  \"combined_guard_sha256\": \"d96294f94f5378beb38675d0624e6f78c622914cafbaffb4ce486d8310d2eb7e\",\n  \"helper_hashes\": {\n    \"run.py\": \"409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af\",\n    \"controls.py\": \"d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d\",\n    \"sitecustomize.py\": \"8365940b2d00a21061c00f671304b29f4c4ba1e9b344a1f4c38c5365de41631f\"\n  }\n}\n"
+    },
+    "prepared/g1-sort-fixed.json": {
+      "role": "final_gate",
+      "sha256": "575febe83b598a21932a4f6eb6c87ba0ee855d25d9f0ea6b53ec9df00d9d77a0",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"-m\",\n    \"pytest\",\n    \"-p\",\n    \"no:cacheprovider\",\n    \"-q\",\n    \"packages/friday-commands/tests_commands\",\n    \"tests/integration/test_package_cohort_metadata.py\",\n    \"--basetemp\",\n    \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/prepared/pytest-tmp/g1-sort-fixed\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 1.03\n}"
+    },
+    "prepared/no-sort-mutant-final.json": {
+      "role": "negative_control",
+      "sha256": "0c0dfc904f634a8ed887df06db30b185c48cf93c8b3d51c997b8e517963af3e9",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe_canonical.py\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant-src\"\n  ],\n  \"exit\": 1,\n  \"seconds\": 1.12\n}"
+    },
+    "prepared/no-sort-mutant-rejected.json": {
+      "role": "historical_attempt",
+      "sha256": "81ece7ff67f571a3600f2c126167a58691600e93c3d00ecb74daa9f9806a7eff",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe.py\"\n  ],\n  \"exit\": 1,\n  \"seconds\": 0.05\n}"
+    },
+    "prepared/no-sort-mutant-verified.json": {
+      "role": "historical_attempt",
+      "sha256": "60ed458c6a9a6cdc23ad65e9f547b74f917969a1a8bc58bf5bcb571e06e74462",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe.py\"\n  ],\n  \"exit\": 1,\n  \"seconds\": 0.06\n}"
+    },
+    "prepared/offline-startup.json": {
+      "role": "control",
+      "sha256": "cc127160a77b5146c4b60faaae82059a5f276d11a28ceb53b3b48bceb247b441",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"-c\",\n    \"import friday_commands; print('offline editable startup passed')\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.47\n}"
+    },
+    "prepared/sort-fix-format.json": {
+      "role": "final_gate",
+      "sha256": "4e74daffaeda21b052068db556e9ebb14c8ba65e860ca57162c5a7fff67cde30",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"ruff\",\n    \"format\",\n    \"--check\",\n    \"--no-cache\",\n    \"packages/friday-commands/tests_commands/test_pilot.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.04\n}"
+    },
+    "prepared/sort-fix-lint.json": {
+      "role": "final_gate",
+      "sha256": "569cc501bd88e532ea6496e548006d2ef84f0718b72c3adebe6d9972b5d4e39f",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"ruff\",\n    \"check\",\n    \"--no-cache\",\n    \"packages/friday-commands/src\",\n    \"packages/friday-commands/tests_commands/test_pilot.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.08\n}"
+    },
+    "prepared/g1-sort-fixed.log": {
+      "role": "final_gate",
+      "sha256": "68c46f0b48c97aa7556b86686372b0a3294e1039b7a3d069f2915c5ea1137643",
+      "text": "........................................................................ [ 33%]\n........................................................................ [ 66%]\n........................................................................ [ 99%]\n.                                                                        [100%]\n217 passed in 0.45s\n"
+    },
+    "prepared/no-sort-mutant-final.log": {
+      "role": "negative_control",
+      "sha256": "faf79c13559e0b9c2232cdc44361ce05d8a0ff0af1b949a37ebd12569fc5ac5a",
+      "text": "VERIFIED_MUTANT_ORIGIN /private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant-src/friday_commands/__init__.py\n........................................................................ [ 33%]\n...................................FF................................... [ 66%]\n........................................................................ [ 99%]\n.                                                                        [100%]\n=================================== FAILURES ===================================\n______________ test_general_help_sorts_one_catalog_snapshot[None] ______________\n\nfocus = None\n\n    @pytest.mark.parametrize(\"focus\", [None, \"\"])\n    def test_general_help_sorts_one_catalog_snapshot(focus: str | None) -> None:\n        catalog = Catalog(PILOT_SPECS)\n        outcome = describe_help(catalog, focus)\n        assert isinstance(outcome.data, HelpData)\n>       assert tuple(spec.name for spec in outcome.data.commands) == (\"cls\", \"exit\", \"help\")\nE       AssertionError: assert ('help', 'exit', 'cls') == ('cls', 'exit', 'help')\nE         \nE         At index 0 diff: 'help' != 'cls'\nE         Use -v to get more diff\n\npackages/friday-commands/tests_commands/test_pilot.py:96: AssertionError\n________________ test_general_help_sorts_one_catalog_snapshot[] ________________\n\nfocus = ''\n\n    @pytest.mark.parametrize(\"focus\", [None, \"\"])\n    def test_general_help_sorts_one_catalog_snapshot(focus: str | None) -> None:\n        catalog = Catalog(PILOT_SPECS)\n        outcome = describe_help(catalog, focus)\n        assert isinstance(outcome.data, HelpData)\n>       assert tuple(spec.name for spec in outcome.data.commands) == (\"cls\", \"exit\", \"help\")\nE       AssertionError: assert ('help', 'exit', 'cls') == ('cls', 'exit', 'help')\nE         \nE         At index 0 diff: 'help' != 'cls'\nE         Use -v to get more diff\n\npackages/friday-commands/tests_commands/test_pilot.py:96: AssertionError\n=========================== short test summary info ============================\nFAILED packages/friday-commands/tests_commands/test_pilot.py::test_general_help_sorts_one_catalog_snapshot[None]\nFAILED packages/friday-commands/tests_commands/test_pilot.py::test_general_help_sorts_one_catalog_snapshot[]\n2 failed, 215 passed in 0.47s\n"
+    },
+    "prepared/no-sort-mutant-rejected.log": {
+      "role": "historical_attempt",
+      "sha256": "09d6e6946c306a14301de184b71b7a23110078fa62d58e446d362955c99274de",
+      "text": "  File \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe.py\", line 7\n    print('VERIFIED_'/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant-src'_ORIGIN', friday_commands.__file__, flush=True)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax. Perhaps you forgot a comma?\n"
+    },
+    "prepared/no-sort-mutant-verified.log": {
+      "role": "historical_attempt",
+      "sha256": "82523b3729a9403e8dcc5db4fce471ca68f87788ff7c674e0cb8bf666b821a66",
+      "text": "Traceback (most recent call last):\n  File \"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d1-sort-fix-y98j576s/mutant_probe.py\", line 6, in <module>\n    raise RuntimeError('Wrong package under mutation test')\nRuntimeError: Wrong package under mutation test\n"
+    },
+    "prepared/offline-startup.log": {
+      "role": "control",
+      "sha256": "20eef36c3d6b87162f472d88afbbb64f134b610042bd6ede9ca0ae3d23887b15",
+      "text": "   Building friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\n      Built friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\nInstalled 1 package in 1ms\noffline editable startup passed\n"
+    },
+    "prepared/sort-fix-format.log": {
+      "role": "final_gate",
+      "sha256": "fd2299c9f1c6dc869070883e281051bfe93aacf66c1a3b0069f45b4aa410ca50",
+      "text": "1 file already formatted\n"
+    },
+    "prepared/sort-fix-lint.log": {
+      "role": "final_gate",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "text": "All checks passed!\n"
+    }
+  },
+  "limits": [
+    "No runtime change; no full Chat/CLI or artifact rebuild repeated for this one-line neutral test fixture.",
+    "Prior unwaived root lint/collection debt remains failed historical evidence.",
+    "D2/D3 and installed candidate proof remain pending."
+  ]
+}

@@ -1038,3 +1038,26 @@ The two unsuccessful remediation cycles are exhausted. Return VAL-D1-R3-001
 for maintainer disposition; no further automated fix/review cycle or D2 begins.
 Existing exact pilot construction approval remains granted; this is an
 additional correction-cycle decision, not a request to reapprove the pilot.
+
+2026-11-08T00:28:59+00:00: Chuck Russell responded "authorized" to the concrete one-line
+VAL-D1-R3-001 correction and one fresh council pass. This explicitly extends
+the two-cycle remediation limit for this bounded pass only; existing pilot
+construction authority remains retained. Change only the sorting-test input
+fixture, verify full G1/lint/format and no-sort mutation rejection, preserve
+runtime/design/harness and dirty examples, then obtain the requested fresh
+three-provider council before D2. Optional advisories remain deferred.
+`execution_phase: remediation`; `validation_state: not_ready` for this D1 fix.
+
+Authorized VAL-D1-R3-001 correction applied: only Catalog(tuple(reversed(
+PILOT_SPECS))) becomes Catalog(PILOT_SPECS) in the existing sorting test.
+Full G1 passes 217 tests. A scratch-only no-sort mutant fails exactly the two
+parameterized sorting cases, with 215 other cases passing; canonical import
+origin is checked. Lint and format pass. Two scratch control setup failures
+(a broad placeholder in a marker, then /var versus /private/var comparison)
+were caught and retained; they are not semantic mutation rejections. The final
+control canonicalizes both origin paths and proves the expected assertion failures.
+Runtime, frozen approved design/harness, dependencies/lock, all other tests and
+dirty configurations remain unchanged. Evidence is d1/sort-fix-evidence.json.
+`execution_phase: validation`; `validation_state: in_review` for D1.
+Freeze for the one explicitly authorized fresh council pass (D1 round four).
+No optional advisory changes or further automatic remediation are authorized.
