@@ -1,8 +1,8 @@
 # Friday Commands
 
 Frontend-neutral, standard-library-only command contracts and a registry for
-injected asynchronous handlers, plus opt-in help, exit and clear-screen pilot
-handlers. Registries start empty. The package has no runtime dependencies,
+injected asynchronous handlers, plus opt-in help, exit, clear-screen and session
+view handlers. Registries start empty. The package has no runtime dependencies,
 executable, provider access or frontend integration.
 
 Distribution: `friday-framework-commands==0.1.0a4`. Import: `friday_commands`.
@@ -42,3 +42,17 @@ or UI-effect requests. Hosts own rendering, shutdown and effect application.
 Chat uses the shared help, exit and clear-screen handlers through typed adapters.
 The Chat and framework CLI registries remain separate; other command families
 require separately reviewed contracts. See the pilot contract and directive.
+
+The session view exports are `HistoryTurn`, `HistoryData`, `SessionClearedData`,
+`SESSION_SPECS`, `SessionPort` and `build_session_handlers`. Register the two
+specs and returned handlers explicitly. The injected port supplies a history
+snapshot or performs host-owned clearing; it stores no session state globally.
+History returns an immutable ordered snapshot. Clear synchronously clears host
+history, then awaits current-session memory clearing and returns a typed marker.
+Exceptions and cancellation propagate without retries or restoring history.
+The marker reports completion of that procedure, not erasure of every store.
+
+Hosts render the data and implement the narrow port through their existing
+public service boundary. `/clear` is conversation clearing; `/cls` remains the
+separate display effect. These shared session APIs are the first SESSION-001
+deliverable; Chat session integration is still a later deliverable.

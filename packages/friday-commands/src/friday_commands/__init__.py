@@ -1,4 +1,4 @@
-"""Frontend-neutral command foundation and opt-in, dependency-free pilot handlers."""
+"""Neutral command contracts and dependency-free pilot/session handlers."""
 
 from .contracts import (
     CommandArgument,
@@ -11,14 +11,19 @@ from .contracts import (
     ExitData,
     FoundationData,
     HelpData,
+    HistoryData,
+    HistoryTurn,
     NoData,
+    SessionClearedData,
     UiEffect,
 )
 from .pilot import PILOT_SPECS, HelpCatalog, build_pilot_handlers, describe_help
 from .registry import CommandHandler, CommandRegistry
+from .session_views import SESSION_SPECS, SessionPort, build_session_handlers
 
 __all__ = [
     "PILOT_SPECS",
+    "SESSION_SPECS",
     "CommandArgument",
     "CommandError",
     "CommandExecution",
@@ -32,8 +37,13 @@ __all__ = [
     "FoundationData",
     "HelpCatalog",
     "HelpData",
+    "HistoryData",
+    "HistoryTurn",
     "NoData",
+    "SessionClearedData",
+    "SessionPort",
     "UiEffect",
     "build_pilot_handlers",
+    "build_session_handlers",
     "describe_help",
 ]

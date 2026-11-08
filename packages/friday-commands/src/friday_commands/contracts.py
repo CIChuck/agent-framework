@@ -121,7 +121,32 @@ class ExitData:
         _boolean(self.requested)
 
 
-type FoundationData = NoData | HelpData | ExitData
+@dataclass(frozen=True, slots=True)
+class HistoryTurn:
+    user_message: str
+    assistant_message: str
+
+    def __post_init__(self) -> None:
+        _string(self.user_message)
+        _string(self.assistant_message)
+
+
+@dataclass(frozen=True, slots=True)
+class HistoryData:
+    turns: tuple[HistoryTurn, ...]
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self, "turns", _snapshot(self.turns, HistoryTurn, exact=True)
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class SessionClearedData:
+    """The host's existing history/session-clear procedure completed."""
+
+
+type FoundationData = NoData | HelpData | ExitData | HistoryData | SessionClearedData
 
 
 @dataclass(frozen=True, slots=True)
@@ -155,7 +180,8 @@ class CommandOutcome:
 
     def __post_init__(self) -> None:
         if self.data is not None and not any(
-            type(self.data) is variant for variant in (NoData, HelpData, ExitData)
+            type(self.data) is variant
+            for variant in (NoData, HelpData, ExitData, HistoryData, SessionClearedData)
         ):
             raise TypeError("Expected a closed foundation data variant")
         if self.error is not None and type(self.error) is not CommandError:
