@@ -115,6 +115,11 @@ records 72 cases, six metadata records and 244 Chat/278 Commands-cohort passes.
 SESSION/PILOT/RET/foundation acceptance stays recorded; no later family, TUI or
 publication authority is granted. See the [main checkpoint](next-phase.md).
 
+The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)
+provides 17 individually runnable interface, diagnostics, export, usability and
+performance cases, with a results register for the completed candidate. All
+cases start as NOT RUN; this documentation does not change the approval gate.
+
 The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
 refreshes baseline identity in this working home and records the current
 planning/review boundary. Historical evidence remains preserved separately.

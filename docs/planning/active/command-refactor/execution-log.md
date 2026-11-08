@@ -1485,3 +1485,23 @@ acceptance or push/PR/merge/release authority follows.
   exact protected-byte, syntax/hash and whitespace checks are recorded in
   [planning checks](validation/diagnostics/planning-checks.json). No acceptance,
   later family, full-refactor/P0/P1/TUI or external delivery granted.
+
+
+## 2026-11-08T19:48:47.883341+00:00 — Friday Chat manual UAT roadmap
+
+Chuck Russell requested a Markdown roadmap from the individual UAT checklist,
+with a sensible location and name. Added
+[Friday Chat user acceptance testing roadmap](uat/friday-chat-user-acceptance-roadmap.md)
+and linked it from the packet index. It contains 17 individually runnable cases,
+environment/setup fields, expected behavior, look/feel and timing observations,
+a NOT RUN results register, finding template and acceptance handoff checklist.
+
+This is a documentation-only lightweight change authorized by that direct
+request: no runtime behavior, product/tests/configuration/dependency/lock,
+proposed DIAG contract/directive/preparation, authority or board state changes.
+DIAG remains planning/not_ready, exact approval pending. The proposed manual
+performance target is feedback guidance, not a new construction requirement.
+All 1249 protected non-documentation files, including both dirty Chat examples,
+match the prior preparation snapshot. Board/dashboard, documentation lifecycle,
+links and whitespace validation are the applicable handoff checks. No UAT case
+has been executed or accepted through this documentation change.
