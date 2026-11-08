@@ -10,6 +10,8 @@ import os
 import subprocess
 import sys
 from dataclasses import FrozenInstanceError, asdict, fields
+from inspect import signature
+from itertools import product
 from pathlib import Path
 from textwrap import dedent
 from types import MappingProxyType
@@ -18,6 +20,9 @@ from typing import get_args
 import friday_commands as api
 import friday_commands.contracts as contracts
 import friday_commands.diagnostics as shared
+import friday_commands.pilot as pilot_module
+import friday_commands.registry as registry_module
+import friday_commands.session_views as session_module
 import pytest
 from friday_commands import (
     DIAGNOSTIC_SPECS,
@@ -151,8 +156,7 @@ def request(name, args=()):
     return CommandRequest(name, args, BY_NAME[name])
 
 
-@pytest.mark.parametrize("model,args", MODELS, ids=[t.__name__ for t, _ in MODELS])
-def test_diagnostic_models_and_closed_union(model, args):
+def _check_diagnostic_models_and_closed_union(model, args):
     value = model(*args)
     assert not hasattr(value, "__dict__")
     assert tuple(value.__slots__) == tuple(f.name for f in fields(model))
@@ -171,8 +175,7 @@ def test_diagnostic_models_and_closed_union(model, args):
             assert getattr(model(*changed), fields(model)[index].name) is changed[index]
 
 
-@pytest.mark.parametrize("value", PAYLOADS)
-def test_outcome_accepts_exact_diagnostic_variants(value):
+def _check_outcome_accepts_exact_diagnostic_variants(value):
     assert CommandOutcome(data=value).data is value
     subclass = type("Subclass", (type(value),), {})
     child = subclass(**{f.name: getattr(value, f.name) for f in fields(value)})
@@ -182,7 +185,7 @@ def test_outcome_accepts_exact_diagnostic_variants(value):
         CommandOutcome(data=value, error=CommandError("failed", "context"))
 
 
-def test_closed_union_retains_old_variants_and_refuses_nested_values():
+def _check_closed_union_retains_old_variants_and_refuses_nested_values():
     expected = {type(x) for x in PAYLOADS} | {
         NoData,
         HelpData,
@@ -204,50 +207,17 @@ def test_closed_union_retains_old_variants_and_refuses_nested_values():
             CommandOutcome(data=value)
 
 
-@pytest.mark.parametrize(
-    "factory",
-    [
-        lambda: ContextData("x", True),
-        lambda: RetrievalData("q", False),
-        lambda: DebugData(1),
-        lambda: TimingData(0),
-        lambda: DebugData(True, turn=TimingData(False)),
-        lambda: TimingData(True, turn=DEBUG_TURN),
-        lambda: DebugData(
-            True, turn=type("Child", (DebugTurnData,), {})("t", "o", "p", "1", "0")
-        ),
-        lambda: TimingData(
-            True, turn=type("Child", (TimingTurnData,), {})("0", "o", "p")
-        ),
-        lambda: RetrievalUnavailableData(None),
-        lambda: BudgetData(False, None),
-        lambda: PromptData("x", 1),
-    ],
-)
-def test_model_type_refusals(factory):
+def _check_model_type_refusals(factory):
     with pytest.raises(TypeError):
         factory()
 
 
-@pytest.mark.parametrize(
-    "factory",
-    [
-        lambda: ContextData("x", -1),
-        lambda: RetrievalData("q", -1),
-        lambda: DebugData(False, (Z,)),
-        lambda: DebugData(False, turn=DEBUG_TURN),
-        lambda: TimingData(False, (Z,)),
-        lambda: TimingData(False, turn=TIMING_TURN),
-        lambda: RetrievalData("q", 0, previews=("x",) * 11),
-        lambda: RetrievalUnavailableData("unknown"),
-    ],
-)
-def test_model_value_refusals(factory):
+def _check_model_value_refusals(factory):
     with pytest.raises(ValueError):
         factory()
 
 
-def test_model_optional_and_empty_edges():
+def _check_model_optional_and_empty_edges():
     assert ContextData("", 0, "").export_path == ""
     assert ContextData("", None, None).character_count is None
     assert PromptData("", None).export_path is None
@@ -264,8 +234,7 @@ def test_model_optional_and_empty_edges():
         )
 
 
-@pytest.mark.parametrize("factory,attribute,values", COLLECTIONS)
-def test_model_snapshots_once_order_and_duplicates(factory, attribute, values):
+def _check_model_snapshots_once_order_and_duplicates(factory, attribute, values):
     class Once:
         def __init__(self):
             self.reads = 0
@@ -286,25 +255,12 @@ def test_model_snapshots_once_order_and_duplicates(factory, attribute, values):
     assert getattr(factory(()), attribute) == ()
 
 
-@pytest.mark.parametrize("factory,attribute,values", COLLECTIONS)
-@pytest.mark.parametrize(
-    "invalid",
-    [None, 7, "x", b"x", bytearray(b"x"), {}, MappingProxyType({}), (object(),)],
-)
-def test_model_collection_refusals(factory, attribute, values, invalid):
+def _check_model_collection_refusals(factory, attribute, values, invalid):
     with pytest.raises(TypeError):
         factory(invalid)
 
 
-@pytest.mark.parametrize(
-    "factory",
-    [
-        lambda v: DebugData(True, (v,)),
-        lambda v: TimingData(True, (v,)),
-        lambda v: RetrievalData("q", 0, (v,)),
-    ],
-)
-def test_exact_collection_members(factory):
+def _check_exact_collection_members(factory):
     child = type("Child", (DiagnosticField,), {})("k", "v")
     with pytest.raises(TypeError):
         factory(child)
@@ -314,7 +270,7 @@ def test_exact_collection_members(factory):
         )
 
 
-def test_model_validation_order_and_iterator_failure():
+def _check_model_validation_order_and_iterator_failure():
     failure = RuntimeError("iterator sentinel")
 
     class Broken:
@@ -383,11 +339,53 @@ def test_diagnostic_specs_exports_and_factory():
         "DiagnosticsPort",
         "build_diagnostic_handlers",
     ]
-    for name in api.__all__[24:35]:
-        assert getattr(api, name) is getattr(contracts, name)
-    assert api.DIAGNOSTIC_SPECS is shared.DIAGNOSTIC_SPECS
-    assert api.DiagnosticsPort is shared.DiagnosticsPort
-    assert api.build_diagnostic_handlers is shared.build_diagnostic_handlers
+    owners = (
+        (
+            contracts,
+            (
+                "CommandArgument",
+                "CommandError",
+                "CommandExecution",
+                "CommandOutcome",
+                "CommandRequest",
+                "CommandSpec",
+                "DispatchResult",
+                "ExitData",
+                "FoundationData",
+                "HelpData",
+                "HistoryData",
+                "HistoryTurn",
+                "NoData",
+                "SessionClearedData",
+                "UiEffect",
+                "DiagnosticField",
+                "ContextData",
+                "PromptData",
+                "DebugTurnData",
+                "DebugData",
+                "BudgetData",
+                "TimingCounter",
+                "TimingTurnData",
+                "TimingData",
+                "RetrievalData",
+                "RetrievalUnavailableData",
+            ),
+        ),
+        (registry_module, ("CommandHandler", "CommandRegistry")),
+        (
+            pilot_module,
+            ("PILOT_SPECS", "HelpCatalog", "build_pilot_handlers", "describe_help"),
+        ),
+        (session_module, ("SESSION_SPECS", "SessionPort", "build_session_handlers")),
+        (shared, ("DIAGNOSTIC_SPECS", "DiagnosticsPort", "build_diagnostic_handlers")),
+    )
+    expected_bindings = {
+        name: getattr(module, name) for module, names in owners for name in names
+    }
+    assert len(expected_bindings) == 38
+    assert set(expected_bindings) == set(api.__all__)
+    for name, expected in expected_bindings.items():
+        assert getattr(api, name) is expected, name
     frozen = json.loads(
         (Path(__file__).parent / "fixtures/diagnostics-metadata.json").read_text()
     )
@@ -467,22 +465,7 @@ async def test_diagnostic_invocation_validation_order(name, monkeypatch):
         assert reads == ["name"]
 
 
-@pytest.mark.asyncio
-@pytest.mark.parametrize("name", ["context", "prompt"])
-@pytest.mark.parametrize(
-    "args",
-    [
-        (),
-        ("ignored",),
-        ("--debug",),
-        ("--file",),
-        ("--file", "--debug"),
-        ("--debug", "--file", "--debug", "--file"),
-        ("--DEBUG", "--FILE"),
-        ("ignored", "--file", "../ignored"),
-    ],
-)
-async def test_context_prompt_flags_and_export_order(name, args):
+async def _check_context_prompt_flags_and_export_order(name, args):
     port = Port()
     outcome = await build_diagnostic_handlers(port)[name](
         request(name, args), CommandExecution()
@@ -504,8 +487,7 @@ async def test_context_prompt_flags_and_export_order(name, args):
     assert outcome == CommandOutcome(data=expected)
 
 
-@pytest.mark.asyncio
-async def test_context_length_precedes_export():
+async def _check_context_length_precedes_export():
     events = []
 
     class Counted(str):
@@ -527,10 +509,7 @@ async def test_context_length_precedes_export():
     assert result.data == ContextData(port.text, 3, port.path)
 
 
-@pytest.mark.asyncio
-@pytest.mark.parametrize("name", ["context", "prompt"])
-@pytest.mark.parametrize("value", [None, False, 7, [], b"x"])
-async def test_invalid_selected_text_fails_before_export(name, value):
+async def _check_invalid_selected_text_fails_before_export(name, value):
     port = Port()
     port.text = value
     with pytest.raises(TypeError):
@@ -540,10 +519,7 @@ async def test_invalid_selected_text_fails_before_export(name, value):
     assert port.events == [name + "_text"]
 
 
-@pytest.mark.asyncio
-@pytest.mark.parametrize("name", ["context", "prompt"])
-@pytest.mark.parametrize("value", [None, False, 7, [], b"x"])
-async def test_invalid_export_path_fails_without_repair(name, value):
+async def _check_invalid_export_path_fails_without_repair(name, value):
     port = Port()
     port.path = value
     with pytest.raises(TypeError):
@@ -555,16 +531,7 @@ async def test_invalid_export_path_fails_without_repair(name, value):
     assert port.events[1][0] == "export_" + name
 
 
-@pytest.mark.asyncio
-@pytest.mark.parametrize(
-    "name,method,attribute",
-    [
-        ("debug", "debug_snapshot", "debug"),
-        ("debug-budget", "budget_snapshot", "budget"),
-        ("timing", "timing_snapshot", "timing"),
-    ],
-)
-async def test_diagnostic_snapshots_once(name, method, attribute):
+async def _check_diagnostic_snapshots_once(name, method, attribute):
     port = Port()
     expected = getattr(port, attribute)
     outcome = await build_diagnostic_handlers(port)[name](
@@ -600,18 +567,7 @@ async def test_diagnostic_snapshots_once(name, method, attribute):
         assert port.events == [method]
 
 
-@pytest.mark.asyncio
-@pytest.mark.parametrize(
-    "available,args,reason",
-    [
-        (False, (), "runtime_missing"),
-        (False, ("q",), "runtime_missing"),
-        (True, (), "query_missing"),
-        (True, ("hello", '"two', 'words"'), None),
-        (True, ("",), None),
-    ],
-)
-async def test_retrieval_precedence_and_await(available, args, reason):
+async def _check_retrieval_precedence_and_await(available, args, reason):
     port = Port()
     port.available = available
     outcome = await build_diagnostic_handlers(port)["debug-retrieval"](
@@ -628,9 +584,7 @@ async def test_retrieval_precedence_and_await(available, args, reason):
         assert port.events == ["available", ("retrieve", query)]
 
 
-@pytest.mark.asyncio
-@pytest.mark.parametrize("value", [None, 0, 1, "yes", []])
-async def test_retrieval_availability_requires_exact_bool(value):
+async def _check_retrieval_availability_requires_exact_bool(value):
     port = Port()
     port.available = value
     with pytest.raises(TypeError):
@@ -640,17 +594,7 @@ async def test_retrieval_availability_requires_exact_bool(value):
     assert port.events == ["available"]
 
 
-@pytest.mark.asyncio
-@pytest.mark.parametrize(
-    "value,kind",
-    [
-        (None, TypeError),
-        (NoData(), TypeError),
-        (type("Child", (RetrievalData,), {})("q", 0), TypeError),
-        (RetrievalData("other", 0), ValueError),
-    ],
-)
-async def test_invalid_retrieval_result(value, kind):
+async def _check_invalid_retrieval_result(value, kind):
     class Invalid(Port):
         async def retrieve(self, query):
             self.events.append(("retrieve", query))
@@ -664,9 +608,7 @@ async def test_invalid_retrieval_result(value, kind):
     assert port.events == ["available", ("retrieve", "q")]
 
 
-@pytest.mark.asyncio
-@pytest.mark.parametrize("cancel", [False, True])
-async def test_retrieval_pending_and_cancellation(cancel):
+async def _check_retrieval_pending_and_cancellation(cancel):
     entered, release = asyncio.Event(), asyncio.Event()
 
     class Blocking(Port):
@@ -702,23 +644,7 @@ async def test_retrieval_pending_and_cancellation(cancel):
             await task
 
 
-@pytest.mark.asyncio
-@pytest.mark.parametrize(
-    "method,name,args",
-    [
-        ("context_text", "context", ()),
-        ("prompt_text", "prompt", ()),
-        ("export_context", "context", ("--file",)),
-        ("export_prompt", "prompt", ("--file",)),
-        ("debug_snapshot", "debug", ()),
-        ("budget_snapshot", "debug-budget", ()),
-        ("timing_snapshot", "timing", ()),
-        ("retrieval_available", "debug-retrieval", ()),
-        ("retrieve", "debug-retrieval", ("q",)),
-    ],
-)
-@pytest.mark.parametrize("kind", [RuntimeError, asyncio.CancelledError])
-async def test_port_failures_propagate_once(method, name, args, kind):
+async def _check_port_failures_propagate_once(method, name, args, kind):
     port = Port()
     failure = kind("sentinel")
 
@@ -780,6 +706,15 @@ def test_diagnostics_standalone(optimization):
                     raise ModuleNotFoundError(fullname)
         sys.meta_path.insert(0,OnlyStdlib())
         import friday_commands as api
+        intended_root=Path({str(source)!r}).resolve()/'friday_commands'
+        def check_source_origins():
+            for name,module in tuple(sys.modules.items()):
+                if name=='friday_commands' or name.startswith('friday_commands.'):
+                    file=getattr(module,'__file__',None)
+                    paths=([file] if file else [])+list(getattr(module,'__path__',()))
+                    if not file or not all(Path(path).resolve().is_relative_to(intended_root) for path in paths):
+                        raise RuntimeError('Standalone module escaped intended source: '+name)
+        check_source_origins()
         class Port:
             def context_text(self): return 'abc'
             def prompt_text(self): return 'prompt'
@@ -812,6 +747,7 @@ def test_diagnostics_standalone(optimization):
             else: raise RuntimeError('Invocation validation disabled')
             if api.CommandRegistry().names(): raise RuntimeError('Default registry populated')
         asyncio.run(main())
+        check_source_origins()
         if any(n.startswith(('friday_chat','friday_cli','friday_runtime')) for n in sys.modules):
             raise RuntimeError('Host imported')
         print('Standalone diagnostics passed')
@@ -827,8 +763,7 @@ def test_diagnostics_standalone(optimization):
     assert result.stdout.strip() == "Standalone diagnostics passed"
 
 
-@pytest.mark.asyncio
-async def test_retrieval_is_awaited_exactly_once():
+async def _check_retrieval_is_awaited_exactly_once():
     awaited = []
 
     class Result:
@@ -855,10 +790,7 @@ async def test_retrieval_is_awaited_exactly_once():
     assert result == CommandOutcome(data=RetrievalData("q", 0))
 
 
-@pytest.mark.asyncio
-@pytest.mark.parametrize("name", ["context", "prompt"])
-@pytest.mark.parametrize("path", ["", Text("export.txt")])
-async def test_export_path_strings_are_preserved(name, path):
+async def _check_export_path_strings_are_preserved(name, path):
     port = Port()
     port.path = path
     result = await build_diagnostic_handlers(port)[name](
@@ -867,9 +799,7 @@ async def test_export_path_strings_are_preserved(name, path):
     assert result.data.export_path is path
 
 
-@pytest.mark.asyncio
-@pytest.mark.parametrize("kind", [RuntimeError, asyncio.CancelledError])
-async def test_character_count_failure_prevents_export(kind):
+async def _check_character_count_failure_prevents_export(kind):
     failure = kind("length sentinel")
 
     class BadLength(str):
@@ -886,16 +816,7 @@ async def test_character_count_failure_prevents_export(kind):
     assert port.events == ["context_text"]
 
 
-@pytest.mark.parametrize(
-    "model,args,index",
-    [
-        (model, args, index)
-        for model, args in MODELS
-        for index, item in enumerate(args)
-        if isinstance(item, str)
-    ],
-)
-def test_string_field_validation_order(model, args, index):
+def _check_string_field_validation_order(model, args, index):
     seen = []
 
     class Invalid:
@@ -913,3 +834,360 @@ def test_string_field_validation_order(model, args, index):
     with pytest.raises(TypeError):
         model(*values)
     assert seen == [index]
+
+
+def _coverage_cases(check, label, specifications):
+    """Carry each row's existing assertion families under its exact gate node."""
+    for index, chosen in enumerate(product(*(rows for _, rows in specifications))):
+        arguments = {}
+        for (names, _), row in zip(specifications, chosen, strict=True):
+            names = tuple(name.strip() for name in names.split(","))
+            values = (row,) if len(names) == 1 else row
+            arguments.update(zip(names, values, strict=True))
+        yield pytest.param(
+            check,
+            tuple(arguments[name] for name in signature(check).parameters),
+            id=f"{label}-{index}",
+        )
+
+
+DG_T01_CASES = [
+    *_coverage_cases(
+        _check_diagnostic_models_and_closed_union,
+        "diagnostic_models_and_closed_union",
+        [("model,args", MODELS)],
+    ),
+    *_coverage_cases(
+        _check_outcome_accepts_exact_diagnostic_variants,
+        "outcome_accepts_exact_diagnostic_variants",
+        [("value", PAYLOADS)],
+    ),
+    *_coverage_cases(
+        _check_closed_union_retains_old_variants_and_refuses_nested_values,
+        "closed_union_retains_old_variants_and_refuses_nested_values",
+        [],
+    ),
+    *_coverage_cases(
+        _check_model_type_refusals,
+        "model_type_refusals",
+        [
+            (
+                "factory",
+                [
+                    lambda: ContextData("x", True),
+                    lambda: RetrievalData("q", False),
+                    lambda: DebugData(1),
+                    lambda: TimingData(0),
+                    lambda: DebugData(True, turn=TimingData(False)),
+                    lambda: TimingData(True, turn=DEBUG_TURN),
+                    lambda: DebugData(
+                        True,
+                        turn=type("Child", (DebugTurnData,), {})(
+                            "t", "o", "p", "1", "0"
+                        ),
+                    ),
+                    lambda: TimingData(
+                        True, turn=type("Child", (TimingTurnData,), {})("0", "o", "p")
+                    ),
+                    lambda: RetrievalUnavailableData(None),
+                    lambda: BudgetData(False, None),
+                    lambda: PromptData("x", 1),
+                ],
+            )
+        ],
+    ),
+    *_coverage_cases(
+        _check_model_value_refusals,
+        "model_value_refusals",
+        [
+            (
+                "factory",
+                [
+                    lambda: ContextData("x", -1),
+                    lambda: RetrievalData("q", -1),
+                    lambda: DebugData(False, (Z,)),
+                    lambda: DebugData(False, turn=DEBUG_TURN),
+                    lambda: TimingData(False, (Z,)),
+                    lambda: TimingData(False, turn=TIMING_TURN),
+                    lambda: RetrievalData("q", 0, previews=("x",) * 11),
+                    lambda: RetrievalUnavailableData("unknown"),
+                ],
+            )
+        ],
+    ),
+    *_coverage_cases(
+        _check_model_optional_and_empty_edges, "model_optional_and_empty_edges", []
+    ),
+    *_coverage_cases(
+        _check_model_snapshots_once_order_and_duplicates,
+        "model_snapshots_once_order_and_duplicates",
+        [("factory,attribute,values", COLLECTIONS)],
+    ),
+    *_coverage_cases(
+        _check_model_collection_refusals,
+        "model_collection_refusals",
+        [
+            ("factory,attribute,values", COLLECTIONS),
+            (
+                "invalid",
+                [
+                    None,
+                    7,
+                    "x",
+                    b"x",
+                    bytearray(b"x"),
+                    {},
+                    MappingProxyType({}),
+                    (object(),),
+                ],
+            ),
+        ],
+    ),
+    *_coverage_cases(
+        _check_exact_collection_members,
+        "exact_collection_members",
+        [
+            (
+                "factory",
+                [
+                    lambda v: DebugData(True, (v,)),
+                    lambda v: TimingData(True, (v,)),
+                    lambda v: RetrievalData("q", 0, (v,)),
+                ],
+            )
+        ],
+    ),
+    *_coverage_cases(
+        _check_model_validation_order_and_iterator_failure,
+        "model_validation_order_and_iterator_failure",
+        [],
+    ),
+    *_coverage_cases(
+        _check_string_field_validation_order,
+        "string_field_validation_order",
+        [
+            (
+                "model,args,index",
+                [
+                    (model, args, index)
+                    for model, args in MODELS
+                    for index, item in enumerate(args)
+                    if isinstance(item, str)
+                ],
+            )
+        ],
+    ),
+]
+
+
+@pytest.mark.parametrize("check,arguments", DG_T01_CASES)
+def test_diagnostic_models_and_closed_union(check, arguments):
+    check(*arguments)
+
+
+DG_T04_CASES = [
+    *_coverage_cases(
+        _check_context_prompt_flags_and_export_order,
+        "context_prompt_flags_and_export_order",
+        [
+            ("name", ["context", "prompt"]),
+            (
+                "args",
+                [
+                    (),
+                    ("ignored",),
+                    ("--debug",),
+                    ("--file",),
+                    ("--file", "--debug"),
+                    ("--debug", "--file", "--debug", "--file"),
+                    ("--DEBUG", "--FILE"),
+                    ("ignored", "--file", "../ignored"),
+                ],
+            ),
+        ],
+    ),
+    *_coverage_cases(
+        _check_context_length_precedes_export, "context_length_precedes_export", []
+    ),
+    *_coverage_cases(
+        _check_invalid_selected_text_fails_before_export,
+        "invalid_selected_text_fails_before_export",
+        [("name", ["context", "prompt"]), ("value", [None, False, 7, [], b"x"])],
+    ),
+    *_coverage_cases(
+        _check_invalid_export_path_fails_without_repair,
+        "invalid_export_path_fails_without_repair",
+        [("name", ["context", "prompt"]), ("value", [None, False, 7, [], b"x"])],
+    ),
+    *_coverage_cases(
+        _check_export_path_strings_are_preserved,
+        "export_path_strings_are_preserved",
+        [("name", ["context", "prompt"]), ("path", ["", Text("export.txt")])],
+    ),
+    *_coverage_cases(
+        _check_character_count_failure_prevents_export,
+        "character_count_failure_prevents_export",
+        [("kind", [RuntimeError, asyncio.CancelledError])],
+    ),
+    *_coverage_cases(
+        _check_port_failures_propagate_once,
+        "port_failures_propagate_once",
+        [
+            (
+                "method,name,args",
+                [
+                    row
+                    for row in [
+                        ("context_text", "context", ()),
+                        ("prompt_text", "prompt", ()),
+                        ("export_context", "context", ("--file",)),
+                        ("export_prompt", "prompt", ("--file",)),
+                        ("debug_snapshot", "debug", ()),
+                        ("budget_snapshot", "debug-budget", ()),
+                        ("timing_snapshot", "timing", ()),
+                        ("retrieval_available", "debug-retrieval", ()),
+                        ("retrieve", "debug-retrieval", ("q",)),
+                    ]
+                    if row[1] in ("context", "prompt")
+                ],
+            ),
+            ("kind", [RuntimeError, asyncio.CancelledError]),
+        ],
+    ),
+]
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("check,arguments", DG_T04_CASES)
+async def test_context_prompt_flags_and_export_order(check, arguments):
+    await check(*arguments)
+
+
+DG_T05_CASES = [
+    *_coverage_cases(
+        _check_diagnostic_snapshots_once,
+        "diagnostic_snapshots_once",
+        [
+            (
+                "name,method,attribute",
+                [
+                    ("debug", "debug_snapshot", "debug"),
+                    ("debug-budget", "budget_snapshot", "budget"),
+                    ("timing", "timing_snapshot", "timing"),
+                ],
+            )
+        ],
+    ),
+    *_coverage_cases(
+        _check_port_failures_propagate_once,
+        "port_failures_propagate_once",
+        [
+            (
+                "method,name,args",
+                [
+                    row
+                    for row in [
+                        ("context_text", "context", ()),
+                        ("prompt_text", "prompt", ()),
+                        ("export_context", "context", ("--file",)),
+                        ("export_prompt", "prompt", ("--file",)),
+                        ("debug_snapshot", "debug", ()),
+                        ("budget_snapshot", "debug-budget", ()),
+                        ("timing_snapshot", "timing", ()),
+                        ("retrieval_available", "debug-retrieval", ()),
+                        ("retrieve", "debug-retrieval", ("q",)),
+                    ]
+                    if row[1] in ("debug", "debug-budget", "timing")
+                ],
+            ),
+            ("kind", [RuntimeError, asyncio.CancelledError]),
+        ],
+    ),
+]
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("check,arguments", DG_T05_CASES)
+async def test_diagnostic_snapshots_once(check, arguments):
+    await check(*arguments)
+
+
+DG_T06_CASES = [
+    *_coverage_cases(
+        _check_retrieval_precedence_and_await,
+        "retrieval_precedence_and_await",
+        [
+            (
+                "available,args,reason",
+                [
+                    (False, (), "runtime_missing"),
+                    (False, ("q",), "runtime_missing"),
+                    (True, (), "query_missing"),
+                    (True, ("hello", '"two', 'words"'), None),
+                    (True, ("",), None),
+                ],
+            )
+        ],
+    ),
+    *_coverage_cases(
+        _check_retrieval_availability_requires_exact_bool,
+        "retrieval_availability_requires_exact_bool",
+        [("value", [None, 0, 1, "yes", []])],
+    ),
+    *_coverage_cases(
+        _check_invalid_retrieval_result,
+        "invalid_retrieval_result",
+        [
+            (
+                "value,kind",
+                [
+                    (None, TypeError),
+                    (NoData(), TypeError),
+                    (type("Child", (RetrievalData,), {})("q", 0), TypeError),
+                    (RetrievalData("other", 0), ValueError),
+                ],
+            )
+        ],
+    ),
+    *_coverage_cases(
+        _check_retrieval_pending_and_cancellation,
+        "retrieval_pending_and_cancellation",
+        [("cancel", [False, True])],
+    ),
+    *_coverage_cases(
+        _check_retrieval_is_awaited_exactly_once,
+        "retrieval_is_awaited_exactly_once",
+        [],
+    ),
+    *_coverage_cases(
+        _check_port_failures_propagate_once,
+        "port_failures_propagate_once",
+        [
+            (
+                "method,name,args",
+                [
+                    row
+                    for row in [
+                        ("context_text", "context", ()),
+                        ("prompt_text", "prompt", ()),
+                        ("export_context", "context", ("--file",)),
+                        ("export_prompt", "prompt", ("--file",)),
+                        ("debug_snapshot", "debug", ()),
+                        ("budget_snapshot", "debug-budget", ()),
+                        ("timing_snapshot", "timing", ()),
+                        ("retrieval_available", "debug-retrieval", ()),
+                        ("retrieve", "debug-retrieval", ("q",)),
+                    ]
+                    if row[1] in ("debug-retrieval",)
+                ],
+            ),
+            ("kind", [RuntimeError, asyncio.CancelledError]),
+        ],
+    ),
+]
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("check,arguments", DG_T06_CASES)
+async def test_retrieval_precedence_and_await(check, arguments):
+    await check(*arguments)
