@@ -16,10 +16,10 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: implementation`; `validation_state: not_ready` for SESSION-001 D2.
-SESSION D1 is [independently VERIFIED](validation/session/implementation/d1/verified-report.md):
-Claude 9.6 and Sol 9.7, no mandatory findings. Gemini is unavailable/no score;
-available coverage is reconciled. Approved Chat D2 is next; D3 and SESSION acceptance pending.
+`execution_phase: validation`; `validation_state: in_review` for SESSION-001 D2.
+SESSION D1 is independently VERIFIED; [D2 builder evidence](validation/session/implementation/d2/README.md)
+records passing S2/S3 and source compatibility. Fresh available-member council
+and controller reconciliation precede D3. Gemini is unavailable/no score.
 PILOT-001 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
 council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
 VERIFIED at `eb216421` by Claude and Sol, both 9.6/10, and now
@@ -190,6 +190,5 @@ P0/P1 and TUI remain open; delivery is local only.
 
 Current SESSION-001 construction is [approved](approval/session-views.md).
 [D1 reconciliation](validation/session/implementation/d1/council-round2.json)
-closes VAL-SD1-001 and advances to approved D2 Chat integration.
-Gemini remains unavailable/no score without retry or replacement.
-D2 must pass S2/S3 and its fresh council before D3; acceptance remains separate.
+closes VAL-SD1-001. [D2](validation/session/implementation/d2/README.md) is in
+fresh available-member council review before D3. SESSION acceptance remains pending.

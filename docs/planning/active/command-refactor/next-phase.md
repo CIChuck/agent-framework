@@ -1,23 +1,23 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: SESSION-001 D1 VERIFIED; approved D2 Chat integration in progress
-Execution phase: implementation
-Validation state: not_ready (D2); D3 and SESSION acceptance pending
+Status: SESSION-001 D1 VERIFIED; D2 Chat integration in council review
+Execution phase: validation
+Validation state: in_review (D2 round1); D3 and SESSION acceptance pending
 
 ## Current next steps
 
-1. Implement the approved SESSION D2 Chat port, two delegation wrappers,
-   exact package-local fixture and new tests under the frozen directive.
-2. Run S2/S3, all 25 SESSION and 196 pilot observations, preservation/static checks;
-   freeze a stable candidate and obtain fresh available-member D2 council.
-3. Reconcile before D3 full regression and installed proof. SESSION acceptance
-   and external delivery remain separate.
+1. Obtain fresh Claude/Sol full bounded D2 council against the stable candidate
+   and [D2 evidence](validation/session/implementation/d2/README.md).
+2. Reconcile both reports and Gemini's quota unavailable/no-score coverage before D3.
+   No retry/replacement or three-provider completion claim is made.
+3. Approved D3 still owes full regression, clean candidate artifacts and installed
+   SESSION proof, followed by council and bounded maintainer acceptance.
 
-[D1 round two](validation/session/implementation/d1/council-round2.json) is reconciled:
-Claude VERIFIED 9.6, Sol VERIFIED 9.7, VAL-SD1-001 closed. Gemini remains quota
-unavailable/no score; no retry/replacement or three-provider completion claim.
-PILOT-001 remains accepted. Initiative state stays started/local.
+D1 is independently VERIFIED. D2 passes S1 278/S2 497/S3 315; full source suites
+1297 Chat/278 neutral-cohort/155 CLI and all 25/196 observations match. Known root
+debt remains failed/unwaived. PILOT remains accepted; initiative stays started/local.
+No SESSION acceptance, later-family/P0/P1/TUI or external delivery is granted.
 
 ## Historical checkpoints
 

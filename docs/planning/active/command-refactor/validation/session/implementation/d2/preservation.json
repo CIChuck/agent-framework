@@ -1,0 +1,20 @@
+{
+  "result": "passed",
+  "base": "d5d35825605104f74c325e25b6cd61faa7161072",
+  "existing_files": 792,
+  "unchanged_files": 789,
+  "changed_existing_files": [
+    "packages/friday-chat/README.md",
+    "packages/friday-chat/src/friday_chat/commands/registry.py",
+    "packages/friday-commands/README.md"
+  ],
+  "original_test_files_unchanged": 278,
+  "test_prefixed_ast_definitions": 3010,
+  "syntactic_assertions": 9114,
+  "registry_AST": "Only imports, exact delegation wrapper bodies, metadata projection helper and tuple entries0/2 changed; all37 other entries and all other original definitions identical.",
+  "fixture_sha256": "3b512406d989e7d114fdcc17ac270eaccb3bcf772dc09a15fd566b10afeb6ea7",
+  "new_async_tests_explicitly_marked": 10,
+  "D1_runtime_tests_unchanged": true,
+  "metadata_lock_unchanged": true,
+  "dirty_examples_preserved": true
+}

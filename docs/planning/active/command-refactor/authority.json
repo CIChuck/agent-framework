@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "SESSION D1 independently VERIFIED; available-member council reconciled; proceed to approved D2",
+  "decision": "SESSION D2 builder checks complete; fresh available-member council before D3",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "SESSION D2 Chat session integration implementation; D3 and SESSION acceptance pending",
+  "current_scope": "SESSION D2 validation/in_review; source compatibility and once-only delegation, D3 installed proof pending",
   "product_code_authority": "Exact SESSION-001 contract/directive approved; implement D1 then council before D2, with no other family/TUI/delivery authority.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -529,7 +529,7 @@
     "preparation_evidence_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "design_approval": "granted_by_subsequent_exact_approval",
     "construction_approval": "granted_by_subsequent_exact_approval",
-    "product_implementation": "D1 independently verified; approved D2 implementation in progress, D3 pending",
+    "product_implementation": "D1 verified; D2 implemented in fresh council review, D3 pending",
     "tests": "434 related existing Chat and 217 Commands/cohort pass; 25 source observations reproduce exactly. New SESSION tests/APIs remain future obligations.",
     "pilot_acceptance": "approval/pilot-acceptance.md",
     "delivery": "local only",
@@ -547,7 +547,7 @@
     "preparation_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "product_baseline": "38a0c58a0b533edc29908992c8c6ee64fa04eb20",
     "state": "started",
-    "current_deliverable": "D2 Chat integration",
+    "current_deliverable": "D2 Chat integration council round1",
     "council_after_each_deliverable": true,
     "council_members": [
       "Claude Opus 5.5/high",
@@ -598,10 +598,14 @@
       "verified_report": "validation/session/implementation/d1/verified-report.md"
     },
     "deliverable2": {
-      "state": "implementation",
-      "validation_state": "not_ready",
-      "scope": "SESSION-05\u201308; approved Chat adapter/wrappers/fixture/new tests",
-      "gate": "Implement S2/S3 then freeze candidate for fresh available-member D2 council"
+      "state": "in_review",
+      "scope": "SESSION-05\u201308; S2/S3 and bounded preservation/source proof",
+      "construction_base": "d5d35825605104f74c325e25b6cd61faa7161072",
+      "source_revision": "43d7732e84b1ca1a4ad4cf37b11484dcd24fde77",
+      "evidence": "validation/session/implementation/d2/evidence.json",
+      "council_round": 1,
+      "gate": "Fresh available Claude/Sol D2 council; record Gemini unavailable/no score and reconcile before D3",
+      "acceptance": "not_granted"
     },
     "deliverable3": {
       "state": "pending_D2_review"

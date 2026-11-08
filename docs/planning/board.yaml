@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Implement approved SESSION D2 Chat integration and S2/S3; fresh available-member council before D3
+  next_gate: Fresh available Claude/Sol SESSION D2 council; reconcile reports and unavailable Gemini before D3
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2707,3 +2707,10 @@ events:
   action: reconciled SESSION D1 round2; proceed to approved D2
   note: Claude VERIFIED 9.6 and Sol VERIFIED 9.7; no mandatory findings. Gemini quota unavailable without score or replacement; available coverage reconciled. No SESSION acceptance or delivery grant.
   evidence: docs/planning/active/command-refactor/validation/session/implementation/d1/council-round2.json
+- task: friday-command-refactor
+  at: '2026-11-08T16:23:22+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze SESSION D2 Chat integration for fresh council
+  note: S1 278, S2 497, S3 315; full Chat1297/neutral278/CLI155; all25 session and196 pilot observations match. Gemini unavailable/no score. D3 and acceptance pending.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d2/evidence.json

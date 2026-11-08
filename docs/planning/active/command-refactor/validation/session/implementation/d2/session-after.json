@@ -1,0 +1,1338 @@
+{
+  "provenance": {
+    "revision": "43d7732e84b1ca1a4ad4cf37b11484dcd24fde77",
+    "capture_sha256": "5c72294b80ebf63eb68330b7d74e1bb7090b077ab175eb01069f9f84a3e3bd24",
+    "source_files": 439,
+    "source_inventory_sha256": "952f9a4dfca51512b5548da109502dc025e2bc897383f18eb04354f85ce1962f",
+    "origins": {
+      "friday_core.security.config": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/security/config.py"
+      ],
+      "friday_core.security.markers": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/security/markers.py"
+      ],
+      "friday_core.security.patterns": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/security/patterns.py"
+      ],
+      "friday_core.logging": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/logging.py"
+      ],
+      "friday_core.security.quarantine": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/security/quarantine.py"
+      ],
+      "friday_core.security.sanitizer": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/security/sanitizer.py"
+      ],
+      "friday_core.security": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/security/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/security"
+      ],
+      "friday_core.config": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/config.py"
+      ],
+      "friday_core.exceptions": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/exceptions.py"
+      ],
+      "friday_core.interfaces.agent": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/interfaces/agent.py"
+      ],
+      "friday_core.interfaces.context": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/interfaces/context.py"
+      ],
+      "friday_core.interfaces.lab": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/interfaces/lab.py"
+      ],
+      "friday_core.interfaces.llm": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/interfaces/llm.py"
+      ],
+      "friday_core.interfaces.memory": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/interfaces/memory.py"
+      ],
+      "friday_core.interfaces.registry": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/interfaces/registry.py"
+      ],
+      "friday_core.interfaces.runtime": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/interfaces/runtime.py"
+      ],
+      "friday_core.interfaces.tools": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/interfaces/tools.py"
+      ],
+      "friday_core.interfaces.transcript": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/interfaces/transcript.py"
+      ],
+      "friday_core.interfaces": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/interfaces/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/interfaces"
+      ],
+      "friday_core.profiles": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/profiles.py"
+      ],
+      "friday_telemetry.attributes": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/attributes.py"
+      ],
+      "friday_telemetry.config": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/config.py"
+      ],
+      "friday_telemetry.interface": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/interface.py"
+      ],
+      "friday_telemetry.lifecycle": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/lifecycle.py"
+      ],
+      "friday_telemetry.providers.composite": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/providers/composite.py"
+      ],
+      "friday_telemetry.records": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/records.py"
+      ],
+      "friday_telemetry.providers.debug": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/providers/debug.py"
+      ],
+      "friday_telemetry.providers.otel": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/providers/otel.py"
+      ],
+      "friday_telemetry.providers": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/providers/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/providers"
+      ],
+      "friday_telemetry.factory": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/factory.py"
+      ],
+      "friday_telemetry.models.common": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/models/common.py"
+      ],
+      "friday_telemetry.models.llm": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/models/llm.py"
+      ],
+      "friday_telemetry.models.memory": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/models/memory.py"
+      ],
+      "friday_telemetry.models": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/models/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/models"
+      ],
+      "friday_telemetry.helpers.llm": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/helpers/llm.py"
+      ],
+      "friday_telemetry.helpers.memory": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/helpers/memory.py"
+      ],
+      "friday_telemetry.helpers": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/helpers/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/helpers"
+      ],
+      "friday_telemetry.models.llm_events": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py"
+      ],
+      "friday_telemetry.models.mcp": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/models/mcp.py"
+      ],
+      "friday_telemetry.models.execution": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/models/execution.py"
+      ],
+      "friday_telemetry.helpers.correlation": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/helpers/correlation.py"
+      ],
+      "friday_telemetry.helpers.mcp": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/helpers/mcp.py"
+      ],
+      "friday_telemetry.helpers.safe_llm": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py"
+      ],
+      "friday_telemetry": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-telemetry/src/friday_telemetry"
+      ],
+      "friday_core.telemetry": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/telemetry.py"
+      ],
+      "friday_core": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core"
+      ],
+      "friday_memory.models.budget": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/models/budget.py"
+      ],
+      "friday_memory.models.graph": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/models/graph.py"
+      ],
+      "friday_memory.models.llm_responses": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/models/llm_responses.py"
+      ],
+      "friday_memory.models.session": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/models/session.py"
+      ],
+      "friday_memory.models.payload": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/models/payload.py"
+      ],
+      "friday_memory.models.tools": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/models/tools.py"
+      ],
+      "friday_memory.models.vector_metadata": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/models/vector_metadata.py"
+      ],
+      "friday_memory.models": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/models/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/models"
+      ],
+      "friday_memory.adapters.episodic": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/adapters/episodic.py"
+      ],
+      "friday_memory.adapters.graph": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/adapters/graph.py"
+      ],
+      "friday_memory.adapters.null_graph": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/adapters/null_graph.py"
+      ],
+      "friday_memory.adapters.simple_vector": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/adapters/simple_vector.py"
+      ],
+      "friday_memory.adapters.vector": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/adapters/vector.py"
+      ],
+      "friday_memory.adapters": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/adapters/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/adapters"
+      ],
+      "friday_memory.context.token_estimator": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/token_estimator.py"
+      ],
+      "friday_memory.context.layout": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/layout.py"
+      ],
+      "friday_llm.exceptions": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/exceptions.py"
+      ],
+      "friday_llm.targets": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/targets.py"
+      ],
+      "friday_llm.capabilities": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/capabilities.py"
+      ],
+      "friday_llm.config": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/config.py"
+      ],
+      "friday_llm.circuit_breaker": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/circuit_breaker.py"
+      ],
+      "friday_llm.telemetry_models": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/telemetry_models.py"
+      ],
+      "friday_llm.pricing": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/pricing.py"
+      ],
+      "friday_llm.telemetry": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/telemetry.py"
+      ],
+      "friday_llm.embeddings": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/embeddings.py"
+      ],
+      "friday_llm.generation": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/generation.py"
+      ],
+      "friday_llm.langfuse_integration": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/langfuse_integration.py"
+      ],
+      "friday_llm.lifecycle": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/lifecycle.py"
+      ],
+      "friday_llm.provider_options": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/provider_options.py"
+      ],
+      "friday_llm.translation": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/translation.py"
+      ],
+      "friday_llm.model_library": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/model_library.py"
+      ],
+      "friday_llm.requests": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/requests.py"
+      ],
+      "friday_llm.streaming": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/streaming.py"
+      ],
+      "friday_llm.protocols": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/protocols.py"
+      ],
+      "friday_llm.service": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/service.py"
+      ],
+      "friday_llm.telemetry_helper": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/telemetry_helper.py"
+      ],
+      "friday_llm": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-llm/src/friday_llm"
+      ],
+      "friday_memory.json_response": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/json_response.py"
+      ],
+      "friday_memory.llm_completion": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/llm_completion.py"
+      ],
+      "friday_memory.context.passage_router": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/passage_router.py"
+      ],
+      "friday_memory.context.tool_manager": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/tool_manager.py"
+      ],
+      "friday_memory.controller.memory_controller": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/controller/memory_controller.py"
+      ],
+      "friday_memory.controller": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/controller/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/controller"
+      ],
+      "friday_memory.temporal": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/temporal.py"
+      ],
+      "friday_memory.lifecycle.decay": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/lifecycle/decay.py"
+      ],
+      "friday_memory.lifecycle.stages": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/lifecycle/stages.py"
+      ],
+      "friday_memory.lifecycle.migration": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/lifecycle/migration.py"
+      ],
+      "friday_memory.lifecycle.promotion": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/lifecycle/promotion.py"
+      ],
+      "friday_memory.lifecycle.tool_content": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/lifecycle/tool_content.py"
+      ],
+      "friday_memory.lifecycle": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/lifecycle/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/lifecycle"
+      ],
+      "friday_memory.context.assembler": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/assembler.py"
+      ],
+      "friday_memory.context.budget_monitor": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/budget_monitor.py"
+      ],
+      "friday_memory.context.cache_config": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/cache_config.py"
+      ],
+      "friday_memory.context.consolidator": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/consolidator.py"
+      ],
+      "friday_memory.context.ontology": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/ontology.py"
+      ],
+      "friday_memory.context.extraction_filter": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/extraction_filter.py"
+      ],
+      "friday_memory.context.extractor": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/extractor.py"
+      ],
+      "friday_memory.context": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/context"
+      ],
+      "friday_memory.ingestion.chunker": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/ingestion/chunker.py"
+      ],
+      "friday_memory.ingestion.large_file_processor": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py"
+      ],
+      "friday_memory.ingestion.pipeline": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/ingestion/pipeline.py"
+      ],
+      "friday_memory.ingestion.tool_ingester": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/ingestion/tool_ingester.py"
+      ],
+      "friday_memory.ingestion": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/ingestion/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/ingestion"
+      ],
+      "friday_memory.maintenance.models": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/models.py"
+      ],
+      "friday_memory.maintenance.analyzer": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/analyzer.py"
+      ],
+      "friday_memory.maintenance.backup": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/backup.py"
+      ],
+      "friday_memory.maintenance.compactor": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/compactor.py"
+      ],
+      "friday_memory.maintenance.fact_checker": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/fact_checker.py"
+      ],
+      "friday_memory.maintenance.incremental": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/incremental.py"
+      ],
+      "friday_memory.maintenance.logger": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/logger.py"
+      ],
+      "friday_memory.maintenance.recovery_models": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/recovery_models.py"
+      ],
+      "friday_memory.retrieval.access_buffer": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/retrieval/access_buffer.py"
+      ],
+      "friday_core.mcp": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-core/src/friday_core/mcp.py"
+      ],
+      "friday_memory.models.mcp": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/models/mcp.py"
+      ],
+      "friday_memory.retrieval.mcp": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/retrieval/mcp.py"
+      ],
+      "friday_memory.retrieval.collection_manager": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/retrieval/collection_manager.py"
+      ],
+      "friday_memory.retrieval.factor_computer": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/retrieval/factor_computer.py"
+      ],
+      "friday_memory.retrieval.graph_scorer": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/retrieval/graph_scorer.py"
+      ],
+      "friday_memory.retrieval.inclusion_scorer": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/retrieval/inclusion_scorer.py"
+      ],
+      "friday_memory.retrieval": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/retrieval/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/retrieval"
+      ],
+      "friday_memory.maintenance.mutation": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/mutation.py"
+      ],
+      "friday_memory.maintenance.pruner": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/pruner.py"
+      ],
+      "friday_memory.maintenance.recovery": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/recovery.py"
+      ],
+      "friday_memory.maintenance.synthesizer": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/synthesizer.py"
+      ],
+      "friday_memory.maintenance.reorganizer": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/reorganizer.py"
+      ],
+      "friday_memory.maintenance": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/maintenance"
+      ],
+      "friday_memory.multi_agent.models": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/multi_agent/models.py"
+      ],
+      "friday_memory.multi_agent.journal": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/multi_agent/journal.py"
+      ],
+      "friday_memory.multi_agent.coordinator": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/multi_agent/coordinator.py"
+      ],
+      "friday_memory.multi_agent.policy": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/multi_agent/policy.py"
+      ],
+      "friday_memory.multi_agent.controller": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/multi_agent/controller.py"
+      ],
+      "friday_memory.multi_agent.observability": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/multi_agent/observability.py"
+      ],
+      "friday_memory.multi_agent.scratchpad": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py"
+      ],
+      "friday_memory.multi_agent": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/multi_agent/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/multi_agent"
+      ],
+      "friday_memory": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-memory/src/friday_memory"
+      ],
+      "friday_transcript.models.snapshot": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/models/snapshot.py"
+      ],
+      "friday_transcript.models.transcript": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/models/transcript.py"
+      ],
+      "friday_transcript.models": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/models/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/models"
+      ],
+      "friday_transcript.correlation": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/correlation.py"
+      ],
+      "friday_transcript.stores.jsonl": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/stores/jsonl.py"
+      ],
+      "friday_transcript.stores.protocol": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/stores/protocol.py"
+      ],
+      "friday_transcript.stores.sqlite": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/stores/sqlite.py"
+      ],
+      "friday_transcript.stores": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/stores/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/stores"
+      ],
+      "friday_transcript.exporters.csv": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/exporters/csv.py"
+      ],
+      "friday_transcript.exporters.jsonl": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/exporters/jsonl.py"
+      ],
+      "friday_transcript.exporters.markdown": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/exporters/markdown.py"
+      ],
+      "friday_transcript.exporters": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/exporters/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/exporters"
+      ],
+      "friday_transcript": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-transcript/src/friday_transcript"
+      ],
+      "friday_chat.reorganization.contracts": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/reorganization/contracts.py"
+      ],
+      "friday_chat.reorganization.durability": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/reorganization/durability.py"
+      ],
+      "friday_chat.reorganization.layout": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/reorganization/layout.py"
+      ],
+      "friday_chat.reorganization.artifacts": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/reorganization/artifacts.py"
+      ],
+      "friday_mcp.config": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/config.py"
+      ],
+      "friday_mcp.protocols": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/protocols.py"
+      ],
+      "friday_mcp": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp"
+      ],
+      "friday_mcp.client.protocol": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/protocol.py"
+      ],
+      "friday_mcp.client.http_protocol": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/http_protocol.py"
+      ],
+      "friday_mcp.client.catalog": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/catalog.py"
+      ],
+      "friday_mcp.client.base": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/base.py"
+      ],
+      "friday_mcp.client.schema_validation": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/schema_validation.py"
+      ],
+      "friday_mcp.utils.schema": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/utils/schema.py"
+      ],
+      "friday_mcp.utils": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/utils/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/utils"
+      ],
+      "friday_mcp.client.adapter": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/adapter.py"
+      ],
+      "friday_mcp.client.http_policy": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/http_policy.py"
+      ],
+      "friday_mcp.client.http": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/http.py"
+      ],
+      "friday_mcp.client.sse": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/sse.py"
+      ],
+      "friday_mcp.client.stdio": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/stdio.py"
+      ],
+      "friday_mcp.client.manager": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/manager.py"
+      ],
+      "friday_mcp.client": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-mcp/src/friday_mcp/client"
+      ],
+      "friday_runtime.model_library": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-runtime/src/friday_runtime/model_library.py"
+      ],
+      "friday_runtime.config": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-runtime/src/friday_runtime/config.py"
+      ],
+      "friday_agent.llm_completion": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/llm_completion.py"
+      ],
+      "friday_agent.security.output_processor": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/security/output_processor.py"
+      ],
+      "friday_agent.security": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/security/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/security"
+      ],
+      "friday_agent.profile": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/profile.py"
+      ],
+      "friday_agent.prompting": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/prompting.py"
+      ],
+      "friday_agent.base": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/base.py"
+      ],
+      "friday_agent.autonomous": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/autonomous.py"
+      ],
+      "friday_agent.repl_base": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/repl_base.py"
+      ],
+      "friday_agent.interactive": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/interactive.py"
+      ],
+      "friday_agent.copilot": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/copilot.py"
+      ],
+      "friday_agent.skills": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/skills.py"
+      ],
+      "friday_agent.loader": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/loader.py"
+      ],
+      "friday_agent.orchestrator": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/orchestrator.py"
+      ],
+      "friday_agent.registry": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/registry.py"
+      ],
+      "friday_agent.tools.registry": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/tools/registry.py"
+      ],
+      "friday_agent.tools.builtins": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/tools/builtins.py"
+      ],
+      "friday_agent.tools": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/tools/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/tools"
+      ],
+      "friday_agent.workflows.models": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/workflows/models.py"
+      ],
+      "friday_agent.workflows.engine": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/workflows/engine.py"
+      ],
+      "friday_agent.workflows.loader": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/workflows/loader.py"
+      ],
+      "friday_agent.workflows": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/workflows/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/workflows"
+      ],
+      "friday_agent": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-agent/src/friday_agent"
+      ],
+      "friday_runtime.mcp_clients": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-runtime/src/friday_runtime/mcp_clients.py"
+      ],
+      "friday_runtime.mcp_registration": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-runtime/src/friday_runtime/mcp_registration.py"
+      ],
+      "friday_runtime.tool_loading": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-runtime/src/friday_runtime/tool_loading.py"
+      ],
+      "friday_runtime.mcp_loading": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-runtime/src/friday_runtime/mcp_loading.py"
+      ],
+      "friday_runtime.di": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-runtime/src/friday_runtime/di.py"
+      ],
+      "friday_runtime.kernel": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-runtime/src/friday_runtime/kernel.py"
+      ],
+      "friday_runtime": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-runtime/src/friday_runtime/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-runtime/src/friday_runtime"
+      ],
+      "friday_chat.config": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/config.py"
+      ],
+      "friday_chat.reorganization.assembly": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/reorganization/assembly.py"
+      ],
+      "friday_chat.reorganization.gate": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/reorganization/gate.py"
+      ],
+      "friday_chat.reorganization.lease": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/reorganization/lease.py"
+      ],
+      "friday_chat.reorganization.preflight": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/reorganization/preflight.py"
+      ],
+      "friday_chat.reorganization.coordinator": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/reorganization/coordinator.py"
+      ],
+      "friday_chat.reorganization": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/reorganization/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/reorganization"
+      ],
+      "friday_chat": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat"
+      ],
+      "friday_chat.commands": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/commands/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/commands"
+      ],
+      "friday_chat.commands.contracts": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/commands/contracts.py"
+      ],
+      "friday_chat.commands.files": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/commands/files.py"
+      ],
+      "friday_chat.memory_views": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/memory_views.py"
+      ],
+      "friday_chat.commands.memory": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/commands/memory.py"
+      ],
+      "friday_commands.contracts": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-commands/src/friday_commands/contracts.py"
+      ],
+      "friday_commands.registry": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-commands/src/friday_commands/registry.py"
+      ],
+      "friday_commands.pilot": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-commands/src/friday_commands/pilot.py"
+      ],
+      "friday_commands.session_views": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-commands/src/friday_commands/session_views.py"
+      ],
+      "friday_commands": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-commands/src/friday_commands/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-commands/src/friday_commands"
+      ],
+      "friday_chat.commands.pilot": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/commands/pilot.py"
+      ],
+      "friday_chat.commands.session": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/commands/session.py"
+      ],
+      "friday_chat.commands.session_views": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/commands/session_views.py"
+      ],
+      "friday_chat.tools": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/tools/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/tools"
+      ],
+      "friday_chat.tools.schemas": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/tools/schemas.py"
+      ],
+      "friday_chat.commands.tools": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/commands/tools.py"
+      ],
+      "friday_chat.transcripts": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/transcripts.py"
+      ],
+      "friday_chat.commands.transcript": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/commands/transcript.py"
+      ],
+      "friday_chat.session": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/session.py"
+      ],
+      "friday_chat.speech": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/speech.py"
+      ],
+      "friday_chat.telemetry": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/telemetry.py"
+      ],
+      "friday_chat.tools.output": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/tools/output.py"
+      ],
+      "friday_chat.tools.mcp": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/tools/mcp.py"
+      ],
+      "friday_chat.tools.registry": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/tools/registry.py"
+      ],
+      "friday_chat.tools.selection": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/tools/selection.py"
+      ],
+      "friday_chat.turns": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/turns/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/turns"
+      ],
+      "friday_chat.turns.models": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/turns/models.py"
+      ],
+      "friday_chat.runtime": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/runtime.py"
+      ],
+      "friday_cli.cli_config": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-cli/src/friday_cli/cli_config.py"
+      ],
+      "friday_cli.display": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-cli/src/friday_cli/display.py"
+      ],
+      "friday_cli.cancellation": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-cli/src/friday_cli/cancellation.py"
+      ],
+      "friday_cli.commands": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-cli/src/friday_cli/commands.py"
+      ],
+      "friday_cli.input": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-cli/src/friday_cli/input.py"
+      ],
+      "friday_cli.progress": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-cli/src/friday_cli/progress.py"
+      ],
+      "friday_cli.session": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-cli/src/friday_cli/session.py"
+      ],
+      "friday_cli": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-cli/src/friday_cli/__init__.py",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-cli/src/friday_cli"
+      ],
+      "friday_chat.input_sources": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/input_sources.py"
+      ],
+      "friday_chat.display": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/display.py"
+      ],
+      "friday_chat.memory_mcp": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/memory_mcp.py"
+      ],
+      "friday_chat.turns.telemetry": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/turns/telemetry.py"
+      ],
+      "friday_chat.tools.loop": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/tools/loop.py"
+      ],
+      "friday_chat.turns.metrics": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/turns/metrics.py"
+      ],
+      "friday_chat.turns.processor": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/turns/processor.py"
+      ],
+      "friday_chat.replay": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/replay.py"
+      ],
+      "friday_chat.security": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/security.py"
+      ],
+      "friday_chat.commands.registry": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d2-wd4_p_2c/source-after/packages/friday-chat/src/friday_chat/commands/registry.py"
+      ]
+    }
+  },
+  "metadata": {
+    "clear": {
+      "name": "clear",
+      "description": "Clear conversation history.",
+      "category": "session",
+      "usage": "/clear",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "history": {
+      "name": "history",
+      "description": "Show conversation history.",
+      "category": "session",
+      "usage": "/history",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    }
+  },
+  "cases": [
+    {
+      "case": "history:empty",
+      "turns": [],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "result": {
+        "output": "No conversation history.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [],
+      "history_after": []
+    },
+    {
+      "case": "history:one",
+      "turns": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [],
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ]
+    },
+    {
+      "case": "history:ordered",
+      "turns": [
+        [
+          "second",
+          "B"
+        ],
+        [
+          "first",
+          "A"
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "result": {
+        "output": "Conversation history:\n1. User: second\n   Friday: B\n2. User: first\n   Friday: A",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [],
+      "history_after": [
+        [
+          "second",
+          "B"
+        ],
+        [
+          "first",
+          "A"
+        ]
+      ]
+    },
+    {
+      "case": "history:unicode-newlines",
+      "turns": [
+        [
+          "\u00c5\nuser",
+          "\u7b54\nreply"
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "result": {
+        "output": "Conversation history:\n1. User: \u00c5\nuser\n   Friday: \u7b54\nreply",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [],
+      "history_after": [
+        [
+          "\u00c5\nuser",
+          "\u7b54\nreply"
+        ]
+      ]
+    },
+    {
+      "case": "history:formatted-values",
+      "turns": [
+        [
+          false,
+          null
+        ],
+        [
+          7,
+          [
+            "x"
+          ]
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "result": {
+        "output": "Conversation history:\n1. User: False\n   Friday: None\n2. User: 7\n   Friday: ['x']",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [],
+      "history_after": [
+        [
+          false,
+          null
+        ],
+        [
+          7,
+          [
+            "x"
+          ]
+        ]
+      ]
+    },
+    {
+      "case": "history:malformed-short",
+      "turns": [
+        [
+          "only-one"
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "exception": {
+        "type": "ValueError",
+        "message": "not enough values to unpack (expected 2, got 1)"
+      },
+      "events": [],
+      "history_after": [
+        [
+          "only-one"
+        ]
+      ]
+    },
+    {
+      "case": "history:malformed-long",
+      "turns": [
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "exception": {
+        "type": "ValueError",
+        "message": "too many values to unpack (expected 2)"
+      },
+      "events": [],
+      "history_after": [
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ]
+    },
+    {
+      "case": "clear:no-runtime",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "history.clear",
+        "runtime.read"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:memory-true",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "history.clear",
+        "runtime.read",
+        "runtime.read",
+        "memory.clear:history=[]"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:memory-false",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "history.clear",
+        "runtime.read",
+        "runtime.read",
+        "memory.clear:history=[]"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:memory-exception",
+      "args": [
+        "ignored"
+      ],
+      "exception": {
+        "type": "RuntimeError",
+        "message": "memory-exception",
+        "same_object": true
+      },
+      "events": [
+        "history.clear",
+        "runtime.read",
+        "runtime.read",
+        "memory.clear:history=[]"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:memory-cancel",
+      "args": [
+        "ignored"
+      ],
+      "exception": {
+        "type": "CancelledError",
+        "message": "cancelled",
+        "same_object": true
+      },
+      "events": [
+        "history.clear",
+        "runtime.read",
+        "runtime.read",
+        "memory.clear:history=[]"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:history-exception",
+      "args": [
+        "ignored"
+      ],
+      "exception": {
+        "type": "RuntimeError",
+        "message": "history-exception",
+        "same_object": true
+      },
+      "events": [
+        "history.clear"
+      ],
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ]
+    },
+    {
+      "case": "clear:runtime-exception",
+      "args": [
+        "ignored"
+      ],
+      "exception": {
+        "type": "RuntimeError",
+        "message": "runtime-exception",
+        "same_object": true
+      },
+      "events": [
+        "history.clear",
+        "runtime.read"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:await-order",
+      "during_await": {
+        "history": [],
+        "task_done": false,
+        "events": [
+          "history.clear",
+          "runtime.read",
+          "runtime.read",
+          "memory.enter"
+        ]
+      },
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "history.clear",
+        "runtime.read",
+        "runtime.read",
+        "memory.enter",
+        "memory.return"
+      ]
+    },
+    {
+      "case": "dispatch:/history",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch:/HiStOrY ignored",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch:/history \"quoted words\"",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch:/clear ignored",
+      "handled": true,
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch:/ClEaR\tmore",
+      "handled": true,
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch://history",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch:/ history",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch: /clear",
+      "handled": false,
+      "result": null,
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "renamed:history",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ]
+    },
+    {
+      "case": "renamed:clear",
+      "handled": true,
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": []
+    }
+  ]
+}

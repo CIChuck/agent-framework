@@ -1348,3 +1348,25 @@ Runtime/model/test bytes remain unchanged during this reconciliation. Root Ruff
 534, root collection and registry formatting remain failed/unwaived.
 `execution_phase: implementation`; `validation_state: not_ready` for D2.
 SESSION acceptance, external delivery and later families remain outside authority.
+
+2026-11-08T16:23:22+00:00: SESSION D2 builder checks complete at product source `43d7732e84b1ca1a4ad4cf37b11484dcd24fde77`,
+construction base `d5d35825605104f74c325e25b6cd61faa7161072`. Chat uses the supplied-context port,
+fixed canonical specs and one shared factory/await. History projects each member
+once to plain str; clear preserves in-place history identity, clear-before-memory
+await and two/one runtime reads. New exact package-local fixture and 69 cases cover
+all 25 frozen observations, actual delegation/injected outcome consumption,
+legacy formatting, failures/cancellation and real app sequence. S1=278, S2=497,
+S3=315; full Chat 1297/neutral-cohort 278/CLI 155 pass. Clean export matches 25 SESSION
+and 196 pilot observations. All 278 old test files, 3010 test_ AST definitions and
+9,114 syntactic assertions retain bytes; registry AST only changes approved
+imports/wrappers/helper/entries 0 and 2. D1 and dependencies/lock remain unchanged.
+Focused lint/new-file format and nine-source mypy pass. Root Ruff 534, sole root
+test_display collection conflict and baseline registry format remain failed/
+unwaived; collection 6,668 equals 6,599 plus 69 new cases. Initial import-order lint
+and new tuple-identity spy failures are historical; final tests verify original
+parsed args at constructor boundary then the shared immutable snapshot contents.
+Evidence: validation/session/implementation/d2/. Fresh available Claude/Sol
+round1 council and coverage reconciliation precede D3. Gemini remains quota
+unavailable/no score without retry/replacement. `execution_phase: validation`;
+`validation_state: in_review` for D2. Candidate installed proof remains D3;
+no SESSION acceptance, external delivery, later families/P0/P1/TUI is granted.
