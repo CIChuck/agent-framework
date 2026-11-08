@@ -13,6 +13,12 @@ python -m pip install "friday-chat==0.1.0a4"
 
 Friday distributions use the same release version; keep internal Friday dependencies aligned.
 
+Chat requires `friday-framework-commands==0.1.0a4` for the shared `/help`,
+`/exit` (`/quit`, `/q`) and `/cls` (`/clearscreen`) definitions and behavior.
+Chat owns parsing, help text, terminal effects and session cleanup; `/clear`
+continues to clear conversation history. The default catalog contains 41
+commands and three aliases. Custom registries retain their own handlers.
+
 ## Quick start: an offline interactive session
 
 Create `demo.yaml` in a disposable working directory:

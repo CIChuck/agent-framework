@@ -6,8 +6,8 @@ from friday_chat.commands.contracts import (
     CommandContext,
     CommandMetadata,
     CommandResult,
-    CommandUiEffect,
 )
+from friday_chat.commands.pilot import invoke_pilot
 
 
 async def cls_handler(
@@ -16,7 +16,7 @@ async def cls_handler(
     _metadata: CommandMetadata,
 ) -> CommandResult:
     """Request terminal clearing through the app-owned display boundary."""
-    return CommandResult(output="", ui_effects=(CommandUiEffect.CLEAR_SCREEN,))
+    return await invoke_pilot("cls", _args)
 
 
 __all__ = ["cls_handler"]

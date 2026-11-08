@@ -33,6 +33,19 @@ from friday_chat.commands.memory import (
 from friday_chat.commands.memory import (
     record_value as _record_value,
 )
+from friday_chat.commands.pilot import (
+    RegistryCatalog,
+    invoke_pilot,
+    pilot_metadata,
+)
+from friday_chat.commands.pilot import _render_arguments as _render_arguments
+from friday_chat.commands.pilot import _render_command_detail as _render_command_detail
+from friday_chat.commands.pilot import (
+    _render_command_summary as _render_command_summary,
+)
+from friday_chat.commands.pilot import (
+    render_help as render_pilot_help,
+)
 from friday_chat.commands.session import cls_handler
 from friday_chat.commands.tools import (
     list_runtime_tools as _list_runtime_tools,
@@ -186,36 +199,10 @@ class CommandRegistry:
         return True, result
 
     def render_help(self, command_name: str | None = None) -> str:
-        """Render generated command help from registry metadata."""
-        if command_name:
-            normalized = _normalize_command_name(command_name)
-            canonical = self._aliases.get(normalized, normalized)
-            metadata = self._commands.get(canonical)
-            if metadata is None:
-                return (
-                    f"Unknown command: /{normalized}. "
-                    "Type /help for available commands."
-                )
-            return _render_command_detail(metadata)
-
-        lines = ["Available commands:", "Use /help <command> for focused details."]
-        for category in sorted({command.category for command in self._commands.values()}):
-            lines.append("")
-            lines.append(category.upper())
-            lines.append("-")
-            category_commands = sorted(
-                (
-                    command
-                    for command in self._commands.values()
-                    if command.category == category
-                ),
-                key=lambda command: command.name,
-            )
-            for index, command in enumerate(category_commands):
-                lines.extend(_render_command_summary(command))
-                if index < len(category_commands) - 1:
-                    lines.append("")
-        return "\n".join(lines)
+        """Render generated command help through shared selection and Chat text."""
+        return render_pilot_help(
+            RegistryCatalog(self._commands, self._aliases), command_name
+        )
 
     def _first_duplicate_name(self, names: Iterable[str]) -> str | None:
         seen: set[str] = set()
@@ -244,7 +231,7 @@ async def _exit_handler(
     _args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    return CommandResult(output="Goodbye.", exit_requested=True)
+    return await invoke_pilot("exit", _args)
 
 
 async def _clear_handler(
@@ -1223,10 +1210,14 @@ async def _help_handler(
     args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    registry = build_default_registry()
-    if isinstance(context, RegistryCommandContext):
-        registry = context.registry
-    return CommandResult(output=registry.render_help(args[0] if args else None))
+    registry = (
+        context.registry
+        if isinstance(context, RegistryCommandContext)
+        else build_default_registry()
+    )
+    return await invoke_pilot(
+        "help", args, RegistryCatalog(registry._commands, registry._aliases)
+    )
 
 
 @dataclass
@@ -1242,27 +1233,18 @@ def build_default_registry() -> CommandRegistry:
     """Build the FridayV2 command registry from parity metadata."""
     registry = CommandRegistry()
 
-    registry.register(
-        "help",
-        description="Show available commands or focused command help.",
-        category="session",
-        usage="/help [command]",
-        arguments=(
-            CommandArgument(
-                "command",
-                "Command name or alias to inspect.",
-            ),
-        ),
-        handler=_help_handler,
-    )
-    registry.register(
-        "exit",
-        description="Exit the chat session.",
-        category="session",
-        usage="/exit",
-        aliases=("quit", "q"),
-        handler=_exit_handler,
-    )
+    for name, handler in (("help", _help_handler), ("exit", _exit_handler)):
+        metadata = pilot_metadata(name)
+        registry.register(
+            metadata.name,
+            description=metadata.description,
+            category=metadata.category,
+            usage=metadata.usage,
+            aliases=metadata.aliases,
+            arguments=metadata.arguments,
+            detail=metadata.detail,
+            handler=handler,
+        )
 
     for spec in DEFAULT_COMMAND_SPECS:
         registry.register(
@@ -1332,60 +1314,6 @@ def _parse_command_input(user_input: str) -> tuple[str, tuple[str, ...]]:
 
 def _normalize_command_name(name: str) -> str:
     return name.removeprefix("/").strip().lower()
-
-
-def _render_command_detail(metadata: CommandMetadata) -> str:
-    lines = [
-        f"/{metadata.name}",
-        f"Category: {metadata.category}",
-        f"Usage: {metadata.usage}",
-        f"Description: {metadata.description}",
-    ]
-    if metadata.aliases:
-        lines.append("Aliases: " + ", ".join(f"/{alias}" for alias in metadata.aliases))
-    lines.extend(_render_arguments(metadata.arguments))
-    if metadata.detail:
-        lines.append("")
-        lines.append(metadata.detail)
-    return "\n".join(lines)
-
-
-def _render_command_summary(metadata: CommandMetadata) -> list[str]:
-    alias_text = ""
-    if metadata.aliases:
-        aliases = ", ".join(f"/{alias}" for alias in metadata.aliases)
-        alias_text = f" (aliases: {aliases})"
-    lines = [
-        f"/{metadata.name}{alias_text}",
-        f"  Description: {metadata.description}",
-        f"  Usage: {metadata.usage}",
-    ]
-    lines.extend(_render_arguments(metadata.arguments, indent="  "))
-    return lines
-
-
-def _render_arguments(
-    arguments: tuple[CommandArgument, ...],
-    *,
-    indent: str = "",
-) -> list[str]:
-    if not arguments:
-        return [f"{indent}Arguments: none"]
-
-    lines = [f"{indent}Arguments:"]
-    for argument in arguments:
-        requirement = "required" if argument.required else "optional"
-        qualifiers: list[str] = []
-        if argument.default is not None:
-            qualifiers.append(f"default={argument.default}")
-        if argument.choices:
-            qualifiers.append(f"choices={', '.join(argument.choices)}")
-        qualifier_text = f" ({', '.join(qualifiers)})" if qualifiers else ""
-        lines.append(
-            f"{indent}  - {argument.name} [{requirement}]{qualifier_text}: "
-            f"{argument.description}"
-        )
-    return lines
 
 
 def _build_context_text(context: CommandContext) -> str:
@@ -1655,19 +1583,22 @@ def _argument(
     )
 
 
+def _pilot_definition(name: str) -> CommandSpec:
+    metadata = pilot_metadata(name)
+    return CommandSpec(
+        metadata.name,
+        metadata.description,
+        metadata.category,
+        metadata.usage,
+        metadata.aliases,
+        metadata.arguments,
+        metadata.detail,
+    )
+
+
 DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     CommandSpec("clear", "Clear conversation history.", "session", "/clear"),
-    CommandSpec(
-        "cls",
-        "Clear the terminal through the display boundary.",
-        "session",
-        "/cls",
-        aliases=("clearscreen",),
-        detail=(
-            "Requests one clear-screen UI effect and emits no replacement text. "
-            "Unavailable or failed display boundaries report an honest error."
-        ),
-    ),
+    _pilot_definition("cls"),
     CommandSpec("history", "Show conversation history.", "session", "/history"),
     CommandSpec(
         "memory",

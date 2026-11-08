@@ -836,6 +836,7 @@ source = { editable = "packages/friday-chat" }
 dependencies = [
     { name = "friday-framework-agent" },
     { name = "friday-framework-cli" },
+    { name = "friday-framework-commands" },
     { name = "friday-framework-core" },
     { name = "friday-framework-llm" },
     { name = "friday-framework-memory" },
@@ -883,6 +884,7 @@ requires-dist = [
     { name = "friday-chat", extras = ["finance", "moltbook", "sandbox", "speech"], marker = "extra == 'full'", editable = "packages/friday-chat" },
     { name = "friday-framework-agent", editable = "packages/friday-agent" },
     { name = "friday-framework-cli", editable = "packages/friday-cli" },
+    { name = "friday-framework-commands", editable = "packages/friday-commands" },
     { name = "friday-framework-core", editable = "packages/friday-core" },
     { name = "friday-framework-finance", marker = "extra == 'finance'", editable = "packages/friday-finance" },
     { name = "friday-framework-llm", editable = "packages/friday-llm" },
