@@ -1,0 +1,87 @@
+{
+  "context": {
+    "name": "context",
+    "description": "Show the assembled context payload.",
+    "category": "memory",
+    "usage": "/context [--debug] [--file]",
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "--debug",
+        "description": "Include detailed token diagnostics.",
+        "required": false,
+        "default": null,
+        "choices": []
+      },
+      {
+        "name": "--file",
+        "description": "Export the context to a file.",
+        "required": false,
+        "default": null,
+        "choices": []
+      }
+    ],
+    "detail": null
+  },
+  "prompt": {
+    "name": "prompt",
+    "description": "Show the full formatted prompt sent to the LLM.",
+    "category": "memory",
+    "usage": "/prompt [--file]",
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "--file",
+        "description": "Export the prompt to a file.",
+        "required": false,
+        "default": null,
+        "choices": []
+      }
+    ],
+    "detail": null
+  },
+  "debug": {
+    "name": "debug",
+    "description": "Show context assembly debug information.",
+    "category": "memory",
+    "usage": "/debug",
+    "aliases": [],
+    "arguments": [],
+    "detail": null
+  },
+  "debug-budget": {
+    "name": "debug-budget",
+    "description": "Show token budget diagnostics.",
+    "category": "memory",
+    "usage": "/debug-budget",
+    "aliases": [],
+    "arguments": [],
+    "detail": null
+  },
+  "timing": {
+    "name": "timing",
+    "description": "Show timing breakdown for the last turn.",
+    "category": "memory",
+    "usage": "/timing",
+    "aliases": [],
+    "arguments": [],
+    "detail": null
+  },
+  "debug-retrieval": {
+    "name": "debug-retrieval",
+    "description": "Show retrieval diagnostics for a query.",
+    "category": "memory",
+    "usage": "/debug-retrieval <query>",
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "query",
+        "description": "Retrieval query; remaining words are joined.",
+        "required": true,
+        "default": null,
+        "choices": []
+      }
+    ],
+    "detail": null
+  }
+}

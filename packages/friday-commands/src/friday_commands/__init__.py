@@ -1,12 +1,17 @@
 """Neutral command contracts and dependency-free pilot/session handlers."""
 
 from .contracts import (
+    BudgetData,
     CommandArgument,
     CommandError,
     CommandExecution,
     CommandOutcome,
     CommandRequest,
     CommandSpec,
+    ContextData,
+    DebugData,
+    DebugTurnData,
+    DiagnosticField,
     DispatchResult,
     ExitData,
     FoundationData,
@@ -14,9 +19,16 @@ from .contracts import (
     HistoryData,
     HistoryTurn,
     NoData,
+    PromptData,
+    RetrievalData,
+    RetrievalUnavailableData,
     SessionClearedData,
+    TimingCounter,
+    TimingData,
+    TimingTurnData,
     UiEffect,
 )
+from .diagnostics import DIAGNOSTIC_SPECS, DiagnosticsPort, build_diagnostic_handlers
 from .pilot import PILOT_SPECS, HelpCatalog, build_pilot_handlers, describe_help
 from .registry import CommandHandler, CommandRegistry
 from .session_views import SESSION_SPECS, SessionPort, build_session_handlers
@@ -46,4 +58,18 @@ __all__ = [
     "build_pilot_handlers",
     "build_session_handlers",
     "describe_help",
+    "DiagnosticField",
+    "ContextData",
+    "PromptData",
+    "DebugTurnData",
+    "DebugData",
+    "BudgetData",
+    "TimingCounter",
+    "TimingTurnData",
+    "TimingData",
+    "RetrievalData",
+    "RetrievalUnavailableData",
+    "DIAGNOSTIC_SPECS",
+    "DiagnosticsPort",
+    "build_diagnostic_handlers",
 ]

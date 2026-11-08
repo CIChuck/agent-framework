@@ -146,7 +146,175 @@ class SessionClearedData:
     """The host's existing history/session-clear procedure completed."""
 
 
-type FoundationData = NoData | HelpData | ExitData | HistoryData | SessionClearedData
+@dataclass(frozen=True, slots=True)
+class DiagnosticField:
+    key: str
+    value: str
+
+    def __post_init__(self) -> None:
+        _string(self.key)
+        _string(self.value)
+
+
+@dataclass(frozen=True, slots=True)
+class ContextData:
+    text: str
+    character_count: int | None = None
+    export_path: str | None = None
+
+    def __post_init__(self) -> None:
+        _string(self.text)
+        if self.character_count is not None:
+            if type(self.character_count) is not int:
+                raise TypeError("Expected an integer character count")
+            if self.character_count < 0:
+                raise ValueError("Character count must be nonnegative")
+        _string(self.export_path, optional=True)
+
+
+@dataclass(frozen=True, slots=True)
+class PromptData:
+    text: str
+    export_path: str | None = None
+
+    def __post_init__(self) -> None:
+        _string(self.text)
+        _string(self.export_path, optional=True)
+
+
+@dataclass(frozen=True, slots=True)
+class DebugTurnData:
+    turn_ref: str
+    outcome: str
+    persistence: str
+    completed_tools: str
+    failed_tools: str
+
+    def __post_init__(self) -> None:
+        _string(self.turn_ref)
+        _string(self.outcome)
+        _string(self.persistence)
+        _string(self.completed_tools)
+        _string(self.failed_tools)
+
+
+@dataclass(frozen=True, slots=True)
+class DebugData:
+    recorded: bool
+    fields: tuple[DiagnosticField, ...] = ()
+    turn: DebugTurnData | None = None
+
+    def __post_init__(self) -> None:
+        _boolean(self.recorded)
+        object.__setattr__(
+            self, "fields", _snapshot(self.fields, DiagnosticField, exact=True)
+        )
+        if self.turn is not None and type(self.turn) is not DebugTurnData:
+            raise TypeError("Expected a DebugTurnData")
+        if not self.recorded and (self.fields or self.turn is not None):
+            raise ValueError("Unrecorded debug data must be empty")
+
+
+@dataclass(frozen=True, slots=True)
+class BudgetData:
+    context_window: str | None
+    output_buffer: str | None
+
+    def __post_init__(self) -> None:
+        _string(self.context_window, optional=True)
+        _string(self.output_buffer, optional=True)
+
+
+@dataclass(frozen=True, slots=True)
+class TimingCounter:
+    kind: str
+    outcome: str
+    count: str
+
+    def __post_init__(self) -> None:
+        _string(self.kind)
+        _string(self.outcome)
+        _string(self.count)
+
+
+@dataclass(frozen=True, slots=True)
+class TimingTurnData:
+    seconds: str
+    outcome: str
+    persistence: str
+    counters: tuple[TimingCounter, ...] = ()
+
+    def __post_init__(self) -> None:
+        _string(self.seconds)
+        _string(self.outcome)
+        _string(self.persistence)
+        object.__setattr__(
+            self, "counters", _snapshot(self.counters, TimingCounter, exact=True)
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class TimingData:
+    recorded: bool
+    fields: tuple[DiagnosticField, ...] = ()
+    turn: TimingTurnData | None = None
+
+    def __post_init__(self) -> None:
+        _boolean(self.recorded)
+        object.__setattr__(
+            self, "fields", _snapshot(self.fields, DiagnosticField, exact=True)
+        )
+        if self.turn is not None and type(self.turn) is not TimingTurnData:
+            raise TypeError("Expected a TimingTurnData")
+        if not self.recorded and (self.fields or self.turn is not None):
+            raise ValueError("Unrecorded timing data must be empty")
+
+
+@dataclass(frozen=True, slots=True)
+class RetrievalData:
+    query: str
+    result_count: int
+    fields: tuple[DiagnosticField, ...] = ()
+    previews: tuple[str, ...] = ()
+
+    def __post_init__(self) -> None:
+        _string(self.query)
+        if type(self.result_count) is not int:
+            raise TypeError("Expected an integer result count")
+        if self.result_count < 0:
+            raise ValueError("Result count must be nonnegative")
+        object.__setattr__(
+            self, "fields", _snapshot(self.fields, DiagnosticField, exact=True)
+        )
+        object.__setattr__(self, "previews", _snapshot(self.previews, str))
+        if len(self.previews) > 10:
+            raise ValueError("At most ten retrieval previews are permitted")
+
+
+@dataclass(frozen=True, slots=True)
+class RetrievalUnavailableData:
+    reason: Literal["runtime_missing", "query_missing"]
+
+    def __post_init__(self) -> None:
+        _string(self.reason)
+        if self.reason not in ("runtime_missing", "query_missing"):
+            raise ValueError("Unknown retrieval unavailability reason")
+
+
+type FoundationData = (
+    NoData
+    | HelpData
+    | ExitData
+    | HistoryData
+    | SessionClearedData
+    | ContextData
+    | PromptData
+    | DebugData
+    | BudgetData
+    | TimingData
+    | RetrievalData
+    | RetrievalUnavailableData
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -181,7 +349,20 @@ class CommandOutcome:
     def __post_init__(self) -> None:
         if self.data is not None and not any(
             type(self.data) is variant
-            for variant in (NoData, HelpData, ExitData, HistoryData, SessionClearedData)
+            for variant in (
+                NoData,
+                HelpData,
+                ExitData,
+                HistoryData,
+                SessionClearedData,
+                ContextData,
+                PromptData,
+                DebugData,
+                BudgetData,
+                TimingData,
+                RetrievalData,
+                RetrievalUnavailableData,
+            )
         ):
             raise TypeError("Expected a closed foundation data variant")
         if self.error is not None and type(self.error) is not CommandError:

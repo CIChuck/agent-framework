@@ -57,3 +57,22 @@ public service boundary. `/clear` is conversation clearing; `/cls` remains the
 separate display effect. Chat now delegates `/history` and `/clear` through its
 typed session port, keeping English output and current-session memory ownership
 in Chat and its runtime.
+
+The opt-in diagnostics API exports `DIAGNOSTIC_SPECS`, `DiagnosticsPort` and
+`build_diagnostic_handlers`, plus eleven immutable value models. Register its
+six specs explicitly: context, prompt, debug, debug-budget, timing and
+debug-retrieval. Shared handlers interpret exact flags, request an export only
+after preparing its typed data, and check runtime availability before retrieval
+usage. Retrieval is awaited once; host errors and cancellation propagate.
+
+Ports supply detached typed debug/budget/timing facts, selected context/prompt
+strings, and existing export/retrieval capabilities. The shared package renders
+no terminal text, chooses no destination and imports no host/domain services.
+Hosts own projection, presentation, encoding and fixed export paths. Invalid
+port results fail without coercion; selected text must be a string. Direct
+requests retain the existing string-only argument boundary. All 24 earlier
+exports retain their order, with the fourteen diagnostics names appended.
+
+This is the neutral diagnostics deliverable. Chat diagnostics wiring and
+candidate installed-artifact proof are subsequent DIAG deliverables; the
+accepted pilot and session integrations remain in place.

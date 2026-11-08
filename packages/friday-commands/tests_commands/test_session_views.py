@@ -221,6 +221,20 @@ def test_session_specs_and_factory_are_immutable() -> None:
         "build_pilot_handlers",
         "build_session_handlers",
         "describe_help",
+        "DiagnosticField",
+        "ContextData",
+        "PromptData",
+        "DebugTurnData",
+        "DebugData",
+        "BudgetData",
+        "TimingCounter",
+        "TimingTurnData",
+        "TimingData",
+        "RetrievalData",
+        "RetrievalUnavailableData",
+        "DIAGNOSTIC_SPECS",
+        "DiagnosticsPort",
+        "build_diagnostic_handlers",
     ]
     assert CommandRegistry().names() == frozenset()
     first = build_session_handlers(NoReads())
