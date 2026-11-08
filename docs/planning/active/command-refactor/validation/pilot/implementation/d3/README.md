@@ -1,14 +1,39 @@
 # PILOT-001 D3 — regression and installed candidate proof
 
-Execution phase: `remediation`. Validation state: `not_ready` (D3 correction).
-[Round-one council](council-round1.json) requests two installed-proof corrections.
-The maintainer [authorized Claude/Sol](../../../../approval/pilot-two-member-council.md)
-for this D3 work after Gemini quota failure. Apply the bounded correction, then
-fresh two-member review precedes acceptance. D1/D2 remain independently verified.
+Execution phase: `validation`. Validation state: `in_review` (D3 round2).
+Correction cycle1 addresses D3-SOL-001/002. Fresh Claude Opus 5.5 and GPT-6.1 Sol
+review is required under the [two-member direction](../../../../approval/pilot-two-member-council.md).
+D1/D2 remain independently verified; pilot acceptance and delivery are pending.
 
-The original builder report below describes the round-one candidate and its
-passing clean installations; its advertised inventory/origin assurances are
-superseded until D3-SOL-001/002 are corrected and independently verified.
+[Current evidence](remediation-evidence.json) records 1,228 Chat, 217
+Commands/cohort and 155 CLI tests passing again, all 196 source observations
+unchanged, and two clean offline artifact trials from Git revision `70ebef3a`.
+All 154 artifact hashes and the profile agree across replay. Default Chat stays
+at 138 distributions; neutral stays at 1. The current [preservation](preservation-round2.json)
+proves 784 package/test/root/script files unchanged from the round-one candidate.
+Only the authorized neutral README status sentence differs among packages.
+
+The corrected probe enumerates exact installed file AND directory sets, checks
+bytes against Git/wheel and refuses symlinks/special members. Dist-info metadata
+is outside these source/data trees; bytecode generation is disabled and no extra
+package files/cache directories are permitted. Five installed-member controls
+(source, data, empty directory, bytecode, symlink) are refused in each mode.
+Both file and every package search path are now validated; two mixed-origin
+controls are refused in each mode. Together with the original six controls,
+all 13 refusal controls pass in normal and optimized execution. All four clean
+neutral/Chat installed lanes pass. Entry-point help checks its child origins;
+required nonsecret environment and bootstrap hashes are recorded.
+
+The [finding map](council-remediation-round1.json) distinguishes implemented
+corrections, addressed advisories and deferred optional improvements. Current
+builder checks do not independently close findings. The [round-one reports](council-round1.json)
+and original evidence below remain historical, immutable records.
+
+## Historical round-one builder report
+
+The following report describes the round-one candidate and its passing clean
+installations. Its earlier inventory/origin assurances are superseded by the
+corrected probe; independent closure is pending round-two review.
 
 [Evidence](evidence.json) embeds hash-pinned command/probe/artifact receipts with
 explicit roles. Full after-suites pass: **1,228 Chat**, **217 Commands/cohort**,

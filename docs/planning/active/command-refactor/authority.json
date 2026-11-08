@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "D3 council CHANGES_REQUESTED; authorized two-member bounded installed-proof correction in progress",
+  "decision": "D3 installed-proof corrections implemented; fresh two-member Claude/Sol council round2 before bounded pilot acceptance",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Correct D3-SOL-001/002, safe diagnostic environment/README closeout, then fresh Claude/Sol review; no product or dependency changes",
+  "current_scope": "PILOT-001 D3 validation/in_review, correction cycle1; current full regression and isolated installed proof pending independent closure",
   "product_code_authority": "Exact pilot construction approved in approval/pilot.md; council after each deliverable before advancement. Remaining families, TUI, final acceptance and external delivery are unapproved.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -312,7 +312,7 @@
     "product_baseline": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
     "branch": "feature/command-retirement",
     "state": "started",
-    "current_deliverable": "D3 installed-proof remediation cycle1",
+    "current_deliverable": "D3 council round2 after installed-proof remediation cycle1",
     "council_after_each_deliverable": true,
     "deliverables": {
       "D1": "Shared neutral API/handlers and standalone tests (G1)",
@@ -437,12 +437,12 @@
       }
     },
     "deliverable3": {
-      "state": "remediation",
+      "state": "in_review",
       "scope": "Approved G4-G5 full regression, source/assertion/docs proof, clean Git artifact/default-install closure and installed_probe.py",
-      "gate": "Correct approved proof gaps and freeze fresh Claude/Sol D3 council",
+      "gate": "Fresh Claude/Sol D3 round2 delta plus full bounded pilot aggregate review before acceptance",
       "acceptance": "not_granted",
-      "evidence": "validation/pilot/implementation/d3/evidence.json",
-      "artifact_source_revision": "32fc8cede427cd23fb7bd760c8bd00a4b078ad46",
+      "evidence": "validation/pilot/implementation/d3/remediation-evidence.json",
+      "artifact_source_revision": "70ebef3a1bafc8b6269abd0fd4dbb7d4a7bac7a3",
       "council_round1": {
         "candidate": "f4186b564c4bfd5eeb0bc378ba1edd25d313fb2d",
         "outcome": "CHANGES_REQUESTED",
@@ -460,8 +460,13 @@
         "findings": [
           "D3-SOL-001",
           "D3-SOL-002"
-        ]
-      }
+        ],
+        "state": "implemented_pending_independent_review",
+        "evidence": "validation/pilot/implementation/d3/remediation-evidence.json",
+        "dispositions": "validation/pilot/implementation/d3/council-remediation-round1.json"
+      },
+      "historical_evidence": "validation/pilot/implementation/d3/evidence.json",
+      "council_round": 2
     },
     "council_members_for_D3": {
       "approval": "approval/pilot-two-member-council.md",

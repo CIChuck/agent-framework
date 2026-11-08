@@ -16,10 +16,10 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: remediation`; `validation_state: not_ready` for PILOT-001 D3.
+`execution_phase: validation`; `validation_state: in_review` for PILOT-001 D3.
 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
-council. D2 remains VERIFIED. D3 has two reproduced installed-proof gaps; authorized
-correction and fresh Claude/Sol review precede acceptance.
+council. D2 remains VERIFIED. D3 installed-proof corrections pass current builder checks;
+fresh Claude/Sol round-two review precedes acceptance.
 RET-001 remains independently VERIFIED and accepted.
 The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
@@ -167,7 +167,7 @@ this exact maintainer record.
 D1 neutral pilot implementation is at its [council checkpoint](validation/pilot/implementation/d1/evidence.json).
 G1 has 217 passing Commands/cohort tests; Chat integration is pending D1 review.
 
-Current pilot checkpoint: [D3 council](validation/pilot/implementation/d3/council-round1.json)
-requests two installed-proof corrections. The [bounded correction](remediation/REM-CMD-PILOT-D3-001-installed-proof.md)
+Current pilot checkpoint: [D3 corrected evidence](validation/pilot/implementation/d3/remediation-evidence.json)
+is frozen for fresh Claude/Sol round-two review. The [bounded correction](remediation/REM-CMD-PILOT-D3-001-installed-proof.md)
 and [two-member direction](approval/pilot-two-member-council.md) govern current
 work. D1/D2 remain verified; D3 acceptance and external delivery are pending.

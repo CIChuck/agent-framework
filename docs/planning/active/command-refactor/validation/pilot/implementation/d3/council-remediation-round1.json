@@ -1,0 +1,37 @@
+{
+  "review_id": "COUNCIL-CMD-PILOT-D3-round2",
+  "remediation_cycle": 1,
+  "base": "f4186b564c4bfd5eeb0bc378ba1edd25d313fb2d",
+  "authority": "remediation/REM-CMD-PILOT-D3-001-installed-proof.md",
+  "members": [
+    "Claude Opus 5.5",
+    "GPT-6.1 Sol"
+  ],
+  "findings": [
+    {
+      "id": "D3-SOL-001",
+      "state": "corrected_pending_independent_review",
+      "change": "Enumerate complete installed source/data files and directories; exact sets and bytes against Git/wheel; reject symlinks/special files. No generated package-tree exemptions in the no-bytecode proof profile.",
+      "controls": "Five copied installations: unexpected source, data, empty directory, bytecode and symlink; copied interpreter/package origins checked first. Each refused in normal and optimized modes.",
+      "evidence": "remediation-evidence.json"
+    },
+    {
+      "id": "D3-SOL-002",
+      "state": "corrected_pending_independent_review",
+      "change": "Validate file origin AND every package search path. The entry-point help subprocess applies the same checker and records its origins.",
+      "controls": "Valid file with external-only and mixed valid/external search paths refused in normal and optimized modes. Original file-only, namespace-only and missing-origin controls retained.",
+      "evidence": "remediation-evidence.json"
+    }
+  ],
+  "advisories": {
+    "Claude-ADV-01": "Deferred: existing per-row conditional dispatch check is supported by total19 factory/handler calls, source spies and consumed distinct shared-outcome controls. No dispatch redesign.",
+    "Claude-ADV-02": "Deferred: bootstrap trust remains explicit; current bootstrap/combined guard/extension hashes are recorded, pinned and independently reviewable.",
+    "Claude-ADV-03": "Entry-point child origins addressed. Complete disk/Git/wheel equality now enforced; additional RECORD comparison deferred.",
+    "Claude-ADV-04": "Addressed: nonsecret required environment allowlist recorded in actual probe reports, including REVIEW_REPO and LITELLM_LOCAL_MODEL_COST_MAP.",
+    "Claude-ADV-05": "Addressed: neutral README now describes completed Chat integration; new clean artifacts include those bytes.",
+    "Claude-ADV-06": "Deferred: private renderer annotations/re-exports unchanged.",
+    "Claude-ADV-07": "Deferred: None/False oracle label is cosmetic and outputs equal under the approved amendment.",
+    "D2-fixture-archival": "Deferred to separately authorized full initiative archival. Pilot acceptance does not move this active packet."
+  },
+  "non_goals": "No package runtime/test/contract/dependency/lock changes, later-family/P0/P1/TUI closure, maintainer acceptance or delivery."
+}

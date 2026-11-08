@@ -1195,3 +1195,21 @@ Private drafts already pass positive and new negative controls; apply only the
 bounded source/docs changes in REM-CMD-PILOT-D3-001. No package runtime/tests,
 lock, approved contract/harness/baseline or unrelated dirty example change.
 `execution_phase: remediation`; `validation_state: not_ready` for D3.
+
+2026-11-08T02:55:38+00:00: D3 remediation cycle1 builder checks complete. Source/probe and
+authorized neutral README were frozen at `70ebef3a1bafc8b6269abd0fd4dbb7d4a7bac7a3` for clean builds.
+Exact installed file/directory inventories reject extra source/data/empty-dir/
+bytecode/symlink members. Both module file and all package search paths are
+validated, including entry-point child origins. Five installed-member and two
+mixed-origin refusals plus the original six controls pass in normal/optimized
+modes. Clean neutral/default Chat probes pass in both modes; nonsecret required
+environment is recorded. Two offline bundles match all 154 artifact/profile
+hashes, 13 workspace builds and 125 locked raw inputs. Closures remain 1/138.
+Rerun suites pass 1228 Chat, 217 Commands/cohort, 155 CLI; all 196 source observations
+match. Preservation proves 784 unchanged files; no runtime/test/dependency/lock
+change. New `validation/pilot/implementation/d3/remediation-evidence.json` and
+finding map preserve the original receipts/reports. Root Ruff 534, sole root
+test_display collection error and registry format still fail, unwaived.
+`execution_phase: validation`; `validation_state: in_review` for D3 round2.
+Fresh Claude/Sol delta plus full bounded pilot aggregate review precedes
+acceptance. No Gemini retry/replacement, later-family/P0/P1/TUI or delivery work.

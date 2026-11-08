@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Correct D3-SOL-001/002 installed proof gaps, then fresh Claude/Sol two-member council before pilot acceptance
+  next_gate: Fresh Claude/Sol D3 round2 on corrected installed proof and complete bounded pilot aggregate; then maintainer acceptance
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2642,3 +2642,10 @@ events:
   action: authorized two-member D3 council after Gemini quota failure
   note: Proceed with Claude and Sol; no replacement or retry of Gemini. Continue bounded proof remediation and fresh review; tests do not waive mandatory findings or grant acceptance/delivery.
   evidence: docs/planning/active/command-refactor/approval/pilot-two-member-council.md
+- task: friday-command-refactor
+  at: '2026-11-08T02:55:38+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze D3 installed-proof correction cycle1 for two-member council round2
+  note: Both required proof corrections implemented; full scoped 1600 tests and clean builds/installations pass. Fresh Claude/Sol closure required before acceptance; delivery remains local.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d3/remediation-evidence.json

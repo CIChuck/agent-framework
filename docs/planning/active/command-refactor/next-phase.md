@@ -1,22 +1,22 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 D3 installed-proof correction cycle1 in progress; two-member council authorized
-Execution phase: remediation
-Validation state: not_ready (PILOT-001 D3 correction); acceptance pending
+Status: PILOT-001 D3 corrected installed proof in Claude/Sol council round2; acceptance pending
+Execution phase: validation
+Validation state: in_review (PILOT-001 D3 correction cycle1); acceptance pending
 
 ## Current next steps
 
-1. Correct the [two installed-proof findings](remediation/REM-CMD-PILOT-D3-001-installed-proof.md),
-   retain positive/negative evidence and freeze a new candidate.
-2. Obtain fresh read-only Claude/Sol review under the exact
-   [two-member authorization](approval/pilot-two-member-council.md).
+1. Obtain fresh read-only Claude/Sol round-two review of the corrected
+   [installed proof and current evidence](validation/pilot/implementation/d3/remediation-evidence.json),
+   including delta closure and the complete bounded pilot aggregate.
+2. Reconcile both reports under the [two-member authorization](approval/pilot-two-member-council.md).
 3. If verified, present the bounded pilot for maintainer acceptance. Later
    families, TUI, full-refactor acceptance and delivery remain separate.
 
-Original pilot and metadata approvals remain in force; no runtime/API/dependency
-scope changes are authorized by this proof correction. Historical checkpoints
-below do not override current records.
+Original pilot and metadata approvals remain in force. No package runtime/test,
+API, dependency or lock changes occurred in this proof correction. Historical
+checkpoints below do not override current records.
 
 ## Historical checkpoints
 

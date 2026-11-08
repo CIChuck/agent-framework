@@ -1,0 +1,9 @@
+{
+  "result": "passed",
+  "prior_count": 138,
+  "current_count": 138,
+  "added": [],
+  "removed": [],
+  "version_changes": {},
+  "historical_profile_lineage": "Preserved original D3 profile-lineage.json; current locked default138 = D1 locked default137 plus required Commands, independent of historical129 assembled profile."
+}
