@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh Claude/Sol D3 round2 on corrected installed proof and complete bounded pilot aggregate; then maintainer acceptance |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Maintainer acceptance of independently VERIFIED PILOT-001; later command families require separate bounded directive approval |
 
 ## Completed
 

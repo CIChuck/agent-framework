@@ -1,9 +1,10 @@
 # PILOT-001 D3 — regression and installed candidate proof
 
-Execution phase: `validation`. Validation state: `in_review` (D3 round2).
-Correction cycle1 addresses D3-SOL-001/002. Fresh Claude Opus 5.5 and GPT-6.1 Sol
-review is required under the [two-member direction](../../../../approval/pilot-two-member-council.md).
-D1/D2 remain independently verified; pilot acceptance and delivery are pending.
+Execution phase: `closeout`. Validation state: `verified` (PILOT-001 D1-D3).
+Claude Opus 5.5 and GPT-6.1 Sol both VERIFIED candidate `eb216421`, each 9.6/10.
+Both named findings are independently closed and no mandatory findings remain.
+See [reconciled verification](verified-report.md) and [exact reports](council-round2.json).
+Pilot acceptance and delivery remain pending.
 
 [Current evidence](remediation-evidence.json) records 1,228 Chat, 217
 Commands/cohort and 155 CLI tests passing again, all 196 source observations
@@ -25,15 +26,15 @@ neutral/Chat installed lanes pass. Entry-point help checks its child origins;
 required nonsecret environment and bootstrap hashes are recorded.
 
 The [finding map](council-remediation-round1.json) distinguishes implemented
-corrections, addressed advisories and deferred optional improvements. Current
-builder checks do not independently close findings. The [round-one reports](council-round1.json)
+corrections, addressed advisories and deferred optional improvements. The
+current independent reports close both mandatory findings. The [round-one reports](council-round1.json)
 and original evidence below remain historical, immutable records.
 
 ## Historical round-one builder report
 
 The following report describes the round-one candidate and its passing clean
 installations. Its earlier inventory/origin assurances are superseded by the
-corrected probe; independent closure is pending round-two review.
+corrected probe; current independent closure is recorded above.
 
 [Evidence](evidence.json) embeds hash-pinned command/probe/artifact receipts with
 explicit roles. Full after-suites pass: **1,228 Chat**, **217 Commands/cohort**,

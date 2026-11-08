@@ -1,22 +1,24 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 D3 corrected installed proof in Claude/Sol council round2; acceptance pending
-Execution phase: validation
-Validation state: in_review (PILOT-001 D3 correction cycle1); acceptance pending
+Status: PILOT-001 independently VERIFIED; bounded maintainer acceptance pending
+Execution phase: closeout
+Validation state: verified (PILOT-001 D1-D3); acceptance pending
 
 ## Current next steps
 
-1. Obtain fresh read-only Claude/Sol round-two review of the corrected
-   [installed proof and current evidence](validation/pilot/implementation/d3/remediation-evidence.json),
-   including delta closure and the complete bounded pilot aggregate.
-2. Reconcile both reports under the [two-member authorization](approval/pilot-two-member-council.md).
-3. If verified, present the bounded pilot for maintainer acceptance. Later
-   families, TUI, full-refactor acceptance and delivery remain separate.
+1. Review [reconciled pilot verification](validation/pilot/implementation/d3/verified-report.md).
+   Claude and Sol independently VERIFIED the current bounded aggregate, both
+   9.6/10; D3-SOL-001/002 are closed and no mandatory findings remain.
+2. Obtain Chuck Russell's explicit acceptance of PILOT-001. Record that decision
+   separately from independent verification; no acceptance has been inferred.
+3. Select the next command-family unit and obtain its required bounded directive
+   approval. Later families, P0/P1, TUI, full-refactor acceptance and external
+   delivery remain separate gates.
 
-Original pilot and metadata approvals remain in force. No package runtime/test,
-API, dependency or lock changes occurred in this proof correction. Historical
-checkpoints below do not override current records.
+The initiative stays started/local. No product/test/dependency/lock change
+follows the verified candidate. Historical checkpoints below retain provenance
+and do not override the current result or supply later construction authority.
 
 ## Historical checkpoints
 

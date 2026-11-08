@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Fresh Claude/Sol D3 round2 on corrected installed proof and complete bounded pilot aggregate; then maintainer acceptance
+  next_gate: Maintainer acceptance of independently VERIFIED PILOT-001; later command families require separate bounded directive approval
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -726,6 +726,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/pilot/final-readiness-validation.md
   - docs/planning/active/command-refactor/validation/pilot/implementation/d1/council-round4.json
   - docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round2.json
+  - docs/planning/active/command-refactor/validation/pilot/implementation/d3/verified-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2649,3 +2650,10 @@ events:
   action: froze D3 installed-proof correction cycle1 for two-member council round2
   note: Both required proof corrections implemented; full scoped 1600 tests and clean builds/installations pass. Fresh Claude/Sol closure required before acceptance; delivery remains local.
   evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d3/remediation-evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T03:11:57+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled independently VERIFIED PILOT-001 D3 and bounded aggregate
+  note: Claude and Sol both VERIFIED at 9.6; D3-SOL-001/002 closed. Pilot acceptance pending; entire refactor stays started, delivery local. No runtime/test/dependency/lock changes in closeout.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d3/verified-report.md

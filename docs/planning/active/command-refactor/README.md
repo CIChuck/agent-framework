@@ -16,10 +16,10 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: validation`; `validation_state: in_review` for PILOT-001 D3.
+`execution_phase: closeout`; `validation_state: verified` for PILOT-001.
 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
-council. D2 remains VERIFIED. D3 installed-proof corrections pass current builder checks;
-fresh Claude/Sol round-two review precedes acceptance.
+council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
+VERIFIED at `eb216421` by Claude and Sol, both 9.6/10; acceptance is pending.
 RET-001 remains independently VERIFIED and accepted.
 The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
@@ -164,10 +164,10 @@ proof. A fresh council follows each deliverable; no later family or delivery
 is approved. Historical pending-approval paragraphs above are superseded by
 this exact maintainer record.
 
-D1 neutral pilot implementation is at its [council checkpoint](validation/pilot/implementation/d1/evidence.json).
-G1 has 217 passing Commands/cohort tests; Chat integration is pending D1 review.
-
-Current pilot checkpoint: [D3 corrected evidence](validation/pilot/implementation/d3/remediation-evidence.json)
-is frozen for fresh Claude/Sol round-two review. The [bounded correction](remediation/REM-CMD-PILOT-D3-001-installed-proof.md)
-and [two-member direction](approval/pilot-two-member-council.md) govern current
-work. D1/D2 remain verified; D3 acceptance and external delivery are pending.
+D1 neutral handlers, D2 Chat integration and D3 regression/installed proof are
+independently verified. [Reconciled pilot verification](validation/pilot/implementation/d3/verified-report.md)
+records the current result; [exact council reports](validation/pilot/implementation/d3/council-round2.json)
+and [current evidence](validation/pilot/implementation/d3/remediation-evidence.json)
+preserve the reviewed candidate and limits. Both D3 findings are closed.
+Maintainer acceptance of PILOT-001 is the next gate. The broader refactor,
+later families, P0/P1 and TUI remain open; delivery is local only.
