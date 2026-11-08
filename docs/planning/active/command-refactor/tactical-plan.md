@@ -1,30 +1,28 @@
-# DIAG-001 — final construction validation checkpoint
+# DIAG-001 — context evaluation contract decision
 
 Branch: `feature/command-retirement`
-Execution phase: validation
-Validation state: in_review (D3 and complete bounded aggregate, round 1)
+Execution phase: remediation
+Validation state: changes_requested (D3 and complete bounded aggregate, round 1)
 
-D1/D2 are independently verified; [D3 builder evidence](validation/diagnostics/implementation/d3/README.md)
-now binds source/probe `30790ec0f06813e7331c851d04c123997a398d97`. No package/test/metadata/lock
-bytes changed during D3. All 1255 original non-doc files and 281 tests retain
-bytes, with 3042 test-prefixed definitions and 9400 assertions. The aggregate
-has exactly 12 permitted package paths; old SESSION test only appends 14 literal
-exports and old contract AST is retained except approved additions.
+[Council reconciliation](validation/diagnostics/implementation/d3/council-round1-reconciliation.md)
+records Sol/Claude VERIFIED 9.7 and Astra CHANGES_REQUESTED 8.7. The reproduced
+mandatory finding DIAG-D3-ASTRA-001 prevents aggregate verification. Stateful
+accepted strings expose changed count, exception and export behavior.
 
-Fresh full suites: Chat 1338, Commands/cohort 478, CLI 155 (1971 total). Two closed
-builds each have 13 workspace builds/125 locked inputs and identical 154 artifact
-and profile hashes. Neutral closure 1; default Chat 138 equals accepted names/
-versions. Eight actual installed pilot/DIAG probes pass across two lanes/modes,
-retaining SESSION checks without spoofing old 24-name proof. Source inventories
-cover 70 files; sdists 152 members.50 member/origin,4 semantic-engine and 10 archive
-refusals, precise prebuild/source controls and 8 restored copied probes pass.
+Read the [proposed amendment](remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md).
+It adds one typed host debug snapshot capability to preserve legacy format-then-
+length evaluation while shared code retains flags/export ownership. It changes
+an exact approved port/algorithm, so maintainer approval of these exact proposed
+bytes is required. No implementation under the proposal is started.
 
-Reconcile fresh Sol/Astra/Claude D3 plus full DIAG aggregate council, then stop
-for bounded human acceptance. UAT is not run. Six DIAG PAR rows gain only bounded
-builder evidence; remaining families, P0/P1, TUI/full-refactor and delivery stay
-open. Root Ruff 534, sole test_display conflict and registry format are failed/
-unwaived. Prototype syntax and registry-order probe errors are historical only;
-all final proof uses the exact source/probe revision above.
+Prior product/probe/build inputs and evidence remain unchanged. After approval,
+a bounded remediator must correct only this finding, refresh tests and actual
+installed normal/optimized proof, rebuild/replay corrected committed source and
+obtain fresh Sol/Astra/Claude delta then complete bounded aggregate review.
+Preserve dirty examples and ignored exports; no cleanup. Root Ruff 534,
+test_display collection conflict and registry format remain failed/unwaived.
+UAT, human acceptance, later families, P0/P1, full-refactor/TUI and delivery remain
+pending or separately governed. No further council is launched pending decision.
 
 ### Preserved prior planning checkpoint
 

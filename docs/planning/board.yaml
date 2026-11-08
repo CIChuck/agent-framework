@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile DIAG D3/full aggregate Sol/Astra/Claude round1 council, then human bounded DIAG acceptance
+  next_gate: Approve exact proposed REM-CMD-DIAG-D3-001 context evaluation amendment, then bounded correction and fresh final aggregate council before DIAG acceptance
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -732,6 +732,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/session/implementation/d3/verified-report.md
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/verified-report.md
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/verified-report.md
+  - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round1-reconciliation.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2823,3 +2824,10 @@ events:
   action: froze DIAG D3 artifact/installed proof for final aggregate council
   note: 1971 source passes; matching154 artifacts/profile;8 actual installed probes,50 member/origin+4 semantic+10 archive refusals,8 clean copied probes. Acceptance/UAT/delivery pending.
   evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/README.md
+- task: friday-command-refactor
+  at: '2026-11-08T23:21:31+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG D3 council CHANGES_REQUESTED; contract decision pending
+  note: Astra mandatory accepted-string order regression independently reproduced. Proposed typed host snapshot amendment not approved; no product changes. Sol/Claude9.7, Astra8.7; preserve all prior evidence and local state.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round1-reconciliation.md

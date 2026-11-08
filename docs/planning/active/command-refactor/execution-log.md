@@ -1734,3 +1734,24 @@ has been executed or accepted through this documentation change.
 - Only six DIAG PAR rows gain bounded builder proof. Fresh Sol/Astra/Claude D3
   plus full bounded DIAG aggregate review precedes human acceptance. UAT,
   later families/P0/P1/full-refactor/TUI and all delivery remain pending.
+
+
+## 2026-11-08T23:21:31.435028+00:00 — DIAG D3 round1 changes requested; context evaluation decision
+
+- `execution_phase: remediation`; `validation_state: changes_requested`.
+- [Reconciliation](validation/diagnostics/implementation/d3/council-round1-reconciliation.md): Sol VERIFIED9.7, Astra CHANGES_REQUESTED8.7,
+  Claude VERIFIED9.7 at `1d3b273b7797c72a868f259d095593a15a4e42b9`. One mandatory finding
+  DIAG-D3-ASTRA-001 remains open. All3 terminal; frozen pins/index/17230 protected
+  entries, both dirty examples and ignored exports rechecked before metadata edits.
+- Controller reproduced baseline/current differences on source and actual installed
+  normal/-O interpreters with private guard/export roots: stateful displayed count,
+  exception priority and a file write where legacy fails before folder creation.
+  The1971 positive tests/builds/probes do not waive this uncovered input.
+- [remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md](remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md) proposes one typed host debug snapshot capability, preserving
+  legacy format-before-length while shared flags/count-before-export remain.
+  Exact approved port/algorithm change needs maintainer decision under DG-03.
+  No product/test/probe/fixture/contract/preparation bytes changed; no new council.
+- Prior reports and391 raw/embedded pairs remain preserved. Counts are reproducible
+  over exact281-test inventory:1710 FunctionDef+1332 AsyncFunctionDef=3042 test_
+  definitions and9400 ast.Assert nodes. Baseline failures remain failed/unwaived.
+  UAT/acceptance/full-refactor/P0/P1/TUI/delivery remain ungranted or separate.

@@ -1,8 +1,15 @@
 # DIAG-001 D3 — regression, artifacts and isolated installed proof
 
-Execution phase: validation. Validation state: in_review (round 1).
-D1/D2 are independently verified; final D3/aggregate council is pending.
-No unit acceptance or delivery is granted.
+Execution phase: remediation. Validation state: changes_requested (round 1).
+[Council reconciliation](council-round1-reconciliation.md) records one mandatory
+compatibility finding. The [proposed amendment](../../../../remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md)
+awaits exact approval; product/test/probe bytes remain unchanged. No unit
+acceptance, advancement or delivery is granted.
+
+## Preserved round-1 builder evidence
+
+The following records the reviewed candidate. Passing receipts remain intact;
+they do not close the additional stateful-string incompatibility.
 
 Exact CLI, defined before final installed executions:
 

@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "DIAG D3 full regression/artifact/installed proof implemented; final aggregate council round1 pending",
+  "decision": "DIAG D3/aggregate council CHANGES_REQUESTED; proposed context evaluation amendment awaits exact maintainer decision",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "DIAG D3 and complete bounded aggregate validation/in_review; acceptance and delivery pending",
-  "product_code_authority": "Exact DIAG approval remains effective; no acceptance or external delivery",
+  "current_scope": "Record DIAG-D3-ASTRA-001 and proposed typed projection amendment; no product changes pending approval",
+  "product_code_authority": "Original DIAG construction approved; a conflicting compatibility boundary now requires approval of the exact proposed amendment before further product/test/probe changes.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -734,7 +734,7 @@
     "validation_state": "in_review",
     "design_approval": "granted_by_subsequent_exact_record",
     "construction_approval": "granted_by_subsequent_exact_record",
-    "implementation": "Preparation-era receipts retained; current D1/D2 verified and D3 in review under diagnostics_construction",
+    "implementation": "Preparation-era records retained; current DIAG D3/aggregate changes_requested under diagnostics_construction",
     "lightweight_exemption": "Maintainer proceed authorizes planning/evidence/current-state preparation and guarded synthetic source characterization only; product/test/config/dependency/lock behavior cannot change. Controller verifies protected hashes, embedded evidence, docs/board and whitespace.",
     "council_after_each_deliverable": true,
     "council_members": [
@@ -763,10 +763,10 @@
     "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
     "product_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
     "controller_start": "d0c729f43534bb79a3db70852ec08028ddb631ec",
-    "state": "validation",
-    "execution_phase": "validation",
-    "validation_state": "in_review",
-    "current_deliverable": "D3 and complete bounded DIAG aggregate",
+    "state": "remediation",
+    "execution_phase": "remediation",
+    "validation_state": "changes_requested",
+    "current_deliverable": "D3 compatibility contract decision before bounded correction",
     "deliverable1": {
       "state": "verified",
       "round": 2,
@@ -826,7 +826,7 @@
       "report": "validation/diagnostics/implementation/d2/verified-report.md"
     },
     "deliverable3": {
-      "state": "in_review",
+      "state": "changes_requested",
       "round": 1,
       "base": "d437a5dc601126ae0767cf6558ae63d214159c19",
       "aggregate_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
@@ -852,7 +852,17 @@
       "prebuild_extra_source_refusal": 1,
       "restored_copied_probes": 8,
       "acceptance": "not_granted",
-      "next_gate": "Fresh Sol/Astra/Claude D3 and complete bounded DIAG aggregate council, then human acceptance"
+      "next_gate": "Maintainer decision on exact proposed amendment; then bounded correction and fresh delta/full aggregate council",
+      "council": "validation/diagnostics/implementation/d3/council-round1.json",
+      "report": "validation/diagnostics/implementation/d3/council-round1-reconciliation.md",
+      "reviewed_candidate": "1d3b273b7797c72a868f259d095593a15a4e42b9",
+      "mandatory_findings": [
+        "DIAG-D3-ASTRA-001"
+      ],
+      "findings_status": "open; controller reproduced; contract decision required",
+      "proposed_amendment": "remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md",
+      "proposed_amendment_sha256": "3078bb19195044212a115cb3f3f169d030af2b282154d4d336856b37c41fa865",
+      "amendment_approval": "not_granted"
     },
     "council_after_each_deliverable": true,
     "council_members": [
