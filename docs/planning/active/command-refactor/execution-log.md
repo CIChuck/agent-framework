@@ -1595,3 +1595,21 @@ has been executed or accepted through this documentation change.
 - Fresh Sol/Astra/Claude delta plus full bounded D1 round2 is next; mandatory
   findings remain implemented pending independent closure. Reconcile before D2.
   D2/D3/UAT/acceptance and external delivery remain pending.
+
+
+## 2026-11-08T21:00:13.180062+00:00 — DIAG D1 round2 VERIFIED; begin approved D2
+
+- `execution_phase: implementation`; `validation_state: pending` for D2.
+- [D1 reconciliation](validation/diagnostics/implementation/d1/verified-report.md):
+  Sol/Astra/Claude each VERIFIED9.7; both mandatory findings independently closed
+  at `409926b65d5a5d81590e9c3b06418a2ea12d343a`. Full raw reports and old evidence retained. Frozen identities,
+  pins and all17207 protected contents rechecked before this metadata-only step.
+- Existing [exact approval](approval/diagnostics.md) authorizes D2 after council
+  reconciliation. Implement only Chat diagnostics port, wrappers, metadata/
+  pure rendering, existing export/retrieval effects, package fixture/tests and
+  allowed README documentation. D1 source/tests and other packages stay frozen.
+- Six non-blocking advisories are recorded with dispositions; no extra D1 repair
+  loop. Document pinned-runner invocation, keep provenance/mutation limits honest,
+  and put new controller programs inside D2 scratch. No cleanup of git timestamps.
+- Freeze D2 for fresh Sol/Astra/Claude council before D3. D3 artifacts/installed
+  behavior, UAT, DIAG acceptance and external delivery remain pending.

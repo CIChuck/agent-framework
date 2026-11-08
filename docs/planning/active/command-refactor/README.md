@@ -16,13 +16,12 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: validation`; `validation_state: in_review` for DIAG D1 cycle1/round2.
-The [test-only correction](remediation/REM-CMD-DIAG-D1-001-test-coverage.md) is
-implemented at `e2f514a6`: all200 DIAG cases run under the seven named nodes;
-all38 bindings are checked. Full Commands/cohort478 passes; five targeted named
-mutants and all14 original mutants are refused. [Current evidence](validation/diagnostics/implementation/d1/test-coverage-fix-evidence.json)
-preserves historical round1 reports and runtime bytes. Fresh Sol/Astra/Claude
-round2 precedes D2; D2/D3 and human acceptance remain pending.
+`execution_phase: implementation`; `validation_state: pending` for DIAG D2.
+[D1 is independently VERIFIED](validation/diagnostics/implementation/d1/verified-report.md)
+at `409926b6` by Sol/Astra/Claude9.7 each, closing both mandatory test findings.
+The existing [exact approval](approval/diagnostics.md) now permits D2 Chat port,
+wrappers, metadata/rendering/file-effect projections, fixture and tests. Fresh
+D2 council precedes D3; installed proof and human acceptance remain pending.
 SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
@@ -108,8 +107,8 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Fresh Sol/Astra/Claude delta plus full bounded DIAG D1 round2;
-independently close the two mandatory test gaps and reconcile before D2.
+**Next gate:** Complete approved DIAG D2 Chat integration and tests, freeze its
+candidate and reconcile a fresh Sol/Astra/Claude council before D3.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

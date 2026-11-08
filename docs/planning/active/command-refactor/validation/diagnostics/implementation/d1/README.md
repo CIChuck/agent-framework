@@ -1,3 +1,14 @@
+# DIAG-001 D1 — independently VERIFIED
+
+Execution phase: closeout. Validation state: verified (bounded D1 only).
+[Council reconciliation](verified-report.md) records all three round2 members
+VERIFIED9.7 at `409926b6`, independently closing both findings.
+[Raw round2 reports](council-round2.json), [correction evidence](test-coverage-fix-evidence.json)
+and earlier checkpoints remain preserved. Approved D2 proceeds after controller
+reconciliation; DIAG acceptance and delivery are not granted.
+
+## Historical D1 correction and review checkpoints
+
 # DIAG-001 D1 — corrected test coverage, cycle1/round2
 
 Execution phase: validation. Validation state: in_review (fresh round2).

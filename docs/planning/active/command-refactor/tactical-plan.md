@@ -1,30 +1,27 @@
 # Shared command refactor — tactical plan
 
 Branch: `feature/command-retirement`
-Status: DIAG D1 test-only correction cycle1 frozen for fresh council round2
-Execution phase: validation
-Validation state: in_review (DIAG-001 D1 cycle1/round2); D2/D3 and acceptance pending
+Status: DIAG D1 VERIFIED; approved D2 Chat integration underway
+Execution phase: implementation
+Validation state: pending (DIAG-001 D2); D3 and acceptance pending
 
 ## Current DIAG-001 checkpoint
 
-[Remediation](remediation/REM-CMD-DIAG-D1-001-test-coverage.md) addresses the two
-mandatory gaps from the [round-one council](validation/diagnostics/implementation/d1/council-round1.json).
-All200 DIAG cases now execute under the seven exact named gates, with a
-[coverage map](validation/diagnostics/implementation/d1/test-coverage-map.json),
-all38 binding identities and explicit standalone source-origin checks.
+[D1 reconciliation](validation/diagnostics/implementation/d1/verified-report.md):
+all three fresh round2 reviewers VERIFIED9.7 and independently closed both test
+findings at `409926b6`. Frozen source and earlier reports remain preserved.
 
-[Correction evidence](validation/diagnostics/implementation/d1/test-coverage-fix-evidence.json):
-full478 and named200 pass; all five prior named-node survivors are now refused,
-all14 original mutants are refused again. Candidate-export offline lock,
-focused static/preservation checks pass. Only the new DIAG test changes outside
-docs against the reviewed base; 24 retained helper assertion bodies are AST-equal.
-Test source is `e2f514a66407bf5da9868e586ca6cdf30bdadefb`; runtime/models remain equal to `7cab1f0f`.
+The [exact approval](approval/diagnostics.md), [contract](diagnostics-command-contract.md)
+and [directive](directives/CD-CMD-DIAG-001-context-diagnostics.md) authorize D2:
+Chat diagnostics port/wrappers, pure rendering, exact metadata, existing file/
+retrieval effects and new package-local fixture/tests. Preserve all D1 code and
+old tests; only the two READMEs may receive allowed integration documentation.
 
-Next: fresh Sol/Astra/Claude delta plus full bounded D1 round2 and controller
-reconciliation before D2. Findings are implemented pending independent closure.
-D2 Chat wiring, D3 candidate installed proof, UAT and acceptance remain pending.
-Existing acceptances and failed/unwaived root debt remain retained; initiative
-stays started/local, without later-family/TUI/full-refactor or delivery approval.
+Next: complete D2 compatibility/delegation/effect/failure checks, freeze and
+obtain fresh Sol/Astra/Claude council before D3. D3 candidate artifacts/installed
+proof and human UAT/DIAG acceptance remain pending. Initiative stays started/local;
+known root debt remains failed/unwaived and prior acceptances remain retained.
+No later-family/TUI/full-refactor or external delivery is authorized.
 
 ### Preserved prior planning checkpoint
 

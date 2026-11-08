@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Fresh Sol/Astra/Claude DIAG D1 correction cycle1 round2; reconcile before D2
+  next_gate: DIAG D2 Chat integration under existing approval; fresh Sol/Astra/Claude council before D3
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -730,6 +730,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/session/implementation/d1/verified-report.md
   - docs/planning/active/command-refactor/validation/session/implementation/d2/verified-report.md
   - docs/planning/active/command-refactor/validation/session/implementation/d3/verified-report.md
+  - docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/verified-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2779,3 +2780,10 @@ events:
   action: froze corrected DIAG D1 test gates for council round2
   note: Full478/named200 pass; five prior named survivors now refused and all14 original mutants refused. Only new DIAG test changes outside docs; all38 bindings and standalone source origins checked. Findings pending fresh independent closure before D2.
   evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/test-coverage-fix-evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T21:00:13+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG D1 round2 VERIFIED; begin approved D2
+  note: Sol/Astra/Claude VERIFIED9.7 each, both mandatory test gaps closed. Existing exact approval permits D2 after reconciliation; D3/UAT/acceptance/delivery pending.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/verified-report.md
