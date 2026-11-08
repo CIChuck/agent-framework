@@ -16,13 +16,12 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: implementation`; `validation_state: pending` for DIAG D3.
-[D2 is independently VERIFIED](validation/diagnostics/implementation/d2/verified-report.md)
-at `b3ca2c85` by Sol/Astra/Claude (9.7/9.7/9.5), closing both findings.
-Existing approval permits full regression, clean candidate builds/replay and
-installed DIAG proof with retained pilot/SESSION checks. Fresh final aggregate
-council and bounded human acceptance remain pending. Ignored synthetic exports
-are preserved; no cleanup or delivery is authorized. SESSION-001 remains accepted and verified.
+`execution_phase: validation`; `validation_state: in_review` for DIAG D3 and its
+complete bounded aggregate. [D1/D2 verification](validation/diagnostics/implementation/d2/verified-report.md)
+is retained. [D3 builder evidence](validation/diagnostics/implementation/d3/README.md)
+records1971 source passes, two closed matching builds, actual installed probes
+and refusal controls. Fresh Sol/Astra/Claude final aggregate review and human
+acceptance remain pending. Ignored exports are preserved. SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
 [Bounded SESSION acceptance](approval/session-acceptance.md) is recorded from Chuck Russell's
@@ -107,7 +106,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Complete DIAG D3 candidate artifact/installed proof and fresh final aggregate council before human acceptance.
+**Next gate:** Reconcile fresh DIAG D3/full aggregate Sol/Astra/Claude round1 council, then bounded human acceptance.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

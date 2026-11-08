@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: DIAG D3 full regression, candidate artifact/replay/installed proof and fresh final Sol/Astra/Claude aggregate council before acceptance
+  next_gate: Reconcile DIAG D3/full aggregate Sol/Astra/Claude round1 council, then human bounded DIAG acceptance
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2816,3 +2816,10 @@ events:
   action: reconciled DIAG D2 round2 VERIFIED; begin D3
   note: All three closed both findings;9.7/9.7/9.5. Existing approval authorizes D3. Preserve ignored exports, dirty examples and D1/D2 bytes. Final aggregate council and human acceptance pending.
   evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-08T22:47:21+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze DIAG D3 artifact/installed proof for final aggregate council
+  note: 1971 source passes; matching154 artifacts/profile;8 actual installed probes,50 member/origin+4 semantic+10 archive refusals,8 clean copied probes. Acceptance/UAT/delivery pending.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/README.md

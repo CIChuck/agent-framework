@@ -1,0 +1,20 @@
+{
+  "original_sha256": "059c1e4e392de1e00853e4acaadfe97f7a1eefe3f4d1de412ebf4970f07f15cd",
+  "original_body_equal_after_only_rename_and_literal_append": true,
+  "appended_exports": [
+    "DiagnosticField",
+    "ContextData",
+    "PromptData",
+    "DebugTurnData",
+    "DebugData",
+    "BudgetData",
+    "TimingCounter",
+    "TimingTurnData",
+    "TimingData",
+    "RetrievalData",
+    "RetrievalUnavailableData",
+    "DIAGNOSTIC_SPECS",
+    "DiagnosticsPort",
+    "build_diagnostic_handlers"
+  ]
+}

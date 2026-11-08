@@ -1707,3 +1707,30 @@ has been executed or accepted through this documentation change.
   optimization modes, with retained pilot/SESSION semantics and no spoofed API.
 - Fresh final D3 plus bounded aggregate council precedes human acceptance. UAT,
   later families, P0/P1, full-refactor/TUI and all external delivery remain pending.
+
+
+## 2026-11-08T22:47:21.352859+00:00 — DIAG D3 and complete bounded aggregate frozen for council
+
+- `execution_phase: validation`; `validation_state: in_review` (round1).
+- Artifact/probe source `30790ec0f06813e7331c851d04c123997a398d97`; D3 base `d437a5dc601126ae0767cf6558ae63d214159c19`.
+  All package/test/root-metadata/lock bytes remain equal to D2 source54e35947.
+  The1255 original files/281 tests,3042 definitions/9400 assertions and ignored
+  exports are preserved. Aggregate12 permitted package paths; approved old
+  SESSION literal14-name append and neutral schema expansion AST-audited.
+- Full Chat1338 + Commands/cohort478 + CLI155 =1971 pass. Focused lint,8-file
+  format,11-source mypy, guard/comparator and clean-source68+4/25/196 captures
+  pass. Root Ruff534, test_display conflict and registry format stay failed/
+  unwaived. Two closed13-workspace/125-input trials match154 actual artifact
+  hashes and profile hashes; default138 names/versions equal accepted SESSION.
+- Eight actual pilot/DIAG installed probes pass normal/-O in both lanes; retained
+  SESSION function/body/helper hashes checked without spoofing the old24-export
+  gate. Complete70-source/152-sdist inventories, parent/entry child origins,
+  per-dispatch canonical calls and consumed outcomes pass.50 member/origin,
+ 4 semantic engine and10 archive refusals have exact RuntimeError attribution;
+ 8 restored copied probes and precise prebuild/source refusal controls pass.
+- Earlier probe-generation indentation and incorrect catalog-order expectation,
+  prototype bundles and development runs are historical only. Current final
+  artifacts/probe use the exact revision above; no failed setup earns credit.
+- Only six DIAG PAR rows gain bounded builder proof. Fresh Sol/Astra/Claude D3
+  plus full bounded DIAG aggregate review precedes human acceptance. UAT,
+  later families/P0/P1/full-refactor/TUI and all delivery remain pending.

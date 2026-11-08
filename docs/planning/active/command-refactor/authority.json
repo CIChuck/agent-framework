@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "DIAG D2 independently VERIFIED by all three; begin approved D3 artifact/installed proof",
+  "decision": "DIAG D3 full regression/artifact/installed proof implemented; final aggregate council round1 pending",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "DIAG D3 full regressions, candidate builds/replay and installed aggregate proof; acceptance pending",
+  "current_scope": "DIAG D3 and complete bounded aggregate validation/in_review; acceptance and delivery pending",
   "product_code_authority": "Exact DIAG approval remains effective; no acceptance or external delivery",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -734,7 +734,7 @@
     "validation_state": "in_review",
     "design_approval": "granted_by_subsequent_exact_record",
     "construction_approval": "granted_by_subsequent_exact_record",
-    "implementation": "Preparation-era receipts retained; D1 verified and D2 in review under diagnostics_construction",
+    "implementation": "Preparation-era receipts retained; current D1/D2 verified and D3 in review under diagnostics_construction",
     "lightweight_exemption": "Maintainer proceed authorizes planning/evidence/current-state preparation and guarded synthetic source characterization only; product/test/config/dependency/lock behavior cannot change. Controller verifies protected hashes, embedded evidence, docs/board and whitespace.",
     "council_after_each_deliverable": true,
     "council_members": [
@@ -763,10 +763,10 @@
     "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
     "product_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
     "controller_start": "d0c729f43534bb79a3db70852ec08028ddb631ec",
-    "state": "implementation",
-    "execution_phase": "implementation",
-    "validation_state": "pending",
-    "current_deliverable": "D3 regression, artifact and installed proof",
+    "state": "validation",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
+    "current_deliverable": "D3 and complete bounded DIAG aggregate",
     "deliverable1": {
       "state": "verified",
       "round": 2,
@@ -826,8 +826,33 @@
       "report": "validation/diagnostics/implementation/d2/verified-report.md"
     },
     "deliverable3": {
-      "state": "implementation",
-      "next_gate": "Fresh Sol/Astra/Claude final D3 and complete bounded DIAG aggregate council, then human acceptance"
+      "state": "in_review",
+      "round": 1,
+      "base": "d437a5dc601126ae0767cf6558ae63d214159c19",
+      "aggregate_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
+      "artifact_source": "30790ec0f06813e7331c851d04c123997a398d97",
+      "probe": "validation/diagnostics/installed_probe.py",
+      "probe_sha256": "793872303d93e34d06532b9ae7d1320537704664ecfca5d35d3488b338529198",
+      "evidence": "validation/diagnostics/implementation/d3/evidence.json",
+      "source_tests": {
+        "Chat": 1338,
+        "Commands_cohort": 478,
+        "CLI": 155,
+        "total": 1971
+      },
+      "workspace_builds_each": 13,
+      "locked_inputs": 125,
+      "matching_actual_artifact_hashes": 154,
+      "default_Chat_closure": 138,
+      "neutral_closure": 1,
+      "installed_probes": 8,
+      "installed_member_origin_refusals": 50,
+      "semantic_engine_refusals": 4,
+      "archive_refusals": 10,
+      "prebuild_extra_source_refusal": 1,
+      "restored_copied_probes": 8,
+      "acceptance": "not_granted",
+      "next_gate": "Fresh Sol/Astra/Claude D3 and complete bounded DIAG aggregate council, then human acceptance"
     },
     "council_after_each_deliverable": true,
     "council_members": [
@@ -840,6 +865,7 @@
     "construction_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
     "product_source": "54e35947f8ee157ddab0b50f7e9e9e1db415f0ae",
     "original_product_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
-    "runtime_model_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b"
+    "runtime_model_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
+    "artifact_source": "30790ec0f06813e7331c851d04c123997a398d97"
   }
 }

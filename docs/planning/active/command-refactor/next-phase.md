@@ -1,23 +1,30 @@
-# DIAG-001 — D3 construction checkpoint
+# DIAG-001 — final construction validation checkpoint
 
 Branch: `feature/command-retirement`
-Execution phase: implementation
-Validation state: pending (D3); D1/D2 independently verified
+Execution phase: validation
+Validation state: in_review (D3 and complete bounded aggregate, round 1)
 
-[D2 reconciliation](validation/diagnostics/implementation/d2/verified-report.md):
-Sol/Astra/Claude VERIFIED9.7/9.7/9.5, both findings closed at `b3ca2c85`.
-No additional approval is needed for D3 under the existing exact directive.
+D1/D2 are independently verified; [D3 builder evidence](validation/diagnostics/implementation/d3/README.md)
+now binds source/probe `30790ec0f06813e7331c851d04c123997a398d97`. No package/test/metadata/lock
+bytes changed during D3. All 1255 original non-doc files and 281 tests retain
+bytes, with 3042 test-prefixed definitions and 9400 assertions. The aggregate
+has exactly 12 permitted package paths; old SESSION test only appends 14 literal
+exports and old contract AST is retained except approved additions.
 
-Keep D1/D2 product/test bytes frozen. Implement only the new installed DIAG
-probe and evidence/status/PAR records. Retain accepted helper hashes and SESSION
-semantics with only the approved neutral export-list append. Run full owning
-regressions, closed candidate bundle/replay, actual isolated normal/optimized
-installed probes and inventory/origin/archive refusal controls. Preserve ignored
-exports and both dirty examples. Root debt stays failed/unwaived.
+Fresh full suites: Chat 1338, Commands/cohort 478, CLI 155 (1971 total). Two closed
+builds each have 13 workspace builds/125 locked inputs and identical 154 artifact
+and profile hashes. Neutral closure 1; default Chat 138 equals accepted names/
+versions. Eight actual installed pilot/DIAG probes pass across two lanes/modes,
+retaining SESSION checks without spoofing old 24-name proof. Source inventories
+cover 70 files; sdists 152 members.50 member/origin,4 semantic-engine and 10 archive
+refusals, precise prebuild/source controls and 8 restored copied probes pass.
 
-Then freeze fresh Sol/Astra/Claude D3 plus complete bounded DIAG aggregate council,
-reconcile all mandatory findings and stop for human acceptance. UAT remains
-unperformed; later families, P0/P1, full-refactor/TUI and delivery stay separate.
+Reconcile fresh Sol/Astra/Claude D3 plus full DIAG aggregate council, then stop
+for bounded human acceptance. UAT is not run. Six DIAG PAR rows gain only bounded
+builder evidence; remaining families, P0/P1, TUI/full-refactor and delivery stay
+open. Root Ruff 534, sole test_display conflict and registry format are failed/
+unwaived. Prototype syntax and registry-order probe errors are historical only;
+all final proof uses the exact source/probe revision above.
 
 ### Preserved prior planning checkpoint
 

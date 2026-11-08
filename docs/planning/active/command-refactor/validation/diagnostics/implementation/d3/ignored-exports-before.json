@@ -1,0 +1,28 @@
+{
+  "exports": {
+    "type": 16384,
+    "mode": 493,
+    "size": 128,
+    "mtime_ns": 1794172873430987983,
+    "ctime_ns": 1794172873430987983,
+    "birthtime": 1794172873.430393
+  },
+  "exports/friday_context.txt": {
+    "type": 32768,
+    "mode": 420,
+    "size": 6,
+    "mtime_ns": 1794173419969663853,
+    "ctime_ns": 1794173419969663853,
+    "birthtime": 1794172873.4304848,
+    "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+  },
+  "exports/friday_prompt.txt": {
+    "type": 32768,
+    "mode": 420,
+    "size": 6,
+    "mtime_ns": 1794173419970166478,
+    "ctime_ns": 1794173419970166478,
+    "birthtime": 1794172873.4309843,
+    "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+  }
+}
