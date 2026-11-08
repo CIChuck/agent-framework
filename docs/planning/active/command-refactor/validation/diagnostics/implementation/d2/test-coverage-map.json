@@ -1,0 +1,79 @@
+{
+  "DG-T08": {
+    "node": "test_diagnostic_metadata_and_frozen_cases",
+    "cases": 1,
+    "assertions": [
+      "Exact package-local fixture hash and all six seven-field metadata projections",
+      "41 canonical names, three aliases and tuple39",
+      "72 DIAG scenarios with68 exact/four approved cache refusals, event/file/error comparison",
+      "25 SESSION rows and five canonical pilot group digests covering196 observations"
+    ],
+    "line": 904
+  },
+  "DG-T09": {
+    "node": "test_diagnostic_once_only_delegation",
+    "cases": 6,
+    "assertions": [
+      "One parse/factory/await and original parsed tuple supplied to CommandRequest",
+      "Fixed canonical shared spec identity, consumed distinct injected data for all six",
+      "Direct wrapper no parse, zero port-construction reads, bad args before factory/context",
+      "Differing supplied context registry, renamed wrapper and authoritative custom handler"
+    ],
+    "line": 952
+  },
+  "DG-T10": {
+    "node": "test_diagnostic_projection_order_and_failures",
+    "cases": 11,
+    "assertions": [
+      "Cached/fallback exact traces, four approved refusals and falsy fallback",
+      "Sorted original keys before one-time formatting to plain strings; immutable detached data",
+      "Debug/telemetry repeated reads/last turn/lazy branches, no counters in debug",
+      "Budget reads both before formatting; zero/negative/dynamic empty-formatted values",
+      "Timing .3f/counter order, mixed keys, malformed history/read/format failures and exception identity"
+    ],
+    "line": 1107
+  },
+  "DG-T11": {
+    "node": "test_diagnostic_exports_fixed_bytes_and_failures",
+    "cases": 12,
+    "assertions": [
+      "Actual configured/default private cwd directory creation, exact UTF-8 fixed filenames/overwrite",
+      "Context count before export request, debug bytes, actual path/footer/no trailing newline",
+      "Ignored filename/repeated flags; one write/export request; absent flag makes no file effects",
+      "mkdir/write OSError and write CancelledError identity; no success or rollback, partial bytes retained"
+    ],
+    "line": 1346
+  },
+  "DG-T12": {
+    "node": "test_diagnostic_retrieval_projection_and_await",
+    "cases": 9,
+    "assertions": [
+      "Runtime-before-usage, first/second runtime reads and second-read None failure",
+      "Original whitespace/quote/slash query joined without reinterpretation; one public await",
+      "Event-controlled pending/cancel/failure and response-get failure identity with cleanup",
+      "Dict/list/subclasses vs ignored containers; count before sorted formatting/slice/previews",
+      "Total count12 vs first ten previews,160-character Unicode/control normalization/ellipsis, one str per selected snippet"
+    ],
+    "line": 1471
+  },
+  "DG-T13": {
+    "node": "test_diagnostic_adapter_refusals_and_purity",
+    "cases": 1,
+    "assertions": [
+      "Exactly seven variants, pure exact output/result defaults",
+      "Subclasses/arbitrary/old payloads, outcome subclass, errors/effects refused",
+      "No services/files/shared factory calls during rendering"
+    ],
+    "line": 1640
+  },
+  "DG-T14": {
+    "node": "test_diagnostic_real_app_sequence",
+    "cases": 1,
+    "assertions": [
+      "Real fake-runtime app conversational turn then all six diagnostics and two file exports",
+      "History/clear/history/cls/q; fixed bytes/path with context debug",
+      "Shared invocation counts, output/effect/memory/exit/cleanup order, distinct cleared history/display"
+    ],
+    "line": 1735
+  }
+}

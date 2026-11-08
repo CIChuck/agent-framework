@@ -1,0 +1,420 @@
+{
+  "control": {
+    "exit": 0,
+    "counts": {
+      "passed": 519,
+      "failed": 0,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/control/result.json"
+  },
+  "extra-export": {
+    "exit": 1,
+    "counts": {
+      "passed": 517,
+      "failed": 2,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_specs_exports_and_factory",
+      "packages/friday-commands/tests_commands/test_session_views.py::test_session_specs_and_factory_are_immutable"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/extra-export/result.json"
+  },
+  "drop-export": {
+    "exit": 1,
+    "counts": {
+      "passed": 517,
+      "failed": 2,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_specs_exports_and_factory",
+      "packages/friday-commands/tests_commands/test_session_views.py::test_session_specs_and_factory_are_immutable"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/drop-export/result.json"
+  },
+  "reorder-export": {
+    "exit": 1,
+    "counts": {
+      "passed": 517,
+      "failed": 2,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_specs_exports_and_factory",
+      "packages/friday-commands/tests_commands/test_session_views.py::test_session_specs_and_factory_are_immutable"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/reorder-export/result.json"
+  },
+  "duplicate-export": {
+    "exit": 1,
+    "counts": {
+      "passed": 517,
+      "failed": 2,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_specs_exports_and_factory",
+      "packages/friday-commands/tests_commands/test_session_views.py::test_session_specs_and_factory_are_immutable"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/duplicate-export/result.json"
+  },
+  "eager-factory": {
+    "exit": 1,
+    "counts": {
+      "passed": 421,
+      "failed": 98,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_projection_order_and_failures[fallback]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[runtime-second]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_specs_exports_and_factory",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_invocation_validation_order[context]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_invocation_validation_order[prompt]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_invocation_validation_order[debug]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_invocation_validation_order[debug-budget]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_invocation_validation_order[timing]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_invocation_validation_order[debug-retrieval]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-4]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-5]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-6]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-7]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-8]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-9]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-10]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-11]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-12]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-13]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-14]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-15]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_length_precedes_export-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_selected_text_fails_before_export-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_selected_text_fails_before_export-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_selected_text_fails_before_export-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_selected_text_fails_before_export-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_selected_text_fails_before_export-4]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_selected_text_fails_before_export-5]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_selected_text_fails_before_export-6]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_selected_text_fails_before_export-7]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_selected_text_fails_before_export-8]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_selected_text_fails_before_export-9]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-4]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-5]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-6]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-7]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-8]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-9]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[character_count_failure_prevents_export-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[character_count_failure_prevents_export-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[port_failures_propagate_once-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[port_failures_propagate_once-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[port_failures_propagate_once-4]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[port_failures_propagate_once-5]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[port_failures_propagate_once-6]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[port_failures_propagate_once-7]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_snapshots_once[diagnostic_snapshots_once-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_snapshots_once[diagnostic_snapshots_once-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_snapshots_once[diagnostic_snapshots_once-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_snapshots_once[port_failures_propagate_once-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_snapshots_once[port_failures_propagate_once-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_snapshots_once[port_failures_propagate_once-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_snapshots_once[port_failures_propagate_once-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_snapshots_once[port_failures_propagate_once-4]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_snapshots_once[port_failures_propagate_once-5]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_precedence_and_await-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_precedence_and_await-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_precedence_and_await-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_precedence_and_await-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_precedence_and_await-4]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_availability_requires_exact_bool-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_availability_requires_exact_bool-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_availability_requires_exact_bool-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_availability_requires_exact_bool-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_availability_requires_exact_bool-4]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[invalid_retrieval_result-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[invalid_retrieval_result-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[invalid_retrieval_result-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[invalid_retrieval_result-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_pending_and_cancellation-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_pending_and_cancellation-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[port_failures_propagate_once-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[port_failures_propagate_once-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[port_failures_propagate_once-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[port_failures_propagate_once-3]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/eager-factory/result.json"
+  },
+  "double-export": {
+    "exit": 1,
+    "counts": {
+      "passed": 506,
+      "failed": 13,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[configured-context]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[default-context]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-4]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-5]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-7]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_length_precedes_export-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[invalid_export_path_fails_without_repair-4]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/double-export/result.json"
+  },
+  "count-after-export": {
+    "exit": 1,
+    "counts": {
+      "passed": 510,
+      "failed": 9,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[configured-context]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[default-context]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_real_app_sequence",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-4]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-5]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_length_precedes_export-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[character_count_failure_prevents_export-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[character_count_failure_prevents_export-1]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/count-after-export/result.json"
+  },
+  "case-insensitive-flags": {
+    "exit": 1,
+    "counts": {
+      "passed": 517,
+      "failed": 2,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_context_prompt_flags_and_export_order[context_prompt_flags_and_export_order-6]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/case-insensitive-flags/result.json"
+  },
+  "usage-before-runtime": {
+    "exit": 1,
+    "counts": {
+      "passed": 508,
+      "failed": 11,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[precedence]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_precedence_and_await-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_precedence_and_await-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_availability_requires_exact_bool-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_availability_requires_exact_bool-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_availability_requires_exact_bool-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_availability_requires_exact_bool-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_availability_requires_exact_bool-4]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[port_failures_propagate_once-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[port_failures_propagate_once-1]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/usage-before-runtime/result.json"
+  },
+  "double-retrieval": {
+    "exit": 1,
+    "counts": {
+      "passed": 506,
+      "failed": 13,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[projection]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[containers]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[subclasses]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[pending]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_precedence_and_await-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_precedence_and_await-4]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[invalid_retrieval_result-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[invalid_retrieval_result-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[invalid_retrieval_result-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[invalid_retrieval_result-3]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_pending_and_cancellation-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_is_awaited_exactly_once-0]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/double-retrieval/result.json"
+  },
+  "unawaited-retrieval": {
+    "exit": 1,
+    "counts": {
+      "passed": 497,
+      "failed": 22,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_diagnostic_invocation_validation_order[debug-retrieval]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[invalid_retrieval_result-0]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[invalid_retrieval_result-1]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[invalid_retrieval_result-2]",
+      "packages/friday-commands/tests_commands/test_diagnostics.py::test_retrieval_precedence_and_await[retrieval_is_awaited_exactly_once-0]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/unawaited-retrieval/result.json"
+  },
+  "host-missing-sort": {
+    "exit": 1,
+    "counts": {
+      "passed": 516,
+      "failed": 3,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_projection_order_and_failures[debug-turn]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_projection_order_and_failures[mixed]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/host-missing-sort/result.json"
+  },
+  "numeric-zero-budget": {
+    "exit": 1,
+    "counts": {
+      "passed": 517,
+      "failed": 2,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_projection_order_and_failures[budget]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/numeric-zero-budget/result.json"
+  },
+  "premature-key-stringification": {
+    "exit": 1,
+    "counts": {
+      "passed": 517,
+      "failed": 2,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_projection_order_and_failures[mixed]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/premature-key-stringification/result.json"
+  },
+  "preview-cap-nine": {
+    "exit": 1,
+    "counts": {
+      "passed": 516,
+      "failed": 3,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[projection]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[pending]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/preview-cap-nine/result.json"
+  },
+  "preview-count-ten": {
+    "exit": 1,
+    "counts": {
+      "passed": 516,
+      "failed": 3,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[projection]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[pending]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/preview-count-ten/result.json"
+  },
+  "double-formatting": {
+    "exit": 1,
+    "counts": {
+      "passed": 515,
+      "failed": 4,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_projection_order_and_failures[format]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_projection_order_and_failures[budget]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[projection]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[pending]"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/double-formatting/result.json"
+  },
+  "ignored-injected-outcome": {
+    "exit": 1,
+    "counts": {
+      "passed": 498,
+      "failed": 21,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_metadata_and_frozen_cases",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[context]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[prompt]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[debug]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[debug-budget]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[timing]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[debug-retrieval]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_projection_order_and_failures[cache]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_projection_order_and_failures[fallback]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[configured-context]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[configured-prompt]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[default-context]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[default-prompt]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[no-flag-context]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[no-flag-prompt]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[precedence]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[projection]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[containers]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[subclasses]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_retrieval_projection_and_await[pending]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_real_app_sequence"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/ignored-injected-outcome/result.json"
+  },
+  "legacy-engine": {
+    "exit": 1,
+    "counts": {
+      "passed": 500,
+      "failed": 19,
+      "skipped": 0
+    },
+    "assertion_witness_nodes": [
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[context]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[prompt]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[debug]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[debug-budget]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[timing]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_once_only_delegation[debug-retrieval]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_projection_order_and_failures[cache]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[configured-prompt]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[default-prompt]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[mkdir-failure-context]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[mkdir-failure-prompt]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[write-failure-context]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[write-failure-prompt]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[write-cancel-context]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_exports_fixed_bytes_and_failures[write-cancel-prompt]",
+      "packages/friday-chat/tests_chat/test_command_diagnostics.py::test_diagnostic_real_app_sequence"
+    ],
+    "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d2-x9gxe0dh/mutants-verified/legacy-engine/result.json"
+  }
+}

@@ -1,27 +1,31 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: DIAG D1 VERIFIED; approved D2 Chat integration underway
-Execution phase: implementation
-Validation state: pending (DIAG-001 D2); D3 and acceptance pending
+Status: DIAG D2 Chat integration in independent council validation
+Execution phase: validation
+Validation state: in_review (DIAG D2 round1); D3 and acceptance pending
 
 ## Current DIAG-001 checkpoint
 
-[D1 reconciliation](validation/diagnostics/implementation/d1/verified-report.md):
-all three fresh round2 reviewers VERIFIED9.7 and independently closed both test
-findings at `409926b6`. Frozen source and earlier reports remain preserved.
+[D1 reconciliation](validation/diagnostics/implementation/d1/verified-report.md)
+is VERIFIED. [D2 evidence](validation/diagnostics/implementation/d2/README.md)
+records typed Chat projection/rendering, fixed exports and one shared invocation
+for context, prompt, debug, debug-budget, timing and debug-retrieval.
+Product/test source: `5d98b32878212e4d2b0d3ca6b39bb28bda5c6f84`; D2 base: `559c86a22651ca99fc4560a5ef40d7b6f2ea2f4f`.
 
-The [exact approval](approval/diagnostics.md), [contract](diagnostics-command-contract.md)
-and [directive](directives/CD-CMD-DIAG-001-context-diagnostics.md) authorize D2:
-Chat diagnostics port/wrappers, pure rendering, exact metadata, existing file/
-retrieval effects and new package-local fixture/tests. Preserve all D1 code and
-old tests; only the two READMEs may receive allowed integration documentation.
+Seven exact DG-T08–14 nodes carry 41 cases. Commands478, D2-fast538,
+D3-fast166, full Chat1338 and CLI155 pass. Clean-source captures establish
+68 exact DIAG rows + four approved cache refusals, SESSION25 and pilot196.
+Nineteen private mutants have call-phase assertion witnesses and canonical
+origin/hash receipts; unchanged combined control passes519. Earlier test-double,
+lint and mutation-credit attempts remain historical.
 
-Next: complete D2 compatibility/delegation/effect/failure checks, freeze and
-obtain fresh Sol/Astra/Claude council before D3. D3 candidate artifacts/installed
-proof and human UAT/DIAG acceptance remain pending. Initiative stays started/local;
-known root debt remains failed/unwaived and prior acceptances remain retained.
-No later-family/TUI/full-refactor or external delivery is authorized.
+The existing [exact approval](approval/diagnostics.md) remains effective.
+Reconcile fresh Sol/Astra/Claude round1 before D3. D3 current candidate builds,
+replay and installed DIAG proof, human UAT and bounded acceptance stay pending.
+Known root Ruff534/root collection test_display conflict/registry formatting
+remain failed and unwaived. Initiative stays started/local. No later-family,
+TUI, full-refactor or external delivery is authorized.
 
 ### Preserved prior planning checkpoint
 

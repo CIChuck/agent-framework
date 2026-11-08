@@ -1613,3 +1613,30 @@ has been executed or accepted through this documentation change.
   and put new controller programs inside D2 scratch. No cleanup of git timestamps.
 - Freeze D2 for fresh Sol/Astra/Claude council before D3. D3 artifacts/installed
   behavior, UAT, DIAG acceptance and external delivery remain pending.
+
+
+## 2026-11-08T21:22:44.421938+00:00 — DIAG D2 Chat integration frozen for council round1
+
+- `execution_phase: validation`; `validation_state: in_review` (DIAG D2).
+- Base `559c86a22651ca99fc4560a5ef40d7b6f2ea2f4f`; product/test source `5d98b32878212e4d2b0d3ca6b39bb28bda5c6f84`.
+  [D2 packet](validation/diagnostics/implementation/d2/README.md) records the six
+  permitted package paths. D1 source/tests and prior authorities/evidence remain
+  frozen; both dirty example configurations are preserved and unstaged.
+- Shared handlers own flags, export order and retrieval precedence/await. Chat
+  retains exact projection/read/format order, pure presentation and fixed file
+  effects. The three moved helper ASTs, other33 specs, parser/admission/dispatch
+  and handler map are unchanged. No metadata/dependency/lock/runtime changes.
+- All DG-T08–14 assertions run under their seven exact names (41 cases).
+  Commands478, D2-fast538, D3-fast166, Chat1338 and CLI155 pass; eleven-source
+  mypy and focused lint/format pass. Root Ruff534, root test_display conflict
+  and legacy registry format remain failed/unwaived; root collection6909.
+- Clean Git captures: 68 exact DIAG rows + four approved cache refusals,
+  SESSION25 and pilot196. In-process tests normalize only the macOS export-root
+  alias; fixture bytes remain exact. Candidate-export offline lock passes.
+- Private controls prove nineteen declared regressions through call-phase
+  assertions, with unchanged519 control and stable canonical module roots/hashes.
+  D1 standalone subprocesses use the intended repository source, so only the
+  in-process witnesses earn mutation credit. Historical attempts earn no credit.
+- Fresh Sol/Astra/Claude D2 council is next; reconcile all reports before D3.
+  D3 candidate artifact/installed proof, UAT, human acceptance and delivery remain
+  pending. No additional construction approval is required within this directive.

@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "DIAG D1 independently VERIFIED by Sol/Astra/Claude9.7; both findings closed; proceed to approved D2",
+  "decision": "DIAG D1 verified; D2 Chat integration frozen for Sol/Astra/Claude round1, D3 and acceptance pending",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "DIAG D2 Chat diagnostics integration/tests under existing exact approval; D3 and acceptance pending",
-  "product_code_authority": "Exact DIAG construction approval retained; D1 council reconciled, D2 authorized; no acceptance/delivery",
+  "current_scope": "DIAG D2 validation/in_review under existing exact approval; reconcile council before D3",
+  "product_code_authority": "Exact DIAG approval remains effective; no acceptance or external delivery",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -730,11 +730,11 @@
     "directive_sha256": "1a9a506020b8d5faa0b864c053b1085e8f8c15c8feab8a4c0f59d4293677ee47",
     "preparation_evidence": "validation/diagnostics/preparation.json",
     "preparation_evidence_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
-    "execution_phase": "implementation",
-    "validation_state": "pending",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
     "design_approval": "granted_by_subsequent_exact_record",
     "construction_approval": "granted_by_subsequent_exact_record",
-    "implementation": "D1 independently verified; D2 active under diagnostics_construction; preparation evidence remains historical",
+    "implementation": "Preparation-era receipts retained; D1 verified and D2 in review under diagnostics_construction",
     "lightweight_exemption": "Maintainer proceed authorizes planning/evidence/current-state preparation and guarded synthetic source characterization only; product/test/config/dependency/lock behavior cannot change. Controller verifies protected hashes, embedded evidence, docs/board and whitespace.",
     "council_after_each_deliverable": true,
     "council_members": [
@@ -763,9 +763,9 @@
     "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
     "product_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
     "controller_start": "d0c729f43534bb79a3db70852ec08028ddb631ec",
-    "state": "implementation",
-    "execution_phase": "implementation",
-    "validation_state": "pending",
+    "state": "validation",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
     "current_deliverable": "D2 Chat diagnostics integration",
     "deliverable1": {
       "state": "verified",
@@ -792,8 +792,24 @@
       "acceptance": "not_granted"
     },
     "deliverable2": {
-      "state": "implementation",
-      "next_gate": "Fresh Sol/Astra/Claude D2 council before D3"
+      "state": "in_review",
+      "round": 1,
+      "base": "559c86a22651ca99fc4560a5ef40d7b6f2ea2f4f",
+      "product_source": "5d98b32878212e4d2b0d3ca6b39bb28bda5c6f84",
+      "evidence": "validation/diagnostics/implementation/d2/evidence.json",
+      "named_nodes": 7,
+      "new_cases": 41,
+      "Commands_cohort": 478,
+      "D2_fast": 538,
+      "D3_fast": 166,
+      "full_Chat": 1338,
+      "full_CLI": 155,
+      "DIAG_observations": "68 exact rows + four approved cache refusals",
+      "SESSION_observations": 25,
+      "pilot_observations": 196,
+      "mutant_refusals": 19,
+      "next_gate": "Reconcile all three fresh D2 council reports before D3",
+      "acceptance": "not_granted"
     },
     "deliverable3": {
       "state": "pending"
@@ -807,7 +823,7 @@
     "acceptance": "not_granted",
     "delivery": "local only",
     "construction_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
-    "product_source": "e2f514a66407bf5da9868e586ca6cdf30bdadefb",
+    "product_source": "5d98b32878212e4d2b0d3ca6b39bb28bda5c6f84",
     "original_product_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
     "runtime_model_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b"
   }
