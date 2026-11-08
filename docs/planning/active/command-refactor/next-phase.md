@@ -1,25 +1,25 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: SESSION-001 D1–D3 and bounded aggregate VERIFIED; human acceptance pending
+Status: SESSION-001 D1–D3 and bounded aggregate VERIFIED and accepted
 Execution phase: closeout
-Validation state: verified (SESSION-001); initiative remains started/local
+Validation state: verified (accepted SESSION-001); broader initiative remains started/local
 
-## Current next steps
+## Current checkpoint and next gate
 
-1. Review the [SESSION acceptance handoff](validation/session/implementation/d3/verified-report.md).
-   Sol 9.7, Astra 9.7 and Claude 9.6 independently VERIFIED reviewed candidate 112e657f,
-   with no mandatory findings. Astra's invalid first execution is preserved;
-   its fresh full isolation reissue supplies current signoff.
-2. Chuck Russell decides bounded SESSION-001 acceptance (`/history`, `/clear`).
-   Construction approval and independent verification do not record acceptance.
-3. After an explicit decision, record it separately. A next family requires its
-   own authorized scope/directive; no delivery or new unit starts automatically.
+Chuck Russell [accepted SESSION-001](approval/session-acceptance.md) after Sol 9.7,
+Astra 9.7 and Claude 9.6 independently VERIFIED candidate `112e657f` with no
+mandatory findings. D1–D3, all 1730 scoped tests, 25 SESSION/196 pilot observations,
+clean matching artifacts and installed normal/optimized proof are complete.
+Historical invalid Astra execution and its successful fresh reissue remain recorded.
 
-All 1730 scoped tests, 25 SESSION/196 pilot observations, two matching closed builds
-and installed normal/optimized proof pass. Known root debt remains unwaived.
-The [remaining council roster](approval/council-roster.md) is Sol/Astra/Claude.
-PILOT stays accepted; the broader initiative, P0/P1 and TUI remain open.
+Await maintainer direction for the next bounded unit. Its scope/contract/directive
+requires separate approval before construction; acceptance starts no new unit or
+external delivery automatically. The [council roster](approval/council-roster.md)
+remains Sol/Astra/Claude. Known root debt remains failed/unwaived.
+
+PILOT and SESSION are accepted internal units. The overall initiative, remaining
+families, P0/P1, TUI and full-refactor acceptance remain open; delivery stays local.
 
 ## Historical checkpoints
 

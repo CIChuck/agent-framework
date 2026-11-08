@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "SESSION D1\u2013D3 and complete bounded aggregate independently VERIFIED; bounded maintainer acceptance pending",
+  "decision": "SESSION-001 D1\u2013D3 and bounded aggregate VERIFIED and accepted by Chuck Russell",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "SESSION-001 closeout/verified; acceptance handoff only, no later-family or delivery work",
-  "product_code_authority": "Exact SESSION construction approval exercised through D1\u2013D3; independently verified and awaiting bounded human acceptance. No additional unit or delivery authority.",
+  "current_scope": "Accepted SESSION-001 closeout; await separate maintainer direction for a next bounded unit",
+  "product_code_authority": "SESSION-001 construction completed, independently verified and accepted. No new family or external delivery authority.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -529,7 +529,7 @@
     "preparation_evidence_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "design_approval": "granted_by_subsequent_exact_approval",
     "construction_approval": "granted_by_subsequent_exact_approval",
-    "product_implementation": "D1\u2013D3 and complete bounded SESSION aggregate independently verified; maintainer acceptance pending",
+    "product_implementation": "SESSION-001 D1\u2013D3 and bounded aggregate independently verified and accepted; preparation fields remain historical",
     "tests": "Historical preparation-era observations are preserved in historical_preparation_tests; current D1/D2 conformance is recorded in session_construction.",
     "pilot_acceptance": "approval/pilot-acceptance.md",
     "delivery": "local only",
@@ -547,8 +547,8 @@
     "directive_sha256": "1fd4b3cf0a2de5ad180e9c3c3d06e7bb5d239bb3516ccca60fb7376041a96b46",
     "preparation_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "product_baseline": "38a0c58a0b533edc29908992c8c6ee64fa04eb20",
-    "state": "verified_awaiting_maintainer_acceptance",
-    "current_deliverable": "D1\u2013D3 complete; bounded SESSION acceptance handoff",
+    "state": "accepted",
+    "current_deliverable": "SESSION D1\u2013D3 accepted; next unit requires separate authority",
     "council_after_each_deliverable": true,
     "council_members": [
       "GPT-6.1 Sol/high",
@@ -562,7 +562,7 @@
       "source_revision": "4065a150cbfcacbcf71c6aab05e05d2920bf48e5",
       "S0": "passed scoped baseline; known root debt remains failed/unwaived",
       "gate": "D1 council reconciled; proceed to already-approved D2",
-      "acceptance": "not_granted",
+      "acceptance": "granted_by_SESSION_unit_acceptance",
       "council_round1": {
         "candidate": "363d67a4f26ef49ab83b1ebb5b06c9ab143d2b31",
         "outcome": "CHANGES_REQUESTED",
@@ -596,7 +596,8 @@
         },
         "record": "validation/session/implementation/d1/council-round2.json"
       },
-      "verified_report": "validation/session/implementation/d1/verified-report.md"
+      "verified_report": "validation/session/implementation/d1/verified-report.md",
+      "acceptance_record": "approval/session-acceptance.md"
     },
     "deliverable2": {
       "state": "verified",
@@ -606,7 +607,7 @@
       "evidence": "validation/session/implementation/d2/evidence.json",
       "council_round": 1,
       "gate": "D2 council reconciled; proceed to approved D3",
-      "acceptance": "not_granted",
+      "acceptance": "granted_by_SESSION_unit_acceptance",
       "council_round1": {
         "candidate": "caf04311136a5bd7323378f6e98f24771b128cb8",
         "outcome": "VERIFIED",
@@ -617,7 +618,8 @@
         },
         "record": "validation/session/implementation/d2/council-round1.json"
       },
-      "verified_report": "validation/session/implementation/d2/verified-report.md"
+      "verified_report": "validation/session/implementation/d2/verified-report.md",
+      "acceptance_record": "approval/session-acceptance.md"
     },
     "deliverable3": {
       "state": "verified",
@@ -628,8 +630,8 @@
       "evidence": "validation/session/implementation/d3/evidence.json",
       "probe": "validation/session/installed_probe.py",
       "council_round": 1,
-      "gate": "Council reconciled; bounded human SESSION acceptance next",
-      "acceptance": "not_granted",
+      "gate": "SESSION accepted; await separately authorized next unit",
+      "acceptance": "granted_by_SESSION_unit_acceptance",
       "council_round1": {
         "candidate": "112e657fe3aebec97af00875583ff85abaaacd04",
         "outcome": "VERIFIED",
@@ -640,9 +642,10 @@
         },
         "record": "validation/session/implementation/d3/council-round1.json",
         "Astra_isolation_reissue": "SESSION-D3-ASTRA-001 closed; initial invalid review excluded"
-      }
+      },
+      "acceptance_record": "approval/session-acceptance.md"
     },
-    "acceptance": "not_granted",
+    "acceptance": "granted",
     "delivery": "local only",
     "source_revision": "4065a150cbfcacbcf71c6aab05e05d2920bf48e5",
     "council_availability": {
@@ -676,7 +679,18 @@
       "disposition": "Both available members independently reproduced full bounded D2. Council unreachable-provider instruction is met by reporting unavailable coverage without substitution. Reconciled available coverage permits the already-approved D3; no third review, human waiver or acceptance is inferred."
     },
     "verified_candidate": "112e657fe3aebec97af00875583ff85abaaacd04",
-    "verified_report": "validation/session/implementation/d3/verified-report.md"
+    "verified_report": "validation/session/implementation/d3/verified-report.md",
+    "acceptance_record": {
+      "record": "approval/session-acceptance.md",
+      "sha256": "86d2642ac4aa8aeaee73fc727539ef5bb9fe87946aedca085f9db07e50a87a1c",
+      "accepted_by": "Chuck Russell",
+      "recorded_at": "2026-11-08T18:09:24+00:00",
+      "instruction": "accepted",
+      "candidate": "112e657fe3aebec97af00875583ff85abaaacd04",
+      "pre_acceptance_metadata_HEAD": "4c7fa7a9922cc6419b3b837f12b00e8abb98bf03",
+      "artifact_source": "8bb61e2c65ff33bc806050f0a55610b02533aa8e",
+      "scope": "SESSION-001 history/conversation-clear D1\u2013D3 and complete bounded aggregate only"
+    }
   },
   "historical_unit_summary_fields": [
     {

@@ -2,18 +2,19 @@
 
 Date: 2026-11-08
 Branch: `feature/command-retirement`
-Status: SESSION D1–D3 and bounded aggregate VERIFIED; human acceptance pending
+Status: SESSION D1–D3 and bounded aggregate VERIFIED and accepted
 Execution phase: closeout
-Validation state: verified (SESSION-001; broader initiative remains started/local)
+Validation state: verified (accepted SESSION-001; initiative remains started/local)
 
 ## Current SESSION-001 checkpoint
 
-The [bounded acceptance handoff](validation/session/implementation/d3/verified-report.md)
-is ready: Sol 9.7, Astra 9.7 and Claude 9.6, all VERIFIED, no mandatory findings.
-The fresh Astra isolation reissue closes its procedural blocker; invalid history
-is retained. The [roster instruction](approval/council-roster.md) governs remaining
-councils. [Next-phase](next-phase.md) awaits the maintainer's acceptance decision.
-No further construction, later-family/P0/P1/TUI or external delivery follows.
+Chuck Russell [accepted SESSION-001](approval/session-acceptance.md) after the
+[independent aggregate verification](validation/session/implementation/d3/verified-report.md):
+Sol 9.7, Astra 9.7 and Claude 9.6, no mandatory findings. The original reports
+and historical pending labels remain frozen before this subsequent decision.
+The [next-phase checkpoint](next-phase.md) now awaits separate maintainer direction
+for a next bounded unit. The [council roster](approval/council-roster.md) remains
+Sol/Astra/Claude. Broader work and external delivery remain separate.
 
 ## Historical Step 3 planning checkpoint
 

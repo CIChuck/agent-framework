@@ -19,8 +19,8 @@ predates the separately approved pilot wiring work.
 `execution_phase: closeout`; `validation_state: verified` for SESSION-001.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
-[Bounded acceptance handoff](validation/session/implementation/d3/verified-report.md)
-awaits Chuck Russell's decision. The initiative remains started/local.
+[Bounded SESSION acceptance](approval/session-acceptance.md) is recorded from Chuck Russell's
+“accepted” instruction. The broader initiative remains started/local.
 PILOT-001 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
 council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
 VERIFIED at `eb216421` by Claude and Sol, both 9.6/10, and now
@@ -189,8 +189,7 @@ observations, exact replay and 434 related Chat/217 Commands-cohort passing
 tests. It is reference evidence, not another approval document. Later families,
 P0/P1 and TUI remain open; delivery is local only.
 
-SESSION-001 construction was [approved](approval/session-views.md) and is now
-[independently VERIFIED](validation/session/implementation/d3/verified-report.md).
-Bounded human acceptance remains pending. The [current council roster](approval/council-roster.md)
-is Sol/Astra/Claude; earlier Gemini dispatch wording is historical.
-No later-family, TUI or external delivery work is authorized by this handoff.
+SESSION-001 construction was [approved](approval/session-views.md), independently
+VERIFIED and [accepted by Chuck Russell](approval/session-acceptance.md).
+The [remaining council roster](approval/council-roster.md) is Sol/Astra/Claude.
+Await separate maintainer direction and approved scope for a next unit.

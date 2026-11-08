@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Human bounded SESSION-001 acceptance; D1–D3 and aggregate VERIFIED by Sol/Astra/Claude
+  next_gate: Await maintainer direction for next bounded unit; SESSION-001 VERIFIED and accepted
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2737,3 +2737,10 @@ events:
   action: reconciled SESSION D3 and aggregate council; bounded human acceptance pending
   note: Sol VERIFIED 9.7, Astra fresh isolation reissue VERIFIED 9.7, Claude VERIFIED 9.6. No mandatory findings; invalid Astra run preserved and excluded. Current remaining roster is Sol/Astra/Claude by direct maintainer instruction. No delivery or next-unit authority.
   evidence: docs/planning/active/command-refactor/validation/session/implementation/d3/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-08T18:09:24+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted bounded SESSION-001 D1–D3 and aggregate
+  note: Direct accepted instruction follows Sol 9.7, Astra 9.7 and Claude 9.6 VERIFIED results. Broader initiative stays started/local; no next-unit or external delivery authority.
+  evidence: docs/planning/active/command-refactor/approval/session-acceptance.md
