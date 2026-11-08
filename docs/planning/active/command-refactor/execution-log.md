@@ -1061,3 +1061,15 @@ dirty configurations remain unchanged. Evidence is d1/sort-fix-evidence.json.
 `execution_phase: validation`; `validation_state: in_review` for D1.
 Freeze for the one explicitly authorized fresh council pass (D1 round four).
 No optional advisory changes or further automatic remediation are authorized.
+
+2026-11-08T00:47:43+00:00: D1 round-four council unanimously VERIFIED the frozen eacef5b0
+candidate (Claude 9.6, OpenAI 9.5, Gemini 9.8). All mandatory D1 findings are
+closed; each independently reproduced G1 217 and no-sort mutation rejection.
+Controller end freeze matched HEAD/status/index, 33 current pins and all
+17,112 protected file hashes. Exact reports retained in d1/council-round4.json.
+D1 validation is complete; whole-pilot acceptance remains ungranted. Continue
+D2 under the existing exact approval, not an inferred reviewer grant. Capture
+before-source/test inventory; modify only approved Chat adapter/three wrappers/
+metadata projections/dependency edge and add new compatibility/lifecycle tests.
+`execution_phase: implementation`; `validation_state: not_ready` for D2.
+A fresh three-provider council follows D2 G2/G3 before D3 begins.

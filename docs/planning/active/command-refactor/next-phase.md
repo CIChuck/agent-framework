@@ -1,26 +1,25 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 approved; authorized D1 sorting-test correction applied; council round four pending; D2 and D3 pending
-Execution phase: validation
-Validation state: in_review (PILOT-001 D1); G1 and no-sort mutation proof pass; D2/G2-G3 and D3/G4-G5 pending; RET-001 remains accepted
+Status: PILOT-001 D1 council VERIFIED; D2 Chat integration/lifecycle started; D3 pending
+Execution phase: implementation
+Validation state: not_ready (PILOT-001 D2); D1 verified at eacef5b0; D3/G4-G5 and whole-pilot acceptance pending
 
 ## Current next steps
 
-1. Reconcile the authorized fresh D1 council. The one-line VAL-D1-R3-001
-   correction is applied; G1 passes 217 tests, lint/format pass, and the no-sort
-   mutant is rejected by exactly the two sorting cases. Runtime is unchanged.
-2. Freeze D1 for the authorized fresh three-provider council pass. D2 begins
-   only after D1 conformance reconciliation. Optional advisory repairs and
-   another automatic correction loop are outside this bounded authorization.
-3. Continue approved D2 Chat integration/lifecycle (G2-G3) and D3 full
-   regression/installed proof (G4-G5), each followed by its own council.
+1. Implement the approved D2 Chat metadata/catalog adapters, help/exit/cls
+   delegation and required exact Commands dependency/lock edge. Preserve Chat
+   parsing, custom registries, formatting, other 38 commands and app lifecycle.
+2. Pass G2 compatibility and G3 lifecycle/PTY gates, retain unchanged source/
+   assertions and frozen baseline comparison, then freeze for D2's own council.
+3. After D2 council reconciliation, deliver D3 full regression, clean candidate
+   artifacts and default installed proof (G4-G5), followed by its own council.
 4. Present the complete pilot for maintainer acceptance. Later families,
    TUI work and external delivery still require separate authority.
 
-The [exact pilot approval](approval/pilot.md), current additional authorization
-in authority.json, live header and board govern this handoff. Earlier
-checkpoint narrative below is historical.
+The [exact pilot approval](approval/pilot.md) authorizes this sequence. D1's
+[reconciled council result](validation/pilot/implementation/d1/council-round4.json)
+is the completed prerequisite. Earlier checkpoint narrative below is historical.
 
 ## Historical checkpoints
 

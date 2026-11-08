@@ -14,10 +14,11 @@ accepted by Chuck Russell. Exact strengthened RET-001 is now approved and implem
 Exact foundation approvals and source base
 `d003c4db` remain in the [approval record](approval/foundation-readiness.md).
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
-[builder evidence](validation/CMD-FND-001-report.md). No command migration/wiring.
-`execution_phase: validation`; `validation_state: in_review` for PILOT-001 D1.
-The authorized sorting-test fixture correction is applied; G1 and mutation
-checks pass. Fresh D1 council precedes D2 and D3.
+[builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
+predates the separately approved pilot wiring work.
+`execution_phase: implementation`; `validation_state: not_ready` for PILOT-001 D2.
+D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
+council. D2 Chat integration/lifecycle is started; D3 and acceptance are pending.
 RET-001 remains independently VERIFIED and accepted.
 The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
@@ -165,7 +166,7 @@ this exact maintainer record.
 D1 neutral pilot implementation is at its [council checkpoint](validation/pilot/implementation/d1/evidence.json).
 G1 has 217 passing Commands/cohort tests; Chat integration is pending D1 review.
 
-Current D1 checkpoint: [authorized sorting-test correction evidence](validation/pilot/implementation/d1/sort-fix-evidence.json).
-G1 passes 217 tests; the no-sort mutant fails the two sorting cases. Fresh
-round-four council is pending. The [earlier escalation proposal](validation/pilot/implementation/d1/maintainer-decision.md)
-is a historical pre-authorization record; current authorization is in authority.json.
+Current pilot checkpoint: [D1 council is VERIFIED](validation/pilot/implementation/d1/council-round4.json).
+D2 Chat integration/lifecycle is now in implementation under the existing
+[exact approval](approval/pilot.md), with its own council before D3. Historical
+D1 escalation/proposal records above do not replace this current checkpoint.

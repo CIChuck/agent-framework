@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "PILOT-001 approved; authorized D1 sorting-test correction applied and verified by G1/mutation controls; fresh council round four pending",
+  "decision": "PILOT-001 D1 independently VERIFIED by three-provider council; continue approved D2 Chat integration and lifecycle gates",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "D1 validation/in_review after one-line fixture correction; no runtime change; D2 and D3 pending",
+  "current_scope": "D2 implementation under approved pilot: Chat adapters/wrappers, required Commands dependency/lock edge, compatibility/lifecycle tests; D3 and final acceptance pending",
   "product_code_authority": "Exact pilot construction approved in approval/pilot.md; council after each deliverable before advancement. Remaining families, TUI, final acceptance and external delivery are unapproved.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -312,7 +312,7 @@
     "product_baseline": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
     "branch": "feature/command-retirement",
     "state": "started",
-    "current_deliverable": "D1 authorized sorting-test correction applied; council round four pending",
+    "current_deliverable": "D2 Chat integration and lifecycle (G2-G3)",
     "council_after_each_deliverable": true,
     "deliverables": {
       "D1": "Shared neutral API/handlers and standalone tests (G1)",
@@ -322,9 +322,9 @@
     "delivery": "local only; no push/PR/merge/release authorization",
     "acceptance": "not_granted",
     "deliverable1": {
-      "state": "in_review",
-      "gate": "Fresh three-provider D1 round-four council on authorized test-only correction",
-      "evidence": "validation/pilot/implementation/d1/evidence.json",
+      "state": "verified",
+      "gate": "D1 council reconciled; approved D2 may proceed",
+      "evidence": "validation/pilot/implementation/d1/sort-fix-evidence.json",
       "scope": "PILOT-01/02 only; no Chat wiring or installed candidate claim",
       "acceptance": "not_granted",
       "administrative_remediation": {
@@ -370,7 +370,25 @@
         "G1_passed": 217,
         "no_sort_mutant": "2 required sorting cases fail; other 215 pass",
         "runtime_change": false
+      },
+      "baseline_evidence": "validation/pilot/implementation/d1/evidence.json",
+      "council_round4": {
+        "candidate": "eacef5b073c5b8f1e212e2f6c5c6a97083942db8",
+        "outcome": "VERIFIED",
+        "scores": {
+          "claude": 9.6,
+          "openai": 9.5,
+          "gemini": 9.8
+        },
+        "record": "validation/pilot/implementation/d1/council-round4.json",
+        "whole_pilot_acceptance": "not_granted"
       }
+    },
+    "deliverable2": {
+      "state": "started",
+      "scope": "Approved PC-03 through PC-06 Chat adapter/dependency edge; PILOT-03 through08 plus bounded Chat preservation subset of PILOT-09",
+      "gate": "G2/G3 and frozen three-provider council before D3",
+      "acceptance": "not_granted"
     }
   },
   "historical_preapproval_summary": {
