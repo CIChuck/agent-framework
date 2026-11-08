@@ -1079,10 +1079,10 @@ class _Formatted:
 
         class String(str):
             def __str__(self):
-                pytest.fail("Formatted string converted twice")
+                raise AssertionError("Formatted string converted twice")
 
             def __format__(self, spec):
-                pytest.fail("Formatted string formatted twice")
+                raise AssertionError("Formatted string formatted twice")
 
         return String(self.text)
 
@@ -1122,6 +1122,8 @@ async def test_diagnostic_projection_order_and_failures(case):
                 "- a: text" + ("s" if name == "timing" else "")
             )
             assert len(events) == 2
+            getattr(context, field).clear()
+            assert data.fields == (DiagnosticField("a", "text"),)
     elif case in ("debug-turn", "timing-turn"):
         name = "debug" if case == "debug-turn" else "timing"
         turn = _Trace(
