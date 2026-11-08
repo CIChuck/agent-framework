@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from types import MappingProxyType
 
@@ -44,10 +44,26 @@ def _plain(value: object, spec: str = "") -> str:
 
 
 @dataclass(frozen=True, slots=True)
+class _RenderedContext:
+    """Host-local presentation of the exact text/count used for an export."""
+
+    data: ContextData
+    body: str
+
+
+@dataclass(slots=True)
+class _ContextExport:
+    rendered: _RenderedContext | None = None
+
+
+@dataclass(frozen=True, slots=True)
 class ChatDiagnosticsPort:
     """Project only the capability requested, retaining legacy host read order."""
 
     context: CommandContext
+    _context_export: _ContextExport = field(
+        default_factory=_ContextExport, init=False, repr=False, compare=False
+    )
 
     def context_text(self) -> str:
         return self.context.last_context or _build_context_text(self.context)
@@ -56,7 +72,13 @@ class ChatDiagnosticsPort:
         return self.context.last_prompt or _build_prompt_text(self.context)
 
     def export_context(self, data: ContextData) -> str:
-        return str(_write_export_file(self.context, "context", _render_context(data)))
+        body = _render_context(data)
+        path = str(_write_export_file(self.context, "context", body))
+        if data.character_count is not None:
+            # Formatting accepted str subclasses is observable. Reuse this body
+            # only for the matching shared outcome, after the write succeeds.
+            self._context_export.rendered = _RenderedContext(data, body)
+        return path
 
     def export_prompt(self, data: PromptData) -> str:
         return str(_write_export_file(self.context, "prompt", _render_prompt(data)))
@@ -167,10 +189,17 @@ def diagnostic_metadata(name: str) -> CommandMetadata:
     )
 
 
-def _render_context(data: ContextData) -> str:
-    text = data.text
-    if data.character_count is not None:
-        text = f"{text}\n\nDebug:\n- characters: {data.character_count}"
+def _render_context(data: ContextData, rendered: _RenderedContext | None = None) -> str:
+    if (
+        rendered is not None
+        and data.text is rendered.data.text
+        and data.character_count == rendered.data.character_count
+    ):
+        text = rendered.body
+    else:
+        text = data.text
+        if data.character_count is not None:
+            text = f"{text}\n\nDebug:\n- characters: {data.character_count}"
     if data.export_path is not None:
         text = f"{text}\n\nExported context to {data.export_path}"
     return text
@@ -220,7 +249,9 @@ def _render_timing(data: TimingData) -> str:
     return "\n".join(lines)
 
 
-def adapt_diagnostic_outcome(outcome: CommandOutcome) -> CommandResult:
+def adapt_diagnostic_outcome(
+    outcome: CommandOutcome, *, _rendered_context: _RenderedContext | None = None
+) -> CommandResult:
     """Render only the seven explicit diagnostic success shapes, without effects."""
     if (
         type(outcome) is not CommandOutcome
@@ -230,7 +261,7 @@ def adapt_diagnostic_outcome(outcome: CommandOutcome) -> CommandResult:
         raise ValueError("Unsupported diagnostic outcome")
     data = outcome.data
     if type(data) is ContextData:
-        text = _render_context(data)
+        text = _render_context(data, _rendered_context)
     elif type(data) is PromptData:
         text = _render_prompt(data)
     elif type(data) is DebugData:
@@ -268,10 +299,12 @@ async def invoke_diagnostic(
 ) -> CommandResult:
     spec = _DIAGNOSTIC_BY_NAME[name]
     request = CommandRequest(spec.name, args, spec)
-    handler = shared_diagnostics.build_diagnostic_handlers(
-        ChatDiagnosticsPort(context)
-    )[name]
-    return adapt_diagnostic_outcome(await handler(request, CommandExecution()))
+    port = ChatDiagnosticsPort(context)
+    handler = shared_diagnostics.build_diagnostic_handlers(port)[name]
+    outcome = await handler(request, CommandExecution())
+    return adapt_diagnostic_outcome(
+        outcome, _rendered_context=port._context_export.rendered
+    )
 
 
 def _build_context_text(context: CommandContext) -> str:

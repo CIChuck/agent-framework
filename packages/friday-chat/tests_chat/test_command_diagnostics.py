@@ -901,7 +901,9 @@ async def _capture_pilot():
 
 
 @pytest.mark.asyncio
-async def test_diagnostic_metadata_and_frozen_cases(tmp_path):
+async def test_diagnostic_metadata_and_frozen_cases(tmp_path, monkeypatch):
+    # Fallback file paths remain private even if a mutant bypasses the patched writer.
+    monkeypatch.chdir(tmp_path)
     assert (
         hashlib.sha256(FIXTURE_PATH.read_bytes()).hexdigest()
         == "7f379e1060e79db61e37e7959efea89d6aa1ea198e4badfce8b26aa4964bf455"
@@ -1087,6 +1089,72 @@ class _Formatted:
         return String(self.text)
 
 
+async def _check_cached_context_formatting(directory):
+    """Accepted, stateful string formatting must match legacy in each flag path."""
+    for index, flags in enumerate(
+        (
+            (),
+            ("--debug",),
+            ("--file",),
+            ("--debug", "--file"),
+            ("--file", "--debug"),
+            ("--debug", "--file", "--debug", "--file"),
+        )
+    ):
+        calls = []
+
+        class Cached(str):
+            def __format__(self, spec, calls=calls):
+                calls.append(spec)
+                if len(calls) > 1:
+                    raise RuntimeError("cached text formatted twice")
+                return "formatted text"
+
+        target_root = directory / str(index)
+        context = CommandContext(
+            last_context=Cached("cached text"),
+            runtime=NS(config=NS(transcript=NS(export_directory=str(target_root)))),
+        )
+        error, result = None, None
+        try:
+            result = await _handler("context")(context, flags, MARKER)
+        except BaseException as caught:
+            error = caught
+        assert error is None, f"Accepted cached text must format once: {error!r}"
+        assert calls == ([""] if "--debug" in flags or "--file" in flags else [])
+        body = (
+            "formatted text\n\nDebug:\n- characters: 11"
+            if "--debug" in flags
+            else "cached text"
+        )
+        if "--file" in flags:
+            target = (target_root / "friday_context.txt").resolve()
+            assert target.read_bytes() == body.encode("utf-8")
+            displayed = body if "--debug" in flags else "formatted text"
+            assert result == CommandResult(
+                displayed + f"\n\nExported context to {target}"
+            )
+        else:
+            assert result == CommandResult(body)
+            assert not target_root.exists()
+    # A first formatting failure keeps identity and precedes any debug export.
+    failure = RuntimeError("first format failure")
+
+    class Broken(str):
+        def __format__(self, spec):
+            raise failure
+
+    target_root = directory / "format-failure"
+    context = CommandContext(
+        last_context=Broken("cached"),
+        runtime=NS(config=NS(transcript=NS(export_directory=str(target_root)))),
+    )
+    with pytest.raises(RuntimeError) as caught:
+        await _handler("context")(context, ("--debug", "--file"), MARKER)
+    assert caught.value is failure
+    assert not target_root.exists()
+
+
 @pytest.mark.parametrize(
     "case",
     [
@@ -1104,9 +1172,10 @@ class _Formatted:
     ],
 )
 @pytest.mark.asyncio
-async def test_diagnostic_projection_order_and_failures(case):
+async def test_diagnostic_projection_order_and_failures(case, tmp_path):
     events = []
     if case == "format":
+        await _check_cached_context_formatting(tmp_path / "context-format")
         key = _Formatted(events, "key", "a")
         value = _Formatted(events, "value", "text")
         for name, field in [("debug", "last_debug"), ("timing", "last_timing")]:
@@ -1451,6 +1520,43 @@ async def test_diagnostic_exports_fixed_bytes_and_failures(
     assert (
         sum(isinstance(event, tuple) and event[0] == "request" for event in events) == 1
     )
+    if name == "context" and mode == "configured":
+        await _check_cached_context_formatting(tmp_path / "export-format")
+        # A rendered export must not mask a distinct injected shared outcome.
+        factory = shared.build_diagnostic_handlers
+        for changed_field in ("text", "count", "path"):
+
+            def build(port, changed_field=changed_field):
+                handlers = factory(port)
+
+                async def context_handler(request, execution):
+                    outcome = await handlers["context"](request, execution)
+                    data = outcome.data
+                    return CommandOutcome(
+                        ContextData(
+                            "injected" if changed_field == "text" else data.text,
+                            999 if changed_field == "count" else data.character_count,
+                            "injected-path"
+                            if changed_field == "path"
+                            else data.export_path,
+                        )
+                    )
+
+                return {**handlers, "context": context_handler}
+
+            with monkeypatch.context() as local:
+                local.setattr(shared, "build_diagnostic_handlers", build)
+                context.last_context = "source"
+                result = await _handler("context")(
+                    context, ("--debug", "--file"), MARKER
+                )
+            text = "injected" if changed_field == "text" else "source"
+            count = 999 if changed_field == "count" else 6
+            path = "injected-path" if changed_field == "path" else str(target)
+            assert result == CommandResult(
+                f"{text}\n\nDebug:\n- characters: {count}\n\nExported context to {path}"
+            )
+            assert target.read_text() == "source\n\nDebug:\n- characters: 6"
 
 
 @pytest.mark.parametrize(
