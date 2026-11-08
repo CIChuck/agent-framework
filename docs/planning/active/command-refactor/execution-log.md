@@ -1246,3 +1246,27 @@ The entire refactor remains started/local, so this active initiative packet is
 retained. Next proposed planning unit: SESSION-001 (/history and /clear), with
 separate contract/directive approval before implementation. No next-family,
 P0/P1, TUI, full-refactor acceptance or push/PR/merge/release is authorized.
+
+2026-11-08T14:04:03+00:00: Chuck Russell's “proceed” authorizes preparing SESSION-001
+history/clear contract and bounded directive after PILOT-001 acceptance.
+Prepared session-command-contract.md and directives/CD-CMD-SESSION-001-session-views.md.
+The proposal expressly freezes two added typed data variants plus HistoryTurn,
+a narrow injected session port, shared clear-before-memory-await policy and
+Chat presentation/projection. It preserves ignored memory false results,
+in-place history identity, failure/cancellation boundaries, formatting and
+custom registry behavior; /cls remains separate. Approval is not yet granted.
+Guarded source-only characterization at 38a0c58a captured 25 cases/two metadata
+records and reproduced identical observations. Guard 18 and comparator 6 refusal
+controls pass; an extra source file is refused before imports. Existing related
+Chat 434 and Commands/cohort 217 tests pass. Programs, baseline/fixture text,
+27 raw receipts and 788 protected product/test/script/root hashes are preserved
+in validation/session/preparation.json. No new SESSION APIs/tests/installed proof
+are claimed. A separate custom-formatting control confirms once-only display
+projection; its initial path-alias setup failure is labeled historical and the
+canonical-root corrected run passes. Current board/index/next-phase/tactical navigation now names the
+two review documents; old Step3 tactical labels are explicitly historical.
+`execution_phase: planning`; `validation_state: pending` for SESSION-001.
+Only planning/evidence/navigation changed. Original product/tests/metadata/lock,
+approved pilot/harness/reports and both dirty examples remain unchanged. Next:
+maintainer approval of the exact contract and directive before S0/D1 construction.
+No additional family/P0/P1/TUI acceptance, publication or delivery is authorized.

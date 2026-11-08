@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Prepare SESSION-001 history/clear contract and bounded directive for maintainer review; PILOT-001 accepted, next-family implementation not yet approved
+  next_gate: Review and approve SESSION-001 contract then exact construction directive, or both together; implementation not approved or started
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2664,3 +2664,10 @@ events:
   action: accepted bounded PILOT-001 help/exit/clear-screen implementation
   note: Direct approved response to pilot acceptance handoff. D1-D3 independently VERIFIED; entire initiative remains started/local. Next family needs separate contract/directive approval; no delivery authorized.
   evidence: docs/planning/active/command-refactor/approval/pilot-acceptance.md
+- task: friday-command-refactor
+  at: '2026-11-08T14:04:03+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared SESSION-001 history/clear contract and exact directive
+  note: Source-backed planning only after maintainer proceed. Two documents await approval; 25 cases reproduce and existing 434 Chat/217 Commands-cohort tests pass. No product/test/metadata/lock changes; pilot acceptance retained.
+  evidence: docs/planning/active/command-refactor/session-command-contract.md

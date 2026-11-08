@@ -1,5 +1,32 @@
 # Shared command refactor — tactical plan
 
+Date: 2026-11-08
+Branch: `feature/command-retirement`
+Status: accepted PILOT-001; SESSION-001 preparation ready for exact review/approval
+Execution phase: planning
+Validation state: pending (SESSION-001 design/directive; implementation not started)
+
+## Current SESSION-001 preparation
+
+The [next-phase checkpoint](next-phase.md) owns the current reading order.
+Review the [session contract](session-command-contract.md) and then
+[CD-CMD-SESSION-001](directives/CD-CMD-SESSION-001-session-views.md), or approve
+both exact documents together. The [source-backed preparation](validation/session/preparation.json)
+records 25 cases and exact replay, 434 related Chat and 217 Commands/cohort
+passing tests. New family API/tests and installed proof are future obligations.
+
+The [pilot acceptance](approval/pilot-acceptance.md) covers only its D1–D3.
+SESSION-001 targets PAR-003/017 (/clear and /history), with the explicit proposed
+payload/port schemas, D1–D3 gates and test-node map in the new documents. No
+later-family construction, domain service change or external delivery follows
+from this preparation. Keep old approvals, source baselines and receipts intact.
+
+## Historical Step 3 planning checkpoint
+
+The following original date, branch, pending labels and checklist describe
+their earlier Step 3 state and are superseded for current execution by the
+board, exact subsequent approvals and checkpoint above.
+
 Date: 2026-11-06
 Branch: `feature/command-refactor`
 Status: Authorized Step 3 corrections; fresh validation pending; Step 4 not approved

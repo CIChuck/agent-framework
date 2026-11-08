@@ -1,26 +1,26 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 independently VERIFIED and accepted by Chuck Russell; SESSION-001 planning next
-Execution phase: closeout
-Validation state: verified (accepted PILOT-001 D1-D3); next family not authorized
+Status: SESSION-001 contract and directive prepared for maintainer review; PILOT-001 accepted
+Execution phase: planning
+Validation state: pending (SESSION-001 design/directive); implementation not approved or started
 
 ## Current next steps
 
-1. PILOT-001 is [accepted by Chuck Russell](approval/pilot-acceptance.md).
-   The [independent verification](validation/pilot/implementation/d3/verified-report.md)
-   and exact reports remain unchanged; their former pending-acceptance labels
-   are superseded by the subsequent acceptance record.
-2. Prepare SESSION-001 (`/history`, `/clear`) contract, compatibility/test scope
-   and bounded construction directive for maintainer review. The Step 3 order
-   remains a proposal; no SESSION-001 implementation is approved yet.
-3. Obtain the required exact approvals before implementing that next unit.
-   Later families, P0/P1, TUI, full-refactor acceptance and delivery remain
-   separate gates.
+1. Read and approve [SESSION-001's contract](session-command-contract.md),
+   including its explicit two-variant result-schema expansion, narrow injected
+   port and preserved history-before-memory-clear ordering.
+2. Read and approve [CD-CMD-SESSION-001](directives/CD-CMD-SESSION-001-session-views.md).
+   Both exact documents may be approved together. The linked preparation JSON
+   supplies evidence and programs; it is not a third approval task.
+3. After exact approvals, record their hashes and perform S0/D1 only, with fresh
+   review after each proposed deliverable before advancement. No SESSION product
+   code, new product tests or dependency changes have been made or approved.
 
-The initiative stays started/local. Pilot acceptance changes records only;
-source, tests, dependencies, lock and frozen evidence remain unchanged. The
-active initiative packet is retained until whole-initiative closeout.
+PILOT-001 is [accepted](approval/pilot-acceptance.md); its reports remain intact.
+The initiative remains started/local. Later families, P0/P1, TUI, full-refactor
+acceptance and delivery are separately gated. Historical checkpoints below do
+not override current approvals, pending SESSION decisions or product boundaries.
 
 ## Historical checkpoints
 

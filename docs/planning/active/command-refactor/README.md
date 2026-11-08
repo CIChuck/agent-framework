@@ -16,7 +16,8 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: closeout`; `validation_state: verified` for PILOT-001.
+`execution_phase: planning`; `validation_state: pending` for SESSION-001 design/directive review.
+SESSION-001 implementation is not approved or started; accepted PILOT-001 remains VERIFIED.
 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
 council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
 VERIFIED at `eb216421` by Claude and Sol, both 9.6/10, and now
@@ -170,7 +171,16 @@ independently verified. [Reconciled pilot verification](validation/pilot/impleme
 records the current result; [exact council reports](validation/pilot/implementation/d3/council-round2.json)
 and [current evidence](validation/pilot/implementation/d3/remediation-evidence.json)
 preserve the reviewed candidate and limits. Both D3 findings are closed.
-Chuck Russell has [accepted PILOT-001](approval/pilot-acceptance.md). The next
-proposed unit is SESSION-001 (`/history`, `/clear`), requiring its own approved
-contract/directive before implementation. The broader refactor, P0/P1 and TUI
-remain open; delivery is local only.
+Chuck Russell has [accepted PILOT-001](approval/pilot-acceptance.md).
+Current SESSION-001 reading/approval order:
+
+1. [Session contract](session-command-contract.md): typed history/clear port,
+   payload union amendment, exact legacy behavior and failure order.
+2. [CD-CMD-SESSION-001](directives/CD-CMD-SESSION-001-session-views.md): bounded
+   paths, incremental tests, frozen baseline and installed proof. Both documents
+   may be approved together; construction has not started.
+
+[Preparation evidence](validation/session/preparation.json) records 25 source
+observations, exact replay and 434 related Chat/217 Commands-cohort passing
+tests. It is reference evidence, not another approval document. Later families,
+P0/P1 and TUI remain open; delivery is local only.
