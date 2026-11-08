@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "DIAG D1 round1 CHANGES_REQUESTED: two mandatory test gaps; bounded mechanical remediation cycle1 under existing approval",
+  "decision": "DIAG D1 test-only correction cycle1 frozen for fresh Sol/Astra/Claude round2; no independent closure yet",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "D1 named-node coverage and all38 binding identities in new test file only; fresh council before D2",
+  "current_scope": "D1 delta plus full bounded aggregate validation/in_review round2 before D2",
   "product_code_authority": "Exact DIAG construction approval retained; D2 gated on D1 council reconciliation; no acceptance or delivery",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -730,8 +730,8 @@
     "directive_sha256": "1a9a506020b8d5faa0b864c053b1085e8f8c15c8feab8a4c0f59d4293677ee47",
     "preparation_evidence": "validation/diagnostics/preparation.json",
     "preparation_evidence_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
-    "execution_phase": "remediation",
-    "validation_state": "changes_requested",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
     "design_approval": "granted_by_subsequent_exact_record",
     "construction_approval": "granted_by_subsequent_exact_record",
     "implementation": "D1 neutral implementation recorded in diagnostics_construction; preparation evidence remains frozen",
@@ -763,14 +763,14 @@
     "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
     "product_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
     "controller_start": "d0c729f43534bb79a3db70852ec08028ddb631ec",
-    "state": "remediation",
-    "execution_phase": "remediation",
-    "validation_state": "changes_requested",
-    "current_deliverable": "D1 test-only remediation cycle1 then fresh council round2",
+    "state": "validation",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
+    "current_deliverable": "D1 correction cycle1 council round2 before D2",
     "deliverable1": {
-      "state": "changes_requested",
-      "round": 1,
-      "product_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
+      "state": "in_review",
+      "round": 2,
+      "product_source": "e2f514a66407bf5da9868e586ca6cdf30bdadefb",
       "evidence": "validation/diagnostics/implementation/d1/evidence.json",
       "neutral_tests": 478,
       "new_cases": 200,
@@ -780,7 +780,13 @@
       "council": "validation/diagnostics/implementation/d1/council-round1.json",
       "remediation_cycle": 1,
       "remediation_directive": "remediation/REM-CMD-DIAG-D1-001-test-coverage.md",
-      "remediation_authority": "Existing exact DIAG approval and approved DG-T01\u201307/allowlist, mechanical completion under independent-validation policy; runtime bytes frozen"
+      "remediation_authority": "Existing exact DIAG approval and approved DG-T01\u201307/allowlist, mechanical completion under independent-validation policy; runtime bytes frozen",
+      "current_evidence": "validation/diagnostics/implementation/d1/test-coverage-fix-evidence.json",
+      "coverage_map": "validation/diagnostics/implementation/d1/test-coverage-map.json",
+      "named_nodes": 7,
+      "named_cases": 200,
+      "findings_status": "implemented_pending_fresh_review",
+      "correction_base": "bc553cb097d3f62586b0d1808100bc186a5a67c9"
     },
     "deliverable2": {
       "state": "pending"
@@ -797,6 +803,8 @@
     "acceptance": "not_granted",
     "delivery": "local only",
     "construction_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
-    "product_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b"
+    "product_source": "e2f514a66407bf5da9868e586ca6cdf30bdadefb",
+    "original_product_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
+    "runtime_model_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b"
   }
 }

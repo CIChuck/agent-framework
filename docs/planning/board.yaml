@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: DIAG D1 cycle1 test-only fixes; fresh Sol/Astra/Claude round2 before D2
+  next_gate: Fresh Sol/Astra/Claude DIAG D1 correction cycle1 round2; reconcile before D2
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2772,3 +2772,10 @@ events:
   action: reconciled DIAG D1 round1; begin bounded test-only remediation cycle1
   note: Sol/Astra VERIFIED9.7; Claude CHANGES_REQUESTED8.4. Mandatory named-node coverage/all-binding gaps govern. Existing exact approval covers mechanical correction; runtime/old tests remain frozen; fresh council before D2.
   evidence: docs/planning/active/command-refactor/remediation/REM-CMD-DIAG-D1-001-test-coverage.md
+- task: friday-command-refactor
+  at: '2026-11-08T20:42:51+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze corrected DIAG D1 test gates for council round2
+  note: Full478/named200 pass; five prior named survivors now refused and all14 original mutants refused. Only new DIAG test changes outside docs; all38 bindings and standalone source origins checked. Findings pending fresh independent closure before D2.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/test-coverage-fix-evidence.json

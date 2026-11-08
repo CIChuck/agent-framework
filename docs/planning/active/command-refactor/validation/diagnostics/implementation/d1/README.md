@@ -1,3 +1,49 @@
+# DIAG-001 D1 — corrected test coverage, cycle1/round2
+
+Execution phase: validation. Validation state: in_review (fresh round2).
+The [bounded remediation](../../../../remediation/REM-CMD-DIAG-D1-001-test-coverage.md)
+is implemented pending fresh independent closure. Test source: `e2f514a66407bf5da9868e586ca6cdf30bdadefb`;
+runtime/models/exports remain equal to `7cab1f0f`. Only the new DIAG test changes
+outside documentation against the reviewed round-one candidate.
+
+[Current correction evidence](test-coverage-fix-evidence.json) and
+[exact node/family coverage map](test-coverage-map.json) supplement the preserved
+original evidence and [round-one reports](council-round1.json).
+
+| Gate | Exact node | Cases |
+| --- | --- | --- |
+| DG-T01 | `test_diagnostic_models_and_closed_union` | 109 |
+| DG-T02 | `test_diagnostic_specs_exports_and_factory` | 1 |
+| DG-T03 | `test_diagnostic_invocation_validation_order` | 6 |
+| DG-T04 | `test_context_prompt_flags_and_export_order` | 51 |
+| DG-T05 | `test_diagnostic_snapshots_once` | 9 |
+| DG-T06 | `test_retrieval_precedence_and_await` | 21 |
+| DG-T07 | `test_diagnostics_standalone` | 3 |
+
+All200 cases now run under the seven exact gate names. Twenty-four original
+helper bodies preserve their assertion AST. DG-T02 retains the exact ordered
+API38 list and checks every binding against its owning module. Standalone normal,
+-O and -OO now check intended source origins explicitly before and after use.
+
+Full Commands/cohort478 and named200 pass. Each of the five named mutations
+passed the pre-fix45 selection; corrected named200 rejects preview cap11,
+permissive nested fields, non-bool availability, query mismatch and old-registry
+rebinding through test-call assertions. All14 original full-suite mutants are
+refused again; unchanged private full control478 passes. Start/session-finish/
+end canonical module roots and hashes match; no setup failure supplies credit.
+Candidate-export offline lock passes, addressing A-1. A-2 origin checks pass.
+
+Runtime, other tests, existing SESSION literal append, Chat/dependencies/lock,
+frozen authority and dirty examples are unchanged. Current root collection6868
+still has only the known test_display conflict; root Ruff534 and registry-format
+debt remain failed/unwaived. D2/D3/UAT/acceptance are deliberately pending.
+
+Next gate: fresh Sol/Astra/Claude delta then full bounded D1 round2, followed by
+controller reconciliation before D2. The following earlier checkpoints retain
+historical labels and do not represent a current independent verdict.
+
+## Historical round-one remediation checkpoint
+
 # DIAG-001 D1 — council remediation checkpoint
 
 Execution phase: remediation. Validation state: changes_requested (cycle1).

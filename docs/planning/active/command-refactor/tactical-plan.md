@@ -1,25 +1,30 @@
 # Shared command refactor — tactical plan
 
 Branch: `feature/command-retirement`
-Status: DIAG D1 council round1 CHANGES_REQUESTED; test-only remediation cycle1
-Execution phase: remediation
-Validation state: changes_requested (DIAG-001 D1); D2/D3 and acceptance pending
+Status: DIAG D1 test-only correction cycle1 frozen for fresh council round2
+Execution phase: validation
+Validation state: in_review (DIAG-001 D1 cycle1/round2); D2/D3 and acceptance pending
 
 ## Current DIAG-001 checkpoint
 
-[Round-one council](validation/diagnostics/implementation/d1/council-round1.json):
-Sol/Astra VERIFIED9.7 each; Claude CHANGES_REQUESTED8.4. Mandatory test traceability
-and binding-identity gaps govern the combined result; no runtime defect was found.
+[Remediation](remediation/REM-CMD-DIAG-D1-001-test-coverage.md) addresses the two
+mandatory gaps from the [round-one council](validation/diagnostics/implementation/d1/council-round1.json).
+All200 DIAG cases now execute under the seven exact named gates, with a
+[coverage map](validation/diagnostics/implementation/d1/test-coverage-map.json),
+all38 binding identities and explicit standalone source-origin checks.
 
-Perform [bounded test-only remediation](remediation/REM-CMD-DIAG-D1-001-test-coverage.md)
-under the existing [exact approval](approval/diagnostics.md). Complete each named
-DG-T row and all38 binding identities, retain prior assertions and runtime bytes,
-prove named-node mutation refusals, rerun D1/static/preservation checks, then
-freeze for fresh Sol/Astra/Claude delta plus full D1 round2. D2 waits for council
-reconciliation. D2/D3, UAT and acceptance remain pending; initiative started/local.
+[Correction evidence](validation/diagnostics/implementation/d1/test-coverage-fix-evidence.json):
+full478 and named200 pass; all five prior named-node survivors are now refused,
+all14 original mutants are refused again. Candidate-export offline lock,
+focused static/preservation checks pass. Only the new DIAG test changes outside
+docs against the reviewed base; 24 retained helper assertion bodies are AST-equal.
+Test source is `e2f514a66407bf5da9868e586ca6cdf30bdadefb`; runtime/models remain equal to `7cab1f0f`.
 
-Accepted earlier units and known failed/unwaived root debt remain unchanged.
-No later-family/TUI/full-refactor or external delivery authority is granted.
+Next: fresh Sol/Astra/Claude delta plus full bounded D1 round2 and controller
+reconciliation before D2. Findings are implemented pending independent closure.
+D2 Chat wiring, D3 candidate installed proof, UAT and acceptance remain pending.
+Existing acceptances and failed/unwaived root debt remain retained; initiative
+stays started/local, without later-family/TUI/full-refactor or delivery approval.
 
 ### Preserved prior planning checkpoint
 

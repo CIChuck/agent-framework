@@ -1570,3 +1570,28 @@ has been executed or accepted through this documentation change.
   mutation refusals and unchanged control, full D1/static/preservation checks;
   freeze a new candidate for fresh Sol/Astra/Claude delta plus full D1 round2.
   D2/D3, UAT, acceptance and delivery remain pending.
+
+
+## 2026-11-08T20:42:51.708159+00:00 — DIAG D1 corrected test gates frozen for round2
+
+- `execution_phase: validation`; `validation_state: in_review` (cycle1/round2).
+- Test-only source `e2f514a66407bf5da9868e586ca6cdf30bdadefb` completes both mandatory gaps under the existing
+  [remediation](remediation/REM-CMD-DIAG-D1-001-test-coverage.md). Runtime/models/
+  exports remain equal to `7cab1f0f`; old tests, lock and dirty examples unchanged.
+- [Correction evidence](validation/diagnostics/implementation/d1/test-coverage-fix-evidence.json)
+  and [coverage map](validation/diagnostics/implementation/d1/test-coverage-map.json)
+  record seven exact gate nodes carrying all200 cases, 24 AST-identical retained
+  helper bodies, exact API38 plus all binding identities and explicit standalone
+  intended-source checks in normal/-O/-OO modes.
+- Full478/named200 pass. All five targeted mutants survive old named45 and fail
+  corrected named200 by call-phase assertions; standard pytest.raises assertion
+  failures are distinguished from setup/import failures. Original14 full-suite
+  mutants are refused again, with unchanged478 control and canonical roots/
+  hashes before/session-finish/after. No runtime repairs or relaxed assertions.
+- Scoped lint/format, ten-source mypy, guard18, metadata and offline lock on a
+  clean corrected candidate export pass. Root collection6868 retains the sole
+  old test_display conflict; historical Ruff534/registry-format debt remains
+  failed/unwaived. Original round1 raw reports/evidence/scratch are preserved.
+- Fresh Sol/Astra/Claude delta plus full bounded D1 round2 is next; mandatory
+  findings remain implemented pending independent closure. Reconcile before D2.
+  D2/D3/UAT/acceptance and external delivery remain pending.
