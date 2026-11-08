@@ -47,6 +47,7 @@ from friday_chat.commands.pilot import (
     render_help as render_pilot_help,
 )
 from friday_chat.commands.session import cls_handler
+from friday_chat.commands.session_views import invoke_session, session_metadata
 from friday_chat.commands.tools import (
     list_runtime_tools as _list_runtime_tools,
 )
@@ -239,10 +240,7 @@ async def _clear_handler(
     _args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    context.history.clear()
-    if context.runtime is not None:
-        await context.runtime.memory.clear_session_memory()
-    return CommandResult(output="Conversation history cleared.")
+    return await invoke_session("clear", _args, context)
 
 
 async def _history_handler(
@@ -250,13 +248,7 @@ async def _history_handler(
     _args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    if not context.history:
-        return CommandResult(output="No conversation history.")
-    lines = ["Conversation history:"]
-    for index, (user_message, assistant_message) in enumerate(context.history, start=1):
-        lines.append(f"{index}. User: {user_message}")
-        lines.append(f"   Friday: {assistant_message}")
-    return CommandResult(output="\n".join(lines))
+    return await invoke_session("history", _args, context)
 
 
 async def _context_handler(
@@ -1596,10 +1588,23 @@ def _pilot_definition(name: str) -> CommandSpec:
     )
 
 
+def _session_definition(name: str) -> CommandSpec:
+    metadata = session_metadata(name)
+    return CommandSpec(
+        metadata.name,
+        metadata.description,
+        metadata.category,
+        metadata.usage,
+        metadata.aliases,
+        metadata.arguments,
+        metadata.detail,
+    )
+
+
 DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
-    CommandSpec("clear", "Clear conversation history.", "session", "/clear"),
+    _session_definition("clear"),
     _pilot_definition("cls"),
-    CommandSpec("history", "Show conversation history.", "session", "/history"),
+    _session_definition("history"),
     CommandSpec(
         "memory",
         "Show typed memory, transcript, session, and context statistics.",

@@ -54,5 +54,6 @@ The marker reports completion of that procedure, not erasure of every store.
 
 Hosts render the data and implement the narrow port through their existing
 public service boundary. `/clear` is conversation clearing; `/cls` remains the
-separate display effect. These shared session APIs are the first SESSION-001
-deliverable; Chat session integration is still a later deliverable.
+separate display effect. Chat now delegates `/history` and `/clear` through its
+typed session port, keeping English output and current-session memory ownership
+in Chat and its runtime.

@@ -15,8 +15,11 @@ Friday distributions use the same release version; keep internal Friday dependen
 
 Chat requires `friday-framework-commands==0.1.0a4` for the shared `/help`,
 `/exit` (`/quit`, `/q`) and `/cls` (`/clearscreen`) definitions and behavior.
-Chat owns parsing, help text, terminal effects and session cleanup; `/clear`
-continues to clear conversation history. The default catalog contains 41
+Chat also delegates `/history` and `/clear` to shared session handlers through
+an injected port. History preserves the current conversation order; clear empties
+that same history list before awaiting the runtime's current-session memory
+operation. Chat owns English output, terminal effects and session cleanup;
+`/cls` remains the separate display operation. The default catalog contains 41
 commands and three aliases. Custom registries retain their own handlers.
 
 ## Quick start: an offline interactive session

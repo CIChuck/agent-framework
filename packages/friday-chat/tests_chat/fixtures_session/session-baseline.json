@@ -1,0 +1,513 @@
+{
+  "metadata": {
+    "clear": {
+      "name": "clear",
+      "description": "Clear conversation history.",
+      "category": "session",
+      "usage": "/clear",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "history": {
+      "name": "history",
+      "description": "Show conversation history.",
+      "category": "session",
+      "usage": "/history",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    }
+  },
+  "cases": [
+    {
+      "case": "history:empty",
+      "turns": [],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "result": {
+        "output": "No conversation history.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [],
+      "history_after": []
+    },
+    {
+      "case": "history:one",
+      "turns": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [],
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ]
+    },
+    {
+      "case": "history:ordered",
+      "turns": [
+        [
+          "second",
+          "B"
+        ],
+        [
+          "first",
+          "A"
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "result": {
+        "output": "Conversation history:\n1. User: second\n   Friday: B\n2. User: first\n   Friday: A",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [],
+      "history_after": [
+        [
+          "second",
+          "B"
+        ],
+        [
+          "first",
+          "A"
+        ]
+      ]
+    },
+    {
+      "case": "history:unicode-newlines",
+      "turns": [
+        [
+          "\u00c5\nuser",
+          "\u7b54\nreply"
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "result": {
+        "output": "Conversation history:\n1. User: \u00c5\nuser\n   Friday: \u7b54\nreply",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [],
+      "history_after": [
+        [
+          "\u00c5\nuser",
+          "\u7b54\nreply"
+        ]
+      ]
+    },
+    {
+      "case": "history:formatted-values",
+      "turns": [
+        [
+          false,
+          null
+        ],
+        [
+          7,
+          [
+            "x"
+          ]
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "result": {
+        "output": "Conversation history:\n1. User: False\n   Friday: None\n2. User: 7\n   Friday: ['x']",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [],
+      "history_after": [
+        [
+          false,
+          null
+        ],
+        [
+          7,
+          [
+            "x"
+          ]
+        ]
+      ]
+    },
+    {
+      "case": "history:malformed-short",
+      "turns": [
+        [
+          "only-one"
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "exception": {
+        "type": "ValueError",
+        "message": "not enough values to unpack (expected 2, got 1)"
+      },
+      "events": [],
+      "history_after": [
+        [
+          "only-one"
+        ]
+      ]
+    },
+    {
+      "case": "history:malformed-long",
+      "turns": [
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ],
+      "args": [
+        "ignored",
+        "\"quoted\""
+      ],
+      "exception": {
+        "type": "ValueError",
+        "message": "too many values to unpack (expected 2)"
+      },
+      "events": [],
+      "history_after": [
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ]
+    },
+    {
+      "case": "clear:no-runtime",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "history.clear",
+        "runtime.read"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:memory-true",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "history.clear",
+        "runtime.read",
+        "runtime.read",
+        "memory.clear:history=[]"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:memory-false",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "history.clear",
+        "runtime.read",
+        "runtime.read",
+        "memory.clear:history=[]"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:memory-exception",
+      "args": [
+        "ignored"
+      ],
+      "exception": {
+        "type": "RuntimeError",
+        "message": "memory-exception",
+        "same_object": true
+      },
+      "events": [
+        "history.clear",
+        "runtime.read",
+        "runtime.read",
+        "memory.clear:history=[]"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:memory-cancel",
+      "args": [
+        "ignored"
+      ],
+      "exception": {
+        "type": "CancelledError",
+        "message": "cancelled",
+        "same_object": true
+      },
+      "events": [
+        "history.clear",
+        "runtime.read",
+        "runtime.read",
+        "memory.clear:history=[]"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:history-exception",
+      "args": [
+        "ignored"
+      ],
+      "exception": {
+        "type": "RuntimeError",
+        "message": "history-exception",
+        "same_object": true
+      },
+      "events": [
+        "history.clear"
+      ],
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ]
+    },
+    {
+      "case": "clear:runtime-exception",
+      "args": [
+        "ignored"
+      ],
+      "exception": {
+        "type": "RuntimeError",
+        "message": "runtime-exception",
+        "same_object": true
+      },
+      "events": [
+        "history.clear",
+        "runtime.read"
+      ],
+      "history_after": []
+    },
+    {
+      "case": "clear:await-order",
+      "during_await": {
+        "history": [],
+        "task_done": false,
+        "events": [
+          "history.clear",
+          "runtime.read",
+          "runtime.read",
+          "memory.enter"
+        ]
+      },
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "history.clear",
+        "runtime.read",
+        "runtime.read",
+        "memory.enter",
+        "memory.return"
+      ]
+    },
+    {
+      "case": "dispatch:/history",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch:/HiStOrY ignored",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch:/history \"quoted words\"",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch:/clear ignored",
+      "handled": true,
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch:/ClEaR\tmore",
+      "handled": true,
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch://history",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch:/ history",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "dispatch: /clear",
+      "handled": false,
+      "result": null,
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ],
+      "exit_requested": false
+    },
+    {
+      "case": "renamed:history",
+      "handled": true,
+      "result": {
+        "output": "Conversation history:\n1. User: hello\n   Friday: world",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": [
+        [
+          "hello",
+          "world"
+        ]
+      ]
+    },
+    {
+      "case": "renamed:clear",
+      "handled": true,
+      "result": {
+        "output": "Conversation history cleared.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "history_after": []
+    }
+  ]
+}
