@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Fresh three-provider D2 council on Chat integration/lifecycle; G2-G3 and frozen comparison passed; reconcile before D3 G4-G5
+  next_gate: Maintainer decision on proposed REM-CMD-PILOT-D2-001 metadata compatibility amendment; then bounded correction and fresh D2 council before D3
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2599,3 +2599,10 @@ events:
   action: froze PILOT-001 D2 for council
   note: G2 400 and G3 218 passed; 196 frozen observations exact; required dependency/lock only. D1 verified, D3 and acceptance pending. No external delivery.
   evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T01:21:13+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled D2 council and proposed metadata contract decision
+  note: Claude 8.7 CHANGES_REQUESTED; Sol 9.6 and Gemini 9.9 VERIFIED. Mandatory custom-detail finding independently reproduced. No product correction or D3 before explicit PC-04 decision; original pilot approval retained.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round1.json

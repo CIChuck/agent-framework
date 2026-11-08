@@ -1,7 +1,9 @@
 # PILOT-001 D2 — Chat integration and lifecycle
 
-Execution phase: `validation`. Validation state: `in_review`.
-Fresh three-provider council is required before D3. The exact pilot approval
+Execution phase: `validation`. Validation state: `changes_requested`.
+The [first council](council-round1.json) found D2-PC04-DETAIL-01.
+The [proposed decision/correction](../../../../remediation/REM-CMD-PILOT-D2-001-metadata-compatibility.md)
+requires maintainer approval, correction and fresh council before D3. The exact pilot approval
 covers construction; this builder report grants no acceptance or delivery.
 
 Chat now projects shared help/exit/cls definitions into its public metadata,

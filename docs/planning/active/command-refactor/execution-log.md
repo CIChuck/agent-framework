@@ -1094,3 +1094,20 @@ Evidence: validation/pilot/implementation/d2/evidence.json and README.md.
 `execution_phase: validation`; `validation_state: in_review` for D2.
 Freeze for fresh three-provider D2 council; D3 G4/G5, whole-pilot acceptance and
 external delivery remain pending. No candidate-wheel/default-installed claim.
+
+2026-11-08T01:21:13+00:00: D2 round-one council reconciled at d261f021: Claude
+CHANGES_REQUESTED 8.7, Sol VERIFIED 9.6, Gemini VERIFIED 9.9. All reviewers and
+controller end checks match the frozen candidate/pins/protected files/index.
+D2-PC04-DETAIL-01 is mandatory: false/zero/empty-list custom detail values
+previously rendered but now raise TypeError. Controller independently reproduced
+this plus truthy invalid detail and byte-valued argument-text boundaries from
+private origin-verified Git exports. Default41/3 and196 observations still pass.
+PC-04 explicitly requires a maintainer contract decision. Proposed
+REM-CMD-PILOT-D2-001 preserves falsy detail and bounds unsupported non-string text,
+then authorizes narrow adapter/new-test correction (including asyncio markers),
+G2/G3/static/preservation checks and fresh council. Approval is not granted.
+Reports: validation/pilot/implementation/d2/council-round1.json; characterization:
+validation/pilot/implementation/d2/detail-characterization.json. No product,
+test, dependency, frozen contract/directive/harness or dirty-example byte changed.
+`execution_phase: validation`; `validation_state: changes_requested` for D2.
+Await the exact proposed decision; D3 and whole-pilot acceptance remain pending.

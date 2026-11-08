@@ -1,23 +1,26 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 D1 VERIFIED; D2 implemented and in council validation; D3 pending
+Status: PILOT-001 D1 VERIFIED; D2 CHANGES_REQUESTED; metadata contract decision pending
 Execution phase: validation
-Validation state: in_review (PILOT-001 D2); D1 verified; D3/G4-G5 and whole-pilot acceptance pending
+Validation state: changes_requested (PILOT-001 D2); D3/G4-G5 and whole-pilot acceptance pending
 
 ## Current next steps
 
-1. Reconcile the fresh three-provider council for D2 Chat integration/lifecycle.
-   [D2 evidence](validation/pilot/implementation/d2/README.md) records G2/G3,
-   frozen before/after compatibility and unchanged source/assertion checks.
-2. After D2 council reconciliation, deliver D3 full regression, clean candidate
-   artifacts and default installed proof (G4-G5), followed by its own council.
-3. Present the complete pilot for maintainer acceptance. Later families, TUI
-   work and external delivery still require separate authority.
+1. Review and approve the [bounded metadata compatibility amendment/correction](remediation/REM-CMD-PILOT-D2-001-metadata-compatibility.md).
+   [D2 council](validation/pilot/implementation/d2/council-round1.json) is
+   CHANGES_REQUESTED for D2-PC04-DETAIL-01; other D2 criteria pass.
+2. After that decision, correct only the approved adapter/test boundary, rerun
+   G2/G3 and preservation checks, then obtain a fresh three-provider D2 council.
+3. After D2 council reconciliation, deliver D3 full regression and candidate
+   artifact/default-installed proof (G4/G5), followed by its own council.
+4. Present the full pilot for maintainer acceptance. External delivery remains
+   separately unapproved.
 
-The [exact pilot approval](approval/pilot.md) authorizes this sequence. D1's
-[reconciled council result](validation/pilot/implementation/d1/council-round4.json)
-is the completed prerequisite. Earlier checkpoint narrative below is historical.
+The original [exact pilot approval](approval/pilot.md) remains in force, with
+PC-04's explicit stop for a newly discovered contract decision. D1 remains
+[verified](validation/pilot/implementation/d1/council-round4.json). Historical
+checkpoint narrative below does not authorize the proposed amendment.
 
 ## Historical checkpoints
 
