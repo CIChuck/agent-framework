@@ -219,6 +219,127 @@
       "role": "controller_program",
       "sha256": "c2e3001757c7d20207cf20346a64957189f2a092783963da53fc1fce7e29f8d4",
       "text": "from pathlib import Path\nimport hashlib\nimport json\nimport os\nimport shutil\nimport subprocess\n\ns=Path(Path('/tmp/session-d1-export-fix-current.txt').read_text().strip())\nrepo=Path.cwd()\nenv=dict(os.environ,GIT_OPTIONAL_LOCKS='0',PYTHONDONTWRITEBYTECODE='1')\nbase=json.loads((s/'context.json').read_text())['base']\nold_test=subprocess.check_output(['git','show',base+':packages/friday-commands/tests_commands/test_session_views.py'],env=env)\nvariants={'control':'','extra-export':'\\n__all__.append(\"contracts\")\\n','missing-prior-export':'\\n__all__.remove(\"NoData\")\\n','reorder-prior-exports':'\\n__all__[2], __all__[17] = __all__[17], __all__[2]\\n','duplicate-export':'\\n__all__.append(\"HistoryData\")\\n'}\nresults={}\nfor label,edit in variants.items():\n    root=s/'mutations'/label\n    source=root/'src'\n    shutil.copytree(repo/'packages/friday-commands/src',source,ignore=shutil.ignore_patterns('__pycache__','*.pyc'),symlinks=True)\n    init=source/'friday_commands/__init__.py'\n    init.write_text(init.read_text()+edit)\n    for phase in (['before','corrected'] if label in ('extra-export','missing-prior-export') else ['corrected']):\n        if phase=='before':\n            tests=root/'tests_commands';tests.mkdir(exist_ok=True)\n            test=tests/'test_session_views.py';test.write_bytes(old_test)\n            paths=[str(test)+'::test_session_specs_and_factory_are_immutable']\n        else:\n            paths=['packages/friday-commands/tests_commands','tests/integration/test_package_cohort_metadata.py']\n        args=['-c',str(repo/'pyproject.toml'),'-p','no:cacheprovider','-q',*paths]\n        code='''import hashlib,json,sys\nfrom pathlib import Path\nroot=Path(SOURCE).resolve()\nsys.path.insert(0,str(root))\nimport friday_commands,friday_commands.contracts,friday_commands.session_views\nmodules=[friday_commands,friday_commands.contracts,friday_commands.session_views]\ndef origins():\n result={module.__name__:{'path':str(Path(module.__file__).resolve()),'sha256':hashlib.sha256(Path(module.__file__).read_bytes()).hexdigest()} for module in modules}\n if not all(Path(info['path']).is_relative_to(root) for info in result.values()):raise RuntimeError('Mutant import origin mismatch')\n return result\nbefore=origins()\nimport pytest\nclass Proof:\n def __init__(self):self.calls=[];self.setup=[]\n def pytest_runtest_logreport(self,report):\n  if report.failed:(self.calls if report.when=='call' else self.setup).append(report.nodeid)\n def pytest_sessionfinish(self,session,exitstatus):\n  after=origins()\n  if after!=before:raise RuntimeError('Mutant changed during pytest')\n  print('EXPORT_PROOF='+json.dumps({'before':before,'after':after,'call_failures':self.calls,'setup_errors':self.setup,'exit':int(exitstatus)}))\nraise SystemExit(pytest.main(ARGS,plugins=[Proof()]))\n'''.replace('SOURCE',repr(str(source))).replace('ARGS',repr(args))\n        name='export-'+label+'-'+phase\n        command=[str(repo/'.venv/bin/python'),'-B',str(s/'prepared/pilot_run.py'),name,'python','-B','-c',code]\n        outcome=subprocess.run(command,env=env,capture_output=True,text=True)\n        log=(s/'prepared'/(name+'.log')).read_text()\n        proof=json.loads(next(line.split('EXPORT_PROOF=',1)[1] for line in log.splitlines() if 'EXPORT_PROOF=' in line))\n        expected=0 if phase=='before' or label=='control' else 1\n        if outcome.returncode!=expected or proof['setup_errors']:raise RuntimeError('Unexpected mutation/setup result: '+name)\n        if expected:\n            if len(proof['call_failures'])!=1 or not proof['call_failures'][0].endswith('::test_session_specs_and_factory_are_immutable'):raise RuntimeError('Wrong export assertion failure: '+name)\n            if '277 passed' not in log:raise RuntimeError('Other S1 cases changed: '+name)\n        elif phase=='corrected' and '278 passed' not in log:raise RuntimeError('Unchanged control did not pass full S1')\n        results[name]={'command':command,'exit':outcome.returncode,'proof':proof,'expectation':'Pre-fix gap remains observable' if phase=='before' else 'Unchanged complete S1 passes' if label=='control' else 'Exactly one named export assertion fails;277 other S1 cases pass'}\n        print(name,outcome.returncode,'call failures',len(proof['call_failures']),flush=True)\n(s/'export-mutation-results.json').write_text(json.dumps({'result':'passed','runs':results,'limit':'Private source controls only, no artifact proof. Setup/collection errors earn no rejection credit.'},indent=2)+'\\n')\n"
+    },
+    "prepared/corrected-docs-final.json": {
+      "role": "final_gate",
+      "sha256": "9b10fcdb251ce53a1c5c9d2b214bad953d29a302d0ee7f1f2c6c380a8bbe9521",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/check-documentation-lifecycle.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.72\n}"
+    },
+    "prepared/corrected-dashboard-final.json": {
+      "role": "final_gate",
+      "sha256": "32e09a07932387e2e79d14f80627cbd659e3cd364a03a9c7ceaefe896fb7234f",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.14\n}"
+    },
+    "prepared/corrected-board.json": {
+      "role": "historical_attempt",
+      "sha256": "4673036f24d24fab9e8bf08449dc1496ebf9f94a0ee51087794990242365882e",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.15\n}"
+    },
+    "prepared/corrected-dashboard.json": {
+      "role": "historical_attempt",
+      "sha256": "32e09a07932387e2e79d14f80627cbd659e3cd364a03a9c7ceaefe896fb7234f",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.14\n}"
+    },
+    "prepared/corrected-dashboard.log": {
+      "role": "historical_attempt",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "text": "Planning dashboard is current\n"
+    },
+    "prepared/corrected-dashboard-final.log": {
+      "role": "final_gate",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "text": "Planning dashboard is current\n"
+    },
+    "prepared/corrected-board-final.log": {
+      "role": "final_gate",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "text": "Development board validation passed: 36 tasks\n"
+    },
+    "prepared/corrected-board.log": {
+      "role": "historical_attempt",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "text": "Development board validation passed: 36 tasks\n"
+    },
+    "prepared/corrected-board-final.json": {
+      "role": "final_gate",
+      "sha256": "4673036f24d24fab9e8bf08449dc1496ebf9f94a0ee51087794990242365882e",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.15\n}"
+    },
+    "prepared/corrected-docs-final.log": {
+      "role": "final_gate",
+      "sha256": "6036ae8d9c591a616d360f90e12a052ff264e831d3d6ec368b3c27b643dabb5b",
+      "text": "Documentation lifecycle validation passed: 879 Markdown files checked\n"
+    },
+    "prepared/corrected-docs.log": {
+      "role": "historical_attempt",
+      "sha256": "631e49bfc050d1def8006ecb34552599f166910ab4731f7955b2ab9e0c1d771b",
+      "text": "Documentation lifecycle validation failed:\n- docs/planning/active/command-refactor/README.md:151: broken link 'validation/COUNCIL-CMD-DESIGN-001-round 2.md'\n- docs/planning/active/command-refactor/README.md:173: broken link 'validation/pilot/implementation/d3/council-round 2.json'\n- docs/planning/active/command-refactor/next-phase.md:110: broken link 'validation/pilot/harness-evidence-round 2.json'\n- docs/planning/active/command-refactor/next-phase.md:119: broken link 'validation/pilot/council-remediation-round 2.json'\n"
+    },
+    "prepared/corrected-docs.json": {
+      "role": "historical_attempt",
+      "sha256": "fb91d19e9a2eded5166808dee4f2c711fb56b017eb6b70f457ef126bb104f9cb",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/check-documentation-lifecycle.py\"\n  ],\n  \"exit\": 1,\n  \"seconds\": 0.76\n}"
+    },
+    "prepared/pre-freeze-dashboard.json": {
+      "role": "historical_attempt",
+      "sha256": "2c5cc7099ca289038dccc3627573574edc03ffc787d64e82c13f7dabdc660cfd",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 1,\n  \"seconds\": 0.29\n}"
+    },
+    "prepared/pre-freeze-dashboard.log": {
+      "role": "historical_attempt",
+      "sha256": "1ba843a258ad2c68b406d0113fe65d80cea8e6f0c46dbf4b3eaa85025f9daa8e",
+      "text": "Development board error:\nplanning dashboard is stale\n"
+    },
+    "prepared/pre-freeze-board.json": {
+      "role": "historical_attempt",
+      "sha256": "ea91eb3648d796a163e101a84804c895821be07fac3dede1b13229fa340f5cbf",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 1,\n  \"seconds\": 0.29\n}"
+    },
+    "prepared/pre-freeze-board.log": {
+      "role": "historical_attempt",
+      "sha256": "f87077518ff61b76c05ef6632ed1b5c7087ee1e1804989ead342fe6d12f8f423",
+      "text": "Development board error:\nplanning dashboard is stale; run the render command\n"
+    },
+    "prepared/pre-freeze-docs.log": {
+      "role": "historical_attempt",
+      "sha256": "5630f65d3b641516945a256a2c34fdd12184d32002a325e3129396d6bc4c5d6e",
+      "text": "Documentation lifecycle validation failed:\n- docs/planning/board.yaml: Development board error:\nplanning dashboard is stale; run the render command\n"
+    },
+    "prepared/pre-freeze-docs.json": {
+      "role": "historical_attempt",
+      "sha256": "c61ea7ec3c9cdf1ee60a858afda95dd2f44395b532c2acf16140615bb93bbfae",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/check-documentation-lifecycle.py\"\n  ],\n  \"exit\": 1,\n  \"seconds\": 1.03\n}"
+    },
+    "prepared/final-dashboard.log": {
+      "role": "final_gate",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "text": "Planning dashboard is current\n"
+    },
+    "prepared/final-board.log": {
+      "role": "final_gate",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "text": "Development board validation passed: 36 tasks\n"
+    },
+    "prepared/final-dashboard.json": {
+      "role": "final_gate",
+      "sha256": "e692da5be44c015b61940591cb4e17ace8216ccd784a2b7ca8d411fea66ff4da",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.17\n}"
+    },
+    "prepared/final-docs.json": {
+      "role": "final_gate",
+      "sha256": "3a36b1ceabbc3e44de8c2a389fcf5776501f2c62a61a25d2dce6fd753084d350",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/check-documentation-lifecycle.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.67\n}"
+    },
+    "prepared/final-docs.log": {
+      "role": "final_gate",
+      "sha256": "6036ae8d9c591a616d360f90e12a052ff264e831d3d6ec368b3c27b643dabb5b",
+      "text": "Documentation lifecycle validation passed: 879 Markdown files checked\n"
+    },
+    "prepared/final-board.json": {
+      "role": "final_gate",
+      "sha256": "1733150c11b6325332f371c57ba64877bbb1d69748871a8f2efed9f185727577",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.17\n}"
     }
-  }
+  },
+  "historical_metadata_attempt": "A controller wording cleanup changed round2 file-reference tokens, causing documentation failure. All six references and original board-history prefix were restored. Restoring the precise gate wording required rerendering the dashboard; the intermediate stale-dashboard failures are historical. The final board/dashboard/docs checks all pass. Runtime and test bytes were unaffected."
 }

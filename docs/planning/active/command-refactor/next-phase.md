@@ -107,7 +107,7 @@ The regenerated baseline comes from the same unchanged Git revision, preserving
 all original observations and adding three legacy falsy-focus cases (196 total).
 Fresh full three-provider review is required for the corrected candidate.
 
-Current corrected G0 evidence is [round-two harness receipts](validation/pilot/harness-evidence-round 2.json):
+Current corrected G0 evidence is [round-two harness receipts](validation/pilot/harness-evidence-round2.json):
 12 refusal controls, 10 comparison controls, cold artifact build/install and all
 1,338 scoped baseline tests pass with the final scratch-isolated runner.
 [Correction map](validation/pilot/council-remediation.json) binds every council
@@ -116,7 +116,7 @@ above describes round one. No product construction approval is granted.
 
 Round two: OpenAI CHANGES_REQUESTED 8.8/10, Claude CHANGES_REQUESTED 8.5/10,
 Gemini VERIFIED 9.8/10. The combined readiness decision remains CHANGES_REQUESTED.
-[Current corrections](validation/pilot/council-remediation-round 2.json) and
+[Current corrections](validation/pilot/council-remediation-round2.json) and
 [round-three evidence](validation/pilot/harness-evidence-round3.json) now include
 an executable artifact-bundle recipe: 13 workspace builds, 125 hash-verified
 locked third-party artifacts, PyPika source-to-wheel lineage, exact Python

@@ -148,7 +148,7 @@ Chuck Russell subsequently accepted the verified foundation by direct instructio
 refactor remains started/local and later construction is separately gated.
 
 Round 2 results and the narrow residual pruning-review correction are recorded
-in [the council report](validation/COUNCIL-CMD-DESIGN-001-round 2.md). The correction
+in [the council report](validation/COUNCIL-CMD-DESIGN-001-round2.md). The correction
 had controller checks only at that historical checkpoint; those verdicts do
 not verify the current corrected readiness candidate.
 
@@ -170,7 +170,7 @@ this exact maintainer record.
 
 D1 neutral handlers, D2 Chat integration and D3 regression/installed proof are
 independently verified. [Reconciled pilot verification](validation/pilot/implementation/d3/verified-report.md)
-records the current result; [exact council reports](validation/pilot/implementation/d3/council-round 2.json)
+records the current result; [exact council reports](validation/pilot/implementation/d3/council-round2.json)
 and [current evidence](validation/pilot/implementation/d3/remediation-evidence.json)
 preserve the reviewed candidate and limits. Both D3 findings are closed.
 Chuck Russell has [accepted PILOT-001](approval/pilot-acceptance.md).
