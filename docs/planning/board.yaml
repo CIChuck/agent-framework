@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Approve proposed DIAG-001 contract and CD-CMD-DIAG-001 before construction; SESSION-001 remains accepted
+  next_gate: DIAG-001 D0/D1 implementation under exact approval; freeze for Sol/Astra/Claude council before D2
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2751,3 +2751,10 @@ events:
   action: prepared DIAG-001 diagnostics contract and exact directive
   note: Maintainer proceed authorizes preparation only. Six metadata records/72 synthetic cases repeat; guarded Chat244 and Commands-cohort278 pass. Proposed type boundaries and export assertion evolution need exact approval; no product/test/config/lock change. SESSION remains accepted; Sol/Astra/Claude after each future deliverable.
   evidence: docs/planning/active/command-refactor/diagnostics-command-contract.md
+- task: friday-command-refactor
+  at: '2026-11-08T19:55:43+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact DIAG-001 contract and directive; begin code generation
+  note: Direct approval of both pending documents. D0 then D1 neutral implementation; fresh Sol/Astra/Claude council after every deliverable. Existing acceptances retained; no DIAG acceptance or external delivery.
+  evidence: docs/planning/active/command-refactor/approval/diagnostics.md

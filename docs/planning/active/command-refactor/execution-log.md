@@ -1505,3 +1505,18 @@ All 1249 protected non-documentation files, including both dirty Chat examples,
 match the prior preparation snapshot. Board/dashboard, documentation lifecycle,
 links and whitespace validation are the applicable handoff checks. No UAT case
 has been executed or accepted through this documentation change.
+
+
+## 2026-11-08T19:55:43.877474+00:00 — DIAG-001 exact approval and D0/D1 start
+
+- `execution_phase: implementation`; `validation_state: pending` for DIAG D1.
+- Chuck Russell approved both pending exact documents and instructed code
+  generation. [Approval](approval/diagnostics.md) binds contract/directive/
+  preparation hashes, closed schema and declared-type decisions, exact export
+  assertion evolution, D1–D3 ordering and Sol/Astra/Claude after each deliverable.
+- Starting HEAD `d0c729f43534bb79a3db70852ec08028ddb631ec` equals baseline `9dbcec54773f10274eea058e5d59edb0ce53b6cc` across committed product,
+  tests, scripts and root metadata/lock. All 1249 working non-doc pins match;
+  both dirty examples remain unchanged and excluded.
+- Reproduce D0 in fresh external scratch, then D1 neutral-only implementation.
+  Current source/test inventory is `/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-build-d1-nmr1x7ad/before-inventory.json`.
+  Fresh D1 council is required before D2. No DIAG acceptance/delivery granted.

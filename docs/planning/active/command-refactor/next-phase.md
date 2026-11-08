@@ -1,6 +1,36 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
+Status: Exact DIAG-001 contract/directive approved; D0/D1 construction underway
+Execution phase: implementation
+Validation state: pending (DIAG-001 D1); D2/D3 and acceptance pending
+
+## Current DIAG-001 checkpoint
+
+Chuck Russell [approved both exact documents](approval/diagnostics.md) and
+instructed code generation. Reproduce D0 baseline observations/inventories and
+closed build, then implement only D1 neutral schemas, specs, port, handlers and
+tests. [CD-CMD-DIAG-001](directives/CD-CMD-DIAG-001-context-diagnostics.md) and the
+[contract](diagnostics-command-contract.md) bind scope and required checks.
+
+Freeze the D1 candidate and obtain fresh Sol/Astra/Claude reviews before D2.
+After reconciliation proceed to D2 Chat integration and its council, then D3
+full regressions/artifact/installed proof and complete bounded aggregate council.
+Stop for bounded human DIAG acceptance; the initiative remains started/local.
+
+SESSION/pilot/retirement/foundation acceptance remains retained. The
+[UAT roadmap](uat/friday-chat-user-acceptance-roadmap.md) supports later manual
+checks; every case remains NOT RUN. Known root debt stays failed/unwaived.
+No later-family/full-refactor/P0/P1/TUI or delivery authority is inferred.
+
+### Preserved prior planning checkpoint
+
+The following describes the preapproval preparation and is superseded by the
+exact subsequent approval above.
+
+# Command refactor — next-phase checkpoint
+
+Branch: `feature/command-retirement`
 Status: DIAG-001 proposed contract/directive prepared; exact approval pending
 Execution phase: planning
 Validation state: not_ready (DIAG-001); SESSION-001 remains accepted/verified
@@ -28,6 +58,7 @@ artifacts and installed proof remain accepted historical evidence. PILOT,
 RET and foundation acceptance remain closed. Root debt stays failed/unwaived.
 The initiative remains started/local; remaining families, P0/P1, full-refactor,
 TUI and external delivery stay separate gates.
+
 
 ## Historical checkpoints
 
