@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "Approved D2 metadata correction implemented; prescribed gates passed; fresh three-provider D2 council pending",
+  "decision": "PILOT-001 D2 council VERIFIED by all three providers; continue approved D3 full regression and installed candidate proof",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "D2 correction cycle1 in validation under exact metadata amendment approval; D3 regression/artifact/default-install proof and acceptance pending",
+  "current_scope": "D3 G4-G5 regression, preservation/documentation, clean artifacts/default-installed proof and fresh council; D1/D2 verified, final acceptance pending",
   "product_code_authority": "Exact pilot construction approved in approval/pilot.md; council after each deliverable before advancement. Remaining families, TUI, final acceptance and external delivery are unapproved.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -312,7 +312,7 @@
     "product_baseline": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
     "branch": "feature/command-retirement",
     "state": "started",
-    "current_deliverable": "D2 metadata compatibility correction, council round2",
+    "current_deliverable": "D3 full regression and installed candidate proof (G4-G5)",
     "council_after_each_deliverable": true,
     "deliverables": {
       "D1": "Shared neutral API/handlers and standalone tests (G1)",
@@ -385,9 +385,9 @@
       }
     },
     "deliverable2": {
-      "state": "in_review",
+      "state": "verified",
       "scope": "Approved PC-03 through PC-06 Chat adapter/dependency edge; PILOT-03 through08 plus bounded Chat preservation subset of PILOT-09",
-      "gate": "Fresh three-provider D2 round2 council on approved correction before D3",
+      "gate": "D2 council reconciled; approved D3 may proceed",
       "acceptance": "not_granted",
       "evidence": "validation/pilot/implementation/d2/remediation-evidence.json",
       "source_revision": "5bec927c40d3cf9863cd89353360f740e911d300",
@@ -424,7 +424,23 @@
           "G3": 246,
           "frozen_observations": 196
         }
+      },
+      "council_round2": {
+        "candidate": "d5a29faff664e6b03599f4831c89e09fcb087a50",
+        "outcome": "VERIFIED",
+        "scores": {
+          "claude": 9.7,
+          "openai": 9.6,
+          "gemini": 9.8
+        },
+        "record": "validation/pilot/implementation/d2/council-round2.json"
       }
+    },
+    "deliverable3": {
+      "state": "started",
+      "scope": "Approved G4-G5 full regression, source/assertion/docs proof, clean Git artifact/default-install closure and installed_probe.py",
+      "gate": "Full G4/G5 evidence then fresh three-provider D3 council before maintainer acceptance",
+      "acceptance": "not_granted"
     }
   },
   "historical_preapproval_summary": {

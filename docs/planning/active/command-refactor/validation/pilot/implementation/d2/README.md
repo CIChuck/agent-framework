@@ -1,6 +1,9 @@
 # PILOT-001 D2 — Chat integration and lifecycle
 
-Execution phase: `validation`. Validation state: `in_review` (corrected D2).
+Execution phase: `validation`. Validation state: `verified` (D2 only).
+[Round-two council](council-round2.json): Claude 9.7, Sol 9.6, Gemini 9.8; all
+VERIFIED, metadata finding closed. Approved D3 is now in progress.
+The next paragraph records the pre-review builder checkpoint historically.
 The [exact metadata amendment](../../../../approval/pilot-metadata-compatibility.md)
 is approved. Its [correction evidence](remediation-evidence.json) records G1 217,
 G2 428, G3 246, 190 cases in the new test file and all 196 frozen observations.

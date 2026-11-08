@@ -1142,3 +1142,19 @@ map: validation/pilot/implementation/d2/council-remediation-round1.json.
 `execution_phase: validation`; `validation_state: in_review` for D2 correction.
 Freeze for the approved fresh three-provider D2 round2 council. D3, whole-pilot
 acceptance and external delivery remain pending.
+
+2026-11-08T01:55:38+00:00: D2 round2 council unanimously VERIFIED d5a29faf:
+Claude 9.7, Sol 9.6, Gemini 9.8, no surviving mandatory findings. D2-PC04-DETAIL-01
+and explicit asyncio markers are verified closed under the approved amendment.
+Controller end freeze matches all 17,130 protected contents, 41 pins and exact
+HEAD/status/index. Exact reports and controller reconciliation/errata are in
+validation/pilot/implementation/d2/council-round2.json. Gemini's prose contains
+several hash/lineage/dependency transcription errors; its underlying integrity
+receipts and static audit match the correct frozen request and controller checks.
+No changed code or authority is accepted on the strength of the erroneous prose.
+Proceed to D3 only under existing pilot approval. D3 must run full after suites,
+clean candidate wheel/sdist/default-installed proof and a fresh separate council.
+Retain the future archival fixture-path advisory; the initiative remains active
+through the rest of command refactor, so no packet move is part of this pilot.
+`execution_phase: implementation`; `validation_state: not_ready` for D3.
+D2 verification is not whole-pilot acceptance or external delivery authority.

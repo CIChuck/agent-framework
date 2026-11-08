@@ -1,24 +1,23 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 D1 VERIFIED; approved D2 metadata correction in council round2; D3 pending
-Execution phase: validation
-Validation state: in_review (PILOT-001 D2 correction); D3/G4-G5 and whole-pilot acceptance pending
+Status: PILOT-001 D1 and D2 VERIFIED; D3 regression/installed proof started
+Execution phase: implementation
+Validation state: not_ready (PILOT-001 D3); whole-pilot acceptance pending
 
 ## Current next steps
 
-1. Reconcile fresh three-provider D2 council round2 on the approved metadata
-   correction. [Evidence](validation/pilot/implementation/d2/remediation-evidence.json)
-   records G1 217, G2 428, G3 246 and exact comparison of all 196 observations.
-2. After D2 council reconciliation, deliver D3 full regression and candidate
-   artifact/default-installed proof (G4/G5), followed by its own council.
-3. Present the full pilot for maintainer acceptance. External delivery remains
-   separately unapproved.
+1. Complete approved D3 G4 full Chat/Commands/CLI regression, preservation and
+   documentation checks, followed by G5 clean candidate artifacts, default
+   dependency closure and installed behavior/source-member proof.
+2. Freeze D3 and obtain its own fresh three-provider council.
+3. Present the full pilot for maintainer acceptance. Later families, TUI work
+   and external delivery remain separately unapproved.
 
-The original [pilot approval](approval/pilot.md) and exact
-[metadata amendment approval](approval/pilot-metadata-compatibility.md) govern
-this correction. D1 remains [verified](validation/pilot/implementation/d1/council-round4.json).
-Historical checkpoints below do not override current authority or state.
+D1 and [D2](validation/pilot/implementation/d2/council-round2.json) are independently
+verified. The original [pilot approval](approval/pilot.md) and exact
+[metadata amendment](approval/pilot-metadata-compatibility.md) remain in force.
+Historical checkpoints below do not override these current records.
 
 ## Historical checkpoints
 

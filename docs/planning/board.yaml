@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Fresh three-provider D2 round2 council on approved metadata correction; G1 217, G2 428, G3 246 and frozen comparison passed; reconcile before D3
+  next_gate: Execute approved PILOT-001 D3 full regression and clean installed candidate proof (G4-G5), then fresh three-provider D3 council
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -725,6 +725,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/pilot/round4-reconciliation.md
   - docs/planning/active/command-refactor/validation/pilot/final-readiness-validation.md
   - docs/planning/active/command-refactor/validation/pilot/implementation/d1/council-round4.json
+  - docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round2.json
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2620,3 +2621,10 @@ events:
   action: froze approved D2 correction for fresh council
   note: Exact one-line detail projection and authorized tests/markers; G1 217, G2 428, G3 246 and all 196 observations pass. Prior source/assertions/lock/frozen evidence preserved; D3 and acceptance pending.
   evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/remediation-evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T01:55:38+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled VERIFIED D2 council and started approved D3
+  note: Claude 9.7, Sol 9.6 and Gemini 9.8 all VERIFIED d5a29faf. Metadata finding closed. D3 proceeds under original pilot authority, followed by its own council; no whole-pilot acceptance or delivery inferred.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round2.json
