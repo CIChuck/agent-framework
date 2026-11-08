@@ -1,25 +1,24 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: PILOT-001 D1 VERIFIED; D2 metadata amendment approved; bounded correction in progress
-Execution phase: remediation
-Validation state: not_ready (PILOT-001 D2 correction); D3/G4-G5 and whole-pilot acceptance pending
+Status: PILOT-001 D1 VERIFIED; approved D2 metadata correction in council round2; D3 pending
+Execution phase: validation
+Validation state: in_review (PILOT-001 D2 correction); D3/G4-G5 and whole-pilot acceptance pending
 
 ## Current next steps
 
-1. Apply the [approved bounded metadata amendment/correction](approval/pilot-metadata-compatibility.md)
-   for D2-PC04-DETAIL-01, including required new tests and asyncio markers.
-2. Pass G2/G3, neutral regression and preservation/static checks; freeze a fresh
-   three-provider D2 council before D3.
-3. After D2 council reconciliation, deliver D3 full regression and candidate
+1. Reconcile fresh three-provider D2 council round2 on the approved metadata
+   correction. [Evidence](validation/pilot/implementation/d2/remediation-evidence.json)
+   records G1 217, G2 428, G3 246 and exact comparison of all 196 observations.
+2. After D2 council reconciliation, deliver D3 full regression and candidate
    artifact/default-installed proof (G4/G5), followed by its own council.
-4. Present the full pilot for maintainer acceptance. External delivery remains
+3. Present the full pilot for maintainer acceptance. External delivery remains
    separately unapproved.
 
-The original [exact pilot approval](approval/pilot.md) remains in force together
-with the explicit metadata amendment. D1 remains
-[verified](validation/pilot/implementation/d1/council-round4.json). Historical
-checkpoint narrative below does not override these current records.
+The original [pilot approval](approval/pilot.md) and exact
+[metadata amendment approval](approval/pilot-metadata-compatibility.md) govern
+this correction. D1 remains [verified](validation/pilot/implementation/d1/council-round4.json).
+Historical checkpoints below do not override current authority or state.
 
 ## Historical checkpoints
 

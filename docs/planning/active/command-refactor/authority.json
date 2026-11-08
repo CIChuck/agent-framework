@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "REM-CMD-PILOT-D2-001 approved by Chuck Russell; bounded D2 metadata correction started",
+  "decision": "Approved D2 metadata correction implemented; prescribed gates passed; fresh three-provider D2 council pending",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Apply exact approved D2 metadata compatibility amendment, regression tests/asyncio markers, prescribed checks and fresh D2 council; D3 pending",
+  "current_scope": "D2 correction cycle1 in validation under exact metadata amendment approval; D3 regression/artifact/default-install proof and acceptance pending",
   "product_code_authority": "Exact pilot construction approved in approval/pilot.md; council after each deliverable before advancement. Remaining families, TUI, final acceptance and external delivery are unapproved.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -312,7 +312,7 @@
     "product_baseline": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
     "branch": "feature/command-retirement",
     "state": "started",
-    "current_deliverable": "D2 metadata compatibility remediation cycle 1",
+    "current_deliverable": "D2 metadata compatibility correction, council round2",
     "council_after_each_deliverable": true,
     "deliverables": {
       "D1": "Shared neutral API/handlers and standalone tests (G1)",
@@ -385,12 +385,12 @@
       }
     },
     "deliverable2": {
-      "state": "remediation",
+      "state": "in_review",
       "scope": "Approved PC-03 through PC-06 Chat adapter/dependency edge; PILOT-03 through08 plus bounded Chat preservation subset of PILOT-09",
-      "gate": "Apply approved REM-CMD-PILOT-D2-001, pass prescribed checks and freeze fresh D2 council",
+      "gate": "Fresh three-provider D2 round2 council on approved correction before D3",
       "acceptance": "not_granted",
-      "evidence": "validation/pilot/implementation/d2/evidence.json",
-      "source_revision": "99f19f69a33e217b5d7e974e7aa5bb3aadc906b6",
+      "evidence": "validation/pilot/implementation/d2/remediation-evidence.json",
+      "source_revision": "5bec927c40d3cf9863cd89353360f740e911d300",
       "council_round1": {
         "candidate": "d261f021d2b8048015ea582c2ed4502898739c2c",
         "outcome": "CHANGES_REQUESTED",
@@ -411,6 +411,19 @@
         "approved_by": "Chuck Russell",
         "approved_at": "2026-11-08T01:28:24+00:00",
         "approval_sha256": "1f71ed053573682f788915742beccb1fc7de7c53c3fb5d20b0b8325953331cf0"
+      },
+      "baseline_evidence": "validation/pilot/implementation/d2/evidence.json",
+      "remediation": {
+        "cycle": 1,
+        "finding": "D2-PC04-DETAIL-01",
+        "state": "implemented_pending_independent_verification",
+        "map": "validation/pilot/implementation/d2/council-remediation-round1.json",
+        "checks": {
+          "G1": 217,
+          "G2": 428,
+          "G3": 246,
+          "frozen_observations": 196
+        }
       }
     }
   },

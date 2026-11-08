@@ -1,0 +1,26 @@
+{
+  "candidate_under_review": "d261f021d2b8048015ea582c2ed4502898739c2c",
+  "authority": "approval/pilot-metadata-compatibility.md",
+  "amendment": "remediation/REM-CMD-PILOT-D2-001-metadata-compatibility.md",
+  "findings": [
+    {
+      "id": "D2-PC04-DETAIL-01",
+      "required_change": "Falsy detail projection plus explicit decision for unsupported incorrectly typed metadata.",
+      "disposition": "Implemented under exact maintainer approval; fresh independent review pending.",
+      "source": "packages/friday-chat/src/friday_chat/commands/pilot.py::_to_shared",
+      "tests": "test_command_pilot.py::test_detail_projection_matches_old_direct_and_shared_async_help and three approved-boundary refusal test families",
+      "evidence": "remediation-evidence.json"
+    }
+  ],
+  "advisories": [
+    {
+      "id": "Claude-A4",
+      "disposition": "Explicit pytest.mark.asyncio added to every top-level async test in the new test file; prior test bodies/assertions unchanged."
+    },
+    {
+      "id": "Other Claude/Gemini advisories",
+      "disposition": "Deferred as the exact approved amendment requires; no extra refactor or metadata cleanup."
+    }
+  ],
+  "next_gate": "Fresh full three-provider D2 aggregate council, round2; no D3 before reconciliation."
+}

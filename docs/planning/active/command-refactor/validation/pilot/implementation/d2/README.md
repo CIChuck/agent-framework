@@ -1,9 +1,15 @@
 # PILOT-001 D2 — Chat integration and lifecycle
 
-Execution phase: `validation`. Validation state: `changes_requested`.
-The [first council](council-round1.json) found D2-PC04-DETAIL-01.
-The [proposed decision/correction](../../../../remediation/REM-CMD-PILOT-D2-001-metadata-compatibility.md)
-requires maintainer approval, correction and fresh council before D3. The exact pilot approval
+Execution phase: `validation`. Validation state: `in_review` (corrected D2).
+The [exact metadata amendment](../../../../approval/pilot-metadata-compatibility.md)
+is approved. Its [correction evidence](remediation-evidence.json) records G1 217,
+G2 428, G3 246, 190 cases in the new test file and all 196 frozen observations.
+Fresh D2 council round2 precedes D3. The [first council](council-round1.json)
+remains historical CHANGES_REQUESTED evidence for the uncorrected candidate.
+
+The following original builder results describe the pre-correction candidate;
+current correction results above and in remediation-evidence.json supersede
+its counts. Original receipts and baseline captures remain unchanged. The exact pilot approval
 covers construction; this builder report grants no acceptance or delivery.
 
 Chat now projects shared help/exit/cls definitions into its public metadata,

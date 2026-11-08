@@ -1122,3 +1122,23 @@ checks before one fresh three-provider D2 council pass. Original approved
 contract/directive/harness/baseline and prior evidence remain immutable.
 `execution_phase: remediation`; `validation_state: not_ready` for D2.
 This is construction/amendment authority, not D2 acceptance or external delivery.
+
+2026-11-08T01:34:06+00:00: Approved REM-CMD-PILOT-D2-001 correction implemented at
+5bec927c. Product delta is exactly metadata.detail -> metadata.detail or
+None. Public registration/models unchanged. The new test file adds 28 cases for
+falsy details/string preservation vs the independently recorded old output,
+real shared async help, approved unsupported text/detail types and lazy unrelated
+entries; all prior test bodies/assertions remain intact with explicit asyncio
+markers. G1 passes 217, G2 passes 428 and G3 passes 246; Ruff, format and seven-file
+mypy pass. Fresh clean-Git capture preserves all 196 frozen observations.
+Preservation audit retains 58 original Chat test files, 858 definitions and 2,262
+asserts, all other source and unchanged dependencies/lock. Root Ruff 534 and the
+sole root test_display collection conflict remain failed/unwaived baseline debt.
+Expected pre-fix control is 8 failed/4 passed: six TypeErrors plus two explicit
+empty-string-to-None assertions. An initial helper expected six and stopped on
+eight; this counting error is disclosed and not credited as a candidate failure.
+Current evidence: validation/pilot/implementation/d2/remediation-evidence.json;
+map: validation/pilot/implementation/d2/council-remediation-round1.json.
+`execution_phase: validation`; `validation_state: in_review` for D2 correction.
+Freeze for the approved fresh three-provider D2 round2 council. D3, whole-pilot
+acceptance and external delivery remain pending.

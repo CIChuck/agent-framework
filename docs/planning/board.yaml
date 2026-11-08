@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Execute approved REM-CMD-PILOT-D2-001 metadata correction and tests; pass G2-G3 and preservation checks, then fresh D2 council before D3
+  next_gate: Fresh three-provider D2 round2 council on approved metadata correction; G1 217, G2 428, G3 246 and frozen comparison passed; reconcile before D3
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2613,3 +2613,10 @@ events:
   action: approved bounded D2 metadata compatibility amendment
   note: Explicit approval of REM-CMD-PILOT-D2-001 and its exact hash; bounded correction/tests/checks and fresh three-provider D2 council. No D2 acceptance or external delivery; D3 remains gated by D2 reconciliation.
   evidence: docs/planning/active/command-refactor/approval/pilot-metadata-compatibility.md
+- task: friday-command-refactor
+  at: '2026-11-08T01:34:06+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze approved D2 correction for fresh council
+  note: Exact one-line detail projection and authorized tests/markers; G1 217, G2 428, G3 246 and all 196 observations pass. Prior source/assertions/lock/frozen evidence preserved; D3 and acceptance pending.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/remediation-evidence.json
