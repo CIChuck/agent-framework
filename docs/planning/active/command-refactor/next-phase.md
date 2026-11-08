@@ -1,25 +1,27 @@
-# DIAG-001 — D2 correction checkpoint
+# DIAG-001 — D2 correction validation checkpoint
 
 Branch: `feature/command-retirement`
-Execution phase: remediation
-Validation state: changes_requested (D2 correction cycle1)
+Execution phase: validation
+Validation state: in_review (D2 correction cycle1 / council round2)
 
-[Round1 council](validation/diagnostics/implementation/d2/council-round1.json):
-Sol VERIFIED9.7; Astra CHANGES_REQUESTED8.6; Claude CHANGES_REQUESTED9.0.
-Two mandatory findings remain. Astra's observable formatting failure controls
-the duplicate Claude advisory classification; scores and majority do not decide
-conformance. [Bounded remediation](remediation/REM-CMD-DIAG-D2-001-context-format-and-test-isolation.md)
-permits only the new Chat diagnostics module/test plus evidence/status records.
+[Correction map](validation/diagnostics/implementation/d2/council-remediation-round1.json) and
+[current evidence](validation/diagnostics/implementation/d2/README.md) bind product/test source `54e35947f8ee157ddab0b50f7e9e9e1db415f0ae`.
+The two round1 findings are implemented pending independent closure: once-only
+context formatting with an invocation-local matching rendered body, and DG-T08
+private-cwd file isolation. D1 and other product bytes remain frozen.
 
-Preserve the two ignored synthetic files under repository `exports/`. Their
-initial builder mutation writes and later observed rewrites are disclosed, not
-cleanup authority. Hash/metadata snapshots will prove no additional writes.
+The old formatter fails the new assertions (39 pass/2 fail); corrected named41,
+Commands478, D2-fast538, D3-fast166 and full Chat1338 pass. Twenty-one private
+mutants have real call-assertion witnesses and unchanged519 control. Dedicated
+legacy/ignored-outcome tests launch from repository cwd; ignored exports retain
+all original bytes/modes/timestamps and new exports stay inside pytest scratch.
+68 exact DIAG+four approved refusals, SESSION25 and pilot196 remain exact.
 
-Correct context rendering reuse and DG-T08 cwd isolation; retain all D1 bytes,
-neutral contracts, registry and other tests. Prove old-fail/new-pass, rerun gates,
-source captures/preservation/mutations and freeze a fresh Sol/Astra/Claude delta
-plus full D2 review. D3/UAT/acceptance and all external delivery stay pending.
-Known root debt remains failed/unwaived; initiative remains started/local.
+Keep original evidence, round1 reports and both ignored synthetic export files;
+no cleanup authority exists. Claude's error-metadata advisory remains deferred.
+Reconcile fresh Sol/Astra/Claude delta plus full bounded D2 round2 before D3.
+D3 current candidate builds/replay/installed proof, UAT, acceptance, later families,
+TUI and delivery remain pending. Known root debt stays failed/unwaived.
 
 ### Preserved prior planning checkpoint
 

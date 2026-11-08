@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "DIAG D2 round1 CHANGES_REQUESTED: two bounded compatibility/isolation findings; cycle1 remediation",
+  "decision": "DIAG D2 cycle1 fixes implemented; fresh Sol/Astra/Claude delta and full D2 round2 pending",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Only Chat diagnostics rendering and new test isolation correction; D1 and other product bytes frozen",
+  "current_scope": "DIAG D2 correction validation/in_review; D1 preserved, D3 and acceptance pending",
   "product_code_authority": "Exact DIAG approval remains effective; no acceptance or external delivery",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -763,9 +763,9 @@
     "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
     "product_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
     "controller_start": "d0c729f43534bb79a3db70852ec08028ddb631ec",
-    "state": "remediation",
-    "execution_phase": "remediation",
-    "validation_state": "changes_requested",
+    "state": "validation",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
     "current_deliverable": "D2 Chat diagnostics integration",
     "deliverable1": {
       "state": "verified",
@@ -792,10 +792,10 @@
       "acceptance": "not_granted"
     },
     "deliverable2": {
-      "state": "changes_requested",
-      "round": 1,
+      "state": "in_review",
+      "round": 2,
       "base": "559c86a22651ca99fc4560a5ef40d7b6f2ea2f4f",
-      "product_source": "5d98b32878212e4d2b0d3ca6b39bb28bda5c6f84",
+      "product_source": "54e35947f8ee157ddab0b50f7e9e9e1db415f0ae",
       "evidence": "validation/diagnostics/implementation/d2/evidence.json",
       "named_nodes": 7,
       "new_cases": 41,
@@ -808,7 +808,7 @@
       "SESSION_observations": 25,
       "pilot_observations": 196,
       "mutant_refusals": 19,
-      "next_gate": "Correct both findings, then fresh Sol/Astra/Claude delta plus full D2 council before D3",
+      "next_gate": "Reconcile fresh Sol/Astra/Claude delta/full D2 round2 before D3",
       "acceptance": "not_granted",
       "council": "validation/diagnostics/implementation/d2/council-round1.json",
       "remediation_cycle": 1,
@@ -816,7 +816,12 @@
       "mandatory_findings": [
         "DIAG-D2-ASTRA-001",
         "VAL-001"
-      ]
+      ],
+      "current_evidence": "validation/diagnostics/implementation/d2/correction-evidence.json",
+      "remediation_map": "validation/diagnostics/implementation/d2/council-remediation-round1.json",
+      "findings_status": "both implemented; independent closure pending",
+      "mutation_refusals": 21,
+      "ignored_exports": "preserved; before/after bytes and metadata unchanged during corrected checks"
     },
     "deliverable3": {
       "state": "pending"
@@ -830,7 +835,7 @@
     "acceptance": "not_granted",
     "delivery": "local only",
     "construction_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
-    "product_source": "5d98b32878212e4d2b0d3ca6b39bb28bda5c6f84",
+    "product_source": "54e35947f8ee157ddab0b50f7e9e9e1db415f0ae",
     "original_product_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
     "runtime_model_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b"
   }

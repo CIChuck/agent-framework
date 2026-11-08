@@ -16,13 +16,12 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: remediation`; `validation_state: changes_requested` for DIAG D2.
-[Round1 council](validation/diagnostics/implementation/d2/council-round1.json)
-requires two corrections: once-only cached context formatting during export and
-private cwd for DG-T08 fallback exports. The [bounded remediation](remediation/REM-CMD-DIAG-D2-001-context-format-and-test-isolation.md)
-keeps D1 and all other product files frozen. Fresh delta/full D2 council follows.
-D3 installed proof and human acceptance remain pending.
-SESSION-001 remains accepted and verified.
+`execution_phase: validation`; `validation_state: in_review` (DIAG D2 cycle1/round2).
+[Both corrections are implemented](validation/diagnostics/implementation/d2/council-remediation-round1.json)
+with fresh regressions and export-isolation proof. Original reports/evidence
+and ignored synthetic exports are preserved. Fresh Sol/Astra/Claude delta then
+full D2 aggregate review is required before D3. D1 remains verified; D3 installed
+proof and human acceptance stay pending. SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
 [Bounded SESSION acceptance](approval/session-acceptance.md) is recorded from Chuck Russell's
@@ -107,7 +106,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Correct both D2 findings, then fresh Sol/Astra/Claude delta and full D2 council before D3.
+**Next gate:** Reconcile fresh Sol/Astra/Claude D2 cycle1/round2 delta and aggregate council before D3.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

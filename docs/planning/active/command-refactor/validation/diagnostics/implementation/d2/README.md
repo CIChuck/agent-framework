@@ -1,3 +1,28 @@
+# DIAG-001 D2 — correction cycle1 / council round2
+
+Execution phase: validation. Validation state: in_review.
+[Current correction evidence](correction-evidence.json) and
+[remediation map](council-remediation-round1.json) supplement the preserved
+round1 evidence. Both findings are implemented pending fresh independent closure.
+
+The rendered context body is local to one invocation and reused only for matching
+text identity/count. Shared outcomes still select all returned facts/footer paths;
+distinct injected text, count or path cannot be hidden by the snapshot. No neutral
+schema/protocol/registry/helper/dependency/fixture changes were made.
+
+DG-T08 enters its private pytest cwd before any capture scenario. Dedicated
+mutants launched from repository cwd prove fallback exports stay private, with
+unchanged before/after repository ignored-file bytes/modes/timestamps. The
+[initial inventory](ignored-exports-before.json) and [final inventory](ignored-exports-after.json)
+are equal. Existing synthetic files are preserved; cleanup remains unapproved.
+
+All41 cases still execute under the seven exact nodes. Two new assertion failures
+reproduce the formatter issue before the source fix; corrected41/478/538/166
+and full Chat1338 pass. All21 mutants and unchanged519 controls are recorded.
+Fresh delta and full D2 Sol/Astra/Claude review precedes D3; no acceptance/delivery.
+
+## Preserved round1 history and side-effect disclosure
+
 # DIAG-001 D2 — round1 CHANGES_REQUESTED; correction cycle1
 
 Execution phase: remediation. Validation state: changes_requested.

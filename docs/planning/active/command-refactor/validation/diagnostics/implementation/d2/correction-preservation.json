@@ -1,0 +1,71 @@
+{
+  "base": "95b58d9169abe143e5aa537b8ad589309167dddf",
+  "product_source": "54e35947f8ee157ddab0b50f7e9e9e1db415f0ae",
+  "changed_package_paths": [
+    "packages/friday-chat/src/friday_chat/commands/diagnostics.py",
+    "packages/friday-chat/tests_chat/test_command_diagnostics.py"
+  ],
+  "all_other_original_non_doc_bytes_match": true,
+  "ignored_exports_before_after_equal": true,
+  "ignored_exports": {
+    "exports": {
+      "type": 16384,
+      "mode": 493,
+      "size": 128,
+      "mtime_ns": 1794172873430987983,
+      "ctime_ns": 1794172873430987983,
+      "birthtime": 1794172873.430393
+    },
+    "exports/friday_context.txt": {
+      "type": 32768,
+      "mode": 420,
+      "size": 6,
+      "mtime_ns": 1794173419969663853,
+      "ctime_ns": 1794173419969663853,
+      "birthtime": 1794172873.4304848,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    },
+    "exports/friday_prompt.txt": {
+      "type": 32768,
+      "mode": 420,
+      "size": 6,
+      "mtime_ns": 1794173419970166478,
+      "ctime_ns": 1794173419970166478,
+      "birthtime": 1794172873.4309843,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    }
+  },
+  "original_evidence_sha256": "82361dd467e137075c79596e0dea18a195423dc7832488449785b4a17086d15f",
+  "mutant_refusals": 21,
+  "unchanged_control": {
+    "passed": 519,
+    "failed": 0,
+    "skipped": 0
+  },
+  "repository_cwd_isolation": {
+    "control": {
+      "counts": {
+        "passed": 519,
+        "failed": 0,
+        "skipped": 0
+      },
+      "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-d2-format-isolation-fix-13wa3gkc/isolation-mutants/control/result.json"
+    },
+    "ignored-injected-outcome": {
+      "counts": {
+        "passed": 497,
+        "failed": 22,
+        "skipped": 0
+      },
+      "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-d2-format-isolation-fix-13wa3gkc/isolation-mutants/ignored-injected-outcome/result.json"
+    },
+    "legacy-engine": {
+      "counts": {
+        "passed": 500,
+        "failed": 19,
+        "skipped": 0
+      },
+      "receipt": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/diag-d2-format-isolation-fix-13wa3gkc/isolation-mutants/legacy-engine/result.json"
+    }
+  }
+}

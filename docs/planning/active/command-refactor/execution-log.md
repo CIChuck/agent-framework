@@ -1667,3 +1667,27 @@ has been executed or accepted through this documentation change.
   examples unchanged. Old scripts/receipts remain read-only; use fresh scratch.
 - New regression/isolation proof, gates and fresh delta/full D2 council precede
   D3. No acceptance, delivery or broader authority is granted.
+
+
+## 2026-11-08T21:53:45.946967+00:00 — DIAG D2 correction cycle1 frozen for council round2
+
+- `execution_phase: validation`; `validation_state: in_review`.
+- Product/test source `54e35947f8ee157ddab0b50f7e9e9e1db415f0ae`. Only new Chat diagnostics.py and its new
+  test change outside docs versus round1. D1, registry, helper bodies, fixtures,
+  dependency/lock/config bytes and other tests stay frozen.
+- [Correction map](validation/diagnostics/implementation/d2/council-remediation-round1.json) implements both findings.
+  The per-invocation rendered body matches exact text identity and count before
+  reuse; changed injected text/count/path is consumed. Shared flags, typed data,
+  export order and service ownership remain unchanged. No cache crosses packages.
+- DG-T08 private cwd isolates fallback paths even under regressions. Existing
+  ignored exports are preserved with identical before/after hashes/modes/times.
+  Twenty-one private mutations and dedicated root-cwd legacy/ignored-outcome
+  controls leave them unchanged. All newly written export files are private.
+- Before-fix tests:39 passed/2 actual assertion failures; corrected41, Commands478,
+  D2-fast538, D3-fast166 and full Chat1338 pass. Legacy/corrected raising formatter
+  probes both pass. All21 mutants have call-assertion witnesses; control519 passes.
+  Clean Git source captures remain DIAG68 exact+four approved refusals, SESSION25,
+  pilot196. Original evidence and initial setup failure receipts remain retained.
+- Root Ruff534, sole root test_display conflict and registry formatting remain
+  failed/unwaived. Source tests are not candidate installed proof. Fresh delta
+  then full D2 round2 council is next; D3/UAT/acceptance/delivery remain pending.
