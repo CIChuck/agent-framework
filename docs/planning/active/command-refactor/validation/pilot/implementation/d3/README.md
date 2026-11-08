@@ -1,8 +1,14 @@
 # PILOT-001 D3 — regression and installed candidate proof
 
-Execution phase: `validation`. Validation state: `in_review`.
-D1 and D2 are independently verified; D3 requires its own fresh three-provider
-council before proposing bounded pilot completion for maintainer acceptance.
+Execution phase: `remediation`. Validation state: `not_ready` (D3 correction).
+[Round-one council](council-round1.json) requests two installed-proof corrections.
+The maintainer [authorized Claude/Sol](../../../../approval/pilot-two-member-council.md)
+for this D3 work after Gemini quota failure. Apply the bounded correction, then
+fresh two-member review precedes acceptance. D1/D2 remain independently verified.
+
+The original builder report below describes the round-one candidate and its
+passing clean installations; its advertised inventory/origin assurances are
+superseded until D3-SOL-001/002 are corrected and independently verified.
 
 [Evidence](evidence.json) embeds hash-pinned command/probe/artifact receipts with
 explicit roles. Full after-suites pass: **1,228 Chat**, **217 Commands/cohort**,

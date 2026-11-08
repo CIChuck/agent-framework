@@ -9,6 +9,7 @@ import hashlib
 import importlib
 import importlib.metadata as metadata
 import json
+import os
 import re
 import runpy
 import subprocess
@@ -39,7 +40,7 @@ def origins() -> dict[str, list[str]]:
         if not name.startswith("friday") or module is None:
             continue
         file = getattr(module, "__file__", None)
-        paths = [file] if file else list(getattr(module, "__path__", ()))
+        paths = ([file] if file else []) + list(getattr(module, "__path__", ()))
         require(bool(paths), "Missing installed module origin: " + name)
         require(
             all(
@@ -91,6 +92,35 @@ def artifact_members(args: argparse.Namespace, distribution: str, package: str) 
             "Unrecognized generated wheel member",
         )
         installed = metadata.distribution(distribution)
+        installed_root = Path(installed.locate_file(package))
+        require(
+            installed_root.is_dir() and not installed_root.is_symlink(),
+            "Invalid installed package directory",
+        )
+        actual_installed = {}
+        actual_directories = {package}
+        for path in installed_root.rglob("*"):
+            require(not path.is_symlink(), "Installed package contains a symlink")
+            relative = str(path.relative_to(installed_root.parent))
+            if path.is_dir():
+                actual_directories.add(relative)
+            else:
+                require(path.is_file(), "Unsupported installed package member type")
+                actual_installed[relative] = path.read_bytes()
+        expected_directories = {
+            str(parent)
+            for name in expected
+            for parent in Path(name).parents
+            if str(parent) != "."
+        }
+        # Installer metadata lives in dist-info outside these package trees.
+        # This closed profile disables bytecode generation; no generated files
+        # or extra directories inside the source/data trees are permitted.
+        require(
+            set(actual_installed) == set(expected)
+            and actual_directories == expected_directories,
+            "Installed source/data inventory differs from Git",
+        )
         for name, content in expected.items():
             require(archive.read(name) == content, "Wheel/Git byte mismatch: " + name)
             require(
@@ -429,6 +459,7 @@ def main() -> None:
         runpy.run_path(str(args.prepared / "sitecustomize.py"))
     finally:
         sys.path.pop(0)
+    require(sys.dont_write_bytecode, "Installed inventory requires bytecode disabled")
     require(
         digest(args.baseline)
         == "48c3161cf1a0467c7e95ac11a85de0972d46421b5a9318ee618651f7cc7ad7f1",
@@ -480,7 +511,19 @@ def main() -> None:
         "prefix": sys.prefix,
         "isolated": True,
         "guard_sha256": bootstrap["combined_guard_sha256"],
+        "bootstrap_sha256": digest(args.prepared / "bootstrap.json"),
         "probe_sha256": digest(Path(__file__)),
+        "environment": {
+            name: os.environ.get(name)
+            for name in (
+                "REVIEW_REPO",
+                "REVIEW_SCRATCH",
+                "LITELLM_LOCAL_MODEL_COST_MAP",
+                "PYTHONDONTWRITEBYTECODE",
+                "ANONYMIZED_TELEMETRY",
+                "FRIDAY_TELEMETRY_ENABLED",
+            )
+        },
         "installed_distributions": installed,
         "artifacts": {},
     }
@@ -492,15 +535,26 @@ def main() -> None:
             args, "friday-chat", "friday_chat"
         )
         report["behavior"] = asyncio.run(chat_behavior(args))
+        help_origins = args.report.with_suffix(".entry-origins.json")
+        require(not help_origins.exists(), "Refuse entry-point origin report overwrite")
         code = (
-            "import sys,runpy,importlib.metadata as m;sys.path.insert(0,"
+            "import sys,runpy,json,importlib.metadata as m\nfrom pathlib import Path\n"
+            "sys.path.insert(0,"
             + repr(str(args.prepared))
             + ");runpy.run_path("
             + repr(str(args.prepared / "sitecustomize.py"))
-            + ");sys.path.pop(0);sys.argv=['friday-chat','--help'];[p for p in m.distribution('friday-chat').entry_points if p.name=='friday-chat'][0].load()()"
+            + ");sys.path.pop(0)\nprobe=runpy.run_path("
+            + repr(str(Path(__file__).resolve()))
+            + ")\nsys.argv=['friday-chat','--help']\n"
+            "entry=[p for p in m.distribution('friday-chat').entry_points if p.name=='friday-chat'][0]\n"
+            "try:\n entry.load()()\n"
+            "except SystemExit as error:\n if error.code not in (None,0): raise\n"
+            "Path("
+            + repr(str(help_origins))
+            + ").write_text(json.dumps(probe['origins']())+'\\n')\n"
         )
         help_run = subprocess.run(
-            [sys.executable, "-I", "-B", "-c", code],
+            [sys.executable, "-I", "-B", *(["-O"] * sys.flags.optimize), "-c", code],
             text=True,
             capture_output=True,
             cwd=args.report.parent,
@@ -513,6 +567,7 @@ def main() -> None:
             "exit": help_run.returncode,
             "output": help_run.stdout,
             "stderr": help_run.stderr,
+            "origins": json.loads(help_origins.read_text()),
         }
     else:
         report["behavior"] = asyncio.run(neutral_behavior())

@@ -1182,3 +1182,16 @@ Evidence: validation/pilot/implementation/d3/evidence.json. PAR-005, PAR-013 and
 bounded builder/independent-stage updates only; no broad P0/P1 signoff.
 `execution_phase: validation`; `validation_state: in_review` for D3.
 Freeze for its fresh three-provider council. Acceptance and delivery pending.
+
+2026-11-08T02:40:53+00:00: D3 round1 reconciled: Claude VERIFIED 9.5, Sol
+CHANGES_REQUESTED 8.8. Gemini produced no review/score because of quota. Chuck
+Russell explicitly directed "proceed with 2 council members. test passes
+continue"; record approval/pilot-two-member-council.md governs Claude/Sol only.
+The failed Gemini task was cancelled; no retry/replacement will start. Passing
+1,600 tests does not waive D3-SOL-001/002. Correct complete installed inventory
+and mixed file/package origins; refresh evidence and obtain two fresh reviews.
+All 17,137 protected bytes, 39 pins and HEAD/status/index matched before writes.
+Private drafts already pass positive and new negative controls; apply only the
+bounded source/docs changes in REM-CMD-PILOT-D3-001. No package runtime/tests,
+lock, approved contract/harness/baseline or unrelated dirty example change.
+`execution_phase: remediation`; `validation_state: not_ready` for D3.

@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Fresh three-provider D3 council on full regression and isolated installed pilot proof; then bounded maintainer acceptance
+  next_gate: Correct D3-SOL-001/002 installed proof gaps, then fresh Claude/Sol two-member council before pilot acceptance
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2635,3 +2635,10 @@ events:
   action: froze PILOT-001 D3 builder proof for council
   note: Full Chat 1228, Commands/cohort 217 and CLI 155 pass. Final clean artifacts/replay and isolated neutral/default Chat proof pass; D1/D2 verified. D3 council, acceptance and external delivery remain pending.
   evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d3/evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T02:40:53+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized two-member D3 council after Gemini quota failure
+  note: Proceed with Claude and Sol; no replacement or retry of Gemini. Continue bounded proof remediation and fresh review; tests do not waive mandatory findings or grant acceptance/delivery.
+  evidence: docs/planning/active/command-refactor/approval/pilot-two-member-council.md

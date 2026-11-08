@@ -39,6 +39,6 @@ lookups; general help is sorted, focused help resolves one normalized key, and
 unknown focus returns a typed error. Exit and clear only return typed lifecycle
 or UI-effect requests. Hosts own rendering, shutdown and effect application.
 
-The existing Chat and framework CLI registries remain separate. Chat integration
-is a subsequent pilot deliverable; other command families require separately
-reviewed contracts. See the command-refactor pilot contract and directive.
+Chat uses the shared help, exit and clear-screen handlers through typed adapters.
+The Chat and framework CLI registries remain separate; other command families
+require separately reviewed contracts. See the pilot contract and directive.

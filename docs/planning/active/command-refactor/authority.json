@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "PILOT-001 D3 G4/G5 builder evidence complete; fresh three-provider D3 council pending",
+  "decision": "D3 council CHANGES_REQUESTED; authorized two-member bounded installed-proof correction in progress",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "D3 regression, preservation, clean artifacts/default-installed proof in validation; D1/D2 verified, whole-pilot acceptance and later families pending",
+  "current_scope": "Correct D3-SOL-001/002, safe diagnostic environment/README closeout, then fresh Claude/Sol review; no product or dependency changes",
   "product_code_authority": "Exact pilot construction approved in approval/pilot.md; council after each deliverable before advancement. Remaining families, TUI, final acceptance and external delivery are unapproved.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -312,7 +312,7 @@
     "product_baseline": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
     "branch": "feature/command-retirement",
     "state": "started",
-    "current_deliverable": "D3 G4-G5 in council validation",
+    "current_deliverable": "D3 installed-proof remediation cycle1",
     "council_after_each_deliverable": true,
     "deliverables": {
       "D1": "Shared neutral API/handlers and standalone tests (G1)",
@@ -437,12 +437,41 @@
       }
     },
     "deliverable3": {
-      "state": "in_review",
+      "state": "remediation",
       "scope": "Approved G4-G5 full regression, source/assertion/docs proof, clean Git artifact/default-install closure and installed_probe.py",
-      "gate": "Fresh three-provider D3 council before maintainer acceptance",
+      "gate": "Correct approved proof gaps and freeze fresh Claude/Sol D3 council",
       "acceptance": "not_granted",
       "evidence": "validation/pilot/implementation/d3/evidence.json",
-      "artifact_source_revision": "32fc8cede427cd23fb7bd760c8bd00a4b078ad46"
+      "artifact_source_revision": "32fc8cede427cd23fb7bd760c8bd00a4b078ad46",
+      "council_round1": {
+        "candidate": "f4186b564c4bfd5eeb0bc378ba1edd25d313fb2d",
+        "outcome": "CHANGES_REQUESTED",
+        "scores": {
+          "claude": 9.5,
+          "openai": 8.8,
+          "gemini": null
+        },
+        "record": "validation/pilot/implementation/d3/council-round1.json"
+      },
+      "remediation": {
+        "cycle": 1,
+        "directive": "remediation/REM-CMD-PILOT-D3-001-installed-proof.md",
+        "directive_sha256": "65258dff05951dd298fd60bf1285c514ab3491e296c7b61ea43f1589dab8f31b",
+        "findings": [
+          "D3-SOL-001",
+          "D3-SOL-002"
+        ]
+      }
+    },
+    "council_members_for_D3": {
+      "approval": "approval/pilot-two-member-council.md",
+      "approval_sha256": "1b3b04f728ba9e2ac51c5c7377490e786e7278ab08474e0d7aee0847163984f6",
+      "members": [
+        "Claude Opus5.5",
+        "GPT-6.1 Sol"
+      ],
+      "gemini": "quota unavailable; no retry/replacement",
+      "count": 2
     }
   },
   "historical_preapproval_summary": {
