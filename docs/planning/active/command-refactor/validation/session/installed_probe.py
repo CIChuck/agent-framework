@@ -604,6 +604,22 @@ async def chat_behavior(args) -> dict:
                 len(calls) == before + count and len(factories) == len(calls),
                 "Session row did not delegate once: " + case,
             )
+            if count:
+                if "args" in row:
+                    expected_args = tuple(row["args"])
+                elif case.startswith("renamed:"):
+                    expected_args = ("extra",)
+                else:
+                    expected_args = {
+                        'dispatch:/history "quoted words"': ('"quoted', 'words"'),
+                        "dispatch:/HiStOrY ignored": ("ignored",),
+                        "dispatch:/clear ignored": ("ignored",),
+                        "dispatch:/ClEaR\tmore": ("more",),
+                    }.get(case, ())
+                require(
+                    calls[-1][1] == expected_args,
+                    "Shared session arguments changed: " + case,
+                )
             require(
                 len(parses)
                 == before_parse
