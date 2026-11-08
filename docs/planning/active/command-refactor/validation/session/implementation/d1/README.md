@@ -1,5 +1,10 @@
 # SESSION-001 D1 — neutral models and handlers
 
+Current result: [independently VERIFIED](verified-report.md) at `3fa6d61c`.
+[Round-two reconciliation](council-round2.json) closes VAL-SD1-001; approved D2 is next.
+Earlier builder/review checkpoints below retain historical provenance.
+
+
 Execution phase: `validation`. Validation state: `in_review` (D1 only).
 [Corrected export-test evidence](export-fix-evidence.json) is current for
 round 2 after [VAL-SD1-001](../../../../remediation/REM-CMD-SESSION-D1-001-export-surface.md).

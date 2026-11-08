@@ -1,23 +1,23 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: SESSION-001 D1 export assertion corrected; fresh available-member round 2 review
-Execution phase: validation
-Validation state: in_review (D1 correction cycle1); D2/D3 pending reconciliation
+Status: SESSION-001 D1 VERIFIED; approved D2 Chat integration in progress
+Execution phase: implementation
+Validation state: not_ready (D2); D3 and SESSION acceptance pending
 
 ## Current next steps
 
-1. Obtain fresh Claude/Sol delta plus full bounded D1 review of the
-   [export-test correction](validation/session/implementation/d1/export-fix-evidence.json).
-   Current S1 has 278 passing cases; four private export mutants are refused.
-2. Reconcile both current reports and unavailable Gemini/no-score disposition
-   under the recorded council availability before advancing to approved D2.
-   No retry or replacement is planned; no human waiver is invented.
-3. SESSION acceptance and external delivery remain separate. D1 construction
-   is already approved; its current mandatory finding needs independent closure.
+1. Implement the approved SESSION D2 Chat port, two delegation wrappers,
+   exact package-local fixture and new tests under the frozen directive.
+2. Run S2/S3, all 25 SESSION and 196 pilot observations, preservation/static checks;
+   freeze a stable candidate and obtain fresh available-member D2 council.
+3. Reconcile before D3 full regression and installed proof. SESSION acceptance
+   and external delivery remain separate.
 
-PILOT-001 remains accepted. The original reports and contract/directive are
-immutable; the initiative remains started/local with D2/D3 pending this review.
+[D1 round two](validation/session/implementation/d1/council-round2.json) is reconciled:
+Claude VERIFIED 9.6, Sol VERIFIED 9.7, VAL-SD1-001 closed. Gemini remains quota
+unavailable/no score; no retry/replacement or three-provider completion claim.
+PILOT-001 remains accepted. Initiative state stays started/local.
 
 ## Historical checkpoints
 

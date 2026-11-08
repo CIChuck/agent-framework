@@ -16,10 +16,10 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: validation`; `validation_state: in_review` for SESSION-001 D1 correction cycle1.
-The exact export assertion now passes current checks; fresh available-member
-round-two review and coverage reconciliation precede D2. Accepted PILOT-001
-remains VERIFIED.
+`execution_phase: implementation`; `validation_state: not_ready` for SESSION-001 D2.
+SESSION D1 is [independently VERIFIED](validation/session/implementation/d1/verified-report.md):
+Claude 9.6 and Sol 9.7, no mandatory findings. Gemini is unavailable/no score;
+available coverage is reconciled. Approved Chat D2 is next; D3 and SESSION acceptance pending.
 PILOT-001 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
 council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
 VERIFIED at `eb216421` by Claude and Sol, both 9.6/10, and now
@@ -189,7 +189,7 @@ tests. It is reference evidence, not another approval document. Later families,
 P0/P1 and TUI remain open; delivery is local only.
 
 Current SESSION-001 construction is [approved](approval/session-views.md).
-[Corrected D1 evidence](validation/session/implementation/d1/export-fix-evidence.json)
-is frozen for fresh Claude/Sol round-two review. The [bounded correction](remediation/REM-CMD-SESSION-D1-001-export-surface.md)
-preserves runtime and all other tests. Gemini remains unavailable due quota,
-without score/retry/replacement. Reconcile current reviews and coverage before D2.
+[D1 reconciliation](validation/session/implementation/d1/council-round2.json)
+closes VAL-SD1-001 and advances to approved D2 Chat integration.
+Gemini remains unavailable/no score without retry or replacement.
+D2 must pass S2/S3 and its fresh council before D3; acceptance remains separate.

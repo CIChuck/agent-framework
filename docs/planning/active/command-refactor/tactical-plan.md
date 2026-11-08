@@ -2,24 +2,20 @@
 
 Date: 2026-11-08
 Branch: `feature/command-retirement`
-Status: accepted PILOT-001; SESSION-001 corrected D1 in available-member council round2
-Execution phase: validation
-Validation state: in_review (D1 correction cycle1; D2/D3 pending preceding review)
+Status: accepted PILOT-001; SESSION D1 VERIFIED, approved D2 implementation
+Execution phase: implementation
+Validation state: not_ready (D2; D3 pending preceding review)
 
 ## Current SESSION-001 execution
 
 The [exact approval](approval/session-views.md) authorizes the frozen
 [session contract](session-command-contract.md) and
 [CD-CMD-SESSION-001](directives/CD-CMD-SESSION-001-session-views.md).
-The [next-phase checkpoint](next-phase.md) owns current execution order:
-S0 passed; neutral D1 has the exact export assertion corrected and awaits
-fresh available-member council and coverage reconciliation before Chat D2. D3 remains
-pending D2 review. SESSION acceptance is not granted.
-
-The [source-backed preparation](validation/session/preparation.json) remains
-immutable input evidence, not implemented family proof. The accepted pilot and
-all other source/test/dependency/lock bytes are preserved outside the exact
-SESSION allowlist. Keep later families, P0/P1, TUI and delivery separate.
+[D1](validation/session/implementation/d1/verified-report.md) is independently
+VERIFIED; available Claude/Sol reviews are reconciled and Gemini is unavailable
+without score/retry/substitute. Execute Chat D2, S2/S3 and fresh council before
+D3. The [next-phase checkpoint](next-phase.md) owns current order.
+SESSION acceptance and delivery remain separate; later families/P0/P1/TUI stay open.
 
 ## Historical Step 3 planning checkpoint
 
