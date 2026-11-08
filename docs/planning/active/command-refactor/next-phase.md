@@ -1,22 +1,23 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: SESSION-001 exact documents approved; S0 baseline then D1 neutral implementation
-Execution phase: implementation
-Validation state: not_ready (SESSION-001 S0/D1); D2/D3 pending earlier review
+Status: SESSION-001 D1 neutral implementation in fresh council review; D2/D3 pending
+Execution phase: validation
+Validation state: in_review (SESSION-001 D1 implementation only)
 
 ## Current next steps
 
-1. The [exact SESSION-001 approval](approval/session-views.md) supplies subsequent
-   authority for the frozen contract/directive despite historical draft labels.
-2. Reproduce S0 source, suite and artifact baselines; preserve protected inputs.
-   Then implement D1 neutral schemas, injected handlers and standalone tests.
-3. Freeze D1 and obtain fresh council review before Chat D2 integration. D3 and
-   final SESSION acceptance remain later gates; no publication is authorized.
+1. Obtain fresh three-provider D1 council on the [neutral implementation](validation/session/implementation/d1/README.md)
+   and exact approval/contract/directive. D1 has278 passing Commands/cohort cases;
+   S0 baseline and D1 source compatibility/preservation are recorded separately.
+2. Reconcile all results before beginning approved Chat D2 integration. D2 and
+   D3 remain future deliverables, each followed by its own council.
+3. Stop after final independent SESSION verification for bounded maintainer
+   acceptance. No later family/P0/P1/TUI or external delivery is authorized.
 
-PILOT-001 remains accepted. The initiative stays started/local, with only the
-approved SESSION scope open for construction. Historical checkpoints below are
-superseded where the current explicit approvals differ.
+PILOT-001 remains accepted; original review/authority bytes remain frozen. The
+initiative stays started/local. Earlier draft labels are superseded by the
+[exact SESSION approval](approval/session-views.md), not by passing tests.
 
 ## Historical checkpoints
 

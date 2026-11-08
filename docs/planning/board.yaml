@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reproduce SESSION-001 S0 then implement neutral D1 and obtain fresh council before Chat D2 integration
+  next_gate: Fresh three-provider SESSION-001 D1 council on neutral models/handlers and preservation; reconcile before Chat D2
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2678,3 +2678,10 @@ events:
   action: approved exact SESSION-001 contract and construction directive
   note: Direct approved both docs proceed instruction; S0 then D1, council after each deliverable. No SESSION acceptance, later family or delivery granted.
   evidence: docs/planning/active/command-refactor/approval/session-views.md
+- task: friday-command-refactor
+  at: '2026-11-08T15:27:46+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze SESSION-001 D1 neutral implementation for council review
+  note: Approved D1 only; 278 neutral/cohort tests, compatibility and preservation pass. D2/D3 and SESSION acceptance pending; no delivery.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d1/README.md

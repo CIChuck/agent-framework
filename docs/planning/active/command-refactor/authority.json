@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "Chuck Russell approved exact SESSION-001 contract/directive; S0 baseline then D1 construction authorized",
+  "decision": "Approved SESSION-001 D1 neutral implementation in fresh council validation; D2/D3 pending preceding review",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "SESSION-001 S0 then neutral D1 only before its fresh council; D2/D3 gated by preceding deliverable reconciliation",
+  "current_scope": "SESSION-001 D1 validation/in_review only, shared models/handlers/source tests and preservation; Chat extraction and candidate installed proof remain later deliverables",
   "product_code_authority": "Exact SESSION-001 contract/directive approved; implement D1 then council before D2, with no other family/TUI/delivery authority.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -529,7 +529,7 @@
     "preparation_evidence_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "design_approval": "granted_by_subsequent_exact_approval",
     "construction_approval": "granted_by_subsequent_exact_approval",
-    "product_implementation": "not_started",
+    "product_implementation": "D1 implemented; D2/D3 pending independent advancement",
     "tests": "434 related existing Chat and 217 Commands/cohort pass; 25 source observations reproduce exactly. New SESSION tests/APIs remain future obligations.",
     "pilot_acceptance": "approval/pilot-acceptance.md",
     "delivery": "local only",
@@ -547,7 +547,7 @@
     "preparation_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "product_baseline": "38a0c58a0b533edc29908992c8c6ee64fa04eb20",
     "state": "started",
-    "current_deliverable": "S0 baseline before D1 neutral implementation",
+    "current_deliverable": "D1 S0/S1 neutral implementation council review",
     "council_after_each_deliverable": true,
     "council_members": [
       "Claude Opus 5.5/high",
@@ -555,8 +555,12 @@
       "Gemini 4 Argon High"
     ],
     "deliverable1": {
-      "state": "baseline_pending",
-      "scope": "SESSION-01\u201304 and D1 preservation only",
+      "state": "in_review",
+      "scope": "SESSION-01\u201304; D1 preservation/compatibility subset only",
+      "evidence": "validation/session/implementation/d1/evidence.json",
+      "source_revision": "4065a150cbfcacbcf71c6aab05e05d2920bf48e5",
+      "S0": "passed scoped baseline; known root debt remains failed/unwaived",
+      "gate": "Fresh three-provider D1 council reconciliation before Chat D2",
       "acceptance": "not_granted"
     },
     "deliverable2": {
@@ -566,6 +570,7 @@
       "state": "pending_D2_review"
     },
     "acceptance": "not_granted",
-    "delivery": "local only"
+    "delivery": "local only",
+    "source_revision": "4065a150cbfcacbcf71c6aab05e05d2920bf48e5"
   }
 }

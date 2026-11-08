@@ -1282,3 +1282,24 @@ three-provider council under the approved new-unit gate before D2. The earlier
 pilot two-member exception remains historical to pilot D3. No replacement if
 a provider is unavailable. `execution_phase: implementation`;
 `validation_state: not_ready` for SESSION S0/D1. No acceptance or delivery grant.
+
+2026-11-08T15:27:46+00:00: SESSION-001 S0/D1 builder checks complete. Source committed at
+`4065a150cbfcacbcf71c6aab05e05d2920bf48e5` from construction base `1b1f703bd5af1c86bfd95a3e5c5fc72acf71a7a7`.
+S0 reproduced 25 session cases,196 pilot observations, 1,228 Chat/217 neutral-
+cohort/155 CLI tests and baseline 13-workspace/125-input offline builds with both
+isolated installs. Source inventory/byte controls refuse drift before imports.
+D1 adds only the three typed models, exact closed union/whitelist expansion,
+six exports, two specs/port/handlers, 61 neutral test cases and neutral README.
+All 278 neutral/cohort tests pass; full after Chat 1,228/CLI 155 and 25/196 source
+compatibility observations pass. Eight-source mypy/focused Ruff/four-file
+format, metadata/lock pass. Four private semantic mutants are rejected for test-
+call failures with start/end origins verified; unmodified control passes.
+All 277 original test files and 785 protected original files retain bytes; only
+three allowed existing neutral files differ. All old contracts ASTs remain
+equal after removing the exact approved additions. Initial import-order and
+new-test format failures are preserved as historical attempts, final checks
+pass. Root Ruff 534, sole root test_display collection conflict and legacy
+registry format remain failed/unwaived. S0 build is baseline machinery only,
+not a D1 candidate wheel. Evidence: validation/session/implementation/d1/.
+`execution_phase: validation`; `validation_state: in_review` for SESSION D1.
+Fresh three-provider council precedes Chat D2. No SESSION acceptance/delivery.

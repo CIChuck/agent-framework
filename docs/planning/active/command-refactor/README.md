@@ -16,9 +16,9 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: implementation`; `validation_state: not_ready` for SESSION-001 S0/D1.
-The exact [SESSION approval](approval/session-views.md) authorizes S0 then D1;
-D2/D3 await preceding deliverable review. Accepted PILOT-001 remains VERIFIED.
+`execution_phase: validation`; `validation_state: in_review` for SESSION-001 D1.
+The approved neutral models/handlers and 61 new tests pass builder checks and
+await fresh council. D2/D3 remain pending. Accepted PILOT-001 remains VERIFIED.
 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
 council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
 VERIFIED at `eb216421` by Claude and Sol, both 9.6/10, and now
@@ -187,7 +187,8 @@ observations, exact replay and 434 related Chat/217 Commands-cohort passing
 tests. It is reference evidence, not another approval document. Later families,
 P0/P1 and TUI remain open; delivery is local only.
 
-Current SESSION-001 construction is [approved](approval/session-views.md). S0
-baselines precede D1 neutral models/handlers/tests. Exact contract/directive
-bytes and historical preparation labels remain frozen; this later approval
-supersedes those labels. Fresh council reconciliation precedes D2.
+Current SESSION-001 construction is [approved](approval/session-views.md).
+[D1 neutral implementation evidence](validation/session/implementation/d1/README.md)
+is in fresh council review. S0 passed scoped baseline checks; D1 passes 278
+Commands/cohort cases and compatibility/preservation checks. Reconcile the D1
+council before Chat D2 integration. D3 and SESSION acceptance remain pending.

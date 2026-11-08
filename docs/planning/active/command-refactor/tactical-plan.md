@@ -2,9 +2,9 @@
 
 Date: 2026-11-08
 Branch: `feature/command-retirement`
-Status: accepted PILOT-001; exact SESSION-001 approved, S0/D1 authorized
-Execution phase: implementation
-Validation state: not_ready (SESSION-001 S0/D1; D2/D3 pending preceding review)
+Status: accepted PILOT-001; SESSION-001 D1 neutral implementation in council review
+Execution phase: validation
+Validation state: in_review (SESSION-001 D1; D2/D3 pending preceding review)
 
 ## Current SESSION-001 execution
 
@@ -12,7 +12,7 @@ The [exact approval](approval/session-views.md) authorizes the frozen
 [session contract](session-command-contract.md) and
 [CD-CMD-SESSION-001](directives/CD-CMD-SESSION-001-session-views.md).
 The [next-phase checkpoint](next-phase.md) owns current execution order:
-reproduce S0, implement neutral D1, then fresh council before Chat D2. D3 remains
+S0 passed; neutral D1 is implemented and in fresh council before Chat D2. D3 remains
 pending D2 review. SESSION acceptance is not granted.
 
 The [source-backed preparation](validation/session/preparation.json) remains
