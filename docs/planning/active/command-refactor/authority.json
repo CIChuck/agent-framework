@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "SESSION D2 builder checks complete; fresh available-member council before D3",
+  "decision": "SESSION D1/D2 independently VERIFIED; execute already-approved D3 proof",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "SESSION D2 validation/in_review; source compatibility and once-only delegation, D3 installed proof pending",
+  "current_scope": "SESSION D3 regression, clean artifacts and installed proof; final council and human acceptance pending",
   "product_code_authority": "Exact SESSION-001 contract/directive approved; implement D1 then council before D2, with no other family/TUI/delivery authority.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -529,11 +529,12 @@
     "preparation_evidence_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "design_approval": "granted_by_subsequent_exact_approval",
     "construction_approval": "granted_by_subsequent_exact_approval",
-    "product_implementation": "D1 verified; D2 implemented in fresh council review, D3 pending",
-    "tests": "434 related existing Chat and 217 Commands/cohort pass; 25 source observations reproduce exactly. New SESSION tests/APIs remain future obligations.",
+    "product_implementation": "D1/D2 independently verified; approved D3 proof in progress",
+    "tests": "Historical preparation-era observations are preserved in historical_preparation_tests; current D1/D2 conformance is recorded in session_construction.",
     "pilot_acceptance": "approval/pilot-acceptance.md",
     "delivery": "local only",
-    "approval_record": "approval/session-views.md"
+    "approval_record": "approval/session-views.md",
+    "historical_preparation_tests": "434 related existing Chat and 217 Commands/cohort pass; 25 source observations reproduce exactly. New SESSION tests/APIs remain future obligations."
   },
   "session_construction": {
     "unit": "SESSION-001",
@@ -547,7 +548,7 @@
     "preparation_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "product_baseline": "38a0c58a0b533edc29908992c8c6ee64fa04eb20",
     "state": "started",
-    "current_deliverable": "D2 Chat integration council round1",
+    "current_deliverable": "D3 S4/S5 proof",
     "council_after_each_deliverable": true,
     "council_members": [
       "Claude Opus 5.5/high",
@@ -598,17 +599,31 @@
       "verified_report": "validation/session/implementation/d1/verified-report.md"
     },
     "deliverable2": {
-      "state": "in_review",
+      "state": "verified",
       "scope": "SESSION-05\u201308; S2/S3 and bounded preservation/source proof",
       "construction_base": "d5d35825605104f74c325e25b6cd61faa7161072",
       "source_revision": "43d7732e84b1ca1a4ad4cf37b11484dcd24fde77",
       "evidence": "validation/session/implementation/d2/evidence.json",
       "council_round": 1,
-      "gate": "Fresh available Claude/Sol D2 council; record Gemini unavailable/no score and reconcile before D3",
-      "acceptance": "not_granted"
+      "gate": "D2 council reconciled; proceed to approved D3",
+      "acceptance": "not_granted",
+      "council_round1": {
+        "candidate": "caf04311136a5bd7323378f6e98f24771b128cb8",
+        "outcome": "VERIFIED",
+        "scores": {
+          "sol": 9.7,
+          "claude": 9.6,
+          "gemini": null
+        },
+        "record": "validation/session/implementation/d2/council-round1.json"
+      },
+      "verified_report": "validation/session/implementation/d2/verified-report.md"
     },
     "deliverable3": {
-      "state": "pending_D2_review"
+      "state": "implementation",
+      "validation_state": "not_ready",
+      "scope": "SESSION-09/10, S4/S5 and complete bounded aggregate",
+      "gate": "Finish artifact/installed proof, then fresh available-member D3 and aggregate council before acceptance"
     },
     "acceptance": "not_granted",
     "delivery": "local only",
@@ -626,7 +641,7 @@
       "unavailable": {
         "Gemini4 Argon High": "Antigravity quota; no review/score; no retry/replacement"
       },
-      "disposition": "Council skill requires reporting unreachable providers instead of substituting. Both available members independently reviewed the full bounded D1 and correction. Controller reconciles available coverage and advances to approved D2; no three-provider verification or human waiver is asserted."
+      "disposition": "Both available members independently reproduced full bounded D2. Council unreachable-provider instruction is met by reporting unavailable coverage without substitution. Reconciled available coverage permits the already-approved D3; no third review, human waiver or acceptance is inferred."
     }
   }
 }

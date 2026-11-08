@@ -1370,3 +1370,20 @@ round1 council and coverage reconciliation precede D3. Gemini remains quota
 unavailable/no score without retry/replacement. `execution_phase: validation`;
 `validation_state: in_review` for D2. Candidate installed proof remains D3;
 no SESSION acceptance, external delivery, later families/P0/P1/TUI is granted.
+
+2026-11-08T16:39:47+00:00: SESSION D2 council reconciled at `caf04311136a5bd7323378f6e98f24771b128cb8`. Sol
+VERIFIED 9.7 and Claude VERIFIED 9.6; no mandatory findings. Before writes all
+17174 protected contents, request/pins, logical index, HEAD/status and both dirty
+examples matched. Exact reports/request in D2 council-round1.json. Available
+coverage is reconciled; Gemini remains quota unavailable/no score without retry
+or replacement. No third-member completion or new human waiver is claimed.
+Record distinct capture receipt labels for D3 to avoid the literal directive
+example's receipt/output collision; frozen directive stays unchanged. Mark the
+preparation.tests field as historical while preserving its exact old wording.
+Zero-argument metadata projection advisory is deferred within frozen specs.
+Proceed under existing approval to D3 S4/S5, clean bundles, pinned pilot/new
+SESSION installed proof and fresh aggregate council. Runtime/tests/dependencies/
+lock and frozen authorities unchanged during reconciliation. Root Ruff 534,
+root test_display collection and legacy registry format remain failed/unwaived.
+`execution_phase: implementation`; `validation_state: not_ready` for D3.
+SESSION acceptance, later families and external delivery remain separate.

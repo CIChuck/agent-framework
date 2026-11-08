@@ -1,23 +1,25 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: SESSION-001 D1 VERIFIED; D2 Chat integration in council review
-Execution phase: validation
-Validation state: in_review (D2 round1); D3 and SESSION acceptance pending
+Status: SESSION D1/D2 VERIFIED; approved D3 artifact and installed proof
+Execution phase: implementation
+Validation state: not_ready (D3); final council and SESSION acceptance pending
 
 ## Current next steps
 
-1. Obtain fresh Claude/Sol full bounded D2 council against the stable candidate
-   and [D2 evidence](validation/session/implementation/d2/README.md).
-2. Reconcile both reports and Gemini's quota unavailable/no-score coverage before D3.
-   No retry/replacement or three-provider completion claim is made.
-3. Approved D3 still owes full regression, clean candidate artifacts and installed
-   SESSION proof, followed by council and bounded maintainer acceptance.
+1. Execute approved D3 S4/S5: full owning after-suites and preservation, clean
+   candidate bundle plus replay, exact accepted 138-distribution profile.
+2. Run the pinned pilot installed proof and new SESSION proof in actual isolated
+   normal/optimized lanes, including complete inventories, bound origins and
+   private copied-installation refusal controls. Use distinct receipt labels.
+3. Freeze D3 for fresh available Claude/Sol D3 plus full bounded aggregate review,
+   reconcile Gemini unavailable/no score, then stop for maintainer acceptance.
 
-D1 is independently VERIFIED. D2 passes S1 278/S2 497/S3 315; full source suites
-1297 Chat/278 neutral-cohort/155 CLI and all 25/196 observations match. Known root
-debt remains failed/unwaived. PILOT remains accepted; initiative stays started/local.
-No SESSION acceptance, later-family/P0/P1/TUI or external delivery is granted.
+[D2](validation/session/implementation/d2/verified-report.md) is independently
+VERIFIED by Sol 9.7 and Claude 9.6 with no mandatory findings. No Gemini retry,
+substitute, third score or waiver is asserted. Known root debt remains unwaived.
+PILOT remains accepted; initiative stays started/local. No SESSION acceptance,
+later-family/P0/P1/TUI or external delivery grant.
 
 ## Historical checkpoints
 

@@ -1,5 +1,7 @@
 # SESSION-001 D2 — Chat integration candidate
 
+Current result: [independently VERIFIED](verified-report.md). Earlier builder checkpoint below is historical.
+
 Execution phase: validation
 Validation state: in_review
 
