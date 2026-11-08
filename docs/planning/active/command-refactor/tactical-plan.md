@@ -2,24 +2,23 @@
 
 Date: 2026-11-08
 Branch: `feature/command-retirement`
-Status: accepted PILOT-001; SESSION-001 preparation ready for exact review/approval
-Execution phase: planning
-Validation state: pending (SESSION-001 design/directive; implementation not started)
+Status: accepted PILOT-001; exact SESSION-001 approved, S0/D1 authorized
+Execution phase: implementation
+Validation state: not_ready (SESSION-001 S0/D1; D2/D3 pending preceding review)
 
-## Current SESSION-001 preparation
+## Current SESSION-001 execution
 
-The [next-phase checkpoint](next-phase.md) owns the current reading order.
-Review the [session contract](session-command-contract.md) and then
-[CD-CMD-SESSION-001](directives/CD-CMD-SESSION-001-session-views.md), or approve
-both exact documents together. The [source-backed preparation](validation/session/preparation.json)
-records 25 cases and exact replay, 434 related Chat and 217 Commands/cohort
-passing tests. New family API/tests and installed proof are future obligations.
+The [exact approval](approval/session-views.md) authorizes the frozen
+[session contract](session-command-contract.md) and
+[CD-CMD-SESSION-001](directives/CD-CMD-SESSION-001-session-views.md).
+The [next-phase checkpoint](next-phase.md) owns current execution order:
+reproduce S0, implement neutral D1, then fresh council before Chat D2. D3 remains
+pending D2 review. SESSION acceptance is not granted.
 
-The [pilot acceptance](approval/pilot-acceptance.md) covers only its D1–D3.
-SESSION-001 targets PAR-003/017 (/clear and /history), with the explicit proposed
-payload/port schemas, D1–D3 gates and test-node map in the new documents. No
-later-family construction, domain service change or external delivery follows
-from this preparation. Keep old approvals, source baselines and receipts intact.
+The [source-backed preparation](validation/session/preparation.json) remains
+immutable input evidence, not implemented family proof. The accepted pilot and
+all other source/test/dependency/lock bytes are preserved outside the exact
+SESSION allowlist. Keep later families, P0/P1, TUI and delivery separate.
 
 ## Historical Step 3 planning checkpoint
 

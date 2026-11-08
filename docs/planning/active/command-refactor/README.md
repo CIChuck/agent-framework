@@ -16,8 +16,9 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: planning`; `validation_state: pending` for SESSION-001 design/directive review.
-SESSION-001 implementation is not approved or started; accepted PILOT-001 remains VERIFIED.
+`execution_phase: implementation`; `validation_state: not_ready` for SESSION-001 S0/D1.
+The exact [SESSION approval](approval/session-views.md) authorizes S0 then D1;
+D2/D3 await preceding deliverable review. Accepted PILOT-001 remains VERIFIED.
 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
 council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
 VERIFIED at `eb216421` by Claude and Sol, both 9.6/10, and now
@@ -172,15 +173,21 @@ records the current result; [exact council reports](validation/pilot/implementat
 and [current evidence](validation/pilot/implementation/d3/remediation-evidence.json)
 preserve the reviewed candidate and limits. Both D3 findings are closed.
 Chuck Russell has [accepted PILOT-001](approval/pilot-acceptance.md).
-Current SESSION-001 reading/approval order:
+Approved SESSION-001 inputs:
 
 1. [Session contract](session-command-contract.md): typed history/clear port,
    payload union amendment, exact legacy behavior and failure order.
 2. [CD-CMD-SESSION-001](directives/CD-CMD-SESSION-001-session-views.md): bounded
    paths, incremental tests, frozen baseline and installed proof. Both documents
-   may be approved together; construction has not started.
+   are approved together in the subsequent exact approval record. S0 precedes
+   neutral D1 construction and fresh council before D2.
 
 [Preparation evidence](validation/session/preparation.json) records 25 source
 observations, exact replay and 434 related Chat/217 Commands-cohort passing
 tests. It is reference evidence, not another approval document. Later families,
 P0/P1 and TUI remain open; delivery is local only.
+
+Current SESSION-001 construction is [approved](approval/session-views.md). S0
+baselines precede D1 neutral models/handlers/tests. Exact contract/directive
+bytes and historical preparation labels remain frozen; this later approval
+supersedes those labels. Fresh council reconciliation precedes D2.

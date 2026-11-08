@@ -1270,3 +1270,15 @@ Only planning/evidence/navigation changed. Original product/tests/metadata/lock,
 approved pilot/harness/reports and both dirty examples remain unchanged. Next:
 maintainer approval of the exact contract and directive before S0/D1 construction.
 No additional family/P0/P1/TUI acceptance, publication or delivery is authorized.
+
+2026-11-08T15:08:32+00:00: Chuck Russell approved both exact SESSION documents and directed
+proceed. approval/session-views.md binds the contract/directive/preparation
+digests and explicit schemas/compatibility boundaries. Product baseline and
+788 protected product/test/script/root files match the approved preparation;
+both dirty examples remain unchanged. New external scratch: /var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d1-_k6hm5vb.
+Before inventories record all tracked content hashes and existing test AST/
+assertion counts. Reproduce S0 before source edits, then D1 only and fresh
+three-provider council under the approved new-unit gate before D2. The earlier
+pilot two-member exception remains historical to pilot D3. No replacement if
+a provider is unavailable. `execution_phase: implementation`;
+`validation_state: not_ready` for SESSION S0/D1. No acceptance or delivery grant.

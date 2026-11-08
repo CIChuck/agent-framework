@@ -1,26 +1,22 @@
 # Command refactor — next-phase checkpoint
 
 Branch: `feature/command-retirement`
-Status: SESSION-001 contract and directive prepared for maintainer review; PILOT-001 accepted
-Execution phase: planning
-Validation state: pending (SESSION-001 design/directive); implementation not approved or started
+Status: SESSION-001 exact documents approved; S0 baseline then D1 neutral implementation
+Execution phase: implementation
+Validation state: not_ready (SESSION-001 S0/D1); D2/D3 pending earlier review
 
 ## Current next steps
 
-1. Read and approve [SESSION-001's contract](session-command-contract.md),
-   including its explicit two-variant result-schema expansion, narrow injected
-   port and preserved history-before-memory-clear ordering.
-2. Read and approve [CD-CMD-SESSION-001](directives/CD-CMD-SESSION-001-session-views.md).
-   Both exact documents may be approved together. The linked preparation JSON
-   supplies evidence and programs; it is not a third approval task.
-3. After exact approvals, record their hashes and perform S0/D1 only, with fresh
-   review after each proposed deliverable before advancement. No SESSION product
-   code, new product tests or dependency changes have been made or approved.
+1. The [exact SESSION-001 approval](approval/session-views.md) supplies subsequent
+   authority for the frozen contract/directive despite historical draft labels.
+2. Reproduce S0 source, suite and artifact baselines; preserve protected inputs.
+   Then implement D1 neutral schemas, injected handlers and standalone tests.
+3. Freeze D1 and obtain fresh council review before Chat D2 integration. D3 and
+   final SESSION acceptance remain later gates; no publication is authorized.
 
-PILOT-001 is [accepted](approval/pilot-acceptance.md); its reports remain intact.
-The initiative remains started/local. Later families, P0/P1, TUI, full-refactor
-acceptance and delivery are separately gated. Historical checkpoints below do
-not override current approvals, pending SESSION decisions or product boundaries.
+PILOT-001 remains accepted. The initiative stays started/local, with only the
+approved SESSION scope open for construction. Historical checkpoints below are
+superseded where the current explicit approvals differ.
 
 ## Historical checkpoints
 

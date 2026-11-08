@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Review and approve SESSION-001 contract then exact construction directive, or both together; implementation not approved or started
+  next_gate: Reproduce SESSION-001 S0 then implement neutral D1 and obtain fresh council before Chat D2 integration
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2671,3 +2671,10 @@ events:
   action: prepared SESSION-001 history/clear contract and exact directive
   note: Source-backed planning only after maintainer proceed. Two documents await approval; 25 cases reproduce and existing 434 Chat/217 Commands-cohort tests pass. No product/test/metadata/lock changes; pilot acceptance retained.
   evidence: docs/planning/active/command-refactor/session-command-contract.md
+- task: friday-command-refactor
+  at: '2026-11-08T15:08:32+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact SESSION-001 contract and construction directive
+  note: Direct approved both docs proceed instruction; S0 then D1, council after each deliverable. No SESSION acceptance, later family or delivery granted.
+  evidence: docs/planning/active/command-refactor/approval/session-views.md

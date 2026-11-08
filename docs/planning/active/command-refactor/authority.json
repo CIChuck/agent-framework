@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-07",
-  "decision": "PILOT-001 accepted; SESSION-001 contract/directive prepared for maintainer review, implementation not approved",
+  "decision": "Chuck Russell approved exact SESSION-001 contract/directive; S0 baseline then D1 construction authorized",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "SESSION-001 planning preparation for history/clear: proposed schemas, exact directive and source-backed baseline; no product/test/metadata/lock changes",
-  "product_code_authority": "Exact pilot construction approved in approval/pilot.md; council after each deliverable before advancement. Remaining families, TUI, final acceptance and external delivery are unapproved.",
+  "current_scope": "SESSION-001 S0 then neutral D1 only before its fresh council; D2/D3 gated by preceding deliverable reconciliation",
+  "product_code_authority": "Exact SESSION-001 contract/directive approved; implement D1 then council before D2, with no other family/TUI/delivery authority.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -33,7 +33,7 @@
     "resumed_by": "Chuck Russell",
     "resume_instruction": "Proceed to step three."
   },
-  "construction_directive_approval": "approved_for_PILOT-001 via approval/pilot.md; prior foundation and RET-001 approvals remain historical accepted-unit authority. Council after each deliverable; no other family, TUI or delivery approval.",
+  "construction_directive_approval": "SESSION-001 approved by approval/session-views.md; existing accepted foundation/retirement/pilot retained. No later family or delivery approval.",
   "council_request": {
     "requested_by": "Chuck Russell",
     "scope": "Read-only evaluation of the frozen readiness review; no construction approval or automatic remediation loop",
@@ -515,7 +515,7 @@
   },
   "session_preparation": {
     "unit": "SESSION-001",
-    "state": "prepared_for_review",
+    "state": "approved_by_subsequent_exact_record",
     "requested_by": "Chuck Russell",
     "instruction": "proceed",
     "recorded_at": "2026-11-08T14:04:03+00:00",
@@ -527,11 +527,45 @@
     "directive_sha256": "1fd4b3cf0a2de5ad180e9c3c3d06e7bb5d239bb3516ccca60fb7376041a96b46",
     "preparation_evidence": "validation/session/preparation.json",
     "preparation_evidence_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
-    "design_approval": "not_granted",
-    "construction_approval": "not_granted",
+    "design_approval": "granted_by_subsequent_exact_approval",
+    "construction_approval": "granted_by_subsequent_exact_approval",
     "product_implementation": "not_started",
     "tests": "434 related existing Chat and 217 Commands/cohort pass; 25 source observations reproduce exactly. New SESSION tests/APIs remain future obligations.",
     "pilot_acceptance": "approval/pilot-acceptance.md",
+    "delivery": "local only",
+    "approval_record": "approval/session-views.md"
+  },
+  "session_construction": {
+    "unit": "SESSION-001",
+    "approval": "approval/session-views.md",
+    "approval_sha256": "ebe203d07e4143fa81221ab76fb04db4e3e2d82e981a633df263ba0174d61ab4",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-11-08T15:08:32+00:00",
+    "instruction": "approved both docs proceed",
+    "contract_sha256": "f29ac447d9cc76c1c1bb1dff9d6fc9ef619ca3b5ff43f1833ee5346250a3e003",
+    "directive_sha256": "1fd4b3cf0a2de5ad180e9c3c3d06e7bb5d239bb3516ccca60fb7376041a96b46",
+    "preparation_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
+    "product_baseline": "38a0c58a0b533edc29908992c8c6ee64fa04eb20",
+    "state": "started",
+    "current_deliverable": "S0 baseline before D1 neutral implementation",
+    "council_after_each_deliverable": true,
+    "council_members": [
+      "Claude Opus 5.5/high",
+      "GPT-6.1 Sol/high",
+      "Gemini 4 Argon High"
+    ],
+    "deliverable1": {
+      "state": "baseline_pending",
+      "scope": "SESSION-01\u201304 and D1 preservation only",
+      "acceptance": "not_granted"
+    },
+    "deliverable2": {
+      "state": "pending_D1_review"
+    },
+    "deliverable3": {
+      "state": "pending_D2_review"
+    },
+    "acceptance": "not_granted",
     "delivery": "local only"
   }
 }
