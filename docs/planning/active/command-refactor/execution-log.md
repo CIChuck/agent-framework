@@ -2010,3 +2010,28 @@ has been executed or accepted through this documentation change.
   technical approval and separate implementation councils. No product-conformance,
   UAT, acceptance, later-family or delivery result is inferred.
 - **Next gate:** Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery.
+
+## 2026-11-09T17:55:34.146458+00:00 — MEMQ D0/D1 source freeze for independent review
+
+- Continued under Chuck Russell's existing exact option R approval and instruction
+  to proceed with code, with an additional request for a UAT plan in the same folder.
+- Start HEAD `00c384d9`; all original non-doc bytes matched approved baseline
+  `c5871054` except the two preserved dirty configs. D0 baseline/capture controls,
+  original test/assertion inventory, exact format inventory and offline closed
+  build trial passed before source edits.
+- Source commit `0f809207984143f88fbe971b761035d6ea7b11d0` adds only neutral models, API/specs/port/handlers,
+  the exact metadata fixture, new tests, approved MQ-D4 old-test extensions,
+  package documentation and the requested [UAT plan](uat/memq-user-acceptance-plan.md).
+- Commands/cohort599 (498 old +101 new), Chat1338 and CLI155 pass. Normal/-O/-OO
+  standalone runs, lint, format and neutral mypy pass. Unchanged control passes;
+  all14 current mutants have canonical test-call assertion witnesses. Complete
+  old contracts/tests/API ASTs reverse exactly to the baseline.
+- Candidate source observations repeat MEMQ76 exact twice, DIAG68+4 approved
+  refusals, SESSION25 and pilot196. D1 leaves Chat code unchanged; the two
+  MQ-D1 observation refusals and six option R replacements belong to D2.
+- Both dirty configs, ignored exports, known external locator and supplied
+  evidence are unchanged. Root/format debt stays failed/unwaived.
+- `execution_phase: validation`; `validation_state: pending` for D1. Fresh D1
+  council is required before D2. UAT is planned/NOT RUN; D2/D3, acceptance and
+  external delivery have not been performed.
+- **Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.

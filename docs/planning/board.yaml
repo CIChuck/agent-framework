@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery.
+  next_gate: Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2921,3 +2921,10 @@ events:
   action: recorded unanimous MEMQ directive/design readiness VERIFIED
   note: 'Fresh round4 atbe15dca1: Sol9.6, Astra9.5, Claude9.6 all VERIFIED; no mandatory findings. Old blocked Sol receipt/locator preserved, current isolation independently compliant. Product D0/D1 unstarted; next sequence remains governed by existing option R approval, no new acceptance or delivery.'
   evidence: docs/planning/active/command-refactor/validation/memory-queries/directive-review/round4/report.md
+- task: friday-command-refactor
+  at: '2026-11-09T17:55:34.146458+00:00'
+  actor: Codex
+  actor_role: agent
+  action: generated bounded MEMQ D1 neutral code and UAT plan
+  note: D0 preservation and baseline closed trial passed. D1 Commands-cohort599 (101 new), Chat1338 and CLI155 pass; unchanged control plus14 private mutation refusals. Fresh Sol-Astra-Claude D1 council required before D2. Existing exact option R approval retained; UAT NOT RUN; no acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d1/README.md

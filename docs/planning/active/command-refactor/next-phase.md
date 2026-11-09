@@ -1,4 +1,25 @@
-# MEMQ-001 — directive/design readiness VERIFIED; D0/D1 unstarted
+# MEMQ-001 — neutral D1 implemented; fresh council pending
+
+Branch: `feature/command-retirement`
+Execution phase: validation
+Validation state: pending (D1 implementation only)
+
+Guarded D0 reproduction and bounded neutral D1 are complete in source commit
+`0f809207984143f88fbe971b761035d6ea7b11d0`. The [builder record](validation/memory-queries/implementation/d1/README.md)
+and evidence bind the current source, tests and preservation checks. Commands/cohort
+599, Chat 1,338 and CLI 155 pass; all 101 new neutral cases are included. The
+unchanged control passes and 14 mutants are rejected by test-call assertions.
+
+**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.
+
+The [MEMQ UAT plan](uat/memq-user-acceptance-plan.md) sits alongside the earlier
+roadmap. Every case remains NOT RUN pending D2/D3 and installed readiness.
+The exact contract/directive and option R technical approval are unchanged.
+D2 Chat integration, D3 installed proof and maintainer acceptance remain future
+gates. Root/format baseline debt is failed and unwaived; the initiative remains
+started/local. Preserved historical checkpoints below describe their own freezes.
+
+# Historical directive-readiness closeout — superseded for current execution state
 
 Branch: `feature/command-retirement`
 Execution phase: planning (existing approved D0/D1 sequence is next)
