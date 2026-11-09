@@ -1799,3 +1799,26 @@ has been executed or accepted through this documentation change.
   Baseline failures remain failed/unwaived. Dirty examples and ignored exports
   stay byte/mode/time-identical. No cleanup, acceptance, UAT, delivery or broader
   family/P0/P1/TUI authority is claimed.
+
+
+## 2026-11-09T05:40:00.996649+00:00 — DIAG D1–D3 and bounded aggregate VERIFIED; human acceptance handoff
+
+- `execution_phase: closeout`; `validation_state: verified` for DIAG-001 only.
+- [Final report](validation/diagnostics/implementation/d3/verified-report.md) and
+  [round3 reconciliation](validation/diagnostics/implementation/d3/council-round3.json):
+  Sol/Astra/Claude VERIFIED9.7 each at `be72a1e8b5904436ec3b9eb844a5db4f71ed95c9`. Both status findings
+  independently closed; earlier runtime order finding closed; no mandatory items.
+- Reviewed source/probe/artifact identity remains `28c544fa67e934f03c212aed39ba20802b500b13`. Actual1991
+  source-suite passes, matching154-artifact maps and isolated installed/negative
+  proof retain exact executed-vs-inspected provenance. Controller rechecked all
+  pins/index/status/17224 protected entries,862 raw pairs and actual corrected
+  artifacts after all3 terminal results, before closeout metadata updates.
+- [Acceptance handoff](validation/diagnostics/implementation/d3/acceptance-handoff.md)
+  names the six-command scope, limitations, preserved review history and installed
+  UAT launch command. The17-case roadmap remains NOT RUN. No human acceptance
+  is inferred. Metadata candidate pairing/direct amendment links are refreshed;
+  optional non-string test hardening stays deferred. No code/test/probe changes.
+- Umbrella remains started/local and active. Stop for Chuck Russell's bounded
+  DIAG decision. Root Ruff534, test_display conflict6929 and registry format stay
+  failed/unwaived. Dirty examples and ignored exports are preserved. No cleanup,
+  UAT completion, next unit, full-refactor/P0/P1/TUI or delivery is authorized.

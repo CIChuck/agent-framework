@@ -1,3 +1,33 @@
+# DIAG-001 — verified completion and human acceptance checkpoint
+
+Branch: `feature/command-retirement`
+Execution phase: closeout
+Validation state: verified (bounded DIAG D1–D3 and complete aggregate)
+
+[Final verification](validation/diagnostics/implementation/d3/verified-report.md)
+reconciles all three fresh round-3 results: VERIFIED9.7 each, no mandatory findings.
+Reviewed candidate `be72a1e8b5904436ec3b9eb844a5db4f71ed95c9`; corrected source/probe/artifacts `28c544fa67e934f03c212aed39ba20802b500b13`.
+The runtime order finding and both documentation findings are independently
+closed. Current1,991-suite/build/install receipts retain exact provenance; all
+review inputs and protected local state were rechecked before closeout metadata.
+
+**Next gate:** Chuck Russell's bounded DIAG-001 acceptance decision; manual UAT remains unrun. No next unit or delivery follows automatically.
+
+Read the [acceptance handoff](validation/diagnostics/implementation/d3/acceptance-handoff.md)
+and [17-case UAT roadmap](uat/friday-chat-user-acceptance-roadmap.md). The latter
+remains NOT RUN; the handoff contains the exact installed launch command and
+records fake versus real runtime limits. No acceptance is inferred from reviews
+or previous amendment approval. Stop for the bounded maintainer decision.
+
+The command-refactor umbrella remains started/local, with its active packet.
+Later families, P0/P1, full-refactor/TUI and all delivery need separate authority.
+Root Ruff534, the6,929-test collection conflict and registry format remain failed/
+unwaived. Keep both dirty example files and ignored exports untouched. No new
+product/test/probe/approved contract/build change or review loop is introduced by
+this closeout record.
+
+### Preserved round-3 validation checkpoint
+
 # DIAG-001 — documentation correction validation checkpoint
 
 Branch: `feature/command-retirement`

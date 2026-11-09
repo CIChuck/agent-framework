@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "DIAG runtime finding closed by all3; bounded docs-only status correction in fresh round3 validation",
+  "decision": "DIAG-001 D1\u2013D3 and complete bounded aggregate independently VERIFIED; completed awaiting human acceptance",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "README/PAR lifecycle correction and full bounded DIAG aggregate review; runtime source28c544fa frozen",
-  "product_code_authority": "Original DIAG construction plus exact REM-CMD-DIAG-D3-001 amendment approved for its six bounded paths, probe and evidence; no acceptance or external delivery",
+  "current_scope": "DIAG bounded human acceptance handoff; no later unit, UAT completion or delivery authority",
+  "product_code_authority": "Approved DIAG construction and bounded corrections are complete and independently verified. Runtime source28c544fa is frozen; no new product construction follows this handoff.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -763,10 +763,10 @@
     "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
     "product_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
     "controller_start": "d0c729f43534bb79a3db70852ec08028ddb631ec",
-    "state": "validation",
-    "execution_phase": "validation",
-    "validation_state": "in_review",
-    "current_deliverable": "D3 docs-only status correction cycle2 / council round3 and bounded aggregate review",
+    "state": "completed",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
+    "current_deliverable": "Completed bounded DIAG-001; human acceptance pending",
     "deliverable1": {
       "state": "verified",
       "round": 2,
@@ -826,7 +826,7 @@
       "report": "validation/diagnostics/implementation/d2/verified-report.md"
     },
     "deliverable3": {
-      "state": "in_review",
+      "state": "verified",
       "round": 3,
       "base": "d437a5dc601126ae0767cf6558ae63d214159c19",
       "aggregate_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
@@ -836,9 +836,9 @@
       "evidence": "validation/diagnostics/implementation/d3/evidence.json",
       "source_tests": {
         "Chat": 1338,
-        "Commands_cohort": 478,
+        "Commands_cohort": 498,
         "CLI": 155,
-        "total": 1971
+        "total": 1991
       },
       "workspace_builds_each": 13,
       "locked_inputs": 125,
@@ -852,15 +852,12 @@
       "prebuild_extra_source_refusal": 1,
       "restored_copied_probes": 8,
       "acceptance": "not_granted",
-      "next_gate": "Reconcile fresh Sol/Astra/Claude documentation-correction and full bounded DIAG aggregate review (round 3), then bounded human DIAG acceptance.",
-      "council": "validation/diagnostics/implementation/d3/council-round2.json",
-      "report": "validation/diagnostics/implementation/d3/council-round2-reconciliation.md",
-      "reviewed_candidate": "1d3b273b7797c72a868f259d095593a15a4e42b9",
-      "mandatory_findings": [
-        "DIAG-D3-SOL-R2-001",
-        "DIAG-D3-R2-CLAUDE-001"
-      ],
-      "findings_status": "Runtime finding independently closed by all3; documentation findings mechanically corrected, fresh closure pending",
+      "next_gate": "Chuck Russell's bounded DIAG-001 acceptance decision; manual UAT remains unrun. No next unit or delivery follows automatically.",
+      "council": "validation/diagnostics/implementation/d3/council-round3.json",
+      "report": "validation/diagnostics/implementation/d3/verified-report.md",
+      "reviewed_candidate": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9",
+      "mandatory_findings": [],
+      "findings_status": "All runtime and documentation mandatory findings independently closed by all3; none open",
       "proposed_amendment": "remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md",
       "proposed_amendment_sha256": "3078bb19195044212a115cb3f3f169d030af2b282154d4d336856b37c41fa865",
       "amendment_approval": "granted",
@@ -890,7 +887,26 @@
         "Commands_cohort": 498,
         "CLI": 155,
         "total": 1991
-      }
+      },
+      "historical_reviewed_candidates": {
+        "round1": "1d3b273b7797c72a868f259d095593a15a4e42b9",
+        "round2": "80e2e14d02484f6a2e95924ee431d43c6045a70e",
+        "round3": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9"
+      },
+      "historical_round1_source_tests": {
+        "Chat": 1338,
+        "Commands_cohort": 478,
+        "CLI": 155,
+        "total": 1971
+      },
+      "verified_candidate": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9",
+      "closed_findings": [
+        "DIAG-D3-ASTRA-001",
+        "DIAG-D3-SOL-R2-001",
+        "DIAG-D3-R2-CLAUDE-001"
+      ],
+      "acceptance_handoff": "validation/diagnostics/implementation/d3/acceptance-handoff.md",
+      "UAT": "not_run"
     },
     "council_after_each_deliverable": true,
     "council_members": [
@@ -904,6 +920,9 @@
     "product_source": "54e35947f8ee157ddab0b50f7e9e9e1db415f0ae",
     "original_product_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
     "runtime_model_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
-    "artifact_source": "28c544fa67e934f03c212aed39ba20802b500b13"
+    "artifact_source": "28c544fa67e934f03c212aed39ba20802b500b13",
+    "verified_candidate": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9",
+    "current_product_test_probe_source": "28c544fa67e934f03c212aed39ba20802b500b13",
+    "UAT": "not_run"
   }
 }

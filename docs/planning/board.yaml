@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-11-08'
+updated: '2026-11-09'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh Sol/Astra/Claude documentation-correction and full bounded DIAG aggregate review (round 3), then bounded human DIAG acceptance.
+  next_gate: Chuck Russell's bounded DIAG-001 acceptance decision; manual UAT remains unrun. No next unit or delivery follows automatically.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -734,6 +734,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/verified-report.md
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round1-reconciliation.md
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round2-reconciliation.md
+  - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/verified-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2853,3 +2854,10 @@ events:
   action: reconciled DIAG runtime closure; bounded docs-only round3
   note: All3 closed runtime finding; Sol/Claude request only stale README/PAR status fixes. Current gates corrected, runtime bytes frozen. Fresh docs/aggregate review then human acceptance.
   evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round2-reconciliation.md
+- task: friday-command-refactor
+  at: '2026-11-09T05:40:01+00:00'
+  actor: Codex
+  actor_role: agent
+  action: DIAG-001 independently VERIFIED; bounded human acceptance pending
+  note: Round3 Sol/Astra/Claude9.7 each, no mandatory findings. Product/probe28c544fa unchanged. Unit completed, umbrella started/local. UAT unrun; stop for maintainer decision. Preserve baseline debt and local state.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/verified-report.md

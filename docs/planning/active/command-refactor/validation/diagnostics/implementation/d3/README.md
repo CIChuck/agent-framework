@@ -1,13 +1,19 @@
-# DIAG-001 D3 — regression, artifacts and isolated installed proof
+# DIAG-001 D3 — independently VERIFIED
 
-Execution phase: validation. Validation state: in_review (documentation cycle 2,
-council round 3). [Round-2 reconciliation](council-round2-reconciliation.md)
-records all three closing the runtime finding, with mandatory stale-status fixes.
-[REM-CMD-DIAG-D3-002](../../../../remediation/REM-CMD-DIAG-D3-002-status-reconciliation.md)
-corrects those current gates only. Runtime/test/probe source stays `28c544fa`;
-actual corrected builds and their evidence stay frozen. Fresh documentation and
-full bounded aggregate conformance precede human acceptance. No acceptance,
-UAT completion or delivery is granted.
+Execution phase: closeout. Validation state: verified (round 3).
+[Final report](verified-report.md) and [raw council](council-round3.json) record
+Sol/Astra/Claude VERIFIED 9.7 each at `be72a1e8`, with no mandatory findings.
+[Acceptance handoff](acceptance-handoff.md) is ready for Chuck Russell; acceptance
+and manual UAT remain pending. Product/test/probe and artifact source `28c544fa`
+stays frozen. Current proof includes 1,991 source passes, matching closed builds
+and isolated installed behavior, with executed/inspected distinctions retained.
+
+The exact approved [context amendment](../../../../remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md)
+and [subsequent approval](../../../../approval/diagnostics-context-evaluation.md)
+remain byte-identical. [Status correction](../../../../remediation/REM-CMD-DIAG-D3-002-status-reconciliation.md)
+is independently closed. Original receipts/reports and all local dirty/generated
+state are preserved. Root debt remains failed/unwaived. No new code, build,
+UAT completion, broader acceptance or delivery follows this metadata closeout.
 
 ## Preserved runtime correction cycle1 proof
 

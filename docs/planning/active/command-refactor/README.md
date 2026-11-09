@@ -16,15 +16,13 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: validation`; `validation_state: in_review` for the DIAG D3
-documentation correction (cycle 2 / council round 3) and complete bounded aggregate.
-[Round-2 reconciliation](validation/diagnostics/implementation/d3/council-round2-reconciliation.md)
-records all three reviewers closing the runtime finding. Amendment approval and
-runtime correction are complete; the remaining mandatory status text is corrected
-under [REM-CMD-DIAG-D3-002](remediation/REM-CMD-DIAG-D3-002-status-reconciliation.md).
-Product/test/probe bytes and artifact source `28c544fa` are unchanged. Fresh
-status/aggregate review and bounded human DIAG acceptance remain pending.
-Ignored exports and dirty examples are preserved. SESSION-001 remains accepted and verified.
+`execution_phase: closeout`; `validation_state: verified` for completed DIAG-001
+D1–D3 and its bounded aggregate at `be72a1e8`. [Final verification](validation/diagnostics/implementation/d3/verified-report.md)
+records Sol/Astra/Claude VERIFIED9.7 each, no open mandatory findings,1,991 source
+passes and exact corrected artifact/probe source `28c544fa`. [Acceptance handoff](validation/diagnostics/implementation/d3/acceptance-handoff.md)
+is ready for Chuck Russell's decision. Manual UAT is unrun; [roadmap](uat/friday-chat-user-acceptance-roadmap.md)
+results remain NOT RUN. The wider initiative stays started/local. Ignored exports
+and dirty examples remain preserved. SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
 [Bounded SESSION acceptance](approval/session-acceptance.md) is recorded from Chuck Russell's
@@ -109,7 +107,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude documentation-correction and full bounded DIAG aggregate review (round 3), then bounded human DIAG acceptance.
+**Next gate:** Chuck Russell's bounded DIAG-001 acceptance decision; manual UAT remains unrun. No next unit or delivery follows automatically.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)
