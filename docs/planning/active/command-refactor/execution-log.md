@@ -1971,3 +1971,22 @@ has been executed or accepted through this documentation change.
   `execution_phase: validation`; `validation_state: changes_requested` for
   directive readiness; no product construction, acceptance or delivery.
 - **Next gate:** Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.
+
+
+## 2026-11-09T16:41:29.753273+00:00 — explicitly authorized additional MEMQ readiness pass
+
+- Chuck Russell: “authorized then iterate”, answering the concrete request for
+  one additional bounded sentence correction and fresh compliant council after
+  the two-cycle escalation. [Authorization](approval/memory-queries-directive-additional-pass.md)
+  and [REM-CMD-MEMQ-DIR-003](remediation/REM-CMD-MEMQ-DIR-003-historical-qualifier.md)
+  record that explicit extension; it is not inferred from a reviewer verdict.
+- Applied the exact preserved round3 proposed patch: the post-SESSION await-next-
+  unit instruction is historical and superseded by the current MEMQ gate.
+  No technical contract/directive/verifier/format profile or product changes.
+- Preserve all round3 reports, including Sol's isolation-blocked receipt and
+  external locator. No cleanup or retrospective waiver; all three round4 seats
+  are fresh, high-effort, read-only contexts with their own external scratch.
+- `execution_phase: validation`; `validation_state: in_review` for directive/design
+  only. The new candidate gets delta-first plus full bounded review. No earlier
+  outcome carries forward. Product D0/D1 remains unstarted.
+- **Next gate:** Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.

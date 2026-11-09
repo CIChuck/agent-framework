@@ -1,32 +1,34 @@
-# MEMQ-001 — round3 findings returned to the maintainer
+# MEMQ-001 — explicitly authorized additional directive review
 
 Branch: `feature/command-retirement`
 Execution phase: validation (directive/design only)
-Validation state: changes_requested; formal council incomplete because Sol is BLOCKED
+Validation state: in_review (fresh round4); product D0/D1 unstarted
 
-Reviewed technical candidate: `818b42eeca4495cf34292e934dbdac34e31ca4db`.
-[Round3 reconciliation](validation/memory-queries/directive-review/round3/report.md)
-records Astra VERIFIED9.5, Sol BLOCKED9.4 and Claude CHANGES_REQUESTED8.9.
-Technical corrections CR-01..05 are resolved. CR-06 still has the unqualified
-post-SESSION instruction at reviewed README line215 (CLAUDE-001, Low).
-Sol wrote a locator outside its own fresh scratch, so that receipt cannot be
-counted as VERIFIED despite unchanged candidate/supplied inputs. No cleanup or
-retrospective waiver was performed.
+Chuck Russell answered the concrete two-cycle escalation with **“authorized then
+iterate”**. The [additional-pass authorization](approval/memory-queries-directive-additional-pass.md)
+and [REM-CMD-MEMQ-DIR-003](remediation/REM-CMD-MEMQ-DIR-003-historical-qualifier.md)
+permit the prepared one-sentence historical qualification and fresh full council.
+The [round3 outcome](validation/memory-queries/directive-review/round3/report.md)
+remains preserved: Astra VERIFIED9.5, Sol BLOCKED9.4, Claude CHANGES_REQUESTED8.9.
+The old invalid Sol receipt is not waived or reused; fresh isolation compliance
+must be established. The external locator stays unchanged.
 
-**Next gate:** Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.
+**Next gate:** Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.
 
-Two correction cycles are consumed. The council skill and independent-validation
-policy require returning remaining mandatory findings rather than another
-automatic loop. [Exact proposed sentence patch](validation/memory-queries/directive-review/round3/proposed-readme-fix.patch)
-is prepared but not applied. The controller has changed only current status and
-review evidence after the freeze; approved contract/directive/verifier/format
-inputs retain their reviewed hashes. No new technical candidate result is claimed.
+Only the last SESSION instruction is qualified as historical. All current MEMQ
+gates and phase records await the new review. The technical contract/directive,
+verifier, format helper/inventory and previous inputs retain their reviewed bytes.
+The [additional prose evidence](validation/memory-queries/directive-review/correction3/report.md)
+is controller evidence, not a current independent outcome. Earlier scores or
+VERIFIED results do not carry forward to a changed candidate.
 
-Existing [cycle2 authority](approval/memory-queries-directive-correction2.md)
-and option R scope remain recorded; readiness is not cleared. Product D0/D1
-has not started. The umbrella remains started/local, baseline debt stays
-failed/unwaived, and original product/dirty/ignored state remains preserved.
-No acceptance, UAT, later-family or delivery authority follows.
+Fresh Sol/high, Astra/high and Claude Opus5.5/high contexts assess delta first,
+then the complete bounded directive/design aggregate. After this additional
+pass, return any mandatory finding or review-protocol blocker to Chuck Russell;
+no unbounded loop. Product source, package tests, dependencies, configuration,
+lock, dirty examples, ignored exports and accepted prior-family inputs remain
+preserved. The umbrella stays started/local; debt stays failed/unwaived. No
+product implementation, UAT, acceptance, next-family or delivery is performed.
 
 ### Preserved DIAG acceptance checkpoint
 

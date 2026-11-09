@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.
+  next_gate: Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2906,3 +2906,10 @@ events:
   action: recorded MEMQ round3 result and two-cycle escalation
   note: Astra VERIFIED9.5, Sol BLOCKED9.4 for scratch-isolation breach, Claude CHANGES_REQUESTED8.9 for Low unqualified post-SESSION README gate. Original reports and external locator preserved; exact proposed sentence patch not applied. Await maintainer direction; no further automatic loop or product D0/D1.
   evidence: docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/report.md
+- task: friday-command-refactor
+  at: '2026-11-09T16:41:29.753273+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded explicit maintainer authorization for additional MEMQ prose correction and council
+  note: 'Chuck Russell: authorized then iterate. Apply the prepared historical SESSION qualifier and obtain fresh full round4; old Sol BLOCKED receipt/locator preserved without waiver. Technical/product bytes unchanged; product D0/D1 unstarted.'
+  evidence: docs/planning/active/command-refactor/approval/memory-queries-directive-additional-pass.md

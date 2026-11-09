@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-09",
-  "decision": "MEMQ directive round3 CHANGES_REQUESTED; Sol receipt BLOCKED; two-cycle escalation to maintainer",
+  "decision": "MEMQ additional readiness pass explicitly authorized after escalation; one-sentence qualification and fresh round4 council",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.",
-  "product_code_authority": "Option R and exact cycle2 technical approval remain recorded, but directive readiness is not cleared. No product D0/D1 until maintainer-directed resolution; no automatic third correction or delivery.",
+  "current_scope": "Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.",
+  "product_code_authority": "Existing option R technical scope remains bound to approval/memory-queries-directive-correction2.md. Additional authorization permits prose/status/evidence and fresh council only; product D0/D1 remains unstarted; no delivery.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -947,7 +947,7 @@
   },
   "memory_queries_preparation": {
     "unit": "MEMQ-001",
-    "state": "directive_readiness_escalated_after_cycle2",
+    "state": "explicit_additional_directive_review_in_progress",
     "requested_by": "Chuck Russell",
     "instructions": [
       "the uat was successful - all approved, proceed to next steps",
@@ -962,7 +962,7 @@
     "preparation_evidence": "validation/memory-queries/preparation.json",
     "preparation_evidence_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
     "execution_phase": "validation",
-    "validation_state": "changes_requested",
+    "validation_state": "in_review",
     "design_approval": "granted",
     "construction_approval": "granted",
     "decisions_pending": {},
@@ -991,8 +991,8 @@
     },
     "approval": "approval/memory-queries-directive-correction2.md",
     "approval_sha256": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264",
-    "next_gate": "Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.",
-    "implementation_status": "Product D0/D1 not started; remaining low README finding and isolation-blocked review returned to maintainer",
+    "next_gate": "Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.",
+    "implementation_status": "Product D0/D1 not started; only historical README qualifier and explicitly authorized additional council",
     "projection_clarification": "Four supplemental legacy cases; source/protocol implementation not yet generated; original 76-case preparation unchanged.",
     "recorded_at_original_erroneous": "2026-11-09T15:20:00+00:00",
     "recorded_at_basis": "Proposal commit 342bf85c timestamp: existence by 14:25Z, not an exact preparation start/finish. Original 15:20Z event preserved and explained by append-only correction.",
@@ -1009,7 +1009,7 @@
     "option": "R",
     "scope": "Second bounded directive correction and fresh round3 council, then escalate remaining mandatory findings",
     "execution_phase": "validation",
-    "validation_state": "changes_requested"
+    "validation_state": "in_review"
   },
   "memory_queries_approval_before_directive_correction": {
     "maintainer": "Chuck Russell",
@@ -1024,30 +1024,18 @@
     "validation_state": "not_ready"
   },
   "memory_queries_directive_review": {
-    "round": 3,
-    "correction_cycle": 2,
-    "reviewed_candidate": "818b42eeca4495cf34292e934dbdac34e31ca4db",
-    "outcome": "CHANGES_REQUESTED",
-    "formal_council_clearance": "incomplete due isolation-blocked Sol seat",
-    "reports": "validation/memory-queries/directive-review/round3/evidence.json",
-    "results": {
-      "sol": {
-        "outcome": "BLOCKED",
-        "score": 9.4
-      },
-      "astra": {
-        "outcome": "VERIFIED",
-        "score": 9.5
-      },
-      "claude": {
-        "outcome": "CHANGES_REQUESTED",
-        "score": 8.9
-      }
-    },
-    "open_candidate_finding": "MEMQ-DIR-R3-CLAUDE-001",
-    "blocked_seat_finding": "MEMQ-DIR-R3-SOL-001",
-    "automatic_iteration_stopped": true,
-    "next_gate": "Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery."
+    "round": 4,
+    "correction_cycle": 3,
+    "explicit_additional_pass": true,
+    "prior_reviewed_candidate": "818b42eeca4495cf34292e934dbdac34e31ca4db",
+    "recording_base": "8d78e2daa7eaabe1a3e42ad1dc4d9b45ff41b4c9",
+    "prior_reports": "validation/memory-queries/directive-review/round3/evidence.json",
+    "remediation": "remediation/REM-CMD-MEMQ-DIR-003-historical-qualifier.md",
+    "additional_authorization": "approval/memory-queries-directive-additional-pass.md",
+    "authorization_sha256": "ef7adbca434cff387dfa1b0dc7ddf9d315bcbeb6474edaf3af2ff0245fd498d1",
+    "validation_state": "in_review",
+    "next_gate": "Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.",
+    "limits": "Fresh complete council; old blocked seat preserved, no inherited verdict or retroactive waiver; no product construction/acceptance/delivery"
   },
   "memory_queries_approval_before_cycle2": {
     "maintainer": "Chuck Russell",
@@ -1101,5 +1089,47 @@
     },
     "next_gate": "Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.",
     "limits": "No inherited verdict; no product construction, acceptance or delivery; escalate mandatory findings after this cycle"
+  },
+  "memory_queries_directive_review_round3": {
+    "round": 3,
+    "correction_cycle": 2,
+    "reviewed_candidate": "818b42eeca4495cf34292e934dbdac34e31ca4db",
+    "outcome": "CHANGES_REQUESTED",
+    "formal_council_clearance": "incomplete due isolation-blocked Sol seat",
+    "reports": "validation/memory-queries/directive-review/round3/evidence.json",
+    "results": {
+      "sol": {
+        "outcome": "BLOCKED",
+        "score": 9.4
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.5
+      },
+      "claude": {
+        "outcome": "CHANGES_REQUESTED",
+        "score": 8.9
+      }
+    },
+    "open_candidate_finding": "MEMQ-DIR-R3-CLAUDE-001",
+    "blocked_seat_finding": "MEMQ-DIR-R3-SOL-001",
+    "automatic_iteration_stopped": true,
+    "next_gate": "Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery."
+  },
+  "memory_queries_readiness_continuation": {
+    "maintainer": "Chuck Russell",
+    "instruction": "authorized then iterate",
+    "recorded_at": "2026-11-09T16:41:29.753273+00:00",
+    "approval": "approval/memory-queries-directive-additional-pass.md",
+    "sha256": "ef7adbca434cff387dfa1b0dc7ddf9d315bcbeb6474edaf3af2ff0245fd498d1",
+    "scope": "Prepared one-sentence README qualification, administrative records and one fresh full council beyond the prior two-cycle stop",
+    "patch_sha256": "178c692287546e5e42ab00caec9d9271659221e99aa1273d35f5e80f2fb222a1",
+    "technical_bindings_unchanged": {
+      "contract": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+      "directive": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
+      "verifier": "83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5",
+      "format_helper": "3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751",
+      "format_baseline": "7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2"
+    }
   }
 }

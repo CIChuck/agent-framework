@@ -27,17 +27,21 @@ retain the original [approval](approval/memory-queries.md) and the current
 [cycle2 correction amendment](approval/memory-queries-directive-correction2.md).
 Council rounds 1 and 2 returned CHANGES_REQUESTED. The original four corrections are
 recorded in [REM-CMD-MEMQ-DIR-001](remediation/REM-CMD-MEMQ-DIR-001-readiness.md).
-MEMQ `execution_phase: validation`; `validation_state: changes_requested` after
-round3 directive/design review (correction cycle2). Astra VERIFIED9.5; Sol
-BLOCKED9.4 for a reviewer isolation breach; Claude CHANGES_REQUESTED8.9 for
-MEMQ-DIR-R3-CLAUDE-001. The [round3 reconciliation](validation/memory-queries/directive-review/round3/report.md)
-returns the remaining issue and incomplete seat receipt to Chuck Russell.
-No further automatic correction is authorized; product D0/D1 has not started.
+MEMQ `execution_phase: validation`; `validation_state: in_review` for the
+explicitly authorized additional round4 directive/design review. Chuck Russell
+answered the [round3 escalation](validation/memory-queries/directive-review/round3/report.md)
+with “authorized then iterate”. The [additional-pass authorization](approval/memory-queries-directive-additional-pass.md)
+and [REM-CMD-MEMQ-DIR-003](remediation/REM-CMD-MEMQ-DIR-003-historical-qualifier.md)
+bind the one-sentence historical qualification and fresh full council.
+The old Sol BLOCKED receipt remains preserved; a fresh compliant seat is required.
+No earlier verdict carries forward; product D0/D1 has not started.
 [Correction controls and preservation](validation/memory-queries/directive-review/correction1/report.md)
 are historical controller evidence; current union and complete-index gate controls
 are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/report.md).
+The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
+records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.
+**Next gate:** Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -125,7 +129,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.
+**Next gate:** Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)
@@ -216,4 +220,4 @@ P0/P1 and TUI remain open; delivery is local only.
 SESSION-001 construction was [approved](approval/session-views.md), independently
 VERIFIED and [accepted by Chuck Russell](approval/session-acceptance.md).
 The [remaining council roster](approval/council-roster.md) is Sol/Astra/Claude.
-Await separate maintainer direction and approved scope for a next unit.
+The post-SESSION instruction “Await separate maintainer direction and approved scope for a next unit” is historical and superseded by the current MEMQ next gate above.
