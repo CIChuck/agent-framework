@@ -23,8 +23,18 @@ passes and exact corrected artifact/probe source `28c544fa`. [Acceptance handoff
 was answered: Chuck Russell reported successful manual UAT and [accepted DIAG-001](approval/diagnostics-acceptance.md);
 the [roadmap](uat/friday-chat-user-acceptance-roadmap.md) records maintainer-reported results. MEMQ-001 is in planning with construction approved: the revised
 [contract](memory-query-command-contract.md) and [directive](directives/CD-CMD-MEMQ-001-memory-queries.md)
-are bound by the [approval](approval/memory-queries.md), including selected MQ-D3
-option R and the record-projection clarification. D0/D1 implementation is next. The wider initiative stays started/local. Ignored exports
+retain the original [approval](approval/memory-queries.md) and the current
+[bounded correction amendment](approval/memory-queries-directive-correction.md).
+Council round 1 returned CHANGES_REQUESTED; the four document corrections are
+recorded in [REM-CMD-MEMQ-DIR-001](remediation/REM-CMD-MEMQ-DIR-001-readiness.md).
+MEMQ `execution_phase: validation`; `validation_state: in_review` for fresh
+round-2 directive/design readiness only. Product D0/D1 has not started.
+[Correction controls and preservation](validation/memory-queries/directive-review/correction1/report.md)
+are controller evidence awaiting that independent result.
+
+**Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.
+
+ The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.

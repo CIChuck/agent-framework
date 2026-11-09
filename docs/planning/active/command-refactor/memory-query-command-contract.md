@@ -1,6 +1,6 @@
 # MEMQ-001 — memory query commands contract
 
-Status: **approved by the [subsequent exact approval](approval/memory-queries.md)**.
+Status: **approved with the bounded [directive-correction amendment](approval/memory-queries-directive-correction.md)**; fresh directive-readiness council pending.
 Prepared 2026-11-09 on `feature/command-retirement` at
 `c5871054266da2340486d2043062c5fb95611c00` (accepted DIAG-001 closeout).
 Read this document, then [CD-CMD-MEMQ-001](directives/CD-CMD-MEMQ-001-memory-queries.md).
@@ -9,8 +9,11 @@ and later “ok proceed” authorize preparation only. His subsequent “I appro
 your recommendation. Where is the directive document for me to look at?”
 selects MQ-D3 option R. His later “The edited version” approves the clarified
 record projection/schema and completion of its evidence and hash references.
-The subsequent approval binds these final revised document bytes. Option R
-does not need to be chosen again.
+The original approval binds its historical bytes. Chuck Russell subsequently
+instructed “lets apply the corrections and iterate”, authorizing the four
+bounded readiness corrections and fresh council recorded in the amendment.
+The amendment binds the corrected bytes; Option R does not need to be chosen again.
+Product D0/D1 waits for the corrected directive-readiness result.
 
 ## Scope, authority and evidence
 
@@ -163,9 +166,17 @@ MemoryQueryPort, build_memory_query_handlers
 Two accepted tests pin the exact 38-name surface: the literal list in
 `test_session_views.py::test_session_specs_and_factory_are_immutable` and, in
 `test_diagnostics.py::test_diagnostic_specs_exports_and_factory`, the literal
-list, owner table and binding count. **Decision MQ-D4:** approval expressly
-permits extending only those assertions by these sixteen names (plus one new
-`memory_queries` owner row and `38` → `54`), every other statement unchanged.
+list, owner table and binding count. **Decision MQ-D4:** in that diagnostic
+test only, permit exactly one local
+`import friday_commands.memory_queries as memory_queries_module`, append the
+sixteen names to the API literal, append the thirteen model names in MQ-01 order
+to the existing `contracts` owner tuple, append one final
+`(memory_queries_module, ("MEMORY_QUERY_SPECS", "MemoryQueryPort",
+"build_memory_query_handlers"))` row after `shared`, and change the binding
+count from `38` to `54`. In the SESSION test only, append the sixteen API
+names to its literal. Every other statement, owner and assertion is unchanged.
+The AST audit reverses exactly these edits and must recover the baseline; no
+model re-export workaround changes the declared ownership.
 The accepted DIAG and SESSION installed probes stay frozen; their 38/24-name
 assertions are intentionally obsolete for this approved expansion. Do not weaken
 any assertion to a subset.

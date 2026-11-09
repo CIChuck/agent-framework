@@ -2,12 +2,12 @@
   "version": 1,
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
-  "date": "2026-11-08",
-  "decision": "DIAG-001 accepted; revised MEMQ-001 contract/directive approved with option R",
+  "date": "2026-11-09",
+  "decision": "MEMQ directive correction cycle 1 authorized; fresh readiness council required before product D0/D1",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "MEMQ-001 approved D0/D1 next; neutral implementation then fresh three-member D1 council before D2",
-  "product_code_authority": "MEMQ-001 construction granted only under approval/memory-queries.md and exact CD-CMD-MEMQ-001, option R. D1/D2/D3 fresh councils and separate final acceptance required; no delivery authority.",
+  "current_scope": "Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.",
+  "product_code_authority": "Existing bounded option R approval is preserved and clarified by approval/memory-queries-directive-correction.md; product D0/D1 waits for fresh directive-readiness reconciliation. No product edits or delivery in this correction.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -33,7 +33,7 @@
     "resumed_by": "Chuck Russell",
     "resume_instruction": "Proceed to step three."
   },
-  "construction_directive_approval": "DIAG-001 approved by approval/diagnostics.md; accepted earlier units retained",
+  "construction_directive_approval": "MEMQ exact correction amendment approval/memory-queries-directive-correction.md; accepted earlier unit authorities retained",
   "council_request": {
     "requested_by": "Chuck Russell",
     "scope": "Read-only evaluation of the frozen readiness review; no construction approval or automatic remediation loop",
@@ -947,22 +947,22 @@
   },
   "memory_queries_preparation": {
     "unit": "MEMQ-001",
-    "state": "approved_after_controller_clarification",
+    "state": "directive_readiness_correction1_in_review",
     "requested_by": "Chuck Russell",
     "instructions": [
       "the uat was successful - all approved, proceed to next steps",
       "ok proceed"
     ],
-    "recorded_at": "2026-11-09T15:20:00+00:00",
+    "recorded_at": "2026-11-09T14:25:00+00:00",
     "source_baseline": "c5871054266da2340486d2043062c5fb95611c00",
     "contract": "memory-query-command-contract.md",
-    "contract_sha256": "2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69",
+    "contract_sha256": "b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2",
     "directive": "directives/CD-CMD-MEMQ-001-memory-queries.md",
-    "directive_sha256": "3f83083689d5eedf62b5e3f2fe573586da630ff2970b3d5cd96bce474dc2aacd",
+    "directive_sha256": "3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a",
     "preparation_evidence": "validation/memory-queries/preparation.json",
     "preparation_evidence_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
-    "execution_phase": "planning",
-    "validation_state": "not_ready",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
     "design_approval": "granted",
     "construction_approval": "granted",
     "decisions_pending": {},
@@ -989,13 +989,29 @@
       "MQ-D3": "R: bounded persisted listing repair, specified defaults",
       "MQ-D4": "two exact export assertions 38 -> 54"
     },
-    "approval": "approval/memory-queries.md",
-    "approval_sha256": "0831ccbe058fb2e9154fa38cd16587265441bdf404d3e11556dc6e32a05074c1",
-    "next_gate": "Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows.",
-    "implementation_status": "D0/D1 not started; no MEMQ product code changed during proposal finalization",
-    "projection_clarification": "Four supplemental legacy cases; source/protocol implementation not yet generated; original 76-case preparation unchanged."
+    "approval": "approval/memory-queries-directive-correction.md",
+    "approval_sha256": "7eed81dc9fdb4d9081580c78731fac3e42eb074a700597e108968ccf906ba4be",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.",
+    "implementation_status": "Product D0/D1 not started; four directive-readiness corrections only; fresh council pending",
+    "projection_clarification": "Four supplemental legacy cases; source/protocol implementation not yet generated; original 76-case preparation unchanged.",
+    "recorded_at_original_erroneous": "2026-11-09T15:20:00+00:00",
+    "recorded_at_basis": "Proposal commit 342bf85c timestamp: existence by 14:25Z, not an exact preparation start/finish. Original 15:20Z event preserved and explained by append-only correction.",
+    "chronology_correction_recorded_at": "2026-11-09T15:33:59.716791+00:00"
   },
   "memory_queries_approval": {
+    "maintainer": "Chuck Russell",
+    "instruction": "lets apply the corrections and iterate",
+    "recorded_at": "2026-11-09T15:33:59.716791+00:00",
+    "record": "approval/memory-queries-directive-correction.md",
+    "sha256": "7eed81dc9fdb4d9081580c78731fac3e42eb074a700597e108968ccf906ba4be",
+    "contract_sha256": "b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2",
+    "directive_sha256": "3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a",
+    "option": "R",
+    "scope": "Four bounded document-readiness corrections and fresh council only; existing product scope preserved",
+    "execution_phase": "validation",
+    "validation_state": "in_review"
+  },
+  "memory_queries_approval_before_directive_correction": {
     "maintainer": "Chuck Russell",
     "recorded_at": "2026-11-09T14:49:49.730403+00:00",
     "record": "approval/memory-queries.md",
@@ -1006,5 +1022,26 @@
     "scope": "approved directive D0-D5, three fresh council members after each deliverable, final maintainer acceptance separate",
     "execution_phase": "planning",
     "validation_state": "not_ready"
+  },
+  "memory_queries_directive_review": {
+    "round": 2,
+    "correction_cycle": 1,
+    "prior_candidate": "76b949b2e621e7a44ddec6ed527784e781696c8c",
+    "prior_result": "CHANGES_REQUESTED",
+    "prior_reports": "validation/memory-queries/directive-review/round1/evidence.json",
+    "remediation": "remediation/REM-CMD-MEMQ-DIR-001-readiness.md",
+    "format_inventory": "validation/memory-queries/format-baseline.json",
+    "verifier": "validation/memory-queries/verify_directive_corrections.py",
+    "current_bindings": {
+      "contract": "b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2",
+      "directive": "3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a",
+      "format_helper": "3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751",
+      "format_baseline": "7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2",
+      "verifier": "7bd5cf6524e982093c007f0d48a4b0f76ed55370aeb9556cca57cc0d5c6a6bb9",
+      "remediation": "eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540",
+      "approval": "7eed81dc9fdb4d9081580c78731fac3e42eb074a700597e108968ccf906ba4be"
+    },
+    "next_gate": "Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.",
+    "limits": "Directive/design readiness only; no inherited verdict, product implementation, acceptance or delivery"
   }
 }

@@ -1,13 +1,17 @@
 # CD-CMD-MEMQ-001 — shared memory query commands
 
-Status: **approved by the [subsequent exact approval](../approval/memory-queries.md)**. Owner: Chuck Russell.
+Status: **approved with the bounded [directive-correction amendment](../approval/memory-queries-directive-correction.md)**; fresh directive-readiness council pending. Owner: Chuck Russell.
 Prepared 2026-11-09. Branch: `feature/command-retirement`. Unit: MEMQ-001.
 Preparation under the maintainer's “proceed” instructions changes planning and
 evidence only. The subsequent approval binds the exact
 [contract](../memory-query-command-contract.md) and this directive before product,
 test or probe implementation. The maintainer selected MQ-D3 option R and then
 “The edited version”, including the record-projection/schema clarification and
-completion of its evidence and hash references.
+completion of its evidence and hash references. His later “lets apply the
+corrections and iterate” authorizes only the four findings in
+[REM-CMD-MEMQ-DIR-001](../remediation/REM-CMD-MEMQ-DIR-001-readiness.md),
+their exact verification and a fresh council. Product D0/D1 waits for that
+readiness result; this correction does not start construction.
 
 ## Authority and execution base
 
@@ -31,14 +35,21 @@ characterization preserves the original 76-case preparation unchanged. Accepted
 DIAG, SESSION and pilot
 technical inputs, their raw reports/receipts and harnesses remain immutable.
 Known root Ruff 534, the sole Chat/CLI `test_display` root collection conflict
-(6,929 collected) and legacy registry formatting are failed/unwaived baseline
-debt, not passing gates. No new regression may hide behind them.
+(6,929 collected), and existing format debt in `memory.py`, `registry.py`,
+`runtime.py` and `adapters.py` are failed/unwaived baseline debt, not passing
+gates. The pinned per-file formatting inventory and comparison below classify
+that debt without authorizing reformatting untouched code. No new regression
+may hide behind it.
 
 | Input relative to packet | SHA-256 |
 | --- | --- |
-| `memory-query-command-contract.md` | `2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69` |
+| `memory-query-command-contract.md` | `b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2` |
 | `validation/memory-queries/record-projection-characterization.json` | `a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d` |
 | `validation/memory-queries/preparation.json` | `e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593` |
+| `remediation/REM-CMD-MEMQ-DIR-001-readiness.md` | `eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540` |
+| `validation/memory-queries/format_debt.py` | `3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751` |
+| `validation/memory-queries/format-baseline.json` | `7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2` |
+| `validation/memory-queries/verify_directive_corrections.py` | `7bd5cf6524e982093c007f0d48a4b0f76ed55370aeb9556cca57cc0d5c6a6bb9` |
 | `approval/diagnostics-acceptance.md` | `1a3eecabf3b96bc456f1595933f5f2a8cba13810bb51bdb3ba6803d25e22b5ca` |
 | `approval/diagnostics.md` | `8aeb991d742a38d717c49d488b34d6a5800b57fbec97b3d4a461e2027caa1cb2` |
 | `approval/diagnostics-context-evaluation.md` | `6a752d7977afb5e07c5212c8b361aba63b0c680f87a738a0a9fcd8bd01ce18de` |
@@ -80,7 +91,7 @@ Paths are relative to repository root; no other product path may change.
 | `packages/friday-commands/tests_commands/test_memory_queries.py` (new) | MQ-01, MQ-02, MQ-D1, MQ-D2 neutral/standalone tests. |
 | `packages/friday-commands/tests_commands/fixtures/memory-query-metadata.json` (new) | Exact preparation metadata fixture. |
 | `packages/friday-commands/tests_commands/test_session_views.py` | Append only the sixteen MQ-01 names to the literal list in `test_session_specs_and_factory_are_immutable`. |
-| `packages/friday-commands/tests_commands/test_diagnostics.py` | In `test_diagnostic_specs_exports_and_factory` only: append the sixteen names to the literal list, add one `memory_queries` owner row, change `38` to `54`. |
+| `packages/friday-commands/tests_commands/test_diagnostics.py` | In `test_diagnostic_specs_exports_and_factory` only: insert one local `import friday_commands.memory_queries as memory_queries_module`; append sixteen names to the API literal; append thirteen MQ-01 models to the existing `contracts` owner tuple; append one final three-name `memory_queries_module` row after `shared`; change `38` to `54`. Exact names/order follow MQ-D4; every other AST statement remains unchanged. |
 | `packages/friday-chat/src/friday_chat/commands/memory_queries.py` (new) | Narrow typed Chat port, metadata helper, projections, pure renderers, exact outcome adapter and once-only invocation. |
 | `packages/friday-chat/src/friday_chat/commands/memory.py` | Four compatibility wrapper bodies; private formatting/query helpers may move to the new module. Public `preview_text`, `record_value` and `__all__` unchanged. |
 | `packages/friday-chat/src/friday_chat/commands/registry.py` | `_entities_handler` and `_list_ingested_handler` wrapper bodies, imports, metadata helper and only tuple entries 3, 9, 10, 11, 12, 16; an import made unused may be removed. All other AST/order/handler-map definitions unchanged. |
@@ -260,7 +271,7 @@ Materialize both new package fixtures from preparation `fixtures.*.text` at thei
 exact target paths, checking the embedded digests. No new test reads this active
 planning packet. Record the original file/test/assertion inventory before edits.
 - **AST audits:**
-  - The two old tests must equal the baseline with only their exact MQ-D4 extensions removed.
+  - The two old tests must equal the baseline with only their exact MQ-D4 extensions removed. For the diagnostic test, remove the one local `memory_queries_module` import, sixteen appended API names, thirteen appended `contracts` owner names, final three-name owner row and the 38-to-54 count change. For the SESSION test, remove only the sixteen API names. Require exact ordered 54 bindings before reversal, and reject any other statement or assertion change.
   - The contracts AST differs only by the MQ-01 alias, models and six union/whitelist members.
   - Registry parser/register/dispatch/admission/handler-map and the other 33 tuple entries stay AST-identical.
 - **Option R:** the `memory_views`, `runtime` and `adapters` changes are only the named additions; every other definition is unchanged.
@@ -288,8 +299,17 @@ Under option R, add `memory_views.py`, `runtime.py` and `adapters.py` to the
 lint and type gates, recording any pre-existing findings in those whole files
 separately from new ones. At earlier gates omit only not-yet-created paths,
 recording that bounded scope; never count missing files as passes. Run changed-
-Python `ruff format --check --no-cache`, separately recording the unchanged
-registry formatting debt. Before counts are Chat 1,338, Commands/cohort 498 and
+Python `ruff format --check --no-cache`. New Python files must pass completely.
+For the five existing files in the pinned `format-baseline.json`, preserve the
+raw failed/unwaived format result and additionally require the pinned
+`format_debt.py check` gate below: no new owner-bound formatting fragments,
+including multiplicity, beyond the baseline inventory. Removing baseline debt
+is not required and never authorizes edits outside the path/definition allowlist.
+Existing baseline fragments may remain only at their original lexical owner;
+line-number shifts alone do not create new debt. Do not reformat untouched code
+or treat the comparison pass as a whole-file formatting pass. Formatter version
+and configuration must match. Other changed existing Python files have no
+format-debt allowance and must pass completely. Before counts are Chat 1,338, Commands/cohort 498 and
 CLI 155; reconcile actual new cases, collection, skips and exits. Reproduce and
 record root Ruff and root pytest through the guarded runner (`-p controls
 -p no:cacheprovider`), plus root `--collect-only` at D4. Run metadata,
@@ -297,6 +317,35 @@ record root Ruff and root pytest through the guarded runner (`-p controls
 `--check`, documentation lifecycle and `git diff --check` over the worktree and
 complete unit range. Tests and static controls run on actual current source with
 canonical origins, not stale exports.
+
+### Exact baseline-format comparison
+
+At D0, reproduce the pinned inventory from the unchanged baseline in fresh
+scratch. Compare its JSON bytes with the pinned file (same Ruff version/config,
+source hashes, owner-bound fragments and full diagnostic diffs). A mismatch
+stops for reconciliation, not a larger debt allowance. `record` refuses overwrite.
+For current candidates run `check`; it reads source and writes no product files:
+
+```sh
+MEMQ_FORMAT="$PWD/docs/planning/active/command-refactor/validation/memory-queries/format_debt.py"
+MEMQ_FORMAT_BASE="$PWD/docs/planning/active/command-refactor/validation/memory-queries/format-baseline.json"
+"$MEMQ_PYTHON" -B "$MEMQ_RUNNER" format-baseline python -B "$MEMQ_FORMAT" record "$MEMQ_SOURCE" "$MEMQ_SCRATCH/format-baseline.json"
+"$MEMQ_PYTHON" -I -B - "$MEMQ_FORMAT_BASE" "$MEMQ_SCRATCH/format-baseline.json" <<'PYFMT'
+import sys
+from pathlib import Path
+if Path(sys.argv[1]).read_bytes() != Path(sys.argv[2]).read_bytes():
+    raise SystemExit('Baseline format inventory changed')
+PYFMT
+"$MEMQ_PYTHON" -B "$MEMQ_RUNNER" format-current python -B "$MEMQ_FORMAT" check "$PWD" "$MEMQ_FORMAT_BASE"
+```
+
+Use the D0 baseline `MEMQ_SOURCE` for recording, before changing it to a candidate.
+The comparison uses exact deleted/inserted text and lexical owners, without line
+numbers/context; it counts duplicate fragments and rejects new ones. New code
+must be formatted even if an old identical fragment exists elsewhere. Preserve
+untouched definitions/bytes in the independent AST/allowlist audit. Correction
+controls cover unchanged debt, shifted line numbers, an injected new defect and
+a behavior-changing AST edit; they do not replace future implementation tests.
 
 ## D5 — clean artifacts and actual installed behavior
 
@@ -335,9 +384,22 @@ in-prefix shadow must be refused.
 Run unchanged pilot installed proof on candidate artifacts. The DIAG and SESSION
 probes' exact 38/24-name assertions are intentionally obsolete for the approved
 54-name expansion: preserve their files and do not claim they passed. In the new
-probe, copy their behavior checks as named retained checks, changing only
-function names and the sixteen appended expected names (AST-audited against the
-pinned functions), and run retained SESSION and DIAG semantics in both modes.
+probe, copy exactly these pinned function bodies as named retained checks:
+
+| Behavior | Frozen source function | Only permitted body/identity transform |
+| --- | --- | --- |
+| SESSION neutral | `validation/diagnostics/installed_probe.py::retained_session_neutral_behavior` | Rename to `retained_memq_session_neutral_behavior`; append the sixteen MQ-01 names to its existing ordered **38-name** `expected_exports` list, yielding the exact API54. |
+| SESSION Chat | `validation/session/installed_probe.py::chat_behavior` | Rename to `retained_memq_session_chat_behavior`; no body changes. |
+| DIAG neutral | `validation/diagnostics/installed_probe.py::neutral_diagnostics` | Rename to `retained_memq_neutral_diagnostics`; no body changes. |
+| DIAG Chat | `validation/diagnostics/installed_probe.py::chat_diagnostics` | Rename to `retained_memq_chat_diagnostics`; no body changes. |
+
+The original SESSION `neutral_behavior` (24 names) is **not** the copy source.
+Retain required helpers/imports/fixture globals as separately inventoried glue,
+without modifying copied behavioral statements. AST-audit each named function
+against its exact pinned source after reversing only the tabled rename and,
+for the SESSION neutral function only, the sixteen appended names. Dry-check
+the exact ordered 54 names and reject any additional behavioral AST edit.
+Run all four retained behavior checks in normal and optimized installed modes.
 Never spoof `api.__all__`, monkeypatch an old gate or weaken exactness.
 
 New installed MEMQ proof requires:

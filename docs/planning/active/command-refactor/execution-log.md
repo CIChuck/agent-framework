@@ -1890,3 +1890,34 @@ has been executed or accepted through this documentation change.
 - Next gate: Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows.
 - Root Ruff534, the test_display conflict6929 and registry formatting remain
   failed/unwaived; they are not rerun for this documentation-only finalization.
+
+
+## 2026-11-09T15:33:59.716791+00:00 — MEMQ directive correction cycle 1; chronology explanation
+
+- Chuck Russell: “lets apply the corrections and iterate”, after the four-item
+  council reconciliation. [Bounded amendment](approval/memory-queries-directive-correction.md)
+  records exact corrected hashes; [REM-CMD-MEMQ-DIR-001](remediation/REM-CMD-MEMQ-DIR-001-readiness.md)
+  limits the changes. No product source/tests/config/dependency/lock changed.
+- Round 1 at76b949b2: Sol CHANGES_REQUESTED8.7, Astra8.5, Claude8.3;
+  all raw reports retained. Fresh-context round2 must review delta then the full
+  bounded directive. `execution_phase: validation`; `validation_state: in_review`
+  (design only), product D0/D1 not started.
+- Chronology correction: the preserved preparation heading/event stamped
+  `2026-11-09T15:20:00+00:00` is erroneous. Receipts were written before the
+  proposal commit342bf85c at14:25Z, followed by approval14:49Z and finalization
+  commit76b949b2 at14:52Z. The proposal existed by14:25Z; no exact preparation
+  start/finish is inferred. The old heading/event remain unchanged as history;
+  mutable authority names the commit-based recording time and this explanation.
+- Corrected D5 exact function provenance, MQ-D4 import/model/factory owner rows,
+  and format-debt comparison preserving untouched code. Existing formatting
+  failures remain failed/unwaived; no broad reformatting is authorized.
+- Original preparation/supplemental/approval/accepted-family evidence, all1,255
+  non-doc files, dirty examples and ignored exports are preserved.
+- **Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.
+
+- Controller correction checks: exact54 binding/retained export transforms, AST
+  reversal and extra-behavior refusals, owner-bound baseline-format controls,
+ 29-input preservation, board/dashboard/docs and seven shell blocks pass.
+  [Correction report](validation/memory-queries/directive-review/correction1/report.md)
+  retains actual receipts and an excluded initial lint failure. Whole-file
+  baseline formatting still fails as inventoried; no waiver or product verdict.

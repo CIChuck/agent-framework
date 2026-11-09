@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows."
+  next_gate: Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -735,6 +735,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round1-reconciliation.md
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round2-reconciliation.md
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/verified-report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2882,3 +2883,10 @@ events:
   action: recorded maintainer approval of edited MEMQ-001 contract and directive with option R
   note: Actual web instructions approve the recommended repair and edited version. Projection characterization and final pins completed; D0/D1 next, fresh three-member councils between stages. No acceptance or delivery.
   evidence: docs/planning/active/command-refactor/approval/memory-queries.md
+- task: friday-command-refactor
+  at: '2026-11-09T15:33:59.716791+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded bounded MEMQ directive correction cycle1 and corrected preparation chronology
+  note: 'Maintainer: lets apply the corrections and iterate. Four mandatory readiness issues corrected; fresh Sol/Astra/Claude delta then aggregate review pending before D0/D1. Original 15:20Z preparation event is erroneous: proposal existed by commit342bf85c at14:25Z, before approval14:49Z. Original event retained; no exact preparation start/finish inferred. No product edits, acceptance or delivery.'
+  evidence: docs/planning/active/command-refactor/approval/memory-queries-directive-correction.md

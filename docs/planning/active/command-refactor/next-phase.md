@@ -1,37 +1,43 @@
-# MEMQ-001 — approved memory query construction checkpoint
+# MEMQ-001 — directive readiness correction cycle 1
 
 Branch: `feature/command-retirement`
-Execution phase: planning (MEMQ-001 approved; D0/D1 next)
-Validation state: not_ready (MEMQ-001); DIAG-001 accepted; broader initiative remains started/local
+Execution phase: validation (directive/design only)
+Validation state: in_review (fresh council round 2 pending); product D0/D1 not started
 
-Under Chuck Russell's preparation instructions and subsequent option R / “The edited version”
-approval, the [approval record](approval/memory-queries.md) binds the revised [contract](memory-query-command-contract.md) (SHA-256
-`2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69`), [directive](directives/CD-CMD-MEMQ-001-memory-queries.md)
-(`3f83083689d5eedf62b5e3f2fe573586da630ff2970b3d5cd96bce474dc2aacd`) and [guarded synthetic preparation](validation/memory-queries/preparation.json)
-(`e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593`) at source `c5871054`. They cover `/memory`, `/insights`, `/summaries`,
-`/meta`, `/entities` and `/list-ingested`. Two independent clean-export captures
-agree on 6 metadata records and 76 cases; related Chat 587 and Commands/cohort
-498 tests pass; the comparator refuses 14 controls and capture refuses extra or
-changed source before import. No product, test, dependency or lock byte changed.
+Chuck Russell instructed “lets apply the corrections and iterate” after
+[council round 1](validation/memory-queries/directive-review/round1/report.md)
+returned CHANGES_REQUESTED (Sol 8.7, Astra 8.5, Claude 8.3). The bounded
+[correction approval](approval/memory-queries-directive-correction.md) binds the
+[contract](memory-query-command-contract.md) (`b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2`) and
+[directive](directives/CD-CMD-MEMQ-001-memory-queries.md) (`3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a`).
+The [remediation](remediation/REM-CMD-MEMQ-DIR-001-readiness.md) addresses all
+four mandatory issues: D5 copy sources, MQ-D4 exact owner edits, baseline
+formatting classification, and append-only preparation chronology correction.
+Option R and all product behavior/scope decisions remain unchanged.
 
-**Next gate:** Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows.
+**Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.
 
-Approved decisions:
-- **MQ-D1:** refuse a record-kind mismatch.
-- **MQ-D2:** keep the existing argument type rule.
-- **MQ-D3:** selected Chat-only option R for persisted listing repair.
-- **MQ-D4:** extend the two pinned export assertions to 54 names.
+Fresh reviewers assess the approved-remediation delta first, then the entire
+bounded MEMQ directive/design aggregate. No old verdict carries forward. Two
+unsuccessful correction cycles require escalation. This does not substitute for
+the later D1/D2/D3 implementation councils or final maintainer acceptance.
 
-Production `/list-ingested` currently always reports none, because only the
-fake memory defines `ingested_documents` (PAR-023, CMD-F05). Option R reads
-persisted ingested-file metadata through existing public collection reads.
-Source validation and consolidation stay deferred under both options.
-Four [supplemental record-projection cases](validation/memory-queries/record-projection-characterization.json)
-pin lazy metadata reads, meta formatting order and independent completion. The
-original 76 observations and fixtures remain unchanged. Fresh Sol/Astra/Claude
-councils follow each approved deliverable; none has been launched for MEMQ.
-Root Ruff 534, the test_display collection conflict and registry format remain
-failed/unwaived. Both dirty example files and ignored exports stay untouched.
+The preparation event stamped 15:20Z is erroneous. Preparation receipts precede
+the proposal commit at 14:25Z; the original event/log bytes are preserved and a
+new correction explains the order. That commit timestamp is evidence that the
+proposal existed by 14:25Z, not an invented exact preparation start/finish.
+
+Original [preparation](validation/memory-queries/preparation.json), 76 cases,
+fixtures, [four supplemental observations](validation/memory-queries/record-projection-characterization.json)
+and historical [planning checks](validation/memory-queries/planning-checks.json)
+retain their frozen bytes and provenance. Their older hash/status tables are
+historical snapshots, not current corrected bindings. Source preparation is not
+product implementation or independent candidate conformance.
+
+Root Ruff534, test_display collection conflict and existing format debt remain
+failed/unwaived. Product files, accepted prior-family evidence, dirty examples
+and ignored exports remain unchanged. The umbrella remains started/local.
+No source implementation, UAT, acceptance, push/PR/merge/release is included.
 
 ### Preserved DIAG acceptance checkpoint
 

@@ -1,0 +1,125 @@
+{
+  "at": "2026-11-09T15:20:20.496295+00:00",
+  "status": "passed",
+  "errors": [],
+  "scope": "controller source corroboration and final preservation audit; no independent re-review or remediation",
+  "candidate": "76b949b2e621e7a44ddec6ed527784e781696c8c",
+  "branch": "feature/command-retirement",
+  "logical_index_sha256": "730d51fc2821f79031a442e4b31e350258488f70575d2229b53ce55dcded81c0",
+  "status_porcelain": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n",
+  "pins": 46,
+  "protected_non_docs": 1255,
+  "dirty": 2,
+  "ignored_exports": 3,
+  "supplied_raw_files": 29,
+  "reports": {
+    "sol": {
+      "original_path": "/tmp/memq-directive-review-sol-wFq44D/report.md",
+      "copy_path": "/private/tmp/memq-directive-council-r1-s_fg47r3/reports/sol.md",
+      "sha256": "2ccc7faacd4e45ac440cff43f6d6f66e3f45dd4f53d8e58e44236721e345dbf6"
+    },
+    "astra": {
+      "original_path": "/private/tmp/memq-directive-review-astra-65zct1y9/report.md",
+      "copy_path": "/private/tmp/memq-directive-council-r1-s_fg47r3/reports/astra.md",
+      "sha256": "f045ffa63672b6aaf21003eccdb55b0db036e1676b158b299c73022f57d5bb1a"
+    },
+    "claude": {
+      "original_path": "/tmp/memq-directive-review-claude-AQr08y/report/MEMQ-DIR-council-r1-claude-report.md",
+      "copy_path": "/private/tmp/memq-directive-council-r1-s_fg47r3/reports/claude.md",
+      "sha256": "ee194905a131ffceb29facbca93734f4de04a5d55d7624982db6b6b6348cd52e"
+    }
+  },
+  "D5_AST_witness": {
+    "original_session_exports": 24,
+    "diag_retained_session_exports": 38,
+    "current_api_exports": 38,
+    "retained_equals_current_api": true,
+    "session_plus_16": 40,
+    "retained_plus_16": 54
+  },
+  "baseline_format_witnesses": [
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "argv": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "-I",
+        "-B",
+        "-m",
+        "ruff",
+        "format",
+        "--diff",
+        "--no-cache",
+        "packages/friday-chat/src/friday_chat/commands/memory.py"
+      ],
+      "exit": 1,
+      "hunks": 3,
+      "log": "/private/tmp/memq-directive-council-r1-s_fg47r3/controller-format-memory.log",
+      "log_sha256": "c7183ba83eb0870169562a632123e8fce0d9fcc814b4926e800b6c30f6078edb"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "argv": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "-I",
+        "-B",
+        "-m",
+        "ruff",
+        "format",
+        "--diff",
+        "--no-cache",
+        "packages/friday-chat/src/friday_chat/runtime.py"
+      ],
+      "exit": 1,
+      "hunks": 2,
+      "log": "/private/tmp/memq-directive-council-r1-s_fg47r3/controller-format-runtime.log",
+      "log_sha256": "451804be0b2cb851c617d26139d94f1e50df3f3aa6410a4b96a684e43752d118"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "argv": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "-I",
+        "-B",
+        "-m",
+        "ruff",
+        "format",
+        "--diff",
+        "--no-cache",
+        "packages/friday-chat/src/friday_chat/adapters.py"
+      ],
+      "exit": 1,
+      "hunks": 36,
+      "log": "/private/tmp/memq-directive-council-r1-s_fg47r3/controller-format-adapters.log",
+      "log_sha256": "8cce5c9c59906ba78ef367225a28788cd4fd0915470ac6e49a5afdd268fe95eb"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "argv": [
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+        "-I",
+        "-B",
+        "-m",
+        "ruff",
+        "format",
+        "--diff",
+        "--no-cache",
+        "packages/friday-chat/src/friday_chat/commands/registry.py"
+      ],
+      "exit": 1,
+      "hunks": 24,
+      "log": "/private/tmp/memq-directive-council-r1-s_fg47r3/controller-format-registry.log",
+      "log_sha256": "5ccdcef950a9bd0b699e262764adddb0bc1f8775a7ad7cf408245f9667db23f4"
+    }
+  ],
+  "timeline": {
+    "proposal_commit": "2026-11-09T09:25:00-05:00",
+    "finalization_commit": "2026-11-09T09:52:09-05:00",
+    "manifest_frozen": "2026-11-09T14:58:27.074940+00:00",
+    "recorded_preparation_at": "2026-11-09T15:20:00+00:00"
+  },
+  "limits": [
+    "No product or approved document was changed.",
+    "Reviewers original reports and their actual-execution versus inspected-receipt provenance are retained verbatim.",
+    "Reported external fetch cannot be attributed by this audit; reviewed worktree/index/HEAD/pins remain unchanged."
+  ]
+}
