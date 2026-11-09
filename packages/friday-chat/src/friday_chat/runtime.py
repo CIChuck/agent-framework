@@ -18,6 +18,8 @@ from friday_telemetry import ExecutionContext
 
 from friday_chat.config import FridayChatConfig
 from friday_chat.memory_views import (
+    IngestedDocumentQueryResult,
+    IngestedDocumentView,
     MemoryCollection,
     MemoryDiagnosticReason,
     MemoryDiagnosticWarning,
@@ -182,6 +184,9 @@ class MemoryController(Protocol):
         kind: MemoryRecordKind,
     ) -> MemoryRecordQueryResult:
         """Return typed records for one closed memory kind."""
+
+    async def query_ingested_documents(self) -> IngestedDocumentQueryResult:
+        """Return persisted document groups without inspecting source files."""
 
 
 @dataclass(frozen=True)
@@ -673,6 +678,22 @@ class FakeMemoryController:
             for index, record in enumerate(records_by_kind[kind], start=1)
         )
         return MemoryRecordQueryResult(kind=kind, records=views)
+
+    async def query_ingested_documents(self) -> IngestedDocumentQueryResult:
+        """Preserve the fake's insertion order and recorded chunk counts."""
+        documents: list[IngestedDocumentView] = []
+        for document in self.ingested_documents:
+            source = document["source_path"]
+            count = document["chunk_count"]
+            description = document["description"]
+            if (
+                not isinstance(source, str)
+                or not isinstance(count, int)
+                or (description is not None and not isinstance(description, str))
+            ):
+                raise TypeError("Invalid fake ingested document")
+            documents.append(IngestedDocumentView(source, description, count))
+        return IngestedDocumentQueryResult(tuple(documents))
 
 
 def _fake_memory_record_view(

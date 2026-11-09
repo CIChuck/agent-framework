@@ -104,7 +104,8 @@ Python. Exceptions and cancellation propagate without retries or effects.
 Hosts supply detached typed display facts and retain service reads, projection
 and rendering. Memory queries perform no writes, synthesis, exports or session
 changes. The neutral package imports no memory/runtime/frontend services.
-This is the neutral D1 surface; Chat integration and option R's persisted
-document listing follow at D2 under the approved contract. That listing uses
-existing public reads owned by Chat; no domain capability moves into this
-package. Source validation and command consolidation remain deferred.
+Chat now consumes this neutral D1 surface through its typed memory-query port.
+Option R's persisted document listing uses existing public reads owned by Chat;
+no domain capability moves into this package. The Chat integration has its own
+D2 review and later installed-proof gate. Source validation and command
+consolidation remain deferred.

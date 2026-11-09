@@ -178,6 +178,23 @@ class MemoryRecordQueryResult:
         return not self.warnings
 
 
+@dataclass(frozen=True)
+class IngestedDocumentView:
+    """One persisted source/description group and its stored chunk count."""
+
+    source_path: str
+    description: str | None
+    chunk_count: int
+
+
+@dataclass(frozen=True)
+class IngestedDocumentQueryResult:
+    """Read-only document groups with honest partial-read warnings."""
+
+    documents: tuple[IngestedDocumentView, ...]
+    warnings: tuple[MemoryDiagnosticWarning, ...] = ()
+
+
 __all__ = [
     "MemoryCollection",
     "MemoryDiagnosticReason",
@@ -190,4 +207,6 @@ __all__ = [
     "MemoryStatisticsSnapshot",
     "MemoryStoreComponent",
     "MemoryStoreStatistics",
+    "IngestedDocumentView",
+    "IngestedDocumentQueryResult",
 ]

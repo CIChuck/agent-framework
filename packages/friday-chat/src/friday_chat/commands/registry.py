@@ -27,8 +27,9 @@ from friday_chat.commands.memory import (
     meta_handler,
     summaries_handler,
 )
-from friday_chat.commands.memory import (
-    record_value as _record_value,
+from friday_chat.commands.memory_queries import (
+    invoke_memory_query,
+    memory_query_metadata,
 )
 from friday_chat.commands.pilot import (
     RegistryCatalog,
@@ -300,41 +301,7 @@ async def _entities_handler(
     args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    if context.runtime is None:
-        return CommandResult(output="Memory runtime is not initialized.")
-    nodes_only = bool(args and args[0] == "nodes")
-    name = None
-    if args and not nodes_only:
-        name = " ".join(args)
-    records = await context.runtime.memory.list_entities(name)
-    relationships = []
-    if not nodes_only:
-        relationships = await context.runtime.memory.list_relationships(name)
-    if not records and not relationships:
-        return CommandResult(output="No entities found.")
-    lines: list[str] = []
-    if records:
-        lines.append("Entities:")
-        for record in records[:100]:
-            label = _record_value(record, "label", "id")
-            node_type = _record_value(record, "type")
-            hit_count = _record_value(record, "hit_count")
-            suffix = f" ({node_type})" if node_type else ""
-            if hit_count:
-                suffix = f"{suffix}, hits={hit_count}"
-            lines.append(f"- {label}{suffix}")
-    if relationships:
-        if lines:
-            lines.append("")
-        lines.append("Relationships:")
-        for relationship in relationships[:100]:
-            source = _record_value(relationship, "source_label", "source_id")
-            relation = _record_value(relationship, "relation", "type")
-            target = _record_value(relationship, "target_label", "target_id")
-            hit_count = _record_value(relationship, "hit_count")
-            suffix = f", hits={hit_count}" if hit_count else ""
-            lines.append(f"- {source} -[{relation}]-> {target}{suffix}")
-    return CommandResult(output="\n".join(lines))
+    return await invoke_memory_query("entities", args, context)
 
 
 async def _reset_handler(
@@ -735,18 +702,7 @@ async def _list_ingested_handler(
     _args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    if context.runtime is None:
-        return CommandResult(output="Memory runtime is not initialized.")
-    documents = getattr(context.runtime.memory, "ingested_documents", [])
-    if not documents:
-        return CommandResult(output="No ingested documents.")
-    lines = ["Ingested documents:"]
-    for document in documents:
-        lines.append(
-            f"- {document['source_path']} "
-            f"({document['chunk_count']} chunks): {document['description'] or ''}"
-        )
-    return CommandResult(output="\n".join(lines))
+    return await invoke_memory_query("list-ingested", _args, context)
 
 
 async def _replay_handler(
@@ -1523,52 +1479,33 @@ def _diagnostic_definition(name: str) -> CommandSpec:
     )
 
 
+def _memory_query_definition(name: str) -> CommandSpec:
+    metadata = memory_query_metadata(name)
+    return CommandSpec(
+        metadata.name,
+        metadata.description,
+        metadata.category,
+        metadata.usage,
+        metadata.aliases,
+        metadata.arguments,
+        metadata.detail,
+    )
+
+
 DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     _session_definition("clear"),
     _pilot_definition("cls"),
     _session_definition("history"),
-    CommandSpec(
-        "memory",
-        "Show typed memory, transcript, session, and context statistics.",
-        "memory",
-        "/memory",
-        detail=(
-            "Reports public episodic, vector, graph, transcript, lifecycle, "
-            "priming, app-session, and last-context metrics. Empty stores report "
-            "zero; unavailable or unconfigured components are labeled honestly."
-        ),
-    ),
+    _memory_query_definition("memory"),
     _diagnostic_definition("context"),
     _diagnostic_definition("prompt"),
     _diagnostic_definition("debug"),
     _diagnostic_definition("debug-budget"),
     _diagnostic_definition("timing"),
-    CommandSpec(
-        "entities",
-        "List graph entities and relationships.",
-        "memory",
-        "/entities [nodes|name]",
-        arguments=(
-            _argument(
-                "nodes|name",
-                "Use 'nodes' for node details or provide an entity name to inspect.",
-            ),
-        ),
-    ),
-    CommandSpec("insights", "List durable insights.", "memory", "/insights"),
-    CommandSpec("summaries", "List turn summaries.", "memory", "/summaries"),
-    CommandSpec(
-        "meta",
-        "List active meta insights with lifecycle and provenance metadata.",
-        "memory",
-        "/meta",
-        detail=(
-            "Queries typed short- and long-term meta_insight records, excludes "
-            "decayed records, and shows bounded synthesis provenance, source, "
-            "confidence, and verification fields when available. It never runs "
-            "synthesis or reorganization."
-        ),
-    ),
+    _memory_query_definition("entities"),
+    _memory_query_definition("insights"),
+    _memory_query_definition("summaries"),
+    _memory_query_definition("meta"),
     CommandSpec(
         "reset",
         "Reset one or more memory stores.",
@@ -1589,12 +1526,7 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "/compact",
     ),
     _diagnostic_definition("debug-retrieval"),
-    CommandSpec(
-        "list-ingested",
-        "List ingested document memory records.",
-        "memory",
-        "/list-ingested",
-    ),
+    _memory_query_definition("list-ingested"),
     CommandSpec(
         "sessions",
         "List persisted transcript sessions with current and primed markers.",

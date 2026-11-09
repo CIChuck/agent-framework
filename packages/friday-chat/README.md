@@ -101,6 +101,24 @@ registration, runtime service ownership or telemetry defaults.
 
 ## Development
 
+The six read-only memory queries (`/memory`, `/insights`, `/summaries`, `/meta`,
+`/entities`, `/list-ingested`) delegate to the neutral Commands handlers. Shared
+code selects record kinds and graph mode and awaits one injected capability;
+Chat retains service reads, detached display projection and English rendering.
+The typed boundary rejects mismatched record kinds and unsupported outcomes.
+Only exact lowercase first-argument `nodes` selects nodes-only graph output.
+Queries do not write memory, run synthesis, export files or change session state.
+
+`/list-ingested` reads persisted ingestion metadata from the short- and long-term
+collections. It groups by source and description, counts stored chunk records,
+and sorts by source then description (absent description first). Re-ingestion
+contributes the records actually retained; listing does not deduplicate ingestion
+events, inspect source files or read the decayed collection. Partial reads show
+sanitized warnings. Fake mode retains its insertion order and recorded counts.
+Ingestion itself is unchanged; source validation and command consolidation remain
+deferred. The MEMQ integration requires its D2 review and later installed proof
+before the separate human acceptance gate.
+
 Work from the monorepo root after the [shared contributor setup](https://github.com/CIChuck/agent-framework/blob/master/README.md#development).
 Run the focused suite:
 

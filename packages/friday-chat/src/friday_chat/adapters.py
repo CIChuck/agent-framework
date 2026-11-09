@@ -88,6 +88,8 @@ from friday_chat.config import (
     TypedLLMExecutionConfig,
 )
 from friday_chat.memory_views import (
+    IngestedDocumentQueryResult,
+    IngestedDocumentView,
     MemoryCollection,
     MemoryDiagnosticReason,
     MemoryDiagnosticWarning,
@@ -646,6 +648,57 @@ class FrameworkMemoryAdapter:
             records=tuple(records[:100]),
             warnings=tuple(warnings),
             decayed_records_excluded=True,
+        )
+
+    async def query_ingested_documents(self) -> IngestedDocumentQueryResult:
+        """Group persisted ingestion chunks across the two active collections."""
+        results = await asyncio.gather(
+            self.collection_manager.short_term.get_all(
+                limit=None,
+                where={"type": "ingested_file"},
+            ),
+            self.collection_manager.long_term.get_all(
+                limit=None,
+                where={"type": "ingested_file"},
+            ),
+            return_exceptions=True,
+        )
+        warnings: list[MemoryDiagnosticWarning] = []
+        counts: dict[tuple[str, str | None], int] = {}
+        components = (
+            MemoryStoreComponent.VECTOR_SHORT_TERM,
+            MemoryStoreComponent.VECTOR_LONG_TERM,
+        )
+        for component, result in zip(components, results, strict=True):
+            if isinstance(result, BaseException):
+                if isinstance(result, asyncio.CancelledError) or not isinstance(
+                    result, Exception
+                ):
+                    raise result
+                warnings.append(MemoryDiagnosticWarning(component))
+                continue
+            malformed = False
+            for record in result:
+                view = _ingested_document_view(record)
+                if view is None:
+                    malformed = True
+                else:
+                    key = (view.source_path, view.description)
+                    counts[key] = counts.get(key, 0) + 1
+            if malformed:
+                warnings.append(
+                    MemoryDiagnosticWarning(MemoryStoreComponent.MEMORY_RECORD)
+                )
+        keys = sorted(
+            counts,
+            key=lambda key: (key[0], key[1] is not None, key[1] or ""),
+        )
+        return IngestedDocumentQueryResult(
+            tuple(
+                IngestedDocumentView(source, description, counts[(source, description)])
+                for source, description in keys
+            ),
+            tuple(warnings),
         )
 
     async def _recall(self, query: str, *, token_limit: int) -> Any:
@@ -2618,6 +2671,22 @@ def _length_metric(value: object) -> MemoryMetric[int]:
     if not isinstance(value, list):
         return MemoryMetric.unavailable(MemoryDiagnosticReason.STORE_READ_FAILED)
     return MemoryMetric.available(len(value))
+
+
+def _ingested_document_view(record: object) -> IngestedDocumentView | None:
+    """Read typed grouping facts; never open or validate the source path."""
+    if not isinstance(record, Mapping):
+        return None
+    metadata = record.get("metadata")
+    if not isinstance(metadata, Mapping):
+        return None
+    source = metadata.get("source")
+    description = metadata.get("description")
+    if not isinstance(source, str) or not source:
+        return None
+    if description is not None and not isinstance(description, str):
+        return None
+    return IngestedDocumentView(source, description, 1)
 
 
 def _memory_record_view(
