@@ -1,0 +1,126 @@
+# MEMQ-001 directive readiness — council round4, seat `claude` (Claude Opus 5.5 / high)
+
+**Verdict: VERIFIED. This covers only whether the MEMQ-001 directive and design are ready.**
+It is not a product-conformance, construction-advancement, UAT, acceptance, later-family or delivery verdict. Product D0/D1 has not started and is not authorized by this report.
+
+- Request: `/private/tmp/memq-directive-council-r4-yz8avj9x/council-request.json`, SHA-256 `fd2375d06aad4b9290c69e3f8c342f38675ca4ffe11d6aef7b2655eef4dfbb45`. I hashed it before reading it.
+- Manifest: `frozen-manifest.json`, SHA-256 `7a750d88da89f70fa607ccded8b1546c310f09a4d076b53111eb31d904d5681c`.
+- Candidate: `be15dca1b37364748e1fcf9ef5d062a920a8d250` on `feature/command-retirement`. Base: `c5871054266da2340486d2043062c5fb95611c00`.
+- Review order: first the additional-pass delta `8d78e2da..be15dca1`, with the administrative bridge `818b42ee..8d78e2da` inspected; then the full bounded aggregate `c5871054..be15dca1`.
+- This seat's only scratch directory: `/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/15f2a268-f6ef-4490-88fc-dac4736d9105/scratchpad/memq-r4-claude-YbquStff`.
+
+## 1. Mandatory findings
+
+**None.** No new MEMQ-DIR-R4-CLAUDE mandatory finding is raised.
+
+The non-mandatory observations below need no remedy. They do not expand scope and are not advice to implement anything now.
+
+- **MEMQ-DIR-R4-CLAUDE-A01 (optional, not CR-07):** README lines 194–197 say "Current pilot construction is approved … no later family or delivery is approved."
+  - This is a prior-unit approval summary in present tense.
+  - It is scoped to `approval/pilot.md`. Line 197–198 already says earlier pending-approval text is superseded, and the later SESSION and MEMQ records follow it.
+  - It is not a Next gate or a phase declaration, and lines 24 and 30–44 state MEMQ's current authority unambiguously.
+  - No change is needed now. A future documentation pass could add "(at that time)".
+- **MEMQ-DIR-R4-CLAUDE-A02 (optional):** In `authority.json`, `memory_queries_approval.scope` still describes "Second bounded directive correction and fresh round3 council…", while its `validation_state` was updated to `in_review`.
+  - The current scope is recorded separately in `memory_queries_readiness_continuation` and `memory_queries_directive_review`, and all current gate strings agree.
+  - No change is needed.
+- **Limit (not a finding):** The frozen contract and directive status lines still read "fresh council pending at this correction freeze". Directive lines 15–17 still say "This is correction cycle2; remaining mandatory findings … return to the maintainer".
+  - These bytes are frozen by the additional-pass authorization: contract `93cdb3bd…`, directive `4d154412…`.
+  - Current status comes from the authorization, the board and the authority records, which is the governance ordering AGENTS.md gives.
+
+## 2. CR-01..CR-08 dispositions
+
+| CR | Disposition | Evidence |
+| --- | --- | --- |
+| CR-01 (D5 sources and transforms) | Resolved | Directive lines 391–406 name exactly 4 source functions. The DIAG `retained_session_neutral_behavior` has 38 `expected_exports`; I measured it independently. The SESSION `neutral_behavior` (24) is explicitly excluded. Verifier: 38 + 16 gives the exact ordered 54, matching `__init__.__all__` (38) plus the additions. All 4 extra-behavior controls were rejected. My own counterexample (dropping the last statement) was rejected for all 4 functions. |
+| CR-02 (MQ-D4) | Resolved | Contract lines 171–182 and directive lines 98 and 278 cover the import as the first statement, 16 API names, 13 models appended to the `contracts` owner tuple, a final 3-name row, and 38→54. Verifier: AST reversal recovers the baseline; 54 bindings with marker identity; an unrelated assertion is rejected. My counterexamples were all rejected: import not first, API reordered, an extra owner row, count 55, a model in the wrong owner. |
+| CR-03 (format debt) | Resolved | I ran directive block 6 against my own D0 export. `record` reproduced byte-identical `format-baseline.json` (`7475cd91…`), and `check` on the current tree returned `new_format_debt: {}`. Raw `ruff format --check` still fails 4 of 5 files: **failed/unwaived**. Shifting lines mid-file adds no debt. A defect injected inside an existing owner (`FrameworkChatModel…`) was rejected as excess. Re-recording refuses to overwrite (`FileExistsError`). The new tools pass `ruff check` and `ruff format --check`. |
+| CR-04 (chronology) | Resolved | The 15:20Z heading (log line 1846) and board event (line 2875) are unchanged. Across the full range, log deletions are 0 and board deletions affect only the mutable task `next_gate`. The correction (log lines 1905–1910) bounds existence by 14:25Z; commit `342bf85c` is dated 2026-11-09T09:25-05:00. `authority.json` lines 997–999 add `recorded_at_basis`. No invented preparation instant. |
+| CR-05 (exact union allowance) | Resolved | Contract lines 184–196 and directive line 98 allow 12+6=18 by appending to the existing set literal. Verifier: the canonical call-assertion witness is at line 203 (`assert set(get_args(FoundationData.__value__)) == expected`, which I confirmed). The four negative cases each fail at line 203 only: unchanged helper with an expanded union, missing, extra, nested. Positive baseline and extended controls pass. My counterexamples were all rejected: wrong order, wrong owner (`api.`), a seventh member, equality weakened to `<=`, an old member dropped. The witness is a call-assertion frame, not an import or setup failure. Limit: these are synthetic marker types, not MQ model conformance. |
+| CR-06 (whole README) | Resolved | The README has exactly two `**Next gate:**` lines (44, 132), both equal to the authority gate. They also agree with the board, `current_scope`, the prep and review gates, the `next-phase`/`tactical` gates, the last log gate and the dashboard row (9/9 equal). The only phase lines are line 19, explicitly for completed DIAG-001, and line 30, MEMQ validation/in_review. Line 189 "Await the next approval gate" is explicitly superseded at lines 197–198. The verifier rejects an injected stale gate. |
+| CR-07 (historical SESSION sentence) | Resolved | The patch hash `178c6922…` matches. In the base, the old bare imperative appears once and is the final line. In the candidate it is absent as an imperative, and the new qualified sentence appears exactly once, as the final line 223. The README diff hunks are: top status lines 30–44 (administrative), line 132 gate (administrative), line 223 (the exact patch only). I read the whole README semantically; see A01 for the only residual present-tense prior-unit wording, which is not mandatory. |
+| CR-08 (old Sol receipt; this seat's isolation) | Satisfied for this seat | The round3 directory is untouched by the delta, so the old Sol BLOCKED receipt stays preserved and historical, not waived. The `/private/tmp/memq-sol-current-path` identity matched at both start and end: SHA-256 `58849ad5…`, size 47, mode 644, mtime/ctime unchanged. I never wrote, deleted or restored it. This seat created no locator, PID or breadcrumb file anywhere; see the write ledger. |
+
+## 3. MR-01..MR-10 matrix
+
+| MR | Result | Basis |
+| --- | --- | --- |
+| MR-01 (authority) | Pass | Chain: AGENTS → board (started, granted, branch) → approval `memory-queries.md` (option R) → cycle2 amendment `54c778f4…` → additional pass `ef7adbca…`. The additional pass matches `authority_sha256` and `REM-003` `44857e6f…`. The two-cycle stop was honored and escalated; the maintainer explicitly authorized one more pass, which policy line 244 and council SKILL line 57 allow. Delta paths are only `docs/planning/**`. No technical, product or non-planning path changed in `818b42ee..be15dca1`, and `packages` is unchanged over `c5871054..be15dca1`. No acceptance or delivery is inferred. |
+| MR-02 (schema/API) | Pass (design) | 13 models, 6 alternatives and 16 exports appended after 38. No name collides with the existing `__all__` (38, no duplicates). `FoundationData` currently has 12 members. Validation and type rules are explicit. MQ-D4 is narrow, and the D5 retained-probe plan is exact. |
+| MR-03 (ownership/invocation) | Pass (design) | Validation order is request → execution → name. Then one exact-bool availability check, then one awaited call. Selection rules for kind, nodes and join are given. MQ-D1 and MQ-D2 refusals are declared. Exception and cancellation pass through by identity. Only standard-library and own-package imports are allowed. |
+| MR-04 (current-source compatibility) | Pass | I ran the 76-case capture on a clean `git archive` of `c5871054` with private paths: "Six metadata records match; 76 exact rows". An independent replay gave identical cases and metadata. The four supplemental cases reproduce exactly. The meta order (`verification_confidence` formatted before reading text, then created_at, then confidence) and lazy reads on plain records match MQ-04. |
+| MR-05 (option R feasibility) | Pass (design) | `VectorAdapter.get_all(limit, where)` exists. Adapters already call `short_term`/`long_term.get_all(limit=None, where=…)` with `return_exceptions=True`. `/ingest` stores `type="ingested_file"`, source, description and `chunk_index`/`chunk_count`. The production adapter lacks `ingested_documents`; `registry.py:740` uses `getattr`. The fake controller has a list. No framework or `/ingest` change is needed. |
+| MR-06 (Chat integration) | Pass (design) | The registry tuple has 39 entries; indices 3, 9, 10, 11, 12, 16 are memory, entities, insights, summaries, meta and list-ingested. The `memory.py` `__all__` keeps `preview_text`/`record_value`. Once-only invocation, typed outcome consumption, pure renderers and custom/renamed handlers are specified, with the 41/3 surface retained. |
+| MR-07 (tests/mutation) | Pass (design) | MQ-T01..T14 are traced to MQ-01..07 with mandatory assertions. Mutation controls require call-assertion failures with an unchanged control. Old assertions are only extended exactly. D1, D2 and D3 each get a fresh council. |
+| MR-08 (executable instructions) | Pass | All 7 shell blocks pass `zsh -n` and `sh -n`. I ran blocks 2, 3 and 6 with my own runner, scratch and labels; block 1 was replaced by my own scratch (I did not run its `/tmp` `mktemp`). Comparator selftest: 14 refusals. Materialization refuses to overwrite. Capture refuses extra source files and changed bytes before import, with no output written. The D5 commands are feasible but need the supplied locked artifacts; that is future and not required now. |
+| MR-09 (evidence integrity) | Pass | Preparation: 23 of 23 receipts match embedded and raw; 2 of 2 programs match. Embedded-only baseline, replay and fixtures: hashes match, the baseline is `ce5da59c…` once materialized, and capture `eafcfcbc…`. Supplemental: 4/4 pairs. Correction3: 11/11 pairs, all in the manifest. Historical correction1: 33/33; correction2: 26/26. Executed checks are distinguished from inspected receipts in §5. Prior verdicts are not used as proof. |
+| MR-10 (isolation and bounded conclusion) | Pass | See §4. Baseline debt is reported as failed/unwaived in §6. The conclusion is limited to directive and design readiness. |
+
+## 4. Integrity, isolation and write ledger
+
+The start and end checks were identical (`out/integrity-start.json`, `out/integrity-end.json`):
+- HEAD `be15dca1…`.
+- Branch `feature/command-retirement`.
+- Logical index SHA-256 `bc62fa28…6647`, hashed from exact `git ls-files -s -z` stdout before `status` at both ends.
+- Status equals the manifest: 2 dirty examples. Staged diff is empty.
+- 84/84 pins match; they are exactly the 84 primary documents.
+- 1,255/1,255 protected non-doc identities match (mode, type, size, mtime, ctime, sha, link).
+- Dirty 2/2, ignored exports 3/3, supplied raw files 107/107, preserved external file 1/1 all match.
+- The request and manifest hashes are unchanged at the end.
+- The untracked/ignored listing hash (`git ls-files -o --directory -z`) is identical at start and end (`526f37d1…`).
+
+`GIT_OPTIONAL_LOCKS=0` was exported for every Git child. Python ran with `-B` and `PYTHONDONTWRITEBYTECODE=1` (the system python also with `-I`). The runner sets the uv, XDG and mypy caches and the pytest basetemp under my `prepared/`.
+
+**Write ledger.** Everything this seat created is under `<SCRATCH>` = `/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/15f2a268-f6ef-4490-88fc-dac4736d9105/scratchpad/memq-r4-claude-YbquStff`:
+- `bin/`: integrity script.
+- `out/`: integrity JSON, logs, write marker.
+- `prepared/`: `prepare.py` output, runner receipts, uv cache.
+- `memq/`: materialized programs and baseline, two `git archive` exports, observations, refusal-control copies, format-baseline recording.
+- `supp/`, `tools/`, `indep/`, `verifier-out/`, `blocks/`, `delta/`.
+- `report.md` and `evidence.json`.
+
+Nothing was written to the repository, the supplied controller or builder directories, the wheelhouse (read-only input), or `/private/tmp/memq-sol-current-path`.
+
+**Disclosures:**
+1. **Scratch location.** The request's tool notes suggest `/tmp/memq-directive-review-<seat>-*`. To keep exactly one fresh external directory, I allocated mine under the session scratchpad in `/private/tmp`. Only the name differs.
+2. **Harness-persisted output.** The Claude Code harness saved one oversized tool stdout (a manifest structure listing) to its own session transcript store, `~/.claude/projects/-Users-…-agent-framework/15f2a268-…/tool-results/bcp6h5d0o.txt`. This is host transcript storage, not a reviewer-created cache, locator or evidence file, and it is outside the repository.
+3. **Host checkpoint refs.** New loose objects and `refs/t3/orchestration-v2/checkpoints/*` appeared in `.git` (11:52:05–11:52:53), and the `docker-bench-security/.git` directory mtime changed at 11:52:53.
+   - These are T3 host orchestration checkpoints for several threads, not commands I ran. My Git use was read-only: `ls-files`, `rev-parse`, `diff`, `show`, `log`, `cat-file`, `archive` to my scratch, and `status` with optional locks off.
+   - The logical index, HEAD, branch and status are unchanged.
+4. One `python3 -I -B -` invocation failed with a SyntaxError (a typo) and wrote nothing.
+
+## 5. Executed checks versus inspected receipts
+
+**Executed by this seat:**
+- `prepare.py --wheelhouse` (offline) and the guard selftest: 18 refusal controls passed.
+- Block 2 materialization and comparator selftest: 14 refusals; overwrite refused.
+- 76-case capture and compare on `c5871054`, plus an independent replay: 76 exact, identical.
+- Extra-source and changed-byte capture refusals.
+- The four-case supplemental characterization reproduction: equal.
+- The hash-verified `verify_directive_corrections.py` with root = the frozen workdir, writing to my fresh `verifier-out/`: passed. Output is `verifier-out/controls.json`.
+- My own independent counterexamples: `indep/independent-controls.json`, 14 rejections.
+- Block 6 format record, byte compare and check; raw `ruff format --check` on the 5 files; `ruff check` and `format --check` on both tools; format counterexamples.
+- Board validate (36 tasks); render `--check` (current); documentation lifecycle (920 files); `git diff --check` over the range, worktree and cached (all clean).
+- Gate agreement across 9 records; preparation, supplemental and correction3 embedded/raw pair checks; source-feasibility AST and grep checks.
+
+**Inspected, not executed:**
+- Correction1/2/3 controller receipts and the round1–3 reports. These are provenance only; I ran no administrative scripts.
+- The D5 bundle and installed-probe commands: feasibility review only, because the locked artifacts are a future input.
+
+## 6. Baseline debt and limits
+
+**Debt.** The following remain failed and unwaived. They were not re-run except for the format checks above:
+- Root Ruff (534 findings).
+- The root `test_display` collection conflict (6,929 collected).
+- Format debt in memory.py, registry.py, runtime.py and adapters.py (4 files still fail raw `ruff format --check`; memory_views.py is clean).
+
+There is no new debt and no regression.
+
+**Limits.**
+- The union and binding controls use synthetic markers, not MQ implementation.
+- The README gate helper is syntactic only. CR-06 and CR-07 rest on my manual semantic read.
+- Future D1–D5 suites, mutations, builds, wheels and installed proof are excluded, and the original trial capture is not the 76-case baseline.
+- Planning and controller checks and maintainer approval are not council validation.
+
+## 7. Advisory score
+
+**9.6 / 10.** No score overrides a mandatory finding, and there are none.

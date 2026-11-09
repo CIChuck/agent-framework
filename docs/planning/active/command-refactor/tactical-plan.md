@@ -1,34 +1,36 @@
-# MEMQ-001 — explicitly authorized additional directive review
+# MEMQ-001 — directive/design readiness VERIFIED; D0/D1 unstarted
 
 Branch: `feature/command-retirement`
-Execution phase: validation (directive/design only)
-Validation state: in_review (fresh round4); product D0/D1 unstarted
+Execution phase: planning (existing approved D0/D1 sequence is next)
+Validation state: verified for directive/design readiness only
 
-Chuck Russell answered the concrete two-cycle escalation with **“authorized then
-iterate”**. The [additional-pass authorization](approval/memory-queries-directive-additional-pass.md)
-and [REM-CMD-MEMQ-DIR-003](remediation/REM-CMD-MEMQ-DIR-003-historical-qualifier.md)
-permit the prepared one-sentence historical qualification and fresh full council.
-The [round3 outcome](validation/memory-queries/directive-review/round3/report.md)
-remains preserved: Astra VERIFIED9.5, Sol BLOCKED9.4, Claude CHANGES_REQUESTED8.9.
-The old invalid Sol receipt is not waived or reused; fresh isolation compliance
-must be established. The external locator stays unchanged.
+[Round4 reconciliation](validation/memory-queries/directive-review/round4/report.md)
+records three fresh VERIFIED results at `be15dca1b37364748e1fcf9ef5d062a920a8d250`:
+Sol9.6, Astra9.5, Claude9.6. CR01..08 and MR01..10 pass; no mandatory findings.
+The [additional authorization](approval/memory-queries-directive-additional-pass.md)
+was explicit after the earlier escalation. The old Sol BLOCKED receipt and
+external locator remain preserved; no past violation was waived. Fresh current
+seats independently satisfied isolation.
 
-**Next gate:** Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.
+**Next gate:** Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery.
 
-Only the last SESSION instruction is qualified as historical. All current MEMQ
-gates and phase records await the new review. The technical contract/directive,
-verifier, format helper/inventory and previous inputs retain their reviewed bytes.
-The [additional prose evidence](validation/memory-queries/directive-review/correction3/report.md)
-is controller evidence, not a current independent outcome. Earlier scores or
-VERIFIED results do not carry forward to a changed candidate.
+The existing [option R technical approval](approval/memory-queries-directive-correction2.md)
+continues to bind exact contract/directive bytes. This review clears design
+readiness only; it creates no new product authority and proves no implementation.
+D0 baseline reproduction and bounded neutral D1 are unstarted, with D1 council
+before D2 and later D2/D3/installed/acceptance gates still required. No user
+approval is inferred from scores or the controller's recording.
 
-Fresh Sol/high, Astra/high and Claude Opus5.5/high contexts assess delta first,
-then the complete bounded directive/design aggregate. After this additional
-pass, return any mandatory finding or review-protocol blocker to Chuck Russell;
-no unbounded loop. Product source, package tests, dependencies, configuration,
-lock, dirty examples, ignored exports and accepted prior-family inputs remain
-preserved. The umbrella stays started/local; debt stays failed/unwaived. No
-product implementation, UAT, acceptance, next-family or delivery is performed.
+The contract, directive, verifier, format profile and original evidence retain
+the reviewed hashes. This closeout changes status/history and preserves review
+evidence only; the reviewed candidate is be15dca1, not an invented new verdict
+for administrative descendants. Current README semantics have been assessed by
+all three seats; the regex helper remains only a syntactic control.
+
+The umbrella remains started/local; baseline root/format debt stays
+failed/unwaived. Product files, dirty examples, ignored exports and the known
+external locator are preserved. No product implementation, UAT, acceptance,
+next-family or external delivery was performed by this readiness workflow.
 
 ### Preserved DIAG acceptance checkpoint
 

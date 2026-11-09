@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.
+  next_gate: Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -738,6 +738,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/report.md
   - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/report.md
   - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round4/report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2913,3 +2914,10 @@ events:
   action: recorded explicit maintainer authorization for additional MEMQ prose correction and council
   note: 'Chuck Russell: authorized then iterate. Apply the prepared historical SESSION qualifier and obtain fresh full round4; old Sol BLOCKED receipt/locator preserved without waiver. Technical/product bytes unchanged; product D0/D1 unstarted.'
   evidence: docs/planning/active/command-refactor/approval/memory-queries-directive-additional-pass.md
+- task: friday-command-refactor
+  at: '2026-11-09T17:02:01.297604+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded unanimous MEMQ directive/design readiness VERIFIED
+  note: 'Fresh round4 atbe15dca1: Sol9.6, Astra9.5, Claude9.6 all VERIFIED; no mandatory findings. Old blocked Sol receipt/locator preserved, current isolation independently compliant. Product D0/D1 unstarted; next sequence remains governed by existing option R approval, no new acceptance or delivery.'
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/directive-review/round4/report.md

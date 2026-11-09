@@ -1990,3 +1990,23 @@ has been executed or accepted through this documentation change.
   only. The new candidate gets delta-first plus full bounded review. No earlier
   outcome carries forward. Product D0/D1 remains unstarted.
 - **Next gate:** Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.
+
+
+## 2026-11-09T17:02:01.297604+00:00 — MEMQ directive/design readiness unanimously VERIFIED
+
+- Fresh Sol9.6, Astra9.5, Claude9.6 all VERIFIED atbe15dca1 after the expressly
+  authorized additional pass. All CR01..08 and MR01..10 pass; no mandatory
+  findings. [Round4 reconciliation](validation/memory-queries/directive-review/round4/report.md)
+  preserves exact reports, selected machine ledgers and freeze identities.
+- The old Sol BLOCKED receipt and locator remain preserved, not retrospectively
+  waived. Current seats complied independently. Claude's disclosed host transcript
+  persistence and T3 checkpoint refs are platform records, not agent-directed
+  evidence/cache/locator writes; all reviewed identities remained unchanged.
+- Controller verified all84 pins,1255 protected files, dirty2, ignored3, raw107
+  and preserved external1 after all terminal reports, before administrative
+  closeout. Technical contract/directive/verifier/format inputs remain unchanged.
+- `execution_phase: planning`; `validation_state: verified` for directive/design
+  readiness only. Product D0/D1 is unstarted; next execution uses the existing
+  technical approval and separate implementation councils. No product-conformance,
+  UAT, acceptance, later-family or delivery result is inferred.
+- **Next gate:** Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery.

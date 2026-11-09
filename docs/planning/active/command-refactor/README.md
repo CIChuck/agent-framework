@@ -27,21 +27,23 @@ retain the original [approval](approval/memory-queries.md) and the current
 [cycle2 correction amendment](approval/memory-queries-directive-correction2.md).
 Council rounds 1 and 2 returned CHANGES_REQUESTED. The original four corrections are
 recorded in [REM-CMD-MEMQ-DIR-001](remediation/REM-CMD-MEMQ-DIR-001-readiness.md).
-MEMQ `execution_phase: validation`; `validation_state: in_review` for the
-explicitly authorized additional round4 directive/design review. Chuck Russell
-answered the [round3 escalation](validation/memory-queries/directive-review/round3/report.md)
-with “authorized then iterate”. The [additional-pass authorization](approval/memory-queries-directive-additional-pass.md)
+MEMQ `execution_phase: planning`; `validation_state: verified` for directive/design
+readiness only at `be15dca1`. The [fresh round4 council](validation/memory-queries/directive-review/round4/report.md)
+is unanimously VERIFIED: Sol9.6, Astra9.5, Claude9.6; no mandatory findings remain.
+Chuck Russell's [additional-pass authorization](approval/memory-queries-directive-additional-pass.md)
 and [REM-CMD-MEMQ-DIR-003](remediation/REM-CMD-MEMQ-DIR-003-historical-qualifier.md)
-bind the one-sentence historical qualification and fresh full council.
-The old Sol BLOCKED receipt remains preserved; a fresh compliant seat is required.
-No earlier verdict carries forward; product D0/D1 has not started.
+covered the historical qualification and this fresh council. The old Sol BLOCKED
+receipt remains preserved and invalid; all current seats complied independently.
+Product D0/D1 has not started. Its next steps remain governed by the existing
+[technical approval](approval/memory-queries-directive-correction2.md), not by a new
+construction or acceptance grant from the council.
 [Correction controls and preservation](validation/memory-queries/directive-review/correction1/report.md)
 are historical controller evidence; current union and complete-index gate controls
 are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/report.md).
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.
+**Next gate:** Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -129,7 +131,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.
+**Next gate:** Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

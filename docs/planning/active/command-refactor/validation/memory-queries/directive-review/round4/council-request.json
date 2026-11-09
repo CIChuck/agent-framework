@@ -1,0 +1,242 @@
+{
+  "kind": "MEMQ-001 explicitly authorized additional directive readiness council round4",
+  "requested_by": "Chuck Russell",
+  "instruction": "authorized then iterate",
+  "mode": "Fresh independent READ-ONLY explicitly authorized additional-pass delta FIRST then FULL bounded directive/design readiness review; council round4; no repairs or nested delegation.",
+  "workdir": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "branch": "feature/command-retirement",
+  "base": "c5871054266da2340486d2043062c5fb95611c00",
+  "candidate": "be15dca1b37364748e1fcf9ef5d062a920a8d250",
+  "diff_range": "c5871054266da2340486d2043062c5fb95611c00..be15dca1b37364748e1fcf9ef5d062a920a8d250",
+  "review_focus": "CD-CMD-MEMQ-001-memory-queries.md and controlling memory-query-command-contract.md; current full edited document set and executable readiness, not implementation conformance.",
+  "manifest": {
+    "path": "/private/tmp/memq-directive-council-r4-yz8avj9x/frozen-manifest.json",
+    "sha256": "7a750d88da89f70fa607ccded8b1546c310f09a4d076b53111eb31d904d5681c"
+  },
+  "primary_documents": [
+    "docs/planning/active/command-refactor/memory-query-command-contract.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/record-projection-characterization.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/preparation.json",
+    "docs/planning/active/command-refactor/approval/diagnostics-acceptance.md",
+    "docs/planning/active/command-refactor/approval/diagnostics.md",
+    "docs/planning/active/command-refactor/approval/diagnostics-context-evaluation.md",
+    "docs/planning/active/command-refactor/diagnostics-command-contract.md",
+    "docs/planning/active/command-refactor/directives/CD-CMD-DIAG-001-context-diagnostics.md",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md",
+    "docs/planning/active/command-refactor/validation/diagnostics/preparation.json",
+    "docs/planning/active/command-refactor/validation/diagnostics/installed_probe.py",
+    "docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/evidence.json",
+    "docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/correction-evidence.json",
+    "docs/planning/active/command-refactor/approval/session-acceptance.md",
+    "docs/planning/active/command-refactor/validation/session/preparation.json",
+    "docs/planning/active/command-refactor/validation/session/installed_probe.py",
+    "docs/planning/active/command-refactor/approval/council-roster.md",
+    "docs/planning/active/command-refactor/shared-command-api.md",
+    "docs/planning/active/command-refactor/scope-decisions.md",
+    "docs/planning/active/command-refactor/command-inventory.md",
+    "docs/planning/backlog/friday-tui-command-followups/README.md",
+    "docs/planning/active/command-refactor/validation/pilot/installed_probe.py",
+    "docs/planning/active/command-refactor/validation/pilot/harness/prepare.py",
+    "docs/planning/active/command-refactor/validation/pilot/harness/bundle.py",
+    "docs/planning/active/command-refactor/validation/pilot/baseline.json",
+    "AGENTS.md",
+    ".agents/skills/council/SKILL.md",
+    ".agents/skills/friday-dev-board/SKILL.md",
+    "docs/reference/policies/repository-engineering-policy.md",
+    "docs/reference/policies/independent-validation-policy.md",
+    "docs/reference/policies/development-task-lifecycle.md",
+    "docs/planning/board.yaml",
+    "docs/planning/README.md",
+    "docs/planning/active/command-refactor/directives/CD-CMD-MEMQ-001-memory-queries.md",
+    "docs/planning/active/command-refactor/approval/memory-queries.md",
+    "docs/planning/active/command-refactor/README.md",
+    "docs/planning/active/command-refactor/authority.json",
+    "docs/planning/active/command-refactor/execution-log.md",
+    "docs/planning/active/command-refactor/tactical-plan.md",
+    "docs/planning/active/command-refactor/next-phase.md",
+    "docs/planning/active/command-refactor/build-plan.md",
+    "docs/planning/active/command-refactor/phase-plan.md",
+    "docs/planning/active/command-refactor/test-strategy.md",
+    "docs/planning/active/command-refactor/command_refactor.md",
+    "docs/planning/active/command-refactor/command-matrix.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/planning-checks.json",
+    "docs/planning/active/command-refactor/approval/memory-queries-directive-correction.md",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-DIR-001-readiness.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/correction1/evidence.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/correction1/report.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/astra.txt",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/claude.txt",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/controller-reconciliation-audit.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/council-request.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/evidence.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/frozen-manifest.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/report.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/sol.txt",
+    "docs/planning/active/command-refactor/validation/memory-queries/format-baseline.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/format_debt.py",
+    "docs/planning/active/command-refactor/validation/memory-queries/verify_directive_corrections.py",
+    "docs/planning/active/command-refactor/approval/memory-queries-directive-correction2.md",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-DIR-002-union-and-gates.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/correction2/evidence.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/correction2/report.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/astra.txt",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/claude.txt",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/council-request.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/evidence.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/frozen-manifest.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/report.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/sol.txt",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/astra.txt",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/claude.txt",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/council-request.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/evidence.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/frozen-manifest.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/proposed-readme-fix.patch",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/report.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/sol.txt",
+    "docs/planning/active/command-refactor/approval/memory-queries-directive-additional-pass.md",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-DIR-003-historical-qualifier.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/correction3/evidence.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/directive-review/correction3/report.md"
+  ],
+  "criteria": {
+    "MR-01": "Authority and exact approved option R scope: policy/intent/board/contract/directive/approval chain, baseline versus candidate, allowed and deferred paths, no inferred acceptance or delivery.",
+    "MR-02": "Closed neutral schema/API: MQ-01 thirteen models, six payload alternatives and sixteen additive exports, validation/defaults/exact types/order, MQ-D4 narrow extensions and installed retained-probe plan.",
+    "MR-03": "Neutral ownership and invocation: MQ-02 single availability/query, validation/read/await order, exception/cancel identity, arg/kind/graph selection and declared MQ-D1/MQ-D2 refusals.",
+    "MR-04": "Current-source compatibility for MQ-03/MQ-04/MQ-05: metrics/records/meta/graph laziness, type/format/concatenation/preview/empty/warning order versus actual legacy code; 76 observations plus four supplemental cases, no double evaluation.",
+    "MR-05": "Option R feasibility and complete behavior through existing public APIs: persisted listing grouping/count/order, ingestion/promotion/re-ingestion, malformed metadata/per-collection warning policy and cancellation, fake preservation, no framework or filesystem/source changes.",
+    "MR-06": "Chat integration and once-only boundary MQ-07: wrappers/registry ownership, exact typed outcome consumption, pure renderers, custom/renamed handlers, unchanged metadata and 41/3 surface.",
+    "MR-07": "Test/mutation/acceptance design: MQ-T01..14 traceability and enforceability, call-phase witnesses/origins, unchanged-control checks, no weakened old assertions, staged D1/D2/D3 review gates.",
+    "MR-08": "Executable current D0..D5 and correction verification instructions, including the exact D5 copy-source transforms and baseline format profile; own scratch dry-runs with pinned tooling. No demand for future implementation artifacts.",
+    "MR-09": "Evidence integrity and provenance: verify embedded/raw current MEMQ preparation 23 receipts + programs/fixtures/baseline/replay, supplemental four cases and supplemental/controller records as relevant; distinguish independently executed checks from inspected receipts; prior unit verdicts are not correctness proof for this directive.",
+    "MR-10": "Candidate isolation/preservation and bounded conclusion: request/manifest/pins/HEAD/branch/index/staging/protected/dirty/ignored exports and supplied evidence identities at start/end, honest baseline debt and residual limits, no product/construction/UAT/acceptance/delivery verdict."
+  },
+  "reviewer_roster": [
+    {
+      "provider": "codex",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "high"
+    },
+    {
+      "provider": "codex",
+      "model": "gpt-6-astra",
+      "reasoningEffort": "high"
+    },
+    {
+      "provider": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "effort": "high"
+    }
+  ],
+  "shared_checkout_read_only_exception": "All review seats use the frozen shared workdir read-only. Every write/cache/export/copied source/report must be in the reviewer own fresh external scratch, never this controller scratch or supplied builder directories. No checkout, worktree creation, git index writes, board/doc/product changes or cleanup. GIT_OPTIONAL_LOCKS=0 to every Git child. Hash EXACT git ls-files -s -z logical index BEFORE status at both boundaries. Controller scratch/request/manifest are supplied read-only inputs.",
+  "execution_scope": {
+    "required_now": [
+      "Verify request hash first, then read request and manifest completely and check hashes/identity at start/end.",
+      "Read primary directive and contract fully plus relevant authority/current source and complete bounded candidate diff; no inherited verdicts or private builder reasoning.",
+      "Independently verify directive and approval hashes; inspect raw/embedded preparation and supplemental evidence, source/API feasibility and requirement traceability.",
+      "Dry-check embedded shell syntax and materialization; independently run comparator selftest and a 76-case original baseline capture/replay on private clean exported committed source using copied programs and pinned private harness; use own cache/output paths.",
+      "Run board validate, board render --check, documentation lifecycle and git diff --check through guarded/private paths. No root mutation or sync.",
+      "Inspect future D0..D5 commands for feasibility/isolation. Additional bounded synthetic controls allowed in private scratch; all actual commands and limits reported.",
+      "Independently assess all CR-01..04 plus all original MR-01..10. Read corrected directive/contract/approval/remediation and complete bounded diff. Cite exact new lines.",
+      "Hash-verify/materialize the current format_debt.py and verify_directive_corrections.py into YOUR OWN scratch if copying; execute the correction verifier with root=current frozen workdir and a fresh own external output directory. It must not write to supplied controller scratch. Inspect the controls and add an independent counterexample where needed; a builder control pass alone is not proof.",
+      "Reproduce/check the pinned per-file format inventory and current no-new-debt result; baseline whole-file Ruff format failures must remain labelled failed/unwaived. Run both new validation tools through Ruff check and format --check without modifying them.",
+      "Syntax-check all seven current directive shell blocks and dry-run the new baseline-format block with your own D0 exported source/scratch inputs. Verify exact baseline JSON bytes, guards/cache/output ownership and future feasibility.",
+      "Verify all new correction embedded/raw pairs and original/current evidence provenance as applicable; report actual counts honestly. The original23 receipt scope and four supplemental observations stay required; future product suites/builds/install proof remain excluded.",
+      "Assess CR-05 and CR-06 with direct source/readiness evidence, while independently re-disposing CR-01..04 and full MR-01..10.",
+      "Execute current hash-verified correction verifier into YOUR OWN fresh output directory, inspect its synthetic limits and independently test the exact-union helper with an additive union control plus missing/extra/nested and unrelated-edit counterexamples. Distinguish canonical helper call assertions from setup/import failures; do not claim stub-model implementation conformance.",
+      "Read and compare every current README Next gate and phase declaration, including the lower operational boundary. Check the entire index semantically; do not accept a selected first occurrence or controller wording as proof.",
+      "Independently assess CR-07 and CR-08 in addition to all earlier correction criteria and full MR-01..10. The new maintainer instruction explicitly authorizes this additional pass beyond the prior two-cycle stop; inspect its scope rather than treating historical stop metadata as current.",
+      "Check preserved_external_files (the old Sol locator) at start/end without writing it. Verify your own write-path compliance and declare any deviation honestly; matching product hashes do not cure a reviewer isolation violation.",
+      "Review delta-exact prose change and ENTIRE README manually/semantically; do not require extending the unchanged syntactic helper or implementing an optional parser. New technical scope or product implementation is not authorized.",
+      "Verify all11 current correction embedded/raw pairs and the prior closeout evidence as relevant; distinguish current evidence counts from historical sets. No future implementation artifact is demanded."
+    ],
+    "not_required_now": [
+      "MEMQ product implementation or missing future MQ tests/probe/wheels.",
+      "Future D1/D2/D3 implementation suite/mutation/artifact/installed proof.",
+      "Re-running historical root Ruff534, root test_display conflict or registry format debt; do not call baseline debt passing or waived.",
+      "Re-running all accepted DIAG/SESSION/pilot validation or all historical embedded/raw pairs unrelated to this directive."
+    ],
+    "tools": {
+      "python": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "python_version": "3.13.10",
+      "prepare": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/harness/prepare.py",
+      "wheelhouse_read_only": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/ec0c884e-2bae-47e1-9aa9-c43c6d9be9e5/scratchpad/memq/prepared/wheelhouse",
+      "commands": "Create own fresh /tmp/memq-directive-review-<seat>-* scratch. Export GIT_OPTIONAL_LOCKS=0 PYTHONDONTWRITEBYTECODE=1; prepare.py YOUR_SCRATCH/prepared --wheelhouse SUPPLIED_WHEELHOUSE (no fetch). Then use YOUR_SCRATCH/prepared/pilot_run.py with distinct labels and rewrite ALL env/cache/basetemp/export/report args. Never replay supplied receipt argv verbatim; explicit --cache-dir must be rewritten too."
+    }
+  },
+  "known_baseline_debt": [
+    "Root Ruff534 findings failed/unwaived, root test_display conflict6929 collected, and source format debt in memory.py/registry.py/runtime.py/adapters.py. Current pinned format inventory classifies debt without waiving it.",
+    "Original trial-capture is explicitly not the 76-case baseline.",
+    "Planning/controller checks and maintainer approval are not independent council validation."
+  ],
+  "report_requirements": [
+    "Return exactly one top verdict VERIFIED / CHANGES_REQUESTED / BLOCKED, explicitly scoped to this directive/design readiness only.",
+    "Use fresh round4 seat finding IDs MEMQ-DIR-R4-SOL-001 / MEMQ-DIR-R4-ASTRA-001 / MEMQ-DIR-R4-CLAUDE-001. Dispose CR-01..08 with evidence; for CR08 distinguish prior invalid receipt from your fresh compliance. Mandatory violations versus optional advice explicit; no scope expansion.",
+    "Provide CR-01..08 and MR-01..10 matrices, executed commands versus inspected receipts, complete integrity/isolation including external preserved file, baseline debt/regressions, residual limits and advisory score /10. No score or majority overrides a mandatory finding.",
+    "Write full report/evidence into YOUR OWN scratch and return its absolute path/hash in final. No PR or GitHub comments/messages. No acceptance, new authority, next-family, implementation, publication or delivery action."
+  ],
+  "correction_cycle": 3,
+  "remediation_range": "8d78e2daa7eaabe1a3e42ad1dc4d9b45ff41b4c9..be15dca1b37364748e1fcf9ef5d062a920a8d250",
+  "review_order": "FIRST exact additional-pass delta 8d78e2da..candidate (plus inspect administrative bridge), THEN FULL bounded directive/design aggregate c5871054..candidate. No inherited verdict.",
+  "remediation_directive": "docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-DIR-003-historical-qualifier.md",
+  "correction_approval": "docs/planning/active/command-refactor/approval/memory-queries-directive-additional-pass.md",
+  "findings_to_assess": {
+    "CR-01": {
+      "ids": [
+        "MEMQ-DIR-SOL-001",
+        "MEMQ-DIR-ASTRA-001"
+      ],
+      "requirement": "Exact D5 function sources and authorized AST transforms: DIAG retained SESSION neutral38 plus16 equals ordered54; SESSION Chat and both DIAG behaviors retain their statements. No old24-name copy baseline."
+    },
+    "CR-02": {
+      "ids": [
+        "MEMQ-DIR-CLAUDE-001"
+      ],
+      "requirement": "MQ-D4 exactly permits the local import,16 API names,13 models appended to existing contracts owner tuple,3-name final factory owner row and54 count; reverse only those changes and recover old AST. Confirm synthetic exact54 binding identities and unrelated-assertion refusal."
+    },
+    "CR-03": {
+      "ids": [
+        "MEMQ-DIR-CLAUDE-002"
+      ],
+      "requirement": "Existing per-file format debt explicitly failed/unwaived; exact baseline source/config/version inventory, owner/text/multiplicity comparison accepts unchanged debt and line shifts, rejects new formatting defects; new tools formatted; no untouched source reformatting or new behavioral scope."
+    },
+    "CR-04": {
+      "ids": [
+        "MEMQ-DIR-CLAUDE-003"
+      ],
+      "requirement": "Old15:20Z board event/log heading unchanged; append-only corrections explain error and evidenced14:25Z existence bound without fabricated preparation instant; mutable authority and current gate/pins agree."
+    },
+    "CR-05": {
+      "ids": [
+        "MEMQ-DIR-R2-SOL-001",
+        "MEMQ-DIR-R2-CLAUDE-001"
+      ],
+      "requirement": "Exact additional test-helper allowance for six contracts payload attributes appended to existing expected set literal; original12 plus6 equals exact18, equality/old members/loops/invocation unchanged. Local export import explicitly first statement. Verify actual old helper and transformed AST, positive baseline/extended controls and canonical call-assertion failures for unchanged expanded/missing/extra/nested union; unrelated behavioral AST edits refused."
+    },
+    "CR-06": {
+      "ids": [
+        "MEMQ-DIR-R2-ASTRA-001"
+      ],
+      "requirement": "Independently inspect ENTIRE README, not only top checkpoint. Every unqualified current Next gate and phase agrees with directive/design validation/in_review and product D0/D1 stop, including the lower gate formerly line123; board/dashboard/authority/tactical/current checkpoint/log agree. Injected stale gate must be refused."
+    },
+    "CR-07": {
+      "ids": [
+        "MEMQ-DIR-R3-CLAUDE-001"
+      ],
+      "requirement": "The terminal post-SESSION await-next-unit sentence is explicitly historical and superseded by the current MEMQ gate. Read the ENTIRE README semantically, including all prior-unit passages; the syntactic helper is not a general semantic validator. Verify exact prepared patch only in the nonadministrative lower-index delta and all current gate/phase records coherent."
+    },
+    "CR-08": {
+      "ids": [
+        "MEMQ-DIR-R3-SOL-001"
+      ],
+      "requirement": "Past Sol receipt remains BLOCKED and historical, not repaired or waived. THIS fresh seat independently complies with all write-location/cache/output rules. Existing external locator is now a frozen preserved_external_files identity checked both boundaries. Do not write/delete/restore that file. No locator/PATH/PID/breadcrumb file outside your own new scratch, even during initialization."
+    }
+  },
+  "prior_reports": "Round1..3 reports and old approvals/evidence identify findings/provenance only. Their original bytes and pins are historical at their own revisions; do not assert superseded technical pins as current. Round3 Sol is invalid for isolation; a fresh compliant review is expressly authorized, not a retrospective waiver. Current contract/directive/verifier/format bytes remain identical to818b42ee; old current-status metadata is superseded by the explicit additional authorization.",
+  "new_correction_evidence": "validation/memory-queries/directive-review/correction3/evidence.json (11 current embedded/raw pairs); all prior evidence stays preserved. Controller administrative scripts are provenance only: do not execute them, replay their mutations or reuse their output directories.",
+  "iteration_limit": "User explicitly authorized one additional bounded sentence correction and fresh full council after the prior escalation (authorized then iterate). This is that pass, not an implied waiver or unlimited budget. Return unresolved mandatory findings/protocol blockers to the controller; initiate no loop.",
+  "explicit_additional_pass": true,
+  "prior_reviewed_candidate": "818b42eeca4495cf34292e934dbdac34e31ca4db",
+  "administrative_bridge": "818b42eeca4495cf34292e934dbdac34e31ca4db..8d78e2daa7eaabe1a3e42ad1dc4d9b45ff41b4c9",
+  "write_protocol_reinforcement": "FIRST hash/read request and manifest without creating locator files. Allocate exactly one fresh external scratch directory for yourself; carry its pathname in your tool/context state or stdout, not in a file elsewhere. The initial scratch-directory allocation is permitted; every subsequent reviewer-created file/cache/temp/export/report/marker belongs below its resolved root. Never create or overwrite /private/tmp/memq-sol-current-path or any other out-of-directory locator. Use -B and PYTHONDONTWRITEBYTECODE=1. Record every actual write location in your own evidence. Supplied inputs, including prior scratch directories, are read-only."
+}
