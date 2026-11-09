@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery. |
 
 ## Completed
 

@@ -1,7 +1,7 @@
 # MEMQ-001 D0/D1 builder record
 
-Status: **neutral D1 implemented; independent D1 council pending**.
-Execution phase: validation. Validation state: pending.
+Status: **D0/D1 independently VERIFIED at `9ce71581`**; see [reconciliation](verified-report.md).
+Execution phase: closeout (D1). Validation state: verified.
 Source commit: `0f809207984143f88fbe971b761035d6ea7b11d0`. Start HEAD: `00c384d9`.
 Approved source baseline: `c5871054266da2340486d2043062c5fb95611c00`.
 Branch: `feature/command-retirement`. Builder scratch: `/private/tmp/friday-memq-build-uhrfjhuo`.
@@ -65,4 +65,4 @@ stores, network/provider calls, dependency/config/lock changes, D2 Chat code,
 future D3 artifacts/probe, installed MEMQ proof or human UAT result is claimed.
 Accepted evidence and unrelated dirty state remain preserved.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.
+**Next gate:** Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.

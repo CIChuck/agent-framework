@@ -1,16 +1,17 @@
-# MEMQ-001 — neutral D1 implemented; fresh council pending
+# MEMQ-001 — D1 VERIFIED; approved D2 Chat integration next
 
 Branch: `feature/command-retirement`
-Execution phase: validation
-Validation state: pending (D1 implementation only)
+Execution phase: implementation
+Validation state: not_ready (D2); D1 verified at 9ce71581
 
 Guarded D0 reproduction and bounded neutral D1 are complete in source commit
-`0f809207984143f88fbe971b761035d6ea7b11d0`. The [builder record](validation/memory-queries/implementation/d1/README.md)
-and evidence bind the current source, tests and preservation checks. Commands/cohort
+`0f809207984143f88fbe971b761035d6ea7b11d0`. The [D1 reconciliation](validation/memory-queries/implementation/d1/verified-report.md)
+records Sol9.7, Astra9.6 and Claude9.6 VERIFIED, with no mandatory findings.
+The builder record and evidence bind the source, tests and preservation checks. Commands/cohort
 599, Chat 1,338 and CLI 155 pass; all 101 new neutral cases are included. The
 unchanged control passes and 14 mutants are rejected by test-call assertions.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.
+**Next gate:** Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.
 
 The [MEMQ UAT plan](uat/memq-user-acceptance-plan.md) sits alongside the earlier
 roadmap. Every case remains NOT RUN pending D2/D3 and installed readiness.

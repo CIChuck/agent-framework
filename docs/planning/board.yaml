@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.
+  next_gate: Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2928,3 +2928,10 @@ events:
   action: generated bounded MEMQ D1 neutral code and UAT plan
   note: D0 preservation and baseline closed trial passed. D1 Commands-cohort599 (101 new), Chat1338 and CLI155 pass; unchanged control plus14 private mutation refusals. Fresh Sol-Astra-Claude D1 council required before D2. Existing exact option R approval retained; UAT NOT RUN; no acceptance or delivery.
   evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d1/README.md
+- task: friday-command-refactor
+  at: '2026-11-09T18:16:51.257314+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled unanimously VERIFIED MEMQ D1 council; proceed to approved D2
+  note: Sol9.7 Astra9.6 Claude9.6 independently verify D0-D1 at9ce71581 with no mandatory findings. Full closing integrity matches. Existing exact option R approval governs D2 Chat integration; fresh D2 council before D3. UAT NOT RUN; no acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d1/verified-report.md

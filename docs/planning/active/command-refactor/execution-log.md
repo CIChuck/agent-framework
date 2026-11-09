@@ -2035,3 +2035,19 @@ has been executed or accepted through this documentation change.
   council is required before D2. UAT is planned/NOT RUN; D2/D3, acceptance and
   external delivery have not been performed.
 - **Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.
+
+## 2026-11-09T18:16:51.257314+00:00 — MEMQ D1 council reconciled; approved D2 next
+
+- All three fresh seats VERIFIED candidate `9ce71581`: Sol9.7, Astra9.6,
+  Claude9.6. No mandatory findings; all MD1/MQ criteria pass. Full reports,
+  hashes, selected ledgers and [reconciliation](validation/memory-queries/implementation/d1/verified-report.md)
+  are preserved. Controller closing integrity matches all1810 frozen identities.
+- D1 source `0f809207` and the exact contract/directive/approval remain unchanged.
+  Reviewer/builder setup mistakes receive no passing credit; baseline build
+  provenance was inspected, not rebuilt. Existing root/format debt is unwaived.
+- Continue the already authorized D2 Chat port/projection/rendering/wrappers and
+  option R persisted listing; no new directive or approval request is needed.
+  Fresh D2 Sol/Astra/Claude council is required before D3.
+- `execution_phase: implementation`; `validation_state: not_ready` for D2.
+  D1 is verified; UAT20 remains NOT RUN. No acceptance or external delivery.
+- **Next gate:** Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.

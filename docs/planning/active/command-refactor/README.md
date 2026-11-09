@@ -27,7 +27,8 @@ retain the original [approval](approval/memory-queries.md) and the current
 [cycle2 correction amendment](approval/memory-queries-directive-correction2.md).
 Council rounds 1 and 2 returned CHANGES_REQUESTED. The original four corrections are
 recorded in [REM-CMD-MEMQ-DIR-001](remediation/REM-CMD-MEMQ-DIR-001-readiness.md).
-MEMQ `execution_phase: validation`; `validation_state: pending` for D1. Directive/design
+MEMQ `execution_phase: implementation`; `validation_state: not_ready` for D2.
+D1 is independently VERIFIED at `9ce71581` ([reconciliation](validation/memory-queries/implementation/d1/verified-report.md)). Directive/design
 readiness remains VERIFIED only for its reviewed candidate `be15dca1`. The [fresh round4 council](validation/memory-queries/directive-review/round4/report.md)
 is unanimously VERIFIED: Sol9.6, Astra9.5, Claude9.6; no mandatory findings remain.
 Chuck Russell's [additional-pass authorization](approval/memory-queries-directive-additional-pass.md)
@@ -37,7 +38,8 @@ receipt remains preserved and invalid; all current seats complied independently.
 Neutral product code and the [MEMQ UAT plan](uat/memq-user-acceptance-plan.md) are committed at `0f809207`.
 The [D1 builder record](validation/memory-queries/implementation/d1/README.md) reports 599 Commands/cohort,
 1,338 Chat and 155 CLI passes, exact retained observations and private mutation controls.
-D2 Chat integration is unstarted and waits for the fresh D1 council. The UAT plan is
+The three fresh D1 seats are VERIFIED (Sol9.7, Astra9.6, Claude9.6), with no mandatory findings.
+D2 Chat integration now proceeds under the existing exact approval. The UAT plan is
 NOT RUN and awaits the complete installed candidate. Existing technical approval
 governs construction; council results do not grant acceptance or delivery.
 [Correction controls and preservation](validation/memory-queries/directive-review/correction1/report.md)
@@ -46,7 +48,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.
+**Next gate:** Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -134,7 +136,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.
+**Next gate:** Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

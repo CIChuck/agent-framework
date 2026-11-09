@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-09",
-  "decision": "MEMQ D0 reproduced and neutral D1 implemented; fresh D1 council pending",
+  "decision": "MEMQ D0/D1 unanimously VERIFIED at 9ce71581; approved D2 integration next",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.",
-  "product_code_authority": "Existing exact option R technical approval governs D0/D1 implementation. D1 generated at 0f809207984143f88fbe971b761035d6ea7b11d0; fresh Sol/Astra/Claude D1 review required before D2. No acceptance or delivery.",
+  "current_scope": "Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.",
+  "product_code_authority": "Existing exact option R technical approval governs D2 after controller reconciliation of all three VERIFIED D1 seats. No new scope, acceptance or delivery.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -947,7 +947,7 @@
   },
   "memory_queries_preparation": {
     "unit": "MEMQ-001",
-    "state": "neutral_d1_implemented_council_pending",
+    "state": "D1_verified_D2_authorized_next",
     "requested_by": "Chuck Russell",
     "instructions": [
       "the uat was successful - all approved, proceed to next steps",
@@ -961,8 +961,8 @@
     "directive_sha256": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
     "preparation_evidence": "validation/memory-queries/preparation.json",
     "preparation_evidence_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
-    "execution_phase": "validation",
-    "validation_state": "pending",
+    "execution_phase": "implementation",
+    "validation_state": "not_ready",
     "design_approval": "granted",
     "construction_approval": "granted",
     "decisions_pending": {},
@@ -991,13 +991,13 @@
     },
     "approval": "approval/memory-queries-directive-correction2.md",
     "approval_sha256": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.",
-    "implementation_status": "D0 reproduced and bounded neutral D1 implemented at 0f809207984143f88fbe971b761035d6ea7b11d0",
+    "next_gate": "Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.",
+    "implementation_status": "D1 VERIFIED at9ce71581; bounded D2 Chat integration next under existing approval",
     "projection_clarification": "Four supplemental legacy cases remain frozen; Chat projection/protocol changes are D2, unstarted.",
     "recorded_at_original_erroneous": "2026-11-09T15:20:00+00:00",
     "recorded_at_basis": "Proposal commit 342bf85c timestamp: existence by 14:25Z, not an exact preparation start/finish. Original 15:20Z event preserved and explained by append-only correction.",
     "chronology_correction_recorded_at": "2026-11-09T15:33:59.716791+00:00",
-    "validation_scope": "D1 independent implementation review pending; design-readiness receipt remains scoped to be15dca1",
+    "validation_scope": "D1 verified, D2 not_ready; historical design-readiness receipt remains scoped to be15dca1",
     "reviewed_candidate": "be15dca1b37364748e1fcf9ef5d062a920a8d250"
   },
   "memory_queries_approval": {
@@ -1052,7 +1052,7 @@
     "criteria": "CR01..08 and MR01..10 pass per all fresh seats",
     "prior_sol_receipt": "historical BLOCKED, preserved and not waived",
     "validation_state": "verified",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.",
+    "next_gate": "Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.",
     "implementation": "Product D0/D1 not started",
     "authority_limits": "No construction/acceptance/UAT/delivery authority created by this review",
     "historical_next_gate": "Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery."
@@ -1228,14 +1228,47 @@
     "start_head": "00c384d91dce211f8f7ce919cd41f17fa18b4526",
     "source_baseline": "c5871054266da2340486d2043062c5fb95611c00",
     "recorded_at": "2026-11-09T17:55:34.146458+00:00",
-    "execution_phase": "validation",
-    "validation_state": "pending",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
     "scope": "D0 preservation/baselines/build trial and D1 neutral product only; D2 unstarted",
     "report": "validation/memory-queries/implementation/d1/README.md",
     "uat_plan": "uat/memq-user-acceptance-plan.md",
     "uat_result": "NOT RUN",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D1 reviews of the frozen neutral implementation before D2 Chat integration. D0 and builder D1 checks complete; D1 independent validation pending. No MEMQ acceptance or delivery.",
+    "next_gate": "Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.",
     "acceptance": "not_granted",
-    "delivery": "local only"
+    "delivery": "local only",
+    "independent_candidate": "9ce7158169a1edef87cd4f864beb29c6b29c849d",
+    "independent_report": "validation/memory-queries/implementation/d1/verified-report.md"
+  },
+  "memory_queries_d1_validation": {
+    "candidate": "9ce7158169a1edef87cd4f864beb29c6b29c849d",
+    "outcome": "VERIFIED",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.7,
+        "report": "validation/memory-queries/implementation/d1/council-round1/sol.txt",
+        "sha256": "be8e90a0c5787d30d8af9621d80b0b754662f057ae449581868a2b4a86f57971",
+        "mandatory_findings": []
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.6,
+        "report": "validation/memory-queries/implementation/d1/council-round1/astra.txt",
+        "sha256": "bff85b29a68259ddbd91de5907d67bd2a88bf6f6d7adc599e7006f47db11e383",
+        "mandatory_findings": []
+      },
+      "claude": {
+        "outcome": "VERIFIED",
+        "score": 9.6,
+        "report": "validation/memory-queries/implementation/d1/council-round1/claude.txt",
+        "sha256": "df96c58c4a719ae90fdef42c57ac45b73474c1a9d716824e79f02cdedbd8c497",
+        "mandatory_findings": []
+      }
+    },
+    "mandatory_findings": [],
+    "report": "validation/memory-queries/implementation/d1/verified-report.md",
+    "recorded_at": "2026-11-09T18:16:51.257314+00:00",
+    "next_gate": "Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery."
   }
 }

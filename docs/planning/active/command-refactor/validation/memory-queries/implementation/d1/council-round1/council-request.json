@@ -1,0 +1,99 @@
+{
+  "kind": "MEMQ-001 D0/D1 neutral implementation council round1",
+  "requested_by": "Chuck Russell; existing exact option R approval plus explicit proceed-to-code and fresh D1 Sol/Astra/Claude instructions",
+  "mode": "Fresh independent READ-ONLY full bounded D0/D1 neutral implementation conformance. No directive re-review, repairs or nested delegation.",
+  "workdir": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "branch": "feature/command-retirement",
+  "start_head": "00c384d91dce211f8f7ce919cd41f17fa18b4526",
+  "baseline": "c5871054266da2340486d2043062c5fb95611c00",
+  "source_commit": "0f809207984143f88fbe971b761035d6ea7b11d0",
+  "candidate": "9ce7158169a1edef87cd4f864beb29c6b29c849d",
+  "diff_range": "00c384d91dce211f8f7ce919cd41f17fa18b4526..9ce7158169a1edef87cd4f864beb29c6b29c849d",
+  "review_order": "Read exact approval/current contract/directive, then complete D1 diff from actual start HEAD, then full bounded MQ-01/MQ-02/MQ-D1/MQ-D2/MQ-D4 D0/D1 aggregate including retained foundation/SESSION/DIAG interaction. Review current source afresh; no inherited builder/reviewer verdict.",
+  "manifest": {
+    "path": "/private/tmp/memq-d1-council-r1-_208q8t6/frozen-manifest.json",
+    "sha256": "f3466c303ea4bc5bc52910e81ba3c84bbfac3a76e6173dda8164d58754837eb7"
+  },
+  "primary_documents": [
+    "AGENTS.md",
+    "docs/reference/policies/repository-engineering-policy.md",
+    "docs/reference/policies/development-task-lifecycle.md",
+    "docs/reference/policies/independent-validation-policy.md",
+    "docs/planning/board.yaml",
+    "docs/planning/README.md",
+    "docs/planning/active/command-refactor/README.md",
+    "docs/planning/active/command-refactor/build-plan.md",
+    "docs/planning/active/command-refactor/tactical-plan.md",
+    "docs/planning/active/command-refactor/next-phase.md",
+    "docs/planning/active/command-refactor/authority.json",
+    "docs/planning/active/command-refactor/execution-log.md",
+    "docs/planning/active/command-refactor/approval/memory-queries.md",
+    "docs/planning/active/command-refactor/approval/memory-queries-directive-correction.md",
+    "docs/planning/active/command-refactor/approval/memory-queries-directive-correction2.md",
+    "docs/planning/active/command-refactor/memory-query-command-contract.md",
+    "docs/planning/active/command-refactor/directives/CD-CMD-MEMQ-001-memory-queries.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/preparation.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/record-projection-characterization.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/format-baseline.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/format_debt.py",
+    "docs/planning/active/command-refactor/validation/memory-queries/verify_directive_corrections.py",
+    "docs/planning/active/command-refactor/validation/memory-queries/implementation/d1/README.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/implementation/d1/evidence.json",
+    "docs/planning/active/command-refactor/uat/memq-user-acceptance-plan.md"
+  ],
+  "authority": {
+    "contract_sha256": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+    "directive_sha256": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
+    "current_amendment_sha256": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264",
+    "preparation_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
+    "readiness_candidate": "be15dca1b37364748e1fcf9ef5d062a920a8d250",
+    "note": "Readiness is historical directive/design evidence only. Exact approval already authorizes bounded implementation. New UAT plan explicitly requested; no execution/acceptance inferred."
+  },
+  "criteria": {
+    "MD1-01": "Exact authority, source lineage and allowlist. D1 changes only neutral allowed code/tests/fixture/README plus requested UAT and current evidence/status; no Chat implementation, metadata/dependency/lock/config or other framework change.",
+    "MD1-02": "All13 frozen/slotted models, exact fields/defaults/order/string and literal/exact bool semantics, one-pass immutable collection snapshots, exact nested members, meta/plain restrictions,100 caps/unbounded documents; old contracts preserved.",
+    "MD1-03": "Closed union/outcome whitelist exactly18 (old12+six); exactly54 ordered API exports with original bindings and approved owners; alias not exported; exact immutable specs metadata and package-local fixture bytes.",
+    "MD1-04": "Structural non-runtime-checkable protocol and fresh immutable six-key factory; zero construction port access and empty fresh registry; neutral stdlib/own import closure with no frontend/domain or effects.",
+    "MD1-05": "All six handlers validate exact request then execution then canonical name before port reads, ignore execution/spec fields, enforce existing string arg rule, check exact-bool availability once with false precedence before arg/selection or capability access.",
+    "MD1-06": "Exactly one awaited selected capability, fixed kinds and mismatch refusal, exact result types/subclasses, exact-case nodes/name joining/nodes-only relationships refusal, pending/error/cancel identity, no retries/writes/logging/effects.",
+    "MD1-07": "MQ-T01..06 nodes and mandatory assertions effective, normal/-O/-OO standalone, canonical module origins/hashes, unchanged private control and current relevant mutations with actual call assertions. All old test defs/assertions retained and exact MQ-D4 reversals recover complete baseline AST.",
+    "MD1-08": "D0 guarded baseline/preservation/source inventory/refusal/format/closed-build trial provenance plus fresh current Commands/cohort599 and named101, Chat1338 and CLI155, static format/types/lock/admin checks. Separate executed evidence from inspected receipts.",
+    "MD1-09": "D1 committed-source behavior stays MEMQ76 exact (twice), DIAG68+4 approved cache refusals, SESSION25 and pilot196. D1 has no Chat MQ-D1/R integration yet. Verify all64 current embedded/raw pairs and primary pin provenance; known failed attempts get no credit. UAT plan is concrete, same folder and NOT RUN until D2/D3.",
+    "MD1-10": "Start/end frozen request/manifest/HEAD/branch/index-before-status/staging/source/protected/dirty/ignored/external/supplied identities and reviewer write isolation all match; honest debt/residual limits, no D2 advancement/acceptance/delivery grant."
+  },
+  "required_now": [
+    "FIRST hash the exact request and verify expected SHA in your task before reading it completely. Verify manifest SHA/read completely, all pins/identity/groups at BOTH boundaries. Logical index is SHA256 exact git ls-files -s -z stdout BEFORE status; GIT_OPTIONAL_LOCKS=0 for EVERY Git subprocess. Status/staging/HEAD/branch/untracked/ignored listing must match.",
+    "Read actual source and full D1 diff, current exact approval/contract/directive and applicable policies. Prior design reports identify history only; builder summaries are not correctness evidence. Assess every MD1 criterion explicitly.",
+    "Allocate exactly one fresh external scratch, carry its path in stdout/context, no external locator/PATH/PID/breadcrumb file. ALL writes/temp/caches/basetemps/exports/copied source/reports belong below your resolved scratch. No write to checkout, supplied builder/review directories or known external locator. Use -B/PYTHONDONTWRITEBYTECODE=1. Disclose a violation; matching product hashes cannot cure isolation.",
+    "Prepare pinned offline harness into YOUR scratch using supplied read-only8-wheel wheelhouse. Run guard18 and materialized MEMQ comparer14 selftests. Materialize only hash-verified preparation programs/baselines into YOUR scratch. Never replay supplied receipt argv verbatim: replace explicit --cache-dir and ALL env/cache/output/basetemp/export paths. Own runner owns pytest basetemp.",
+    "Reproduce MEMQ baseline76 and fresh candidate76 capture/replay, DIAG68+4, SESSION25 and pilot196 from fresh private Git exports. Capture must validate all source inventory/origins against commit. Reproduce extra-source/changed-byte pre-import refusals. DIAG old normalization requires the lexical /tmp alias for output if your scratch resolves /private/tmp; keep files inside your own scratch; preserve pinned baseline/program bytes. D1 code does not declare D2 refusal/repair rows.",
+    "Run fresh full neutral/cohort suite and all101 MQ-T01..06 cases including3 optimized standalone modes using own guarded runner. Run current full Chat suite excluding only live_lmstudio and separate CLI155 with -p controls; no root discovery proxy. Run full neutral source/tests Ruff no-cache, six changed Python format checks, mypy neutral source with explicit own --cache-dir. Run board validate/dashboard --check/documentation lifecycle/diff --check and offline lock check in clean own export.",
+    "Independently verify exact contracts/API/MQ-D4 AST reversals to approved baseline, including all old tests/assertion counts and narrow helper/import/owners/count order. Approved verifier is a DESIGN transformation tool expecting old38/12 input: do not demand it runs unmodified on the implemented54/18 candidate; use its hash-verified helper functions for reversal/approved-baseline controls or make an independent audit.",
+    "Independently reproduce current relevant neutral mutations in YOUR private package copies: extra/drop/reorder/duplicate exports, eager factory, selection before availability, double/unawaited query, missing kind refusal, case-insensitive nodes, relationships requested/returned for nodes-only, record-cap drift, missing union member. Run unchanged control through same harness. Require named CALL assertion witnesses with canonical module roots/hashes before pytest/session-finish/after; setup/import/collection/KeyError failures earn zero rejection credit. Add a focused independent counterexample where needed.",
+    "Reproduce exact pinned D0 formatting inventory and no-new-debt check using YOUR outputs; old whole-file failures remain failed/unwaived. Hash-verify baseline closed-trial report and raw command/artifact/tool/profile evidence (8tools125locked13workspace154hashes, neutral1/Chat138); rebuilding that unchanged baseline is optional if provenance/feasibility is defensible. Future candidate builds and installed MEMQ proof remain deliberately excluded at D1.",
+    "Verify all64 current embedded/raw pairs honestly, commands versus inspected provenance, baseline debt and real residuals. Check UAT same-folder path, concrete six-command/optionR read-only plan and NOT RUN status. Reports only in YOUR scratch; return paths/hashes."
+  ],
+  "exclusions": [
+    "D2 Chat models/protocol/projection/renderers/wrappers/registry/optionR adapter implementation and MQ-T07..14 are future; do not call missing future paths/tests a D1 failure.",
+    "D3 installed_probe.py, candidate wheels/sdists/replay/installed behavior and final unit acceptance are future. Old accepted DIAG/SESSION installed probes exact38/24 remain frozen and intentionally obsolete after API54, not passing MEMQ claims.",
+    "Root Ruff534, root test_display collection conflict6929, four existing Chat whole-file format failures stay failed/unwaived. Root full/collect gates belong to D4; no unrelated fixes or rerun demanded at D1.",
+    "No providers/network/real user stores, product repairs, new scope, automatic council loop, UAT execution, acceptance, later family, external messages/PR/push/merge/release."
+  ],
+  "tools": {
+    "python": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+    "python_version": "3.13.10",
+    "prepare": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/harness/prepare.py",
+    "wheelhouse_read_only": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/ec0c884e-2bae-47e1-9aa9-c43c6d9be9e5/scratchpad/memq/prepared/wheelhouse",
+    "locked_artifacts_read_only": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d1-_k6hm5vb/baseline-bundle/locked-artifacts",
+    "builder_scratch_read_only": "/private/tmp/friday-memq-build-uhrfjhuo",
+    "commands": "Prepare YOUR_SCRATCH/prepared --wheelhouse SUPPLIED; use YOUR_SCRATCH/prepared/pilot_run.py distinct labels. Reconstruct all cache/output paths, including mypy --cache-dir. Baseline and candidate exports come from Git archive in your own scratch; git inherits GIT_OPTIONAL_LOCKS=0."
+  },
+  "isolation": "Shared-checkout READ-ONLY exception explicitly applies. No worktree/checkout creation, index writes, repairs, source/doc/board edits or cleanup. Supplied inputs including old reviewer folders and builder scratch remain read-only. Known external locator must stay byte/mode/time-identical. Host-managed transcripts/checkpoint refs are disclosed separately; no agent-directed out-of-scratch files.",
+  "report_requirements": [
+    "Top verdict exactly VERIFIED / CHANGES_REQUESTED / BLOCKED, D0/D1 neutral conformance only.",
+    "Number mandatory findings MEMQ-D1-SOL-001 / MEMQ-D1-ASTRA-001 / MEMQ-D1-CLAUDE-001 with severity, source/authority line, reproducible evidence, risk and bounded mitigation. Optional notes separate.",
+    "Full MD1-01..10 and MQ-T01..06 matrices, commands actually run versus inspected receipts, exact test/mutation/capture/current-pair counts, both integrity boundaries and isolation, debt/regressions/residual limits and advisory rubric score /10.",
+    "No acceptance/advancement/delivery authority; D2 waits for controller reconciliation of all mandatory findings, no majority-voting or score override. No nested delegation or repairs."
+  ],
+  "iteration": "Initial D1 council round1. Return findings to controller; initiate no review/remediation loop."
+}

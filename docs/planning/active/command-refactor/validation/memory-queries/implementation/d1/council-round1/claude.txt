@@ -1,0 +1,148 @@
+# MEMQ-001 D0/D1 neutral implementation council round 1 — Claude seat
+
+**Verdict: VERIFIED** (D0/D1 neutral conformance only)
+
+Seat: Claude Opus 5.5/high, fresh context, read-only, no nested delegation, no repairs.
+Advisory score: **9.6 / 10**. Mandatory findings: **none** (no MEMQ-D1-CLAUDE-NNN issued).
+This report grants no acceptance, D2 advancement, delivery or loop authority. D2 waits
+for controller reconciliation of all three seats; no majority voting or score override.
+
+## Identity
+
+| Item | Value |
+| --- | --- |
+| Request | `/private/tmp/memq-d1-council-r1-_208q8t6/council-request.json` sha256 `0445ae65f707b1446e1511b6e8602e63cb3d27504794f912f24d6ceebdae9e92` (hashed before reading) |
+| Manifest | `.../frozen-manifest.json` sha256 `f3466c303ea4bc5bc52910e81ba3c84bbfac3a76e6173dda8164d58754837eb7`; `freeze.py` sha256 `ca00954e…a75a1c` (start and end) |
+| Candidate / source | `9ce7158169a1edef87cd4f864beb29c6b29c849d` / `0f809207984143f88fbe971b761035d6ea7b11d0` (0f80..9ce7 changes docs only) |
+| Start HEAD / baseline | `00c384d9…` / `c5871054…` (c587..00c3 has zero non-doc changes) |
+| Authority | contract `93cdb3bd…`, directive `4d154412…`, cycle2 amendment `54c778f4…`, preparation `e6d203a0…` — all match on disk |
+| Scratch (sole write root) | `/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/2664a176-0e56-4fa9-854c-cdb70e42a919/scratchpad/memq-d1-claude-r1-qgsLRJ` |
+
+## Integrity boundaries (both executed by `tools/boundary.py`)
+
+Logical index = sha256 of exact `git ls-files -s -z` stdout, computed **before** status, with
+`GIT_OPTIONAL_LOCKS=0` on every Git child.
+
+| Check | Start | End |
+| --- | --- | --- |
+| request / manifest sha | match | match |
+| logical index `80c8b8bb…1d15925` | match | match |
+| HEAD / branch | 9ce71581 / feature/command-retirement | same |
+| status (two dirty Chat examples only), staged diff empty, untracked empty, ignored listing | match | match |
+| pins 103, protected_non_docs 1,255, accepted evidence 141, dirty 2, ignored exports 3, external locator 1, supplied raw 305 (mode/type/size/mtime/ctime/sha) | 0 mismatches | 0 mismatches |
+
+`reports/boundary-start.json` and `reports/boundary-end.json` are byte-identical
+(sha256 `39d30a43…a7f`). `/private/tmp/memq-sol-current-path` is preserved (within the
+external group).
+
+## Isolation disclosure
+
+- All my writes (prepared harness, uv/XDG/mypy caches, pytest basetemps, Git exports, private
+  mutant copies, outputs, reports) are under the scratch above. `TMPDIR` pointed into it.
+  `-B`/`PYTHONDONTWRITEBYTECODE=1` throughout. No locator/PATH/PID/breadcrumb outside scratch.
+  The DIAG lexical `/tmp/claude-501/…` alias resolves into the same scratch.
+- No checkout/worktree creation, index write, edit, cleanup or repair. No new files under
+  `packages/ docs/ scripts/ tests/` after the freeze (checked with `find -newer`).
+- Host-managed, not agent-directed: T3 orchestration checkpoint refs
+  `refs/t3/orchestration-v2/checkpoints/*` plus their commit/tree/blob objects were written to
+  `.git` at 13:00:16–13:00:37 local, i.e. at council-seat spawn, before my first command.
+  (`docker-bench-security/.git` mtime also moved at 13:00:37.) HEAD, branch, index, status and
+  all manifest groups are unaffected.
+- Supplied builder scratch, wheelhouse, locked artifacts and council directory were only read.
+
+## Commands actually run (own scratch, own labels, reconstructed paths)
+
+Runner: `.venv/bin/python -B $S/prepared/pilot_run.py <label> …`; it owns pytest `--basetemp`.
+
+| Gate | Result |
+| --- | --- |
+| `prepare.py $S/prepared --wheelhouse <supplied 8 wheels>` | prepared; offline startup exit 0 |
+| guard `guard_selftest.py` | 18 refusal controls + loopback/SQLite controls pass |
+| Materialized MEMQ capture/compare/frozen from hash-verified preparation | `eafcfcbc…`, `afd38e74…`, `ce5da59c…` |
+| MEMQ comparator `--selftest` | 14 refusal controls |
+| MEMQ capture+compare baseline c587 | 76 exact + 0 + 0 |
+| MEMQ capture+compare candidate 9ce7, twice (two separate clean exports) | 76 exact + 0 + 0, both |
+| Capture refusal: extra source file | `RuntimeError: Source inventory differs from Git`, no output |
+| Capture refusal: changed byte in `memory_queries.py` | `RuntimeError: Source byte drift`, no output |
+| Capture origins | 442 inventoried src files; 263 loaded module origins all inside the export |
+| DIAG (pinned preparation `1f8ee9c7…`), lexical `/tmp` alias output, `--allow-declared-cache-refusal`, baseline and candidate | 68 exact + 4 approved `TypeError` cache refusals each |
+| SESSION (`afa7acce…`) baseline and candidate | 25/25 exact + 2 metadata |
+| Pilot `capture.py`/`compare.py --baseline-sha256 48c3161c…` baseline and candidate | 196 (41+62+29+61+3) exact |
+| Baseline Commands/cohort (export c587, own launcher) | 498 passed |
+| Current Commands/cohort (checkout, own origin launcher) | **599 passed**; 7 `friday_commands` modules inside checkout src at before/sessionfinish/after, hashes equal |
+| Named `test_memory_queries.py` | **101 passed**: T01 24, T02 1, T03 6, T04 66, T05 1, T06 3 (normal/-O/-OO) |
+| Chat `-p controls`, `--ignore test_live_lmstudio.py` | **1,338 passed**, 1 existing warning |
+| CLI `-p controls` | **155 passed** |
+| `ruff check --no-cache` neutral src+tests | pass |
+| `ruff format --check --no-cache` six changed Python files | 6 already formatted (whole neutral package: 14) |
+| `mypy --cache-dir $S/mypy-neutral packages/friday-commands/src` | 7 files, no issues |
+| `format_debt.py record` on baseline export → byte-compare with pinned `format-baseline.json` | byte-equal (`7475cd91…`) |
+| `format_debt.py check` current | `{"new_format_debt": {}, "baseline_debt": "failed/unwaived"}` |
+| Whole-file format of the 5 pinned Chat files | 4 would reformat (existing failed/unwaived), 1 formatted |
+| `friday-dev-board.py validate` / `render --check` | 36 tasks pass / dashboard current |
+| `check-documentation-lifecycle.py` | 923 Markdown files pass |
+| `uv lock --check --offline --directory <clean candidate export>` | 214 resolved, exit 0 |
+| `git diff --check` worktree, 00c3..9ce7, c587..9ce7 | all exit 0 |
+| Extra (informational): `ruff check` Chat `memory.py`,`registry.py`; `mypy` neutral + Chat `memory.py`,`registry.py`,`diagnostics.py`,`session_views.py` | pass / 11 files no issues |
+| Independent AST audit (`tools/ast_audit.py`) | see MD1-07 |
+| Private mutations (`tools/mutate.py` + `tools/launch.py`) | see MD1-07 |
+
+### Own failed/excluded attempts (no credit)
+
+1. `base-commands`: my launcher eagerly imported `friday_commands.memory_queries`, absent at baseline (`ModuleNotFoundError`); launcher fixed, rerun as `base-commands-2nd`.
+2. `format-baseline-record`: output directory missing; rerun as `format-baseline-record-2nd`.
+3. First mutation round (`mut/`, `mutruns/`): unchanged control failed one pre-existing pilot test because my private copy lacked `docs/…/pilot/baseline.json`. The **whole round is discarded**; the fixed round is `mut2/`, `mutruns2/`.
+4. One zsh word-splitting slip created no copies and ran no tests.
+
+### Inspected, not re-executed (hash-verified receipts)
+
+- All **64** embedded/raw pairs in `implementation/d1/evidence.json`: 64 distinct paths; raw sha256 = recorded sha256 = sha256(embedded text) and raw bytes == text for 64/64. Builder logs agree with my reruns (599/1,338/155, mypy 7, no new format debt, 214 resolved).
+- D0 baseline closed trial `bundle-report.json` (`7a6298ba…`): helper `46cc788e…` (pinned), Python 3.13.10, 8 build tools, 125 downloads (locked dir holds 125 files), 13 workspace wheels, 154 artifact hashes, status passed, source inputs preserved; `default-profile.txt` has 138 entries and its sha `24089611…` equals `profile_sha256`; neutral install = 1 package; Chat `pip check` = 138 packages compatible. I did not rebuild this unchanged baseline: its inputs are byte-identical to the approved baseline, the helper and profile are pinned, and D1 makes no metadata/lock change. Future candidate builds and installed MEMQ proof remain D3 and are not claimed.
+- Builder excluded attempts (DIAG `/private/tmp` normalization, plugin setup, formatter path typo, initial lint) are disclosed and earn no credit; I independently used the `/tmp` alias for DIAG.
+
+## MD1 matrix
+
+| ID | Result | Evidence |
+| --- | --- | --- |
+| MD1-01 | PASS | c587..00c3 product-identical. 00c3..9ce7 product paths are exactly: `friday-commands` README, `__init__.py`, `contracts.py`, new `memory_queries.py`, new fixture, new `test_memory_queries.py`, `test_diagnostics.py`, `test_session_views.py`. Remaining changes: UAT plan, D1 evidence/README, packet/board/dashboard/log/authority. No Chat, metadata, dependency, lock, config or other framework change. |
+| MD1-02 | PASS | 13 `@dataclass(frozen=True, slots=True)` models with exact fields/defaults/order. Uses the existing `_string`/`_boolean`/`_snapshot(exact=True)` rules. Metric state invariants, literal `ValueError`/type `TypeError`, exact `complete` bool. Meta records require id and collection; plain records reject every meta field. Caps of 100 for records/entities/relationships; documents unbounded. AST reversal recovers baseline contracts exactly. |
+| MD1-03 | PASS | `FoundationData` alias and `CommandOutcome` whitelist each have exactly 18 members (old 12 + six, MQ-D4 order). `__all__` has exactly 54 entries: original 38 then 16 appended in contract order. Bindings come from `contracts` (13) and `memory_queries` (3). `MemoryRecordKindName` is not exported. Specs are an immutable tuple; the JSON round-trip equals the fixture. Fixture bytes equal `preparation.fixtures.neutral_metadata.text`, sha `a2b848e6…`. |
+| MD1-04 | PASS | `MemoryQueryPort(Protocol)` is not runtime-checkable (`isinstance` raises `TypeError`). The factory returns a fresh `MappingProxyType` with six keys in spec order and does not read the port at construction (NoReads). `CommandRegistry()` is empty. Imports are stdlib plus own package only; the standalone closure is enforced at -O/-OO; no logging, print, cast or Any. |
+| MD1-05 | PASS | `_validate_invocation`: exact request → exact execution → name `ValueError`, before any port access. Only `request.name`/`args` are read; execution and spec are unused. Args are validated at `CommandRequest` construction (MQ-D2). `memory_available()` is called once with an exact-bool `TypeError`. False → `MemoryUnavailableData("runtime_missing")`, and args/selection are never read (entities selection follows the availability check). |
+| MD1-06 | PASS | Each handler awaits one capability with fixed kinds. Exact-type result checks; record-kind mismatch → `ValueError`. Nodes-only requires exact-case `args[0] == "nodes"`; names joined with `" "` and `include_relationships = not nodes_only`; a nodes-only result carrying relationships → `ValueError`. Exceptions and cancellation propagate unchanged; no retry, write, log or effect. |
+| MD1-07 | PASS | All MQ-T01..06 nodes are present and effective (matrix below). AST audit: `test_diagnostics.py` reverses to baseline after removing exactly the first-statement import, the 16 API names, the 13 contracts owners, the final 3-name owner row, 54→38, and the 6 `contracts.*` union entries. Module equal; assertions 81 = 81. `test_session_views.py` reverses after removing the 16 names; assertions 42 = 42. `contracts.py`/`__init__.py` reverse exactly. The other four old test files, the cohort test and other neutral src are byte-identical. Mutations: unchanged control 595/595 passes; all 14 required mutants rejected by named call-phase failures. Origins sit inside the private copy at all three boundaries and witnessed hashes equal mutant bytes. |
+| MD1-08 | PASS | D0: guard 18, comparator 14, baseline MEMQ 76, DIAG 68+4, SESSION 25, pilot 196, both source refusals, format inventory byte-equal, baseline Commands 498. Closed-trial provenance hash-verified (inspected). Current: 599 / 101 / 1,338 / 155, static/format/types/lock/admin all pass. Executed results and inspected receipts are kept separate above. |
+| MD1-09 | PASS | Candidate committed-source behavior: MEMQ 76 exact ×2, DIAG 68+4, SESSION 25, pilot 196. No MQ-D1 refusal or option R rows yet; correct, since Chat is unchanged at D1. 64/64 pairs honest. UAT plan sits in `uat/` beside `friday-chat-user-acceptance-roadmap.md`, has 20 concrete cases over the six commands and option R read-only/disposable setup, and is NOT RUN pending D2/D3. |
+| MD1-10 | PASS | Both boundaries identical, no mismatches. Isolation is compliant, with the host checkpoint disclosure. Planning records agree (`execution_phase: validation`, `validation_state: pending`, identical next gate in board/dashboard/README/next-phase/tactical/log/authority; append-only log). Debt is honest. No D2, acceptance or delivery grant. |
+
+## MQ-T matrix (current source, guarded runner)
+
+| ID / node | Cases | Mandatory assertions observed | Killed mutants (named call witnesses) |
+| --- | --- | --- | --- |
+| MQ-T01 `test_memory_query_models_and_closed_union` | 24 | field order/slots/frozen; per-field TypeError and declaration-order first failure; str-subclass identity; Unicode/control text; one-pass snapshots, list-mutation isolation, empty/ordered/duplicate; scalar/str/bytes/mapping/bool member refusal; subclass member refusal; metric 27-combo invariants; literals; exact bool; meta vs plain; 100/101 caps; unbounded documents; iterator exception identity; 18-member union equality; old 12 + new 6 accepted, subclasses and nested refused | record-cap-drift, missing-union-alias-member, missing-union-whitelist-member, plain-record-meta-allowed (extra), entity-cap-drift (extra) |
+| MQ-T02 `test_memory_query_specs_exports_and_factory` | 1 | exact ordered 54 `__all__`, no dupes, 16 new bindings, alias not exported, fixture sha and spec equality, frozen spec, fresh MappingProxy six keys in order, distinct handlers, immutability, empty registry, non-runtime-checkable structural protocol | extra/dropped/reordered/duplicate export, eager-factory |
+| MQ-T03 `test_memory_query_invocation_validation_order` | 6 | request → execution → name before port; no request read before execution check; MQ-D2 at construction; str-subclass args; spec/execution unused | name-before-execution (extra), eager-factory, double-availability (extra) |
+| MQ-T04 `test_memory_query_availability_and_single_await` | 66 | single exact-bool availability; False for 6 arg shapes with no args read; invalid bool; invalid/subclass results; pending; task cancel identity; error/cancel identity for query and availability; exact events | selection-before-availability, double-query, unawaited-query, truthy-availability (extra), error-to-data (extra), double-availability |
+| MQ-T05 `test_record_kind_and_graph_selection` | 1 | fixed kinds; MQ-D1 refusal for both data types; nodes/`NODES`/subclass/names/quotes/empty joins; include flag; nodes-only refusal | missing-kind-refusal, case-insensitive-nodes, relationships-for-nodes, nodes-result-relationships |
+| MQ-T06 `test_memory_queries_standalone` | 3 | `-I -B`, `-O`, `-OO` with explicit hash-checked guard; registry dispatch of all six; request/execution/invariant/kind/unavailable boundaries active; stdlib/own closure and origins | missing-kind-refusal (all three modes) |
+
+Mutation totals (round `mut2`): **1 unchanged control (pass) + 14 required mutants (all
+rejected) + 8 independent counterexamples**. Of the extras, 7 were rejected and 1 is an
+equivalent survivor (note O-4). Zero non-call-phase failures in any run, so no setup,
+import, collection or KeyError credit. Every required mutant has at least one `AssertionError`
+or `pytest.raises` "DID NOT RAISE" witness in a `test_memory_queries.py` node; the export
+mutants also fail the two MQ-D4 old tests.
+
+## Optional notes (non-mandatory)
+
+- **O-1:** The MQ-T02 node checks bindings only for the 16 additions. The identity of all 54 bindings with owners is asserted in the MQ-D4-extended `test_diagnostic_specs_exports_and_factory`. Gate coverage is complete; node-local coverage is partial.
+- **O-2:** The builder's D1 lint/type receipts cover only neutral paths, with no explicit "bounded scope" note for the existing directive-listed Chat paths. The request bounds D1 to neutral scope. I ran those unchanged Chat paths anyway: ruff and mypy pass. D2 must include every listed path.
+- **O-3:** The builder ran the lock check in the baseline export. I ran it on a clean candidate export: pass. The lock is unchanged.
+- **O-4:** Equivalent mutant: replacing the handler's exact `GraphData` check with `isinstance` survives. `CommandOutcome`'s exact whitelist raises the same `TypeError` with identical port events. For record kinds, only a subclass result that also has a mismatched kind would distinguish ValueError from TypeError. Optional hardening only.
+- **O-5:** The lower-bound `entity-cap-drift` (99) counterexample is witnessed by a product `ValueError` in the call phase rather than an assertion. The required upward record-cap drift has a "DID NOT RAISE" witness.
+
+## Debt, regressions and residual limits
+
+- No new failing check, lost collection or new format debt. Baseline debt stays failed/unwaived: root Ruff 534, root `test_display` collection conflict (6,929), and the four Chat whole-file format failures (reproduced). Root full/collect gates are D4 and were not rerun.
+- Excluded by design: D2 Chat port/projection/renderers/wrappers/registry/option R and MQ-T07..14; D3 installed probe, candidate wheels and installed behavior. The old DIAG/SESSION installed probes (38/24) are intentionally obsolete and are not claimed.
+- No providers, network, or real user stores. No UAT execution.
