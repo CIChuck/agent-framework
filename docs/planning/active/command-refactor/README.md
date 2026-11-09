@@ -16,12 +16,13 @@ Exact foundation approvals and source base
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
-`execution_phase: remediation`; `validation_state: changes_requested` for DIAG D3
-and its complete bounded aggregate. [Council reconciliation](validation/diagnostics/implementation/d3/council-round1-reconciliation.md)
-records one reproduced mandatory compatibility finding. The [proposed amendment](remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md)
-preserves legacy formatting/count order through a typed host snapshot. Its exact
-approval is required before further product changes. Existing tests/builds and
-prior D1/D2 reports remain historical evidence; DIAG acceptance is pending.
+`execution_phase: validation`; `validation_state: in_review` for the DIAG D3
+correction cycle1. [Council reconciliation](validation/diagnostics/implementation/d3/council-round1-reconciliation.md)
+recorded one reproduced mandatory compatibility finding; Chuck Russell then
+[approved](approval/diagnostics-context-evaluation.md) the exact [amendment](remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md).
+The bounded correction at `28c544fa` and its [evidence](validation/diagnostics/implementation/d3/correction-evidence.json)
+await fresh Sol/Astra/Claude delta and complete aggregate review. Round-1 builds
+and prior D1/D2 reports remain historical evidence; DIAG acceptance is pending.
 Ignored exports and dirty examples remain preserved. SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.

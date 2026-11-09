@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Implement approved REM-CMD-DIAG-D3-001 bounded correction, rebuild/replay installed proof, then fresh Sol/Astra/Claude delta and aggregate council before DIAG acceptance
+  next_gate: Fresh Sol/Astra/Claude remediation-delta then complete bounded D3/DIAG aggregate council on frozen REM-CMD-DIAG-D3-001 correction before DIAG acceptance
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2838,3 +2838,10 @@ events:
   action: approved exact REM-CMD-DIAG-D3-001 context evaluation amendment
   note: Direct instruction The bounded correction I approve it binds REM SHA 3078bb19. One typed context debug snapshot capability, six bounded paths plus probe/evidence, rebuild/replay and fresh three-provider council. No DIAG acceptance, UAT or delivery.
   evidence: docs/planning/active/command-refactor/approval/diagnostics-context-evaluation.md
+- task: friday-command-refactor
+  at: '2026-11-09T03:59:00+00:00'
+  actor: Claude
+  actor_role: agent
+  action: froze approved DIAG D3 context evaluation correction for fresh council
+  note: 28c544fa adds one typed context debug snapshot; 12/12 legacy rows, unfixed assertions fail, 9 mutants rejected, control539. Chat1338/Commands498/CLI155, 154 replayed artifacts, 8 installed probes, 50+4+10 refusals. No acceptance, UAT or delivery.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/correction-evidence.json

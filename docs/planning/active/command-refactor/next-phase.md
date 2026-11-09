@@ -1,4 +1,31 @@
-# DIAG-001 — context evaluation contract decision
+# DIAG-001 — D3 context evaluation correction validation checkpoint
+
+Branch: `feature/command-retirement`
+Execution phase: validation
+Validation state: in_review (D3 correction cycle1; fresh council pending)
+
+Chuck Russell approved [REM-CMD-DIAG-D3-001](remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md)
+(SHA-256 `3078bb19…a865`) in the [exact approval record](approval/diagnostics-context-evaluation.md).
+Corrected product/test/probe source is `28c544fa67e934f03c212aed39ba20802b500b13`:
+one typed `context_debug_snapshot()` capability is used only for exact `--debug`;
+Chat formats the selected text once, then measures the original value, and shared
+code never re-measures. [Correction evidence](validation/diagnostics/implementation/d3/correction-evidence.json)
+binds 12/12 legacy-equal characterization rows (9 diverged before the fix), the
+unfixed-candidate call-assertion failures, nine rejected mutants with an
+unchanged 539 control, 1,991 source tests (1,971 + 20 new DG-T04 cases), DIAG
+68+4/SESSION 25/pilot 196 captures, two identical 154-artifact closed builds,
+eight installed probes, 50+4+10 refusals, 2 source refusals, 8 restored copies
+and round-1 artifacts rejected by the new installed assertions.
+
+Next: fresh Sol/Astra/Claude remediation-delta review, then complete bounded
+D3/DIAG aggregate review. The Claude seat must be a fresh context: the session
+that implemented this correction also served as the Claude D2 round-2 reviewer.
+Reconcile all mandatory findings before human DIAG acceptance. Root Ruff 534,
+test_display collection conflict and registry format remain failed/unwaived.
+UAT, acceptance, later families, P0/P1, full-refactor/TUI and delivery remain
+pending or separately governed. Dirty examples and ignored exports are preserved.
+
+### Preserved round-1 decision checkpoint (superseded by the approval above)
 
 Branch: `feature/command-retirement`
 Execution phase: remediation

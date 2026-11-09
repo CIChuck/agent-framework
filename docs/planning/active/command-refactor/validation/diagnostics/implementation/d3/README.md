@@ -1,10 +1,41 @@
 # DIAG-001 D3 — regression, artifacts and isolated installed proof
 
-Execution phase: remediation. Validation state: changes_requested (round 1).
-[Council reconciliation](council-round1-reconciliation.md) records one mandatory
-compatibility finding. The [proposed amendment](../../../../remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md)
-awaits exact approval; product/test/probe bytes remain unchanged. No unit
+Execution phase: validation. Validation state: in_review (correction cycle1).
+DIAG-D3-ASTRA-001 is addressed under the exact maintainer-approved
+[REM-CMD-DIAG-D3-001](../../../../remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md)
+([approval](../../../../approval/diagnostics-context-evaluation.md)). No unit
 acceptance, advancement or delivery is granted.
+
+## Correction cycle1 (current)
+
+Corrected product/test/probe source: `28c544fa67e934f03c212aed39ba20802b500b13`.
+Only the six amendment paths changed outside planning documents, plus
+`installed_probe.py`; contracts, `__init__`, registry, fixtures, metadata, lock,
+configuration and frozen capture programs are unchanged. The AST exception map
+is embedded in [correction evidence](correction-evidence.json).
+
+- Shared `/context` uses `context_debug_snapshot()` once, only for exact
+  `--debug`, strictly refusing non-`ContextData`, missing counts and preset paths
+  before export. Chat selects once, formats once, then measures the original
+  string, matching legacy output, traces, exception identity and file effects
+  on 12/12 stateful/raising characterization rows (9 differed before the fix).
+- Unfixed candidate: 28 failures with call-phase assertion witnesses in DG-T04,
+  DG-T10 and DG-T11. Nine mutants, including count-before-format and
+  format-twice, are rejected by assertions; unchanged control 539 passes with
+  stable private module origins, test hashes and repository exports.
+- Source: Chat 1,338, Commands/cohort 498, CLI 155 (1,991 = 1,971 + 20 new
+  DG-T04 cases); D2-fast 538, D3-fast 166; DIAG 68 + 4 approved refusals,
+  SESSION 25, pilot 196.
+- Closed bundle and replay of `28c544fa` match 154 artifacts, 13 builds, 125
+  locked inputs and the 138-name default closure. Eight installed probes pass,
+  with explicit normal/optimized format-then-length and strict snapshot checks.
+  50 member/origin, 4 semantic and 10 archive refusals, 2 source refusals and 8
+  restored copies pass. The corrected probe rejects round-1 `30790ec0` artifacts
+  through its new assertions in both lanes and modes.
+- Every workspace artifact hash differs from round 1 because `SOURCE_DATE_EPOCH`
+  follows the commit time. Two early mutation sweeps preceded test refinements
+  and earn no credit. Root Ruff 534, test_display conflict and registry format
+  remain failed/unwaived. Ignored exports equal the frozen inventory.
 
 ## Preserved round-1 builder evidence
 

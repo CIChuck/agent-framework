@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "REM-CMD-DIAG-D3-001 exact context evaluation amendment approved; bounded correction in progress",
+  "decision": "REM-CMD-DIAG-D3-001 approved and bounded correction implemented; fresh Sol/Astra/Claude council pending",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Implement approved DIAG-D3-ASTRA-001 correction; rebuild/replay installed proof; fresh Sol/Astra/Claude delta and aggregate council",
+  "current_scope": "DIAG D3 correction cycle1 validation/in_review; acceptance pending",
   "product_code_authority": "Original DIAG construction plus exact REM-CMD-DIAG-D3-001 amendment approved for its six bounded paths, probe and evidence; no acceptance or external delivery",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -763,10 +763,10 @@
     "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
     "product_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
     "controller_start": "d0c729f43534bb79a3db70852ec08028ddb631ec",
-    "state": "remediation",
-    "execution_phase": "remediation",
-    "validation_state": "changes_requested",
-    "current_deliverable": "D3 approved context evaluation correction",
+    "state": "validation",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
+    "current_deliverable": "D3 correction cycle1 awaiting fresh delta and complete aggregate council",
     "deliverable1": {
       "state": "verified",
       "round": 2,
@@ -826,13 +826,13 @@
       "report": "validation/diagnostics/implementation/d2/verified-report.md"
     },
     "deliverable3": {
-      "state": "changes_requested",
-      "round": 1,
+      "state": "in_review",
+      "round": 2,
       "base": "d437a5dc601126ae0767cf6558ae63d214159c19",
       "aggregate_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
-      "artifact_source": "30790ec0f06813e7331c851d04c123997a398d97",
+      "artifact_source": "28c544fa67e934f03c212aed39ba20802b500b13",
       "probe": "validation/diagnostics/installed_probe.py",
-      "probe_sha256": "793872303d93e34d06532b9ae7d1320537704664ecfca5d35d3488b338529198",
+      "probe_sha256": "c943d7070aeae2624444a165a9c3f77f3317c062e06376b3d0f89e089d70db58",
       "evidence": "validation/diagnostics/implementation/d3/evidence.json",
       "source_tests": {
         "Chat": 1338,
@@ -852,21 +852,32 @@
       "prebuild_extra_source_refusal": 1,
       "restored_copied_probes": 8,
       "acceptance": "not_granted",
-      "next_gate": "Bounded correction, rebuild/replay from corrected committed source, then fresh delta/full aggregate council",
+      "next_gate": "Fresh Sol/Astra/Claude remediation-delta then complete bounded D3/DIAG aggregate council",
       "council": "validation/diagnostics/implementation/d3/council-round1.json",
       "report": "validation/diagnostics/implementation/d3/council-round1-reconciliation.md",
       "reviewed_candidate": "1d3b273b7797c72a868f259d095593a15a4e42b9",
       "mandatory_findings": [
         "DIAG-D3-ASTRA-001"
       ],
-      "findings_status": "open; approved amendment correction in progress",
+      "findings_status": "implemented; fresh independent closure pending",
       "proposed_amendment": "remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md",
       "proposed_amendment_sha256": "3078bb19195044212a115cb3f3f169d030af2b282154d4d336856b37c41fa865",
       "amendment_approval": "granted",
       "amendment_approval_record": "approval/diagnostics-context-evaluation.md",
       "amendment_approved_by": "Chuck Russell",
       "amendment_approved_at": "2026-11-09T03:40:44+00:00",
-      "amendment_instruction": "The bounded correction: I approve it."
+      "amendment_instruction": "The bounded correction: I approve it.",
+      "correction_source": "28c544fa67e934f03c212aed39ba20802b500b13",
+      "correction_evidence": "validation/diagnostics/implementation/d3/correction-evidence.json",
+      "round1_artifact_source": "30790ec0f06813e7331c851d04c123997a398d97",
+      "correction_source_tests": {
+        "Chat": 1338,
+        "Commands_cohort": 498,
+        "CLI": 155,
+        "total": 1991
+      },
+      "correction_mutants_rejected": 9,
+      "correction_unchanged_control": 539
     },
     "council_after_each_deliverable": true,
     "council_members": [
@@ -880,6 +891,6 @@
     "product_source": "54e35947f8ee157ddab0b50f7e9e9e1db415f0ae",
     "original_product_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
     "runtime_model_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
-    "artifact_source": "30790ec0f06813e7331c851d04c123997a398d97"
+    "artifact_source": "28c544fa67e934f03c212aed39ba20802b500b13"
   }
 }

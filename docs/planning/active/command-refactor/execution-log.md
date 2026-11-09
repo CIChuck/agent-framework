@@ -1755,3 +1755,25 @@ has been executed or accepted through this documentation change.
   over exact281-test inventory:1710 FunctionDef+1332 AsyncFunctionDef=3042 test_
   definitions and9400 ast.Assert nodes. Baseline failures remain failed/unwaived.
   UAT/acceptance/full-refactor/P0/P1/TUI/delivery remain ungranted or separate.
+
+
+## 2026-11-09T03:59:00+00:00 — DIAG D3 correction cycle1 frozen for fresh council
+
+- Maintainer approval: [exact record](approval/diagnostics-context-evaluation.md) for
+  REM-CMD-DIAG-D3-001 (`3078bb19…a865`), recorded 2026-11-09T03:40:44+00:00.
+- `execution_phase: validation`; `validation_state: in_review`. Corrected source
+  `28c544fa67e934f03c212aed39ba20802b500b13` changes only the six amendment paths and
+  the installed probe; contracts/API38/registry/fixtures/lock/config unchanged.
+- Shared exact `--debug` uses one typed host `context_debug_snapshot()`; Chat
+  formats once then measures the original value. 12/12 characterization rows equal
+  legacy (9 diverged before). Unfixed candidate fails with call assertions; nine
+  mutants rejected by assertions; unchanged control 539.
+- Chat1338, Commands498, CLI155 (1991 = 1971 + 20 DG-T04 cases), D2-fast538,
+  D3-fast166; DIAG68+4, SESSION25, pilot196. Closed bundle/replay match154
+  artifacts; eight installed probes, 50+4+10 refusals, 2 source refusals and 8
+  restored copies pass; round-1 artifacts fail the new installed assertions.
+- [Evidence](validation/diagnostics/implementation/d3/correction-evidence.json) embeds 460 raw/embedded pairs.
+  Early mutation sweeps are historical/no credit. Ignored exports and dirty examples
+  preserved. Root Ruff534, test_display conflict and registry format remain
+  failed/unwaived. Remediator was the session that reviewed D2 round2 for Claude;
+  the Claude council seat must be a fresh context. No acceptance/UAT/delivery.
