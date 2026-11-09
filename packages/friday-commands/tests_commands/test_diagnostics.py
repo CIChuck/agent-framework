@@ -199,6 +199,12 @@ def _check_closed_union_retains_old_variants_and_refuses_nested_values():
         ExitData,
         HistoryData,
         SessionClearedData,
+        contracts.MemoryUnavailableData,
+        contracts.MemoryStatisticsData,
+        contracts.MemoryRecordsData,
+        contracts.MemoryQueryFailedData,
+        contracts.GraphData,
+        contracts.IngestedDocumentsData,
     }
     assert set(get_args(FoundationData.__value__)) == expected
     for value in (
@@ -306,6 +312,8 @@ def _check_model_validation_order_and_iterator_failure():
 
 
 def test_diagnostic_specs_exports_and_factory():
+    import friday_commands.memory_queries as memory_queries_module
+
     assert api.__all__ == [
         "PILOT_SPECS",
         "SESSION_SPECS",
@@ -345,6 +353,22 @@ def test_diagnostic_specs_exports_and_factory():
         "DIAGNOSTIC_SPECS",
         "DiagnosticsPort",
         "build_diagnostic_handlers",
+        "MemoryWarningData",
+        "MemoryMetricData",
+        "MemorySectionData",
+        "MemoryStatisticsData",
+        "MemoryRecordData",
+        "MemoryRecordsData",
+        "MemoryQueryFailedData",
+        "MemoryUnavailableData",
+        "GraphEntityData",
+        "GraphRelationshipData",
+        "GraphData",
+        "IngestedDocumentData",
+        "IngestedDocumentsData",
+        "MEMORY_QUERY_SPECS",
+        "MemoryQueryPort",
+        "build_memory_query_handlers",
     ]
     owners = (
         (
@@ -376,6 +400,19 @@ def test_diagnostic_specs_exports_and_factory():
                 "TimingData",
                 "RetrievalData",
                 "RetrievalUnavailableData",
+                "MemoryWarningData",
+                "MemoryMetricData",
+                "MemorySectionData",
+                "MemoryStatisticsData",
+                "MemoryRecordData",
+                "MemoryRecordsData",
+                "MemoryQueryFailedData",
+                "MemoryUnavailableData",
+                "GraphEntityData",
+                "GraphRelationshipData",
+                "GraphData",
+                "IngestedDocumentData",
+                "IngestedDocumentsData",
             ),
         ),
         (registry_module, ("CommandHandler", "CommandRegistry")),
@@ -385,11 +422,15 @@ def test_diagnostic_specs_exports_and_factory():
         ),
         (session_module, ("SESSION_SPECS", "SessionPort", "build_session_handlers")),
         (shared, ("DIAGNOSTIC_SPECS", "DiagnosticsPort", "build_diagnostic_handlers")),
+        (
+            memory_queries_module,
+            ("MEMORY_QUERY_SPECS", "MemoryQueryPort", "build_memory_query_handlers"),
+        ),
     )
     expected_bindings = {
         name: getattr(module, name) for module, names in owners for name in names
     }
-    assert len(expected_bindings) == 38
+    assert len(expected_bindings) == 54
     assert set(expected_bindings) == set(api.__all__)
     for name, expected in expected_bindings.items():
         assert getattr(api, name) is expected, name

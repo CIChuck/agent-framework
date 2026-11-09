@@ -15,9 +15,22 @@ from .contracts import (
     DispatchResult,
     ExitData,
     FoundationData,
+    GraphData,
+    GraphEntityData,
+    GraphRelationshipData,
     HelpData,
     HistoryData,
     HistoryTurn,
+    IngestedDocumentData,
+    IngestedDocumentsData,
+    MemoryMetricData,
+    MemoryQueryFailedData,
+    MemoryRecordData,
+    MemoryRecordsData,
+    MemorySectionData,
+    MemoryStatisticsData,
+    MemoryUnavailableData,
+    MemoryWarningData,
     NoData,
     PromptData,
     RetrievalData,
@@ -29,6 +42,11 @@ from .contracts import (
     UiEffect,
 )
 from .diagnostics import DIAGNOSTIC_SPECS, DiagnosticsPort, build_diagnostic_handlers
+from .memory_queries import (
+    MEMORY_QUERY_SPECS,
+    MemoryQueryPort,
+    build_memory_query_handlers,
+)
 from .pilot import PILOT_SPECS, HelpCatalog, build_pilot_handlers, describe_help
 from .registry import CommandHandler, CommandRegistry
 from .session_views import SESSION_SPECS, SessionPort, build_session_handlers
@@ -72,4 +90,20 @@ __all__ = [
     "DIAGNOSTIC_SPECS",
     "DiagnosticsPort",
     "build_diagnostic_handlers",
+    "MemoryWarningData",
+    "MemoryMetricData",
+    "MemorySectionData",
+    "MemoryStatisticsData",
+    "MemoryRecordData",
+    "MemoryRecordsData",
+    "MemoryQueryFailedData",
+    "MemoryUnavailableData",
+    "GraphEntityData",
+    "GraphRelationshipData",
+    "GraphData",
+    "IngestedDocumentData",
+    "IngestedDocumentsData",
+    "MEMORY_QUERY_SPECS",
+    "MemoryQueryPort",
+    "build_memory_query_handlers",
 ]

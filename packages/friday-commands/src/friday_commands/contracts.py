@@ -301,6 +301,229 @@ class RetrievalUnavailableData:
             raise ValueError("Unknown retrieval unavailability reason")
 
 
+MemoryRecordKindName = Literal["insight", "summary", "meta_insight"]
+
+
+@dataclass(frozen=True, slots=True)
+class MemoryWarningData:
+    component: str
+    reason: str
+
+    def __post_init__(self) -> None:
+        _string(self.component)
+        _string(self.reason)
+
+
+@dataclass(frozen=True, slots=True)
+class MemoryMetricData:
+    key: str
+    state: Literal["available", "unavailable", "not_configured"]
+    value: str | None = None
+    reason: str | None = None
+
+    def __post_init__(self) -> None:
+        _string(self.key)
+        _string(self.state)
+        if self.state not in ("available", "unavailable", "not_configured"):
+            raise ValueError("Unknown memory metric state")
+        _string(self.value, optional=True)
+        _string(self.reason, optional=True)
+        if self.state == "available":
+            if self.value is None or self.reason is not None:
+                raise ValueError("Available metrics require only a value")
+        elif self.value is not None or self.reason is None:
+            raise ValueError("Unavailable metrics require only a reason")
+
+
+@dataclass(frozen=True, slots=True)
+class MemorySectionData:
+    title: str
+    metrics: tuple[MemoryMetricData, ...] = ()
+
+    def __post_init__(self) -> None:
+        _string(self.title)
+        object.__setattr__(
+            self, "metrics", _snapshot(self.metrics, MemoryMetricData, exact=True)
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class MemoryStatisticsData:
+    sections: tuple[MemorySectionData, ...] = ()
+    warnings: tuple[MemoryWarningData, ...] = ()
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self, "sections", _snapshot(self.sections, MemorySectionData, exact=True)
+        )
+        object.__setattr__(
+            self, "warnings", _snapshot(self.warnings, MemoryWarningData, exact=True)
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class MemoryRecordData:
+    record_id: str | None
+    text: str
+    collection: str | None
+    lifecycle_stage: str | None = None
+    created_at: str | None = None
+    confidence: str | None = None
+    source_count: str | None = None
+    provenance_source_type: str | None = None
+    source_memory_ids: tuple[str, ...] = ()
+    provenance_truncated: bool = False
+    verification: str | None = None
+
+    def __post_init__(self) -> None:
+        _string(self.record_id, optional=True)
+        _string(self.text)
+        _string(self.collection, optional=True)
+        _string(self.lifecycle_stage, optional=True)
+        _string(self.created_at, optional=True)
+        _string(self.confidence, optional=True)
+        _string(self.source_count, optional=True)
+        _string(self.provenance_source_type, optional=True)
+        object.__setattr__(
+            self, "source_memory_ids", _snapshot(self.source_memory_ids, str)
+        )
+        _boolean(self.provenance_truncated)
+        _string(self.verification, optional=True)
+
+
+@dataclass(frozen=True, slots=True)
+class MemoryRecordsData:
+    kind: MemoryRecordKindName
+    records: tuple[MemoryRecordData, ...] = ()
+    warnings: tuple[MemoryWarningData, ...] = ()
+    complete: bool = True
+
+    def __post_init__(self) -> None:
+        _string(self.kind)
+        if self.kind not in ("insight", "summary", "meta_insight"):
+            raise ValueError("Unknown memory record kind")
+        object.__setattr__(
+            self, "records", _snapshot(self.records, MemoryRecordData, exact=True)
+        )
+        if len(self.records) > 100:
+            raise ValueError("At most 100 memory records are permitted")
+        object.__setattr__(
+            self, "warnings", _snapshot(self.warnings, MemoryWarningData, exact=True)
+        )
+        _boolean(self.complete)
+        for record in self.records:
+            if self.kind == "meta_insight":
+                if record.record_id is None or record.collection is None:
+                    raise ValueError("Meta records require an id and collection")
+            elif (
+                record.record_id is not None
+                or record.collection is not None
+                or record.lifecycle_stage is not None
+                or record.created_at is not None
+                or record.confidence is not None
+                or record.source_count is not None
+                or record.provenance_source_type is not None
+                or record.source_memory_ids
+                or record.provenance_truncated
+                or record.verification is not None
+            ):
+                raise ValueError("Plain records must not carry meta fields")
+
+
+@dataclass(frozen=True, slots=True)
+class MemoryQueryFailedData:
+    kind: MemoryRecordKindName
+
+    def __post_init__(self) -> None:
+        _string(self.kind)
+        if self.kind not in ("insight", "summary", "meta_insight"):
+            raise ValueError("Unknown memory record kind")
+
+
+@dataclass(frozen=True, slots=True)
+class MemoryUnavailableData:
+    reason: Literal["runtime_missing"]
+
+    def __post_init__(self) -> None:
+        _string(self.reason)
+        if self.reason != "runtime_missing":
+            raise ValueError("Unknown memory unavailability reason")
+
+
+@dataclass(frozen=True, slots=True)
+class GraphEntityData:
+    label: str
+    node_type: str
+    hit_count: str
+
+    def __post_init__(self) -> None:
+        _string(self.label)
+        _string(self.node_type)
+        _string(self.hit_count)
+
+
+@dataclass(frozen=True, slots=True)
+class GraphRelationshipData:
+    source: str
+    relation: str
+    target: str
+    hit_count: str
+
+    def __post_init__(self) -> None:
+        _string(self.source)
+        _string(self.relation)
+        _string(self.target)
+        _string(self.hit_count)
+
+
+@dataclass(frozen=True, slots=True)
+class GraphData:
+    entities: tuple[GraphEntityData, ...] = ()
+    relationships: tuple[GraphRelationshipData, ...] = ()
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self, "entities", _snapshot(self.entities, GraphEntityData, exact=True)
+        )
+        if len(self.entities) > 100:
+            raise ValueError("At most 100 graph entities are permitted")
+        object.__setattr__(
+            self,
+            "relationships",
+            _snapshot(self.relationships, GraphRelationshipData, exact=True),
+        )
+        if len(self.relationships) > 100:
+            raise ValueError("At most 100 graph relationships are permitted")
+
+
+@dataclass(frozen=True, slots=True)
+class IngestedDocumentData:
+    source_path: str
+    chunk_count: str
+    description: str
+
+    def __post_init__(self) -> None:
+        _string(self.source_path)
+        _string(self.chunk_count)
+        _string(self.description)
+
+
+@dataclass(frozen=True, slots=True)
+class IngestedDocumentsData:
+    documents: tuple[IngestedDocumentData, ...] = ()
+    warnings: tuple[MemoryWarningData, ...] = ()
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self,
+            "documents",
+            _snapshot(self.documents, IngestedDocumentData, exact=True),
+        )
+        object.__setattr__(
+            self, "warnings", _snapshot(self.warnings, MemoryWarningData, exact=True)
+        )
+
+
 type FoundationData = (
     NoData
     | HelpData
@@ -314,6 +537,12 @@ type FoundationData = (
     | TimingData
     | RetrievalData
     | RetrievalUnavailableData
+    | MemoryUnavailableData
+    | MemoryStatisticsData
+    | MemoryRecordsData
+    | MemoryQueryFailedData
+    | GraphData
+    | IngestedDocumentsData
 )
 
 
@@ -362,6 +591,12 @@ class CommandOutcome:
                 TimingData,
                 RetrievalData,
                 RetrievalUnavailableData,
+                MemoryUnavailableData,
+                MemoryStatisticsData,
+                MemoryRecordsData,
+                MemoryQueryFailedData,
+                GraphData,
+                IngestedDocumentsData,
             )
         ):
             raise TypeError("Expected a closed foundation data variant")

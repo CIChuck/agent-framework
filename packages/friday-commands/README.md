@@ -85,3 +85,26 @@ The DIAG standalone tests explicitly preload the pinned audit guard. Run the
 Commands suite through a freshly prepared `validation/pilot/harness/prepare.py`
 lane and its `pilot_run.py`, as specified in CD-CMD-DIAG-001. A plain pytest run
 does not supply the guard required by those three standalone cases.
+
+The opt-in memory-query API adds `MEMORY_QUERY_SPECS`, `MemoryQueryPort` and
+`build_memory_query_handlers`, with thirteen frozen display-fact models. Its
+six specs are memory, insights, summaries, meta, entities and list-ingested.
+Register them explicitly; importing the package leaves registries empty.
+The sixteen new exports follow the original 38 in order. Exactly six new
+payload alternatives extend the closed outcome union; nested values cannot be
+returned as outcomes, and subclass payloads are rejected.
+
+Each handler validates the request, execution and canonical name, then checks
+runtime availability once before awaiting one capability. Shared code selects
+record kinds and graph mode, joins entity arguments and checks exact results.
+Only exact first-argument `nodes` selects nodes-only mode. Non-string request
+arguments and mismatched record kinds fail explicitly, including optimized
+Python. Exceptions and cancellation propagate without retries or effects.
+
+Hosts supply detached typed display facts and retain service reads, projection
+and rendering. Memory queries perform no writes, synthesis, exports or session
+changes. The neutral package imports no memory/runtime/frontend services.
+This is the neutral D1 surface; Chat integration and option R's persisted
+document listing follow at D2 under the approved contract. That listing uses
+existing public reads owned by Chat; no domain capability moves into this
+package. Source validation and command consolidation remain deferred.

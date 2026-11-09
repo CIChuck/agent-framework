@@ -235,6 +235,22 @@ def test_session_specs_and_factory_are_immutable() -> None:
         "DIAGNOSTIC_SPECS",
         "DiagnosticsPort",
         "build_diagnostic_handlers",
+        "MemoryWarningData",
+        "MemoryMetricData",
+        "MemorySectionData",
+        "MemoryStatisticsData",
+        "MemoryRecordData",
+        "MemoryRecordsData",
+        "MemoryQueryFailedData",
+        "MemoryUnavailableData",
+        "GraphEntityData",
+        "GraphRelationshipData",
+        "GraphData",
+        "IngestedDocumentData",
+        "IngestedDocumentsData",
+        "MEMORY_QUERY_SPECS",
+        "MemoryQueryPort",
+        "build_memory_query_handlers",
     ]
     assert CommandRegistry().names() == frozenset()
     first = build_session_handlers(NoReads())
