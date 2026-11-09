@@ -2051,3 +2051,32 @@ has been executed or accepted through this documentation change.
 - `execution_phase: implementation`; `validation_state: not_ready` for D2.
   D1 is verified; UAT20 remains NOT RUN. No acceptance or external delivery.
 - **Next gate:** Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.
+
+## 2026-11-09T18:58:20.756575+00:00 — MEMQ D2 source freeze for fresh council
+
+- Existing exact option R approval and reconciled D1 authorize this stage.
+  Start HEAD `39661e87`; D2 source commit `3ed1d58ad8cc1e79522495da5cf19091185402d8`.
+- Six Chat wrappers delegate once through the typed port/shared handlers;
+  projections preserve old reads/awaits/formatting, and pure renderers consume
+  supplied facts. Registry changes are only the approved six entries/helper.
+  Option R reads short/long persisted ingestion metadata, grouping/counting/
+  sorting with partial warnings; fake insertion order/counts remain intact.
+- Current Chat1390, Commands/cohort599, CLI155, fast616/117 and named52 pass.
+  Unchanged52 control passes;20 mutants have canonical named CALL assertions.
+  Initial setup/KeyError attempts earn no credit; final controls use tightened
+  assertions. Lint/full15-file type gate and no-new-format-debt pass; four old
+  whole-file format checks remain failed/unwaived.
+- Committed-source observations: MEMQ68 exact+2 approved refusals+6 option R
+  superseded rows twice, four supplemental record cases exact, DIAG68+4,
+  SESSION25 and pilot196. Offline clean candidate lock check214 passes.
+- Newly observed pre-existing `/ingest` no-description failure is preserved:
+  unchanged ingestion sends None metadata to Chroma, which rejects it. Positive
+  listing tests use explicit descriptions and directly persisted metadata with
+  the description field absent. No ingest/framework fix is included or waived.
+- Both dirty examples, ignored exports, external locator, accepted D1 source/
+  evidence and supplied directories are preserved. The one neutral README
+  change is explicitly allowed documentation; D1 source/tests/API are unchanged.
+- `execution_phase: validation`; `validation_state: pending` for D2. Human
+  UAT remains NOT RUN; D3 artifacts/probe/installed proof and acceptance remain
+  future. No external delivery was performed.
+- **Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.

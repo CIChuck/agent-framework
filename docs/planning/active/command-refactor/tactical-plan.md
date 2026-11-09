@@ -1,4 +1,25 @@
-# MEMQ-001 — D1 VERIFIED; approved D2 Chat integration next
+# MEMQ-001 — D2 Chat integration implemented; council pending
+
+Branch: `feature/command-retirement`
+Execution phase: validation
+Validation state: pending (D2); D1 verified at 9ce71581
+
+Chat source `3ed1d58ad8cc1e79522495da5cf19091185402d8` implements the six delegated queries and approved
+option R persisted listing. [Builder evidence](validation/memory-queries/implementation/d2/README.md)
+records Chat1390, Commands/cohort599, CLI155, fast lanes616/117, all52 new
+MQ-T07..14 cases,20 assertion-witnessed mutants and exact current observations.
+This is builder evidence, not an independent verdict.
+
+**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.
+
+The exact contract/directive/approval and D1 product source remain unchanged
+(only the approved package README is updated). UAT20 remains NOT RUN; the
+[plan](uat/memq-user-acceptance-plan.md) is in the established folder. D3 builds,
+installed MEMQ behavior and acceptance are future gates. Root/format debt and
+the unchanged ingest-without-description limitation stay unwaived. Historical
+checkpoints below describe their own freezes.
+
+# Historical D1 reconciliation checkpoint — superseded for current execution state
 
 Branch: `feature/command-retirement`
 Execution phase: implementation
