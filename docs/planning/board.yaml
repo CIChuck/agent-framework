@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Prepare proposed MEMQ-001 contract and directive (planning only) after accepted DIAG-001; construction requires their exact approval. No delivery follows automatically.
+  next_gate: "Chuck Russell's exact approval of proposed MEMQ-001 contract and directive, choosing MQ-D3 option R (bounded /list-ingested repair) or P (preserve and defer); no construction, council or delivery before that approval."
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2868,3 +2868,10 @@ events:
   action: reported successful UAT and accepted bounded DIAG-001 D1–D3 and aggregate
   note: Direct instruction follows Sol/Astra/Claude VERIFIED 9.7 each. Proceed authorizes MEMQ-001 planning preparation only. Broader initiative stays started/local; no construction or external delivery authority.
   evidence: docs/planning/active/command-refactor/approval/diagnostics-acceptance.md
+- task: friday-command-refactor
+  at: '2026-11-09T15:20:00+00:00'
+  actor: Claude
+  actor_role: agent
+  action: prepared proposed MEMQ-001 contract, directive and guarded synthetic evidence
+  note: Planning only under maintainer proceed. 6 metadata/76 cases replay-identical; MQ-D3 offers bounded Chat-only /list-ingested repair (R) or preserve-and-defer (P). Exact approval pending; no construction, council or delivery.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/preparation.json

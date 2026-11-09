@@ -1,0 +1,49 @@
+{
+  "unit": "MEMQ-001",
+  "kind": "controller_documentation_only_preparation_checks",
+  "recorded_at": "2026-11-09T15:20:00+00:00",
+  "source_revision": "c5871054266da2340486d2043062c5fb95611c00",
+  "checks": {
+    "protected_non_docs_files": 1255,
+    "protected_non_docs_unchanged": true,
+    "only_non_docs_status": [
+      "packages/friday-chat/config.example.yaml",
+      "packages/friday-chat/models-config.example.yaml"
+    ],
+    "original_dirty_hashes": {
+      "packages/friday-chat/config.example.yaml": "c2f728c98adc5ca773bfdf3170d846a610f15d77eae9a380e1a815534b93c3e7",
+      "packages/friday-chat/models-config.example.yaml": "11e99116d885a431f085b6bd05b5bd30348eb37654fd4c9350a7cca58c527896"
+    },
+    "accepted_diag_evidence_unchanged": {
+      "approval/diagnostics-acceptance.md": "1a3eecabf3b96bc456f1595933f5f2a8cba13810bb51bdb3ba6803d25e22b5ca",
+      "validation/diagnostics/implementation/d3/evidence.json": "17023f2ff51ecbea68a07e7fa97f447f7b987feccfe17b1ae31947abc2a16564",
+      "validation/diagnostics/implementation/d3/correction-evidence.json": "641d9b0d2d9cb94e409908bd94dc818718a666da2c466d4bab5ed79c0aac8db9",
+      "validation/diagnostics/installed_probe.py": "c943d7070aeae2624444a165a9c3f77f3317c062e06376b3d0f89e089d70db58",
+      "validation/diagnostics/preparation.json": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55"
+    },
+    "ignored_exports": {
+      "files": 2,
+      "inventory_sha256": "a44d619baab48b05ec9b0063837d23c3daa6f1e6bf9cd34c631737556d652e19"
+    },
+    "preparation_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
+    "contract_sha256": "d1177505c5e278da4a0dd685fa0f6d3e9428701508a51cdcc29a415ad18e0186",
+    "directive_sha256": "77ec6cf1279a067b6d5535292650fc589c33dbebb432e7253e20cdf927a90a19",
+    "embedded_receipts_verified_against_raw": 23,
+    "fixtures_verified": 2,
+    "programs_verified": 2,
+    "execution_log_append_only": true,
+    "precommit_logical_index": "1d623ff592a9c10ff8598ab1fd772e677beb1d1432b81af35d02c1dd1d5f2cab",
+    "directive_shell_syntax": "zsh -n passed (47 lines)",
+    "materialization_command": "executed exact embedded heredoc into fresh scratch; all three files hash-verified; selftest refused 14 controls; replay compare 76 exact rows",
+    "board": "validate passed (36 tasks); render --check current",
+    "documentation_lifecycle": "passed (907 Markdown files)",
+    "git_diff_check": "passed",
+    "current_state": "MEMQ planning/not_ready; exact contract/directive approval with MQ-D3 choice pending; DIAG accepted; started/local"
+  },
+  "status": "passed (documentation-only controller checks; not independent product validation)",
+  "limits": [
+    "No independent council or product implementation claim.",
+    "Historical baseline failures remain failed/unwaived.",
+    "Directive dry-check receipts were written after preparation.json was frozen and are recorded here, not embedded there."
+  ]
+}

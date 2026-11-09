@@ -1841,3 +1841,26 @@ has been executed or accepted through this documentation change.
   contract/directive/characterization), mirroring the post-SESSION precedent.
   Umbrella stays started/local. No construction, later-family/P0/P1/TUI/full-refactor
   acceptance or push/PR/merge/release authority follows.
+
+
+## 2026-11-09T15:20:00+00:00 — MEMQ-001 proposed contract, directive and guarded preparation
+
+- `execution_phase: planning`; `validation_state: not_ready` for MEMQ-001.
+- Chuck Russell's “the uat was successful - all approved, proceed to next steps” and
+  “ok proceed” authorize preparation only. Source baseline `c5871054266da2340486d2043062c5fb95611c00`;
+  accepted DIAG/SESSION/pilot evidence and both dirty example hashes preserved.
+- Proposed [contract](memory-query-command-contract.md) SHA256 `d1177505c5e278da4a0dd685fa0f6d3e9428701508a51cdcc29a415ad18e0186`;
+  [CD-CMD-MEMQ-001](directives/CD-CMD-MEMQ-001-memory-queries.md) SHA256 `77ec6cf1279a067b6d5535292650fc589c33dbebb432e7253e20cdf927a90a19`.
+- [Preparation](validation/memory-queries/preparation.json), SHA256 `e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593`:
+  6 metadata records, 76 synthetic cases, baseline and replay captures from
+  separate clean exports identical (441 source files, 262 loaded modules);
+  related Chat 587 and Commands/cohort 498 passed; guard 18, comparator 14 and
+  2 source refusals. An earlier trial capture is labelled non-baseline.
+- PAR-023 characterization (AST, no live store): only `FakeMemoryController` defines
+  `ingested_documents`; production listing always reports none. MQ-D3 proposes
+  bounded Chat-only option R (persisted metadata through existing public
+  `get_all`) or option P (preserve, defer to CMD-F05). Validation and C-01
+  consolidation stay excluded. Other decisions: MQ-D1 kind refusal, MQ-D2
+  argument rule, MQ-D4 54-name export extension.
+- Next: exact maintainer approval naming the MQ-D3 option. No construction,
+  council, push/PR/merge/release or later-family work. Root debt unchanged/unwaived.

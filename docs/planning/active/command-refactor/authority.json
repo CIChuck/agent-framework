@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "DIAG-001 D1\u2013D3 and bounded aggregate VERIFIED, maintainer-reported UAT passed, and accepted by Chuck Russell",
+  "decision": "DIAG-001 accepted; MEMQ-001 contract and directive proposed, exact approval pending",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Accepted DIAG-001 closeout; MEMQ-001 planning preparation only (proposed contract/directive), no construction or delivery",
-  "product_code_authority": "DIAG-001 construction completed, independently verified and accepted. No new family construction or external delivery authority; MEMQ-001 requires exact contract/directive approval.",
+  "current_scope": "MEMQ-001 planning preparation complete; approval of exact contract/directive with MQ-D3 choice pending; no construction or delivery",
+  "product_code_authority": "No MEMQ product authority. DIAG-001 construction completed, verified and accepted. MEMQ-001 requires exact contract/directive approval, including the MQ-D3 option.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -944,5 +944,47 @@
     "decision": "DIAG-001 D1\u2013D3 and bounded aggregate VERIFIED, maintainer-reported UAT passed, and accepted by Chuck Russell",
     "current_scope": "Accepted DIAG-001 closeout; MEMQ-001 planning preparation only (proposed contract/directive), no construction or delivery",
     "product_code_authority": "DIAG-001 construction completed, independently verified and accepted. No new family construction or external delivery authority; MEMQ-001 requires exact contract/directive approval."
+  },
+  "memory_queries_preparation": {
+    "unit": "MEMQ-001",
+    "state": "proposed",
+    "requested_by": "Chuck Russell",
+    "instructions": [
+      "the uat was successful - all approved, proceed to next steps",
+      "ok proceed"
+    ],
+    "recorded_at": "2026-11-09T15:20:00+00:00",
+    "source_baseline": "c5871054266da2340486d2043062c5fb95611c00",
+    "contract": "memory-query-command-contract.md",
+    "contract_sha256": "d1177505c5e278da4a0dd685fa0f6d3e9428701508a51cdcc29a415ad18e0186",
+    "directive": "directives/CD-CMD-MEMQ-001-memory-queries.md",
+    "directive_sha256": "77ec6cf1279a067b6d5535292650fc589c33dbebb432e7253e20cdf927a90a19",
+    "preparation_evidence": "validation/memory-queries/preparation.json",
+    "preparation_evidence_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
+    "execution_phase": "planning",
+    "validation_state": "not_ready",
+    "design_approval": "not_granted",
+    "construction_approval": "not_granted",
+    "decisions_pending": {
+      "MQ-D1": "record kind mismatch refusal",
+      "MQ-D2": "existing non-string argument rule",
+      "MQ-D3": "list-ingested option R (bounded Chat-only repair, recommended) or P (preserve and defer)",
+      "MQ-D4": "extend two pinned export assertions 38 -> 54"
+    },
+    "lightweight_exemption": "Maintainer proceed authorizes planning/evidence/current-state preparation and guarded synthetic source characterization only; product/test/config/dependency/lock behavior cannot change.",
+    "council_after_each_deliverable": true,
+    "council_members": [
+      "GPT-6.1 Sol/high",
+      "GPT-6 Astra/high",
+      "Claude Opus 5.5/high"
+    ],
+    "accepted_diag": "approval/diagnostics-acceptance.md",
+    "delivery": "local only",
+    "counts": {
+      "metadata": 6,
+      "cases": 76,
+      "related_chat_tests": 587,
+      "commands_cohort_tests": 498
+    }
   }
 }
