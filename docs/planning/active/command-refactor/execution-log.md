@@ -1777,3 +1777,25 @@ has been executed or accepted through this documentation change.
   preserved. Root Ruff534, test_display conflict and registry format remain
   failed/unwaived. Remediator was the session that reviewed D2 round2 for Claude;
   the Claude council seat must be a fresh context. No acceptance/UAT/delivery.
+
+
+## 2026-11-09T04:34:53.513267+00:00 — DIAG round2 reconciled; docs-only cycle2 / round3
+
+- `execution_phase: validation`; `validation_state: in_review` for the status
+  correction and complete bounded aggregate. [Round2 reconciliation](validation/diagnostics/implementation/d3/council-round2-reconciliation.md)
+  preserves Sol CHANGES_REQUESTED9.6, Astra VERIFIED9.6, Claude CHANGES_REQUESTED9.4.
+- All3 independently closed runtime DIAG-D3-ASTRA-001 on80e2e14d, reproducing1991
+  owning passes, corrected closed builds and installed normal/optimized behavior.
+  Mandatory DIAG-D3-SOL-R2-001 and DIAG-D3-R2-CLAUDE-001 concern only current
+  README next-gate text and PAR header/six DIAG status cells. Those are refreshed
+  to completed amendment/runtime correction and pending docs review/acceptance.
+- [REM-CMD-DIAG-D3-002](remediation/REM-CMD-DIAG-D3-002-status-reconciliation.md)
+  bounds this mechanical status fix. Product/test/probe/approved authority and
+  artifact source28c544fa remain unchanged. Optional non-string test hardening
+  is deferred. Raw round2 reports and all391+460 evidence pairs are preserved.
+- Fresh Sol/Astra/Claude contexts assess the docs delta and complete current
+  aggregate using independently checked identical runtime bytes/raw receipts.
+  No rebuild or full suite repeat is warranted solely by this prose edit.
+  Baseline failures remain failed/unwaived. Dirty examples and ignored exports
+  stay byte/mode/time-identical. No cleanup, acceptance, UAT, delivery or broader
+  family/P0/P1/TUI authority is claimed.

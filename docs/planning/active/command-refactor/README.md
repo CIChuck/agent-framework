@@ -17,13 +17,14 @@ See [independent result](validation/VAL-CMD-FND-001-report.md) and
 [builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
 predates the separately approved pilot wiring work.
 `execution_phase: validation`; `validation_state: in_review` for the DIAG D3
-correction cycle1. [Council reconciliation](validation/diagnostics/implementation/d3/council-round1-reconciliation.md)
-recorded one reproduced mandatory compatibility finding; Chuck Russell then
-[approved](approval/diagnostics-context-evaluation.md) the exact [amendment](remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md).
-The bounded correction at `28c544fa` and its [evidence](validation/diagnostics/implementation/d3/correction-evidence.json)
-await fresh Sol/Astra/Claude delta and complete aggregate review. Round-1 builds
-and prior D1/D2 reports remain historical evidence; DIAG acceptance is pending.
-Ignored exports and dirty examples remain preserved. SESSION-001 remains accepted and verified.
+documentation correction (cycle 2 / council round 3) and complete bounded aggregate.
+[Round-2 reconciliation](validation/diagnostics/implementation/d3/council-round2-reconciliation.md)
+records all three reviewers closing the runtime finding. Amendment approval and
+runtime correction are complete; the remaining mandatory status text is corrected
+under [REM-CMD-DIAG-D3-002](remediation/REM-CMD-DIAG-D3-002-status-reconciliation.md).
+Product/test/probe bytes and artifact source `28c544fa` are unchanged. Fresh
+status/aggregate review and bounded human DIAG acceptance remain pending.
+Ignored exports and dirty examples are preserved. SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
 [Bounded SESSION acceptance](approval/session-acceptance.md) is recorded from Chuck Russell's
@@ -108,7 +109,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Decide the exact DIAG context-evaluation amendment; then bounded correction and fresh final aggregate council.
+**Next gate:** Reconcile fresh Sol/Astra/Claude documentation-correction and full bounded DIAG aggregate review (round 3), then bounded human DIAG acceptance.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

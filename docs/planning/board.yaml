@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Fresh Sol/Astra/Claude remediation-delta then complete bounded D3/DIAG aggregate council on frozen REM-CMD-DIAG-D3-001 correction before DIAG acceptance
+  next_gate: Reconcile fresh Sol/Astra/Claude documentation-correction and full bounded DIAG aggregate review (round 3), then bounded human DIAG acceptance.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -733,6 +733,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/verified-report.md
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/verified-report.md
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round1-reconciliation.md
+  - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round2-reconciliation.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2845,3 +2846,10 @@ events:
   action: froze approved DIAG D3 context evaluation correction for fresh council
   note: 28c544fa adds one typed context debug snapshot; 12/12 legacy rows, unfixed assertions fail, 9 mutants rejected, control539. Chat1338/Commands498/CLI155, 154 replayed artifacts, 8 installed probes, 50+4+10 refusals. No acceptance, UAT or delivery.
   evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/correction-evidence.json
+- task: friday-command-refactor
+  at: '2026-11-09T04:34:53+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG runtime closure; bounded docs-only round3
+  note: All3 closed runtime finding; Sol/Claude request only stale README/PAR status fixes. Current gates corrected, runtime bytes frozen. Fresh docs/aggregate review then human acceptance.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round2-reconciliation.md

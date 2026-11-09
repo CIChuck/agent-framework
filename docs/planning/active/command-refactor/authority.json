@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "REM-CMD-DIAG-D3-001 approved and bounded correction implemented; fresh Sol/Astra/Claude council pending",
+  "decision": "DIAG runtime finding closed by all3; bounded docs-only status correction in fresh round3 validation",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "DIAG D3 correction cycle1 validation/in_review; acceptance pending",
+  "current_scope": "README/PAR lifecycle correction and full bounded DIAG aggregate review; runtime source28c544fa frozen",
   "product_code_authority": "Original DIAG construction plus exact REM-CMD-DIAG-D3-001 amendment approved for its six bounded paths, probe and evidence; no acceptance or external delivery",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -766,7 +766,7 @@
     "state": "validation",
     "execution_phase": "validation",
     "validation_state": "in_review",
-    "current_deliverable": "D3 correction cycle1 awaiting fresh delta and complete aggregate council",
+    "current_deliverable": "D3 docs-only status correction cycle2 / council round3 and bounded aggregate review",
     "deliverable1": {
       "state": "verified",
       "round": 2,
@@ -827,7 +827,7 @@
     },
     "deliverable3": {
       "state": "in_review",
-      "round": 2,
+      "round": 3,
       "base": "d437a5dc601126ae0767cf6558ae63d214159c19",
       "aggregate_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
       "artifact_source": "28c544fa67e934f03c212aed39ba20802b500b13",
@@ -852,14 +852,15 @@
       "prebuild_extra_source_refusal": 1,
       "restored_copied_probes": 8,
       "acceptance": "not_granted",
-      "next_gate": "Fresh Sol/Astra/Claude remediation-delta then complete bounded D3/DIAG aggregate council",
-      "council": "validation/diagnostics/implementation/d3/council-round1.json",
-      "report": "validation/diagnostics/implementation/d3/council-round1-reconciliation.md",
+      "next_gate": "Reconcile fresh Sol/Astra/Claude documentation-correction and full bounded DIAG aggregate review (round 3), then bounded human DIAG acceptance.",
+      "council": "validation/diagnostics/implementation/d3/council-round2.json",
+      "report": "validation/diagnostics/implementation/d3/council-round2-reconciliation.md",
       "reviewed_candidate": "1d3b273b7797c72a868f259d095593a15a4e42b9",
       "mandatory_findings": [
-        "DIAG-D3-ASTRA-001"
+        "DIAG-D3-SOL-R2-001",
+        "DIAG-D3-R2-CLAUDE-001"
       ],
-      "findings_status": "implemented; fresh independent closure pending",
+      "findings_status": "Runtime finding independently closed by all3; documentation findings mechanically corrected, fresh closure pending",
       "proposed_amendment": "remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md",
       "proposed_amendment_sha256": "3078bb19195044212a115cb3f3f169d030af2b282154d4d336856b37c41fa865",
       "amendment_approval": "granted",
@@ -877,7 +878,19 @@
         "total": 1991
       },
       "correction_mutants_rejected": 9,
-      "correction_unchanged_control": 539
+      "correction_unchanged_control": 539,
+      "remediation_cycle": 2,
+      "runtime_finding_closed": "DIAG-D3-ASTRA-001",
+      "status_remediation": "remediation/REM-CMD-DIAG-D3-002-status-reconciliation.md",
+      "status_correction_base": "80e2e14d02484f6a2e95924ee431d43c6045a70e",
+      "status_correction_scope": "docs only; product/test/probe/artifact source unchanged",
+      "review_profile": "Fresh docs delta and full bounded aggregate; inspect actual runtime receipts against identical bytes; rerun runtime lanes only for drift or unresolved concern",
+      "current_source_tests": {
+        "Chat": 1338,
+        "Commands_cohort": 498,
+        "CLI": 155,
+        "total": 1991
+      }
     },
     "council_after_each_deliverable": true,
     "council_members": [

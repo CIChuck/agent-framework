@@ -1,12 +1,15 @@
 # DIAG-001 D3 — regression, artifacts and isolated installed proof
 
-Execution phase: validation. Validation state: in_review (correction cycle1).
-DIAG-D3-ASTRA-001 is addressed under the exact maintainer-approved
-[REM-CMD-DIAG-D3-001](../../../../remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md)
-([approval](../../../../approval/diagnostics-context-evaluation.md)). No unit
-acceptance, advancement or delivery is granted.
+Execution phase: validation. Validation state: in_review (documentation cycle 2,
+council round 3). [Round-2 reconciliation](council-round2-reconciliation.md)
+records all three closing the runtime finding, with mandatory stale-status fixes.
+[REM-CMD-DIAG-D3-002](../../../../remediation/REM-CMD-DIAG-D3-002-status-reconciliation.md)
+corrects those current gates only. Runtime/test/probe source stays `28c544fa`;
+actual corrected builds and their evidence stay frozen. Fresh documentation and
+full bounded aggregate conformance precede human acceptance. No acceptance,
+UAT completion or delivery is granted.
 
-## Correction cycle1 (current)
+## Preserved runtime correction cycle1 proof
 
 Corrected product/test/probe source: `28c544fa67e934f03c212aed39ba20802b500b13`.
 Only the six amendment paths changed outside planning documents, plus

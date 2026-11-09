@@ -1,3 +1,31 @@
+# DIAG-001 — documentation correction validation checkpoint
+
+Branch: `feature/command-retirement`
+Execution phase: validation
+Validation state: in_review (documentation cycle 2 / council round 3)
+
+[Round-2 reconciliation](validation/diagnostics/implementation/d3/council-round2-reconciliation.md):
+all three independently closed DIAG-D3-ASTRA-001. Sol 9.6 and Claude 9.4 requested
+only current-status corrections; Astra returned VERIFIED 9.6. The amendment is
+approved and the runtime correction is complete. Current product/test/probe
+source remains `28c544fa67e934f03c212aed39ba20802b500b13`.
+
+[REM-CMD-DIAG-D3-002](remediation/REM-CMD-DIAG-D3-002-status-reconciliation.md)
+corrects the README next gate and PAR header/six DIAG cells, with associated
+lifecycle/evidence updates only. No product/test/probe/configuration/lock or
+approved authority bytes change. Existing actual 1,991-suite/build/install
+receipts must be hash-verified against unchanged runtime; new runtime execution
+is not required solely for prose. Every current aggregate criterion still needs
+independent evidence and a fresh conformance decision.
+
+Next: reconcile fresh Sol/Astra/Claude docs-delta then complete bounded aggregate
+review, and only then propose bounded human DIAG acceptance. UAT remains unrun;
+root Ruff 534, test_display collection conflict and registry format remain
+failed/unwaived. Dirty examples and ignored exports stay preserved. Later
+families, P0/P1, full-refactor/TUI and delivery remain separate gates.
+
+### Preserved correction-cycle1 checkpoint
+
 # DIAG-001 — D3 context evaluation correction validation checkpoint
 
 Branch: `feature/command-retirement`
