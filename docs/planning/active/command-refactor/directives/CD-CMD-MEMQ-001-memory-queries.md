@@ -1,6 +1,6 @@
 # CD-CMD-MEMQ-001 — shared memory query commands
 
-Status: **approved with the bounded [directive-correction amendment](../approval/memory-queries-directive-correction.md)**; fresh directive-readiness council pending. Owner: Chuck Russell.
+Status: **approved with the bounded [cycle2 correction amendment](../approval/memory-queries-directive-correction2.md)**; fresh council pending at this correction freeze. Owner: Chuck Russell.
 Prepared 2026-11-09. Branch: `feature/command-retirement`. Unit: MEMQ-001.
 Preparation under the maintainer's “proceed” instructions changes planning and
 evidence only. The subsequent approval binds the exact
@@ -8,10 +8,13 @@ evidence only. The subsequent approval binds the exact
 test or probe implementation. The maintainer selected MQ-D3 option R and then
 “The edited version”, including the record-projection/schema clarification and
 completion of its evidence and hash references. His later “lets apply the
-corrections and iterate” authorizes only the four findings in
-[REM-CMD-MEMQ-DIR-001](../remediation/REM-CMD-MEMQ-DIR-001-readiness.md),
-their exact verification and a fresh council. Product D0/D1 waits for that
-readiness result; this correction does not start construction.
+corrections and iterate” authorizes bounded correction and fresh council: the
+original four findings under [REM-CMD-MEMQ-DIR-001](../remediation/REM-CMD-MEMQ-DIR-001-readiness.md),
+then the exact-union allowance and current-gate reconciliation under
+[REM-CMD-MEMQ-DIR-002](../remediation/REM-CMD-MEMQ-DIR-002-union-and-gates.md).
+Product D0/D1 waits for readiness reconciliation. This is correction cycle2;
+remaining mandatory findings after its review return to the maintainer. This
+correction does not start construction.
 
 ## Authority and execution base
 
@@ -43,13 +46,14 @@ may hide behind it.
 
 | Input relative to packet | SHA-256 |
 | --- | --- |
-| `memory-query-command-contract.md` | `b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2` |
+| `memory-query-command-contract.md` | `93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda` |
 | `validation/memory-queries/record-projection-characterization.json` | `a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d` |
 | `validation/memory-queries/preparation.json` | `e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593` |
 | `remediation/REM-CMD-MEMQ-DIR-001-readiness.md` | `eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540` |
 | `validation/memory-queries/format_debt.py` | `3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751` |
 | `validation/memory-queries/format-baseline.json` | `7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2` |
-| `validation/memory-queries/verify_directive_corrections.py` | `7bd5cf6524e982093c007f0d48a4b0f76ed55370aeb9556cca57cc0d5c6a6bb9` |
+| `validation/memory-queries/verify_directive_corrections.py` | `83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5` |
+| `remediation/REM-CMD-MEMQ-DIR-002-union-and-gates.md` | `e9664c8806fae913e67b671c275f1920c1b4901d68194278c6a46f18a5f3ce9f` |
 | `approval/diagnostics-acceptance.md` | `1a3eecabf3b96bc456f1595933f5f2a8cba13810bb51bdb3ba6803d25e22b5ca` |
 | `approval/diagnostics.md` | `8aeb991d742a38d717c49d488b34d6a5800b57fbec97b3d4a461e2027caa1cb2` |
 | `approval/diagnostics-context-evaluation.md` | `6a752d7977afb5e07c5212c8b361aba63b0c680f87a738a0a9fcd8bd01ce18de` |
@@ -91,7 +95,7 @@ Paths are relative to repository root; no other product path may change.
 | `packages/friday-commands/tests_commands/test_memory_queries.py` (new) | MQ-01, MQ-02, MQ-D1, MQ-D2 neutral/standalone tests. |
 | `packages/friday-commands/tests_commands/fixtures/memory-query-metadata.json` (new) | Exact preparation metadata fixture. |
 | `packages/friday-commands/tests_commands/test_session_views.py` | Append only the sixteen MQ-01 names to the literal list in `test_session_specs_and_factory_are_immutable`. |
-| `packages/friday-commands/tests_commands/test_diagnostics.py` | In `test_diagnostic_specs_exports_and_factory` only: insert one local `import friday_commands.memory_queries as memory_queries_module`; append sixteen names to the API literal; append thirteen MQ-01 models to the existing `contracts` owner tuple; append one final three-name `memory_queries_module` row after `shared`; change `38` to `54`. Exact names/order follow MQ-D4; every other AST statement remains unchanged. |
+| `packages/friday-commands/tests_commands/test_diagnostics.py` | In `test_diagnostic_specs_exports_and_factory` only: insert `import friday_commands.memory_queries as memory_queries_module` as its first statement; append sixteen names to the API literal; append thirteen MQ-01 models to the existing `contracts` owner tuple; append one final three-name `memory_queries_module` row after `shared`; change `38` to `54`. Additionally, only in `_check_closed_union_retains_old_variants_and_refuses_nested_values`, append the six exact `contracts` payload attributes to the existing `expected` set literal, in MQ-D4 order (12 to 18). Preserve equality, old members, loops and invocation. Every other AST statement remains unchanged. |
 | `packages/friday-chat/src/friday_chat/commands/memory_queries.py` (new) | Narrow typed Chat port, metadata helper, projections, pure renderers, exact outcome adapter and once-only invocation. |
 | `packages/friday-chat/src/friday_chat/commands/memory.py` | Four compatibility wrapper bodies; private formatting/query helpers may move to the new module. Public `preview_text`, `record_value` and `__all__` unchanged. |
 | `packages/friday-chat/src/friday_chat/commands/registry.py` | `_entities_handler` and `_list_ingested_handler` wrapper bodies, imports, metadata helper and only tuple entries 3, 9, 10, 11, 12, 16; an import made unused may be removed. All other AST/order/handler-map definitions unchanged. |
@@ -105,8 +109,8 @@ Paths are relative to repository root; no other product path may change.
 
 That is fifteen package paths under option P and eighteen under option R. Every
 other existing source/test/fixture keeps its bytes. Do not add skips/xfails or
-change old test bodies, parameters, decorators or assertions beyond the two
-named MQ-D4 extensions.
+change old test bodies, parameters, decorators or assertions beyond the exact
+MQ-D4 export-test and closed-union-helper extensions.
 
 No metadata/dependency/lock/config change. No `friday-memory`, `friday-runtime`,
 `friday-cli` or other framework package change. No change to `/ingest`, its
@@ -271,7 +275,7 @@ Materialize both new package fixtures from preparation `fixtures.*.text` at thei
 exact target paths, checking the embedded digests. No new test reads this active
 planning packet. Record the original file/test/assertion inventory before edits.
 - **AST audits:**
-  - The two old tests must equal the baseline with only their exact MQ-D4 extensions removed. For the diagnostic test, remove the one local `memory_queries_module` import, sixteen appended API names, thirteen appended `contracts` owner names, final three-name owner row and the 38-to-54 count change. For the SESSION test, remove only the sixteen API names. Require exact ordered 54 bindings before reversal, and reject any other statement or assertion change.
+  - The two old tests must equal the baseline with only their exact MQ-D4 extensions removed. For the diagnostic test, remove the one local `memory_queries_module` import, sixteen appended API names, thirteen appended `contracts` owner names, final three-name owner row and the 38-to-54 count change. For the SESSION test, remove only the sixteen API names. Require exact ordered 54 bindings before reversal. Separately, remove only the six appended `contracts` payload attributes from the existing expected-set literal in `_check_closed_union_retains_old_variants_and_refuses_nested_values`; require exact baseline helper AST, old members, equality, loops and invocation. The union must have exactly 18 members. Reject any other statement or assertion change.
   - The contracts AST differs only by the MQ-01 alias, models and six union/whitelist members.
   - Registry parser/register/dispatch/admission/handler-map and the other 33 tuple entries stay AST-identical.
 - **Option R:** the `memory_views`, `runtime` and `adapters` changes are only the named additions; every other definition is unchanged.

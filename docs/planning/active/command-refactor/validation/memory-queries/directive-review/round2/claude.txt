@@ -1,0 +1,145 @@
+# MEMQ-001 directive readiness — council round 2, correction cycle 1 — seat: claude
+
+Reviewer: Claude Opus 5.5 (fresh context, read-only, no nested delegation).
+Candidate `0001357262bd86d17ce4f9a43c7bf98cc9115534` on `feature/command-retirement`.
+Remediation delta `76b949b2..00013572` reviewed first, then the bounded aggregate `c5871054..00013572`.
+Request SHA-256 `f70b872b…6af16842` and manifest `e748efe0…dc73` were verified before reading.
+Scratch: `/tmp/memq-directive-review-claude-XtLh5bHl` (all writes, caches, basetemps, exports and receipts are here).
+
+## Verdict
+
+**CHANGES_REQUESTED: directive/design readiness only.**
+
+All four round-1 corrections (CR-01..04) are resolved. One fresh mandatory finding remains:
+
+- MQ-01 requires six new `FoundationData` members.
+- An accepted DIAG test asserts that union's exact 12-member set.
+- The directive forbids editing that test, yet requires D1 "Full Commands/cohort passes".
+
+So D1 is a guaranteed stop. This verdict covers readiness only. It is not a verdict on product, construction, UAT, acceptance or delivery.
+
+## Fresh findings
+
+### MEMQ-DIR-R2-CLAUDE-001 (mandatory): the MQ-01 union expansion breaks a preserved exact-union assertion
+
+**Source**
+
+- `packages/friday-commands/tests_commands/test_diagnostics.py:195-203`, in `_check_closed_union_retains_old_variants_and_refuses_nested_values`, asserts `set(get_args(FoundationData.__value__)) == expected`.
+  - `expected` holds exactly the 7 DIAG payload types plus `NoData`, `HelpData`, `ExitData`, `HistoryData` and `SessionClearedData`.
+  - It runs as node `test_diagnostic_models_and_closed_union[closed_union_retains_old_variants_and_refuses_nested_values-0]` (parametrized from `DG_T01_CASES`, lines 899-903).
+
+**Requirement conflict**
+
+- Contract MQ-01 (lines 48-51) adds six alternatives to `FoundationData` and the exact-type whitelist.
+- Directive allowlist (line 94) permits `test_diagnostics.py` changes only inside `test_diagnostic_specs_exports_and_factory`.
+- Lines 106-109 say "Do not … change old test bodies … or assertions beyond the two named MQ-D4 extensions."
+- Line 278 says "retain all old test definitions and assertion counts."
+- Line 124 requires D1 "Full Commands/cohort passes".
+- The directive, contract, remediation, amendment and round-1 reports never mention this assertion. A grep for `closed_union` / `get_args` / `FoundationData.__value__` finds only the MQ-T01 node name.
+
+**Evidence (executed in private copies; no repository writes)**
+
+1. I added six frozen MQ-01 payload stubs to `FoundationData` in an export of `c5871054`.
+   - The unchanged control copy passed the node: 109 passed.
+   - The changed copy failed it: `AssertionError` at test_diagnostics.py:203.
+2. I then built a full synthetic D1 surface:
+   - 13 model stubs, 6 union members, a stub `memory_queries` module with the 3 factory names, and 16 appended `__all__` names;
+   - MQ-D4 applied exactly as written, by source edit, to both old tests.
+
+   Results on the whole `packages/friday-commands/tests_commands` suite (494 nodes):
+
+   | Copy | Passed | Failed | Notes |
+   | --- | --- | --- | --- |
+   | Unchanged control | 491 | 3 | The 3 `test_diagnostics_standalone[*]` failures are environment-only: they require the pinned DIAG runner, which I did not use for these direct-path runs. |
+   | Synthetic D1 | 490 | 4 | The same 3, plus exactly the closed-union node. |
+
+   The MQ-D4-extended tests passed with 54 exact bindings. So the only failure caused by the directive is this preserved assertion.
+
+**Impact**
+
+A conforming builder hits "new failing check" (stop list, line 441) at D1 and must stop for a bounded decision. The directive is therefore not executable as approved. This is the same class of defect as round-1 MEMQ-DIR-CLAUDE-001, applied to the union instead of the export list.
+
+**Minimal remedy (document-only, maintainer-approved)**
+
+Extend MQ-D4, or add a sibling decision, to permit exactly one more edit: inside `_check_closed_union_retains_old_variants_and_refuses_nested_values` only, union `expected` with the six MQ-01 payload alternatives.
+
+- Use the already-imported `contracts` module attributes (for example `contracts.MemoryUnavailableData`), so no new import is needed.
+- Keep the five foundation types, the 7 DIAG types, the acceptance loop and the nested-refusal loop unchanged.
+
+Then:
+
+- update the contract MQ-D4 text, the directive allowlist row, and the D1 AST-audit reversal list;
+- add the edit to `verify_directive_corrections.py` with a reversal control and an unrelated-change refusal;
+- re-pin the approval, authority and board.
+
+A private synthetic full-suite proof like mine above is recommended. No product files change.
+
+### Advisories (not mandatory, no scope expansion)
+
+- **A1.** The MQ-D4 local import position is unspecified. The pinned verifier requires it at `body[0]` (my counterexample showed a second-statement placement is rejected). Saying "first statement of the function" in the directive would remove the ambiguity.
+- **A2.** Format-debt identity is (lexical owner, before-text, after-text) with multiplicity. A baseline fragment deleted and re-created with identical text in the same owner is net-neutral and tolerated. `<module>` is a broad owner in registry.py (8 baseline fragments). This is an acceptable, documented residual, backed by the separate AST/allowlist audit.
+- **A3.** The verifier's MQ-D4 control builds its own transform and then reverses it, which is partly circular. I independently wrote the source-level edit. It reverses to the baseline AST and is AST-identical to the verifier's transform. Weakening `is`→`==`, reordering appended names, and moving the 13 models into a separate row are all rejected.
+
+## Prior findings: CR matrix (independently re-assessed)
+
+| CR | IDs | Disposition | Evidence |
+| --- | --- | --- | --- |
+| CR-01 | MEMQ-DIR-SOL-001, MEMQ-DIR-ASTRA-001 | **Resolved** | Directive lines 387-403 name four exact pinned sources. The DIAG `retained_session_neutral_behavior` has a 38-name `expected_exports`; +16 equals `__init__.__all__`+16, the exact ordered 54 (verifier executed). SESSION `neutral_behavior` (24) is excluded explicitly. All four bodies reverse to their pinned AST after rename; `assert False` additions are rejected. Feasibility: `api`/`shared` are function-local imports (no glue collision); fixtures resolve via `args.source`; `accepted_session` resolves `parents[1]/session/installed_probe.py`, which also works from `validation/memory-queries/`. No other surface-pinning assertion (union/38/41) exists in the retained bodies. |
+| CR-02 | MEMQ-DIR-CLAUDE-001 | **Resolved** (export assertion as scoped) | Contract lines 169-179 and directive lines 94 and 274 permit exactly: the local import, the 16-name API append, 13 models appended to the existing first (`contracts`) owner tuple, a final 3-name `memory_queries_module` row after the last (`shared`) row, and 38→54. Verified against actual source (contracts is row 0, shared is the last row). Synthetic exact-54 binding identities pass, and the unrelated-assertion refusal works. In the full synthetic suite the extended tests pass. The adjacent union defect is new finding R2-CLAUDE-001. |
+| CR-03 | MEMQ-DIR-CLAUDE-002 | **Resolved** | Debt is labelled failed/unwaived (directive lines 37-42 and 302-312). My `record` on a clean `c5871054` export reproduced `format-baseline.json` byte-for-byte (`7475cd91…`): ruff 0.14.10, config `d1e8ff05…`, all 5 source hashes current, fragments memory 3 / registry 24 / memory_views 0 / runtime 2 / adapters 47. `check` on HEAD: no new debt. `record` overwrite is refused (FileExistsError). Whole-file `ruff format --check` on the five files still exits 1. The other existing changed Python files (`contracts.py`, `__init__.py`, `test_session_views.py`, `test_diagnostics.py`) pass formatting at baseline, so "must pass completely" is feasible. My counterexamples: a defect inside an existing debt owner is rejected; a same-owner duplicate created by a real source edit is rejected; an unformatted module insert is rejected; a formatted wrapper rewrite of `memory_handler` and a formatted module insert are accepted. Both new tools pass `ruff check` and `ruff format --check`. |
+| CR-04 | MEMQ-DIR-CLAUDE-003 | **Resolved** | Board 15:20Z event is byte-identical to `76b949b2`. The execution log is strictly append-only (old bytes are a prefix). The appended board event and log entry explain the error. Authority keeps `recorded_at_original_erroneous`, uses 14:25Z with `recorded_at_basis` stating "existence by, not exact start/finish". Independent chronology check: preparation raw receipt mtimes are 14:09:38–14:18:37Z; commit `342bf85c` and its reflog entry are 14:25:00Z; approval 14:49:49Z; `76b949b2` 14:52:09Z; supplemental 14:36Z. The next-gate text is identical across board, dashboard, packet README, authority (×3), log, tactical plan and next-phase. |
+
+## Original criteria: MR matrix
+
+| MR | Result | Basis |
+| --- | --- | --- |
+| MR-01 Authority/option R scope | Pass | Approval chain intact. Original approval `0831ccbe` is preserved as historical. The amendment's 8-row table and the directive's 29-row table both match current bytes. Authority bindings match. No non-doc change since `c5871054`. No acceptance or delivery is inferred. |
+| MR-02 Closed schema/API | **Pass with defect impact** | Thirteen models, six alternatives and sixteen ordered exports are specified, and MQ-D4 is now explicit. But the six-alternative expansion conflicts with the preserved exact-union assertion (R2-CLAUDE-001). |
+| MR-03 Neutral ownership/invocation | Pass (design) | MQ-02 order, single availability check, MQ-D1/MQ-D2 refusals, and entities selection are specified and enforceable via MQ-T03..T05. |
+| MR-04 Current-source compatibility | Pass | 76 cases plus 6 metadata records reproduced twice from separate clean exports (76 exact). The 4 supplemental cases were reproduced exactly with the embedded program. |
+| MR-05 Option R feasibility | Pass (source-only) | Public `collection_manager.short_term/long_term.get_all(limit=None, where=…)` is already used by `query_memory_records`. `/ingest` writes `type="ingested_file"`, `source`, `description` and `chunk_*`. The only `MemoryController` implementers in src are Fake and Framework. No framework change is needed. |
+| MR-06 Chat integration | Pass | Registry has 39 entries; indices 3/9/10/11/12/16 = memory/entities/insights/summaries/meta/list-ingested. No Chat test enumerates `FoundationData`. The only existing `/list-ingested` test uses the fake controller, which is preserved. |
+| MR-07 Test/mutation/acceptance design | **Fail** | MQ-T01..T14 and the mutation list are traceable. But the D1 gate "Full Commands/cohort passes" plus "no old assertion change" is unsatisfiable as written (R2-CLAUDE-001). |
+| MR-08 Executable instructions | Pass except the D1 feasibility above | All 7 shell blocks pass `zsh -n` and `bash -n`. The D0 materialize/selftest/capture/compare blocks and the new baseline-format block were executed with own paths and passed. The D5 table is feasible. Future D1–D3 artifacts are not demanded. |
+| MR-09 Evidence integrity | Pass | Embedded/raw pairs: correction1 33/33 text and raw; preparation 29 embedded hash-valid, of which 25 with raw paths match (23 receipts + 2 programs); supplemental 4/4. 33+25+4 = 62 supplied raw files, all identical at both boundaries. My verifier outputs equal the controller's (`6491b3ba…`, `8f5590a6…`). Round-1 bytes are self-consistent (manifest pin `d5479057…`; three seat reports hashed in its evidence). |
+| MR-10 Isolation/bounded conclusion | Pass | Start and end boundaries are identical (see below). No product, UAT, acceptance or delivery verdict is given. |
+
+## Executed checks (own scratch, own labels and paths; no supplied argv replayed)
+
+- **Integrity.** Request/manifest hashes, then at both boundaries: logical index hash of exact `git ls-files -s -z` (computed before status), status, HEAD, branch, staged diff, 61 pins, 1,255 protected non-docs (including 12 symlink targets), 2 dirty examples, 3 ignored-export entries and 62 supplied raw identities (mode/size/mtime/ctime/sha). All matched. `GIT_OPTIONAL_LOCKS=0` was set on every Git child.
+- **Harness.** Pinned `prepare.py` (`788f6f8f…`) was run with the supplied wheelhouse (read-only, no fetch) into my scratch. The guard selftest passed (18 refusals).
+- **D0.** Preparation programs were materialized with hash checks. Comparator selftest: 14 refusals. Baseline capture and compare: 6 metadata + 76 exact. An independent replay export gave 76 exact, with identical cases and metadata (only provenance paths differ). Extra-source and changed-byte captures were refused before observations were written.
+- **Supplemental.** The embedded `characterize_records.py` (`77bdd730…`) reproduced 4/4 cases.
+- **Correction controls.** `verify_directive_corrections.py` (hash-verified private copy) was run with root = the frozen workdir and a fresh own output directory. It passed, with outputs equal to the controller's.
+- **Format.** Directive block 6 (record, byte-compare, check) was run with own `MEMQ_SCRATCH`/`MEMQ_SOURCE`, plus the overwrite refusal, the baseline whole-file format check (exit 1, failed/unwaived), the per-file baseline format status, and my format counterexamples.
+- **Tools.** Ruff check and format --check on both new tools passed.
+- **Board and docs.** `friday-dev-board.py validate` passed (36 tasks); `render --check` reports the dashboard is current; documentation lifecycle passed (912 files). `git diff --check` passed over the worktree and over `c5871054..HEAD`.
+- **Independent controls.**
+  - The union counterexample and the full synthetic D1 suite (above).
+  - MQ-D4 reversal of my own source edit, with weakening/reorder/re-row/moved-import counterexamples.
+  - Retained-probe glue and free-name analysis.
+  - Chronology from reflog and raw mtimes.
+  - Approval/authority/directive hash tables, and historical-byte preservation since `76b949b2` and `c5871054`.
+
+## Inspected only (not re-executed)
+
+- Original preparation receipts for related Chat 587 and Commands/cohort 498.
+- Round-1 seat reports, used only to identify findings; their verdicts were not inherited.
+- Controller board/docs/preservation receipts (compared to my own runs).
+- Accepted DIAG/SESSION/pilot evidence.
+
+## Not required and not run
+
+- Root Ruff 534 and the root `test_display` conflict (6,929 collected) remain failed/unwaived baseline debt and were not rerun.
+- Future D1/D2/D3 suites, mutations, builds, wheels and installed proof.
+- DIAG/SESSION/pilot re-captures.
+
+## Baseline debt and limits
+
+- Whole-file formatting still fails in `memory.py`, `registry.py`, `runtime.py` and `adapters.py`. This is failed/unwaived and is not called passing.
+- My direct-path pytest runs (needed to import private source copies) cannot satisfy `test_diagnostics_standalone`'s pinned-runner requirement. Those three environment failures appear identically in the unchanged control and are excluded from the differential.
+- The synthetic D1 surface uses stubs. It proves the infeasibility of the old assertion, not the correctness of any future implementation.
+
+## Advisory rubric score
+
+**8.6 / 10.** The corrections are precise and well evidenced, but one unaddressed preserved assertion makes D1 infeasible. The score does not override the mandatory finding.

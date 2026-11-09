@@ -1,6 +1,6 @@
 # MEMQ-001 — memory query commands contract
 
-Status: **approved with the bounded [directive-correction amendment](approval/memory-queries-directive-correction.md)**; fresh directive-readiness council pending.
+Status: **approved with the bounded [cycle2 correction amendment](approval/memory-queries-directive-correction2.md)**; fresh council pending at this correction freeze.
 Prepared 2026-11-09 on `feature/command-retirement` at
 `c5871054266da2340486d2043062c5fb95611c00` (accepted DIAG-001 closeout).
 Read this document, then [CD-CMD-MEMQ-001](directives/CD-CMD-MEMQ-001-memory-queries.md).
@@ -11,7 +11,9 @@ selects MQ-D3 option R. His later “The edited version” approves the clarifie
 record projection/schema and completion of its evidence and hash references.
 The original approval binds its historical bytes. Chuck Russell subsequently
 instructed “lets apply the corrections and iterate”, authorizing the four
-bounded readiness corrections and fresh council recorded in the amendment.
+bounded readiness corrections and fresh councils recorded in the original and
+cycle2 amendments. The latter adds only the required union-test allowance and
+current-gate reconciliation identified in round2.
 The amendment binds the corrected bytes; Option R does not need to be chosen again.
 Product D0/D1 waits for the corrected directive-readiness result.
 
@@ -167,16 +169,31 @@ Two accepted tests pin the exact 38-name surface: the literal list in
 `test_session_views.py::test_session_specs_and_factory_are_immutable` and, in
 `test_diagnostics.py::test_diagnostic_specs_exports_and_factory`, the literal
 list, owner table and binding count. **Decision MQ-D4:** in that diagnostic
-test only, permit exactly one local
+test only, permit exactly one local import as its first statement:
 `import friday_commands.memory_queries as memory_queries_module`, append the
 sixteen names to the API literal, append the thirteen model names in MQ-01 order
 to the existing `contracts` owner tuple, append one final
 `(memory_queries_module, ("MEMORY_QUERY_SPECS", "MemoryQueryPort",
 "build_memory_query_handlers"))` row after `shared`, and change the binding
 count from `38` to `54`. In the SESSION test only, append the sixteen API
-names to its literal. Every other statement, owner and assertion is unchanged.
+names to its literal. Beyond those export edits and the following exact
+union-helper extension, every statement, owner and assertion is unchanged.
 The AST audit reverses exactly these edits and must recover the baseline; no
 model re-export workaround changes the declared ownership.
+
+In the same diagnostic test file, additionally permit **only** appending
+`contracts.MemoryUnavailableData`, `contracts.MemoryStatisticsData`,
+`contracts.MemoryRecordsData`, `contracts.MemoryQueryFailedData`,
+`contracts.GraphData`, `contracts.IngestedDocumentsData`, in this order, to the
+existing set literal on the right side of `expected = ... | { ... }` in
+`_check_closed_union_retains_old_variants_and_refuses_nested_values`.
+The exact-union assertion remains equality and now expects all **18** members
+(the original 12 plus the required six). Preserve the old alternatives,
+acceptance loop, nested-value refusal loop, assertion count, parameters and node
+invocation. No import is added for this helper; use the existing `contracts`
+module. Reverse exactly those six appended attributes to recover the original
+helper AST; a missing, extra or nested union member must still fail the exact
+assertion. No subset checks or other old test edits are permitted.
 The accepted DIAG and SESSION installed probes stay frozen; their 38/24-name
 assertions are intentionally obsolete for this approved expansion. Do not weaken
 any assertion to a subset.
@@ -432,7 +449,7 @@ pagination, consolidation or TUI work.
 | MQ-D1 | Refuse a service result whose record kind differs from the request (`ValueError`). | Required; two rows become declared refusals. |
 | MQ-D2 | Keep the existing shared-request rule: direct non-string argument members raise `TypeError` before reads, including commands that ignored args; string subclasses accepted. | Required; the parser cannot produce such members. |
 | MQ-D3 | `/list-ingested`: Option R (bounded Chat-only repair); Option P remains an alternative. | Option R selected and the revised contract/directive approved by the maintainer. |
-| MQ-D4 | Extend the two accepted export-surface assertions from 38 to 54 names. | Required for the additive API. |
+| MQ-D4 | Extend the two accepted export-surface assertions from 38 to 54 names and the exact closed-union helper expected set from 12 to 18 members. | Required for the additive API. |
 
 Stop for any other incompatible legacy value and request a contract decision.
 Do not silently stringify, repair or broaden these exceptions.

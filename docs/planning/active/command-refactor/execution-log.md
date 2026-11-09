@@ -1921,3 +1921,32 @@ has been executed or accepted through this documentation change.
   [Correction report](validation/memory-queries/directive-review/correction1/report.md)
   retains actual receipts and an excluded initial lint failure. Whole-file
   baseline formatting still fails as inventoried; no waiver or product verdict.
+
+
+## 2026-11-09T15:59:12.462665+00:00 — MEMQ directive correction cycle2; exact union and all current gates
+
+- Continuing maintainer instruction: “lets apply the corrections and iterate”.
+  [REM-CMD-MEMQ-DIR-002](remediation/REM-CMD-MEMQ-DIR-002-union-and-gates.md)
+  and [cycle2 amendment](approval/memory-queries-directive-correction2.md)
+  bind the remaining mechanical corrections after round2 CHANGES_REQUESTED.
+- Sol/Claude identified the same required-union versus unchanged-test conflict.
+  Permit only six exact contracts attributes appended to the old helper's
+  expected set, retaining equality, all old alternatives, loops and invocation.
+  Add AST reversal and call-assertion controls for exact/missing/extra/nested sets.
+- Astra identified a stale lower current README implementation gate and phase
+  wording. Both unqualified next gates now agree; verify the entire index and
+  reject an injected stale gate. The local import position is clarified to match
+  the existing verifier. No other test permission or product behavior changes.
+- Original board/log history, source, dirty examples, ignored exports, previous
+  approval/remediation/evidence and accepted prior-family inputs are preserved.
+- `execution_phase: validation`; `validation_state: in_review` for round3
+  directive/design readiness only. No inherited result or product D0/D1 start.
+  This is the second correction cycle; unresolved mandatory findings escalate.
+- **Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.
+
+- Local controls pass: exact12/18 union membership, four canonical helper-call
+  assertion refusals, AST reversal/unrelated-change refusal, all current README
+  gates and injected stale-gate refusal, plus retained54-binding/probe/format
+  controls. Verification tools pass lint/format; original product files preserved.
+  [Cycle2 controller evidence](validation/memory-queries/directive-review/correction2/report.md)
+  awaits fresh independent round3. No prior score or verdict carries forward.

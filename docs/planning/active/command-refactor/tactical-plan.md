@@ -1,43 +1,35 @@
-# MEMQ-001 — directive readiness correction cycle 1
+# MEMQ-001 — directive readiness correction cycle2
 
 Branch: `feature/command-retirement`
 Execution phase: validation (directive/design only)
-Validation state: in_review (fresh council round 2 pending); product D0/D1 not started
+Validation state: in_review (fresh council round3 pending); product D0/D1 not started
 
-Chuck Russell instructed “lets apply the corrections and iterate” after
-[council round 1](validation/memory-queries/directive-review/round1/report.md)
-returned CHANGES_REQUESTED (Sol 8.7, Astra 8.5, Claude 8.3). The bounded
-[correction approval](approval/memory-queries-directive-correction.md) binds the
-[contract](memory-query-command-contract.md) (`b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2`) and
-[directive](directives/CD-CMD-MEMQ-001-memory-queries.md) (`3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a`).
-The [remediation](remediation/REM-CMD-MEMQ-DIR-001-readiness.md) addresses all
-four mandatory issues: D5 copy sources, MQ-D4 exact owner edits, baseline
-formatting classification, and append-only preparation chronology correction.
-Option R and all product behavior/scope decisions remain unchanged.
+Chuck Russell's continuing “lets apply the corrections and iterate” authorizes
+[REM-CMD-MEMQ-DIR-002](remediation/REM-CMD-MEMQ-DIR-002-union-and-gates.md) after
+[round2](validation/memory-queries/directive-review/round2/report.md) returned
+CHANGES_REQUESTED (Sol8.8, Astra9.1, Claude8.6). The exact
+[cycle2 amendment](approval/memory-queries-directive-correction2.md) binds the
+[contract](memory-query-command-contract.md) (`93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda`) and
+[directive](directives/CD-CMD-MEMQ-001-memory-queries.md) (`4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00`).
+Only the six-member exact-union expected-set allowance, complete README gate
+reconciliation, associated controls and dependent pins change in this cycle.
+The first-statement import clarification matches the existing verifier.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.
+**Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.
 
-Fresh reviewers assess the approved-remediation delta first, then the entire
-bounded MEMQ directive/design aggregate. No old verdict carries forward. Two
-unsuccessful correction cycles require escalation. This does not substitute for
-the later D1/D2/D3 implementation councils or final maintainer acceptance.
+The original four technical corrections remain in place. Astra's stale lower
+README gate is confirmed directly, despite the other seats' state summaries;
+all current index gates must agree. Original chronology events/log entries and
+all previous reports/approvals/evidence remain unchanged and are historical.
+Option R behavior and product scope do not expand. [Cycle2 controls](validation/memory-queries/directive-review/correction2/report.md)
+are local controller evidence awaiting fresh independent assessment.
 
-The preparation event stamped 15:20Z is erroneous. Preparation receipts precede
-the proposal commit at 14:25Z; the original event/log bytes are preserved and a
-new correction explains the order. That commit timestamp is evidence that the
-proposal existed by 14:25Z, not an invented exact preparation start/finish.
-
-Original [preparation](validation/memory-queries/preparation.json), 76 cases,
-fixtures, [four supplemental observations](validation/memory-queries/record-projection-characterization.json)
-and historical [planning checks](validation/memory-queries/planning-checks.json)
-retain their frozen bytes and provenance. Their older hash/status tables are
-historical snapshots, not current corrected bindings. Source preparation is not
-product implementation or independent candidate conformance.
-
-Root Ruff534, test_display collection conflict and existing format debt remain
-failed/unwaived. Product files, accepted prior-family evidence, dirty examples
-and ignored exports remain unchanged. The umbrella remains started/local.
-No source implementation, UAT, acceptance, push/PR/merge/release is included.
+Fresh reviewers dispose the current delta first, then all earlier findings and
+the full bounded directive aggregate. After this second correction cycle, any
+unresolved mandatory findings return to Chuck Russell. D0/D1 stays stopped.
+The umbrella remains started/local. Root/format debt remains failed/unwaived;
+all product files, dirty examples, ignored exports and accepted prior-family
+inputs remain preserved. No UAT, acceptance, next family or delivery follows.
 
 ### Preserved DIAG acceptance checkpoint
 

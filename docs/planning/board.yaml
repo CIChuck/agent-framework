@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.
+  next_gate: Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -736,6 +736,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round2-reconciliation.md
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/verified-report.md
   - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2890,3 +2891,10 @@ events:
   action: recorded bounded MEMQ directive correction cycle1 and corrected preparation chronology
   note: 'Maintainer: lets apply the corrections and iterate. Four mandatory readiness issues corrected; fresh Sol/Astra/Claude delta then aggregate review pending before D0/D1. Original 15:20Z preparation event is erroneous: proposal existed by commit342bf85c at14:25Z, before approval14:49Z. Original event retained; no exact preparation start/finish inferred. No product edits, acceptance or delivery.'
   evidence: docs/planning/active/command-refactor/approval/memory-queries-directive-correction.md
+- task: friday-command-refactor
+  at: '2026-11-09T15:59:12.462665+00:00'
+  actor: Codex
+  actor_role: agent
+  action: 'recorded MEMQ directive correction cycle2: exact-union allowance and current-gate reconciliation'
+  note: 'Continuing maintainer instruction: lets apply the corrections and iterate. Fresh round3 delta then full directive review required; escalate remaining mandatory findings after cycle2. Original reports/history and product scope remain preserved; D0/D1 stopped.'
+  evidence: docs/planning/active/command-refactor/approval/memory-queries-directive-correction2.md

@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery. |
 
 ## Completed
 

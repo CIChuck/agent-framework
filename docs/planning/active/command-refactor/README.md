@@ -21,18 +21,19 @@ D1–D3 and its bounded aggregate at `be72a1e8`. [Final verification](validation
 records Sol/Astra/Claude VERIFIED9.7 each, no open mandatory findings,1,991 source
 passes and exact corrected artifact/probe source `28c544fa`. [Acceptance handoff](validation/diagnostics/implementation/d3/acceptance-handoff.md)
 was answered: Chuck Russell reported successful manual UAT and [accepted DIAG-001](approval/diagnostics-acceptance.md);
-the [roadmap](uat/friday-chat-user-acceptance-roadmap.md) records maintainer-reported results. MEMQ-001 is in planning with construction approved: the revised
+the [roadmap](uat/friday-chat-user-acceptance-roadmap.md) records maintainer-reported results. MEMQ-001 is in directive/design validation with bounded construction authority recorded: the revised
 [contract](memory-query-command-contract.md) and [directive](directives/CD-CMD-MEMQ-001-memory-queries.md)
 retain the original [approval](approval/memory-queries.md) and the current
-[bounded correction amendment](approval/memory-queries-directive-correction.md).
-Council round 1 returned CHANGES_REQUESTED; the four document corrections are
+[cycle2 correction amendment](approval/memory-queries-directive-correction2.md).
+Council rounds 1 and 2 returned CHANGES_REQUESTED. The original four corrections are
 recorded in [REM-CMD-MEMQ-DIR-001](remediation/REM-CMD-MEMQ-DIR-001-readiness.md).
 MEMQ `execution_phase: validation`; `validation_state: in_review` for fresh
-round-2 directive/design readiness only. Product D0/D1 has not started.
+round-3 directive/design readiness only (correction cycle2). Product D0/D1 has not started.
 [Correction controls and preservation](validation/memory-queries/directive-review/correction1/report.md)
-are controller evidence awaiting that independent result.
+are historical controller evidence; current union and complete-index gate controls
+are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/report.md).
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.
+**Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -120,7 +121,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows.
+**Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

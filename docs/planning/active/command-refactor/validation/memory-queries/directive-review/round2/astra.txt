@@ -1,0 +1,90 @@
+CHANGES_REQUESTED — MEMQ-001 directive/design readiness only
+
+Fresh Astra seat, council round 2, correction cycle 1. Reviewer: GPT-6 Astra/high, 2026-11-09. Workdir `/Users/chuckrussell/Dev/gendev/agent-framework`, branch `feature/command-retirement`, candidate `0001357262bd86d17ce4f9a43c7bf98cc9115534`.
+
+The corrected D5 provenance, MQ-D4 ownership edits and formatting profile are executable and bounded. One current packet gate still contradicts the readiness stop. This is a document-readiness finding, not a missing implementation artifact or a product failure. No implementation, acceptance, advancement or delivery authority follows.
+
+Review order was the approved remediation delta `76b949b2e621e7a44ddec6ed527784e781696c8c..0001357262bd86d17ce4f9a43c7bf98cc9115534` first, then bounded aggregate `c5871054266da2340486d2043062c5fb95611c00..0001357262bd86d17ce4f9a43c7bf98cc9115534`. These touch 24 and 28 documentation paths respectively, with no product changes. Full diff artifacts are `remediation.diff` and `aggregate.diff` in this report directory. Prior reports supplied finding identities only; no earlier verdict is carried forward.
+
+Mandatory fresh finding
+
+1. **MEMQ-DIR-R2-ASTRA-001 — Medium — The current packet index still directs construction before readiness reconciliation.**
+
+   Source: `docs/planning/active/command-refactor/README.md:123` states: “Next gate: Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1”. The same current index at line 35 requires fresh directive/design reconciliation before D0/D1 and says product implementation remains stopped. Line 24 also retains “MEMQ-001 is in planning”, while lines 30–31 correctly identify validation/in_review.
+
+   Requirement: request CR-04 requires current gate/pin agreement; MR-01 requires a coherent authority chain. `REM-CMD-MEMQ-DIR-001-readiness.md:15` requires board/dashboard/docs consistency. `CD-CMD-MEMQ-001-memory-queries.md:430` requires the current packet/index/tactical/next-phase/log/authority/board/dashboard to agree at every gate. The bounded amendment and directive lines 10–14 stop product D0/D1 pending readiness review. Board line 714 and current authority agree with that stop.
+
+   Evidence: the lower README line is present in frozen candidate bytes, is labelled a current “Next gate”, and is not within a historical checkpoint. The remediation diff updates the top checkpoint but leaves this lower gate unchanged. Board validate (36 tasks), render --check and documentation lifecycle (912 Markdown files) all pass; those checks do not establish semantic agreement among two prose gates in one index.
+
+   Impact: the repository's operational entry point gives two incompatible next actions. The canonical board still controls, so this does not create authority to start construction, but the required readiness reconciliation is incomplete.
+
+   Minimal remedy: update or remove the stale lower current gate and reconcile the line-24 phase wording with validation/in_review. Keep historical log/event entries unchanged. Re-pin affected current evidence and freeze a fresh bounded candidate for review. No product change, broad cleanup or new approval scope is needed to address this finding.
+
+No additional mandatory findings or scope-expanding suggestions are raised.
+
+Prior-finding disposition
+
+| Prior finding | Disposition | Independent evidence |
+| --- | --- | --- |
+| CR-01 — Sol/Astra D5 copy source | Resolved | Directive 384–405 names DIAG `retained_session_neutral_behavior` with 38 names, SESSION `chat_behavior`, DIAG `neutral_diagnostics` and `chat_diagnostics`; only the specified rename and 16-name extension are allowed. Executed correction controls prove ordered API54, reversal and refusal of added statements for all four copied behaviors. Original SESSION 24-name function is explicitly excluded. |
+| CR-02 — MQ-D4 owner/import extension | Resolved | Contract MQ-D4 and directive 94/274 permit the local import, 16 API additions, 13 additions in contracts, final three-name factory owner row and 54 count. Synthetic binding identities total 54; reversal recovers baseline AST; unrelated assertion is refused. An additional reviewer control rejects swapped appended names. |
+| CR-03 — unclassified baseline formatting | Resolved | Directive 299–346 and amendment explicitly retain failed/unwaived whole-file debt. Private export reproduces exact pinned JSON bytes, including source/config/version/diffs. Current no-new-debt gate passes. Unchanged, line shifts, formatted additions, new defect and multiplicity controls pass. Independent same-text/different-owner control is rejected. Both new tools pass Ruff lint and format. |
+| CR-04 — chronology/current-state reconciliation | Partially resolved; remains open | Old 15:20Z board event and log heading preserved; log is byte-prefix append-only against prior candidate. Proposal commit `342bf85cabc79d8aad4b3e50fa3c9b2729efcbe5` has 09:25:00-05:00 author/committer timestamps, supporting the 14:25Z existence bound. Authority explains that it is not an exact preparation time. Current pins agree, but index gate agreement fails under fresh finding 001. |
+
+Readiness criteria
+
+“Pass” below assesses the design and executable preparation requirements only.
+
+| Criterion | Outcome | Assessment |
+| --- | --- | --- |
+| MR-01 | Changes requested | Exact original option R approval and subsequent correction amendment bind their respective bytes. Board remains started/local; 18 package paths under R and explicit deferrals are bounded. Current index gate contradicts the stop: finding 001. |
+| MR-02 | Pass | MQ-01 closes 13 frozen/slotted models, six payload variants and 16 additive exports; defaults, exact types, ordered validation, snapshots and caps are specified. Corrected MQ-D4/D5 controls establish a feasible precise extension without weakening accepted checks. |
+| MR-03 | Pass | MQ-02 specifies request/execution/name validation before reads, exact bool availability once, one await, fixed record kinds, case-sensitive graph selection, exceptions/cancellation identity and explicit MQ-D1/D2 refusals. MQ-T03–06 bind enforcement. |
+| MR-04 | Pass | Current memory handlers and registry handlers support prescribed lazy reads and ordering. Plain records use text only; meta verification precedes text/ISO/confidence, complete is read only on the empty-meta branch, and graph projection follows reads. Both 76-case captures and all four supplemental cases reproduce. Stateful/failure cases remain future implementation tests, not claims proved by these basic captures. |
+| MR-05 | Pass, source feasibility only | Existing ingestion writes source/description/type and chunk metadata; current adapter already uses public short/long-term `get_all(limit=None, where=...)` with gather and exception classification. R specifies persisted grouping/count/order, re-ingestion totals, promotion, warning/cancel policy, fake insertion order and exclusions for decayed/source-file reads. Actual repaired ingestion/listing remains future MQ-T14 and installed proof. |
+| MR-06 | Pass | MQ-07 fixes six wrappers/tuple slots, fixed spec identity, original args, one fresh factory/await/outcome consumption and authoritative custom/renamed handlers. MQ-T08/T12 and installed proof require distinct injected outcomes to expose a duplicate engine. Metadata/41 names/3 aliases stay bound. |
+| MR-07 | Pass | MQ-T01–14 cover schema, neutral order, source projection, purity, real synthetic app and R. Mutation credit requires call-phase assertion failures and canonical origins, with unchanged controls and old assertion preservation. D1/D2/D3 fresh review gates are explicit. Future tests are not demanded now. |
+| MR-08 | Pass | Seven shell blocks pass zsh syntax checks. Materialization, guard, capture/comparator, correction controls, lint/format and exact new baseline-format block run with private paths. Corrected D5 retained transforms are feasible; future package suites, bundle/install proof and absent MEMQ implementation artifacts were not executed or counted as passing. |
+| MR-09 | Pass | 80 embedded records verified across current preparation, supplemental, correction and planning evidence; 76 have raw paths and all exact raw/embedded pairs match. Original preparation includes all 23 receipts plus two programs, two fixtures and baseline/replay. Independent executions are distinguished below. |
+| MR-10 | Pass | Request/manifest, 61 pins, HEAD/branch/logical index/staging, 1,255 protected entries, two dirty entries, three ignored-export identities and 62 supplied raw identities match at both boundaries. All review writes remained in this private scratch. No implementation or acceptance verdict is implied. |
+
+Executed checks
+
+All generated output is under `/private/tmp/memq-directive-review-astra-s7d2y1jp`. `executed.json` records the main command sequence. `prepared/<label>.json` and `.log` record guarded child argv/exits/output, including later `docs-corrected`, `independent-controls`, `format-baseline` and `format-current` runs. `run_checks.py`, `extra_controls.py`, `provenance.py` and `boundary.py` are the reproducible reviewer drivers. No supplied receipt command was replayed verbatim.
+
+The interpreter was the existing repository `.venv/bin/python`, using the pinned offline/frozen/no-sync harness and supplied eight-wheel wheelhouse as read-only input. Every Git child inherited `GIT_OPTIONAL_LOCKS=0`; Python used bytecode suppression. No mypy run or external cache was used. Ruff used `--no-cache`; all runner caches, exports and generated receipts were private.
+
+| Executed check | Result |
+| --- | --- |
+| Request SHA256 before other work | Exact required f70b872bd0622d5eafeefeca2124071e58bce7cc6a978df01fdf3f644af16842 |
+| Offline harness preparation/startup | Exit 0; private wheel and helper materialization |
+| Guard selftest | Exit 0; 18 refusal controls plus allowed loopback/private SQLite controls |
+| Comparator selftest | Exit 0; 14 negative controls |
+| Clean baseline capture, then replay | Exit 0 each; six metadata records and 76 exact rows each, zero declared refusals/superseded rows at original baseline |
+| Extra source and changed source byte controls | Exit 1 each for exact source-inventory/byte-drift reasons before product imports |
+| Correction verifier | Exit 0; API54 bindings, AST reversal, unrelated assertion refusal, four retained behaviors and six format controls |
+| Independent reordered API / changed lexical owner controls | Exit 0; both invalid cases rejected |
+| New tools Ruff check / format --check | Exit 0 each; both tools formatted |
+| Format inventory record and current comparison | Exit 0; exact pinned inventory bytes and no new debt |
+| Literal new baseline-format shell block | Exit 0 with private D0 export/output; exact-byte comparison succeeds |
+| Existing five-file whole-file format gate | Exit 1: memory.py, registry.py, runtime.py and adapters.py would reformat; memory_views.py formatted. Failed/unwaived. |
+| Board / dashboard | Exit 0; 36 tasks; dashboard current |
+| Documentation lifecycle | Correct invocation exit 0; 912 Markdown files |
+| All seven shell blocks | zsh -n exit 0 for each |
+| Supplemental characterization | Exit 0; all four observations structurally identical to pinned observation JSON |
+| Worktree and full bounded-range git diff --check | Exit 0 each |
+| Start and end identity audits | No mismatches |
+
+One reviewer command initially named nonexistent `scripts/check-docs.py` and exited 2. It earned no verification credit. The correct `scripts/check-documentation-lifecycle.py` subsequently passed, with its own receipt. The initial reviewer identity utility needed correction to follow the manifest's symlink-content hash convention and omit file hashes for directories; the completed start and end audits match exactly. Neither utility attempt wrote to supplied paths.
+
+Evidence provenance and preservation
+
+`provenance.json` records each verified entry: preparation 29 embedded records/25 raw pairs; supplemental 4/4; correction1 33/33; historical planning checks 14/14. Total 80/76. Hashes bind actual bytes including trailing newlines. All 23 preparation receipts are included in the 29-record preparation count. The four records without raw paths are checked by embedded digest. Original preparation and supplemental bytes are unchanged across remediation. Historical approval/planning/round1 pins were not asserted as current technical bindings.
+
+The complete JSON manifest was parsed, all fields/entries consumed in the boundary audit, and every pinned file read and hashed. Manifest SHA256 is `e748efe0921e747a16cf74517f3bd1d2f7375b4f6013599955d96c83b41fdc73`. Both `start.json` and `end.json` record logical index `78fa78eedaa7bdcc9568388a55e084b70e1d7087d395be6a1a9d7bcb01ef871b`, computed from exact `git ls-files -s -z` bytes BEFORE status. Staging is empty; only the two supplied Chat example files remain dirty. Modes, types, sizes, timestamps, links and content hashes match the supplied manifest where specified. No repository mutation, cleanup, nested delegation or delivery occurred.
+
+Limits and advisory score
+
+The original related Chat 587 / Commands 498 test claims and historical build/install results were inspected receipts, not rerun suites. Accepted prior-family results provide provenance, not correctness proof for this candidate. Root Ruff534 and root collection conflict remain historical failed/unwaived debt; no broad rerun was required. Future MEMQ product tests, mutation witnesses, wheels and installed behavior have not been built or validated by this review. Option R feasibility is based on actual public API and ingestion-source inspection, not a newly implemented repair.
+
+Advisory score: **9.1/10** — technical contract and bounded verification 3.8/4; reproducibility/provenance 3/3; authority/state clarity 1.3/2; preservation/scope control 1/1. The score does not override mandatory finding 001. Return the remaining document reconciliation to the controller; do not start implementation or another review/remediation loop from this report.

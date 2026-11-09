@@ -7,6 +7,7 @@ import ast
 import copy
 import hashlib
 import json
+import re
 import runpy
 from pathlib import Path
 from types import SimpleNamespace
@@ -28,6 +29,14 @@ MODELS = (
 )
 FACTORY = ("MEMORY_QUERY_SPECS", "MemoryQueryPort", "build_memory_query_handlers")
 ADDITIONS = MODELS + FACTORY
+OUTCOMES = (
+    "MemoryUnavailableData",
+    "MemoryStatisticsData",
+    "MemoryRecordsData",
+    "MemoryQueryFailedData",
+    "GraphData",
+    "IngestedDocumentsData",
+)
 PACKET = Path("docs/planning/active/command-refactor")
 
 
@@ -162,6 +171,115 @@ def rejected(action, message: str) -> None:
     raise ValueError("Control was not rejected: " + message)
 
 
+def union_transform(original: ast.FunctionDef) -> ast.FunctionDef:
+    node = copy.deepcopy(original)
+    values = assignment(node, "expected").value.right
+    require(isinstance(values, ast.Set) and len(values.elts) == 5, "Old expected set")
+    values.elts.extend(
+        ast.Attribute(
+            value=ast.Name(id="contracts", ctx=ast.Load()), attr=name, ctx=ast.Load()
+        )
+        for name in OUTCOMES
+    )
+    return ast.fix_missing_locations(node)
+
+
+def reverse_union(changed: ast.FunctionDef) -> ast.FunctionDef:
+    node = copy.deepcopy(changed)
+    values = assignment(node, "expected").value.right
+    require(isinstance(values, ast.Set) and len(values.elts) == 11, "New expected set")
+    for value, name in zip(values.elts[-6:], OUTCOMES, strict=True):
+        require(
+            isinstance(value, ast.Attribute)
+            and isinstance(value.value, ast.Name)
+            and value.value.id == "contracts"
+            and value.attr == name,
+            "Unexpected union member/order/owner",
+        )
+    del values.elts[-6:]
+    return node
+
+
+def union_controls(root: Path, out: Path) -> dict:
+    path = root / "packages/friday-commands/tests_commands/test_diagnostics.py"
+    name = "_check_closed_union_retains_old_variants_and_refuses_nested_values"
+    original = function(path, name)
+    changed = union_transform(original)
+    require(shape(reverse_union(changed)) == shape(original), "Union AST reversal")
+    bad = copy.deepcopy(changed)
+    bad.body.append(ast.Assert(test=ast.Constant(False)))
+    rejected(
+        lambda: require(
+            shape(reverse_union(bad)) == shape(original), "Union behavior drift"
+        ),
+        "unrelated union-helper assertion",
+    )
+    namespace = runpy.run_path(str(path))
+    old_types = tuple(namespace["get_args"](namespace["FoundationData"].__value__))
+    require(len(old_types) == 12, "Original union size")
+    markers = {name: type(name, (), {}) for name in OUTCOMES}
+    contracts = SimpleNamespace(**(vars(namespace["contracts"]) | markers))
+
+    def invoke(node: ast.FunctionDef, members: tuple) -> None:
+        union = members[0]
+        for member in members[1:]:
+            union = union | member
+        private = namespace | {
+            "contracts": contracts,
+            "FoundationData": SimpleNamespace(__value__=union),
+        }
+        module = ast.Module(body=[copy.deepcopy(node)], type_ignores=[])
+        exec(compile(ast.fix_missing_locations(module), str(path), "exec"), private)
+        private[name]()
+
+    invoke(original, old_types)
+    expanded = old_types + tuple(markers.values())
+    invoke(changed, expanded)
+    failures = []
+    nested = namespace["contracts"].DiagnosticField
+    for label, node, members in [
+        ("unchanged-helper-with-expanded-union", original, expanded),
+        ("missing-member", changed, expanded[:-1]),
+        ("extra-member", changed, expanded + (type("Extra", (), {}),)),
+        ("nested-member", changed, expanded[:-1] + (nested,)),
+    ]:
+        try:
+            invoke(node, members)
+        except AssertionError as error:
+            frames = []
+            trace = error.__traceback__
+            while trace is not None:
+                code = trace.tb_frame.f_code
+                if code.co_filename == str(path) and code.co_name == name:
+                    frames.append(trace.tb_lineno)
+                trace = trace.tb_next
+            require(frames == [203], "Need canonical helper call assertion witness")
+            failures.append(
+                {"control": label, "file": str(path), "call_assertion_line": 203}
+            )
+        else:
+            raise ValueError("Union control was not rejected: " + label)
+    (out / "union-helper-transform.py").write_text(ast.unparse(changed) + "\n")
+    return {
+        "original_members": 12,
+        "expanded_members": 18,
+        "unchanged_and_extended_controls": "passed",
+        "AST_reversal": "passed",
+        "unrelated_behavior_rejected": True,
+        "call_assertion_witnesses": failures,
+        "limit": "Synthetic alias membership only, not implemented MQ model/whitelist proof",
+    }
+
+
+def current_gates(text: str, expected: str) -> None:
+    gates = re.findall(r"^\*\*Next gate:\*\* (.+)$", text, re.M)
+    require(
+        bool(gates) and all(gate == expected for gate in gates),
+        "Conflicting README gate",
+    )
+    require("MEMQ-001 is in planning" not in text, "Stale current MEMQ phase")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("root", type=Path)
@@ -172,6 +290,17 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     require(not any(out.iterdir()), "Use empty scratch")
     packet = root / PACKET
+    union_result = union_controls(root, out)
+    authority = json.loads((packet / "authority.json").read_text())
+    expected_gate = authority["memory_queries_preparation"]["next_gate"]
+    index_text = (packet / "README.md").read_text()
+    current_gates(index_text, expected_gate)
+    rejected(
+        lambda: current_gates(
+            index_text + "\n**Next gate:** stale implementation gate\n", expected_gate
+        ),
+        "additional stale README gate",
+    )
     original = function(
         root / "packages/friday-commands/tests_commands/test_diagnostics.py",
         "test_diagnostic_specs_exports_and_factory",
@@ -294,6 +423,8 @@ def main() -> None:
         "scope": "document correction controls; no product implementation",
         "status": "passed",
         "diagnostic_bindings": len(bindings),
+        "union_controls": union_result,
+        "all_current_README_gates": "agree; injected stale gate rejected",
         "diagnostic_and_session_AST_reversal": "passed",
         "unrelated_assertion_rejected": True,
         "retained_probe_functions": probe_checks,
