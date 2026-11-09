@@ -1,0 +1,57 @@
+{
+  "outcome": "VERIFIED",
+  "candidate": "ccf5471b441d6299c55776b60d58a23430b3bd1a",
+  "scratch": "/private/tmp/memq-d2-r3-sol-qrnetocx",
+  "mandatory_findings": [],
+  "closed": [
+    "MEMQ-D2-CLAUDE-001",
+    "MEMQ-D2-ASTRA-001"
+  ],
+  "score": 9.5,
+  "artifacts": [
+    {
+      "path": "/private/tmp/memq-d2-r3-sol-qrnetocx/start-boundary.json",
+      "sha256": "b688e2175d1fce18361987c66a9c273c77b58b50fd19a95b5fc6df203e6c1eb4"
+    },
+    {
+      "path": "/private/tmp/memq-d2-r3-sol-qrnetocx/end-boundary.json",
+      "sha256": "b688e2175d1fce18361987c66a9c273c77b58b50fd19a95b5fc6df203e6c1eb4"
+    },
+    {
+      "path": "/private/tmp/memq-d2-r3-sol-qrnetocx/normative-pins.json",
+      "sha256": "10e62e4be04364f984388f34823a7c04cf068e698dc2fa18ab2b5c4a39eb3452"
+    },
+    {
+      "path": "/private/tmp/memq-d2-r3-sol-qrnetocx/pairs.json",
+      "sha256": "d1ed277ae8c03dee17891c62eb6f7dcc927c56cc96026106d201f95c1d3f9ae7"
+    },
+    {
+      "path": "/private/tmp/memq-d2-r3-sol-qrnetocx/ledgers.json",
+      "sha256": "dc4662073e92fdf2183acc04dc411a73162edd95d80a63c8491800b898b0e7e6"
+    },
+    {
+      "path": "/private/tmp/memq-d2-r3-sol-qrnetocx/executed.json",
+      "sha256": "7d6c6de7c2aba64fd0ca9e97cc1a8ded7ab1d07725610365fa7a073a6acdb339"
+    },
+    {
+      "path": "/private/tmp/memq-d2-r3-sol-qrnetocx/semantic.json",
+      "sha256": "c56592e1759f5b1bd9393627b48e675536141d3934c311384ca290d79c974f22"
+    },
+    {
+      "path": "/private/tmp/memq-d2-r3-sol-qrnetocx/origins.json",
+      "sha256": "e00247d34517097959cf4fdbc5312f3275cb4626ea68d6f2227dcf2639070300"
+    },
+    {
+      "path": "/private/tmp/memq-d2-r3-sol-qrnetocx/receipts.json",
+      "sha256": "8f805d6d5bd6acf8f79976cbdc3d7da18db21c380262cee236071b3d8a6ac754"
+    },
+    {
+      "path": "/private/tmp/memq-d2-r3-sol-qrnetocx/ast-audit.json",
+      "sha256": "362bac94ad469dc1dcec66744c057f16eb41c4a32b3785c3035b105017b97385"
+    },
+    {
+      "path": "/private/tmp/memq-d2-r3-sol-qrnetocx/report.md",
+      "sha256": "d4fbc74981b03e5bb6ed84b46311c8b33ba3a5a26605694dd1552cd652f9d182"
+    }
+  ]
+}

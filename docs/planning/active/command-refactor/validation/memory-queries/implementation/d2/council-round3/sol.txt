@@ -1,0 +1,104 @@
+# MEMQ-001 D2 correction-cycle2 council round3 — Sol
+
+**VERIFIED** for the restoration delta and full bounded D2 aggregate, including retained neutral D1 interaction. Advisory score **9.5/10**. No open mandatory finding. This result grants no acceptance, D3 advancement or delivery; the controller must reconcile all seats.
+
+Seat: GPT-6.1 Sol/high, fresh independent read-only review, 2026-11-09. Shared-checkout READ-ONLY exception expressly supplied by the requester. Workdir /Users/chuckrussell/Dev/gendev/agent-framework, branch feature/command-retirement, candidate ccf5471b441d6299c55776b60d58a23430b3bd1a. Unchanged runtime source 3ed1d58ad8cc1e79522495da5cf19091185402d8. Review order: REM002 0ee49a700f4b92234f6448c52d144ac156c1c700..candidate first; D2 39661e870affaf7abb160df9da53e53dfe94c822..candidate next, with retained D1 aggregate from c5871054266da2340486d2043062c5fb95611c00.
+
+## Mandatory findings
+
+1. **MEMQ-D2-CLAUDE-001 — CLOSED on current bytes.** The backlog file equals its 9db8311e Git blob byte-for-byte and independently hashes to b8021069f2752074ac7fb6a25d9d41055749b161d7cd18b0c49f14eded35daa8. All 30 normative input hashes match independently (normative-pins.json). REM-CMD-MEMQ-D2-002-restore-frozen-backlog.md, “Named finding and exact fix,” explicitly withdraws and supersedes REM001's CMD-F05 permission. The UAT correction removes only the unsupported CMD-F05 defect-tracking attribution; its cumulative delta retains explicit-description setup and MQ-UAT-10 instructions. FU-009 is unchanged in this correction. The original failed reports and correction1 evidence remain historical; none supplies a current verdict.
+2. **MEMQ-D2-ASTRA-001 — CLOSED independently.** authority.json:996 now identifies the projection/protocol and option R implementation at 3ed1d58a, with correction2 review pending. The packet README, board/dashboard, tactical plan, next-phase, D2 README and latest execution-log gate consistently await correction2 council reconciliation before D3. Historical gates are retained as checkpoints. The execution log is byte-prefix append-only relative to both round1 and round2.
+3. **MEMQ-D2-SOL-001 — no new mandatory finding issued.** Every mandatory criterion below has current source/authority and inspected actual evidence support. There is no automatic remediation loop. Any remaining mandatory issue identified in council reconciliation returns to the maintainer under the second-cycle rule.
+
+## Authority and restoration
+
+The request was SHA256-verified before its complete contents were read:
+269a57ba40aa305baef85ff1275e6531d5e2546ababa23720bb04b0de8f096bf.
+The full manifest was hashed before JSON traversal:
+ba7a46481ee4e53cec9a77532b7944818434ebc0c539f482e330c87ebbed076d.
+All manifest groups were completely traversed and every entry's content/stat identity checked, rather than sampling the first displayed page.
+
+Authority: AGENTS.md; repository engineering, independent-validation and lifecycle policies; the option R approval, technical contract and directive, current amendment; REM002; board and current packet. Contract SHA256 93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda; directive 4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00. The 30 normative table inputs, including preparation, supplemental projection characterization and accepted prior-family artifacts, each have an expected/actual row in normative-pins.json.
+
+Current delta contains only documentation and evidence. Git comparison of candidate against source3ed1d58a, round1 9db8311e and round2 0ee49a70 shows no non-doc changes. D2 product changes stay within the Chat files and fixture/test permitted by the directive, plus package README documentation. Neutral source/tests/API, framework/ingestion/configuration/dependencies/lock remain unchanged across D2. The supplied AST scope audit was inspected, reconstructed within own scratch and executed there; its reversals recover the original adapter/views/runtime and registry AST, including all other 33 tuple entries, parser, admission, dispatch and handler mappings. Helper source text and wrapper signatures are preserved. This reconstructed audit is supporting evidence; current implementation and tests were also inspected directly.
+
+## CR-D2 matrix
+
+| Criterion | Result | Current evidence and assessment |
+|---|---|---|
+| CR-D2-01 | PASS | Implemented-status sentence at authority.json:996; current gates consistently pending round3 reconciliation; append-only history preserved. |
+| CR-D2-02 | PASS | Docs-only delta; three non-doc Git identity comparisons empty; 30/30 pins and 147/147 pairs exact; narrow cumulative UAT setup/MQ-UAT-10 delta and removed CMD-F05 attribution; no ingest repair or waiver. |
+| CR-D2-03 | PASS | Fresh admin checks pass; direct current source/authority/test review and actual suite, capture, mutant, origin, static and lock receipts assessed. Alternate launcher failures remain distinct. |
+| CR-D2-04 | PASS | Two complete boundaries: all 2790 grouped entries match; exact logical index before status; exports, locator, dirty files and supplied artifacts preserved. Exactly one own scratch. |
+| CR-D2-05 | PASS | Exact b8021069 restoration from 9db8311e; explicit REM001 permission withdrawal; prior failures preserved; UAT/FU-009 workaround retained. |
+
+## MD2 matrix
+
+| Criterion | Result | Evidence and independent assessment |
+|---|---|---|
+| MD2-01 | PASS | D1 reconciliation precedes D2; inspected directive allowed paths and actual aggregate. Scope AST reversals recover baseline; non-doc source3ed1d58a identity holds. No neutral, ingest/framework, dependency/lock or unrelated runtime drift. |
+| MD2-02 | PASS | Six shared metadata mappings preserve 41 canonical/3 aliases/help; registry has 39 entries with only 3/9/10/11/12/16 projected. AST reversal plus frozen metadata/capture comparison covers unchanged entries and dispatch. |
+| MD2-03 | PASS | Six fixed wrappers call invoke_memory_query; request construction precedes port construction, uses original args/fixed spec; fresh factory, one awaited shared handler and exact adapter consume result. Tripwire, renamed/custom handler and six injected-outcome assertions inspected. |
+| MD2-04 | PASS | Statistics service/transcript awaits and Exception conversion precede context/session reads as before; cancellation escapes. Eight sections/24 metrics, one-time bool/float/string/preview/suffix formatting, sorted unique warnings. Named tests and warning/zero/suffix/double-format mutants support it. |
+| MD2-05 | PASS | Plain records read text only; meta verification concat precedes preview/ISO/confidence formatting with original repeated accesses. Empty-meta complete captured lazily, distinct from warnings; 100 cap and 160/80 previews. Tests exercise stateful/raising values; four supplemental output/event cases match. Two MQ-D1 refusals preserve pre-refusal events. |
+| MD2-06 | PASS | Exact first lowercase nodes selection/name join; availability first; entity then optional relationship await before projection. record_value preserves 0/False/None semantics; caps, separator, empty behavior, bad-record failure timing and cancellation identities covered. |
+| MD2-07 | PASS | Option R adds only declared Chat views/protocol/fake and adapter method/helper. Existing short/long get_all limit=None/type filter with gather(return_exceptions=True); source/description grouping, actual chunk counts, None-first ordering, re-ingest/promotion, malformed/per-store warnings and cancellation. No decayed/source/ingest reads or repairs. |
+| MD2-08 | PASS | Pure adapter accepts exact CommandOutcome/no-error/no-effects and exactly six payload types; subclasses/other variants rejected. Renderers use prepared display facts and preserve defaults/newline bytes without services or raw-object formatting. |
+| MD2-09 | PASS | MQ-T07..14 assertions inspected; 52-case unchanged mutation control passes. All 20 current mutants have actual named CALL AssertionError witnesses with stable canonical origins. Retained 599 neutral/cohort,1390 Chat,155 CLI and fast616/sourcefast117 receipts pass. Setup/KeyError/product exceptions excluded from mutation credit. |
+| MD2-10 | PASS | Independent data comparison verifies MEMQ68+2+6 twice, from two 443-source-file Git-identical exports; DIAG68 exact+4 approved refusal rows, SESSION25 and pilot196. Four supplemental cases exact. Guard18/comparer14 and pre-import extra/changed-source refusals inspected. |
+| MD2-11 | PASS | All147 pair groups exact, including94 builder pairs. Actual static15/lint/new-format/no-new-debt and lock214 receipts assessed. Raw four-file format failures and paired nullable-ingest TypeError remain failed/unwaived. All20 UAT cases NOT RUN; D3 excluded. |
+| MD2-12 | PASS | Both complete boundaries match request, manifest, HEAD, branch, index, stage/status, untracked/ignored listing and all grouped file identities. All deliberate writes/caches/output remain in own scratch. No edit/repair/delegation/advancement/delivery. |
+
+## MQ matrix
+
+All rows refer to the current package-local test_command_memory_queries.py, supplemented by actual raw runtime evidence; these are inspected runtime executions, not newly executed pytest runs.
+
+| Criterion | Result | Effective mandatory coverage |
+|---|---|---|
+| MQ-T07 | PASS | test_memory_query_metadata_and_frozen_cases: fixture hash, six metadata rows,41/3,39 tuple,76 cases split68/2/6; retained family observations checked. |
+| MQ-T08 | PASS | test_memory_query_once_only_delegation: six parametrizations, parse count/args identity/fixed spec, distinct injected outcomes, direct wrappers, context tripwire, renamed/custom handlers. Ignored-result/legacy/double-query mutants rejected. |
+| MQ-T09 | PASS | test_memory_statistics_projection_order_and_failures: normal/failure/store-cancel/transcript-cancel/pending/format-once; exact warnings/states/order/format once. Named actual assertion witnesses for warning dedupe/order,zero and suffix drift. |
+| MQ-T10 | PASS | test_memory_record_projection_and_rendering:3 kinds x5 modes; unused-field tripwire,160/80 preview,100 cap, empty incomplete meta, None/present-empty, one-pass IDs, repeated accesses/concat order, raising format/date/status controls. Supplemental4 exact. |
+| MQ-T11 | PASS | test_entities_projection_and_rendering:9 modes including uppercase/name/nodes, pending/error/cancel/cap/bad-record, read-before-projection and formatting. Graph-order/case/nodes/cap mutants have actual assertion witnesses. |
+| MQ-T12 | PASS | test_memory_query_adapter_refusals_and_purity: unsupported alternatives/error/effects/subclass controls and no second service/format; exact output/defaults/newlines. |
+| MQ-T13 | PASS | test_memory_query_real_app_sequence: synthetic real app, conversational turn, six queries, ingest/list/history/clear/cls/q, order/finalization/cleanup/client closure. No human UAT credit. |
+| MQ-T14 | PASS | test_ingested_listing_reads_persisted_metadata: six modes, real disposable store/local embeddings, single/multi chunks,re-ingest,promotion,metadata grouping/None order; source-open/stat and decayed tripwires, partial-store warning/cancel and fake-order controls. |
+
+## Commands executed here versus inspected receipts
+
+**Actually executed here:** request/manifest SHA256, Git logical inventory before status, status/HEAD/branch/staged/untracked/ignored reads; complete boundary snapshots and hashes; 30 normative hashes; all147 pair comparisons; all722 reviewer ledger hashes; source/runtime identity diffs; restoration/D2/full diff reads; fresh board validate (36 tasks), render --check, lifecycle (931 Markdown files); four diff --check lanes (worktree, restoration, D2 and full unit); reconstructed AST scope check; independent typed JSON comparison of capture rows; exact two-export source inventory/blob checks; canonical module path/hash/stability checks and actual mutant failure classification. Scripts and structured results are in this scratch. No pytest, mypy, Ruff, build, installed proof or human UAT was executed by this reviewer.
+
+Lifecycle was reconstructed in own scratch with original repository root fixed and its nested uv invocation replaced by the existing .venv Python -B board validator. This avoids dependency synchronization and writes to the shared environment. The rest of its checks are unchanged. No supplied freeze/correct/record/write/validate driver was directly executed. The inspected AST audit was reconstructed in own scratch, its sole output location follows that scratch; its Git subprocess environment sets GIT_OPTIONAL_LOCKS=0.
+
+**Inspected actual runtime executions**, each hash-verified as part of pairs/boundaries/ledger integrity: builder prepared/neutral-cohort 599; full-chat-final1390; cli155; d2-fast-final616; d3-fast-final117 (required source lane, not installed D3); canonical-current651 (599+52); unchanged-mutation52. These overlap and are not summed as unique tests. Static: source-types2 finds no issues in15 sources; final-lint passes; new-format-check3 pass; format-debt-final reports no new debt with baseline debt failed/unwaived; candidate-lock resolves214 packages in clean export.
+
+Standard Chat owning suite passes. The builder prepared/new-cases receipt is **exit1,7 failed/45 passed**; it is not a passing52 receipt. The alternate eager-import mutation/canonical setup failures, excluded KeyError experiment, failed/interrupted diagnostic launchers and product exceptions are not credited as required passes or mutation rejections. The canonical unchanged control and standard owning/fast suite receipts provide the passing coverage. Source/test identity and actual raw assertions support the current documentation-only profile; no missing or drifted required runtime lane was found to warrant rerunning.
+
+Mutants: projection-before-second-await, warning-dedupe, warning-order, zero-unavailable, missing-utilization-suffix, record-cap, entity-cap, double-format, ignored-result, legacy-substitution, decayed-collection, wrong-grouping, wrong-count, wrong-order, swallowed-cancel, missing-kind-refusal, case-insensitive-nodes, nodes-relationships, unawaited-query, double-query. Every one has at least one actual call failure whose terminal exception is AssertionError and whose node belongs to the named tests. semantic.json lists all credited nodes and noncredited failure counts. In particular cap mutants also raise product ValueError; nodes-relationships also has a product refusal; unawaited-query includes product TypeError/timeout. Those receive zero assertion credit. The actual assertion witnesses independently suffice. Canonical roots are resolved;40 modules before pytest remain stable in59 at finish/after, with no content drift. Growth from40 to59 is normal additional imports, not unequal-origin failure.
+
+Captures: independent comparison counts MEMQ68 exact+2 ValueError refusals+6 explicitly superseded rows for each export; the runtime-missing listing row stays exact. Both source exports have443 files and every file blob matches source3ed1d58a. DIAG72 means68 exact+4 declared cache refusals with unchanged pre-refusal events, not72 byte-identical rows. SESSION25 exact. Pilot groups41 metadata+62 help+29 dispatch+61 custom+3 lifecycle=196 exact. Supplemental four cases retain output/event behavior; guard18/comparer14 and pre-import inventory/byte refusal receipts retain their stated limits.
+
+## Integrity, provenance and isolation
+
+All evidence/report output is under exactly one own fresh scratch:
+/private/tmp/memq-d2-r3-sol-qrnetocx.
+No external locator/PID/breadcrumb was created. Every agent-directed Python invocation used -B/PYTHONDONTWRITEBYTECODE=1; invoked tooling uses own TMPDIR/cache paths. Every Git invocation, including subprocesses, used GIT_OPTIONAL_LOCKS=0. No checkout/worktree/index/source/doc/board/config or supplied-folder write, restoration, cleanup, nested delegation, network/provider use or external action occurred.
+
+Both complete boundaries match:
+- HEAD ccf5471b441d6299c55776b60d58a23430b3bd1a; branch feature/command-retirement.
+- Exact ls-files -s -z stdout SHA256 **79cc1aec174283b6bc50c6d5300001a5d8784c11cf435d7e7a8c07cf891e9945**, calculated before status at each boundary.
+- Only dirty files: packages/friday-chat/config.example.yaml and models-config.example.yaml; exact bytes/modes/size/mtime/ctime preserved. Staged diff and untracked list empty; ignored listing unchanged.
+- pins152, protected_non_docs1255, accepted_repository_evidence177, accepted_D1 29, dirty2, ignored_exports3, preserved_external_files1, supplied_raw_files1171 = **2790 grouped entries**, zero mismatches at either boundary. Groups overlap and are not a unique-file count. exports directory and both ignored export files retain bytes/modes/times; /private/tmp/memq-sol-current-path retains exact identity.
+- Initial local audit compared symlink hashes to link text and showed12 false mismatches; inspection established the manifest hashes target file content while lstat/link retain symlink identity. The checker was corrected within own scratch and the complete start and end checks pass using that convention; no protected file was altered.
+
+**147/147 embedded/raw pairs** checked:94 builder+10round1+18correction1+10round2+15correction2. Both digest and embedded UTF-8 bytes match. **722/722 listed reviewer ledger entries** independently rehashed:576round1+146round2. Existing “match” flags/controller verdicts were not used as correctness proof. Artifact bytes were read for integrity; report excerpts/results surfaced during JSON schema reconnaissance and current authority inspection were not carried into this verdict. No private builder transcript or reasoning was accessed. Host-managed tool transcripts/checkpoint refs may be created by the platform outside scratch; these are disclosed separately and were not deliberate reviewer writes.
+
+The historical Claude prose3591 is not used as a count: its listed historical groups total2591; this current manifest independently totals2790. Previous reports are preserved verbatim.
+
+## Debt, limits and advisory rubric
+
+Root Ruff534, root test_display conflict6929, four pre-existing Chat whole-file format failures and omitted-description nullable-ingest TypeError remain failed/unwaived baseline debt. Baseline/current actual ingest receipts have the same TypeError/message digest; ingestion definitions are unchanged. Explicit descriptions are a setup workaround only. None of this review repairs or waives ingestion, claims clean root gates or converts automated disposable-store checks into human acceptance.
+
+All20 human UAT cases remain NOT RUN. D3 artifact builds, probe, installed proof/replay and final human acceptance are future and excluded. Old accepted DIAG/SESSION installed probes retain intentionally obsolete38/24 API checks and are not represented as passing54. The sourcefast117 lane is required now and its actual receipt was inspected. Empty-versus-absent descriptions and more explicit frozen-row traceability remain nonblocking advisories.
+
+Rubric: authority/scope2.0/2; behavior and boundary preservation2.9/3; deterministic tests/mutation/capture support2.9/3; provenance/isolation/report clarity1.7/2 = **9.5/10**. Residual limits are retained evidence rather than fresh runtime execution, overlapping suites, and deferred human/installed confirmation. Score does not override any mandatory finding and conveys no approval.

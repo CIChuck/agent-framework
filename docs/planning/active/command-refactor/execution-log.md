@@ -2124,3 +2124,23 @@ has been executed or accepted through this documentation change.
   D3 waits for fresh council reconciliation. Any mandatory finding remaining
   after this second cycle returns to the maintainer; no further automatic loop.
 - **Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery.
+
+## 2026-11-09T20:12:20.278769+00:00 — MEMQ D2 VERIFIED; approved D3 begins
+
+- Reconciled all fresh round3 seats at `ccf5471b`: Sol/Astra/Claude VERIFIED9.5
+  each; no mandatory findings. ASTRA-001 and CLAUDE-001 independently closed.
+- Complete2790-entry closing boundary matches. Controller verified101 current
+  reviewer artifacts and10 embedded/raw pairs. All30 normative input pins match.
+- Sol/Astra inspected actual unchanged-runtime evidence; Claude reran owning/
+  fast/static lanes and inspected captures/mutants. Earlier failed attempts and
+  alternate eager-import failures stay excluded; no report or score is inherited.
+- D2 source remains3ed1d58a; no product change in the two documentation cycles.
+  Current metadata is closeout evidence; reviewed source/technical inputs and
+  accepted prior evidence remain unchanged. Both dirty examples, exports and
+  external locator are preserved. UAT plan and FU-009 are unchanged here.
+- Continue D3/D4-D5 under the existing exact approval: candidate builds/replay,
+  full owning/root regressions, new isolated installed probe and controls, then
+  fresh final three-seat council. No further directive approval is requested.
+- `execution_phase: implementation`; `validation_state: not_ready` for D3.
+  Human UAT20 NOT RUN; acceptance/later-family/external delivery remain separate.
+- **Next gate:** Build and replay the committed MEMQ candidate and execute isolated installed proof, then fresh D3 and bounded aggregate Sol/Astra/Claude council under the existing approval. D1/D2 VERIFIED at9ce71581/ccf5471b; UAT NOT RUN; no acceptance or delivery.

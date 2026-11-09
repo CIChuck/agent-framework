@@ -1,0 +1,108 @@
+# MEMQ-001 D2 correction-cycle2 council round3 — Astra
+
+**VERIFIED** — no remaining mandatory findings in this bounded D2 review. Advisory score **9.5/10**. Seat GPT-6 Astra/high, fresh independent read-only context, 2026-11-09. This is not acceptance, D3 readiness, human UAT or delivery approval. Controller reconciliation of all seats remains required before D3.
+
+Candidate `ccf5471b441d6299c55776b60d58a23430b3bd1a`, branch `feature/command-retirement`, workdir `/Users/chuckrussell/Dev/gendev/agent-framework`; runtime source `3ed1d58ad8cc1e79522495da5cf19091185402d8`. Reviewed restoration `0ee49a700f4b92234f6448c52d144ac156c1c700..candidate` FIRST, then bounded D2 `39661e870affaf7abb160df9da53e53dfe94c822..candidate`, with retained neutral D1 from `c5871054266da2340486d2043062c5fb95611c00`.
+
+Request SHA256 was checked before reading its full contents: `269a57ba40aa305baef85ff1275e6531d5e2546ababa23720bb04b0de8f096bf`. Full manifest was hash-checked before parsing all groups: `ba7a46481ee4e53cec9a77532b7944818434ebc0c539f482e330c87ebbed076d`. Both hashes were rechecked at closing. No private builder reasoning or inherited verdict was used. Historical outcomes appearing in current authority were treated as history, not proof.
+
+## Mandatory findings and closure assessment
+
+No new mandatory findings.
+
+1. **MEMQ-D2-CLAUDE-001 — CLOSED on current bytes.** The backlog README is byte-identical to `9db8311e`, SHA256 `b8021069f2752074ac7fb6a25d9d41055749b161d7cd18b0c49f14eded35daa8`. Independently hashed all 30 request pins, then independently parsed and hashed all 30 normative directive-table rows; all match. REM002 lines 13–33 specifies restoration, explicitly withdraws/supersedes REM001's CMD-F05 edit allowance, preserves the failed history and limits UAT changes. The cumulative UAT diff contains only explicit-description setup and MQ-UAT-10 instructions; the inaccurate CMD-F05 defect-tracking reference is gone. REM001 itself remains byte-identical to round2; prior round1 history and append-only log prefixes are preserved. FU-009 is unchanged by correction2. No new pin, ingestion repair or waiver was introduced.
+2. **MEMQ-D2-ASTRA-001 — CLOSED independently.** `authority.json:995` states the implemented source; `:996` now expressly says the projection/protocol and option R listing are implemented and correction2 awaits independent verification. Current README gates, authority current D2 records, board/dashboard, tactical/next-phase headers, D2 README and final execution-log entry agree on validation pending and council reconciliation before D3. The older not-generated sentence is inside the explicitly candidate-scoped directive-readiness snapshot, not current authority. Historical tactical/log gates retain their labels and chronology.
+3. **MEMQ-D2-SOL-001 — no open current violation identified.** No current isolation or evidence-ownership violation was found. The older blocked readiness history and locator were preserved, not waived. This assessment does not retroactively validate that historical review.
+
+## Complete correction matrix
+
+| Criterion | Result | Independent basis |
+| --- | --- | --- |
+| CR-D2-01 | PASS | Implemented-status sentence and current gates inspected; historical snapshots distinguished; log prefixes at round2, round1 and D2 start remain exact. |
+| CR-D2-02 | PASS | No non-doc changes from round2, round1 or runtime source. All 30 normative rows match. All 147 pairs match. Narrow cumulative UAT diff and FU-009 preservation checked. |
+| CR-D2-03 | PASS | Seven fresh administrative checks, fresh AST and semantic controls; current source/tests assessed against actual unchanged-runtime receipts. All 20 mutants have real named call-phase AssertionError witnesses. Passing standard launchers and excluded failures remain separate. |
+| CR-D2-04 | PASS | All 2,790 manifest entries and Git identities match both boundaries; exactly one private scratch; no deliberate writes outside it. |
+| CR-D2-05 | PASS | Exact b8021069 restoration, explicit withdrawal of REM001 allowance, narrow UAT reference deletion and preserved failed history; no ingest fix or waiver. |
+
+## Complete D2 matrix
+
+| Criterion | Result | Source and evidence assessment |
+| --- | --- | --- |
+| MD2-01 | PASS | Exact approved contract/directive/amendment pins and option R authority; D1 reconciliation precedes D2. D2 package diff is the ten named package paths including READMEs. Neutral source/tests unchanged from D2 start. Metadata/lock unchanged from c5871054. Fresh AST reversal verifies only allowed Chat additions and wrappers. |
+| MD2-02 | PASS | Registry AST reversal restores exactly indices 3/9/10/11/12/16 in the 39-entry tuple; other 33 entries, parser, admission, dispatch and map unchanged. Six specs/fixture metadata and 41 canonical/3 aliases covered by actual frozen observations and MQ-T07. |
+| MD2-03 | PASS | `invoke_memory_query` constructs CommandRequest before port/context access, uses fixed spec, fresh factory and one await, consumes injected outcome. Six compatibility wrappers fixed; MQ-T08 checks original parsed args identity, renamed/custom handlers and no second parse. |
+| MD2-04 | PASS | Statistics port preserves runtime/store/transcript reads and Exception conversion, then budget/session reads; cancellation propagates. Projection contains eight sections/24 metrics, bool-before-float formatting, percent suffix, 256 preview and unique sorted warnings. MQ-T09 and targeted mutants support behavior. |
+| MD2-05 | PASS | Plain records access text only; meta projection preserves join/verification-before-preview/ISO/confidence order and repeated reads. None versus formatted-empty retained; complete is read only for empty meta. 100 cap and 160/80 previews retained. Four actual supplemental output/event cases independently equal; stateful/raising controls inspected in MQ-T10. |
+| MD2-06 | PASS | Shared exact `nodes` selection/name joining and availability precedence; port awaits entities and optional relationships before projection; unchanged public record_value; 0/False, caps, blank separator and failure identity covered by MQ-T11 and mutants. |
+| MD2-07 | PASS | Only two views, protocol/fake additions, adapter method and private helper. Short/long get_all filter with limit=None, gather return_exceptions, no decayed/source reads. Grouping uses (source,description), counts stored records, source/None-first sorting; warning/cancellation behavior inspected. MQ-T14 real disposable adapter covers ingestion/re-ingestion/promotion and fake insertion order. |
+| MD2-08 | PASS | Exact six payload variants and exact outcome type; error/effect/subclass/foreign shapes rejected. Pure renderer consumes prepared facts; preserved defaults/newline bytes. MQ-T12 exercises these refusals; injected outcome tests reject a shadow legacy engine. |
+| MD2-09 | PASS | All eight required MQ-T07..14 names and mandatory assertion bodies inspected. Actual retained standard receipts support 52 new cases, 599 neutral/cohort, 1,390 Chat, 155 CLI, fast616 and sourcefast117. All20 current mutation reports contain canonical named CALL AssertionError witnesses; unchanged52 receipt separately inspected. Product/setup/KeyError failures excluded. |
+| MD2-10 | PASS | Actual MEMQ observations independently compared twice: each68 exact+2 kind refusals with exact pre-refusal events+6 explicitly superseded rows. Separate exports each match all443 committed source files. DIAG68 exact+4 declared cache rows; SESSION25; pilot196; supplemental4 output/event equality. Guard18/comparer14 and pre-import extra/byte refusal receipts inspected. |
+| MD2-11 | PASS | All94 builder pairs and all147 cumulative pairs exact. Actual type15/lint/newformat/no-new-debt and lock214 receipts inspected, not freshly executed. Four whole-file format failures remain failed/unwaived. Same nullable-ingest TypeError and message in baseline/current; unchanged ingestion definitions. All20 human UAT cases collectively NOT RUN; future installed work excluded. |
+| MD2-12 | PASS | Complete start/end identities, request/manifest, all groups, logical-index-before-status, empty staging/untracked, exact dirty examples/export modes/times/locator. One own scratch; no repairs, delegation, advancement or delivery. |
+
+## Complete MQ matrix
+
+The referenced nodes are in `packages/friday-chat/tests_chat/test_command_memory_queries.py`; line numbers identify current declarations. Results combine current test/source inspection with hash-verified actual runtime receipts; none are claimed as fresh pytest executions by this seat.
+
+| Criterion | Result | Node and substantive checks |
+| --- | --- | --- |
+| MQ-T07 | PASS | :707 `test_memory_query_metadata_and_frozen_cases`: exact package fixture hash, metadata/41+3/39, all76 classifications, retained-family helper. Independent raw capture comparisons corroborate. |
+| MQ-T08 | PASS | :774 `test_memory_query_once_only_delegation`: six parametrizations, args/spec identity, fresh factory/await counts, distinct injected data, custom/renamed wrappers and context tripwire. |
+| MQ-T09 | PASS | :946 `test_memory_statistics_projection_order_and_failures`: six modes; read/await ordering, conversions, pending/cancel identity, formatted values and sorted warnings. |
+| MQ-T10 | PASS | :1064 `test_memory_record_projection_and_rendering`: three kinds × five modes, lazy metadata, cap/preview, empty incomplete meta, stateful formatting/concat/read order, raising values and renderer detachment. |
+| MQ-T11 | PASS | :1315 `test_entities_projection_and_rendering`: nine modes, both-await ordering, nodes-only, pending, bad-record failure point, error/cancel identity, caps and exact rendering. |
+| MQ-T12 | PASS | :1421 `test_memory_query_adapter_refusals_and_purity`: eight valid parametrizations spanning six variants; exact defaults, foreign/subclass/error/effect refusals and renderer tripwires. |
+| MQ-T13 | PASS | :1480 `test_memory_query_real_app_sequence`: conversational turn, all six, explicit-description ingest/list, history/clear/cls/q, output and cleanup order. Synthetic automated app test only. |
+| MQ-T14 | PASS | :1594 `test_ingested_listing_reads_persisted_metadata`: six modes, actual disposable adapter storage, grouped counts/re-ingest/promotion/None-first order, malformed/collection warnings, cancellation and no decayed/source reads; fake ordering retained. Empty versus absent description assertion strength remains advisory. |
+
+## Executed versus inspected
+
+**Freshly executed:** request/manifest SHA checks; complete start/end manifest audits; 30 request pins plus independent 30-row table parsing/hashing; all147 pair and722 ledger hashes; runtime/source/authority identity and log/UAT/history controls; AST reversal reconstructed in own scratch after inspecting and hashing the supplied driver; direct raw observation comparisons and mutation origin/witness inspection; source export comparisons. No supplied writer/validator driver was executed in place.
+
+Seven administrative command executions (all exit0, exact argv and logs in `executed.json`):
+
+- `.venv/bin/python -B scripts/friday-dev-board.py validate`:36 tasks.
+- `.venv/bin/python -B scripts/friday-dev-board.py render --check`: current dashboard.
+- `.venv/bin/python -B scripts/check-documentation-lifecycle.py`:931 Markdown files; nested uv is no-sync/offline with private cache and inherited no-bytecode/Git settings.
+- `git diff --check`, plus `git diff --check 0ee49a70..HEAD`, `39661e87..HEAD`, `c5871054..HEAD`.
+
+**Fresh runtime tests executed: zero.** The current docs-only profile permits inspection after byte-identity proof. No missing or drifted runtime lane required replay. Actual retained receipts support neutral599, Chat1390, CLI155, named52, fast616/sourcefast117; canonical-current651 is a combined neutral599+new52 lane, not another owning-suite total. These overlapping counts must not be added as distinct tests.
+
+**Mutation evidence:** `mutation-inspection.json` lists each of20 labels, actual assertion node/terminal line, nonqualifying failures and all three origin boundaries (40 modules before pytest;59 at finish/after). Every listed origin file was independently rehashed and the preloaded module identities remain equal at all three boundaries. Each mutant has at least one actual CALL terminal AssertionError. Examples: double-format points to the formatter-count assertion at test line1211; projection-before-second-await includes pending/bad-record ordering assertions. Record-cap, entity-cap, nodes-relationships and unawaited-query also have failures that do not meet the strict assertion credit rule; those are explicitly excluded. The unchanged control has no failures and a separate actual52-pass log in the round1 Sol raw artifacts. No prior seat verdict supplies that credit.
+
+The builder's initial `prepared/mutation-unchanged.log` has44 passes/8 errors and its `prepared/new-cases.log` has45 passes/7 failures. Those failed attempts are not52-pass evidence. The current mutation JSONs point to `mutation-copies3`; the retained independent standard52 and unchanged52 receipts supply the successful controls. Standard Chat1390 passes are distinct from failed/interrupted alternate eager-import origin launchers. Setup/import/collection errors, KeyError and product TypeError are never counted as assertion rejection.
+
+**Capture/static evidence:** actual observations and provenance were parsed, not just summary reports. MEMQ two committed exports each match443 source files and pinned capture/comparer bytes. Direct comparisons establish68+2+6 twice, SESSION25, DIAG68 plus four declared undeclared-cache cases, pilot groups41+62+29+61+3=196, and four supplemental output/event pairs from the actual embedded observation/log records. Retained guard18, comparer14, pre-import extra/changed-source refusals, source mypy15, lint, three-file new-format pass, no-new-debt comparison and clean-export lock214 receipts were inspected. Whole-file formatter exit1 with four files remains failure, not waived by the comparison.
+
+## Integrity, isolation and coverage
+
+Exactly one own scratch: `/private/tmp/memq-astra-r3-c0hh8zw6`. All deliberate scripts/reports/logs/cache/temp destinations reside there. Repository and every supplied folder remained read-only. No worktree, checkout, source/doc/board/index edit, repair, cleanup, external locator/PID/breadcrumb, external contact, nested delegation or delivery action occurred. Python commands used -B; substantive subprocess environments inherited PYTHONDONTWRITEBYTECODE=1. Every Git subprocess inherited GIT_OPTIONAL_LOCKS=0.
+
+Exact `git ls-files -s -z` stdout was hashed before status at both boundaries. Digest: `79cc1aec174283b6bc50c6d5300001a5d8784c11cf435d7e7a8c07cf891e9945`. Candidate and branch unchanged; staged diff and untracked list empty. Status remains exactly the two unstaged dirty example YAMLs. Ignored listing matches.
+
+| Manifest group | Start checked | End checked | Drift |
+| --- | ---: | ---: | --- |
+| pins |152|152|none|
+| protected_non_docs |1255|1255|none|
+| accepted_repository_evidence |177|177|none|
+| accepted_D1 |29|29|none|
+| dirty |2|2|none|
+| ignored_exports |3|3|none|
+| preserved_external_files |1|1|none|
+| supplied_raw_files |1171|1171|none|
+| Total |2790|2790|none|
+
+All supplied manifest fields were compared, including symlink targets, file types/modes/sizes/timestamps and hashes where listed. The initial checker lacked symlink-target extraction; it was corrected privately and the complete opening boundary rerun before substantive checks, with zero drift. A supplemental comparison initially compared the case-name index with the actual observation map; it was corrected to compare the actual embedded observations and log, both exact. These are reviewer-script errors, not candidate failures.
+
+Pair coverage is **147/147**:94 builder+10 round1+18 correction1+10 round2+15 correction2. Raw and embedded UTF-8 bytes independently hash to each expected digest. Reviewer ledger coverage is **722/722**:576 round1 (276+265+35) and146 round2 (25+35+86). Expected digests came from each reviewer ledger, not a controller's success boolean; relative paths were resolved against matching manifest entries and then actual bytes rehashed. Hash agreement alone was not treated as correctness proof. Original Claude3591 prose is an arithmetic typo: previous listed groups total2591; current manifest total2790 governs this review.
+
+Host-managed transcript/checkpoint activity is outside agent-directed writes and not authorized by this review. No checkpoint mutation was requested; these host facilities are disclosed separately and were not treated as product acceptance evidence.
+
+## Debt, limits and score
+
+Root Ruff534, root `test_display` collection conflict at6929, four Chat whole-file format failures and nullable-description ingestion TypeError remain failed/unwaived. Paired actual baseline/current ingestion failures have identical type/message; `/ingest` and framework storage were not repaired. FU-009 and UAT retain the explicit-description workaround. All20 human UAT cases remain NOT RUN. D3 build/sdist/wheel/replay/probe/installed behavior, acceptance and delivery are excluded future gates. Sourcefast117 is required and supported now; it is not D3 installed proof. Accepted old DIAG/SESSION probes retain obsolete38/24 assertions and are not claimed passing API54.
+
+Advisories only: stronger explicit assertions distinguishing absent and empty stored descriptions would improve traceability; enumerated row-to-test tracing could be easier to navigate. Neither changes the selected contract or supplies authority for a new fix in this review.
+
+Rubric: authority/scope2.0/2; semantic implementation3.0/3; test/evidence strength2.3/2.5; documentation/gates0.9/1; integrity/isolation1.3/1.5 = **9.5/10**. The score never overrides a mandatory finding. No automatic remediation loop is authorized. Any later mandatory finding from reconciliation returns to the maintainer after this second cycle.

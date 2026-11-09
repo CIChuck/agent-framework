@@ -1,8 +1,8 @@
 # MEMQ D2 builder record — Chat memory queries and option R
 
-Status: **implemented; documentation correction awaiting fresh D2 council**.
-[Round1 reconciliation](council-round1/report.md): Sol9.6/Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for MEMQ-D2-ASTRA-001. [Round2](council-round2/report.md) resolves ASTRA-001 but requests restoring the directive-pinned backlog. [Correction2](../../../../remediation/REM-CMD-MEMQ-D2-002-restore-frozen-backlog.md) restores exact approved bytes; runtime remains unchanged.
-Execution phase: validation. Validation state: pending.
+Status: **independently VERIFIED at ccf5471b; D3 is next**. See [controller reconciliation](verified-report.md).
+[Round1 reconciliation](council-round1/report.md): Sol9.6/Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for MEMQ-D2-ASTRA-001. [Round2](council-round2/report.md) resolves ASTRA-001 but requests restoring the directive-pinned backlog. [Correction2](../../../../remediation/REM-CMD-MEMQ-D2-002-restore-frozen-backlog.md) restores exact approved bytes; [round3](verified-report.md) verifies both findings closed with no remaining mandatory issues. Runtime remains unchanged.
+Execution phase: closeout. Validation state: verified.
 Source commit `3ed1d58ad8cc1e79522495da5cf19091185402d8`; start HEAD `39661e87`.
 The exact [contract](../../../../memory-query-command-contract.md),
 [directive](../../../../directives/CD-CMD-MEMQ-001-memory-queries.md) and
@@ -80,4 +80,4 @@ format failures remain failed/unwaived. Future candidate builds, installed MEMQ
 proof and human UAT are not claimed. The [UAT plan](../../../../uat/memq-user-acceptance-plan.md)
 remains in the established folder, all20 cases NOT RUN. Its correction-cycle1 instructions now explicitly require an ingestion description as the workaround for unchanged baseline debt.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery.
+**Next gate:** Build and replay the committed MEMQ candidate and execute isolated installed proof, then fresh D3 and bounded aggregate Sol/Astra/Claude council under the existing approval. D1/D2 VERIFIED at9ce71581/ccf5471b; UAT NOT RUN; no acceptance or delivery.
