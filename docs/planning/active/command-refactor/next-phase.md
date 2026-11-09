@@ -1,4 +1,29 @@
-# DIAG-001 — verified completion and human acceptance checkpoint
+# DIAG-001 — accepted; next-unit preparation checkpoint
+
+Branch: `feature/command-retirement`
+Execution phase: planning (next unit); DIAG-001 closeout complete
+Validation state: verified (accepted DIAG-001); broader initiative remains started/local
+
+Chuck Russell reported successful manual UAT and [accepted DIAG-001](approval/diagnostics-acceptance.md)
+(“the uat was successful - all approved, proceed to next steps”) after Sol/Astra/Claude independently VERIFIED candidate
+`be72a1e8` at 9.7 each with no mandatory findings. Product/test/probe and
+artifact source `28c544fa` is unchanged. The [UAT register](uat/friday-chat-user-acceptance-roadmap.md)
+records maintainer-reported results without inferred per-case detail.
+
+**Next gate:** Prepare proposed MEMQ-001 contract and directive (planning only) after accepted DIAG-001; construction requires their exact approval. No delivery follows automatically.
+
+The [proposed unit order](validation/step3/unit-map.json) places MEMQ-001
+(`/memory`, `/insights`, `/summaries`, `/meta`, `/entities`, `/list-ingested`)
+after DIAG-001. Preparation may add proposed documents, current status and
+guarded characterization only; no product/test/config/dependency/lock change.
+PILOT, SESSION and DIAG are accepted internal units. Remaining families, P0/P1,
+TUI and full-refactor acceptance stay open; delivery stays local. Root Ruff 534,
+the test_display collection conflict and registry format remain failed/unwaived.
+Both dirty example files and ignored exports stay untouched.
+
+### Preserved DIAG verified-completion checkpoint
+
+## DIAG-001 — verified completion and human acceptance checkpoint
 
 Branch: `feature/command-retirement`
 Execution phase: closeout

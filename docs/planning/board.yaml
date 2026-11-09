@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Chuck Russell's bounded DIAG-001 acceptance decision; manual UAT remains unrun. No next unit or delivery follows automatically.
+  next_gate: Prepare proposed MEMQ-001 contract and directive (planning only) after accepted DIAG-001; construction requires their exact approval. No delivery follows automatically.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2861,3 +2861,10 @@ events:
   action: DIAG-001 independently VERIFIED; bounded human acceptance pending
   note: Round3 Sol/Astra/Claude9.7 each, no mandatory findings. Product/probe28c544fa unchanged. Unit completed, umbrella started/local. UAT unrun; stop for maintainer decision. Preserve baseline debt and local state.
   evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-09T14:07:11+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: reported successful UAT and accepted bounded DIAG-001 D1–D3 and aggregate
+  note: Direct instruction follows Sol/Astra/Claude VERIFIED 9.7 each. Proceed authorizes MEMQ-001 planning preparation only. Broader initiative stays started/local; no construction or external delivery authority.
+  evidence: docs/planning/active/command-refactor/approval/diagnostics-acceptance.md

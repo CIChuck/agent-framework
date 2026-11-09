@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "DIAG-001 D1\u2013D3 and complete bounded aggregate independently VERIFIED; completed awaiting human acceptance",
+  "decision": "DIAG-001 D1\u2013D3 and bounded aggregate VERIFIED, maintainer-reported UAT passed, and accepted by Chuck Russell",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "DIAG bounded human acceptance handoff; no later unit, UAT completion or delivery authority",
-  "product_code_authority": "Approved DIAG construction and bounded corrections are complete and independently verified. Runtime source28c544fa is frozen; no new product construction follows this handoff.",
+  "current_scope": "Accepted DIAG-001 closeout; MEMQ-001 planning preparation only (proposed contract/directive), no construction or delivery",
+  "product_code_authority": "DIAG-001 construction completed, independently verified and accepted. No new family construction or external delivery authority; MEMQ-001 requires exact contract/directive approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -763,10 +763,10 @@
     "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
     "product_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
     "controller_start": "d0c729f43534bb79a3db70852ec08028ddb631ec",
-    "state": "completed",
+    "state": "accepted",
     "execution_phase": "closeout",
     "validation_state": "verified",
-    "current_deliverable": "Completed bounded DIAG-001; human acceptance pending",
+    "current_deliverable": "DIAG D1\u2013D3 accepted; MEMQ-001 preparation is next and requires separate approval for construction",
     "deliverable1": {
       "state": "verified",
       "round": 2,
@@ -789,7 +789,8 @@
       "correction_base": "bc553cb097d3f62586b0d1808100bc186a5a67c9",
       "verified_candidate": "409926b65d5a5d81590e9c3b06418a2ea12d343a",
       "report": "validation/diagnostics/implementation/d1/verified-report.md",
-      "acceptance": "not_granted"
+      "acceptance": "granted_by_DIAG_unit_acceptance",
+      "acceptance_record": "approval/diagnostics-acceptance.md"
     },
     "deliverable2": {
       "state": "verified",
@@ -809,7 +810,7 @@
       "pilot_observations": 196,
       "mutant_refusals": 19,
       "next_gate": "D3 under existing approval",
-      "acceptance": "not_granted",
+      "acceptance": "granted_by_DIAG_unit_acceptance",
       "council": "validation/diagnostics/implementation/d2/council-round2.json",
       "remediation_cycle": 1,
       "remediation_directive": "remediation/REM-CMD-DIAG-D2-001-context-format-and-test-isolation.md",
@@ -823,7 +824,8 @@
       "mutation_refusals": 21,
       "ignored_exports": "preserved; before/after bytes and metadata unchanged during corrected checks",
       "verified_candidate": "b3ca2c85964b082a1a6b65ffe2c7b5aa442fa6f9",
-      "report": "validation/diagnostics/implementation/d2/verified-report.md"
+      "report": "validation/diagnostics/implementation/d2/verified-report.md",
+      "acceptance_record": "approval/diagnostics-acceptance.md"
     },
     "deliverable3": {
       "state": "verified",
@@ -851,8 +853,8 @@
       "archive_refusals": 10,
       "prebuild_extra_source_refusal": 1,
       "restored_copied_probes": 8,
-      "acceptance": "not_granted",
-      "next_gate": "Chuck Russell's bounded DIAG-001 acceptance decision; manual UAT remains unrun. No next unit or delivery follows automatically.",
+      "acceptance": "granted_by_DIAG_unit_acceptance",
+      "next_gate": "Prepare proposed MEMQ-001 contract and directive (planning only) after accepted DIAG-001; construction requires their exact approval. No delivery follows automatically.",
       "council": "validation/diagnostics/implementation/d3/council-round3.json",
       "report": "validation/diagnostics/implementation/d3/verified-report.md",
       "reviewed_candidate": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9",
@@ -906,7 +908,8 @@
         "DIAG-D3-R2-CLAUDE-001"
       ],
       "acceptance_handoff": "validation/diagnostics/implementation/d3/acceptance-handoff.md",
-      "UAT": "not_run"
+      "UAT": "not_run",
+      "acceptance_record": "approval/diagnostics-acceptance.md"
     },
     "council_after_each_deliverable": true,
     "council_members": [
@@ -914,7 +917,7 @@
       "GPT-6 Astra/high",
       "Claude Opus 5.5/high"
     ],
-    "acceptance": "not_granted",
+    "acceptance": "granted",
     "delivery": "local only",
     "construction_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
     "product_source": "54e35947f8ee157ddab0b50f7e9e9e1db415f0ae",
@@ -923,6 +926,23 @@
     "artifact_source": "28c544fa67e934f03c212aed39ba20802b500b13",
     "verified_candidate": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9",
     "current_product_test_probe_source": "28c544fa67e934f03c212aed39ba20802b500b13",
-    "UAT": "not_run"
+    "UAT": "maintainer_reported_pass",
+    "acceptance_record": {
+      "record": "approval/diagnostics-acceptance.md",
+      "sha256": "1a3eecabf3b96bc456f1595933f5f2a8cba13810bb51bdb3ba6803d25e22b5ca",
+      "accepted_by": "Chuck Russell",
+      "recorded_at": "2026-11-09T14:07:11+00:00",
+      "instruction": "the uat was successful - all approved, proceed to next steps",
+      "candidate": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9",
+      "pre_acceptance_metadata_HEAD": "a1cee77374ffdc02f37d8821e6234eb39b325403",
+      "artifact_source": "28c544fa67e934f03c212aed39ba20802b500b13",
+      "UAT": "maintainer-reported successful; per-case detail not supplied",
+      "scope": "DIAG-001 six context-diagnostics commands D1\u2013D3 and complete bounded aggregate only"
+    }
+  },
+  "accepted_diag_checkpoint_before_MEMQ": {
+    "decision": "DIAG-001 D1\u2013D3 and bounded aggregate VERIFIED, maintainer-reported UAT passed, and accepted by Chuck Russell",
+    "current_scope": "Accepted DIAG-001 closeout; MEMQ-001 planning preparation only (proposed contract/directive), no construction or delivery",
+    "product_code_authority": "DIAG-001 construction completed, independently verified and accepted. No new family construction or external delivery authority; MEMQ-001 requires exact contract/directive approval."
   }
 }

@@ -1,10 +1,10 @@
-# DIAG-001 D3 — independently VERIFIED
+# DIAG-001 D3 — independently VERIFIED and accepted
 
-Execution phase: closeout. Validation state: verified (round 3).
+Execution phase: closeout. Validation state: verified (accepted DIAG-001).
 [Final report](verified-report.md) and [raw council](council-round3.json) record
 Sol/Astra/Claude VERIFIED 9.7 each at `be72a1e8`, with no mandatory findings.
-[Acceptance handoff](acceptance-handoff.md) is ready for Chuck Russell; acceptance
-and manual UAT remain pending. Product/test/probe and artifact source `28c544fa`
+[Accepted by Chuck Russell](../../../../approval/diagnostics-acceptance.md) after his
+reported successful manual UAT; the [handoff](acceptance-handoff.md) is preserved. Product/test/probe and artifact source `28c544fa`
 stays frozen. Current proof includes 1,991 source passes, matching closed builds
 and isolated installed behavior, with executed/inspected distinctions retained.
 

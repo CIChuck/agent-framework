@@ -20,8 +20,8 @@ predates the separately approved pilot wiring work.
 D1–D3 and its bounded aggregate at `be72a1e8`. [Final verification](validation/diagnostics/implementation/d3/verified-report.md)
 records Sol/Astra/Claude VERIFIED9.7 each, no open mandatory findings,1,991 source
 passes and exact corrected artifact/probe source `28c544fa`. [Acceptance handoff](validation/diagnostics/implementation/d3/acceptance-handoff.md)
-is ready for Chuck Russell's decision. Manual UAT is unrun; [roadmap](uat/friday-chat-user-acceptance-roadmap.md)
-results remain NOT RUN. The wider initiative stays started/local. Ignored exports
+was answered: Chuck Russell reported successful manual UAT and [accepted DIAG-001](approval/diagnostics-acceptance.md);
+the [roadmap](uat/friday-chat-user-acceptance-roadmap.md) records maintainer-reported results. The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
@@ -107,13 +107,13 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Chuck Russell's bounded DIAG-001 acceptance decision; manual UAT remains unrun. No next unit or delivery follows automatically.
+**Next gate:** Prepare proposed MEMQ-001 contract and directive (planning only) after accepted DIAG-001; construction requires their exact approval. No delivery follows automatically.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)
 provides 17 individually runnable interface, diagnostics, export, usability and
 performance cases, with a results register for the completed candidate. All
-cases start as NOT RUN; this documentation does not change construction or acceptance authority.
+cases started as NOT RUN; the maintainer reported a successful run on 2026-11-09. This documentation does not change construction or acceptance authority.
 
 The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
 refreshes baseline identity in this working home and records the current

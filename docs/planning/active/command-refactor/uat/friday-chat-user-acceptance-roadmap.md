@@ -1,6 +1,8 @@
 # Friday Chat user acceptance testing roadmap
 
-Status: prepared for a future UAT run; all cases are **NOT RUN**.
+Status: executed by Chuck Russell against the corrected DIAG-001 candidate;
+maintainer-reported overall **PASS** on 2026-11-09 ([acceptance](../approval/diagnostics-acceptance.md)).
+Original preparation status (historical): all cases NOT RUN.
 Prepared: 2026-11-08. Intended tester: Chuck Russell.
 
 Use this roadmap after the completed DIAG-001 candidate has passed its automated
@@ -294,23 +296,23 @@ A checked box means the case was executed, not necessarily that it passed.
 
 | Case | Status | Look / feel (1–5) | Timing | Finding / evidence |
 | --- | --- | --- | --- | --- |
-| UAT-01 | NOT RUN | | | |
-| UAT-02 | NOT RUN | | | |
-| UAT-03 | NOT RUN | | | |
-| UAT-04 | NOT RUN | | | |
-| UAT-05 | NOT RUN | | | |
-| UAT-06 | NOT RUN | | | |
-| UAT-07 | NOT RUN | | | |
-| UAT-08 | NOT RUN | | | |
-| UAT-09 | NOT RUN | | | |
-| UAT-10 | NOT RUN | | | |
-| UAT-11 | NOT RUN | | | |
-| UAT-12 | NOT RUN | | | |
-| UAT-13 | NOT RUN | | | |
-| UAT-14 | NOT RUN | | | |
-| UAT-15 | NOT RUN | | | |
-| UAT-16 | NOT RUN | | | |
-| UAT-17 | NOT RUN | | | |
+| UAT-01 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-02 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-03 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-04 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-05 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-06 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-07 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-08 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-09 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-10 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-11 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-12 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-13 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-14 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-15 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-16 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
+| UAT-17 | PASS (maintainer-reported) | not supplied | not supplied | Overall maintainer report 2026-11-09; no per-case detail supplied |
 
 Copy this record for each failure, question or detailed observation:
 
