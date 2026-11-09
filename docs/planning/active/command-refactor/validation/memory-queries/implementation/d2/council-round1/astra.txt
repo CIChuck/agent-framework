@@ -1,0 +1,80 @@
+# MEMQ-001 D2 council round1 — Astra
+
+**CHANGES_REQUESTED — D2 only.** One mandatory documentation finding; no demonstrated runtime regression. Advisory score **9.3/10**. Reviewer: GPT-6 Astra/high, fresh independent read-only seat, 2026-11-09. No repairs, nested delegation, acceptance, advancement, delivery or automatic-loop authority exercised.
+
+Workdir `/Users/chuckrussell/Dev/gendev/agent-framework`, branch `feature/command-retirement`. Candidate `9db8311e44583f6db882847ff4643094668077bf`; product source `3ed1d58ad8cc1e79522495da5cf19091185402d8`; D2 start `39661e870affaf7abb160df9da53e53dfe94c822`; aggregate original baseline `c5871054266da2340486d2043062c5fb95611c00`.
+
+The first command hashed the supplied request, matching `c6844a77edf3125ae2ffdf7c99be7b2b8281034545618736c8a5b99412e15d2c`, before its contents were read. The manifest matched `c53d7bb9e82bc31708ef5f830fa5ac4a483440f86a4d628130c01a6d8adb522d`. Its complete JSON was parsed and every entry verified. Exact approval, correction2, contract, directive and repository policy governed this implementation review. Historical D1 reconciliation was inspected for ordering and authority only; its verdict was not adopted as current correctness evidence. Product bytes at source and candidate are identical.
+
+## Mandatory finding
+
+**MEMQ-D2-ASTRA-001 — Medium, current authority contains contradictory D2 execution status.**
+
+Affected file: `docs/planning/active/command-refactor/authority.json:996`, within `memory_queries_preparation`. The same current object has `state: D2_implemented_council_pending` (line 949), `execution_phase: validation`, `validation_state: pending`, and line 995 states D2 is implemented at the current source commit. Its adjacent `projection_clarification` still says: “Chat projection/protocol changes are D2, unstarted.” Unlike the explicitly historical checkpoint sections, this field has no historical qualification. The D2 diff updates the enclosing object's state and neighboring implementation status while retaining this stale statement.
+
+Authority: `directives/CD-CMD-MEMQ-001-memory-queries.md:434–439` requires current packet/authority/board state to agree at each gate; the independent validation policy requires documentation implications to be reconciled. This is a closeout consistency defect in the current implementation candidate, not a request to re-review or amend the frozen technical directive.
+
+Reproduction: inspect lines 947–1001 of the frozen authority JSON; compare `state`, `implementation_status`, and `projection_clarification`. `scope-audit.json` and the committed D2 diff establish the current candidate. The board/dashboard check passes structurally but does not detect this semantic contradiction.
+
+Risk: a subsequent controller or reader may treat the projection/protocol work as still awaiting construction despite the implemented/frozen D2 state. No runtime defect is alleged.
+
+Bounded mitigation: reconcile that field with D2 implemented/validation pending, or explicitly preserve it as a dated historical preparation statement and provide the current clarification. Retain existing approval and acceptance boundaries. Documentation-only impact; no product, dependency, config, test assertion or ingest repair requested. Verify current-state agreement and rerun relevant documentation checks against a newly frozen candidate under controller authority. This reviewer performed no repair.
+
+## MD2 matrix
+
+| Criterion | Result | Independent evidence |
+|---|---|---|
+| MD2-01 | PASS technical authority/scope | Exact approval hashes; D1 reconciliation precedes start; ancestry checked. Complete D2 path inventory has 19 paths. Chat-only runtime change; no neutral source/tests drift, framework/config/dependency/lock change. `scope-audit.json`, `ast-audit.json`, `d1-ast-audit.json`. Current documentation consistency finding is recorded under MD2-11. |
+| MD2-02 | PASS | Exact six metadata records; 41 canonical/3 aliases; 39 tuple entries with only 3/9/10/11/12/16 replaced. Full registry AST reversal preserves parser/admission/dispatch/map and other 33 entries. Fresh capture/pilot and named tests. |
+| MD2-03 | PASS | Six fixed wrappers; one request using original parsed args/spec identity, fresh port/factory and one await; injected outcomes consumed, custom/renamed handlers authoritative; invalid request before context reads. MQ-T08 six cases plus ignored-result/legacy/unawaited/double-query controls. |
+| MD2-04 | PASS | Read/await ordering, Exception conversion versus cancellation, eight sections/24 metrics, zero/not-configured/unavailable, once-only formatting/256 preview/utilization suffix and sorted unique warnings. MQ-T09 six cases, frozen captures and mutation witnesses. |
+| MD2-05 | PASS | Lazy text-only plain projection, returned-kind refusal/pre-refusal events, empty meta complete flag, 100 cap, 160/80 previews, None versus present-empty and repeated accesses/concatenation ordering. MQ-T10 fifteen cases; supplemental four exact; independently authored four stateful/raising baseline comparisons exact. |
+| MD2-06 | PASS | Exact lowercase nodes and join rules, availability first, both reads before projection, 0/False/None/fallback rendering, caps/separators, exception/cancellation identity. MQ-T11 nine cases and relevant mutants. |
+| MD2-07 | PASS | Only approved views/protocol/fake and adapter method/helper additions. Public short/long get_all filter+limit=None with gather; stored grouping/count/None-first order; malformed/partial warnings; cancel propagation; no decayed/source reads. MQ-T14 six cases, real disposable persisted ingest/re-ingest/promotion and mutation controls. |
+| MD2-08 | PASS | Exact outcome/data type checks, six variants, no error/effects, no fallback; pure rendering and defaults/newlines. MQ-T12 eight cases and injected-outcome/capture checks. |
+| MD2-09 | PASS, excluded observer run disclosed | Fresh 599 neutral/cohort,1390 Chat,155 CLI,52 named,616/117 fast tests; unchanged52 and20 assertion-witnessed mutants. Canonical origins/hashes checked. Initial broad observer run excluded below. |
+| MD2-10 | PASS | MEMQ68+2+6 twice, DIAG68+4, SESSION25, pilot196, supplemental4; guard18/comparer14; source-extra/source-changed refusals before import. `capture-receipts.json`, `supplemental-result.json`. |
+| MD2-11 | CHANGES_REQUESTED, documentation only | All94 embedded/raw pairs exact; lint/type15/admin/lock and no-new-debt pass; raw whole-file format fails as expected. Paired nullable-ingest TypeError/message unchanged; UAT untouched/NOT RUN; D3 excluded. Mandatory current-authority contradiction remains (001). |
+| MD2-12 | PASS | Opening and closing exact logical-index-before-status and all1961 identity records match. Only own scratch written; no repairs/delegation/acceptance/delivery. See integrity evidence below. |
+
+## MQ-T07–14 matrix
+
+| ID | Cases executed | Result and effective assertions |
+|---|---:|---|
+| MQ-T07 | 1 | PASS: package fixture SHA, six metadata,41/3/39,68 exact+2 explicit ValueError refusals+6 superseded; retained families through reused controls and independent actual captures. |
+| MQ-T08 | 6 | PASS: all six exact request/spec/args/parse/factory/await and injected outcome; zero construction reads, invalid args, renamed/custom wrappers. |
+| MQ-T09 | 6 | PASS: normal/failures/store-cancel/transcript-cancel/pending/format-once, sanitized warnings, formatting and order. |
+| MQ-T10 | 15 | PASS: three kinds × empty/records/cap/error/cancel; nested stateful/raising controls, old reads and present-empty distinctions. |
+| MQ-T11 | 9 | PASS: all/nodes/upper/bad-record/pending/entity-error/relationship-error/cancel/cap, read-before-projection and identity assertions. |
+| MQ-T12 | 8 | PASS: six data variants with record-kind variations; rejects other/subclass/error/effect shapes; defaults and pure rendering. |
+| MQ-T13 | 1 | PASS: synthetic real app turn/all queries/ingest/list/history/clear/cls/q; lifecycle and cleanup order. Automated evidence, not human UAT. |
+| MQ-T14 | 6 | PASS: persisted/malformed/short-failure/long-failure/cancel/fake; actual stored counts/re-ingest/promotion and missing-description record. |
+
+Total52; no skipped or xfailed cases in these lanes.
+
+## Executed checks and provenance
+
+All command arrays/exits are retained in `suites.json`, `static.json`, `capture-receipts.json`, `mutation-results.json`, and `prepared/*.json`. Commands were reconstructed with reviewer-owned outputs rather than replayed verbatim. Inspected and manifest-hash-verified drivers were copied into this scratch before execution. Builder drivers that perform construction or formatting edits were never executed.
+
+The execution prefix was repository `.venv/bin/python -B OWN/prepared/pilot_run.py LABEL ...`, with `TMPDIR=OWN`, `PYTHONDONTWRITEBYTECODE=1` and `GIT_OPTIONAL_LOCKS=0` inherited by every Git child. The pinned runner executes uv offline/frozen/no-sync/no-Python-download with its own caches/wheelhouse. Mypy additionally received explicit `--cache-dir OWN/mypy`; pytest received unique private basetemps; format/lint used `--no-cache`.
+
+- Offline prepare: eight hash-pinned wheels; guard18; MEMQ comparer14.
+- Current canonical suites:599 Commands/cohort,155 CLI,52 named,616 D2-fast,117 d3-fast. Source-test lane117 is required now and is not D3 installed proof.
+- Full Chat: standard guarded invocation1390 passes (one existing deprecation warning), then canonical-origin plugin invocation1390 passes again. The plugin inventories source hashes before pytest and validates imported primary module roots plus unchanged source hashes at session finish and after pytest. `chat-origins.json` records all three boundaries.
+- Initial use of the mutation launcher as a broad Chat observer pre-imported application modules and produced31 failures/906 passes before reviewer interruption (exit2). Failures included MCP peer statuses; this execution is preserved in `full-chat.json` and `prepared/full-chat.log`, excluded from passing evidence. The precise causal mechanism was not established. Two standard-invocation runs on unchanged product bytes passed, including the final origin-instrumented run. No candidate repair, skip or weakened assertion was used. Other mutation-launcher suites passed and have their source boundaries checked. The observer adds an anyio assertion-rewrite warning in those lanes.
+- Unchanged private mutation control52 passes. All20 relevant mutants have canonical CALL assertion witnesses. Names: projection-before-second-await, warning-dedupe, warning-order, zero-unavailable, missing-utilization-suffix, record-cap, entity-cap, double-format, ignored-result, legacy-substitution, decayed-collection, wrong-grouping, wrong-count, wrong-order, swallowed-cancel, missing-kind-refusal, case-insensitive-nodes, nodes-relationships, unawaited-query, double-query. `mutation-results.json` lists exact witness node IDs. Additional non-assertion failures: record-cap3, entity-cap1, nodes-relationships1, unawaited-query2. These receive zero assertion credit; each of those mutants also has a genuine named assertion witness. No setup/import/collection/KeyError failure is used as rejection credit.
+- Two separate Git exports: MEMQ68 exact+2 declared refusals+6 R-superseded each. DIAG68 exact+4 approved cache refusals; SESSION25 exact; pilot196 exact (41 metadata,62 help,29 dispatch,61 custom,3 lifecycle). No claim of76 unchanged rows.
+- Supplemental4 outputs/events exact. Only the three inventoried historical labels were updated; current revision is explicit and unchanged-product claim is false. Independently authored projection probes add4 exact stateful/raising comparisons to original baseline behavior (`independent_projection.py/json`).
+- Complete original Chat AST reversals and public-helper byte comparisons pass; original D1 contracts/API/test AST reversals pass against original c5871054. Exact fixtures verified. Source/start/candidate ancestry and D1 immutability checked.
+- Applicable Ruff passes; mypy15 source files passes; new-format3 passes. Whole changed Python format remains exit1 (memory.py,registry.py,runtime.py,adapters.py); pinned comparison reports zero new debt. Board36, render --check, lifecycle925, clean-export offline lock214, unit and worktree diff --check pass.
+- All94 current embedded/raw pairs were compared byte-for-byte and independently hash-checked (`pair-audit.json`). Historical failed attempts remain disclosed/excluded. Supplied D0/D1 receipts are inspected historical evidence, not fresh executions; the baseline closed build was not rebuilt. No candidate artifacts or installed probes were run.
+
+## Integrity, isolation and limits
+
+`before.json` and `after.json` each contain zero mismatches for121 pins,1255 protected non-doc paths,150 accepted repository evidence entries,29 accepted D1 entries,2 dirty examples,3 ignored-export entries,1 external locator and400 supplied raw files (1961 total entries, including overlaps). Byte hashes, modes, object types, sizes, mtime_ns, ctime_ns and symlink targets were compared where present. Request/manifest hashes were rechecked. Logical index SHA256 is `81debcb9570c61ffe3f1ac695e705ecd77f712ecaf9ce3526cf1bcc238b0a090`, calculated from exact `git ls-files -s -z` stdout before status at both boundaries. HEAD/branch match; staged/untracked are empty; only the two known unstaged configs remain; ignored listing matches. An initial reviewer-checker omission of the manifest's `link` field was corrected in scratch before accepting the opening boundary; it was not target drift.
+
+All directed writes reside in the one resolved scratch `/private/tmp/memq-d2-astra-r1-o67aPLb3`, including copied/exported source, caches, fixture stores, basetemps, logs and reports. DIAG's `/tmp/` spelling resolves to this same root. Supplied directories and `/private/tmp/memq-sol-current-path` remain unchanged. No checkout/worktree creation, source/doc/index edit, cleanup/restoration or nested delegation. Host-managed transcript/checkpoint activity is outside reviewer-directed writes and is not claimed as audited Git-ref immutability.
+
+Nullable ingest remains genuine, unwaived baseline debt: paired clean pre-D2/candidate exports reproduce identical Chroma TypeError/message; ingest_document and _ingest_handler bytes match (`ingest-baseline-identity.json`). Positive listing uses explicit descriptions and public-store absent-description metadata. The repair satisfies scoped listing requirements without fixing or waiving ingestion. Gather may reconstruct child cancellation; public capability/port identity was separately asserted. Root Ruff534/root collection conflict6929 and existing format debt remain unwaived; no unnecessary root rerun. D3 builds/artifacts/installed proof and human UAT20 remain future/NOT RUN. No live provider/network/real user-store access was authorized or used.
+
+Advisory rubric: runtime/contract4.0/4; effective tests/provenance2.4/2.5 (observer-run limit disclosed); scope/isolation2.0/2; documentation/closeout0.9/1.5 = **9.3/10**. The score cannot override finding001 or grant acceptance. Controller reconciliation is required; this report starts no remediation loop.

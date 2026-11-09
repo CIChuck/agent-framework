@@ -1,6 +1,7 @@
 # MEMQ D2 builder record — Chat memory queries and option R
 
-Status: **implemented; fresh D2 council pending**.
+Status: **implemented; documentation correction awaiting fresh D2 council**.
+[Round1 reconciliation](council-round1/report.md): Sol9.6/Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for MEMQ-D2-ASTRA-001. Runtime checks passed; [bounded correction](../../../../remediation/REM-CMD-MEMQ-D2-001-status-and-uat.md) changes documents only.
 Execution phase: validation. Validation state: pending.
 Source commit `3ed1d58ad8cc1e79522495da5cf19091185402d8`; start HEAD `39661e87`.
 The exact [contract](../../../../memory-query-command-contract.md),
@@ -77,6 +78,6 @@ Initial assertion/setup/KeyError attempts are disclosed and earn no passing
 credit. Root Ruff534, root test_display conflict6929 and four existing Chat
 format failures remain failed/unwaived. Future candidate builds, installed MEMQ
 proof and human UAT are not claimed. The [UAT plan](../../../../uat/memq-user-acceptance-plan.md)
-remains unchanged in the established folder, all20 cases NOT RUN.
+remains in the established folder, all20 cases NOT RUN. Its correction-cycle1 instructions now explicitly require an ingestion description as the workaround for unchanged baseline debt.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.
+**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.

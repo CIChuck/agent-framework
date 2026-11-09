@@ -2080,3 +2080,27 @@ has been executed or accepted through this documentation change.
   UAT remains NOT RUN; D3 artifacts/probe/installed proof and acceptance remain
   future. No external delivery was performed.
 - **Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.
+
+## 2026-11-09T19:33:05.002499+00:00 — MEMQ D2 round1 reconciled; documentation correction1
+
+- Frozen candidate `9db8311e`: Sol VERIFIED9.6, Astra CHANGES_REQUESTED9.3,
+  Claude VERIFIED9.4. Reports, complete ledgers and all576 listed artifact
+  hashes verified. All three reproduced the required runtime suites, captures,
+ 20 current CALL-assertion mutants and94 builder pairs; no runtime defect found.
+- MEMQ-D2-ASTRA-001 is the one mandatory finding: current authority prose says
+  D2 projection/protocol work is unstarted. Bounded correction updates it to
+  implemented source `3ed1d58a` and pending fresh documentation verification.
+  Current gates agree. No product, test, technical authority, config or lock edit.
+- Claude N3 is addressed by recording the unchanged no-description ingestion
+  TypeError in CMD-F05/FU-009 and requiring explicit descriptions in UAT setup
+  and MQ-UAT-10. No ingest repair or waiver; every UAT case remains NOT RUN.
+  N1 empty/absent-description test hardening and N4 traceability remain advisory.
+- Historical round1 verdicts stay scoped to their old freeze. This is the
+  authorized mechanical documentation correction under the existing option R
+  execution instruction; no new approval request or directive drafting cycle.
+- The first controller integrity attempt used link-text hashes instead of the
+  manifest's target-content hashes for12 symlinks. Corrected audit matches all
+ 1961 entries; the excluded attempt is retained. No source/input drift occurred.
+- `execution_phase: validation`; `validation_state: pending` for corrected D2.
+  D3 artifacts/installed proof and human UAT remain future; no external delivery.
+- **Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.

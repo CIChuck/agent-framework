@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.
+  next_gate: Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -739,6 +739,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/report.md
   - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/report.md
   - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round4/report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2942,3 +2943,11 @@ events:
   action: froze MEMQ D2 Chat integration and persisted listing for council
   note: Existing exact option R approval retained after D1 reconciliation. Chat1390 Commands-cohort599 CLI155 pass; fast616/117, named52,20 current mutation refusals with call assertions, captures68+2+6 repeated and supplemental4 exact. Baseline format/root and nullable-ingest debt unwaived. Fresh D2 council before D3; UAT NOT RUN; no acceptance or delivery.
   evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/README.md
+
+- task: friday-command-refactor
+  at: "2026-11-09T19:33:05.002499+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled MEMQ D2 round1 and froze bounded documentation correction
+  note: "Sol9.6/Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for MEMQ-D2-ASTRA-001. Runtime checks reproduced in all seats. Source/tests unchanged; status text and UAT/backlog ingestion workaround corrected. Fresh documentation-delta then full bounded D2 aggregate council before D3. UAT NOT RUN; no acceptance or delivery."
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md

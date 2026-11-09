@@ -42,7 +42,7 @@ The three fresh D1 seats are VERIFIED (Sol9.7, Astra9.6, Claude9.6), with no man
 D2 Chat integration and option R persisted listing are implemented at `3ed1d58a`;
 [builder evidence](validation/memory-queries/implementation/d2/README.md) records
 1,390 Chat,599 Commands/cohort and155 CLI passes plus20 current assertion-witnessed
-mutation refusals. Fresh D2 council is pending before D3 artifacts/installed proof. The UAT plan is
+mutation refusals. [Round1 council](validation/memory-queries/implementation/d2/council-round1/report.md) reproduced the runtime checks; Sol9.6 and Claude9.4 VERIFIED, Astra9.3 CHANGES_REQUESTED for stale authority prose. The [documentation correction](remediation/REM-CMD-MEMQ-D2-001-status-and-uat.md) awaits fresh council before D3 artifacts/installed proof. The UAT plan is
 NOT RUN and awaits the complete installed candidate. Existing technical approval
 governs construction; council results do not grant acceptance or delivery.
 [Correction controls and preservation](validation/memory-queries/directive-review/correction1/report.md)
@@ -51,7 +51,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.
+**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -139,7 +139,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.
+**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

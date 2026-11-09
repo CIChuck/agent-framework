@@ -313,3 +313,30 @@ each bounded namespace, rejection of unknown namespaces and extra keys, and a
 downstream type-check fixture that imports no internal Friday LLM modules.
 Source Evidence: The Friday Chat configuration migration uses only public root
 exports and records provider options separately from normalized generation.
+
+
+## FU-009: Omit Absent Ingestion Description Metadata
+
+Status: proposed; no repair authority
+Discovered During: MEMQ-001 D2 persisted-listing validation, 2026-11-09
+Framework Package: `packages/friday-memory` / public Chroma metadata boundary;
+the caller constructing this metadata is Friday Chat's FrameworkMemoryAdapter.
+Requested Change: Separately approve a bounded repair that omits the optional
+description key when no description is supplied, covering both single-document
+and batch-ingestion branches. Preserve explicit descriptions and listing groups.
+Reason: The real `/ingest FILE` handler produces description=None; the adapter
+includes that value in metadata and Chroma rejects it with TypeError. Paired
+clean pre-D2/candidate controls reproduce identical messages through the adapter
+and real command. The ingest code is unchanged in MEMQ.
+Impact If Not Changed: Users who omit a description cannot ingest through the
+real adapter; fake-adapter behavior can conceal this limitation.
+FridayV2 Workaround: Supply a non-empty description, such as
+`/ingest /path/document.txt project notes`. Use prepared absent-description
+persisted records to assess listing; listing already accepts a missing key.
+Compatibility Risk: Review absent versus empty descriptions and both ingest
+branches before approval. No repair or waiver is included in MEMQ-001.
+Suggested Follow-Up Tests: Real-adapter command and direct single/batch calls
+with missing, empty and explicit descriptions; persisted metadata and listing
+groups/counts; regression against explicit-description ingestion.
+Source Evidence: [MEMQ D2 round1 reconciliation](../../active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md),
+including all three independently reproduced paired controls; [CMD-F05](../friday-tui-command-followups/README.md).

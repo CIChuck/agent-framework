@@ -947,7 +947,7 @@
   },
   "memory_queries_preparation": {
     "unit": "MEMQ-001",
-    "state": "D2_implemented_council_pending",
+    "state": "D2_implemented_documentation_correction_pending",
     "requested_by": "Chuck Russell",
     "instructions": [
       "the uat was successful - all approved, proceed to next steps",
@@ -991,13 +991,13 @@
     },
     "approval": "approval/memory-queries-directive-correction2.md",
     "approval_sha256": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
     "implementation_status": "D1 verified; D2 implemented at 3ed1d58ad8cc1e79522495da5cf19091185402d8",
-    "projection_clarification": "Four supplemental legacy cases remain frozen; Chat projection/protocol changes are D2, unstarted.",
+    "projection_clarification": "Four supplemental legacy cases remain frozen; D2 Chat projection/protocol changes and option R listing are implemented at 3ed1d58ad8cc1e79522495da5cf19091185402d8. Round1 runtime checks passed; documentation correction awaits independent verification.",
     "recorded_at_original_erroneous": "2026-11-09T15:20:00+00:00",
     "recorded_at_basis": "Proposal commit 342bf85c timestamp: existence by 14:25Z, not an exact preparation start/finish. Original 15:20Z event preserved and explained by append-only correction.",
     "chronology_correction_recorded_at": "2026-11-09T15:33:59.716791+00:00",
-    "validation_scope": "D2 implementation council pending; D1 verified at9ce71581; historical design readiness remains scoped tobe15dca1",
+    "validation_scope": "D2 documentation correction review pending; D1 verified at9ce71581; historical design readiness remains scoped tobe15dca1",
     "reviewed_candidate": "be15dca1b37364748e1fcf9ef5d062a920a8d250"
   },
   "memory_queries_approval": {
@@ -1052,7 +1052,7 @@
     "criteria": "CR01..08 and MR01..10 pass per all fresh seats",
     "prior_sol_receipt": "historical BLOCKED, preserved and not waived",
     "validation_state": "verified",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
     "implementation": "Product D0/D1 not started",
     "authority_limits": "No construction/acceptance/UAT/delivery authority created by this review",
     "historical_next_gate": "Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery."
@@ -1234,7 +1234,7 @@
     "report": "validation/memory-queries/implementation/d1/README.md",
     "uat_plan": "uat/memq-user-acceptance-plan.md",
     "uat_result": "NOT RUN",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
     "acceptance": "not_granted",
     "delivery": "local only",
     "independent_candidate": "9ce7158169a1edef87cd4f864beb29c6b29c849d",
@@ -1271,7 +1271,7 @@
     "mandatory_findings": [],
     "report": "validation/memory-queries/implementation/d1/verified-report.md",
     "recorded_at": "2026-11-09T18:16:51.257314+00:00",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
     "next_gate_at_D1_closeout": "Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.",
     "checkpoint_scope_note": "D1 result retains its reviewed candidate; current D2 execution state is memory_queries_d2_implementation."
   },
@@ -1285,9 +1285,50 @@
     "report": "validation/memory-queries/implementation/d2/README.md",
     "evidence": "validation/memory-queries/implementation/d2/evidence.json",
     "option": "R",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
     "uat_result": "NOT RUN",
     "acceptance": "not_granted",
+    "delivery": "local only",
+    "correction": "remediation/REM-CMD-MEMQ-D2-001-status-and-uat.md",
+    "round1_result": "CHANGES_REQUESTED: MEMQ-D2-ASTRA-001; runtime checks passed in all three seats"
+  },
+  "memory_queries_d2_validation_round1": {
+    "candidate": "9db8311e44583f6db882847ff4643094668077bf",
+    "source_commit": "3ed1d58ad8cc1e79522495da5cf19091185402d8",
+    "outcome": "CHANGES_REQUESTED",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.6
+      },
+      "astra": {
+        "outcome": "CHANGES_REQUESTED",
+        "score": 9.3
+      },
+      "claude": {
+        "outcome": "VERIFIED",
+        "score": 9.4
+      }
+    },
+    "mandatory_findings": [
+      "MEMQ-D2-ASTRA-001"
+    ],
+    "report": "validation/memory-queries/implementation/d2/council-round1/report.md",
+    "recorded_at": "2026-11-09T19:33:05.002499+00:00",
+    "scope": "Historical round1 candidate; runtime checks passed, current documentation correction awaits fresh independent review. No acceptance/advancement/delivery."
+  },
+  "memory_queries_d2_correction": {
+    "cycle": 1,
+    "execution_phase": "validation",
+    "validation_state": "pending",
+    "remediation": "remediation/REM-CMD-MEMQ-D2-001-status-and-uat.md",
+    "findings": [
+      "MEMQ-D2-ASTRA-001"
+    ],
+    "scope": "Documentation only; source/tests/technical authority and94 builder pairs unchanged. UAT/backlog no-description ingest instructions clarified without repair or waiver.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
+    "acceptance": "not_granted",
+    "uat": "NOT RUN",
     "delivery": "local only"
   }
 }
