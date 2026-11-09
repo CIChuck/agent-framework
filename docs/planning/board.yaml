@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.
+  next_gate: Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -737,6 +737,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/verified-report.md
   - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/report.md
   - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2898,3 +2899,10 @@ events:
   action: 'recorded MEMQ directive correction cycle2: exact-union allowance and current-gate reconciliation'
   note: 'Continuing maintainer instruction: lets apply the corrections and iterate. Fresh round3 delta then full directive review required; escalate remaining mandatory findings after cycle2. Original reports/history and product scope remain preserved; D0/D1 stopped.'
   evidence: docs/planning/active/command-refactor/approval/memory-queries-directive-correction2.md
+- task: friday-command-refactor
+  at: '2026-11-09T16:22:41.779073+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded MEMQ round3 result and two-cycle escalation
+  note: Astra VERIFIED9.5, Sol BLOCKED9.4 for scratch-isolation breach, Claude CHANGES_REQUESTED8.9 for Low unqualified post-SESSION README gate. Original reports and external locator preserved; exact proposed sentence patch not applied. Await maintainer direction; no further automatic loop or product D0/D1.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/report.md

@@ -1,35 +1,32 @@
-# MEMQ-001 — directive readiness correction cycle2
+# MEMQ-001 — round3 findings returned to the maintainer
 
 Branch: `feature/command-retirement`
 Execution phase: validation (directive/design only)
-Validation state: in_review (fresh council round3 pending); product D0/D1 not started
+Validation state: changes_requested; formal council incomplete because Sol is BLOCKED
 
-Chuck Russell's continuing “lets apply the corrections and iterate” authorizes
-[REM-CMD-MEMQ-DIR-002](remediation/REM-CMD-MEMQ-DIR-002-union-and-gates.md) after
-[round2](validation/memory-queries/directive-review/round2/report.md) returned
-CHANGES_REQUESTED (Sol8.8, Astra9.1, Claude8.6). The exact
-[cycle2 amendment](approval/memory-queries-directive-correction2.md) binds the
-[contract](memory-query-command-contract.md) (`93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda`) and
-[directive](directives/CD-CMD-MEMQ-001-memory-queries.md) (`4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00`).
-Only the six-member exact-union expected-set allowance, complete README gate
-reconciliation, associated controls and dependent pins change in this cycle.
-The first-statement import clarification matches the existing verifier.
+Reviewed technical candidate: `818b42eeca4495cf34292e934dbdac34e31ca4db`.
+[Round3 reconciliation](validation/memory-queries/directive-review/round3/report.md)
+records Astra VERIFIED9.5, Sol BLOCKED9.4 and Claude CHANGES_REQUESTED8.9.
+Technical corrections CR-01..05 are resolved. CR-06 still has the unqualified
+post-SESSION instruction at reviewed README line215 (CLAUDE-001, Low).
+Sol wrote a locator outside its own fresh scratch, so that receipt cannot be
+counted as VERIFIED despite unchanged candidate/supplied inputs. No cleanup or
+retrospective waiver was performed.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.
+**Next gate:** Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.
 
-The original four technical corrections remain in place. Astra's stale lower
-README gate is confirmed directly, despite the other seats' state summaries;
-all current index gates must agree. Original chronology events/log entries and
-all previous reports/approvals/evidence remain unchanged and are historical.
-Option R behavior and product scope do not expand. [Cycle2 controls](validation/memory-queries/directive-review/correction2/report.md)
-are local controller evidence awaiting fresh independent assessment.
+Two correction cycles are consumed. The council skill and independent-validation
+policy require returning remaining mandatory findings rather than another
+automatic loop. [Exact proposed sentence patch](validation/memory-queries/directive-review/round3/proposed-readme-fix.patch)
+is prepared but not applied. The controller has changed only current status and
+review evidence after the freeze; approved contract/directive/verifier/format
+inputs retain their reviewed hashes. No new technical candidate result is claimed.
 
-Fresh reviewers dispose the current delta first, then all earlier findings and
-the full bounded directive aggregate. After this second correction cycle, any
-unresolved mandatory findings return to Chuck Russell. D0/D1 stays stopped.
-The umbrella remains started/local. Root/format debt remains failed/unwaived;
-all product files, dirty examples, ignored exports and accepted prior-family
-inputs remain preserved. No UAT, acceptance, next family or delivery follows.
+Existing [cycle2 authority](approval/memory-queries-directive-correction2.md)
+and option R scope remain recorded; readiness is not cleared. Product D0/D1
+has not started. The umbrella remains started/local, baseline debt stays
+failed/unwaived, and original product/dirty/ignored state remains preserved.
+No acceptance, UAT, later-family or delivery authority follows.
 
 ### Preserved DIAG acceptance checkpoint
 

@@ -1,0 +1,8 @@
+--- a/docs/planning/active/command-refactor/README.md
++++ b/docs/planning/active/command-refactor/README.md
+@@ -216,4 +216,4 @@
+ SESSION-001 construction was [approved](approval/session-views.md), independently
+ VERIFIED and [accepted by Chuck Russell](approval/session-acceptance.md).
+ The [remaining council roster](approval/council-roster.md) is Sol/Astra/Claude.
+-Await separate maintainer direction and approved scope for a next unit.
++The post-SESSION instruction “Await separate maintainer direction and approved scope for a next unit” is historical and superseded by the current MEMQ next gate above.

@@ -1,0 +1,187 @@
+# MEMQ-001 directive readiness — council round 3, correction cycle 2 — Claude seat
+
+**Verdict: CHANGES_REQUESTED, for MEMQ-001 directive/design readiness only.**
+
+There is one mandatory finding, MEMQ-DIR-R3-CLAUDE-001. It is low severity and needs a one-sentence document fix. CR-01..CR-05 are resolved. CR-06 is partially resolved: both labelled `**Next gate:**` lines and the MEMQ phase labels agree, but one unqualified stale next-action sentence remains lower in the README. This report does not verify product conformance. It grants no implementation, advancement, UAT, acceptance or delivery authority. This is correction cycle 2, so the finding returns to Chuck Russell. No further loop is initiated.
+
+- Reviewer: Claude Opus 5.5/high. This is a fresh context with no nested delegation and no repairs.
+- Date: 2026-11-09.
+- Workdir: `/Users/chuckrussell/Dev/gendev/agent-framework`.
+- Branch: `feature/command-retirement`.
+- Candidate: `818b42eeca4495cf34292e934dbdac34e31ca4db`.
+- Review order:
+  1. The approved remediation delta `0001357262bd86d17ce4f9a43c7bf98cc9115534..818b42ee` (21 paths, all under `docs/planning/`).
+  2. The full bounded aggregate `c5871054266da2340486d2043062c5fb95611c00..818b42ee` (39 paths, all under `docs/planning/`; 0 non-planning paths).
+- Prior reports were used only to identify findings. No prior verdict or builder reasoning was inherited.
+- Scratch (all writes): `/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/e50ef93a-ec89-41dd-8085-ba8eaa88b76b/scratchpad/memq-r3-claude-80sBMk`
+
+## Mandatory finding
+
+### MEMQ-DIR-R3-CLAUDE-001 — Low — the README still has an unqualified stale next-unit gate
+
+**Source.** `docs/planning/active/command-refactor/README.md:212-215`:
+
+> SESSION-001 construction was approved, independently VERIFIED and accepted by Chuck Russell. The remaining council roster is Sol/Astra/Claude. **Await separate maintainer direction and approved scope for a next unit.**
+
+`git blame` shows commit `9dbcec54` on 2026-11-08, which is the SESSION acceptance era, before DIAG-001 and MEMQ-001. The sentence has no qualifier. It is present tense. No later "superseded" marker covers it: the line 189-190 marker supersedes only the pending-approval paragraphs *above* it.
+
+**Conflict.** Today MEMQ-001 has approved option R scope. Its current next action is the round-3 reconciliation. The sentence conflicts with:
+
+- README lines 24 and 30-31: MEMQ is in directive/design validation, `in_review`.
+- README lines 36 and 124: "**Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle2 …".
+- Board `next_gate` (`board.yaml:714`), `authority.json` `memory_queries_preparation.next_gate`, and the tactical/next-phase checkpoints (line 18).
+
+The sentence says no next unit has approved scope, and that the next step is maintainer selection of a unit.
+
+**Requirements.**
+
+- REM-CMD-MEMQ-DIR-002 requires reconciling "every unqualified current README next gate … audit the entire index rather than only its top paragraph".
+- Request CR-06 requires "Every unqualified current Next gate and phase agrees".
+- `CD-CMD-MEMQ-001-memory-queries.md:434-436` requires the packet/index to agree on "next action" at every gate.
+
+**Why the cycle-2 control missed it.** `verify_directive_corrections.py:274-280` (`current_gates`) only matches lines of the form `^\*\*Next gate:\*\* (.+)$`, plus one literal phrase, "MEMQ-001 is in planning". My probe (`out/readme-gate-control-probe.json`) shows the control accepts all of the following:
+
+- this sentence;
+- an unbolded `Next gate:` stale gate;
+- a `**Next gate**:` variant;
+- an indented bold label;
+- `MEMQ-001 is in construction`;
+- `MEMQ execution_phase: implementation`.
+
+So the cycle-2 statement "all current README gates agree" is accurate only for the bold-label form.
+
+**Impact.** The board still controls, and the sentence counsels waiting rather than construction. So it confers no authority and is not unsafe. But the operational entry point still gives two different next actions, which is the defect class that CR-06/REM2 was meant to close.
+
+**Minimal correction.** Change only line 215. Either qualify it as historical, e.g. "At SESSION acceptance the packet awaited maintainer direction for a next unit; this is superseded by the current Next gate above," or replace it with a pointer to the current Next gate. Then re-pin dependent current evidence if any. Leave history and the log unchanged. No product, test or technical-contract change is needed. Optionally (advisory A-3) broaden or relabel the README control.
+
+## Advisory (non-blocking)
+
+- **A-1.** `authority.json:990`, `memory_queries_preparation.decisions_approved.MQ-D4` = "two exact export assertions 38 -> 54". This omits the 12→18 closed-union helper extension. Contract MQ-D4 (line 452) and the cycle-2 approval include it. The summary label is incomplete, but the bound approval and contract are explicit.
+- **A-2.** Directive line 128 says "including both MQ-D4 extended assertions". MQ-D4 now covers two export assertions plus the union helper, so "all MQ-D4 extended assertions" would be clearer. The full Commands pass requirement already covers the helper.
+- **A-3.** The README gate control is syntactic (see the finding above). Its labels "full README audit" (correction2 report) and "complete-index gate controls" (README:33-34) overstate it. Either add label-variant and phase-label checks, or describe it as a bold-label control plus a human semantic audit.
+- **A-4.** The verifier's union witnesses execute the helper AST, recompiled under the canonical filename in a private namespace. They are not pytest-node witnesses. My independent pytest-node controls below confirm the same result. The future D1 mutation witness should name the node `test_diagnostic_models_and_closed_union[closed_union_retains_old_variants_and_refuses_nested_values-0]`.
+- **A-5.** The verifier `runpy`-executes the canonical test module from the checkout. Always run it with `-B`/`PYTHONDONTWRITEBYTECODE=1` and an external output directory, as I did.
+
+## CR matrix (independent disposition)
+
+| CR | Disposition | Evidence |
+| --- | --- | --- |
+| CR-01 D5 exact sources | **Resolved** | Directive 391-407 names DIAG `retained_session_neutral_behavior` (38-name `expected_exports`; the verifier requires `len==38`), SESSION `chat_behavior`, DIAG `neutral_diagnostics` and `chat_diagnostics`. The only permitted transforms are a rename and 16 appended names. The 24-name SESSION `neutral_behavior` is explicitly excluded. The verifier (executed) produced the ordered API54; reversal recovers each source AST; an added statement is refused for all four. |
+| CR-02 MQ-D4 owner/import | **Resolved** | Contract 171-182 and directive 98 and 278 cover the local import (now explicitly the first statement), 16 API names, 13 models appended to the `contracts` tuple, a final 3-name `memory_queries_module` row and 38→54. The verifier (executed) shows 54 synthetic binding identities, AST reversal and refusal of an unrelated assertion. My counterexamples: import moved to the second statement is refused ("Unexpected local import"); swapped appended owner models are refused. |
+| CR-03 format debt | **Resolved** | Executed in my scratch: the literal directive block `record` on my D0 export; exact JSON byte equality with the pinned `format-baseline.json` (`7475cd91…`); `check` on the current root gives `{"new_format_debt": {}, "baseline_debt": "failed/unwaived"}`; `record` refuses to overwrite (FileExistsError); verifier format controls (unchanged / shifted / formatted-new / new-defect / duplicate) pass. The whole-file `ruff format --check` on the five baseline files exits 1: memory.py, registry.py, runtime.py and adapters.py would be reformatted; memory_views.py is already formatted. This is **failed/unwaived**. Both new tools pass `ruff check` and `ruff format --check`. |
+| CR-04 chronology | **Resolved** | The execution log at both `00013572` and `c5871054` is a byte prefix of the current log. Board events at both are an ordered prefix of the current events (305/308 → 309). The original `15:20Z` event (board) and log heading (log:1846) are unchanged. Commit `342bf85c` is dated 09:25:00-05:00 (14:25Z); the approval was recorded at 14:49:49Z. The log correction (1905-1910) and `authority.recorded_at_basis` infer no exact preparation instant. Mutable authority pins (contract `93cdb3bd…`, directive `4d154412…`, approval `54c778f4…`) match actual bytes. |
+| CR-05 exact union allowance | **Resolved** | Actual baseline helper `test_diagnostics.py:195-210`: `expected = {type(x) for x in PAYLOADS} | {5 names}` with 7 PAYLOADS types, 12 in total. It is the only exact-union assertion in any package test (grep). There is no self-hash or coverage inventory in the file. Contract 184-196 and directive 98, 113 and 278 permit only appending six `contracts.*` attributes in order (the MQ-01 order) to the right-side set literal, giving 18. Equality, loops and invocation are preserved, with no import. My **pytest-node** controls are below. All 16 of my AST-audit counterexamples are handled correctly. |
+| CR-06 entire README | **Partially resolved; open as MEMQ-DIR-R3-CLAUDE-001** | Lines 36 and 124 (both `**Next gate:**`) equal the board, authority, dashboard, tactical and next-phase gate. Line 24 ("directive/design validation") and lines 30-31 (`validation`/`in_review`, product D0/D1 not started) agree. Line 19 (DIAG `closeout`/`verified`) is explicitly qualified to DIAG-001 and matches `authority.diagnostics_construction`. Lines 181-184 are superseded explicitly at 189-190. **Line 215 is unqualified and stale.** The verifier's injected bold stale gate is refused, but other forms are not (probe above). |
+
+## MR matrix
+
+| MR | Result | Basis |
+| --- | --- | --- |
+| MR-01 Authority / option R | Pass except finding 001 | Policy → board (`started`, `granted`, branch, local) → contract/directive → original approval (`0831ccbe`, frozen), amendment 1 (`7eed81dc`, frozen) and amendment 2 (`54c778f4`), whose 8-row hash table all match. Product D0/D1 is stopped. No acceptance or delivery is inferred. The deferred paths are explicit. Board `next`/`show` agree. Finding 001 is a stale index sentence. |
+| MR-02 Closed schema/API | Pass | 13 frozen/slotted models with exact fields and defaults; 6 payload alternatives; 16 exports appended after 38; validation rules and limits. MQ-D4 now covers both export pins and the union helper (CR-02/CR-05). The installed retained-probe plan is per CR-01. |
+| MR-03 Ownership/invocation | Pass | MQ-02 sets the order: exact request → execution → name → one exact-bool availability check → one awaited call. It specifies the kind/graph selection table, MQ-D1/MQ-D2 refusals and exception/cancel identity. The neutral package is stdlib-only, consistent with `test_import_boundary.py`. |
+| MR-04 Current-source compatibility | Pass | MQ-03/04/05 match actual `memory.py` (`_metric_text`:306, `_meta_record_lines`:200, `preview_text`:334, `record_value`:325) and registry `_entities_handler`:298. **Executed:** two independent clean-export captures of `c5871054` each give "Six metadata records match; 76 exact rows + 0 declared kind refusals + 0 repair-superseded rows". The four supplemental cases reproduce structurally identically to the pinned observations. |
+| MR-05 Option R feasibility | Pass (inspection) | `_ingest_document` stores `type="ingested_file"`, source, description and chunk metadata (adapters 389-407). `query_memory_records` already uses public `short_term/long_term.get_all(limit=None, where=…)` with `gather(return_exceptions=True)` (adapters 598-616). The current `/list-ingested` `getattr` fallback is at registry:740. No framework or `/ingest` change is needed. |
+| MR-06 Chat integration | Pass (inspection) | `DEFAULT_COMMAND_SPECS` is a 39-tuple; indices 3, 9, 10, 11, 12 and 16 are memory, entities, insights, summaries, meta and list-ingested respectively. The 41/3 surface, wrappers, once-only invocation and pure renderers are specified (MQ-07). |
+| MR-07 Tests/mutations/gates | Pass | MQ-T01..T14 trace to MQ-01..07 and MQ-D1..D4. Mutations require call-phase assertion witnesses plus unchanged controls. Staged D1/D2/D3 councils. The old-test allowance is now exact (CR-05). |
+| MR-08 Executable D0-D5 / correction | Pass | All 7 shell blocks pass `zsh -n`. Executed: prepare (offline, supplied wheelhouse), guard selftest (18 refusals), materialization (hash-verified, overwrite-refusing), comparator selftest (14 refusals), capture and replay, extra-source refusal ("Source inventory differs from Git") and changed-byte refusal ("Source byte drift: …/memory.py") before imports, the new format block, the correction verifier and lint/format. Future builds and installs are not demanded. |
+| MR-09 Provenance | Pass | Embedded/raw accounting, by evidence set: <ul><li>preparation: 29 embedded, 25 raw-equal (includes all 23 receipts; 4 embedded-only);</li><li>supplemental: 4/4;</li><li>correction1: 33/33;</li><li>planning-checks: 14/14;</li><li>**correction2: 26/26**.</li></ul> Total: **106 embedded / 102 raw-equal, 0 mismatches.** Round 2 report, request and manifest hashes match `round2/evidence.json`. Inspected receipts are not treated as correctness proof. |
+| MR-10 Isolation/preservation | Pass (see the host observation below) | Start and end boundaries match. Baseline debt is honestly labelled. No product verdict is given. |
+
+## Independent union controls (executed, private export of `818b42ee` `packages/friday-commands`)
+
+Each variant was run as the actual pytest node `test_diagnostic_models_and_closed_union[closed_union_retains_old_variants_and_refuses_nested_values-0]`. Settings: `PYTHONPATH=<variant>/src`, an origin plugin asserting that `friday_commands` loads from the variant's `src` (ORIGIN verified for every variant), `-p no:cacheprovider`, and a private `--basetemp`. The synthetic union classes are empty dataclasses and make **no** claim about future model implementation.
+
+| Variant | Expected | Result |
+| --- | --- | --- |
+| A: baseline union and helper (12) | pass | 1 passed |
+| B: union +6, helper +6 (18) | pass | 1 passed |
+| C: union +6, unchanged helper | fail | AssertionError at the helper's assert line 203 (canonical node) |
+| D: union +6, helper +5 (missing one) | fail | AssertionError at line 208 |
+| E: union +6 plus an extra class, helper +6 | fail | AssertionError at line 209 |
+| F: union +6 plus nested `DiagnosticField`, helper +6 | fail | AssertionError at line 209 |
+| G: six classes defined but only 5 in the union, helper +6 | fail | AssertionError at line 209 |
+| H: same as G, helper weakened to `<=` | weakening control | **passes**. This shows the exact-equality AST audit is essential. |
+
+Failed or excluded attempts were kept, with no credit. In run 2, G and H failed with an `AttributeError` because my variant removed the class definition; that was a setup error, so no assertion credit. In run 3, H used the wrong operator (`>=`). Both are kept as `out/union-variants-run2-GH-attributeerror.json` and `out/union-variants-run3-H-wrong-operator.json`.
+
+AST-audit counterexamples use the verifier's `reverse_union` plus shape comparison against the real baseline helper (`out/ast-counterexamples.json`). Exact six is accepted. All of the following are rejected:
+
+- subset operator;
+- missing one;
+- reordered;
+- `api.` owner;
+- bare names;
+- a seventh member;
+- a left-side addition;
+- a duplicate;
+- a helper-local import;
+- refusal-loop edit;
+- acceptance-loop edit;
+- old-member reorder;
+- prepended members with old ones dropped;
+- export-test import not first;
+- swapped owner models.
+
+ALL_CORRECT = True.
+
+## Executed versus inspected
+
+**Executed with my own paths** (runner receipts are under `prepared/r3c-*`):
+
+- Request and manifest hashes.
+- Start and end boundaries (`tools/boundary.py`).
+- Correction verifier into `verifier-out/` (exit 0).
+- Union pytest variants and AST counterexamples.
+- README control probe.
+- prepare.py with the supplied wheelhouse (read-only, no fetch).
+- Guard selftest; comparator selftest.
+- Materialization of the three programs (hashes `eafcfcbc…`, `afd38e74…`, `ce5da59c…`).
+- Baseline capture and replay at `c5871054` (76 exact each).
+- Extra-source and changed-byte refusals.
+- Supplemental four-case reproduction.
+- Format `record` plus byte comparison, `check`, and overwrite refusal.
+- Whole-file format check (exit 1, failed/unwaived).
+- Ruff check and format on the two new tools.
+- `zsh -n` on the 7 shell blocks.
+- Board validate (36 tasks), render `--check`, `next`, `show`.
+- Documentation lifecycle (916 Markdown files).
+- `git diff --check` on the worktree, on `c5871054..cand` and on `00013572..cand` (all exit 0).
+- Embedded/raw pair hashing for all evidence sets.
+- Log and board-event append-only checks; chronology timestamps.
+
+**Inspected only:**
+
+- The preparation's related-Chat 587 and Commands 498 test receipts.
+- Historical DIAG/SESSION/pilot receipts.
+- Root Ruff 534 and the root `test_display` collection conflict. These were not rerun and remain failed/unwaived debt.
+- Round 1 and round 2 raw reports, used for finding identities only.
+
+**Excluded by scope:** future D1/D2/D3 suites, mutations, builds, wheels and installed proof.
+
+## Integrity, isolation and limits
+
+**Matched at both start and end:**
+
+- Request `7b2d061b…` and manifest `5dc0917f…`.
+- Logical index `605521c9…`, hashed from the exact `git ls-files -s -z` output *before* `git status`, with `GIT_OPTIONAL_LOCKS=0` on every Git child.
+- HEAD `818b42ee`, branch, and status (only the two dirty Chat examples).
+- Empty staged diff.
+- 72 pins (HEAD blob and worktree).
+- 1255 protected non-doc files.
+- 2 dirty files and 3 ignored exports.
+- 88 supplied raw identities (type, size, mtime, ctime, sha, link).
+
+There were no writes in the repo working tree (`find -newer` on the start marker; nothing outside `.git`). There were no writes to the supplied controller, builder or evidence directories.
+
+**Host observation, outside the reviewer's control.** The T3 Code host wrote orchestration checkpoint commits, author "T3 Code", under `refs/t3/orchestration-v2/checkpoints/…` (e.g. `424d3728`, parent `818b42ee`) into `.git/objects` at 11:11 during this review. My commands write no objects. HEAD, branch, index, staging and worktree are unaffected, and all manifest identities still match.
+
+**Limits:**
+
+- Synthetic union classes and markers prove membership and AST feasibility only, not MQ models or the whitelist.
+- Option R feasibility is based on inspection.
+- The DIAG/SESSION/pilot replays were not rerun (not required).
+
+## Advisory score
+
+**8.9/10.** Breakdown: technical contract and controls 3.9/4; reproducibility and provenance 3/3; authority/state clarity 1.0/2 (stale line 215, MQ-D4 label); preservation 1/1. The score does not override MEMQ-DIR-R3-CLAUDE-001.

@@ -1950,3 +1950,24 @@ has been executed or accepted through this documentation change.
   controls. Verification tools pass lint/format; original product files preserved.
   [Cycle2 controller evidence](validation/memory-queries/directive-review/correction2/report.md)
   awaits fresh independent round3. No prior score or verdict carries forward.
+
+
+## 2026-11-09T16:22:41.779073+00:00 — MEMQ round3 reconciliation; two-cycle escalation
+
+- Candidate818b42ee reviewed delta then full directive/design aggregate.
+  Astra VERIFIED9.5; Sol BLOCKED9.4; Claude CHANGES_REQUESTED8.9.
+  [Round3 reports](validation/memory-queries/directive-review/round3/report.md)
+  and every exact original report/hash are preserved. No score overrides a finding.
+- MEMQ-DIR-R3-CLAUDE-001 (Low) remains: unqualified post-SESSION await-next-unit
+  instruction at reviewed README215 needs an explicit historical qualifier.
+  Sol/Astra treated the paragraph as historical; its literal current imperative
+  supports retaining Claude's requirement under CR06. Regex passes alone do not
+  establish a semantic whole-index audit. The proposed patch is not applied.
+- MEMQ-DIR-R3-SOL-001: Sol wrote /private/tmp/memq-sol-current-path outside its
+  assigned fresh scratch. The locator and disclosure are preserved; no cleanup,
+  waiver or replacement review. Candidate/index/supplied evidence matched.
+- Two correction cycles are consumed. Stop and return both matters to Chuck
+  Russell under policy. No automatic third correction or further review begun.
+  `execution_phase: validation`; `validation_state: changes_requested` for
+  directive readiness; no product construction, acceptance or delivery.
+- **Next gate:** Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.

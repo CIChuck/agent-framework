@@ -27,13 +27,17 @@ retain the original [approval](approval/memory-queries.md) and the current
 [cycle2 correction amendment](approval/memory-queries-directive-correction2.md).
 Council rounds 1 and 2 returned CHANGES_REQUESTED. The original four corrections are
 recorded in [REM-CMD-MEMQ-DIR-001](remediation/REM-CMD-MEMQ-DIR-001-readiness.md).
-MEMQ `execution_phase: validation`; `validation_state: in_review` for fresh
-round-3 directive/design readiness only (correction cycle2). Product D0/D1 has not started.
+MEMQ `execution_phase: validation`; `validation_state: changes_requested` after
+round3 directive/design review (correction cycle2). Astra VERIFIED9.5; Sol
+BLOCKED9.4 for a reviewer isolation breach; Claude CHANGES_REQUESTED8.9 for
+MEMQ-DIR-R3-CLAUDE-001. The [round3 reconciliation](validation/memory-queries/directive-review/round3/report.md)
+returns the remaining issue and incomplete seat receipt to Chuck Russell.
+No further automatic correction is authorized; product D0/D1 has not started.
 [Correction controls and preservation](validation/memory-queries/directive-review/correction1/report.md)
 are historical controller evidence; current union and complete-index gate controls
 are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/report.md).
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.
+**Next gate:** Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -121,7 +125,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.
+**Next gate:** Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)
