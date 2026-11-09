@@ -1,0 +1,735 @@
+{
+  "records": [
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/end.json",
+      "sha256": "8f0b885a750dc67058a19b50567202ca4fa91252197324ddd8daa648c8e256a0"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/executed.json",
+      "sha256": "33fc2e3f508f0272ffd2b7092284fafe487bb515dffbba6ccc3a8e40d5f387d5"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/remediation.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/receipts.py",
+      "sha256": "2fd5425b9407c8d54d00b846a9adf54230f4120c7a29da24764721ac6b582675"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/pairs.json",
+      "sha256": "7a90be97ed994e498d2f5f7d409523d55f117a2d57e43b3a295da0c015b5928b"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/semantic.py",
+      "sha256": "a61a56e17c13e98a707ce2dbaf23a06da4c87363e12ee39e7d33c20e8afd9d98"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/audit.py",
+      "sha256": "fdceef95a7506d9645db3a1db059b1018ae1491b41e30ed32a8ad1ee0cbba612"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/board-validate.log",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/lifecycle.log",
+      "sha256": "0fd1bdb028015f9961b8798720e8d981a9f3247efb67417b8b2b9f4d82dc4325"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/env.json",
+      "sha256": "f52ac001cd827a28c56b895bcf3ddc8b9c3413e2fbda6f172e94da10f122efb4"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/finalize.py",
+      "sha256": "18539cae0e7148162d7a43517abe766eb9b33e8c1c7e8f57c8de72f92cb4a7d1"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/worktree.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/uv-d06cbd3e69ade1dc.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/aggregate.diff",
+      "sha256": "54bd1332c6a08f850b67010b56703a7a207228214f04c78a9c40b4913f654864"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/inspected-receipts.json",
+      "sha256": "b4040d28be70aaa3225b594a00efc87176c8271e8453e9d75aaabcd537113755"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/pair-scope-audit.json",
+      "sha256": "02ac947feb2a55c390742cf414af1572d0d130f58e690146c2f9a77d3c0126ff"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/correction.diff",
+      "sha256": "0cb9d4bc7da2d4f81801250c7e98051597ecbe87a5e7be93fcdfc4d7c2286016"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/start.json",
+      "sha256": "8b420dee015523f0961271a5f9d5a12ac6c125b5bee1849cab953a105e5fc21d"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/d2.diff",
+      "sha256": "ab00ef3da9eac292a44ef5707ebd267f52795ea94e0c53ee9d688adf32e1b754"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/aggregate-unit.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/semantic.json",
+      "sha256": "c83a468bd6597e5e159d50463dc6887020ed8dfbd8f884899f131d08f1b3fbfa"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/d2-unit.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/start-complete.json",
+      "sha256": "8f0b885a750dc67058a19b50567202ca4fa91252197324ddd8daa648c8e256a0"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/dashboard.log",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33"
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/retained-observations.json",
+      "sha256": "6111f811232c82075f88076f36b2458b17ad39603f38bbe18a132a6aac15727c"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/additional-receipts.json",
+      "sha256": "fd4a8f9be4a666ed405f81967fe1f980943f1c8afc55c54f64cbb3848dd7e7bb"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/aggregate-package.diff",
+      "sha256": "6442a327b6864e9addbc92149402f5b5844c71e4da3c5dfd88c8d4748fcc13e3"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/aggregate-paths.txt",
+      "sha256": "6dc8e80fbaee32d0b177a1b9e85edf708a1c376e310c719078ddb946365f5039"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/astra-chat-origins-assessed.json",
+      "sha256": "91ad7283fe818740c644af8ee88474b78e8dda95b57e3d62b4e9d248ba6856fb"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/audit.py",
+      "sha256": "f1737ae61b24aefe88dda5d61e75ecf218b040325fa4f6feec378eab59ea0c3a"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/capture-assessment.json",
+      "sha256": "41a38435c8ef57f9900aa3cb91447d45af02ac0fcddff81e74a5e7bc5baa5f6b"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/captures_assessment.py",
+      "sha256": "175dfba3779caf44e22d53d1ba9ec8e4ca19cd5e4d1f038b876dcf6b87bf68d5"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/check-0.log",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/check-1.log",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/check-2.log",
+      "sha256": "0fd1bdb028015f9961b8798720e8d981a9f3247efb67417b8b2b9f4d82dc4325"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/check-3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/check-4.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/check-5.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/check-6.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/checks.json",
+      "sha256": "cbfae5e96904d1fe4727dbc8fbdd93d1e9ed5eebcb969bfaaab724d8b8501a21"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/checks.py",
+      "sha256": "1fce75d3e71d9dce1fc08f70c51856ae677b3c434490186edbc2d59e568e1c39"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/correction-package.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/correction-paths.txt",
+      "sha256": "f0443b2f646e0a51334e0a2c41475768ec1d8d8a8c0c335e6bac849f1d2ef1bb"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/d2-package.diff",
+      "sha256": "69a2455c753f9dc610a2f456502fc93137983b15a5fc2842b634da8133e4c25b"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/d2-paths.txt",
+      "sha256": "8cb0fa4a3ad6ad642d4dfda458de6dbe8c703badb816bfc04a5384ed9c9ad76a"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/git-branch.txt",
+      "sha256": "90aef198eec5eda488851ebca5f7260d8d097cb1c40d78e90b3e3a85eeffdb6c"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/git-rev-parse.txt",
+      "sha256": "e28f39781cb57f544a8815d91477536339ed29435ef559b1196e28c656db078d"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/git-status.txt",
+      "sha256": "561beef2edf1e218f27a5367a0e497e3488d7d8369ec43f671b51dc598a2a027"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/index-end.bin",
+      "sha256": "97a7131228078068aee87c5c0f4f8d05209797fbf9d3c3a52d6dd04db7158468"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/index-start.bin",
+      "sha256": "97a7131228078068aee87c5c0f4f8d05209797fbf9d3c3a52d6dd04db7158468"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/integrity-end.json",
+      "sha256": "34a8bd391f0283eb7d87c42db119ce977691883e9840bb6c3b798043e01379fb"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/integrity-start.json",
+      "sha256": "34a8bd391f0283eb7d87c42db119ce977691883e9840bb6c3b798043e01379fb"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/pairs.json",
+      "sha256": "9bdc1a6b2e7db9d4adce5c4a8094ffa6ee4610721d9f0200994edc291f04f0f1"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/pairs.py",
+      "sha256": "de7dc0c399dae495cee924ceed36e458f9393cbb300a3f6056a32be39b56c5ee"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/receipt-assessment.json",
+      "sha256": "6d1d8ee04d96298a4cf6f339f2e344e9dfbfa083670ac40fc83430a55c481747"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/receipt_assessment.py",
+      "sha256": "52bdda871976cefd8e0a956fbb382482662698c5dba8da10b75dac925df5a060"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/semantic.json",
+      "sha256": "1294755bf75eabd117d324a4d832b4c32d257f8b9161d60b799b3a47dc547b08"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/semantic.py",
+      "sha256": "2bb5e02d5c1805c4d8989ac926ff5df42908e57e2041096bbb8b150f4c69a6ee"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/standard-chat-origins.json",
+      "sha256": "18bcf0dcf64333f7a816b57afff9a17d828b072bf3c1354f4d3018e2ece48bec"
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-astra-r2-li40xp44/uv-d06cbd3e69ade1dc.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/report/claude-report.md",
+      "sha256": "8dcd77d4702a1030d291ed3c42463d7dff081eff1a4e53db38a69eb7089080a3"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/end-groups.json",
+      "sha256": "ca6414d35b050b0c436a07f014a84cef90648a9793d3f140f5c2b82051bf289f"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/end-ignored-listing.txt",
+      "sha256": "21483645bb172a962d5914d85a0c6b239b046a1e857129a998cdfd62e5b633ea"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/end-ls-files.bin",
+      "sha256": "97a7131228078068aee87c5c0f4f8d05209797fbf9d3c3a52d6dd04db7158468"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/end-status.txt",
+      "sha256": "561beef2edf1e218f27a5367a0e497e3488d7d8369ec43f671b51dc598a2a027"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/final-index.txt",
+      "sha256": "f89f558cfa4d26a473777f8a425cf808d6196eef7aad497ad6bb2b55c75e3870"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/final-status.txt",
+      "sha256": "561beef2edf1e218f27a5367a0e497e3488d7d8369ec43f671b51dc598a2a027"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/manifest-ignored.txt",
+      "sha256": "21483645bb172a962d5914d85a0c6b239b046a1e857129a998cdfd62e5b633ea"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/start-groups.json",
+      "sha256": "ca6414d35b050b0c436a07f014a84cef90648a9793d3f140f5c2b82051bf289f"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/start-ignored-listing.txt",
+      "sha256": "21483645bb172a962d5914d85a0c6b239b046a1e857129a998cdfd62e5b633ea"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/start-ignored.txt",
+      "sha256": "27685f829774e040cd69c3d8bce8d25b2fc8d0d89321175355852fb1a270f135"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/start-ls-files.bin",
+      "sha256": "97a7131228078068aee87c5c0f4f8d05209797fbf9d3c3a52d6dd04db7158468"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/boundary/start-status.txt",
+      "sha256": "561beef2edf1e218f27a5367a0e497e3488d7d8369ec43f671b51dc598a2a027"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/admin/board-next.out",
+      "sha256": "c9f34e5888b490fbcbe75f3933760b44a0d5adc96d413fb25c940a0004763f2b"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/admin/board-render-check.out",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/admin/board-show.out",
+      "sha256": "42d3037099ea6dda3cafeb10805d4aa3f49378adae74ec2918fb87e501d39c1a"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/admin/board-validate.out",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/admin/delta-diff-check.out",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/admin/doc-lifecycle.out",
+      "sha256": "0fd1bdb028015f9961b8798720e8d981a9f3247efb67417b8b2b9f4d82dc4325"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/admin/full-d2-from-c587-check.out",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/admin/unit-diff-check.out",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/admin/worktree-diff-check.out",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/ast-audit.json",
+      "sha256": "248ac92b5fe6549a8f43c621784bb1c1582961feca94509a97e8a4cf55947bd3"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/chat.log",
+      "sha256": "4dfa17996f8a7d323daf717c00988c2f0c6d73258479aee89f28d66d5d3aa579"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/cli.log",
+      "sha256": "a4b90cdfadb1a3c05d3790c9b4536bdd204d3ea9a485f08419d94bc196349a6e"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/collect52.log",
+      "sha256": "056e0225dfd232372e7bebf98f69eedfb702c96d30dd7d3bd42e35e769074781"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/commands.log",
+      "sha256": "0de837d198787d6999532a5f79ffae2da7db49b77cbd832b903ea26988b5c2eb"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/comparator.log",
+      "sha256": "6783fda880a54ef46a623babdf6cecfbc3f5189ba9e528ffe18f5a7b85c3b091"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/ctl-byte.log",
+      "sha256": "e0a40d9914a228f8856beb5a3e71b0b3fc018b35c1f1c04408559b02c6def76d"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/ctl-extra.log",
+      "sha256": "47d4f12ac2317293b74d3ac431e5aebed4c64b56ebf6ebc0ffb2fce65172c89d"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/d2fast.log",
+      "sha256": "293d8c0c39f6d2aacb47311e9a61b8ad4caf02403c9954e079f7968bcf9b1762"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/d3fast.log",
+      "sha256": "1fea569ca4d6e91262f0e908ea328d99bc73e910e433c44afc931e4a4d66963c"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/diag-cap.log",
+      "sha256": "fb4bd9ebc341d5b131e118f561ee20046eec4bc8d382e87d2e92328f31faed0b"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/diag-cmp-noflag.log",
+      "sha256": "763fcec826fa01dae1cc52e1a3c4fcfa80c397748bc7318be4867a97e85166f9"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/diag-cmp.log",
+      "sha256": "4111ba77a6f48dc04e6e54f6cda8304a16a5060c42ece43a28c9eb027144848c"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/format-debt.log",
+      "sha256": "c86fe1eb6583d38149af7c6f814d9487509fc5a12f24179cbac96de1dba45309"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/format.log",
+      "sha256": "89886610aa584308fa1329970f405a36e5862369558433c1eb89f94f17a6cc31"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/guard.log",
+      "sha256": "0cb0c9b030ba427b1c1c041c6e398cd4c0120776f7c280015c9ba73a19b79cd4"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/ingest-baseline.log",
+      "sha256": "b822021b1b820a34565418cebf553d53a0f4388ece8e83da194ae9e8fc222e99"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/ingest-candidate.log",
+      "sha256": "82dca7ccda50ea93a4220ebad96a2938525f61f1fb3bacb31572c1c049624cd2"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/lint.log",
+      "sha256": "f12365a04e4aee2ebda316f90c9994a4d915a9c920bd9701efbc143fadbdef57"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/lock.log",
+      "sha256": "6920baf34d2dbcd4487bdd99d6cf3b995d9864e40e6bec570014f13c4751309b"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/memq-cap1.log",
+      "sha256": "ed5c1d72c7bce9159a4ff9235973eec5ca6ff4de82bf560b7e9d14c279e4c97c"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/memq-cap2.log",
+      "sha256": "63326cf7ca0c2d6f514b77298b38bdfdda7ff0e4bbbd48a08874d3923ba7f1bc"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/memq-cmp-noflag.log",
+      "sha256": "2d0514fcb5ec2e9f64c91789de7b7fe91765248d3f51591603d70ee1af3733af"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/memq-cmp1.log",
+      "sha256": "14958b4ac739764d48902ebaa0ae32dfbb99bff1f4cad9fdffbc628aa2c33333"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/memq-cmp2.log",
+      "sha256": "0c6b32c79dd0c6bff0748b6b555b79b08251abf9b79b12aa0f2423fe04ae8c8a"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/mutants-assessed.json",
+      "sha256": "ec68a7401db459ad53f699df49e288056a1d46a8bb0c4c758f55e6c235f6958c"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/named52.log",
+      "sha256": "8d04f6003971b3addf30ad111eca0015082b6d493d8ef2152d162c432f090d99"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/neutral-format.log",
+      "sha256": "6aa88f94a31c5674b61b43ff0669e34a3c9ba3057bfeb76e5714c56f999a3535"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/newformat.log",
+      "sha256": "eb6071cee24c6619833184cad97e2256d42aafae61b8e53ec35aa589f951a8d0"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/pairs.json",
+      "sha256": "c72876082dd4157d2be131e7b98665cdab760da04d460773ab2908cf2b190fba"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/pilot-cap.log",
+      "sha256": "e7a45d5e51087bf159ce6738757630e7d8dee9b4ac0c905326a9d8839629ccf6"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/pilot-cmp.log",
+      "sha256": "7d73cfc78a71558ccc5ee0322db21893259f5254e6e93b5dfb2781cad6f19880"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/prepare.log",
+      "sha256": "cae8d3d14927e0d8f639855629ea3a5af868eb61c294bc6bdd0cb69b57edcda6"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/reviewer-artifacts.json",
+      "sha256": "f54da61c719b4555b74c3414f686a7e85a62b9c9ea01ebf9b8c00728c8e68c40"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/session-cap.log",
+      "sha256": "fc47b0f92a2efe642ccbc1783185bcc23d9e61310ac9d58ed11b5b23f56de21f"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/session-cmp.log",
+      "sha256": "10c6cf77015e0022e8d56088e4f4054900b6efa1c66d3f1429f7e594f6f9b650"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/supp.log",
+      "sha256": "d02086a932990f189bc8e1495b82717389c80b18fa1f5ced1a7930b56b6482ef"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/out/types.log",
+      "sha256": "854ea49630417646729bd76b78c860502963e5b5d124193b5009341560d28fe9"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/tools/assess_mutants.py",
+      "sha256": "c505ed442d2d56d5b0c6bc9cd63867b79296966af77ffe76d0e2e8b081b0bdac"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/tools/ast_audit.py",
+      "sha256": "8132e5433f817604a7ed9fc46a716d8009fffc6e54d015533c2accf4016a5b78"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/tools/pairs.py",
+      "sha256": "3809584dd614a336f0c936dc5ae59e8624d07868d545cad5cf7895928d09c8b3"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/tools/verify_manifest.py",
+      "sha256": "c74bc380343e8ee039dfe82b12e94b7f718943c02b4d8fca141277f4a531f94c"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/cap/capture_memq.py",
+      "sha256": "eafcfcbc45e04a11cd04bfc8203d7e4e953f1cc7a5be85b9ca9b2e1d113f0f8a"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/cap/compare_memq.py",
+      "sha256": "afd38e74dd70ee2e3ab3cc43184c45e5d444c6fb0e1877e274a82d00705ff606"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/cap/frozen-memq.json",
+      "sha256": "ce5da59c62ce761354b2977fcb0c3f5816a858c7e22d4873ae60e4d2613db6b9"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/cap/obs1.json",
+      "sha256": "2329c0e4b848b08c5f681d084609a85a54d001213378edff4830ecd374bff23b"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/cap/obs2.json",
+      "sha256": "f32ab86f77ed3727500b1d2cf7ac49fb04279ff75e98daad56d1ed0a027169bc"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/fam/baseline-diagnostics.json",
+      "sha256": "1dcd83ecd8d2e4e739099eb495e43f98b78439d7bb14e3bebc167ba1b8514e98"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/fam/baseline-session.json",
+      "sha256": "3210852a23743420fdcc61e2c213dedc632431c8d39b831cca36da3e2595ed46"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/fam/capture-diagnostics.py",
+      "sha256": "8f7a55d5ae773774fa5ef6125215f29ea35b4788af13074451cdd5fc4e2e2464"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/fam/capture-session.py",
+      "sha256": "5c72294b80ebf63eb68330b7d74e1bb7090b077ab175eb01069f9f84a3e3bd24"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/fam/compare-diagnostics.py",
+      "sha256": "4b444677044e32c517dfec2374eab72bd610b861592f0e10ee0a21d072cb19fa"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/fam/compare-session.py",
+      "sha256": "c333db8601d7f713fd86183714e241f50731dd27877fd2cafac692c978f57afa"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/fam/diag-obs-exports/friday_context.txt",
+      "sha256": "21364bedb107697a673678e35c802eec5158c2fbb4cb86d9f9aab041d5226eb1"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/fam/diag-obs-exports/friday_prompt.txt",
+      "sha256": "95713e9cbdd1dfcb2d4080c2537f418d43ca0da25f0d7d6631f4f7c97b89dc47"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/fam/diag-obs.json",
+      "sha256": "9c27037f4cc201508c8e82e446d37a7ed088148441cae44beb7e4efe40e2350c"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/fam/pilot-obs.json",
+      "sha256": "17f8780bbf3406a278b61d25df0e6d6134d495fe085afad20bee3bd62474cc45"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/fam/session-obs.json",
+      "sha256": "704b519d0dd57550e7d77a9451487a631443497c2a59d4561b86ce20fc1dd3b8"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/supp/launch.py",
+      "sha256": "29ce185306a0b86d1c196acd2631c5a528123b2eeb65e8d93bcad97c1721844a"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/supp/record-characterization.json",
+      "sha256": "9813c12e2ee85145b3086c3d858b3312e6936e56d5e02d3bb1a40966cb50a897"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/supp/record_control.py",
+      "sha256": "ebdfd7efe746fe450f46938ebe0faf61022f159361795d8ca035f53f7cd77332"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/ingest/baseline.json",
+      "sha256": "f725ab4375aa5f47836139d478fbe158e701c8a8b4f093843fcb01795bd7e99b"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/ingest/candidate.json",
+      "sha256": "a5d28600f0bcad438209b8bee9319052128035c96640c9a7b4d5c0b68c970d47"
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4f6238bb-63e8-484c-bb63-b1b7de2e91a8/scratchpad/memq-d2-c1-r2-claude-oUvtxl8l/ingest/probe.py",
+      "sha256": "d723d58018e8799f1c06dbbd31f0c6d8f76c46e1a3e9be4f9463111aece14b32"
+    }
+  ],
+  "mismatches": []
+}

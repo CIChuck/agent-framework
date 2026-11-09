@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery. |
 
 ## Completed
 

@@ -1,0 +1,129 @@
+{
+  "kind": "MEMQ-001 D2 documentation correction-cycle1 council round2",
+  "requested_by": "Chuck Russell; continuing exact option R construction approval and council-after-each-deliverable instructions",
+  "mode": "Fresh independent READ-ONLY FULL bounded D2 implementation conformance, with retained D1 interaction; no repairs or nested delegation.",
+  "workdir": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "branch": "feature/command-retirement",
+  "start_head": "39661e870affaf7abb160df9da53e53dfe94c822",
+  "source_baseline": "c5871054266da2340486d2043062c5fb95611c00",
+  "source_commit": "3ed1d58ad8cc1e79522495da5cf19091185402d8",
+  "candidate": "0ee49a700f4b92234f6448c52d144ac156c1c700",
+  "diff_range": "9db8311e44583f6db882847ff4643094668077bf..0ee49a700f4b92234f6448c52d144ac156c1c700",
+  "review_order": [
+    "FIRST approved remediation delta 9db8311e..candidate against REM-CMD-MEMQ-D2-001, including named finding and exact UAT/backlog instructions.",
+    "THEN FULL bounded D2 aggregate 39661e87..candidate and retained D1 interaction from c5871054. Do not inherit previous verdicts; all MD2/MQ criteria still require independent evidence."
+  ],
+  "manifest": {
+    "path": "/private/tmp/friday-memq-d2-correction1-xwhsein7/council-round2/frozen-manifest.json",
+    "sha256": "481001ee531913382ba908dd54ad65b2aeb7e700a4691a7e3194ca594eee484a"
+  },
+  "authority": {
+    "contract": "docs/planning/active/command-refactor/memory-query-command-contract.md",
+    "contract_sha256": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+    "directive": "docs/planning/active/command-refactor/directives/CD-CMD-MEMQ-001-memory-queries.md",
+    "directive_sha256": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
+    "current_amendment": "docs/planning/active/command-refactor/approval/memory-queries-directive-correction2.md",
+    "current_amendment_sha256": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264",
+    "preparation_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
+    "option": "R",
+    "D1_reviewed_candidate": "9ce7158169a1edef87cd4f864beb29c6b29c849d",
+    "D1_reconciliation_commit": "39661e870affaf7abb160df9da53e53dfe94c822"
+  },
+  "primary_documents": [
+    "AGENTS.md",
+    "docs/reference/policies/repository-engineering-policy.md",
+    "docs/reference/policies/development-task-lifecycle.md",
+    "docs/reference/policies/independent-validation-policy.md",
+    "docs/planning/board.yaml",
+    "docs/planning/README.md",
+    "docs/planning/active/command-refactor/README.md",
+    "docs/planning/active/command-refactor/build-plan.md",
+    "docs/planning/active/command-refactor/tactical-plan.md",
+    "docs/planning/active/command-refactor/next-phase.md",
+    "docs/planning/active/command-refactor/authority.json",
+    "docs/planning/active/command-refactor/execution-log.md",
+    "docs/planning/active/command-refactor/approval/memory-queries.md",
+    "docs/planning/active/command-refactor/approval/memory-queries-directive-correction2.md",
+    "docs/planning/active/command-refactor/memory-query-command-contract.md",
+    "docs/planning/active/command-refactor/directives/CD-CMD-MEMQ-001-memory-queries.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/preparation.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/record-projection-characterization.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/format-baseline.json",
+    "docs/planning/active/command-refactor/validation/memory-queries/format_debt.py",
+    "docs/planning/active/command-refactor/validation/memory-queries/implementation/d1/verified-report.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/README.md",
+    "docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/evidence.json",
+    "docs/planning/active/command-refactor/uat/memq-user-acceptance-plan.md",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-D2-001-status-and-uat.md",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/correction1/README.md",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/backlog/friday-tui-command-followups/README.md",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/backlog/friday-chat-framework-followups/upgrade-log.md"
+  ],
+  "criteria": {
+    "MD2-01": "Exact authority and D1 reconciliation precede D2. Complete actual D2 diff stays within named paths/definitions; no neutral source/tests/API drift (README update allowed), ingest/framework/config/dependency/lock or unrelated changes.",
+    "MD2-02": "Exact six metadata/spec mappings, unchanged41 canonical/3 aliases/help,39 tuple order and only indices3/9/10/11/12/16 replaced. Parser/register/dispatch/admission/handler map and other33 entries unchanged.",
+    "MD2-03": "Six fixed wrappers/invoke path construct one exact request from original parsed args/fixed spec identity, fresh port/factory, await one shared handler and consume injected outcome; no second parse/context registry or legacy recomputation. Context/metadata not read before shared request validates; custom/renamed handlers authoritative.",
+    "MD2-04": "Statistics exact old read/await/Exception/cancellation order,8 sections24 metrics, zero/unavailable/not_configured, bool/float/string/256 preview/suffix formatting once, unique sorted warning facts, no extra service/turn/tool reads.",
+    "MD2-05": "Record projection exact lazy plain text-only behavior, returned-kind MQ-D1 refusal and pre-refusal events, empty complete/incomplete meta flag,100 cap,160/80 previews, metadata None/falsy/present-empty semantics, original repeated reads/verification concat and formatting order. Four supplemental scenarios and independent stateful/raising controls.",
+    "MD2-06": "Graph exact nodes/case/name joining and availability precedence; entity then optional relationship await before any projection, record_value fallbacks/0/False/None,100 caps, separators/empty behavior, cancellation/error identity and bad-record failure after both reads.",
+    "MD2-07": "Option R exact Chat views/protocol/fake additions and one adapter method/helper using existing short/long public get_all filter+limitNone/gather return_exceptions. Stored `(source,description)` grouping, actual record counts/re-ingest/promotion/None-first order, malformed/per-collection warnings/cancel propagation. No decayed/source reads/ingest/framework changes; fake order/counts retained.",
+    "MD2-08": "Pure exact outcome adapter only six new data variants/no error/no effects, rejects other/subclass/error/effect shapes without legacy fallthrough; English/defaults/newline bytes unchanged; no source formatting/service calls repeated after transport.",
+    "MD2-09": "All MQ-T07..14 names/mandatory assertions effective;52 new cases and current relevant20 mutants with named CALL assertions, unchanged control, canonical roots/hash boundaries. Setup/import/collection/KeyError never earns rejection credit. Retained599 neutral/cohort and current owning1390 Chat/155 CLI; required fast616/117.",
+    "MD2-10": "Fresh committed-source MEMQ68 exact+2 refusals+6 R-superseded twice from separate exports; current DIAG68+4, SESSION25, pilot196,4 supplemental output/event cases exact and current pre-import source refusal controls. Exact fixtures and guard/comparer identity.",
+    "MD2-11": "All94 current embedded/raw pairs/provenance honest, actual commands versus inspected receipts, static15 named sources/lint/new-format/no-new-debt/admin/lock gates, known debt separated. Paired clean baseline/candidate nullable-ingest TypeError is unchanged and unwaived; no covert repair. UAT plan changes only setup paragraph and MQ-UAT-10 instructions to supply an explicit description; all cases remain NOT RUN; D3 builds/probe/installed proof excluded.",
+    "MD2-12": "Both frozen request/manifest/pin/HEAD/branch/index-before-status/staging/status/untracked/ignored/protected/D1/dirty/exports/external/raw boundaries match; every reviewer write/cache/temp/output in one own fresh scratch; no repairs/nested delegation/advancement/acceptance/delivery.",
+    "CR-D2-01": "MEMQ-D2-ASTRA-001 resolved: exact current projection clarification implemented source/pending corrected-document review; no unqualified stale current gate across whole packet/board/dashboard. Historical checkpoints preserved; execution log append-only.",
+    "CR-D2-02": "Full delta is documentation-only. Exact technical authority and runtime/test/fixture/dependency/lock bytes unchanged versus9db8311e. Prior94 builder pairs remain exact; round1 10 and correction18 pairs exact. UAT only permitted setup/MQ-UAT10 instructions, all20 NOT RUN; CMD-F05/FU-009 document baseline defect without repair/waiver/authority.",
+    "CR-D2-03": "Fresh board validate/render--check/lifecycle/worktree+delta+unit diff checks, complete current source/authority review and actual unchanged-runtime receipts supporting every MD2/MQ criterion. Distinguish ran vs inspected. Confirm20 named CALL assertion witnesses, no setup/product exception credit. Disclose standard Chat passes and alternate launcher failures honestly.",
+    "CR-D2-04": "Both complete current manifest boundaries match; preserve dirty configs, exports bytes/modes/times, external locator, technical inputs and every supplied artifact. One own fresh scratch; no agent-directed outside write. Old locator and old blocked readiness report are history, no waiver."
+  },
+  "required_now": [
+    "FIRST hash task-supplied request bytes before reading in full. Verify/read complete manifest and REM, original round1 request for original lane definitions (its fresh-execution instructions are replaced only by this current docs-only profile). Current request governs. Hash exact git ls-files -s -z BEFORE status at start/end; GIT_OPTIONAL_LOCKS=0 for EVERY Git subprocess. Verify all groups and logical identities, not just hashes of manifests.",
+    "One fresh external reviewer-owned scratch; all caches/temp/basetemps/copies/exports/reports/markers inside it; private TMPDIR, -B/PYTHONDONTWRITEBYTECODE=1. No external locator/PID/breadcrumb. Repo and ALL supplied builder/controller/reviewer directories are READ-ONLY. Never run supplied drivers directly; inspect/hash then reconstruct in own scratch if needed, replacing explicit --cache-dir/env/output/export paths. Do not execute freeze_round2.py or record/write/validate correction drivers against their supplied outputs.",
+    "Review named remediation delta FIRST, then complete bounded D2 aggregate including retained neutral D1 from c5871054. Full current source/authority must be read; prior reports identify findings/provenance only. Provide complete CR-D2/MD2/MQ matrices. Documentation corrections never inherit verdicts.",
+    "Prove exact non-doc/runtime/test/fixture/metadata/lock and technical authority identity to round1 candidate/source. Hash-verify actual relevant raw suite/capture/mutation/origin/static/lock receipts and independently assess them for each criterion. Current profile allows inspection rather than rerunning these byte-identical runtime lanes for prose only. If evidence is absent, drift exists or a concern is unresolved, run the missing/relevant lane privately using original required commands. Any claimed execution must be your own, not a receipt replay.",
+    "Actual required runtime receipt targets remain neutral599/Chat1390/CLI155/named52/fast616+117, canonical origins before/session-finish/after,20 mutants each with named CALL AssertionError plus unchanged52, MEMQ68+2+6 twice, supplemental4 exact, DIAG68+4/SESSION25/pilot196, guard18/comparer14/source-extra+byte refusal, lint/type15/newformat/no-new-debt/raw4formatdebt and clean-export lock214. D3 artifacts/probe are future. No setup/KeyError/product exception rejection credit. Standard Chat passed twice; alternate eager-import diagnostic launchers failed/interrupted and remain disclosed, not counted as successful lanes.",
+    "Fresh execute board validate, dashboard render --check (NEVER mutating render), documentation lifecycle, worktree/remediation delta/full bounded unit diff --check; read full README and current authority/gates semantically, check log append-only, verify UAT diff only setupparagraph/MQ-UAT10 with all20 NOT RUN, CMD-F05/FU-009 current and no ingest repair or waiver. Scope qualifiers in historical records preserved.",
+    "Verify all94 original D2 builder embedded/raw pairs,10 round1 controller pairs and18 correction pairs against exact bytes/hashes. Independently assess reviewer artifact ledgers: all576 listed files are available/frozen; original controller audited their hashes, but that audit is not your correctness evidence. Verify relevant actual records; report exact coverage honestly.",
+    "Retained no-description ingestion defect remains unwaived baseline debt; paired baseline/candidate actual receipts prove identical TypeError/ingest bytes and positive described-ingest listing. UAT workaround explicitdescription and future missing-description storedmetadata scenarios stay distinct. Do not fix or demand ingestion repair in this bounded unit. Claude N1 empty/None test gap and N4 traceability are advisory, no runtime/test edit now.",
+    "Report VERIFIED/CHANGES_REQUESTED/BLOCKED, stable numbered mandatory findings, all CR-D2-01..04 and MD2-01..12/MQ-T07..14 outcomes, commands executed vs inspected, actual pair/receipt coverage, boundaries/isolation, debt/limits and score10. No acceptance/advancement/delivery or automatic loop. Return absolute report/evidence paths and SHA256 from own scratch."
+  ],
+  "exclusions": [
+    "No product/doc/board/index changes, worktrees/checkouts, repairs, nested delegation, cleanup or supplied-folder writes.",
+    "D3 installed_probe.py, candidate wheels/sdists/replay/installed behavior and final aggregate acceptance are future; missing future files/tests are not D2 findings. The named d3-fast source-test lane117 is required now, distinct from deliverable D3 artifacts.",
+    "Old accepted DIAG/SESSION installed probes remain frozen with intentionally obsolete38/24 API checks; do not call them passing API54.",
+    "Root Ruff534/root test_display conflict6929 and four existing Chat whole-file format failures remain failed/unwaived; broad root D4 execution/collection is future, no unrelated fix/rerun required at D2.",
+    "UAT20 remains planned/NOT RUN. Automated synthetic app/disposable adapter checks are not human UAT. No providers/network/real user stores, source validation/consolidation, later families, external messages/PR/push/merge/release."
+  ],
+  "tools": {
+    "python": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+    "python_version": "3.13.10",
+    "prepare": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/harness/prepare.py",
+    "wheelhouse_read_only": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/ec0c884e-2bae-47e1-9aa9-c43c6d9be9e5/scratchpad/memq/prepared/wheelhouse",
+    "builder_scratch_read_only": "/private/tmp/friday-memq-d2-build-simk3k62",
+    "D1_builder_read_only": "/private/tmp/friday-memq-build-uhrfjhuo",
+    "commands": "prepare.py YOUR_SCRATCH/prepared --wheelhouse SUPPLIED; then YOUR_SCRATCH/prepared/pilot_run.py unique-label ...; own TMPDIR, all explicit caches/output/basetemp/export paths replaced. Candidate exports from Git archive inherit GIT_OPTIONAL_LOCKS=0.",
+    "current_correction_scratch_read_only": "/private/tmp/friday-memq-d2-correction1-xwhsein7"
+  },
+  "isolation": "Explicit shared-checkout READ-ONLY exception. Every supplied folder is read-only, all reviewer writes in exactly one own fresh scratch. Preserve old locator and ignored export files without cleanup/restoration. An agent-directed out-of-scratch write invalidates the review; disclose honestly. Host-managed transcripts/T3 checkpoint refs are disclosed separately, not an authorization for deliberate writes. The supplied correction controller scratch contains frozen raw files; do not mutate or execute its writers. Host-managed transcripts/checkpoints are separately disclosed; deliberate out-of-scratch writes invalidate the review.",
+  "report_requirements": [
+    "Mandatory IDs MEMQ-D2-SOL-001 / MEMQ-D2-ASTRA-001 / MEMQ-D2-CLAUDE-001; stable numbered finding, severity, affected source/authority line, reproducible evidence, risk, bounded mitigation and docs/tests impact. Optional notes separate.",
+    "Full MD2-01..12 and MQ-T07..14 matrices, commands actually executed vs inspected, actual test/mutation/capture/pair counts, two integrity boundaries and write isolation, known debt/limits and score /10. High scores/majority never override findings.",
+    "Full report/evidence only in own scratch, return absolute paths and SHA256. No repairs or automatic loop; controller reconciles all seats before D3 under existing authority."
+  ],
+  "iteration": "D2 correction-cycle1, council round2. No automatic review/remediation loop by reviewers; return results to controller.",
+  "mandatory_findings_to_assess": [
+    "MEMQ-D2-ASTRA-001: stale current preparation projection_clarification called D2 unstarted. Confirm corrected current sentence and all current gates semantically agree."
+  ],
+  "remediation": {
+    "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-D2-001-status-and-uat.md",
+    "sha256": "ce857580a59d0c3d5bb05ba31324eb4b0dabfd132563a7b3818acfeaf9920627"
+  },
+  "profile": "Documentation-only correction, full bounded D2 conformance. Runtime/source/tests/technical authority must be proved byte-identical to round1 and actual raw receipts hash-verified. Fresh admin/semantic/integrity/pair checks required; unchanged runtime lanes may be inspected, not rerun solely for prose. Rerun when drift/missing evidence/unresolved concern warrants. This waives no failed gate and carries no verdict.",
+  "round1_request": {
+    "path": "/private/tmp/memq-d2-council-r1-ay95itve/council-request.json",
+    "sha256": "c6844a77edf3125ae2ffdf7c99be7b2b8281034545618736c8a5b99412e15d2c"
+  },
+  "round1_candidate": "9db8311e44583f6db882847ff4643094668077bf"
+}

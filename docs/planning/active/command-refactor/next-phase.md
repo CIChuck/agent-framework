@@ -1,4 +1,4 @@
-# MEMQ-001 — D2 documentation correction awaiting fresh council
+# MEMQ-001 — D2 frozen-input restoration awaiting fresh council
 
 Branch: `feature/command-retirement`
 Execution phase: validation
@@ -8,9 +8,9 @@ Chat source `3ed1d58ad8cc1e79522495da5cf19091185402d8` implements the six delega
 option R persisted listing. [Builder evidence](validation/memory-queries/implementation/d2/README.md)
 records Chat1390, Commands/cohort599, CLI155, fast lanes616/117, all52 new
 MQ-T07..14 cases,20 assertion-witnessed mutants and exact current observations.
-The [round1 council](validation/memory-queries/implementation/d2/council-round1/report.md) reproduced those runtime checks. Sol9.6 and Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for stale authority prose. The documentation correction awaits fresh independent verification; the original reports remain scoped to their candidate.
+The [round1 council](validation/memory-queries/implementation/d2/council-round1/report.md) reproduced those runtime checks. Sol9.6 and Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for stale authority prose. [Round2](validation/memory-queries/implementation/d2/council-round2/report.md) resolves ASTRA-001 but identifies a frozen backlog scope breach. The exact approved bytes are restored under correction2, awaiting fresh verification. Original reports remain scoped to their candidates.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.
+**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery.
 
 The exact contract/directive/approval and D1 product source remain unchanged
 (only the approved package README is updated). UAT20 remains NOT RUN; the

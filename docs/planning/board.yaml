@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.
+  next_gate: Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -740,6 +740,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/report.md
   - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round4/report.md
   - docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round2/report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2951,3 +2952,11 @@ events:
   action: reconciled MEMQ D2 round1 and froze bounded documentation correction
   note: "Sol9.6/Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for MEMQ-D2-ASTRA-001. Runtime checks reproduced in all seats. Source/tests unchanged; status text and UAT/backlog ingestion workaround corrected. Fresh documentation-delta then full bounded D2 aggregate council before D3. UAT NOT RUN; no acceptance or delivery."
   evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md
+
+- task: friday-command-refactor
+  at: "2026-11-09T19:57:50.079982+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled MEMQ D2 round2 and restored approved frozen backlog bytes
+  note: "Sol9.5/Astra9.6 VERIFIED; Claude9.1 CHANGES_REQUESTED for MEMQ-D2-CLAUDE-001. ASTRA-001 resolved. Exact b8021069 backlog restored; all30 directive pins checked. FU-009/UAT workaround retained, inaccurate CMD-F05 tracking reference removed. Correction2 fresh council before D3; UAT NOT RUN, no acceptance or delivery."
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round2/report.md

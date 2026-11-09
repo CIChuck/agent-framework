@@ -2104,3 +2104,23 @@ has been executed or accepted through this documentation change.
 - `execution_phase: validation`; `validation_state: pending` for corrected D2.
   D3 artifacts/installed proof and human UAT remain future; no external delivery.
 - **Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.
+
+## 2026-11-09T19:57:50.079982+00:00 — MEMQ D2 correction2: restore normative backlog input
+
+- Round2 at `0ee49a70`: Sol VERIFIED9.5, Astra VERIFIED9.6, Claude
+  CHANGES_REQUESTED9.1. All resolve ASTRA-001; Claude identifies the unapproved
+  CMD-F05 expansion beyond the directive's MQ-D3-only allowance.
+- Controller accepts MEMQ-D2-CLAUDE-001 and selects exact-byte restoration from
+ 9db8311e: e1908324 -> approved b8021069. All30 normative directive input hashes
+  are verified, correcting the earlier incomplete input-preservation claim.
+- REM-CMD-MEMQ-D2-002 withdraws only the earlier REM's CMD-F05 edit permission.
+  Original REM, reports/evidence and log history are preserved. FU-009 and UAT
+  retain the baseline no-description ingest warning/workaround; the UAT claim
+  that CMD-F05 records that defect is removed. Every case remains NOT RUN.
+- Runtime/source/tests/fixtures/technical approval/contract/directive unchanged.
+  The full2591-entry start boundary matched; the report's3591 prose total is an
+  arithmetic typo, retained in the original. All146 round2 artifact hashes match.
+- `execution_phase: validation`; `validation_state: pending` for correction2.
+  D3 waits for fresh council reconciliation. Any mandatory finding remaining
+  after this second cycle returns to the maintainer; no further automatic loop.
+- **Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery.

@@ -33,8 +33,7 @@ maintainer acceptance.
   `/ingest /path/document.txt project notes`. Existing `/ingest FILE` with no
   description passes `None` metadata to Chroma and raises `TypeError`; paired
   clean pre-D2/candidate controls reproduce it. This baseline defect is tracked
-  under [CMD-F05](../../../backlog/friday-tui-command-followups/README.md) and
-  [FU-009](../../../backlog/friday-chat-framework-followups/upgrade-log.md#fu-009-omit-absent-ingestion-description-metadata). It is neither repaired nor waived
+  in [FU-009](../../../backlog/friday-chat-framework-followups/upgrade-log.md#fu-009-omit-absent-ingestion-description-metadata). It is neither repaired nor waived
   by MEMQ. Use prepared persisted metadata for missing-description listing cases.
 - Prepare small single-chunk and multi-chunk UTF-8 files in the disposable folder.
   Record their source paths and expected actual stored chunk counts. Keep a

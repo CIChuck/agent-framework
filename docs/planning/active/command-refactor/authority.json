@@ -991,9 +991,9 @@
     },
     "approval": "approval/memory-queries-directive-correction2.md",
     "approval_sha256": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery.",
     "implementation_status": "D1 verified; D2 implemented at 3ed1d58ad8cc1e79522495da5cf19091185402d8",
-    "projection_clarification": "Four supplemental legacy cases remain frozen; D2 Chat projection/protocol changes and option R listing are implemented at 3ed1d58ad8cc1e79522495da5cf19091185402d8. Round1 runtime checks passed; documentation correction awaits independent verification.",
+    "projection_clarification": "Four supplemental legacy cases remain frozen; D2 Chat projection/protocol changes and option R listing are implemented at 3ed1d58ad8cc1e79522495da5cf19091185402d8. The stale-status finding is resolved; correction2 restores the frozen backlog input and awaits independent verification.",
     "recorded_at_original_erroneous": "2026-11-09T15:20:00+00:00",
     "recorded_at_basis": "Proposal commit 342bf85c timestamp: existence by 14:25Z, not an exact preparation start/finish. Original 15:20Z event preserved and explained by append-only correction.",
     "chronology_correction_recorded_at": "2026-11-09T15:33:59.716791+00:00",
@@ -1052,7 +1052,7 @@
     "criteria": "CR01..08 and MR01..10 pass per all fresh seats",
     "prior_sol_receipt": "historical BLOCKED, preserved and not waived",
     "validation_state": "verified",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery.",
     "implementation": "Product D0/D1 not started",
     "authority_limits": "No construction/acceptance/UAT/delivery authority created by this review",
     "historical_next_gate": "Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery."
@@ -1234,7 +1234,7 @@
     "report": "validation/memory-queries/implementation/d1/README.md",
     "uat_plan": "uat/memq-user-acceptance-plan.md",
     "uat_result": "NOT RUN",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery.",
     "acceptance": "not_granted",
     "delivery": "local only",
     "independent_candidate": "9ce7158169a1edef87cd4f864beb29c6b29c849d",
@@ -1271,7 +1271,7 @@
     "mandatory_findings": [],
     "report": "validation/memory-queries/implementation/d1/verified-report.md",
     "recorded_at": "2026-11-09T18:16:51.257314+00:00",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery.",
     "next_gate_at_D1_closeout": "Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.",
     "checkpoint_scope_note": "D1 result retains its reviewed candidate; current D2 execution state is memory_queries_d2_implementation."
   },
@@ -1285,12 +1285,13 @@
     "report": "validation/memory-queries/implementation/d2/README.md",
     "evidence": "validation/memory-queries/implementation/d2/evidence.json",
     "option": "R",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery.",
     "uat_result": "NOT RUN",
     "acceptance": "not_granted",
     "delivery": "local only",
-    "correction": "remediation/REM-CMD-MEMQ-D2-001-status-and-uat.md",
-    "round1_result": "CHANGES_REQUESTED: MEMQ-D2-ASTRA-001; runtime checks passed in all three seats"
+    "correction": "remediation/REM-CMD-MEMQ-D2-002-restore-frozen-backlog.md",
+    "round1_result": "CHANGES_REQUESTED: MEMQ-D2-ASTRA-001; runtime checks passed in all three seats",
+    "round2_result": "CHANGES_REQUESTED: MEMQ-D2-CLAUDE-001; ASTRA-001 resolved, runtime checks sound"
   },
   "memory_queries_d2_validation_round1": {
     "candidate": "9db8311e44583f6db882847ff4643094668077bf",
@@ -1318,6 +1319,30 @@
     "scope": "Historical round1 candidate; runtime checks passed, current documentation correction awaits fresh independent review. No acceptance/advancement/delivery."
   },
   "memory_queries_d2_correction": {
+    "cycle": 2,
+    "execution_phase": "validation",
+    "validation_state": "pending",
+    "remediation": "remediation/REM-CMD-MEMQ-D2-002-restore-frozen-backlog.md",
+    "closed_findings": [
+      "MEMQ-D2-ASTRA-001"
+    ],
+    "findings": [
+      "MEMQ-D2-CLAUDE-001"
+    ],
+    "scope": "Exact frozen CMD-F05 restoration and removal of inaccurate UAT backlog reference; no runtime/technical-authority change.",
+    "input_pin_restore": {
+      "path": "docs/planning/backlog/friday-tui-command-followups/README.md",
+      "reviewed_unapproved_sha256": "e1908324348d939c750a0c7fc72e02b9f57575353ae515711e19c1ac6448c64e",
+      "restored_approved_sha256": "b8021069f2752074ac7fb6a25d9d41055749b161d7cd18b0c49f14eded35daa8",
+      "source": "9db8311e44583f6db882847ff4643094668077bf",
+      "normative_input_count": 30
+    },
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 correction-cycle2 review of the restored frozen backlog input and full bounded D2 aggregate, then D3 artifacts and installed proof under the existing approval. MEMQ-D2-ASTRA-001 resolved; MEMQ-D2-CLAUDE-001 restoration awaits verification. UAT NOT RUN; no acceptance or delivery.",
+    "uat": "NOT RUN",
+    "acceptance": "not_granted",
+    "delivery": "local only"
+  },
+  "memory_queries_d2_correction_before_cycle2": {
     "cycle": 1,
     "execution_phase": "validation",
     "validation_state": "pending",
@@ -1330,5 +1355,32 @@
     "acceptance": "not_granted",
     "uat": "NOT RUN",
     "delivery": "local only"
+  },
+  "memory_queries_d2_validation_round2": {
+    "candidate": "0ee49a700f4b92234f6448c52d144ac156c1c700",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.5
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.6
+      },
+      "claude": {
+        "outcome": "CHANGES_REQUESTED",
+        "score": 9.1
+      }
+    },
+    "outcome": "CHANGES_REQUESTED",
+    "closed_findings": [
+      "MEMQ-D2-ASTRA-001"
+    ],
+    "mandatory_findings": [
+      "MEMQ-D2-CLAUDE-001"
+    ],
+    "report": "validation/memory-queries/implementation/d2/council-round2/report.md",
+    "recorded_at": "2026-11-09T19:57:50.079982+00:00",
+    "scope": "Historical correction1 review; scope defect only, runtime checks sound. Current correction2 pending fresh review."
   }
 }
