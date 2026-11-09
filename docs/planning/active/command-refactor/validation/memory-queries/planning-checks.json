@@ -1,7 +1,7 @@
 {
   "unit": "MEMQ-001",
   "kind": "controller_documentation_only_preparation_checks",
-  "recorded_at": "2026-11-09T15:20:00+00:00",
+  "recorded_at": "2026-11-09T14:49:49.730403+00:00",
   "source_revision": "c5871054266da2340486d2043062c5fb95611c00",
   "checks": {
     "protected_non_docs_files": 1255,
@@ -26,24 +26,184 @@
       "inventory_sha256": "a44d619baab48b05ec9b0063837d23c3daa6f1e6bf9cd34c631737556d652e19"
     },
     "preparation_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
-    "contract_sha256": "d1177505c5e278da4a0dd685fa0f6d3e9428701508a51cdcc29a415ad18e0186",
-    "directive_sha256": "77ec6cf1279a067b6d5535292650fc589c33dbebb432e7253e20cdf927a90a19",
+    "contract_sha256": "2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69",
+    "directive_sha256": "3f83083689d5eedf62b5e3f2fe573586da630ff2970b3d5cd96bce474dc2aacd",
     "embedded_receipts_verified_against_raw": 23,
     "fixtures_verified": 2,
     "programs_verified": 2,
     "execution_log_append_only": true,
-    "precommit_logical_index": "1d623ff592a9c10ff8598ab1fd772e677beb1d1432b81af35d02c1dd1d5f2cab",
-    "directive_shell_syntax": "zsh -n passed (47 lines)",
-    "materialization_command": "executed exact embedded heredoc into fresh scratch; all three files hash-verified; selftest refused 14 controls; replay compare 76 exact rows",
-    "board": "validate passed (36 tasks); render --check current",
-    "documentation_lifecycle": "passed (907 Markdown files)",
-    "git_diff_check": "passed",
-    "current_state": "MEMQ planning/not_ready; exact contract/directive approval with MQ-D3 choice pending; DIAG accepted; started/local"
+    "precommit_logical_index": "79a8d73d9433fadb9675bb73e5e017a1f0efbc29dbab6ffcda2286129b5ec56e",
+    "directive_shell_syntax": "zsh -n passed",
+    "materialization_command": "Original pinned comparator/baseline/replay materialized into controller-owned scratch; fresh selftest refused 14 controls and replay compare matched all 76 rows.",
+    "board": "fresh validate passed (36 tasks); render --check current",
+    "documentation_lifecycle": "fresh pass (908 Markdown files)",
+    "git_diff_check": "fresh pass",
+    "current_state": "MEMQ planning/not_ready; revised construction approved option R; D0/D1 next; DIAG accepted; umbrella started/local",
+    "record_projection_characterization_sha256": "a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d",
+    "approval_sha256": "0831ccbe058fb2e9154fa38cd16587265441bdf404d3e11556dc6e32a05074c1",
+    "record_projection_characterization_cases": 4
   },
   "status": "passed (documentation-only controller checks; not independent product validation)",
   "limits": [
     "No independent council or product implementation claim.",
     "Historical baseline failures remain failed/unwaived.",
     "Directive dry-check receipts were written after preparation.json was frozen and are recorded here, not embedded there."
-  ]
+  ],
+  "proposal_history": [
+    {
+      "revision": "342bf85cabc79d8aad4b3e50fa3c9b2729efcbe5",
+      "contract_sha256": "d1177505c5e278da4a0dd685fa0f6d3e9428701508a51cdcc29a415ad18e0186",
+      "directive_sha256": "77ec6cf1279a067b6d5535292650fc589c33dbebb432e7253e20cdf927a90a19",
+      "planning_checks_sha256": "b31a1c921838289e471f2bfe09285ae2154d13be50378642965f3f1116b038a2",
+      "status": "original proposal superseded by approved edited version; full record preserved in Git"
+    }
+  ],
+  "controller_finalization": {
+    "supplemental_legacy_cases": 4,
+    "original_preparation_unchanged": true,
+    "current_proposal": {
+      "contract_sha256": "2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69",
+      "directive_sha256": "3f83083689d5eedf62b5e3f2fe573586da630ff2970b3d5cd96bce474dc2aacd"
+    },
+    "approval": "approval/memory-queries.md",
+    "supplied_evidence_inspected": "Original 587 Chat and 498 Commands preparation suite receipts hash-verified; not rerun for documentation finalization.",
+    "checks": "passed: all original and supplemental evidence identities, 1255 protected files, unchanged preparation, accepted DIAG evidence, dirty files, exact ignored exports, 25 directive pins, syntax, board/dashboard, docs and whitespace",
+    "excluded_attempts": [
+      "controller-replay exit 1: missing two comparator identity arguments, no correctness credit"
+    ],
+    "verification": {
+      "at": "2026-11-09T14:51:31.910313+00:00",
+      "status": "passed",
+      "scope": "controller planning/approval finalization only; no independent product validation",
+      "head": "342bf85cabc79d8aad4b3e50fa3c9b2729efcbe5",
+      "index_sha256": "79a8d73d9433fadb9675bb73e5e017a1f0efbc29dbab6ffcda2286129b5ec56e",
+      "protected_non_docs": 1255,
+      "original_embedded_raw_receipts": 23,
+      "programs": 2,
+      "fixtures": 2,
+      "supplemental_legacy_cases": 4,
+      "supplemental_embedded_raw_files": 4,
+      "directive_frozen_inputs": 25,
+      "execution_log_append_only": true,
+      "directive_shell_syntax": "zsh -n passed",
+      "ignored_exports": {
+        "exports": {
+          "type": 16384,
+          "mode": 493,
+          "size": 128,
+          "mtime_ns": 1794172873430987983,
+          "ctime_ns": 1794172873430987983,
+          "birthtime": 1794172873.430393
+        },
+        "exports/friday_context.txt": {
+          "type": 32768,
+          "mode": 420,
+          "size": 6,
+          "mtime_ns": 1794173419969663853,
+          "ctime_ns": 1794173419969663853,
+          "birthtime": 1794172873.4304848,
+          "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+        },
+        "exports/friday_prompt.txt": {
+          "type": 32768,
+          "mode": 420,
+          "size": 6,
+          "mtime_ns": 1794173419970166478,
+          "ctime_ns": 1794173419970166478,
+          "birthtime": 1794172873.4309843,
+          "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+        }
+      },
+      "dirty_hashes": {
+        "packages/friday-chat/config.example.yaml": "c2f728c98adc5ca773bfdf3170d846a610f15d77eae9a380e1a815534b93c3e7",
+        "packages/friday-chat/models-config.example.yaml": "11e99116d885a431f085b6bd05b5bd30348eb37654fd4c9350a7cca58c527896"
+      },
+      "committed_product_diff_empty": true,
+      "non_docs_status": [
+        "packages/friday-chat/config.example.yaml",
+        "packages/friday-chat/models-config.example.yaml"
+      ],
+      "identities": {
+        "at": "2026-11-09T14:49:49.730403+00:00",
+        "contract": "2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69",
+        "directive": "3f83083689d5eedf62b5e3f2fe573586da630ff2970b3d5cd96bce474dc2aacd",
+        "preparation": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
+        "projection": "a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d",
+        "approval": "0831ccbe058fb2e9154fa38cd16587265441bdf404d3e11556dc6e32a05074c1",
+        "next_gate": "Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows."
+      }
+    },
+    "receipts": {
+      "controller-verification.json": {
+        "path": "/tmp/memq-projection-review.25rbrl/controller-verification.json",
+        "sha256": "d24cf7f7ba5a353c247419d447c3625be62628070c330a18ecf769ae6bec841a",
+        "text": "{\n  \"at\": \"2026-11-09T14:51:31.910313+00:00\",\n  \"status\": \"passed\",\n  \"scope\": \"controller planning/approval finalization only; no independent product validation\",\n  \"head\": \"342bf85cabc79d8aad4b3e50fa3c9b2729efcbe5\",\n  \"index_sha256\": \"79a8d73d9433fadb9675bb73e5e017a1f0efbc29dbab6ffcda2286129b5ec56e\",\n  \"protected_non_docs\": 1255,\n  \"original_embedded_raw_receipts\": 23,\n  \"programs\": 2,\n  \"fixtures\": 2,\n  \"supplemental_legacy_cases\": 4,\n  \"supplemental_embedded_raw_files\": 4,\n  \"directive_frozen_inputs\": 25,\n  \"execution_log_append_only\": true,\n  \"directive_shell_syntax\": \"zsh -n passed\",\n  \"ignored_exports\": {\n    \"exports\": {\n      \"type\": 16384,\n      \"mode\": 493,\n      \"size\": 128,\n      \"mtime_ns\": 1794172873430987983,\n      \"ctime_ns\": 1794172873430987983,\n      \"birthtime\": 1794172873.430393\n    },\n    \"exports/friday_context.txt\": {\n      \"type\": 32768,\n      \"mode\": 420,\n      \"size\": 6,\n      \"mtime_ns\": 1794173419969663853,\n      \"ctime_ns\": 1794173419969663853,\n      \"birthtime\": 1794172873.4304848,\n      \"sha256\": \"3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d\"\n    },\n    \"exports/friday_prompt.txt\": {\n      \"type\": 32768,\n      \"mode\": 420,\n      \"size\": 6,\n      \"mtime_ns\": 1794173419970166478,\n      \"ctime_ns\": 1794173419970166478,\n      \"birthtime\": 1794172873.4309843,\n      \"sha256\": \"3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d\"\n    }\n  },\n  \"dirty_hashes\": {\n    \"packages/friday-chat/config.example.yaml\": \"c2f728c98adc5ca773bfdf3170d846a610f15d77eae9a380e1a815534b93c3e7\",\n    \"packages/friday-chat/models-config.example.yaml\": \"11e99116d885a431f085b6bd05b5bd30348eb37654fd4c9350a7cca58c527896\"\n  },\n  \"committed_product_diff_empty\": true,\n  \"non_docs_status\": [\n    \"packages/friday-chat/config.example.yaml\",\n    \"packages/friday-chat/models-config.example.yaml\"\n  ],\n  \"identities\": {\n    \"at\": \"2026-11-09T14:49:49.730403+00:00\",\n    \"contract\": \"2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69\",\n    \"directive\": \"3f83083689d5eedf62b5e3f2fe573586da630ff2970b3d5cd96bce474dc2aacd\",\n    \"preparation\": \"e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593\",\n    \"projection\": \"a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d\",\n    \"approval\": \"0831ccbe058fb2e9154fa38cd16587265441bdf404d3e11556dc6e32a05074c1\",\n    \"next_gate\": \"Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows.\"\n  }\n}\n"
+      },
+      "verify_finalization.py": {
+        "path": "/tmp/memq-projection-review.25rbrl/verify_finalization.py",
+        "sha256": "42be5d1bdc7be3cf7898f79b762b22b8fc0d2c2b9e5859f4ac5d58dc985fa7b4",
+        "text": "import hashlib,json,os,re,stat,subprocess\nfrom pathlib import Path\nfrom datetime import datetime,timezone\np=Path('docs/planning/active/command-refactor');s=Path('/tmp/memq-projection-review.25rbrl');env=dict(os.environ,GIT_OPTIONAL_LOCKS='0')\ndef git(*args):return subprocess.check_output(['git',*args],env=env)\ndef sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()\ndef require(ok,msg):\n if not ok:raise RuntimeError(msg)\ndef meta(path):\n q=Path(path);v=q.lstat();d=dict(type=stat.S_IFMT(v.st_mode),mode=stat.S_IMODE(v.st_mode),size=v.st_size,mtime_ns=v.st_mtime_ns,ctime_ns=v.st_ctime_ns,birthtime=v.st_birthtime)\n if q.is_file():d['sha256']=sha(q)\n return d\nidx=hashlib.sha256(git('ls-files','-s','-z')).hexdigest()\nstart=json.loads((s/'controller-start.json').read_text());require(idx==start['index_sha256'],'index drift');status=git('status','--porcelain=v1').decode();require(git('diff','--cached','--name-only')==b'','unexpected staged files')\nrequire(git('rev-parse','HEAD').decode().strip()==start['head'],'HEAD drift');require(git('branch','--show-current').decode().strip()==start['branch'],'branch drift')\nnon_docs=[line[3:] for line in status.splitlines() if not line[3:].startswith('docs/')];require(set(non_docs)==set(start['dirty_hashes']),'unexpected non-documentation changes')\nexports={x:meta(x) for x in start['exports']};require(exports==start['exports'],'ignored export metadata drift');require(sorted(str(x) for x in Path('exports').iterdir())==['exports/friday_context.txt','exports/friday_prompt.txt'],'ignored export membership drift')\nf=p/'validation/memory-queries/preparation.json';require(sha(f)=='e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593','original preparation modified');d=json.loads(f.read_text())\nfor group in ['programs','fixtures','receipts']:\n for name,e in d[group].items():\n  require(hashlib.sha256(e['text'].encode()).hexdigest()==e['sha256'],group+' embedded '+name)\n  if 'path' in e:require(sha(e['path'])==e['sha256'],group+' raw '+name)\nfor group in ['baseline','replay']:\n e=d[group];require(hashlib.sha256(e['text'].encode()).hexdigest()==e['sha256'],group+' hash')\nfor path,h in d['current_non_docs_hashes'].items():require(sha(path)==h,'protected source drift '+path)\nfor path,h in d['protected_dirty_hashes'].items():require(sha(path)==h,'dirty file drift '+path)\nrequire(git('diff','--name-only','c5871054266da2340486d2043062c5fb95611c00','HEAD','--','packages','tests','scripts','AGENTS.md','README.md','main.py','pyproject.toml','uv.lock')==b'','committed product drift')\nchecks=json.loads((p/'validation/memory-queries/planning-checks.json').read_text())\nfor rel,h in checks['checks']['accepted_diag_evidence_unchanged'].items():require(sha(p/rel)==h,'accepted DIAG evidence '+rel)\nprojection=json.loads((p/'validation/memory-queries/record-projection-characterization.json').read_text());require(projection['case_count']==4,'projection count')\nfor name,e in projection['files'].items():require(hashlib.sha256(e['text'].encode()).hexdigest()==e['sha256'] and sha(e['path'])==e['sha256'],'supplemental evidence '+name)\nfor path,h in projection['source_files'].items():require(sha(path)==h,'characterized source '+path)\nobservations=json.loads(projection['files']['observations']['text']);require(len(observations['cases'])==4,'observation count')\nrequire(not observations['application_network_or_real_store_calls'],'unexpected store use')\na=json.loads((p/'authority.json').read_text());m=a['memory_queries_preparation'];ids=json.loads((s/'finalized-identities.json').read_text())\nfor key,path in [('contract','memory-query-command-contract.md'),('directive','directives/CD-CMD-MEMQ-001-memory-queries.md'),('preparation','validation/memory-queries/preparation.json'),('projection','validation/memory-queries/record-projection-characterization.json'),('approval','approval/memory-queries.md')]:require(sha(p/path)==ids[key],'identity '+key)\nrequire(m['contract_sha256']==ids['contract'] and m['directive_sha256']==ids['directive'] and m['approval_sha256']==ids['approval'],'authority pins')\nrequire(m['construction_approval']=='granted' and m['decisions_approved']['MQ-D3'].startswith('R:'),'approved option R')\nfor name in ['README.md','next-phase.md','tactical-plan.md']:\n require('**Next gate:** '+ids['next_gate'] in (p/name).read_text(),'packet gate '+name)\nrequire('next_gate: \"'+ids['next_gate']+'\"' in Path('docs/planning/board.yaml').read_text(),'board gate')\nrequire(ids['next_gate'] in Path('docs/planning/README.md').read_text(),'dashboard gate')\n# Exact directive frozen-input rows, not arbitrary prose hashes.\npins=re.findall(r'^\\| `([^`]+)` \\| `([a-f0-9]{64})` \\|$',(p/'directives/CD-CMD-MEMQ-001-memory-queries.md').read_text(),re.M)\nfor rel,h in pins:require(sha(p/rel)==h,'directive input '+rel)\nrequire((p/'execution-log.md').read_bytes().startswith(git('show','HEAD:docs/planning/active/command-refactor/execution-log.md')),'log is not append-only')\n# Syntax-check the exact embedded shell blocks; no implementation is run.\nblocks=re.findall(r'```sh\\n(.*?)\\n```',(p/'directives/CD-CMD-MEMQ-001-memory-queries.md').read_text(),re.S);shell=s/'directive-shell.zsh';shell.write_text('\\n'.join(blocks)+'\\n');subprocess.run(['zsh','-n',str(shell)],check=True,env=env)\nsubprocess.run(['git','diff','--check'],check=True,env=env)\nreport=dict(at=datetime.now(timezone.utc).isoformat(),status='passed',scope='controller planning/approval finalization only; no independent product validation',head=start['head'],index_sha256=idx,protected_non_docs=len(d['current_non_docs_hashes']),original_embedded_raw_receipts=len(d['receipts']),programs=len(d['programs']),fixtures=len(d['fixtures']),supplemental_legacy_cases=4,supplemental_embedded_raw_files=len(projection['files']),directive_frozen_inputs=len(pins),execution_log_append_only=True,directive_shell_syntax='zsh -n passed',ignored_exports=exports,dirty_hashes=start['dirty_hashes'],committed_product_diff_empty=True,non_docs_status=non_docs,identities=ids)\n(s/'controller-verification.json').write_text(json.dumps(report,indent=2)+'\\n');print(json.dumps({k:v for k,v in report.items() if k not in ['ignored_exports','identities']},indent=2))\n"
+      },
+      "prepared/controller-comparator.json": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-comparator.json",
+        "sha256": "ccc02427e36cbdba786eb2ec7999070c33a15e3d0c1095903106de469e9ba581",
+        "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/tmp/memq-projection-review.25rbrl/compare_memq.py\",\n    \"--selftest\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.12\n}"
+      },
+      "prepared/controller-comparator.log": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-comparator.log",
+        "sha256": "12d1c75c7354cdf1cce584c9b9b58d1754a0eba82269b4db50ab5a16ea0a67ce",
+        "text": "Comparator refused: baseline, program, bool-int, row, order, metadata, extra, refusal-without-approval, wrong-refusal-type, refusal-extra-event, undeclared-row-refusal, repair-without-approval, repair-identity-drift, repair-on-other-row\n"
+      },
+      "prepared/controller-replay-final.json": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-replay-final.json",
+        "sha256": "464b2c7ab2cfc6e34490e91bbb7d03859cc47070b9a33905cc5ddca14de512ff",
+        "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/tmp/memq-projection-review.25rbrl/compare_memq.py\",\n    \"/tmp/memq-projection-review.25rbrl/frozen-memq.json\",\n    \"/tmp/memq-projection-review.25rbrl/replay-memq.json\",\n    \"ce5da59c62ce761354b2977fcb0c3f5816a858c7e22d4873ae60e4d2613db6b9\",\n    \"eafcfcbc45e04a11cd04bfc8203d7e4e953f1cc7a5be85b9ca9b2e1d113f0f8a\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.13\n}"
+      },
+      "prepared/controller-replay-final.log": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-replay-final.log",
+        "sha256": "60096aea96990904c65bc0df6ec54f55e2cebe052a2dcae4499a824a672b6dca",
+        "text": "Six metadata records match; 76 exact rows + 0 declared kind refusals + 0 repair-superseded rows\n"
+      },
+      "prepared/controller-board-render.json": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-board-render.json",
+        "sha256": "0c9adc31fb076851079b1d75c65be96fc9c9cf1d306521d2632a1b85d2628365",
+        "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.18\n}"
+      },
+      "prepared/controller-board-render.log": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-board-render.log",
+        "sha256": "f27719abacb685f5c795dcccfe79316fc8f20c09c9ed1a562e331761233ec8fc",
+        "text": "Rendered docs/planning/README.md\n"
+      },
+      "prepared/controller-board-validate.json": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-board-validate.json",
+        "sha256": "c90232efaa6f120e01dd9ad93bbc540d5c617c515ff9b02f03a209496891a9b1",
+        "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.18\n}"
+      },
+      "prepared/controller-board-validate.log": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-board-validate.log",
+        "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+        "text": "Development board validation passed: 36 tasks\n"
+      },
+      "prepared/controller-board-check.json": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-board-check.json",
+        "sha256": "ec2844fc0278e33255dd0eb10556c77d2c268b16c8d0fd3d06710a91203ad1ce",
+        "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.18\n}"
+      },
+      "prepared/controller-board-check.log": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-board-check.log",
+        "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+        "text": "Planning dashboard is current\n"
+      },
+      "prepared/controller-docs.json": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-docs.json",
+        "sha256": "a7c237fd3abab12bdf00d4a00e3362c76a51ea71778d708fb3caed2bfd700851",
+        "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/check-documentation-lifecycle.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.77\n}"
+      },
+      "prepared/controller-docs.log": {
+        "path": "/tmp/memq-projection-review.25rbrl/prepared/controller-docs.log",
+        "sha256": "90be4ba41def84f1ebe13894593282433efc7e08d3b1c760622d5dc25fad51cf",
+        "text": "Documentation lifecycle validation passed: 908 Markdown files checked\n"
+      }
+    }
+  }
 }

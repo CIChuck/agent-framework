@@ -1,32 +1,35 @@
-# MEMQ-001 — proposed memory query contract and directive checkpoint
+# MEMQ-001 — approved memory query construction checkpoint
 
 Branch: `feature/command-retirement`
-Execution phase: planning (MEMQ-001)
+Execution phase: planning (MEMQ-001 approved; D0/D1 next)
 Validation state: not_ready (MEMQ-001); DIAG-001 accepted; broader initiative remains started/local
 
-Under Chuck Russell's “proceed to next steps” and “ok proceed”, preparation
-produced the proposed [contract](memory-query-command-contract.md) (SHA-256
-`d1177505c5e278da4a0dd685fa0f6d3e9428701508a51cdcc29a415ad18e0186`), [directive](directives/CD-CMD-MEMQ-001-memory-queries.md)
-(`77ec6cf1279a067b6d5535292650fc589c33dbebb432e7253e20cdf927a90a19`) and [guarded synthetic preparation](validation/memory-queries/preparation.json)
+Under Chuck Russell's preparation instructions and subsequent option R / “The edited version”
+approval, the [approval record](approval/memory-queries.md) binds the revised [contract](memory-query-command-contract.md) (SHA-256
+`2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69`), [directive](directives/CD-CMD-MEMQ-001-memory-queries.md)
+(`3f83083689d5eedf62b5e3f2fe573586da630ff2970b3d5cd96bce474dc2aacd`) and [guarded synthetic preparation](validation/memory-queries/preparation.json)
 (`e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593`) at source `c5871054`. They cover `/memory`, `/insights`, `/summaries`,
 `/meta`, `/entities` and `/list-ingested`. Two independent clean-export captures
 agree on 6 metadata records and 76 cases; related Chat 587 and Commands/cohort
 498 tests pass; the comparator refuses 14 controls and capture refuses extra or
 changed source before import. No product, test, dependency or lock byte changed.
 
-**Next gate:** Chuck Russell's exact approval of proposed MEMQ-001 contract and directive, choosing MQ-D3 option R (bounded /list-ingested repair) or P (preserve and defer); no construction, council or delivery before that approval.
+**Next gate:** Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows.
 
-Decisions for approval:
+Approved decisions:
 - **MQ-D1:** refuse a record-kind mismatch.
 - **MQ-D2:** keep the existing argument type rule.
-- **MQ-D3:** `/list-ingested` disposition, with Chat-only option R recommended.
+- **MQ-D3:** selected Chat-only option R for persisted listing repair.
 - **MQ-D4:** extend the two pinned export assertions to 54 names.
 
 Production `/list-ingested` currently always reports none, because only the
 fake memory defines `ingested_documents` (PAR-023, CMD-F05). Option R reads
 persisted ingested-file metadata through existing public collection reads.
 Source validation and consolidation stay deferred under both options.
-Fresh Sol/Astra/Claude councils follow each deliverable only after approval.
+Four [supplemental record-projection cases](validation/memory-queries/record-projection-characterization.json)
+pin lazy metadata reads, meta formatting order and independent completion. The
+original 76 observations and fixtures remain unchanged. Fresh Sol/Astra/Claude
+councils follow each approved deliverable; none has been launched for MEMQ.
 Root Ruff 534, the test_display collection conflict and registry format remain
 failed/unwaived. Both dirty example files and ignored exports stay untouched.
 

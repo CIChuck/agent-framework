@@ -21,9 +21,10 @@ D1–D3 and its bounded aggregate at `be72a1e8`. [Final verification](validation
 records Sol/Astra/Claude VERIFIED9.7 each, no open mandatory findings,1,991 source
 passes and exact corrected artifact/probe source `28c544fa`. [Acceptance handoff](validation/diagnostics/implementation/d3/acceptance-handoff.md)
 was answered: Chuck Russell reported successful manual UAT and [accepted DIAG-001](approval/diagnostics-acceptance.md);
-the [roadmap](uat/friday-chat-user-acceptance-roadmap.md) records maintainer-reported results. MEMQ-001 is in planning: the proposed
-[contract](memory-query-command-contract.md) and [directive](directives/CD-CMD-MEMQ-001-memory-queries.md) await exact approval,
-including the MQ-D3 `/list-ingested` repair choice. The wider initiative stays started/local. Ignored exports
+the [roadmap](uat/friday-chat-user-acceptance-roadmap.md) records maintainer-reported results. MEMQ-001 is in planning with construction approved: the revised
+[contract](memory-query-command-contract.md) and [directive](directives/CD-CMD-MEMQ-001-memory-queries.md)
+are bound by the [approval](approval/memory-queries.md), including selected MQ-D3
+option R and the record-projection clarification. D0/D1 implementation is next. The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
 SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
 `112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
@@ -109,7 +110,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Chuck Russell's exact approval of proposed MEMQ-001 contract and directive, choosing MQ-D3 option R (bounded /list-ingested repair) or P (preserve and defer); no construction, council or delivery before that approval.
+**Next gate:** Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

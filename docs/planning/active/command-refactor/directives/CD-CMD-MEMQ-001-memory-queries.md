@@ -1,11 +1,13 @@
 # CD-CMD-MEMQ-001 — shared memory query commands
 
-Status: **proposed; construction approval not granted**. Owner: Chuck Russell.
+Status: **approved by the [subsequent exact approval](../approval/memory-queries.md)**. Owner: Chuck Russell.
 Prepared 2026-11-09. Branch: `feature/command-retirement`. Unit: MEMQ-001.
 Preparation under the maintainer's “proceed” instructions changes planning and
-evidence only. Approval of the exact [contract](../memory-query-command-contract.md),
-then this directive (or both together), is required before product, test or
-probe implementation. That approval must name MQ-D3 option R or option P.
+evidence only. The subsequent approval binds the exact
+[contract](../memory-query-command-contract.md) and this directive before product,
+test or probe implementation. The maintainer selected MQ-D3 option R and then
+“The edited version”, including the record-projection/schema clarification and
+completion of its evidence and hash references.
 
 ## Authority and execution base
 
@@ -21,10 +23,12 @@ Baseline: `c5871054266da2340486d2043062c5fb95611c00`.
 Only planning/approval descendants with byte-identical packages, tests, scripts,
 root AGENTS/README/main/metadata and lock may precede construction. Record the
 actual start HEAD and that equality. Unexpected source drift requires a
-refreshed approved baseline. The initiative remains started/local; MEMQ is not
-approved yet.
+refreshed approved baseline. The initiative remains started/local; MEMQ
+construction is approved only within this directive and the selected option R.
 
-The frozen input table below is normative. Accepted DIAG, SESSION and pilot
+The frozen input table below is normative. The supplemental record-projection
+characterization preserves the original 76-case preparation unchanged. Accepted
+DIAG, SESSION and pilot
 technical inputs, their raw reports/receipts and harnesses remain immutable.
 Known root Ruff 534, the sole Chat/CLI `test_display` root collection conflict
 (6,929 collected) and legacy registry formatting are failed/unwaived baseline
@@ -32,7 +36,8 @@ debt, not passing gates. No new regression may hide behind them.
 
 | Input relative to packet | SHA-256 |
 | --- | --- |
-| `memory-query-command-contract.md` | `d1177505c5e278da4a0dd685fa0f6d3e9428701508a51cdcc29a415ad18e0186` |
+| `memory-query-command-contract.md` | `2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69` |
+| `validation/memory-queries/record-projection-characterization.json` | `a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d` |
 | `validation/memory-queries/preparation.json` | `e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593` |
 | `approval/diagnostics-acceptance.md` | `1a3eecabf3b96bc456f1595933f5f2a8cba13810bb51bdb3ba6803d25e22b5ca` |
 | `approval/diagnostics.md` | `8aeb991d742a38d717c49d488b34d6a5800b57fbec97b3d4a461e2027caa1cb2` |
@@ -133,7 +138,7 @@ cleanup, never timing sleeps. Product invariants use exceptions, not asserts.
 
 | ID / node in new neutral test | Mandatory assertions |
 | --- | --- |
-| MQ-T01 `test_memory_query_models_and_closed_union` | Every field in declaration order; metric state/value/reason invariants; literals; optional/str-subclass/Unicode values; exact nested/payload types and subclasses; once-only immutable snapshots; ≤100 limits; empty/ordered/duplicate values; bool-vs-str; all old alternatives/invariants retained. |
+| MQ-T01 `test_memory_query_models_and_closed_union` | Every field in declaration order; metric state/value/reason invariants; exact completion bool; required meta id/collection versus absent plain-record metadata; literals; optional/str-subclass/Unicode values; exact nested/payload types and subclasses; once-only immutable snapshots; ≤100 limits; empty/ordered/duplicate values; bool-vs-str; all old alternatives/invariants retained. |
 | MQ-T02 `test_memory_query_specs_exports_and_factory` | Exact ordered 54-name API, no duplicates/extra/missing/reordered names; all bindings; six specs with all metadata/detail/argument fields equal to the package fixture; fresh immutable six-key maps; zero construction reads; empty registry; structural protocol. |
 | MQ-T03 `test_memory_query_invocation_validation_order` | All six: exact request, then execution, then name before any port access; execution/spec unused; direct non-string args fail at request construction (MQ-D2); string subclasses accepted. |
 | MQ-T04 `test_memory_query_availability_and_single_await` | One exact-bool availability call first; False returns unavailable data with no other call for every args shape; exactly one awaited capability per command; pending state; invalid result types; exception/cancellation identity; no retry/other effects. |
@@ -145,7 +150,7 @@ cleanup, never timing sleeps. Product invariants use exceptions, not asserts.
 | MQ-T07 `test_memory_query_metadata_and_frozen_cases` | Exact package fixture identity, 41/3 registry and six metadata records; all 76 rows under the approved decisions (74 exact + 2 MQ-D1 refusals, or 68 + 2 + 6 superseded under option R); unchanged pilot/SESSION/DIAG observations; package-local fixture lookup only. |
 | MQ-T08 `test_memory_query_once_only_delegation` | All six: one parse/factory/await, fixed spec identity, original parsed args; direct wrappers do not parse; port construction does no context reads; differing context registry, renamed wrappers and custom handlers authoritative. Inject distinct valid typed outcomes for all six and assert Chat consumes them with no legacy recomputation. |
 | MQ-T09 `test_memory_statistics_projection_order_and_failures` | Exact read/await order; store and transcript `Exception` conversion with warnings; cancellation identity; budget/session absence; zero vs unavailable vs not configured; bool/float/str formatting once; utilization suffix; 256 preview; unique sorted warnings. |
-| MQ-T10 `test_memory_record_projection_and_rendering` | All three kinds: empty complete/incomplete (both meta messages), populated, 100-record cap, preview 160/80, full and sparse meta fields, `.3f`/ISO/None formatting, decayed-policy line, query failure message, cancellation identity. |
+| MQ-T10 `test_memory_record_projection_and_rendering` | All three kinds: empty complete/incomplete (both meta messages, including incomplete with no warning members), populated, 100-record cap, preview 160/80 exactly once, no unused plain-record metadata reads/formatting, full and sparse meta fields, traced verification-before-text-before-ISO-before-confidence order with repeated accesses, stateful/raising float/datetime/string values, None versus present-empty facts, original concatenation behavior, decayed-policy line, query failure message and cancellation identity. Renderers do not preview/format original objects again. |
 | MQ-T11 `test_entities_projection_and_rendering` | Read order, nodes-only skip, projection only after both awaits, `record_value` fallbacks, `0`/`False` shown and None omitted, 100 caps, blank separator, `No entities found.`, failure/cancellation identity, non-mapping `AttributeError` after both reads. |
 | MQ-T12 `test_memory_query_adapter_refusals_and_purity` | Exactly six allowed data/no-error/no-effect shapes; all other types/subclasses/errors/effects rejected; pure renderers; no second service call; exact result defaults; no trailing newline. |
 | MQ-T13 `test_memory_query_real_app_sequence` | Real synthetic app: a conversational turn, all six commands, `/ingest` then `/list-ingested`, `/history`, `/clear`, `/cls`, `/q`; output, lifecycle and cleanup order; no network/providers/real user stores. |

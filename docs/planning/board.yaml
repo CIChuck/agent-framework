@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Chuck Russell's exact approval of proposed MEMQ-001 contract and directive, choosing MQ-D3 option R (bounded /list-ingested repair) or P (preserve and defer); no construction, council or delivery before that approval."
+  next_gate: "Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows."
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2875,3 +2875,10 @@ events:
   action: prepared proposed MEMQ-001 contract, directive and guarded synthetic evidence
   note: Planning only under maintainer proceed. 6 metadata/76 cases replay-identical; MQ-D3 offers bounded Chat-only /list-ingested repair (R) or preserve-and-defer (P). Exact approval pending; no construction, council or delivery.
   evidence: docs/planning/active/command-refactor/validation/memory-queries/preparation.json
+- task: friday-command-refactor
+  at: '2026-11-09T14:49:49.730403+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded maintainer approval of edited MEMQ-001 contract and directive with option R
+  note: Actual web instructions approve the recommended repair and edited version. Projection characterization and final pins completed; D0/D1 next, fresh three-member councils between stages. No acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/approval/memory-queries.md

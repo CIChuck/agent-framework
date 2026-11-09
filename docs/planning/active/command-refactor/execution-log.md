@@ -1864,3 +1864,29 @@ has been executed or accepted through this documentation change.
   argument rule, MQ-D4 54-name export extension.
 - Next: exact maintainer approval naming the MQ-D3 option. No construction,
   council, push/PR/merge/release or later-family work. Root debt unchanged/unwaived.
+
+
+## 2026-11-09T14:49:49.730403+00:00 — MEMQ-001 edited proposal finalized and maintainer approval recorded
+
+- `execution_phase: planning`; `validation_state: not_ready` for MEMQ-001;
+  construction is approved, with D0/D1 next and no implementation claim.
+- Chuck Russell selected recommended option R and then “The edited version”.
+  [Subsequent exact approval](approval/memory-queries.md) records the actual web
+  instructions and final document hashes, not a peer's interpretation.
+- Controller clarified MQ-04 before implementation: plain records read only
+  text; meta keeps original metadata/formatting order; prepared preview and
+  verification facts are not evaluated twice; completion is an explicit bool.
+  [Four supplemental legacy cases](validation/memory-queries/record-projection-characterization.json)
+  reproduce those distinctions. Original preparation/76 cases/fixtures unchanged.
+- Final contract SHA256 `2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69`; directive SHA256 `3f83083689d5eedf62b5e3f2fe573586da630ff2970b3d5cd96bce474dc2aacd`;
+  supplemental characterization SHA256 `a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d`.
+- Original `342bf85c` proposal hashes remain historical. Only planning/evidence
+  files changed. All 1,255 frozen non-doc files, accepted DIAG evidence, both
+  dirty examples and ignored-export metadata are verified unchanged.
+- Planning checks include raw/embedded evidence verification, fresh comparator
+  14 controls and 76-row replay comparison, board/dashboard, docs and whitespace.
+  The first controller replay invocation omitted two required identity arguments
+  and earned no correctness credit; corrected execution passes.
+- Next gate: Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows.
+- Root Ruff534, the test_display conflict6929 and registry formatting remain
+  failed/unwaived; they are not rerun for this documentation-only finalization.

@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "DIAG-001 accepted; MEMQ-001 contract and directive proposed, exact approval pending",
+  "decision": "DIAG-001 accepted; revised MEMQ-001 contract/directive approved with option R",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "MEMQ-001 planning preparation complete; approval of exact contract/directive with MQ-D3 choice pending; no construction or delivery",
-  "product_code_authority": "No MEMQ product authority. DIAG-001 construction completed, verified and accepted. MEMQ-001 requires exact contract/directive approval, including the MQ-D3 option.",
+  "current_scope": "MEMQ-001 approved D0/D1 next; neutral implementation then fresh three-member D1 council before D2",
+  "product_code_authority": "MEMQ-001 construction granted only under approval/memory-queries.md and exact CD-CMD-MEMQ-001, option R. D1/D2/D3 fresh councils and separate final acceptance required; no delivery authority.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -947,7 +947,7 @@
   },
   "memory_queries_preparation": {
     "unit": "MEMQ-001",
-    "state": "proposed",
+    "state": "approved_after_controller_clarification",
     "requested_by": "Chuck Russell",
     "instructions": [
       "the uat was successful - all approved, proceed to next steps",
@@ -956,21 +956,16 @@
     "recorded_at": "2026-11-09T15:20:00+00:00",
     "source_baseline": "c5871054266da2340486d2043062c5fb95611c00",
     "contract": "memory-query-command-contract.md",
-    "contract_sha256": "d1177505c5e278da4a0dd685fa0f6d3e9428701508a51cdcc29a415ad18e0186",
+    "contract_sha256": "2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69",
     "directive": "directives/CD-CMD-MEMQ-001-memory-queries.md",
-    "directive_sha256": "77ec6cf1279a067b6d5535292650fc589c33dbebb432e7253e20cdf927a90a19",
+    "directive_sha256": "3f83083689d5eedf62b5e3f2fe573586da630ff2970b3d5cd96bce474dc2aacd",
     "preparation_evidence": "validation/memory-queries/preparation.json",
     "preparation_evidence_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
     "execution_phase": "planning",
     "validation_state": "not_ready",
-    "design_approval": "not_granted",
-    "construction_approval": "not_granted",
-    "decisions_pending": {
-      "MQ-D1": "record kind mismatch refusal",
-      "MQ-D2": "existing non-string argument rule",
-      "MQ-D3": "list-ingested option R (bounded Chat-only repair, recommended) or P (preserve and defer)",
-      "MQ-D4": "extend two pinned export assertions 38 -> 54"
-    },
+    "design_approval": "granted",
+    "construction_approval": "granted",
+    "decisions_pending": {},
     "lightweight_exemption": "Maintainer proceed authorizes planning/evidence/current-state preparation and guarded synthetic source characterization only; product/test/config/dependency/lock behavior cannot change.",
     "council_after_each_deliverable": true,
     "council_members": [
@@ -985,6 +980,31 @@
       "cases": 76,
       "related_chat_tests": 587,
       "commands_cohort_tests": 498
-    }
+    },
+    "record_projection_characterization": "validation/memory-queries/record-projection-characterization.json",
+    "record_projection_characterization_sha256": "a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d",
+    "decisions_approved": {
+      "MQ-D1": "mismatched-kind refusal",
+      "MQ-D2": "existing direct argument type rule",
+      "MQ-D3": "R: bounded persisted listing repair, specified defaults",
+      "MQ-D4": "two exact export assertions 38 -> 54"
+    },
+    "approval": "approval/memory-queries.md",
+    "approval_sha256": "0831ccbe058fb2e9154fa38cd16587265441bdf404d3e11556dc6e32a05074c1",
+    "next_gate": "Execute approved MEMQ-001 option R: reproduce D0 baseline and preservation, then implement bounded neutral D1; reconcile fresh Sol/Astra/Claude D1 council before D2. No acceptance or external delivery follows.",
+    "implementation_status": "D0/D1 not started; no MEMQ product code changed during proposal finalization",
+    "projection_clarification": "Four supplemental legacy cases; source/protocol implementation not yet generated; original 76-case preparation unchanged."
+  },
+  "memory_queries_approval": {
+    "maintainer": "Chuck Russell",
+    "recorded_at": "2026-11-09T14:49:49.730403+00:00",
+    "record": "approval/memory-queries.md",
+    "sha256": "0831ccbe058fb2e9154fa38cd16587265441bdf404d3e11556dc6e32a05074c1",
+    "contract_sha256": "2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69",
+    "directive_sha256": "3f83083689d5eedf62b5e3f2fe573586da630ff2970b3d5cd96bce474dc2aacd",
+    "option": "R",
+    "scope": "approved directive D0-D5, three fresh council members after each deliverable, final maintainer acceptance separate",
+    "execution_phase": "planning",
+    "validation_state": "not_ready"
   }
 }

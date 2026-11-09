@@ -1,13 +1,16 @@
 # MEMQ-001 — memory query commands contract
 
-Status: **proposed; design and construction approval not granted**.
+Status: **approved by the [subsequent exact approval](approval/memory-queries.md)**.
 Prepared 2026-11-09 on `feature/command-retirement` at
 `c5871054266da2340486d2043062c5fb95611c00` (accepted DIAG-001 closeout).
 Read this document, then [CD-CMD-MEMQ-001](directives/CD-CMD-MEMQ-001-memory-queries.md).
 Chuck Russell's “the uat was successful - all approved, proceed to next steps”
-and later “ok proceed” authorize preparation only. Approval of both exact
-proposed documents, including an explicit choice for decision MQ-D3, is
-required before product implementation.
+and later “ok proceed” authorize preparation only. His subsequent “I approve
+your recommendation. Where is the directive document for me to look at?”
+selects MQ-D3 option R. His later “The edited version” approves the clarified
+record projection/schema and completion of its evidence and hash references.
+The subsequent approval binds these final revised document bytes. Option R
+does not need to be chosen again.
 
 ## Scope, authority and evidence
 
@@ -35,7 +38,7 @@ Governing direction: S-03/O-05 preserve retained behavior and quirks by
 default and require separate decisions for discovered defects; S-04 and
 CMD-F05/CMD-F10 defer enhancements and C-01 consolidation. PAR-023 records the
 maintainer's note that `/list-ingested` “must be wired into the application”;
-MQ-D3 below asks for that bounded decision explicitly.
+MQ-D3 below records that bounded decision explicitly.
 
 ## MQ-01 — explicit closed-schema amendment
 
@@ -71,9 +74,9 @@ class MemoryStatisticsData:
     warnings: tuple[MemoryWarningData, ...] = ()
 
 class MemoryRecordData:
-    record_id: str
+    record_id: str | None
     text: str
-    collection: str
+    collection: str | None
     lifecycle_stage: str | None = None
     created_at: str | None = None
     confidence: str | None = None
@@ -81,13 +84,13 @@ class MemoryRecordData:
     provenance_source_type: str | None = None
     source_memory_ids: tuple[str, ...] = ()
     provenance_truncated: bool = False
-    verification_status: str | None = None
-    verification_confidence: str | None = None
+    verification: str | None = None
 
 class MemoryRecordsData:
     kind: MemoryRecordKindName
     records: tuple[MemoryRecordData, ...] = ()
     warnings: tuple[MemoryWarningData, ...] = ()
+    complete: bool = True
 
 class MemoryQueryFailedData:
     kind: MemoryRecordKindName
@@ -130,6 +133,13 @@ value. `records`, `entities` and `relationships` each hold at most 100 members;
 `documents` is unbounded as today. An unknown literal is `ValueError`, a wrong
 type is `TypeError`. Empty strings, Unicode, newlines and control characters are
 valid data; normalization belongs to the documented projection/rendering below.
+
+`MemoryRecordsData.complete` is an exact bool snapshot, not a value recomputed
+from normalized warnings. A meta record requires non-None `record_id` and
+`collection`; plain kinds carry None for optional metadata and retain the empty
+tuple/False defaults for their other unused fields.
+Plain-record text and meta text/id are already previewed display facts, as
+specified in MQ-04; the renderer must not preview or format raw values again.
 
 These values are individually formatted display facts, matching the DIAG
 precedent, not whole Chat messages: numbers, booleans, dates and confidences are
@@ -244,14 +254,46 @@ provider or read last-turn/tool-budget snapshots beyond the current fields.
 `memory_records(kind)` performs the original second runtime read and awaits
 `runtime.memory.query_memory_records(MemoryRecordKind(kind))` exactly once. An
 `Exception` returns `MemoryQueryFailedData(kind)`; cancellation and other
-`BaseException`s propagate. Otherwise project `result.kind`, the first 100
-records in order, and unique sorted warnings. Each record projects `record_id`
-and `text` unchanged, `collection.value`, `lifecycle_stage`,
-`created_at.isoformat()` when present, `confidence` and
-`verification_confidence` as `.3f`, `source_count` via `format(value, "")`,
-`provenance_source_type`, `source_memory_ids`, `provenance_truncated` and
-`verification_status`. None stays None. The renderer, not the port, applies
-`preview_text` (160 for text, 80 for the meta id), as today.
+`BaseException`s propagate. Otherwise preserve the old result truth tests and
+lazy branches before projecting `result.kind`, at most the first 100 visible
+records in order, and unique sorted warnings. MQ-01 declares field layout,
+not permission to inspect metadata the old command did not use.
+
+- For insight and summary records, read only `record.text`, apply the unchanged
+  `preview_text(..., limit=160)` at that point, and copy the result to a plain
+  built-in string. Set optional metadata to None and other unused fields to
+  their defaults. Do not read or format them. Complete each record's old
+  evaluation before touching the next record.
+- For meta records, preserve `_meta_record_lines`' exact reads, truth tests,
+  repeated accesses and formatting order. Join/check source ids and truncation,
+  then evaluate verification status and optional `.3f` confidence using the
+  existing concatenation semantics, before previewing text. Next preview text
+  (160) and id (80), then project collection, stage, created-at ISO text,
+  confidence, source count and provenance in their original order. Preserve
+  None-versus-falsy selection before formatting; copy formatted facts to plain
+  strings without invoking a formatter twice. `verification` contains the
+  already evaluated status/confidence value, without the English field label,
+  so the renderer never repeats a custom concatenation. Snapshot source ids
+  once at their old join point; enforce that join's failures there, not later.
+- Read `result.complete` only in the empty-meta branch where the old helper
+  reads it, preserving its truth value as `bool(result.complete)`. Elsewhere use
+  the unused default True without that read. Project warnings at their old
+  point with the existing truth guard before dedupe/sort. Do not infer
+  completion from projected warnings: an incomplete empty meta result without
+  warning members still has the existing incomplete message.
+
+An absent displayed metadata value remains None and the renderer emits the
+existing fallback. A present value whose formatter produces an empty string
+stays present; do not replace it by a truthiness fallback. Renderers consume
+only prepared display facts, with no further raw-record reads, previews or
+original-object formatting. Stateful float/datetime/string subclasses retain
+their old failure and evaluation order. The previews are display facts, not
+full identifiers for a new selection/action API.
+
+[Additional planning characterization](validation/memory-queries/record-projection-characterization.json)
+records four actual legacy cases covering unused metadata, meta evaluation
+order and empty incomplete meta results. These supplement, without changing,
+the original 76 frozen observations.
 
 **Decision MQ-D1 (declared refusal).** The old renderer chose meta formatting
 from the *returned* kind but the title from the *requested* command, so a
@@ -292,9 +334,11 @@ with metadata `type="ingested_file"`, `source`, `description`, plus
 protected, never decay and may be promoted to `memories_long_term`. No
 ingestion-event id or content hash is stored.
 
-The maintainer must choose one option when approving:
+The maintainer selected option R. Option P remains the documented alternative,
+not the current selection. The subsequent approval records the final revised
+documents.
 
-**Option R — bounded listing repair in MEMQ (recommended).** Wire the listing
+**Option R — bounded listing repair in MEMQ (selected).** Wire the listing
 to persisted metadata while still deferring validation and consolidation.
 Allowed changes are limited to `friday-chat`. No `friday-memory` or other
 framework package changes, and no change to `/ingest`, its metadata or storage.
@@ -312,7 +356,7 @@ framework package changes, and no change to `/ingest`, its metadata or storage.
   failed collection adds that collection's existing warning. A non-mapping record
   or one whose metadata lacks a non-empty string `source` adds the
   `memory record` warning. The decayed collection is not read.
-- Proposed defaults (approval may change them): one row per `(source,
+- Selected defaults (a subsequent approval may change them): one row per `(source,
   description)`; `chunk_count` = number of stored chunk records in that group,
   so a re-ingested file shows its total stored chunks; rows sorted by source,
   then description with None first.
@@ -376,7 +420,7 @@ pagination, consolidation or TUI work.
 | --- | --- | --- |
 | MQ-D1 | Refuse a service result whose record kind differs from the request (`ValueError`). | Required; two rows become declared refusals. |
 | MQ-D2 | Keep the existing shared-request rule: direct non-string argument members raise `TypeError` before reads, including commands that ignored args; string subclasses accepted. | Required; the parser cannot produce such members. |
-| MQ-D3 | `/list-ingested`: Option R (bounded Chat-only repair) or Option P (preserve and defer). | Option R recommended; approval must name one. |
+| MQ-D3 | `/list-ingested`: Option R (bounded Chat-only repair); Option P remains an alternative. | Option R selected and the revised contract/directive approved by the maintainer. |
 | MQ-D4 | Extend the two accepted export-surface assertions from 38 to 54 names. | Required for the additive API. |
 
 Stop for any other incompatible legacy value and request a contract decision.
