@@ -1155,6 +1155,90 @@ async def _check_cached_context_formatting(directory):
     assert not target_root.exists()
 
 
+def _stateful_text(kind, trace):
+    """Accepted text whose length changes or fails once it has been formatted."""
+    formatted = []
+    format_failure = RuntimeError("format sentinel")
+    length_failure = LookupError("length sentinel")
+
+    class Stateful(str):
+        def __len__(self):
+            trace.append("len")
+            if formatted and kind == "length-raises-after-format":
+                raise length_failure
+            if formatted and kind == "format-raises":
+                raise AssertionError("length measured after failed format")
+            return 99 if formatted else 3
+
+        def __format__(self, spec):
+            trace.append("format:" + spec)
+            formatted.append(spec)
+            if kind == "format-raises":
+                raise format_failure
+            return "xyz"
+
+    return Stateful("abc"), format_failure, length_failure
+
+
+async def _check_context_evaluation_order(directory):
+    """Debug output formats the selected text before measuring it, as legacy did."""
+    for index, flags in enumerate(
+        (
+            ("--debug",),
+            ("--debug", "--file"),
+            ("--file", "--debug"),
+            ("--debug", "--file", "--debug", "--file"),
+        )
+    ):
+        for kind in ("grows", "format-raises", "length-raises-after-format"):
+            trace = []
+            selected, format_failure, length_failure = _stateful_text(kind, trace)
+            root = directory / f"{index}-{kind}"
+            context = CommandContext(
+                last_context=selected,
+                runtime=NS(config=NS(transcript=NS(export_directory=str(root)))),
+            )
+            if kind == "grows":
+                result = await _handler("context")(context, flags, MARKER)
+                assert trace == ["len", "format:", "len"]
+                body = "xyz\n\nDebug:\n- characters: 99"
+                if "--file" in flags:
+                    target = (root / "friday_context.txt").resolve()
+                    assert target.read_bytes() == body.encode("utf-8")
+                    body += f"\n\nExported context to {target}"
+                else:
+                    assert not root.exists()
+                assert result == CommandResult(body)
+                continue
+            expected = format_failure if kind == "format-raises" else length_failure
+            with pytest.raises(type(expected)) as caught:
+                await _handler("context")(context, flags, MARKER)
+            assert caught.value is expected
+            assert trace == (
+                ["len", "format:"]
+                if kind == "format-raises"
+                else ["len", "format:", "len"]
+            )
+            assert not root.exists()
+    # The host fact is a plain formatted string with the legacy-measured count.
+    trace = []
+
+    class Measured(str):
+        def __len__(self):
+            trace.append("len")
+            return 5
+
+        def __format__(self, spec):
+            trace.append("format")
+            return "shown"
+
+    port = host.ChatDiagnosticsPort(CommandContext(last_context=Measured("abc")))
+    snapshot = port.context_debug_snapshot()
+    assert trace == ["len", "format", "len"]
+    assert type(snapshot) is ContextData and type(snapshot.text) is str
+    assert snapshot == ContextData("shown", 5)
+
+
 @pytest.mark.parametrize(
     "case",
     [
@@ -1176,6 +1260,7 @@ async def test_diagnostic_projection_order_and_failures(case, tmp_path):
     events = []
     if case == "format":
         await _check_cached_context_formatting(tmp_path / "context-format")
+        await _check_context_evaluation_order(tmp_path / "context-order")
         key = _Formatted(events, "key", "a")
         value = _Formatted(events, "value", "text")
         for name, field in [("debug", "last_debug"), ("timing", "last_timing")]:
@@ -1522,6 +1607,7 @@ async def test_diagnostic_exports_fixed_bytes_and_failures(
     )
     if name == "context" and mode == "configured":
         await _check_cached_context_formatting(tmp_path / "export-format")
+        await _check_context_evaluation_order(tmp_path / "export-order")
         # A rendered export must not mask a distinct injected shared outcome.
         factory = shared.build_diagnostic_handlers
         for changed_field in ("text", "count", "path"):

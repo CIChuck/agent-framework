@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Approve exact proposed REM-CMD-DIAG-D3-001 context evaluation amendment, then bounded correction and fresh final aggregate council before DIAG acceptance
+  next_gate: Implement approved REM-CMD-DIAG-D3-001 bounded correction, rebuild/replay installed proof, then fresh Sol/Astra/Claude delta and aggregate council before DIAG acceptance
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2831,3 +2831,10 @@ events:
   action: reconciled DIAG D3 council CHANGES_REQUESTED; contract decision pending
   note: Astra mandatory accepted-string order regression independently reproduced. Proposed typed host snapshot amendment not approved; no product changes. Sol/Claude9.7, Astra8.7; preserve all prior evidence and local state.
   evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round1-reconciliation.md
+- task: friday-command-refactor
+  at: '2026-11-09T03:40:44+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact REM-CMD-DIAG-D3-001 context evaluation amendment
+  note: Direct instruction The bounded correction I approve it binds REM SHA 3078bb19. One typed context debug snapshot capability, six bounded paths plus probe/evidence, rebuild/replay and fresh three-provider council. No DIAG acceptance, UAT or delivery.
+  evidence: docs/planning/active/command-refactor/approval/diagnostics-context-evaluation.md

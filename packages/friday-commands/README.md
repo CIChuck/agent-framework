@@ -76,6 +76,9 @@ exports retain their order, with the fourteen diagnostics names appended.
 Chat now delegates all six diagnostics through its typed port. Chat retains
 legacy field projection, English output, telemetry/runtime reads and fixed UTF-8
 exports; shared handlers own flags, capability order and awaited retrieval.
+For exact `--debug`, `/context` calls the port's `context_debug_snapshot()`
+once instead of `context_text()`; it must return exact `ContextData` with a
+count and no export path, and shared code never re-measures or reformats it.
 Candidate installed-artifact proof remains the separate DIAG D3 gate.
 
 The DIAG standalone tests explicitly preload the pinned audit guard. Run the

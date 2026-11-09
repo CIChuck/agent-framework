@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Approve exact proposed REM-CMD-DIAG-D3-001 context evaluation amendment, then bounded correction and fresh final aggregate council before DIAG acceptance |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Implement approved REM-CMD-DIAG-D3-001 bounded correction, rebuild/replay installed proof, then fresh Sol/Astra/Claude delta and aggregate council before DIAG acceptance |
 
 ## Completed
 

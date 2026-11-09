@@ -95,7 +95,8 @@ existing resolved export directory; context exports include `--debug` output.
 Retrieval awaits the existing public memory capability once. Exceptions and
 cancellation propagate without retry or rollback. Truthy non-string cached
 context/prompt values and direct non-string command arguments raise `TypeError`;
-falsy caches retain fallback behavior. These boundaries do not change parsing,
+falsy caches retain fallback behavior. `/context --debug` formats the selected
+text once and then measures the original value, as the legacy command did. These boundaries do not change parsing,
 registration, runtime service ownership or telemetry defaults.
 
 ## Development

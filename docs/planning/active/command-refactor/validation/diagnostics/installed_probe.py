@@ -779,6 +779,11 @@ async def neutral_diagnostics(args) -> dict:
             events.append("context")
             return "context"
 
+        def context_debug_snapshot(self):
+            # A deliberately different count proves shared code never re-measures.
+            events.append("context_debug")
+            return api.ContextData("context", 42)
+
         def prompt_text(self):
             events.append("prompt")
             return "prompt"
@@ -786,7 +791,7 @@ async def neutral_diagnostics(args) -> dict:
         def export_context(self, data):
             events.append("export_context")
             require(
-                data == api.ContextData("context", 7),
+                data == api.ContextData("context", 42),
                 "Export lost count-before-write data",
             )
             return "context.txt"
@@ -820,8 +825,8 @@ async def neutral_diagnostics(args) -> dict:
     cases = {
         "context": (
             ("--file", "--debug", "--file"),
-            ["context", "export_context"],
-            api.ContextData("context", 7, "context.txt"),
+            ["context_debug", "export_context"],
+            api.ContextData("context", 42, "context.txt"),
         ),
         "prompt": (
             ("--debug", "--file"),
@@ -901,6 +906,34 @@ async def neutral_diagnostics(args) -> dict:
                 raise RuntimeError("Missing exact invocation refusal: " + name)
             require(events == [], "Invalid request read a port")
     expect_error(TypeError, lambda: request("context", (1,)))
+
+    for snapshot, kind in (
+        (None, TypeError),
+        ("context", TypeError),
+        (api.PromptData("context"), TypeError),
+        (type("Child", (api.ContextData,), {})("context", 7), TypeError),
+        (api.ContextData("context"), ValueError),
+        (api.ContextData("context", 7, "path"), ValueError),
+    ):
+
+        class Snapshot(Port):
+            def context_debug_snapshot(self, snapshot=snapshot):
+                events.append("context_debug")
+                return snapshot
+
+        for arguments in (("--debug",), ("--debug", "--file")):
+            events.clear()
+            error = None
+            try:
+                await shared.build_diagnostic_handlers(Snapshot())["context"](
+                    request("context", arguments), api.CommandExecution()
+                )
+            except Exception as caught:
+                error = caught
+            require(
+                type(error) is kind and events == ["context_debug"],
+                "Invalid context debug snapshot accepted",
+            )
 
     class Invalid(Port):
         def debug_snapshot(self):
@@ -1222,6 +1255,76 @@ async def chat_diagnostics(args) -> dict:
         + f"\n\nExported context to {(destination / 'friday_context.txt').resolve()}",
         "Context rendered body reuse changed",
     )
+    for index, flags in enumerate((("--debug",), ("--file", "--debug", "--debug"))):
+        for kind in ("grows", "format-raises", "length-raises-after-format"):
+            trace, formatted = [], []
+            format_failure = RuntimeError("format sentinel")
+            length_failure = LookupError("length sentinel")
+
+            class Stateful(str):
+                failures = (format_failure, length_failure)
+
+                def __len__(self, kind=kind, trace=trace, formatted=formatted):
+                    trace.append("len")
+                    if formatted and kind == "length-raises-after-format":
+                        raise self.failures[1]
+                    require(
+                        not (formatted and kind == "format-raises"),
+                        "Length measured after a failed format",
+                    )
+                    return 99 if formatted else 3
+
+                def __format__(self, spec, kind=kind, trace=trace, formatted=formatted):
+                    trace.append("format")
+                    formatted.append(spec)
+                    if kind == "format-raises":
+                        raise self.failures[0]
+                    return "xyz"
+
+            order = args.report.with_suffix(f".context-order-{index}-{kind}")
+            ordered = reg.RegistryCommandContext(
+                registry=reg.CommandRegistry(),
+                runtime=SimpleNamespace(
+                    config=SimpleNamespace(
+                        transcript=SimpleNamespace(export_directory=str(order))
+                    )
+                ),
+                last_context=Stateful("abc"),
+            )
+            error, result = None, None
+            try:
+                result = await reg.BASIC_COMMAND_HANDLERS["context"](
+                    ordered, flags, object()
+                )
+            except Exception as caught:
+                error = caught
+            if kind == "grows":
+                body = "xyz\n\nDebug:\n- characters: 99"
+                if "--file" in flags:
+                    target = order / "friday_context.txt"
+                    require(
+                        target.read_bytes() == body.encode(),
+                        "Format-then-length export changed",
+                    )
+                    body += f"\n\nExported context to {target.resolve()}"
+                require(
+                    error is None
+                    and result == CommandResult(body)
+                    and trace == ["len", "format", "len"],
+                    "Legacy format-then-length evaluation changed",
+                )
+                continue
+            require(
+                error is (format_failure if kind == "format-raises" else length_failure)
+                and trace
+                == (
+                    ["len", "format"]
+                    if kind == "format-raises"
+                    else ["len", "format", "len"]
+                )
+                and not order.exists(),
+                "Legacy context evaluation failure order changed",
+            )
     for bad in (
         api.CommandOutcome(api.NoData()),
         api.CommandOutcome(
@@ -1254,6 +1357,7 @@ async def chat_diagnostics(args) -> dict:
         "factory_calls": len(factories),
         "injected_consumed": injected_calls,
         "once_formatted_export": "passed",
+        "format_then_length_order": "passed",
         "custom_renamed_context": "passed",
     }
 

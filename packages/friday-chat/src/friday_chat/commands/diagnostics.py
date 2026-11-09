@@ -68,6 +68,12 @@ class ChatDiagnosticsPort:
     def context_text(self) -> str:
         return self.context.last_context or _build_context_text(self.context)
 
+    def context_debug_snapshot(self) -> ContextData:
+        # Legacy debug output formatted the selected text before measuring it.
+        selected = ContextData(self.context_text()).text
+        formatted = _plain(selected)
+        return ContextData(formatted, len(selected))
+
     def prompt_text(self) -> str:
         return self.context.last_prompt or _build_prompt_text(self.context)
 

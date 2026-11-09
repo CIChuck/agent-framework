@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-08",
-  "decision": "DIAG D3/aggregate council CHANGES_REQUESTED; proposed context evaluation amendment awaits exact maintainer decision",
+  "decision": "REM-CMD-DIAG-D3-001 exact context evaluation amendment approved; bounded correction in progress",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Record DIAG-D3-ASTRA-001 and proposed typed projection amendment; no product changes pending approval",
-  "product_code_authority": "Original DIAG construction approved; a conflicting compatibility boundary now requires approval of the exact proposed amendment before further product/test/probe changes.",
+  "current_scope": "Implement approved DIAG-D3-ASTRA-001 correction; rebuild/replay installed proof; fresh Sol/Astra/Claude delta and aggregate council",
+  "product_code_authority": "Original DIAG construction plus exact REM-CMD-DIAG-D3-001 amendment approved for its six bounded paths, probe and evidence; no acceptance or external delivery",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -766,7 +766,7 @@
     "state": "remediation",
     "execution_phase": "remediation",
     "validation_state": "changes_requested",
-    "current_deliverable": "D3 compatibility contract decision before bounded correction",
+    "current_deliverable": "D3 approved context evaluation correction",
     "deliverable1": {
       "state": "verified",
       "round": 2,
@@ -852,17 +852,21 @@
       "prebuild_extra_source_refusal": 1,
       "restored_copied_probes": 8,
       "acceptance": "not_granted",
-      "next_gate": "Maintainer decision on exact proposed amendment; then bounded correction and fresh delta/full aggregate council",
+      "next_gate": "Bounded correction, rebuild/replay from corrected committed source, then fresh delta/full aggregate council",
       "council": "validation/diagnostics/implementation/d3/council-round1.json",
       "report": "validation/diagnostics/implementation/d3/council-round1-reconciliation.md",
       "reviewed_candidate": "1d3b273b7797c72a868f259d095593a15a4e42b9",
       "mandatory_findings": [
         "DIAG-D3-ASTRA-001"
       ],
-      "findings_status": "open; controller reproduced; contract decision required",
+      "findings_status": "open; approved amendment correction in progress",
       "proposed_amendment": "remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md",
       "proposed_amendment_sha256": "3078bb19195044212a115cb3f3f169d030af2b282154d4d336856b37c41fa865",
-      "amendment_approval": "not_granted"
+      "amendment_approval": "granted",
+      "amendment_approval_record": "approval/diagnostics-context-evaluation.md",
+      "amendment_approved_by": "Chuck Russell",
+      "amendment_approved_at": "2026-11-09T03:40:44+00:00",
+      "amendment_instruction": "The bounded correction: I approve it."
     },
     "council_after_each_deliverable": true,
     "council_members": [

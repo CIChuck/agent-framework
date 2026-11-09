@@ -110,6 +110,7 @@ class Port:
         self.events = []
         self.text = "Å\ntext"
         self.path = "scratch/export.txt"
+        self.snapshot = None
         self.available = True
         self.debug = DebugData(True, (Z, A, A), DEBUG_TURN)
         self.budget = BudgetData("1000", "100")
@@ -118,6 +119,12 @@ class Port:
     def context_text(self):
         self.events.append("context_text")
         return self.text
+
+    def context_debug_snapshot(self):
+        self.events.append("context_debug_snapshot")
+        if self.snapshot is not None:
+            return self.snapshot
+        return ContextData(self.text, len(self.text))
 
     def prompt_text(self):
         self.events.append("prompt_text")
@@ -474,8 +481,9 @@ async def _check_context_prompt_flags_and_export_order(name, args):
     expected = (
         ContextData(port.text, count) if name == "context" else PromptData(port.text)
     )
+    selected = "context_debug_snapshot" if count is not None else name + "_text"
     if "--file" in args:
-        assert port.events == [name + "_text", ("export_" + name, expected)]
+        assert port.events == [selected, ("export_" + name, expected)]
         assert port.events[1][1].export_path is None
         expected = (
             ContextData(port.text, count, port.path)
@@ -483,7 +491,7 @@ async def _check_context_prompt_flags_and_export_order(name, args):
             else PromptData(port.text, port.path)
         )
     else:
-        assert port.events == [name + "_text"]
+        assert port.events == [selected]
     assert outcome == CommandOutcome(data=expected)
 
 
@@ -498,15 +506,17 @@ async def _check_context_length_precedes_export():
     port = Port()
     port.events = events
     port.text = Counted("abc")
+    port.snapshot = ContextData(port.text, 7)
     result = await build_diagnostic_handlers(port)["context"](
         request("context", ("--debug", "--file")), CommandExecution()
     )
     assert events == [
-        "context_text",
-        "len",
-        ("export_context", ContextData(port.text, 3)),
+        "context_debug_snapshot",
+        ("export_context", port.snapshot),
     ]
-    assert result.data == ContextData(port.text, 3, port.path)
+    assert events[1][1] is port.snapshot
+    assert result.data == ContextData(port.text, 7, port.path)
+    assert result.data.text is port.text
 
 
 async def _check_invalid_selected_text_fails_before_export(name, value):
@@ -662,7 +672,7 @@ async def _check_port_failures_propagate_once(method, name, args, kind):
         )
     assert error.value is failure
     prefix = (
-        [name + "_text"]
+        ["context_debug_snapshot" if "--debug" in args else name + "_text"]
         if method.startswith("export_")
         else ["available"]
         if method == "retrieve"
@@ -717,6 +727,7 @@ def test_diagnostics_standalone(optimization):
         check_source_origins()
         class Port:
             def context_text(self): return 'abc'
+            def context_debug_snapshot(self): return api.ContextData('abc',3)
             def prompt_text(self): return 'prompt'
             def export_context(self,data): return 'context.txt'
             def export_prompt(self,data): return 'prompt.txt'
@@ -806,14 +817,37 @@ async def _check_character_count_failure_prevents_export(kind):
         def __len__(self):
             raise failure
 
-    port = Port()
+    class Measuring(Port):
+        def context_debug_snapshot(self):
+            self.events.append("context_debug_snapshot")
+            return ContextData(self.text, len(self.text))
+
+    port = Measuring()
     port.text = BadLength("text")
     with pytest.raises(kind) as error:
         await build_diagnostic_handlers(port)["context"](
             request("context", ("--debug", "--file")), CommandExecution()
         )
     assert error.value is failure
-    assert port.events == ["context_text"]
+    assert port.events == ["context_debug_snapshot"]
+
+
+async def _check_context_debug_snapshot_refusals(snapshot, kind, args):
+    class Returning(Port):
+        def context_debug_snapshot(self):
+            self.events.append("context_debug_snapshot")
+            return snapshot
+
+    port = Returning()
+    error = None
+    try:
+        await build_diagnostic_handlers(port)["context"](
+            request("context", args), CommandExecution()
+        )
+    except Exception as caught:
+        error = caught
+    assert type(error) is kind, f"Expected exact {kind.__name__}: {error!r}"
+    assert port.events == ["context_debug_snapshot"]
 
 
 def _check_string_field_validation_order(model, args, index):
@@ -1030,6 +1064,26 @@ DG_T04_CASES = [
         [("kind", [RuntimeError, asyncio.CancelledError])],
     ),
     *_coverage_cases(
+        _check_context_debug_snapshot_refusals,
+        "context_debug_snapshot_refusals",
+        [
+            (
+                "snapshot,kind",
+                [
+                    (None, TypeError),
+                    ("abc", TypeError),
+                    (NoData(), TypeError),
+                    (PromptData("abc"), TypeError),
+                    (type("Child", (ContextData,), {})("abc", 3), TypeError),
+                    (ContextData("abc"), ValueError),
+                    (ContextData("abc", 3, "path"), ValueError),
+                    (ContextData("abc", None, ""), ValueError),
+                ],
+            ),
+            ("args", [("--debug",), ("--debug", "--file")]),
+        ],
+    ),
+    *_coverage_cases(
         _check_port_failures_propagate_once,
         "port_failures_propagate_once",
         [
@@ -1039,8 +1093,10 @@ DG_T04_CASES = [
                     row
                     for row in [
                         ("context_text", "context", ()),
+                        ("context_debug_snapshot", "context", ("--debug",)),
                         ("prompt_text", "prompt", ()),
                         ("export_context", "context", ("--file",)),
+                        ("export_context", "context", ("--debug", "--file")),
                         ("export_prompt", "prompt", ("--file",)),
                         ("debug_snapshot", "debug", ()),
                         ("budget_snapshot", "debug-budget", ()),
@@ -1088,8 +1144,10 @@ DG_T05_CASES = [
                     row
                     for row in [
                         ("context_text", "context", ()),
+                        ("context_debug_snapshot", "context", ("--debug",)),
                         ("prompt_text", "prompt", ()),
                         ("export_context", "context", ("--file",)),
+                        ("export_context", "context", ("--debug", "--file")),
                         ("export_prompt", "prompt", ("--file",)),
                         ("debug_snapshot", "debug", ()),
                         ("budget_snapshot", "debug-budget", ()),
@@ -1169,8 +1227,10 @@ DG_T06_CASES = [
                     row
                     for row in [
                         ("context_text", "context", ()),
+                        ("context_debug_snapshot", "context", ("--debug",)),
                         ("prompt_text", "prompt", ()),
                         ("export_context", "context", ("--file",)),
+                        ("export_context", "context", ("--debug", "--file")),
                         ("export_prompt", "prompt", ("--file",)),
                         ("debug_snapshot", "debug", ()),
                         ("budget_snapshot", "debug-budget", ()),

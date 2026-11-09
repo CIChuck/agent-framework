@@ -68,6 +68,8 @@ class DiagnosticsPort(Protocol):
 
     def context_text(self) -> str: ...
 
+    def context_debug_snapshot(self) -> ContextData: ...
+
     def prompt_text(self) -> str: ...
 
     def export_context(self, data: ContextData) -> str: ...
@@ -103,9 +105,17 @@ def build_diagnostic_handlers(port: DiagnosticsPort) -> Mapping[str, CommandHand
         request: CommandRequest, execution: CommandExecution
     ) -> CommandOutcome:
         _validate_invocation(request, execution, "context")
-        data = ContextData(port.context_text())
         if "--debug" in request.args:
-            data = ContextData(data.text, len(data.text))
+            # The host projects the evaluated text and count; never recompute them.
+            data = port.context_debug_snapshot()
+            if type(data) is not ContextData:
+                raise TypeError("Expected a ContextData")
+            if data.character_count is None:
+                raise ValueError("Context debug snapshot requires a character count")
+            if data.export_path is not None:
+                raise ValueError("Context debug snapshot must not carry an export path")
+        else:
+            data = ContextData(port.context_text())
         if "--file" in request.args:
             path = port.export_context(data)
             if not isinstance(path, str):
