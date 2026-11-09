@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Build and replay the committed MEMQ candidate and execute isolated installed proof, then fresh D3 and bounded aggregate Sol/Astra/Claude council under the existing approval. D1/D2 VERIFIED at9ce71581/ccf5471b; UAT NOT RUN; no acceptance or delivery.
+  next_gate: Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -742,6 +742,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md
   - docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round2/report.md
   - docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/verified-report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/README.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2969,3 +2970,11 @@ events:
   action: reconciled unanimous MEMQ D2 verification and continued approved D3
   note: "Round3 Sol/Astra/Claude VERIFIED9.5 each; both findings closed, no mandatory issues. D2 candidateccf5471b/source3ed1d58a. Continue committed candidate builds/replay and isolated installed proof under existing staged approval. Human UAT NOT RUN; no acceptance or delivery."
   evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/verified-report.md
+
+- task: friday-command-refactor
+  at: "2026-11-09T20:55:01.293798+00:00"
+  actor: Codex
+  actor_role: agent
+  action: froze MEMQ D3 builder evidence for final bounded aggregate council
+  note: "Sourcee4c0b9a2;2144 owning passes,154 replayed artifacts,8 actual installed probes,50 member/origin+10 archive+10 semantic refusals,3 source refusals,8 clean copied probes. Exact retained behavior transforms; approved MQ-D3-only CMD-F05 pin transition recorded. Baseline debt unwaived; UAT NOT RUN; no acceptance or delivery."
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/README.md

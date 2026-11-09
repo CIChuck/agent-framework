@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Build and replay the committed MEMQ candidate and execute isolated installed proof, then fresh D3 and bounded aggregate Sol/Astra/Claude council under the existing approval. D1/D2 VERIFIED at9ce71581/ccf5471b; UAT NOT RUN; no acceptance or delivery. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery. |
 
 ## Completed
 

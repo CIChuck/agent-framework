@@ -1,16 +1,16 @@
-# MEMQ-001 — D2 VERIFIED; D3 artifacts and installed proof next
+# MEMQ-001 — D3 builder checks complete; fresh aggregate council pending
 
 Branch: `feature/command-retirement`
-Execution phase: implementation
-Validation state: not_ready (D3); D1/D2 verified at9ce71581/ccf5471b
+Execution phase: validation
+Validation state: pending (D3); D1/D2 verified at9ce71581/ccf5471b
 
 Chat source `3ed1d58ad8cc1e79522495da5cf19091185402d8` implements the six delegated queries and approved
 option R persisted listing. [Builder evidence](validation/memory-queries/implementation/d2/README.md)
 records Chat1390, Commands/cohort599, CLI155, fast lanes616/117, all52 new
 MQ-T07..14 cases,20 assertion-witnessed mutants and exact current observations.
-The [round1 council](validation/memory-queries/implementation/d2/council-round1/report.md) reproduced those runtime checks. Sol9.6 and Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for stale authority prose. [Round2](validation/memory-queries/implementation/d2/council-round2/report.md) resolves ASTRA-001 but identifies a frozen backlog scope breach. The exact approved bytes are restored and [round3](validation/memory-queries/implementation/d2/verified-report.md) is unanimously VERIFIED9.5, no mandatory findings. D3 follows under the existing approval. Original reports remain scoped to their candidates.
+The [round1 council](validation/memory-queries/implementation/d2/council-round1/report.md) reproduced those runtime checks. Sol9.6 and Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for stale authority prose. [Round2](validation/memory-queries/implementation/d2/council-round2/report.md) resolves ASTRA-001 but identifies a frozen backlog scope breach. The exact approved bytes are restored and [round3](validation/memory-queries/implementation/d2/verified-report.md) is unanimously VERIFIED9.5, no mandatory findings. [D3](validation/memory-queries/implementation/d3/README.md) has completed builder builds/replay, actual installed proof and controls at sourcee4c0b9a2; fresh final council is pending under the existing approval. Original reports remain scoped to their candidates.
 
-**Next gate:** Build and replay the committed MEMQ candidate and execute isolated installed proof, then fresh D3 and bounded aggregate Sol/Astra/Claude council under the existing approval. D1/D2 VERIFIED at9ce71581/ccf5471b; UAT NOT RUN; no acceptance or delivery.
+**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.
 
 The exact contract/directive/approval and D1 product source remain unchanged
 (only the approved package README is updated). UAT20 remains NOT RUN; the

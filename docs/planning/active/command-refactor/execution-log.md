@@ -2144,3 +2144,33 @@ has been executed or accepted through this documentation change.
 - `execution_phase: implementation`; `validation_state: not_ready` for D3.
   Human UAT20 NOT RUN; acceptance/later-family/external delivery remain separate.
 - **Next gate:** Build and replay the committed MEMQ candidate and execute isolated installed proof, then fresh D3 and bounded aggregate Sol/Astra/Claude council under the existing approval. D1/D2 VERIFIED at9ce71581/ccf5471b; UAT NOT RUN; no acceptance or delivery.
+
+## 2026-11-09T20:55:01.293798+00:00 — MEMQ D3 builder gates complete; fresh final council pending
+
+- Artifact/probe source `e4c0b9a2c5e80569829cc56af9addc8b3e358714`, probe
+  SHA `40e9ca72439c2fce97ae71ef2b0bcdead97c3f2a91656773fdea427d132b05d0`. Source/probe bytes unchanged after builds.
+- Fresh owning2144 (599/1390/155), named52, fast616/source117 with passive
+  canonical origins pass. Full named lint, type15, new-format5 and no-new-debt
+  pass; raw4-file formatting failure remains. Root Ruff534 and test_display
+  collection collision remain failed;7082 collected is6929+153 new cases.
+- Two closed build trials each use8 tools/125 inputs/13 workspace builds;
+ 154 artifact/profile hashes match. Actual baseline comparison27 changed/
+ 127 identical. Neutral closure1; Chat accepted138; pip checks/imports pass.
+- Actual installed pilot+MEMQ normal/-O:8 successful main probes, all4 retained
+  behavior transforms and strict new semantics. Real persisted listing includes
+  single/multi/re-ingest/promotion, absent/empty groups and read-only tripwires.
+-50 member/origin+10 archive+10 semantic exact refusals,3 pre-import/prebuild
+  source refusals and8 restored clean-copy probes pass. Current source captures
+ 68+2+6 twice,68+4/25/196, supplemental4, guard18/comparer14 and lock214 pass.
+-20 retained D2 mutants independently inspected/classified against current
+  unchanged runtime/tests;1239 origins rehashed, every mutant has a named CALL
+  AssertionError. No setup/KeyError/product exception or old7-failure new-cases
+  attempt gets passing/rejection credit. Development dry/lint failures excluded.
+- Record only the directive437-authorized MQ-D3 outcome in CMD-F05 and its
+  explicit b8021069 -> 9bc9ecd11af42722c321a15cd0a80ccec520254b49de3c2b0678088dcb821695 metadata transition.
+  Artifact-source input remains b8021069;29 other normative pins unchanged.
+  No transient backlog status or ingest narrative. Only6 MEMQ PAR evidence
+  cells/header change. No product, test, dependency, lock or config edit here.
+- `execution_phase: validation`; `validation_state: pending` for D3/aggregate.
+  All20 human UAT cases NOT RUN. Acceptance/later-family/delivery separate.
+- **Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.

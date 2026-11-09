@@ -1,6 +1,9 @@
 # MEMQ D3 artifact and installed-proof work record
 
-Status: implementation in progress; independent D3 validation not ready.
+Status: builder checks complete; fresh D3/aggregate council pending.
+Execution phase: validation. Validation state: pending.
+Artifact and probe source: `e4c0b9a2c5e80569829cc56af9addc8b3e358714`.
+Probe SHA256: `40e9ca72439c2fce97ae71ef2b0bcdead97c3f2a91656773fdea427d132b05d0`.
 The [D2 reconciliation](../d2/verified-report.md) is VERIFIED at `ccf5471b`.
 Existing exact option R approval and the approved directive govern D3/D4–D5.
 No product-source, test, dependency, configuration or ingestion change is part
@@ -47,30 +50,52 @@ per-dispatch counts, custom/renamed handlers, errors/cancellation and real
 persisted `/ingest` then `/list-ingested` with deterministic local embeddings.
 Persisted absent and empty descriptions are asserted as separate groups.
 
-## Current source checks and debt
+## Actual builder checks
 
-Fresh current owning lanes pass: neutral/cohort599, Chat1390, CLI155; named52
-and fast616/source117 also pass, with passive canonical-origin witnesses.
-Ruff on all named paths and the new probe passes; mypy15 passes. New-format5
-passes; the raw whole-change format gate still fails on four old Chat files,
-while the pinned no-new-debt check passes. These failures remain unwaived.
-Root Ruff still fails with534 findings. Root pytest and collect-only still fail
-on the existing `test_display` name collision; collection now reports7082,
-exactly6929+101 neutral+52 Chat new cases. No missing collection is concealed.
+| Gate | Observed result |
+| --- | --- |
+| Owning suites | neutral/cohort599, Chat1390, CLI155:2144 passes. One pre-existing Chat deprecation warning. |
+| Named/fast/source origins | named52, fast616/source117 pass; passive before/session-finish/after canonical-origin witnesses. These overlap the owning suites. |
+| Closed build/replay | two trials,8 pinned tools,125 locked inputs,13 workspace builds each; all154 artifact/profile hashes match. Baseline comparison is27 changed/127 identical, not all changed. Both isolated pip checks and finance/tools imports pass. |
+| Actual installed proof | unchanged pilot + new MEMQ × neutral/Chat × normal/-O =8 successful main probes. Neutral closure exactly1/no executable, Chat exact accepted138-name/version map. Guard explicitly preloaded; no repository/PYTHONPATH source injection. Parent and entry-point-child origins and full artifact inventories pass. |
+| New installed semantics |13 models,54 ordered exports,27 strict refusals and6 pending capabilities in each normal/optimized prefix. All six canonical delegations, distinct injected results, per-dispatch counts, custom/renamed handlers and availability/error/cancel boundaries pass. Four copied retained behavior functions run with exact approved AST reversals. |
+| Persisted option R | actual installed `/ingest` with explicit descriptions then `/list-ingested`, single/multi/re-ingest/promotion,6 groups with absent and empty descriptions distinct; stored counts/order, source/decayed tripwires and read-only records pass. Both normal and optimized modes. |
+| Installed refusal controls |50 complete member/type/directory/byte/executable/origin/shadow refusals;10 archive refusals;4 retained-DIAG plus6 MEMQ semantic refusals, each attributed to the exact reason in normal/-O modes. Copied interpreter/package roots proven before mutation.8 restored clean-copy probes pass. |
+| Source controls | prebuild extra source refused before0 build/download commands; extra/byte capture sources refused before imports/output. Every operation and cache is private. |
+| Fresh observations | MEMQ68 exact+2 approved kind refusals+6 R-superseded twice; DIAG68+4 approved cache refusals; SESSION25; pilot196; supplemental4 output/event records exact. Guard18/comparer14, clean-export offline lock214 pass. Pinned programs are unchanged; private-CWD launcher uses existing Git plumbing read-only, with no checkout/worktree. |
+| Static | full named Ruff/probe gate and mypy15 pass. New-format5 passes; raw change-format fails on4 old files/12 formatted; pinned no-new-debt passes with old failures unwaived. |
+| Root baseline | Ruff still fails with534 findings. Root pytest/collect both fail on the existing `test_display` collision;7082 collected =6929 baseline+101 neutral+52 Chat. No lost collection or root pass is claimed. |
+| Preservation/admin | source/probe match artifact commit; both dirty examples, ignored exports, external locator, accepted evidence and supplied inputs preserved. Current gates, board/dashboard/docs/whitespace and six-row PAR audit recorded. |
 
-Source-only dry runs exercise the new neutral/Chat functions, including a real
-disposable persisted listing. An early dry-run assertion incorrectly demanded
-identity after CommandRequest's defensive snapshot; it was corrected to check
-the original parsed tuple at construction and snapshot equality afterward.
-An attempted retained source dry run was correctly refused by the installed
-origin boundary and receives no passing or mutation credit. The retained
-checks will run only against actual installations. Earlier development lint
-and setup failures remain separate from the final passing checks.
+## Approved metadata outcome and evidence accounting
 
-Pending: committed-candidate closed build/replay, all actual installed normal/
-optimized and unchanged pilot proofs, complete installed/archive/source and
-semantic refusal controls, restored clean-copy probes, final preservation,
-metadata/lock/admin checks and fresh three-seat D3 plus bounded aggregate council.
-No installed result is claimed yet. Human UAT20 remains NOT RUN; baseline
-nullable-ingest debt stays documented in FU-009 with explicit-description
-workaround. No acceptance, later-family or external delivery is granted.
+The [evidence](evidence.json) embeds exact UTF-8 raw pairs and separately indexes
+binary artifact/profile inventories. Controller scripts, commands, exits,
+module roots, source/probe hashes, child entry-point origins and limits are
+explicit. The20 D2 mutant reports/control were independently reclassified and
+their1239 origin-file hashes verified against unchanged current runtime/tests;
+they were inspected, not regenerated by this controller. Every mutant retains
+a real named CALL AssertionError. Setup/KeyError/product exceptions get no credit.
+The old D2 `new-cases`7-failure attempt is not the52-pass evidence.
+
+Directive line437 explicitly permits the CMD-F05 MQ-D3 outcome update. Only
+that outcome cell changes; its approved b8021069 input at the artifact source
+transitions to the current documentation hash recorded in authority/evidence.
+All29 other normative inputs remain exact. This narrow permitted transition
+adds no transient status or ingest narrative and differs from the reverted
+correction1 scope breach. Only six MEMQ PAR evidence cells and their status
+header change; generic P0/P1 and other units stay open.
+
+Source-only development attempts are excluded from installed proof: an early
+args-identity check was corrected to observe the tuple before defensive
+snapshotting; a retained source dry run was correctly refused by the installed
+origin boundary. Development lint failures preceded the final passing gate.
+No failed attempt, report collision, import/setup error or unhandled product
+exception is converted to a successful proof or assertion witness.
+
+Four old whole-file format failures, root Ruff534/test_display7082 and the
+unchanged no-description ingestion TypeError remain failed/unwaived. FU-009
+and the UAT explicit-description workaround remain; all20 human cases NOT RUN.
+Automated disposable/installed execution is separate from human UAT.
+
+**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.
