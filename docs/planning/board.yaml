@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.
+  next_gate: Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell’s bounded acceptance decision. D1–D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -743,6 +743,7 @@ tasks:
   - docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round2/report.md
   - docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/verified-report.md
   - docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/README.md
+  - docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/verified-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2978,3 +2979,10 @@ events:
   action: froze MEMQ D3 builder evidence for final bounded aggregate council
   note: "Sourcee4c0b9a2;2144 owning passes,154 replayed artifacts,8 actual installed probes,50 member/origin+10 archive+10 semantic refusals,3 source refusals,8 clean copied probes. Exact retained behavior transforms; approved MQ-D3-only CMD-F05 pin transition recorded. Baseline debt unwaived; UAT NOT RUN; no acceptance or delivery."
   evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/README.md
+- task: friday-command-refactor
+  at: '2026-11-09T21:33:37.858454+00:00'
+  actor: Codex
+  actor_role: agent
+  action: validation_reconciled
+  note: MEMQ D3 and bounded aggregate unanimously VERIFIED (Sol9.5/Astra9.4/Claude9.5); all mandatory findings closed. Human UAT20 NOT RUN; acceptance pending. Initiative stays started/local.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/verified-report.md

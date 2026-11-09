@@ -98,4 +98,13 @@ unchanged no-description ingestion TypeError remain failed/unwaived. FU-009
 and the UAT explicit-description workaround remain; all20 human cases NOT RUN.
 Automated disposable/installed execution is separate from human UAT.
 
-**Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.
+**Historical builder next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.
+
+## Independent closeout — 2026-11-09
+
+The builder checkpoint above is historical. [Final verification](verified-report.md)
+records unanimous Sol9.5/Astra9.4/Claude9.5 VERIFIED at bab16757, with no mandatory
+findings. Source/probe e4c0b9a2 is unchanged. [Manual UAT handoff](acceptance-handoff.md)
+is ready; all20 human cases remain NOT RUN.
+
+**Current next gate:** Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell’s bounded acceptance decision. D1–D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.

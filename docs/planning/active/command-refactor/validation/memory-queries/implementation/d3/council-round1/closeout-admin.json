@@ -1,0 +1,44 @@
+{
+  "scope": "Documentation/evidence closeout only; runtime suites not rerun because source/tests/probe unchanged.",
+  "checks": [
+    {
+      "check": "board validate",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "8107b6",
+          "wall_time_seconds": 0.145403667,
+          "exit_code": 0,
+          "original_token_count": 12,
+          "output": "Development board validation passed: 36 tasks\n"
+        }
+      }
+    },
+    {
+      "check": "dashboard render --check",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "adafae",
+          "wall_time_seconds": 0.145434959,
+          "exit_code": 0,
+          "original_token_count": 8,
+          "output": "Planning dashboard is current\n"
+        }
+      }
+    },
+    {
+      "check": "documentation lifecycle",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "a92412",
+          "wall_time_seconds": 0.723632292,
+          "exit_code": 0,
+          "original_token_count": 18,
+          "output": "Documentation lifecycle validation passed: 939 Markdown files checked\n"
+        }
+      }
+    }
+  ]
+}

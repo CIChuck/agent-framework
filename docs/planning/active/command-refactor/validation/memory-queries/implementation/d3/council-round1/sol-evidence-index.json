@@ -1,0 +1,2058 @@
+{
+  "root": "/private/tmp/memq-d3-sol-r1-rrix0ygj",
+  "report": "report.md",
+  "entries": {
+    "memq_semantic_controls-execution.json": {
+      "sha256": "3f16b822e1da23ffe2df68e77df20757d9f0a24117c7fbd27ea05a4fb11d5111",
+      "size": 1975
+    },
+    "whitespace.json": {
+      "sha256": "91ec3436dfb4505e90874e2dad931685f6b6aff5fa6652fe3cf69efc205c9752",
+      "size": 39
+    },
+    "d4-root-collect.json": {
+      "sha256": "814fbbe4e9717cded67fa9f13f98f57471cc53d20a8ae513aac2a01c9112ee06",
+      "size": 6895
+    },
+    "final_checks.py": {
+      "sha256": "bc1997664ee5f975ebe8babd1490a316a30b67f846fff453e5f2b08f770e5401",
+      "size": 3937
+    },
+    "chat-origins.json": {
+      "sha256": "25d4c5e9207190b9871bac8d16e5a0a5d2472423ed5356bfb838b9db6610193a",
+      "size": 53283
+    },
+    "admin-0.json": {
+      "sha256": "af6c2f71dbb214d273cbc8c3b00b4652f3f581762a424a877faf0d69a54633e3",
+      "size": 412
+    },
+    "test-reversals.json": {
+      "sha256": "bb0c1fc972446945b894fa9cbdde21704f135537f2f2b5899a0a28bff56b7798",
+      "size": 146
+    },
+    "capture-materialization.json": {
+      "sha256": "541d02976f371214f78317bd5ed57613435553d2bfd2232f9333c62d15a1126e",
+      "size": 1407
+    },
+    "audit.json": {
+      "sha256": "638fd6e8f39f1e6cb8585f1ff96f1586023a978dbd2f6b2bcc545f726b8dcc86",
+      "size": 12839
+    },
+    "d4-new-format.log": {
+      "sha256": "8b2b07f15fe6ad568dc0982c3eb5737a4fa7fa91aeb8c6e61385e3cca94eb25b",
+      "size": 586
+    },
+    "d4-static.json": {
+      "sha256": "77dfde50ee898442aff7ecd3f2c08fbcd08262a6bba9b239f0adb6a26d5f9d9a",
+      "size": 25050
+    },
+    "d4-root-pytest.log": {
+      "sha256": "ddedc6d28b33c39a4105f68a5c7f9147faa235e2035075d8d5dfa5bc27885b63",
+      "size": 1158
+    },
+    "admin-1.json": {
+      "sha256": "ee2cdb8629a27e78760c433faa8e16308714aa03c0ba111361bdbd43148e4e58",
+      "size": 416
+    },
+    "audit.py": {
+      "sha256": "a804a1c756236501efcaaf8c12549683e98b93d4368a0f21c6e6f676ee1c29c3",
+      "size": 2694
+    },
+    "cli-origins.json": {
+      "sha256": "525750746d0d28606382349d275c3aa87234d4e7c90f37241ce207935cc7c315",
+      "size": 18609
+    },
+    "end-relative-listing.json": {
+      "sha256": "e8143554273506e955a40362e8d7e4d23783255ce3067720e948d528d7fdbb50",
+      "size": 36470029
+    },
+    "fast3-retry-execution.json": {
+      "sha256": "590288db3df1b781922f09d00905e568562c5ca89ada92219140d98a917a7f5a",
+      "size": 1742
+    },
+    "reversal.py": {
+      "sha256": "5b04fd654f7cd9c40a2d2137fd7378fc7d2ea641a273987d16e84fb0fcbd3d78",
+      "size": 1758
+    },
+    "start-tree.json": {
+      "sha256": "86c307cae7d5c65eb57cbc0f3ab05821d2300ec9038316b94e43b96987f99a9e",
+      "size": 96063026
+    },
+    "scratch-created.json": {
+      "sha256": "f00a18144da9baf9df910315f3129751cad6ac3fd7c8db5582976b81cd845821",
+      "size": 51
+    },
+    "deep-audit.json": {
+      "sha256": "dbff5ace70c8c983aa94518e5f80b3581d25e6e10a1f6c0887b327366f240dfa",
+      "size": 580103
+    },
+    "report.md": {
+      "sha256": "57915a441ddd4ce59f6cb7ec979802d255d9b5674942d83940ab24a3aaee9800",
+      "size": 13605
+    },
+    "artifact-control-summary.json": {
+      "sha256": "07e04bf9f2834807b2405a4660730203296e52cc847a04eea728ec364891d2dd",
+      "size": 36719
+    },
+    "d4-root-ruff.log": {
+      "sha256": "f37ff7047b2c7b7a6181be9d0a9890c98e2da36a60cb2b42869c97a61730e891",
+      "size": 6204
+    },
+    "chat-execution.json": {
+      "sha256": "9820edcef345eacf496bea053a1fe0bd108cf05df48b4e0796bfa0d0d6775b5a",
+      "size": 7103
+    },
+    "artifact_controls-execution.json": {
+      "sha256": "366ed75e0ac41f867e242e411500ad96a28e93a84ec137006020f3197bddbc59",
+      "size": 947
+    },
+    "d4-lint.json": {
+      "sha256": "db148915c253c371ff02d205adfede7dc45f56ab819e7a281fb895f9168aa3ae",
+      "size": 1771
+    },
+    "execute.py": {
+      "sha256": "9ad0ce2a962b96c0748798b810f6096fc155dcf99929e4a265aab318f3f0dfb3",
+      "size": 2896
+    },
+    "start-integrity.json": {
+      "sha256": "e27aea76fb1e59774c353e7dc74592da0937851a582f3c2f010849cb6f9bfd27",
+      "size": 1017
+    },
+    "d4-root-ruff.json": {
+      "sha256": "c618896b3c5de51a72bb36d805922fb4f17547e1e83559f17efc2b4f3faab03c",
+      "size": 6705
+    },
+    "installed-executions.json": {
+      "sha256": "a6fb3ffe81d26f0fa17c9f6b97a70912909bc1195b020c6e236ff9d39494f5a3",
+      "size": 8946
+    },
+    "d4-lint.log": {
+      "sha256": "e1ee2738baca5ec68b1709e56a1c303b1caf7f32d57430069249700b50f695ea",
+      "size": 789
+    },
+    "memq_semantic_controls.py": {
+      "sha256": "8f940c7d666b2d2f0d5ccf59a2ac1ccc8368296c4370895954c49860b97872df",
+      "size": 6344
+    },
+    "env.json": {
+      "sha256": "6bd413234f8700859df8ddc7093ed5ef540ef29b83f80f8bb1e6b0f3594a6b4f",
+      "size": 3352
+    },
+    "semantic-control-summary.json": {
+      "sha256": "8b58184bd9f459524195d43a5227443fe76814e5ddf62d42cb91a308dd27d318",
+      "size": 13147
+    },
+    "installed-controls-final.log": {
+      "sha256": "f785786cc4db84d396763de7921f9e0a53a54a904f55ead5990ec39fb599611f",
+      "size": 5977
+    },
+    "d4-format-debt.log": {
+      "sha256": "e302eefc2c0b2e35babc13ed222567d8e3c5df7325823c38613a0c1c99ea0856",
+      "size": 565
+    },
+    "semantic_controls.py": {
+      "sha256": "ea80b2f232bd67968b4eb4268b28f7e01909c3960ade0ca5b7caccbd4e3c05f1",
+      "size": 4334
+    },
+    "d4-new-format.json": {
+      "sha256": "aa71943fc3dbaf1df1d29caa7f0a1c01a4a5cadcdf4735d61e6b6628e760714c",
+      "size": 1346
+    },
+    "start-relative-listing.json": {
+      "sha256": "e8143554273506e955a40362e8d7e4d23783255ce3067720e948d528d7fdbb50",
+      "size": 36470029
+    },
+    "run_d4_static.py": {
+      "sha256": "ff9f76f841786fb571e541be44b3f7300242636686a4073b568165065402e8f0",
+      "size": 2956
+    },
+    "installed-controls-final-exit.json": {
+      "sha256": "bfdedf06596faa2042b0fedd9653ec1023d2e96ed56dc40b607985bc8438c1d5",
+      "size": 11
+    },
+    "artifact_controls.py": {
+      "sha256": "de560a69e4572c2c18c7e2e75433965b4087d826fcbae7434a9fb1afb7b92e56",
+      "size": 4312
+    },
+    "retry.py": {
+      "sha256": "d0d008df916478c752210f17ae5b3f689ce5d62b184bf51aff6a135c1eb42113",
+      "size": 1726
+    },
+    "suites.py": {
+      "sha256": "6c6876709d92344d6b085b778c52d2a95126bacce2df75cd155fb8286f662e5c",
+      "size": 1696
+    },
+    "d4-types.json": {
+      "sha256": "17ccc464749c972e232ac647b3d63a32bc1c435b4b41db69dc804f99d41a9359",
+      "size": 1736
+    },
+    "more.py": {
+      "sha256": "2e0e8733dbd611c3f2f0183be07753975f8d265fb6d77da8e72b6d7d5934086b",
+      "size": 537
+    },
+    "d4-changed-format.json": {
+      "sha256": "96797d9bc81c771d54e77f9c4121a95e04c7df678572c3b53ed84d218a05ad71",
+      "size": 3326
+    },
+    "fast3-origins.json": {
+      "sha256": "793eab0daa642fb2b6eec08012366ce14671a5b5cafa69f2f1837140914d0d8b",
+      "size": 51969
+    },
+    "d4-changed-format.log": {
+      "sha256": "7eff00347554116ce78083b2b8ee06b4b490d063e047034517d74ad77f2862e5",
+      "size": 1687
+    },
+    "admin.py": {
+      "sha256": "7c27fe21ec3707c7b48ef50f104c331563020ee0714dc3f2b62114af2605028f",
+      "size": 709
+    },
+    "semantic_controls-execution.json": {
+      "sha256": "6b12b606b04bf60a6236c82409482cabd702f902d4018896f5d276b6fe338a9c",
+      "size": 211
+    },
+    "inputs.json": {
+      "sha256": "9e46a7cca20f305ed49e9429d9bcc7e760a67383f025f14e1daec09b6afe0dc2",
+      "size": 114
+    },
+    "end-complete-listing.json": {
+      "sha256": "f0fd57eb05bfde0e8e626d8b1c49888582500a62e17d6eb0abc0437b344699c4",
+      "size": 48298553
+    },
+    "run_captures.py": {
+      "sha256": "8c9d44695e113fdc3b376a2f07fa5de3c5f56602bcfa0392900398c737dafe33",
+      "size": 3484
+    },
+    "probe.py": {
+      "sha256": "40e9ca72439c2fce97ae71ef2b0bcdead97c3f2a91656773fdea427d132b05d0",
+      "size": 105315
+    },
+    "inspected-build-commands.json": {
+      "sha256": "b877427998bdb1118b8534604f97289788793363d0df73368157a7b3864ce47c",
+      "size": 115692
+    },
+    "installed_controls_final.py": {
+      "sha256": "06ecadac562d8abc2d3e5424c7ec69ffb8b72c85ce05dd9a9523d54eb6e2e586",
+      "size": 11093
+    },
+    "context.json": {
+      "sha256": "160fdc7f9309211ef3e74e84b57372e880474f732d8fb148ffcc302bf4a2d91f",
+      "size": 1297
+    },
+    "memq_semantic_retry.py": {
+      "sha256": "d9504e7bdd6550bcde75e8ee7b9b36c877db69637fa2fd96fa9aceadf3ab89ad",
+      "size": 6350
+    },
+    "chat-retry-execution.json": {
+      "sha256": "c3d19260e51d3132798644e5493eb55f53cc60ec8c2305b53ebb0ac40fdeb31a",
+      "size": 3176
+    },
+    "named-origins.json": {
+      "sha256": "b5df9c2893995f011fa86fc161be7ccbec4b45533300c99ce71d1f38d149023a",
+      "size": 51435
+    },
+    "installed_controls.py": {
+      "sha256": "a7f41e09b59b34d8922bd3049907fa04b46a844430a7407222c91136073a2447",
+      "size": 11087
+    },
+    "fast2-origins.json": {
+      "sha256": "fbbc0dd2d67510f4b347d046835b933db9abc5e7ecaabedf0a5d9b37378f0db1",
+      "size": 51921
+    },
+    "closing-git-listings.json": {
+      "sha256": "b8af23dc44b906a496a91719c00372002a715d690fe358a83fcff5a7047c73e8",
+      "size": 13127
+    },
+    "d4-format-debt.json": {
+      "sha256": "9ee745b4a1c4787b78d61ceb5dba917593de03925660c70f38fe08bf65948977",
+      "size": 1260
+    },
+    "d4-types.log": {
+      "sha256": "fda1394a3514cf0fe3581660300712da0bd96a9260484b11c2a4b4ff18ffca17",
+      "size": 786
+    },
+    "supplemental-execution.json": {
+      "sha256": "0ff4b32114ca0d06caa5da6847dd8456f212ccee17d7a9e59cb540cbde165149",
+      "size": 1068
+    },
+    "admin-docs.json": {
+      "sha256": "7c30b227aa7e8ebfff3d53b97185e9e7cde9c4486912d6873b394f816cf96bfb",
+      "size": 585
+    },
+    "fast3-execution.json": {
+      "sha256": "75587910ab357dbec788eb2f058e55c512344e87267f2af0491215d2e2a4df36",
+      "size": 5100
+    },
+    "installed-control-summary.json": {
+      "sha256": "0b4e3364aa9fafd979fc34b77b2d232b886cf90550b0d715af2408b493c16d15",
+      "size": 274737
+    },
+    "end-tree.json": {
+      "sha256": "86c307cae7d5c65eb57cbc0f3ab05821d2300ec9038316b94e43b96987f99a9e",
+      "size": 96063026
+    },
+    "d4-root-pytest.json": {
+      "sha256": "cf3a1c8abdb88be753942809d0c70a55cb55315b544b64155f954b9d450f031e",
+      "size": 1624
+    },
+    "d4-root-collect.log": {
+      "sha256": "fc5149075f2a7d023d0574bf74ba9a73580563387cf7054830c94fdf3f598006",
+      "size": 6356
+    },
+    "commands-execution.json": {
+      "sha256": "78831210f3d9c2082142d4b63c96c9369c3fbbfc3d45f104a14281fb3bdece21",
+      "size": 1683
+    },
+    "memq-semantic-control-summary.json": {
+      "sha256": "d36b0e03421a6198008d07d0b1c5f2ee98e9e769da1f6744318c0fe65026dd47",
+      "size": 23202
+    },
+    "admin-2.json": {
+      "sha256": "4069c5af0d13f7b0edfb92861daa65aa1d316377b74d8d16c1e11bff138286c0",
+      "size": 563
+    },
+    "final-checks.json": {
+      "sha256": "a81e9e1c5316f4e07fb19c16bf31cd9484179e983ec6994918c4aaf3e208b027",
+      "size": 26727
+    },
+    "deep_audit.py": {
+      "sha256": "a38c7a421cf8e2a4b5d8e7e65cf65243e1285c9644d6c589b8f3dfb074e4f14b",
+      "size": 2607
+    },
+    "cli-execution.json": {
+      "sha256": "51030e7fc01d152121c32ac4b3d18283816cf717de598af0b6d436e33d163499",
+      "size": 1103
+    },
+    "captures-execution.json": {
+      "sha256": "d5007f4ca546bd2d927d04f80f2afd93ed78ab931de8eef39b27a4086294f5d8",
+      "size": 4597
+    },
+    "start-complete-listing.json": {
+      "sha256": "f0fd57eb05bfde0e8e626d8b1c49888582500a62e17d6eb0abc0437b344699c4",
+      "size": 48298553
+    },
+    "integrity.py": {
+      "sha256": "1d0e871b86349450c75945857043560b7c3db4ee7025ccb1d128e3ab471a37c2",
+      "size": 2590
+    },
+    "ast_aggregate.py": {
+      "sha256": "64419f5abe40897033a24ad87c92aaff1b076c41c3872e7117ff7d3ecfef11db",
+      "size": 2009
+    },
+    "end-integrity.json": {
+      "sha256": "e27aea76fb1e59774c353e7dc74592da0937851a582f3c2f010849cb6f9bfd27",
+      "size": 1017
+    },
+    "commands-origins.json": {
+      "sha256": "10958eaa864a57f342b0296c68de188d88446e624410788a4a00c6dc0098f6b6",
+      "size": 18383
+    },
+    "aggregate-ast.json": {
+      "sha256": "df401e433f792f0ba37451c43e51adb3a68660922f0d1f5e753c8a7d1bbf7ae1",
+      "size": 1739
+    },
+    "named-execution.json": {
+      "sha256": "44edb77ebb6272c0e945209fb725b2fea90ea7d611168c46e076746f18c2fea0",
+      "size": 1010
+    },
+    "fast2-execution.json": {
+      "sha256": "79be9e600657f87c39bfb013fb124180f14d7764f44681332f9020e9ab658ec2",
+      "size": 2854
+    },
+    "prepared/chat.json": {
+      "sha256": "61cab8d165989410d9519070f0053394befc86211f295cb348c246056b879e35",
+      "size": 552
+    },
+    "prepared/d3capture-diagnostics-0-compare.log": {
+      "sha256": "8ed7310d927cfd8c86c4512d830ce4bd983358e85fa6c021a955c60fd004cf42",
+      "size": 60
+    },
+    "prepared/d3capture-memory-queries-0-compare.json": {
+      "sha256": "0189cfff55c48e88cd760804fa87070f631a21c2b6bd09982965e72a4d056605",
+      "size": 720
+    },
+    "prepared/admin-0.log": {
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "size": 46
+    },
+    "prepared/d3capture-memory-queries-0-compare.log": {
+      "sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "size": 96
+    },
+    "prepared/admin-1.log": {
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "size": 30
+    },
+    "prepared/d4-root-collect.json": {
+      "sha256": "8becc578cb404d175001cf62964423e9114b67288524b4c7514a00b52a4fd1e6",
+      "size": 446
+    },
+    "prepared/d3capture-diagnostics-0-compare.json": {
+      "sha256": "0b86d422537d61f1e59f7d823a5e64a6310e2af47cf55f9cbf899e08704e7fb9",
+      "size": 664
+    },
+    "prepared/controls.py": {
+      "sha256": "d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d",
+      "size": 423
+    },
+    "prepared/run.py": {
+      "sha256": "409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af",
+      "size": 1190
+    },
+    "prepared/admin-0.json": {
+      "sha256": "879c8b8f2ea6a2a0c0d3f5510de822b77d34ed6e9c5fdb7e8fc79dff71a6b4f9",
+      "size": 283
+    },
+    "prepared/admin-2.log": {
+      "sha256": "f62e0d3105979dba6d733c9c7822c67ea8f2e2526281163b49ad18c3b6bc2fa6",
+      "size": 205
+    },
+    "prepared/d4-new-format.log": {
+      "sha256": "f114d83b30c5c657ee43a847a45bafccaea255d82673feb87c26d252c61e29c1",
+      "size": 26
+    },
+    "prepared/d3capture-source-changed-refusal.log": {
+      "sha256": "b2230fc056b6cb487fc95840b8cddb1ed0ac7e1bd2e9e7afe10f0ad0647f1ace",
+      "size": 1548
+    },
+    "prepared/d3capture-supplemental-records.log": {
+      "sha256": "09b09603fd912a4e890418e85065053b78943976f9de7eff9824c522e2b46095",
+      "size": 1942
+    },
+    "prepared/d4-root-pytest.log": {
+      "sha256": "89b78bcce6d5163dac79dede4b89b79f12d78523e6e79ea0c526e35329e9b6eb",
+      "size": 821
+    },
+    "prepared/chat.log": {
+      "sha256": "3faa9614b11db5f35225e2a22de4acfb961b20306ba792be196939b4c573f00b",
+      "size": 16517
+    },
+    "prepared/admin-1.json": {
+      "sha256": "e692da5be44c015b61940591cb4e17ace8216ccd784a2b7ca8d411fea66ff4da",
+      "size": 296
+    },
+    "prepared/pilot_run.py": {
+      "sha256": "acd0f1aac5bc372bc7357d5a74563730a17955d13b74062c23cfe8f4b8cdc178",
+      "size": 2479
+    },
+    "prepared/d3capture-memory-queries-1-compare.json": {
+      "sha256": "68bf23ac08b502ba361529eae6f609c3e6e4893e6c0b99cb190f25c4e80ed973",
+      "size": 720
+    },
+    "prepared/memq_origins.py": {
+      "sha256": "480b4536e186dc34957a584ba9ae94f128203a16418b12db99c751c13dcbb203",
+      "size": 2032
+    },
+    "prepared/d3capture-memory-queries-0-capture.log": {
+      "sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "size": 28
+    },
+    "prepared/d3capture-diagnostics-0-capture.log": {
+      "sha256": "33c09040d34dd70f469be1b4075cf5172fa5866081b9de686984b7dc48b2a4bf",
+      "size": 27
+    },
+    "prepared/fast3.log": {
+      "sha256": "037f989535df2b17200b5b1dc71929897eb9d58edc6b6605863447bddd6bbdf1",
+      "size": 3475
+    },
+    "prepared/d4-root-ruff.log": {
+      "sha256": "0a62896ccf12b46b5c1a819a94cd11f9b994db5c969260cd7f10c5ba3101fa13",
+      "size": 315639
+    },
+    "prepared/fast2.log": {
+      "sha256": "b5b503b61904ded9ec563a55bfce609c3f0a44f50141c54e8a4d758c6bbb8493",
+      "size": 740
+    },
+    "prepared/named.json": {
+      "sha256": "7c330523f9302f921318bb44d9cb6ebd3195e2ddadf48ad2c6f56ce8a2530967",
+      "size": 514
+    },
+    "prepared/fast2.json": {
+      "sha256": "3f5b5ade00bac2e53c5ae6045ab776f0ff27666745235e3a17ec710a07acaebc",
+      "size": 1120
+    },
+    "prepared/d3capture-comparer-controls.log": {
+      "sha256": "12d1c75c7354cdf1cce584c9b9b58d1754a0eba82269b4db50ab5a16ea0a67ce",
+      "size": 237
+    },
+    "prepared/commands.log": {
+      "sha256": "ca0c9e9f6169b38fc083106176289a106640b0f57c67a027128f0d1fc0ba3a4d",
+      "size": 740
+    },
+    "prepared/d4-lint.json": {
+      "sha256": "901b4697c1c5f7392c5e91acabcb1c988a28e39772b185b53225238649aacb32",
+      "size": 864
+    },
+    "prepared/d3capture-source-changed-refusal.json": {
+      "sha256": "c978bef4056456f4603909590a660b18e0afceabe58f4b849477dd1d80862e32",
+      "size": 595
+    },
+    "prepared/d4-root-ruff.json": {
+      "sha256": "2ce7a51b87af4909af300071c8f6d739f08c237a8dea4a7eca2a34f8b896cec2",
+      "size": 260
+    },
+    "prepared/d4-lint.log": {
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "size": 19
+    },
+    "prepared/d4-format-debt.log": {
+      "sha256": "1d6a7357d3da1f1afb251f43937da567d6c286fe0f8a75ffb61c2b2b0a056ba9",
+      "size": 60
+    },
+    "prepared/d3capture-session-0-compare.json": {
+      "sha256": "650c2190a7d6eed40a45139309113dab414366b017bba13c12f5531be642ab0b",
+      "size": 622
+    },
+    "prepared/cli.json": {
+      "sha256": "e12a0818f7dc196e1dffbcc276cd6ec21529297715a33e709aefcb1c03edc975",
+      "size": 479
+    },
+    "prepared/d4-new-format.json": {
+      "sha256": "b1e2ddcce460c06b1caae4095e041680b659d0107e2cdb7978a6773b43f99af0",
+      "size": 638
+    },
+    "prepared/d3capture-source-extra-refusal.log": {
+      "sha256": "a74c905beb7503e282e3bead8c1af607220b9a111ce28b91851177aa579e4af5",
+      "size": 1506
+    },
+    "prepared/fast3.json": {
+      "sha256": "a8adb77b80f836d79aa0c7b72e1eddebe0926779ef3bb3f4d387d84e59557d2b",
+      "size": 838
+    },
+    "prepared/d3capture-candidate-lock.log": {
+      "sha256": "8c2d3f180a16e3f61723fec178de46767e2f3b5abfd61c023f03cde553047bdc",
+      "size": 51
+    },
+    "prepared/commands.json": {
+      "sha256": "b143020d6b19f0b8e427d2f2b0b1f4d72bf5c0ef1e5b022f530ccb4126310090",
+      "size": 525
+    },
+    "prepared/d3capture-pilot-compare.json": {
+      "sha256": "cfd1b0a1e3efe21888056456b8ed1c360ee95a08731ff1c500fbf8db82f6bb0e",
+      "size": 663
+    },
+    "prepared/sitecustomize.py": {
+      "sha256": "d96294f94f5378beb38675d0624e6f78c622914cafbaffb4ce486d8310d2eb7e",
+      "size": 1528
+    },
+    "prepared/fast3-retry.json": {
+      "sha256": "0c75930d3e504eab48cc9db138aee1b0847fa794c41bb892e1a656e016b3d503",
+      "size": 844
+    },
+    "prepared/d4-types.json": {
+      "sha256": "37878e50ca876df4ed3451ffdd805d2a67f795cfb9b3b89c382dcd96b47e1f52",
+      "size": 832
+    },
+    "prepared/d3capture-memory-queries-1-capture.log": {
+      "sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "size": 28
+    },
+    "prepared/d3capture-session-0-capture.log": {
+      "sha256": "299cfbf91c4a3909cf255b9c26e1834705e912eefd360ff6e1a89456be702d84",
+      "size": 57
+    },
+    "prepared/d4-changed-format.json": {
+      "sha256": "64d5e0dfed365feea5a28c97c7fe2b899c4208651016a18d1d1f7fb331f06925",
+      "size": 1481
+    },
+    "prepared/named.log": {
+      "sha256": "62f345fddd100d1f0b0607938dfe6b95f2a7ccaa4dc5bec80ea60a2bdcbf9af6",
+      "size": 99
+    },
+    "prepared/d3capture-pilot-compare.log": {
+      "sha256": "57498c120adaf47f3114eb71cdce31c310264758485dc15016179da30a875be3",
+      "size": 42
+    },
+    "prepared/d3capture-comparer-controls.json": {
+      "sha256": "0545974182159858fb8c2909cbde8c595723361c94dc14e881136769adc9d4c1",
+      "size": 335
+    },
+    "prepared/d3capture-memory-queries-0-capture.json": {
+      "sha256": "5dd7ebe34fed6401d73c6da2decf1b156bdcaf544840899f10d4c083a461f7dc",
+      "size": 612
+    },
+    "prepared/d4-changed-format.log": {
+      "sha256": "6c0ed803d4f04d3a4018f701f23a1120364129a3765124c58ca9518404f847e5",
+      "size": 332
+    },
+    "prepared/admin-docs.log": {
+      "sha256": "6d069480fc73113ae23d779b69c1f2ca6a7e41526d1d82d7d467f95f8bf8d152",
+      "size": 70
+    },
+    "prepared/pilot_guard.py": {
+      "sha256": "e04eea8bc9722defe3ea89212385f8befda03e051b9816b305e1b9f73ff94681",
+      "size": 2276
+    },
+    "prepared/d3capture-diagnostics-0-capture.json": {
+      "sha256": "238befecccf2492ee259bd7e6408d37bb06a4ebe6b6905bd2e9a22ee2c68572d",
+      "size": 598
+    },
+    "prepared/d3capture-source-extra-refusal.json": {
+      "sha256": "b9cc1352a384705cfba33f8cdb38964c88d2bae1876cad5a4a3a0b743039381c",
+      "size": 593
+    },
+    "prepared/d3capture-pilot-capture.log": {
+      "sha256": "dbbaf145090f03d8fe35f25a51ce91205ed4919d542794daed1eb4812b355308",
+      "size": 85
+    },
+    "prepared/cli.log": {
+      "sha256": "d34b3022b2c1d0ab55d076c0660d0b06a59cbcfadef1519ab70cfd10fafff4f7",
+      "size": 260
+    },
+    "prepared/d3capture-session-0-compare.log": {
+      "sha256": "43e6de8cab5609d4125cb733e259cf315de532eb9d04b0e59085769ea04d87c4",
+      "size": 67
+    },
+    "prepared/d3capture-memory-queries-1-compare.log": {
+      "sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "size": 96
+    },
+    "prepared/d3capture-supplemental-records.json": {
+      "sha256": "9d52df564c58ddc8007de5a3c44c62ae8067bfa0af118bb014e4ef5f70a68179",
+      "size": 401
+    },
+    "prepared/d3capture-candidate-lock.json": {
+      "sha256": "7e6153f17d77c3a0809933395ff1000bf4ce6fc4ce9a8b960dfcce047e77bdde",
+      "size": 357
+    },
+    "prepared/d3capture-memory-queries-1-capture.json": {
+      "sha256": "1db1f6f14dcc96b96043c696d9fe44e5cd1d8faa7e10b416fe9f74ae365b8e9b",
+      "size": 609
+    },
+    "prepared/d4-format-debt.json": {
+      "sha256": "2882bb0011c21aa3cca8a5f68b6a592c38c406d413ceb1ce789a39a6508d77d2",
+      "size": 571
+    },
+    "prepared/d4-types.log": {
+      "sha256": "fc409d91e6c781eb25a1ec1310b7fcb0086b74ed3aa2c415bcd73f884f23f07a",
+      "size": 44
+    },
+    "prepared/admin-docs.json": {
+      "sha256": "f495c8633401b3f4aa5b0ab2af4ecb97d63e58cfb83987f994276ffd70ffef1e",
+      "size": 280
+    },
+    "prepared/d4-root-pytest.json": {
+      "sha256": "ec18076480f71fbb7aad881e46226e9aa7f6966389d72a474b7146462ae23bf6",
+      "size": 423
+    },
+    "prepared/fast3-retry.log": {
+      "sha256": "32db4422a5f1a5f262c6e65e45248b04b752c7fee571d7caefc12e540ecf8f2c",
+      "size": 180
+    },
+    "prepared/d4-root-collect.log": {
+      "sha256": "5c46ef8f08b50d985eae8ddb838e7eff7ad2770177718ad75647a1e7dbd080f6",
+      "size": 2113468
+    },
+    "prepared/admin-2.json": {
+      "sha256": "21cf224e19579da3ff9b3e72beec22c80ac742863188d52a517a997ba0443730",
+      "size": 276
+    },
+    "prepared/chat-retry.json": {
+      "sha256": "64816bd020e659549ca5577989ecd869a33ae671721151b8f4027681c6a26504",
+      "size": 559
+    },
+    "prepared/d3capture-pilot-capture.json": {
+      "sha256": "00845abf7cf4882bafc0fe05c44609d7b4556cbf3d8852f60e249d7993657416",
+      "size": 662
+    },
+    "prepared/chat-retry.log": {
+      "sha256": "98adde8ca69788d25e13d41f0469a2d6a94372981c50b3cf79a3093d1400d4c1",
+      "size": 2153
+    },
+    "prepared/d3capture-guard.log": {
+      "sha256": "69ace469ed23c05b1fe334be3cf727fea1de5730d8b40b9f24c80e802293b43d",
+      "size": 78
+    },
+    "prepared/bootstrap.json": {
+      "sha256": "935e992cbd1c50ef4f2717d8f19ea11a270f672d9e5a0e498494d64f9c2e5186",
+      "size": 3708
+    },
+    "prepared/d3capture-session-0-capture.json": {
+      "sha256": "eb823565eb317a91cdf5196b5a54c7d5c69c6240a892c75f574272b6b65ce9e8",
+      "size": 598
+    },
+    "prepared/d3capture-guard.json": {
+      "sha256": "1eaa134727425d4c977a885cc62de7e0c605477d8194bf96ac9be35672f58eae",
+      "size": 367
+    },
+    "memq-semantic-controls-retry/restored-clean-optimized.json": {
+      "sha256": "8b0bbd2b3263dbe3e7e20ee782842b66848f8a601f18a49ea7dd820b4997b7c9",
+      "size": 1353
+    },
+    "memq-semantic-controls-retry/restored-clean-normal-report.json": {
+      "sha256": "a6897a457061f0ff7994b08b9e95552a50700abc730b131d7503db92ed77ca48",
+      "size": 138774
+    },
+    "memq-semantic-controls-retry/restored-clean-normal.json": {
+      "sha256": "e1f95fbdb35310f2d58dd95162ab78f6699e3c8f0c7856341396f461888e1b5f",
+      "size": 1337
+    },
+    "memq-semantic-controls-retry/restored-clean-optimized-report.json": {
+      "sha256": "fc1a3cfabd557f27a655a613e457bfdddb9b12877ac0c9253eae34b8d6725f66",
+      "size": 138825
+    },
+    "memq-semantic-controls-retry/control.py": {
+      "sha256": "23bf3471a04a367be37a2093854a68f2cf89b82d56c6a07e45cb42b7aa1be011",
+      "size": 2410
+    },
+    "memq-semantic-controls-retry/double-factory-normal.json": {
+      "sha256": "719decf602843683befa45bf0b5453de35c3d0f36b57019fcc17822358fb5c8f",
+      "size": 3216
+    },
+    "memq-semantic-controls-retry/discard-optimized.json": {
+      "sha256": "a59e5903a1eba644a559860067b750f4679ae3522298cd0d6f34faaa755e82e9",
+      "size": 3279
+    },
+    "memq-semantic-controls-retry/double-factory-optimized.json": {
+      "sha256": "b5b28bbee013a9269c12340bb42a8e1322267cf647584902740266c9b78fcc04",
+      "size": 3232
+    },
+    "memq-semantic-controls-retry/legacy-registry.py": {
+      "sha256": "59541e54422258784ee3bde7058d547aaef097b912a4609bc9aa5b29419b62a1",
+      "size": 2484
+    },
+    "memq-semantic-controls-retry/restored-clean-optimized-report.entry-origins.json": {
+      "sha256": "6ac02210cfde38b8099c58ed67069f6ecf2a4f51acbdd463e18cb00df6ab6f80",
+      "size": 50936
+    },
+    "memq-semantic-controls-retry/legacy-optimized.json": {
+      "sha256": "61e59eea04d22f7f3199a5deaa378504c7eb994ff1247588493bd4a34de8d468",
+      "size": 3200
+    },
+    "memq-semantic-controls-retry/legacy-memory.py": {
+      "sha256": "5dd48d607044f39c9cac6a41bd0650e27a42bb7c165cd079831f42c7f36c48a0",
+      "size": 13082
+    },
+    "memq-semantic-controls-retry/restored-clean-normal-report.entry-origins.json": {
+      "sha256": "6ac02210cfde38b8099c58ed67069f6ecf2a4f51acbdd463e18cb00df6ab6f80",
+      "size": 50936
+    },
+    "memq-semantic-controls-retry/legacy-normal.json": {
+      "sha256": "dc8fc00296d3977d6ff0537be2c019743ec9b9cbe500c927eb97f5cc9000c087",
+      "size": 3184
+    },
+    "memq-semantic-controls-retry/discard-normal.json": {
+      "sha256": "07ed1ff359329c857ea52dca706135b93793b6dac2abfd81a387809df9af9647",
+      "size": 3263
+    },
+    "installed-controls/chat-symlink-normal.json": {
+      "sha256": "06809086a727f2bb810460f5799eb1be3b7a8c098d34073d3d6c62d59e4bb0d4",
+      "size": 3222
+    },
+    "installed-controls/clean-copy-chat-normal-report.entry-origins.json": {
+      "sha256": "c453afcfb1ddd29c1e10fb783cfab45348537929b53403d42ab73015c16682f7",
+      "size": 47886
+    },
+    "installed-controls/namespace-origin-normal-identity.json": {
+      "sha256": "38540d3bbde5ad527f00b89c607959fc94acebb2bcfe724547c49c4fec34ea75",
+      "size": 1543
+    },
+    "installed-controls/fifo-normal-identity.json": {
+      "sha256": "9163fda245d19c4a64bece975e5be61666738b539e25e15906dd085d665204d4",
+      "size": 1531
+    },
+    "installed-controls/chat-fifo-normal-identity.json": {
+      "sha256": "28e3ee0b06cc498767f724d29df4b64752cf4b4b4bc9c7fc20bfee94c5fe07c2",
+      "size": 1933
+    },
+    "installed-controls/chat-bytes-optimized.json": {
+      "sha256": "4730c4712f495a933b9b5d68d983f6a9c26f94e814ed52269e83f373e491e128",
+      "size": 3371
+    },
+    "installed-controls/fifo-normal.json": {
+      "sha256": "29508afff263c48770f3abcc11ccd61078ca1c582c4eaa6e53b0a33caf9a6dfd",
+      "size": 3262
+    },
+    "installed-controls/chat-data-optimized.json": {
+      "sha256": "e1592133e596e9fe8b71ee7b6f885f1f9ada151a3e23a53ad87a225fa4ecc561",
+      "size": 3478
+    },
+    "installed-controls/chat-bytes-normal-identity.json": {
+      "sha256": "0a3e65dd2b95d1e1251ea1cb96ea46fd1d403e0ffa6d9fc4aa3c53224b9d8d0d",
+      "size": 1934
+    },
+    "installed-controls/missing-origin-normal-identity.json": {
+      "sha256": "b08caffce1915b6cf6b346fc5987b6af80f91c364b047f04ec169eabbe86f4a7",
+      "size": 1541
+    },
+    "installed-controls/fifo-optimized.json": {
+      "sha256": "341cb84ce2de320c50ae90fe8cd9c2fe105291dd42aaa0056d4bfa990d317f12",
+      "size": 3278
+    },
+    "installed-controls/bytes-normal.json": {
+      "sha256": "498bb5cf74c25f725bc8a1dfee20a1932f3be4fa300198b894f166f61b30fe3e",
+      "size": 3390
+    },
+    "installed-controls/chat-symlink-optimized.json": {
+      "sha256": "ce5845a2b09e3d0689094d137f8c60c48395ee6b036a06a654dc607d4777bd43",
+      "size": 3238
+    },
+    "installed-controls/fifo-optimized-identity.json": {
+      "sha256": "fe610767411209e2a5ac4f55ce8cc6c980022a7a12b5ab78de2c9e07c8007a13",
+      "size": 1544
+    },
+    "installed-controls/clean-copy-chat-members-normal-identity.json": {
+      "sha256": "e0c14896fbf48bd539f270d4efe6b1489ad4a818b42db1da1275912966a21e44",
+      "size": 1947
+    },
+    "installed-controls/chat-missing-normal.json": {
+      "sha256": "c3bc46d35a09a3729604cf7eaa511d7fd79f247505fc400c72a55c21ab79198c",
+      "size": 3468
+    },
+    "installed-controls/in-prefix-shadow-neutral-optimized.json": {
+      "sha256": "21ff7420d091526be5fdde1f7b3dab526116c5ea31d82ba88cfb16d4d4116f58",
+      "size": 2914
+    },
+    "installed-controls/clean-copy-chat-members-optimized-report.entry-origins.json": {
+      "sha256": "c453afcfb1ddd29c1e10fb783cfab45348537929b53403d42ab73015c16682f7",
+      "size": 47886
+    },
+    "installed-controls/chat-fifo-optimized-identity.json": {
+      "sha256": "488f3f0d40371e9692b3b72a87ee20faa19d6958a9b31bb8a949e6c8de857fbe",
+      "size": 1946
+    },
+    "installed-controls/bytes-optimized-identity.json": {
+      "sha256": "f633eb402e97c2874de0f97959c1038833f91b82d16d0665ccdda5a25471177a",
+      "size": 1545
+    },
+    "installed-controls/bytes-normal-identity.json": {
+      "sha256": "19a11e5ec7bd45ef565fe9337be252f7035af5a4de47e12095b5e9a60252bdca",
+      "size": 1532
+    },
+    "installed-controls/chat-bytecode-normal.json": {
+      "sha256": "271c3fd05433fc36e7680533e17b098b5b1a7866f3aca58cbe316bab47906531",
+      "size": 3470
+    },
+    "installed-controls/file-origin-optimized-identity.json": {
+      "sha256": "8b1dc80bd2998dca0f724f04a5c2d786d05f04b6267cf7b7b2919fb962dfbef7",
+      "size": 1551
+    },
+    "installed-controls/in-prefix-shadow-neutral-normal-identity.json": {
+      "sha256": "5b90ae987e313389cf24788b09ab70e85976e2d592a044b3f38a1d4acd4a93c9",
+      "size": 1551
+    },
+    "installed-controls/clean-copy-neutral-normal.json": {
+      "sha256": "60ad742c260b0e8b49f3d241a37b9a297890a04e474b8ef221383cd952297864",
+      "size": 1495
+    },
+    "installed-controls/symlink-optimized.json": {
+      "sha256": "ad2f0c41f4dde8137908d769fcfc74fdf75eb06e9ddf3e8451234276f81e3246",
+      "size": 3278
+    },
+    "installed-controls/chat-source-optimized-identity.json": {
+      "sha256": "1ba64d4cbe6fba0419bf852e3ac2badb351980d82cb5dd835622ce4339d824b5",
+      "size": 1948
+    },
+    "installed-controls/valid-file-escaped-path-optimized.json": {
+      "sha256": "fd06f1c25d8b205ff9172e09a640efeb41dc5e7bfa827dc55f275d00742eba4c",
+      "size": 1885
+    },
+    "installed-controls/file-origin-normal.json": {
+      "sha256": "51300ae7b7ca1f3ca69d09295167f45e6a595f5fa4395a184a2944d196ac7631",
+      "size": 1944
+    },
+    "installed-controls/clean-copy-chat-members-normal-report.entry-origins.json": {
+      "sha256": "c453afcfb1ddd29c1e10fb783cfab45348537929b53403d42ab73015c16682f7",
+      "size": 47886
+    },
+    "installed-controls/clean-copy-neutral-optimized-report.json": {
+      "sha256": "c458b1c32d0b445a0fc6ee7ff518d37869063c0aa6d848c9a4384ec9be40cb98",
+      "size": 4586
+    },
+    "installed-controls/valid-file-mixed-path-normal.json": {
+      "sha256": "ad2f5a29192d6c84cfa5f23f6293397955557c8c3ff29b16a18581dbc9b2d86b",
+      "size": 1901
+    },
+    "installed-controls/missing-origin-normal.json": {
+      "sha256": "0ad4205c3f08b69bdb7e0707826283a93c1e8933d656a3db0abf38325852106b",
+      "size": 1662
+    },
+    "installed-controls/empty-directory-normal.json": {
+      "sha256": "87aa28da913b05c05af6e56600ea78e18407203d45dbbce28a4cfb5710aa605b",
+      "size": 3524
+    },
+    "installed-controls/chat-empty-directory-optimized-identity.json": {
+      "sha256": "3d3c6c146217cab0710c31ce5ef50b93802ab347ffd88381404136a45b675fb8",
+      "size": 1957
+    },
+    "installed-controls/data-normal.json": {
+      "sha256": "654827e24fa8347539a32f08ed66f66017a29c74add3d412f4f611e7c8c0a6cd",
+      "size": 3502
+    },
+    "installed-controls/valid-file-mixed-path-optimized.json": {
+      "sha256": "c3086350f7c2011ffec78549c2950612597b03b5933f54678db57ec37f571927",
+      "size": 1914
+    },
+    "installed-controls/clean-copy-neutral-normal-identity.json": {
+      "sha256": "64cc8bfc31b119a4a5d6ea4417d63a7148ea7ee2de4dc95b7faae1a3a00d6276",
+      "size": 1545
+    },
+    "installed-controls/bytecode-optimized-identity.json": {
+      "sha256": "cb2c1132173d25ab68d121357b6d3b72c1ccb70e215fd3f925b12c63ca647b71",
+      "size": 1548
+    },
+    "installed-controls/missing-normal-identity.json": {
+      "sha256": "b05cb1cf4856386fcec54e766535531ed14d1b11614a475635fc27cb20fc5b1c",
+      "size": 1534
+    },
+    "installed-controls/file-origin-optimized.json": {
+      "sha256": "20389a325ce5eeb5dd88f7e9cee3757b05ea0a710710afdd1848e4e5acae20f0",
+      "size": 1957
+    },
+    "installed-controls/chat-bytecode-optimized-identity.json": {
+      "sha256": "a765c54c8c794747b9ad532400dda41a3b8195b6c8b02ef587097b67b89e6375",
+      "size": 1950
+    },
+    "installed-controls/chat-bytecode-normal-identity.json": {
+      "sha256": "1d42bb8797454c6768a4c5cea08bb8dff315c5d3ba576e4fc031caa00fe99f4b",
+      "size": 1937
+    },
+    "installed-controls/source-normal-identity.json": {
+      "sha256": "c8f150e224371c7ec107cb5abdcf99a47accec368a5f2c7dd7b9719624180e8a",
+      "size": 1533
+    },
+    "installed-controls/clean-copy-chat-optimized-report.entry-origins.json": {
+      "sha256": "c453afcfb1ddd29c1e10fb783cfab45348537929b53403d42ab73015c16682f7",
+      "size": 47886
+    },
+    "installed-controls/valid-file-mixed-path-optimized-identity.json": {
+      "sha256": "79ae59b932c58f56ea8c29a85cf01dda6eaeda248c46da03ae052fd983d89277",
+      "size": 1561
+    },
+    "installed-controls/chat-missing-normal-identity.json": {
+      "sha256": "3d7233e6727cfe756d9edc7d7586deba3f435abe8d994b586b141ddc6b452ad6",
+      "size": 1936
+    },
+    "installed-controls/chat-data-normal-identity.json": {
+      "sha256": "09335db75b4e6f43a94bdb4b6762e3c338bbd634a985e8ebffa5831b86f90127",
+      "size": 1933
+    },
+    "installed-controls/chat-source-normal.json": {
+      "sha256": "b95d84baef0be50ec12e078d9b821c059b76bf4bf988603eaee3fe775a9a93d0",
+      "size": 3466
+    },
+    "installed-controls/source-normal.json": {
+      "sha256": "98a7e47ee200c08d4efe0cbb08dc7e475e6f41c94b12ff3b3be1be23989da251",
+      "size": 3506
+    },
+    "installed-controls/empty-directory-optimized-identity.json": {
+      "sha256": "982f732421ac282773f7c48f156b00b6895a68574ff2302acf713e9752b34530",
+      "size": 1555
+    },
+    "installed-controls/data-normal-identity.json": {
+      "sha256": "4fd25659275e7f91a5caf7d9032c2e71d457833d4e17bb4e92707a5e92c78008",
+      "size": 1531
+    },
+    "installed-controls/empty-directory-normal-identity.json": {
+      "sha256": "6bfe783957a27b9bad275aae81a5672a5b3f09433fc288cba026fd2cd198bc91",
+      "size": 1542
+    },
+    "installed-controls/namespace-origin-optimized.json": {
+      "sha256": "1cead89d91194bc4d89d39e6de5780906fb1ebce3e06c5fcb72bdee8d704670b",
+      "size": 1952
+    },
+    "installed-controls/in-prefix-shadow-chat-optimized.json": {
+      "sha256": "4223f8674cc65ecbd42dd396393c5247ba176a886eab5ece3e23ec3093fe7802",
+      "size": 2913
+    },
+    "installed-controls/chat-empty-directory-optimized.json": {
+      "sha256": "fbca20eee9bf78fc08e00b1be6302e80763c551dd7ec35a7a05800a09ab0eb72",
+      "size": 3500
+    },
+    "installed-controls/chat-executable-normal-identity.json": {
+      "sha256": "5dda68275125bb2591bfd3a14527f69cfda755d0e180f3c1d53d9bdec0fb7534",
+      "size": 1939
+    },
+    "installed-controls/chat-symlink-normal-identity.json": {
+      "sha256": "b28f452a8fc68cb4b23ca4abf80552c1fa234fa14334b704df1804cbbf5d4600",
+      "size": 1936
+    },
+    "installed-controls/clean-copy-chat-normal-report.json": {
+      "sha256": "6086823d3015e9e7c2e01b9659d5d280c51c1bc2730e73e5c166f58aa7e2a276",
+      "size": 132098
+    },
+    "installed-controls/data-optimized.json": {
+      "sha256": "e865295399ec1e0e27a65b1afb0c259ddf9e5ddf861aa4a1b5b5300ec500b092",
+      "size": 3518
+    },
+    "installed-controls/bytecode-optimized.json": {
+      "sha256": "da3a858d4b8c2f532266312300c71e764438f89a7be323d1268f7cb1b6f875ef",
+      "size": 3526
+    },
+    "installed-controls/bytecode-normal.json": {
+      "sha256": "f7972907d5e71a665462dab3a3f464866e2524849ca3236e769ce7882babee51",
+      "size": 3510
+    },
+    "installed-controls/namespace-origin-normal.json": {
+      "sha256": "0cc7029b031c12d908494d1210bc52c662ff2bb956217b84bb4e87e4b969af82",
+      "size": 1939
+    },
+    "installed-controls/chat-source-normal-identity.json": {
+      "sha256": "b62abb2b72e70a91d194fef704c02b5788d49258b62ff69af1a82d3f13b8ad6e",
+      "size": 1935
+    },
+    "installed-controls/symlink-normal.json": {
+      "sha256": "a937a01cbe4c914ad2c52e3fcc7d2888cfd4d7b41368c1d149649b6d33d19dfe",
+      "size": 3262
+    },
+    "installed-controls/chat-bytecode-optimized.json": {
+      "sha256": "d1f500104ee64315afe0168f8031e5527caf1779f77a896c6487984983fa37bf",
+      "size": 3486
+    },
+    "installed-controls/bytecode-normal-identity.json": {
+      "sha256": "eb6ae5f6c881de9efbad930536e357505a7fc1c9f994e5158d24514a693e6637",
+      "size": 1535
+    },
+    "installed-controls/executable-normal-identity.json": {
+      "sha256": "499526cbb5758b649fa5c9ef1beee76dd81f24ab8987af972e4a067b31b53bae",
+      "size": 1537
+    },
+    "installed-controls/data-optimized-identity.json": {
+      "sha256": "7c7754dadc8eb162c2931e2559b3fbb55b29b8833ae31ec4a662a4ee027a6d9f",
+      "size": 1544
+    },
+    "installed-controls/executable-optimized-identity.json": {
+      "sha256": "fd9d98287e24f31e55765e5d6c4d391deebbff84a57525f365c2ffc47f0ee22b",
+      "size": 1550
+    },
+    "installed-controls/missing-origin-optimized.json": {
+      "sha256": "bfbbd4f09f314fce275ca7d5ca2fd0ac7668cc61210858f838d74a260b9acc33",
+      "size": 1675
+    },
+    "installed-controls/executable-normal.json": {
+      "sha256": "af14ff2e62f16b41ea4ddecfd2b6d8baabbd7df28368b7b65e5f791292c3b4a9",
+      "size": 3246
+    },
+    "installed-controls/missing-origin-optimized-identity.json": {
+      "sha256": "bc3d2a6569c719e920f7c51acc5d3f9ce662c1f83051060886e52e7b9153e062",
+      "size": 1554
+    },
+    "installed-controls/valid-file-mixed-path-normal-identity.json": {
+      "sha256": "d6870f27b7fb7abc5176559a3292c7159a0f937f9b7feeb0642c61fc4ad5b957",
+      "size": 1548
+    },
+    "installed-controls/chat-fifo-optimized.json": {
+      "sha256": "097ef8614fe10d164d77142df867aae945e88dfe62a1b7a973c4631cf3e90c86",
+      "size": 3238
+    },
+    "installed-controls/chat-fifo-normal.json": {
+      "sha256": "14c6c5afd2b56c571ca11405f4454367b2213cbe4c21506d2ed185c3a609a73e",
+      "size": 3222
+    },
+    "installed-controls/clean-copy-chat-members-optimized.json": {
+      "sha256": "b5774b36dc313100585bd4aa032219387372fd318cd19242765b1c626d3155eb",
+      "size": 1514
+    },
+    "installed-controls/valid-file-escaped-path-optimized-identity.json": {
+      "sha256": "3eaf7206200579ac384e97d1529a7833a79e4c4386fc67620f635f296d7448dc",
+      "size": 1563
+    },
+    "installed-controls/chat-data-optimized-identity.json": {
+      "sha256": "05aad2daf2fe70b83218ec4ab6118ca3ed2356cee3e858e0779466a0161269f5",
+      "size": 1946
+    },
+    "installed-controls/clean-copy-chat-normal.json": {
+      "sha256": "f670f65e2b9d8c00fe3df4aa5bf04575894a96fa2ecab8a453f92336a21f875c",
+      "size": 1482
+    },
+    "installed-controls/valid-file-escaped-path-normal-identity.json": {
+      "sha256": "30f29120b7698f32af1a0137450d38b021006fc41348a1da1a3ac85621d365a0",
+      "size": 1550
+    },
+    "installed-controls/valid-file-escaped-path-normal.json": {
+      "sha256": "9bd2831f3d8cd234ea8fcc13098cf7f8078e66c504e100ca67fdfe64b091c82f",
+      "size": 1872
+    },
+    "installed-controls/executable-optimized.json": {
+      "sha256": "d58ee593480801924f7b809404da73485b1ce2e920cc3bddd95e8ae482342d95",
+      "size": 3262
+    },
+    "installed-controls/clean-copy-chat-members-normal.json": {
+      "sha256": "313f852eaf426e009e98804b6b37fa744ab6d29a32cb41726985ece57c92b414",
+      "size": 1498
+    },
+    "installed-controls/chat-executable-optimized.json": {
+      "sha256": "1525960527204b60f3714f38b7837c1df0edcfaa44e85a941094bf4636561934",
+      "size": 3222
+    },
+    "installed-controls/missing-normal.json": {
+      "sha256": "a1d79b1c68f6161227b79f70271d7888941a187710b9e0dc08fb62c6b8bca6cb",
+      "size": 3508
+    },
+    "installed-controls/chat-symlink-optimized-identity.json": {
+      "sha256": "9159658cb2c6ceeb2fc650f0b2f4d2b25dd401382fbfbd28150f594150a8f221",
+      "size": 1949
+    },
+    "installed-controls/symlink-normal-identity.json": {
+      "sha256": "259ad411baa6d9aec919f154978b2160992455460fa2279e008a172935e525f2",
+      "size": 1534
+    },
+    "installed-controls/clean-copy-chat-optimized-report.json": {
+      "sha256": "7c9d714e746f1ef72ed3ecd277a5bf8a5da5c7e86e081fccec54e493ec2d0d6f",
+      "size": 132149
+    },
+    "installed-controls/chat-member-copy-identity.json": {
+      "sha256": "9be343b881c97db8e6c30ff6ec5ae0786ec8ba2d5bbcd7e131aae37e9096830d",
+      "size": 1933
+    },
+    "installed-controls/in-prefix-shadow-chat-optimized-identity.json": {
+      "sha256": "0146ffeadc80f53b97cdca9aef2b4d225463b2c3ae12bef194250daa11f90516",
+      "size": 1958
+    },
+    "installed-controls/bytes-optimized.json": {
+      "sha256": "2219b1fe24b8288cf3f51d465856a42b664b810748d243b5818f2616f9fee8e2",
+      "size": 3406
+    },
+    "installed-controls/in-prefix-shadow-neutral-normal.json": {
+      "sha256": "0a807b2349d283846a61b7a88aae8c7f24f69668f07f225f09ede64001e610df",
+      "size": 2898
+    },
+    "installed-controls/chat-empty-directory-normal.json": {
+      "sha256": "deb0109b0323169866ae2c58a1cbc64f08a4ace638b1fad74df4f4019ecba68a",
+      "size": 3484
+    },
+    "installed-controls/chat-executable-normal.json": {
+      "sha256": "9a7c35df12117390dab05f177f558c5d9c2a6b376f9aed3041a9d87444cfd924",
+      "size": 3206
+    },
+    "installed-controls/symlink-optimized-identity.json": {
+      "sha256": "4f6b8453fba056c8b39b323a64f16c619b8e7700a87b7ac6be24dbd9e2e195ec",
+      "size": 1547
+    },
+    "installed-controls/in-prefix-shadow-chat-normal-identity.json": {
+      "sha256": "44bc0cebb0ddd8440b47ebd8356e1c3c179483f02cec915342054c230b6070fb",
+      "size": 1945
+    },
+    "installed-controls/source-optimized.json": {
+      "sha256": "fcca59ab777b926d1fb4ffa4670c8309d1434ccb3816974c056972889cfafae6",
+      "size": 3522
+    },
+    "installed-controls/clean-copy-chat-normal-identity.json": {
+      "sha256": "088bb49cec89e1625f28dc6e70d770d673c9f44098ca77c0f3890196b0677d82",
+      "size": 1939
+    },
+    "installed-controls/source-optimized-identity.json": {
+      "sha256": "1b2318f8136a8a00f668186c87a0772baf5fc03ff9696a91afee1f5db115211f",
+      "size": 1546
+    },
+    "installed-controls/chat-executable-optimized-identity.json": {
+      "sha256": "4d56520ff1d915fedab6738a5d6daba195b7ce67435e1ff6698e371a0ee01299",
+      "size": 1952
+    },
+    "installed-controls/in-prefix-shadow-neutral-optimized-identity.json": {
+      "sha256": "e5f7ae8c088195ae1cf33f1e41059ce0214245dbf1c3d1d63cd2ff41f93abe33",
+      "size": 1564
+    },
+    "installed-controls/missing-optimized-identity.json": {
+      "sha256": "22aaae81ebfa890941e9fa0d7d99b92afa4a142b7602ae8cd2217652b8780599",
+      "size": 1547
+    },
+    "installed-controls/clean-copy-chat-optimized-identity.json": {
+      "sha256": "81a60f233fdf90de243f997ebb2846f3c078b3ac355a569195302a1473837b86",
+      "size": 1952
+    },
+    "installed-controls/chat-bytes-normal.json": {
+      "sha256": "191eaab170860cb11cab8c6fd45c24d8469b15d22e1d147dc5ea943304de50f3",
+      "size": 3355
+    },
+    "installed-controls/chat-source-optimized.json": {
+      "sha256": "702e3501f89bce747e876d524b7b16b084a13dadd33bf3f438a05286ffd2f65f",
+      "size": 3482
+    },
+    "installed-controls/chat-empty-directory-normal-identity.json": {
+      "sha256": "55114daac83460d4b9e46911878bd867e60e9a8805a9917b94aa0607816fe85e",
+      "size": 1944
+    },
+    "installed-controls/file-origin-normal-identity.json": {
+      "sha256": "bb4d6a99101beb7db002f235dddb7da9bfa615e8ff439a665b74393dbc6d71b2",
+      "size": 1538
+    },
+    "installed-controls/chat-bytes-optimized-identity.json": {
+      "sha256": "d9bfed89d4ff805616b160a72b28149f4f41025501c6537862b5308cf1bc610f",
+      "size": 1947
+    },
+    "installed-controls/chat-missing-optimized-identity.json": {
+      "sha256": "53e7c833f2a569cea5baa6fba1b0a912387b41b253569272b561d1a919f14b96",
+      "size": 1949
+    },
+    "installed-controls/missing-optimized.json": {
+      "sha256": "66cc19c2cf337b4acffebac9463e47bae2d1ec4a6e1d0c4898d46dda2e12b072",
+      "size": 3524
+    },
+    "installed-controls/clean-copy-neutral-optimized.json": {
+      "sha256": "7bd8a26aa37a4ede3fc03804f11d7873b3899df1d1398f1b9c40648db155dd35",
+      "size": 1511
+    },
+    "installed-controls/clean-copy-chat-members-optimized-identity.json": {
+      "sha256": "efce120b5b622b5221b5e5dd519567632b5cfb52d109767013965e13f05af23e",
+      "size": 1960
+    },
+    "installed-controls/clean-copy-neutral-normal-report.json": {
+      "sha256": "61b6ea7e459df47c366821745f2437559bbf3c227656b28cffca73b9cc765052",
+      "size": 4586
+    },
+    "installed-controls/namespace-origin-optimized-identity.json": {
+      "sha256": "a275d4ebc5a7d857f0a4cdd67c3b885e783fd2130e20549eee424d7874f1aa63",
+      "size": 1556
+    },
+    "installed-controls/clean-copy-chat-members-normal-report.json": {
+      "sha256": "ac903507f0e62b24d8c70df8e3460f95a416707e62ffe4eca921b5fe6afae1f1",
+      "size": 132202
+    },
+    "installed-controls/in-prefix-shadow-chat-normal.json": {
+      "sha256": "80ebf623e96d75e494b5ff3e0d5ca8e353e7ab6ca60c7f1f207f0c710ba23c5f",
+      "size": 2897
+    },
+    "installed-controls/clean-copy-chat-optimized.json": {
+      "sha256": "e7c922764301e94beae4ec2b409a63a81a0b5d65f5fe0a22cb76ccde789f9c3c",
+      "size": 1498
+    },
+    "installed-controls/initial-copy-identity.json": {
+      "sha256": "148dae379e13166ec51207009b79da8f88ae5b08c69aa03939a7f37374562725",
+      "size": 1532
+    },
+    "installed-controls/clean-copy-chat-members-optimized-report.json": {
+      "sha256": "5710c924163dcff491d9ccfacd3ccf67acac660260dba1674bacc492db0a9b8f",
+      "size": 132253
+    },
+    "installed-controls/chat-data-normal.json": {
+      "sha256": "95170c81177e8a6192884b5b3065ce049f86c0d54f3b95492f39d9fe5fc19f2d",
+      "size": 3462
+    },
+    "installed-controls/clean-copy-neutral-optimized-identity.json": {
+      "sha256": "8ee3a336d885bf6f8eae4f80eb0bc81d111f2e8101772542be621a05d9ba92d3",
+      "size": 1558
+    },
+    "installed-controls/empty-directory-optimized.json": {
+      "sha256": "d603bcebb993c708a9983d5b64016c8a5872eb2401c29ecb75ba933ab0a8470e",
+      "size": 3540
+    },
+    "installed-controls/chat-missing-optimized.json": {
+      "sha256": "dc24dd2940e8e044c66eff0f544adc8d89bf0a0dc46a79078590dd672644596e",
+      "size": 3484
+    },
+    "installed-controls/outside/external.py": {
+      "sha256": "438e7d158a7952de12b0d7967d007f51c67684fa6455d39a10cd46eb69227a08",
+      "size": 15
+    },
+    "installed-controls-final/chat-symlink-normal.json": {
+      "sha256": "322911f271e956d0c293a7a4a27ebc8227c282a10fb5e25ea470b1b4fc73e881",
+      "size": 3234
+    },
+    "installed-controls-final/clean-copy-chat-normal-report.entry-origins.json": {
+      "sha256": "bc289626242913cab3a3d3dfc522cfbbc61df1c9ac3507e908535ef1c058c3dd",
+      "size": 49716
+    },
+    "installed-controls-final/namespace-origin-normal-identity.json": {
+      "sha256": "2e091a694ac3568cc53cc2cd99807cb7b13682b445afe8ea18914e688434b419",
+      "size": 1573
+    },
+    "installed-controls-final/fifo-normal-identity.json": {
+      "sha256": "7ae09eaa264632b94643877e084d1999e9943724827b029628b89e1a593d2c53",
+      "size": 1561
+    },
+    "installed-controls-final/chat-fifo-normal-identity.json": {
+      "sha256": "1577d9d098b76424922f67a54eac61354cd659bdd85f1351b84b37d1b0556e5f",
+      "size": 1969
+    },
+    "installed-controls-final/chat-bytes-optimized.json": {
+      "sha256": "ffaa19f6e180e54a580030dd2490317f572984fe77e63745c6a133a372baa74a",
+      "size": 3383
+    },
+    "installed-controls-final/fifo-normal.json": {
+      "sha256": "af387412c4b0b6c4f6da10d2702adcba9ee81ac5d48081afff6d4288b0f422e9",
+      "size": 3274
+    },
+    "installed-controls-final/chat-data-optimized.json": {
+      "sha256": "44cb093829c9d3a6bad0a36a68bec0809f2d3cc6dd6e92e34fba1bf5b361c5d4",
+      "size": 3490
+    },
+    "installed-controls-final/chat-bytes-normal-identity.json": {
+      "sha256": "5bfb4b9676e62af2a95afe91f44519fdaaeb68560d4f361ff29b53e558d8cc30",
+      "size": 1970
+    },
+    "installed-controls-final/missing-origin-normal-identity.json": {
+      "sha256": "25a94f72369f78d9c16eeee1a751059b2c25bd51c51b3bdd5ff415a45ddbb23d",
+      "size": 1571
+    },
+    "installed-controls-final/fifo-optimized.json": {
+      "sha256": "b3d848308d5db48aebc59f21dc60501e90daf862b24a145c93ec5bddb2b8b042",
+      "size": 3290
+    },
+    "installed-controls-final/bytes-normal.json": {
+      "sha256": "bc416204a574fe6a631c9d4be45156727a57c3461afc018c91673092278d3f65",
+      "size": 3402
+    },
+    "installed-controls-final/chat-symlink-optimized.json": {
+      "sha256": "c4e918c22dd7852c31ab1f5a033d93669d7521f333fcf07da0a24e8a175e1711",
+      "size": 3250
+    },
+    "installed-controls-final/fifo-optimized-identity.json": {
+      "sha256": "b46d5dcf54f89639668feccf8a3df83dc3791bacb410a3f2aa777633940f3e52",
+      "size": 1574
+    },
+    "installed-controls-final/clean-copy-chat-members-normal-identity.json": {
+      "sha256": "03bf317ed0a4be4a96ada3925d37366f2cbf82bf42c15652425343dc92890228",
+      "size": 1983
+    },
+    "installed-controls-final/chat-missing-normal.json": {
+      "sha256": "a3f0176385b49c83556454d2dfe624d5aa4a39f01cd79d81d2e11ed9743dbfdc",
+      "size": 3480
+    },
+    "installed-controls-final/in-prefix-shadow-neutral-optimized.json": {
+      "sha256": "af013ae8460c7fb3984281e86d2e4dbf56197f586fbe7a9ee9b3c35099bd5865",
+      "size": 2926
+    },
+    "installed-controls-final/clean-copy-chat-members-optimized-report.entry-origins.json": {
+      "sha256": "bc289626242913cab3a3d3dfc522cfbbc61df1c9ac3507e908535ef1c058c3dd",
+      "size": 49716
+    },
+    "installed-controls-final/chat-fifo-optimized-identity.json": {
+      "sha256": "fca5c64cd773221a9e10bbf440c0fe6c16fba5fc6402a9780aac633daa2290ab",
+      "size": 1982
+    },
+    "installed-controls-final/bytes-optimized-identity.json": {
+      "sha256": "76cfcc554b8e187856013163eaac2ae8d6d09f8c4c74db6910fbfcbf4daeab7c",
+      "size": 1575
+    },
+    "installed-controls-final/bytes-normal-identity.json": {
+      "sha256": "e7f7b473776fd8bd451f0b6af9505219e6aa81ef3ddc141471ec46b94bb3ebf2",
+      "size": 1562
+    },
+    "installed-controls-final/chat-bytecode-normal.json": {
+      "sha256": "d024722882f9877633d6f1f968119f6579a856c99f64edf8b6f66e166b839ea9",
+      "size": 3482
+    },
+    "installed-controls-final/file-origin-optimized-identity.json": {
+      "sha256": "4dd131f90367d078b5a6eb2a4d0f85e9c2a24bdfb38ac86368dbe950a98c0972",
+      "size": 1581
+    },
+    "installed-controls-final/in-prefix-shadow-neutral-normal-identity.json": {
+      "sha256": "c70f54ce9a21799c6b79efd9e22af3a6b40f573bc1a6eb1b83711d65bb5b84d4",
+      "size": 1581
+    },
+    "installed-controls-final/clean-copy-neutral-normal.json": {
+      "sha256": "ae70ffd1d75540768cebf2a3c8b1d372ea7ffeb26d77d6f5015ad74584fba7ac",
+      "size": 1507
+    },
+    "installed-controls-final/symlink-optimized.json": {
+      "sha256": "f8eb21205de9f3e22d312405d6c7df01c052f1a64d6daead52034b561d17d75e",
+      "size": 3290
+    },
+    "installed-controls-final/chat-source-optimized-identity.json": {
+      "sha256": "9cc9760689e29ff5eb9e3098f1a1bb4589a7992921631f5baf0a20b1175548d9",
+      "size": 1984
+    },
+    "installed-controls-final/valid-file-escaped-path-optimized.json": {
+      "sha256": "04dfacba120d2071c7d1530e7232873eb147fef6d25c471e374235e3dd49c58a",
+      "size": 1897
+    },
+    "installed-controls-final/file-origin-normal.json": {
+      "sha256": "3070244d52c8f75a1cd930d0cde85c0b85de71138f0920c40427523ca398cd4c",
+      "size": 1956
+    },
+    "installed-controls-final/clean-copy-chat-members-normal-report.entry-origins.json": {
+      "sha256": "bc289626242913cab3a3d3dfc522cfbbc61df1c9ac3507e908535ef1c058c3dd",
+      "size": 49716
+    },
+    "installed-controls-final/clean-copy-neutral-optimized-report.json": {
+      "sha256": "cf581e8166bc54b2d89ca09d2160a1ca7c8afd6d361877952b4c2a616ce7007c",
+      "size": 4652
+    },
+    "installed-controls-final/valid-file-mixed-path-normal.json": {
+      "sha256": "6ec68fa7d587d7f81f601789c3d662e9fd09ef8aa34353a2946bbf8f9c27081a",
+      "size": 1913
+    },
+    "installed-controls-final/missing-origin-normal.json": {
+      "sha256": "9a67c72553bc282a1165d0acc994df4c29c3f459b8ca6dfec4d0230cb94ea376",
+      "size": 1668
+    },
+    "installed-controls-final/empty-directory-normal.json": {
+      "sha256": "ea8f2d501b0403026e5e3642e9af1eaa827da3de92525cf65c53fd791734a12c",
+      "size": 3536
+    },
+    "installed-controls-final/chat-empty-directory-optimized-identity.json": {
+      "sha256": "14374608a9b68cb0e0ccde1a7b972ae366fabaf498535cdf9def40128b497236",
+      "size": 1993
+    },
+    "installed-controls-final/data-normal.json": {
+      "sha256": "71de8d7d9d614607b8dab9f747215cddb26c93f08dbcd65b2dce19dcf6c91cdd",
+      "size": 3514
+    },
+    "installed-controls-final/valid-file-mixed-path-optimized.json": {
+      "sha256": "d35a3ad6701e4416fb739aaece3be047ef6a0fa1d1f1252fbfaa110fed224f57",
+      "size": 1926
+    },
+    "installed-controls-final/clean-copy-neutral-normal-identity.json": {
+      "sha256": "67d8a19d711ed7fb86ffaa997f07a56805f8ca3256f96cec2dd5bb5d4a86bb73",
+      "size": 1575
+    },
+    "installed-controls-final/bytecode-optimized-identity.json": {
+      "sha256": "9022e520af4e43527fe9360ad819000ef9fe3ce44b59dc707d2d93b2a93cf952",
+      "size": 1578
+    },
+    "installed-controls-final/missing-normal-identity.json": {
+      "sha256": "cce802aecfc7dcee1038aef22336536de1e643a5587c00e04904a09560a45dd1",
+      "size": 1564
+    },
+    "installed-controls-final/file-origin-optimized.json": {
+      "sha256": "1730b52464f06471f54efbd1fe4ad5d2fabfe6d1267588c86962559eebdd5436",
+      "size": 1969
+    },
+    "installed-controls-final/chat-bytecode-optimized-identity.json": {
+      "sha256": "e336081667f6e107d7bf92d72ca687a383a1762a282d7e8247668894ddcff612",
+      "size": 1986
+    },
+    "installed-controls-final/chat-bytecode-normal-identity.json": {
+      "sha256": "3083a2cb075c8519faca530abb7c3468f15afa4162c4cbc9bb2c443cbf91acf4",
+      "size": 1973
+    },
+    "installed-controls-final/source-normal-identity.json": {
+      "sha256": "51476906f5e446bebb308d2a84dc688a3622ed57b474891c8887622be066bfa2",
+      "size": 1563
+    },
+    "installed-controls-final/clean-copy-chat-optimized-report.entry-origins.json": {
+      "sha256": "bc289626242913cab3a3d3dfc522cfbbc61df1c9ac3507e908535ef1c058c3dd",
+      "size": 49716
+    },
+    "installed-controls-final/valid-file-mixed-path-optimized-identity.json": {
+      "sha256": "35dd4f399f98320b352ba36825fc380969be610ea929c14971524c38c362f181",
+      "size": 1591
+    },
+    "installed-controls-final/chat-missing-normal-identity.json": {
+      "sha256": "8d03bb597e144685c032df2ce3b58fec2871f4de3a3cbf91ead68a2765cc8bb4",
+      "size": 1972
+    },
+    "installed-controls-final/chat-data-normal-identity.json": {
+      "sha256": "79a6a5f66c43fd7a5335ad8fb1a8278996946aa0dfaf1ca5b628f877e9b6d0da",
+      "size": 1969
+    },
+    "installed-controls-final/chat-source-normal.json": {
+      "sha256": "fb38f26cff1fec78434df879e75ac69eb8614aefbdd139dc865b0318617cc613",
+      "size": 3478
+    },
+    "installed-controls-final/source-normal.json": {
+      "sha256": "d33a4b2ba337152a5ab678be173f73261f0c721c11e14c180ed523e401386dbc",
+      "size": 3518
+    },
+    "installed-controls-final/empty-directory-optimized-identity.json": {
+      "sha256": "662f6b93f1dc0a4e124d1056e0e57de0314f8b9311ad5e4d0b0ed6c456ee978c",
+      "size": 1585
+    },
+    "installed-controls-final/data-normal-identity.json": {
+      "sha256": "8cfbf0b4af32d4670f4acda9f74b8a44026f9d8546aa4a082c23e0dbe0a6845c",
+      "size": 1561
+    },
+    "installed-controls-final/empty-directory-normal-identity.json": {
+      "sha256": "18e335670fcd69b843b142bad57a5e42ea59b57b5c284234236d841c2387dbac",
+      "size": 1572
+    },
+    "installed-controls-final/namespace-origin-optimized.json": {
+      "sha256": "230b220a10f047b108ba034f9423bd1e2587237ff64ecda15177b36b2430ff93",
+      "size": 1964
+    },
+    "installed-controls-final/in-prefix-shadow-chat-optimized.json": {
+      "sha256": "c5f271c52b81b07720ec1638d2471e864a8881188aa3abe384f7b9cd4b543a85",
+      "size": 2925
+    },
+    "installed-controls-final/chat-empty-directory-optimized.json": {
+      "sha256": "325e974d4672b14cfbcd7b61719e29e9fa08053c8ef928b570b04fb6a325f9f4",
+      "size": 3512
+    },
+    "installed-controls-final/chat-executable-normal-identity.json": {
+      "sha256": "3b61007ce5c375a48a92410b26c5502846bc71eefbbf9c331a254e40d645a891",
+      "size": 1975
+    },
+    "installed-controls-final/chat-symlink-normal-identity.json": {
+      "sha256": "d694b3c779341d57a89dd6a192eb9beddb15e2bac61a25ff552df99b32e2917b",
+      "size": 1972
+    },
+    "installed-controls-final/clean-copy-chat-normal-report.json": {
+      "sha256": "af4151a5c931e204ddc77f256f707743fa4cff7be6a9bb3aea3df0a70835b6f5",
+      "size": 136142
+    },
+    "installed-controls-final/data-optimized.json": {
+      "sha256": "f8284b844e44cf0ef328c36751b4641cf58ec4d6f5cbc190708a43dd036b1814",
+      "size": 3530
+    },
+    "installed-controls-final/bytecode-optimized.json": {
+      "sha256": "d6e65d4fb53b0a168cb0884a2d0f6d52189e2db7e272d5bc5eefced24af62d4e",
+      "size": 3538
+    },
+    "installed-controls-final/bytecode-normal.json": {
+      "sha256": "92caf3b66df1ce1a9196529dba36a81a7ee8b79963503d8841763f466e05fc7b",
+      "size": 3522
+    },
+    "installed-controls-final/namespace-origin-normal.json": {
+      "sha256": "76f06ed632620927d993a2bd524b0ca6abb565759a492f28386cd807d7860d82",
+      "size": 1951
+    },
+    "installed-controls-final/chat-source-normal-identity.json": {
+      "sha256": "265994ea019ac0206896ba66869d7d5412b843eb7d351bc2de5b4e33ee9e983b",
+      "size": 1971
+    },
+    "installed-controls-final/symlink-normal.json": {
+      "sha256": "add832b6d67fb3b6ef0f7851e8d388f0315eee3e92778e55c0423527a186bec6",
+      "size": 3274
+    },
+    "installed-controls-final/chat-bytecode-optimized.json": {
+      "sha256": "4f6a7d1c8ee1517c76c8a08c0ea1f75c0055895b9595172a7f4f8a080c0807e4",
+      "size": 3498
+    },
+    "installed-controls-final/bytecode-normal-identity.json": {
+      "sha256": "27f6b63451e9dfa20d89cc69ebcf093760c8c6bc1c60814063335386d66e4b4a",
+      "size": 1565
+    },
+    "installed-controls-final/executable-normal-identity.json": {
+      "sha256": "48ef9f6ea771b27969206f943d7baff360e237797f88586154f591f035a374cd",
+      "size": 1567
+    },
+    "installed-controls-final/data-optimized-identity.json": {
+      "sha256": "89732440fb5b8514ba46bdfaac811e987caddc5718868d785614640873874e96",
+      "size": 1574
+    },
+    "installed-controls-final/executable-optimized-identity.json": {
+      "sha256": "ec8771639cd8ee251f75a38abb75bc8e36b5d391d949b4e3af47e15df0abeef0",
+      "size": 1580
+    },
+    "installed-controls-final/missing-origin-optimized.json": {
+      "sha256": "acc0f8bfccf3fc323410562dd5b81abe415bad38ce11316faf5ff16e7264de9e",
+      "size": 1681
+    },
+    "installed-controls-final/executable-normal.json": {
+      "sha256": "9955a7265e0286d2be9db0ea17f68fdcdd7268ef5ad5e56761ab25ddb02e1e03",
+      "size": 3258
+    },
+    "installed-controls-final/missing-origin-optimized-identity.json": {
+      "sha256": "f90101f9b9a29aae6ac6f12c7bdfc6c6a8f2b92ff0dd9e0ccfa16b0935b7c19c",
+      "size": 1584
+    },
+    "installed-controls-final/valid-file-mixed-path-normal-identity.json": {
+      "sha256": "225feeb3b03f0bfb81d4f0d83326947156d9050eddb7a6ac613250244b35d3b4",
+      "size": 1578
+    },
+    "installed-controls-final/chat-fifo-optimized.json": {
+      "sha256": "13de6b0729fdbf0565a672e60f2d53619e9133468c690a03731c88d858452b03",
+      "size": 3250
+    },
+    "installed-controls-final/chat-fifo-normal.json": {
+      "sha256": "109043a8300510d74189cdb93d354caaab6ac0dd145958214e58f58ad2426ef1",
+      "size": 3234
+    },
+    "installed-controls-final/clean-copy-chat-members-optimized.json": {
+      "sha256": "d970096e8483d32488bfa50ad17be214fb947a90074c5ff0d3bfe4b064f6462f",
+      "size": 1526
+    },
+    "installed-controls-final/valid-file-escaped-path-optimized-identity.json": {
+      "sha256": "a95ba86ad19bb487fb3a486a8f2c2bb3edbd14fef7965294460582166bef89ee",
+      "size": 1593
+    },
+    "installed-controls-final/chat-data-optimized-identity.json": {
+      "sha256": "40c4ea0893fbe7d521d4748bc9f0d6969592a6c8490cffa5f95bff845df18cf7",
+      "size": 1982
+    },
+    "installed-controls-final/clean-copy-chat-normal.json": {
+      "sha256": "d206d5ed8d719e0f6e5167636fcac8fc0a89f9a9ca0039ab66045bd4f2d268e9",
+      "size": 1494
+    },
+    "installed-controls-final/valid-file-escaped-path-normal-identity.json": {
+      "sha256": "6d1c46804e08b0a7fa68cfca58f22c351aec17cbb369f83d78ad585dc06c2be6",
+      "size": 1580
+    },
+    "installed-controls-final/valid-file-escaped-path-normal.json": {
+      "sha256": "f1aeafc35413863beecc5643490b137cc506203cffa94dcf1e525d9b7442d0b7",
+      "size": 1884
+    },
+    "installed-controls-final/executable-optimized.json": {
+      "sha256": "cde30067588eeb12376def6624cf8ce8fd4877cc6dd2fba4f10f67f0a186a738",
+      "size": 3274
+    },
+    "installed-controls-final/clean-copy-chat-members-normal.json": {
+      "sha256": "63dd02b4fed8637cf1b4cb474d56968c6a7d92c9ddac5b3da51fd158f52f4579",
+      "size": 1510
+    },
+    "installed-controls-final/chat-executable-optimized.json": {
+      "sha256": "46420847c0a08f74e802a67dbfa2d3d13acd99fd9ce41dfaf63684fb3191a72b",
+      "size": 3234
+    },
+    "installed-controls-final/missing-normal.json": {
+      "sha256": "8f51c325001416acf8784ff9ef5e7e688e54b6d3f4dfd8d508a08dedf5555939",
+      "size": 3520
+    },
+    "installed-controls-final/chat-symlink-optimized-identity.json": {
+      "sha256": "3217c66257a85d9e9c6cd5f0ae4890cfdc971cb8798535e6cb701aaa7a32516c",
+      "size": 1985
+    },
+    "installed-controls-final/symlink-normal-identity.json": {
+      "sha256": "c5a1d76663208184f7e5f9d6a9e9076488c4e55d75c9f2ee20488199e26bc379",
+      "size": 1564
+    },
+    "installed-controls-final/clean-copy-chat-optimized-report.json": {
+      "sha256": "64a62a9755069616dac589dbb7c9c5939e70fe0a98a0c80a13869de109959a09",
+      "size": 136193
+    },
+    "installed-controls-final/chat-member-copy-identity.json": {
+      "sha256": "f4efdc964e1d51eccc0e665737e27f668c1a935ebfee8f99b3ead201829b9ee5",
+      "size": 1969
+    },
+    "installed-controls-final/in-prefix-shadow-chat-optimized-identity.json": {
+      "sha256": "30ca7eea1fb4dcee0163baf277678aa5d17087e1ebbf64f9f36de4d143c202c6",
+      "size": 1994
+    },
+    "installed-controls-final/bytes-optimized.json": {
+      "sha256": "87d52b7c3f0f9e0ad0cf7df23422d04ce104beef74e2ed2f4783d848187fc749",
+      "size": 3418
+    },
+    "installed-controls-final/in-prefix-shadow-neutral-normal.json": {
+      "sha256": "a2d0750bfd239e88e4906aee3f6c648a9f748bc6abfe8857ecd1211160b5c419",
+      "size": 2910
+    },
+    "installed-controls-final/chat-empty-directory-normal.json": {
+      "sha256": "1d4f27de787bd4fe6a4115b73dac6fb38f3d8dd66fd5abd037cc12af40841fb1",
+      "size": 3496
+    },
+    "installed-controls-final/chat-executable-normal.json": {
+      "sha256": "04f537e64ea5666978005a8f96e9098eb47ab281b290cd83cb1cf101bfa67832",
+      "size": 3218
+    },
+    "installed-controls-final/symlink-optimized-identity.json": {
+      "sha256": "551c97437c58b11b9632116c9b16ab5c8d1c4b9a332ff0af70820b6fdb6d765e",
+      "size": 1577
+    },
+    "installed-controls-final/in-prefix-shadow-chat-normal-identity.json": {
+      "sha256": "beed829dbe91d5e7fc5a7476a374f1099acf7bbf8dd97b912b6872b1d422d456",
+      "size": 1981
+    },
+    "installed-controls-final/source-optimized.json": {
+      "sha256": "5addf5025a4a226ea775b9213c307d1496524f1604a406f42a844e106d406e1f",
+      "size": 3534
+    },
+    "installed-controls-final/clean-copy-chat-normal-identity.json": {
+      "sha256": "5a8a672edd1a644c90ece6ba5ad85ea383191d5697fcbf4815365d40d8ee539c",
+      "size": 1975
+    },
+    "installed-controls-final/source-optimized-identity.json": {
+      "sha256": "b2477cf7aafa5ddfd828cb09571f33c01e5c3fc1dc5d506b15497272a088e844",
+      "size": 1576
+    },
+    "installed-controls-final/chat-executable-optimized-identity.json": {
+      "sha256": "e5b45e0347c737e69dade5cf86847912ca390d21ce3d61eba79db4f5b494755f",
+      "size": 1988
+    },
+    "installed-controls-final/in-prefix-shadow-neutral-optimized-identity.json": {
+      "sha256": "dc870456839ea5d47de160ecd64ec9f058b384b258a1172a0f2ea2237b3f3ad9",
+      "size": 1594
+    },
+    "installed-controls-final/missing-optimized-identity.json": {
+      "sha256": "6e6920d8638ef634f53de1d2ffc072857442c8aaab5c12f3f14546679e73d177",
+      "size": 1577
+    },
+    "installed-controls-final/clean-copy-chat-optimized-identity.json": {
+      "sha256": "8f41064c4f0c98919429cf4a264f2e6da8d4cc13d881d04252d359e9640f104c",
+      "size": 1988
+    },
+    "installed-controls-final/chat-bytes-normal.json": {
+      "sha256": "4ff4ada14afda63b8fa00b0fad2218104e0f784248d91a34e28151682e43564b",
+      "size": 3367
+    },
+    "installed-controls-final/chat-source-optimized.json": {
+      "sha256": "717ea53d9083433298c70a9bc0f225cdc0c4a6db734d8ff2c0b3431b5f26bec3",
+      "size": 3494
+    },
+    "installed-controls-final/chat-empty-directory-normal-identity.json": {
+      "sha256": "ec7e09f7e677dcce96a865b7c607596a180388727e3e71a875354af9cdcc3589",
+      "size": 1980
+    },
+    "installed-controls-final/file-origin-normal-identity.json": {
+      "sha256": "f408645df699361247e5171cf81621b047344f24dfcabbd46139dfbfa4a83ae1",
+      "size": 1568
+    },
+    "installed-controls-final/chat-bytes-optimized-identity.json": {
+      "sha256": "6f452adcb5e9d60490caa74bf84d5ad66987f22239f644a1ef30f529ecfbe2b0",
+      "size": 1983
+    },
+    "installed-controls-final/chat-missing-optimized-identity.json": {
+      "sha256": "ad94a52f47e4bca3f0e9f54b5dc41ea954e7f537224862cb433a3d1231bb4f4c",
+      "size": 1985
+    },
+    "installed-controls-final/missing-optimized.json": {
+      "sha256": "962147084e7ad65e5c76472f67f04d4a6346fc7c4e285f717eb561cfce0de894",
+      "size": 3536
+    },
+    "installed-controls-final/clean-copy-neutral-optimized.json": {
+      "sha256": "d0a62755d78897a68b73787e6a8b8cd51c3959b84cc315909db469507400df71",
+      "size": 1523
+    },
+    "installed-controls-final/clean-copy-chat-members-optimized-identity.json": {
+      "sha256": "a5f5f56ce023844359cfef9f3d5f1a687d12784c8dc96a594384d8f553a1c83d",
+      "size": 1996
+    },
+    "installed-controls-final/clean-copy-neutral-normal-report.json": {
+      "sha256": "3e6feb22b8ea9748cb4ac5fd6e1191aeb96da5ccfb660f458557ce4af5d1a98f",
+      "size": 4652
+    },
+    "installed-controls-final/namespace-origin-optimized-identity.json": {
+      "sha256": "eb8197de19e1cdbdc23496b94970646bf529a6bcdf99b6d8d437960e6a06d5e8",
+      "size": 1586
+    },
+    "installed-controls-final/clean-copy-chat-members-normal-report.json": {
+      "sha256": "e13649d54430c9c6e98433b9a3828dc3677db475e5e139e8ecbdc234eb59374e",
+      "size": 136246
+    },
+    "installed-controls-final/in-prefix-shadow-chat-normal.json": {
+      "sha256": "db6579e5c2b6ed9dbf91e6647157993caf5dcbbea1f0938bde2e904b71cc26bb",
+      "size": 2909
+    },
+    "installed-controls-final/clean-copy-chat-optimized.json": {
+      "sha256": "5aac9df07a36ffd0ddc7c236c696cec7f44468b1a79b92ef270b681a509f67b8",
+      "size": 1510
+    },
+    "installed-controls-final/initial-copy-identity.json": {
+      "sha256": "92aa9dac5d26d3376e12f1b3e5405bd9ea8223103016b6960966532f0954f426",
+      "size": 1562
+    },
+    "installed-controls-final/clean-copy-chat-members-optimized-report.json": {
+      "sha256": "d27afb130ae6bcc140fbf50b4196fd5dc9ee65cfbd35c24f8d341d576a2a1d72",
+      "size": 136297
+    },
+    "installed-controls-final/chat-data-normal.json": {
+      "sha256": "30990bfd447c5ceca2a86bd1fa08a56408a0718b714cc3e322936018dce66c2f",
+      "size": 3474
+    },
+    "installed-controls-final/clean-copy-neutral-optimized-identity.json": {
+      "sha256": "c30af63ca7833b63efc59944060c8021c146f20c0ba6bd595cd730feef3e1471",
+      "size": 1588
+    },
+    "installed-controls-final/empty-directory-optimized.json": {
+      "sha256": "ac7b8c3cdd144bff98efeb9a903793ca58eda345782baa546b783760e4d6129a",
+      "size": 3552
+    },
+    "installed-controls-final/chat-missing-optimized.json": {
+      "sha256": "d9bf0fffdc9e2d5a644269f826a406174ce55f5873277bcdf4f98642b54a37cd",
+      "size": 3496
+    },
+    "installed-controls-final/outside/external.py": {
+      "sha256": "438e7d158a7952de12b0d7967d007f51c67684fa6455d39a10cd46eb69227a08",
+      "size": 15
+    },
+    "memq-semantic-controls/control.py": {
+      "sha256": "23bf3471a04a367be37a2093854a68f2cf89b82d56c6a07e45cb42b7aa1be011",
+      "size": 2410
+    },
+    "memq-semantic-controls/legacy-registry.py": {
+      "sha256": "59541e54422258784ee3bde7058d547aaef097b912a4609bc9aa5b29419b62a1",
+      "size": 2484
+    },
+    "memq-semantic-controls/legacy-memory.py": {
+      "sha256": "5dd48d607044f39c9cac6a41bd0650e27a42bb7c165cd079831f42c7f36c48a0",
+      "size": 13082
+    },
+    "memq-semantic-controls/legacy-normal.json": {
+      "sha256": "d44a65a1c7433e94be02eb6ad9fa138792e0e5712114ed457a348f9d6034db1a",
+      "size": 2311
+    },
+    "semantic-controls/control.py": {
+      "sha256": "7b00e6f51fc3124130857e63faa80d544f793fd05bb2bd848a41013a0891cdfd",
+      "size": 1919
+    },
+    "semantic-controls/discard-optimized.json": {
+      "sha256": "e4786b6b80039f6b51d36fe1d434adac5c45c9676d9a7791a2b295298bd96ed2",
+      "size": 3208
+    },
+    "semantic-controls/legacy-handlers.py": {
+      "sha256": "357101078ec8a9d5e6432007b54375e1a345510abe2e0b344ecc2ae891e8638f",
+      "size": 4331
+    },
+    "semantic-controls/legacy-optimized.json": {
+      "sha256": "9eac94b73263d4fadb86572f8c392b1cf5c02b23da02c5b4a4f5bdddc6c7c18c",
+      "size": 3177
+    },
+    "semantic-controls/legacy-normal.json": {
+      "sha256": "721684ae4ee37541f0d33df502bafab1d442bb6c20d82e973109a6e02aa60181",
+      "size": 3161
+    },
+    "semantic-controls/discard-normal.json": {
+      "sha256": "0c96cf9c1c75b342ae5b7e7a77730a73c955cd2772297392e438fccd94bea4c7",
+      "size": 3192
+    },
+    "final-captures/source-changed-refusal.log": {
+      "sha256": "77edef79dbc60f5cbf6ba026661953267e2019556608b8c254266d843410101d",
+      "size": 2073
+    },
+    "final-captures/candidate-lock.log": {
+      "sha256": "18ad16ed33bf504f9a2f699d607d079e14241dbde6286da4e0486b2104938efb",
+      "size": 342
+    },
+    "final-captures/compare-session.py": {
+      "sha256": "c333db8601d7f713fd86183714e241f50731dd27877fd2cafac692c978f57afa",
+      "size": 2608
+    },
+    "final-captures/capture-diagnostics.py": {
+      "sha256": "8f7a55d5ae773774fa5ef6125215f29ea35b4788af13074451cdd5fc4e2e2464",
+      "size": 11572
+    },
+    "final-captures/session-0-compare.log": {
+      "sha256": "1e1af4c3985894ed9163c5fc2155aebe6d97c62850a04de65e908d72f0eab532",
+      "size": 619
+    },
+    "final-captures/memory-queries-0-compare.log": {
+      "sha256": "61c09c86223c78de388a1c1a33333276d1e5d8fba3a96775028ebe30f8894d8b",
+      "size": 738
+    },
+    "final-captures/pilot-compare.log": {
+      "sha256": "502534abf2a9065452b46d605c0c0b8fb4b50dc786c0d882144bff22882692f3",
+      "size": 635
+    },
+    "final-captures/baseline-diagnostics.json": {
+      "sha256": "1dcd83ecd8d2e4e739099eb495e43f98b78439d7bb14e3bebc167ba1b8514e98",
+      "size": 100069
+    },
+    "final-captures/pilot-capture.log": {
+      "sha256": "da2e88c27d0af82bcaffa2baafd60b9a6118c09bb94eaf5c771e0c4065eef30b",
+      "size": 673
+    },
+    "final-captures/memory-queries-0-capture.log": {
+      "sha256": "83b9cee2e0ef31f7c4b8fb7c18fb6e15101bd40da98c0890bf26352e402f280f",
+      "size": 570
+    },
+    "final-captures/session-0-capture.log": {
+      "sha256": "1e578a63ae03291c1bae5eae3fc0dead25f2fe7ae2da51ba3f58c7cdc9e055f7",
+      "size": 585
+    },
+    "final-captures/supplemental-result.json": {
+      "sha256": "3d9b181922bf73ae8a4bda0e68cb26ba9c4e1cfebf9eac1b788daa72db8da99e",
+      "size": 1129
+    },
+    "final-captures/captures.py": {
+      "sha256": "8ef9f837f6b0e0003edd2fff00f8aa400d8fae16ec37439ba14f5da300dc706e",
+      "size": 3968
+    },
+    "final-captures/memory-queries-0-observations.json": {
+      "sha256": "f7b2a080a450ccfee72866aa8e1d02033313ebe0974e7c3e9f7dacb6d92229c7",
+      "size": 127972
+    },
+    "final-captures/capture_launch.py": {
+      "sha256": "032ea6e3f350ea03b06691700e016fbfa208ebfd970324ff7ea68eb780a4779b",
+      "size": 372
+    },
+    "final-captures/compare-memory-queries.py": {
+      "sha256": "afd38e74dd70ee2e3ab3cc43184c45e5d444c6fb0e1877e274a82d00705ff606",
+      "size": 7860
+    },
+    "final-captures/capture-receipts.json": {
+      "sha256": "df35b9442ca3117b7fe215a890d3eec2188adfbf276c985db6e6d1179bdd0028",
+      "size": 22511
+    },
+    "final-captures/pilot-observations.json": {
+      "sha256": "3f966675c0e42ad1557eef0805bf4d38ac77340117879610450f2d0d93fd6457",
+      "size": 240196
+    },
+    "final-captures/supplemental-records.log": {
+      "sha256": "81155799afed08573d41037102da175cc39d07e97c8e8f862ac57e0666ce9dbb",
+      "size": 2285
+    },
+    "final-captures/comparer-controls.log": {
+      "sha256": "e54b0a110858391fb56c4c9cff0c0aa6c85db349a29a2b6f0f6523c15d219bdc",
+      "size": 514
+    },
+    "final-captures/baseline-memory-queries.json": {
+      "sha256": "ce5da59c62ce761354b2977fcb0c3f5816a858c7e22d4873ae60e4d2613db6b9",
+      "size": 148578
+    },
+    "final-captures/guard.log": {
+      "sha256": "3164e36cadaf53af6b1d6bbbe43b4747b254d4c7cae4e36ee11faa1fd4fa001c",
+      "size": 391
+    },
+    "final-captures/memory-queries-1-observations.json": {
+      "sha256": "2ccdef147e6718407c3c7130b41a9a667114e1c54490a38cb8689c291672cfa4",
+      "size": 127069
+    },
+    "final-captures/session-0-observations.json": {
+      "sha256": "708b26ffcd0807dd822905bd41d6e77945e4129b5641a2d8f40cd14d597ec131",
+      "size": 64395
+    },
+    "final-captures/capture-memory-queries.py": {
+      "sha256": "eafcfcbc45e04a11cd04bfc8203d7e4e953f1cc7a5be85b9ca9b2e1d113f0f8a",
+      "size": 19393
+    },
+    "final-captures/diagnostics-0-observations.json": {
+      "sha256": "d70680cb5943974d14c6784e1dbb5894315fcbb0e12ab74f85dec35dac82890f",
+      "size": 94424
+    },
+    "final-captures/diagnostics-0-capture.log": {
+      "sha256": "f2b9ca3dde9969e9c7626139efb1bb8f29af1849c5cb1480a603df5e52d02f33",
+      "size": 555
+    },
+    "final-captures/baseline-session.json": {
+      "sha256": "3210852a23743420fdcc61e2c213dedc632431c8d39b831cca36da3e2595ed46",
+      "size": 70315
+    },
+    "final-captures/memory-queries-1-capture.log": {
+      "sha256": "897305d61b69175c2065400ee5a3eca3f67625cfebc5de3095409308ec791d5a",
+      "size": 567
+    },
+    "final-captures/compare-diagnostics.py": {
+      "sha256": "4b444677044e32c517dfec2374eab72bd610b861592f0e10ee0a21d072cb19fa",
+      "size": 4307
+    },
+    "final-captures/capture-session.py": {
+      "sha256": "5c72294b80ebf63eb68330b7d74e1bb7090b077ab175eb01069f9f84a3e3bd24",
+      "size": 8274
+    },
+    "final-captures/memory-queries-1-compare.log": {
+      "sha256": "62031b3eedcd4775b8d293add8072a2a9a38759341998c3782b6bf7d365b5380",
+      "size": 738
+    },
+    "final-captures/diagnostics-0-compare.log": {
+      "sha256": "bd6a8d301d87429d8b903b136272dffd8d3b04d640a3eb3288420ec61fc7a442",
+      "size": 650
+    },
+    "final-captures/source-extra-refusal.log": {
+      "sha256": "b00ac86e26451127e4cb597ba127eb24198b6cbeeb285315b3f84a7ec20c1ddf",
+      "size": 2029
+    },
+    "final-captures/supplemental.py": {
+      "sha256": "e5587b56e7ec0e05e8cd858e8f09ab6271ee58c63845e337574ecf10c7cab74b",
+      "size": 2922
+    },
+    "artifact-controls/wheel-extra-normal.json": {
+      "sha256": "851d5768ebe50169fd1956ae13d3c74f4391edf4b76a8e0e080e3d06638a4bf8",
+      "size": 3358
+    },
+    "artifact-controls/sdist-directory-optimized.json": {
+      "sha256": "34b1da3f210c02f21c7dba1de4d8159f7868cc57fa88c53209f1a20709d8e29e",
+      "size": 3371
+    },
+    "artifact-controls/extra-source.json": {
+      "sha256": "4ad8acf4bab6e20b9af264122f8499d32949108c6897e7649f63d8817fcdc162",
+      "size": 1632
+    },
+    "artifact-controls/wheel-bytes-normal.json": {
+      "sha256": "eb6e5ae26848fffb03b1601db8093204157436ca42865ccb765c9c95df199ae0",
+      "size": 3293
+    },
+    "artifact-controls/sdist-extra-optimized.json": {
+      "sha256": "1efbc336352f4a1cf37434ab01525e395b07c107adc3de665e4bb247c713fd71",
+      "size": 3451
+    },
+    "artifact-controls/sdist-extra-normal.json": {
+      "sha256": "65cc63bee382da2309381357cc97a49ded4cba1d195d40a14eaef17552a0d9ab",
+      "size": 3435
+    },
+    "artifact-controls/wheel-extra-optimized.json": {
+      "sha256": "7f6cc723d5a3eb6fbffe6d585dc943d2803686712ca5cfd8a87c5ed5c807e536",
+      "size": 3374
+    },
+    "artifact-controls/wheel-duplicate-normal.json": {
+      "sha256": "2ac58788e8a53a33460f4028a7906356af33b5499cb4f6264db8ca9aa55961bd",
+      "size": 3252
+    },
+    "artifact-controls/wheel-duplicate-optimized.json": {
+      "sha256": "e39524578d7bb81c7fb7ebae83883bc1c781aa28c3dfd7d28b381df6953bb679",
+      "size": 3268
+    },
+    "artifact-controls/wheel-bytes-optimized.json": {
+      "sha256": "8b9b05d9adee4a9de88eeceb68beeef64e1b3d4e19fae2bf14af357a9ec04bdd",
+      "size": 3309
+    },
+    "artifact-controls/sdist-directory-normal.json": {
+      "sha256": "2ac826e1d38b13b2241009cf290a4f54224d0a301766776e41c837e74cace943",
+      "size": 3355
+    },
+    "artifact-controls/extra-source-bundle/bundle-report.json": {
+      "sha256": "c76ae9ac8d8a9400e4dd1f786c418f80f1f1b0e27e76dc6c025cb365da9688a8",
+      "size": 987
+    },
+    "helpers/diagnostics_installed_probe.py": {
+      "sha256": "c943d7070aeae2624444a165a9c3f77f3317c062e06376b3d0f89e089d70db58",
+      "size": 53132
+    },
+    "helpers/pilot_installed_probe.py": {
+      "sha256": "8c1233a0a5181566bb188735358141e8718a5aaba205e6c4bfa3a2620a8e43ac",
+      "size": 21859
+    },
+    "helpers/session_installed_probe.py": {
+      "sha256": "059c1e4e392de1e00853e4acaadfe97f7a1eefe3f4d1de412ebf4970f07f15cd",
+      "size": 32368
+    },
+    "reports/memq-chat-True.json": {
+      "sha256": "bf975e713b5690d8ca0f31506e098b5e872d79401c587d43113864aba3e3ab67",
+      "size": 122467
+    },
+    "reports/pilot-chat-True.json": {
+      "sha256": "6636a4b312807f8ff52b69294da22e8c292761a847fe5047850a969e72c49f3c",
+      "size": 115273
+    },
+    "reports/memq-chat-False.json": {
+      "sha256": "7cebec4ef014383c49343db0fb7b60a0bc8c73bf049e992e171c83bef5f0f0c6",
+      "size": 122468
+    },
+    "reports/memq-chat-False.entry-origins.json": {
+      "sha256": "96230ba895c9cea202efb68fe74a858db6cb51efcbd9e25d906bb27d847d5d7d",
+      "size": 43616
+    },
+    "reports/memq-chat-False-execution.json": {
+      "sha256": "b4510958901f1c9842ce645144d108b8e9c1917235752f53ddc09bffb837452b",
+      "size": 1188
+    },
+    "reports/memq-chat-True-execution.json": {
+      "sha256": "7ae5be014769a067ccf313e8e600827914b38fceb45564ce6798f06099fb5209",
+      "size": 1197
+    },
+    "reports/memq-neutral-True.json": {
+      "sha256": "80c842d028a12086931d3e33d6ba5e72b5b6ccc08d7e8c28420e362b2821a1a7",
+      "size": 4432
+    },
+    "reports/pilot-chat-False-execution.json": {
+      "sha256": "2415f9d90a539bbd459dd6182e24a0bd8bccf407c9daeeba8bd904ecf374369e",
+      "size": 907
+    },
+    "reports/pilot-neutral-True.json": {
+      "sha256": "5366e3f6aaf481df924244a10ca6894507a3e7aa2e04b7d2e03e774d0bde0ee2",
+      "size": 2556
+    },
+    "reports/memq-neutral-False.json": {
+      "sha256": "2a2bb016ef04ed8fee62f4fdc497be44bffd180f331047995de9747a1ffda5cf",
+      "size": 4432
+    },
+    "reports/pilot-neutral-False.json": {
+      "sha256": "5366e3f6aaf481df924244a10ca6894507a3e7aa2e04b7d2e03e774d0bde0ee2",
+      "size": 2556
+    },
+    "reports/pilot-chat-True.entry-origins.json": {
+      "sha256": "96230ba895c9cea202efb68fe74a858db6cb51efcbd9e25d906bb27d847d5d7d",
+      "size": 43616
+    },
+    "reports/pilot-chat-False.entry-origins.json": {
+      "sha256": "96230ba895c9cea202efb68fe74a858db6cb51efcbd9e25d906bb27d847d5d7d",
+      "size": 43616
+    },
+    "reports/memq-chat-True.entry-origins.json": {
+      "sha256": "96230ba895c9cea202efb68fe74a858db6cb51efcbd9e25d906bb27d847d5d7d",
+      "size": 43616
+    },
+    "reports/memq-neutral-True-execution.json": {
+      "sha256": "2e42fb6ecd8f039774cdfd755067011c834abe49898d46d72fc8a723442a8e3b",
+      "size": 1207
+    },
+    "reports/pilot-neutral-True-execution.json": {
+      "sha256": "f78a58a7bdcae0520d8d26aac274c3b4614c214a8ad0083f0b49283535d47a0d",
+      "size": 926
+    },
+    "reports/pilot-chat-True-execution.json": {
+      "sha256": "b030b177693cd70e258e0bb6fb9c43d1e8de792d7eda1ed28d77b6a26db40abf",
+      "size": 916
+    },
+    "reports/memq-neutral-False-execution.json": {
+      "sha256": "d4ffce74674eea81bbcc7ca940734561835a604817397f58c6498a66b2efd09e",
+      "size": 1198
+    },
+    "reports/pilot-chat-False.json": {
+      "sha256": "6636a4b312807f8ff52b69294da22e8c292761a847fe5047850a969e72c49f3c",
+      "size": 115273
+    },
+    "reports/pilot-neutral-False-execution.json": {
+      "sha256": "9a12b02db45e21430dd3cfaf19920454cff4448d6fb3cfb03c6cafa9544be2ce",
+      "size": 917
+    }
+  }
+}

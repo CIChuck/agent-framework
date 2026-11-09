@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-09",
-  "decision": "MEMQ D2 implemented at 3ed1d58a; fresh D2 council pending",
+  "decision": "MEMQ D1\u2013D3 and bounded aggregate independently VERIFIED; human UAT/acceptance pending",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Reconcile fresh Sol/Astra/Claude MEMQ D2 reviews of the frozen Chat integration and option R persisted listing before D3 artifacts and installed proof. D1 remains VERIFIED; D2 builder checks complete, independent validation pending. UAT NOT RUN; no acceptance or delivery.",
-  "product_code_authority": "Existing exact option R technical approval governs D2. D1 reconciled VERIFIED at9ce71581; D2 source 3ed1d58ad8cc1e79522495da5cf19091185402d8 awaits fresh council before D3. No acceptance or delivery.",
+  "current_scope": "MEMQ implementation and validation complete at reviewed bab16757, installed source e4c0b9a2. Execute the20-case human UAT plan and record the maintainer decision; no additional construction or delivery.",
+  "product_code_authority": "Existing exact option R technical approval completed through D3. No new family or scope authorized. Human acceptance and delivery remain separate.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -947,7 +947,7 @@
   },
   "memory_queries_preparation": {
     "unit": "MEMQ-001",
-    "state": "D1_D2_verified_D3_builder_complete_council_pending",
+    "state": "D1_D2_D3_verified_human_UAT_pending",
     "requested_by": "Chuck Russell",
     "instructions": [
       "the uat was successful - all approved, proceed to next steps",
@@ -961,8 +961,8 @@
     "directive_sha256": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
     "preparation_evidence": "validation/memory-queries/preparation.json",
     "preparation_evidence_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
-    "execution_phase": "validation",
-    "validation_state": "pending",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
     "design_approval": "granted",
     "construction_approval": "granted",
     "decisions_pending": {},
@@ -991,13 +991,13 @@
     },
     "approval": "approval/memory-queries-directive-correction2.md",
     "approval_sha256": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.",
-    "implementation_status": "D1 verified; D2 implemented at 3ed1d58ad8cc1e79522495da5cf19091185402d8",
-    "projection_clarification": "D2 runtime source3ed1d58a is unchanged. D3 artifact/probe sourcee4c0b9a2 has complete builder execution evidence and awaits fresh D3/aggregate council. No UAT, acceptance or delivery.",
+    "next_gate": "Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell\u2019s bounded acceptance decision. D1\u2013D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.",
+    "implementation_status": "D1/D2/D3 complete; bounded aggregate VERIFIED at bab16757",
+    "projection_clarification": "D2 runtime3ed1d58a unchanged; D3 artifact/probe sourcee4c0b9a2 independently verified by all three seats. Human UAT20 NOT RUN; acceptance pending; local only.",
     "recorded_at_original_erroneous": "2026-11-09T15:20:00+00:00",
     "recorded_at_basis": "Proposal commit 342bf85c timestamp: existence by 14:25Z, not an exact preparation start/finish. Original 15:20Z event preserved and explained by append-only correction.",
     "chronology_correction_recorded_at": "2026-11-09T15:33:59.716791+00:00",
-    "validation_scope": "D3 plus complete bounded aggregate council pending; D1/D2 remain verified.",
+    "validation_scope": "D3 and full bounded MEMQ aggregate VERIFIED; no human acceptance or delivery.",
     "reviewed_candidate": "be15dca1b37364748e1fcf9ef5d062a920a8d250"
   },
   "memory_queries_approval": {
@@ -1052,7 +1052,7 @@
     "criteria": "CR01..08 and MR01..10 pass per all fresh seats",
     "prior_sol_receipt": "historical BLOCKED, preserved and not waived",
     "validation_state": "verified",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell\u2019s bounded acceptance decision. D1\u2013D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.",
     "implementation": "Product D0/D1 not started",
     "authority_limits": "No construction/acceptance/UAT/delivery authority created by this review",
     "historical_next_gate": "Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery."
@@ -1234,7 +1234,7 @@
     "report": "validation/memory-queries/implementation/d1/README.md",
     "uat_plan": "uat/memq-user-acceptance-plan.md",
     "uat_result": "NOT RUN",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell\u2019s bounded acceptance decision. D1\u2013D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.",
     "acceptance": "not_granted",
     "delivery": "local only",
     "independent_candidate": "9ce7158169a1edef87cd4f864beb29c6b29c849d",
@@ -1271,7 +1271,7 @@
     "mandatory_findings": [],
     "report": "validation/memory-queries/implementation/d1/verified-report.md",
     "recorded_at": "2026-11-09T18:16:51.257314+00:00",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell\u2019s bounded acceptance decision. D1\u2013D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.",
     "next_gate_at_D1_closeout": "Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.",
     "checkpoint_scope_note": "D1 result retains its reviewed candidate; current D2 execution state is memory_queries_d2_implementation."
   },
@@ -1285,7 +1285,7 @@
     "report": "validation/memory-queries/implementation/d2/README.md",
     "evidence": "validation/memory-queries/implementation/d2/evidence.json",
     "option": "R",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell\u2019s bounded acceptance decision. D1\u2013D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.",
     "uat_result": "NOT RUN",
     "acceptance": "not_granted",
     "delivery": "local only",
@@ -1338,7 +1338,7 @@
       "source": "9db8311e44583f6db882847ff4643094668077bf",
       "normative_input_count": 30
     },
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell\u2019s bounded acceptance decision. D1\u2013D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.",
     "uat": "NOT RUN",
     "acceptance": "not_granted",
     "delivery": "local only",
@@ -1411,23 +1411,25 @@
     ],
     "report": "validation/memory-queries/implementation/d2/verified-report.md",
     "recorded_at": "2026-11-09T20:12:20.278769+00:00",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery."
+    "next_gate": "Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell\u2019s bounded acceptance decision. D1\u2013D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery."
   },
   "memory_queries_d3_execution": {
     "deliverable": "D3 / D4-D5",
-    "execution_phase": "validation",
-    "validation_state": "pending",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
     "scope": "Committed-candidate closed builds/replay, full owning/root regressions, MEMQ installed probe and controls under the existing exact directive. No runtime scope expansion.",
-    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.",
+    "next_gate": "Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell\u2019s bounded acceptance decision. D1\u2013D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.",
     "uat": "NOT RUN",
     "acceptance": "not_granted",
     "delivery": "local only",
     "artifact_and_probe_source": "e4c0b9a2c5e80569829cc56af9addc8b3e358714",
     "probe_sha256": "40e9ca72439c2fce97ae71ef2b0bcdead97c3f2a91656773fdea427d132b05d0",
-    "report": "validation/memory-queries/implementation/d3/README.md",
+    "report": "validation/memory-queries/implementation/d3/verified-report.md",
     "evidence": "validation/memory-queries/implementation/d3/evidence.json",
     "builder_checks": "2144 owning passes;154 reproducible artifacts;8 actual installed probes;50 member/origin+10 archive+10 semantic refusals,3 source refusals,8 clean copied probes. Fresh source observations and static/admin checks recorded.",
-    "recorded_at": "2026-11-09T20:55:01.293798+00:00"
+    "recorded_at": "2026-11-09T20:55:01.293798+00:00",
+    "independent_candidate": "bab167579a0c6fcae8765f263ec754f1d4700d93",
+    "handoff": "validation/memory-queries/implementation/d3/acceptance-handoff.md"
   },
   "memory_queries_MQD3_outcome_pin_transition": {
     "path": "docs/planning/backlog/friday-tui-command-followups/README.md",
@@ -1438,5 +1440,34 @@
     "exact_old_row": "| CMD-F05 | Repair ingested-source listing and define source validation. | Decide what `/list-ingested` must list from persistent metadata and what validation covers before changing ingestion or listing behavior. |",
     "exact_new_row": "| CMD-F05 | Repair ingested-source listing and define source validation. | MQ-D3 outcome: option R implements the approved bounded persisted `/list-ingested` repair. Source validation and consolidation remain deferred. |",
     "scope": "Only the MQ-D3 outcome cell; no transient D2/D3 status, ingestion-defect narrative or broader authority. This is the explicit permitted final outcome update, distinct from the reverted correction1 edit."
+  },
+  "memory_queries_d3_validation": {
+    "candidate": "bab167579a0c6fcae8765f263ec754f1d4700d93",
+    "artifact_and_probe_source": "e4c0b9a2c5e80569829cc56af9addc8b3e358714",
+    "outcome": "VERIFIED",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.5,
+        "report_sha256": "57915a441ddd4ce59f6cb7ec979802d255d9b5674942d83940ab24a3aaee9800"
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.4,
+        "report_sha256": "3117887b1e665cce936bd8f91757efa48e1eeeb642e10ecd8bcd658eed1d1e14"
+      },
+      "claude": {
+        "outcome": "VERIFIED",
+        "score": 9.5,
+        "report_sha256": "999388a3bf740a7f7223737a933b731334ecbc458c2cd1c34c627e5223fb3b0b"
+      }
+    },
+    "mandatory_findings": [],
+    "report": "validation/memory-queries/implementation/d3/verified-report.md",
+    "recorded_at": "2026-11-09T21:33:37.858454+00:00",
+    "next_gate": "Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell\u2019s bounded acceptance decision. D1\u2013D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.",
+    "uat": "NOT RUN",
+    "acceptance": "not_granted",
+    "delivery": "local only"
   }
 }

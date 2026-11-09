@@ -1,0 +1,68 @@
+{
+  "candidate": "bab167579a0c6fcae8765f263ec754f1d4700d93",
+  "prestage_logical_index": "bcd89cb4e53f408ab871cac3828756938d0fd9f0a46d9f01079a255ce087a865",
+  "preserved_groups": {
+    "pins": 147,
+    "protected_non_docs": 1255,
+    "accepted_repository_evidence": 192,
+    "accepted_D1": 29,
+    "dirty": 2,
+    "ignored_exports": 3,
+    "preserved_external_files": 1,
+    "supplied_raw_files": 3581
+  },
+  "explicit_closeout_metadata_exclusions": [
+    {
+      "group": "pins",
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/README.md"
+    },
+    {
+      "group": "pins",
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/README.md"
+    },
+    {
+      "group": "pins",
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/authority.json"
+    },
+    {
+      "group": "pins",
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/execution-log.md"
+    },
+    {
+      "group": "pins",
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/next-phase.md"
+    },
+    {
+      "group": "pins",
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/tactical-plan.md"
+    },
+    {
+      "group": "pins",
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/README.md"
+    },
+    {
+      "group": "pins",
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/par-coverage-ledger.md"
+    },
+    {
+      "group": "pins",
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/board.yaml"
+    }
+  ],
+  "frozen_tree_metadata_entries": 275082,
+  "full_hash_tree_audit": "controller-closing-integrity.json (275082 rehashed); final metadata and complete listing unchanged after launch smoke",
+  "par_changes": [
+    "header",
+    "PAR-012",
+    "PAR-021",
+    "PAR-023",
+    "PAR-024",
+    "PAR-025",
+    "PAR-043"
+  ],
+  "normative_inputs": 30,
+  "issues": [],
+  "log_append_only": true,
+  "source_test_probe_technical_and_accepted_evidence_unchanged": true,
+  "status": " M docs/planning/README.md\n M docs/planning/active/command-refactor/README.md\n M docs/planning/active/command-refactor/authority.json\n M docs/planning/active/command-refactor/execution-log.md\n M docs/planning/active/command-refactor/next-phase.md\n M docs/planning/active/command-refactor/tactical-plan.md\n M docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/README.md\n M docs/planning/active/command-refactor/validation/par-coverage-ledger.md\n M docs/planning/board.yaml\n M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/acceptance-handoff.md\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/astra-evidence-index.json\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/astra-report.md\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/claude-SHA256SUMS.txt\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/claude-report.md\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/controller-artifact-audit.json\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/controller-closing-integrity.json\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/frozen-manifest.json\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/report.md\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/request.json\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/sol-evidence-index.json\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/sol-report.md\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/uat-launch-smoke.json\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/uat-launch-smoke.stderr\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/council-round1/uat-launch-smoke.stdout\n?? docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/verified-report.md\n"
+}

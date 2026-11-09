@@ -2174,3 +2174,23 @@ has been executed or accepted through this documentation change.
 - `execution_phase: validation`; `validation_state: pending` for D3/aggregate.
   All20 human UAT cases NOT RUN. Acceptance/later-family/delivery separate.
 - **Next gate:** Reconcile fresh Sol/Astra/Claude MEMQ D3 and complete bounded aggregate review of committed artifact-source e4c0b9a2 and frozen evidence. Builder gates complete; D1/D2 VERIFIED. UAT NOT RUN; no acceptance or delivery.
+
+## 2026-11-09T21:33:37.858454+00:00 — MEMQ D3/aggregate unanimously VERIFIED; manual UAT handoff
+
+- Sol9.5, Astra9.4 and Claude9.5 independently VERIFIED frozen bab16757; no
+  mandatory findings. Archived verbatim reports/indices and controller rehashed
+  all939 indexed reviewer artifacts. All275,082 frozen tree entries and complete
+  listing match the controller closing audit; all supplied inputs preserved.
+- All seats ran2144 owning passes, eight installed probes, controls and captures;
+  Claude independently rebuilt/replayed154 identical artifacts. Sol/Astra
+  inspected build maps/inventories. Retained mutants were classified, not
+  regenerated. Setup/product failures receive no assertion credit.
+- Source/probe e4c0b9a2, technical pins, UAT-plan bytes, dirty examples, exports,
+  external locator and prior evidence unchanged. Only current closeout metadata
+  and six MEMQ PAR evidence cells/header advance; no product or scope change.
+- Root Ruff534, collection7082/test_display, four format failures and nullable
+  ingest remain failed/unwaived. Explicit ingestion description is the UAT
+  workaround. Automated private fake launch smoke passes, not human UAT.
+- `execution_phase: closeout`; `validation_state: verified` for MEMQ D1–D3/aggregate.
+  Human UAT20 NOT RUN; acceptance not granted; wider initiative started/local.
+- **Next gate:** Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell’s bounded acceptance decision. D1–D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.

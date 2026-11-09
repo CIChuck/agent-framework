@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-09T21:33:37.858454+00:00",
+  "seats": {
+    "sol": {
+      "files_checked": 513,
+      "mismatches": [],
+      "report_sha256": "57915a441ddd4ce59f6cb7ec979802d255d9b5674942d83940ab24a3aaee9800",
+      "index_sha256": "8a8a43e0c8a1dc6d58020dddcfeb6891db2126057bc1de28481622c6b132a939",
+      "outcome": "VERIFIED",
+      "score": 9.5
+    },
+    "astra": {
+      "files_checked": 409,
+      "mismatches": [],
+      "report_sha256": "3117887b1e665cce936bd8f91757efa48e1eeeb642e10ecd8bcd658eed1d1e14",
+      "index_sha256": "988f6f0dae4235bfcd36d27a401b42cd7910b6954458cb610a2d4ad8c4493aa2",
+      "outcome": "VERIFIED",
+      "score": 9.4
+    },
+    "claude": {
+      "files_checked": 17,
+      "mismatches": [],
+      "report_sha256": "999388a3bf740a7f7223737a933b731334ecbc458c2cd1c34c627e5223fb3b0b",
+      "index_sha256": "ac2e8403e517c7ca61d3e7b781b7e6360716bdff3778183c592378c455d0e32a",
+      "outcome": "VERIFIED",
+      "score": 9.5
+    }
+  },
+  "total_files": 939,
+  "limits": "Report/index paths refer to each preserved external reviewer root. Indices and reports are archived verbatim; large raw trees remain at their original read-only paths."
+}
