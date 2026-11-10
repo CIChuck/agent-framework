@@ -481,3 +481,37 @@ async def test_strict_assessment_coverage_aborts_before_synthesis(
         pipeline.memory._operation_id is None
         and not pipeline.memory._synthesis_receipts
     )
+
+
+@pytest.mark.asyncio
+async def test_direct_execute_checks_capabilities_before_any_write(
+    tmp_path: Path,
+) -> None:
+    pipeline, llms, embedding, _, graph = await pipeline_fixture(tmp_path)
+    request = Request(mode=Mode.FULL, execute=True)
+    assert (await pipeline.preflight(request)).supported
+    # Even an earlier success cannot admit a newly missing capability.
+    pipeline.providers = ExplicitMaintenanceProviderRegistry({}, None)
+    failed = await pipeline.execute(request, operation_id=OP)
+    assert not failed.succeeded and failed.stages == ()
+    collection = chromadb.PersistentClient(
+        path=str(tmp_path / "vector")
+    ).get_collection("primary")
+    assert set(collection.get()["ids"]) == {
+        "insight-a",
+        "insight-b",
+        "expired",
+        "pending",
+    }
+    assert await graph.get_node("decayed-node") is not None
+    assert (
+        pipeline.memory._operation_id is None
+        and pipeline._prepared_key is None
+        and not pipeline._active
+    )
+    pipeline.providers = ExplicitMaintenanceProviderRegistry(llms, embedding)
+    assert (await pipeline.preflight(request)).supported
+    before = (llms[MaintenanceLlmRole.SYNTHESIZER].probes, embedding.probes)
+    assert (await pipeline.execute(request, operation_id="2" * 32)).succeeded
+    assert (llms[MaintenanceLlmRole.SYNTHESIZER].probes, embedding.probes) == before
+    assert pipeline._prepared_key is None

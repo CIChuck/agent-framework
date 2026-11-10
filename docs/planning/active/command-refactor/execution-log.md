@@ -2528,3 +2528,19 @@ has been executed or accepted through this documentation change.
 - Protected YAML/personal/export metadata remain exact. No live providers,
   personal stores, dependency/config changes, push or delivery occurred.
 - **Next gate:** Finish MAINT-001 clean source freeze, build/replay and installed proof, then fresh OpenAI implementation council; human UAT/acceptance and all delivery remain separate.
+
+
+## 2026-11-10T17:18:44.867812+00:00 — shared execute preflight guard
+
+- Final headless inspection identified that execute must enforce static capability
+  checks before its first write even without a caller preflight. Added that
+  shared guard and a one-use instance-local readiness identity so an explicit
+  successful preflight is not duplicated. Store/config/bounds are always checked
+  freshly; no stage plan or selected-record cache is reused. Terminal paths
+  clear readiness/operation state. New real-store refusal tests pass.
+- The 8a8c895d bundle/replay and prototype installed runs are historical harness
+  trials only, not final implementation proof. Final outputs will use a new
+  exact source revision and new private output directories; none is overwritten.
+- Installed probe fixes use actual pyproject distribution names/hash-profile
+  syntax and verify parent plus real entry-point-child origins/optimization.
+  Both normal prototype lanes pass; final normal/optimized execution is due.

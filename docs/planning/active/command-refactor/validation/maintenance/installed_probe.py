@@ -13,6 +13,7 @@ import runpy
 import stat
 import subprocess
 import sys
+import tomllib
 from dataclasses import asdict
 from pathlib import Path
 
@@ -29,7 +30,10 @@ def sha(path: Path) -> str:
 def inventory(
     source: Path, package: str, distribution: str, prefix: Path
 ) -> dict[str, object]:
-    root = Path(metadata.distribution(distribution).locate_file(package)).resolve()
+    project_name = tomllib.loads(
+        (source / "packages" / distribution / "pyproject.toml").read_text()
+    )["project"]["name"]
+    root = Path(metadata.distribution(project_name).locate_file(package)).resolve()
     require(
         root.is_relative_to(prefix), "package root escaped installed prefix: " + package
     )
@@ -399,7 +403,7 @@ def main() -> None:
         if "==" not in line or line[:1].isspace():
             continue
         name, _, version = line.partition("==")
-        profile[name.lower().replace("_", "-")] = version.rstrip(" \\")
+        profile[name.lower().replace("_", "-")] = version.split()[0]
     actual = {
         d.metadata["Name"].lower().replace("_", "-"): d.version
         for d in metadata.distributions()
@@ -428,7 +432,9 @@ def main() -> None:
         "closure": len(actual),
     }
     if args.lane == "neutral":
-        require(set(actual) == {"friday-commands"}, "neutral closure expanded")
+        require(
+            set(actual) == {"friday-framework-commands"}, "neutral closure expanded"
+        )
         require(
             importlib.util.find_spec("friday_memory") is None,
             "neutral closure gained Memory",
@@ -465,6 +471,9 @@ def main() -> None:
         )
         details["force_reembed"] = asyncio.run(
             helper["run_flow"](work / "reembed", vectors, force_reembed=True)
+        )
+        details["direct_capability_refusal"] = asyncio.run(
+            helper["direct_capability_refusal_flow"](work / "missing-capabilities")
         )
         details["migration_only"] = asyncio.run(
             helper["migration_only_flow"](work / "migration")
@@ -519,16 +528,83 @@ def main() -> None:
                 "help changed outside approved reorganize cells",
             )
         launcher = prefix / "bin/friday-chat"
+        child_guard = report.parent / "entry-child-guard"
+        child_guard.mkdir(exist_ok=True)
+        origin_report = report.parent / (report.stem + "-entry-origins.json")
+        checker = r"""
+import atexit as _maint_atexit
+
+def _maint_check_child_origins():
+    import json as _j, os as _o, sys as _s
+    from pathlib import Path as _P
+    _roots = _j.loads(_o.environ['MAINT_CHILD_ROOTS'])
+    _prefix = str(_P(_s.prefix).resolve())
+    _failures = []
+    _count = 0
+    if _prefix != _o.environ['MAINT_CHILD_PREFIX']:
+        _failures.append('child prefix mismatch')
+    if _o.environ['MAINT_CHILD_ENTRY'] not in _s.modules:
+        _failures.append('entry module not loaded')
+    if _s.flags.optimize != int(_o.environ['MAINT_CHILD_OPT']):
+        _failures.append('child optimization mismatch')
+    for _name, _module in tuple(_s.modules.items()):
+        _root = _roots.get(_name.partition('.')[0])
+        if _root is None or _module is None:
+            continue
+        _file = getattr(_module, '__file__', None)
+        _spec = getattr(_module, '__spec__', None)
+        _origin = getattr(_spec, 'origin', None)
+        if not isinstance(_file, str) or not _P(_file).resolve().is_relative_to(_P(_root)):
+            _failures.append('child module escaped root: '+_name)
+        if not isinstance(_origin, str) or not _P(_origin).resolve().is_relative_to(_P(_root)):
+            _failures.append('child spec escaped root: '+_name)
+        _locations = getattr(_spec, 'submodule_search_locations', None)
+        if _locations is not None and (len(_locations)!=1 or any(not _P(_x).resolve().is_relative_to(_P(_root)) for _x in _locations)):
+            _failures.append('child search path escaped root: '+_name)
+        _count += 1
+    _P(_o.environ['MAINT_CHILD_REPORT']).write_text(_j.dumps({'prefix':_prefix,'optimized':_s.flags.optimize,'modules':_count,'failures':_failures}))
+    if _failures:
+        _o._exit(86)
+
+_maint_atexit.register(_maint_check_child_origins)
+"""
+        payload = (prepared / "sitecustomize.py").read_bytes() + checker.encode()
+        child_site = child_guard / "sitecustomize.py"
+        if child_site.exists():
+            require(child_site.read_bytes() == payload, "entry-child guard changed")
+        else:
+            child_site.write_bytes(payload)
+        entry = next(
+            ep
+            for ep in metadata.distribution("friday-chat").entry_points
+            if ep.group == "console_scripts" and ep.name == "friday-chat"
+        )
+        child_env = dict(
+            os.environ,
+            PYTHONDONTWRITEBYTECODE="1",
+            PYTHONOPTIMIZE=str(sys.flags.optimize),
+            PYTHONPATH=os.pathsep.join([str(child_guard), str(prepared)]),
+            MAINT_CHILD_ROOTS=json.dumps(
+                {name: value["root"] for name, value in inventories.items()}
+            ),
+            MAINT_CHILD_PREFIX=str(prefix),
+            MAINT_CHILD_ENTRY=entry.module,
+            MAINT_CHILD_OPT=str(sys.flags.optimize),
+            MAINT_CHILD_REPORT=str(origin_report),
+        )
         child = subprocess.run(
-            [str(launcher), "--help"],
-            capture_output=True,
-            text=True,
-            env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1"),
+            [str(launcher), "--help"], capture_output=True, text=True, env=child_env
         )
         require(
             child.returncode == 0 and "Usage" in child.stdout,
             "installed entry-point child failed",
         )
+        child_origins = json.loads(origin_report.read_text())
+        require(
+            not child_origins["failures"] and child_origins["modules"] > 0,
+            "installed entry-child origin proof failed",
+        )
+        details["entry_child_origins"] = child_origins
         details["entrypoint_help"] = True
     details["module_origins"] = origins(inventories)
     for package in inventories:

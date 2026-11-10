@@ -10,7 +10,7 @@ import asyncio
 import hashlib
 import json
 from collections.abc import Awaitable, Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from enum import Enum
 from typing import Literal, Protocol, cast
@@ -376,7 +376,10 @@ class MemoryMaintenancePipeline:
     providers: ExplicitMaintenanceProviderRegistry
     lifecycle: LifecycleMaintenanceRunner | None
     synthesis_guidance: str = _DEFAULT_SYNTHESIS_GUIDANCE
-    _active: bool = False
+    _active: bool = field(default=False, init=False, repr=False)
+    _prepared_key: (
+        tuple[MemoryMaintenanceRequest, tuple[tuple[str, int], ...], int, int] | None
+    ) = field(default=None, init=False, repr=False)
 
     @staticmethod
     def planned_stages(
@@ -425,8 +428,39 @@ class MemoryMaintenancePipeline:
     ) -> MemoryMutationError:
         return MemoryMutationError(code=code, message=message)
 
+    def _readiness_key(
+        self, request: MemoryMaintenanceRequest
+    ) -> tuple[MemoryMaintenanceRequest, tuple[tuple[str, int], ...], int, int]:
+        return (
+            request,
+            tuple(
+                sorted(
+                    (role.value, id(provider))
+                    for role, provider in self.providers.llms.items()
+                )
+            ),
+            id(self.providers.embedding),
+            id(self.lifecycle),
+        )
+
     async def preflight(
         self, request: MemoryMaintenanceRequest
+    ) -> MemoryMaintenancePreflight:
+        self._prepared_key = None
+        report = await self._inspect_preflight(request, probe=True)
+        if not self._active:
+            self._prepared_key = (
+                self._readiness_key(request)
+                if report.supported and request.execute
+                else None
+            )
+        return report
+
+    async def _inspect_preflight(
+        self,
+        request: MemoryMaintenanceRequest,
+        *,
+        probe: bool,
     ) -> MemoryMaintenancePreflight:
         stages = self.planned_stages(request)
         errors: list[MemoryMutationError] = []
@@ -486,7 +520,7 @@ class MemoryMaintenancePipeline:
                         )
                     )
                     continue
-                if role is not MaintenanceLlmRole.SYNTHESIZER:
+                if role is not MaintenanceLlmRole.SYNTHESIZER or not probe:
                     continue
                 try:
                     await provider.probe()
@@ -514,7 +548,7 @@ class MemoryMaintenancePipeline:
                             MemoryMutationErrorCode.CAPABILITY_UNAVAILABLE,
                         )
                     )
-                else:
+                elif probe:
                     try:
                         await self.providers.embedding.probe()
                     except asyncio.CancelledError:
@@ -609,8 +643,27 @@ class MemoryMaintenancePipeline:
         )
         if self._active:
             raise RuntimeError("memory maintenance pipeline is already active")
-        self.memory.begin_operation(operation_id)
+        prepared = self._prepared_key == self._readiness_key(request)
+        self._prepared_key = None  # one execute may consume prior readiness
         self._active = True
+        try:
+            # Always recheck current stores, bounds and configuration before any
+            # write. Reuse only this instance's one-use provider readiness, never
+            # stage plans or selection data; actual stages still plan freshly.
+            preflight = await self._inspect_preflight(request, probe=not prepared)
+            if not preflight.supported:
+                self._active = False
+                return MemoryMaintenanceRunResult(
+                    operation_id=operation_id,
+                    succeeded=False,
+                    stages=(),
+                    warnings=preflight.warnings,
+                    errors=preflight.errors,
+                )
+            self.memory.begin_operation(operation_id)
+        except BaseException:
+            self._active = False
+            raise
         commands: list[MemoryMutationCommand] = []
         synthesis_result: MemoryMutationResult | None = None
         stages: list[MemoryMaintenanceStageResult] = []
@@ -827,6 +880,7 @@ class MemoryMaintenancePipeline:
                 self.memory.end_operation(operation_id)
             finally:
                 self._active = False
+                self._prepared_key = None
 
     async def _command_for_plan(
         self,

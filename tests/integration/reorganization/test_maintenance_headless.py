@@ -913,3 +913,58 @@ def test_force_reembed_remains_first_in_headless_flow(tmp_path):
         run_flow(tmp_path, vectors, allow_chat=True, force_reembed=True)
     )
     require(result["stages"][0] == "reembed", "force-reembed lost its first stage")
+
+
+async def direct_capability_refusal_flow(root: Path):
+    from friday_memory.maintenance.pipeline import (
+        MemoryMaintenanceMode,
+        MemoryMaintenanceRequest,
+    )
+    from friday_memory.maintenance.provider_contracts import (
+        ExplicitMaintenanceProviderRegistry,
+    )
+
+    pipeline, providers, embedding, lifecycle, collection, graph, layout = await setup(
+        root
+    )
+    collection.add(
+        ids=["source-duplicate"],
+        documents=["Synthetic observation source-a"],
+        metadatas=[
+            {"type": "insight", "topic": "demo", "verification_status": "unverified"}
+        ],
+        embeddings=[[1.0, 0.0]],
+    )
+    before = collection.get(include=["documents", "metadatas"])
+    pipeline.providers = ExplicitMaintenanceProviderRegistry({}, None)
+    result = await pipeline.execute(
+        MemoryMaintenanceRequest(mode=MemoryMaintenanceMode.FULL, execute=True),
+        operation_id="6" * 32,
+    )
+    require(
+        not result.succeeded and not result.stages,
+        "missing capability admitted a domain stage",
+    )
+    after = collection.get(include=["documents", "metadatas"])
+
+    def rows(value):
+        return {
+            i: (d, m)
+            for i, d, m in zip(
+                value["ids"], value["documents"], value["metadatas"], strict=True
+            )
+        }
+
+    require(
+        rows(before) == rows(after), "direct execution mutated before capability checks"
+    )
+    require(
+        pipeline.memory._operation_id is None and pipeline._prepared_key is None,
+        "preflight refusal leaked operation state",
+    )
+    return {"refused": True, "stages": 0, "records": len(after["ids"])}
+
+
+def test_direct_capability_preflight_without_frontend(tmp_path):
+    result = asyncio.run(direct_capability_refusal_flow(tmp_path))
+    require(result["stages"] == 0, "direct preflight proof failed")
