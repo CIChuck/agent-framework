@@ -1,3 +1,23 @@
+# MAINT-001 — documents VERIFIED; exact construction approval pending
+
+Execution phase: planning (human implementation-approval checkpoint)
+Validation state: verified (specification/directive readiness only)
+
+[Round3 reconciliation](validation/maintenance/specification/round3/report.md):
+Sol9.3 and the fresh Astra replacement9.2 both VERIFIED candidate `4c09f5af`.
+All13 criteria pass; both prior technical findings are closed at document level.
+The first Astra BLOCKED attempt remains preserved and excluded, not waived.
+[Specification](maintenance-reorganization-specification.md),
+[directive](directives/CD-CMD-MAINT-001-reorganization-order.md) and
+[v3 pins](validation/maintenance/construction-preparation-v3.json) retain exact
+reviewed bytes. This is not runtime proof or construction approval.
+
+**Next gate:** Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.
+
+No agents remain working on this council. Accepted MEMQ remains closed.
+
+## Historical document-correction checkpoint
+
 # MAINT-001 — document corrections in review (round3)
 
 Execution phase: validation (documents only)

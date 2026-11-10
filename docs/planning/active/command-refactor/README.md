@@ -17,12 +17,12 @@ The explicit `/reorganize --full --execute` syntax defect is separately open as
 Earlier implementation/review/pending-UAT statements describe their historical
 freezes and are superseded by this acceptance. The wider initiative stays started/local.
 
-**Current planning — MAINT-001:** [Round2](validation/maintenance/specification/round2/report.md)
-requested changes to headless cancellation safety and shared scope receipts.
-The [corrected specification](maintenance-reorganization-specification.md) and
-[directive](directives/CD-CMD-MAINT-001-reorganization-order.md) are being frozen
-for fresh OpenAI round3. `execution_phase: validation`; `validation_state: in_review`.
-No finding is independently closed yet; no product construction approval.
+**Current planning — MAINT-001:** The [specification](maintenance-reorganization-specification.md)
+and [construction directive](directives/CD-CMD-MAINT-001-reorganization-order.md)
+are [VERIFIED for document readiness](validation/maintenance/specification/round3/report.md)
+by valid OpenAI round3 reviews (Sol9.3/Astra9.2), with no mandatory findings.
+`execution_phase: planning`; `validation_state: verified` for documents only.
+Exact construction approval is pending. No product implementation or new agents.
 
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
@@ -68,7 +68,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.
+**Next gate:** Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -156,7 +156,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.
+**Next gate:** Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

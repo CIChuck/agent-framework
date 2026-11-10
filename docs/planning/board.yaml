@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.
+  next_gate: Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -3063,3 +3063,10 @@ events:
   action: reconciled MAINT-001 round2 and prepared bounded document corrections
   note: Shared cancellation boundary and scope receipt contract corrected; fresh OpenAI round3 required. No implementation or acceptance.
   evidence: docs/planning/active/command-refactor/validation/maintenance/specification/round2/report.md
+- task: friday-command-refactor
+  at: '2026-11-10T15:25:24.696638+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled verified MAINT-001 round3 document council with fresh Astra replacement
+  note: Sol9.3 and valid Astra9.2; no mandatory findings. Initial blocked isolation attempt preserved/excluded. Exact construction approval pending, no product edits or new agents.
+  evidence: docs/planning/active/command-refactor/validation/maintenance/specification/round3/report.md

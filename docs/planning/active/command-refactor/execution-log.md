@@ -2438,3 +2438,27 @@ has been executed or accepted through this documentation change.
   planning whitespace and shell syntax. All original protected contents outside
   the named document correction and all812 product inputs are unchanged; dirty
   examples, personal state and export metadata preserved. No runtime proof claimed.
+
+
+## 2026-11-10T15:25:24.696638+00:00 — MAINT-001 round3 reconciled; exact construction decision pending
+
+- Sol9.3 and fresh Astra replacement9.2 independently VERIFIED documents at
+  4c09f5afe582043273447f3bfa3490e884054511; MC01..10/R01..03 all pass.
+  Cancellation and scope-receipt findings independently closed at design level.
+- Initial Astra MAINT-R3-ASTRA-B01 BLOCKED isolation attempt is preserved/excluded.
+  A new context used a restricted content/diff allowlist on unchanged bytes;
+  no retroactive waiver or credit for provisional observations.
+- Both valid full reports, all boundary receipts and request identities embedded
+  under validation/maintenance/specification/round3. Controller rechecked all
+  17441 protected contents/13 pins, logical index before status and protected
+  state; technical document hashes remain exact. No pending child runs/questions.
+- Carry literal Unicode/empty canonical digest vectors into future named tests.
+  Separate historical/current administrative metadata without changing the
+  reviewed specification/directive. No runtime test/build/provider/store/UAT run.
+- `execution_phase: planning`; `validation_state: verified` for document readiness
+  only. Accepted MEMQ/UAT closed; umbrella started/local. No construction authority.
+- **Next gate:** Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.
+
+- Administrative checks pass: board36 valid, dashboard current, documentation
+  lifecycle964 and planning whitespace. All17 embedded/raw artifacts match;
+  exact reviewed documents,812 product inputs and protected metadata preserved.
