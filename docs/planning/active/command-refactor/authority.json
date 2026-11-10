@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-10",
-  "decision": "MAINT-001 fixed-vector requirement added; fresh OpenAI review and minimum9.5 conditional advancement",
+  "decision": "MAINT-001 construction condition satisfied; exact directive activated",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.",
-  "product_code_authority": "Conditional approval only under approval/maintenance-reorganization-conditional.md. Not activated until BOTH fresh reviewers meet the recorded score/outcome/finding/hash gate. No code edits during review.",
+  "current_scope": "MAINT-001 conditional gate satisfied: begin D0 baselines, then bounded shared Memory pipeline implementation and Chat delegation under exact approved directive; independent OpenAI implementation validation and human UAT/acceptance remain due.",
+  "product_code_authority": "Granted only for exact CD-CMD-MAINT-001 scope through conditional approval and round4 activation; no acceptance/delivery.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -1617,7 +1617,7 @@
     },
     "mandatory_findings": [],
     "implementation_approval": "not_granted",
-    "next_gate": "Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.",
+    "next_gate": "MAINT-001 conditional gate satisfied: begin D0 baselines, then bounded shared Memory pipeline implementation and Chat delegation under exact approved directive; independent OpenAI implementation validation and human UAT/acceptance remain due.",
     "document": "maintenance-reorganization-specification.md",
     "sha256": "56e3cd5fc75b402ab4aeda46f80807873b79a3df96debadb83164c2c0debfdad"
   },
@@ -1639,9 +1639,9 @@
       "correction_cycle": 1,
       "council_round": 3
     },
-    "status": "fixed_vector_revision_in_review",
-    "execution_phase": "validation",
-    "validation_state": "in_review",
+    "status": "approved_construction_started",
+    "execution_phase": "implementation",
+    "validation_state": "not_started",
     "council_round": 4,
     "reviewed_candidate": "4c09f5afe582043273447f3bfa3490e884054511",
     "council_report": "validation/maintenance/specification/round3/report.md",
@@ -1661,8 +1661,8 @@
       }
     },
     "mandatory_findings": [],
-    "implementation_approval": "conditional_pending_gate",
-    "next_gate": "Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.",
+    "implementation_approval": "conditional_gate_activated",
+    "next_gate": "MAINT-001 conditional gate satisfied: begin D0 baselines, then bounded shared Memory pipeline implementation and Chat delegation under exact approved directive; independent OpenAI implementation validation and human UAT/acceptance remain due.",
     "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
     "sha256": "931d42538d9f100392743d8e9826eec00b67297af788dd84e4453e820ebea2e7",
     "preparation": "validation/maintenance/construction-preparation-v4.json",
@@ -1815,11 +1815,13 @@
     "minimum_each": 9.5,
     "outcome_each": "VERIFIED",
     "open_mandatory_findings": 0,
-    "activation": "pending; not granted during review",
+    "activation": "docs/planning/active/command-refactor/validation/maintenance/specification/round4/activation.json",
     "models": [
       "GPT-6 Astra/high",
       "GPT-6.1 Sol/high"
     ],
-    "next_gate": "Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report."
+    "next_gate": "MAINT-001 conditional gate satisfied: begin D0 baselines, then bounded shared Memory pipeline implementation and Chat delegation under exact approved directive; independent OpenAI implementation validation and human UAT/acceptance remain due.",
+    "activation_sha256": "35b163e57e0634cfacd253f971cb209eca893a779c2016891a0bb913cd2d2f02",
+    "state": "activated"
   }
 }

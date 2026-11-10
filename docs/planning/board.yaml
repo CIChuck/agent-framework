@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.
+  next_gate: "MAINT-001 conditional gate satisfied: begin D0 baselines, then bounded shared Memory pipeline implementation and Chat delegation under exact approved directive; independent OpenAI implementation validation and human UAT/acceptance remain due."
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -3077,3 +3077,10 @@ events:
   action: added mandatory MAINT-001 fixed vectors and recorded conditional minimum score gate
   note: User authorized fresh Astra/Sol review; BOTH must be VERIFIED at least9.5 each with no mandatory findings before bounded construction. No activation yet and no automatic repeat loop on failure.
   evidence: docs/planning/active/command-refactor/approval/maintenance-reorganization-conditional.md
+- task: friday-command-refactor
+  at: '2026-11-10T16:15:19.231922+00:00'
+  actor: Codex
+  actor_role: agent
+  action: activated exact MAINT-001 conditional construction after both fresh reviews
+  note: Both Astra and Sol VERIFIED9.6, zero mandatory findings, frozen identity verified. D0 then bounded implementation; acceptance and delivery separate.
+  evidence: docs/planning/active/command-refactor/validation/maintenance/specification/round4/activation.json

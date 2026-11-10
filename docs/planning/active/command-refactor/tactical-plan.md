@@ -1,3 +1,12 @@
+# MAINT-001 — approved construction checkpoint
+
+Both fresh round4 seats: VERIFIED9.6/10; zero mandatory findings. Exact conditional
+approval is activated in [activation](validation/maintenance/specification/round4/activation.json).
+
+**Next gate:** MAINT-001 conditional gate satisfied: begin D0 baselines, then bounded shared Memory pipeline implementation and Chat delegation under exact approved directive; independent OpenAI implementation validation and human UAT/acceptance remain due.
+
+## Historical document checkpoint
+
 # MAINT-001 — fixed-vector requirement and conditional review gate
 
 Execution phase: validation (documents only)

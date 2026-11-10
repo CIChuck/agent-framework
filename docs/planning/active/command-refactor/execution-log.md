@@ -2486,3 +2486,16 @@ has been executed or accepted through this documentation change.
   extracted shell syntax checks pass. All 812 pinned baseline product files,
   six preserved metadata entries, four conditional input hashes and both
   independent canonical-JSON/hash vectors pass. No runtime suite/build was run.
+
+
+## 2026-11-10T16:15:19.231922+00:00 — MAINT-001 conditional construction activated
+
+- Both fresh round4 reports are VERIFIED9.6/10, no mandatory findings. Threshold
+  satisfied independently without averaging. Exact freeze/integrity rechecked.
+- Activation pins the instruction, candidate, inputs and raw report hashes in
+  `validation/maintenance/specification/round4/activation.json`. No product edit
+  preceded activation; optional third vector deferred without changing authority.
+- Start D0 baseline suites/inventories and synthetic v1 fixtures, then approved
+  shared mutation/pipeline extraction and Chat delegation. No live providers,
+  personal stores, config/dependency changes or delivery authorized.
+- **Next gate:** MAINT-001 conditional gate satisfied: begin D0 baselines, then bounded shared Memory pipeline implementation and Chat delegation under exact approved directive; independent OpenAI implementation validation and human UAT/acceptance remain due.

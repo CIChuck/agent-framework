@@ -17,11 +17,11 @@ The explicit `/reorganize --full --execute` syntax defect is separately open as
 Earlier implementation/review/pending-UAT statements describe their historical
 freezes and are superseded by this acceptance. The wider initiative stays started/local.
 
-**Current planning — MAINT-001:** The [directive](directives/CD-CMD-MAINT-001-reorganization-order.md)
-now requires independent literal digest vectors. [Conditional approval](approval/maintenance-reorganization-conditional.md)
-authorizes fresh OpenAI-only round4 review and advancement only if both reviewers
-return VERIFIED at least9.5/10 with no open mandatory findings. `execution_phase: validation`;
-`validation_state: in_review`. Implementation is not activated during review.
+**Current work — MAINT-001:** [Round4 reconciliation](validation/maintenance/specification/round4/report.md)
+records both seats VERIFIED9.6 and exact conditional construction activation.
+Execution phase: implementation; runtime validation not started. Build the bounded
+Memory-owned pipeline first, then Chat integration and installed proof. UAT,
+acceptance and delivery remain ungranted.
 
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
