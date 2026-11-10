@@ -578,6 +578,21 @@ async def recover_v1_fixture(fixture: Path, destination: Path, kind: str):
     source = fixture / kind
     destination = destination.resolve()
     shutil.copytree(source, destination)
+    # Git archives preserve executable bits, not owner-only recovery modes.
+    # Reconstitute stricter private modes only in this disposable test copy.
+    permission_changes = []
+    for item in [destination, *destination.rglob("*")]:
+        desired = 0o700 if item.is_dir() else 0o600
+        current = item.stat().st_mode & 0o777
+        if current != desired:
+            item.chmod(desired)
+            permission_changes.append(
+                {
+                    "path": str(item.relative_to(destination)),
+                    "before": oct(current),
+                    "after": oct(desired),
+                }
+            )
     journal_path = next((destination / "recovery").glob("*/journal.json"))
     raw_journal = json.loads(journal_path.read_text())
     old_root = str(Path(raw_journal["recovery_root"]).parent)
@@ -691,6 +706,7 @@ async def recover_v1_fixture(fixture: Path, destination: Path, kind: str):
         "kind": kind,
         "source": str(source),
         "destination": str(destination),
+        "permission_changes": permission_changes,
         "changes": audit,
         "files": [
             {
