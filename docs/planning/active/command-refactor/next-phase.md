@@ -1,8 +1,8 @@
 # MEMQ-001 — shared entity/ingestion UAT repairs
 
 Branch: `feature/command-retirement`
-Execution phase: validation
-Validation state: pending (shared quote/ingest repair; diagnostics already verified); prior D3 verified at bab16757
+Execution phase: closeout
+Validation state: verified (shared quote/ingest repair; combined human retest pending); prior D3 verified at bab16757
 
 Chat source `3ed1d58ad8cc1e79522495da5cf19091185402d8` implements the six delegated queries and approved
 option R persisted listing. [Builder evidence](validation/memory-queries/implementation/d2/README.md)
@@ -10,7 +10,7 @@ records Chat1390, Commands/cohort599, CLI155, fast lanes616/117, all52 new
 MQ-T07..14 cases,20 assertion-witnessed mutants and exact current observations.
 The [round1 council](validation/memory-queries/implementation/d2/council-round1/report.md) reproduced those runtime checks. Sol9.6 and Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for stale authority prose. [Round2](validation/memory-queries/implementation/d2/council-round2/report.md) resolves ASTRA-001 but identifies a frozen backlog scope breach. The exact approved bytes are restored and [round3](validation/memory-queries/implementation/d2/verified-report.md) is unanimously VERIFIED9.5, no mandatory findings. [D3](validation/memory-queries/implementation/d3/README.md) has completed builder builds/replay, actual installed proof and controls at sourcee4c0b9a2; [final council](validation/memory-queries/implementation/d3/verified-report.md) is unanimously VERIFIED (Sol9.5/Astra9.4/Claude9.5), with no mandatory findings. Original reports remain scoped to their candidates.
 
-**Next gate:** Reconcile fresh OpenAI review of the shared entity-quote and ingestion repairs, then hand back one combined three-issue retest. Human UAT and acceptance remain pending.
+**Next gate:** Maintainer combined retest of entity quoting, ingestion without descriptions and verification diagnostics using uat/memq-repair-retest.md. Capture any verification role/model/finish/field error; remaining dependent UAT and acceptance stay pending.
 
 The original MEMQ contract/directive/approval remain byte-exact historical
 technical inputs. Current shared Commands and ingestion changes are authorized by
@@ -18,7 +18,7 @@ technical inputs. Current shared Commands and ingestion changes are authorized b
 and its [approval](approval/memory-queries-shared-uat-repair.md). Prior verification
 diagnostics are separately governed by REM-CMD-MEMQ-UAT-002 and remain verified.
 The shared quote/ingestion repair at47134ad6 has passed runtime, real-store and
-installed checks; its current-status documentation correction awaits fresh review.
+installed checks; its current-status documentation correction is independently verified.
 Human UAT is stopped after reported failures; the original
 [plan](uat/memq-user-acceptance-plan.md) is preserved and the
 [combined retest](uat/memq-repair-retest.md) covers all3 issues. Ingestion without

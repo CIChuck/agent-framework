@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh OpenAI review of the shared entity-quote and ingestion repairs, then hand back one combined three-issue retest. Human UAT and acceptance remain pending.
+  next_gate: Maintainer combined retest of entity quoting, ingestion without descriptions and verification diagnostics using uat/memq-repair-retest.md. Capture any verification role/model/finish/field error; remaining dependent UAT and acceptance stay pending.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -3014,3 +3014,10 @@ events:
   action: authorized shared quote and ingestion repairs
   note: Fix both remaining UAT issues with shared reusable ownership; maintainer will retest3 issues together. Future councils OpenAI Astra/Sol only. No acceptance or delivery.
   evidence: docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-UAT-003-shared-quote-ingest.md
+- task: friday-command-refactor
+  at: '2026-11-10T03:33:51.494212+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled shared entity and ingestion repairs
+  note: Repair source47134ad6 and corrected packetead29d01 independently VERIFIED by OpenAI; combined3-issue human retest next. Current source/tests remain reviewed bytes; initiative started/local; no acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/uat-shared-repair/verified-report.md

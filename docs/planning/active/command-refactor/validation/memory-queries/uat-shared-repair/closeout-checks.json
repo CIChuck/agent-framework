@@ -1,0 +1,81 @@
+{
+  "reviewed_candidate": "ead29d01c423be0bbc49e80247ff753521884e20",
+  "administrative_only": true,
+  "package_files_exactly_preserved": 761,
+  "checks": [
+    {
+      "label": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "label": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "label": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 956 Markdown files checked\n",
+      "stderr": ""
+    }
+  ],
+  "protected_groups": {
+    "protected": 7,
+    "raw": 459,
+    "preserved_repository_ruff_cache": 383
+  },
+  "review_audit": {
+    "candidate": "ead29d01c423be0bbc49e80247ff753521884e20",
+    "logical_index_before_admin": "28b0836c3f58b31b875f9ee9d9236ec042c1726ff2021a374a407ff3e16eb51f",
+    "reviewer_artifacts_verified": 19,
+    "full_manifest_verified": {
+      "tracked": 17429,
+      "protected": 7,
+      "raw": 459,
+      "preserved_repository_ruff_cache": 383
+    },
+    "report_sha256": "65895fb4ba46b151a0871fc25f985514c69e45767ed3d7bd76ece70f879555c1"
+  },
+  "controller_addition_disclosure": {
+    "scope": "Controller prepared future administrative closeout, no checkout or frozen recorded input mutation",
+    "new_unreferenced_file": "/private/tmp/memq-two-repair-ngk9buel/closeout.py",
+    "sha256": "53c6196a8f9374eb392b0d1e49ee7ae2f0fd148bfbc0b9d51d58168433f067ce",
+    "frozen_raw_manifest_member": false,
+    "preserved_without_cleanup": true,
+    "future_controller_outputs": "/private/tmp/memq-shared-closeout-wkxwr19m",
+    "reviewer_write": false
+  },
+  "human_uat": "pending",
+  "acceptance": "pending",
+  "delivery": "local only"
+}

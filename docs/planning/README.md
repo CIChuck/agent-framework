@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Reconcile fresh OpenAI review of the shared entity-quote and ingestion repairs, then hand back one combined three-issue retest. Human UAT and acceptance remain pending. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Maintainer combined retest of entity quoting, ingestion without descriptions and verification diagnostics using uat/memq-repair-retest.md. Capture any verification role/model/finish/field error; remaining dependent UAT and acceptance stay pending. |
 
 ## Completed
 

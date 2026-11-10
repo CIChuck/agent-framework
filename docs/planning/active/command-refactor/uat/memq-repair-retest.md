@@ -1,10 +1,10 @@
 # MEMQ combined repair retest
 
-Status: awaiting independent review of the shared quote/ingestion candidate.
+Status: repair source47134ad6 / corrected packetead29d01 independently VERIFIED; human retest pending.
+[Verification](../validation/memory-queries/uat-shared-repair/verified-report.md).
 All human results remain pending. Preserve the maintainer's original UAT plan and
 reported failures. This companion is in the same UAT folder; no earlier result
-has been overwritten. Restart Friday Chat through the normal workflow after the
-reviewed candidate is handed back. Existing YAML and personal stores are unchanged.
+has been overwritten. Restart Friday Chat through the normal workflow to load the reviewed source. Existing YAML and personal stores are unchanged.
 
 1. Entity lookup: use a stored label visible in `/entities nodes`. Compare
    `/entities chuck` with `/entities "chuck"`. For the supplied known label compare

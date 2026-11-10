@@ -1,0 +1,101 @@
+{
+  "scratch": "/private/tmp/memq-doc-c1-independent-1m0obug3",
+  "created_at": "2026-11-10T03:33:01.832719+00:00",
+  "artifacts": [
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/aggregate-paths.txt",
+      "size": 2010,
+      "sha256": "8d6c9e8e7cce198436c5226cf4d9142662fd450257542cba8d528139bd4d2b5f"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/aggregate.diff",
+      "size": 1566438,
+      "sha256": "cad414643c3fa176eb6fd2426714b15ff058c4ee27d35aec3223273807ab7c60"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/audit.py",
+      "size": 2933,
+      "sha256": "ab1b104f58b27c8142dd2dd119c6c9dda8a0120fecd4b9a028188bd8b543348e"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/check_docs.py",
+      "size": 4117,
+      "sha256": "b4ade50e1966d40e3c376fcbe4d266a5145e38d6a62fc2fb8c99b921dfb6a306"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/end-integrity.json",
+      "size": 13730,
+      "sha256": "e807f59328a9b95ec583cb949483c67071ea8e2fe80eb2fbb906a2ca89769ce1"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/end-logical-index.bin",
+      "size": 3240862,
+      "sha256": "28b0836c3f58b31b875f9ee9d9236ec042c1726ff2021a374a407ff3e16eb51f"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/fresh-admin.json",
+      "size": 1382,
+      "sha256": "4f622f853a00be2f8456f0b6db42bb4dbcd1ff121905fd749e33f5bdde9aaddf"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/fresh-doc-checks.json",
+      "size": 1456,
+      "sha256": "3ad4a777b891bbf6525ca14973d8e6a2cd768b97e776f1b0c1b31d3f695e155e"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/inspect_runtime.py",
+      "size": 6136,
+      "sha256": "0e060345c64374b7460ef7784d820695de49206a16adc3fc7e7117f9a9e4d1dd"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/pairs-artifacts.json",
+      "size": 60856,
+      "sha256": "2b06e814848fc8bb6e0446d4033ba8e56030fad2e0e9fac1866bd3616a4f59f4"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/remediation-paths.txt",
+      "size": 873,
+      "sha256": "82e90fae3972d19101a94689fdbe2554bf8f2baa520dab741d56ceec9841d5ef"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/remediation.diff",
+      "size": 72546,
+      "sha256": "cb49ad5178b2cf3ce8789170767dc3e4e27eb015262298eb25e6125370ec9306"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/report.md",
+      "size": 8409,
+      "sha256": "65895fb4ba46b151a0871fc25f985514c69e45767ed3d7bd76ece70f879555c1"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/runtime-inspection.json",
+      "size": 8515,
+      "sha256": "3c49a60e86a2ff37260f5670eb9847925b4261d14ede7068463f372f49f032a8"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/semantic-checks.json",
+      "size": 817,
+      "sha256": "07efc30c0a0239d0874733fa8599ca8ef28930ac40d4896a0f3d2ab88140c7ac"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/semantic_checks.py",
+      "size": 2174,
+      "sha256": "f186cb180dada1914d94b4b137d83f9758d174ba2faa81809b776c0c6140de14"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/start-integrity.json",
+      "size": 13730,
+      "sha256": "4fc6e23148098b1cfc90dea99942c4f6cd61f1fced20826946b36a44526c136b"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/start-logical-index.bin",
+      "size": 3240862,
+      "sha256": "28b0836c3f58b31b875f9ee9d9236ec042c1726ff2021a374a407ff3e16eb51f"
+    },
+    {
+      "path": "/private/tmp/memq-doc-c1-independent-1m0obug3/uv-d06cbd3e69ade1dc.lock",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

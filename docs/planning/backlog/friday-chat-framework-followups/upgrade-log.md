@@ -317,7 +317,7 @@ exports and records provider options separately from normalized generation.
 
 ## FU-009: Omit Absent Ingestion Description Metadata
 
-Status: shared repair implemented under REM-CMD-MEMQ-UAT-003; independent review pending
+Status: shared repair independently VERIFIED at47134ad6 under REM-CMD-MEMQ-UAT-003; human retest pending
 Discovered During: MEMQ-001 D2 persisted-listing validation, 2026-11-09
 Framework Package: `packages/friday-memory` / public Chroma metadata boundary;
 the caller constructing this metadata is Friday Chat's FrameworkMemoryAdapter.

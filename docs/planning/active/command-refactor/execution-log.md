@@ -2286,3 +2286,17 @@ has been executed or accepted through this documentation change.
   byte-equal to47134ad6; fresh runtime receipts are preserved, not rerun or relabeled.
 - A new frozen documentation-only candidate receives fresh OpenAI read-only
   semantic/admin/integrity review. Human retest and acceptance remain pending.
+
+## 2026-11-10T03:33:51.494212+00:00 — shared quote/ingestion repairs reconciled
+
+- Corrected packetead29d01 independently VERIFIED by fresh OpenAI review, score9.5;
+  product source/test bytes remain exactly47134ad6;
+  no mandatory findings remain. Full matrices and artifact index preserved.
+- Controller verified19 reviewer artifacts and every frozen manifest
+  identity. This administrative closeout changes no product source or tests.
+- All3 issues now have one combined human retest checklist beside the original
+  UAT plan. Existing user YAML/UAT edits, stores, exports and prior evidence remain
+  unchanged. Actual verification reply cause and human acceptance remain pending.
+- OpenAI-only future council preference retained. No Claude assignment, live
+  provider/store operation, push, merge, release or acceptance was performed.
+- **Next gate:** Maintainer combined retest of entity quoting, ingestion without descriptions and verification diagnostics using uat/memq-repair-retest.md. Capture any verification role/model/finish/field error; remaining dependent UAT and acceptance stay pending.
