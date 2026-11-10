@@ -1899,7 +1899,7 @@
     "validation_state": "not_ready",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
-    "sha256": "776741c21981bc8d874318ffeeb548d7a813940fade9b2853c4f05384fcc61e2",
+    "sha256": "80479b6fc7a08c8eb556890b6b7028c97fd907eb7bed25e935369bacbee7f2dc",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
     "scope": "PDF/DOCX shared extraction/local OCR, quoted file paths, fail-closed XLSX; existing Memory chunking/metadata retained",
@@ -1907,6 +1907,12 @@
     "council": "not_invoked; maintainer document review first",
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local."
+    "next_gate": "Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.",
+    "required_dependency_floor": {
+      "certifi": ">=2026.10.19",
+      "authority": "explicit maintainer instruction",
+      "evidence": "validation/document-ingestion/certifi-security-requirement.json",
+      "enforcement": "declared dependency, lock, and post-install version/origin proof; not installed yet"
+    }
   }
 }

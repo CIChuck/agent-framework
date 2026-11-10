@@ -1,0 +1,29 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "recorded_at": "2026-11-10T19:02:09.990915+00:00",
+  "maintainer_requirement": "certifi>=2026.10.19 for the Docling installation; verify after all dependency installation",
+  "minimum_version": "2026.10.19",
+  "baseline_commit": "d5a44e65b147b29f81dee993a3ecc8a9461d5586",
+  "baseline_lock_certifi": "2025.11.12",
+  "baseline_installed_certifi": "2025.11.12",
+  "enforcement": [
+    "explicit requirement in Tools document-ingestion extra",
+    "compatible lock with exact newer Certifi artifact/hashes",
+    "post-install target-interpreter version/origin/CA-bundle proof",
+    "semantic version comparison and below-floor refusal control"
+  ],
+  "upstream_advisory": {
+    "url": "https://github.com/certifi/python-certifi/security/advisories/GHSA-6q48-6c7w-9gw2",
+    "finding": "emSign root certificates removed following revoked intermediates due to key compromise",
+    "patched_release_as_reported": "2026.10.18"
+  },
+  "required_release_metadata": {
+    "url": "https://pypi.org/pypi/certifi/2026.10.19/json",
+    "version": "2026.10.19",
+    "yanked": false,
+    "published_wheel_sha256": "42d35340cc5b9ba78e818ddbff0c5b1c2b779de448a340fd1b989f5fa8670e1b",
+    "inspection": "Official metadata inspected; wheel not downloaded or independently hashed this turn"
+  },
+  "implementation_or_upgrade_performed": false,
+  "scope": "This is a settled minimum-version requirement within the proposed Docling repair, not broad construction approval."
+}

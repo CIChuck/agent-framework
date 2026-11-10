@@ -80,7 +80,8 @@ Prepare this evidence in an isolated environment, without modifying the working
    download/install size and cold/warm conversion timing; do not infer them from
    the advertised platform list. No release has yet been installed or benchmarked.
 2. Proposed packaging: add a narrow Tools extra `document-ingestion` containing
-   the chosen Docling requirement; make default Chat depend on
+   the chosen Docling requirement **and explicit `certifi>=2026.10.19`**; make
+   default Chat depend on
    `friday-framework-tools[document-ingestion]==0.1.0a4`. Keep existing Tools
    `documents`/`spreadsheets` extras and consumers intact. The default Chat profile
    will change deliberately; the old 138-distribution closure is not its oracle.
@@ -102,6 +103,46 @@ This gate is **pending**, not a silently assumed success. Before code generation
 the exact versioned implementation directive/manifest and approved scope must be
 recorded. The present document is for reviewing the design and those boundaries.
 No dependency synchronization or model provisioning has been performed this turn.
+
+### Mandatory Certifi security floor — maintainer requirement
+
+The maintainer explicitly requires **`certifi>=2026.10.19`** whenever Docling is
+installed for this unit. This minimum is settled; it is not an optional backend
+choice. Record it in the Tools `document-ingestion` extra alongside Docling,
+resolve it into `uv.lock`, and install the resolved hash-verified artifact. A
+one-off post-install `pip install --upgrade` without updating declared/locked
+requirements is insufficient: subsequent synchronization must retain the floor.
+
+The inspected baseline lock and active environment contain `certifi2025.11.12`.
+Upstream advisory [GHSA-6q48-6c7w-9gw2](https://github.com/certifi/python-certifi/security/advisories/GHSA-6q48-6c7w-9gw2)
+identifies the emSign root-removal fix in2026.10.18. The requested2026.10.19
+release exists on [PyPI](https://pypi.org/project/certifi/2026.10.19/); the required
+floor remains2026.10.19, not2026.10.18. This records the specific upstream finding,
+not a claim that a version threshold proves all dependencies vulnerability-free.
+
+Gate A and installed proof must:
+
+- Refuse any dependency resolution that omits Certifi or selects a version below
+  the floor; do not relax it to make Docling resolve. Treat the Certifi upgrade
+  as a specifically requested dependency change within this unit.
+- Record its exact resolved version, wheel/source provenance and actual artifact
+  hashes in the new dependency manifest. An earlier bundle with Certifi2025.11.12
+  cannot supply this unit's supported-installation proof. Preserve that historical
+  evidence in place; generate new artifacts and profiles.
+- After **all** Docling/dependency installation operations, verify with the actual
+  target interpreter that installed distribution metadata reports a version at
+  least2026.10.19, using `packaging.version.Version` semantics, not string ordering.
+  Check the imported Certifi module/CA-bundle origins belong to the target prefix.
+  Run dependency compatibility checks and repeat version/origin proof in the
+  normal and optimized installed-conversion lanes.
+- Include a negative control proving a below-floor installed-version report is
+  rejected by the verification gate, plus an accepted floor/newer control. Do
+  not count import/setup failures as evidence of this version assertion.
+
+This requirement does not authorize modifying existing CA bundles, disabling TLS
+verification, bypassing certificate errors or mutating accepted historical test
+installations. No package upgrade has been executed while updating this proposal.
+[Recorded baseline and source metadata](../validation/document-ingestion/certifi-security-requirement.json).
 
 ## B — extraction contract
 
@@ -202,7 +243,7 @@ Retain immutable snapshots; supply a separate exact exception comparison.
 | Path | Allowed purpose |
 | --- | --- |
 | `packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py` (new) | Shared typed Docling extraction, local asset/status/format checks and errors. |
-| `packages/friday-tools/pyproject.toml` | Narrow new document-ingestion extra only; exact version determined at gate A. |
+| `packages/friday-tools/pyproject.toml` | New document-ingestion extra with selected Docling release and mandatory `certifi>=2026.10.19`; other requirements unchanged. |
 | `packages/friday-tools/README.md` | Public capability, dependency and local-model setup/limits. |
 | `packages/friday-tools/tests_tools/test_document_ingestion.py` (new) | Real format/OCR extraction and typed failure/coverage tests. |
 | `packages/friday-commands/src/friday_commands/file_inputs.py` (new) | Pure scoped raw-tail tokenizer; no root API export edits. |
@@ -215,7 +256,7 @@ Retain immutable snapshots; supply a separate exact exception comparison.
 | `packages/friday-chat/tests_chat/test_files_replay_shell.py` | Replace fake PDF/DOCX/XLSX placeholder expectations with genuine success/explicit refusal; keep test names and unrelated text/replay/shell assertions. |
 | `tests/integration/test_document_ingestion.py` (new) | Registry → extraction → real Memory adapter → disposable Chroma, deterministic embeddings; source/installed proof helper if needed. |
 | Package-local synthetic `tests_*/fixtures/document-ingestion/` (new) | Genuine text, table and scanned fixtures/provenance; no user documents. |
-| `uv.lock` | Deliberate dependency graph delta only, inventoried at gate A. No unrelated package upgrade. |
+| `uv.lock` | Deliberate Docling graph delta and requested Certifi upgrade to at least2026.10.19, inventoried at gate A. No unrelated package upgrade. |
 | This packet's document-ingestion remediation/validation/UAT/status records; planning board/dashboard; upgrade-log FU-012 | Planning, readiness, proof and human handoff for this unit only. |
 
 No `friday-memory` source, adapters/storage/chunker implementation, MAINT pipeline,
@@ -233,9 +274,9 @@ changes. If integration cannot fit these paths, stop and reconcile the boundary.
 | DI-05 | Both quoted path forms, two consecutive spaces, Unicode/apostrophes/backslashes, optional description, omitted description, malformed/empty quotes and literal option-like filenames. Unquoted behavior/leading text flags retained; other/custom handlers unaffected. |
 | DI-06 | Document `--lines=1`, malformed and negative variants fail explicitly without conversion/ingestion; current text/table limit behavior is unchanged. XLSX/unknown binary paths fail closed without fallback. |
 | DI-07 | Invoke actual `/ingest` on genuine PDF and DOCX through real Memory/Chroma with deterministic embeddings; cover single/multiple chunks. Inspect stored documents, late source markers, chunk metadata/counts, source/type/protection and absent/explicit descriptions. `/list-ingested` alone is not proof. |
-| DI-08 | Headless consumers import shared tokenizer/extractor without Chat/TUI; no Docling dependency in Commands. Default clean Chat install contains the declared converter stack; plain Tools without the extra fails lazily/actionably for documents. Both ordinary and `-O` installed real conversions/OCR/storage run. |
+| DI-08 | Headless consumers import shared tokenizer/extractor without Chat/TUI; no Docling dependency in Commands. Default clean Chat install contains the declared converter stack and Certifi>=2026.10.19, verified after all installs; plain Tools without the extra fails lazily/actionably for documents. Both ordinary and `-O` installed real conversions/OCR/storage run. |
 | DI-09 | Negative controls: placeholder substitution, ignored conversion failure, metadata-only image output, dropped last PDF page/table, reordered DOCX table, quote-split regression and swallowed missing-model failure produce named call-phase assertion witnesses. Unchanged control, canonical origins and before/finish/after hashes; no setup/import rejection credit. |
-| DI-10 | Full affected package/cohort/CLI/Memory regressions, focused Ruff/mypy/new-file formatting, exact metadata/lock/default closure inventory, source/wheel/installed data/origins and model manifest. Record baseline debt and exact approved file-help exceptions without waivers. |
+| DI-10 | Full affected package/cohort/CLI/Memory regressions, focused Ruff/mypy/new-file formatting, exact metadata/lock/default closure inventory, enforced Certifi floor/negative control, source/wheel/installed data/origins and model manifest. Record baseline debt and exact approved file-help exceptions without waivers. |
 | DI-11 | Bound cold/warm startup and representative document elapsed time, progress/cancellation behavior and file/resource-limit refusal. Cancelled extraction cannot trigger later background ingestion. No unsupported hard-timeout or cross-platform claim. |
 | DI-12 | Freeze stable code/evidence, then separately authorized fresh OpenAI Sol/Astra independent review. No agents before maintainer document review/direction. Human UAT follows verification; acceptance and delivery remain separate. |
 

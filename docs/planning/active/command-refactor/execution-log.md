@@ -2643,3 +2643,16 @@ has been executed or accepted through this documentation change.
 - Product code/tests/dependencies/lock, user YAML, personal state and accepted
   evidence preserved. No agents invoked. MAINT human UAT/acceptance still due.
 - **Next gate:** Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.
+
+
+## 2026-11-10T19:02:09.990915+00:00 — mandatory Certifi floor added to Docling proposal
+
+- Chuck Russell requires `certifi>=2026.10.19` for Docling installation.
+  The proposal now requires declaration in the Tools extra, exact compatible
+  lock/artifact hashes, and target-interpreter verification after all installs.
+- Official PyPI confirms2026.10.19 availability; upstream GHSA-6q48-6c7w-9gw2
+  reports the emSign root-removal fix in2026.10.18. The stricter requested floor
+  is retained. Baseline lock and active environment still contain2025.11.12.
+- Added semantic-version and below-floor gate-control requirements. No package,
+  lock, environment, CA bundle or historical installation was modified.
+  Overall document-ingestion construction and council remain unstarted.
