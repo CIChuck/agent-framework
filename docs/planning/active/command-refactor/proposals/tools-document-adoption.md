@@ -1,6 +1,6 @@
 # TOOLS-DOC-001 — adopt shared Docling conversion in document-reading tools
 
-Status: **PROPOSED companion — correction cycle2 draft / round3 pending; no construction approval**.
+Status: **PROPOSED companion — correction cycle2 / council round3; no construction approval**.
 This is a scoped adoption plan, not a completed tool upgrade or implementation
 directive. It depends on the exact shared capability and dependency/model
 readiness from [REM-CMD-INGEST-001](../remediation/REM-CMD-INGEST-001-pdf-docx.md).

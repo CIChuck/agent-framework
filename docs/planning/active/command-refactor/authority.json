@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Resolve the pending existing-store upgrade preference, then freeze the corrected INGEST documents for fresh Sol/Astra/Opus round3. Rounds3\u20134 remain; every seat must be VERIFIED >=9.5 with no mandatory findings. Gate A/construction and MAINT human acceptance remain separate.",
+  "current_scope": "Reconcile fresh Sol/Astra/Opus round3 of the corrected INGEST design and explicit fresh-store upgrade policy. Each seat must be VERIFIED >=9.5 with no mandatory findings; round4 is the last remaining authorized pass if needed. Gate A/construction and MAINT human acceptance remain separate.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1896,50 +1896,30 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "proposed",
     "execution_phase": "planning",
-    "validation_state": "changes_requested",
+    "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
-    "sha256": "28eb7c204bff9b203590c310c8f81ffda221a666867b92a0a647e94e36ce8479",
+    "sha256": "85184a069b48afcc9f8b654594f38a536e3800a7881e6cba113b4f51e598fbf0",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
     "scope": "PDF/DOCX/XLSX/PPTX extraction/local PDF OCR; shared all-source document/512 chunking with document/recursive/fixed overrides; shared LLM limits/dimension checks; retained fetching, admission, metadata/protection/storage semantics",
     "implementation_approval": "not_granted",
     "council": {
-      "round": 2,
-      "status": "reconciled_changes_requested",
-      "scope": "full document/design readiness only",
-      "roster": "validation/document-ingestion/council-round2/roster.json",
-      "reviewed_candidate": "2956b861de75fcf7ebf463c82f5f470cf6fa7b40",
-      "report": "validation/document-ingestion/council-round2/report.md",
-      "reconciliation": "validation/document-ingestion/council-round2/reconciliation.json",
+      "round": 3,
+      "status": "frozen_dispatch_pending",
+      "scope": "correction delta then full bounded proposed document/design readiness only",
+      "roster": "validation/document-ingestion/council-round3/roster.json",
+      "correction_brief": "validation/document-ingestion/council-round3/correction-brief.json",
+      "prior_round": "validation/document-ingestion/council-round2/reconciliation.json",
       "iteration_authorization": "validation/document-ingestion/council-iteration-authorization.json",
+      "frozen_request": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r3-gywt4bca/inputs/review-request.json",
       "scores_required_each": 9.5,
       "last_permitted_round": 4,
-      "results": {
-        "sol": {
-          "outcome": "VERIFIED",
-          "score": 9.5,
-          "report": "validation/document-ingestion/council-round2/sol-report.md",
-          "conduct": "no reported deviation"
-        },
-        "astra": {
-          "outcome": "CHANGES_REQUESTED",
-          "score": 9.0,
-          "report": "validation/document-ingestion/council-round2/astra-report.md",
-          "conduct": "no reported deviation"
-        },
-        "opus": {
-          "outcome": "CHANGES_REQUESTED",
-          "score": 8.4,
-          "report": "validation/document-ingestion/council-round2/opus-report.md",
-          "conduct": "qualified: explicit Git environment missing on one disclosed post-check invocation; not a clean conformance claim"
-        }
-      },
       "no_construction_or_gate_a_authority": true
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Resolve the pending existing-store upgrade preference, then freeze the corrected INGEST documents for fresh Sol/Astra/Opus round3. Rounds3\u20134 remain; every seat must be VERIFIED >=9.5 with no mandatory findings. Gate A/construction and MAINT human acceptance remain separate.",
+    "next_gate": "Reconcile fresh Sol/Astra/Opus round3 of the corrected INGEST design and explicit fresh-store upgrade policy. Each seat must be VERIFIED >=9.5 with no mandatory findings; round4 is the last remaining authorized pass if needed. Gate A/construction and MAINT human acceptance remain separate.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2009,7 +1989,7 @@
       "illustrative_max_input_tokens": 32768,
       "illustrative_expected_dimensions": 2560,
       "active_model_change": "none by this planning task",
-      "test_store": "fresh/disposable automated proof; legacy upgrade behavior pending explicit preference; no migration/reset"
+      "test_store": "fresh/disposable automated proof; no migration/reset"
     },
     "discussion_decisions": "validation/document-ingestion/discussion-decisions.json",
     "branch": "feature/cmd-ingest-001",
@@ -2020,14 +2000,23 @@
     "future_pull_request_base": "master",
     "route_scope": "active local-file and smart_read storage; explicit supplied web/tool payload capability; no new maintained web/automatic route",
     "correction_cycle2": {
-      "status": "independent_revisions_drafted_existing_store_choice_pending",
+      "status": "corrected_policy_recorded_for_round3",
       "brief": "validation/document-ingestion/council-round3/correction-brief.json",
       "remaining_rounds": [
         3,
         4
       ],
       "new_council_dispatched": false,
-      "existing_store_preference": "pending; question distinguishes earlier testing-only decision from upgrade behavior"
+      "existing_store_preference": "explicit fresh store required; preserve old files and /read; no legacy mode",
+      "policy_record": "approval/ingest-existing-store-policy.md",
+      "policy_record_sha256": "3a9343e77d97e2d8b94ebab2d2fa8fb3c3c339b1c4a37c32899de86e58139668"
+    },
+    "existing_store_upgrade": {
+      "maintainer": "Chuck Russell",
+      "answer": "Require an explicitly configured fresh store; preserve the old files and keep /read available (Recommended)",
+      "record": "approval/ingest-existing-store-policy.md",
+      "sha256": "3a9343e77d97e2d8b94ebab2d2fa8fb3c3c339b1c4a37c32899de86e58139668",
+      "actual_store_operation": "none; design choice only"
     }
   },
   "command_refactor_publication": {
@@ -2061,7 +2050,7 @@
     ],
     "effort": "high",
     "providers": "two OpenAI, one Anthropic",
-    "record": "validation/document-ingestion/council-round2/roster.json",
+    "record": "validation/document-ingestion/council-round3/roster.json",
     "historical_councils": "unchanged"
   }
 }

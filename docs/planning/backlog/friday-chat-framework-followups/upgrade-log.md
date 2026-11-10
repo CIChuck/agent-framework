@@ -429,7 +429,8 @@ LLM capability/limit enforcement and minimal Core contracts. Engine replacement 
 narrow durable store-identity/query-envelope and role handoffs are proposed exceptions.
 The correction draft also covers identity-preserving snapshot/restore/direct-client
 admission and Runtime/Core/CLI composition. No recovery ordering changes. The
-existing-store upgrade policy awaits a distinct maintainer preference.
+maintainer explicitly selected fresh-store-required behavior: preserve existing
+files and /read, with no legacy mode, migration or reset.
 Requested Change: Use one pinned Docling pipeline for PDF/DOCX/XLSX/PPTX extraction,
 with local PDF OCR, quoted paths, explicit format coverage and dependency/model
 requirements. Upgrade named Tools consumers through the companion adoption plan.

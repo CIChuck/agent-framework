@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Resolve the pending existing-store upgrade preference, then freeze the corrected INGEST documents for fresh Sol/Astra/Opus round3. Rounds3–4 remain; every seat must be VERIFIED >=9.5 with no mandatory findings. Gate A/construction and MAINT human acceptance remain separate."
+  next_gate: "Reconcile fresh Sol/Astra/Opus round3 of the corrected INGEST design and explicit fresh-store upgrade policy. Each seat must be VERIFIED >=9.5 with no mandatory findings; round4 is the last remaining authorized pass if needed. Gate A/construction and MAINT human acceptance remain separate."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3141,3 +3141,10 @@ events:
   action: reconciled INGEST council round2 and drafted bounded correction cycle2
   note: Sol VERIFIED9.5; Astra CHANGES_REQUESTED9.0; Opus CHANGES_REQUESTED8.4 with conduct qualification. Recovery/direct-client and composition corrections drafted. Existing-store upgrade behavior requires one maintainer preference before round3; no premature review, implementation or installation.
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round2/report.md
+- task: friday-command-refactor
+  at: '2026-11-10T22:25:35.384333+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded explicit INGEST existing-store policy and round3 design freeze
+  note: Chuck Russell requires an explicitly configured fresh store for unbound existing stores, preserving old files and /read. Root-state matrix/request mechanism complete; fresh round3 authorized within budget. No installation, gate A, product/store action or acceptance.
+  evidence: docs/planning/active/command-refactor/approval/ingest-existing-store-policy.md

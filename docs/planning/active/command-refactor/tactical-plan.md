@@ -1,24 +1,21 @@
-# Document-ingestion remediation — correction cycle2 draft
+# Document-ingestion remediation — corrected round3 design
 
-Execution phase: planning; validation state: changes_requested.
-[Round2 reconciliation](validation/document-ingestion/council-round2/report.md)
-records Sol VERIFIED9.5, Astra CHANGES_REQUESTED9.0 and Opus CHANGES_REQUESTED8.4
-with its command-environment qualification. The all-seat9.5 target is not met.
+Execution phase: planning; validation state: in_review.
+The maintainer selected [fresh-store-required upgrade behavior](approval/ingest-existing-store-policy.md),
+preserving existing files and `/read`. The corrected
+[REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) specifies the request mechanism
+and root-state/operation matrix, identity-preserving recovery/direct clients,
+Runtime/Core/CLI composition and destination-specific cache receipts.
 
-The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and
-[companion](proposals/tools-document-adoption.md) have a draft correction for
-snapshot/restore/direct clients, Runtime/Core/CLI composition, destination receipts
-and the useful advisories. The existing-store upgrade preference is pending;
-round3 has not been frozen or dispatched. The earlier fresh-store decision was
-for testing and is not silently extended to production policy.
+[Round2](validation/document-ingestion/council-round2/report.md) remains historical:
+Sol VERIFIED9.5, Astra CHANGES_REQUESTED9.0 and qualified Opus CHANGES_REQUESTED8.4.
+The [current correction brief](validation/document-ingestion/council-round3/correction-brief.json)
+binds fresh round3. The authorized stop gate is every seat independently VERIFIED
+>=9.5 with no mandatory findings; round4 remains available if needed.
+No installation, gate-A execution, product construction or store operation is
+activated. MAINT human UAT/acceptance and delivery remain separate.
 
-The [iteration authority](validation/document-ingestion/council-iteration-authorization.json)
-permits rounds3 and4 after this decision. Each seat must independently return
-VERIFIED >=9.5 with no mandatory findings. No installation, gate-A execution,
-product construction, store operation or delivery is authorized by this draft.
-MAINT-001 remains independently VERIFIED; human UAT/acceptance remain pending.
-
-**Next gate:** Resolve the pending existing-store upgrade preference, then freeze the corrected INGEST documents for fresh Sol/Astra/Opus round3. Rounds3–4 remain; every seat must be VERIFIED >=9.5 with no mandatory findings. Gate A/construction and MAINT human acceptance remain separate.
+**Next gate:** Reconcile fresh Sol/Astra/Opus round3 of the corrected INGEST design and explicit fresh-store upgrade policy. Each seat must be VERIFIED >=9.5 with no mandatory findings; round4 is the last remaining authorized pass if needed. Gate A/construction and MAINT human acceptance remain separate.
 
 ## Separate MAINT closeout and historical checkpoints
 

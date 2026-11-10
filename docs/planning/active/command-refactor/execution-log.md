@@ -2818,3 +2818,19 @@ has been executed or accepted through this documentation change.
   dependency/model, store, human acceptance or delivery operation. Two authorized
   further rounds (3–4) remain; user-local state and prior reports preserved.
 - **Next gate:** Resolve the pending existing-store upgrade preference, then freeze the corrected INGEST documents for fresh Sol/Astra/Opus round3. Rounds3–4 remain; every seat must be VERIFIED >=9.5 with no mandatory findings. Gate A/construction and MAINT human acceptance remain separate.
+
+
+## 2026-11-10T22:25:35.384333+00:00 — existing-store upgrade choice recorded; corrected round3 freeze
+
+- Chuck Russell explicitly requires a configured fresh store for legacy-unbound
+  state, preserving old files and /read. This separately settles upgrade behavior;
+  the earlier testing-only choice is not retrospectively relabeled. No legacy mode.
+- The REM now specifies existing destination fields, typed open intent, fresh
+  graph/WAL layout, deferred startup and a root-state/operation matrix. Refusal
+  precedes clients, models, graph loading and old-root lease/temp writes.
+- Recovery/direct clients, Runtime/Core/CLI, destination receipts and remaining
+  advisories are ready for fresh delta-first/full-design round3. Round4 remains
+  the final permitted pass if needed; each seat must be VERIFIED >=9.5/no findings.
+- Execution phase: planning; validation state: in_review. All actual product,
+  dependency/model, user-store, acceptance and delivery operations remain absent.
+- **Next gate:** Reconcile fresh Sol/Astra/Opus round3 of the corrected INGEST design and explicit fresh-store upgrade policy. Each seat must be VERIFIED >=9.5 with no mandatory findings; round4 is the last remaining authorized pass if needed. Gate A/construction and MAINT human acceptance remain separate.

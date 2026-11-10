@@ -1,6 +1,6 @@
 # REM-CMD-INGEST-001 — document extraction, shared chunking and embedding limits
 
-Status: **PROPOSED — correction cycle2 draft; existing-store decision pending before round3 freeze**. Baseline `7ad916f2`.
+Status: **PROPOSED — correction cycle2, independent design council round3**. Baseline `7ad916f2`.
 This document defines a bounded repair and its dependency-readiness gate. It is
 not an approved construction directive or a completed compatibility assessment.
 Working branch: `feature/cmd-ingest-001`, based on published command-refactor head
@@ -806,9 +806,9 @@ it rather than purging user records.
 
 **Automated test-store decision:** use fresh bound disposable stores for all
 new-pipeline tests, including preparation changes to the current model. No legacy
-migration or bulk re-embedding implementation is required. This testing decision
-does not settle existing-installation upgrade behavior; the explicit policy
-checkpoint below remains pending. Do not scan, delete or reset current stores as a
+migration or bulk re-embedding implementation is required. The later explicit
+[upgrade-policy decision](../approval/ingest-existing-store-policy.md) separately
+selects fresh-store-required behavior, as specified below. Do not scan, delete or reset current stores as a
 side effect of planning, startup, a profile edit or an ingestion command. Any
 later requested reset must identify the actual test-state scope; no such reset
 has been performed here.
@@ -837,8 +837,8 @@ namespace, initialize embeddings or open a legacy graph. A memory-dependent
 operation first resolves that capability; on failure it returns a stable reason
 and remedy without touching the store/provider. Background consolidation and
 exit maintenance obey the same check, never silently become successful no-ops.
-The final existing-store behavior matrix needs the pending maintainer decision;
-this lazy boundary preserves read-only command availability for either choice.
+The maintainer-selected fresh-store policy and matrix below control readiness;
+this lazy boundary preserves read-only command availability without a legacy mode.
 
 Every maintained direct client opener must use the common Memory admission
 helper **before** PersistentClient: recovery discovery/export/restore, mutation
@@ -910,17 +910,77 @@ begins may be partial; no new ingestion transaction/rollback is implied.
 [loaded/model capacity metadata](https://lmstudio.ai/docs/developer/rest/list)
 are upstream design references, not candidate-installed or backend readiness proof.
 
-### Existing-store policy checkpoint — not yet a selected upgrade policy
+### Existing-store upgrade policy — explicitly selected by the maintainer
 
-Round2 distinguishes the earlier testing-only fresh-store decision from product
-upgrade behavior. The maintainer has been asked to choose explicit fresh-store
-refusal/read-only availability or a separate legacy mode. No selection is inferred
-from silence, and this draft does not authorize enforcing a new production policy.
-Before round3 freeze, record the answer, the exact fresh-root request mechanism
-and the fresh/matching/mismatched/unbound/pending root × operation matrix. A legacy
-mode would need an explicit separate preparation/capability boundary, never a
-silent bypass inside the guarded stack. No stores are inspected, reset or bound
-while preparing these documents.
+The [recorded answer](../approval/ingest-existing-store-policy.md) requires an
+explicitly configured fresh store, preserving old files and `/read` availability.
+It is distinct from the earlier testing-only decision. **There is no legacy
+mode** in this unit: missing identity never enables raw preparation, unguarded
+reads/writes or an implicit stateless chat fallback.
+
+The request mechanism uses existing destinations, not a reset/upgrade command:
+set Chat `memory.persist_directory` to a new, non-existing vector directory
+under a deliberately selected new state parent. For example, this is a path
+example only and is not applied to current configuration:
+
+```text
+memory.persist_directory = /path/to/new-friday-state/vector
+derived graph path       = /path/to/new-friday-state/graph.json
+identity sidecar         = /path/to/new-friday-state/vector/embedding-space.json
+```
+
+Chat's existing layout resolver derives that sibling graph path. Headless Runtime
+clients explicitly configure `RuntimeConfig.chroma_path` and a consistent new
+`runtime_data_root` using the existing path/containment rules. Select fresh graph
+and access-WAL paths as part of that layout; existing unknown-provenance graph
+vectors or buffered work cannot be silently imported into a fresh vector space.
+Transcript history, backups and old namespaces are not copied, replayed, deleted
+or bulk indexed by this selection. Do not rewrite either dirty example YAML.
+
+The public factory takes a typed open intent: `OPEN_BOUND` opens only an admitted
+matching namespace; `CREATE_FRESH` requires the explicitly supplied path to be
+absent. Frontends derive the latter only for that configured absent destination
+when a memory-dependent operation is actually requested, never from an unbound
+existing directory or profile edit. Config parsing and `/read` never create it.
+A pre-created empty directory is still existing/unbound and refuses; choose a
+different absent destination. There is no automatic suffix, rename, fallback
+root or stamping of old content. Direct API callers supply their intent and
+resolved destination explicitly. Exact signatures freeze at gate A; no new
+operator tokenizer, reset or migration option is introduced.
+
+Application startup registers ready/deferred/unavailable Memory capabilities.
+For an unavailable namespace it reports one actionable diagnostic naming the
+reason/path and the remedy (configure a new absent destination, or restore the
+correct matching configuration). It still accepts read-only file commands.
+Memory-dependent chat turns, recall, writes, compaction, consolidation and
+maintenance return an explicit readiness failure; no data-less answer, silent
+skip or automatic stateless mode is presented as memory-enabled success.
+Background and exit maintenance obey the same gate. Help, file reads and exit
+remain usable; an exit-maintenance refusal is reported without preventing exit.
+
+The operation matrix is mandatory in Chat, Runtime and direct factory tests:
+
+| Namespace state | `/read` / headless file extraction | Memory-dependent turn, semantic recall or new embedding/write | Store-only snapshot/maintenance/restore |
+| --- | --- | --- | --- |
+| Explicitly selected absent destination | Available with normal file-format readiness; never creates Memory | Resolve verified capabilities and CREATE_FRESH once; validate associated graph/WAL layout before any creation; then normal guarded operation | Does not create a namespace merely to snapshot/restore. Refuse unavailable store until initialized. |
+| Bound ready, matching identity/incarnation | Available without embedding/Chroma startup | Allowed after operation-specific embedding/counter checks and provenance admission | Allowed under store-admission checks; operations that generate embeddings additionally require model readiness; restore requires same namespace/layout. |
+| Existing legacy-unbound, including an empty directory | Available | Explicit readiness refusal. No legacy use, stamping, migration, automatic alternate destination or provider call | Refuse before live client, backup/restore mutation or maintenance effects. Historical artifacts remain untouched/offline-inspectable. |
+| Bound ready but configured space mismatches, even same dimensions | Available | Explicit mismatch refusal; no rebind or new preparation | Refuse live operations/restore; no overwriting sidecar from a snapshot. |
+| Pending, malformed, inconsistent or missing marker on an existing root | Available | Explicit refusal; no automatic repair | Explicit refusal; preserve current recovery-required reporting where applicable. |
+
+Availability of `/read` still depends on the admitted file's extraction assets;
+it does not require Memory identity, embedding capacity or provider inference.
+Fresh ephemeral stores follow the same capability rules with in-memory identity,
+without touching a persistent namespace. Unknown-provenance graph vectors fail
+semantic recall rather than being skipped or recomputed; graph/text inspection
+on an admitted bound namespace needs no embedding solely for rendering.
+
+Refusal precedes clients, models, graph/WAL loading, lease/lock creation and any
+temporary entries under an existing unbound/mismatched root. Read only the
+bounded path/binding metadata required to decide admission. Preserve old bytes,
+modes and mtime/ctime, including parent directories: create-and-delete probes
+under the old path are not allowed. No existing stores are inspected or changed
+while this specification is prepared; these are future runtime/test obligations.
 
 ## Proposed exact implementation paths
 
@@ -1001,7 +1061,7 @@ by this document update.
 | DI-26 | Event loop remains responsive during conversion/counting; cancellation before worker start, during work and immediately after completion cannot cause ingestion. Admission stays held until worker quiescence, late results discarded and cleanup idempotent. No hard-thread-timeout/OS-sandbox claim. |
 | DI-27 | Same-namespace snapshot/verify/restore and automatic rollback preserve binding, data and graph-vector identity. Wrong space with same dimensions, wrong incarnation/layout, identity-free v1 artifact, pending/malformed/missing sidecar and binding tamper refuse before client/live writes. No rebinding. Private bound preflight is distinct from live restore. Existing journal/quiescence/ULP policies remain tested. |
 | DI-28 | Every inventoried direct client path uses identity admission: adapters, collection manager, recovery, mutation participant, pruner, synthesizer, fact checker. Missing admission cannot be swallowed as a skip/empty success. Maintained Chat snapshot/rollback and direct participant entry paths both execute; no bare-client bypass mutant survives. |
-| DI-29 | Actual Chat/Runtime pool and non-pool startup with absent capacity/unbound store followed by `/read` or read-only headless extraction: zero Chroma/embedding/provider construction and actionable readiness. Core public factory persistent/ephemeral paths and CLI delegation inherit the decided policy. No implicit stateless chat or legacy fallback. Root-state operation matrix must match recorded maintainer decision before implementation. |
+| DI-29 | Actual Chat/Runtime pool and non-pool startup with absent capacity/unbound store followed by `/read` or read-only headless extraction: zero Chroma/embedding/provider construction and actionable readiness. Core public factory persistent/ephemeral paths and CLI delegation inherit the decided policy. No implicit stateless chat or legacy fallback. Run every row of the recorded root-state matrix, including default legacy path, pre-created empty root, first explicit fresh creation, bound mismatch and pending marker. Preserve all old-path metadata and keep /read/exit usable. |
 | DI-30 | Storage receipts are destination/incarnation/collection-specific: same-space new destination or different collection, lost record IDs/provenance and disabled→enabled storage cannot skip ingestion. Extraction cache reuse is distinct from completed-storage evidence. Unwired Chat smart_read storage remains unwired and explicitly refuses requested storage. |
 | DI-31 | Plain CSV/TSV keeps all source spans/late rows and reports missing supplied table structure; structured tables repeat known headers. No inferred/fabricated header. Hosted mutable identity/missing offline BPE refuses operation; qualified pinned deployment passes only after real gate-A proof. Inactive migration/stub earns no integration credit. |
 
@@ -1043,7 +1103,7 @@ construction directive before implementation. Current MAINT UAT remains a
 separate pending human activity. Whether to add a maintained web-to-Memory
 route is a separate future scope decision for the maintainer; this unit preserves
 web reads and supplied-payload ingestion without inventing that route. The
-existing-store checkpoint above must be settled before round3. The maintainer
+existing-store checkpoint is settled by the explicit recorded answer. The maintainer
 authorizes this document-only
 correction and up to three further full fresh councils (rounds2–4). Each reviews
 the correction delta first, then the full proposed design/companion. Stop early

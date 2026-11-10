@@ -1,16 +1,25 @@
 {
   "unit": "REM-CMD-INGEST-001",
   "round": 3,
-  "state": "draft_awaiting_existing_store_preference",
+  "state": "corrected_for_fresh_round3",
   "correction_base": "2956b861de75fcf7ebf463c82f5f470cf6fa7b40",
-  "mode": "correction delta first then FULL bounded proposed design; do not dispatch before policy answer is recorded",
+  "mode": "correction delta FIRST then FULL bounded proposed design, including retained decisions and source feasibility",
   "findings": [
     {
       "sources": [
         "Opus M-1"
       ],
       "requirement": "Explicit existing-store upgrade policy and request mechanism, root-state/operation matrix",
-      "disposition": "PENDING: concise maintainer preference requested; no choice inferred or current production refusal declared approved"
+      "disposition": "Explicit maintainer choice recorded; mechanism/matrix added; independent closure still required",
+      "policy_record": "approval/ingest-existing-store-policy.md",
+      "sections": [
+        "Existing-store upgrade policy",
+        "Assembly, direct clients and identity-preserving recovery"
+      ],
+      "tests": [
+        "DI-21",
+        "DI-29"
+      ]
     },
     {
       "sources": [
@@ -37,7 +46,7 @@
     "Opus A-2": "Acknowledge existing reverse imports; new policy remains neutral, code chunker only summarization windows, raw code records use shared plan.",
     "Opus A-3": "Plain delimited text explicitly lacks supplied table structure/header carry and reports coverage; typed/native tables keep headers. No fabricated inferred header.",
     "Opus A-4": "Hosted immutable deployment identity plus offline BPE assets, otherwise explicit unsupported operation; no mutable alias or first-use download bypass.",
-    "Opus A-5": "Active roster record points at current round2; next decision separately identifies future web-to-Memory route choice.",
+    "Opus A-5": "Active council roster record now points at round3; separate future web-to-Memory choice remains explicitly outside this unit.",
     "Opus A-6": "Sidecar is inside normalized vector directory; unknown graph vector provenance fails whole semantic recall, no skip/zero/backfill.",
     "Opus A-7": "Legacy lifecycle migration public/not-maintained/broken and Chat stub classified with no credit or functional repair.",
     "Opus A-8": "Missing equals applies only to exact option names; prefix lookalikes remain description."
@@ -55,6 +64,7 @@
   "not_performed": [
     "product edits",
     "installs/gate A/model/store operations",
-    "new review dispatch"
+    "runtime tests/builds",
+    "delivery"
   ]
 }

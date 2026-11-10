@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. Ingestion extraction/chunking and embedding-limit
-planning is in correction cycle2; MAINT-001 human UAT/acceptance remains pending.
+planning is corrected for council round3; MAINT-001 human UAT/acceptance remains pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -34,22 +34,21 @@ closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorg
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
 **Additional requested planning — document ingestion:**
-[Proposed REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and
-[Tools companion](proposals/tools-document-adoption.md) cover four-format
-Docling extraction, shared document/512 chunking and embedding/store guards.
-Execution phase: planning; validation state: changes_requested.
+The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and
+[Tools companion](proposals/tools-document-adoption.md) are corrected for round3.
+Execution phase: planning; validation state: in_review. The maintainer explicitly
+selected [fresh-store-required upgrade behavior](approval/ingest-existing-store-policy.md):
+preserve old files and `/read`, with no legacy mode, reset or migration.
 
 [Round2](validation/document-ingestion/council-round2/report.md) records Sol
-VERIFIED9.5, Astra CHANGES_REQUESTED9.0 and Opus CHANGES_REQUESTED8.4 with
-command-environment qualification. Snapshot/restore, direct-client and composition
-corrections are drafted. One existing-store upgrade preference remains pending
-before round3; the testing-only fresh-store choice is not production approval.
-[Correction draft](validation/document-ingestion/council-round3/correction-brief.json)
-and [iteration authority](validation/document-ingestion/council-iteration-authorization.json)
-record the stop point. Rounds3–4 remain, requiring each seat VERIFIED >=9.5 and
-no mandatory findings. No fresh council is active; no implementation, gate-A
-execution, installation, user-store operation or delivery has started.
-MAINT implementation verification and its pending human UAT remain unchanged.
+VERIFIED9.5, Astra CHANGES_REQUESTED9.0 and qualified Opus CHANGES_REQUESTED8.4.
+The [current correction brief](validation/document-ingestion/council-round3/correction-brief.json)
+covers the behavior matrix, snapshot/restore and direct-client identity,
+Runtime/Core/CLI composition, caches and useful advisories. Fresh round3 reviews
+the changed text first, then the full bounded design. Each seat must return
+VERIFIED >=9.5 with no mandatory findings; only round4 remains after it if needed.
+No product code, installation, gate-A execution, store operation, acceptance or
+delivery is authorized. MAINT human UAT/acceptance remain separate.
 
 **Working home:** `agent-framework`, branch `feature/cmd-ingest-001`.
 **Board ID:** `friday-command-refactor`.
@@ -95,7 +94,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Resolve the pending existing-store upgrade preference, then freeze the corrected INGEST documents for fresh Sol/Astra/Opus round3. Rounds3–4 remain; every seat must be VERIFIED >=9.5 with no mandatory findings. Gate A/construction and MAINT human acceptance remain separate.
+**Next gate:** Reconcile fresh Sol/Astra/Opus round3 of the corrected INGEST design and explicit fresh-store upgrade policy. Each seat must be VERIFIED >=9.5 with no mandatory findings; round4 is the last remaining authorized pass if needed. Gate A/construction and MAINT human acceptance remain separate.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
