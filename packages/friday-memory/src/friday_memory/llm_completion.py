@@ -48,6 +48,13 @@ class MemoryCompletion:
 
     content: str | None
     reasoning_content: str | None = None
+    model: str | None = None
+    finish_reason: str | None = None
+
+
+def _optional_response_string(response: object, name: str) -> str | None:
+    value = getattr(response, name, None)
+    return value if isinstance(value, str) else None
 
 
 async def complete_memory_request(
@@ -79,6 +86,8 @@ async def complete_memory_request(
         return MemoryCompletion(
             content=typed_response.content,
             reasoning_content=typed_response.reasoning_content,
+            model=_optional_response_string(typed_response, "model"),
+            finish_reason=_optional_response_string(typed_response, "finish_reason"),
         )
 
     _warn_for_legacy_client()
@@ -91,6 +100,8 @@ async def complete_memory_request(
     return MemoryCompletion(
         content=legacy_response.content,
         reasoning_content=legacy_response.reasoning_content,
+        model=_optional_response_string(legacy_response, "model"),
+        finish_reason=_optional_response_string(legacy_response, "finish_reason"),
     )
 
 

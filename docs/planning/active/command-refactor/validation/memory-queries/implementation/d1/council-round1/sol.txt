@@ -1,0 +1,101 @@
+VERIFIED
+
+MEMQ-001 D0/D1 neutral implementation, council round 1, seat Sol. Fresh independent read-only review of candidate `9ce7158169a1edef87cd4f864beb29c6b29c849d`, product source `0f809207984143f88fbe971b761035d6ea7b11d0`, on `feature/command-retirement`, in `/Users/chuckrussell/Dev/gendev/agent-framework`. Reviewer: GPT-6.1 Sol/high; 2026-11-09. No delegated work or repairs.
+
+This verdict covers the complete D1 diff `00c384d91dce211f8f7ce919cd41f17fa18b4526..9ce7158169a1edef87cd4f864beb29c6b29c849d` and the bounded neutral aggregate against approved baseline `c5871054266da2340486d2043062c5fb95611c00`, including retained foundation, pilot, SESSION and DIAG interactions. This is implementation conformance. Historical readiness verdicts supply no conformance credit.
+
+Mandatory findings: **none**. No MEMQ-D1-SOL finding is raised. No acceptance, advancement, delivery or automatic review/remediation-loop authority is granted. D2 remains subject to controller reconciliation of all council seats and mandatory findings.
+
+Authority and lineage
+
+The request was hashed before reading; SHA256 is `0445ae65f707b1446e1511b6e8602e63cb3d27504794f912f24d6ceebdae9e92`. Its complete JSON was read. The frozen manifest was hash-verified as `f3466c303ea4bc5bc52910e81ba3c84bbfac3a76e6173dda8164d58754837eb7`, parsed in full, and every identity group was checked. Both hashes match again at exit.
+
+Current contract SHA256 `93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda`; directive `4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00`; current amendment `54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264`; preparation `e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593`. These match the frozen identities. Read AGENTS, engineering/lifecycle/independent-validation policies, current planning records, approvals, contract and directive, preparation/schema/format records, D1 source/tests/fixture/diff and the UAT plan. Historical readiness and builder summaries were not adopted as correctness evidence.
+
+The baseline-to-start range contains documentation only. Product source remains identical between the source commit and candidate; that range contains only evidence/status documentation. The 18-file D1 diff changes eight neutral package paths and ten planning/evidence/UAT paths. No Chat source/tests, other framework source, metadata, dependencies, lock or configuration changes enter the committed D1 diff. The two dirty Chat examples are unrelated and preserved.
+
+Criterion matrix
+
+| Criterion | Result | Independent evidence and assessment |
+| --- | --- | --- |
+| MD1-01 | PASS | Full selected diff and baseline lineage checked; exact D1 allowlist, requested UAT plan, documentation-only evidence descendant; `ast-results.json`. |
+| MD1-02 | PASS | `contracts.py:304-525`: thirteen frozen/slotted models, exact ordered fields/defaults, string subclasses without conversion, literal errors, exact bools, one-pass immutable collection snapshots, nested exact types, plain/meta restrictions, 100-member caps and unbounded documents. MQ-T01 24 cases and source review. All earlier contracts recover exactly by AST reversal. |
+| MD1-03 | PASS | `contracts.py:527-612`, `__init__.py:55-109`, `memory_queries.py:26-73`: exact 18-member union/outcome whitelist, ordered API54, original bindings and approved new owners, alias not re-exported, six immutable metadata specs. Fixture equals preparation bytes/hash `a2b848e67b1ee033e22d22a5e1c96a672979e674f5b1ec0fd9e82f6f7aee6480`. Export and missing-union mutants rejected. |
+| MD1-04 | PASS | `memory_queries.py:76-93,108-172`: structural non-runtime-checkable protocol, fresh immutable six-key factory, distinct handlers, no construction port reads, registry empty. Import/standalone tests and source show stdlib/own imports and no frontend/domain/effect ownership. Eager-factory mutant fails call assertions. |
+| MD1-05 | PASS | `memory_queries.py:96-117` and each handler: exact request, exact execution, canonical name, then one exact-bool availability call. False precedes argument selection and capability reads. Existing direct request string-member rule retained, execution/spec unused. Six invocation cases plus six unavailable lanes exercise extra args and forbidden reads. Early-selection mutant rejected. |
+| MD1-06 | PASS | `memory_queries.py:119-159`: exactly one awaited selected capability, exact result type, fixed record kinds/mismatch refusal, exact lowercase nodes, one-space joining, returned relationships refused in nodes-only mode. Pending, error and cancellation identity, no retry/write/logging/effects independently executed; all relevant mutants rejected. |
+| MD1-07 | PASS | All MQ-T01..06 nodes effective (101 cases), normal/-O/-OO standalone, canonical origins/hashes before pytest/at session finish/after. Unchanged101 control passes and14 current mutants fail named CALL assertions. Complete contracts/API/old-test AST reversals recover baseline; old definitions/assertions retained. `ast-results.json`, `all-old-test-inventory.json`, `canonical.json`, `mutations-results.json`, per-mutant witnesses. |
+| MD1-08 | PASS | Guard18, MEMQ comparer14, baseline498 and current599, owning Chat1338/CLI155, lint, format6, mypy7, exact baseline-format bytes/no-new-debt, lock214, board36, dashboard, lifecycle923, diff checks. Baseline closed trial independently hash-audited, not rebuilt: tools8, locked artifacts125, workspace13, artifacts154, source hashes752, closure1/138. |
+| MD1-09 | PASS | Fresh separate baseline/candidate Git exports; MEMQ76 twice each, DIAG68+4, SESSION25, pilot196. Source inventory/origin enforcement active and both extra-source and changed-byte controls refuse before imports. All64 current embedded/raw pairs verified byte-for-byte and SHA256. UAT20 cases concrete, same folder, NOT RUN, D2/D3 prerequisites explicit. D1 has no D2 Chat integration claims. |
+| MD1-10 | PASS | Both integrity boundaries match frozen HEAD/branch/index/staging/status/untracked/ignored and all identity groups. One reviewer scratch, own reconstructed output/cache paths including explicit mypy cache. No repository/supplied-directory mutation detected. Limits and debt below. |
+
+MQ test matrix
+
+| Node / ID | Cases | Result and mandatory assertion coverage |
+| --- | ---: | --- |
+| `test_memory_query_models_and_closed_union` / MQ-T01 | 24 | PASS:13 model cases,10 collection cases, semantic grid; ordered fields, exact nested/payload types, subclasses, strings/Unicode, snapshots/duplicates, literals, metric invariants, meta/plain, bools/caps and retained union behavior. |
+| `test_memory_query_specs_exports_and_factory` / MQ-T02 | 1 | PASS: exact API54 and bindings, fixture/all metadata, immutability, fresh maps, zero construction reads, empty registry, structural protocol. |
+| `test_memory_query_invocation_validation_order` / MQ-T03 | 6 | PASS: all handlers, exact type order and name before port reads, custom spec/unused execution, non-string direct args and str subclasses. |
+| `test_memory_query_availability_and_single_await` / MQ-T04 | 66 | PASS:11 modes ×6 commands; availability precedence/once/exact bool, result refusal, pending, cancellation, exception identity, single await/events and zero effects. |
+| `test_record_kind_and_graph_selection` / MQ-T05 | 1 | PASS: all fixed record kinds and both result variants/mismatch refusals, exact nodes selection, name/quote/space cases, relationships requested and returned restrictions. |
+| `test_memory_queries_standalone` / MQ-T06 | 3 | PASS: normal,-O,-OO, explicit registry dispatch for all six, runtime guards, invalid schema/outcome/kind, unavailable mode, pinned guard loaded explicitly and stdlib/own import closure. |
+
+Executed checks versus inspected receipts
+
+All executed runner argv and exits are collected in `command-ledger.json`; each receipt names its corresponding raw `.log`. The reviewer-authored driver scripts preserve exact reconstruction, labels and scratch paths. No supplied argv was replayed unchanged. Independent scripts: `captures.py`, `mutate.py`, `launch.py`, `ast_audit.py`, `admin.py`, `provenance.py`, `boundary.py`.
+
+Executed offline preparation with the supplied read-only wheelhouse into `prepared/`. The pinned runner supplies UV/XDG/mypy caches and owns pytest basetemps. Every explicit output, cache, export and report path was reconstructed below this scratch. Every Git subprocess inherited `GIT_OPTIONAL_LOCKS=0`; Python used `-B`/`PYTHONDONTWRITEBYTECODE=1`. Later orchestration also explicitly set TMPDIR to this scratch.
+
+| Executed lane | Result |
+| --- | --- |
+| Pinned guard selftest |18 refusal controls plus loopback and scratch/memory SQLite controls pass. |
+| Materialized MEMQ comparison selftest |14 controls pass. All embedded program/baseline bytes hash-verified before materialization. |
+| Baseline neutral/cohort |498 passed; canonical export roots/hashes checked at three boundaries. |
+| Current neutral/cohort |599 passed; repeated through canonical origin/hash harness. |
+| New neutral private unchanged control |101 passed; includes all three standalone modes. |
+| Current full Chat, only live_lmstudio excluded |1,338 passed; one existing Legacy Memory LLM deprecation warning. |
+| Separate CLI with controls/cache disabled |155 passed. |
+| Full neutral source/tests Ruff |Pass, no cache. |
+| Six changed Python format checks |All6 formatted. |
+| Neutral source mypy with explicit own `--cache-dir` |7 source files pass. |
+| D0 format record and current no-new-debt comparison |Baseline inventory byte-identical; current comparison passes. Old whole-file format failures remain failed/unwaived. |
+| Board validate/dashboard render --check |36 tasks pass; dashboard current. |
+| Documentation lifecycle |923 Markdown files pass. |
+| uv lock --check --offline in own clean candidate export |214 resolved; pass. Any environment/build output remained inside own export/cache. This is not future installed MEMQ proof. |
+| Worktree, full unit and baseline aggregate diff --check |All pass. |
+| Baseline/candidate committed-source capture lanes |Each MEMQ76 twice, DIAG68 exact+4 declared cache refusals, SESSION25 and pilot196 pass. DIAG used lexical `/tmp` output alias resolving inside own scratch. |
+| Pre-import source controls |Extra source: expected `Source inventory differs from Git`; changed bytes: expected `Source byte drift: .../__init__.py`. No setup/import failure gets semantic mutation credit. |
+
+`captures-results.json` records all capture/comparison commands and expected exits. Guarded capture validates all package source inventory/bytes against the actual Git revision before imports and then verifies origins against the export roots. Candidate captures use candidate9ce7158, whose product bytes equal product source0f809207; no D2 refusal/repair flags were applied to MEMQ at D1.
+
+`mutations-results.json` records unchanged control and14 mutants, exact argv and witness node IDs. Each mutant ran against a separate private package copy with the same101 tests and canonical module origins/hashes checked before pytest, at session finish and after. All failures were call-phase; setup/import/collection/KeyError failures earn no credit. Assertion witness counts: extra1, drop1, reorder1, duplicate1, eager50, early-selection1, double-query5, unawaited11, kind4, case1, requested-relationships1, returned-relationships1, cap1, union1. These are witness counts, not independent scenario totals. There was no surviving required mutant needing a supplemental counterexample.
+
+Inspected and hash-verified, not reexecuted: the baseline closed-build trial. `build-provenance.json` audits all154 artifact bytes,8 pinned tools,125 raw artifacts against uv.lock hashes,752 source hashes and25 raw command-log hashes. All25 recorded exits are zero. Workspace build map has13 packages. Source-inventory JSON and source archive hashes match the report. Installed distribution counts are neutral1/Chat138; `profile-map-check.json` confirms the exact138 name/version map against the pinned DIAG profile, not merely its cardinality. Baseline Python is3.13.10 with offline/no-index/private-cache build settings. This establishes defensible baseline provenance/feasibility; it is not a reviewer rebuild or candidate installed proof. The immutable baseline was not rebuilt under the request's explicit optional-rebuild allowance.
+
+All64 current `evidence.json` embedded/raw records match exact UTF-8 bytes and SHA256 (`pairs.json`). Four disclosed builder failed attempts remain excluded: DIAG alias normalization, initial plugin setup, formatter path typo and initial lint failures. They receive no passing-gate credit. Historical installed DIAG/SESSION probes remain frozen and their obsolete38/24 export expectations are not asserted to pass API54.
+
+Integrity boundaries and isolation
+
+`start.json` and `end.json` contain the exact Git strings and comparison results. Logical index at both boundaries, hashed from exact `git ls-files -s -z` stdout before status: `80c8b8bb309648c4d32e2676d507175cc6410e6586754901c49d1704c1d15925`. HEAD and branch match the requested candidate. Staged diff and untracked listing are empty. Status is exactly the two modified Chat example files. Ignored listing matches the entire manifest string.
+
+| Identity group | Start / end result |
+| --- | --- |
+| Authority/source pins103 |Match / match. |
+| Protected non-doc files1,255 |Match / match. |
+| Accepted repository evidence141 |Match / match. |
+| Dirty examples2 |Bytes, mode, size, mtime and ctime match / match. |
+| Ignored exports |Both files match at start/end; final directory metadata also matches the frozen manifest (all3 identities). |
+| Preserved external locator1 |Byte/mode/size/time identity matches / matches; `/private/tmp/memq-sol-current-path` untouched. |
+| Supplied raw files305 |Match / match across byte hash and stat fields. |
+
+The initial checker covered1,809 hashed-file identities; the final checker additionally explicitly checked the exports directory, for1,810 identities. Final checker has zero differences. Matching frozen directory timestamps and the complete ignored listing support the preserved export-directory boundary as well. Both request and manifest hashes were rechecked at exit.
+
+Exactly one fresh external scratch was allocated: `/private/tmp/memq-sol-r1-p5dd0xdm`. All reviewer-authored files, copied source, fixtures, mutation copies, temp directories, reports, caches and exports belong below it. The temporary refusal fixtures were introduced/restored only inside the private baseline export as part of the requested controls; no source cleanup was performed. No checkout/worktree, external locator/PATH/PID/breadcrumb file, source repair, nested delegate, external message or delivery action was created. No reviewer-directed out-of-scratch write was observed; frozen supplied identities and repository state stayed intact. Host-managed tool transcripts are outside the reviewer-controlled artifact set; no host checkpoint ref operation was requested.
+
+Debt, limits and advisory assessment
+
+Root Ruff534, root test_display collection conflict6929, and four existing Chat whole-file format failures remain failed/unwaived. Root broad execution/collection belongs to D4 and was not rerun. The exact pinned format inventory was freshly reproduced and no new format debt appears. All old neutral file test-definition/assertion counts agree; diagnostic7/81 and SESSION11/42 remain unchanged, and complete approved reversals recover baseline ASTs. The design verifier was used only through its hash-verified reversal helpers; its old38/12 design-input main was not incorrectly demanded of the implemented54/18 candidate.
+
+D2 Chat integration, option R adapter/projection/rendering, MQ-T07..14 and D3 candidate wheels/sdists/installed probe are intentionally excluded. No future deliverable is scored as missing D1 work. UAT's20 cases are NOT RUN. No providers/network/real stores, UAT execution, maintainer acceptance, later family or release was exercised. Source-only captures do not establish installed behavior.
+
+Advisory score: **9.7/10**. Rubric: scope/authority2.0/2; behavior/contracts2.0/2; tests/mutation effectiveness1.9/2; evidence/provenance1.8/2; isolation/reporting2.0/2. Residual evidence limits are the inspected rather than independently rebuilt unchanged baseline trial and the inherent bounded source/test review profile. The score does not override findings or confer any approval.

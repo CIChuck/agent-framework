@@ -1,0 +1,24 @@
+{
+  "recorded_at": "2026-11-10T13:27:29.974635+00:00",
+  "acceptance_date": "2026-11-10",
+  "maintainer": "Chuck Russell",
+  "reported_results": {
+    "combined_retest": "successful; can be closed",
+    "main_memq_uat": "deemed successful; can be closed",
+    "full_reorganization_on_exit": "positive /meta results",
+    "separate_defect": "/reorganize --full --execute rejected"
+  },
+  "checkout_before": "39a631a92190bc2a8dc54b0d20fb0fecf7e8c535",
+  "original_user_uat_sha256": "e6b11b076af42d32e5278d77c102cf47011ebae19ea1227234af3420f5ef85d7",
+  "par_cells_updated": [
+    "PAR-012",
+    "PAR-021",
+    "PAR-023",
+    "PAR-024",
+    "PAR-025",
+    "PAR-043"
+  ],
+  "no_agent_live_provider_or_personal_store_run": true,
+  "per_case_measurements": "not supplied",
+  "runtime_source_changes": []
+}

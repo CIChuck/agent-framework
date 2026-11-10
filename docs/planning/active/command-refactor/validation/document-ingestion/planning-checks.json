@@ -1,0 +1,104 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "status": "planning_checks_only",
+  "baseline": "c59e8ed7c3caf9f20358f71f11e11b461f37d575",
+  "recorded_at": "2026-11-10T20:33:26.201069+00:00",
+  "pins": {
+    "remediation/REM-CMD-INGEST-001-pdf-docx.md": "e0375b3c5558a3e7c462674c7dc41c4d37e9e8eb583dc97498f35a01debb553f",
+    "proposals/tools-document-adoption.md": "dccc9e8a02bd257479fde759666f7f15a238172628ca6dd2c4f15e3f2700e218",
+    "validation/document-ingestion/discussion-decisions.json": "1d34126facfa5e483b880003d42c0ac30b90ba4cac026e2e9b6bcc5f917fcc0b",
+    "validation/document-ingestion/format-expansion.json": "93229156bcec385b07f491ce960fa61a99a2d3d26e2c585549d19c908d8c206f",
+    "validation/document-ingestion/assessment.md": "fc681e1c483b3acb400b5a5854b9208b66c4401fc4a7455d778ca80b7b475f7f",
+    "validation/document-ingestion/assessment.json": "ade8a16263c632fa68e786cae9145978798e75a704e1c0fe85f9f0a90000d4b3",
+    "validation/document-ingestion/certifi-security-requirement.json": "4aa555cd6387d21b52b2b1d83b031c51bb480d17814664689706f8502e4b3774"
+  },
+  "checks": [
+    {
+      "check": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "check": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "check": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 977 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "check": "owned_document_whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "planning_scope_and_yaml_examples",
+      "exit": 0,
+      "detail": "Three YAML examples parse; decisions/illustrative route agree; execution log append-only; MAINT object preserved. This is not product schema/runtime validation."
+    }
+  ],
+  "protected_original_files_matched": 16671,
+  "six_preserved_metadata_records": "matched",
+  "maint_implementation_object": "unchanged",
+  "code_dependencies_lock_changes": "none by this task",
+  "not_performed": [
+    "product implementation/tests",
+    "dependency/model/counter readiness execution",
+    "package/model installation",
+    "model/backend calls",
+    "personal/test store reset or inspection",
+    "legacy migration/re-embedding",
+    "council/delegation",
+    "MAINT UAT/acceptance",
+    "delivery"
+  ]
+}

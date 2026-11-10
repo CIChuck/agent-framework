@@ -1,0 +1,89 @@
+# MEMQ-001 council round4 — Astra
+
+**VERIFIED — directive/design readiness only.** Advisory score: **9.5/10**.
+
+Fresh independent read-only seat: GPT-6 Astra, high effort, 2026-11-09. No builder reasoning or previous verdict supplies this conclusion. No nested delegation, implementation, remediation, acceptance, delivery, or further review loop was initiated.
+
+Workdir `/Users/chuckrussell/Dev/gendev/agent-framework`; branch `feature/command-retirement`; candidate `be15dca1b37364748e1fcf9ef5d062a920a8d250`. Additional-pass range `8d78e2daa7eaabe1a3e42ad1dc4d9b45ff41b4c9..be15dca1b37364748e1fcf9ef5d062a920a8d250`, administrative bridge from `818b42eeca4495cf34292e934dbdac34e31ca4db`, bounded aggregate from `c5871054266da2340486d2043062c5fb95611c00`.
+
+The initial review examined the sentence correction and additional authorization; the bridge records the previous escalation. The aggregate assessment then evaluated the full current contract/directive, readiness tools, source compatibility, authority/current records, and evidence provenance. Aggregate changes comprise 51 documentation/evidence paths; no product change is part of this candidate. Full Git diff captures are retained as `delta.diff`, `bridge.diff`, and `aggregate.diff`. Historical reports/manifests were treated as provenance, not current approval or correctness evidence.
+
+## Fresh findings
+
+No fresh mandatory candidate findings. No optional advisory or parser expansion proposed. Consequently no MEMQ-DIR-R4-ASTRA finding ID is issued. The earlier Sol isolation violation remains historical and invalid; this result neither repairs nor waives it.
+
+## Correction matrix
+
+Paths below are relative to `docs/planning/active/command-refactor/` unless explicitly prefixed `packages/`.
+
+| Criterion | Result | Independent basis |
+|---|---|---|
+| CR-01 | PASS | Directive D5 exact-copy table (lines 391–417) names DIAG `retained_session_neutral_behavior` as the 38-name source, adds exactly sixteen names, and retains the three other behavior bodies. Executed correction verifier reproduces ordered API54 and all four reversal/extra-behavior controls. The old SESSION 24-name body is expressly excluded. |
+| CR-02 | PASS | Directive allowlist and contract MQ-D4 require first-statement local import, sixteen exports, thirteen contracts owner names, final three-name factory row, and count54. Executed synthetic binding identities and AST reversals pass; unrelated assertion alteration is refused. These are readiness transformations, not implemented model proof. |
+| CR-03 | PASS | `format_debt.py` binds deleted/inserted text to lexical owners and compares multiplicities, with formatter/config identity checks. Independently generated baseline JSON is byte-identical to the pinned inventory. Current comparison reports no new debt. Controls accept unchanged/shifted/formatted additions and reject new/duplicate fragments. Both tools pass Ruff lint and format. Existing whole-file failures remain failed/unwaived. |
+| CR-04 | PASS | Execution log preserves the original 15:20 heading and appends the chronology explanation; board retains the original event and adds the correction. Git independently reports proposal commit342bf85c at 09:25-05:00, establishing 14:25Z existence. Authority lines956–998 explicitly distinguish this bound from an exact preparation instant. |
+| CR-05 | PASS | Contract MQ-D4 and directive allow only six named attributes appended to the existing expected set. Inspected actual helper at `packages/friday-commands/tests_commands/test_diagnostics.py:195`; equality remains at203. Both the pinned verifier and a separately authored AST control execute original12/expanded18 positives, reject unchanged-expanded/missing/extra/nested members at the canonical helper assertion203, and detect unrelated behavior edits. No import/setup failure counted. |
+| CR-06 | PASS | Entire 223-line README read semantically, including lower operational and historical pilot/SESSION sections. Current MEMQ phase at30 and gates at44/132 agree with board/dashboard/authority/checkpoints. Older pilot pending-approval language is expressly superseded by its subsequent approval/acceptance paragraphs. Verifier also rejects an injected stale gate; its regex is not treated as general semantic validation. |
+| CR-07 | PASS | README223 explicitly qualifies the post-SESSION imperative as historical and superseded. Independently compared the lower nonadministrative body with8d78e2da: exactly the authorized sentence substitution. Contract, directive, verifier, format helper and inventory are byte-identical to818b42ee. Additional-pass approval/remediation explicitly authorize this one pass after escalation; current administrative records agree. |
+| CR-08 | PASS for this seat | Single own scratch `/private/tmp/memq-directive-review-astra-nvf13kjc`; start/end supplied-file audits include the existing locator. No external marker written, no supplied script mutation executed, and no supplied cache reused for writes. Old Sol report remains blocked/history. This Astra receipt does not substitute for a fresh Sol receipt. |
+
+## Original readiness matrix
+
+| Criterion | Result | Evidence and scope |
+|---|---|---|
+| MR-01 | PASS | AGENTS, engineering/lifecycle/independent-validation policies, original option R approval, cycle2 exact technical amendment, additional-pass authorization, board and current packet agree. The current additional instruction controls the historical two-cycle stop. Directive allowlist and non-goals remain bounded; no construction advancement follows from this review. |
+| MR-02 | PASS | Contract MQ-01 specifies thirteen frozen/slotted models, six alternatives and sixteen ordered exports, exact types/defaults/collection bounds and ownership. MQ-D4 and D5 give exact additive/reversible preserved-test/probe allowances, exercised synthetically. |
+| MR-03 | PASS | MQ-02 specifies no construction reads; exact request/execution/name checks; one exact-bool availability read and one awaited capability; fixed kinds, graph selection, exception/cancel identity, MQ-D1 refusal and MQ-D2 request rule. No competing neutral/service owner is introduced. |
+| MR-04 | PASS | Compared contract MQ-03–05 with current `commands/memory.py` and registry graph handler. Store/transcript order, meta verification-before-preview/ISO/confidence, lazy complete/warnings, graph second-await-before-projection, caps and rendering are preserved. Two executed captures each match76 rows/six metadata records. Four supplemental cases reproduce exactly, including unused metadata and incomplete empty meta. |
+| MR-05 | PASS | Actual adapter ingestion stores source/description/type and chunk metadata; existing `query_memory_records` demonstrates public short/long-term `get_all(limit=None, where=...)`, gathered failure handling and cancellation propagation. Option R can implement grouping/count/order using those APIs without `/ingest`, source-file or framework changes. Fake list preservation and persisted/re-ingestion/promotion/malformed-record tests are explicit future obligations, not claimed executed implementation. |
+| MR-06 | PASS | MQ-07 fixes six wrapper identities and registry indices3/9/10/11/12/16, retains 39 tuple entries and41/3 surface, requires one factory/await/outcome consumption and pure renderers. Distinct injected outcomes, renamed/custom handlers and refusal tests prevent legacy recomputation. |
+| MR-07 | PASS | MQ-T01–14 cover schemas, order, single await, exceptions, projections, registry/purity and option R integration. Named mutations require canonical call-phase assertion witnesses and unchanged controls. D1/D2/D3 council gates are explicit. Existing assertions can change only under exact MQ-D4 reversal rules. |
+| MR-08 | PASS | Seven shell blocks syntax-check. Private pinned prepare/runner executes current bounded source, guard, comparison, correction, formatting, tools, board and docs lanes. D0 materialization and format record/equality/current-check sequence reproduced with own paths. D5 exact-copy transforms are executable synthetically. Future tests/builds/installed probes remain explicitly excluded at this readiness gate. |
+| MR-09 | PASS | All23 preparation receipts hash/byte-checked against raw paths, along with embedded capture/comparer, baseline/replay and fixtures. Recursive preparation audit:29 text/hash entries,25 with supplied raw paths. Supplemental4/4, correction1 33/33, correction2 26/26, current correction3 11/11, round3 closeout8/8 embedded/raw pairs verified. All107 manifest raw-file identities preserved. Prior test counts are inspected receipts only. |
+| MR-10 | PASS | Start/end request/manifest/84 pins/HEAD/branch/logical index/staging/1255 protected/2 dirty/3 ignored export entries/107 raw inputs/one external locator checked. No mutations outside own scratch; explicit debt and synthetic limits retained below. |
+
+## Executed evidence
+
+Detailed argv/exits are in `commands.json`, `extra-commands.json`, the scripts, per-command stdout files, and `prepared/*.json`/`*.log`. Every Git child inherits `GIT_OPTIONAL_LOCKS=0`; Python runs use `-B` and `PYTHONDONTWRITEBYTECODE=1`.
+
+- Offline `prepare.py` with the supplied read-only eight-wheel source: passed; private editable startup passed. No fetch requested.
+- Guard selftest:18 refusals plus permitted loopback/scratch-memory SQLite controls passed.
+- Comparator selftest:14 refusal classes passed.
+- Baseline capture and replay:76 exact rows, six exact metadata records each; zero declared refusals/repair substitutions at this unchanged baseline. Both executions used the same private clean export with separate outputs; historical preparation used separate exports.
+- Extra-source and changed-byte controls: expected exit1 at source inventory/hash guards before imports; no implementation mutation credit claimed.
+- Four supplemental observations: executed and JSON-equal to supplied observations.
+- Current correction verifier: passed, including API54, exact union12/18, four retained probe transformations, stale-gate and format controls.
+- Independently authored union test: positives passed; four negative cases failed at canonical helper203; unrelated loop replacement detected by reversal comparison. `independent-union.json` records limits.
+- Baseline-format record: reproduced exact pinned JSON bytes. Current format check: no new debt. Formatter/config/source identity retained in `format-baseline.json`.
+- Ruff check and format --check for both validation tools: passed, two formatted files.
+- Board validate:36 tasks; dashboard render --check: current.
+- Documentation lifecycle:920 Markdown files passed.
+- Seven directive zsh syntax checks: passed. Aggregate diff --check: passed.
+
+The initial documentation invocation used nonexistent `scripts/check-docs.py` and exited2. It earns no validation credit; the correct `scripts/check-documentation-lifecycle.py` then passed. The initial auditor hashed symlink target text instead of the manifest's dereferenced file bytes, producing twelve comparison mismatches; the auditor was corrected inside scratch, and all identities matched. The first output remains `start.json`; the correct boundary receipt is `start-corrected.json`. Neither incident changed supplied files.
+
+## Integrity and write ledger
+
+First action was request SHA256 verification, before allocation or writes:
+`fd2375d06aad4b9290c69e3f8c342f38675ca4ffe11d6aef7b2655eef4dfbb45`.
+Manifest SHA256:
+`7a750d88da89f70fa607ccded8b1546c310f09a4d076b53111eb31d904d5681c`.
+The full manifest was parsed, and every inventory entry was visited and checked; its large initial textual display was truncated, not used as a substitute for the complete machine audit.
+
+Both corrected boundary receipts show exact logical index digest
+`bc62fa28892778504e6b5a4aa8410595edc255b17e2afe8bc0d93ed680a46647`.
+Exact `git ls-files -s -z` stdout was hashed before status at each boundary. HEAD/branch/staged diff/status match the manifest. The only dirty files remain the two supplied Chat example YAMLs. All protected metadata comparisons include mode/type/size/mtime/ctime and applicable SHA/link identity.
+
+All reviewer-created files belong under the one resolved scratch root. Writes include audit/control/orchestration scripts, diff captures, command logs/receipts, copied capture/comparer/format/verifier/supplement programs, baseline archive/export, observations and format inventories, synthetic controls, this report, and closing ledger. The two temporary source mutations and their restoration/removal occurred solely in the own exported copy. Private harness caches are `prepared/uv-cache`, `prepared/cache`, `prepared/mypy-cache`; TMPDIR is own scratch. No pytest suite was run and no supplied basetemp was reused. The harness owns any future pytest basetemp. No global locator/PID/breadcrumb was created. `write-ledger.json` inventories retained files beneath scratch; transient runner files also stayed beneath that root.
+
+The preserved locator SHA256 is
+`58849ad5e064c08576c86c8e2794eea1e990bbce7f57c6321bc01f2665b4d70a`.
+No write/delete/restore of it occurred. No repository repair, cleanup, board mutation, Git index update, controller-script execution, external communication or nested delegation occurred.
+
+## Debt and residual limits
+
+Root Ruff534, root `test_display` collection conflict (historical6929 collected), and existing formatting failures in memory.py/registry.py/runtime.py/adapters.py remain **failed and unwaived**. No-new-format-debt is a separate bounded comparison, not a green whole-file gate. These root failures were not rerun. Historical related Chat587 and Commands/cohort498 receipts were inspected, not reproduced as implementation validation.
+
+This pass proves bounded directive/design readiness. Synthetic API owners/union aliases and AST transforms do not prove real new models, runtime whitelist behavior, or installed packages. Source captures use synthetic services; no live provider/store/user data was used. Future implementation, required MQ tests/mutations, source suites, D0/D5 build trials, candidate wheels, normal/optimized installed proof and real persisted-listing integration remain separate required gates. No missing future artifact was counted as passing. README semantic review is human/model inspection supported by direct text/diff evidence; the existing regex helper is deliberately not a general parser.
+
+The 9.5 score reflects readiness and bounded evidence, not product completeness or human acceptance. Return this fresh seat receipt to the controller for council reconciliation. It grants no construction advancement, UAT, acceptance, later-family, P0/P1, TUI or delivery authority and initiates no loop.

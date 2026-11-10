@@ -313,3 +313,140 @@ each bounded namespace, rejection of unknown namespaces and extra keys, and a
 downstream type-check fixture that imports no internal Friday LLM modules.
 Source Evidence: The Friday Chat configuration migration uses only public root
 exports and records provider options separately from normalized generation.
+
+
+## FU-009: Omit Absent Ingestion Description Metadata
+
+Status: CLOSED — shared repair and combined retest accepted by Chuck Russell,2026-11-10
+Discovered During: MEMQ-001 D2 persisted-listing validation, 2026-11-09
+Framework Package: `packages/friday-memory` / public Chroma metadata boundary;
+the caller constructing this metadata is Friday Chat's FrameworkMemoryAdapter.
+Requested Change: Separately approve a bounded repair that omits the optional
+description key when no description is supplied, covering both single-document
+and batch-ingestion branches. Preserve explicit descriptions and listing groups.
+Reason: The real `/ingest FILE` handler produces description=None; the adapter
+includes that value in metadata and Chroma rejects it with TypeError. Paired
+clean pre-D2/candidate controls reproduce identical messages through the adapter
+and real command. The ingest code is unchanged in MEMQ.
+Impact If Not Changed: Users who omit a description cannot ingest through the
+real adapter; fake-adapter behavior can conceal this limitation.
+FridayV2 Workaround: Supply a non-empty description, such as
+`/ingest /path/document.txt project notes`. Use prepared absent-description
+persisted records to assess listing; listing already accepts a missing key.
+Compatibility Risk: Review absent versus empty descriptions and both ingest
+branches before approval. No repair or waiver is included in MEMQ-001.
+Suggested Follow-Up Tests: Real-adapter command and direct single/batch calls
+with missing, empty and explicit descriptions; persisted metadata and listing
+groups/counts; regression against explicit-description ingestion.
+Source Evidence: [MEMQ D2 round1 reconciliation](../../active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md),
+including all three independently reproduced paired controls; [CMD-F05](../friday-tui-command-followups/README.md).
+
+
+Current repair: reusable Friday Memory metadata builder; Chat calls it in both
+branches. Real disposable Chroma command tests cover omitted/empty/explicit
+descriptions, counts/protection/listing/re-ingest; human UAT is accepted/closed.
+[Repair evidence](../../active/command-refactor/validation/memory-queries/uat-shared-repair/README.md).
+
+## FU-010: Preserve Maintenance Verification Response Diagnostics
+
+Status: CLOSED — diagnostic implementation and combined retest accepted by Chuck
+Russell,2026-11-10; full reorganization on exit yields positive /meta per maintainer.
+Discovered During: MEMQ populated-meta UAT,2026-11-09.
+Requested Change: Preserve shared completion metadata and safe role/model/schema/
+finish/validation-field evidence without exposing provider content. Distinguish
+incomplete enclosing JSON from recovered nested objects.
+Source Evidence: Actual full run failed_rolled_back during234-record verification;
+synthesis had0 candidates with156 quarantined sources. A synthetic truncated
+response reproduces the generic schema-error mechanism, not the actual provider
+reply. REM-CMD-MEMQ-UAT-002 implements the bounded shared diagnostic boundary;
+[implementation/evidence](../../active/command-refactor/validation/memory-queries/uat-diagnostics/README.md).
+Compatibility: Legacy parsing default and callers retain behavior; maintenance
+uses strict enclosing-object parsing and fails closed on explicit length output.
+Model/config/budget, batching, quarantine, order and rollback remain unchanged.
+Resolution: The maintainer reports the combined retest successful and positive
+/meta after full reorganization on exit. MEMQ UAT is accepted/closed. The earlier
+error cause is not retrospectively asserted; the separate explicit --full syntax
+issue remains FU-011, not an open verification-response blocker.
+
+## FU-011: Reorganize Rejects The Explicit Full Mode Flag
+
+Status: OPEN — documented command-syntax defect; implementation not started.
+Discovered During: Maintainer MEMQ UAT acceptance,2026-11-10.
+Owner: Friday Chat command argument handling; later shared MAINT-001 migration
+must preserve or deliberately repair its grammar under approved scope.
+
+Reproduction: Enter `/reorganize --full --execute` at the Chat prompt.
+Expected: Explicit full mode is accepted and invokes the same full maintenance
+request as `/reorganize --execute`, preserving execute/recovery/rollback safeguards.
+Actual: The parser rejects --full as an unknown argument before maintenance starts.
+The maintainer reports this error; exact source-AST execution reproduces
+`Unknown argument '--full'.` No live maintenance/provider/store operation was run.
+
+Cause: `_REORGANIZE_MODE_FLAGS` in commands/registry.py omits --full, while its
+no-mode default is full. The `/meta` empty-state guidance in commands/memory_queries.py
+recommends `/reorganize --full --execute`, producing an application guidance/parser
+mismatch. Exit maintenance bypasses slash-command parsing and constructs a typed
+FULL request directly for session full/deep modes. That is consistent with the
+maintainer's successful full reorganization on exit and positive `/meta` results.
+Current accepted syntax: `/reorganize --execute` selects full execution;
+`/reorganize` alone is a full dry run. This syntax observation does not attest a
+new full production run. The spelling `-- full` is not proposed as valid syntax.
+
+Impact: The advertised explicit command blocks an on-demand Meta Insight refresh.
+It is separate from the accepted read-only `/meta` query and the closed MEMQ UAT.
+A successful verification step alone does not generate Meta Insights: synthesis
+requires previously verified sources, and current full mode synthesizes before
+verification. Model review, JSON/schema validation, quarantine and rollback can
+also explain generation delays; see the flow note below. No external fact-checking
+is supplied by the current verifier role names alone.
+
+Bounded follow-up: reconcile the explicit --full grammar and user guidance; test
+parity with default full mode, dry-run/--execute, duplicate/conflicting modes,
+recovery exclusions and coordinator dispatch. Preserve pipeline, verification,
+quarantine, model/budget/config and backup/rollback policy. No implementation,
+policy change or broader migration is authorized by this defect registration.
+Source evidence: [acceptance](../../active/command-refactor/approval/memory-queries-acceptance.md),
+[pure-parser evidence](../../active/command-refactor/validation/memory-queries/acceptance/reorganize-argument-evidence.json),
+[verification flow](../../active/command-refactor/validation/memory-queries/acceptance/verification-flow.md).
+
+
+### FU-011 — MAINT-001 implementation checkpoint (2026-11-10T17:05:42.159818+00:00)
+
+Explicit `/reorganize --full` admission/help is implemented locally under the
+exact MAINT-001 directive. Duplicate/conflicting modes remain refused. Full
+installed proof and independent implementation validation are still pending;
+this is not acceptance or closure of unrelated follow-ups.
+
+
+## FU-012: Extract Actual PDF/DOCX/XLSX/PPTX Text Before Ingestion
+
+Status: PROPOSED — four-format extraction, shared ingestion chunking/embedding guards and Tools adoption; no code yet
+Discovered During: Maintainer report and guarded source inspection,2026-11-10;
+maintainer subsequently expanded scope to XLSX and PPTX.
+Framework Package: Friday Tools shared extraction; Friday Commands file arguments;
+Friday Chat delegation/default document dependencies; shared Memory ingestion policy,
+LLM capability/limit enforcement and minimal Core contracts. Storage engines stay unchanged.
+Requested Change: Use one pinned Docling pipeline for PDF/DOCX/XLSX/PPTX extraction,
+with local PDF OCR, quoted paths, explicit format coverage and dependency/model
+requirements. Upgrade named Tools consumers through the companion adoption plan.
+Proposed format defaults cover visible worksheets/slides, saved formula values
+without recalculation and labeled speaker notes. All ingestion sources use
+document/512-token defaults with document/recursive/fixed overrides. Existing
+text/web fetching stays; token/dimension guards are shared. Qwen4B is illustrative
+only; fresh test stores require no legacy migration. No unrelated format rollout.
+Reason: SmartFileReader returns placeholders for PDF/DOCX/XLSX and does not admit
+PPTX. Old PDF page failures can become successful diagnostic content. Existing
+Tools consumers also require explicit routing, beyond adding a shared helper.
+Compatibility Risk: Exact read/ingest format/help and default closure change;
+shared tokenizer preserves unrelated commands. Freeze all four format policies
+and Tools XLSX selections/pagination before construction. No historical record
+cleanup, storage-engine change, formula calculation or slide rendering.
+Suggested Follow-Up Tests: Genuine PDF/DOCX/scanned/multi-sheet/multi-slide fixtures
+through registry, shared extraction, public Tools and disposable Chroma. Inspect
+late markers in stored chunks, notes/tables/order and exact coverage. Refuse
+missing dependencies/models, corrupt/partial/empty output, uncached formula
+results and malformed paths; prove installed normal/optimized behavior and the
+mandatory certifi>=2026.10.19 floor.
+Source Evidence: [Historical source assessment](../../active/command-refactor/validation/document-ingestion/assessment.md),
+[scope expansion](../../active/command-refactor/validation/document-ingestion/format-expansion.json)
+and [proposed remediation](../../active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md).

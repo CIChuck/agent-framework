@@ -203,8 +203,8 @@ every pure graph read does not necessarily count as an access.
 
 ## Maintenance and recovery
 
-Use `/memory`, `/sessions`, `/context`, `/prompt`, `/debug-budget` and
-`/tool-budget` to diagnose first. `/prompt` and file exports can contain private
+Use `/memory`, `/sessions`, `/context`, `/prompt` and `/debug-budget`
+to diagnose first. `/prompt` and file exports can contain private
 content. Budget diagnostics and telemetry are not a substitute for inspecting
 what the provider actually received in a controlled synthetic reproduction.
 

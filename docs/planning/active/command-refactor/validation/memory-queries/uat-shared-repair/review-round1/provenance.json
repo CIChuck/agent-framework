@@ -1,0 +1,9 @@
+{
+  "source_report": "/private/tmp/memq-openai-review-lxmqb4o2/report.md",
+  "report_sha256": "64cf2a8a437a010e9049626979151a889500a61defb61652eaf841ec347bc13a",
+  "source_index": "/private/tmp/memq-openai-review-lxmqb4o2/artifact-index.json",
+  "index_sha256": "f0ddee6825af9c40049058ae910629fb4c07d819f8bc50380d457fc105b9cf14",
+  "artifact_hashes_checked": 72,
+  "verdict": "CHANGES_REQUESTED",
+  "finding": "MEMQ-OPENAI-001;3 current packet statements; all runtime criteria supported"
+}

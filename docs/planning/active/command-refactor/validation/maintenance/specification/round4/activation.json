@@ -1,0 +1,45 @@
+{
+  "unit": "MAINT-001",
+  "recorded_at": "2026-11-10T16:15:19.231922+00:00",
+  "candidate": "2b0850bfe6cfc6a91d744fa4440a40eaadaf3a60",
+  "request_sha256": "21ad93bc05b054f3a96f97bb434afa8f13eafd4442d9d942f59214db93a23ddf",
+  "conditional_approval": "docs/planning/active/command-refactor/approval/maintenance-reorganization-conditional.md",
+  "conditional_approval_sha256": "636e5d336210e255e79b4c4e8ed1e763fabd03c8db5ef3ee262b937f123c5ac0",
+  "pins": {
+    "AGENTS.md": "9c2840ea92bf5f25acd5c85d36a18d2c7d9677c0768d1e811aef5efde6fc936b",
+    ".agents/skills/council/SKILL.md": "360493507c5f522d4a365f7f90f76c7eb37ad31ee36096a359c0715aae00b23c",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/development-task-lifecycle.md": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/active/command-refactor/maintenance-reorganization-specification.md": "56e3cd5fc75b402ab4aeda46f80807873b79a3df96debadb83164c2c0debfdad",
+    "docs/planning/active/command-refactor/directives/CD-CMD-MAINT-001-reorganization-order.md": "931d42538d9f100392743d8e9826eec00b67297af788dd84e4453e820ebea2e7",
+    "docs/planning/active/command-refactor/scope-decisions.md": "6760092e9d7b4f38a0e96d8109fde0e95cd8c3db0aeaf05c927801243dccb749",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-MAINT-DOC-001-boundary-and-receipts.md": "808642c16b206f5ab24beb0f583e3463ec578e152d52d5b10a73a2cc7df3636e",
+    "docs/planning/active/command-refactor/approval/maintenance-reorganization-conditional.md": "636e5d336210e255e79b4c4e8ed1e763fabd03c8db5ef3ee262b937f123c5ac0",
+    "docs/planning/active/command-refactor/validation/maintenance/construction-preparation-v4.json": "66e940efd0271b03bd3ae5c358c1320cf30e4d0d474d3c278be67d5e593f8f4d",
+    "docs/planning/active/command-refactor/validation/maintenance/selection-digest-vectors.json": "398b65267321aeda278c2f161aaefc306a71187e57655941afcf03774e8b41d5"
+  },
+  "reports": {
+    "Sol": {
+      "report": "docs/planning/active/command-refactor/validation/maintenance/specification/round4/sol-report.md",
+      "sha256": "dc313f1d095482c94639f5579c8e5da625af778b397e63c940a09169dd8a182f",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/maint-r4-sol-private-h7msp9mi/MAINT-001-round4-Sol-report.md",
+      "outcome": "VERIFIED",
+      "score": 9.6,
+      "mandatory_findings": []
+    },
+    "Astra": {
+      "report": "docs/planning/active/command-refactor/validation/maintenance/specification/round4/astra-report.md",
+      "sha256": "9d5a97550b551d2b010524a217021044f656685a51bcb18b252af20bf9301013",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/maint-r4-astra-review-986o3bc0/report.md",
+      "outcome": "VERIFIED",
+      "score": 9.6,
+      "mandatory_findings": []
+    }
+  },
+  "controller_integrity": "all request/pin/protected/index/status/preserved-metadata checks passed before activation",
+  "gate": "Both VERIFIED, each9.6>=9.5, zero mandatory findings",
+  "activated": true,
+  "authority": "Chuck Russell exact conditional instruction, not council result alone",
+  "scope": "Exact approved directive only; no delivery or acceptance authority"
+}

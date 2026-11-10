@@ -127,8 +127,8 @@ do not assume a registered `assistant` or `Friday` agent exists.
 `required_tools` records tools that must be included by the relevant selection
 path. All names must resolve in the actual registry. Schema budgets, admission
 and application permissions continue to apply; `auto` does not authorize a
-destructive action. For Chat, `/inject-tools` and `/clear-tools` control its
-own per-turn schema selection. See [tools](05-tools.md).
+destructive action. Chat has its own per-turn schema selection and context
+budget policy. See [tools](05-tools.md).
 
 ## Model and memory binding
 

@@ -1,0 +1,56 @@
+{
+  "method": "Exact pure parser AST extracted from source; no app/provider/store import or reorganization execution",
+  "source": "packages/friday-chat/src/friday_chat/commands/registry.py",
+  "source_sha256": "3d7818f4e2fd23ed5cc83aeca2e27be00144051372051e6b54906f09256e8446",
+  "cases": [
+    {
+      "args": [
+        "--full",
+        "--execute"
+      ],
+      "error_type": "_ReorganizeUsageError",
+      "error": "Unknown argument '--full'.\nUsage: /reorganize [--execute] [--backup|--dedupe|--analyze|--prune|--synthesize|--verify] [--skip-synthesis] [--skip-verify] [--skip-lifecycle] [--force-reembed]\n       /reorganize --recover <run-id> [--execute]"
+    },
+    {
+      "args": [
+        "--execute"
+      ],
+      "result": {
+        "mode": "full",
+        "dry_run": false,
+        "skip_synthesis": false,
+        "skip_verify": false,
+        "skip_lifecycle": false,
+        "force_reembed": false,
+        "recovery_run_id": null
+      }
+    },
+    {
+      "args": [],
+      "result": {
+        "mode": "full",
+        "dry_run": true,
+        "skip_synthesis": false,
+        "skip_verify": false,
+        "skip_lifecycle": false,
+        "force_reembed": false,
+        "recovery_run_id": null
+      }
+    },
+    {
+      "args": [
+        "--verify",
+        "--execute"
+      ],
+      "result": {
+        "mode": "verify",
+        "dry_run": false,
+        "skip_synthesis": false,
+        "skip_verify": false,
+        "skip_lifecycle": false,
+        "force_reembed": false,
+        "recovery_run_id": null
+      }
+    }
+  ]
+}

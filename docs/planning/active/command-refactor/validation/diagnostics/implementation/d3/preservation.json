@@ -1,0 +1,39 @@
+{
+  "D3_base": "d437a5dc601126ae0767cf6558ae63d214159c19",
+  "aggregate_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
+  "artifact_source": "30790ec0f06813e7331c851d04c123997a398d97",
+  "D3_unchanged_original_files": 1255,
+  "D3_unchanged_original_tests": 281,
+  "test_prefixed_definitions": 3042,
+  "assertions": 9400,
+  "aggregate_changed_original_files": [
+    "packages/friday-chat/README.md",
+    "packages/friday-chat/src/friday_chat/commands/registry.py",
+    "packages/friday-commands/README.md",
+    "packages/friday-commands/src/friday_commands/__init__.py",
+    "packages/friday-commands/src/friday_commands/contracts.py",
+    "packages/friday-commands/tests_commands/test_session_views.py"
+  ],
+  "aggregate_product_paths": [
+    "packages/friday-chat/README.md",
+    "packages/friday-chat/src/friday_chat/commands/diagnostics.py",
+    "packages/friday-chat/src/friday_chat/commands/registry.py",
+    "packages/friday-chat/tests_chat/fixtures/diagnostics-baseline.json",
+    "packages/friday-chat/tests_chat/test_command_diagnostics.py",
+    "packages/friday-commands/README.md",
+    "packages/friday-commands/src/friday_commands/__init__.py",
+    "packages/friday-commands/src/friday_commands/contracts.py",
+    "packages/friday-commands/src/friday_commands/diagnostics.py",
+    "packages/friday-commands/tests_commands/fixtures/diagnostics-metadata.json",
+    "packages/friday-commands/tests_commands/test_diagnostics.py",
+    "packages/friday-commands/tests_commands/test_session_views.py"
+  ],
+  "old_contract_AST_retained": true,
+  "old_SESSION_test_only_literal_append": true,
+  "artifact_hash_matches": 154,
+  "workspace_builds_each": 13,
+  "locked_artifacts": 125,
+  "child_build_commands_each": 25,
+  "default_closure": 138,
+  "ignored_exports_unchanged": true
+}

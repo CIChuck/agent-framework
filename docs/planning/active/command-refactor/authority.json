@@ -2,12 +2,12 @@
   "version": 1,
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
-  "date": "2026-11-06",
-  "decision": "Chuck Russell approved RD-01 and exact CD-CMD-FND-001 at reviewed source base d003c4db31cc9b1e3d143fd8c0d8b930db50ab30; execute only CMD-FND-001",
-  "branch": "feature/command-refactor",
+  "date": "2026-11-10",
+  "decision": "MAINT-001 remains independently verified; INGEST extraction, shared all-source chunking, embedding limits and Tools adoption are proposed planning only",
+  "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Approved neutral foundation API-01 through API-06, exact new package/tests and minimal root/cohort/artifact integration from CD-CMD-FND-001; no production handlers, command migration/removal or client wiring",
-  "product_code_authority": "Granted for CMD-FND-001 only under exact approved directive/API/base; prior separate CLI/finance metadata units VERIFIED",
+  "current_scope": "Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.",
+  "product_code_authority": "Granted only for exact CD-CMD-MAINT-001 scope through conditional approval and round4 activation; no acceptance/delivery.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -33,7 +33,7 @@
     "resumed_by": "Chuck Russell",
     "resume_instruction": "Proceed to step three."
   },
-  "construction_directive_approval": "approved_for_CMD-FND-001_only",
+  "construction_directive_approval": "MAINT-001 exact approval/maintenance-reorganization-conditional.md, activated in validation/maintenance/specification/round4/activation.json; earlier accepted authorities remain historical",
   "council_request": {
     "requested_by": "Chuck Russell",
     "scope": "Read-only evaluation of the frozen readiness review; no construction approval or automatic remediation loop",
@@ -119,5 +119,1881 @@
     "architecture_readiness": "Supplied exact-API readiness evidence accepted with CD approval; no API changes",
     "preparation": "Only approval/evidence/status descendants may precede construction; verify product bytes and exact directive/API unchanged from approved source base, record actual builder starting HEAD",
     "delivery": "No push/merge/release authority"
+  },
+  "checkpoint_handoff": {
+    "pr_url": "https://github.com/CIChuck/agent-framework/pull/13",
+    "merge_commit": "6f291ca5755a616d9185c86dff104b660a1fba8c",
+    "retirement_branch": "feature/command-retirement",
+    "retirement_directive_sha256": "b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df",
+    "retirement_directive_approval": "approved",
+    "record": "validation/checkpoint/delivery.json",
+    "note": "New branch and source baseline refresh are explicitly authorized delivery closeout; historical directive/API approvals and reviewed candidates remain unchanged."
+  },
+  "retirement_directive_strengthening": {
+    "authorized_by": "Chuck Russell",
+    "instruction": "Strengthened the document i approve your recommendations.",
+    "scope": "Documentation only: exact cleanup/state/test map, pinned oracles/harness, reproducible commands, Git-clean artifact inputs and current baseline/fixture permissions.",
+    "construction_approval": "not_granted",
+    "directive_sha256": "b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df"
+  },
+  "retirement_construction_approval": {
+    "approved_by": "Chuck Russell",
+    "instruction": "i approve the document proceed.",
+    "directive_sha256": "b760a9a8f8b94e120e5d26914d9bdf45f037a6a3f7f9552cd3d4054d829da9df",
+    "source_base": "6f291ca5755a616d9185c86dff104b660a1fba8c",
+    "record": "approval/command-retirement.md"
+  },
+  "retirement_acceptance": {
+    "accepted_by": "Chuck Russell",
+    "date": "2026-11-07",
+    "instruction": "accepted",
+    "candidate": "f896ef536efcc45d569f4231edfc39baab09bbc8",
+    "independent_report": "validation/retirement/verified-report.md",
+    "record": "approval/command-retirement.md",
+    "scope": "RET-001 only; whole refactor remains started, delivery local"
+  },
+  "pilot_preparation": {
+    "authorized_by": "Chuck Russell",
+    "date": "2026-11-07",
+    "instruction": "proceed",
+    "scope": "Planning only: pilot contract/directive and current board/dashboard/README/next-phase/authority/execution-log records",
+    "source_base": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
+    "contract": "pilot-command-contract.md",
+    "contract_sha256": "ef0af6e9c5300906594191ee18ea2b195ef4ae525fcd6898a644bdcc961c958d",
+    "directive": "directives/CD-CMD-PILOT-001-help-exit-clear.md",
+    "directive_sha256": "797178a18200a4e854b8ece064622f42f2cfeb21cfad335dc92f0cd69deb745e",
+    "design_approval": "not_granted",
+    "construction_approval": "not_granted",
+    "approval_order": [
+      "pilot contract including additive API/ownership review",
+      "exact construction directive"
+    ],
+    "lightweight_exemption": "Documentation-only preparation under maintainer proceed; no product/test/config/package/lock/frozen evidence edits; controller validates hashes, syntax, board/docs and whitespace",
+    "delivery": "No push/PR/merge/release authority",
+    "record_kind": "historical initial proposal at 2bb3c6cf; current hashes in pilot_current_proposal"
+  },
+  "pilot_harness_amendment": {
+    "authorized_by": "Chuck Russell",
+    "date": "2026-11-07",
+    "instruction": "Apply your changes, then invoke the council to validate the final results. Take the feedback from the council and apply it. Make sure the council gives us a 9 or better on our scoring.",
+    "scope": "Amend proposed pilot contract/directive; add and exercise diagnostic harness, baseline/comparison fixtures, incremental gates and review evidence under validation/pilot; reconcile current planning status; apply bounded council feedback and re-review",
+    "lightweight_exemption": "Diagnostic planning harness only, isolated scratch and fake runtime; no packages source/tests/config/metadata/lock edits. Exact maintainer instruction authorizes preparation and testing of these diagnostic assets, not pilot product construction.",
+    "external_services": "Requested review providers; public pypi.org metadata for eight exact build-tool pins; files.pythonhosted.org for those wheels and unchanged-lock target artifact files only. No live application services.",
+    "council": {
+      "providers": [
+        "Claude Opus 5.5 high",
+        "OpenAI GPT-6.1 Sol high",
+        "Gemini 4 Argon High"
+      ],
+      "target_score": 9,
+      "score_policy": "Each reviewer scores independently; do not require favorable findings. Full fresh round after changes; escalate after two unsuccessful remediation cycles."
+    },
+    "pilot_design_approval": "not_granted",
+    "pilot_construction_approval": "not_granted",
+    "delivery": "local only",
+    "status": "Final bounded corrections applied; independent readiness disposition is owned by validation/pilot/final-readiness-validation.md; pilot construction remains unapproved",
+    "evidence": "validation/pilot/harness-evidence-round4.json",
+    "corrections": "validation/pilot/council-remediation-round3.json",
+    "round_two_followup": {
+      "scope": "Resolve SOL-R2-PILOT-001 and CLD-R2-01 through 06 plus Gemini advisories; materialize and exercise a baseline artifact-bundle recipe, extend controls, then one full fresh council round",
+      "external_services": "Public pypi.org metadata for exact setuptools/wheel build pins; files.pythonhosted.org for hash-pinned build tools and target default-dependency artifacts from unchanged uv.lock only",
+      "product_construction": "not_granted",
+      "validation": "Actual cold baseline bundle/compile/install controls plus scoped suites, no user/global installs or cache cleanup"
+    },
+    "initial_external_services_record": "Public pypi.org/files.pythonhosted.org only to seed six exact hash-pinned build tools into scratch; delegate review providers via requested council. No live application services."
+  },
+  "pilot_proposal_revisions": [
+    {
+      "revision": 0,
+      "candidate": "2bb3c6cf",
+      "contract_sha256": "ef0af6e9c5300906594191ee18ea2b195ef4ae525fcd6898a644bdcc961c958d",
+      "directive_sha256": "797178a18200a4e854b8ece064622f42f2cfeb21cfad335dc92f0cd69deb745e"
+    },
+    {
+      "revision": 1,
+      "candidate": "3952d213c6be360c2b8b638c0474d8142fa4bb20",
+      "contract_sha256": "3215089eeaf9298566b677949bbbcaddde91ab00dc08aea37c971547ed3e4b54",
+      "directive_sha256": "a5fe8be287d8118214d3149180a4a50266f113b6e70abce34dfbe2fcee21cca2"
+    },
+    {
+      "revision": 2,
+      "candidate": "911f7dbd39c4ae36fa20b6aae1dc82fbfdf1a1f3",
+      "contract_sha256": "c2c5b94079f466d0cf7d8331d0941fc9451e2d8e390d0e288e3b81ec9997f973",
+      "directive_sha256": "3033ea657b125a6308647e5b8cac6c1acf885cc113d4bbd2e32ffd4b76c620fe"
+    },
+    {
+      "revision": 3,
+      "candidate": "2c3db9d8f05dbe453f5288fbf9305fade3068574",
+      "contract_sha256": "e9cf8af3c0fc5e164de35c27d01e428ac9a912f0f957c21c40648c2334dc86d3",
+      "directive_sha256": "ef22f4d2adbcf50a54958946f722131ddd7e8fa5b2247fad9c9f1a6a638fee1f"
+    },
+    {
+      "revision": 4,
+      "candidate": "f7035bbdd1b18c6301848b4214398d8adfbe18ed",
+      "contract_sha256": "e625123b8222262fb02b32aeadb2cae5c91d18ff573f04763b0af7ea3f22eb8c",
+      "directive_sha256": "9797df6b9bf45950cb59514d05bef4c78f37b50ca30e8b77d8f8ca29ba11b2bc"
+    }
+  ],
+  "pilot_current_proposal": {
+    "revision": 5,
+    "contract": "pilot-command-contract.md",
+    "contract_sha256": "e625123b8222262fb02b32aeadb2cae5c91d18ff573f04763b0af7ea3f22eb8c",
+    "directive": "directives/CD-CMD-PILOT-001-help-exit-clear.md",
+    "directive_sha256": "b85be3a04035e1f8318cc6566f7767aad00355b61c49e2650c6327981fd2a982",
+    "design_approval": "granted",
+    "construction_approval": "granted",
+    "approval_record": "approval/pilot.md",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-11-07T19:59:20+00:00"
+  },
+  "additional_correction_authorization": {
+    "authorized_by": "Chuck Russell",
+    "date": "2026-11-07",
+    "instruction": "Perform another correction pass, followed by a council review.",
+    "after_round": 3,
+    "scope": "One additional bounded diagnostic/planning correction pass for consolidated round-three findings, including exact source inventory/private Git archive builds, receipt aliases/options and reproducibility advisories; followed by a full fresh three-provider council",
+    "prior_cycle_escalation": "Explicit maintainer direction extends the earlier two-cycle automation limit for this pass only",
+    "product_construction": "not_granted",
+    "delivery": "local only",
+    "validation": "Adversarial source/type/mode controls, offline bundle replay, scoped suites, hashes, board/docs and fresh council"
+  },
+  "pilot_readiness_round4": {
+    "candidate": "f7035bbdd1b18c6301848b4214398d8adfbe18ed",
+    "outcome": "CHANGES_REQUESTED",
+    "scores": {
+      "openai": 9.0,
+      "claude": 9.0,
+      "gemini": 9.5
+    },
+    "score_target_met": true,
+    "report": "validation/pilot/council-round4.json",
+    "reconciliation": "validation/pilot/round4-reconciliation.md",
+    "open_findings": [
+      "SOL-R4-PILOT-001",
+      "SOL-R4-PILOT-002 / CLD-R4-01 / ARGON-R4-001"
+    ],
+    "next_gate": "Authorized bounded two-fix correction, then independent delta and aggregate readiness verification; afterward exact contract/directive approval",
+    "construction_approval": "not_granted",
+    "delivery": "local only"
+  },
+  "final_readiness_correction_authorization": {
+    "authorized_by": "Chuck Russell",
+    "date": "2026-11-07",
+    "instruction": "You had greater-than-nine scores across the board, and I believe that was our goal.  Let's continue. What's the next step?",
+    "interpretation": "Continue the immediately proposed two-fix plan and fresh validation; no waiver of findings and no pilot construction approval inferred.",
+    "scope": "SOL-R4-PILOT-001 and duplicate contract-pin findings SOL-R4-PILOT-002 / CLD-R4-01 / ARGON-R4-001; align existing receipt prose; preserve contract API/bytes and deferred advisories.",
+    "validation": "One fresh independent read-only validator performs the bounded correction delta plus aggregate readiness review. Four completed three-provider council rounds remain historical; no new full council is requested.",
+    "limits": "One bounded correction pass and independent validation, no product/test/dependency/lock edits or external delivery."
+  },
+  "final_readiness_correction": {
+    "status": "applied; independent readiness verdict recorded separately in named report",
+    "report": "validation/pilot/final-readiness-validation.md",
+    "evidence": "validation/pilot/final-two-fix-evidence.json",
+    "changes": [
+      "Separate long equals-option parsing from attached short-option paths, preserving equals inside PATH.",
+      "Bind the directive to the unchanged current contract; align existing receipt prose and enforce cross-document equality before review freeze."
+    ],
+    "deferred": [
+      "Clustered short-option parsing",
+      "Prepared-lane/uv executable hardening",
+      "Git environment hardening"
+    ],
+    "construction_approval": "not_granted",
+    "required_readiness_outcome": "VERIFIED before proposing exact pilot contract/directive approval"
+  },
+  "pilot_construction": {
+    "unit": "PILOT-001",
+    "approval": "approval/pilot.md",
+    "approval_sha256": "32f20a7f96e4de77e8e9e8230888841c789750a46e364561e69d6cf5d637a626",
+    "instruction": "I approved the documents, invoke the council after each deliverable.",
+    "approved_at": "2026-11-07T19:59:20+00:00",
+    "approved_by": "Chuck Russell",
+    "administrative_start": "2655c3de043f24f3d6dfcd7e06f2bf980f14eacc",
+    "product_baseline": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
+    "branch": "feature/command-retirement",
+    "state": "accepted",
+    "current_deliverable": "PILOT-001 D1-D3 accepted; next family requires separate approved contract/directive",
+    "council_after_each_deliverable": true,
+    "deliverables": {
+      "D1": "Shared neutral API/handlers and standalone tests (G1)",
+      "D2": "Chat integration, dependency/lock edges, compatibility/lifecycle (G2-G3)",
+      "D3": "Regression, source/assertion/doc proof, clean artifacts/default installs (G4-G5)"
+    },
+    "delivery": "local only; no push/PR/merge/release authorization",
+    "acceptance": "granted",
+    "deliverable1": {
+      "state": "verified",
+      "gate": "D1 council reconciled; approved D2 may proceed",
+      "evidence": "validation/pilot/implementation/d1/sort-fix-evidence.json",
+      "scope": "PILOT-01/02 only; no Chat wiring or installed candidate claim",
+      "acceptance": "granted_under_PILOT-001",
+      "administrative_remediation": {
+        "finding": "D1-SOL-002",
+        "scope": "Reconcile required current process fields in index/execution log; align related preapproval authority summary (ARGON-D1-ADV-003). Product, tests and frozen approved documents unchanged.",
+        "council_round": 2,
+        "prior_reports": "validation/pilot/implementation/d1/council-round1.json"
+      },
+      "administrative_remediation_round2": {
+        "finding": "R2-CLD-D1-001",
+        "related_advisory": "R2-CLD-D1-ADV-01",
+        "scope": "Live next-phase header and clearly separated current/historical sequence; existing directive approval summary aligned. No product or test changes.",
+        "review": "Fresh D1 full council round 3 after second bounded metadata remediation."
+      },
+      "council_round3": {
+        "candidate": "19d0b9d1885bfcd89b410d3903968af3ae17b046",
+        "outcome": "CHANGES_REQUESTED",
+        "scores": {
+          "claude": 9.4,
+          "openai": 9.5,
+          "gemini": 9.8
+        },
+        "open_finding": "VAL-D1-R3-001",
+        "record": "validation/pilot/implementation/d1/council-round3.json",
+        "decision": "validation/pilot/implementation/d1/maintainer-decision.md",
+        "remediation_authorization": "additional pass not granted",
+        "product_construction_approval": "existing exact PILOT-001 approval retained"
+      },
+      "additional_test_correction_authorization": {
+        "approved_by": "Chuck Russell",
+        "approved_at": "2026-11-08T00:28:59+00:00",
+        "instruction": "authorized",
+        "responding_to": "One-line VAL-D1-R3-001 fixture correction and one fresh council pass after the two-cycle escalation.",
+        "scope": "Catalog(tuple(reversed(PILOT_SPECS))) -> Catalog(PILOT_SPECS) only in the existing sorting test; full G1/lint/format and no-sort mutation proof; metadata/evidence reconciliation.",
+        "cycle_extension": "One additional bounded correction pass and fresh three-provider council. No optional-advisory repairs or additional automatic loop.",
+        "administrative_base": "5347b858a9f0c6ba80f6fdd32c3eb62a3ab0cd46",
+        "existing_pilot_approval": "retained; D2 remains pending D1 council reconciliation"
+      },
+      "sort_test_correction": {
+        "finding": "VAL-D1-R3-001",
+        "state": "applied_pending_council",
+        "evidence": "validation/pilot/implementation/d1/sort-fix-evidence.json",
+        "G1_passed": 217,
+        "no_sort_mutant": "2 required sorting cases fail; other 215 pass",
+        "runtime_change": false
+      },
+      "baseline_evidence": "validation/pilot/implementation/d1/evidence.json",
+      "council_round4": {
+        "candidate": "eacef5b073c5b8f1e212e2f6c5c6a97083942db8",
+        "outcome": "VERIFIED",
+        "scores": {
+          "claude": 9.6,
+          "openai": 9.5,
+          "gemini": 9.8
+        },
+        "record": "validation/pilot/implementation/d1/council-round4.json",
+        "whole_pilot_acceptance": "not_granted"
+      },
+      "acceptance_record": "approval/pilot-acceptance.md"
+    },
+    "deliverable2": {
+      "state": "verified",
+      "scope": "Approved PC-03 through PC-06 Chat adapter/dependency edge; PILOT-03 through08 plus bounded Chat preservation subset of PILOT-09",
+      "gate": "D2 council reconciled; approved D3 may proceed",
+      "acceptance": "granted_under_PILOT-001",
+      "evidence": "validation/pilot/implementation/d2/remediation-evidence.json",
+      "source_revision": "5bec927c40d3cf9863cd89353360f740e911d300",
+      "council_round1": {
+        "candidate": "d261f021d2b8048015ea582c2ed4502898739c2c",
+        "outcome": "CHANGES_REQUESTED",
+        "scores": {
+          "claude": 8.7,
+          "openai": 9.6,
+          "gemini": 9.9
+        },
+        "mandatory_finding": "D2-PC04-DETAIL-01",
+        "record": "validation/pilot/implementation/d2/council-round1.json"
+      },
+      "metadata_compatibility_amendment": {
+        "document": "remediation/REM-CMD-PILOT-D2-001-metadata-compatibility.md",
+        "sha256": "fb1408a6e833b73981aa79f0fce8a57d18e9d24aa8f4c11838fd734335973964",
+        "approval": "granted",
+        "scope": "Falsy detail preservation and explicit supported text types; bounded adapter/test correction plus fresh council.",
+        "approval_record": "approval/pilot-metadata-compatibility.md",
+        "approved_by": "Chuck Russell",
+        "approved_at": "2026-11-08T01:28:24+00:00",
+        "approval_sha256": "1f71ed053573682f788915742beccb1fc7de7c53c3fb5d20b0b8325953331cf0"
+      },
+      "baseline_evidence": "validation/pilot/implementation/d2/evidence.json",
+      "remediation": {
+        "cycle": 1,
+        "finding": "D2-PC04-DETAIL-01",
+        "state": "implemented_pending_independent_verification",
+        "map": "validation/pilot/implementation/d2/council-remediation-round1.json",
+        "checks": {
+          "G1": 217,
+          "G2": 428,
+          "G3": 246,
+          "frozen_observations": 196
+        }
+      },
+      "council_round2": {
+        "candidate": "d5a29faff664e6b03599f4831c89e09fcb087a50",
+        "outcome": "VERIFIED",
+        "scores": {
+          "claude": 9.7,
+          "openai": 9.6,
+          "gemini": 9.8
+        },
+        "record": "validation/pilot/implementation/d2/council-round2.json"
+      },
+      "acceptance_record": "approval/pilot-acceptance.md"
+    },
+    "deliverable3": {
+      "state": "verified",
+      "scope": "Approved G4-G5 full regression, source/assertion/docs proof, clean Git artifact/default-install closure and installed_probe.py",
+      "gate": "Bounded pilot accepted; next family requires separate approved contract/directive",
+      "acceptance": "granted_under_PILOT-001",
+      "evidence": "validation/pilot/implementation/d3/remediation-evidence.json",
+      "artifact_source_revision": "70ebef3a1bafc8b6269abd0fd4dbb7d4a7bac7a3",
+      "council_round1": {
+        "candidate": "f4186b564c4bfd5eeb0bc378ba1edd25d313fb2d",
+        "outcome": "CHANGES_REQUESTED",
+        "scores": {
+          "claude": 9.5,
+          "openai": 8.8,
+          "gemini": null
+        },
+        "record": "validation/pilot/implementation/d3/council-round1.json"
+      },
+      "remediation": {
+        "cycle": 1,
+        "directive": "remediation/REM-CMD-PILOT-D3-001-installed-proof.md",
+        "directive_sha256": "65258dff05951dd298fd60bf1285c514ab3491e296c7b61ea43f1589dab8f31b",
+        "findings": [
+          "D3-SOL-001",
+          "D3-SOL-002"
+        ],
+        "state": "independently_verified",
+        "evidence": "validation/pilot/implementation/d3/remediation-evidence.json",
+        "dispositions": "validation/pilot/implementation/d3/council-remediation-round1.json"
+      },
+      "historical_evidence": "validation/pilot/implementation/d3/evidence.json",
+      "council_round": 2,
+      "council_round2": {
+        "candidate": "eb216421e533b98d5d025f74a5bc0ea177d2f5ec",
+        "outcome": "VERIFIED",
+        "scores": {
+          "claude": 9.6,
+          "openai": 9.6
+        },
+        "record": "validation/pilot/implementation/d3/council-round2.json",
+        "closed_findings": [
+          "D3-SOL-001",
+          "D3-SOL-002"
+        ]
+      },
+      "acceptance_record": "approval/pilot-acceptance.md"
+    },
+    "council_members_for_D3": {
+      "approval": "approval/pilot-two-member-council.md",
+      "approval_sha256": "1b3b04f728ba9e2ac51c5c7377490e786e7278ab08474e0d7aee0847163984f6",
+      "members": [
+        "Claude Opus5.5",
+        "GPT-6.1 Sol"
+      ],
+      "gemini": "quota unavailable; no retry/replacement",
+      "count": 2
+    },
+    "verified_candidate": "eb216421e533b98d5d025f74a5bc0ea177d2f5ec",
+    "verified_report": "validation/pilot/implementation/d3/verified-report.md",
+    "acceptance_record": {
+      "record": "approval/pilot-acceptance.md",
+      "sha256": "7968c499d768bcf632afaebb5d0ec0accf24cdcf385690453f6db05e33f8f618",
+      "accepted_by": "Chuck Russell",
+      "recorded_at": "2026-11-08T04:33:01+00:00",
+      "instruction": "approved",
+      "candidate": "eb216421e533b98d5d025f74a5bc0ea177d2f5ec",
+      "scope": "PILOT-001 help/exit/clear-screen D1-D3 only"
+    }
+  },
+  "historical_preapproval_summary": {
+    "source_candidate": "667bccc8e8917d3668960d15395dddfd1fc78d19",
+    "decision": "RET-001 accepted; amended pilot contract/directive and runnable diagnostic harness ready for independent council; product construction not approved",
+    "current_scope": "Review pilot contract first, then construction directive; accepted RET-001 remains closed",
+    "product_code_authority": "No new construction authority; RET-001 accepted, pilot/family/TUI and delivery remain unapproved",
+    "construction_directive_approval": "approved_for_CMD-RET-001_only; previous approved units retain historical provenance"
+  },
+  "session_preparation": {
+    "unit": "SESSION-001",
+    "state": "approved_by_subsequent_exact_record",
+    "requested_by": "Chuck Russell",
+    "instruction": "proceed",
+    "recorded_at": "2026-11-08T14:04:03+00:00",
+    "source_baseline": "38a0c58a0b533edc29908992c8c6ee64fa04eb20",
+    "scope": "Prepare the proposed history/clear contract and directive, current navigation/status and guarded read-only characterization only",
+    "contract": "session-command-contract.md",
+    "contract_sha256": "f29ac447d9cc76c1c1bb1dff9d6fc9ef619ca3b5ff43f1833ee5346250a3e003",
+    "directive": "directives/CD-CMD-SESSION-001-session-views.md",
+    "directive_sha256": "1fd4b3cf0a2de5ad180e9c3c3d06e7bb5d239bb3516ccca60fb7376041a96b46",
+    "preparation_evidence": "validation/session/preparation.json",
+    "preparation_evidence_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
+    "design_approval": "granted_by_subsequent_exact_approval",
+    "construction_approval": "granted_by_subsequent_exact_approval",
+    "product_implementation": "SESSION-001 D1\u2013D3 and bounded aggregate independently verified and accepted; preparation fields remain historical",
+    "tests": "Historical preparation-era observations are preserved in historical_preparation_tests; current D1/D2 conformance is recorded in session_construction.",
+    "pilot_acceptance": "approval/pilot-acceptance.md",
+    "delivery": "local only",
+    "approval_record": "approval/session-views.md",
+    "historical_preparation_tests": "434 related existing Chat and 217 Commands/cohort pass; 25 source observations reproduce exactly. New SESSION tests/APIs remain future obligations."
+  },
+  "session_construction": {
+    "unit": "SESSION-001",
+    "approval": "approval/session-views.md",
+    "approval_sha256": "ebe203d07e4143fa81221ab76fb04db4e3e2d82e981a633df263ba0174d61ab4",
+    "approved_by": "Chuck Russell",
+    "approved_at": "2026-11-08T15:08:32+00:00",
+    "instruction": "approved both docs proceed",
+    "contract_sha256": "f29ac447d9cc76c1c1bb1dff9d6fc9ef619ca3b5ff43f1833ee5346250a3e003",
+    "directive_sha256": "1fd4b3cf0a2de5ad180e9c3c3d06e7bb5d239bb3516ccca60fb7376041a96b46",
+    "preparation_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
+    "product_baseline": "38a0c58a0b533edc29908992c8c6ee64fa04eb20",
+    "state": "accepted",
+    "current_deliverable": "SESSION D1\u2013D3 accepted; next unit requires separate authority",
+    "council_after_each_deliverable": true,
+    "council_members": [
+      "GPT-6.1 Sol/high",
+      "GPT-6 Astra/high",
+      "Claude Opus 5.5/high"
+    ],
+    "deliverable1": {
+      "state": "verified",
+      "scope": "SESSION-01\u201304; D1 preservation/compatibility subset only",
+      "evidence": "validation/session/implementation/d1/export-fix-evidence.json",
+      "source_revision": "4065a150cbfcacbcf71c6aab05e05d2920bf48e5",
+      "S0": "passed scoped baseline; known root debt remains failed/unwaived",
+      "gate": "D1 council reconciled; proceed to already-approved D2",
+      "acceptance": "granted_by_SESSION_unit_acceptance",
+      "council_round1": {
+        "candidate": "363d67a4f26ef49ab83b1ebb5b06c9ab143d2b31",
+        "outcome": "CHANGES_REQUESTED",
+        "scores": {
+          "claude": 9.2,
+          "openai": 9.6,
+          "gemini": null
+        },
+        "record": "validation/session/implementation/d1/council-round1.json"
+      },
+      "remediation": {
+        "cycle": 1,
+        "directive": "remediation/REM-CMD-SESSION-D1-001-export-surface.md",
+        "directive_sha256": "5e016ba9f583d3378600cc30d74365807d64f0c48c0dc4628c13abd46f88d782",
+        "findings": [
+          "VAL-SD1-001"
+        ],
+        "state": "independently_closed",
+        "evidence": "validation/session/implementation/d1/export-fix-evidence.json",
+        "map": "validation/session/implementation/d1/council-remediation-round1.json"
+      },
+      "historical_evidence": "validation/session/implementation/d1/evidence.json",
+      "council_round": 2,
+      "council_round2": {
+        "candidate": "3fa6d61cbddefec422205c70e05e3d07a517f7ab",
+        "outcome": "VERIFIED",
+        "scores": {
+          "claude": 9.6,
+          "sol": 9.7,
+          "gemini": null
+        },
+        "record": "validation/session/implementation/d1/council-round2.json"
+      },
+      "verified_report": "validation/session/implementation/d1/verified-report.md",
+      "acceptance_record": "approval/session-acceptance.md"
+    },
+    "deliverable2": {
+      "state": "verified",
+      "scope": "SESSION-05\u201308; S2/S3 and bounded preservation/source proof",
+      "construction_base": "d5d35825605104f74c325e25b6cd61faa7161072",
+      "source_revision": "43d7732e84b1ca1a4ad4cf37b11484dcd24fde77",
+      "evidence": "validation/session/implementation/d2/evidence.json",
+      "council_round": 1,
+      "gate": "D2 council reconciled; proceed to approved D3",
+      "acceptance": "granted_by_SESSION_unit_acceptance",
+      "council_round1": {
+        "candidate": "caf04311136a5bd7323378f6e98f24771b128cb8",
+        "outcome": "VERIFIED",
+        "scores": {
+          "sol": 9.7,
+          "claude": 9.6,
+          "gemini": null
+        },
+        "record": "validation/session/implementation/d2/council-round1.json"
+      },
+      "verified_report": "validation/session/implementation/d2/verified-report.md",
+      "acceptance_record": "approval/session-acceptance.md"
+    },
+    "deliverable3": {
+      "state": "verified",
+      "scope": "SESSION-09/10, S4/S5 plus complete bounded SESSION aggregate",
+      "D3_base": "3cc7ef3376672b36ae1147298ccd55841f9a0145",
+      "aggregate_base": "1b1f703bd5af1c86bfd95a3e5c5fc72acf71a7a7",
+      "artifact_source": "8bb61e2c65ff33bc806050f0a55610b02533aa8e",
+      "evidence": "validation/session/implementation/d3/evidence.json",
+      "probe": "validation/session/installed_probe.py",
+      "council_round": 1,
+      "gate": "SESSION accepted; await separately authorized next unit",
+      "acceptance": "granted_by_SESSION_unit_acceptance",
+      "council_round1": {
+        "candidate": "112e657fe3aebec97af00875583ff85abaaacd04",
+        "outcome": "VERIFIED",
+        "scores": {
+          "GPT-6.1 Sol": 9.7,
+          "GPT-6 Astra": 9.7,
+          "Claude Opus 5.5": 9.6
+        },
+        "record": "validation/session/implementation/d3/council-round1.json",
+        "Astra_isolation_reissue": "SESSION-D3-ASTRA-001 closed; initial invalid review excluded"
+      },
+      "acceptance_record": "approval/session-acceptance.md"
+    },
+    "acceptance": "granted",
+    "delivery": "local only",
+    "source_revision": "4065a150cbfcacbcf71c6aab05e05d2920bf48e5",
+    "council_availability": {
+      "selected_members": [
+        "GPT-6.1 Sol/high",
+        "GPT-6 Astra/high",
+        "Claude Opus 5.5/high"
+      ],
+      "current_reviews": "All three requested models supplied valid independent results; invalid initial Astra execution excluded.",
+      "record": "validation/session/implementation/d3/council-round1.json",
+      "historical_Gemini": "Quota unavailable in prior dispatch, no score; later direct roster instruction supersedes future membership."
+    },
+    "historical_council_members": [
+      "Claude Opus 5.5/high",
+      "GPT-6.1 Sol/high",
+      "Gemini 4 Argon High"
+    ],
+    "historical_council_availability": {
+      "selected_members": [
+        "Claude Opus 5.5/high",
+        "GPT-6.1 Sol/high",
+        "Gemini 4 Argon High"
+      ],
+      "available": [
+        "Claude Opus5.5/high",
+        "GPT-6.1 Sol/high"
+      ],
+      "unavailable": {
+        "Gemini4 Argon High": "Antigravity quota; no review/score; no retry/replacement"
+      },
+      "disposition": "Both available members independently reproduced full bounded D2. Council unreachable-provider instruction is met by reporting unavailable coverage without substitution. Reconciled available coverage permits the already-approved D3; no third review, human waiver or acceptance is inferred."
+    },
+    "verified_candidate": "112e657fe3aebec97af00875583ff85abaaacd04",
+    "verified_report": "validation/session/implementation/d3/verified-report.md",
+    "acceptance_record": {
+      "record": "approval/session-acceptance.md",
+      "sha256": "86d2642ac4aa8aeaee73fc727539ef5bb9fe87946aedca085f9db07e50a87a1c",
+      "accepted_by": "Chuck Russell",
+      "recorded_at": "2026-11-08T18:09:24+00:00",
+      "instruction": "accepted",
+      "candidate": "112e657fe3aebec97af00875583ff85abaaacd04",
+      "pre_acceptance_metadata_HEAD": "4c7fa7a9922cc6419b3b837f12b00e8abb98bf03",
+      "artifact_source": "8bb61e2c65ff33bc806050f0a55610b02533aa8e",
+      "scope": "SESSION-001 history/conversation-clear D1\u2013D3 and complete bounded aggregate only"
+    }
+  },
+  "historical_unit_summary_fields": [
+    {
+      "recorded_at": "2026-11-08T17:56:58+00:00",
+      "field": "product_code_authority",
+      "value": "Exact SESSION-001 contract/directive approved; implement D1 then council before D2, with no other family/TUI/delivery authority.",
+      "superseded_by": "Verified SESSION construction complete; human acceptance pending"
+    }
+  ],
+  "remaining_council_roster": {
+    "members": [
+      "GPT-6.1 Sol/high",
+      "GPT-6 Astra/high",
+      "Claude Opus 5.5/high"
+    ],
+    "requested_by": "Chuck Russell",
+    "record": "approval/council-roster.md",
+    "sha256": "80c8e25ed071503313e9b3c97d93d2fb3712d29de6822e22b539d7b3a3fa8e02",
+    "instruction": "for The remaining council tasks use only GPT 6.1-Sol,  GPT-6-Astra  and Claude Opus 5.5."
+  },
+  "accepted_session_checkpoint_before_DIAG": {
+    "decision": "SESSION-001 D1\u2013D3 and bounded aggregate VERIFIED and accepted by Chuck Russell",
+    "current_scope": "Accepted SESSION-001 closeout; await separate maintainer direction for a next bounded unit",
+    "product_code_authority": "SESSION-001 construction completed, independently verified and accepted. No new family or external delivery authority."
+  },
+  "diagnostics_preparation": {
+    "unit": "DIAG-001",
+    "state": "approved_by_subsequent_exact_record",
+    "requested_by": "Chuck Russell",
+    "instruction": "proceed",
+    "recorded_at": "2026-11-08T19:15:18.619715+00:00",
+    "responding_to": "Prepare DIAG-001 contract and directive; implementation waits for approval of both documents",
+    "source_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
+    "contract": "diagnostics-command-contract.md",
+    "contract_sha256": "14dd68f6cc2c5dfbba7f31c19305eeeec68a00598b3b1a1740806832b621be62",
+    "directive": "directives/CD-CMD-DIAG-001-context-diagnostics.md",
+    "directive_sha256": "1a9a506020b8d5faa0b864c053b1085e8f8c15c8feab8a4c0f59d4293677ee47",
+    "preparation_evidence": "validation/diagnostics/preparation.json",
+    "preparation_evidence_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
+    "design_approval": "granted_by_subsequent_exact_record",
+    "construction_approval": "granted_by_subsequent_exact_record",
+    "implementation": "Preparation-era records retained; current DIAG D3/aggregate changes_requested under diagnostics_construction",
+    "lightweight_exemption": "Maintainer proceed authorizes planning/evidence/current-state preparation and guarded synthetic source characterization only; product/test/config/dependency/lock behavior cannot change. Controller verifies protected hashes, embedded evidence, docs/board and whitespace.",
+    "council_after_each_deliverable": true,
+    "council_members": [
+      "GPT-6.1 Sol/high",
+      "GPT-6 Astra/high",
+      "Claude Opus 5.5/high"
+    ],
+    "accepted_session": "approval/session-acceptance.md",
+    "delivery": "local only",
+    "approval_record": "approval/diagnostics.md",
+    "historical_preapproval_process_fields": {
+      "execution_phase": "planning",
+      "validation_state": "not_ready",
+      "implementation": "not_started"
+    }
+  },
+  "diagnostics_construction": {
+    "unit": "DIAG-001",
+    "approved_by": "Chuck Russell",
+    "instruction": "All right, I've approved both of the previous documents that are awaiting approval.  Proceed to code generation.",
+    "approved_at": "2026-11-08T19:55:43.877474+00:00",
+    "approval": "approval/diagnostics.md",
+    "approval_sha256": "8aeb991d742a38d717c49d488b34d6a5800b57fbec97b3d4a461e2027caa1cb2",
+    "contract_sha256": "14dd68f6cc2c5dfbba7f31c19305eeeec68a00598b3b1a1740806832b621be62",
+    "directive_sha256": "1a9a506020b8d5faa0b864c053b1085e8f8c15c8feab8a4c0f59d4293677ee47",
+    "preparation_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
+    "product_baseline": "9dbcec54773f10274eea058e5d59edb0ce53b6cc",
+    "controller_start": "d0c729f43534bb79a3db70852ec08028ddb631ec",
+    "state": "accepted",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
+    "current_deliverable": "DIAG D1\u2013D3 accepted; MEMQ-001 preparation is next and requires separate approval for construction",
+    "deliverable1": {
+      "state": "verified",
+      "round": 2,
+      "product_source": "e2f514a66407bf5da9868e586ca6cdf30bdadefb",
+      "evidence": "validation/diagnostics/implementation/d1/evidence.json",
+      "neutral_tests": 478,
+      "new_cases": 200,
+      "mutation_refusals": 14,
+      "Chat_DIAG": "pending D2",
+      "candidate_installed_proof": "pending D3",
+      "council": "validation/diagnostics/implementation/d1/council-round2.json",
+      "remediation_cycle": 1,
+      "remediation_directive": "remediation/REM-CMD-DIAG-D1-001-test-coverage.md",
+      "remediation_authority": "Existing exact DIAG approval and approved DG-T01\u201307/allowlist, mechanical completion under independent-validation policy; runtime bytes frozen",
+      "current_evidence": "validation/diagnostics/implementation/d1/test-coverage-fix-evidence.json",
+      "coverage_map": "validation/diagnostics/implementation/d1/test-coverage-map.json",
+      "named_nodes": 7,
+      "named_cases": 200,
+      "findings_status": "both independently closed",
+      "correction_base": "bc553cb097d3f62586b0d1808100bc186a5a67c9",
+      "verified_candidate": "409926b65d5a5d81590e9c3b06418a2ea12d343a",
+      "report": "validation/diagnostics/implementation/d1/verified-report.md",
+      "acceptance": "granted_by_DIAG_unit_acceptance",
+      "acceptance_record": "approval/diagnostics-acceptance.md"
+    },
+    "deliverable2": {
+      "state": "verified",
+      "round": 2,
+      "base": "559c86a22651ca99fc4560a5ef40d7b6f2ea2f4f",
+      "product_source": "54e35947f8ee157ddab0b50f7e9e9e1db415f0ae",
+      "evidence": "validation/diagnostics/implementation/d2/evidence.json",
+      "named_nodes": 7,
+      "new_cases": 41,
+      "Commands_cohort": 478,
+      "D2_fast": 538,
+      "D3_fast": 166,
+      "full_Chat": 1338,
+      "full_CLI": 155,
+      "DIAG_observations": "68 exact rows + four approved cache refusals",
+      "SESSION_observations": 25,
+      "pilot_observations": 196,
+      "mutant_refusals": 19,
+      "next_gate": "D3 under existing approval",
+      "acceptance": "granted_by_DIAG_unit_acceptance",
+      "council": "validation/diagnostics/implementation/d2/council-round2.json",
+      "remediation_cycle": 1,
+      "remediation_directive": "remediation/REM-CMD-DIAG-D2-001-context-format-and-test-isolation.md",
+      "mandatory_findings": [
+        "DIAG-D2-ASTRA-001",
+        "VAL-001"
+      ],
+      "current_evidence": "validation/diagnostics/implementation/d2/correction-evidence.json",
+      "remediation_map": "validation/diagnostics/implementation/d2/council-remediation-round1.json",
+      "findings_status": "both independently closed by all three",
+      "mutation_refusals": 21,
+      "ignored_exports": "preserved; before/after bytes and metadata unchanged during corrected checks",
+      "verified_candidate": "b3ca2c85964b082a1a6b65ffe2c7b5aa442fa6f9",
+      "report": "validation/diagnostics/implementation/d2/verified-report.md",
+      "acceptance_record": "approval/diagnostics-acceptance.md"
+    },
+    "deliverable3": {
+      "state": "verified",
+      "round": 3,
+      "base": "d437a5dc601126ae0767cf6558ae63d214159c19",
+      "aggregate_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
+      "artifact_source": "28c544fa67e934f03c212aed39ba20802b500b13",
+      "probe": "validation/diagnostics/installed_probe.py",
+      "probe_sha256": "c943d7070aeae2624444a165a9c3f77f3317c062e06376b3d0f89e089d70db58",
+      "evidence": "validation/diagnostics/implementation/d3/evidence.json",
+      "source_tests": {
+        "Chat": 1338,
+        "Commands_cohort": 498,
+        "CLI": 155,
+        "total": 1991
+      },
+      "workspace_builds_each": 13,
+      "locked_inputs": 125,
+      "matching_actual_artifact_hashes": 154,
+      "default_Chat_closure": 138,
+      "neutral_closure": 1,
+      "installed_probes": 8,
+      "installed_member_origin_refusals": 50,
+      "semantic_engine_refusals": 4,
+      "archive_refusals": 10,
+      "prebuild_extra_source_refusal": 1,
+      "restored_copied_probes": 8,
+      "acceptance": "granted_by_DIAG_unit_acceptance",
+      "next_gate": "Prepare proposed MEMQ-001 contract and directive (planning only) after accepted DIAG-001; construction requires their exact approval. No delivery follows automatically.",
+      "council": "validation/diagnostics/implementation/d3/council-round3.json",
+      "report": "validation/diagnostics/implementation/d3/verified-report.md",
+      "reviewed_candidate": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9",
+      "mandatory_findings": [],
+      "findings_status": "All runtime and documentation mandatory findings independently closed by all3; none open",
+      "proposed_amendment": "remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md",
+      "proposed_amendment_sha256": "3078bb19195044212a115cb3f3f169d030af2b282154d4d336856b37c41fa865",
+      "amendment_approval": "granted",
+      "amendment_approval_record": "approval/diagnostics-context-evaluation.md",
+      "amendment_approved_by": "Chuck Russell",
+      "amendment_approved_at": "2026-11-09T03:40:44+00:00",
+      "amendment_instruction": "The bounded correction: I approve it.",
+      "correction_source": "28c544fa67e934f03c212aed39ba20802b500b13",
+      "correction_evidence": "validation/diagnostics/implementation/d3/correction-evidence.json",
+      "round1_artifact_source": "30790ec0f06813e7331c851d04c123997a398d97",
+      "correction_source_tests": {
+        "Chat": 1338,
+        "Commands_cohort": 498,
+        "CLI": 155,
+        "total": 1991
+      },
+      "correction_mutants_rejected": 9,
+      "correction_unchanged_control": 539,
+      "remediation_cycle": 2,
+      "runtime_finding_closed": "DIAG-D3-ASTRA-001",
+      "status_remediation": "remediation/REM-CMD-DIAG-D3-002-status-reconciliation.md",
+      "status_correction_base": "80e2e14d02484f6a2e95924ee431d43c6045a70e",
+      "status_correction_scope": "docs only; product/test/probe/artifact source unchanged",
+      "review_profile": "Fresh docs delta and full bounded aggregate; inspect actual runtime receipts against identical bytes; rerun runtime lanes only for drift or unresolved concern",
+      "current_source_tests": {
+        "Chat": 1338,
+        "Commands_cohort": 498,
+        "CLI": 155,
+        "total": 1991
+      },
+      "historical_reviewed_candidates": {
+        "round1": "1d3b273b7797c72a868f259d095593a15a4e42b9",
+        "round2": "80e2e14d02484f6a2e95924ee431d43c6045a70e",
+        "round3": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9"
+      },
+      "historical_round1_source_tests": {
+        "Chat": 1338,
+        "Commands_cohort": 478,
+        "CLI": 155,
+        "total": 1971
+      },
+      "verified_candidate": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9",
+      "closed_findings": [
+        "DIAG-D3-ASTRA-001",
+        "DIAG-D3-SOL-R2-001",
+        "DIAG-D3-R2-CLAUDE-001"
+      ],
+      "acceptance_handoff": "validation/diagnostics/implementation/d3/acceptance-handoff.md",
+      "UAT": "not_run",
+      "acceptance_record": "approval/diagnostics-acceptance.md"
+    },
+    "council_after_each_deliverable": true,
+    "council_members": [
+      "GPT-6.1 Sol/high",
+      "GPT-6 Astra/high",
+      "Claude Opus 5.5/high"
+    ],
+    "acceptance": "granted",
+    "delivery": "local only",
+    "construction_base": "b2f5b8f01f6b177c0a9519ff000036599417ad6e",
+    "product_source": "54e35947f8ee157ddab0b50f7e9e9e1db415f0ae",
+    "original_product_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
+    "runtime_model_source": "7cab1f0f90a868a34de3faa4f763ce3b31352f8b",
+    "artifact_source": "28c544fa67e934f03c212aed39ba20802b500b13",
+    "verified_candidate": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9",
+    "current_product_test_probe_source": "28c544fa67e934f03c212aed39ba20802b500b13",
+    "UAT": "maintainer_reported_pass",
+    "acceptance_record": {
+      "record": "approval/diagnostics-acceptance.md",
+      "sha256": "1a3eecabf3b96bc456f1595933f5f2a8cba13810bb51bdb3ba6803d25e22b5ca",
+      "accepted_by": "Chuck Russell",
+      "recorded_at": "2026-11-09T14:07:11+00:00",
+      "instruction": "the uat was successful - all approved, proceed to next steps",
+      "candidate": "be72a1e8b5904436ec3b9eb844a5db4f71ed95c9",
+      "pre_acceptance_metadata_HEAD": "a1cee77374ffdc02f37d8821e6234eb39b325403",
+      "artifact_source": "28c544fa67e934f03c212aed39ba20802b500b13",
+      "UAT": "maintainer-reported successful; per-case detail not supplied",
+      "scope": "DIAG-001 six context-diagnostics commands D1\u2013D3 and complete bounded aggregate only"
+    }
+  },
+  "accepted_diag_checkpoint_before_MEMQ": {
+    "decision": "DIAG-001 D1\u2013D3 and bounded aggregate VERIFIED, maintainer-reported UAT passed, and accepted by Chuck Russell",
+    "current_scope": "Accepted DIAG-001 closeout; MEMQ-001 planning preparation only (proposed contract/directive), no construction or delivery",
+    "product_code_authority": "DIAG-001 construction completed, independently verified and accepted. No new family construction or external delivery authority; MEMQ-001 requires exact contract/directive approval."
+  },
+  "memory_queries_preparation": {
+    "unit": "MEMQ-001",
+    "state": "D1_D2_D3_verified_human_UAT_pending",
+    "requested_by": "Chuck Russell",
+    "instructions": [
+      "the uat was successful - all approved, proceed to next steps",
+      "ok proceed"
+    ],
+    "recorded_at": "2026-11-09T14:25:00+00:00",
+    "source_baseline": "c5871054266da2340486d2043062c5fb95611c00",
+    "contract": "memory-query-command-contract.md",
+    "contract_sha256": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+    "directive": "directives/CD-CMD-MEMQ-001-memory-queries.md",
+    "directive_sha256": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
+    "preparation_evidence": "validation/memory-queries/preparation.json",
+    "preparation_evidence_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
+    "design_approval": "granted",
+    "construction_approval": "granted",
+    "decisions_pending": {},
+    "lightweight_exemption": "Historical planning-only exemption ended for product work; current implementation uses the exact approved construction directive.",
+    "council_after_each_deliverable": true,
+    "council_members": [
+      "GPT-6.1 Sol/high",
+      "GPT-6 Astra/high",
+      "Claude Opus 5.5/high"
+    ],
+    "accepted_diag": "approval/diagnostics-acceptance.md",
+    "delivery": "local only",
+    "counts": {
+      "metadata": 6,
+      "cases": 76,
+      "related_chat_tests": 587,
+      "commands_cohort_tests": 498
+    },
+    "record_projection_characterization": "validation/memory-queries/record-projection-characterization.json",
+    "record_projection_characterization_sha256": "a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d",
+    "decisions_approved": {
+      "MQ-D1": "mismatched-kind refusal",
+      "MQ-D2": "existing direct argument type rule",
+      "MQ-D3": "R: bounded persisted listing repair, specified defaults",
+      "MQ-D4": "two exact export assertions 38 -> 54 plus exact closed-union helper 12 -> 18"
+    },
+    "approval": "approval/memory-queries-directive-correction2.md",
+    "approval_sha256": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264",
+    "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "implementation_status": "D1/D2/D3 complete; bounded aggregate VERIFIED at bab16757",
+    "projection_clarification": "D2 runtime3ed1d58a unchanged; D3 artifact/probe sourcee4c0b9a2 independently verified by all three seats. Human UAT20 NOT RUN; acceptance pending; local only.",
+    "recorded_at_original_erroneous": "2026-11-09T15:20:00+00:00",
+    "recorded_at_basis": "Proposal commit 342bf85c timestamp: existence by 14:25Z, not an exact preparation start/finish. Original 15:20Z event preserved and explained by append-only correction.",
+    "chronology_correction_recorded_at": "2026-11-09T15:33:59.716791+00:00",
+    "validation_scope": "D3 and full bounded MEMQ aggregate VERIFIED; no human acceptance or delivery.",
+    "reviewed_candidate": "be15dca1b37364748e1fcf9ef5d062a920a8d250"
+  },
+  "memory_queries_approval": {
+    "maintainer": "Chuck Russell",
+    "instruction": "lets apply the corrections and iterate",
+    "recorded_at": "2026-11-09T15:59:12.462665+00:00",
+    "record": "approval/memory-queries-directive-correction2.md",
+    "sha256": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264",
+    "contract_sha256": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+    "directive_sha256": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
+    "option": "R",
+    "scope": "Second bounded directive correction and fresh round3 council, then escalate remaining mandatory findings",
+    "execution_phase": "validation",
+    "validation_state": "verified",
+    "validation_scope": "Round4 directive/design readiness at be15dca1; scope text above preserves the historical cycle2 amendment description, not a round3 VERIFIED claim."
+  },
+  "memory_queries_approval_before_directive_correction": {
+    "maintainer": "Chuck Russell",
+    "recorded_at": "2026-11-09T14:49:49.730403+00:00",
+    "record": "approval/memory-queries.md",
+    "sha256": "0831ccbe058fb2e9154fa38cd16587265441bdf404d3e11556dc6e32a05074c1",
+    "contract_sha256": "2498724b52b9f5c9932c52a03129d8eb35ee4772edb0737b7863733fe6013d69",
+    "directive_sha256": "3f83083689d5eedf62b5e3f2fe573586da630ff2970b3d5cd96bce474dc2aacd",
+    "option": "R",
+    "scope": "approved directive D0-D5, three fresh council members after each deliverable, final maintainer acceptance separate",
+    "execution_phase": "planning",
+    "validation_state": "not_ready"
+  },
+  "memory_queries_directive_review": {
+    "round": 4,
+    "correction_cycle": 3,
+    "explicit_additional_pass": true,
+    "reviewed_candidate": "be15dca1b37364748e1fcf9ef5d062a920a8d250",
+    "outcome": "VERIFIED",
+    "scope": "directive/design readiness only",
+    "reports": "validation/memory-queries/directive-review/round4/evidence.json",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.6
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.5
+      },
+      "claude": {
+        "outcome": "VERIFIED",
+        "score": 9.6
+      }
+    },
+    "mandatory_findings": [],
+    "criteria": "CR01..08 and MR01..10 pass per all fresh seats",
+    "prior_sol_receipt": "historical BLOCKED, preserved and not waived",
+    "validation_state": "verified",
+    "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "implementation": "Product D0/D1 not started",
+    "authority_limits": "No construction/acceptance/UAT/delivery authority created by this review",
+    "historical_next_gate": "Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery."
+  },
+  "memory_queries_approval_before_cycle2": {
+    "maintainer": "Chuck Russell",
+    "instruction": "lets apply the corrections and iterate",
+    "recorded_at": "2026-11-09T15:33:59.716791+00:00",
+    "record": "approval/memory-queries-directive-correction.md",
+    "sha256": "7eed81dc9fdb4d9081580c78731fac3e42eb074a700597e108968ccf906ba4be",
+    "contract_sha256": "b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2",
+    "directive_sha256": "3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a",
+    "option": "R",
+    "scope": "Four bounded document-readiness corrections and fresh council only; existing product scope preserved",
+    "execution_phase": "validation",
+    "validation_state": "in_review"
+  },
+  "memory_queries_directive_review_round2": {
+    "round": 2,
+    "correction_cycle": 1,
+    "prior_candidate": "76b949b2e621e7a44ddec6ed527784e781696c8c",
+    "prior_result": "CHANGES_REQUESTED",
+    "prior_reports": "validation/memory-queries/directive-review/round1/evidence.json",
+    "remediation": "remediation/REM-CMD-MEMQ-DIR-001-readiness.md",
+    "format_inventory": "validation/memory-queries/format-baseline.json",
+    "verifier": "validation/memory-queries/verify_directive_corrections.py",
+    "current_bindings": {
+      "contract": "b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2",
+      "directive": "3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a",
+      "format_helper": "3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751",
+      "format_baseline": "7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2",
+      "verifier": "7bd5cf6524e982093c007f0d48a4b0f76ed55370aeb9556cca57cc0d5c6a6bb9",
+      "remediation": "eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540",
+      "approval": "7eed81dc9fdb4d9081580c78731fac3e42eb074a700597e108968ccf906ba4be"
+    },
+    "next_gate": "Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.",
+    "limits": "Directive/design readiness only; no inherited verdict, product implementation, acceptance or delivery"
+  },
+  "memory_queries_directive_review_before_reconciliation": {
+    "round": 3,
+    "correction_cycle": 2,
+    "prior_candidate": "0001357262bd86d17ce4f9a43c7bf98cc9115534",
+    "prior_result": "CHANGES_REQUESTED",
+    "prior_reports": "validation/memory-queries/directive-review/round2/evidence.json",
+    "remediation": "remediation/REM-CMD-MEMQ-DIR-002-union-and-gates.md",
+    "current_bindings": {
+      "contract": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+      "directive": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
+      "verifier": "83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5",
+      "format_helper": "3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751",
+      "format_baseline": "7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2",
+      "remediation": "e9664c8806fae913e67b671c275f1920c1b4901d68194278c6a46f18a5f3ce9f",
+      "approval": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264"
+    },
+    "next_gate": "Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.",
+    "limits": "No inherited verdict; no product construction, acceptance or delivery; escalate mandatory findings after this cycle"
+  },
+  "memory_queries_directive_review_round3": {
+    "round": 3,
+    "correction_cycle": 2,
+    "reviewed_candidate": "818b42eeca4495cf34292e934dbdac34e31ca4db",
+    "outcome": "CHANGES_REQUESTED",
+    "formal_council_clearance": "incomplete due isolation-blocked Sol seat",
+    "reports": "validation/memory-queries/directive-review/round3/evidence.json",
+    "results": {
+      "sol": {
+        "outcome": "BLOCKED",
+        "score": 9.4
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.5
+      },
+      "claude": {
+        "outcome": "CHANGES_REQUESTED",
+        "score": 8.9
+      }
+    },
+    "open_candidate_finding": "MEMQ-DIR-R3-CLAUDE-001",
+    "blocked_seat_finding": "MEMQ-DIR-R3-SOL-001",
+    "automatic_iteration_stopped": true,
+    "next_gate": "Await Chuck Russell direction on MEMQ-DIR-R3-CLAUDE-001 and Sol isolation-blocked receipt after two correction cycles. No further automatic correction, product D0/D1, acceptance or delivery."
+  },
+  "memory_queries_readiness_continuation": {
+    "maintainer": "Chuck Russell",
+    "instruction": "authorized then iterate",
+    "recorded_at": "2026-11-09T16:41:29.753273+00:00",
+    "approval": "approval/memory-queries-directive-additional-pass.md",
+    "sha256": "ef7adbca434cff387dfa1b0dc7ddf9d315bcbeb6474edaf3af2ff0245fd498d1",
+    "scope": "Prepared one-sentence README qualification, administrative records and one fresh full council beyond the prior two-cycle stop",
+    "patch_sha256": "178c692287546e5e42ab00caec9d9271659221e99aa1273d35f5e80f2fb222a1",
+    "technical_bindings_unchanged": {
+      "contract": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+      "directive": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
+      "verifier": "83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5",
+      "format_helper": "3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751",
+      "format_baseline": "7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2"
+    }
+  },
+  "memory_queries_directive_review_round4_before_closeout": {
+    "round": 4,
+    "correction_cycle": 3,
+    "explicit_additional_pass": true,
+    "prior_reviewed_candidate": "818b42eeca4495cf34292e934dbdac34e31ca4db",
+    "recording_base": "8d78e2daa7eaabe1a3e42ad1dc4d9b45ff41b4c9",
+    "prior_reports": "validation/memory-queries/directive-review/round3/evidence.json",
+    "remediation": "remediation/REM-CMD-MEMQ-DIR-003-historical-qualifier.md",
+    "additional_authorization": "approval/memory-queries-directive-additional-pass.md",
+    "authorization_sha256": "ef7adbca434cff387dfa1b0dc7ddf9d315bcbeb6474edaf3af2ff0245fd498d1",
+    "validation_state": "in_review",
+    "next_gate": "Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.",
+    "limits": "Fresh complete council; old blocked seat preserved, no inherited verdict or retroactive waiver; no product construction/acceptance/delivery"
+  },
+  "memory_queries_preparation_before_d1": {
+    "unit": "MEMQ-001",
+    "state": "directive_design_readiness_verified_product_unstarted",
+    "requested_by": "Chuck Russell",
+    "instructions": [
+      "the uat was successful - all approved, proceed to next steps",
+      "ok proceed"
+    ],
+    "recorded_at": "2026-11-09T14:25:00+00:00",
+    "source_baseline": "c5871054266da2340486d2043062c5fb95611c00",
+    "contract": "memory-query-command-contract.md",
+    "contract_sha256": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+    "directive": "directives/CD-CMD-MEMQ-001-memory-queries.md",
+    "directive_sha256": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
+    "preparation_evidence": "validation/memory-queries/preparation.json",
+    "preparation_evidence_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
+    "execution_phase": "planning",
+    "validation_state": "verified",
+    "design_approval": "granted",
+    "construction_approval": "granted",
+    "decisions_pending": {},
+    "lightweight_exemption": "Maintainer proceed authorizes planning/evidence/current-state preparation and guarded synthetic source characterization only; product/test/config/dependency/lock behavior cannot change.",
+    "council_after_each_deliverable": true,
+    "council_members": [
+      "GPT-6.1 Sol/high",
+      "GPT-6 Astra/high",
+      "Claude Opus 5.5/high"
+    ],
+    "accepted_diag": "approval/diagnostics-acceptance.md",
+    "delivery": "local only",
+    "counts": {
+      "metadata": 6,
+      "cases": 76,
+      "related_chat_tests": 587,
+      "commands_cohort_tests": 498
+    },
+    "record_projection_characterization": "validation/memory-queries/record-projection-characterization.json",
+    "record_projection_characterization_sha256": "a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d",
+    "decisions_approved": {
+      "MQ-D1": "mismatched-kind refusal",
+      "MQ-D2": "existing direct argument type rule",
+      "MQ-D3": "R: bounded persisted listing repair, specified defaults",
+      "MQ-D4": "two exact export assertions 38 -> 54"
+    },
+    "approval": "approval/memory-queries-directive-correction2.md",
+    "approval_sha256": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264",
+    "next_gate": "Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery.",
+    "implementation_status": "D0 baseline reproduction and bounded neutral D1 not started; existing technical approval governs next execution",
+    "projection_clarification": "Four supplemental legacy cases; source/protocol implementation not yet generated; original 76-case preparation unchanged.",
+    "recorded_at_original_erroneous": "2026-11-09T15:20:00+00:00",
+    "recorded_at_basis": "Proposal commit 342bf85c timestamp: existence by 14:25Z, not an exact preparation start/finish. Original 15:20Z event preserved and explained by append-only correction.",
+    "chronology_correction_recorded_at": "2026-11-09T15:33:59.716791+00:00",
+    "validation_scope": "directive/design readiness at be15dca1, round4 only",
+    "reviewed_candidate": "be15dca1b37364748e1fcf9ef5d062a920a8d250"
+  },
+  "memory_queries_implementation": {
+    "unit": "MEMQ-001",
+    "deliverable": "D1",
+    "source_commit": "0f809207984143f88fbe971b761035d6ea7b11d0",
+    "start_head": "00c384d91dce211f8f7ce919cd41f17fa18b4526",
+    "source_baseline": "c5871054266da2340486d2043062c5fb95611c00",
+    "recorded_at": "2026-11-09T17:55:34.146458+00:00",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
+    "scope": "D0 preservation/baselines/build trial and D1 neutral product only; D2 unstarted",
+    "report": "validation/memory-queries/implementation/d1/README.md",
+    "uat_plan": "uat/memq-user-acceptance-plan.md",
+    "uat_result": "NOT RUN",
+    "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "acceptance": "not_granted",
+    "delivery": "local only",
+    "independent_candidate": "9ce7158169a1edef87cd4f864beb29c6b29c849d",
+    "independent_report": "validation/memory-queries/implementation/d1/verified-report.md",
+    "next_gate_at_D1_closeout": "Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.",
+    "checkpoint_scope_note": "D1 result retains its reviewed candidate; current D2 execution state is memory_queries_d2_implementation."
+  },
+  "memory_queries_d1_validation": {
+    "candidate": "9ce7158169a1edef87cd4f864beb29c6b29c849d",
+    "outcome": "VERIFIED",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.7,
+        "report": "validation/memory-queries/implementation/d1/council-round1/sol.txt",
+        "sha256": "be8e90a0c5787d30d8af9621d80b0b754662f057ae449581868a2b4a86f57971",
+        "mandatory_findings": []
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.6,
+        "report": "validation/memory-queries/implementation/d1/council-round1/astra.txt",
+        "sha256": "bff85b29a68259ddbd91de5907d67bd2a88bf6f6d7adc599e7006f47db11e383",
+        "mandatory_findings": []
+      },
+      "claude": {
+        "outcome": "VERIFIED",
+        "score": 9.6,
+        "report": "validation/memory-queries/implementation/d1/council-round1/claude.txt",
+        "sha256": "df96c58c4a719ae90fdef42c57ac45b73474c1a9d716824e79f02cdedbd8c497",
+        "mandatory_findings": []
+      }
+    },
+    "mandatory_findings": [],
+    "report": "validation/memory-queries/implementation/d1/verified-report.md",
+    "recorded_at": "2026-11-09T18:16:51.257314+00:00",
+    "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "next_gate_at_D1_closeout": "Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.",
+    "checkpoint_scope_note": "D1 result retains its reviewed candidate; current D2 execution state is memory_queries_d2_implementation."
+  },
+  "memory_queries_d2_implementation": {
+    "unit": "MEMQ-001",
+    "source_commit": "3ed1d58ad8cc1e79522495da5cf19091185402d8",
+    "start_head": "39661e870affaf7abb160df9da53e53dfe94c822",
+    "recorded_at": "2026-11-09T18:58:20.756575+00:00",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
+    "report": "validation/memory-queries/implementation/d2/README.md",
+    "evidence": "validation/memory-queries/implementation/d2/evidence.json",
+    "option": "R",
+    "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "uat_result": "NOT RUN",
+    "acceptance": "not_granted",
+    "delivery": "local only",
+    "correction": "remediation/REM-CMD-MEMQ-D2-002-restore-frozen-backlog.md",
+    "round1_result": "CHANGES_REQUESTED: MEMQ-D2-ASTRA-001; runtime checks passed in all three seats",
+    "round2_result": "CHANGES_REQUESTED: MEMQ-D2-CLAUDE-001; ASTRA-001 resolved, runtime checks sound",
+    "independent_candidate": "ccf5471b441d6299c55776b60d58a23430b3bd1a",
+    "independent_report": "validation/memory-queries/implementation/d2/verified-report.md"
+  },
+  "memory_queries_d2_validation_round1": {
+    "candidate": "9db8311e44583f6db882847ff4643094668077bf",
+    "source_commit": "3ed1d58ad8cc1e79522495da5cf19091185402d8",
+    "outcome": "CHANGES_REQUESTED",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.6
+      },
+      "astra": {
+        "outcome": "CHANGES_REQUESTED",
+        "score": 9.3
+      },
+      "claude": {
+        "outcome": "VERIFIED",
+        "score": 9.4
+      }
+    },
+    "mandatory_findings": [
+      "MEMQ-D2-ASTRA-001"
+    ],
+    "report": "validation/memory-queries/implementation/d2/council-round1/report.md",
+    "recorded_at": "2026-11-09T19:33:05.002499+00:00",
+    "scope": "Historical round1 candidate; runtime checks passed, current documentation correction awaits fresh independent review. No acceptance/advancement/delivery."
+  },
+  "memory_queries_d2_correction": {
+    "cycle": 2,
+    "execution_phase": "closeout",
+    "validation_state": "verified",
+    "remediation": "remediation/REM-CMD-MEMQ-D2-002-restore-frozen-backlog.md",
+    "closed_findings": [
+      "MEMQ-D2-ASTRA-001",
+      "MEMQ-D2-CLAUDE-001"
+    ],
+    "findings": [],
+    "scope": "Exact frozen CMD-F05 restoration and removal of inaccurate UAT backlog reference; no runtime/technical-authority change.",
+    "input_pin_restore": {
+      "path": "docs/planning/backlog/friday-tui-command-followups/README.md",
+      "reviewed_unapproved_sha256": "e1908324348d939c750a0c7fc72e02b9f57575353ae515711e19c1ac6448c64e",
+      "restored_approved_sha256": "b8021069f2752074ac7fb6a25d9d41055749b161d7cd18b0c49f14eded35daa8",
+      "source": "9db8311e44583f6db882847ff4643094668077bf",
+      "normative_input_count": 30
+    },
+    "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "uat": "NOT RUN",
+    "acceptance": "not_granted",
+    "delivery": "local only",
+    "independent_candidate": "ccf5471b441d6299c55776b60d58a23430b3bd1a",
+    "report": "validation/memory-queries/implementation/d2/verified-report.md"
+  },
+  "memory_queries_d2_correction_before_cycle2": {
+    "cycle": 1,
+    "execution_phase": "validation",
+    "validation_state": "pending",
+    "remediation": "remediation/REM-CMD-MEMQ-D2-001-status-and-uat.md",
+    "findings": [
+      "MEMQ-D2-ASTRA-001"
+    ],
+    "scope": "Documentation only; source/tests/technical authority and94 builder pairs unchanged. UAT/backlog no-description ingest instructions clarified without repair or waiver.",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude MEMQ D2 documentation correction review, then D3 artifacts and installed proof under the existing approval. Round1 runtime checks passed; MEMQ-D2-ASTRA-001 correction awaits independent verification. UAT NOT RUN; no acceptance or delivery.",
+    "acceptance": "not_granted",
+    "uat": "NOT RUN",
+    "delivery": "local only"
+  },
+  "memory_queries_d2_validation_round2": {
+    "candidate": "0ee49a700f4b92234f6448c52d144ac156c1c700",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.5
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.6
+      },
+      "claude": {
+        "outcome": "CHANGES_REQUESTED",
+        "score": 9.1
+      }
+    },
+    "outcome": "CHANGES_REQUESTED",
+    "closed_findings": [
+      "MEMQ-D2-ASTRA-001"
+    ],
+    "mandatory_findings": [
+      "MEMQ-D2-CLAUDE-001"
+    ],
+    "report": "validation/memory-queries/implementation/d2/council-round2/report.md",
+    "recorded_at": "2026-11-09T19:57:50.079982+00:00",
+    "scope": "Historical correction1 review; scope defect only, runtime checks sound. Current correction2 pending fresh review."
+  },
+  "memory_queries_d2_validation_round3": {
+    "candidate": "ccf5471b441d6299c55776b60d58a23430b3bd1a",
+    "source_commit": "3ed1d58ad8cc1e79522495da5cf19091185402d8",
+    "outcome": "VERIFIED",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.5
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.5
+      },
+      "claude": {
+        "outcome": "VERIFIED",
+        "score": 9.5
+      }
+    },
+    "mandatory_findings": [],
+    "closed_findings": [
+      "MEMQ-D2-ASTRA-001",
+      "MEMQ-D2-CLAUDE-001"
+    ],
+    "report": "validation/memory-queries/implementation/d2/verified-report.md",
+    "recorded_at": "2026-11-09T20:12:20.278769+00:00",
+    "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local."
+  },
+  "memory_queries_d3_execution": {
+    "deliverable": "D3 / D4-D5",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
+    "scope": "Committed-candidate closed builds/replay, full owning/root regressions, MEMQ installed probe and controls under the existing exact directive. No runtime scope expansion.",
+    "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "uat": "PASS \u2014 maintainer-reported; closed 2026-11-10",
+    "acceptance": "accepted by Chuck Russell 2026-11-10",
+    "delivery": "local only",
+    "artifact_and_probe_source": "e4c0b9a2c5e80569829cc56af9addc8b3e358714",
+    "probe_sha256": "40e9ca72439c2fce97ae71ef2b0bcdead97c3f2a91656773fdea427d132b05d0",
+    "report": "validation/memory-queries/implementation/d3/verified-report.md",
+    "evidence": "validation/memory-queries/implementation/d3/evidence.json",
+    "builder_checks": "2144 owning passes;154 reproducible artifacts;8 actual installed probes;50 member/origin+10 archive+10 semantic refusals,3 source refusals,8 clean copied probes. Fresh source observations and static/admin checks recorded.",
+    "recorded_at": "2026-11-09T20:55:01.293798+00:00",
+    "independent_candidate": "bab167579a0c6fcae8765f263ec754f1d4700d93",
+    "handoff": "validation/memory-queries/implementation/d3/acceptance-handoff.md",
+    "uat_at_review_freeze": "NOT RUN",
+    "acceptance_at_review_freeze": "not_granted",
+    "acceptance_record": "approval/memory-queries-acceptance.md"
+  },
+  "memory_queries_MQD3_outcome_pin_transition": {
+    "path": "docs/planning/backlog/friday-tui-command-followups/README.md",
+    "normative_frozen_sha256": "b8021069f2752074ac7fb6a25d9d41055749b161d7cd18b0c49f14eded35daa8",
+    "artifact_source_sha256": "b8021069f2752074ac7fb6a25d9d41055749b161d7cd18b0c49f14eded35daa8",
+    "current_sha256": "9bc9ecd11af42722c321a15cd0a80ccec520254b49de3c2b0678088dcb821695",
+    "authority": "Approved CD-CMD-MEMQ-001-memory-queries.md:437 permits updating CMD-F05 only to record MQ-D3 outcome.",
+    "exact_old_row": "| CMD-F05 | Repair ingested-source listing and define source validation. | Decide what `/list-ingested` must list from persistent metadata and what validation covers before changing ingestion or listing behavior. |",
+    "exact_new_row": "| CMD-F05 | Repair ingested-source listing and define source validation. | MQ-D3 outcome: option R implements the approved bounded persisted `/list-ingested` repair. Source validation and consolidation remain deferred. |",
+    "scope": "Only the MQ-D3 outcome cell; no transient D2/D3 status, ingestion-defect narrative or broader authority. This is the explicit permitted final outcome update, distinct from the reverted correction1 edit."
+  },
+  "memory_queries_d3_validation": {
+    "candidate": "bab167579a0c6fcae8765f263ec754f1d4700d93",
+    "artifact_and_probe_source": "e4c0b9a2c5e80569829cc56af9addc8b3e358714",
+    "outcome": "VERIFIED",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.5,
+        "report_sha256": "57915a441ddd4ce59f6cb7ec979802d255d9b5674942d83940ab24a3aaee9800"
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.4,
+        "report_sha256": "3117887b1e665cce936bd8f91757efa48e1eeeb642e10ecd8bcd658eed1d1e14"
+      },
+      "claude": {
+        "outcome": "VERIFIED",
+        "score": 9.5,
+        "report_sha256": "999388a3bf740a7f7223737a933b731334ecbc458c2cd1c34c627e5223fb3b0b"
+      }
+    },
+    "mandatory_findings": [],
+    "report": "validation/memory-queries/implementation/d3/verified-report.md",
+    "recorded_at": "2026-11-09T21:33:37.858454+00:00",
+    "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "uat": "PASS \u2014 maintainer-reported; closed 2026-11-10",
+    "acceptance": "accepted by Chuck Russell 2026-11-10",
+    "delivery": "local only",
+    "uat_at_review_freeze": "NOT RUN",
+    "acceptance_at_review_freeze": "not_granted",
+    "acceptance_record": "approval/memory-queries-acceptance.md"
+  },
+  "memory_queries_uat_diagnostics": {
+    "execution_phase": "closeout",
+    "validation_state": "verified",
+    "base": "f530e7550bad18bdb7771b6843a80aad675d8ce5",
+    "directive": "remediation/REM-CMD-MEMQ-UAT-002-verification-diagnostics.md",
+    "approval": "approval/memory-queries-verification-diagnostics.md",
+    "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "uat": "PASS \u2014 maintainer-reported; closed 2026-11-10",
+    "recorded_at": "2026-11-10T01:33:14.473229+00:00",
+    "live_provider_authority": "not granted",
+    "functional_verification_repair": "not yet identified",
+    "entity_ingest_repairs": "shared ownership agreed; earlier Chat-only proposal held/unapproved",
+    "report": "validation/memory-queries/uat-diagnostics/README.md",
+    "evidence": "validation/memory-queries/uat-diagnostics/evidence.json",
+    "correction_cycle": 1,
+    "initial_review": "BLOCKED; reviewer isolation breach preserved, not waived; product redaction finding independently resolved on corrected candidate",
+    "correction_evidence": "validation/memory-queries/uat-diagnostics/correction1/evidence.json",
+    "candidate": "3969e4d4438c5a18b3532a73d39d69352d26cda7",
+    "independent_report": "validation/memory-queries/uat-diagnostics/review-round2/report.md",
+    "independent_report_sha256": "8651c1c25cc2a7929e3c07e4bcaf006222bd73734a842ce6e99a95f95e3054ee",
+    "handoff": "validation/memory-queries/uat-diagnostics/diagnostic-retest-handoff.md",
+    "acceptance": "accepted by Chuck Russell 2026-11-10",
+    "delivery": "local only",
+    "uat_at_review_freeze": "stopped by maintainer; populated meta blocked",
+    "acceptance_at_review_freeze": "not granted",
+    "acceptance_record": "approval/memory-queries-acceptance.md",
+    "production_verification_observation": "Combined retest successful; full reorganization on exit yields positive /meta per maintainer. Earlier error cause not independently established; not a current MEMQ acceptance blocker."
+  },
+  "memory_queries_shared_uat_repair": {
+    "base": "0e5c32371029af5fa4d0d5ddf76608ce9339fe6f",
+    "directive": "remediation/REM-CMD-MEMQ-UAT-003-shared-quote-ingest.md",
+    "approval": "approval/memory-queries-shared-uat-repair.md",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
+    "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "uat": "PASS \u2014 maintainer-reported; closed 2026-11-10",
+    "acceptance": "accepted by Chuck Russell 2026-11-10",
+    "council_roster": [
+      "gpt-6-astra",
+      "gpt-6.1-sol"
+    ],
+    "claude_council_assignments": "prohibited by current maintainer preference",
+    "evidence": "validation/memory-queries/uat-shared-repair/evidence.json",
+    "report": "validation/memory-queries/uat-shared-repair/README.md",
+    "combined_retest": "uat/memq-repair-retest.md",
+    "correction_cycle": 1,
+    "initial_review": "CHANGES_REQUESTED: MEMQ-OPENAI-001 current status/authority prose only; runtime/tests/artifacts supported",
+    "correction": "validation/memory-queries/uat-shared-repair/correction1/README.md",
+    "candidate": "ead29d01c423be0bbc49e80247ff753521884e20",
+    "independent_report": "validation/memory-queries/uat-shared-repair/review-round2/report.md",
+    "product_source_candidate": "47134ad6404cb37916efac45e09d5378a286d387",
+    "independent_report_sha256": "65895fb4ba46b151a0871fc25f985514c69e45767ed3d7bd76ece70f879555c1",
+    "delivery": "local only",
+    "uat_at_review_freeze": "stopped; maintainer will retest all3 issues together",
+    "acceptance_at_review_freeze": "pending",
+    "acceptance_record": "approval/memory-queries-acceptance.md"
+  },
+  "memory_queries_acceptance": {
+    "state": "accepted",
+    "accepted_by": "Chuck Russell",
+    "accepted_at": "2026-11-10",
+    "recorded_at": "2026-11-10T13:27:29.974635+00:00",
+    "record": "approval/memory-queries-acceptance.md",
+    "checkout_before_acceptance": "39a631a92190bc2a8dc54b0d20fb0fecf7e8c535",
+    "product_source": "47134ad6404cb37916efac45e09d5378a286d387",
+    "corrected_packet": "ead29d01c423be0bbc49e80247ff753521884e20",
+    "main_uat": "PASS \u2014 maintainer-reported; closed",
+    "combined_retest": "PASS \u2014 maintainer-reported; closed",
+    "meta": "maintainer reports positive results after full reorganization on exit",
+    "per_case_logs_timings": "not supplied",
+    "separate_open_issue": "FU-011 explicit --full argument rejected",
+    "supersedes": "earlier pending/NOT RUN/blocked labels for these MEMQ/UAT units; original frozen evidence remains historical",
+    "delivery": "local only"
+  },
+  "accepted_checkpoint_before_maintenance": {
+    "decision": "MEMQ UAT and combined repair retest accepted and closed by Chuck Russell; separate FU-011 remains open",
+    "current_scope": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "product_code_authority": "Current work is documentation-only acceptance closure and FU-011 registration, at the maintainer's direction. MEMQ/REM-UAT-002/003 technical approvals remain historical authority for accepted bytes; no new product-code scope is granted."
+  },
+  "maintenance_specification": {
+    "historical_checkpoint": {
+      "unit": "MAINT-001",
+      "status": "corrected_documents_in_review",
+      "execution_phase": "validation",
+      "validation_state": "in_review",
+      "document": "maintenance-reorganization-specification.md",
+      "sha256": "56e3cd5fc75b402ab4aeda46f80807873b79a3df96debadb83164c2c0debfdad",
+      "recorded_at": "2026-11-10T13:52:34.313775+00:00",
+      "baseline": "1093aff8",
+      "instructions": [
+        "We should continue drafting the maintenance specification that was requested regarding the reorganization order of events. Is that clear?",
+        "I would like an opportunity to review documents from before sub-agents are invoked for the council."
+      ],
+      "implementation_approval": "not_granted",
+      "council_authority": "Round1 explicitly authorized and completed; further invocations require direction after human document review",
+      "delegated_work": "stopped; primary agent drafts directly",
+      "next_gate": "Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.",
+      "reviewed_candidate": "2d0957f495b2a11088388bc7e61d4ced3a3f4db4",
+      "council_round": 3,
+      "council_report": "validation/maintenance/specification/round1/report.md",
+      "council_results": {
+        "sol": {
+          "model": "gpt-6.1-sol",
+          "effort": "high",
+          "outcome": "VERIFIED",
+          "score": 9.0
+        },
+        "astra": {
+          "model": "gpt-6-astra",
+          "effort": "high",
+          "outcome": "VERIFIED",
+          "score": 9.2
+        }
+      },
+      "mandatory_findings": [],
+      "prior_verdict_scope": "round1 verified only old specification at2d0957f4; superseded for current readiness",
+      "correction_cycle": 1
+    },
+    "status": "document_readiness_verified",
+    "execution_phase": "planning",
+    "validation_state": "verified",
+    "council_round": 4,
+    "reviewed_candidate": "2b0850bfe6cfc6a91d744fa4440a40eaadaf3a60",
+    "council_report": "validation/maintenance/specification/round4/report.md",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.6,
+        "scope": "document readiness only"
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.6,
+        "scope": "document readiness only"
+      }
+    },
+    "mandatory_findings": [],
+    "implementation_approval": "not_granted",
+    "next_gate": "Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.",
+    "document": "maintenance-reorganization-specification.md",
+    "sha256": "56e3cd5fc75b402ab4aeda46f80807873b79a3df96debadb83164c2c0debfdad",
+    "historical_document_round3": {
+      "council_round": 3,
+      "reviewed_candidate": "4c09f5afe582043273447f3bfa3490e884054511",
+      "council_report": "validation/maintenance/specification/round3/report.md",
+      "results": {
+        "sol": {
+          "outcome": "VERIFIED",
+          "score": 9.3,
+          "model": "gpt-6.1-sol",
+          "report": "sol/report.md"
+        },
+        "astra": {
+          "outcome": "VERIFIED",
+          "score": 9.2,
+          "model": "gpt-6-astra",
+          "report": "astra_valid/report.md",
+          "instance": "fresh isolation reissue"
+        }
+      }
+    }
+  },
+  "maintenance_construction_directive": {
+    "historical_checkpoint": {
+      "status": "corrected_documents_in_review",
+      "prepared_at": "2026-11-10T14:40:46.835869+00:00",
+      "baseline": "06234fa8a56eaeff09266b4d20ed503dd71df1fa",
+      "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
+      "sha256": "16ceb43df6e1bfef265e6338888eaee95327eb29d09cdb4a839d3dae9853cfae",
+      "preparation": "validation/maintenance/construction-preparation-v3.json",
+      "preparation_sha256": "d73d31362a90f1845b3a5b8f2767a85734599195b206ecd5275019f6e683f5f1",
+      "instruction": "revise invoke the council to review the document after revisions were made.",
+      "execution_phase": "validation",
+      "validation_state": "in_review",
+      "implementation_approval": "not_granted",
+      "council_invocation": "authorized: fresh GPT-6 Astra/high and GPT-6.1 Sol/high, both documents, read-only",
+      "next_gate": "Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.",
+      "correction_cycle": 1,
+      "council_round": 3
+    },
+    "status": "implementation_verified",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
+    "council_round": 4,
+    "reviewed_candidate": "2b0850bfe6cfc6a91d744fa4440a40eaadaf3a60",
+    "council_report": "validation/maintenance/specification/round4/report.md",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.6,
+        "scope": "document readiness only"
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.6,
+        "scope": "document readiness only"
+      }
+    },
+    "mandatory_findings": [],
+    "implementation_approval": "conditional_gate_activated",
+    "next_gate": "Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.",
+    "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
+    "sha256": "931d42538d9f100392743d8e9826eec00b67297af788dd84e4453e820ebea2e7",
+    "preparation": "validation/maintenance/construction-preparation-v4.json",
+    "preparation_sha256": "66e940efd0271b03bd3ae5c358c1320cf30e4d0d474d3c278be67d5e593f8f4d",
+    "historical_round3_result": {
+      "historical_checkpoint": {
+        "status": "corrected_documents_in_review",
+        "prepared_at": "2026-11-10T14:40:46.835869+00:00",
+        "baseline": "06234fa8a56eaeff09266b4d20ed503dd71df1fa",
+        "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
+        "sha256": "16ceb43df6e1bfef265e6338888eaee95327eb29d09cdb4a839d3dae9853cfae",
+        "preparation": "validation/maintenance/construction-preparation-v3.json",
+        "preparation_sha256": "d73d31362a90f1845b3a5b8f2767a85734599195b206ecd5275019f6e683f5f1",
+        "instruction": "revise invoke the council to review the document after revisions were made.",
+        "execution_phase": "validation",
+        "validation_state": "in_review",
+        "implementation_approval": "not_granted",
+        "council_invocation": "authorized: fresh GPT-6 Astra/high and GPT-6.1 Sol/high, both documents, read-only",
+        "next_gate": "Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.",
+        "correction_cycle": 1,
+        "council_round": 3
+      },
+      "status": "document_readiness_verified",
+      "execution_phase": "planning",
+      "validation_state": "verified",
+      "council_round": 3,
+      "reviewed_candidate": "4c09f5afe582043273447f3bfa3490e884054511",
+      "council_report": "validation/maintenance/specification/round3/report.md",
+      "results": {
+        "sol": {
+          "outcome": "VERIFIED",
+          "score": 9.3,
+          "model": "gpt-6.1-sol",
+          "report": "sol/report.md"
+        },
+        "astra": {
+          "outcome": "VERIFIED",
+          "score": 9.2,
+          "model": "gpt-6-astra",
+          "report": "astra_valid/report.md",
+          "instance": "fresh isolation reissue"
+        }
+      },
+      "mandatory_findings": [],
+      "implementation_approval": "not_granted",
+      "next_gate": "Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.",
+      "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
+      "sha256": "16ceb43df6e1bfef265e6338888eaee95327eb29d09cdb4a839d3dae9853cfae",
+      "preparation": "validation/maintenance/construction-preparation-v3.json",
+      "preparation_sha256": "d73d31362a90f1845b3a5b8f2767a85734599195b206ecd5275019f6e683f5f1"
+    },
+    "automated_validation": "Builder evidence recorded; independent implementation result pending.",
+    "implementation_council_round": 1,
+    "product_source": "ae15a5374350807bd909bc823078087a53a47ce4",
+    "artifact_source": "ae15a5374350807bd909bc823078087a53a47ce4",
+    "evidence": "validation/maintenance/implementation/evidence.json",
+    "historical_document_round3": {
+      "council_round": 4,
+      "reviewed_candidate": "4c09f5afe582043273447f3bfa3490e884054511",
+      "council_report": "validation/maintenance/specification/round3/report.md",
+      "results": {
+        "sol": {
+          "outcome": "VERIFIED",
+          "score": 9.3,
+          "model": "gpt-6.1-sol",
+          "report": "sol/report.md"
+        },
+        "astra": {
+          "outcome": "VERIFIED",
+          "score": 9.2,
+          "model": "gpt-6-astra",
+          "report": "astra_valid/report.md",
+          "instance": "fresh isolation reissue"
+        }
+      }
+    }
+  },
+  "maintenance_directive_before_ownership_revision": {
+    "status": "proposed_for_human_review",
+    "prepared_at": "2026-11-10T14:40:46.835869+00:00",
+    "baseline": "06234fa8a56eaeff09266b4d20ed503dd71df1fa",
+    "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
+    "sha256": "906e7ee6c717612247b2619c4c49bd1e9f0280aa6b940835956105736030d932",
+    "preparation": "validation/maintenance/construction-preparation.json",
+    "preparation_sha256": "e06675197bb46b5ccdb1324dd12ba567ebee4366cdd7035031fee0d68a686e96",
+    "instruction": "Proceed, build the construction directive.",
+    "execution_phase": "planning",
+    "validation_state": "not_ready",
+    "implementation_approval": "not_granted",
+    "council_invocation": "not_authorized; human review first",
+    "next_gate": "Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review."
+  },
+  "maintenance_specification_before_ownership_revision": {
+    "unit": "MAINT-001",
+    "status": "specification_readiness_verified",
+    "execution_phase": "planning",
+    "validation_state": "verified",
+    "document": "maintenance-reorganization-specification.md",
+    "sha256": "e085d9fbad99b8cf59887db4590e41ee6f9af2cb963dd99e4fbbc7ee7f2332ab",
+    "recorded_at": "2026-11-10T13:52:34.313775+00:00",
+    "baseline": "1093aff8",
+    "instructions": [
+      "We should continue drafting the maintenance specification that was requested regarding the reorganization order of events. Is that clear?",
+      "I would like an opportunity to review documents from before sub-agents are invoked for the council."
+    ],
+    "implementation_approval": "not_granted",
+    "council_authority": "Round1 explicitly authorized and completed; further invocations require direction after human document review",
+    "delegated_work": "stopped; primary agent drafts directly",
+    "next_gate": "Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review.",
+    "reviewed_candidate": "2d0957f495b2a11088388bc7e61d4ced3a3f4db4",
+    "council_round": 1,
+    "council_report": "validation/maintenance/specification/round1/report.md",
+    "council_results": {
+      "sol": {
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "outcome": "VERIFIED",
+        "score": 9.0
+      },
+      "astra": {
+        "model": "gpt-6-astra",
+        "effort": "high",
+        "outcome": "VERIFIED",
+        "score": 9.2
+      }
+    },
+    "mandatory_findings": []
+  },
+  "maintenance_round2": {
+    "candidate": "80e214b2859f14e24bc716a989a69cd20962cf07",
+    "report": "validation/maintenance/specification/round2/report.md",
+    "results": {
+      "sol": {
+        "outcome": "CHANGES_REQUESTED",
+        "score": 8.2
+      },
+      "astra": {
+        "outcome": "CHANGES_REQUESTED",
+        "score": 8.6
+      }
+    },
+    "findings": {
+      "R2-SOL-M01": "headless default cancellation boundary",
+      "R2-SOL-M02": "missing public scope/plan receipt",
+      "MAINT-R2-ASTRA-01": "same scope-receipt gap as R2-SOL-M02"
+    },
+    "closure": "proposed corrections only; fresh independent closure pending"
+  },
+  "maintenance_round3": {
+    "candidate": "4c09f5afe582043273447f3bfa3490e884054511",
+    "report": "validation/maintenance/specification/round3/report.md",
+    "results": {
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.3,
+        "model": "gpt-6.1-sol",
+        "report": "sol/report.md"
+      },
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.2,
+        "model": "gpt-6-astra",
+        "report": "astra_valid/report.md",
+        "instance": "fresh isolation reissue"
+      }
+    },
+    "outcome": "VERIFIED",
+    "mandatory_findings": [],
+    "excluded_attempt": "Initial Astra BLOCKED; preserved, not waived; fresh independent Astra replacement supplies coverage."
+  },
+  "maintenance_conditional_approval": {
+    "instruction": "Yes, add Astra's fixed vector requirement. Reinvoke the council. Proceed only if council scores 9.5 or greater.",
+    "record": "approval/maintenance-reorganization-conditional.md",
+    "sha256": "636e5d336210e255e79b4c4e8ed1e763fabd03c8db5ef3ee262b937f123c5ac0",
+    "minimum_each": 9.5,
+    "outcome_each": "VERIFIED",
+    "open_mandatory_findings": 0,
+    "activation": "docs/planning/active/command-refactor/validation/maintenance/specification/round4/activation.json",
+    "models": [
+      "GPT-6 Astra/high",
+      "GPT-6.1 Sol/high"
+    ],
+    "next_gate": "Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.",
+    "activation_sha256": "35b163e57e0634cfacd253f971cb209eca893a779c2016891a0bb913cd2d2f02",
+    "state": "activated"
+  },
+  "maintenance_implementation": {
+    "unit": "MAINT-001",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
+    "round": 1,
+    "source": "ae15a5374350807bd909bc823078087a53a47ce4",
+    "runtime_source": "6318959eeb4bed55ded0f22d66519645317b97de",
+    "evidence": "validation/maintenance/implementation/evidence.json",
+    "human_uat": "not_run",
+    "acceptance": "not_granted",
+    "delivery": "local",
+    "next_gate": "Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.",
+    "reviewed_candidate": "b15ee091a1bfae07b61de521d6478b39ca4b48d2",
+    "report": "validation/maintenance/implementation/verified-report.md",
+    "council_round": 1,
+    "results": {
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.5,
+        "report": "validation/maintenance/implementation/council-round1/astra-report.md"
+      },
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.6,
+        "report": "validation/maintenance/implementation/council-round1/sol-report.md"
+      }
+    },
+    "mandatory_findings": []
+  },
+  "document_ingestion_remediation": {
+    "unit": "REM-CMD-INGEST-001",
+    "status": "proposed",
+    "execution_phase": "planning",
+    "validation_state": "not_ready",
+    "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
+    "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
+    "sha256": "e0375b3c5558a3e7c462674c7dc41c4d37e9e8eb583dc97498f35a01debb553f",
+    "assessment": "validation/document-ingestion/assessment.md",
+    "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
+    "scope": "PDF/DOCX/XLSX/PPTX extraction/local PDF OCR; shared all-source document/512 chunking with document/recursive/fixed overrides; shared LLM limits/dimension checks; retained fetching, admission, metadata/protection/storage semantics",
+    "implementation_approval": "not_granted",
+    "council": "not_invoked; maintainer document review first",
+    "dependency_or_model_installation": "not_performed",
+    "user_store_inspection_or_cleanup": "not_performed_or_authorized",
+    "next_gate": "Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.",
+    "required_dependency_floor": {
+      "certifi": ">=2026.10.19",
+      "authority": "explicit maintainer instruction",
+      "evidence": "validation/document-ingestion/certifi-security-requirement.json",
+      "enforcement": "declared dependency, lock, and post-install version/origin proof; not installed yet"
+    },
+    "tools_adoption": {
+      "proposal": "proposals/tools-document-adoption.md",
+      "status": "proposed_not_implemented",
+      "required_consumers": [
+        "ReaderFactory/get_reader_for_path",
+        "SmartFileReadTool.run"
+      ],
+      "claim_boundary": "Named public Tools consumers require actual adoption proof and shared all-source chunking/embedding checks; an extractor helper or Chat-only success does not establish Tools adoption.",
+      "requested_formats": [
+        "pdf",
+        "docx",
+        "xlsx",
+        "pptx"
+      ]
+    },
+    "requested_formats": [
+      "pdf",
+      "docx",
+      "xlsx",
+      "pptx"
+    ],
+    "format_expansion_authority": {
+      "maintainer": "Chuck Russell",
+      "date": "2026-11-10",
+      "instruction": "I'd like To expand this unit of work to include XLSX and PPTX documents - assume we're already capable of text and web ingestion by both the ingest command and through our tool chain.",
+      "scope_effect": "Expand planned document support in INGEST and TOOLS-DOC; existing text/web behavior is assumed and preserved, not newly validated; format defaults remain proposed; no product construction or council authority inferred.",
+      "evidence": "validation/document-ingestion/format-expansion.json"
+    },
+    "chunking_decisions": {
+      "default_strategy": "document",
+      "default_max_tokens": 512,
+      "strategies": [
+        "document",
+        "recursive",
+        "fixed"
+      ],
+      "scope": "all ingestion sources, including existing text/web and tool storage paths",
+      "main_config": "ingestion.chunking.strategy / ingestion.chunking.max_tokens",
+      "command_overrides": [
+        "--chunking=<strategy>",
+        "--chunk-tokens=<positive-integer>"
+      ],
+      "precedence": [
+        "explicit per-ingestion override",
+        "YAML",
+        "built-in default"
+      ],
+      "owner": "shared Memory policy, injected Tools Docling adapter; minimal Core contracts; Chat/TUI consumers",
+      "legacy_character_settings": "not token aliases or hidden defaults for the new ingestion path"
+    },
+    "embedding_decisions": {
+      "catalog": "existing model library",
+      "new_fields": [
+        "embedding_options.max_input_tokens",
+        "embedding_options.expected_dimensions"
+      ],
+      "separate_tokenizer_or_instruction_config": "not required; resolve and verify from exact model/artifact/serving identity",
+      "overflow": "split during chunking; reject invalid budgets/oversized final requests; never silently truncate or split one embedding input into multiple vectors",
+      "returned_vectors": "validate cardinality, expected dimensions and finite values before ingestion persistence",
+      "qwen4b": "illustrative_only_not_selected_or_installed",
+      "illustrative_max_input_tokens": 32768,
+      "illustrative_expected_dimensions": 2560,
+      "active_model_change": "none by this planning task",
+      "test_store": "fresh/disposable; no legacy migration/re-embedding; no reset performed"
+    },
+    "discussion_decisions": "validation/document-ingestion/discussion-decisions.json"
+  },
+  "command_refactor_publication": {
+    "status": "pushed_pr_open",
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-11-10",
+    "branch": "feature/command-retirement",
+    "submitted_head": "ac3f9fa0bdadf95a6fc76d40b39fbc077b53da96",
+    "base": "master",
+    "base_sha": "6f291ca5755a616d9185c86dff104b660a1fba8c",
+    "pull_request": "https://github.com/CIChuck/agent-framework/pull/15",
+    "evidence": "validation/delivery/command-retirement-publication.json",
+    "next_branch": "feature/cmd-ingest-001",
+    "merge_or_release_authority": "not_granted",
+    "maint_acceptance": "pending",
+    "ingest_construction": "not_granted"
   }
 }

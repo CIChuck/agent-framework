@@ -1,0 +1,26 @@
+{
+  "candidate": "76b949b2e621e7a44ddec6ed527784e781696c8c",
+  "outcome": "CHANGES_REQUESTED",
+  "scope": "directive/design readiness only",
+  "reports": {
+    "sol": {
+      "path": "sol.txt",
+      "sha256": "2ccc7faacd4e45ac440cff43f6d6f66e3f45dd4f53d8e58e44236721e345dbf6"
+    },
+    "astra": {
+      "path": "astra.txt",
+      "sha256": "f045ffa63672b6aaf21003eccdb55b0db036e1676b158b299c73022f57d5bb1a"
+    },
+    "claude": {
+      "path": "claude.txt",
+      "sha256": "ee194905a131ffceb29facbca93734f4de04a5d55d7624982db6b6b6348cd52e"
+    }
+  },
+  "scores": {
+    "sol": 8.7,
+    "astra": 8.5,
+    "claude": 8.3
+  },
+  "request_sha256": "fdbbd0ffa871f3e818461abb40b49eb4ecd94ec9ca27b9d01c7c321c27a3d085",
+  "manifest_sha256": "d547905755721b7afb49ff978de4c4307ca942703fc66978641287e8798f14d7"
+}

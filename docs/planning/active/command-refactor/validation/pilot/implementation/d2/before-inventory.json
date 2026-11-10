@@ -1,0 +1,1849 @@
+{
+  "packages/friday-chat/src/friday_chat/commands/registry.py": {
+    "sha256": "a8f81f8c6d794662981e95a7e073676acb2f634b8e8d9d386ea5dbf1d8cd06df",
+    "definitions": {
+      "CommandRegistry": {
+        "ast_sha256": "595dd0476cfe0ad40cf109f1bb58ab144ee2efea5d419c6986cc7e80346a8d58",
+        "line": 79,
+        "assertions": []
+      },
+      "CommandRegistry.__init__": {
+        "ast_sha256": "8ae53ada747afba538d646c630739959e174dc25473766de58afb375fd0ca418",
+        "line": 82,
+        "assertions": []
+      },
+      "CommandRegistry.commands": {
+        "ast_sha256": "4a233d5c7c82c173b95061453155601ba498c17f0aa627bdee8d2cd7b5300e48",
+        "line": 88,
+        "assertions": []
+      },
+      "CommandRegistry.register": {
+        "ast_sha256": "fe070963e76154e8d15d3c80deb40e2b1236050ffd6669f50d81356518e2f6aa",
+        "line": 92,
+        "assertions": []
+      },
+      "CommandRegistry.command_names": {
+        "ast_sha256": "b616007507985724c4601dc895b5712cd53d33927a8b8764a8146df862a4ccdd",
+        "line": 147,
+        "assertions": []
+      },
+      "CommandRegistry.canonical_names": {
+        "ast_sha256": "7c7efec2bbc8067b26f5349137379235d29b5a97899274f664a05bf0e7fed5d2",
+        "line": 151,
+        "assertions": []
+      },
+      "CommandRegistry.execute": {
+        "ast_sha256": "2a49d2fd8282b493922b8c3a0e15ca0ed8ae7326d298e55b519b1af8051d1b3b",
+        "line": 155,
+        "assertions": []
+      },
+      "CommandRegistry.render_help": {
+        "ast_sha256": "9688bea3f60799538de15e743ffec5ea752b3144e022776c75184c82ee29cf0d",
+        "line": 188,
+        "assertions": []
+      },
+      "CommandRegistry._first_duplicate_name": {
+        "ast_sha256": "52ba503bfff6cff7a4719feaeb707ace0085617a693a1e5189bbded2cc367435",
+        "line": 220,
+        "assertions": []
+      },
+      "_placeholder_handler": {
+        "ast_sha256": "c1fc3087e927f6a99b37f4002329d5d787c03dda5485d8a596a207484b05e5f0",
+        "line": 229,
+        "assertions": []
+      },
+      "_exit_handler": {
+        "ast_sha256": "622785b88b1c234354389504cc1da883b79542844be5f301319248daa2a45553",
+        "line": 242,
+        "assertions": []
+      },
+      "_clear_handler": {
+        "ast_sha256": "4e0e79de3d1d71938c60690017a5095a1c16c0a1012b2d9c8a12b87e9b3984f9",
+        "line": 250,
+        "assertions": []
+      },
+      "_history_handler": {
+        "ast_sha256": "dbe468211906f8a5a16553941044825e4c8ec5a685937e6587cda4c4f1f77060",
+        "line": 261,
+        "assertions": []
+      },
+      "_context_handler": {
+        "ast_sha256": "1c3b77a63a021f38316bea134b9396a9cab9b89056594ae90e7efbe774f8e534",
+        "line": 275,
+        "assertions": []
+      },
+      "_prompt_handler": {
+        "ast_sha256": "f7d4a7e589b7ec82c8d7bd7ea7137a7ac6e09ffdf16eb328f1a20d96c2357fb7",
+        "line": 289,
+        "assertions": []
+      },
+      "_debug_handler": {
+        "ast_sha256": "27ffc62602dfc97122091de258dbc9e5f473436f41d3c6002e303c0d8f9dfe8c",
+        "line": 301,
+        "assertions": []
+      },
+      "_debug_budget_handler": {
+        "ast_sha256": "9814ebcbfbf1d8355b7b015b1e7a66761c9a0a65ce4c3f492311e867f67909db",
+        "line": 319,
+        "assertions": []
+      },
+      "_timing_handler": {
+        "ast_sha256": "0ed4839520540a9a44f0f46461062c4dc761f21fce87469b18c2d87a375b55a2",
+        "line": 336,
+        "assertions": []
+      },
+      "_debug_retrieval_handler": {
+        "ast_sha256": "04e777de732eb478153e42a26aa5a04e249d28644f3280e7285287b5912cadb3",
+        "line": 357,
+        "assertions": []
+      },
+      "_entities_handler": {
+        "ast_sha256": "541455cbc28d1f7fd2e990159d5bb20d30c1c35d61932d1b80a3af86447738ac",
+        "line": 384,
+        "assertions": []
+      },
+      "_reset_handler": {
+        "ast_sha256": "52b0a62ab81c92f98ac411cfa01e531f6110243334b84cf8e47daa5c4acc2c7d",
+        "line": 426,
+        "assertions": []
+      },
+      "_reorganize_handler": {
+        "ast_sha256": "af86c74dcff8dcf04a102f3a32bea140285f2e5f1bba7113daf3c341f4d3877a",
+        "line": 471,
+        "assertions": []
+      },
+      "_format_reorganization_result": {
+        "ast_sha256": "38add72e6b17a188804e949cbce07875ffb045b5bf632b1ae48efaaf73d86300",
+        "line": 556,
+        "assertions": []
+      },
+      "_CommandReorganizationProgress": {
+        "ast_sha256": "151eca46a499d291c3865bef6f1a41f80beccc0af6fd6cc013bc049d8b90be2c",
+        "line": 625,
+        "assertions": []
+      },
+      "_CommandReorganizationProgress.for_context": {
+        "ast_sha256": "e34490e9af5da0b9db670eab9521ebc5f7cc05724c86b727ed90e8a2ea2502f4",
+        "line": 634,
+        "assertions": []
+      },
+      "_CommandReorganizationProgress.acknowledge": {
+        "ast_sha256": "ee34715adcc72fc83595a80112cbbc09f2725e64bb495061630c5148426146ca",
+        "line": 642,
+        "assertions": []
+      },
+      "_CommandReorganizationProgress.__call__": {
+        "ast_sha256": "a198918ec1771d94b4cda51b7fded7d2ab3fed1dfca5b17c2298f8f96664e672",
+        "line": 647,
+        "assertions": []
+      },
+      "_CommandReorganizationProgress._emit": {
+        "ast_sha256": "75e50bb93c7d2d0e63a85bfce1696a859b7b8b1fbd7ef1a262fcbb0c1efeb082",
+        "line": 650,
+        "assertions": []
+      },
+      "_lifecycle_handler": {
+        "ast_sha256": "7f8b35d5f531661d5512be0cb12f3998b79076933f820b994bf2e32b169b9b40",
+        "line": 657,
+        "assertions": []
+      },
+      "_migrate_handler": {
+        "ast_sha256": "b13758279d48e487d9086b3d144b54bf64167b8d05cb06acef74b398258386e3",
+        "line": 697,
+        "assertions": []
+      },
+      "_compact_handler": {
+        "ast_sha256": "03e5ca42ce55ae9f75be8e63fefa8869b3a0b1fbec6c6c7e166b8b2d681fbebe",
+        "line": 730,
+        "assertions": []
+      },
+      "_read_handler": {
+        "ast_sha256": "843380a5f63afe9e408f4d4ed5f21a9583b68257dffee2aba1f1bd6f64637cb6",
+        "line": 772,
+        "assertions": []
+      },
+      "_ingest_handler": {
+        "ast_sha256": "338140ce377cf4ab283191bc4ea3b61a975cdbdf5c81b6668d796ad7fda272db",
+        "line": 787,
+        "assertions": []
+      },
+      "_list_ingested_handler": {
+        "ast_sha256": "57b5cfd4a93c7fbba709e501a22f2efe8fd13218717cf1dcecf2900dd2a9ad25",
+        "line": 819,
+        "assertions": []
+      },
+      "_replay_handler": {
+        "ast_sha256": "c0331fac9563e42d095faedcd72ea6a51f4404465a8ae9c87acfc2488f096919",
+        "line": 838,
+        "assertions": []
+      },
+      "_security_handler": {
+        "ast_sha256": "07807ab8d20c0c32f99698430b85708582d0fcbaf8dced373fe5716f8245b874",
+        "line": 868,
+        "assertions": []
+      },
+      "_security_test_handler": {
+        "ast_sha256": "90e7747db3ede09064171cf2046585589d579c8d64ec8e0ec4356490dd59238b",
+        "line": 897,
+        "assertions": []
+      },
+      "_security_config_handler": {
+        "ast_sha256": "80f69fcafb8ad25019a793618db9fe3d9c7bbdbec859f63d22eaec25a839290c",
+        "line": 928,
+        "assertions": []
+      },
+      "_speech_handler": {
+        "ast_sha256": "8c89923fcd82cb8842df4063c059589a034a34810b0546bdd7674178fb5d2da8",
+        "line": 969,
+        "assertions": []
+      },
+      "_speech_test_handler": {
+        "ast_sha256": "69ee859f9a8c49f9781c66a62ef34ab769b7c15df660c733999439ed2b959210",
+        "line": 1020,
+        "assertions": []
+      },
+      "_switch_handler": {
+        "ast_sha256": "439a92aa190871880bb03aea6295928b6f3ca87431bc0bf743cc7460f678cb1a",
+        "line": 1034,
+        "assertions": []
+      },
+      "_agents_handler": {
+        "ast_sha256": "ce7160152369c6c30fd3dd71840e810f659dddd9aed1257cde75ce90bb8cded2",
+        "line": 1051,
+        "assertions": []
+      },
+      "_agent_handler": {
+        "ast_sha256": "5aa3d0cea2884345903b6a21f4534f6f85552a67f3b696a38edbe039f06d0ca2",
+        "line": 1069,
+        "assertions": []
+      },
+      "_delegate_handler": {
+        "ast_sha256": "abc4c09a3bfc2c50faaafabdb95ff444f91d3d908c76e2bc7702d3042dfd17c5",
+        "line": 1083,
+        "assertions": []
+      },
+      "_status_handler": {
+        "ast_sha256": "2d3e4aeab02643e97c438da008fcfd746721da458ecb2e0c206fbdafd7774b36",
+        "line": 1106,
+        "assertions": []
+      },
+      "_workflow_handler": {
+        "ast_sha256": "f42887071181e1333eb880ef6cc4391b83419d7eb190f6145247143feeb6cb2c",
+        "line": 1124,
+        "assertions": []
+      },
+      "_tools_handler": {
+        "ast_sha256": "5a8382f650eb46dffec3f27442009e33a48a57533bbd706c7555cc47140274e9",
+        "line": 1163,
+        "assertions": []
+      },
+      "_help_handler": {
+        "ast_sha256": "0c151833cb057bb6880eec36f29e57eb8161b2e1ecb99df44116e7f7ad6efd07",
+        "line": 1221,
+        "assertions": []
+      },
+      "RegistryCommandContext": {
+        "ast_sha256": "6cdd3bc97f1823c3f755021d69ec2001db3fb5baf38eca34c803b52e6d2a7d21",
+        "line": 1233,
+        "assertions": []
+      },
+      "build_default_registry": {
+        "ast_sha256": "13ff52545f3ce904e7bb7d6fa9dc718dd02fb250cba0076741d7bc74830d375a",
+        "line": 1241,
+        "assertions": []
+      },
+      "_parse_command_input": {
+        "ast_sha256": "4a3637d020f9cbea2beeee9bc69944d5235eac883ace3219fd2af500738451eb",
+        "line": 1325,
+        "assertions": []
+      },
+      "_normalize_command_name": {
+        "ast_sha256": "05a8abe0c747adb141b90548312cfc723673f04f46e86efd3cceec0454f7c5f0",
+        "line": 1333,
+        "assertions": []
+      },
+      "_render_command_detail": {
+        "ast_sha256": "7e7720ca6272aaf631824959a278142c59d3f989b9ed20156d1c4158b8b7f3c1",
+        "line": 1337,
+        "assertions": []
+      },
+      "_render_command_summary": {
+        "ast_sha256": "a8d0ab3a975ec43725da7df847963c5e94576bbc5c832e9d50160da13d0e92a9",
+        "line": 1353,
+        "assertions": []
+      },
+      "_render_arguments": {
+        "ast_sha256": "03bd95653e8ec0ec2eee652c4b14933ea90327f48328acce2b52a6b51915e02d",
+        "line": 1367,
+        "assertions": []
+      },
+      "_build_context_text": {
+        "ast_sha256": "f517a52d200fe34fde3b2f64ebee7f4ba7aabb51bac2a3fb65f916d3820b9b59",
+        "line": 1391,
+        "assertions": []
+      },
+      "_build_prompt_text": {
+        "ast_sha256": "74022b4e25f62c6bf879064f08290cc512c64190d7e2ff8c02642438cbfa1d7f",
+        "line": 1401,
+        "assertions": []
+      },
+      "_write_export_file": {
+        "ast_sha256": "cc1d29700d95d90c0b8a590f4c5e9de86331aa1bea557e12cdbbbb5982a7a2ea",
+        "line": 1415,
+        "assertions": []
+      },
+      "_ReorganizeUsageError": {
+        "ast_sha256": "6ae0a314b5d4337510d20b1e06b6512aea84cb208c55b161dc28ef7bc42bd635",
+        "line": 1446,
+        "assertions": []
+      },
+      "_ReorganizeInvocation": {
+        "ast_sha256": "ddab4c13b881bb132d2d07f0c8191d08fc0a4b22c8a1d00e33a18ad88f6f8bbd",
+        "line": 1451,
+        "assertions": []
+      },
+      "_parse_reorganize_invocation": {
+        "ast_sha256": "ea13757cb7943d52f6c4c88fd22caa19f5e62ba81bab83f0d0f99471870fd86f",
+        "line": 1461,
+        "assertions": []
+      },
+      "_reorganization_execute_refusal": {
+        "ast_sha256": "c74e854769990778c0c6c55d805af5c50806be65ad2c09f9f3e4454cd3057d67",
+        "line": 1554,
+        "assertions": []
+      },
+      "_reorganization_failure_output": {
+        "ast_sha256": "68d744024c6d7f1b4421bbeec711036e25a87aff05733484815577904f4a3723",
+        "line": 1565,
+        "assertions": []
+      },
+      "_classify_error": {
+        "ast_sha256": "058c843b373b3134aacce7b33fca35ab987eeccc3bafbc1f93e952fe01ff9ae5",
+        "line": 1574,
+        "assertions": []
+      },
+      "_format_speech_config": {
+        "ast_sha256": "b4cf200d27c22c2d823616926565f6f4bc6ce39949006b7926bfe9621c2f0c1e",
+        "line": 1586,
+        "assertions": []
+      },
+      "_parse_workflow_inputs": {
+        "ast_sha256": "ad627c6b46989d0dc3aa1e06dba7dd2b1cc1c00978b313335e9b9afc677fc1c3",
+        "line": 1601,
+        "assertions": []
+      },
+      "_tool_parameter_names": {
+        "ast_sha256": "02b9baa3d8def9f0e200b3537309126d5d490468d0425c4a8cd936c7dc407f4c",
+        "line": 1611,
+        "assertions": []
+      },
+      "CommandSpec": {
+        "ast_sha256": "368c463865a1027a6aa3b85e355561495a39a6b3639f8cf58c05d3b5a36e39b0",
+        "line": 1629,
+        "assertions": []
+      },
+      "_argument": {
+        "ast_sha256": "ca2c8c703363ebd0e7472d27b836ddc8a565ea7d67c235a1c1876f6950293bd5",
+        "line": 1641,
+        "assertions": []
+      }
+    }
+  },
+  "packages/friday-chat/src/friday_chat/commands/session.py": {
+    "sha256": "f18cbafa158506f3d315edfaa3c232bd33841792ffb32b610c2a9a811e969308",
+    "definitions": {
+      "cls_handler": {
+        "ast_sha256": "20927f2a5075f4a1326425505dacfa34ba005dafbe7cc3b48ce3238e89f19702",
+        "line": 13,
+        "assertions": []
+      }
+    }
+  },
+  "packages/friday-chat/src/friday_chat/commands/contracts.py": {
+    "sha256": "7d710dfebc7a60fbd931de395d6a6156cbe655841f8102f02343d8af3abdace6",
+    "definitions": {
+      "CommandUiEffect": {
+        "ast_sha256": "a57f7f30215b6509faae07a13056ba35e3f655c62ca3f85fb24ad57b202d8143",
+        "line": 18,
+        "assertions": []
+      },
+      "CommandContext": {
+        "ast_sha256": "967155666cce39f631588d892291e21ff80ac9677f049f21dc5deddc00a6db80",
+        "line": 25,
+        "assertions": []
+      },
+      "CommandContext.session_identity": {
+        "ast_sha256": "5e4034f4c8de7e0b415554da44190e44943bb7b998254b5efdcff8caccac31f4",
+        "line": 50,
+        "assertions": []
+      },
+      "CommandResult": {
+        "ast_sha256": "ed491b8c3a6b9a619a1a498c49ef0637d057365e3a0fdb62ac1bfa590e847ddb",
+        "line": 58,
+        "assertions": []
+      },
+      "CommandArgument": {
+        "ast_sha256": "5b569ac24153a036fba8febdd3c76dfa16db620b1ea87cae1c9637586d93ceb3",
+        "line": 68,
+        "assertions": []
+      },
+      "CommandMetadata": {
+        "ast_sha256": "1721e47078c74ccd0c010b93bb848fa98bd72c6a8fde80e64414c2c2d6c02a0f",
+        "line": 79,
+        "assertions": []
+      }
+    }
+  },
+  "packages/friday-chat/src/friday_chat/app.py": {
+    "sha256": "d4d3a7a08b95bb618b12571b87760ca3b10871b9c41fd5ba9fad310e263a4a4a",
+    "definitions": {
+      "InputSource": {
+        "ast_sha256": "345b64e2a4b64e8d92a08e055077c58da463ca784648792d1b8e93f26ff5f7b3",
+        "line": 45,
+        "assertions": []
+      },
+      "InputSource.read": {
+        "ast_sha256": "8e5a042dccc2549e7eb14dcd012fece467194a246065bf4596b2d54d43482400",
+        "line": 48,
+        "assertions": []
+      },
+      "OutputSink": {
+        "ast_sha256": "2bb4289e428caf77c3e51eac5a1d7338b1b2d1d8164ca36df5b0a7b76ecabde6",
+        "line": 52,
+        "assertions": []
+      },
+      "OutputSink.write": {
+        "ast_sha256": "809a6a684167a799577b7c1fd42a5d18e6583169c41f9ac6e8ca67d3319f2268",
+        "line": 55,
+        "assertions": []
+      },
+      "AssistantOutputSink": {
+        "ast_sha256": "92fa9fac5e6c70f60f50d8c67b59baec4fbd7b6823a5888548b44f792c83c7e0",
+        "line": 59,
+        "assertions": []
+      },
+      "AssistantOutputSink.write_assistant_response": {
+        "ast_sha256": "98cac0fcf5b86f961149869beda4c5e74b5199b7c146ef2413c93d9d99c9045f",
+        "line": 62,
+        "assertions": []
+      },
+      "AssistantOutputSink.begin_assistant_response": {
+        "ast_sha256": "4d907d7459fa41629dc5125e1e30749a83bd2229acb5a1f9655b1911015bb705",
+        "line": 70,
+        "assertions": []
+      },
+      "AssistantOutputSink.write_assistant_chunk": {
+        "ast_sha256": "c6f432099232be95751e901b8cb13b694ccbab51b084ea44d35d792832625401",
+        "line": 73,
+        "assertions": []
+      },
+      "TurnHandler": {
+        "ast_sha256": "33215ce5490158248c72b2b41e4eaf2651e2848a1e98357d19b9d988a5956203",
+        "line": 77,
+        "assertions": []
+      },
+      "TurnHandler.process": {
+        "ast_sha256": "6b63d5646e37463742f531a0d0bafd4658e43a1a727e2d675fde78f111922c90",
+        "line": 80,
+        "assertions": []
+      },
+      "StreamingTurnHandler": {
+        "ast_sha256": "43dcdd5f1e4791fb2c9fe7a964d218b66a7ad595a1e45583eb2dd24b94ff3a5a",
+        "line": 84,
+        "assertions": []
+      },
+      "StreamingTurnHandler.process_streaming": {
+        "ast_sha256": "5bd2eea147cc155bb6f62820b6846dfef6c00a5dde483fecae09d97a43988eb7",
+        "line": 87,
+        "assertions": []
+      },
+      "StreamingProcessMethod": {
+        "ast_sha256": "9fe035f2ecb12299b6d22472539cf7dfc53b9ace5bcaf117885a58aa8cb1e20c",
+        "line": 96,
+        "assertions": []
+      },
+      "StreamingProcessMethod.__call__": {
+        "ast_sha256": "436dae7ea85f78cb4156e2ce50e5fbcb733007b73533728b2c58e2b3fe80652f",
+        "line": 99,
+        "assertions": []
+      },
+      "AppRunResult": {
+        "ast_sha256": "0fa56e2c0e0913e0350cf54f90f2320c511bcdf42ab620fede39661003b1c09c",
+        "line": 109,
+        "assertions": []
+      },
+      "ListInputSource": {
+        "ast_sha256": "2d4e6fc96348014b87334b010100f6cace5772e1ce2a6686f57ab839c5f5e9a8",
+        "line": 118,
+        "assertions": []
+      },
+      "ListInputSource.read": {
+        "ast_sha256": "e79fb68d46ae6a5f54ce04b78651502875a2f785834e4df55777ad91074fd2d6",
+        "line": 124,
+        "assertions": []
+      },
+      "ListOutputSink": {
+        "ast_sha256": "23af224913a72691eb75467d89b0d1bda8087e058d725d12150f2a39769d0b42",
+        "line": 133,
+        "assertions": []
+      },
+      "ListOutputSink.write": {
+        "ast_sha256": "c4fab857913b8e0117424e564f037f6c650323f854da00a87c705474e63ef653",
+        "line": 138,
+        "assertions": []
+      },
+      "ConsoleInputSource": {
+        "ast_sha256": "72ecdd92d8a8cea35442078687c5ad9e7ebdda72a78e646d2d7be80526c7d78b",
+        "line": 142,
+        "assertions": []
+      },
+      "ConsoleInputSource.__init__": {
+        "ast_sha256": "5e940bdee8107cec91b827652e00e454d2a2bb2058a2a017b782430804dd83f4",
+        "line": 145,
+        "assertions": []
+      },
+      "ConsoleInputSource.read": {
+        "ast_sha256": "21caa69765cd3c536472d0a805a9dfcef1213a13d28f9c746392a83d37d75d82",
+        "line": 154,
+        "assertions": []
+      },
+      "ConsoleOutputSink": {
+        "ast_sha256": "135ca7350465653877fadef42c75911f89969e4b827c1af93e0d79f3e4f393bf",
+        "line": 158,
+        "assertions": []
+      },
+      "ConsoleOutputSink.write": {
+        "ast_sha256": "7af3ba22975d3a219852e15edf7d1eb1f4a92d5a4e5bbbe011bc896e2e4a3f46",
+        "line": 161,
+        "assertions": []
+      },
+      "ConsoleOutputSink.write_chunk": {
+        "ast_sha256": "4ce854e8938ec03a7f00511f77f21338ba02de8d7d4043d2ac0a22640189a708",
+        "line": 164,
+        "assertions": []
+      },
+      "ConsoleOutputSink.finish_stream": {
+        "ast_sha256": "f77c3fbc7eaf1c7f2a77c488ceff85e0ca8cf2d71f81ea59733a4df7cfd16d6a",
+        "line": 168,
+        "assertions": []
+      },
+      "AppMaintenanceRuntimeHooks": {
+        "ast_sha256": "c9eda7366a329ae04fdc37ed93c1acc2a6f0b948b266fc8cf467eb1d58479b11",
+        "line": 174,
+        "assertions": []
+      },
+      "AppMaintenanceRuntimeHooks.prepare_for_manual_maintenance": {
+        "ast_sha256": "15785c7869e51f910cec008e47d2f7c19faf7a73bd870ed659f7d877b9e1a698",
+        "line": 183,
+        "assertions": []
+      },
+      "AppMaintenanceRuntimeHooks.drain_for_manual_maintenance": {
+        "ast_sha256": "ecdc520aa55028796b240caf63042197a623fef444de418d36512317c68e9753",
+        "line": 190,
+        "assertions": []
+      },
+      "AppMaintenanceRuntimeHooks.resume_after_manual_maintenance": {
+        "ast_sha256": "041f8b8b939e11fd127d113bb70fc79b56fa998865668110ac247334f6d58357",
+        "line": 204,
+        "assertions": []
+      },
+      "AppMaintenanceRuntimeHooks.close_for_shutdown": {
+        "ast_sha256": "0c204a379bca09f0379994179b23642415ff77c7deb506c748eb582cdc87f6e7",
+        "line": 220,
+        "assertions": []
+      },
+      "AppMaintenanceRuntimeHooks.close_async_clients": {
+        "ast_sha256": "5534e98652cf38849e0741debe43cc52c9fdce675c7aadaef2b8eedaca1abfc3",
+        "line": 243,
+        "assertions": []
+      },
+      "AppMaintenanceRuntimeHooks.finalize_transcript": {
+        "ast_sha256": "88bca66e696827f8e2c372f57ef589833c2cdd3341c6882c1c86e200cc751d37",
+        "line": 253,
+        "assertions": []
+      },
+      "AppMaintenanceRuntimeHooks._run_step": {
+        "ast_sha256": "5822808ff6db795f3d7ed44eac1475143d8390ea1701616acbcf07fb7712f8df",
+        "line": 256,
+        "assertions": []
+      },
+      "FridayChatApp": {
+        "ast_sha256": "968c75eccc2ef1d8f5946138f9bebd15cca67450d078a3d30877c1036f7dd0a0",
+        "line": 275,
+        "assertions": []
+      },
+      "FridayChatApp.__init__": {
+        "ast_sha256": "710469e951d4894bf74ab526dec5044e809ece8e7079eb9036700423f106804b",
+        "line": 278,
+        "assertions": []
+      },
+      "FridayChatApp.started": {
+        "ast_sha256": "0638cde1091464ec76f68633bd7eb0eab84ac0b58de7ddef78a7ca8e1abfc950",
+        "line": 384,
+        "assertions": []
+      },
+      "FridayChatApp.start": {
+        "ast_sha256": "daebb91da997dab23f593cb1de50526e0242745e56325f86332870ead5122ba1",
+        "line": 388,
+        "assertions": []
+      },
+      "FridayChatApp.run": {
+        "ast_sha256": "fad21d970b839910fe8d276879eda8227a16b91532018372ac63fa081ad05066",
+        "line": 405,
+        "assertions": []
+      },
+      "FridayChatApp._run_lifecycle": {
+        "ast_sha256": "692b912615b6c45c55d8ddf26fc883aa9bdc99f3cb062064d940359980c24ff8",
+        "line": 456,
+        "assertions": []
+      },
+      "FridayChatApp._process_chat_turn": {
+        "ast_sha256": "f494d8183b3060abcd91de9959ae91dae801f22de3463b69dd99a35511f979d1",
+        "line": 558,
+        "assertions": []
+      },
+      "FridayChatApp._write_assistant_response": {
+        "ast_sha256": "f7e151fb937ea8c5d83bf23a47ec077f4ed10cce9468d0ab286860ed9a8c1802",
+        "line": 575,
+        "assertions": []
+      },
+      "FridayChatApp._begin_assistant_response": {
+        "ast_sha256": "191df658517eb097e459e3d8b8165871a7394678b1e760377fdad6e888470b66",
+        "line": 590,
+        "assertions": []
+      },
+      "FridayChatApp._write_response_chunk": {
+        "ast_sha256": "4308a1f2649c5f36f639e471d95df295d34c9f6038fb71a5a99f474d88e70d9e",
+        "line": 595,
+        "assertions": []
+      },
+      "FridayChatApp._finish_response_stream": {
+        "ast_sha256": "199689b7c357f24e1ae707c0208cb4cb289e387660078dfd3c4b0c031530857a",
+        "line": 606,
+        "assertions": []
+      },
+      "FridayChatApp._shutdown_through_coordinator": {
+        "ast_sha256": "015330b3fc7d5cd76d855c4332fff5dcf22c1fce70a6faffdd6005da5d9fe486",
+        "line": 611,
+        "assertions": []
+      },
+      "FridayChatApp._route_agent_message": {
+        "ast_sha256": "eb361c88cfed85a798f401964b8729f3ef2be217d0ad3851931e362cb52b2156",
+        "line": 649,
+        "assertions": []
+      },
+      "FridayChatApp._dispatch_command_effects": {
+        "ast_sha256": "26b6175c8aaa1d0186d7f4ce82de3843f50df56fb830352726fb1f1cefd4883c",
+        "line": 663,
+        "assertions": []
+      },
+      "FridayChatApp._ensure_session_initialized": {
+        "ast_sha256": "3a1f18d5935c75e8ad305e9c38b5c6d4f3e93be747b987926398d82a6ad76e42",
+        "line": 679,
+        "assertions": []
+      },
+      "FridayChatApp._record_turn_state": {
+        "ast_sha256": "09ecf6e0e40e60325b492914e0310eecb7776e4b050d76a0f8d8fe58606f4e73",
+        "line": 687,
+        "assertions": []
+      },
+      "_format_turn_processing_error": {
+        "ast_sha256": "39c56270edcb1d29360f9a96491026a94beee3b73055826d11a941c39d23d449",
+        "line": 705,
+        "assertions": []
+      },
+      "_format_exception_cause": {
+        "ast_sha256": "40c6232415736f1356e3ef486775a655e1c0feb5e26a9bd01fe21a3ef36c5d1b",
+        "line": 725,
+        "assertions": []
+      },
+      "_root_exception_cause": {
+        "ast_sha256": "0b18e4a7025d472fe8e72f2a12abdc757d87831f4a1da8927b16753f0a2ecc8d",
+        "line": 738,
+        "assertions": []
+      },
+      "_exception_response_body": {
+        "ast_sha256": "2bcaea2c2676d7836503516e3d3779aba062c7afdcc0d8055c2cf1a76c1d28a9",
+        "line": 753,
+        "assertions": []
+      }
+    }
+  },
+  "packages/friday-chat/tests_chat/test_command_registry.py": {
+    "sha256": "204729b4535b7c0eabcdf19d56ece05907b26e22922adbbc8c638b730d7bbd8d",
+    "definitions": {
+      "test_default_registry_includes_session_commands_and_fallback_prototypes": {
+        "ast_sha256": "fc36e127cad76f92df35f7b3c883dadf3f1511b2b2ccd59da2dd536ce9a63796",
+        "line": 14,
+        "assertions": [
+          "Assert(test=Call(func=Attribute(value=Set(elts=[Constant(value='exit'), Constant(value='quit'), Constant(value='q'), Constant(value='help')]), attr='issubset', ctx=Load()), args=[Name(id='names', ctx=Load())]))",
+          "Assert(test=Call(func=Attribute(value=Set(elts=[Constant(value='debug-retrieval'), Constant(value='list-ingested')]), attr='issubset', ctx=Load()), args=[Name(id='names', ctx=Load())]))"
+        ]
+      },
+      "test_duplicate_command_registration_fails": {
+        "ast_sha256": "f97c2f1cffdd5ae0f574676220dd54db876eff6255599b096fc73415e7d25ddf",
+        "line": 23,
+        "assertions": []
+      },
+      "test_help_includes_every_registered_command_and_alias": {
+        "ast_sha256": "25d08b99d9aa324876a754002cc3b62532571a11befc450aa6e2a66b869c1ab1",
+        "line": 41,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='was_command', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Name(id='result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Call(func=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load()), attr='startswith', ctx=Load()), args=[Constant(value='Available commands:')]))",
+          "Assert(test=Compare(left=Name(id='missing', ctx=Load()), ops=[Eq()], comparators=[Call(func=Name(id='set', ctx=Load()))]))",
+          "Assert(test=Compare(left=JoinedStr(values=[Constant(value='Description: '), FormattedValue(value=Attribute(value=Name(id='metadata', ctx=Load()), attr='description', ctx=Load()), conversion=-1)]), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=JoinedStr(values=[Constant(value='Usage: '), FormattedValue(value=Attribute(value=Name(id='metadata', ctx=Load()), attr='usage', ctx=Load()), conversion=-1)]), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=JoinedStr(values=[Constant(value='- '), FormattedValue(value=Attribute(value=Name(id='argument', ctx=Load()), attr='name', ctx=Load()), conversion=-1), Constant(value=' ['), FormattedValue(value=Name(id='requirement', ctx=Load()), conversion=-1), Constant(value=']')]), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))"
+        ]
+      },
+      "test_help_uses_legacy_verbose_category_format": {
+        "ast_sha256": "cb262feadd9d13e3924638e3c354b289babe69482212814b714b31a4f86e3372",
+        "line": 64,
+        "assertions": [
+          "Assert(test=Compare(left=Call(func=Attribute(value=Name(id='registry', ctx=Load()), attr='render_help', ctx=Load())), ops=[Eq()], comparators=[Constant(value='Available commands:\\nUse /help <command> for focused details.\\n\\nUTILITY\\n-\\n/inspect (aliases: /show)\\n  Description: Inspect an item.\\n  Usage: /inspect <name> [format]\\n  Arguments:\\n    - name [required]: Item name.\\n    - format [optional] (default=text, choices=text, json): Output format.')]))"
+        ]
+      },
+      "test_default_help_metadata_matches_handler_syntax": {
+        "ast_sha256": "a149b9c74f1450c2dc2e386185fbf2047a62176835dc8300ae3f9df3312340b2",
+        "line": 98,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='read'), ctx=Load()), attr='usage', ctx=Load()), ops=[Eq()], comparators=[Constant(value='/read <path> [--lines=N]')]))",
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='replay'), ctx=Load()), attr='usage', ctx=Load()), ops=[Eq()], comparators=[Constant(value='/replay <csv_path> [delay_seconds]')]))",
+          "Assert(test=Call(func=Attribute(value=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='security-test'), ctx=Load()), attr='usage', ctx=Load()), attr='endswith', ctx=Load()), args=[Constant(value='[instruction|delimiter|jailbreak|exfil|all]')]))",
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='security-config'), ctx=Load()), attr='usage', ctx=Load()), ops=[Eq()], comparators=[Constant(value='/security-config <sensitivity|action|wrapping> <value>')]))",
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='migrate'), ctx=Load()), attr='usage', ctx=Load()), ops=[Eq()], comparators=[Constant(value='/migrate [--force|--execute|--stats]')]))",
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='transcript'), ctx=Load()), attr='usage', ctx=Load()), ops=[Eq()], comparators=[Constant(value='/transcript [session_id|export]')]))",
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='export-prompts'), ctx=Load()), attr='usage', ctx=Load()), ops=[Eq()], comparators=[Constant(value='/export-prompts [session_id]')]))"
+        ]
+      },
+      "test_remediated_command_help_documents_final_runtime_contracts": {
+        "ast_sha256": "1c9ed31efc2ec7ea6af7912fc1a2e49369aa511eaca4840ff3a5edc3e102d12e",
+        "line": 114,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='cls'), ctx=Load()), attr='aliases', ctx=Load()), ops=[Eq()], comparators=[Tuple(elts=[Constant(value='clearscreen')], ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='display boundary'), ops=[In()], comparators=[Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='cls'), ctx=Load()), attr='description', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='cls'), ctx=Load()), attr='detail', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='no replacement text'), ops=[In()], comparators=[Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='cls'), ctx=Load()), attr='detail', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='typed memory'), ops=[In()], comparators=[Call(func=Attribute(value=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='memory'), ctx=Load()), attr='description', ctx=Load()), attr='lower', ctx=Load()))]))",
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='memory'), ctx=Load()), attr='detail', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='unavailable or unconfigured'), ops=[In()], comparators=[Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='memory'), ctx=Load()), attr='detail', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='provenance'), ops=[In()], comparators=[Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='meta'), ctx=Load()), attr='description', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='meta'), ctx=Load()), attr='detail', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='excludes decayed records'), ops=[In()], comparators=[Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='meta'), ctx=Load()), attr='detail', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='persisted transcript sessions'), ops=[In()], comparators=[Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='sessions'), ctx=Load()), attr='description', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='transcript'), ctx=Load()), attr='usage', ctx=Load()), ops=[Eq()], comparators=[Constant(value='/transcript [session_id|export]')]))",
+          "Assert(test=Compare(left=Attribute(value=Subscript(value=Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='transcript'), ctx=Load()), attr='arguments', ctx=Load()), slice=Constant(value=0), ctx=Load()), attr='name', ctx=Load()), ops=[Eq()], comparators=[Constant(value='target')]))",
+          "Assert(test=Compare(left=Constant(value='bound store-query values'), ops=[In()], comparators=[BoolOp(op=Or(), values=[Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='transcript'), ctx=Load()), attr='detail', ctx=Load()), Constant(value='')])]))",
+          "Assert(test=Compare(left=Constant(value='never copies the live SQLite database'), ops=[In()], comparators=[BoolOp(op=Or(), values=[Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='export'), ctx=Load()), attr='detail', ctx=Load()), Constant(value='')])]))",
+          "Assert(test=Compare(left=Constant(value='transcript.capture_raw_prompts'), ops=[In()], comparators=[BoolOp(op=Or(), values=[Attribute(value=Subscript(value=Name(id='commands', ctx=Load()), slice=Constant(value='export-prompts'), ctx=Load()), attr='detail', ctx=Load()), Constant(value='')])]))"
+        ]
+      },
+      "test_registration_rejects_missing_help_metadata": {
+        "ast_sha256": "ee64af75dd1bbf43562595bb264e41b232940544afe1ae6f14825ca5cf62bed8",
+        "line": 147,
+        "assertions": []
+      },
+      "test_registration_rejects_undocumented_argument": {
+        "ast_sha256": "064f7a86de7bd65d591bdf0ef61b79103c6dcff3d99e96d467d53ebb930bf862",
+        "line": 164,
+        "assertions": []
+      },
+      "test_help_for_alias_resolves_canonical_command": {
+        "ast_sha256": "75ff1c754787034c1a506f4ba2970aea7365243ba272116a4ca26f089d5d78dd",
+        "line": 176,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='was_command', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Name(id='result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='/exit'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Usage: /exit'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Description: Exit the chat session.'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Aliases: /quit, /q'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Arguments: none'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))"
+        ]
+      },
+      "test_focused_help_includes_structured_argument_details": {
+        "ast_sha256": "7583aed0ef86526d5279193406bd7afd08889f29f7243d4f0f2194455312a160",
+        "line": 191,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='Usage: /context [--debug] [--file]'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Arguments:'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='- --debug [optional]: Include detailed token diagnostics.'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='- --file [optional]: Export the context to a file.'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))"
+        ]
+      },
+      "test_reorganize_help_documents_exact_execution_and_recovery": {
+        "ast_sha256": "83f5bd93fc82f6a39194071c8225e7b02f3675f19cf0887c12aa8fe2eea568aa",
+        "line": 204,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='/reorganize --recover <run-id> [--execute]'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='dry-run by default'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value=\"Plain 'execute' and --no-backup are rejected\"), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Transcript content is recovery-only'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='defaults to disabled'), ops=[In()], comparators=[Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load())]))"
+        ]
+      },
+      "test_unknown_command_returns_registry_response": {
+        "ast_sha256": "a28616329365ca945b626ce231cbd4f249660f1e3845de6e4b5c25727cea7bb3",
+        "line": 218,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='was_command', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Name(id='result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load()), ops=[Eq()], comparators=[Constant(value='Unknown command: /does-not-exist. Type /help for available commands.')]))"
+        ]
+      },
+      "test_non_command_input_is_not_dispatched": {
+        "ast_sha256": "c45f19b41daf34375a47d16746586d24e2f03769a0bac63b74b878ededba8a93",
+        "line": 230,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='was_command', ctx=Load()), ops=[Is()], comparators=[Constant(value=False)]))",
+          "Assert(test=Compare(left=Name(id='result', ctx=Load()), ops=[Is()], comparators=[Constant(value=None)]))"
+        ]
+      },
+      "test_exit_alias_requests_exit": {
+        "ast_sha256": "379a70c319030131648eb1ef2d14d3ba1e8c6780f4c5d52a5b63d4bd39940908",
+        "line": 239,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='was_command', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Name(id='result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_requested', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))"
+        ]
+      }
+    }
+  },
+  "packages/friday-chat/tests_chat/test_display.py": {
+    "sha256": "67fd6a1416e6a5348fa0cc910dfa5d8eea7ee975844119f8c92978678dce4d01",
+    "definitions": {
+      "RecordingHeartbeat": {
+        "ast_sha256": "a56d00408e0d569023d52efff85c249ba61835162f6e2352425baa808efffcf2",
+        "line": 35,
+        "assertions": []
+      },
+      "RecordingHeartbeat.__init__": {
+        "ast_sha256": "034fa84a366edbcfe03544e034b79fa9477d1e61018ac9263f5b835768b902e6",
+        "line": 38,
+        "assertions": []
+      },
+      "RecordingHeartbeat.start": {
+        "ast_sha256": "909976c62c8bec0af025714078465c00877d3fc5e24a519433a97eb571601f90",
+        "line": 42,
+        "assertions": []
+      },
+      "RecordingHeartbeat.stop": {
+        "ast_sha256": "3537435a7fdb2ceab4aa30112b8a74ecdbcdc8b343b3bd8c7358fc46c80dbe81",
+        "line": 45,
+        "assertions": []
+      },
+      "RecordingDisplay": {
+        "ast_sha256": "f5ac5193a15bb31f29eca291bca3a8cf8f447eafbbb577e700c8498b1a98c10a",
+        "line": 49,
+        "assertions": []
+      },
+      "RecordingDisplay.__init__": {
+        "ast_sha256": "0f5b07aec1a5202aa1c3a451decc99ac97b1f1dd58174ebd33783f4964644eb2",
+        "line": 52,
+        "assertions": []
+      },
+      "RecordingDisplay.render_banner": {
+        "ast_sha256": "799d7293ca5b641c7945f6648c4850d366859aa6a47b2d58d96acf300a3d3942",
+        "line": 57,
+        "assertions": []
+      },
+      "RecordingDisplay.prompt_text": {
+        "ast_sha256": "63668528a593ea6b9f5909fa34a32ad0ec0b22afcd9462643b5a1f72ce2d22fb",
+        "line": 60,
+        "assertions": []
+      },
+      "RecordingDisplay.create_heartbeat": {
+        "ast_sha256": "4b88e12eec49b15aaa3a6bfda6ecf994ef3e69f4550430a455c5e4361fa21d20",
+        "line": 63,
+        "assertions": []
+      },
+      "RecordingDisplay.clear_screen": {
+        "ast_sha256": "b52815a9ff90a207c6a126a6734a3e0271d2a09856ced17bbe2483c37c4b3551",
+        "line": 66,
+        "assertions": []
+      },
+      "FailingClearDisplay": {
+        "ast_sha256": "791e154832016d1fb3b09a8648d1cc21268d33ff578cbd485b3d51a967f6c0c3",
+        "line": 70,
+        "assertions": []
+      },
+      "FailingClearDisplay.clear_screen": {
+        "ast_sha256": "99d0a3028a2492434d2e81c7f8ee92654210817c89573728cb7dc651b5341e3b",
+        "line": 73,
+        "assertions": []
+      },
+      "RecordingConsole": {
+        "ast_sha256": "758f423f10f4b144b8e8c2aaaee48f9d2dbfcdd8466ef367f5ccc2abf1c30e67",
+        "line": 77,
+        "assertions": []
+      },
+      "RecordingConsole.__init__": {
+        "ast_sha256": "325172588efb077b9af97ee7a1900f37ee871f288adb335bb3d60aa48524b937",
+        "line": 80,
+        "assertions": []
+      },
+      "RecordingConsole.clear": {
+        "ast_sha256": "960a20945ed34cfe78a5ccb0c380a422db604689a245d9586397a2c3197a058b",
+        "line": 83,
+        "assertions": []
+      },
+      "_write_cli_config": {
+        "ast_sha256": "d01440fe6b21759a7e37909a81c48b204091df87d74383e3121f81a36bcd2886",
+        "line": 87,
+        "assertions": []
+      },
+      "test_display_config_auto_loads_sibling_cli_config": {
+        "ast_sha256": "5cf9725d901a6324b65339cb413aa72dad6a7b8d7712cde649deae98b5f0f1fc",
+        "line": 122,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='source', ctx=Load()), ops=[Eq()], comparators=[Constant(value='sibling')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='path', ctx=Load()), ops=[Eq()], comparators=[BinOp(left=Name(id='tmp_path', ctx=Load()), op=Div(), right=Constant(value='cli-config.yaml'))]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='config', ctx=Load()), attr='theme', ctx=Load()), attr='error', ctx=Load()), ops=[Eq()], comparators=[Constant(value='bold magenta')]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='banner', ctx=Load()), attr='style', ctx=Load()), ops=[Eq()], comparators=[Constant(value='ascii')]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='banner', ctx=Load()), attr='subtitle', ctx=Load()), ops=[Eq()], comparators=[Constant(value='{assistant_name} custom CLI')]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='banner', ctx=Load()), attr='show_version', ctx=Load()), ops=[Is()], comparators=[Constant(value=False)]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='banner', ctx=Load()), attr='art', ctx=Load()), ops=[Eq()], comparators=[Constant(value='CUSTOM')]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='banner', ctx=Load()), attr='gradient', ctx=Load()), ops=[Eq()], comparators=[Tuple(elts=[Constant(value='#00ff00')], ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='banner', ctx=Load()), attr='tips', ctx=Load()), ops=[Eq()], comparators=[Tuple(elts=[Constant(value='`/help` for more information.')], ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='response', ctx=Load()), attr='text_style', ctx=Load()), ops=[Eq()], comparators=[Constant(value='bright_green')]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='config', ctx=Load()), attr='spinner', ctx=Load()), attr='spinner_type', ctx=Load()), ops=[Eq()], comparators=[Constant(value='dots12')]))"
+        ]
+      },
+      "test_display_config_explicit_override_wins": {
+        "ast_sha256": "b5ce10cd5ac437179ae6843a781d23dc3bef7854d9da4c27019fe3ac3fa53adf",
+        "line": 142,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='source', ctx=Load()), ops=[Eq()], comparators=[Constant(value='explicit')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='path', ctx=Load()), ops=[Eq()], comparators=[Name(id='explicit', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='config', ctx=Load()), attr='theme', ctx=Load()), attr='error', ctx=Load()), ops=[Eq()], comparators=[Constant(value='bold green')]))"
+        ]
+      },
+      "test_display_config_defaults_when_sibling_missing": {
+        "ast_sha256": "ffadf3fc4fd6372554721d48b8752cc94cb2b72e9bb9f52930ec5ac9d294851b",
+        "line": 159,
+        "assertions": [
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Name(id='result', ctx=Load()), Name(id='DisplayConfigResult', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='source', ctx=Load()), ops=[Eq()], comparators=[Constant(value='defaults')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='path', ctx=Load()), ops=[Is()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='config', ctx=Load()), attr='theme', ctx=Load()), attr='error', ctx=Load()), ops=[Eq()], comparators=[Constant(value='bold red')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='banner', ctx=Load()), ops=[Eq()], comparators=[Call(func=Name(id='BannerDisplayConfig', ctx=Load()))]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='response', ctx=Load()), ops=[Eq()], comparators=[Call(func=Name(id='ResponseDisplayConfig', ctx=Load()))]))"
+        ]
+      },
+      "test_display_config_invalid_yaml_fails_actionably": {
+        "ast_sha256": "66e3d7bf65a21b35b7974c25b651dfabad39282a149dfeb6f88397a36c6ace13",
+        "line": 173,
+        "assertions": []
+      },
+      "test_packaged_example_cli_config_loads": {
+        "ast_sha256": "e33c960bf1959a128c9d990cb35fcfa0c2ed161e596abaaf8b86040a373d42bc",
+        "line": 183,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='banner', ctx=Load()), attr='style', ctx=Load()), ops=[Eq()], comparators=[Constant(value='ascii')]))",
+          "Assert(test=Compare(left=Constant(value='\u2588\u2588\u2588\u2588\u2588\u2588\u2588'), ops=[In()], comparators=[Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='banner', ctx=Load()), attr='art', ctx=Load())]))",
+          "Assert(test=Compare(left=Subscript(value=Attribute(value=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='config', ctx=Load()), attr='spinner', ctx=Load()), attr='tool_messages', ctx=Load()), slice=Constant(value=0), ctx=Load()), ops=[Eq()], comparators=[Constant(value='Gluing...')]))"
+        ]
+      },
+      "test_app_renders_configured_startup_banner": {
+        "ast_sha256": "d45277c3e3392e292c4cc1ec9b41a42ea0948f2b66f8c982dbb05e5794a3b866",
+        "line": 194,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='command_exit')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='display', ctx=Load()), attr='banners', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Tuple(elts=[Constant(value='Friday'), Constant(value='9.9.9')], ctx=Load())], ctx=Load())]))"
+        ]
+      },
+      "test_startup_banner_can_be_disabled": {
+        "ast_sha256": "5230e77baaf2a2844fd9df904f5bdd3d90516d403e68ceb17f388a04269bb455",
+        "line": 212,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Call(func=Attribute(value=Name(id='capsys', ctx=Load()), attr='readouterr', ctx=Load())), attr='out', ctx=Load()), ops=[Eq()], comparators=[Constant(value='')]))"
+        ]
+      },
+      "test_panel_startup_banner_uses_configurable_text": {
+        "ast_sha256": "d085a64e4310ea3dc720708bc74ae27aec5f1adf642c9bcaaee0e5f16e847d59",
+        "line": 224,
+        "assertions": [
+          "Assert(test=Compare(left=Constant(value='Friday'), ops=[In()], comparators=[Name(id='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Friday custom CLI'), ops=[In()], comparators=[Name(id='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='v1.2.3'), ops=[In()], comparators=[Name(id='output', ctx=Load())]))"
+        ]
+      },
+      "test_ascii_startup_banner_uses_configurable_art_and_tips": {
+        "ast_sha256": "0a7fad882953a45b9305fe38e9ffcb52486fea1e5215edc42ebfef2534277615",
+        "line": 246,
+        "assertions": [
+          "Assert(test=Compare(left=Constant(value='FRIDAY'), ops=[In()], comparators=[Name(id='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Friday custom CLI'), ops=[In()], comparators=[Name(id='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Tips for getting started:'), ops=[In()], comparators=[Name(id='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='/help'), ops=[In()], comparators=[Name(id='output', ctx=Load())]))"
+        ]
+      },
+      "test_assistant_response_formatting_uses_configured_name_once": {
+        "ast_sha256": "16f1387a26dc8bacb5729afdd59e780fc23a7c1aca6aa0a464e8d3a61bc9b4cf",
+        "line": 270,
+        "assertions": [
+          "Assert(test=Compare(left=Call(func=Name(id='format_assistant_response', ctx=Load()), args=[Constant(value='hello')], keywords=[keyword(arg='assistant_name', value=Constant(value='Friday'))]), ops=[Eq()], comparators=[Constant(value='Friday: hello')]))",
+          "Assert(test=Compare(left=Call(func=Name(id='format_assistant_response', ctx=Load()), args=[Constant(value='Friday: hello')], keywords=[keyword(arg='assistant_name', value=Constant(value='Friday'))]), ops=[Eq()], comparators=[Constant(value='Friday: hello')]))",
+          "Assert(test=Compare(left=Call(func=Name(id='strip_assistant_prefix', ctx=Load()), args=[Constant(value='Friday: hello')], keywords=[keyword(arg='assistant_name', value=Constant(value='Friday'))]), ops=[Eq()], comparators=[Constant(value='hello')]))"
+        ]
+      },
+      "test_assistant_response_text_applies_configured_rich_styles": {
+        "ast_sha256": "dd8d038f45cc28afbb89b6052be89413f805a16e97080076f2d1408413a17781",
+        "line": 280,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='text', ctx=Load()), attr='plain', ctx=Load()), ops=[Eq()], comparators=[Constant(value='Friday: hello')]))",
+          "Assert(test=Compare(left=Constant(value='bold green'), ops=[In()], comparators=[Call(func=Name(id='str', ctx=Load()), args=[Attribute(value=Subscript(value=Attribute(value=Name(id='text', ctx=Load()), attr='spans', ctx=Load()), slice=Constant(value=0), ctx=Load()), attr='style', ctx=Load())])]))",
+          "Assert(test=Compare(left=Constant(value='bright_green'), ops=[In()], comparators=[Call(func=Name(id='str', ctx=Load()), args=[Attribute(value=Subscript(value=Attribute(value=Name(id='text', ctx=Load()), attr='spans', ctx=Load()), slice=UnaryOp(op=USub(), operand=Constant(value=1)), ctx=Load()), attr='style', ctx=Load())])]))"
+        ]
+      },
+      "test_generic_output_sink_preserves_literal_help_arguments": {
+        "ast_sha256": "c71014bae7e0059266555e0756381dfe29e01b66c8d0942d0c80f4b18756457c",
+        "line": 296,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Call(func=Attribute(value=Name(id='capsys', ctx=Load()), attr='readouterr', ctx=Load())), attr='out', ctx=Load()), ops=[Eq()], comparators=[Constant(value='Usage: /help [command]\\nUsage: /tools [category]\\n')]))"
+        ]
+      },
+      "test_streaming_sink_strips_duplicate_assistant_prefix": {
+        "ast_sha256": "a04aca35d4af4a6fc556be670c8121336c8c37c98eeb91fe4c03821f370a6596",
+        "line": 308,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Call(func=Attribute(value=Name(id='capsys', ctx=Load()), attr='readouterr', ctx=Load())), attr='out', ctx=Load()), ops=[Eq()], comparators=[Constant(value='Friday: hello\\n')]))"
+        ]
+      },
+      "test_clear_aliases_share_one_empty_typed_effect": {
+        "ast_sha256": "e58ec4f61242f6c02f357f2e6ad26554c15483c512d55b434d3e6005ed8148d6",
+        "line": 328,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='direct', ctx=Load()), ops=[Eq()], comparators=[Name(id='alias', ctx=Load())]))",
+          "Assert(test=Compare(left=Name(id='direct', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='direct', ctx=Load()), attr='output', ctx=Load()), ops=[Eq()], comparators=[Constant(value='')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='direct', ctx=Load()), attr='ui_effects', ctx=Load()), ops=[Eq()], comparators=[Tuple(elts=[Attribute(value=Name(id='CommandUiEffect', ctx=Load()), attr='CLEAR_SCREEN', ctx=Load())], ctx=Load())]))"
+        ]
+      },
+      "test_app_dispatches_clear_effect_without_replacement_output": {
+        "ast_sha256": "a9658ce3eb198ada94af66bd724bab5ed93782e9d6d67df8acccfac4014311fe",
+        "line": 340,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='display', ctx=Load()), attr='clear_calls', ctx=Load()), ops=[Eq()], comparators=[Constant(value=2)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(ctx=Load())]))"
+        ]
+      },
+      "test_unavailable_and_failed_clear_are_honest_and_sanitized": {
+        "ast_sha256": "df126f7e5dc2acba67563ace4bf5a01ac2207c94518e3a7e22cd2013cfb35e1d",
+        "line": 358,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='unavailable_output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='Unable to clear the terminal: display is unavailable.')], ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='failed_output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='Unable to clear the terminal.')], ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='private terminal failure detail'), ops=[NotIn()], comparators=[Subscript(value=Attribute(value=Name(id='failed_output', ctx=Load()), attr='values', ctx=Load()), slice=Constant(value=0), ctx=Load())]))"
+        ]
+      },
+      "test_production_display_delegates_clear_to_rich_console": {
+        "ast_sha256": "96c906e18349164bb5205a11fcd5e09c7cec91c1ec84211fb2b71abaa825fbc2",
+        "line": 382,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='console', ctx=Load()), attr='clear_calls', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]))"
+        ]
+      },
+      "test_production_clear_emits_control_sequence_through_pty": {
+        "ast_sha256": "7bad3efe1544fa9b1ce87e7822aa634103c50965937baa8120559ef5bd60635e",
+        "line": 395,
+        "assertions": [
+          "Assert(test=Compare(left=Constant(value=b'\\x1b[2J'), ops=[In()], comparators=[Name(id='emitted', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value=b'\\x1b[H'), ops=[In()], comparators=[Name(id='emitted', ctx=Load())]))",
+          "Assert(test=Compare(left=Name(id='ready', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Name(id='master_fd', ctx=Load())], ctx=Load())]))"
+        ]
+      }
+    }
+  },
+  "packages/friday-chat/tests_chat/test_session_memory_commands.py": {
+    "sha256": "25b29c0515533307b07e50cc590f92bda21aea32a95e75fbfecf5f18f4e59970",
+    "definitions": {
+      "_runtime": {
+        "ast_sha256": "8df3095df7ea9726bba8a3c119a5c4e2cf71b0a696a516b41c264b67a2d68171",
+        "line": 13,
+        "assertions": []
+      },
+      "test_exit_alias_requests_app_shutdown": {
+        "ast_sha256": "3519fca2ecf8198e4936a3daa3c9c9e24082bd47379c20a63b9c85b46f36494d",
+        "line": 30,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='command_exit')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='Goodbye.')], ctx=Load())]))"
+        ]
+      },
+      "test_history_and_clear_commands_use_session_state": {
+        "ast_sha256": "33a64d8354b4ba3f205b1ae74cec3cf41f230981bbf9ad148ab688812c1a0fcb",
+        "line": 44,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='turns_processed', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]))",
+          "Assert(test=Compare(left=Constant(value='Conversation history:'), ops=[In()], comparators=[Subscript(value=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), slice=Constant(value=1), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='User: hello'), ops=[In()], comparators=[Subscript(value=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), slice=Constant(value=1), ctx=Load())]))",
+          "Assert(test=Compare(left=Subscript(value=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), slice=Constant(value=2), ctx=Load()), ops=[Eq()], comparators=[Constant(value='Conversation history cleared.')]))",
+          "Assert(test=Compare(left=Subscript(value=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), slice=Constant(value=3), ctx=Load()), ops=[Eq()], comparators=[Constant(value='No conversation history.')]))",
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='memory', ctx=Load()), Name(id='FakeMemoryController', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='memory', ctx=Load()), attr='stored_turns', ctx=Load()), ops=[Eq()], comparators=[List(ctx=Load())]))"
+        ]
+      },
+      "test_vars_and_set_commands": {
+        "ast_sha256": "91267e6378dc82e068f977ef234d3fc79bd51febfef9a5305ca063ba47701966",
+        "line": 64,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='memory', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='scoped_variables: 1'), ops=[In()], comparators=[Attribute(value=Name(id='memory', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=BoolOp(op=And(), values=[Name(id='handled', ctx=Load()), Compare(left=Name(id='result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)])]))",
+          "Assert(test=Call(func=Attribute(value=Attribute(value=Name(id='result', ctx=Load()), attr='output', ctx=Load()), attr='startswith', ctx=Load()), args=[Constant(value='Unknown command:')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='context', ctx=Load()), attr='variables', ctx=Load()), ops=[Eq()], comparators=[Dict(keys=[Constant(value='project')], values=[Constant(value='Friday V2')])]))"
+        ]
+      },
+      "test_basic_memory_diagnostic_commands_with_fake_runtime": {
+        "ast_sha256": "590cbfd474dbfa57990742955451c50cac697a281e5307973beba4060608d98a",
+        "line": 79,
+        "assertions": [
+          "Assert(test=Compare(left=Constant(value='episodic_current_session_turns: 0'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/memory'), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Graph:\\n- nodes: not configured'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/memory'), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Last context:\\n- total_tokens: unavailable'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/memory'), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='characters'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/context --debug'), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='System: You are Friday.'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/prompt'), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='retrieved_memory_count'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/debug'), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='context_window: 1000'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/debug-budget'), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='last_turn: 0.125s'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/timing'), ctx=Load())]))",
+          "Assert(test=Compare(left=Subscript(value=Attribute(value=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='config', ctx=Load()), attr='memory', ctx=Load()), attr='priming', ctx=Load()), slice=Constant(value='previous_sessions'), ctx=Load()), ops=[Eq()], comparators=[Constant(value=2)]))",
+          "Assert(test=Compare(left=Constant(value='previous_sessions: 2'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/memory'), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Retrieval diagnostics:'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/debug-retrieval hello'), ctx=Load())]))",
+          "Assert(test=Compare(left=Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/entities'), ctx=Load()), ops=[Eq()], comparators=[Constant(value='No entities found.')]))",
+          "Assert(test=Compare(left=Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/insights'), ctx=Load()), ops=[Eq()], comparators=[Constant(value='No insights found.')]))",
+          "Assert(test=Compare(left=Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/summaries'), ctx=Load()), ops=[Eq()], comparators=[Constant(value='No summaries found.')]))",
+          "Assert(test=Compare(left=Constant(value='No meta insights found.'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/meta'), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Decayed records: excluded'), ops=[In()], comparators=[Subscript(value=Name(id='command_outputs', ctx=Load()), slice=Constant(value='/meta'), ctx=Load())]))",
+          "Assert(test=Compare(left=Name(id='result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))"
+        ]
+      },
+      "test_entities_command_lists_relationships": {
+        "ast_sha256": "902b1425969915972888dbcac4a0fddf37b9ddf5074af7cc7a721871cfb5931c",
+        "line": 130,
+        "assertions": [
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='memory', ctx=Load()), Name(id='FakeMemoryController', ctx=Load())]))",
+          "Assert(test=Compare(left=Name(id='all_result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='Entities:'), ops=[In()], comparators=[Attribute(value=Name(id='all_result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='- Chuck (person), hits=2'), ops=[In()], comparators=[Attribute(value=Name(id='all_result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Relationships:'), ops=[In()], comparators=[Attribute(value=Name(id='all_result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='- Chuck -[founder]-> Friday Labs, hits=1'), ops=[In()], comparators=[Attribute(value=Name(id='all_result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Name(id='filtered_result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='- Chuck -[founder]-> Friday Labs, hits=1'), ops=[In()], comparators=[Attribute(value=Name(id='filtered_result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Name(id='relation_result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='- Chuck -[founder]-> Friday Labs, hits=1'), ops=[In()], comparators=[Attribute(value=Name(id='relation_result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Name(id='nodes_result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='Entities:'), ops=[In()], comparators=[Attribute(value=Name(id='nodes_result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Relationships:'), ops=[NotIn()], comparators=[Attribute(value=Name(id='nodes_result', ctx=Load()), attr='output', ctx=Load())]))"
+        ]
+      },
+      "test_context_and_prompt_file_exports_are_fixed_and_safe": {
+        "ast_sha256": "96291d4364a719b8195882f44090783aac9b6573742b5d0c0db6b19bab18ddbe",
+        "line": 169,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='context_result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Name(id='prompt_result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Call(func=Attribute(value=Name(id='context_path', ctx=Load()), attr='read_text', ctx=Load())), ops=[Eq()], comparators=[Constant(value='safe context')]))",
+          "Assert(test=Compare(left=Call(func=Attribute(value=Name(id='prompt_path', ctx=Load()), attr='read_text', ctx=Load())), ops=[Eq()], comparators=[Constant(value='safe prompt')]))",
+          "Assert(test=Compare(left=Call(func=Name(id='str', ctx=Load()), args=[Name(id='context_path', ctx=Load())]), ops=[In()], comparators=[Attribute(value=Name(id='context_result', ctx=Load()), attr='output', ctx=Load())]))",
+          "Assert(test=Compare(left=Call(func=Name(id='str', ctx=Load()), args=[Name(id='prompt_path', ctx=Load())]), ops=[In()], comparators=[Attribute(value=Name(id='prompt_result', ctx=Load()), attr='output', ctx=Load())]))"
+        ]
+      }
+    }
+  },
+  "packages/friday-chat/tests_chat/test_app_lifecycle.py": {
+    "sha256": "f9ab3d2c7beb319ecf988a50cbdd80458b58ade5c5fa046e593eb1f8874d5ec1",
+    "definitions": {
+      "_config": {
+        "ast_sha256": "ccde344b9bbcd236159b07af7a9b279fd420f1d0324189fe97c67f7ce919840f",
+        "line": 31,
+        "assertions": []
+      },
+      "KeyboardInterruptInputSource": {
+        "ast_sha256": "126419842d6a85a7b4e7a490bbd55bf6771ad43fed1e88266bfba7b5b9595698",
+        "line": 35,
+        "assertions": []
+      },
+      "KeyboardInterruptInputSource.read": {
+        "ast_sha256": "4fc7fba53c63c781fd5a51b0e91670e60d9e2fead7a0c4e071a07cef28ef1cce",
+        "line": 38,
+        "assertions": []
+      },
+      "FailingTurnHandler": {
+        "ast_sha256": "ce890044081938d2920a99d9246d28fc37e69e7e8f000aca47a3e6a16a5b3834",
+        "line": 42,
+        "assertions": []
+      },
+      "FailingTurnHandler.process": {
+        "ast_sha256": "ccfa56255fc16c90ed1023f9e1b4390aaf85d4b86cb4c259b8d1fd2001671a35",
+        "line": 45,
+        "assertions": []
+      },
+      "TimeoutTurnHandler": {
+        "ast_sha256": "af7ed91c4f2009ef6b53a0356d3bc242787b3f357c9b53bb880478500d596383",
+        "line": 49,
+        "assertions": []
+      },
+      "TimeoutTurnHandler.process": {
+        "ast_sha256": "2f1d6040400f83e8c4c6568a8c07cc0553e1f9a68e536f6a5d405e91a41a7016",
+        "line": 52,
+        "assertions": []
+      },
+      "PlainTurnHandler": {
+        "ast_sha256": "81a8441a5c488bbd0c5ce87aba4adb4cb07a35c4136e99d4999005823c5f943d",
+        "line": 56,
+        "assertions": []
+      },
+      "PlainTurnHandler.process": {
+        "ast_sha256": "0d5f74090ebc39959e8b6c02ede5f026acb5d5e0ee0d8cd9a1433b6ec8fce6ff",
+        "line": 59,
+        "assertions": []
+      },
+      "RetryWrapperError": {
+        "ast_sha256": "d9c4b56c5fd72ec43dfda3a4acc950443c3167b1b05fdf878cdc02fed6abf7e3",
+        "line": 68,
+        "assertions": []
+      },
+      "RetryWrapperError.__init__": {
+        "ast_sha256": "8048974d1b414c42176f8bd22232d7158e002314e44a5d6dcec81203b97d52be",
+        "line": 71,
+        "assertions": []
+      },
+      "ChunkRecordingOutputSink": {
+        "ast_sha256": "798280be564fef138dde399d05586d98bc91accfe735f80b25fdead8601fc006",
+        "line": 76,
+        "assertions": []
+      },
+      "ChunkRecordingOutputSink.write_chunk": {
+        "ast_sha256": "a46c05c97d35626cd6a7c04932772130f44c82d2c8067c78768e07193db524a4",
+        "line": 79,
+        "assertions": []
+      },
+      "AvailableExecutionCapability": {
+        "ast_sha256": "7a2736f02bd0670f9089d91bc33ca8a1bdb8cb6068f228306dd1d8d3d01c6d9e",
+        "line": 83,
+        "assertions": []
+      },
+      "AvailableExecutionCapability.available_for": {
+        "ast_sha256": "85b20b34518a3c07c265bda452fcf5ed24b048a97dbd3d4864559e311b7710c5",
+        "line": 86,
+        "assertions": []
+      },
+      "AvailableExecutionCapability.reason_for": {
+        "ast_sha256": "62f20d5e89efabdfa84de45583364308bb925d3852bfc686530949d52762ba6a",
+        "line": 89,
+        "assertions": []
+      },
+      "RecordingShutdownCoordinator": {
+        "ast_sha256": "3a0276d83ffa92725fe7fc99c1ceea10f911e1eca3505ef3f133264b085ee28a",
+        "line": 93,
+        "assertions": []
+      },
+      "RecordingShutdownCoordinator.__init__": {
+        "ast_sha256": "10531c5a3666628671ca0c4fb3a3c501ce0275fe369090d72ce31b34e408bbfd",
+        "line": 99,
+        "assertions": []
+      },
+      "RecordingShutdownCoordinator.shutdown": {
+        "ast_sha256": "affac226762ccf55e7aeff47fe56a5044075de255abe2bc6ef887e86c7cb95df",
+        "line": 104,
+        "assertions": []
+      },
+      "test_app_exits_cleanly_on_eof": {
+        "ast_sha256": "d8cdef1e2a91051260659a0af783d04720c3f6e39d35ae8400415ffbbc3b585f",
+        "line": 112,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='eof')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='turns_processed', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='Friday: hello')], ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='maintenance_actions', ctx=Load()), ops=[Eq()], comparators=[Tuple(elts=[Constant(value='flush_pending_extraction'), Constant(value='flush_memory'), Constant(value='run_lifecycle')], ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='app', ctx=Load()), attr='started', ctx=Load()), ops=[Is()], comparators=[Constant(value=False)]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='background', ctx=Load()), attr='closed', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='background', ctx=Load()), attr='pending_count', ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)]))",
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='async_clients', ctx=Load()), Name(id='FakeAsyncClientLifecycle', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='async_clients', ctx=Load()), attr='close_calls', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]))",
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), Name(id='FakeTranscriptStore', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), attr='finalized', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))"
+        ]
+      },
+      "test_async_clients_close_after_background_and_llm_maintenance": {
+        "ast_sha256": "98b8fabbaa6439b8e7fde7cb83d960554750b98fa6220ec51494ea3140758e8a",
+        "line": 140,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='lifecycle', ctx=Load()), attr='background_closed', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='lifecycle', ctx=Load()), attr='maintenance_actions', ctx=Load()), ops=[Eq()], comparators=[Tuple(elts=[Constant(value='flush_pending_extraction'), Constant(value='flush_memory'), Constant(value='run_lifecycle')], ctx=Load())]))"
+        ]
+      },
+      "test_async_clients_close_after_background_and_llm_maintenance.RecordingLifecycle": {
+        "ast_sha256": "768f328478ef78ced3bb0c0c37b42c0b41a6a9ede7f4124d9b1ee37138b61911",
+        "line": 144,
+        "assertions": []
+      },
+      "test_async_clients_close_after_background_and_llm_maintenance.RecordingLifecycle.__init__": {
+        "ast_sha256": "279e2708e10ed70a085241a1f7891aa793dfd43b498aed256dae3be063859ff8",
+        "line": 145,
+        "assertions": []
+      },
+      "test_async_clients_close_after_background_and_llm_maintenance.RecordingLifecycle.close": {
+        "ast_sha256": "58f55888f97a280998f5ff16058bcd84e413113d525aec1387ce9162cb7008ad",
+        "line": 149,
+        "assertions": []
+      },
+      "test_async_client_cleanup_failure_is_bounded_and_contained": {
+        "ast_sha256": "2ee93934cfd2c63d07d5d75be72ef0fcc8f851ea09d4fe57914d41a5b85f4d30",
+        "line": 166,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='eof')]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='diagnostics', ctx=Load()), attr='maintenance_warnings', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='close_async_clients: RuntimeError')], ctx=Load())]))",
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), Name(id='FakeTranscriptStore', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), attr='finalized', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))"
+        ]
+      },
+      "test_async_client_cleanup_failure_is_bounded_and_contained.FailingLifecycle": {
+        "ast_sha256": "270643028c17dada503ca230e618f3a7860d51e4cf7479108b73b3e27f4833f2",
+        "line": 169,
+        "assertions": []
+      },
+      "test_async_client_cleanup_failure_is_bounded_and_contained.FailingLifecycle.close": {
+        "ast_sha256": "4d37f38e275b4bad9e5cb5dd147d642db0cd2e24b31eda4c5d96f7781975bb46",
+        "line": 170,
+        "assertions": []
+      },
+      "test_executing_exit_cleanup_follows_coordinator_termination_exactly_once": {
+        "ast_sha256": "181121ecab1f99d10f7c37d8dbee01782e3716c4e8a9c201910f15ae765581ce",
+        "line": 195,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='eof')]))",
+          "Assert(test=Compare(left=Name(id='events', ctx=Load()), ops=[Eq()], comparators=[List(elts=[JoinedStr(values=[Constant(value='reorganization:'), FormattedValue(value=Name(id='termination', ctx=Load()), conversion=-1)]), Constant(value='cleanup')], ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='diagnostics', ctx=Load()), attr='maintenance_warnings', ctx=Load()), ops=[Eq()], comparators=[List(ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='diagnostics', ctx=Load()), attr='maintenance_warnings', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='shutdown coordinator: RuntimeError')], ctx=Load())]))"
+        ]
+      },
+      "test_executing_exit_cleanup_follows_coordinator_termination_exactly_once.RecordingLifecycle": {
+        "ast_sha256": "8048669dd6760dfa4ac428d095108a23afcab8eb1aaea07880160ec315a808f1",
+        "line": 211,
+        "assertions": []
+      },
+      "test_executing_exit_cleanup_follows_coordinator_termination_exactly_once.RecordingLifecycle.close": {
+        "ast_sha256": "304a9f73a8ec50780b0630b48341d7f3395324198b82acf889cf1e0a97396241",
+        "line": 212,
+        "assertions": []
+      },
+      "test_executing_exit_cleanup_failure_uses_shutdown_failure_accounting": {
+        "ast_sha256": "2bb923287ddbd6f9282899bb901a8e2fa27b5f7b1307f4da4c64b7c5cd18b292",
+        "line": 235,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='eof')]))",
+          "Assert(test=Compare(left=Name(id='events', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='reorganization:success'), Constant(value='cleanup')], ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='diagnostics', ctx=Load()), attr='maintenance_warnings', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='close_async_clients: RuntimeError'), Constant(value='shutdown coordinator: RuntimeError')], ctx=Load())]))",
+          "Assert(test=UnaryOp(op=Not(), operand=Call(func=Name(id='any', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Constant(value='provider payload'), ops=[In()], comparators=[Name(id='warning', ctx=Load())]), generators=[comprehension(target=Name(id='warning', ctx=Store()), iter=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='diagnostics', ctx=Load()), attr='maintenance_warnings', ctx=Load()), is_async=0)])])))"
+        ]
+      },
+      "test_executing_exit_cleanup_failure_uses_shutdown_failure_accounting.FailingLifecycle": {
+        "ast_sha256": "8650efc7b1be3764af9e02344f912e3db64fabf138dd612d666ba9de893985f3",
+        "line": 251,
+        "assertions": []
+      },
+      "test_executing_exit_cleanup_failure_uses_shutdown_failure_accounting.FailingLifecycle.close": {
+        "ast_sha256": "3426f1cb6edcb84440a4e532f24fdbb40742f96efdfc48625e0f1207bb10abbe",
+        "line": 252,
+        "assertions": []
+      },
+      "test_app_injects_one_gate_and_chat_turn_waits_for_exclusive": {
+        "ast_sha256": "f836bd36967d8c724656da22ac255076ee48f10c825d114dd52ef86b410b9c90",
+        "line": 278,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='reorganization_coordinator', ctx=Load()), attr='gate', ctx=Load()), ops=[Is()], comparators=[Attribute(value=Name(id='app', ctx=Load()), attr='maintenance_gate', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='background_work', ctx=Load()), attr='gate', ctx=Load()), ops=[Is()], comparators=[Attribute(value=Name(id='app', ctx=Load()), attr='maintenance_gate', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='command_context', ctx=Load()), attr='maintenance_gate', ctx=Load()), ops=[Is()], comparators=[Attribute(value=Name(id='app', ctx=Load()), attr='maintenance_gate', ctx=Load())]))",
+          "Assert(test=UnaryOp(op=Not(), operand=Call(func=Attribute(value=Name(id='running', ctx=Load()), attr='done', ctx=Load()))))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='turns_processed', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='Friday: hello')], ctx=Load())]))"
+        ]
+      },
+      "test_app_injects_one_gate_and_chat_turn_waits_for_exclusive.hold_exclusive": {
+        "ast_sha256": "2669d14d11a65bf8852c3f8c07b25eabb71a304a5e15f942e7c396edeb3b9128",
+        "line": 292,
+        "assertions": []
+      },
+      "test_app_streams_chat_turns_through_chunk_sink": {
+        "ast_sha256": "08e73c418ddcdff413e88d3f30382092f09cd17420ba104a75d6adfa7459fba1",
+        "line": 311,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='turns_processed', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='chunk:Friday: hello')], ctx=Load())]))"
+        ]
+      },
+      "test_app_formats_plain_assistant_response_with_configured_name": {
+        "ast_sha256": "bd400cf613adaa03eeed589b41fece63b297437b117333d1a7066f7a00ec5f72",
+        "line": 333,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='turns_processed', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='Friday: plain response')], ctx=Load())]))"
+        ]
+      },
+      "test_turn_processing_error_includes_direct_provider_cause": {
+        "ast_sha256": "6359e22f15df23fa0f594364ac7a5cd51e31e6a5c9c21ccae98af5b56754dccb",
+        "line": 356,
+        "assertions": [
+          "Assert(test=Compare(left=Call(func=Name(id='_format_turn_processing_error', ctx=Load()), args=[Name(id='error', ctx=Load()), Name(id='config', ctx=Load())]), ops=[Eq()], comparators=[Constant(value='Turn failed: LLM retry attempts exhausted. Last error: RuntimeError: provider returned 429 Too Many Requests')]))"
+        ]
+      },
+      "test_turn_processing_error_unwraps_retry_provider_cause": {
+        "ast_sha256": "27525a121966104a44b5ade0847542995e8c9ad8589e9318d1f499ac48918025",
+        "line": 367,
+        "assertions": [
+          "Assert(test=Compare(left=Call(func=Name(id='_format_turn_processing_error', ctx=Load()), args=[Name(id='error', ctx=Load()), Name(id='config', ctx=Load())]), ops=[Eq()], comparators=[Constant(value='Turn failed: LLM retry attempts exhausted. Last error: ValueError: unsupported parameter: thinking')]))"
+        ]
+      },
+      "test_turn_processing_error_includes_http_response_body": {
+        "ast_sha256": "017d052b32fe9f79f591474d4f7322e56a7a35ac7a0eb31e8d6d007c31d241e8",
+        "line": 380,
+        "assertions": [
+          "Assert(test=Compare(left=Call(func=Name(id='_format_turn_processing_error', ctx=Load()), args=[Name(id='error', ctx=Load()), Name(id='config', ctx=Load())]), ops=[Eq()], comparators=[Constant(value='Turn failed: LLM retry attempts exhausted. Last error: HTTPStatusError: Client error \\'400 Bad Request\\' Response body: {\"error\":{\"message\":\"extra fields not permitted: metadata\"}}')]))"
+        ]
+      },
+      "test_app_exits_cleanly_on_keyboard_interrupt": {
+        "ast_sha256": "aef822cf50a3659259e11b00bb8df8db161082b2507adb8b8d7332cb6e28254b",
+        "line": 402,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='keyboard_interrupt')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='turns_processed', ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='background', ctx=Load()), attr='closed', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), Name(id='FakeTranscriptStore', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), attr='finalized', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))"
+        ]
+      },
+      "test_transcript_finalizes_on_turn_error": {
+        "ast_sha256": "90a9a1320222cfe461dd4c035ed6b933faf21dd00c8988a62b9217851686a310",
+        "line": 421,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='background', ctx=Load()), attr='closed', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), Name(id='FakeTranscriptStore', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), attr='finalized', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))"
+        ]
+      },
+      "test_turn_timeout_reports_concise_error_without_traceback": {
+        "ast_sha256": "d9d848925b15ebeb5bbd5720d0843a948300ea71e249c8405bff85e02b80b78f",
+        "line": 438,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='eof')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='turns_processed', ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='LLM turn timed out after 60s. Tool calls may have completed, but the follow-up model response exceeded llm.timeout_seconds. Consider increasing llm.timeout_seconds or reducing tool result size.')], ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='session', ctx=Load()), attr='turn_ids', ctx=Load()), ops=[Eq()], comparators=[List(ctx=Load())]))",
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), Name(id='FakeTranscriptStore', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), attr='finalized', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))"
+        ]
+      },
+      "test_exit_maintenance_follows_session_config": {
+        "ast_sha256": "10426929057a0d0ff551ed679af0a1ba3f627e5656ff408dc44534abf55974e4",
+        "line": 471,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='maintenance_actions', ctx=Load()), ops=[Eq()], comparators=[Tuple(elts=[Constant(value='flush_pending_extraction'), Constant(value='run_lifecycle'), Constant(value='reorganize_skipped:execute_disabled')], ctx=Load())]))",
+          "Assert(test=Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='diagnostics', ctx=Load()), attr='maintenance_warnings', ctx=Load())]), ops=[Eq()], comparators=[Constant(value=1)]))",
+          "Assert(test=Compare(left=Constant(value='reorganize_memory:deep: execute disabled:'), ops=[In()], comparators=[Subscript(value=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='diagnostics', ctx=Load()), attr='maintenance_warnings', ctx=Load()), slice=Constant(value=0), ctx=Load())]))",
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='async_clients', ctx=Load()), Name(id='FakeAsyncClientLifecycle', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='async_clients', ctx=Load()), attr='close_calls', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]))"
+        ]
+      },
+      "test_invalid_exit_request_still_closes_async_clients_exactly_once": {
+        "ast_sha256": "9626a27f121c3f7615792ad33fe06f3f47d3d36565f18422427e69e7ad093f86",
+        "line": 502,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='eof')]))",
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='async_clients', ctx=Load()), Name(id='FakeAsyncClientLifecycle', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='async_clients', ctx=Load()), attr='close_calls', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='diagnostics', ctx=Load()), attr='maintenance_warnings', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value=\"session.reorganize_mode must be exactly 'fast', 'full', or 'deep'\")], ctx=Load())]))"
+        ]
+      },
+      "test_exit_containment_precedes_service_errors_and_finalizes_transcript": {
+        "ast_sha256": "97afcd97fd04a81aa9c0b8ede7180b49a14f8569f913eb04dd932e59d41c591a",
+        "line": 526,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='eof')]))",
+          "Assert(test=Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='diagnostics', ctx=Load()), attr='maintenance_warnings', ctx=Load())]), ops=[Eq()], comparators=[Constant(value=1)]))",
+          "Assert(test=Compare(left=Constant(value='reorganize_memory:fast: execute disabled:'), ops=[In()], comparators=[Subscript(value=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='diagnostics', ctx=Load()), attr='maintenance_warnings', ctx=Load()), slice=Constant(value=0), ctx=Load())]))",
+          "Assert(test=Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='maintenance', ctx=Load()), attr='errors', ctx=Load())]), ops=[Eq()], comparators=[Constant(value=1)]))",
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), Name(id='FakeTranscriptStore', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), attr='finalized', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))"
+        ]
+      },
+      "test_session_initializes_lazily_on_first_chat_turn": {
+        "ast_sha256": "f550a7a230e15317db57fa83c843ee3a9a104b7085da54c911dad61b9adbdbe4",
+        "line": 555,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='session', ctx=Load()), attr='initialized', ctx=Load()), ops=[Is()], comparators=[Constant(value=False)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='turns_processed', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='session', ctx=Load()), attr='initialized', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='session', ctx=Load()), attr='scoped_defaults', ctx=Load()), ops=[Eq()], comparators=[Dict(keys=[Constant(value='user_name'), Constant(value='assistant_name')], values=[Constant(value='Chuck'), Constant(value='Friday')])]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='session', ctx=Load()), attr='turn_ids', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value='1')], ctx=Load())]))"
+        ]
+      },
+      "test_app_help_output_includes_usage_and_argument_descriptions": {
+        "ast_sha256": "72a0c2d9c467dfd2b6358a5fca4ec38f3d937adc084ae5fb5c858e35cbf5ab5a",
+        "line": 583,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='command_exit')]))",
+          "Assert(test=Compare(left=Constant(value='Usage: /context [--debug] [--file]'), ops=[In()], comparators=[Subscript(value=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), slice=Constant(value=0), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='- --debug [optional]: Include detailed token diagnostics.'), ops=[In()], comparators=[Subscript(value=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), slice=Constant(value=0), ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Description: Show the assembled context payload.'), ops=[In()], comparators=[Subscript(value=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), slice=Constant(value=0), ctx=Load())]))"
+        ]
+      },
+      "test_command_only_session_does_not_initialize_chat_defaults": {
+        "ast_sha256": "6c67b238e92358d938025aeaa2f7176ded0aba371f410588ef6d69255515d0a9",
+        "line": 602,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='command_exit')]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='session', ctx=Load()), attr='initialized', ctx=Load()), ops=[Is()], comparators=[Constant(value=False)]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='app', ctx=Load()), attr='session', ctx=Load()), attr='turn_ids', ctx=Load()), ops=[Eq()], comparators=[List(ctx=Load())]))"
+        ]
+      },
+      "test_app_closes_supervised_background_tasks": {
+        "ast_sha256": "b4d52d9bfae18b17d5f670b362b6f68a9c1ce8ef59afc7b71072bd9edde8c2ac",
+        "line": 617,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_reason', ctx=Load()), ops=[Eq()], comparators=[Constant(value='eof')]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='background', ctx=Load()), attr='closed', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='background', ctx=Load()), attr='pending_count', ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)]))"
+        ]
+      },
+      "test_app_closes_supervised_background_tasks.wait_forever": {
+        "ast_sha256": "6c0126c1c1278357fc8bfa0b8611e53cf1b95904d2c73715caa7ca09ef2d2ca1",
+        "line": 618,
+        "assertions": []
+      }
+    }
+  },
+  "packages/friday-chat/tests_chat/test_command_retirements.py": {
+    "sha256": "7f41d547aed262d3e2c3260f5677934bbf9058a77bd5c279f97ef594865d59a4",
+    "definitions": {
+      "test_exact_retained_catalog_and_metadata": {
+        "ast_sha256": "871e37b16e942f5d0994e91f972c230144984ba6d660c08c83c930fd6aa98df1",
+        "line": 39,
+        "assertions": [
+          "Assert(test=Compare(left=Call(func=Attribute(value=Call(func=Attribute(value=Name(id='hashlib', ctx=Load()), attr='sha256', ctx=Load()), args=[Name(id='raw', ctx=Load())]), attr='hexdigest', ctx=Load())), ops=[Eq()], comparators=[Constant(value='87c7880b21bbd7b02f227a7f93373dc3acc67db91e3ced18fd65511c34081f85')]))",
+          "Assert(test=Compare(left=Name(id='actual', ctx=Load()), ops=[Eq()], comparators=[Name(id='expected', ctx=Load())]))",
+          "Assert(test=Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='actual', ctx=Load())]), ops=[Eq()], comparators=[Constant(value=41)]))",
+          "Assert(test=Compare(left=Name(id='aliases', ctx=Load()), ops=[Eq()], comparators=[Dict(keys=[Constant(value='q'), Constant(value='quit'), Constant(value='clearscreen')], values=[Constant(value='exit'), Constant(value='exit'), Constant(value='cls')])]))",
+          "Assert(test=Compare(left=Call(func=Attribute(value=Name(id='registry', ctx=Load()), attr='command_names', ctx=Load())), ops=[Eq()], comparators=[BinOp(left=SetComp(elt=Subscript(value=Name(id='row', ctx=Load()), slice=Constant(value='name'), ctx=Load()), generators=[comprehension(target=Name(id='row', ctx=Store()), iter=Name(id='expected', ctx=Load()), is_async=0)]), op=BitOr(), right=Call(func=Name(id='set', ctx=Load()), args=[Name(id='aliases', ctx=Load())]))]))",
+          "Assert(test=UnaryOp(op=Not(), operand=Call(func=Attribute(value=Name(id='RETIRED', ctx=Load()), attr='intersection', ctx=Load()), args=[Name(id='BASIC_COMMAND_HANDLERS', ctx=Load())])))",
+          "Assert(test=Compare(left=Name(id='expected_admission', ctx=Load()), ops=[Eq()], comparators=[Name(id='_SHARED_ADMISSION_COMMANDS', ctx=Load())]))",
+          "Assert(test=Compare(left=JoinedStr(values=[Constant(value='/'), FormattedValue(value=Name(id='name', ctx=Load()), conversion=-1)]), ops=[NotIn()], comparators=[Call(func=Attribute(value=Call(func=Attribute(value=Name(id='registry', ctx=Load()), attr='render_help', ctx=Load())), attr='split', ctx=Load()))]))",
+          "Assert(test=Compare(left=Call(func=Attribute(value=Name(id='registry', ctx=Load()), attr='render_help', ctx=Load()), args=[Name(id='name', ctx=Load())]), ops=[Eq()], comparators=[JoinedStr(values=[Constant(value='Unknown command: /'), FormattedValue(value=Name(id='name', ctx=Load()), conversion=-1), Constant(value='. Type /help for available commands.')])]))"
+        ]
+      },
+      "ForbiddenRuntime": {
+        "ast_sha256": "72d9e0971279b6dd93e576414ce0da681063d68a9d74b1c803b7c5854b74edcb",
+        "line": 95,
+        "assertions": []
+      },
+      "ForbiddenRuntime.__getattr__": {
+        "ast_sha256": "a2327f8e52d5c65581bfc2b8ed5d2f0c15ae00b6416e1a06a1aab30009ba9eaf",
+        "line": 96,
+        "assertions": []
+      },
+      "ForbiddenGate": {
+        "ast_sha256": "aa2eaaede83c7bcd31202a735ddd10ad3dd4c1e6d7bf3bd64448bf71d585d537",
+        "line": 100,
+        "assertions": []
+      },
+      "ForbiddenGate.shared": {
+        "ast_sha256": "93afa4f9297755823053928c2cef31c90a5f9b4233707e8ecb26a18a80e5ec5e",
+        "line": 101,
+        "assertions": []
+      },
+      "UnreadableVariables": {
+        "ast_sha256": "4726306bf5d9121eaeb5b3eeda5a616374c500354ef3d35a15e7d4e4ccec7419",
+        "line": 105,
+        "assertions": []
+      },
+      "UnreadableVariables.__iter__": {
+        "ast_sha256": "0e5aeba44237c9955ca9c62468533d3fa05d3bb199fd83cf8bde66decd4096e9",
+        "line": 106,
+        "assertions": []
+      },
+      "UnreadableVariables.__len__": {
+        "ast_sha256": "7ffa4ba653cb39f7ac7c36f7b42367e924b71bc3224edac30b90e095348c84ed",
+        "line": 109,
+        "assertions": []
+      },
+      "UnreadableVariables.items": {
+        "ast_sha256": "e3238e13452429eefe328cdd080778f156407922b87c18fdcbdd5e8650de6c33",
+        "line": 112,
+        "assertions": []
+      },
+      "UnreadableVariables.__setitem__": {
+        "ast_sha256": "2e32fd1fab69005fe8a5870c5638c26cde75645c154f5fc5aa4b04a08bd2507a",
+        "line": 115,
+        "assertions": []
+      },
+      "test_retired_names_have_exact_unknown_response_and_no_effects": {
+        "ast_sha256": "7220b5c9c87fe24212175a20534308969fd631a122324df81fe1019d5fef9772",
+        "line": 134,
+        "assertions": [
+          "Assert(test=Compare(left=Tuple(elts=[Name(id='handled', ctx=Load()), Name(id='result', ctx=Load())], ctx=Load()), ops=[Eq()], comparators=[Tuple(elts=[Constant(value=False), Constant(value=None)], ctx=Load())]))",
+          "Assert(test=Compare(left=Name(id='handled', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Name(id='result', ctx=Load()), ops=[Eq()], comparators=[Call(func=Name(id='CommandResult', ctx=Load()), keywords=[keyword(arg='output', value=JoinedStr(values=[Constant(value='Unknown command: /'), FormattedValue(value=Name(id='parsed', ctx=Load()), conversion=-1), Constant(value='. Type /help for available commands.')]))])]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='exit_requested', ctx=Load()), ops=[Is()], comparators=[Constant(value=False)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='ui_effects', ctx=Load()), ops=[Eq()], comparators=[Tuple(ctx=Load())]))",
+          "Assert(test=Compare(left=Call(func=Name(id='vars', ctx=Load()), args=[Name(id='context', ctx=Load())]), ops=[Eq()], comparators=[Name(id='before', ctx=Load())]))",
+          "Assert(test=Compare(left=Subscript(value=Call(func=Name(id='vars', ctx=Load()), args=[Name(id='context', ctx=Load())]), slice=Name(id='key', ctx=Load()), ctx=Load()), ops=[Eq()], comparators=[Name(id='expected', ctx=Load())]))"
+        ]
+      },
+      "test_removed_context_fields_only": {
+        "ast_sha256": "743f9d9925507da1e188b593b260da14046b3c22e6a30840d7c24a2aefa43e15",
+        "line": 189,
+        "assertions": [
+          "Assert(test=UnaryOp(op=Not(), operand=Call(func=Attribute(value=Name(id='fields', ctx=Load()), attr='intersection', ctx=Load()), args=[Set(elts=[Constant(value='injected_payload'), Constant(value='tool_results'), Constant(value='tool_lifecycle_records'), Constant(value='tool_ingestions')])])))",
+          "Assert(test=Compare(left=Set(elts=[Constant(value='variables'), Constant(value='last_tool_budget_snapshot'), Constant(value='security_stats'), Constant(value='runtime'), Constant(value='session'), Constant(value='command_progress'), Constant(value='exit_requested')]), ops=[LtE()], comparators=[Name(id='fields', ctx=Load())]))"
+        ]
+      },
+      "test_custom_registry_can_still_register_a_retired_spelling": {
+        "ast_sha256": "24ed12488ef37605b262b6269e77119a682af3562b89260e0d34abf49cff56be",
+        "line": 210,
+        "assertions": [
+          "Assert(test=BoolOp(op=And(), values=[Name(id='handled', ctx=Load()), Compare(left=Name(id='result', ctx=Load()), ops=[Eq()], comparators=[Call(func=Name(id='CommandResult', ctx=Load()), keywords=[keyword(arg='output', value=Constant(value='custom handler'))])])]))",
+          "Assert(test=Compare(left=Name(id='calls', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Tuple(elts=[Tuple(elts=[Constant(value='argument')], ctx=Load()), Constant(value='run-tool')], ctx=Load())], ctx=Load())]))"
+        ]
+      },
+      "test_custom_registry_can_still_register_a_retired_spelling.custom": {
+        "ast_sha256": "b67ff9f86d431cf5c1ce393a03e68727c521c07ad716d4812e75346aa58570cf",
+        "line": 214,
+        "assertions": []
+      }
+    }
+  },
+  "packages/friday-chat/tests_chat/test_command_production_adapters.py": {
+    "sha256": "b226debc61c3bcfd2b00ed4f9e5e338935cc0fa9775b49297ed0297db50ba0b3",
+    "definitions": {
+      "DeterministicEmbeddingBackend": {
+        "ast_sha256": "ac1dee2288b90ed735feda259193f7cb970eecbed229451fa47a5f9c78ab6732",
+        "line": 46,
+        "assertions": []
+      },
+      "DeterministicEmbeddingBackend.__init__": {
+        "ast_sha256": "321b9d87fde76f989fc36c82ccc0a61ef7280e1b88551276bc961b1738e04125",
+        "line": 49,
+        "assertions": []
+      },
+      "DeterministicEmbeddingBackend.embed_query": {
+        "ast_sha256": "bcc2a213283022e8ea4cb925c799e9ba779797188b08d7861e66fad1f0c9be49",
+        "line": 52,
+        "assertions": []
+      },
+      "DeterministicEmbeddingBackend.embed_documents": {
+        "ast_sha256": "25597dd569590e156c75315930644a3f574437c3be8498b8370079c945544183",
+        "line": 55,
+        "assertions": []
+      },
+      "RecordingHeartbeat": {
+        "ast_sha256": "63b18af6a6b92c78f31fc1de5c11a3438759a16176ce8bbb02c5f55de211a685",
+        "line": 59,
+        "assertions": []
+      },
+      "RecordingHeartbeat.start": {
+        "ast_sha256": "c7168c718f563ef9d3bffdb5dbab612ddb9ed6a73344eb86bb15a32d8a676aea",
+        "line": 62,
+        "assertions": []
+      },
+      "RecordingHeartbeat.stop": {
+        "ast_sha256": "e35f4c74e6afa8f37845d5e5174c28dc945a64218e40c001f7c73ddf83453f01",
+        "line": 65,
+        "assertions": []
+      },
+      "RecordingClearDisplay": {
+        "ast_sha256": "9db5e2cf87fb3fe0d5666925795c9e72fb7bc2b14c174f311cdcd81839aaf223",
+        "line": 69,
+        "assertions": []
+      },
+      "RecordingClearDisplay.__init__": {
+        "ast_sha256": "325172588efb077b9af97ee7a1900f37ee871f288adb335bb3d60aa48524b937",
+        "line": 72,
+        "assertions": []
+      },
+      "RecordingClearDisplay.render_banner": {
+        "ast_sha256": "f04eee3f8caa2d882bfe150cdaa879794769c4a0f65df7531a16f7f1544e4483",
+        "line": 75,
+        "assertions": []
+      },
+      "RecordingClearDisplay.prompt_text": {
+        "ast_sha256": "63668528a593ea6b9f5909fa34a32ad0ec0b22afcd9462643b5a1f72ce2d22fb",
+        "line": 78,
+        "assertions": []
+      },
+      "RecordingClearDisplay.create_heartbeat": {
+        "ast_sha256": "0a39aa8ec3571c099d8c1e19838226da152dd6c032ade58e149eb5f26a10e7a4",
+        "line": 81,
+        "assertions": []
+      },
+      "RecordingClearDisplay.clear_screen": {
+        "ast_sha256": "b52815a9ff90a207c6a126a6734a3e0271d2a09856ced17bbe2483c37c4b3551",
+        "line": 84,
+        "assertions": []
+      },
+      "prohibit_provider_and_network_transports": {
+        "ast_sha256": "274ef1f2e47af0755a4439f17702c436f7f841125b849dc9081b65733c816dda",
+        "line": 89,
+        "assertions": []
+      },
+      "prohibit_provider_and_network_transports.reject_provider_call": {
+        "ast_sha256": "891d6c0ca7a578533532494bc637d0316bbf4f354d2ce8410d3cc831910e3ae9",
+        "line": 94,
+        "assertions": []
+      },
+      "prohibit_provider_and_network_transports.reject_provider_stream": {
+        "ast_sha256": "338a9f51454c7cb546300a2624498bfae9540fc5f88809241249c8efcb012ca5",
+        "line": 97,
+        "assertions": []
+      },
+      "prohibit_provider_and_network_transports.reject_network_call": {
+        "ast_sha256": "0d302169bc3579c3277781c4a8407ce17a48154bdf0a63e586a639dcd72d3bd9",
+        "line": 104,
+        "assertions": []
+      },
+      "production_runtime": {
+        "ast_sha256": "465c716cc1df9ecda4fdbf29aec625c244430b8fc5ad0b8d83316913b6f72e0f",
+        "line": 131,
+        "assertions": [
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='memory', ctx=Load()), Name(id='FrameworkMemoryAdapter', ctx=Load())]))",
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), Name(id='FrameworkTranscriptAdapter', ctx=Load())]))"
+        ]
+      },
+      "test_production_fixture_paths_are_disposable": {
+        "ast_sha256": "d74d783bd511f47e3f19d272a5adc9b092ede93e9a32acdee2de9748549b8ff8",
+        "line": 206,
+        "assertions": []
+      },
+      "test_provider_and_network_tripwires_fail_closed": {
+        "ast_sha256": "a5dd643fc0acd20d4a614ed10a715508de5986d86daa98dad0588af99a29d138",
+        "line": 214,
+        "assertions": [
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='production_runtime', ctx=Load()), attr='chat_llm', ctx=Load()), Name(id='FrameworkChatModel', ctx=Load())]))"
+        ]
+      },
+      "test_sessions_lists_seeded_persisted_session": {
+        "ast_sha256": "98fdcfc4e23a160f3c0c74eb70e46a6247e5af770a97cef838290abaf7868884",
+        "line": 225,
+        "assertions": [
+          "Assert(test=Compare(left=Constant(value='persisted-session'), ops=[In()], comparators=[Name(id='result', ctx=Load())]))"
+        ]
+      },
+      "test_transcript_reads_seeded_current_and_selected_sessions": {
+        "ast_sha256": "c741919c8322708ec8997103cbe88bef6e1a19b51edcb399daeaa36995b815c2",
+        "line": 240,
+        "assertions": [
+          "Assert(test=Compare(left=Dict(keys=[Constant(value='current_user_visible'), Constant(value='current_assistant_visible'), Constant(value='selected_user_visible'), Constant(value='selected_assistant_visible')], values=[Compare(left=Constant(value='current transcript user marker'), ops=[In()], comparators=[Name(id='current', ctx=Load())]), Compare(left=Constant(value='current transcript assistant marker'), ops=[In()], comparators=[Name(id='current', ctx=Load())]), Compare(left=Constant(value='selected transcript user marker'), ops=[In()], comparators=[Name(id='selected', ctx=Load())]), Compare(left=Constant(value='selected transcript assistant marker'), ops=[In()], comparators=[Name(id='selected', ctx=Load())])]), ops=[Eq()], comparators=[Dict(keys=[Constant(value='current_user_visible'), Constant(value='current_assistant_visible'), Constant(value='selected_user_visible'), Constant(value='selected_assistant_visible')], values=[Constant(value=True), Constant(value=True), Constant(value=True), Constant(value=True)])]))"
+        ]
+      },
+      "test_memory_reports_seeded_real_episodic_count": {
+        "ast_sha256": "3e0c9321570ed55618f4633253b4ed9eac3be0dbab78cc9ccbeccf8c0d651963",
+        "line": 278,
+        "assertions": [
+          "Assert(test=Name(id='episodic_lines', ctx=Load()), msg=Name(id='result', ctx=Load()))"
+        ]
+      },
+      "test_clear_aliases_request_display_effect_without_false_output": {
+        "ast_sha256": "67d28be2831547045bd789eadf273998484ac0c645e59bd6740163cd2ecb57ff",
+        "line": 296,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='display', ctx=Load()), attr='clear_calls', ctx=Load()), ops=[Eq()], comparators=[Constant(value=2)]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='output', ctx=Load()), attr='values', ctx=Load()), ops=[Eq()], comparators=[List(ctx=Load())]))"
+        ]
+      },
+      "test_tool_budget_reports_schemas_selected_for_real_turn": {
+        "ast_sha256": "63e4430687a6f8f81ac3736f265e41da7a4bb2cd939468aa84812f121702fc36",
+        "line": 314,
+        "assertions": [
+          "Assert(test=Compare(left=Attribute(value=Name(id='turn', ctx=Load()), attr='tool_schema_tokens', ctx=Load()), ops=[Gt()], comparators=[Constant(value=0)]))",
+          "Assert(test=Compare(left=Name(id='snapshot', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))",
+          "Assert(test=Compare(left=Constant(value='echo'), ops=[In()], comparators=[Attribute(value=Name(id='snapshot', ctx=Load()), attr='selected_names', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='snapshot', ctx=Load()), attr='schema_tokens', ctx=Load()), ops=[Eq()], comparators=[Attribute(value=Name(id='turn', ctx=Load()), attr='tool_schema_tokens', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='production_runtime', ctx=Load()), attr='tool_selection', ctx=Load()), attr='last_turn_snapshot', ctx=Load()), ops=[Is()], comparators=[Name(id='snapshot', ctx=Load())]))"
+        ]
+      },
+      "test_meta_dispatches_seeded_real_adapter_record": {
+        "ast_sha256": "a3990ee518dabc904857587d0e12fefea1a5e8d478fbf832031adea53fbdd8c4",
+        "line": 331,
+        "assertions": [
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='production_runtime', ctx=Load()), attr='memory', ctx=Load()), Name(id='FrameworkMemoryAdapter', ctx=Load())]))",
+          "Assert(test=Compare(left=Name(id='seeded', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Constant(value='Meta insights:'), ops=[In()], comparators=[Name(id='result', ctx=Load())]))",
+          "Assert(test=Compare(left=Constant(value='Synthetic meta insight from retained Gate A control.'), ops=[In()], comparators=[Name(id='result', ctx=Load())]))"
+        ]
+      },
+      "_execute": {
+        "ast_sha256": "cd216eaed8077b9095afd90ceaf52dbf9945d66aa8cb45327d8d6b5d2da9cb2f",
+        "line": 357,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='handled', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Name(id='result', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)]))"
+        ]
+      },
+      "_seed_transcript_session": {
+        "ast_sha256": "0631afa3eb4eb9f9a4300451175e6a9e0537ba323f079c1f037dc326ae829915",
+        "line": 371,
+        "assertions": [
+          "Assert(test=Call(func=Name(id='isinstance', ctx=Load()), args=[Attribute(value=Name(id='runtime', ctx=Load()), attr='transcript', ctx=Load()), Name(id='FrameworkTranscriptAdapter', ctx=Load())]))",
+          "Assert(test=Await(value=Call(func=Attribute(value=Name(id='store', ctx=Load()), attr='create_session', ctx=Load()), args=[Call(func=Name(id='TranscriptSession', ctx=Load()), keywords=[keyword(arg='session_id', value=Name(id='session_id', ctx=Load())), keyword(arg='model_name', value=Constant(value='gate-a-deterministic-chat'))])])))",
+          "Assert(test=Await(value=Call(func=Attribute(value=Name(id='store', ctx=Load()), attr='append_entry', ctx=Load()), args=[Call(func=Name(id='TranscriptEntry', ctx=Load()), keywords=[keyword(arg='id', value=JoinedStr(values=[Constant(value='entry-'), FormattedValue(value=Name(id='session_id', ctx=Load()), conversion=-1)])), keyword(arg='session_id', value=Name(id='session_id', ctx=Load())), keyword(arg='turn_number', value=Constant(value=1)), keyword(arg='user_message', value=Name(id='user_message', ctx=Load())), keyword(arg='assistant_message', value=Name(id='assistant_message', ctx=Load()))])])))"
+        ]
+      },
+      "_assert_disposable_layout": {
+        "ast_sha256": "d195c60294d39de2117f1d231910931121ec85abe1337b2773ee5f33812814fe",
+        "line": 397,
+        "assertions": []
+      },
+      "_assert_disposable_path": {
+        "ast_sha256": "a6a1bbe56cbf59801e2856982ee056656954faf13b914ae08abe8f89f1d93b16",
+        "line": 402,
+        "assertions": [
+          "Assert(test=Call(func=Attribute(value=Name(id='candidate', ctx=Load()), attr='is_relative_to', ctx=Load()), args=[Name(id='disposable_root', ctx=Load())]), msg=Name(id='candidate', ctx=Load()))",
+          "Assert(test=UnaryOp(op=Not(), operand=Call(func=Attribute(value=Name(id='candidate', ctx=Load()), attr='is_relative_to', ctx=Load()), args=[Name(id='resolved_active_root', ctx=Load())])), msg=Name(id='candidate', ctx=Load()))"
+        ]
+      },
+      "_embedding_for": {
+        "ast_sha256": "288cbf264498665d5773640ad9e531645a8b587031400d1fd20abebba52492fb",
+        "line": 411,
+        "assertions": []
+      }
+    }
+  },
+  "packages/friday-chat/tests_chat/test_command_foundations.py": {
+    "sha256": "c7479bf6e3ea9f54c7a5cafcf5dba11c8db32ce0838d21d54a5501f643b14e18",
+    "definitions": {
+      "test_registry_reexports_the_cycle_free_command_contracts": {
+        "ast_sha256": "fa2e43e83b4420d35d4e595b12758057f1677d71912fd4265601499aa1b3cba1",
+        "line": 14,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='CommandResult', ctx=Load()), ops=[Is()], comparators=[Attribute(value=Name(id='contracts', ctx=Load()), attr='CommandResult', ctx=Load())]))",
+          "Assert(test=Compare(left=Name(id='CommandUiEffect', ctx=Load()), ops=[Is()], comparators=[Attribute(value=Name(id='contracts', ctx=Load()), attr='CommandUiEffect', ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Name(id='result', ctx=Load()), attr='ui_effects', ctx=Load()), ops=[Eq()], comparators=[Tuple(ctx=Load())]))",
+          "Assert(test=Compare(left=Attribute(value=Attribute(value=Name(id='CommandUiEffect', ctx=Load()), attr='CLEAR_SCREEN', ctx=Load()), attr='value', ctx=Load()), ops=[Eq()], comparators=[Constant(value='clear_screen')]))"
+        ]
+      },
+      "test_affected_handlers_are_owned_by_their_category_modules": {
+        "ast_sha256": "1e1fd9969edf93de41453024cf270512f766c3ed08eb7ee2d07143fd141a8ad8",
+        "line": 23,
+        "assertions": [
+          "Assert(test=Compare(left=DictComp(key=Name(id='name', ctx=Load()), value=Attribute(value=Subscript(value=Name(id='BASIC_COMMAND_HANDLERS', ctx=Load()), slice=Name(id='name', ctx=Load()), ctx=Load()), attr='__module__', ctx=Load()), generators=[comprehension(target=Name(id='name', ctx=Store()), iter=Name(id='expected_modules', ctx=Load()), is_async=0)]), ops=[Eq()], comparators=[Name(id='expected_modules', ctx=Load())]))"
+        ]
+      },
+      "test_registry_remains_the_canonical_alias_help_and_dispatch_surface": {
+        "ast_sha256": "6a021107bffb09ad20f6e4f7d7c2ff40015c4d0af5800c5b5c08c7bdb80e97c7",
+        "line": 41,
+        "assertions": [
+          "Assert(test=Compare(left=Name(id='handled', ctx=Load()), ops=[Is()], comparators=[Constant(value=True)]))",
+          "Assert(test=Compare(left=Name(id='result', ctx=Load()), ops=[Eq()], comparators=[Call(func=Name(id='CommandResult', ctx=Load()), keywords=[keyword(arg='output', value=Constant(value='')), keyword(arg='ui_effects', value=Tuple(elts=[Attribute(value=Name(id='CommandUiEffect', ctx=Load()), attr='CLEAR_SCREEN', ctx=Load())], ctx=Load()))])]))",
+          "Assert(test=Compare(left=Constant(value='Aliases: /clearscreen'), ops=[In()], comparators=[Call(func=Attribute(value=Name(id='registry', ctx=Load()), attr='render_help', ctx=Load()), args=[Constant(value='cls')])]))"
+        ]
+      }
+    }
+  }
+}

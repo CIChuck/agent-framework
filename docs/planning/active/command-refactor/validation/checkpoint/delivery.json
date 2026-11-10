@@ -1,0 +1,47 @@
+{
+  "checkpoint": "command-foundation",
+  "repository": "CIChuck/agent-framework",
+  "pr_url": "https://github.com/CIChuck/agent-framework/pull/13",
+  "pr_number": 13,
+  "approved_by": "Chuck Russell",
+  "authorization": "Explicit checkpoint delivery/new-branch authorization and Approve CD-CMD-CHK-001; retirement/TUI construction remain unapproved.",
+  "reviewed_candidate": "51334a5b3f92ca7922976f1c0f3aa15443ae61e6",
+  "published_head": "7b344b010e347a74e730d2aff9f4670f24d6e1c3",
+  "base_before_merge": "c34269867be50f71923c93c95a63236a35505812",
+  "merge_commit": "6f291ca5755a616d9185c86dff104b660a1fba8c",
+  "merged_at": "2026-11-06T23:59:57Z",
+  "merge_method": "merge",
+  "premerge": {
+    "mergeable": true,
+    "mergeable_state": "clean",
+    "checks": {
+      "total_count": 0,
+      "check_runs": []
+    },
+    "status": {
+      "statuses": []
+    },
+    "reviews": {
+      "reviews": []
+    },
+    "threads": {
+      "review_threads": []
+    },
+    "rulesets": [],
+    "master_protected": false,
+    "refetched_base_equal": true
+  },
+  "old_branch": "feature/command-refactor",
+  "old_branch_deleted_local": true,
+  "old_branch_deleted_remote": true,
+  "new_branch": "feature/command-retirement",
+  "new_branch_base": "6f291ca5755a616d9185c86dff104b660a1fba8c",
+  "current_remainder_delivery": "local; whole command-refactor remains started",
+  "protected_examples": {
+    "config_sha256": "c2f728c98adc5ca773bfdf3170d846a610f15d77eae9a380e1a815534b93c3e7",
+    "models_sha256": "11e99116d885a431f085b6bd05b5bd30348eb37654fd4c9350a7cca58c527896",
+    "committed": false,
+    "preserved_byte_identical": true
+  },
+  "review_result": "VERIFIED, 3116 tests; baseline limitations preserved in verified-report.md"
+}

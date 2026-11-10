@@ -1,0 +1,147 @@
+{
+  "seat": "sol",
+  "model": "GPT-6.1 Sol",
+  "effort": "high",
+  "candidate": "0ee49a700f4b92234f6448c52d144ac156c1c700",
+  "source_commit": "3ed1d58ad8cc1e79522495da5cf19091185402d8",
+  "outcome": "VERIFIED",
+  "mandatory_findings": [],
+  "closed_finding": "MEMQ-D2-ASTRA-001",
+  "fresh_runtime_executions": 0,
+  "fresh_admin_commands": 7,
+  "pairs": {
+    "builder": 94,
+    "round1": 10,
+    "correction": 18
+  },
+  "listed_reviewer_artifacts_hash_verified": 576,
+  "supplemental_actual_cases_equal": true,
+  "artifacts": {
+    "end.json": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/end.json",
+      "sha256": "8f0b885a750dc67058a19b50567202ca4fa91252197324ddd8daa648c8e256a0",
+      "size": 14223
+    },
+    "executed.json": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/executed.json",
+      "sha256": "33fc2e3f508f0272ffd2b7092284fafe487bb515dffbba6ccc3a8e40d5f387d5",
+      "size": 2021
+    },
+    "remediation.log": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/remediation.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "receipts.py": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/receipts.py",
+      "sha256": "2fd5425b9407c8d54d00b846a9adf54230f4120c7a29da24764721ac6b582675",
+      "size": 2868
+    },
+    "pairs.json": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/pairs.json",
+      "sha256": "7a90be97ed994e498d2f5f7d409523d55f117a2d57e43b3a295da0c015b5928b",
+      "size": 29582
+    },
+    "semantic.py": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/semantic.py",
+      "sha256": "a61a56e17c13e98a707ce2dbaf23a06da4c87363e12ee39e7d33c20e8afd9d98",
+      "size": 3648
+    },
+    "audit.py": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/audit.py",
+      "sha256": "fdceef95a7506d9645db3a1db059b1018ae1491b41e30ed32a8ad1ee0cbba612",
+      "size": 4571
+    },
+    "board-validate.log": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/board-validate.log",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "size": 46
+    },
+    "lifecycle.log": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/lifecycle.log",
+      "sha256": "0fd1bdb028015f9961b8798720e8d981a9f3247efb67417b8b2b9f4d82dc4325",
+      "size": 70
+    },
+    "env.json": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/env.json",
+      "sha256": "f52ac001cd827a28c56b895bcf3ddc8b9c3413e2fbda6f172e94da10f122efb4",
+      "size": 58
+    },
+    "finalize.py": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/finalize.py",
+      "sha256": "18539cae0e7148162d7a43517abe766eb9b33e8c1c7e8f57c8de72f92cb4a7d1",
+      "size": 1634
+    },
+    "worktree.log": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/worktree.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "uv-d06cbd3e69ade1dc.lock": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/uv-d06cbd3e69ade1dc.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "aggregate.diff": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/aggregate.diff",
+      "sha256": "54bd1332c6a08f850b67010b56703a7a207228214f04c78a9c40b4913f654864",
+      "size": 16583622
+    },
+    "inspected-receipts.json": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/inspected-receipts.json",
+      "sha256": "b4040d28be70aaa3225b594a00efc87176c8271e8453e9d75aaabcd537113755",
+      "size": 876809
+    },
+    "pair-scope-audit.json": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/pair-scope-audit.json",
+      "sha256": "02ac947feb2a55c390742cf414af1572d0d130f58e690146c2f9a77d3c0126ff",
+      "size": 638
+    },
+    "correction.diff": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/correction.diff",
+      "sha256": "0cb9d4bc7da2d4f81801250c7e98051597ecbe87a5e7be93fcdfc4d7c2286016",
+      "size": 5214766
+    },
+    "start.json": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/start.json",
+      "sha256": "8b420dee015523f0961271a5f9d5a12ac6c125b5bee1849cab953a105e5fc21d",
+      "size": 16977
+    },
+    "d2.diff": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/d2.diff",
+      "sha256": "ab00ef3da9eac292a44ef5707ebd267f52795ea94e0c53ee9d688adf32e1b754",
+      "size": 9348542
+    },
+    "aggregate-unit.log": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/aggregate-unit.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "semantic.json": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/semantic.json",
+      "sha256": "c83a468bd6597e5e159d50463dc6887020ed8dfbd8f884899f131d08f1b3fbfa",
+      "size": 109318
+    },
+    "d2-unit.log": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/d2-unit.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "start-complete.json": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/start-complete.json",
+      "sha256": "8f0b885a750dc67058a19b50567202ca4fa91252197324ddd8daa648c8e256a0",
+      "size": 14223
+    },
+    "dashboard.log": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/dashboard.log",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "size": 30
+    },
+    "retained-observations.json": {
+      "path": "/private/tmp/memq-d2-sol-r2-izuhz825/retained-observations.json",
+      "sha256": "6111f811232c82075f88076f36b2458b17ad39603f38bbe18a132a6aac15727c",
+      "size": 4045
+    }
+  },
+  "limits": "Runtime lanes inspected under current documentation-only profile, not rerun. Host-managed tool transcripts/checkpoints outside reviewer-directed write accounting."
+}

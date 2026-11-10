@@ -54,6 +54,7 @@ from friday_memory import (
 )
 from friday_memory.context.budget_monitor import ContextBudgetMonitor
 from friday_memory.ingestion.mcp import MCPMemoryIngester
+from friday_memory.ingestion.metadata import build_ingested_file_metadata
 from friday_memory.maintenance import (
     IncrementalGraphMaintainer,
     IncrementalMaintenanceConfig,
@@ -63,6 +64,8 @@ from friday_memory.maintenance import (
 from friday_memory.maintenance.models import (
     MaintenanceConfig as FrameworkMaintenanceConfig,
 )
+from friday_memory.maintenance.pipeline import PromotionLifecycleMaintenanceRunner
+from friday_memory.maintenance.provider_contracts import LifecycleStepReport
 from friday_memory.models.budget import CompactionConfig
 from friday_memory.models.mcp import MCPMemoryPreparation, MCPMemorySnapshot
 from friday_memory.retrieval.mcp import (
@@ -88,6 +91,8 @@ from friday_chat.config import (
     TypedLLMExecutionConfig,
 )
 from friday_chat.memory_views import (
+    IngestedDocumentQueryResult,
+    IngestedDocumentView,
     MemoryCollection,
     MemoryDiagnosticReason,
     MemoryDiagnosticWarning,
@@ -98,12 +103,7 @@ from friday_chat.memory_views import (
     MemoryStoreComponent,
     MemoryStoreStatistics,
 )
-from friday_chat.reorganization.contracts import (
-    ReorganizationError,
-    ReorganizationErrorCode,
-)
 from friday_chat.reorganization.layout import FridayChatMaintenanceLayout
-from friday_chat.reorganization.mutation import LifecycleStepReport
 from friday_chat.runtime import (
     REORGANIZATION_EXECUTE_DISABLED_REASON,
     MCPTranscriptReceipt,
@@ -388,19 +388,13 @@ class FrameworkMemoryAdapter:
         if len(chunks) == 1:
             await self.controller.store_document(
                 chunks[0],
-                {
-                    "source": source_path,
-                    "description": description,
-                    "type": "ingested_file",
-                },
+                build_ingested_file_metadata(source_path, description),
                 protected=True,
             )
             return 1
         metadatas = [
             {
-                "source": source_path,
-                "description": description,
-                "type": "ingested_file",
+                **build_ingested_file_metadata(source_path, description),
                 "chunk_index": index,
                 "chunk_count": len(chunks),
             }
@@ -648,6 +642,57 @@ class FrameworkMemoryAdapter:
             decayed_records_excluded=True,
         )
 
+    async def query_ingested_documents(self) -> IngestedDocumentQueryResult:
+        """Group persisted ingestion chunks across the two active collections."""
+        results = await asyncio.gather(
+            self.collection_manager.short_term.get_all(
+                limit=None,
+                where={"type": "ingested_file"},
+            ),
+            self.collection_manager.long_term.get_all(
+                limit=None,
+                where={"type": "ingested_file"},
+            ),
+            return_exceptions=True,
+        )
+        warnings: list[MemoryDiagnosticWarning] = []
+        counts: dict[tuple[str, str | None], int] = {}
+        components = (
+            MemoryStoreComponent.VECTOR_SHORT_TERM,
+            MemoryStoreComponent.VECTOR_LONG_TERM,
+        )
+        for component, result in zip(components, results, strict=True):
+            if isinstance(result, BaseException):
+                if isinstance(result, asyncio.CancelledError) or not isinstance(
+                    result, Exception
+                ):
+                    raise result
+                warnings.append(MemoryDiagnosticWarning(component))
+                continue
+            malformed = False
+            for record in result:
+                view = _ingested_document_view(record)
+                if view is None:
+                    malformed = True
+                else:
+                    key = (view.source_path, view.description)
+                    counts[key] = counts.get(key, 0) + 1
+            if malformed:
+                warnings.append(
+                    MemoryDiagnosticWarning(MemoryStoreComponent.MEMORY_RECORD)
+                )
+        keys = sorted(
+            counts,
+            key=lambda key: (key[0], key[1] is not None, key[1] or ""),
+        )
+        return IngestedDocumentQueryResult(
+            tuple(
+                IngestedDocumentView(source, description, counts[(source, description)])
+                for source, description in keys
+            ),
+            tuple(warnings),
+        )
+
     async def _recall(self, query: str, *, token_limit: int) -> Any:
         payload = await self.controller.recall(
             query,
@@ -717,72 +762,20 @@ class FrameworkMaintenanceAdapter:
         self.actions.append("run_lifecycle")
 
     async def preview_reorganization_lifecycle(self) -> LifecycleStepReport:
-        """Report promotion/decay scope without mutation or embedding backfill."""
-        if self.promotion_service is None:
-            return LifecycleStepReport(
-                succeeded=False,
-                errors=(
-                    ReorganizationError(
-                        code=ReorganizationErrorCode.CAPABILITY_UNAVAILABLE,
-                        message="deterministic lifecycle promotion is unavailable",
-                    ),
-                ),
-            )
-        stats = await self.promotion_service.collection_manager.get_stats()
-        return LifecycleStepReport(
-            succeeded=True,
-            scanned_count=sum(
-                int(value) for value in stats.values() if isinstance(value, int)
-            ),
-            candidate_count=None,
-            changed_count=None,
-            warnings=(
-                "lifecycle candidate and change counts are unavailable before execution",
-            ),
-        )
+        """Delegate promotion/decay scope to the reusable Memory owner."""
+        return await PromotionLifecycleMaintenanceRunner(
+            self.promotion_service
+        ).preview_reorganization_lifecycle()
 
     async def run_reorganization_lifecycle(self) -> LifecycleStepReport:
-        """Run promotion/decay only; never backfill graph edge embeddings."""
+        """Delegate domain maintenance while retaining application instrumentation."""
         self._raise_next_error()
-        if self.promotion_service is None:
-            return LifecycleStepReport(
-                succeeded=False,
-                errors=(
-                    ReorganizationError(
-                        code=ReorganizationErrorCode.CAPABILITY_UNAVAILABLE,
-                        message="deterministic lifecycle promotion is unavailable",
-                    ),
-                ),
-            )
-        stats = await self.promotion_service.collection_manager.get_stats()
-        result = await self.promotion_service.run_promotion_cycle(dry_run=False)
-        if result.errors:
-            return LifecycleStepReport(
-                succeeded=False,
-                scanned_count=sum(
-                    int(value) for value in stats.values() if isinstance(value, int)
-                ),
-                errors=(
-                    ReorganizationError(
-                        code=ReorganizationErrorCode.MUTATION_FAILED,
-                        message="deterministic lifecycle promotion reported errors",
-                    ),
-                ),
-            )
-        changed_count = (
-            result.promoted_to_long_term
-            + result.decayed_from_long_term
-            + result.reactivated
-        )
-        self.actions.append("run_reorganization_lifecycle")
-        return LifecycleStepReport(
-            succeeded=True,
-            scanned_count=sum(
-                int(value) for value in stats.values() if isinstance(value, int)
-            ),
-            candidate_count=None,
-            changed_count=changed_count,
-        )
+        report = await PromotionLifecycleMaintenanceRunner(
+            self.promotion_service
+        ).run_reorganization_lifecycle()
+        if report.succeeded:
+            self.actions.append("run_reorganization_lifecycle")
+        return report
 
     def reorganization_execute_status(self) -> tuple[bool, str]:
         """Keep legacy direct mutation outside the Chat coordinator disabled."""
@@ -2618,6 +2611,22 @@ def _length_metric(value: object) -> MemoryMetric[int]:
     if not isinstance(value, list):
         return MemoryMetric.unavailable(MemoryDiagnosticReason.STORE_READ_FAILED)
     return MemoryMetric.available(len(value))
+
+
+def _ingested_document_view(record: object) -> IngestedDocumentView | None:
+    """Read typed grouping facts; never open or validate the source path."""
+    if not isinstance(record, Mapping):
+        return None
+    metadata = record.get("metadata")
+    if not isinstance(metadata, Mapping):
+        return None
+    source = metadata.get("source")
+    description = metadata.get("description")
+    if not isinstance(source, str) or not source:
+        return None
+    if description is not None and not isinstance(description, str):
+        return None
+    return IngestedDocumentView(source, description, 1)
 
 
 def _memory_record_view(

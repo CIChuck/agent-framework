@@ -1,0 +1,410 @@
+{
+  "explore.execution.json": {
+    "sha256": "f8fe90a41d25376be72bb82352bcce2a51df2450b8f2faf3a00782d2d5cb4308",
+    "size": 312
+  },
+  "focused.execution.json": {
+    "sha256": "9ebe5ad134c53eb3a2993e8e7b1fadb2167a906b51e3e181e514643b81896f4f",
+    "size": 645
+  },
+  "installed-headless-1.json": {
+    "sha256": "e2dd4fe6239cbf309448f556e94d9ee7e54c1c081108666adbd79942f94679fe",
+    "size": 28105
+  },
+  "memory.outer.log": {
+    "sha256": "56038dde6b0b548239734116cb475c8973fa08e6197135e26e770f4120eb2051",
+    "size": 842
+  },
+  "mypy.outer.log": {
+    "sha256": "dc3837177b0f805f9951fc7f77ee36b09a500c6f295f24e672d1a0bac058719b",
+    "size": 590
+  },
+  "private-wheel-install.log": {
+    "sha256": "b4610d60c774aac903f0ff6bb7d0fbef79aeab41900183bcd07daa8c4bc1f16e",
+    "size": 500
+  },
+  "installed-copy.json": {
+    "sha256": "05d538e0748b205a7ec1c7310c37d5b0b3013651ecacc69ab1de36e68006d421",
+    "size": 652
+  },
+  "cli.outer.log": {
+    "sha256": "f091583eeac6f1a46c02a2e675c5f65b8f81bf4fdce6c83e2759ba3cd5af4b4c",
+    "size": 625
+  },
+  "installed_probe.py": {
+    "sha256": "63ec3c5b3d8fe8cbed6a58102a7687aafd49da7006fdd2d7480b7e2e209e69c7",
+    "size": 5888
+  },
+  "new-format.outer.log": {
+    "sha256": "88fd8d993786934684e7da06d871eb0763a3edb94ef551861d511836b565b934",
+    "size": 585
+  },
+  "installed-probes.execution.json": {
+    "sha256": "30280bbc4d4488e1ff5b8a1dadd46f3b0ceb3b4b775c633f6ef9063dbad2ee5a",
+    "size": 1855
+  },
+  "audit.py": {
+    "sha256": "f0a722ef54ec61bc67a341df312ed439e8832283ae5a13c1a344262e701d9925",
+    "size": 2181
+  },
+  "cli-origins.json": {
+    "sha256": "8aea1b8d8f473370a87bad2780547e1c69ad951ae88968e097089b103944023e",
+    "size": 3846
+  },
+  "chat-controlled.outer.log": {
+    "sha256": "6c8655a28743b37a3050f3ded612a946c0a532c5e295802f33f36821551a0798",
+    "size": 2588
+  },
+  "new-format.execution.json": {
+    "sha256": "5e7e6b2579514c8adb1b98ae95d08e0f366f6b3cfb3811e1145f4adab506b181",
+    "size": 676
+  },
+  "installed-headless-0.json": {
+    "sha256": "6189e3e4635d814f67636de4cbdd91f8d472dd5d912b0b1ce967e32b1d7a25e3",
+    "size": 28105
+  },
+  "independent.execution.json": {
+    "sha256": "a89955e9aeeb9f83b5fc2a2e233f74e0b0270ada9fd9b3fce3b6a36727ad7299",
+    "size": 443
+  },
+  "pinned-format-debt.execution.json": {
+    "sha256": "1c4d55b2607489da4cec21a0e8a44cf1c23821ca429fb43068c3a6258d2b4ce4",
+    "size": 524
+  },
+  "report.md": {
+    "sha256": "b4afe73614d0a6730277aebf130563784579a191e592477acfe832eee2810a40",
+    "size": 16436
+  },
+  "memory.execution.json": {
+    "sha256": "594bc2a469e9ac51e77255d59ba29e3f068af237d912963e0a94876eb2d0bed4",
+    "size": 620
+  },
+  "test_independent_diagnostics.py": {
+    "sha256": "420134944bcd1992d07056e9794bb97a0577d63c5a2f15844c2545012b880dac",
+    "size": 3125
+  },
+  "commands.outer.log": {
+    "sha256": "c952fa7e56201ec76de54438d668a6e46e8c7ca289cce1667d23762bf30984f4",
+    "size": 1173
+  },
+  "execute.py": {
+    "sha256": "a298149ec5a6e30eb21c5c21e5a9d2f757607125ba4923d72638558d49184391",
+    "size": 1157
+  },
+  "mypy.execution.json": {
+    "sha256": "b30208c2034788caa170d626911b2fba72b5bcdb6304ccdc6d50561429c8a4ae",
+    "size": 652
+  },
+  "chat-controlled.execution.json": {
+    "sha256": "69eeb07f29637300708dc10de00543bd42ab0e9c406897031a067eb0db77eed0",
+    "size": 485
+  },
+  "start-integrity.json": {
+    "sha256": "1fe1f6e8018e6bc97304fec75915f0d242f6fa37aa4a90a80e470e76b6f0f567",
+    "size": 13615
+  },
+  "focused-origins.json": {
+    "sha256": "886e8e1c0913b28051aca627cb73965cbb651ab06c470826f24ff841c3991664",
+    "size": 116570
+  },
+  "memory-origins.json": {
+    "sha256": "8e052f6d2b2f245bbf07c6cefb8ac0760cfb270e157439cb47a9670eee1f0426",
+    "size": 65419
+  },
+  "pinned-format-debt.outer.log": {
+    "sha256": "0a834b5948d119dd6c9b14b6825626f23ad60defb92d6b46981945f7e4432281",
+    "size": 471
+  },
+  "chat-raw-origins.json": {
+    "sha256": "da7b09336b31ae236167d68f56c974e637b8e9c125b86acb30c86b189e20e304",
+    "size": 139954
+  },
+  "lint.outer.log": {
+    "sha256": "853181714254e8a27ef065e319cc823ef6324001ec5111e09583bac7aab4987a",
+    "size": 879
+  },
+  "chat-controlled-origins.json": {
+    "sha256": "da7b09336b31ae236167d68f56c974e637b8e9c125b86acb30c86b189e20e304",
+    "size": 139954
+  },
+  "dashboard.execution.json": {
+    "sha256": "35068486ea29c427900fcee316460e23e9e39de7f6e817190d33eff91e3cb4cb",
+    "size": 325
+  },
+  "independent-scope.json": {
+    "sha256": "90508be436f6566a134ffa9f9770ae0726fa6c13260ee00d1742bb431127d6fb",
+    "size": 5358
+  },
+  "focused.outer.log": {
+    "sha256": "14e413aa0e433b1ab8b90578dce2558de62ca75106e0395265447d4e7e470a71",
+    "size": 705
+  },
+  "copy_installed.py": {
+    "sha256": "bdbee0e2192200bb63822a6c0db03d3763005bca0a329870181e338f00836ed0",
+    "size": 1297
+  },
+  "closeout-readonly-comparisons.json": {
+    "sha256": "d5cd0866feec0312b0052ac5c6014b41e740311261a9052b7c10191b1027a8cb",
+    "size": 407
+  },
+  "lint.execution.json": {
+    "sha256": "4647d73232a30913ec860cf6e7cf1e59546a043ebf03185751cdfa87442a6f95",
+    "size": 981
+  },
+  "board.execution.json": {
+    "sha256": "512a88309073c1f94f45d730811138d01aaed25585baed96cdce411bfdac07b9",
+    "size": 304
+  },
+  "prepare.log": {
+    "sha256": "010f555917e95758f4a58093bd8ae54a4f8f6768cff812e96471b02c01871127",
+    "size": 381
+  },
+  "explore.py": {
+    "sha256": "f19bb5370dbe75db30013c869d1cb7e5557a1a4ebe520e98870b1e7fd3bdb353",
+    "size": 1339
+  },
+  "explore.outer.log": {
+    "sha256": "72e67fea183db9dcce5c74c31990134bef3146b738d7037e40fc75029ea3037e",
+    "size": 731
+  },
+  "installed-maintenance-0.json": {
+    "sha256": "a8e5094b20a12ea85cb2e2dcf18cac0fffafb83def819eaa2cad3fe56ee0ee01",
+    "size": 42598
+  },
+  "reviewer-temp-disclosure.json": {
+    "sha256": "e65c8d52b22efba2b8466b591fc2fcfe4dd3f31253cc00314e84c6aa930f7f7a",
+    "size": 284
+  },
+  "cli.execution.json": {
+    "sha256": "9a5489fb11834af34e3789513985e2d69000fd26b3884c5d4db10b51f1175c32",
+    "size": 388
+  },
+  "controlled-example-globals.json": {
+    "sha256": "fa41275ee7c3731a77b92fff54ad1b5beec8cfcaafa63282cab54353543a288e",
+    "size": 1293
+  },
+  "chat-raw.outer.log": {
+    "sha256": "6c8ae9500bf43b81cc5ed2cfc273b4518b73b7653e6ec7d9bdab57b753f9c584",
+    "size": 6400
+  },
+  "embedded-raw-pairs.json": {
+    "sha256": "ad44afd91fdcdf2bb572b30b682d36d60fb525dd5de9d46faf03a927459f382d",
+    "size": 14200
+  },
+  "dashboard.outer.log": {
+    "sha256": "eb078f316913cf295f174f7a48f8aad10af837748c61625042637550c0cb31ba",
+    "size": 264
+  },
+  "commands.execution.json": {
+    "sha256": "38ccaab1888e9c726af9ef59f1bd10316123155a104dc8a8535efccfa812c68a",
+    "size": 465
+  },
+  "board.outer.log": {
+    "sha256": "11e896c3e56fd5ca165c951a4306121bcfc19e98474c7b764585aef2f133b85d",
+    "size": 271
+  },
+  "integrity.py": {
+    "sha256": "18ddd18678e7682885636cc7fd6ff9f81d29d320d4130cf1db788fe9eab3de2f",
+    "size": 2012
+  },
+  "independent.outer.log": {
+    "sha256": "a2329743582193cfe61a583408192a8edc576932511b563dfed7ebf04d76c2c3",
+    "size": 4981
+  },
+  "independent-origins.json": {
+    "sha256": "569f4188a7bdf58dca9efec976b32f7f9d7ffab0eaa4504f1f8350c9c6987425",
+    "size": 95613
+  },
+  "end-integrity.json": {
+    "sha256": "8a91e8aff7b49c8a21822f28bf1957241a6923a1e22111adb28e24d3b8767d4f",
+    "size": 13613
+  },
+  "commands-origins.json": {
+    "sha256": "869de2da02e9d9fa2aa687e3b613f5511c1e1cff3eecab6571ccabeef831bc62",
+    "size": 4142
+  },
+  "installed-maintenance-1.json": {
+    "sha256": "383cbec718bb11378a89d93783d25138dfc2f51f574e4e397d2d7c60270cca47",
+    "size": 42598
+  },
+  "installed-pip-check.json": {
+    "sha256": "ff30b50c602b9120983e659e76d553bbfdb9839cb01625760831303b67426b2c",
+    "size": 296
+  },
+  "chat-raw.execution.json": {
+    "sha256": "4e8a191958869a07db02bae5249b9eac4a7a2c921268b259a776c2a30fe6cd26",
+    "size": 436
+  },
+  "committed-examples/models-config.example.yaml": {
+    "sha256": "57a8d0d047833b6501415e149560d90a0437dc229f5e7891fa408aa3d17744c1",
+    "size": 3090
+  },
+  "committed-examples/config.example.yaml": {
+    "sha256": "2e1db3a47a38076cbda7627265cf8b28ac2a9da96387b3f6788da1dc8bb2932f",
+    "size": 29549
+  },
+  "runner/explore.json": {
+    "sha256": "8c7e15dfcb8bb8ce7eade3427fca80cd0bfea33952a5e44a8a793359ff1ca213",
+    "size": 287
+  },
+  "runner/controls.py": {
+    "sha256": "d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d",
+    "size": 423
+  },
+  "runner/run.py": {
+    "sha256": "409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af",
+    "size": 1190
+  },
+  "runner/memory.log": {
+    "sha256": "76845b69d28677803907cf7825fa46c732b8375a810e2d588bc4b17b47a3ab8c",
+    "size": 260
+  },
+  "runner/chat-raw.log": {
+    "sha256": "310e188f8137c48af124c028a9f0dcd5d8bc468052255800d613e5435003f440",
+    "size": 6261
+  },
+  "runner/explore.log": {
+    "sha256": "faa69430b711c9273867857bb47848fe3a4170e0564987a69eef014aec8834ab",
+    "size": 498
+  },
+  "runner/models-config.example.yaml": {
+    "sha256": "57a8d0d047833b6501415e149560d90a0437dc229f5e7891fa408aa3d17744c1",
+    "size": 3090
+  },
+  "runner/pilot_run.py": {
+    "sha256": "acd0f1aac5bc372bc7357d5a74563730a17955d13b74062c23cfe8f4b8cdc178",
+    "size": 2479
+  },
+  "runner/lint.log": {
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "size": 19
+  },
+  "runner/commands.log": {
+    "sha256": "61e05575846962fdaf93f4f35bff4a0ec5c64f31ed1635bd7dc426f2a4d9ddab",
+    "size": 740
+  },
+  "runner/board.json": {
+    "sha256": "02982cf584e1bfdcfa75176ba854732d7523c40fc2e39e8cab5e88646f1dd8f6",
+    "size": 283
+  },
+  "runner/memory.json": {
+    "sha256": "0c8f16b8fecdcb3a96aa702e179ed947c1a3b6a98b6e8dd59ace943ef7c4c6cd",
+    "size": 684
+  },
+  "runner/pinned-format-debt.json": {
+    "sha256": "babb307cebff674e14d5c0a52e76627d7c5909d9dba7cc8582772d9557c1cf52",
+    "size": 477
+  },
+  "runner/focused.json": {
+    "sha256": "3fc1a11ad4d3de35ad3d5bfc94920666b8669ad20db865c3b0087ccba639ade3",
+    "size": 708
+  },
+  "runner/offline-startup.json": {
+    "sha256": "58d1bc07907b2d60bca4953d1b7a9d546fe77f7352b5321da2c635cc4b550c56",
+    "size": 314
+  },
+  "runner/cli.json": {
+    "sha256": "c091b5c90d5d1c6ba43625adb88bf7eeb197c5b96c66c04ac7951e2ed0b93f82",
+    "size": 455
+  },
+  "runner/chat-controlled.log": {
+    "sha256": "1be5972403333eff46bb31e7d224d9b9a664ddc265e8b408cbd41d6fdf3cba55",
+    "size": 2154
+  },
+  "runner/board.log": {
+    "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+    "size": 46
+  },
+  "runner/build-requirements.txt": {
+    "sha256": "7fc40f9e2000109be576c2810389a801891ba9f1d52cecf52d2f2303794c0455",
+    "size": 1323
+  },
+  "runner/commands.json": {
+    "sha256": "4213387894ce3fec7d6156e1dcc6323a54f8077cc81267becf78b10f2ccbb5ef",
+    "size": 527
+  },
+  "runner/sitecustomize.py": {
+    "sha256": "d96294f94f5378beb38675d0624e6f78c622914cafbaffb4ce486d8310d2eb7e",
+    "size": 1528
+  },
+  "runner/mypy.json": {
+    "sha256": "b551f6176c2929190fbba50c175e42691993aeee7278d9ee63bf99dadf43f04a",
+    "size": 633
+  },
+  "runner/chat-raw.json": {
+    "sha256": "254a9255c8cdd2a280f1509b0ce3b3328117ff625ae9f71200f2b6c0c88fe410",
+    "size": 498
+  },
+  "runner/pinned-format-debt.log": {
+    "sha256": "1d6a7357d3da1f1afb251f43937da567d6c286fe0f8a75ffb61c2b2b0a056ba9",
+    "size": 60
+  },
+  "runner/dashboard.json": {
+    "sha256": "e692da5be44c015b61940591cb4e17ace8216ccd784a2b7ca8d411fea66ff4da",
+    "size": 296
+  },
+  "runner/lint.json": {
+    "sha256": "b8636e442abf356891468fd50a8a2437daf944a609ad7b2d1bcfcfc4bea4d896",
+    "size": 962
+  },
+  "runner/pilot_guard.py": {
+    "sha256": "e04eea8bc9722defe3ea89212385f8befda03e051b9816b305e1b9f73ff94681",
+    "size": 2276
+  },
+  "runner/mypy.log": {
+    "sha256": "71144743c83babea384888a735db0c4daba3d4d7b7942b6839984bd5c21b52bb",
+    "size": 43
+  },
+  "runner/chat-controlled.json": {
+    "sha256": "cd6e4bcb91abb5aaa3c75e5ff4954d98c9d7601a7fe96fa01daa68a039272469",
+    "size": 540
+  },
+  "runner/new-format.json": {
+    "sha256": "45e2d9c40c310bfa5ca754fd6255082fc602fb1ef8296bf62a1a8d7790b645b9",
+    "size": 645
+  },
+  "runner/reviewer_origins.py": {
+    "sha256": "94ef32f83f7cbe3f0673bd6450082a37789e40ae338d3486df2c3f04b2abd1f9",
+    "size": 875
+  },
+  "runner/cli.log": {
+    "sha256": "c98ecbb70c8289b93d3aa68a02ba756ba2684e56a108d2bfed95b5a58c0928f3",
+    "size": 260
+  },
+  "runner/config.example.yaml": {
+    "sha256": "2e1db3a47a38076cbda7627265cf8b28ac2a9da96387b3f6788da1dc8bb2932f",
+    "size": 29549
+  },
+  "runner/new-format.log": {
+    "sha256": "177f260a5645724013185e4b140c7045cc39e56c0c97b120f5cb23599f85f0de",
+    "size": 26
+  },
+  "runner/independent.log": {
+    "sha256": "6b8b1c5e7690b81f05ac12065d4b4cc9c5cce58d06e6b536f355f7e3b4106126",
+    "size": 4570
+  },
+  "runner/dashboard.log": {
+    "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+    "size": 30
+  },
+  "runner/independent.json": {
+    "sha256": "74f4bbcef55590d05f3a3356b20862d0e2fd0682f42c9ba0663ca8d4761b4db7",
+    "size": 501
+  },
+  "runner/focused.log": {
+    "sha256": "43d42e0e2afbe769c657b37a92cba839a39db4924d96e8ce974ff22e277f1bc6",
+    "size": 99
+  },
+  "runner/offline-startup.log": {
+    "sha256": "427b7027b11aa9a8394f97c4b4ae0d6d0a741b0013c08e493ab2a03597703daa",
+    "size": 32
+  },
+  "runner/bootstrap.json": {
+    "sha256": "935e992cbd1c50ef4f2717d8f19ea11a270f672d9e5a0e498494d64f9c2e5186",
+    "size": 3708
+  },
+  "runner/reviewer_examples.py": {
+    "sha256": "44bed6da0e55a6ad242372f0920ede134a514970dd665570ce87a2574cdf15a0",
+    "size": 986
+  }
+}

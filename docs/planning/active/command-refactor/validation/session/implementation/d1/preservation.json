@@ -1,0 +1,28 @@
+{
+  "result": "passed",
+  "base": "1b1f703bd5af1c86bfd95a3e5c5fc72acf71a7a7",
+  "unchanged_original_files": 785,
+  "changed_existing_files": [
+    "packages/friday-commands/README.md",
+    "packages/friday-commands/src/friday_commands/__init__.py",
+    "packages/friday-commands/src/friday_commands/contracts.py"
+  ],
+  "existing_test_files_unchanged": 277,
+  "existing_test_definitions": 2999,
+  "existing_assertions": 9072,
+  "contracts_ast": "Only three new models and the precise alias/outcome whitelist expansion; all other original AST nodes match.",
+  "exports_added": [
+    "HistoryData",
+    "HistoryTurn",
+    "SESSION_SPECS",
+    "SessionClearedData",
+    "SessionPort",
+    "build_session_handlers"
+  ],
+  "existing_export_order_preserved": true,
+  "dirty_hashes": {
+    "packages/friday-chat/config.example.yaml": "c2f728c98adc5ca773bfdf3170d846a610f15d77eae9a380e1a815534b93c3e7",
+    "packages/friday-chat/models-config.example.yaml": "11e99116d885a431f085b6bd05b5bd30348eb37654fd4c9350a7cca58c527896"
+  },
+  "limit": "D1 source preservation only; no Chat wiring or candidate wheel proof."
+}

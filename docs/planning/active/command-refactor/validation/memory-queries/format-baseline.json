@@ -1,0 +1,574 @@
+{
+  "version": 1,
+  "formatter_version": "ruff 0.14.10",
+  "config_sha256": "d1e8ff05afbe8f1a06d3ddaa07db520ff0a1378f6fae23baf3ee525b9619e9d7",
+  "status": "baseline formatting debt failed/unwaived",
+  "files": {
+    "packages/friday-chat/src/friday_chat/commands/memory.py": {
+      "source_sha256": "5dd48d607044f39c9cac6a41bd0650e27a42bb7c165cd079831f42c7f36c48a0",
+      "formatted_sha256": "b9e905817fc288f053d4481798a119a35d234091ad5a9ee6296f03b494b6c7d5",
+      "diff": "--- packages/friday-chat/src/friday_chat/commands/memory.py\n+++ packages/friday-chat/src/friday_chat/commands/memory.py\n@@ -85,9 +85,7 @@\n     tracked_turn_ids = (\n         MemoryMetric.available(len(context.session.turn_ids))\n         if context.session is not None\n-        else MemoryMetric.unavailable(\n-            MemoryDiagnosticReason.SESSION_STATE_UNAVAILABLE\n-        )\n+        else MemoryMetric.unavailable(MemoryDiagnosticReason.SESSION_STATE_UNAVAILABLE)\n     )\n     snapshot = MemoryStatisticsSnapshot(\n         session_id=MemoryMetric.available(context.runtime.session_identity.value),\n@@ -157,7 +155,9 @@\n     try:\n         result = await context.runtime.memory.query_memory_records(kind)\n     except Exception:\n-        return CommandResult(output=f\"Unable to query {title.lower()}: store read failed.\")\n+        return CommandResult(\n+            output=f\"Unable to query {title.lower()}: store read failed.\"\n+        )\n     return _memory_record_result(title, result)\n \n \n@@ -334,8 +334,9 @@\n def preview_text(text: str, *, limit: int = 160) -> str:\n     \"\"\"Normalize and bound record text for shared legacy formatting.\"\"\"\n     normalized = \" \".join(\n-        \"\".join(character if character.isprintable() else \" \" for character in text)\n-        .split()\n+        \"\".join(\n+            character if character.isprintable() else \" \" for character in text\n+        ).split()\n     )\n     if len(normalized) <= limit:\n         return normalized\n",
+      "fragments": [
+        {
+          "owner": "memory_handler",
+          "line": 88,
+          "before": "        else MemoryMetric.unavailable(\n            MemoryDiagnosticReason.SESSION_STATE_UNAVAILABLE\n        )\n",
+          "after": "        else MemoryMetric.unavailable(MemoryDiagnosticReason.SESSION_STATE_UNAVAILABLE)\n",
+          "sha256": "a16599fb5f4f02d2faf7ed880086071d0249e54ff16d9e513e41d6e37cbe65aa"
+        },
+        {
+          "owner": "_query_memory_record_result",
+          "line": 160,
+          "before": "        return CommandResult(output=f\"Unable to query {title.lower()}: store read failed.\")\n",
+          "after": "        return CommandResult(\n            output=f\"Unable to query {title.lower()}: store read failed.\"\n        )\n",
+          "sha256": "10a118b95b7f008a9f562aff9073041bcb2a0b74e8ec220f0002d18092dc68d2"
+        },
+        {
+          "owner": "preview_text",
+          "line": 337,
+          "before": "        \"\".join(character if character.isprintable() else \" \" for character in text)\n        .split()\n",
+          "after": "        \"\".join(\n            character if character.isprintable() else \" \" for character in text\n        ).split()\n",
+          "sha256": "8d5f7b0e0b451ee90e37bfc5a2ff6d31827cf19ac408e16954128104d0bccbe2"
+        }
+      ]
+    },
+    "packages/friday-chat/src/friday_chat/commands/registry.py": {
+      "source_sha256": "09a9d23f07423dbadab0c7a24d6c6106ebc7972c1d23bb9bb0711ac6222f2035",
+      "formatted_sha256": "14eb7143e135fe1f4bb69b8ff39b7727e5ac971f8432d1a8907c67f612ba79ed",
+      "diff": "--- packages/friday-chat/src/friday_chat/commands/registry.py\n+++ packages/friday-chat/src/friday_chat/commands/registry.py\n@@ -181,9 +181,8 @@\n \n         handler = self._handlers[canonical_name]\n         gate = getattr(context, \"maintenance_gate\", None)\n-        if (\n-            canonical_name in _SHARED_ADMISSION_COMMANDS\n-            and isinstance(gate, MaintenanceAdmissionGate)\n+        if canonical_name in _SHARED_ADMISSION_COMMANDS and isinstance(\n+            gate, MaintenanceAdmissionGate\n         ):\n             async with gate.shared(f\"command:{canonical_name}\"):\n                 result = await handler(context, args, metadata)\n@@ -283,8 +282,6 @@\n     _metadata: CommandMetadata,\n ) -> CommandResult:\n     return await invoke_diagnostic(\"timing\", _args, context)\n-\n-\n \n \n async def _debug_retrieval_handler(\n@@ -395,7 +392,9 @@\n     if invocation.recovery_run_id is not None:\n         coordinator = getattr(context, \"reorganization_coordinator\", None)\n         if not isinstance(coordinator, ReorganizationCoordinator):\n-            return CommandResult(output=\"Reorganization coordinator is not initialized.\")\n+            return CommandResult(\n+                output=\"Reorganization coordinator is not initialized.\"\n+            )\n         recovery_request = RecoveryRequest(\n             run_id=invocation.recovery_run_id,\n             execute=not invocation.dry_run,\n@@ -425,7 +424,9 @@\n         )\n \n     if context.runtime is None or not context.runtime.config.memory.persist_directory:\n-        return CommandResult(output=\"Cannot reorganize: memory.persist_directory is required.\")\n+        return CommandResult(\n+            output=\"Cannot reorganize: memory.persist_directory is required.\"\n+        )\n     coordinator = getattr(context, \"reorganization_coordinator\", None)\n     if not isinstance(coordinator, ReorganizationCoordinator):\n         return CommandResult(output=\"Reorganization coordinator is not initialized.\")\n@@ -516,9 +517,7 @@\n             \"unavailable\" if step.scanned_count is None else str(step.scanned_count)\n         )\n         candidates = (\n-            \"unavailable\"\n-            if step.candidate_count is None\n-            else str(step.candidate_count)\n+            \"unavailable\" if step.candidate_count is None else str(step.candidate_count)\n         )\n         changed = (\n             \"unavailable\" if step.changed_count is None else str(step.changed_count)\n@@ -529,8 +528,7 @@\n         )\n     lines.extend(f\"Warning: {warning}\" for warning in result.warnings)\n     lines.extend(\n-        f\"Error [{error.code.value}]: {error.message}\"\n-        for error in result.errors\n+        f\"Error [{error.code.value}]: {error.message}\" for error in result.errors\n     )\n     return \"\\n\".join(lines)\n \n@@ -614,7 +612,9 @@\n     _metadata: CommandMetadata,\n ) -> CommandResult:\n     if context.runtime is None or not context.runtime.config.memory.persist_directory:\n-        return CommandResult(output=\"Cannot migrate: memory.persist_directory is required.\")\n+        return CommandResult(\n+            output=\"Cannot migrate: memory.persist_directory is required.\"\n+        )\n \n     flags = set(args)\n     execute = \"--force\" in flags or \"--execute\" in flags\n@@ -693,7 +693,12 @@\n         return CommandResult(output=\"Usage: /read <path> [--lines=N]\")\n     try:\n         result = SmartFileReader().read(remaining[0], line_limit=line_limit)\n-    except (FileNotFoundError, IsADirectoryError, ValueError, json.JSONDecodeError) as exc:\n+    except (\n+        FileNotFoundError,\n+        IsADirectoryError,\n+        ValueError,\n+        json.JSONDecodeError,\n+    ) as exc:\n         return CommandResult(output=str(exc))\n     return CommandResult(output=format_file_read(result))\n \n@@ -712,7 +717,12 @@\n     description = \" \".join(remaining[1:]) or None\n     try:\n         result = SmartFileReader().read(path, line_limit=line_limit)\n-    except (FileNotFoundError, IsADirectoryError, ValueError, json.JSONDecodeError) as exc:\n+    except (\n+        FileNotFoundError,\n+        IsADirectoryError,\n+        ValueError,\n+        json.JSONDecodeError,\n+    ) as exc:\n         return CommandResult(output=str(exc))\n     chunk_count = await context.runtime.memory.ingest_document(\n         source_path=str(result.path),\n@@ -785,7 +795,9 @@\n     _metadata: CommandMetadata,\n ) -> CommandResult:\n     sanitization = (\n-        context.runtime.config.security.sanitization if context.runtime is not None else {}\n+        context.runtime.config.security.sanitization\n+        if context.runtime is not None\n+        else {}\n     )\n     detection = sanitization.get(\"detection\", {})\n     quarantine = sanitization.get(\"quarantine\", {})\n@@ -824,7 +836,9 @@\n         return CommandResult(\n             output=\"Usage: /security-test [instruction|delimiter|jailbreak|exfil|all]\"\n         )\n-    selected = samples.items() if requested == \"all\" else [(requested, samples[requested])]\n+    selected = (\n+        samples.items() if requested == \"all\" else [(requested, samples[requested])]\n+    )\n     lines = [\"Security test results:\"]\n     for name, payload in selected:\n         result = sanitize_payload(payload)\n@@ -878,8 +892,6 @@\n     return CommandResult(output=f\"Updated security {kind} to {value}.\")\n \n \n-\n-\n async def _speech_handler(\n     context: CommandContext,\n     args: tuple[str, ...],\n@@ -893,7 +905,9 @@\n     command = args[0]\n     speech_config = context.runtime.config.speech\n     before = speech_config.model_copy(deep=True)\n-    base_prompt = remove_speech_prompt_snippet(context.runtime.config.chat.system_prompt)\n+    base_prompt = remove_speech_prompt_snippet(\n+        context.runtime.config.chat.system_prompt\n+    )\n     try:\n         if command == \"on\":\n             speech_config.enabled = True\n@@ -973,9 +987,7 @@\n     lines = [\"Agents:\"]\n     for agent in sorted(orchestrator.agents):\n         marker = \"*\" if agent == orchestrator.active_agent else \"-\"\n-        lines.append(\n-            f\"{marker} {agent}: {', '.join(orchestrator.agents[agent])}\"\n-        )\n+        lines.append(f\"{marker} {agent}: {', '.join(orchestrator.agents[agent])}\")\n     lines.append(f\"Cache state: {orchestrator.cache_state}\")\n     return CommandResult(output=\"\\n\".join(lines))\n \n@@ -1049,7 +1061,9 @@\n     if subcommand == \"list\":\n         workflows = workflow.list_workflows()\n         lines = [\"Workflows:\"]\n-        lines.extend(f\"- {name}: {description}\" for name, description in workflows.items())\n+        lines.extend(\n+            f\"- {name}: {description}\" for name, description in workflows.items()\n+        )\n         return CommandResult(output=\"\\n\".join(lines))\n     if subcommand == \"run\":\n         if len(args) < 2:\n@@ -1084,7 +1098,11 @@\n     if category:\n         filtered = [tool for tool in tools if tool.category == category]\n         if not filtered:\n-            if category == \"mcp\" and context.runtime is not None and context.runtime.mcp_tools is not None:\n+            if (\n+                category == \"mcp\"\n+                and context.runtime is not None\n+                and context.runtime.mcp_tools is not None\n+            ):\n                 lines = [\"No MCP tools are registered.\"]\n                 lines.extend(context.runtime.mcp_tools.status_lines())\n                 lines.extend(context.runtime.mcp_tools.rejection_lines())\n@@ -1114,7 +1132,11 @@\n         ):\n             parameters = \", \".join(_tool_parameter_names(tool)) or \"none\"\n             lines.append(f\"- {tool.name}: {tool.description} ({parameters})\")\n-    if category == \"mcp\" and context.runtime is not None and context.runtime.mcp_tools is not None:\n+    if (\n+        category == \"mcp\"\n+        and context.runtime is not None\n+        and context.runtime.mcp_tools is not None\n+    ):\n         lines.extend(context.runtime.mcp_tools.status_lines())\n         lines.extend(context.runtime.mcp_tools.rejection_lines())\n         lines.extend(\n@@ -1122,14 +1144,6 @@\n             for name in context.runtime.tool_selection.provider_export_rejections()\n         )\n     return CommandResult(output=\"\\n\".join(lines))\n-\n-\n-\n-\n-\n-\n-\n-\n \n \n async def _help_handler(\n@@ -1243,12 +1257,6 @@\n     return name.removeprefix(\"/\").strip().lower()\n \n \n-\n-\n-\n-\n-\n-\n _REORGANIZE_MODE_FLAGS = {\n     \"--backup\": \"backup\",\n     \"--dedupe\": \"dedupe\",\n@@ -1333,9 +1341,7 @@\n                 \"--no-backup has been removed. Execute mode always creates a \"\n                 \"verified recovery bundle before mutation.\"\n             )\n-        raise _ReorganizeUsageError(\n-            f\"Unknown argument '{token}'.\\n{_REORGANIZE_USAGE}\"\n-        )\n+        raise _ReorganizeUsageError(f\"Unknown argument '{token}'.\\n{_REORGANIZE_USAGE}\")\n     mode_flags = [token for token in args if token in _REORGANIZE_MODE_FLAGS]\n     full_only = [token for token in args if token in _REORGANIZE_FULL_ONLY_FLAGS]\n     if recovery_run_id is not None:\n@@ -1444,16 +1450,6 @@\n     return [str(name) for name in properties]\n \n \n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n @dataclass(frozen=True)\n class CommandSpec:\n     \"\"\"Static command spec used to build the default registry.\"\"\"\n@@ -1748,9 +1744,7 @@\n         \"List registered runtime tools and optionally filter by category.\",\n         \"tools\",\n         \"/tools [category]\",\n-        arguments=(\n-            _argument(\"category\", \"Optional runtime tool category filter.\"),\n-        ),\n+        arguments=(_argument(\"category\", \"Optional runtime tool category filter.\"),),\n     ),\n     CommandSpec(\"security\", \"Show security status.\", \"security\", \"/security\"),\n     CommandSpec(\n@@ -1826,9 +1820,7 @@\n         \"Switch active agent or show current agent status.\",\n         \"orchestration\",\n         \"/switch [agent]\",\n-        arguments=(\n-            _argument(\"agent\", \"Agent name; omit to show the active agent.\"),\n-        ),\n+        arguments=(_argument(\"agent\", \"Agent name; omit to show the active agent.\"),),\n     ),\n     CommandSpec(\"agents\", \"List available agents.\", \"orchestration\", \"/agents\"),\n     CommandSpec(\n@@ -1836,9 +1828,7 @@\n         \"Show detailed agent information.\",\n         \"orchestration\",\n         \"/agent [name]\",\n-        arguments=(\n-            _argument(\"name\", \"Agent name; omit to inspect the active agent.\"),\n-        ),\n+        arguments=(_argument(\"name\", \"Agent name; omit to inspect the active agent.\"),),\n     ),\n     CommandSpec(\n         \"delegate\",\n",
+      "fragments": [
+        {
+          "owner": "CommandRegistry.execute",
+          "line": 184,
+          "before": "        if (\n            canonical_name in _SHARED_ADMISSION_COMMANDS\n            and isinstance(gate, MaintenanceAdmissionGate)\n",
+          "after": "        if canonical_name in _SHARED_ADMISSION_COMMANDS and isinstance(\n            gate, MaintenanceAdmissionGate\n",
+          "sha256": "86c0f25840dbbb810bc69b5f7c157efe89813ae935d4d6b459f8d3185997299a"
+        },
+        {
+          "owner": "<module>",
+          "line": 286,
+          "before": "\n\n",
+          "after": "",
+          "sha256": "357e21ef1a5bafbc25cb12764ae2035fabd50d8011fe068b59fab0aef4c104e2"
+        },
+        {
+          "owner": "_reorganize_handler",
+          "line": 398,
+          "before": "            return CommandResult(output=\"Reorganization coordinator is not initialized.\")\n",
+          "after": "            return CommandResult(\n                output=\"Reorganization coordinator is not initialized.\"\n            )\n",
+          "sha256": "41bf6d6c4a4e7321609dfeac183f84528ec369dd697026f554b3d6b9ab6a3db3"
+        },
+        {
+          "owner": "_reorganize_handler",
+          "line": 428,
+          "before": "        return CommandResult(output=\"Cannot reorganize: memory.persist_directory is required.\")\n",
+          "after": "        return CommandResult(\n            output=\"Cannot reorganize: memory.persist_directory is required.\"\n        )\n",
+          "sha256": "7d400d3f8351814c50f25748b52df05acd8d51da58d414b72189d82d40a23656"
+        },
+        {
+          "owner": "_format_reorganization_result",
+          "line": 519,
+          "before": "            \"unavailable\"\n            if step.candidate_count is None\n            else str(step.candidate_count)\n",
+          "after": "            \"unavailable\" if step.candidate_count is None else str(step.candidate_count)\n",
+          "sha256": "7e116dd19df5304bf51cf855a0972cbf84654235ee86948c148f4ba2ce2e9c21"
+        },
+        {
+          "owner": "_format_reorganization_result",
+          "line": 532,
+          "before": "        f\"Error [{error.code.value}]: {error.message}\"\n        for error in result.errors\n",
+          "after": "        f\"Error [{error.code.value}]: {error.message}\" for error in result.errors\n",
+          "sha256": "2bc81ff790f5c7c1866b8ae1ac2c6cf48ae2182883bb9c5318cbaa813bd8e92f"
+        },
+        {
+          "owner": "_migrate_handler",
+          "line": 617,
+          "before": "        return CommandResult(output=\"Cannot migrate: memory.persist_directory is required.\")\n",
+          "after": "        return CommandResult(\n            output=\"Cannot migrate: memory.persist_directory is required.\"\n        )\n",
+          "sha256": "853fbb6a0dbc556b5b5b370776ab27247faa6e03800fbea1605f00a942f75f11"
+        },
+        {
+          "owner": "_read_handler",
+          "line": 696,
+          "before": "    except (FileNotFoundError, IsADirectoryError, ValueError, json.JSONDecodeError) as exc:\n",
+          "after": "    except (\n        FileNotFoundError,\n        IsADirectoryError,\n        ValueError,\n        json.JSONDecodeError,\n    ) as exc:\n",
+          "sha256": "15f2547942dd66ffaf4e1e312ecb32b2403c7831f0780684cecdb46e1d661fd9"
+        },
+        {
+          "owner": "_ingest_handler",
+          "line": 715,
+          "before": "    except (FileNotFoundError, IsADirectoryError, ValueError, json.JSONDecodeError) as exc:\n",
+          "after": "    except (\n        FileNotFoundError,\n        IsADirectoryError,\n        ValueError,\n        json.JSONDecodeError,\n    ) as exc:\n",
+          "sha256": "8d205e8470a9fe371b12659faa39aab4f9d3ad09ae909625b7eedf1045f3e9da"
+        },
+        {
+          "owner": "_security_handler",
+          "line": 788,
+          "before": "        context.runtime.config.security.sanitization if context.runtime is not None else {}\n",
+          "after": "        context.runtime.config.security.sanitization\n        if context.runtime is not None\n        else {}\n",
+          "sha256": "485697d6fa26743485945f8dd0fc49b2b8dff257b1ccf84993c65d7f20c21350"
+        },
+        {
+          "owner": "_security_test_handler",
+          "line": 827,
+          "before": "    selected = samples.items() if requested == \"all\" else [(requested, samples[requested])]\n",
+          "after": "    selected = (\n        samples.items() if requested == \"all\" else [(requested, samples[requested])]\n    )\n",
+          "sha256": "01e3fabadae1a104d40236322ae78032f5a8367534afffd63cd58d1b3e8aa7a3"
+        },
+        {
+          "owner": "<module>",
+          "line": 881,
+          "before": "\n\n",
+          "after": "",
+          "sha256": "357e21ef1a5bafbc25cb12764ae2035fabd50d8011fe068b59fab0aef4c104e2"
+        },
+        {
+          "owner": "_speech_handler",
+          "line": 896,
+          "before": "    base_prompt = remove_speech_prompt_snippet(context.runtime.config.chat.system_prompt)\n",
+          "after": "    base_prompt = remove_speech_prompt_snippet(\n        context.runtime.config.chat.system_prompt\n    )\n",
+          "sha256": "87cc3f8c8d9dc912f4383cab923b77290a501c1b5e87fe42cae231bce3c09546"
+        },
+        {
+          "owner": "_agents_handler",
+          "line": 976,
+          "before": "        lines.append(\n            f\"{marker} {agent}: {', '.join(orchestrator.agents[agent])}\"\n        )\n",
+          "after": "        lines.append(f\"{marker} {agent}: {', '.join(orchestrator.agents[agent])}\")\n",
+          "sha256": "8c53b90d687c428273f2471befeb3fbe34aeb172125f32380bd4dfc9fae548cd"
+        },
+        {
+          "owner": "_workflow_handler",
+          "line": 1052,
+          "before": "        lines.extend(f\"- {name}: {description}\" for name, description in workflows.items())\n",
+          "after": "        lines.extend(\n            f\"- {name}: {description}\" for name, description in workflows.items()\n        )\n",
+          "sha256": "8abbfc091e8a23fd070393ed56859e994a6dc0c1229496ad19bffb31221f71e4"
+        },
+        {
+          "owner": "_tools_handler",
+          "line": 1087,
+          "before": "            if category == \"mcp\" and context.runtime is not None and context.runtime.mcp_tools is not None:\n",
+          "after": "            if (\n                category == \"mcp\"\n                and context.runtime is not None\n                and context.runtime.mcp_tools is not None\n            ):\n",
+          "sha256": "3815268c420e25fa05d50ea96f2ccc481fa3a93b3d3e74eedd9f0ac97797db02"
+        },
+        {
+          "owner": "_tools_handler",
+          "line": 1117,
+          "before": "    if category == \"mcp\" and context.runtime is not None and context.runtime.mcp_tools is not None:\n",
+          "after": "    if (\n        category == \"mcp\"\n        and context.runtime is not None\n        and context.runtime.mcp_tools is not None\n    ):\n",
+          "sha256": "a247e255cbc722a96059af7d753cf0d081bed9221c96372b8dcebdfc7eb3b525"
+        },
+        {
+          "owner": "<module>",
+          "line": 1125,
+          "before": "\n\n\n\n\n\n\n\n",
+          "after": "",
+          "sha256": "0dfb9adf83bd97cc514efbaa83ead7b47a4b9a3f708a6fc30373adf5272051bc"
+        },
+        {
+          "owner": "<module>",
+          "line": 1246,
+          "before": "\n\n\n\n\n\n",
+          "after": "",
+          "sha256": "8bed9a6e446e313f758fa3f3e871eec7ce2773144e857f67256e9c4b7b69f4c9"
+        },
+        {
+          "owner": "_parse_reorganize_invocation",
+          "line": 1336,
+          "before": "        raise _ReorganizeUsageError(\n            f\"Unknown argument '{token}'.\\n{_REORGANIZE_USAGE}\"\n        )\n",
+          "after": "        raise _ReorganizeUsageError(f\"Unknown argument '{token}'.\\n{_REORGANIZE_USAGE}\")\n",
+          "sha256": "7744d39b1f7e4d1124f7e928c875bda54f93197b5274c7d43325e71c461771fe"
+        },
+        {
+          "owner": "<module>",
+          "line": 1445,
+          "before": "\n\n\n\n\n\n\n\n\n\n",
+          "after": "",
+          "sha256": "58c82e5f2270345667aab5d42a274f7941cb504da7b17ea3d811f2d0586a8cdc"
+        },
+        {
+          "owner": "<module>",
+          "line": 1751,
+          "before": "        arguments=(\n            _argument(\"category\", \"Optional runtime tool category filter.\"),\n        ),\n",
+          "after": "        arguments=(_argument(\"category\", \"Optional runtime tool category filter.\"),),\n",
+          "sha256": "3998713ee3041a5672026453228aab933749858f30c12f4c1f006078f24844fe"
+        },
+        {
+          "owner": "<module>",
+          "line": 1829,
+          "before": "        arguments=(\n            _argument(\"agent\", \"Agent name; omit to show the active agent.\"),\n        ),\n",
+          "after": "        arguments=(_argument(\"agent\", \"Agent name; omit to show the active agent.\"),),\n",
+          "sha256": "b12d53515763d78cda57037242aee6e0cbee7489f188b3afb852c93eae161ebf"
+        },
+        {
+          "owner": "<module>",
+          "line": 1839,
+          "before": "        arguments=(\n            _argument(\"name\", \"Agent name; omit to inspect the active agent.\"),\n        ),\n",
+          "after": "        arguments=(_argument(\"name\", \"Agent name; omit to inspect the active agent.\"),),\n",
+          "sha256": "b4fe5db22a198c77c969941570a752b809b5bb81bd5e0361bf9cd186a768fdca"
+        }
+      ]
+    },
+    "packages/friday-chat/src/friday_chat/memory_views.py": {
+      "source_sha256": "64a87af9b8decf858c4d185fe7081c7a2a0f168f8df229e1e04bbcafab86932f",
+      "formatted_sha256": "64a87af9b8decf858c4d185fe7081c7a2a0f168f8df229e1e04bbcafab86932f",
+      "diff": "",
+      "fragments": []
+    },
+    "packages/friday-chat/src/friday_chat/runtime.py": {
+      "source_sha256": "e3b54fb6f183f7171b5bc12bafc13a04b73133c176873bf20f959b3f3e645449",
+      "formatted_sha256": "b31f3e7a541df1f0da4f63d0f3d56dfddfcc3e7baa5f515ac9df744e6e736511",
+      "diff": "--- packages/friday-chat/src/friday_chat/runtime.py\n+++ packages/friday-chat/src/friday_chat/runtime.py\n@@ -203,7 +203,9 @@\n \n @runtime_checkable\n class MCPTranscriptCapability(Protocol):\n-    async def record_mcp_interaction(self, turn: InteractionTurn) -> MCPTranscriptReceipt: ...\n+    async def record_mcp_interaction(\n+        self, turn: InteractionTurn\n+    ) -> MCPTranscriptReceipt: ...\n \n \n class TranscriptStore(TranscriptQueryStore, Protocol):\n@@ -1492,7 +1494,9 @@\n     reorganization_mutation = (\n         FrameworkMaintenanceMutationAdapter(\n             memory=memory_mutation,\n-            providers=build_explicit_maintenance_provider_registry(config, **telemetry_arguments),\n+            providers=build_explicit_maintenance_provider_registry(\n+                config, **telemetry_arguments\n+            ),\n             lifecycle=maintenance,\n             synthesis_guidance=build_synthesis_guidance(config),\n         )\n",
+      "fragments": [
+        {
+          "owner": "MCPTranscriptCapability.record_mcp_interaction",
+          "line": 206,
+          "before": "    async def record_mcp_interaction(self, turn: InteractionTurn) -> MCPTranscriptReceipt: ...\n",
+          "after": "    async def record_mcp_interaction(\n        self, turn: InteractionTurn\n    ) -> MCPTranscriptReceipt: ...\n",
+          "sha256": "fc7464d92c6005837523df099eb9ed1f1e7ddd4401b2e4d4c130f27d3c303594"
+        },
+        {
+          "owner": "_build_framework_runtime",
+          "line": 1495,
+          "before": "            providers=build_explicit_maintenance_provider_registry(config, **telemetry_arguments),\n",
+          "after": "            providers=build_explicit_maintenance_provider_registry(\n                config, **telemetry_arguments\n            ),\n",
+          "sha256": "318d6c7ee14f1354ac62005200c9a2107568a7c07c13fcd7139d337c83c262df"
+        }
+      ]
+    },
+    "packages/friday-chat/src/friday_chat/adapters.py": {
+      "source_sha256": "884557cfb3305096d213f2f7de95977de367be02405700bfce1083d3be34228d",
+      "formatted_sha256": "1a0968225c817613c6400d47a72d5e624aaa9d64018f841f79cf4a4cbd49ce68",
+      "diff": "--- packages/friday-chat/src/friday_chat/adapters.py\n+++ packages/friday-chat/src/friday_chat/adapters.py\n@@ -215,13 +215,15 @@\n         message_values = [dict(message) for message in messages]\n         tool_values = [_to_openai_tool_schema(tool) for tool in tools] or None\n         if isinstance(self.execution, LegacyLLMExecutionConfig):\n-            legacy_iterator = aiter(self.service.chat_completion_stream(\n-                messages=message_values,\n-                tools=tool_values,\n-                temperature=self.execution.temperature,\n-                max_tokens=self.execution.max_tokens,\n-                timeout=self.config.llm.timeout_seconds,\n-            ))\n+            legacy_iterator = aiter(\n+                self.service.chat_completion_stream(\n+                    messages=message_values,\n+                    tools=tool_values,\n+                    temperature=self.execution.temperature,\n+                    max_tokens=self.execution.max_tokens,\n+                    timeout=self.config.llm.timeout_seconds,\n+                )\n+            )\n             async with closing_stream(legacy_iterator):\n                 async for chunk in legacy_iterator:\n                     yield chunk\n@@ -310,8 +312,12 @@\n         self, call: ToolCallRecord, entry_id: str, policy: MCPIngestionPolicy\n     ) -> MCPMemoryPreparation:\n         facts = call.mcp_provenance\n-        if (facts is None or call.arguments or call.call_id != facts.call_id\n-                or call.name != facts.tool.canonical_name):\n+        if (\n+            facts is None\n+            or call.arguments\n+            or call.call_id != facts.call_id\n+            or call.name != facts.tool.canonical_name\n+        ):\n             return MCPMemoryPreparation(\"ineligible\")\n         return await MCPMemoryIngester(self.collection_manager).prepare(\n             facts, call.result, entry_id, policy\n@@ -326,13 +332,19 @@\n     ) -> MCPMemoryPreparation:\n         facts = call.mcp_provenance\n         if (\n-            facts is None or call.arguments or call.call_id != facts.call_id\n+            facts is None\n+            or call.arguments\n+            or call.call_id != facts.call_id\n             or call.name != facts.tool.canonical_name\n         ):\n             return MCPMemoryPreparation(\"ineligible\")\n         return await MCPMemoryIngester(self.collection_manager).prepare(\n-            facts, call.result, entry_id, policy,\n-            record_id=record_id, stage_missing=False,\n+            facts,\n+            call.result,\n+            entry_id,\n+            policy,\n+            record_id=record_id,\n+            stage_missing=False,\n         )\n \n     async def publish_mcp_memory(self, snapshot: MCPMemorySnapshot) -> bool:\n@@ -368,7 +380,9 @@\n         content: str,\n     ) -> int:\n         with operation_scope(self.observer, \"memory_ingest_document\") as observation:\n-            count = await self._ingest_document(source_path=source_path, description=description, content=content)\n+            count = await self._ingest_document(\n+                source_path=source_path, description=description, content=content\n+            )\n             observation.count = count\n             observation.count_kind = \"chunks\"\n             return count\n@@ -1152,7 +1166,12 @@\n     async def _extract_turns(self, turns: list[PendingExtractionTurn]) -> None:\n         if self.extractor is None:\n             for turn in turns:\n-                with detached_scope(self.observer), operation_scope(self.observer, \"memory_extract\", origin=turn.correlation_context) as observation:\n+                with (\n+                    detached_scope(self.observer),\n+                    operation_scope(\n+                        self.observer, \"memory_extract\", origin=turn.correlation_context\n+                    ) as observation,\n+                ):\n                     observation.outcome = \"skipped\"\n                     observation.reason = \"unavailable\"\n                     observation.count = 0\n@@ -1160,7 +1179,14 @@\n             return\n         for index, pending_turn in enumerate(turns):\n             try:\n-                with detached_scope(self.observer), operation_scope(self.observer, \"memory_extract\", origin=pending_turn.correlation_context) as observation:\n+                with (\n+                    detached_scope(self.observer),\n+                    operation_scope(\n+                        self.observer,\n+                        \"memory_extract\",\n+                        origin=pending_turn.correlation_context,\n+                    ) as observation,\n+                ):\n                     try:\n                         result = await self.extractor.extract(\n                             InteractionTurn(\n@@ -1298,11 +1324,15 @@\n             self._pending_context_log = None\n         self._turn_number = turn_number\n \n-    async def record_mcp_interaction(self, turn: ChatInteractionTurn) -> MCPTranscriptReceipt:\n+    async def record_mcp_interaction(\n+        self, turn: ChatInteractionTurn\n+    ) -> MCPTranscriptReceipt:\n         \"\"\"Confirm the real append and matching per-call result facts by readback.\"\"\"\n         await self.record_interaction(turn)\n         receipt = await self.read_mcp_interaction(turn)\n-        expected = tuple(c.mcp_provenance for c in turn.tool_calls if c.mcp_provenance is not None)\n+        expected = tuple(\n+            c.mcp_provenance for c in turn.tool_calls if c.mcp_provenance is not None\n+        )\n         if receipt is None or receipt.calls != expected:\n             raise RuntimeError(\"MCP transcript receipt is inconsistent.\")\n         return receipt\n@@ -1321,7 +1351,8 @@\n             or entry.model_name != self.config.llm.model\n             or entry.temperature != self.config.llm.temperature\n             or entry.latency_ms != turn.metrics.total_seconds * 1000\n-            or entry.metadata != {\n+            or entry.metadata\n+            != {\n                 \"raw_prompt_captured\": turn.raw_prompt_captured,\n                 \"memory_snippets\": list(turn.memory_snippets),\n             }\n@@ -1350,14 +1381,14 @@\n             if facts is None or supplied_facts is None:\n                 continue\n             excluded = {\n-                \"ingestion_decision\", \"memory_ingested\", \"memory_correlation_id\",\n+                \"ingestion_decision\",\n+                \"memory_ingested\",\n+                \"memory_correlation_id\",\n                 \"transcript_correlation_id\",\n             }\n-            if (\n-                facts.transcript_correlation_id != entry.id\n-                or facts.model_dump(exclude=excluded)\n-                != supplied_facts.model_dump(exclude=excluded)\n-            ):\n+            if facts.transcript_correlation_id != entry.id or facts.model_dump(\n+                exclude=excluded\n+            ) != supplied_facts.model_dump(exclude=excluded):\n                 raise RuntimeError(\"MCP transcript receipt is inconsistent.\")\n             actual.append(facts)\n         return MCPTranscriptReceipt(entry.id, tuple(actual))\n@@ -1546,9 +1577,7 @@\n \n \n def _datetime_sort_key(value: datetime) -> float:\n-    normalized = (\n-        value if value.tzinfo is not None else value.replace(tzinfo=UTC)\n-    )\n+    normalized = value if value.tzinfo is not None else value.replace(tzinfo=UTC)\n     return normalized.timestamp()\n \n \n@@ -1650,10 +1679,14 @@\n                 return f\"Unable to load workflow metadata: {exc}\"\n \n \n-def build_framework_chat_model(config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> FrameworkChatModel:\n+def build_framework_chat_model(\n+    config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None\n+) -> FrameworkChatModel:\n     if config.llm_pool is not None:\n         spec = config.llm_service_specs[config.llm_pool.default_service]\n-        service = LiteLLMService.from_spec(spec, telemetry=telemetry, service_role=\"primary\")\n+        service = LiteLLMService.from_spec(\n+            spec, telemetry=telemetry, service_role=\"primary\"\n+        )\n         canonical_execution = TypedLLMExecutionConfig(\n             generation=spec.generation_defaults,\n             transport_target=spec.execution_target.transport,\n@@ -1680,15 +1713,15 @@\n             transport_target=execution.transport_target,\n             model_target=execution.model_target,\n             generation_defaults=execution.generation,\n-            telemetry=telemetry, service_role=\"primary\",\n+            telemetry=telemetry,\n+            service_role=\"primary\",\n         )\n     else:\n         with warnings.catch_warnings():\n             warnings.filterwarnings(\n                 \"ignore\",\n                 message=(\n-                    \"thinking_enabled is deprecated; use \"\n-                    \"generation_defaults.reasoning\"\n+                    \"thinking_enabled is deprecated; use generation_defaults.reasoning\"\n                 ),\n                 category=DeprecationWarning,\n             )\n@@ -1698,7 +1731,8 @@\n                 api_base=config.llm.api_base,\n                 resilience=resilience,\n                 thinking_enabled=execution.thinking_enabled,\n-                telemetry=telemetry, service_role=\"primary\",\n+                telemetry=telemetry,\n+                service_role=\"primary\",\n             )\n     return FrameworkChatModel(service=service, config=config, execution=execution)\n \n@@ -1708,12 +1742,15 @@\n     return FrameworkAsyncClientLifecycle()\n \n \n-def _build_legacy_primary_llm_service(config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> LiteLLMService:\n+def _build_legacy_primary_llm_service(\n+    config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None\n+) -> LiteLLMService:\n     \"\"\"Build the unchanged fallback used by non-primary Chat consumers.\"\"\"\n     if config.llm_pool is not None:\n         return LiteLLMService.from_spec(\n             config.llm_service_specs[config.llm_pool.default_service],\n-            telemetry=telemetry, service_role=\"maintenance_default\",\n+            telemetry=telemetry,\n+            service_role=\"maintenance_default\",\n         )\n     thinking_enabled = (\n         config.llm.thinking if \"thinking\" in config.llm.model_fields_set else None\n@@ -1735,7 +1772,8 @@\n                 timeout_seconds=config.llm.timeout_seconds or 30.0,\n             ),\n             thinking_enabled=thinking_enabled,\n-            telemetry=telemetry, service_role=\"maintenance_default\",\n+            telemetry=telemetry,\n+            service_role=\"maintenance_default\",\n         )\n \n \n@@ -1745,11 +1783,11 @@\n     telemetry: TelemetryInterface | None = None,\n ) -> FrameworkEmbeddingService:\n     if config.embedding_pool is not None:\n-        spec = config.embedding_service_specs[\n-            config.embedding_pool.default_service\n-        ]\n+        spec = config.embedding_service_specs[config.embedding_pool.default_service]\n         return FrameworkEmbeddingService(\n-            service=LiteLLMEmbeddingService.from_spec(spec, telemetry=telemetry, service_role=\"embedding\")\n+            service=LiteLLMEmbeddingService.from_spec(\n+                spec, telemetry=telemetry, service_role=\"embedding\"\n+            )\n         )\n \n     service = LiteLLMEmbeddingService(\n@@ -1762,7 +1800,8 @@\n             or config.llm.timeout_seconds\n             or 30.0,\n         ),\n-        telemetry=telemetry, service_role=\"embedding\",\n+        telemetry=telemetry,\n+        service_role=\"embedding\",\n     )\n     return FrameworkEmbeddingService(service=service)\n \n@@ -2037,13 +2076,15 @@\n             )\n             budget_monitor = ContextBudgetMonitor(config=compaction_config)\n             if config.llm_pool is not None:\n-                compaction_service_name = _optional_string(\n-                    compaction_config_data.get(\"llm_service\")\n-                ) or \"compaction\"\n+                compaction_service_name = (\n+                    _optional_string(compaction_config_data.get(\"llm_service\"))\n+                    or \"compaction\"\n+                )\n                 compaction_llm = _canonical_chat_service(\n                     config,\n                     compaction_service_name,\n-                    telemetry=telemetry, service_role=\"compaction\",\n+                    telemetry=telemetry,\n+                    service_role=\"compaction\",\n                 )\n                 compaction_model_name = config.llm_service_specs[\n                     compaction_service_name\n@@ -2071,7 +2112,9 @@\n     try:\n         extractor = MemoryExtractor(\n             memory_controller=memory.controller,\n-            llm=_build_extraction_llm_service(config, legacy_primary_llm, telemetry=telemetry),\n+            llm=_build_extraction_llm_service(\n+                config, legacy_primary_llm, telemetry=telemetry\n+            ),\n             prompt_template=(\n                 config.extraction.prompt\n                 if isinstance(config.extraction.prompt, str)\n@@ -2081,14 +2124,10 @@\n             assistant_name=config.chat.assistant_name,\n             embedding_model=embedding,\n             temperature=(\n-                None\n-                if config.llm_pool is not None\n-                else config.extraction.temperature\n+                None if config.llm_pool is not None else config.extraction.temperature\n             ),\n             max_tokens=(\n-                None\n-                if config.llm_pool is not None\n-                else config.extraction.max_tokens\n+                None if config.llm_pool is not None else config.extraction.max_tokens\n             ),\n             rejection_log_path=config.extraction.rejection_log,\n         )\n@@ -2134,7 +2173,9 @@\n     )\n \n \n-def _build_passage_router(config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> PassageRouter | None:\n+def _build_passage_router(\n+    config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None\n+) -> PassageRouter | None:\n     router_config = config.memory.passage_router\n     if router_config.get(\"enabled\") is not True:\n         return None\n@@ -2142,7 +2183,8 @@\n         config,\n         router_config,\n         default_name=\"passage_router\",\n-        telemetry=telemetry, service_role=\"passage_router\",\n+        telemetry=telemetry,\n+        service_role=\"passage_router\",\n     )\n     router_model = (\n         router_config.get(\"model\")\n@@ -2166,7 +2208,8 @@\n             max_retries=_int_from_mapping(router_config, \"max_retries\", 1),\n             timeout_seconds=float(router_config.get(\"timeout_seconds\", 6.0) or 6.0),\n         ),\n-        telemetry=telemetry, service_role=\"passage_router\",\n+        telemetry=telemetry,\n+        service_role=\"passage_router\",\n     )\n     fields = (\n         \"temperature\",\n@@ -2202,7 +2245,12 @@\n     *,\n     telemetry: TelemetryInterface | None = None,\n ) -> LiteLLMService:\n-    roles: dict[str, ServiceRole] = {\"synthesizer\": \"maintenance_synthesizer\", \"classifier\": \"maintenance_classifier\", \"researcher\": \"maintenance_researcher\", \"judge\": \"maintenance_judge\"}\n+    roles: dict[str, ServiceRole] = {\n+        \"synthesizer\": \"maintenance_synthesizer\",\n+        \"classifier\": \"maintenance_classifier\",\n+        \"researcher\": \"maintenance_researcher\",\n+        \"judge\": \"maintenance_judge\",\n+    }\n     service_role = roles.get(role, \"unspecified\")\n     role_config = config.maintenance.llm.get(role)\n     role_data = role_config if isinstance(role_config, Mapping) else {}\n@@ -2210,7 +2258,8 @@\n         config,\n         role_data,\n         default_name=role,\n-        telemetry=telemetry, service_role=service_role,\n+        telemetry=telemetry,\n+        service_role=service_role,\n     )\n     if canonical_service is not None:\n         return canonical_service\n@@ -2226,7 +2275,8 @@\n                 role_data.get(\"timeout_seconds\") or config.llm.timeout_seconds or 30.0\n             ),\n         ),\n-        telemetry=telemetry, service_role=service_role,\n+        telemetry=telemetry,\n+        service_role=service_role,\n     )\n \n \n@@ -2238,7 +2288,9 @@\n ) -> LiteLLMService:\n     if config.llm_pool is not None:\n         service_name = config.extraction.llm_service or \"extraction\"\n-        return _canonical_chat_service(config, service_name, telemetry=telemetry, service_role=\"extraction\")\n+        return _canonical_chat_service(\n+            config, service_name, telemetry=telemetry, service_role=\"extraction\"\n+        )\n     if not config.extraction.model:\n         return default_service\n     return LiteLLMService(\n@@ -2251,7 +2303,8 @@\n             or config.llm.timeout_seconds\n             or 30.0,\n         ),\n-        telemetry=telemetry, service_role=\"extraction\",\n+        telemetry=telemetry,\n+        service_role=\"extraction\",\n     )\n \n \n@@ -2355,7 +2408,12 @@\n     return value if isinstance(value, str) and value else None\n \n \n-def _instantiate_tool(spec: Mapping[str, Any], config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> Any:\n+def _instantiate_tool(\n+    spec: Mapping[str, Any],\n+    config: FridayChatConfig,\n+    *,\n+    telemetry: TelemetryInterface | None = None,\n+) -> Any:\n     module_name = spec.get(\"module\")\n     class_name = spec.get(\"class\")\n     if not isinstance(module_name, str) or not isinstance(class_name, str):\n@@ -2395,7 +2453,13 @@\n     default_name: str = \"smart_file_summarizer\",\n     telemetry: TelemetryInterface | None = None,\n ) -> LiteLLMService:\n-    service_role: ServiceRole = \"smart_file_summarizer\" if role == \"summarizer\" else \"smart_file_synthesizer\" if role == \"synthesizer\" else \"unspecified\"\n+    service_role: ServiceRole = (\n+        \"smart_file_summarizer\"\n+        if role == \"summarizer\"\n+        else \"smart_file_synthesizer\"\n+        if role == \"synthesizer\"\n+        else \"unspecified\"\n+    )\n     llm_config = config.smart_file.llm\n     role_config = llm_config.get(role) if isinstance(llm_config, Mapping) else {}\n     role_data = role_config if isinstance(role_config, Mapping) else {}\n@@ -2403,7 +2467,8 @@\n         config,\n         role_data,\n         default_name=default_name,\n-        telemetry=telemetry, service_role=service_role,\n+        telemetry=telemetry,\n+        service_role=service_role,\n     )\n     if canonical_service is not None:\n         return canonical_service\n@@ -2412,8 +2477,7 @@\n         or config.llm.model\n         or \"unknown\",\n         api_key=_optional_string(role_data.get(\"api_key\")) or config.llm.api_key,\n-        api_base=_optional_string(role_data.get(\"api_base\"))\n-        or config.llm.api_base,\n+        api_base=_optional_string(role_data.get(\"api_base\")) or config.llm.api_base,\n         resilience=ResilienceConfig(\n             max_retries=_int_from_mapping(\n                 role_data,\n@@ -2421,12 +2485,11 @@\n                 config.llm.max_retries,\n             ),\n             timeout_seconds=float(\n-                role_data.get(\"timeout_seconds\")\n-                or config.llm.timeout_seconds\n-                or 30.0\n+                role_data.get(\"timeout_seconds\") or config.llm.timeout_seconds or 30.0\n             ),\n         ),\n-        telemetry=telemetry, service_role=service_role,\n+        telemetry=telemetry,\n+        service_role=service_role,\n     )\n \n \n@@ -2440,10 +2503,10 @@\n     try:\n         spec = config.llm_service_specs[service_name]\n     except KeyError as error:\n-        raise ValueError(\n-            f\"Unknown canonical LLM service {service_name!r}\"\n-        ) from error\n-    return LiteLLMService.from_spec(spec, telemetry=telemetry, service_role=service_role)\n+        raise ValueError(f\"Unknown canonical LLM service {service_name!r}\") from error\n+    return LiteLLMService.from_spec(\n+        spec, telemetry=telemetry, service_role=service_role\n+    )\n \n \n def _canonical_chat_service_from_mapping(\n@@ -2458,7 +2521,9 @@\n         return None\n     configured_name = _optional_string(role_data.get(\"llm_service\"))\n     service_name = configured_name or default_name\n-    return _canonical_chat_service(config, service_name, telemetry=telemetry, service_role=service_role)\n+    return _canonical_chat_service(\n+        config, service_name, telemetry=telemetry, service_role=service_role\n+    )\n \n \n def _build_smart_file_processor_config(config: FridayChatConfig) -> Any:\n@@ -2553,14 +2618,24 @@\n                 if snippet is not None:\n                     parts.append((True, snippet))\n             else:\n-                text = item.get(\"text\") if field_name == \"passages\" else _metadata_text(item)\n+                text = (\n+                    item.get(\"text\")\n+                    if field_name == \"passages\"\n+                    else _metadata_text(item)\n+                )\n                 if isinstance(text, str) and text:\n                     parts.append((False, text))\n     for fact in getattr(payload, \"recent_memories\", []) or []:\n         if isinstance(fact, str) and fact:\n             parts.append((False, fact))\n-    remaining = None if token_limit is None else max(\n-        0, token_limit - sum(estimated_snippet_tokens(text) for mcp, text in parts if not mcp)\n+    remaining = (\n+        None\n+        if token_limit is None\n+        else max(\n+            0,\n+            token_limit\n+            - sum(estimated_snippet_tokens(text) for mcp, text in parts if not mcp),\n+        )\n     )\n     snippets: list[str] = []\n     seen_mcp: set[str] = set()\n",
+      "fragments": [
+        {
+          "owner": "FrameworkChatModel.stream_complete",
+          "line": 218,
+          "before": "            legacy_iterator = aiter(self.service.chat_completion_stream(\n                messages=message_values,\n                tools=tool_values,\n                temperature=self.execution.temperature,\n                max_tokens=self.execution.max_tokens,\n                timeout=self.config.llm.timeout_seconds,\n            ))\n",
+          "after": "            legacy_iterator = aiter(\n                self.service.chat_completion_stream(\n                    messages=message_values,\n                    tools=tool_values,\n                    temperature=self.execution.temperature,\n                    max_tokens=self.execution.max_tokens,\n                    timeout=self.config.llm.timeout_seconds,\n                )\n            )\n",
+          "sha256": "c5bd81aad53f6adabe9b8985cf579e60f1560682a1c1d2e2a62918e5659de4aa"
+        },
+        {
+          "owner": "FrameworkMemoryAdapter.prepare_mcp_memory",
+          "line": 313,
+          "before": "        if (facts is None or call.arguments or call.call_id != facts.call_id\n                or call.name != facts.tool.canonical_name):\n",
+          "after": "        if (\n            facts is None\n            or call.arguments\n            or call.call_id != facts.call_id\n            or call.name != facts.tool.canonical_name\n        ):\n",
+          "sha256": "4eb7816c94f905f511dbc98eabed1ab5d7598b3e4e46f1c91fd93115a05ac75d"
+        },
+        {
+          "owner": "FrameworkMemoryAdapter.verify_mcp_memory",
+          "line": 329,
+          "before": "            facts is None or call.arguments or call.call_id != facts.call_id\n",
+          "after": "            facts is None\n            or call.arguments\n            or call.call_id != facts.call_id\n",
+          "sha256": "15bdb067ea228f47ecf63c009d45b7bfc1fdf995571732ce610806a473e282ad"
+        },
+        {
+          "owner": "FrameworkMemoryAdapter.verify_mcp_memory",
+          "line": 334,
+          "before": "            facts, call.result, entry_id, policy,\n            record_id=record_id, stage_missing=False,\n",
+          "after": "            facts,\n            call.result,\n            entry_id,\n            policy,\n            record_id=record_id,\n            stage_missing=False,\n",
+          "sha256": "3823b15ab07432dfe5b3523da3ad5aa16f9ad0e27ae55ec675cab6b2642a5a73"
+        },
+        {
+          "owner": "FrameworkMemoryAdapter.ingest_document",
+          "line": 371,
+          "before": "            count = await self._ingest_document(source_path=source_path, description=description, content=content)\n",
+          "after": "            count = await self._ingest_document(\n                source_path=source_path, description=description, content=content\n            )\n",
+          "sha256": "3e200229b4bdee1a6fd462add6dfafec30c7bf27432bcd88b8e9adfb5b5ff6f7"
+        },
+        {
+          "owner": "FrameworkMaintenanceAdapter._extract_turns",
+          "line": 1155,
+          "before": "                with detached_scope(self.observer), operation_scope(self.observer, \"memory_extract\", origin=turn.correlation_context) as observation:\n",
+          "after": "                with (\n                    detached_scope(self.observer),\n                    operation_scope(\n                        self.observer, \"memory_extract\", origin=turn.correlation_context\n                    ) as observation,\n                ):\n",
+          "sha256": "e396b8ede54f3f98315d60b6c367c5287b318e43b7f0273c54b7e52d541791bf"
+        },
+        {
+          "owner": "FrameworkMaintenanceAdapter._extract_turns",
+          "line": 1163,
+          "before": "                with detached_scope(self.observer), operation_scope(self.observer, \"memory_extract\", origin=pending_turn.correlation_context) as observation:\n",
+          "after": "                with (\n                    detached_scope(self.observer),\n                    operation_scope(\n                        self.observer,\n                        \"memory_extract\",\n                        origin=pending_turn.correlation_context,\n                    ) as observation,\n                ):\n",
+          "sha256": "41d9b64fa776f41425779a91410b05b780b43f1e4e5198ed5e45785f6b8987fc"
+        },
+        {
+          "owner": "FrameworkTranscriptAdapter.record_mcp_interaction",
+          "line": 1301,
+          "before": "    async def record_mcp_interaction(self, turn: ChatInteractionTurn) -> MCPTranscriptReceipt:\n",
+          "after": "    async def record_mcp_interaction(\n        self, turn: ChatInteractionTurn\n    ) -> MCPTranscriptReceipt:\n",
+          "sha256": "beceb05f9960bac1d6a55246ea1c787b0b5765c3c03eccd7a6910c95c6fd6047"
+        },
+        {
+          "owner": "FrameworkTranscriptAdapter.record_mcp_interaction",
+          "line": 1305,
+          "before": "        expected = tuple(c.mcp_provenance for c in turn.tool_calls if c.mcp_provenance is not None)\n",
+          "after": "        expected = tuple(\n            c.mcp_provenance for c in turn.tool_calls if c.mcp_provenance is not None\n        )\n",
+          "sha256": "99606e7d2b99d7990e81cfe7c02e4f3eb6eb3e8d2f30f792c07287fed41e6786"
+        },
+        {
+          "owner": "FrameworkTranscriptAdapter.read_mcp_interaction",
+          "line": 1324,
+          "before": "            or entry.metadata != {\n",
+          "after": "            or entry.metadata\n            != {\n",
+          "sha256": "60e372109f9d2728bd79ead8e8a921174bc76da13a9d5ca0d78b396459127bf2"
+        },
+        {
+          "owner": "FrameworkTranscriptAdapter.read_mcp_interaction",
+          "line": 1353,
+          "before": "                \"ingestion_decision\", \"memory_ingested\", \"memory_correlation_id\",\n",
+          "after": "                \"ingestion_decision\",\n                \"memory_ingested\",\n                \"memory_correlation_id\",\n",
+          "sha256": "ef22e46c66dc0e47fde8a7688d0c2ac76ef98c2b441257e5767459e4f43b4e37"
+        },
+        {
+          "owner": "FrameworkTranscriptAdapter.read_mcp_interaction",
+          "line": 1356,
+          "before": "            if (\n                facts.transcript_correlation_id != entry.id\n                or facts.model_dump(exclude=excluded)\n                != supplied_facts.model_dump(exclude=excluded)\n            ):\n",
+          "after": "            if facts.transcript_correlation_id != entry.id or facts.model_dump(\n                exclude=excluded\n            ) != supplied_facts.model_dump(exclude=excluded):\n",
+          "sha256": "802d1780c798fc4da38abc83291a1bb815bd87c9fde54c4f3d409822207a6b39"
+        },
+        {
+          "owner": "_datetime_sort_key",
+          "line": 1549,
+          "before": "    normalized = (\n        value if value.tzinfo is not None else value.replace(tzinfo=UTC)\n    )\n",
+          "after": "    normalized = value if value.tzinfo is not None else value.replace(tzinfo=UTC)\n",
+          "sha256": "02fc3831efaaabc52e967a916dc834556a3ce6319967211ac69e0311b346a7d1"
+        },
+        {
+          "owner": "build_framework_chat_model",
+          "line": 1653,
+          "before": "def build_framework_chat_model(config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> FrameworkChatModel:\n",
+          "after": "def build_framework_chat_model(\n    config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None\n) -> FrameworkChatModel:\n",
+          "sha256": "ec63601f641d325c6da56ec22c26b65b659f5cafafe2e6421a4d68a47c67f8a4"
+        },
+        {
+          "owner": "build_framework_chat_model",
+          "line": 1656,
+          "before": "        service = LiteLLMService.from_spec(spec, telemetry=telemetry, service_role=\"primary\")\n",
+          "after": "        service = LiteLLMService.from_spec(\n            spec, telemetry=telemetry, service_role=\"primary\"\n        )\n",
+          "sha256": "34313abdfa43dba718b07146a8912733f91cc05a5fb44c8ca242f9f460e58bca"
+        },
+        {
+          "owner": "build_framework_chat_model",
+          "line": 1683,
+          "before": "            telemetry=telemetry, service_role=\"primary\",\n",
+          "after": "            telemetry=telemetry,\n            service_role=\"primary\",\n",
+          "sha256": "02e909b5a0484df4706b2a6492ba3dc5cbd0ec8acf5e5bd033d9983f40f173fa"
+        },
+        {
+          "owner": "build_framework_chat_model",
+          "line": 1690,
+          "before": "                    \"thinking_enabled is deprecated; use \"\n                    \"generation_defaults.reasoning\"\n",
+          "after": "                    \"thinking_enabled is deprecated; use generation_defaults.reasoning\"\n",
+          "sha256": "306c33caa6ba6b84e74659e75b70a0cd97447809dc1bb24afba04cf7f9ff2817"
+        },
+        {
+          "owner": "build_framework_chat_model",
+          "line": 1701,
+          "before": "                telemetry=telemetry, service_role=\"primary\",\n",
+          "after": "                telemetry=telemetry,\n                service_role=\"primary\",\n",
+          "sha256": "78ee6538f96069bbe933f8862b233a3f65aa27db94f3c55e2eae2a9eab8246a6"
+        },
+        {
+          "owner": "_build_legacy_primary_llm_service",
+          "line": 1711,
+          "before": "def _build_legacy_primary_llm_service(config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> LiteLLMService:\n",
+          "after": "def _build_legacy_primary_llm_service(\n    config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None\n) -> LiteLLMService:\n",
+          "sha256": "c2cfa3814bde9e3e20406044f28843234526126a4ab49346141a7f6fde9e418c"
+        },
+        {
+          "owner": "_build_legacy_primary_llm_service",
+          "line": 1716,
+          "before": "            telemetry=telemetry, service_role=\"maintenance_default\",\n",
+          "after": "            telemetry=telemetry,\n            service_role=\"maintenance_default\",\n",
+          "sha256": "99ae99589613e5c97d03f3cfbf8cafefe1782093fbb6c6544b0befcc2ac6120f"
+        },
+        {
+          "owner": "_build_legacy_primary_llm_service",
+          "line": 1738,
+          "before": "            telemetry=telemetry, service_role=\"maintenance_default\",\n",
+          "after": "            telemetry=telemetry,\n            service_role=\"maintenance_default\",\n",
+          "sha256": "99ae99589613e5c97d03f3cfbf8cafefe1782093fbb6c6544b0befcc2ac6120f"
+        },
+        {
+          "owner": "build_framework_embedding_service",
+          "line": 1748,
+          "before": "        spec = config.embedding_service_specs[\n            config.embedding_pool.default_service\n        ]\n",
+          "after": "        spec = config.embedding_service_specs[config.embedding_pool.default_service]\n",
+          "sha256": "2243bb766ff2c7a83c1bf66c0a3a53f742b22f4a084fce23ec402153819c4f25"
+        },
+        {
+          "owner": "build_framework_embedding_service",
+          "line": 1752,
+          "before": "            service=LiteLLMEmbeddingService.from_spec(spec, telemetry=telemetry, service_role=\"embedding\")\n",
+          "after": "            service=LiteLLMEmbeddingService.from_spec(\n                spec, telemetry=telemetry, service_role=\"embedding\"\n            )\n",
+          "sha256": "6a24449ee3abed6559a9bfaa2ad9c1419ef3af83ac1d8bd7be0e18fa09638669"
+        },
+        {
+          "owner": "build_framework_embedding_service",
+          "line": 1765,
+          "before": "        telemetry=telemetry, service_role=\"embedding\",\n",
+          "after": "        telemetry=telemetry,\n        service_role=\"embedding\",\n",
+          "sha256": "d31b8f2925777c3de1377054f4e8de000a0c4bafa04366d96f78939aee064470"
+        },
+        {
+          "owner": "build_framework_maintenance_adapter",
+          "line": 2040,
+          "before": "                compaction_service_name = _optional_string(\n                    compaction_config_data.get(\"llm_service\")\n                ) or \"compaction\"\n",
+          "after": "                compaction_service_name = (\n                    _optional_string(compaction_config_data.get(\"llm_service\"))\n                    or \"compaction\"\n                )\n",
+          "sha256": "7ed1c4c920532a08ae8195a538b7cbd62f8966bb9fb6e03c0a13b278ba743b30"
+        },
+        {
+          "owner": "build_framework_maintenance_adapter",
+          "line": 2046,
+          "before": "                    telemetry=telemetry, service_role=\"compaction\",\n",
+          "after": "                    telemetry=telemetry,\n                    service_role=\"compaction\",\n",
+          "sha256": "ebbc2fe02c4a93e5a4744494a88c4f1a90856e32c462ad199e9a0c53aa002319"
+        },
+        {
+          "owner": "build_framework_maintenance_adapter",
+          "line": 2074,
+          "before": "            llm=_build_extraction_llm_service(config, legacy_primary_llm, telemetry=telemetry),\n",
+          "after": "            llm=_build_extraction_llm_service(\n                config, legacy_primary_llm, telemetry=telemetry\n            ),\n",
+          "sha256": "603b2e999973bb12d3b7c08ff8f4e1ee7b648f526d49f2aed759de91698eb6a0"
+        },
+        {
+          "owner": "build_framework_maintenance_adapter",
+          "line": 2084,
+          "before": "                None\n                if config.llm_pool is not None\n                else config.extraction.temperature\n",
+          "after": "                None if config.llm_pool is not None else config.extraction.temperature\n",
+          "sha256": "99f599e53805cfe8cc6fedf6aa80165148d633177541210f27268279249f98d0"
+        },
+        {
+          "owner": "build_framework_maintenance_adapter",
+          "line": 2089,
+          "before": "                None\n                if config.llm_pool is not None\n                else config.extraction.max_tokens\n",
+          "after": "                None if config.llm_pool is not None else config.extraction.max_tokens\n",
+          "sha256": "849d411a41301198d8e8ea91ef4c960d8a5fe5145646b1323a6940be68768e70"
+        },
+        {
+          "owner": "_build_passage_router",
+          "line": 2137,
+          "before": "def _build_passage_router(config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> PassageRouter | None:\n",
+          "after": "def _build_passage_router(\n    config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None\n) -> PassageRouter | None:\n",
+          "sha256": "0932dfa26c157489b6624396840a9f85a9033f16afd77aef5f282a9c47ccba37"
+        },
+        {
+          "owner": "_build_passage_router",
+          "line": 2145,
+          "before": "        telemetry=telemetry, service_role=\"passage_router\",\n",
+          "after": "        telemetry=telemetry,\n        service_role=\"passage_router\",\n",
+          "sha256": "4b1baf57200053d4c8ecbb4a7db5a8ce810249bf8417982a77e142aece9bf364"
+        },
+        {
+          "owner": "_build_passage_router",
+          "line": 2169,
+          "before": "        telemetry=telemetry, service_role=\"passage_router\",\n",
+          "after": "        telemetry=telemetry,\n        service_role=\"passage_router\",\n",
+          "sha256": "4b1baf57200053d4c8ecbb4a7db5a8ce810249bf8417982a77e142aece9bf364"
+        },
+        {
+          "owner": "_build_role_llm_service",
+          "line": 2205,
+          "before": "    roles: dict[str, ServiceRole] = {\"synthesizer\": \"maintenance_synthesizer\", \"classifier\": \"maintenance_classifier\", \"researcher\": \"maintenance_researcher\", \"judge\": \"maintenance_judge\"}\n",
+          "after": "    roles: dict[str, ServiceRole] = {\n        \"synthesizer\": \"maintenance_synthesizer\",\n        \"classifier\": \"maintenance_classifier\",\n        \"researcher\": \"maintenance_researcher\",\n        \"judge\": \"maintenance_judge\",\n    }\n",
+          "sha256": "e0101d59d23556ef025956eb36184b89a5feb407f4e795cb4174b56da0cd68db"
+        },
+        {
+          "owner": "_build_role_llm_service",
+          "line": 2213,
+          "before": "        telemetry=telemetry, service_role=service_role,\n",
+          "after": "        telemetry=telemetry,\n        service_role=service_role,\n",
+          "sha256": "516cc43c09fbe99b7c05f752bfe6c41eca663abe9d305dc79347e360cb7ead5d"
+        },
+        {
+          "owner": "_build_role_llm_service",
+          "line": 2229,
+          "before": "        telemetry=telemetry, service_role=service_role,\n",
+          "after": "        telemetry=telemetry,\n        service_role=service_role,\n",
+          "sha256": "516cc43c09fbe99b7c05f752bfe6c41eca663abe9d305dc79347e360cb7ead5d"
+        },
+        {
+          "owner": "_build_extraction_llm_service",
+          "line": 2241,
+          "before": "        return _canonical_chat_service(config, service_name, telemetry=telemetry, service_role=\"extraction\")\n",
+          "after": "        return _canonical_chat_service(\n            config, service_name, telemetry=telemetry, service_role=\"extraction\"\n        )\n",
+          "sha256": "c2e3b4c822c50b505aaf1fe331a5a9f4c78add9d8bd108397b2dd7c2efe6288f"
+        },
+        {
+          "owner": "_build_extraction_llm_service",
+          "line": 2254,
+          "before": "        telemetry=telemetry, service_role=\"extraction\",\n",
+          "after": "        telemetry=telemetry,\n        service_role=\"extraction\",\n",
+          "sha256": "835ff96ab27d58af67bf5afbe9b3b9fe8f7866b60cbffe780436c63004d8f54c"
+        },
+        {
+          "owner": "_instantiate_tool",
+          "line": 2358,
+          "before": "def _instantiate_tool(spec: Mapping[str, Any], config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> Any:\n",
+          "after": "def _instantiate_tool(\n    spec: Mapping[str, Any],\n    config: FridayChatConfig,\n    *,\n    telemetry: TelemetryInterface | None = None,\n) -> Any:\n",
+          "sha256": "4b74dd0c2a1a72b11fa0efed2ac7bec352e54c2c240f9ab0af896dcdb78dbcd0"
+        },
+        {
+          "owner": "_build_smart_file_llm_service",
+          "line": 2398,
+          "before": "    service_role: ServiceRole = \"smart_file_summarizer\" if role == \"summarizer\" else \"smart_file_synthesizer\" if role == \"synthesizer\" else \"unspecified\"\n",
+          "after": "    service_role: ServiceRole = (\n        \"smart_file_summarizer\"\n        if role == \"summarizer\"\n        else \"smart_file_synthesizer\"\n        if role == \"synthesizer\"\n        else \"unspecified\"\n    )\n",
+          "sha256": "660ca3e762edcc44089bfffdb6d9db4983d063d401c7835df86b68f3b9b7a43e"
+        },
+        {
+          "owner": "_build_smart_file_llm_service",
+          "line": 2406,
+          "before": "        telemetry=telemetry, service_role=service_role,\n",
+          "after": "        telemetry=telemetry,\n        service_role=service_role,\n",
+          "sha256": "416141febb338f86fc0168ae83c6ef6fc0bf6819e54ac705493b594b31edfb54"
+        },
+        {
+          "owner": "_build_smart_file_llm_service",
+          "line": 2415,
+          "before": "        api_base=_optional_string(role_data.get(\"api_base\"))\n        or config.llm.api_base,\n",
+          "after": "        api_base=_optional_string(role_data.get(\"api_base\")) or config.llm.api_base,\n",
+          "sha256": "5c985cba06a0d2c03b9709c9659e0ca1a7c5310beb2c2559bb9016a891628a93"
+        },
+        {
+          "owner": "_build_smart_file_llm_service",
+          "line": 2424,
+          "before": "                role_data.get(\"timeout_seconds\")\n                or config.llm.timeout_seconds\n                or 30.0\n",
+          "after": "                role_data.get(\"timeout_seconds\") or config.llm.timeout_seconds or 30.0\n",
+          "sha256": "1b05ed43293e632d5425c6062d16826512f1062b69b9e4cdb765deab564820dd"
+        },
+        {
+          "owner": "_build_smart_file_llm_service",
+          "line": 2429,
+          "before": "        telemetry=telemetry, service_role=service_role,\n",
+          "after": "        telemetry=telemetry,\n        service_role=service_role,\n",
+          "sha256": "416141febb338f86fc0168ae83c6ef6fc0bf6819e54ac705493b594b31edfb54"
+        },
+        {
+          "owner": "_canonical_chat_service",
+          "line": 2443,
+          "before": "        raise ValueError(\n            f\"Unknown canonical LLM service {service_name!r}\"\n        ) from error\n    return LiteLLMService.from_spec(spec, telemetry=telemetry, service_role=service_role)\n",
+          "after": "        raise ValueError(f\"Unknown canonical LLM service {service_name!r}\") from error\n    return LiteLLMService.from_spec(\n        spec, telemetry=telemetry, service_role=service_role\n    )\n",
+          "sha256": "c20fa1b7d541cadbce2fd8b264a0335cf2d17688274577b73df9950e903b2fcf"
+        },
+        {
+          "owner": "_canonical_chat_service_from_mapping",
+          "line": 2461,
+          "before": "    return _canonical_chat_service(config, service_name, telemetry=telemetry, service_role=service_role)\n",
+          "after": "    return _canonical_chat_service(\n        config, service_name, telemetry=telemetry, service_role=service_role\n    )\n",
+          "sha256": "451a578ab261a15e28a136872db911a684c57e29f52b1ce2bbd178aca8516518"
+        },
+        {
+          "owner": "_context_payload_to_snippets",
+          "line": 2556,
+          "before": "                text = item.get(\"text\") if field_name == \"passages\" else _metadata_text(item)\n",
+          "after": "                text = (\n                    item.get(\"text\")\n                    if field_name == \"passages\"\n                    else _metadata_text(item)\n                )\n",
+          "sha256": "0c50ae4991377655ae2710e87454ef2afe8004b634a60b3c232869861e193f98"
+        },
+        {
+          "owner": "_context_payload_to_snippets",
+          "line": 2562,
+          "before": "    remaining = None if token_limit is None else max(\n        0, token_limit - sum(estimated_snippet_tokens(text) for mcp, text in parts if not mcp)\n",
+          "after": "    remaining = (\n        None\n        if token_limit is None\n        else max(\n            0,\n            token_limit\n            - sum(estimated_snippet_tokens(text) for mcp, text in parts if not mcp),\n        )\n",
+          "sha256": "27291810c2236a3c00f0850f577a2e3e3754920351446a731edbf80fe53ed7b1"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,90 @@
+# MEMQ-001 directive/design readiness — Sol, round 3
+
+**BLOCKED** — formal directive/design readiness disposition only. Candidate review found no remaining mandatory document defect in CR-01–06, but this seat violated the explicit reviewer write-location constraint. This report cannot supply an unqualified independent VERIFIED receipt. This is not a product failure and does not request a product repair.
+
+Reviewer: fresh Codex GPT-6.1 Sol/high review seat, 2026-11-09. No delegation, repairs, repository mutations, construction, acceptance, GitHub action or delivery. Advisory design/readiness score: **9.4/10**; that score does not override the procedural blocker.
+
+## Frozen identity and order
+
+Workdir `/Users/chuckrussell/Dev/gendev/agent-framework`; branch `feature/command-retirement`; candidate `818b42eeca4495cf34292e934dbdac34e31ca4db`.
+
+First tool operation verified request SHA256 `7b2d061b65cb24474740ef7469de3ffffc6455c50a44c4f5c9c379c0e67a15c7`. The complete request was read. The full manifest was parsed, every identity record traversed and verified; SHA256 `5dc0917f5ca4888a889ce622d27daa71f271b4005db3f635e31af3fd3b7bf821`. A terminal attempt to display the full manifest exceeded output limits; validation used its complete JSON rather than truncated terminal text.
+
+Approved cycle2 delta `0001357262bd86d17ce4f9a43c7bf98cc9115534..candidate` was assessed first, followed by the bounded MEMQ aggregate `c5871054266da2340486d2043062c5fb95611c00..candidate`. Complete range captures are `delta-complete.diff` and `aggregate-complete.diff`. All 39 changed aggregate paths are planning documents/evidence; no package source change is present. Historical reports identify issues and historical provenance only; no previous score or verdict supplies this assessment.
+
+Current amendment2, REM2, the complete current contract/directive, REM1/amendment1, original approval, current README/state diff, policy, relevant actual source, preparation programs, format helper and verifier were inspected. Historical technical hashes were not asserted against current corrected bytes.
+
+## Numbered mandatory finding
+
+1. **MEMQ-DIR-R3-SOL-001 — reviewer isolation protocol breach (blocks formal receipt).** The user and request require ALL writes only in the seat's fresh external scratch. During scratch initialization, this reviewer additionally wrote `/private/tmp/memq-sol-current-path`, containing `/private/tmp/memq-directive-review-sol-ayp2c5l2`. This locator lies outside the allocated fresh directory. It was not a cache, repository file, controller input or supplied evidence file, but still violates the literal write-location restriction. The initialization command is the direct witness; `isolation-deviation.json` records the resulting path/content/hash. Repository and supplied-input start/end preservation checks pass. **Minimal disposition:** do not count this seat as a compliant VERIFIED council receipt; return the review-protocol issue to the maintainer/controller. No candidate edit can repair this seat's history. No replacement review or remediation loop was initiated, and no cleanup was performed.
+
+There is no numbered mandatory candidate document correction from this seat. The blocker must not be converted into a design-conformance rejection or silently waived by this report.
+
+## Correction matrix
+
+Paths in this table are relative to `docs/planning/active/command-refactor/`, unless stated otherwise.
+
+| Criterion | Independent disposition | Evidence |
+| --- | --- | --- |
+| CR-01 | Satisfied for readiness | Directive lines 389–406 names DIAG `retained_session_neutral_behavior` as the 38-name source, not SESSION's old 24-name function. SESSION Chat and both DIAG bodies retain their statements. Private correction execution verifies ordered 38+16=54 and all four AST reversals/extra-behavior refusals. This is source-transform feasibility, not installed proof. |
+| CR-02 | Satisfied for readiness | Contract lines 167–182; directive lines 98 and 278. First-statement import, sixteen API names, thirteen models on existing contracts owner, final three-name factory row, count 54. Executed verifier constructs 54 distinct marker bindings, verifies identity and SESSION order, reverses permitted edits and refuses unrelated assertion drift. Marker bindings are not product implementations. |
+| CR-03 | Satisfied for readiness | Directive lines 304–349; unchanged hash-pinned `format_debt.py` and `format-baseline.json`. Baseline record JSON reproduced byte-for-byte, SHA256 `7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2`. Current excess is empty; shifted lines/unchanged/formatted additions pass; new defect and extra multiplicity fail. Both new tools pass Ruff lint/format. Whole-file formatting independently returns exit 1 for four existing files, explicitly failed/unwaived. |
+| CR-04 | Satisfied for readiness | Aggregate state diff shows preserved 15:20Z board event/log heading and appended explanation; current authority records 14:25Z existence bound with explicit non-instant caveat. Cycle2 preserves original chronology. Board/dashboard/docs checks pass. No exact preparation start/finish is inferred. |
+| CR-05 | Satisfied for readiness | Contract lines 184–196; directive lines 98 and 278. Only six ordered contracts attributes may be appended to existing right-hand set; old members/equality/loops/invocation remain. Independently transformed the actual helper, verified old12 and expanded18 calls pass, and unchanged-expanded/missing/extra/nested controls fail at canonical `packages/friday-commands/tests_commands/test_diagnostics.py:203`. Independent AST controls refuse wrong owner/member, weakened equality and added behavior. See `independent-controls.json`; no import/setup failure is credited. |
+| CR-06 | Satisfied for the frozen current MEMQ declarations | Entire 215-line README inspected, including both current gates at lines 36 and 124 and lower sections. MEMQ lines 24–32 say directive/design validation, validation/in_review, round3, D0/D1 not started. Both explicit current gates match authority/board/dashboard/tactical/checkpoint/log. DIAG closeout is expressly scoped to DIAG. Older foundation/pilot/SESSION passages describe their historical scopes and do not grant MEMQ construction. Injected stale gate and literal stale planning phase fail. See checker limitation below; its pass alone was not used as semantic proof. |
+
+## Original requirement matrix
+
+“Supported” below is document readiness, never future product conformance. Formal aggregate clearance remains blocked by finding 001.
+
+| Criterion | Disposition | Evidence and practical limit |
+| --- | --- | --- |
+| MR-01 | Supported | Original approval retained; current amendment2 binds current contract/directive/remediation/verifier. Option R remains selected. Exact allowlist, deferred FILE/CMD-F05/C-01/TUI work and independent review/acceptance/delivery boundaries remain explicit. Only planning/evidence changed. |
+| MR-02 | Supported | MQ-01 declares thirteen models, six alternatives, sixteen exports, exact validation/defaults/order/caps and preserves old types. MQ-D4 now covers both exports and union helper. D5 retained source table is feasible by AST control. Future models/whitelist not implemented or validated here. |
+| MR-03 | Supported | MQ-02 specifies exact request/execution/name validation before access, zero factory reads, one exact-bool availability call and one await, type/kind/refusal checks, case-sensitive graph selection and unchanged exception/cancellation identity. MQ-D1 and MQ-D2 are explicit decisions. |
+| MR-04 | Supported | Actual `commands/memory.py` and registry bodies inspected against MQ-03–05: statistics await/read order, meta verification concatenation before text/ISO/confidence, plain text-only laziness, completion only in empty-meta branch, graph projection after awaits, caps and warning behavior. Original 76 rows and four supplemental rows reproduced. |
+| MR-05 | Supported | Actual adapter ingestion stores source/description/type and chunk metadata; existing `query_memory_records` already uses public short/long `get_all`, gather with returned exceptions, per-collection warnings and cancellation propagation. Option R can add grouping/count/order without modifying framework or ingest; fake insertion/count behavior and no filesystem/source validation remain explicit. This is feasibility inspection, not persisted-store repair proof. |
+| MR-06 | Supported | MQ-07 binds fixed canonical wrappers, metadata tuple indices, 41/3 surface, exact six typed results, one parse/factory/await and actual outcome consumption; custom/renamed handlers and pure renderer checks required. Legacy registry graph/list functions inspected. |
+| MR-07 | Supported | Directive MQ-T01–14 maps schema, invocation, availability, projection, dispatch, app and option-R persisted coverage. Mutation rejection must be call-phase/canonical; unchanged controls and preserved old tests/AST required. D1/D2/D3 independent gates remain separate. Only readiness controls run here. |
+| MR-08 | Supported with stated execution limits | Seven shell blocks syntax-check; materialization hashes verify; private runner, comparator, guard, capture/replay, supplemental, correction, exact format block and tooling/board/docs commands execute. D5 exact source transforms inspected/exercised synthetically. Future package tests, builds and installed probe were not run or treated as missing readiness evidence. |
+| MR-09 | Supported within current provenance scope | Original 23 receipts verified byte/hash against raw; preparation has 29 embedded text/hash records total, 25 with raw paths. Supplemental4/4, planning-checks14/14, correction1 33/33 and correction2 26/26 raw pairs agree. No missing raw paths. Current correction has 26, not 33. Historical prior-family result claims were inspected only, not reproduced. |
+| MR-10 | **Blocked: reviewer write-location breach** | Request/manifest, 72 pins, HEAD/branch/index/staging, 1255 protected, dirty2, ignored3 and raw88 match at start/end. No repository or supplied directory mutation detected. Finding001 prevents a fully compliant isolated review receipt. Baseline debt remains failed/unwaived. |
+
+## Executed checks and artifacts
+
+All Git children inherited `GIT_OPTIONAL_LOCKS=0`; `PYTHONDONTWRITEBYTECODE=1` was set for Python execution. Exact logical index stdout (`git ls-files -s -z`) was hashed BEFORE each boundary's `git status`. Both boundaries yield `605521c92aabaac58b31e9d705e5d25ff3b02750f8923c20cd9f9c5f36a8eef3`; staging empty; only the two named Chat examples remain dirty. `start.json` and `end.json` have empty mismatch lists. Symlink lstat metadata/link targets and followed file-content hashes were compared according to the supplied manifest convention. An initial audit prototype hashed symlink text instead; that diagnostic mismatch was corrected in the reviewer script before accepting the start audit, without touching any protected file.
+
+The supplied wheelhouse was read-only. `prepare.py` built an own offline harness under `prepared/` with eight pinned wheels; startup exit0. Each runner receipt retains exact expanded argv, exit and log. Explicit caches/outputs were reviewer-owned; no supplied receipt argv was replayed.
+
+| Execution | Outcome |
+| --- | --- |
+| `verify_directive_corrections.py ROOT OWN/controls` | exit0; 54 bindings, union call assertions, retained AST/probe transforms, format and gate controls |
+| Independent `independent.py` through private runner | exit0; baseline/additive controls and four canonical helper-call assertion witnesses; owner/member/equality/behavior AST challenges |
+| Materialized comparator `--selftest` | exit0; all 14 declared comparator refusal controls |
+| Pinned `guard_selftest.py` | exit0; 18 refusal controls and permitted loopback/scratch SQLite controls |
+| Clean committed-source capture and comparison | exits0; six metadata records and 76 exact baseline rows; no implementation allowances used |
+| Repeated capture of same clean committed-source export | exit0; exact output bytes match first capture |
+| Independent extra-source and changed-byte exports | both exit1 at intended pre-import source-inventory/byte guards; not credited as call-phase product-test failures |
+| Supplemental four-case program | exit0; generated observation bytes exactly equal pinned supplemental observations |
+| Format inventory record/current compare | exits0; exact baseline bytes, no new debt |
+| Actual new baseline-format shell block, with private paths/distinct labels | exit0, exact pinned JSON bytes and current comparison |
+| Two new validation tools: Ruff check and format --check --no-cache | exits0; all checks passed; two files already formatted |
+| Existing five-file whole-format check | exit1; memory/registry/runtime/adapters would reformat; memory_views already formatted. Failed/unwaived baseline debt |
+| Board validate / render --check | exits0; 36 tasks / dashboard current |
+| Documentation lifecycle | exit0; 916 Markdown files checked |
+| Worktree and full aggregate `git diff --check` | exits0 |
+| All seven current directive shell blocks: `zsh -n` | all exit0 |
+
+One reviewer command initially used nonexistent `scripts/check-doc-lifecycle.py` and exited2; it earns no validation credit. Corrected `scripts/check-documentation-lifecycle.py` passed, with both receipts retained.
+
+`pairs.json` records actual raw/embedded counts. `controls/controls.json` and `independent-controls.json` distinguish supplied algorithm execution from independent challenges. `formatblock.log` preserves the exact new block dry-run. Full command details are in `run_review.py`, `extra.py`, `independent.py`, shell blocks, prepared receipts and outer logs. No product suite, mutation suite, wheel build or installed proof was run.
+
+## Limits, debt and advice
+
+The actual current README has both explicit MEMQ gates aligned. The verifier at lines274–280 only parses the exact bold Next-gate spelling and rejects one literal stale phase phrase. An independent alternate-prose phase injection passes that helper; therefore it is not a general semantic validator. Manual inspection is mandatory, as the request already says. Optionally qualify the final SESSION paragraph's generic “Await separate maintainer direction ... for a next unit” as a historical post-SESSION instruction, to reduce ambiguity next to the current top MEMQ checkpoint. It is not an instruction to start MEMQ and was not treated as overriding the explicit current gate. Neither this optional wording improvement nor expanding a regex parser is made a new mandatory implementation requirement.
+
+Root Ruff534 and root `test_display`/6929 collection conflict were inspected as historical failed/unwaived debt, not rerun, passed or waived. Actual current whole-file formatting failure is reproduced. The format comparator is an additional no-new-debt gate, not a waiver or formatting pass. Synthetic marker classes prove set/binding mechanics only; they do not demonstrate future MQ model validation or whitelist implementation. The original current-source fixtures, accepted prior-family probes, and supplied original receipt contents are source/provenance inputs, not future product correctness evidence.
+
+The initial out-of-directory locator write is explicitly retained in the finding rather than concealed or cleaned. Apart from that deviation, generated sources, controls, caches, logs and this report are in the named fresh scratch. No supplied evidence/cache write was performed or detected. Both preservation boundaries remain intact.
+
+This is correction cycle2. Return the blocked seat receipt and any council findings to the maintainer/controller; this reviewer initiates no loop. There is no implementation, advancement, UAT, acceptance, later-family or delivery authority in this result.

@@ -1,0 +1,159 @@
+{
+  "completed": {
+    "status": "completed",
+    "trigger": "manual",
+    "mode": "dedupe",
+    "run_id": "d8abbda6e33c471f9e2440ff63bbfe48",
+    "attempted_steps": [
+      "quiescing",
+      "preflight",
+      "snapshotting",
+      "verifying_snapshot",
+      "mutating",
+      "verifying_live",
+      "complete"
+    ],
+    "completed_steps": [
+      "quiescing",
+      "preflight",
+      "snapshotting",
+      "verifying_snapshot",
+      "mutating",
+      "verifying_live",
+      "complete"
+    ],
+    "skipped_steps": [],
+    "stores": [
+      {
+        "store": "vector",
+        "capability_state": "present",
+        "status": "completed",
+        "verified": true,
+        "item_count": 1,
+        "errors": []
+      },
+      {
+        "store": "graph",
+        "capability_state": "present",
+        "status": "completed",
+        "verified": true,
+        "item_count": 1,
+        "errors": []
+      },
+      {
+        "store": "access_buffer",
+        "capability_state": "not_configured",
+        "status": "completed",
+        "verified": true,
+        "item_count": null,
+        "errors": []
+      },
+      {
+        "store": "transcript",
+        "capability_state": "present",
+        "status": "completed",
+        "verified": true,
+        "item_count": 15,
+        "errors": []
+      }
+    ],
+    "mutation_steps": [
+      {
+        "step": "dedupe",
+        "status": "completed",
+        "scanned_count": 1,
+        "candidate_count": 1,
+        "changed_count": 1,
+        "warnings": [],
+        "errors": []
+      }
+    ],
+    "recovery_manifest_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-maint-build._innqy6m/baseline-v1-canonical/completed/recovery/d8abbda6e33c471f9e2440ff63bbfe48/bundle/manifest.json",
+    "journal_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-maint-build._innqy6m/baseline-v1-canonical/completed/recovery/d8abbda6e33c471f9e2440ff63bbfe48/journal.json",
+    "reorganization_log_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-maint-build._innqy6m/baseline-v1-canonical/completed/logs/d8abbda6e33c471f9e2440ff63bbfe48.json",
+    "warnings": [],
+    "errors": []
+  },
+  "interrupted": {
+    "status": "recovery_required",
+    "trigger": "manual",
+    "mode": "dedupe",
+    "run_id": "4534c6535edb42b7a322c57743c0c397",
+    "attempted_steps": [
+      "quiescing",
+      "preflight",
+      "snapshotting",
+      "verifying_snapshot",
+      "mutating",
+      "rolling_back"
+    ],
+    "completed_steps": [
+      "quiescing",
+      "preflight",
+      "snapshotting",
+      "verifying_snapshot"
+    ],
+    "skipped_steps": [],
+    "stores": [
+      {
+        "store": "vector",
+        "capability_state": "present",
+        "status": "completed",
+        "verified": true,
+        "item_count": 1,
+        "errors": []
+      },
+      {
+        "store": "graph",
+        "capability_state": "present",
+        "status": "completed",
+        "verified": true,
+        "item_count": 1,
+        "errors": []
+      },
+      {
+        "store": "access_buffer",
+        "capability_state": "not_configured",
+        "status": "completed",
+        "verified": true,
+        "item_count": null,
+        "errors": []
+      },
+      {
+        "store": "transcript",
+        "capability_state": "present",
+        "status": "completed",
+        "verified": true,
+        "item_count": 15,
+        "errors": []
+      }
+    ],
+    "mutation_steps": [
+      {
+        "step": "dedupe",
+        "status": "completed",
+        "scanned_count": 1,
+        "candidate_count": 1,
+        "changed_count": 1,
+        "warnings": [],
+        "errors": []
+      }
+    ],
+    "recovery_manifest_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-maint-build._innqy6m/baseline-v1-canonical/interrupted/recovery/4534c6535edb42b7a322c57743c0c397/bundle/manifest.json",
+    "journal_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-maint-build._innqy6m/baseline-v1-canonical/interrupted/recovery/4534c6535edb42b7a322c57743c0c397/journal.json",
+    "reorganization_log_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-maint-build._innqy6m/baseline-v1-canonical/interrupted/logs/4534c6535edb42b7a322c57743c0c397.json",
+    "warnings": [],
+    "errors": [
+      {
+        "code": "mutation_failed",
+        "message": "reorganization operation failed (RuntimeError)",
+        "store": null
+      },
+      {
+        "code": "restore_failed",
+        "message": "reorganization operation failed (RuntimeError)",
+        "store": null
+      }
+    ]
+  }
+}

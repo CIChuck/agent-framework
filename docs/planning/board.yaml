@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-11-06'
+updated: '2026-11-10'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -222,7 +222,7 @@ tasks:
   packet: docs/planning/active/friday-tui/
   next_gate: review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization
   delivery_state: local
-  branch: feature/command-refactor
+  branch: feature/command-retirement
   depends_on: []
   validation: []
   legacy_import: true
@@ -711,16 +711,40 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: corrected aggregate checkpoint VERIFIED at 51334a5b; execute authorized push, PR, actual-requirements check, merge and fresh retirement branch; no retirement implementation
-  delivery_state: local
-  branch: feature/command-refactor
+  next_gate: "Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed."
+  delivery_state: pushed
+  branch: feature/command-retirement
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/maintenance/implementation/verified-report.md
   - docs/planning/active/command-refactor/validation/step3/correction-report.md
   - docs/planning/active/command-refactor/validation/legacy-cli-removal/report.md
   - docs/planning/active/command-refactor/validation/required-finance/report.md
   - docs/planning/active/command-refactor/validation/VAL-CMD-FND-001-report.md
   - docs/planning/active/command-refactor/validation/checkpoint/verified-report.md
+  - docs/planning/active/command-refactor/validation/retirement/verified-report.md
+  - docs/planning/active/command-refactor/validation/pilot/round4-reconciliation.md
+  - docs/planning/active/command-refactor/validation/pilot/final-readiness-validation.md
+  - docs/planning/active/command-refactor/validation/pilot/implementation/d1/council-round4.json
+  - docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round2.json
+  - docs/planning/active/command-refactor/validation/pilot/implementation/d3/verified-report.md
+  - docs/planning/active/command-refactor/validation/session/implementation/d1/verified-report.md
+  - docs/planning/active/command-refactor/validation/session/implementation/d2/verified-report.md
+  - docs/planning/active/command-refactor/validation/session/implementation/d3/verified-report.md
+  - docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/verified-report.md
+  - docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/verified-report.md
+  - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round1-reconciliation.md
+  - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round2-reconciliation.md
+  - docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/verified-report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round1/report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round2/report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/directive-review/round4/report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round2/report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/verified-report.md
+  - docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/README.md
+  - docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/verified-report.md
   approved_by: Chuck Russell
   approved_at: '2026-10-24'
 events:
@@ -2490,3 +2514,588 @@ events:
   action: recorded corrected aggregate verification
   note: Fresh read-only review VERIFIED 51334a5b for all eight aggregate criteria, closed AGG-001/002, 3116 current tests and package/archive/default-install proof pass. Source and protected inputs preserved. Existing checkpoint push/PR/merge/new-branch authority remains valid; retirement and TUI construction remain unapproved.
   evidence: docs/planning/active/command-refactor/validation/checkpoint/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-07T00:02:32+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivered verified checkpoint and prepared fresh branch
+  note: Authorized PR13 merged at 6f291ca5755a616d9185c86dff104b660a1fba8c; published 7b344b01 contains reviewed 51334a5b plus evidence-only closeout. Confirmed clean remote gates and tree/ancestry, then deleted merged old branch locally/remotely and created feature/command-retirement. Remaining initiative work is local/started; checkpoint delivery is merged in receipt. Refreshed draft source identity only; no retirement or TUI code approved. Both working example configs preserved and excluded.
+  evidence: docs/planning/active/command-refactor/validation/checkpoint/delivery.json
+- task: friday-command-refactor
+  at: '2026-11-07T02:03:16+00:00'
+  actor: Codex
+  actor_role: agent
+  action: strengthened retirement directive under maintainer instruction
+  note: Applied approved documentation recommendations in the same directive; exact cleanup, test/assertion map, pinned oracles and executable check recipes, clean Git build inputs and fixture/baseline rules. No product/test/config changes or construction approval inferred.
+  evidence: docs/planning/active/command-refactor/directives/CD-CMD-RET-001-nine-command-retirement.md
+- task: friday-command-refactor
+  at: '2026-11-07T02:06:07+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact strengthened retirement directive
+  note: Direct instruction i approve the document proceed binds the strengthened directive and RET-GATE-01 through 03; retire exactly nine names, preserve retained contracts, then independent validation. No pilot or delivery approval.
+  evidence: docs/planning/active/command-refactor/approval/command-retirement.md
+- task: friday-command-refactor
+  at: '2026-11-07T02:22:22+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared nine-command retirement validation candidate
+  note: Approved exact removals and mapped test/guide updates implemented;1038 Chat/145 foundation-cohort/155 CLI pass, clean candidate-Git artifacts and129-profile41/3/no-effect proof pass. Baselines and diagnostic corrections disclosed; configs preserved. Await fresh review and acceptance; no delivery or pilot.
+  evidence: docs/planning/active/command-refactor/validation/retirement/README.md
+- task: friday-command-refactor
+  at: '2026-11-07T02:37:21+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent retirement verification
+  note: Fresh read-only RET01 through09 review VERIFIED f896ef53;1338 scoped tests and clean installed41/3/no-effect/source/assertion proof pass, no mandatory findings. Protected configs unchanged. Baselines and remaining gates disclosed; ready for maintainer acceptance, no pilot or delivery authorization.
+  evidence: docs/planning/active/command-refactor/validation/retirement/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-07T13:40:31+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted RET-001 retirement unit
+  note: Direct instruction accepted follows independent VERIFIED f896ef53 and1338 passing scoped tests. Acceptance covers RET-001 only; entire initiative remains started/local. Next pilot contract/directive needs separate approval; no publication or new construction inferred.
+  evidence: docs/planning/active/command-refactor/approval/command-retirement.md
+- task: friday-command-refactor
+  at: '2026-11-07T13:56:17Z'
+  actor: Codex
+  actor_role: agent
+  action: prepared proposed pilot contract and construction directive
+  note: Maintainer proceed authorizes planning only. Two review documents define help/exit/cls ownership, adapters, compatibility, tests and clean installed proof. Read contract first then directive; neither is approved. Product and protected examples unchanged; initiative started/local.
+  evidence: docs/planning/active/command-refactor/next-phase.md
+- task: friday-command-refactor
+  at: '2026-11-07T17:14:01+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded round-four pilot readiness council and returned findings
+  note: All scores meet 9 but all verdicts request changes. Two mandatory findings remain; extra authorized correction pass is consumed. Await maintainer disposition; no further automated remediation, construction or delivery. Reviewed contract, directive, harness and protected examples preserved.
+  evidence: docs/planning/active/command-refactor/validation/pilot/round4-reconciliation.md
+- task: friday-command-refactor
+  at: '2026-11-07T17:17:42+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized continuing bounded readiness corrections and fresh validation
+  note: Let's continue follows the proposed two-fix plan. Close the receipt-path and contract-pin findings with independent verification; four council rounds already meet the score target. No pilot construction or delivery approval inferred.
+  evidence: docs/planning/active/command-refactor/authority.json
+- task: friday-command-refactor
+  at: '2026-11-07T17:36:51+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded final independent pilot readiness verification
+  note: Fresh delta and aggregate review VERIFIED dcb982cf after the two authorized corrections; all three council score targets were already met in round four. Exact contract and directive approval is next. Initiative remains started/local; no pilot construction, acceptance or delivery approval inferred.
+  evidence: docs/planning/active/command-refactor/validation/pilot/final-readiness-validation.md
+- task: friday-command-refactor
+  at: '2026-11-07T19:59:20+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved pilot contract and directive with council after each deliverable
+  note: Exact approval covers additive API and PILOT-001 construction. D1 neutral, D2 Chat/lifecycle, D3 regression/installed proof each require a fresh council before advancing. Final acceptance and external delivery remain separate.
+  evidence: docs/planning/active/command-refactor/approval/pilot.md
+- task: friday-command-refactor
+  at: '2026-11-07T20:51:12+00:00'
+  actor: Codex
+  actor_role: agent
+  action: returned unresolved D1 sorting-test finding after council cycle limit
+  note: Round-three scores Claude 9.4, Sol 9.5 and Gemini 9.8 all meet target; runtime conforms but mandatory VAL-D1-R3-001 remains. Scratch one-line proposal passes correct source and rejects no-sort mutant. Await maintainer direction for further correction/review; existing pilot approval retained, D2 pending.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d1/maintainer-decision.md
+- task: friday-command-refactor
+  at: '2026-11-08T00:28:59+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized one-line D1 sorting-test correction and fresh council
+  note: Explicit authorized response extends the two-cycle limit for VAL-D1-R3-001 fixture only and one fresh council pass. Existing pilot construction approval retained; no runtime/contract or optional-advisory changes; D2 pending D1 reconciliation.
+  evidence: docs/planning/active/command-refactor/authority.json
+- task: friday-command-refactor
+  at: '2026-11-08T00:47:43+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled VERIFIED D1 council and started approved D2
+  note: Claude 9.6, Sol 9.5 and Gemini 9.8 all VERIFIED eacef5b0; sorting coverage finding closed. D2 proceeds under existing exact pilot approval; G2/G3 and its own council precede D3. No whole-pilot acceptance or delivery inferred.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d1/council-round4.json
+- task: friday-command-refactor
+  at: '2026-11-08T01:02:50+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze PILOT-001 D2 for council
+  note: G2 400 and G3 218 passed; 196 frozen observations exact; required dependency/lock only. D1 verified, D3 and acceptance pending. No external delivery.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T01:21:13+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled D2 council and proposed metadata contract decision
+  note: Claude 8.7 CHANGES_REQUESTED; Sol 9.6 and Gemini 9.9 VERIFIED. Mandatory custom-detail finding independently reproduced. No product correction or D3 before explicit PC-04 decision; original pilot approval retained.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round1.json
+- task: friday-command-refactor
+  at: '2026-11-08T01:28:24+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved bounded D2 metadata compatibility amendment
+  note: Explicit approval of REM-CMD-PILOT-D2-001 and its exact hash; bounded correction/tests/checks and fresh three-provider D2 council. No D2 acceptance or external delivery; D3 remains gated by D2 reconciliation.
+  evidence: docs/planning/active/command-refactor/approval/pilot-metadata-compatibility.md
+- task: friday-command-refactor
+  at: '2026-11-08T01:34:06+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze approved D2 correction for fresh council
+  note: Exact one-line detail projection and authorized tests/markers; G1 217, G2 428, G3 246 and all 196 observations pass. Prior source/assertions/lock/frozen evidence preserved; D3 and acceptance pending.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/remediation-evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T01:55:38+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled VERIFIED D2 council and started approved D3
+  note: Claude 9.7, Sol 9.6 and Gemini 9.8 all VERIFIED d5a29faf. Metadata finding closed. D3 proceeds under original pilot authority, followed by its own council; no whole-pilot acceptance or delivery inferred.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d2/council-round2.json
+- task: friday-command-refactor
+  at: '2026-11-08T02:12:24+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze PILOT-001 D3 builder proof for council
+  note: Full Chat 1228, Commands/cohort 217 and CLI 155 pass. Final clean artifacts/replay and isolated neutral/default Chat proof pass; D1/D2 verified. D3 council, acceptance and external delivery remain pending.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d3/evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T02:40:53+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized two-member D3 council after Gemini quota failure
+  note: Proceed with Claude and Sol; no replacement or retry of Gemini. Continue bounded proof remediation and fresh review; tests do not waive mandatory findings or grant acceptance/delivery.
+  evidence: docs/planning/active/command-refactor/approval/pilot-two-member-council.md
+- task: friday-command-refactor
+  at: '2026-11-08T02:55:38+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze D3 installed-proof correction cycle1 for two-member council round2
+  note: Both required proof corrections implemented; full scoped 1600 tests and clean builds/installations pass. Fresh Claude/Sol closure required before acceptance; delivery remains local.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d3/remediation-evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T03:11:57+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled independently VERIFIED PILOT-001 D3 and bounded aggregate
+  note: Claude and Sol both VERIFIED at 9.6; D3-SOL-001/002 closed. Pilot acceptance pending; entire refactor stays started, delivery local. No runtime/test/dependency/lock changes in closeout.
+  evidence: docs/planning/active/command-refactor/validation/pilot/implementation/d3/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-08T04:33:01+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted bounded PILOT-001 help/exit/clear-screen implementation
+  note: Direct approved response to pilot acceptance handoff. D1-D3 independently VERIFIED; entire initiative remains started/local. Next family needs separate contract/directive approval; no delivery authorized.
+  evidence: docs/planning/active/command-refactor/approval/pilot-acceptance.md
+- task: friday-command-refactor
+  at: '2026-11-08T14:04:03+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared SESSION-001 history/clear contract and exact directive
+  note: Source-backed planning only after maintainer proceed. Two documents await approval; 25 cases reproduce and existing 434 Chat/217 Commands-cohort tests pass. No product/test/metadata/lock changes; pilot acceptance retained.
+  evidence: docs/planning/active/command-refactor/session-command-contract.md
+- task: friday-command-refactor
+  at: '2026-11-08T15:08:32+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact SESSION-001 contract and construction directive
+  note: Direct approved both docs proceed instruction; S0 then D1, council after each deliverable. No SESSION acceptance, later family or delivery granted.
+  evidence: docs/planning/active/command-refactor/approval/session-views.md
+- task: friday-command-refactor
+  at: '2026-11-08T15:27:46+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze SESSION-001 D1 neutral implementation for council review
+  note: Approved D1 only; 278 neutral/cohort tests, compatibility and preservation pass. D2/D3 and SESSION acceptance pending; no delivery.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d1/README.md
+- task: friday-command-refactor
+  at: '2026-11-08T15:46:06+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled SESSION D1 round1 and opened export-test remediation cycle1
+  note: Sol VERIFIED 9.6; Claude CHANGES_REQUESTED 9.2 for one mandatory test gap. Gemini quota unavailable, no score/retry/replacement. Runtime behavior conforms; bounded test/evidence correction only.
+  evidence: docs/planning/active/command-refactor/remediation/REM-CMD-SESSION-D1-001-export-surface.md
+- task: friday-command-refactor
+  at: '2026-11-08T15:51:19+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze corrected SESSION D1 export assertion for available-member round 2
+  note: S1=278; missing/extra/reordered/duplicate exports rejected by one assertion. Runtime unchanged. Fresh reviews and Gemini availability disposition precede D2.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d1/export-fix-evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T16:13:29+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled SESSION D1 round2; proceed to approved D2
+  note: Claude VERIFIED 9.6 and Sol VERIFIED 9.7; no mandatory findings. Gemini quota unavailable without score or replacement; available coverage reconciled. No SESSION acceptance or delivery grant.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d1/council-round2.json
+- task: friday-command-refactor
+  at: '2026-11-08T16:23:22+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze SESSION D2 Chat integration for fresh council
+  note: S1 278, S2 497, S3 315; full Chat1297/neutral278/CLI155; all25 session and196 pilot observations match. Gemini unavailable/no score. D3 and acceptance pending.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d2/evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T16:39:47+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled SESSION D2 council; begin approved D3
+  note: Sol VERIFIED 9.7 and Claude VERIFIED 9.6; no mandatory findings. Gemini unavailable/no score; available coverage reconciled. Acceptance remains pending.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d2/council-round1.json
+- task: friday-command-refactor
+  at: '2026-11-08T17:06:21+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze SESSION D3 installed proof and complete bounded aggregate for final council
+  note: S4 1730 passes; both bundles build 13 workspace distributions with 125 locked inputs and match 154 hashes; installed proof and 42 refusal controls pass. Gemini unavailable/no score; acceptance pending.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d3/evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T17:56:58+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled SESSION D3 and aggregate council; bounded human acceptance pending
+  note: Sol VERIFIED 9.7, Astra fresh isolation reissue VERIFIED 9.7, Claude VERIFIED 9.6. No mandatory findings; invalid Astra run preserved and excluded. Current remaining roster is Sol/Astra/Claude by direct maintainer instruction. No delivery or next-unit authority.
+  evidence: docs/planning/active/command-refactor/validation/session/implementation/d3/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-08T18:09:24+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted bounded SESSION-001 D1–D3 and aggregate
+  note: Direct accepted instruction follows Sol 9.7, Astra 9.7 and Claude 9.6 VERIFIED results. Broader initiative stays started/local; no next-unit or external delivery authority.
+  evidence: docs/planning/active/command-refactor/approval/session-acceptance.md
+- task: friday-command-refactor
+  at: '2026-11-08T19:15:18+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared DIAG-001 diagnostics contract and exact directive
+  note: Maintainer proceed authorizes preparation only. Six metadata records/72 synthetic cases repeat; guarded Chat244 and Commands-cohort278 pass. Proposed type boundaries and export assertion evolution need exact approval; no product/test/config/lock change. SESSION remains accepted; Sol/Astra/Claude after each future deliverable.
+  evidence: docs/planning/active/command-refactor/diagnostics-command-contract.md
+- task: friday-command-refactor
+  at: '2026-11-08T19:55:43+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact DIAG-001 contract and directive; begin code generation
+  note: Direct approval of both pending documents. D0 then D1 neutral implementation; fresh Sol/Astra/Claude council after every deliverable. Existing acceptances retained; no DIAG acceptance or external delivery.
+  evidence: docs/planning/active/command-refactor/approval/diagnostics.md
+- task: friday-command-refactor
+  at: '2026-11-08T20:16:14+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze DIAG-001 D1 neutral implementation for council round1
+  note: Exact approval retained. D1 478 passes/200 new; 14 final private mutation refusals; Chat1297/CLI155 and 72/25/196 source observations match. Baseline debt unwaived; D2/D3 and acceptance pending.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/README.md
+- task: friday-command-refactor
+  at: '2026-11-08T20:34:08+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG D1 round1; begin bounded test-only remediation cycle1
+  note: Sol/Astra VERIFIED9.7; Claude CHANGES_REQUESTED8.4. Mandatory named-node coverage/all-binding gaps govern. Existing exact approval covers mechanical correction; runtime/old tests remain frozen; fresh council before D2.
+  evidence: docs/planning/active/command-refactor/remediation/REM-CMD-DIAG-D1-001-test-coverage.md
+- task: friday-command-refactor
+  at: '2026-11-08T20:42:51+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze corrected DIAG D1 test gates for council round2
+  note: Full478/named200 pass; five prior named survivors now refused and all14 original mutants refused. Only new DIAG test changes outside docs; all38 bindings and standalone source origins checked. Findings pending fresh independent closure before D2.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/test-coverage-fix-evidence.json
+- task: friday-command-refactor
+  at: '2026-11-08T21:00:13+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG D1 round2 VERIFIED; begin approved D2
+  note: Sol/Astra/Claude VERIFIED9.7 each, both mandatory test gaps closed. Existing exact approval permits D2 after reconciliation; D3/UAT/acceptance/delivery pending.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d1/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-08T21:22:44+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze DIAG D2 Chat integration for council round1
+  note: D1 preserved; Commands478/D2-fast538/D3-fast166/Chat1338/CLI155, DIAG68+4 approved refusals, SESSION25 and pilot196. D3/UAT/acceptance/delivery pending.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/README.md
+- task: friday-command-refactor
+  at: '2026-11-08T21:44:52+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG D2 round1 CHANGES_REQUESTED
+  note: 'Two mandatory findings: cached formatter duplication and fallback test export isolation. Ignored exports disclosed/preserved. Bounded REM recorded; no D3/acceptance/delivery.'
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/council-round1.json
+- task: friday-command-refactor
+  at: '2026-11-08T21:53:46+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze DIAG D2 correction cycle1 for round2 council
+  note: Both named findings implemented; private-cwd exports and once-only context formatting proved.41/478/538/166/1338 pass,21 mutants and519 control. D3/acceptance/delivery pending.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/council-remediation-round1.json
+- task: friday-command-refactor
+  at: '2026-11-08T22:13:01+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG D2 round2 VERIFIED; begin D3
+  note: All three closed both findings;9.7/9.7/9.5. Existing approval authorizes D3. Preserve ignored exports, dirty examples and D1/D2 bytes. Final aggregate council and human acceptance pending.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d2/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-08T22:47:21+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze DIAG D3 artifact/installed proof for final aggregate council
+  note: 1971 source passes; matching154 artifacts/profile;8 actual installed probes,50 member/origin+4 semantic+10 archive refusals,8 clean copied probes. Acceptance/UAT/delivery pending.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/README.md
+- task: friday-command-refactor
+  at: '2026-11-08T23:21:31+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG D3 council CHANGES_REQUESTED; contract decision pending
+  note: Astra mandatory accepted-string order regression independently reproduced. Proposed typed host snapshot amendment not approved; no product changes. Sol/Claude9.7, Astra8.7; preserve all prior evidence and local state.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round1-reconciliation.md
+- task: friday-command-refactor
+  at: '2026-11-09T03:40:44+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact REM-CMD-DIAG-D3-001 context evaluation amendment
+  note: Direct instruction The bounded correction I approve it binds REM SHA 3078bb19. One typed context debug snapshot capability, six bounded paths plus probe/evidence, rebuild/replay and fresh three-provider council. No DIAG acceptance, UAT or delivery.
+  evidence: docs/planning/active/command-refactor/approval/diagnostics-context-evaluation.md
+- task: friday-command-refactor
+  at: '2026-11-09T03:59:00+00:00'
+  actor: Claude
+  actor_role: agent
+  action: froze approved DIAG D3 context evaluation correction for fresh council
+  note: 28c544fa adds one typed context debug snapshot; 12/12 legacy rows, unfixed assertions fail, 9 mutants rejected, control539. Chat1338/Commands498/CLI155, 154 replayed artifacts, 8 installed probes, 50+4+10 refusals. No acceptance, UAT or delivery.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/correction-evidence.json
+- task: friday-command-refactor
+  at: '2026-11-09T04:34:53+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled DIAG runtime closure; bounded docs-only round3
+  note: All3 closed runtime finding; Sol/Claude request only stale README/PAR status fixes. Current gates corrected, runtime bytes frozen. Fresh docs/aggregate review then human acceptance.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/council-round2-reconciliation.md
+- task: friday-command-refactor
+  at: '2026-11-09T05:40:01+00:00'
+  actor: Codex
+  actor_role: agent
+  action: DIAG-001 independently VERIFIED; bounded human acceptance pending
+  note: Round3 Sol/Astra/Claude9.7 each, no mandatory findings. Product/probe28c544fa unchanged. Unit completed, umbrella started/local. UAT unrun; stop for maintainer decision. Preserve baseline debt and local state.
+  evidence: docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-09T14:07:11+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: reported successful UAT and accepted bounded DIAG-001 D1–D3 and aggregate
+  note: Direct instruction follows Sol/Astra/Claude VERIFIED 9.7 each. Proceed authorizes MEMQ-001 planning preparation only. Broader initiative stays started/local; no construction or external delivery authority.
+  evidence: docs/planning/active/command-refactor/approval/diagnostics-acceptance.md
+- task: friday-command-refactor
+  at: '2026-11-09T15:20:00+00:00'
+  actor: Claude
+  actor_role: agent
+  action: prepared proposed MEMQ-001 contract, directive and guarded synthetic evidence
+  note: Planning only under maintainer proceed. 6 metadata/76 cases replay-identical; MQ-D3 offers bounded Chat-only /list-ingested repair (R) or preserve-and-defer (P). Exact approval pending; no construction, council or delivery.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/preparation.json
+- task: friday-command-refactor
+  at: '2026-11-09T14:49:49.730403+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded maintainer approval of edited MEMQ-001 contract and directive with option R
+  note: Actual web instructions approve the recommended repair and edited version. Projection characterization and final pins completed; D0/D1 next, fresh three-member councils between stages. No acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/approval/memory-queries.md
+- task: friday-command-refactor
+  at: '2026-11-09T15:33:59.716791+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded bounded MEMQ directive correction cycle1 and corrected preparation chronology
+  note: 'Maintainer: lets apply the corrections and iterate. Four mandatory readiness issues corrected; fresh Sol/Astra/Claude delta then aggregate review pending before D0/D1. Original 15:20Z preparation event is erroneous: proposal existed by commit342bf85c at14:25Z, before approval14:49Z. Original event retained; no exact preparation start/finish inferred. No product edits, acceptance or delivery.'
+  evidence: docs/planning/active/command-refactor/approval/memory-queries-directive-correction.md
+- task: friday-command-refactor
+  at: '2026-11-09T15:59:12.462665+00:00'
+  actor: Codex
+  actor_role: agent
+  action: 'recorded MEMQ directive correction cycle2: exact-union allowance and current-gate reconciliation'
+  note: 'Continuing maintainer instruction: lets apply the corrections and iterate. Fresh round3 delta then full directive review required; escalate remaining mandatory findings after cycle2. Original reports/history and product scope remain preserved; D0/D1 stopped.'
+  evidence: docs/planning/active/command-refactor/approval/memory-queries-directive-correction2.md
+- task: friday-command-refactor
+  at: '2026-11-09T16:22:41.779073+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded MEMQ round3 result and two-cycle escalation
+  note: Astra VERIFIED9.5, Sol BLOCKED9.4 for scratch-isolation breach, Claude CHANGES_REQUESTED8.9 for Low unqualified post-SESSION README gate. Original reports and external locator preserved; exact proposed sentence patch not applied. Await maintainer direction; no further automatic loop or product D0/D1.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/directive-review/round3/report.md
+- task: friday-command-refactor
+  at: '2026-11-09T16:41:29.753273+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded explicit maintainer authorization for additional MEMQ prose correction and council
+  note: 'Chuck Russell: authorized then iterate. Apply the prepared historical SESSION qualifier and obtain fresh full round4; old Sol BLOCKED receipt/locator preserved without waiver. Technical/product bytes unchanged; product D0/D1 unstarted.'
+  evidence: docs/planning/active/command-refactor/approval/memory-queries-directive-additional-pass.md
+- task: friday-command-refactor
+  at: '2026-11-09T17:02:01.297604+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded unanimous MEMQ directive/design readiness VERIFIED
+  note: 'Fresh round4 atbe15dca1: Sol9.6, Astra9.5, Claude9.6 all VERIFIED; no mandatory findings. Old blocked Sol receipt/locator preserved, current isolation independently compliant. Product D0/D1 unstarted; next sequence remains governed by existing option R approval, no new acceptance or delivery.'
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/directive-review/round4/report.md
+- task: friday-command-refactor
+  at: '2026-11-09T17:55:34.146458+00:00'
+  actor: Codex
+  actor_role: agent
+  action: generated bounded MEMQ D1 neutral code and UAT plan
+  note: D0 preservation and baseline closed trial passed. D1 Commands-cohort599 (101 new), Chat1338 and CLI155 pass; unchanged control plus14 private mutation refusals. Fresh Sol-Astra-Claude D1 council required before D2. Existing exact option R approval retained; UAT NOT RUN; no acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d1/README.md
+- task: friday-command-refactor
+  at: '2026-11-09T18:16:51.257314+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled unanimously VERIFIED MEMQ D1 council; proceed to approved D2
+  note: Sol9.7 Astra9.6 Claude9.6 independently verify D0-D1 at9ce71581 with no mandatory findings. Full closing integrity matches. Existing exact option R approval governs D2 Chat integration; fresh D2 council before D3. UAT NOT RUN; no acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d1/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-09T18:58:20.756575+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze MEMQ D2 Chat integration and persisted listing for council
+  note: Existing exact option R approval retained after D1 reconciliation. Chat1390 Commands-cohort599 CLI155 pass; fast616/117, named52,20 current mutation refusals with call assertions, captures68+2+6 repeated and supplemental4 exact. Baseline format/root and nullable-ingest debt unwaived. Fresh D2 council before D3; UAT NOT RUN; no acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/README.md
+
+- task: friday-command-refactor
+  at: "2026-11-09T19:33:05.002499+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled MEMQ D2 round1 and froze bounded documentation correction
+  note: "Sol9.6/Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for MEMQ-D2-ASTRA-001. Runtime checks reproduced in all seats. Source/tests unchanged; status text and UAT/backlog ingestion workaround corrected. Fresh documentation-delta then full bounded D2 aggregate council before D3. UAT NOT RUN; no acceptance or delivery."
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md
+
+- task: friday-command-refactor
+  at: "2026-11-09T19:57:50.079982+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled MEMQ D2 round2 and restored approved frozen backlog bytes
+  note: "Sol9.5/Astra9.6 VERIFIED; Claude9.1 CHANGES_REQUESTED for MEMQ-D2-CLAUDE-001. ASTRA-001 resolved. Exact b8021069 backlog restored; all30 directive pins checked. FU-009/UAT workaround retained, inaccurate CMD-F05 tracking reference removed. Correction2 fresh council before D3; UAT NOT RUN, no acceptance or delivery."
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round2/report.md
+
+- task: friday-command-refactor
+  at: "2026-11-09T20:12:20.278769+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled unanimous MEMQ D2 verification and continued approved D3
+  note: "Round3 Sol/Astra/Claude VERIFIED9.5 each; both findings closed, no mandatory issues. D2 candidateccf5471b/source3ed1d58a. Continue committed candidate builds/replay and isolated installed proof under existing staged approval. Human UAT NOT RUN; no acceptance or delivery."
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/verified-report.md
+
+- task: friday-command-refactor
+  at: "2026-11-09T20:55:01.293798+00:00"
+  actor: Codex
+  actor_role: agent
+  action: froze MEMQ D3 builder evidence for final bounded aggregate council
+  note: "Sourcee4c0b9a2;2144 owning passes,154 replayed artifacts,8 actual installed probes,50 member/origin+10 archive+10 semantic refusals,3 source refusals,8 clean copied probes. Exact retained behavior transforms; approved MQ-D3-only CMD-F05 pin transition recorded. Baseline debt unwaived; UAT NOT RUN; no acceptance or delivery."
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/README.md
+- task: friday-command-refactor
+  at: '2026-11-09T21:33:37.858454+00:00'
+  actor: Codex
+  actor_role: agent
+  action: validation_reconciled
+  note: MEMQ D3 and bounded aggregate unanimously VERIFIED (Sol9.5/Astra9.4/Claude9.5); all mandatory findings closed. Human UAT20 NOT RUN; acceptance pending. Initiative stays started/local.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-10T01:33:14.473229+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized bounded verification diagnostics
+  note: Current proceed instruction authorizes REM-CMD-MEMQ-UAT-002 shared diagnostic subunit. Human UAT stopped; no model/config/live-provider/store or unrelated command changes.
+  evidence: docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-UAT-002-verification-diagnostics.md
+- task: friday-command-refactor
+  at: '2026-11-10T01:58:04.218150+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze verification diagnostic implementation for review
+  note: Scoped source/tests, controlled regressions and installed probes complete. Raw dirty-example failures/cache deviation disclosed. UAT stopped; no acceptance or live provider/store action.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/uat-diagnostics/README.md
+- task: friday-command-refactor
+  at: '2026-11-10T02:35:05.596930+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled bounded verification diagnostics
+  note: Corrected candidate3969e4d4 independently VERIFIED; initial BLOCKED review preserved, no waiver. Targeted operator retest next; underlying failure and UAT still pending. Initiative started/local.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/uat-diagnostics/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-10T02:58:56.992249+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized shared quote and ingestion repairs
+  note: Fix both remaining UAT issues with shared reusable ownership; maintainer will retest3 issues together. Future councils OpenAI Astra/Sol only. No acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-UAT-003-shared-quote-ingest.md
+- task: friday-command-refactor
+  at: '2026-11-10T03:33:51.494212+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled shared entity and ingestion repairs
+  note: Repair source47134ad6 and corrected packetead29d01 independently VERIFIED by OpenAI; combined3-issue human retest next. Current source/tests remain reviewed bytes; initiative started/local; no acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/uat-shared-repair/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-10T13:27:29.974635+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted MEMQ and closed both UAT records
+  note: Main MEMQ UAT and combined repair retest successful. Full reorganization on exit yields positive /meta. Separate FU-011 explicit --full argument defect remains open. No whole-initiative acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/approval/memory-queries-acceptance.md
+- task: friday-command-refactor
+  at: '2026-11-10T13:52:34.313775+00:00'
+  actor: Codex
+  actor_role: agent
+  action: drafted MAINT-001 maintenance specification for human document review
+  note: Maintainer authorized continued drafting and requires review before council. Primary agent only; no implementation or sub-agents. Accepted MEMQ remains closed.
+  evidence: docs/planning/active/command-refactor/maintenance-reorganization-specification.md
+- task: friday-command-refactor
+  at: '2026-11-10T14:23:55.333211+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled OpenAI-only MAINT-001 specification council round1
+  note: Sol9.0 and Astra9.2 VERIFIED design readiness only, no mandatory findings. Exact construction directive and human review remain next; no product implementation or further council authorized.
+  evidence: docs/planning/active/command-refactor/validation/maintenance/specification/round1/report.md
+- task: friday-command-refactor
+  at: '2026-11-10T14:40:46.835869+00:00'
+  actor: Codex
+  actor_role: agent
+  action: drafted proposed MAINT-001 construction directive for human review
+  note: Explicit drafting instruction; exact typed contracts, compatibility route, scoped tests and safe commands prepared. No implementation or council/sub-agent invocation. Accepted MEMQ stays closed.
+  evidence: docs/planning/active/command-refactor/directives/CD-CMD-MAINT-001-reorganization-order.md
+- task: friday-command-refactor
+  at: '2026-11-10T15:00:27.414858+00:00'
+  actor: Codex
+  actor_role: agent
+  action: revised MAINT-001 ownership and recorded authorized OpenAI document council
+  note: Shared Memory owns the complete domain pipeline; Chat keeps application recovery and presentation. New review required for changed specification/directive. No product construction authority.
+  evidence: docs/planning/active/command-refactor/directives/CD-CMD-MAINT-001-reorganization-order.md
+- task: friday-command-refactor
+  at: '2026-11-10T15:11:37.922483+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled MAINT-001 round2 and prepared bounded document corrections
+  note: Shared cancellation boundary and scope receipt contract corrected; fresh OpenAI round3 required. No implementation or acceptance.
+  evidence: docs/planning/active/command-refactor/validation/maintenance/specification/round2/report.md
+- task: friday-command-refactor
+  at: '2026-11-10T15:25:24.696638+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled verified MAINT-001 round3 document council with fresh Astra replacement
+  note: Sol9.3 and valid Astra9.2; no mandatory findings. Initial blocked isolation attempt preserved/excluded. Exact construction approval pending, no product edits or new agents.
+  evidence: docs/planning/active/command-refactor/validation/maintenance/specification/round3/report.md
+- task: friday-command-refactor
+  at: '2026-11-10T16:05:14.348162+00:00'
+  actor: Codex
+  actor_role: agent
+  action: added mandatory MAINT-001 fixed vectors and recorded conditional minimum score gate
+  note: User authorized fresh Astra/Sol review; BOTH must be VERIFIED at least9.5 each with no mandatory findings before bounded construction. No activation yet and no automatic repeat loop on failure.
+  evidence: docs/planning/active/command-refactor/approval/maintenance-reorganization-conditional.md
+- task: friday-command-refactor
+  at: '2026-11-10T16:15:19.231922+00:00'
+  actor: Codex
+  actor_role: agent
+  action: activated exact MAINT-001 conditional construction after both fresh reviews
+  note: Both Astra and Sol VERIFIED9.6, zero mandatory findings, frozen identity verified. D0 then bounded implementation; acceptance and delivery separate.
+  evidence: docs/planning/active/command-refactor/validation/maintenance/specification/round4/activation.json
+- task: friday-command-refactor
+  at: '2026-11-10T18:12:43.310255+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled bounded MAINT-001 implementation council as VERIFIED
+  note: Astra9.5 and Sol9.6 meet the conditional threshold with no mandatory findings. Targeted human UAT and separate acceptance remain pending; delivery local.
+  evidence: docs/planning/active/command-refactor/validation/maintenance/implementation/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-10T20:40:49+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> pushed
+  note: Chuck Russell authorized branch publication and PR submission; feature/command-retirement is pushed and PR 15 is open against master. Human acceptance and INGEST construction remain separate.
+  evidence: https://github.com/CIChuck/agent-framework/pull/15; head ac3f9fa0bdadf95a6fc76d40b39fbc077b53da96

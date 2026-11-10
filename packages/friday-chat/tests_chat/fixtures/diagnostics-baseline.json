@@ -1,0 +1,1594 @@
+{
+  "metadata": {
+    "context": {
+      "name": "context",
+      "description": "Show the assembled context payload.",
+      "category": "memory",
+      "usage": "/context [--debug] [--file]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "--debug",
+          "description": "Include detailed token diagnostics.",
+          "required": false,
+          "default": null,
+          "choices": []
+        },
+        {
+          "name": "--file",
+          "description": "Export the context to a file.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "prompt": {
+      "name": "prompt",
+      "description": "Show the full formatted prompt sent to the LLM.",
+      "category": "memory",
+      "usage": "/prompt [--file]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "--file",
+          "description": "Export the prompt to a file.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "debug": {
+      "name": "debug",
+      "description": "Show context assembly debug information.",
+      "category": "memory",
+      "usage": "/debug",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "debug-budget": {
+      "name": "debug-budget",
+      "description": "Show token budget diagnostics.",
+      "category": "memory",
+      "usage": "/debug-budget",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "timing": {
+      "name": "timing",
+      "description": "Show timing breakdown for the last turn.",
+      "category": "memory",
+      "usage": "/timing",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "debug-retrieval": {
+      "name": "debug-retrieval",
+      "description": "Show retrieval diagnostics for a query.",
+      "category": "memory",
+      "usage": "/debug-retrieval <query>",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "query",
+          "description": "Retrieval query; remaining words are joined.",
+          "required": true,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    }
+  },
+  "cases": [
+    {
+      "case": "context:none",
+      "command": "context",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Context payload:\nNo tool context injected.\nHistory turns: 1",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context",
+        "context.runtime",
+        "context.history"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "context:empty",
+      "command": "context",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Context payload:\nNo tool context injected.\nHistory turns: 1",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context",
+        "context.runtime",
+        "context.history"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "context:cached",
+      "command": "context",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "stored\n\u00c5 text",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "context:fallback-runtime",
+      "command": "context",
+      "args": [],
+      "result": {
+        "output": "Context payload:\nTools: echo\nHistory turns: 1",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context",
+        "context.runtime",
+        "context.runtime",
+        "runtime.tool_context",
+        "context.runtime",
+        "runtime.tool_context",
+        "context.history"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "prompt:none",
+      "command": "prompt",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "System: You are Friday.\nUser: user\n\u4e8c\nFriday: answer",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_prompt",
+        "context.runtime",
+        "context.history",
+        "context.history"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "prompt:empty",
+      "command": "prompt",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "System: You are Friday.\nUser: user\n\u4e8c\nFriday: answer",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_prompt",
+        "context.runtime",
+        "context.history",
+        "context.history"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "prompt:cached",
+      "command": "prompt",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "stored\n\u00c5 text",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_prompt"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "prompt:fallback-runtime",
+      "command": "prompt",
+      "args": [],
+      "result": {
+        "output": "System: Friday system\nUser: user\n\u4e8c\nFriday: answer",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_prompt",
+        "context.runtime",
+        "context.runtime",
+        "runtime.config",
+        "config.chat",
+        "chat.system_prompt",
+        "context.history",
+        "context.history"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "context:undeclared-cache:falsy-int",
+      "command": "context",
+      "args": [],
+      "result": {
+        "output": "Context payload:\nNo tool context injected.\nHistory turns: 1",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context",
+        "context.runtime",
+        "context.history"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "context:undeclared-cache:falsy-list",
+      "command": "context",
+      "args": [],
+      "result": {
+        "output": "Context payload:\nNo tool context injected.\nHistory turns: 1",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context",
+        "context.runtime",
+        "context.history"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "context:undeclared-cache:truthy-int",
+      "command": "context",
+      "args": [],
+      "result": {
+        "output": 7,
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "context:undeclared-cache:truthy-list",
+      "command": "context",
+      "args": [],
+      "result": {
+        "output": [
+          "x"
+        ],
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "prompt:undeclared-cache:falsy-int",
+      "command": "prompt",
+      "args": [],
+      "result": {
+        "output": "System: You are Friday.\nUser: user\n\u4e8c\nFriday: answer",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_prompt",
+        "context.runtime",
+        "context.history",
+        "context.history"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "prompt:undeclared-cache:falsy-list",
+      "command": "prompt",
+      "args": [],
+      "result": {
+        "output": "System: You are Friday.\nUser: user\n\u4e8c\nFriday: answer",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_prompt",
+        "context.runtime",
+        "context.history",
+        "context.history"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "prompt:undeclared-cache:truthy-int",
+      "command": "prompt",
+      "args": [],
+      "result": {
+        "output": 7,
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_prompt"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "prompt:undeclared-cache:truthy-list",
+      "command": "prompt",
+      "args": [],
+      "result": {
+        "output": [
+          "x"
+        ],
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_prompt"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "context:flags:--debug",
+      "command": "context",
+      "args": [
+        "--debug"
+      ],
+      "result": {
+        "output": "\u00c5\ntext\n\nDebug:\n- characters: 6",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "context:flags:--debug,--debug,ignored",
+      "command": "context",
+      "args": [
+        "--debug",
+        "--debug",
+        "ignored"
+      ],
+      "result": {
+        "output": "\u00c5\ntext\n\nDebug:\n- characters: 6",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "context:flags:--DEBUG",
+      "command": "context",
+      "args": [
+        "--DEBUG"
+      ],
+      "result": {
+        "output": "\u00c5\ntext",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context"
+      ],
+      "files_before": {},
+      "files_after": {}
+    },
+    {
+      "case": "context:flags:--file,--debug",
+      "command": "context",
+      "args": [
+        "--file",
+        "--debug"
+      ],
+      "result": {
+        "output": "\u00c5\ntext\n\nDebug:\n- characters: 6\n\nExported context to /private$EXPORT/friday_context.txt",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context",
+        "context.runtime",
+        "context.runtime",
+        "runtime.config",
+        "config.transcript",
+        "context.runtime",
+        "runtime.config",
+        "config.transcript"
+      ],
+      "files_before": {},
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext\n\nDebug:\n- characters: 6"
+      }
+    },
+    {
+      "case": "context:flags:--file",
+      "command": "context",
+      "args": [
+        "--file"
+      ],
+      "result": {
+        "output": "\u00c5\ntext\n\nExported context to /private$EXPORT/friday_context.txt",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_context",
+        "context.runtime",
+        "context.runtime",
+        "runtime.config",
+        "config.transcript",
+        "context.runtime",
+        "runtime.config",
+        "config.transcript"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext\n\nDebug:\n- characters: 6"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext"
+      }
+    },
+    {
+      "case": "prompt:export",
+      "command": "prompt",
+      "args": [
+        "--file",
+        "--file",
+        "../ignored"
+      ],
+      "result": {
+        "output": "exact prompt\n\n\nExported prompt to /private$EXPORT/friday_prompt.txt",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_prompt",
+        "context.runtime",
+        "context.runtime",
+        "runtime.config",
+        "config.transcript",
+        "context.runtime",
+        "runtime.config",
+        "config.transcript"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "exact prompt\n"
+      }
+    },
+    {
+      "case": "prompt:overwrite",
+      "command": "prompt",
+      "args": [
+        "--file"
+      ],
+      "result": {
+        "output": "replacement\n\nExported prompt to /private$EXPORT/friday_prompt.txt",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.last_prompt",
+        "context.runtime",
+        "context.runtime",
+        "runtime.config",
+        "config.transcript",
+        "context.runtime",
+        "runtime.config",
+        "config.transcript"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "exact prompt\n"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "context:export-failure",
+      "command": "context",
+      "args": [
+        "--file"
+      ],
+      "exception": {
+        "type": "OSError",
+        "message": "synthetic export failure",
+        "same_object": true
+      },
+      "events": [
+        "context.last_context",
+        "write_export"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "prompt:export-failure",
+      "command": "prompt",
+      "args": [
+        "--file"
+      ],
+      "exception": {
+        "type": "OSError",
+        "message": "synthetic export failure",
+        "same_object": true
+      },
+      "events": [
+        "context.last_prompt",
+        "write_export"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "debug:empty",
+      "command": "debug",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "No debug information recorded.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.last_debug"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "debug:fields",
+      "command": "debug",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Debug information:\n- a: first\n- z: last",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.last_debug",
+        "context.last_debug"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "debug:telemetry",
+      "command": "debug",
+      "args": [],
+      "result": {
+        "output": "Debug information:\n- a: first\n- z: last\n- turn: turn-2\n- outcome: ok\n- persistence: stored\n- completed_tools: 2\n- failed_tools: 0",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.telemetry",
+        "context.runtime",
+        "runtime.telemetry",
+        "telemetry.execution_snapshot",
+        "execution_snapshot",
+        "context.last_debug",
+        "context.last_debug"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "debug:telemetry-only",
+      "command": "debug",
+      "args": [],
+      "result": {
+        "output": "Debug information:\n- turn: turn-2\n- outcome: ok\n- persistence: stored\n- completed_tools: 2\n- failed_tools: 0",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.telemetry",
+        "context.runtime",
+        "runtime.telemetry",
+        "telemetry.execution_snapshot",
+        "execution_snapshot",
+        "context.last_debug",
+        "context.last_debug"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "debug:no-telemetry",
+      "command": "debug",
+      "args": [],
+      "result": {
+        "output": "Debug information:\n- a: first\n- z: last",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.telemetry",
+        "context.last_debug",
+        "context.last_debug"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "debug:mixed-keys",
+      "command": "debug",
+      "args": [],
+      "exception": {
+        "type": "TypeError",
+        "message": "'<' not supported between instances of 'int' and 'str'"
+      },
+      "events": [
+        "context.runtime",
+        "context.last_debug",
+        "context.last_debug"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "timing:empty",
+      "command": "timing",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "No timing data recorded.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.last_timing"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "timing:fields",
+      "command": "timing",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Timing:\n- a: 0.126s\n- z: 0.000s",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.last_timing",
+        "context.last_timing"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "timing:telemetry",
+      "command": "timing",
+      "args": [],
+      "result": {
+        "output": "Timing:\n- a: 0.126s\n- z: 0.000s\n- observed_turn: 1.234s (ok, persistence=stored)\n- z/ok: 3\n- a/failed: 1",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.telemetry",
+        "context.runtime",
+        "runtime.telemetry",
+        "telemetry.execution_snapshot",
+        "execution_snapshot",
+        "context.last_timing",
+        "context.last_timing"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "timing:telemetry-only",
+      "command": "timing",
+      "args": [],
+      "result": {
+        "output": "Timing:\n- observed_turn: 1.234s (ok, persistence=stored)\n- z/ok: 3\n- a/failed: 1",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.telemetry",
+        "context.runtime",
+        "runtime.telemetry",
+        "telemetry.execution_snapshot",
+        "execution_snapshot",
+        "context.last_timing",
+        "context.last_timing"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "timing:no-telemetry",
+      "command": "timing",
+      "args": [],
+      "result": {
+        "output": "Timing:\n- a: 0.126s\n- z: 0.000s",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.telemetry",
+        "context.last_timing",
+        "context.last_timing"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "timing:mixed-keys",
+      "command": "timing",
+      "args": [],
+      "exception": {
+        "type": "TypeError",
+        "message": "'<' not supported between instances of 'int' and 'str'"
+      },
+      "events": [
+        "context.runtime",
+        "context.last_timing",
+        "context.last_timing"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "timing:invalid-value",
+      "command": "timing",
+      "args": [],
+      "exception": {
+        "type": "ValueError",
+        "message": "Unknown format code 'f' for object of type 'str'"
+      },
+      "events": [
+        "context.runtime",
+        "context.last_timing",
+        "context.last_timing"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "debug:formatted-values",
+      "command": "debug",
+      "args": [],
+      "result": {
+        "output": "Debug information:\n- flag: False\n- items: ['x']\n- none: None",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.last_debug",
+        "context.last_debug"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "budget:none",
+      "command": "debug-budget",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Token budget:\n- context_window: unknown\n- output_buffer: unknown",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "budget:configured",
+      "command": "debug-budget",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Token budget:\n- context_window: 1000\n- output_buffer: 100",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.config",
+        "config.memory",
+        "budget.context_window",
+        "budget.output_buffer"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "budget:zero",
+      "command": "debug-budget",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Token budget:\n- context_window: unknown\n- output_buffer: unknown",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.config",
+        "config.memory",
+        "budget.context_window",
+        "budget.output_buffer"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "budget:truthy-text",
+      "command": "debug-budget",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Token budget:\n- context_window: many\n- output_buffer: few",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.config",
+        "config.memory",
+        "budget.context_window",
+        "budget.output_buffer"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "budget:negative",
+      "command": "debug-budget",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Token budget:\n- context_window: -1\n- output_buffer: -2",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.config",
+        "config.memory",
+        "budget.context_window",
+        "budget.output_buffer"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "budget:memory-none",
+      "command": "debug-budget",
+      "args": [],
+      "result": {
+        "output": "Token budget:\n- context_window: unknown\n- output_buffer: unknown",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.config",
+        "config.memory"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "retrieval:runtime-before-usage",
+      "command": "debug-retrieval",
+      "args": [],
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "retrieval:usage",
+      "command": "debug-retrieval",
+      "args": [],
+      "result": {
+        "output": "Usage: /debug-retrieval <query>",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "retrieval:empty",
+      "command": "debug-retrieval",
+      "args": [
+        "hello",
+        "\"quoted",
+        "world\""
+      ],
+      "result": {
+        "output": "Retrieval diagnostics:\n- query: hello \"quoted world\"\n- result_count: 0",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.debug_retrieval:hello \"quoted world\""
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "retrieval:details",
+      "command": "debug-retrieval",
+      "args": [
+        "hello",
+        "\"quoted",
+        "world\""
+      ],
+      "result": {
+        "output": "Retrieval diagnostics:\n- query: hello \"quoted world\"\n- result_count: 12\n- a: False\n- z: None\nResults:\n- one two\n- {'x': 1}\n- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...\n- one two\n- {'x': 1}\n- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...\n- one two\n- {'x': 1}\n- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...\n- one two",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.debug_retrieval:hello \"quoted world\""
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "retrieval:wrong-containers",
+      "command": "debug-retrieval",
+      "args": [
+        "hello",
+        "\"quoted",
+        "world\""
+      ],
+      "result": {
+        "output": "Retrieval diagnostics:\n- query: hello \"quoted world\"\n- result_count: 0",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.debug_retrieval:hello \"quoted world\""
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "retrieval:dict-subclass",
+      "command": "debug-retrieval",
+      "args": [
+        "hello",
+        "\"quoted",
+        "world\""
+      ],
+      "result": {
+        "output": "Retrieval diagnostics:\n- query: hello \"quoted world\"\n- result_count: 0\n- a: 1\n- b: 2",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.debug_retrieval:hello \"quoted world\""
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "retrieval:mixed-keys",
+      "command": "debug-retrieval",
+      "args": [
+        "hello",
+        "\"quoted",
+        "world\""
+      ],
+      "exception": {
+        "type": "TypeError",
+        "message": "'<' not supported between instances of 'int' and 'str'"
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.debug_retrieval:hello \"quoted world\""
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "retrieval:none",
+      "command": "debug-retrieval",
+      "args": [
+        "hello",
+        "\"quoted",
+        "world\""
+      ],
+      "exception": {
+        "type": "AttributeError",
+        "message": "'NoneType' object has no attribute 'get'"
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.debug_retrieval:hello \"quoted world\""
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "retrieval:exception",
+      "command": "debug-retrieval",
+      "args": [
+        "q"
+      ],
+      "exception": {
+        "type": "RuntimeError",
+        "message": "retrieval failed",
+        "same_object": true
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.debug_retrieval:q"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "retrieval:cancel",
+      "command": "debug-retrieval",
+      "args": [
+        "q"
+      ],
+      "exception": {
+        "type": "CancelledError",
+        "message": "cancelled",
+        "same_object": true
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.debug_retrieval:q"
+      ],
+      "files_before": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      },
+      "files_after": {
+        "friday_context.txt": "\u00c5\ntext",
+        "friday_prompt.txt": "replacement"
+      }
+    },
+    {
+      "case": "retrieval:await",
+      "during": {
+        "task_done": false,
+        "events": [
+          "context.runtime",
+          "context.runtime",
+          "runtime.memory",
+          "memory.debug_retrieval:wait"
+        ]
+      },
+      "result": {
+        "output": "Retrieval diagnostics:\n- query: wait\n- result_count: 0",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.debug_retrieval:wait"
+      ]
+    },
+    {
+      "case": "dispatch:/CONTEXT --debug extra",
+      "handled": true,
+      "result": {
+        "output": "Context payload:\nNo tool context injected.\nHistory turns: 0\n\nDebug:\n- characters: 59",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/prompt extra",
+      "handled": true,
+      "result": {
+        "output": "System: You are Friday.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/debug ignored",
+      "handled": true,
+      "result": {
+        "output": "No debug information recorded.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/debug-budget extra",
+      "handled": true,
+      "result": {
+        "output": "Token budget:\n- context_window: unknown\n- output_buffer: unknown",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/timing extra",
+      "handled": true,
+      "result": {
+        "output": "No timing data recorded.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/debug-retrieval",
+      "handled": true,
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/debug-retrieval \"a b\" c",
+      "handled": true,
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch: /debug",
+      "handled": false,
+      "result": null
+    },
+    {
+      "case": "dispatch://context",
+      "handled": true,
+      "result": {
+        "output": "Context payload:\nNo tool context injected.\nHistory turns: 0",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/ context",
+      "handled": true,
+      "result": {
+        "output": "Context payload:\nNo tool context injected.\nHistory turns: 0",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:context",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:prompt",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:debug",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:debug-budget",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:timing",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:debug-retrieval",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    }
+  ]
+}

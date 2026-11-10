@@ -1,5 +1,13 @@
 # Shared Friday command refactor — TUI effort, first phase
 
+**Status:** started/pushed. Ingestion extraction/chunking and embedding-limit
+planning awaits document review; MAINT-001 human UAT/acceptance remains pending.
+
+**Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
+is open against `master` from `feature/command-retirement`. Publication does not
+complete MAINT UAT/acceptance or authorize INGEST construction. The next scoped
+branch is `feature/cmd-ingest-001`, based on this submission while review is pending.
+
 **Working-folder update — 2026-11-05:** The maintainer changed direction:
 current command-first and Friday TUI planning is consolidated in the
 `agent-framework` folder. Earlier TUI-folder directions are superseded for
@@ -7,15 +15,96 @@ current work. This transfer changes documents only; imported implementation
 claims, reviews and test receipts retain their original provenance. No design
 approval, construction authority or code validation is inferred.
 
-**Working home:** `agent-framework`, branch `feature/command-refactor`.
+**MEMQ accepted — 2026-11-10:** Chuck Russell reports both the main MEMQ UAT
+and combined repair retest successful and directs closure. [Acceptance](approval/memory-queries-acceptance.md)
+records the accepted query family, shared quote/ingestion repairs and diagnostics.
+Full reorganization on exit yields positive `/meta` results, maintainer-reported.
+The explicit `/reorganize --full --execute` syntax defect is separately open as
+[FU-011](../../backlog/friday-chat-framework-followups/upgrade-log.md#fu-011-reorganize-rejects-the-explicit-full-mode-flag).
+`execution_phase: closeout`; `validation_state: verified`; MEMQ acceptance: accepted.
+Earlier implementation/review/pending-UAT statements describe their historical
+freezes and are superseded by this acceptance. The wider initiative stays started/local.
+
+**Current work — MAINT-001:** [Implementation verification](validation/maintenance/implementation/verified-report.md)
+reconciles Astra9.5 and Sol9.6, both VERIFIED, no mandatory findings. Reviewed
+candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
+closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
+is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
+
+**Additional requested planning — document ingestion:**
+[Proposed Docling remediation](remediation/REM-CMD-INGEST-001-pdf-docx.md)
+replaces PDF/DOCX/XLSX placeholders and adds PPTX extraction through one shared
+Tools converter, with quoted paths and explicit dependency/model readiness.
+Existing text/web extraction remains; shared ingestion now defaults to document/512
+tokens across all sources, with document/recursive/fixed overrides. Model catalog
+limits/dimension checks are planned; Qwen4B remains illustrative, with no migration.
+The proposed spreadsheet/slide defaults and limits require document review.
+[Guarded source assessment](validation/document-ingestion/assessment.md)
+confirms the defect. Execution phase: planning; validation state: not_ready.
+No document-ingestion code, installation or council is approved or started.
+MAINT implementation verification and its pending human UAT remain unchanged.
+[Tools adoption companion](proposals/tools-document-adoption.md) explicitly tracks
+ReaderFactory and smart_read routing; the shared helper alone does not establish
+that those tools have been upgraded.
+
+**Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and
-accepted by Chuck Russell. Preparing RET-001; its exact directive is not approved.
+accepted by Chuck Russell. Exact strengthened RET-001 is now approved and implemented locally; independently VERIFIED at `f896ef53` and accepted by Chuck Russell on 2026-11-07.
 Exact foundation approvals and source base
 `d003c4db` remain in the [approval record](approval/foundation-readiness.md).
 See [independent result](validation/VAL-CMD-FND-001-report.md) and
-[builder evidence](validation/CMD-FND-001-report.md). No command migration/wiring.
-`execution_phase: closeout`; `validation_state: verified` for the corrected aggregate checkpoint. RET-001 remains not_ready.
+[builder evidence](validation/CMD-FND-001-report.md). That foundation evidence
+predates the separately approved pilot wiring work.
+`execution_phase: closeout`; `validation_state: verified` for completed DIAG-001
+D1–D3 and its bounded aggregate at `be72a1e8`. [Final verification](validation/diagnostics/implementation/d3/verified-report.md)
+records Sol/Astra/Claude VERIFIED9.7 each, no open mandatory findings,1,991 source
+passes and exact corrected artifact/probe source `28c544fa`. [Acceptance handoff](validation/diagnostics/implementation/d3/acceptance-handoff.md)
+was answered: Chuck Russell reported successful manual UAT and [accepted DIAG-001](approval/diagnostics-acceptance.md);
+the [roadmap](uat/friday-chat-user-acceptance-roadmap.md) records maintainer-reported results. MEMQ-001 has completed guarded D0 and generated the bounded neutral D1 implementation under the existing technical approval: the revised
+[contract](memory-query-command-contract.md) and [directive](directives/CD-CMD-MEMQ-001-memory-queries.md)
+retain the original [approval](approval/memory-queries.md) and the current
+[cycle2 correction amendment](approval/memory-queries-directive-correction2.md).
+Council rounds 1 and 2 returned CHANGES_REQUESTED. The original four corrections are
+recorded in [REM-CMD-MEMQ-DIR-001](remediation/REM-CMD-MEMQ-DIR-001-readiness.md).
+MEMQ `execution_phase: closeout`; `validation_state: verified` for D3 and the bounded aggregate at `bab16757`. D2 is independently VERIFIED at `ccf5471b`.
+D1 is independently VERIFIED at `9ce71581` ([reconciliation](validation/memory-queries/implementation/d1/verified-report.md)). Directive/design
+readiness remains VERIFIED only for its reviewed candidate `be15dca1`. The [fresh round4 council](validation/memory-queries/directive-review/round4/report.md)
+is unanimously VERIFIED: Sol9.6, Astra9.5, Claude9.6; no mandatory findings remain.
+Chuck Russell's [additional-pass authorization](approval/memory-queries-directive-additional-pass.md)
+and [REM-CMD-MEMQ-DIR-003](remediation/REM-CMD-MEMQ-DIR-003-historical-qualifier.md)
+covered the historical qualification and this fresh council. The old Sol BLOCKED
+receipt remains preserved and invalid; all current seats complied independently.
+Neutral product code and the [MEMQ UAT plan](uat/memq-user-acceptance-plan.md) are committed at `0f809207`.
+The [D1 builder record](validation/memory-queries/implementation/d1/README.md) reports 599 Commands/cohort,
+1,338 Chat and 155 CLI passes, exact retained observations and private mutation controls.
+The three fresh D1 seats are VERIFIED (Sol9.7, Astra9.6, Claude9.6), with no mandatory findings.
+D2 Chat integration and option R persisted listing are implemented at `3ed1d58a`;
+[builder evidence](validation/memory-queries/implementation/d2/README.md) records
+1,390 Chat,599 Commands/cohort and155 CLI passes plus20 current assertion-witnessed
+mutation refusals. [Round1 council](validation/memory-queries/implementation/d2/council-round1/report.md) reproduced the runtime checks; Sol9.6 and Claude9.4 VERIFIED, Astra9.3 CHANGES_REQUESTED for stale authority prose. [Round2](validation/memory-queries/implementation/d2/council-round2/report.md) resolves that finding; Claude identifies an overbroad frozen backlog edit. The [exact restoration](remediation/REM-CMD-MEMQ-D2-002-restore-frozen-backlog.md) is independently VERIFIED by [round3 reconciliation](validation/memory-queries/implementation/d2/verified-report.md): Sol/Astra/Claude9.5 each, no mandatory findings. [D3 builder evidence](validation/memory-queries/implementation/d3/README.md) records 2,144 owning-suite passes,154 matching artifacts,8 actual installed probes,50 member/origin+10 archive+10 semantic refusals and8 restored clean-copy probes. [Final D3/aggregate reconciliation](validation/memory-queries/implementation/d3/verified-report.md) is unanimously VERIFIED: Sol9.5, Astra9.4, Claude9.5; no mandatory findings. Installed proof uses committed source `e4c0b9a2`. The historical [manual handoff](validation/memory-queries/implementation/d3/acceptance-handoff.md)
+has been answered by [MEMQ acceptance](approval/memory-queries-acceptance.md). Existing technical approval
+governs construction; council results do not grant acceptance or delivery.
+[Correction controls and preservation](validation/memory-queries/directive-review/correction1/report.md)
+are historical controller evidence; current union and complete-index gate controls
+are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/report.md).
+The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
+records the current patch and preservation checks, not an independent verdict.
+
+**Next gate:** Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.
+
+ The wider initiative stays started/local. Ignored exports
+and dirty examples remain preserved. SESSION-001 remains accepted and verified.
+SESSION D1–D3 and the complete bounded aggregate are independently VERIFIED at
+`112e657f`: Sol 9.7, Astra 9.7, Claude 9.6; no mandatory findings remain.
+[Bounded SESSION acceptance](approval/session-acceptance.md) is recorded from Chuck Russell's
+“accepted” instruction. The broader initiative remains started/local.
+PILOT-001 D1 is independently VERIFIED at `eacef5b0` by the reconciled three-provider
+council. D2 remains VERIFIED. D3 and the complete bounded pilot are independently
+VERIFIED at `eb216421` by Claude and Sol, both 9.6/10, and now
+[accepted by Chuck Russell](approval/pilot-acceptance.md).
+RET-001 remains independently VERIFIED and accepted.
+The corrected checkpoint is VERIFIED and merged through PR #13.
 The foundation's VERIFIED result and acceptance remain separate completed evidence.
 
 The maintainer changed the working home on 2026-11-05 to this Agent Framework
@@ -90,11 +179,13 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Publish and merge the independently
-[VERIFIED checkpoint](validation/checkpoint/verified-report.md), then create the
-fresh retirement branch and refresh its draft before approval. All checkpoint
-delivery actions are explicitly authorized; retirement/TUI construction remains
-unapproved. Whole-command-refactor acceptance remains separate.
+**Next gate:** Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.
+See the [main checkpoint](next-phase.md).
+
+The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)
+provides 17 individually runnable interface, diagnostics, export, usability and
+performance cases, with a results register for the completed candidate. All
+cases started as NOT RUN; the maintainer reported a successful run on 2026-11-09. This documentation does not change construction or acceptance authority.
 
 The [2026-11-06 local continuation](validation/local-2026-11-06/README.md)
 refreshes baseline identity in this working home and records the current
@@ -139,3 +230,44 @@ Round 2 results and the narrow residual pruning-review correction are recorded
 in [the council report](validation/COUNCIL-CMD-DESIGN-001-round2.md). The correction
 had controller checks only at that historical checkpoint; those verdicts do
 not verify the current corrected readiness candidate.
+
+Current additional readiness correction: [round-three findings and dispositions](validation/pilot/council-remediation-round3.json),
+[round-four diagnostic evidence](validation/pilot/harness-evidence-round4.json).
+Round-four council is complete: all scores meet 9, but all verdicts request
+changes at that reviewed candidate. See the [consolidated result](validation/pilot/council-round4.json) and
+[proposed correction plan](validation/pilot/round4-reconciliation.md). Await
+the next approval gate: [pilot contract](pilot-command-contract.md) followed by
+[CD-CMD-PILOT-001](directives/CD-CMD-PILOT-001-help-exit-clear.md), or both together.
+The two fixes and aggregate readiness are now [independently VERIFIED](validation/pilot/final-readiness-validation.md).
+Pilot construction remains unapproved.
+
+Current pilot construction is [approved](approval/pilot.md). D1 covers neutral
+handlers/tests, D2 Chat integration/lifecycle, D3 regression/artifact/installed
+proof. A fresh council follows each deliverable; no later family or delivery
+is approved. Historical pending-approval paragraphs above are superseded by
+this exact maintainer record.
+
+D1 neutral handlers, D2 Chat integration and D3 regression/installed proof are
+independently verified. [Reconciled pilot verification](validation/pilot/implementation/d3/verified-report.md)
+records the current result; [exact council reports](validation/pilot/implementation/d3/council-round2.json)
+and [current evidence](validation/pilot/implementation/d3/remediation-evidence.json)
+preserve the reviewed candidate and limits. Both D3 findings are closed.
+Chuck Russell has [accepted PILOT-001](approval/pilot-acceptance.md).
+Approved SESSION-001 inputs:
+
+1. [Session contract](session-command-contract.md): typed history/clear port,
+   payload union amendment, exact legacy behavior and failure order.
+2. [CD-CMD-SESSION-001](directives/CD-CMD-SESSION-001-session-views.md): bounded
+   paths, incremental tests, frozen baseline and installed proof. Both documents
+   are approved together in the subsequent exact approval record. S0 precedes
+   neutral D1 construction and fresh council before D2.
+
+[Preparation evidence](validation/session/preparation.json) records 25 source
+observations, exact replay and 434 related Chat/217 Commands-cohort passing
+tests. It is reference evidence, not another approval document. Later families,
+P0/P1 and TUI remain open; delivery is local only.
+
+SESSION-001 construction was [approved](approval/session-views.md), independently
+VERIFIED and [accepted by Chuck Russell](approval/session-acceptance.md).
+The [remaining council roster](approval/council-roster.md) is Sol/Astra/Claude.
+The post-SESSION instruction “Await separate maintainer direction and approved scope for a next unit” is historical and superseded by the current MEMQ next gate above.

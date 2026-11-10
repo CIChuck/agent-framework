@@ -1,0 +1,154 @@
+# MEMQ-001 D2 correction-cycle2, council round3: Claude seat
+
+**Verdict: VERIFIED**. Seat: Claude Opus 5.5/high. Fresh, independent and read-only.
+
+- Candidate: `ccf5471b441d6299c55776b60d58a23430b3bd1a`.
+- Runtime source: `3ed1d58ad8cc1e79522495da5cf19091185402d8`.
+- Request SHA256: `269a57ba…6bf`. I hashed it before reading it; it matched.
+- Manifest SHA256: `ba7a4648…076d`. It matched, and I read it in full: 8 groups, 2,790 entries.
+- REM-CMD-MEMQ-D2-002: `a7bcc2b1…b037`. Contract: `93cdb3bd…2eda`. Directive: `4d154412…fcf00`.
+- Amendment (correction2): `54c778f4…5294`. Preparation: `e6d203a0…b593`.
+
+I inherited no verdict and no builder reasoning. Hash agreement was used only for integrity, never as correctness credit.
+
+## Mandatory findings
+
+**None.** This candidate has zero mandatory findings.
+
+- **MEMQ-D2-CLAUDE-001: RESOLVED.**
+  - The backlog file `docs/planning/backlog/friday-tui-command-followups/README.md` hashes to `b8021069…daa8` in the worktree and in the committed candidate.
+  - Those bytes are identical to `9db8311e`, `39661e87` and `c5871054`: `git diff 9db8311e ccf5471b` on this path is 0 bytes.
+  - The round2 candidate `0ee49a70` had `e1908324…`. That was the only one of the 30 normative pins that drifted at round2. None drifted at round1 or D1.
+  - I parsed all 30 rows of the directive's normative input table. The table matches the request's 30-pin list exactly, path for path. All 30 hashes match the worktree and `git show ccf5471b`.
+  - REM-002 explicitly withdraws REM-001's CMD-F05 edit permission, and only that permission.
+  - REM-001 is byte-unchanged (0-byte delta), as are the council-round1 reports, correction1 and the builder/D1 evidence.
+  - The UAT change in `0ee49a70..ccf5471b` is one narrow deletion: "tracked under [CMD-F05] and" becomes "tracked in [FU-009]".
+  - FU-009 is byte-unchanged in this delta.
+- **MEMQ-D2-ASTRA-001: RESOLVED (independently re-assessed).**
+  - `authority.json` now reads `memory_queries_preparation.projection_clarification` as "implemented … stale-status finding is resolved; correction2 … awaits independent verification."
+  - The current gate string is identical in 14 places: board 1, dashboard 1, packet README 2, tactical 1, next-phase 1, authority 6, D2 README 1, last log entry 1.
+  - The only old gate text left is in the explicitly renamed historical block `memory_queries_d2_correction_before_cycle2`.
+  - The execution log is append-only against `39661e87`, `9db8311e` and `0ee49a70`: 0 removed lines, and each older log is an exact byte prefix of the current one.
+- **MEMQ-D2-SOL-001:** none was raised against the current bytes, and I found nothing new.
+
+## Advisory notes (non-mandatory)
+
+- **A1.** FU-009's "Source Evidence" line still links CMD-F05 as a related item (`upgrade-log.md:342`).
+  - It does not claim CMD-F05 records the defect.
+  - REM-002 mandates preserving FU-009, so changing it now would be out of scope. A maintainer may tidy it later.
+- **A2.** `authority.json` renamed the cycle1 block key to `memory_queries_d2_correction_before_cycle2` and kept its content.
+  - This is consistent with the existing `_before_*` historical pattern. It is not a log rewrite.
+- **A3.** The builder raw pair `prepared/new-cases.{json,log}` is an earlier failing attempt (exit 1, 7 failed).
+  - It is covered only collectively by the evidence `excluded_attempts` text.
+  - The 52-pass claim is supported separately: by d2-fast 616, canonical 651 and my own fresh run.
+- **A4.** Residual advisories carried forward:
+  - Empty and absent descriptions render identically (`description or ""`).
+  - Frozen-row traceability.
+
+## Criteria matrix
+
+### CR-D2
+
+| ID | Result | Evidence |
+| --- | --- | --- |
+| CR-D2-01 | PASS | ASTRA-001 assessed as above. The 14 current gates agree semantically. Historical checkpoints are preserved, and the log is append-only. |
+| CR-D2-02 | PASS | The delta `0ee49a70..` is 25 files, all under `docs/`. Non-docs diff is empty versus `0ee49a70`, `9db8311e` and `3ed1d58a`. All 30 normative pins match. All 147 pairs are exact. The UAT diff from `9db8311e` touches only the explicit-description setup bullet and the MQ-UAT-10 row. All 20 cases are NOT RUN. FU-009 is unchanged, with no ingest repair. |
+| CR-D2-03 | PASS | Fresh: validate, render `--check`, next/show, lifecycle (931), and five diff `--check` runs, all exit 0. I read the full source and authority, and reran runtime lanes (below). 20 CALL AssertionError witnesses were assessed independently. I ran only the standard pinned launcher; no alternate eager-import launcher was run or credited. |
+| CR-D2-04 | PASS | Both boundaries cover all 2,790 entries with zero mismatches. Dirty configs, exports, the external locator, technical inputs and supplied artifacts are all identical. All my writes stayed in one scratch. |
+| CR-D2-05 | PASS | Exact `b8021069` restoration from `9db8311e`, with no new pin. REM-002 supersedes the REM-001 permission. Historical failed reports and evidence are unchanged. The UAT no longer cites CMD-F05, and the FU-009 workaround remains. |
+
+### MD2
+
+| ID | Result | Evidence |
+| --- | --- | --- |
+| MD2-01 | PASS | Authority precedes D2: D1 reconciliation `39661e87`, start HEAD. The aggregate `39661e87..` touches exactly the allowlisted Chat paths, both READMEs and docs. Framework packages, metadata and lock are unchanged since `c5871054` (empty stat). No neutral source drift occurs in D2. |
+| MD2-02 | PASS | AST audit: `DEFAULT_COMMAND_SPECS` has 39 entries, and only indices 3/9/10/11/12/16 changed (now `_memory_query_definition(...)`). The other 33 entries and all other registry definitions are AST-identical. The only additions are the metadata helper and import, and the only removal is the now-unused `_record_value` import. 41 canonical / 3 aliases are asserted by MQ-T07, which I reran. |
+| MD2-03 | PASS | `invoke_memory_query` builds one `CommandRequest(spec.name, args, spec)` with a fresh `ChatMemoryQueryPort` and factory, awaits one handler, then calls `adapt_memory_query_outcome`. The shared handler validates request type, execution type and name before any port read. The port's `__init__` only stores the context. MQ-T08 covers parse/factory counts, renamed registries and custom handlers (which take priority, via `pytest.fail` if delegated). |
+| MD2-04 | PASS | Read and await order is the same as the old code: memory→stats; transcript, then session_identity; budget; session; session_identity. Exception is handled and cancellation propagates. 8 sections / 24 metrics. Bool before float before str, 256-char preview and `%` suffix, each formatted once. not_configured renders "not configured". Warnings are unique and sorted. |
+| MD2-05 | PASS | Plain records use `preview_text(text)` only. Meta field reads follow the old order: source_ids, truncated, verification (×2 reads of confidence), text, id(80), collection, stage, created, confidence, source_count (×2 reads), provenance, then the verification format last. Empty complete/incomplete, the 100 cap and decayed line hold. The MQ-D1 refusal is raised after the projection reads. Supplemental 4 is exact (inspected). |
+| MD2-06 | PASS | Exact lowercase `nodes`. `" ".join(args)` is used otherwise. Entities are awaited, then relationships only when not nodes-only, both before projection. `record_value` fallbacks, `[:100]`, blank separator and "No entities found." are kept. A non-mapping fails after both reads. |
+| MD2-07 | PASS | Option R adds the views/protocol/fake method and `FrameworkMemoryAdapter.query_ingested_documents` plus one helper. It uses short/long `get_all(limit=None, where={"type":"ingested_file"})` with `gather(return_exceptions=True)`. It groups by `(source, description)` with record counts, sorts None-first, warns per collection and on malformed records, and re-raises CancelledError and BaseException. It does not read decayed collections or source files. The fake keeps its order and counts. |
+| MD2-08 | PASS | `type(outcome) is CommandOutcome` with no error and no effects. The six exact `type(data) is` arms otherwise raise ValueError. English text, defaults and no trailing newline are preserved, and renderers make no service calls. |
+| MD2-09 | PASS | Node names MQ-T07..14 are present. Own run: 52 pass (1/6/6/15/9/8/1/6). No skips, xfails or sleeps. 20 mutants each have ≥1 named CALL AssertionError; the unchanged control passes 0-fail; canonical roots sit in the mutant copies; the 40 common origins are stable across 3 phases. Own runs: 599/1390/155/616/117. |
+| MD2-10 | PASS (inspected) | MEMQ 76 = 68 + 2 + 6 from two exports (candidate-source and replay-source), with identical cases and metadata. DIAG 72 (68+4), SESSION 25, pilot 196 (41/62/29/61/3). Guard 18, comparer 14 refusals. MQ-T07 was freshly re-run in-test against all 76 frozen rows. |
+| MD2-11 | PASS | 147 pairs and 722 ledger hashes are exact. Own static: Ruff clean, mypy 15 OK, new-format 3 OK, neutral 14 OK, changed-format 4 failing (baseline, unwaived), `format_debt` `{}`, lock 214. The ingest TypeError message `d72b418b…` is identical between baseline and candidate (inspected). The ingest definitions `ingest_document`, `_ingest_document` and `_ingest_handler` are AST-segment-identical from `c5871054` to the candidate (own run). UAT is NOT RUN, and D3 is excluded. |
+| MD2-12 | PASS | Both boundaries match fully: request, manifest, HEAD, branch, index `79cc1aec…` (hashed before status), staged, untracked, ignored, and all 8 groups. No repairs, delegation, advancement or delivery. |
+
+### MQ-T (Chat)
+
+| Test | Result | Evidence |
+| --- | --- | --- |
+| MQ-T07 `test_memory_query_metadata_and_frozen_cases` | PASS | 1 case. Fixture `0403471b…`, 41/3/39, 76 rows. Witness for 13 mutants. |
+| MQ-T08 `test_memory_query_once_only_delegation` | PASS | 6 cases. Parse/factory counts, renamed and custom handlers, injected outcomes. Ignored-result and legacy-substitution witnesses. |
+| MQ-T09 `test_memory_statistics_projection_order_and_failures` | PASS | 6 cases. Warning dedupe/order, zero, suffix and double-query witnesses. Store/transcript cancel catches the unawaited mutant. |
+| MQ-T10 `test_memory_record_projection_and_rendering` | PASS | 15 cases. Double-format witness. |
+| MQ-T11 `test_entities_projection_and_rendering` | PASS | 9 cases. Projection-before-second-await and case-insensitive witnesses. |
+| MQ-T12 `test_memory_query_adapter_refusals_and_purity` | PASS | 8 cases. |
+| MQ-T13 `test_memory_query_real_app_sequence` | PASS | 1 case. |
+| MQ-T14 `test_ingested_listing_reads_persisted_metadata` | PASS | 6 cases. Decayed/grouping/count/order/cancel witnesses. |
+
+## Commands actually executed (own scratch)
+
+1. `ls-files -s -z` hash, then status, at start and end, with the full 2,790-entry manifest check (`bin/boundary.py`).
+2. Request and manifest hashes. I inspected and hashed `freeze.py` and `correct.py` but did not execute them.
+3. The 30-pin check against the worktree and four commits (`bin/pins.py`).
+4. Delta and aggregate diffs, the backlog hashes at 5 commits, and the append-only log prefix check.
+5. Board `validate`, `render --check`, `next` and `show`; `check-documentation-lifecycle.py`.
+6. `git diff --check` over the worktree, `0ee49a70..`, `39661e87..`, `c5871054..` and `3ed1d58a..`.
+7. Pairs (147) and ledgers (722) (`bin/pairs_ledger.py`); AST allowlist audit (`bin/ast_audit.py`); a scan of added source lines for `Any`, casts, ignores and asserts (none found).
+8. `prepare.py` (pinned) with the read-only wheelhouse into my scratch.
+9. pilot_run lanes:
+   - named 52;
+   - neutral/cohort 599;
+   - CLI 155;
+   - d2-fast 616;
+   - d3-fast (sourcefast) 117;
+   - full Chat 1,390 (excluding live_lmstudio).
+10. Static lanes: Ruff, mypy (scratch cache), three format checks, `format_debt check`, and `uv lock --check` on my own `git archive` export.
+11. An independent parse and classification of all 21 mutation reports (`out/mutants.json`).
+
+## Inspected receipts only (not rerun)
+
+- Mutant generation and execution: I classified the raw reports and did not regenerate them.
+- MEMQ/DIAG/SESSION/pilot capture and compare programs.
+- Guard and comparer self-tests.
+- Supplemental 4 and the paired ingest-None probes.
+- Prior seat reports.
+
+The source and tests are byte-identical to `3ed1d58a`. I found no drift or unresolved concern that would require rerunning these lanes.
+
+I ran no alternate eager-import launchers. Earlier disclosed alternate-launcher failures earn no passing credit, and setup, KeyError and product exceptions earn no mutation credit. The record-cap, entity-cap and nodes-relationships mutants have co-occurring product ValueErrors; their credit comes only from the frozen-case CALL assertions.
+
+## Integrity and isolation
+
+- **Scratch:** exactly one, `/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/e365922c-fb7d-4056-a0ff-af39773d1487/scratchpad/memq-d2-c2r3-claude.ueBmXC`.
+  - It holds TMPDIR, `UV_CACHE_DIR`, basetemps, the mypy cache, the export and reports.
+  - Every Python process ran with `-B` and `PYTHONDONTWRITEBYTECODE=1`, and every Git process with `GIT_OPTIONAL_LOCKS=0`.
+  - pytest ran with `-p no:cacheprovider`.
+- **Repository:** no writes. The end boundary shows identical repository content and ignored listing.
+- **External locator:** `/private/tmp/memq-sol-current-path` is unchanged.
+- **Supplied folders:** nothing newer than my start time appears under `/private/tmp/friday-memq-d2-correction2-lv1p0g8y`.
+- **Host-managed (not mine):**
+  - T3 checkpoint refs `refs/t3/orchestration-v2/checkpoints/MmMy…/ordinal/1` (15:06:21) and `MDgw…/ordinal/43` (15:07:03).
+  - 7 loose objects, and the `.git` and submodule `.git` mtimes.
+  - Background-task output under the session `tasks/` folder, and transcripts under `~/.claude/projects`.
+  - I ran no ref, commit or checkout command. The logical index is unchanged.
+
+## Known debt and limits
+
+These remain failed or unwaived and are not part of D2:
+
+- Root Ruff 534.
+- The root `test_display` collection conflict (6,929).
+- 4 Chat whole-file format failures (`memory.py`, `registry.py`, `runtime.py`, `adapters.py`).
+- The nullable-ingest TypeError (FU-009, workaround documented).
+
+Future work, also outside D2:
+
+- D3 artifacts: builds, installed probe and installed proof.
+- Human UAT: all 20 cases NOT RUN.
+- D4 root gates.
+
+Old DIAG/SESSION installed probes are not claimed as API54. The prior Claude prose figure 3591 is an arithmetic typo; the listed groups sum to 2,591, and the current manifest has 2,790.
+
+**Advisory rubric:** 9.5/10. This is advisory only; it is not acceptance, advancement or delivery. The controller reconciles all seats before D3.

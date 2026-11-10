@@ -15,6 +15,7 @@ from friday_chat.reorganization.contracts import (
     ReorganizationMode,
     ReorganizationRequest,
 )
+from friday_chat.reorganization.coordinator import present_stage_result
 from friday_chat.reorganization.mutation import (
     ExplicitMaintenanceProviderRegistry,
     FrameworkMaintenanceMutationAdapter,
@@ -51,8 +52,25 @@ from friday_memory import (
     VectorMemoryRecord,
     VectorMemoryReference,
 )
+from friday_memory.maintenance.pipeline import (
+    MemoryMaintenancePipeline,
+    MemoryVerificationCounts,
+    ShieldedMemoryMaintenanceBoundary,
+)
+from test_maintenance_order import CaptureObserver
 
 ProviderResponseT = TypeVar("ProviderResponseT", bound=StrictProviderModel)
+
+
+async def run_adapter(adapter, request):
+    observer = CaptureObserver()
+    result = await adapter.execute_pipeline(
+        adapter.memory_request(request),
+        run_id="1" * 32,
+        observer=observer,
+        boundary=ShieldedMemoryMaintenanceBoundary(),
+    )
+    return result, observer
 
 
 @dataclass
@@ -80,6 +98,8 @@ class DeterministicLlmProvider(MaintenanceLlmProvider):
         user_payload: str,
     ) -> ProviderResponseT:
         self.completion_calls += 1
+        if self.fail_probe:
+            raise RuntimeError("secret-provider-response")
         self.system_prompts.append(system_prompt)
         self.user_payloads.append(user_payload)
         if response_model is ProviderProbeResponse:
@@ -169,7 +189,16 @@ class RecordingMemoryMutation:
     verification_command_counts: list[int] = field(default_factory=list)
     existing_document_hashes: tuple[str, ...] = ()
 
-    async def plan(self, step: MemoryMutationStep) -> MemoryMutationPlan:
+    def begin_operation(self, operation_id: str) -> None:
+        self.operation_id = operation_id
+
+    def end_operation(self, operation_id: str) -> None:
+        assert self.operation_id == operation_id
+        self.operation_id = None
+
+    async def plan(
+        self, step: MemoryMutationStep, *, verification_selection=None
+    ) -> MemoryMutationPlan:
         self.plans.append(step)
         provider_records = (
             (
@@ -218,6 +247,7 @@ class RecordingMemoryMutation:
         return MemoryMutationPlan(
             plan_id=("a" * 64),
             step=step,
+            verification_selection=verification_selection,
             scanned_count=2,
             candidate_count=candidate_count,
             vector_collection_count=1,
@@ -261,6 +291,29 @@ class RecordingMemoryMutation:
             succeeded=True,
             scanned_count=plan.scanned_count,
             changed_count=changed_count,
+            created_references=tuple(
+                VectorMemoryReference(collection=a.collection, memory_id=a.memory_id)
+                for a in command.vector_additions
+            )
+            if plan.step is MemoryMutationStep.SYNTHESIZE
+            else None,
+            verification_counts=MemoryVerificationCounts(
+                selected=len(command.verification_updates),
+                verified=sum(
+                    u.status is MemoryVerificationStatus.VERIFIED
+                    for u in command.verification_updates
+                ),
+                rejected=sum(
+                    u.status is MemoryVerificationStatus.REJECTED
+                    for u in command.verification_updates
+                ),
+                uncertain=sum(
+                    u.status is MemoryVerificationStatus.UNCERTAIN
+                    for u in command.verification_updates
+                ),
+            )
+            if plan.step is MemoryMutationStep.VERIFY
+            else None,
         )
 
     async def verify_postconditions(
@@ -437,11 +490,7 @@ async def test_litellm_provider_rejects_reasoning_json_and_sanitizes_validation(
         ),
         (
             (MutationStep.VERIFY,),
-            (
-                MaintenanceLlmRole.CLASSIFIER,
-                MaintenanceLlmRole.RESEARCHER,
-                MaintenanceLlmRole.JUDGE,
-            ),
+            (),  # Verification preflight is configuration-only, never a completion.
             0,
         ),
         (
@@ -463,7 +512,22 @@ async def test_preflight_probes_only_selected_mode_capabilities(
         trigger=OperationTrigger.MANUAL,
     )
 
-    result = await adapter.preflight(request, steps)
+    if steps == (MutationStep.ANALYZE,):
+        request = request.model_copy(update={"mode": ReorganizationMode.ANALYZE})
+    elif len(steps) == 1 and steps[0] is not MutationStep.REEMBED:
+        request = request.model_copy(
+            update={"mode": ReorganizationMode(steps[0].value), "execute": True}
+        )
+    else:
+        request = request.model_copy(
+            update={
+                "execute": True,
+                "skip_synthesis": True,
+                "skip_verify": True,
+                "force_reembed": steps == (MutationStep.REEMBED,),
+            }
+        )
+    result = await adapter.preflight(request)
 
     assert result.supported
     assert tuple(role for role, provider in llms.items() if provider.probe_calls) == (
@@ -482,11 +546,19 @@ async def test_provider_failures_are_sanitized_and_fail_before_mutation() -> Non
         trigger=OperationTrigger.MANUAL,
     )
 
-    result = await adapter.preflight(request, (MutationStep.VERIFY,))
-
-    assert not result.supported
+    request = request.model_copy(update={"execute": True})
+    result = await adapter.preflight(request)
+    assert result.supported
+    observer = CaptureObserver()
+    with pytest.raises(RuntimeError):
+        await adapter.execute_pipeline(
+            adapter.memory_request(request),
+            run_id="1" * 32,
+            observer=observer,
+            boundary=ShieldedMemoryMaintenanceBoundary(),
+        )
     assert memory.commands == []
-    rendered = " ".join(error.message for error in result.errors)
+    rendered = " ".join(error.message for error in observer.results[-1].errors)
     assert "secret-provider-response" not in rendered
     assert "RuntimeError" in rendered
 
@@ -502,9 +574,10 @@ async def test_missing_selected_providers_fail_preflight_without_mutation() -> N
     request = ReorganizationRequest(
         mode=ReorganizationMode.SYNTHESIZE,
         trigger=OperationTrigger.MANUAL,
+        execute=True,
     )
 
-    result = await adapter.preflight(request, (MutationStep.SYNTHESIZE,))
+    result = await adapter.preflight(request)
 
     assert not result.supported
     assert len(result.errors) == 2
@@ -514,15 +587,14 @@ async def test_missing_selected_providers_fail_preflight_without_mutation() -> N
 
 @pytest.mark.asyncio
 async def test_embedding_timeout_is_sanitized_before_mutation() -> None:
-    adapter, _llms, _embedding, memory, _lifecycle = _adapter(
-        fail_embedding=True
-    )
+    adapter, _llms, _embedding, memory, _lifecycle = _adapter(fail_embedding=True)
     request = ReorganizationRequest(
         mode=ReorganizationMode.SYNTHESIZE,
         trigger=OperationTrigger.MANUAL,
+        execute=True,
     )
 
-    result = await adapter.preflight(request, (MutationStep.SYNTHESIZE,))
+    result = await adapter.preflight(request)
 
     assert not result.supported
     assert memory.commands == []
@@ -539,10 +611,9 @@ async def test_synthesis_and_verification_dispatch_typed_provider_outputs() -> N
         trigger=OperationTrigger.MANUAL,
         execute=True,
     )
-    adapter.begin_run(synthesis)
-    synthesis_result = await adapter.execute_step(synthesis, MutationStep.SYNTHESIZE)
-    synthesis_verification = await adapter.verify_postconditions(synthesis)
-    adapter.end_run(synthesis)
+    synthesis_run, _ = await run_adapter(adapter, synthesis)
+    synthesis_result = present_stage_result(synthesis_run.stages[0])
+    synthesis_verification = synthesis_run.postconditions
 
     assert synthesis_result.changed_count == 1
     assert synthesis_verification.verified
@@ -563,10 +634,8 @@ async def test_synthesis_and_verification_dispatch_typed_provider_outputs() -> N
         trigger=OperationTrigger.MANUAL,
         execute=True,
     )
-    adapter.begin_run(verification)
-    verification_result = await adapter.execute_step(verification, MutationStep.VERIFY)
-    await adapter.verify_postconditions(verification)
-    adapter.end_run(verification)
+    verification_run, _ = await run_adapter(adapter, verification)
+    verification_result = present_stage_result(verification_run.stages[0])
 
     assert verification_result.changed_count == 2
     assert all(
@@ -598,11 +667,8 @@ async def test_synthesis_can_abstain_without_embedding_or_mutation(
         trigger=OperationTrigger.MANUAL,
         execute=True,
     )
-    adapter.begin_run(request)
-
-    result = await adapter.execute_step(request, MutationStep.SYNTHESIZE)
-
-    adapter.end_run(request)
+    shared, observer = await run_adapter(adapter, request)
+    result = present_stage_result(shared.stages[0])
     assert result.status.value == "completed"
     assert result.changed_count == 0
     assert embedding.embed_calls == []
@@ -621,11 +687,8 @@ async def test_synthesis_skips_exact_existing_document_without_embedding() -> No
         trigger=OperationTrigger.MANUAL,
         execute=True,
     )
-    adapter.begin_run(request)
-
-    result = await adapter.execute_step(request, MutationStep.SYNTHESIZE)
-
-    adapter.end_run(request)
+    shared, observer = await run_adapter(adapter, request)
+    result = present_stage_result(shared.stages[0])
     assert result.status.value == "completed"
     assert result.changed_count == 0
     assert embedding.embed_calls == []
@@ -690,17 +753,15 @@ def test_synthesis_provider_payload_is_topic_scoped_and_bounded() -> None:
         minimum_synthesis_confidence=0.65,
     )
 
-    payload, visible_source_ids = (
-        FrameworkMaintenanceMutationAdapter._synthesis_provider_payload(plan, group)
+    payload, visible_source_ids = MemoryMaintenancePipeline._synthesis_provider_payload(
+        plan, group
     )
     decoded = json.loads(payload)
 
     assert len(payload) <= 120_000
     assert 2 <= len(decoded["records"]) <= 64
     assert all(len(record["document"]) <= 6_000 for record in decoded["records"])
-    assert visible_source_ids == {
-        record["memory_id"] for record in decoded["records"]
-    }
+    assert visible_source_ids == {record["memory_id"] for record in decoded["records"]}
 
 
 @pytest.mark.asyncio
@@ -713,11 +774,15 @@ async def test_synthesis_rejects_sources_outside_plan_before_embedding() -> None
         trigger=OperationTrigger.MANUAL,
         execute=True,
     )
-    adapter.begin_run(request)
-
-    result = await adapter.execute_step(request, MutationStep.SYNTHESIZE)
-
-    adapter.end_run(request)
+    observer = CaptureObserver()
+    with pytest.raises(MaintenanceResponseValidationError):
+        await adapter.execute_pipeline(
+            adapter.memory_request(request),
+            run_id="1" * 32,
+            observer=observer,
+            boundary=ShieldedMemoryMaintenanceBoundary(),
+        )
+    result = present_stage_result(observer.results[-1])
     assert result.status.value == "failed"
     assert result.errors[0].message == (
         "maintenance step failed (MaintenanceResponseValidationError)"
@@ -736,10 +801,8 @@ async def test_command_receipts_are_cleared_between_execute_runs() -> None:
     )
 
     for _ in range(2):
-        adapter.begin_run(request)
-        await adapter.execute_step(request, MutationStep.DEDUPE)
-        await adapter.verify_postconditions(request)
-        adapter.end_run(request)
+        await run_adapter(adapter, request)
+        assert adapter.memory.operation_id is None
 
     assert memory.verification_command_counts == [1, 1]
 

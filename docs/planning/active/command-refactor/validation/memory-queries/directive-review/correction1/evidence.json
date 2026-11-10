@@ -1,0 +1,208 @@
+{
+  "unit": "MEMQ-001",
+  "kind": "directive readiness correction cycle1 controller evidence",
+  "recorded_at": "2026-11-09T15:37:22.466129+00:00",
+  "base": "76b949b2e621e7a44ddec6ed527784e781696c8c",
+  "status": "passed controller correction checks; fresh council required",
+  "instruction": "lets apply the corrections and iterate",
+  "scope": "Four consolidated document findings only; no product changes",
+  "identities": {
+    "contract": "b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2",
+    "directive": "3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a",
+    "format_helper": "3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751",
+    "format_baseline": "7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2",
+    "verifier": "7bd5cf6524e982093c007f0d48a4b0f76ed55370aeb9556cca57cc0d5c6a6bb9",
+    "remediation": "eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540",
+    "approval": "7eed81dc9fdb4d9081580c78731fac3e42eb074a700597e108968ccf906ba4be",
+    "recorded_at": "2026-11-09T15:33:59.716791+00:00",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped."
+  },
+  "files": {
+    "prepared/correction-baseline-format.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-baseline-format.json",
+      "sha256": "9613ab2c02f3cc1461ed1ceea954c663976e0bdd0f1982e9424d35ef950368a9",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"ruff\",\n    \"format\",\n    \"--check\",\n    \"--no-cache\",\n    \"packages/friday-chat/src/friday_chat/commands/memory.py\",\n    \"packages/friday-chat/src/friday_chat/commands/registry.py\",\n    \"packages/friday-chat/src/friday_chat/memory_views.py\",\n    \"packages/friday-chat/src/friday_chat/runtime.py\",\n    \"packages/friday-chat/src/friday_chat/adapters.py\"\n  ],\n  \"exit\": 1,\n  \"seconds\": 0.03\n}"
+    },
+    "prepared/correction-baseline-format.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-baseline-format.log",
+      "sha256": "66fa4be7aa1faf1ccd614ca98f71fd366d2b37dc9aaaa4f9b3642716f00544d1",
+      "text": "Would reformat: packages/friday-chat/src/friday_chat/adapters.py\nWould reformat: packages/friday-chat/src/friday_chat/commands/memory.py\nWould reformat: packages/friday-chat/src/friday_chat/commands/registry.py\nWould reformat: packages/friday-chat/src/friday_chat/runtime.py\n4 files would be reformatted, 1 file already formatted\n"
+    },
+    "prepared/correction-board.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-board.json",
+      "sha256": "1733150c11b6325332f371c57ba64877bbb1d69748871a8f2efed9f185727577",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.17\n}"
+    },
+    "prepared/correction-board.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-board.log",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "text": "Development board validation passed: 36 tasks\n"
+    },
+    "prepared/correction-controls.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-controls.json",
+      "sha256": "ef44be10934f2f10c0cdf9b2b7fba416fd8b36b5b124a9e4ce6b242e2c475ce7",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/verify_directive_corrections.py\",\n    \".\",\n    \"/private/tmp/memq-directive-correction1-3xebw8ix/controls-final\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.47\n}"
+    },
+    "prepared/correction-controls.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-controls.log",
+      "sha256": "6491b3ba19af17af99cb6ae87d398a4994cb5f629711a90f4e41e2b1661e8be4",
+      "text": "{\n  \"scope\": \"document correction controls; no product implementation\",\n  \"status\": \"passed\",\n  \"diagnostic_bindings\": 54,\n  \"diagnostic_and_session_AST_reversal\": \"passed\",\n  \"unrelated_assertion_rejected\": true,\n  \"retained_probe_functions\": [\n    \"retained_session_neutral_behavior\",\n    \"chat_behavior\",\n    \"neutral_diagnostics\",\n    \"chat_diagnostics\"\n  ],\n  \"D5_exact_ordered_exports\": 54,\n  \"all_four_extra_behavior_controls_rejected\": true,\n  \"format_inventory_sha256\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n  \"format_controls\": [\n    \"exact baseline\",\n    \"unchanged\",\n    \"shifted lines\",\n    \"formatted new code\",\n    \"new defect rejected\",\n    \"duplicate allowance rejected\"\n  ],\n  \"baseline_format_debt\": \"failed/unwaived\"\n}\n"
+    },
+    "prepared/correction-dashboard.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-dashboard.json",
+      "sha256": "e692da5be44c015b61940591cb4e17ace8216ccd784a2b7ca8d411fea66ff4da",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.17\n}"
+    },
+    "prepared/correction-dashboard.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-dashboard.log",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "text": "Planning dashboard is current\n"
+    },
+    "prepared/correction-docs.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-docs.json",
+      "sha256": "f5244b1d61e26a2c2de656115bcfd67d09df3124f786259ec5e4dc50c9381338",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/check-documentation-lifecycle.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.81\n}"
+    },
+    "prepared/correction-docs.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-docs.log",
+      "sha256": "8adc068dd11d3fd49ba865a5658de94c2f0dc409c60f519ef6a275325176d0c1",
+      "text": "Documentation lifecycle validation passed: 911 Markdown files checked\n"
+    },
+    "prepared/correction-format-debt.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-format-debt.json",
+      "sha256": "0a72eb89b2c21358cfaec016d178f873e19a425487b81d5263f47dcd297f82da",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/format_debt.py\",\n    \"check\",\n    \".\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/format-baseline.json\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.29\n}"
+    },
+    "prepared/correction-format-debt.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-format-debt.log",
+      "sha256": "1d6a7357d3da1f1afb251f43937da567d6c286fe0f8a75ffb61c2b2b0a056ba9",
+      "text": "{\"new_format_debt\": {}, \"baseline_debt\": \"failed/unwaived\"}\n"
+    },
+    "prepared/correction-format.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-format.json",
+      "sha256": "5d8802e94db1cd298bcfbc4f1349103960db7257c269614cf2f8cbf4a4367b2f",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"ruff\",\n    \"format\",\n    \"--check\",\n    \"--no-cache\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/format_debt.py\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/verify_directive_corrections.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.03\n}"
+    },
+    "prepared/correction-format.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-format.log",
+      "sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938",
+      "text": "2 files already formatted\n"
+    },
+    "prepared/correction-lint.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-lint.json",
+      "sha256": "c6016a9e04056853165d871ea4091445907fd7c4e7587019ea4866bb496f21e4",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"ruff\",\n    \"check\",\n    \"--no-cache\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/format_debt.py\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/verify_directive_corrections.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.03\n}"
+    },
+    "prepared/correction-lint.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-lint.log",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "text": "All checks passed!\n"
+    },
+    "prepared/correction-preservation.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-preservation.json",
+      "sha256": "c6c2ea56ce35e83af6f752962770b0bb0c55fd386c95abfb6509caeed0a83dbf",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/private/tmp/memq-directive-correction1-3xebw8ix/finish_evidence.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.7\n}"
+    },
+    "prepared/correction-preservation.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-preservation.log",
+      "sha256": "13f493d2a5e6e95e16a8ee2595c0c57335a66356472c109ca8a23f0301009da4",
+      "text": "{\n  \"status\": \"passed\",\n  \"recorded_at\": \"2026-11-09T15:35:36.639667+00:00\",\n  \"precommit_head\": \"76b949b2e621e7a44ddec6ed527784e781696c8c\",\n  \"precommit_index\": \"730d51fc2821f79031a442e4b31e350258488f70575d2229b53ce55dcded81c0\",\n  \"protected_non_docs\": 1255,\n  \"dirty_examples_unchanged\": 2,\n  \"ignored_entries_unchanged\": 3,\n  \"supplied_raw_files_unchanged\": 29,\n  \"original_preparation_and_supplement_unchanged\": true,\n  \"historical_approval_and_planning_checks_unchanged\": true,\n  \"board_event_history_preserved\": true,\n  \"execution_log_append_only\": true,\n  \"shell_blocks_checked\": 7,\n  \"technical_hashes\": {\n    \"contract\": \"b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2\",\n    \"directive\": \"3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a\",\n    \"format_helper\": \"3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751\",\n    \"format_baseline\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n    \"verifier\": \"7bd5cf6524e982093c007f0d48a4b0f76ed55370aeb9556cca57cc0d5c6a6bb9\",\n    \"remediation\": \"eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540\",\n    \"approval\": \"7eed81dc9fdb4d9081580c78731fac3e42eb074a700597e108968ccf906ba4be\",\n    \"recorded_at\": \"2026-11-09T15:33:59.716791+00:00\",\n    \"next_gate\": \"Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.\"\n  },\n  \"source_implementation\": \"not started; no product changes\"\n}\n"
+    },
+    "prepared/correction-records.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-records.json",
+      "sha256": "74281035c74d339ff3658c381e8de38ecf0166f06de4b961554c37df9dcd8168",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/private/tmp/memq-directive-correction1-3xebw8ix/reconcile_records.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.33\n}"
+    },
+    "prepared/correction-records.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-records.log",
+      "sha256": "6dde4f74744d7e217282c9fd60c41bcbc463d342a0d42e0a89e25a2a92268beb",
+      "text": "{\n  \"contract\": \"b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2\",\n  \"directive\": \"3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a\",\n  \"format_helper\": \"3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751\",\n  \"format_baseline\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n  \"verifier\": \"7bd5cf6524e982093c007f0d48a4b0f76ed55370aeb9556cca57cc0d5c6a6bb9\",\n  \"remediation\": \"eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540\",\n  \"approval\": \"7eed81dc9fdb4d9081580c78731fac3e42eb074a700597e108968ccf906ba4be\",\n  \"recorded_at\": \"2026-11-09T15:33:59.716791+00:00\",\n  \"next_gate\": \"Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.\"\n}\n"
+    },
+    "controls-final/controls.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/controls-final/controls.json",
+      "sha256": "6491b3ba19af17af99cb6ae87d398a4994cb5f629711a90f4e41e2b1661e8be4",
+      "text": "{\n  \"scope\": \"document correction controls; no product implementation\",\n  \"status\": \"passed\",\n  \"diagnostic_bindings\": 54,\n  \"diagnostic_and_session_AST_reversal\": \"passed\",\n  \"unrelated_assertion_rejected\": true,\n  \"retained_probe_functions\": [\n    \"retained_session_neutral_behavior\",\n    \"chat_behavior\",\n    \"neutral_diagnostics\",\n    \"chat_diagnostics\"\n  ],\n  \"D5_exact_ordered_exports\": 54,\n  \"all_four_extra_behavior_controls_rejected\": true,\n  \"format_inventory_sha256\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n  \"format_controls\": [\n    \"exact baseline\",\n    \"unchanged\",\n    \"shifted lines\",\n    \"formatted new code\",\n    \"new defect rejected\",\n    \"duplicate allowance rejected\"\n  ],\n  \"baseline_format_debt\": \"failed/unwaived\"\n}\n"
+    },
+    "controls-final/diagnostic-test-transform.py": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/controls-final/diagnostic-test-transform.py",
+      "sha256": "8f5590a65cc4b59bab86a5f4a21d2be52bec0d72405ca2db433076997c2514c5",
+      "text": "def test_diagnostic_specs_exports_and_factory():\n    import friday_commands.memory_queries as memory_queries_module\n    assert api.__all__ == ['PILOT_SPECS', 'SESSION_SPECS', 'CommandArgument', 'CommandError', 'CommandExecution', 'CommandHandler', 'CommandOutcome', 'CommandRegistry', 'CommandRequest', 'CommandSpec', 'DispatchResult', 'ExitData', 'FoundationData', 'HelpCatalog', 'HelpData', 'HistoryData', 'HistoryTurn', 'NoData', 'SessionClearedData', 'SessionPort', 'UiEffect', 'build_pilot_handlers', 'build_session_handlers', 'describe_help', 'DiagnosticField', 'ContextData', 'PromptData', 'DebugTurnData', 'DebugData', 'BudgetData', 'TimingCounter', 'TimingTurnData', 'TimingData', 'RetrievalData', 'RetrievalUnavailableData', 'DIAGNOSTIC_SPECS', 'DiagnosticsPort', 'build_diagnostic_handlers', 'MemoryWarningData', 'MemoryMetricData', 'MemorySectionData', 'MemoryStatisticsData', 'MemoryRecordData', 'MemoryRecordsData', 'MemoryQueryFailedData', 'MemoryUnavailableData', 'GraphEntityData', 'GraphRelationshipData', 'GraphData', 'IngestedDocumentData', 'IngestedDocumentsData', 'MEMORY_QUERY_SPECS', 'MemoryQueryPort', 'build_memory_query_handlers']\n    owners = ((contracts, ('CommandArgument', 'CommandError', 'CommandExecution', 'CommandOutcome', 'CommandRequest', 'CommandSpec', 'DispatchResult', 'ExitData', 'FoundationData', 'HelpData', 'HistoryData', 'HistoryTurn', 'NoData', 'SessionClearedData', 'UiEffect', 'DiagnosticField', 'ContextData', 'PromptData', 'DebugTurnData', 'DebugData', 'BudgetData', 'TimingCounter', 'TimingTurnData', 'TimingData', 'RetrievalData', 'RetrievalUnavailableData', 'MemoryWarningData', 'MemoryMetricData', 'MemorySectionData', 'MemoryStatisticsData', 'MemoryRecordData', 'MemoryRecordsData', 'MemoryQueryFailedData', 'MemoryUnavailableData', 'GraphEntityData', 'GraphRelationshipData', 'GraphData', 'IngestedDocumentData', 'IngestedDocumentsData')), (registry_module, ('CommandHandler', 'CommandRegistry')), (pilot_module, ('PILOT_SPECS', 'HelpCatalog', 'build_pilot_handlers', 'describe_help')), (session_module, ('SESSION_SPECS', 'SessionPort', 'build_session_handlers')), (shared, ('DIAGNOSTIC_SPECS', 'DiagnosticsPort', 'build_diagnostic_handlers')), (memory_queries_module, ('MEMORY_QUERY_SPECS', 'MemoryQueryPort', 'build_memory_query_handlers')))\n    expected_bindings = {name: getattr(module, name) for module, names in owners for name in names}\n    assert len(expected_bindings) == 54\n    assert set(expected_bindings) == set(api.__all__)\n    for name, expected in expected_bindings.items():\n        assert getattr(api, name) is expected, name\n    frozen = json.loads((Path(__file__).parent / 'fixtures/diagnostics-metadata.json').read_text())\n    metadata = {s.name: asdict(s) for s in DIAGNOSTIC_SPECS}\n    assert tuple(metadata) == NAMES\n    assert json.dumps(metadata, sort_keys=True) == json.dumps(frozen, sort_keys=True)\n    assert type(DIAGNOSTIC_SPECS) is tuple\n    with pytest.raises(FrozenInstanceError):\n        DIAGNOSTIC_SPECS[0].name = 'changed'\n    assert CommandRegistry().names() == frozenset()\n    first = build_diagnostic_handlers(NoReads())\n    second = build_diagnostic_handlers(NoReads())\n    assert type(first) is MappingProxyType\n    assert first is not second\n    assert tuple(first) == NAMES\n    with pytest.raises(TypeError):\n        first['other'] = first['context']\n    with pytest.raises(TypeError):\n        isinstance(NoReads(), DiagnosticsPort)\n    assert CommandRegistry().names() == frozenset()\n"
+    },
+    "preservation.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/preservation.json",
+      "sha256": "ae95a7b5a7c11f35efd2ec4606c99b7f1e6d6b1093e9945822abc6097cd4fa17",
+      "text": "{\n  \"status\": \"passed\",\n  \"recorded_at\": \"2026-11-09T15:37:22.438511+00:00\",\n  \"precommit_head\": \"76b949b2e621e7a44ddec6ed527784e781696c8c\",\n  \"precommit_index\": \"730d51fc2821f79031a442e4b31e350258488f70575d2229b53ce55dcded81c0\",\n  \"protected_non_docs\": 1255,\n  \"dirty_examples_unchanged\": 2,\n  \"ignored_entries_unchanged\": 3,\n  \"supplied_raw_files_unchanged\": 29,\n  \"original_preparation_and_supplement_unchanged\": true,\n  \"historical_approval_and_planning_checks_unchanged\": true,\n  \"board_event_history_preserved\": true,\n  \"execution_log_append_only\": true,\n  \"shell_blocks_checked\": 7,\n  \"technical_hashes\": {\n    \"contract\": \"b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2\",\n    \"directive\": \"3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a\",\n    \"format_helper\": \"3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751\",\n    \"format_baseline\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n    \"verifier\": \"7bd5cf6524e982093c007f0d48a4b0f76ed55370aeb9556cca57cc0d5c6a6bb9\",\n    \"remediation\": \"eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540\",\n    \"approval\": \"7eed81dc9fdb4d9081580c78731fac3e42eb074a700597e108968ccf906ba4be\",\n    \"recorded_at\": \"2026-11-09T15:33:59.716791+00:00\",\n    \"next_gate\": \"Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.\"\n  },\n  \"source_implementation\": \"not started; no product changes\"\n}\n"
+    },
+    "finish_evidence.py": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/finish_evidence.py",
+      "sha256": "36b2e3d0ec8ab2297b8cb42b3f8b4c9fb109c6848bc046586aaef9cb34b08082",
+      "text": "from pathlib import Path\nimport hashlib,json,os,re,stat,subprocess\nfrom datetime import datetime,timezone\nroot=Path.cwd();p=root/'docs/planning/active/command-refactor';s=Path('/private/tmp/memq-directive-correction1-3xebw8ix');start=json.loads((s/'start.json').read_text());m=start['original_manifest'];env=dict(os.environ,GIT_OPTIONAL_LOCKS='0',PYTHONDONTWRITEBYTECODE='1')\ndef sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()\ndef git(*args):return subprocess.check_output(['git',*args],env=env)\ndef meta(path):\n path=Path(path);v=path.lstat();d={'mode':stat.S_IMODE(v.st_mode),'type':stat.S_IFMT(v.st_mode),'size':v.st_size,'mtime_ns':v.st_mtime_ns,'ctime_ns':v.st_ctime_ns}\n if path.is_file():d['sha256']=sha(path)\n if path.is_symlink():d['link']=os.readlink(path)\n return d\nidx=hashlib.sha256(git('ls-files','-s','-z')).hexdigest();status=git('status','--porcelain=v1').decode()\nif idx!=start['logical_index_sha256'] or git('diff','--cached','--name-only'):raise RuntimeError('Index changed before controlled staging')\nif git('rev-parse','HEAD').decode().strip()!=start['baseline']:raise RuntimeError('HEAD drift')\nfor group in ['protected_non_docs','dirty','ignored_exports','supplied_raw_files']:\n for path,expected in m[group].items():\n  if meta(root/path)!=expected:raise RuntimeError('Protected drift '+path)\nif {str(x.relative_to(root)) for x in [root/'exports',*sorted((root/'exports').rglob('*'))]}!=set(m['ignored_exports']):raise RuntimeError('Exports membership drift')\nnon_docs=[x[3:] for x in status.splitlines() if not x[3:].startswith('docs/')]\nif set(non_docs)!=set(m['dirty']):raise RuntimeError('Unexpected non-doc edits')\n# Previously accepted technical pins and MEMQ preparation/approval snapshots are immutable.\nallowed={'docs/planning/active/command-refactor/memory-query-command-contract.md','docs/planning/active/command-refactor/directives/CD-CMD-MEMQ-001-memory-queries.md','docs/planning/active/command-refactor/README.md','docs/planning/active/command-refactor/authority.json','docs/planning/active/command-refactor/execution-log.md','docs/planning/active/command-refactor/tactical-plan.md','docs/planning/active/command-refactor/next-phase.md','docs/planning/board.yaml','docs/planning/README.md'}\nfor path,h in m['pins'].items():\n if path not in allowed and sha(root/path)!=h:raise RuntimeError('Unexpected frozen input drift '+path)\nlog=p/'execution-log.md'\nif not log.read_bytes().startswith(git('show','76b949b2:docs/planning/active/command-refactor/execution-log.md')):raise RuntimeError('Log history changed')\nold_board=__import__('yaml').safe_load(git('show','76b949b2:docs/planning/board.yaml'));board=__import__('yaml').safe_load((root/'docs/planning/board.yaml').read_text())\nif board['events'][:-1]!=old_board['events']:raise RuntimeError('Board event history changed')\nif not board['events'][-1]['note'].startswith('Maintainer: lets apply'):raise RuntimeError('Missing correction provenance')\nids=json.loads((s/'corrected-identities.json').read_text());authority=json.loads((p/'authority.json').read_text())\nfor key,path in [('contract','memory-query-command-contract.md'),('directive','directives/CD-CMD-MEMQ-001-memory-queries.md'),('approval','approval/memory-queries-directive-correction.md'),('remediation','remediation/REM-CMD-MEMQ-DIR-001-readiness.md'),('format_helper','validation/memory-queries/format_debt.py'),('format_baseline','validation/memory-queries/format-baseline.json'),('verifier','validation/memory-queries/verify_directive_corrections.py')]:\n if sha(p/path)!=ids[key]:raise RuntimeError('Current technical hash drift '+key)\nfor key in ['contract_sha256','directive_sha256','approval_sha256']:\n if authority['memory_queries_preparation'][key]!=ids[key.removesuffix('_sha256')]:raise RuntimeError('Authority pin '+key)\nfor path in [p/'README.md',p/'next-phase.md',p/'tactical-plan.md']:\n if '**Next gate:** '+ids['next_gate'] not in path.read_text():raise RuntimeError('Status disagreement '+str(path))\nif next(x for x in board['tasks'] if x['id']=='friday-command-refactor')['next_gate']!=ids['next_gate']:raise RuntimeError('Board gate')\nfor path in [p/'directives/CD-CMD-MEMQ-001-memory-queries.md',p/'approval/memory-queries-directive-correction.md']:\n pins=re.findall(r'^\\| `([^`]+)` \\| `([a-f0-9]{64})` \\|$',path.read_text(),re.M)\n for rel,h in pins:\n  if sha(p/rel)!=h:raise RuntimeError('Normative pin '+rel)\nblocks=re.findall(r'```sh\\n(.*?)\\n```',(p/'directives/CD-CMD-MEMQ-001-memory-queries.md').read_text(),re.S)\nfor n,block in enumerate(blocks):\n f=s/f'shell-{n}.zsh';f.write_text(block+'\\n');subprocess.run(['zsh','-n',str(f)],check=True,env=env)\nsubprocess.run(['git','diff','--check'],env=env,check=True)\naudit={'status':'passed','recorded_at':datetime.now(timezone.utc).isoformat(),'precommit_head':start['baseline'],'precommit_index':idx,'protected_non_docs':1255,'dirty_examples_unchanged':2,'ignored_entries_unchanged':3,'supplied_raw_files_unchanged':29,'original_preparation_and_supplement_unchanged':True,'historical_approval_and_planning_checks_unchanged':True,'board_event_history_preserved':True,'execution_log_append_only':True,'shell_blocks_checked':len(blocks),'technical_hashes':ids,'source_implementation':'not started; no product changes'}\n(s/'preservation.json').write_text(json.dumps(audit,indent=2)+'\\n')\nprint(json.dumps(audit,indent=2))\n"
+    },
+    "corrected-identities.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/corrected-identities.json",
+      "sha256": "6dde4f74744d7e217282c9fd60c41bcbc463d342a0d42e0a89e25a2a92268beb",
+      "text": "{\n  \"contract\": \"b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2\",\n  \"directive\": \"3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a\",\n  \"format_helper\": \"3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751\",\n  \"format_baseline\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n  \"verifier\": \"7bd5cf6524e982093c007f0d48a4b0f76ed55370aeb9556cca57cc0d5c6a6bb9\",\n  \"remediation\": \"eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540\",\n  \"approval\": \"7eed81dc9fdb4d9081580c78731fac3e42eb074a700597e108968ccf906ba4be\",\n  \"recorded_at\": \"2026-11-09T15:33:59.716791+00:00\",\n  \"next_gate\": \"Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.\"\n}\n"
+    },
+    "prepared/correction-board-final.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-board-final.json",
+      "sha256": "1733150c11b6325332f371c57ba64877bbb1d69748871a8f2efed9f185727577",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.17\n}"
+    },
+    "prepared/correction-board-final.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-board-final.log",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "text": "Development board validation passed: 36 tasks\n"
+    },
+    "prepared/correction-dashboard-final.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-dashboard-final.json",
+      "sha256": "e692da5be44c015b61940591cb4e17ace8216ccd784a2b7ca8d411fea66ff4da",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.17\n}"
+    },
+    "prepared/correction-dashboard-final.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-dashboard-final.log",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "text": "Planning dashboard is current\n"
+    },
+    "prepared/correction-docs-final.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-docs-final.json",
+      "sha256": "a5932c0a0fd2572ee0e54ab3a8f974dbafd6f4e4d48301127dc77bc647e9f54b",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/check-documentation-lifecycle.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.69\n}"
+    },
+    "prepared/correction-docs-final.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-docs-final.log",
+      "sha256": "f86b3514a9a5cf96c03901236b63b9be9287502aa3e7a914d08a07cae6ebb1e1",
+      "text": "Documentation lifecycle validation passed: 912 Markdown files checked\n"
+    },
+    "prepared/correction-preservation-final.json": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-preservation-final.json",
+      "sha256": "5fc07024fda31dfd98f19c3616d8347d976f09120c27d6aaadd3b03ca25e27b3",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/private/tmp/memq-directive-correction1-3xebw8ix/finish_evidence.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.58\n}"
+    },
+    "prepared/correction-preservation-final.log": {
+      "path": "/private/tmp/memq-directive-correction1-3xebw8ix/prepared/correction-preservation-final.log",
+      "sha256": "ae95a7b5a7c11f35efd2ec4606c99b7f1e6d6b1093e9945822abc6097cd4fa17",
+      "text": "{\n  \"status\": \"passed\",\n  \"recorded_at\": \"2026-11-09T15:37:22.438511+00:00\",\n  \"precommit_head\": \"76b949b2e621e7a44ddec6ed527784e781696c8c\",\n  \"precommit_index\": \"730d51fc2821f79031a442e4b31e350258488f70575d2229b53ce55dcded81c0\",\n  \"protected_non_docs\": 1255,\n  \"dirty_examples_unchanged\": 2,\n  \"ignored_entries_unchanged\": 3,\n  \"supplied_raw_files_unchanged\": 29,\n  \"original_preparation_and_supplement_unchanged\": true,\n  \"historical_approval_and_planning_checks_unchanged\": true,\n  \"board_event_history_preserved\": true,\n  \"execution_log_append_only\": true,\n  \"shell_blocks_checked\": 7,\n  \"technical_hashes\": {\n    \"contract\": \"b02ba788038618a82bf285565943b1169ae9ae6cddfe40b7681839b70d3d87e2\",\n    \"directive\": \"3dfc896074e89263c8eeb80525b09ad31b3e4081d051363047d0c5c86e1dfb8a\",\n    \"format_helper\": \"3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751\",\n    \"format_baseline\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n    \"verifier\": \"7bd5cf6524e982093c007f0d48a4b0f76ed55370aeb9556cca57cc0d5c6a6bb9\",\n    \"remediation\": \"eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540\",\n    \"approval\": \"7eed81dc9fdb4d9081580c78731fac3e42eb074a700597e108968ccf906ba4be\",\n    \"recorded_at\": \"2026-11-09T15:33:59.716791+00:00\",\n    \"next_gate\": \"Reconcile fresh Sol/Astra/Claude correction-cycle1 directive delta and full MEMQ design review before D0/D1. Product implementation and external delivery remain stopped.\"\n  },\n  \"source_implementation\": \"not started; no product changes\"\n}\n"
+    }
+  },
+  "excluded_attempts": [
+    "Initial verifier lint B023 findings, corrected with explicit lambda binding; no passing-lint credit from that attempt."
+  ],
+  "limits": [
+    "All original preparation, supplemental, approval, planning checks and prior-family evidence remain frozen.",
+    "Round1 reports are historical and not inherited as a current verdict.",
+    "Whole-file formatting still fails in the four inventoried files; comparison is no new debt, not a waiver.",
+    "Fresh round2 delta plus full design review required before product D0/D1."
+  ],
+  "checks": {
+    "bindings": 54,
+    "retained_export_names": 54,
+    "retained_AST_controls": 4,
+    "format_controls": 6,
+    "board_tasks": 36,
+    "documentation_files": 912,
+    "shell_blocks": 7,
+    "new_tools_lint_and_format": "passed",
+    "existing_file_format": "failed/unwaived as inventoried",
+    "preservation": "passed"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "unit": "MAINT-001",
+  "baseline": "2b0850bfe6cfc6a91d744fa4440a40eaadaf3a60",
+  "reason": "Preserve exact baseline-generated synthetic bytes in sdists with fixture filenames, complying with inherited ignore and artifact-path rules; restore original filenames only in disposable copies.",
+  "files": [
+    {
+      "stored": "completed/live/graph.gpickle.fixture",
+      "materialized": "completed/live/graph.gpickle",
+      "sha256": "fa291101356c62ea03b26e88d38fb45c164dc4170a4acc97ebae3b3506c61b9c"
+    },
+    {
+      "stored": "completed/recovery/d8abbda6e33c471f9e2440ff63bbfe48/memory/graph.gpickle.fixture",
+      "materialized": "completed/recovery/d8abbda6e33c471f9e2440ff63bbfe48/memory/graph.gpickle",
+      "sha256": "669d49bf1cbfe11ad4282699ef558776d3952851af6355860efd9c435f102da5"
+    },
+    {
+      "stored": "interrupted/live/graph.gpickle.fixture",
+      "materialized": "interrupted/live/graph.gpickle",
+      "sha256": "d9a3c1b716456a195c7d2149b9bb87c8676c3d6aafd8e7c56003d98ac987a442"
+    },
+    {
+      "stored": "interrupted/recovery/4534c6535edb42b7a322c57743c0c397/memory/graph.gpickle.fixture",
+      "materialized": "interrupted/recovery/4534c6535edb42b7a322c57743c0c397/memory/graph.gpickle",
+      "sha256": "d673ef5d01c8ab71a77fcc821df04721b3110904f79c72bc8e939bb145f3a4ad"
+    },
+    {
+      "stored": "completed/live/vector/vector-state.sqlite.fixture",
+      "materialized": "completed/live/vector/chroma.sqlite3",
+      "sha256": "5ba9f348300dea7caade0aa459ae4226d60994574ceb8a674b7ab96efdb7aa84"
+    },
+    {
+      "stored": "completed/recovery/d8abbda6e33c471f9e2440ff63bbfe48/memory/logical-state.json.fixture",
+      "materialized": "completed/recovery/d8abbda6e33c471f9e2440ff63bbfe48/memory/chroma-logical.json",
+      "sha256": "bf4cc6b40ba2fe80ef8b83c0427b5fc0a04c35720e3554660d078fcab381ffd5"
+    },
+    {
+      "stored": "interrupted/live/vector/vector-state.sqlite.fixture",
+      "materialized": "interrupted/live/vector/chroma.sqlite3",
+      "sha256": "ced11e2c5d03404e1d732556031023bce7ce1ab96d260cb81cf71f1996639748"
+    },
+    {
+      "stored": "interrupted/recovery/4534c6535edb42b7a322c57743c0c397/memory/logical-state.json.fixture",
+      "materialized": "interrupted/recovery/4534c6535edb42b7a322c57743c0c397/memory/chroma-logical.json",
+      "sha256": "bf4cc6b40ba2fe80ef8b83c0427b5fc0a04c35720e3554660d078fcab381ffd5"
+    }
+  ]
+}

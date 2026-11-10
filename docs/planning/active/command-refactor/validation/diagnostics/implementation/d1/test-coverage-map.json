@@ -1,0 +1,157 @@
+{
+  "DG-T01": {
+    "node": "test_diagnostic_models_and_closed_union",
+    "families": [
+      {
+        "id_prefix": "diagnostic_models_and_closed_union",
+        "retained_helper": "_check_diagnostic_models_and_closed_union"
+      },
+      {
+        "id_prefix": "outcome_accepts_exact_diagnostic_variants",
+        "retained_helper": "_check_outcome_accepts_exact_diagnostic_variants"
+      },
+      {
+        "id_prefix": "closed_union_retains_old_variants_and_refuses_nested_values",
+        "retained_helper": "_check_closed_union_retains_old_variants_and_refuses_nested_values"
+      },
+      {
+        "id_prefix": "model_type_refusals",
+        "retained_helper": "_check_model_type_refusals"
+      },
+      {
+        "id_prefix": "model_value_refusals",
+        "retained_helper": "_check_model_value_refusals"
+      },
+      {
+        "id_prefix": "model_optional_and_empty_edges",
+        "retained_helper": "_check_model_optional_and_empty_edges"
+      },
+      {
+        "id_prefix": "model_snapshots_once_order_and_duplicates",
+        "retained_helper": "_check_model_snapshots_once_order_and_duplicates"
+      },
+      {
+        "id_prefix": "model_collection_refusals",
+        "retained_helper": "_check_model_collection_refusals"
+      },
+      {
+        "id_prefix": "exact_collection_members",
+        "retained_helper": "_check_exact_collection_members"
+      },
+      {
+        "id_prefix": "model_validation_order_and_iterator_failure",
+        "retained_helper": "_check_model_validation_order_and_iterator_failure"
+      },
+      {
+        "id_prefix": "string_field_validation_order",
+        "retained_helper": "_check_string_field_validation_order"
+      }
+    ],
+    "collected_cases": 109
+  },
+  "DG-T02": {
+    "node": "test_diagnostic_specs_exports_and_factory",
+    "families": [
+      {
+        "retained_node": "test_diagnostic_specs_exports_and_factory"
+      }
+    ],
+    "collected_cases": 1
+  },
+  "DG-T03": {
+    "node": "test_diagnostic_invocation_validation_order",
+    "families": [
+      {
+        "retained_node": "test_diagnostic_invocation_validation_order"
+      }
+    ],
+    "collected_cases": 6
+  },
+  "DG-T04": {
+    "node": "test_context_prompt_flags_and_export_order",
+    "families": [
+      {
+        "id_prefix": "context_prompt_flags_and_export_order",
+        "retained_helper": "_check_context_prompt_flags_and_export_order"
+      },
+      {
+        "id_prefix": "context_length_precedes_export",
+        "retained_helper": "_check_context_length_precedes_export"
+      },
+      {
+        "id_prefix": "invalid_selected_text_fails_before_export",
+        "retained_helper": "_check_invalid_selected_text_fails_before_export"
+      },
+      {
+        "id_prefix": "invalid_export_path_fails_without_repair",
+        "retained_helper": "_check_invalid_export_path_fails_without_repair"
+      },
+      {
+        "id_prefix": "export_path_strings_are_preserved",
+        "retained_helper": "_check_export_path_strings_are_preserved"
+      },
+      {
+        "id_prefix": "character_count_failure_prevents_export",
+        "retained_helper": "_check_character_count_failure_prevents_export"
+      },
+      {
+        "id_prefix": "port_failures_propagate_once",
+        "retained_helper": "_check_port_failures_propagate_once"
+      }
+    ],
+    "collected_cases": 51
+  },
+  "DG-T05": {
+    "node": "test_diagnostic_snapshots_once",
+    "families": [
+      {
+        "id_prefix": "diagnostic_snapshots_once",
+        "retained_helper": "_check_diagnostic_snapshots_once"
+      },
+      {
+        "id_prefix": "port_failures_propagate_once",
+        "retained_helper": "_check_port_failures_propagate_once"
+      }
+    ],
+    "collected_cases": 9
+  },
+  "DG-T06": {
+    "node": "test_retrieval_precedence_and_await",
+    "families": [
+      {
+        "id_prefix": "retrieval_precedence_and_await",
+        "retained_helper": "_check_retrieval_precedence_and_await"
+      },
+      {
+        "id_prefix": "retrieval_availability_requires_exact_bool",
+        "retained_helper": "_check_retrieval_availability_requires_exact_bool"
+      },
+      {
+        "id_prefix": "invalid_retrieval_result",
+        "retained_helper": "_check_invalid_retrieval_result"
+      },
+      {
+        "id_prefix": "retrieval_pending_and_cancellation",
+        "retained_helper": "_check_retrieval_pending_and_cancellation"
+      },
+      {
+        "id_prefix": "retrieval_is_awaited_exactly_once",
+        "retained_helper": "_check_retrieval_is_awaited_exactly_once"
+      },
+      {
+        "id_prefix": "port_failures_propagate_once",
+        "retained_helper": "_check_port_failures_propagate_once"
+      }
+    ],
+    "collected_cases": 21
+  },
+  "DG-T07": {
+    "node": "test_diagnostics_standalone",
+    "families": [
+      {
+        "retained_node": "test_diagnostics_standalone"
+      }
+    ],
+    "collected_cases": 3
+  }
+}

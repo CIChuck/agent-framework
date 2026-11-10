@@ -1,0 +1,92 @@
+{
+  "unit": "MEMQ-001",
+  "kind": "explicitly authorized additional prose correction controller evidence",
+  "recorded_at": "2026-11-09T16:44:42.956407+00:00",
+  "base": "8d78e2daa7eaabe1a3e42ad1dc4d9b45ff41b4c9",
+  "status": "passed local correction/planning/preservation checks; fresh independent council required",
+  "instruction": "authorized then iterate",
+  "identities": {
+    "patch": "178c692287546e5e42ab00caec9d9271659221e99aa1273d35f5e80f2fb222a1",
+    "remediation": "44857e6f850864c37f43e0306514a139d2237a039a63a6cdea6c7cacaf8c1167",
+    "contract": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+    "directive": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
+    "verifier": "83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5",
+    "format_helper": "3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751",
+    "format_baseline": "7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2",
+    "approval": "ef7adbca434cff387dfa1b0dc7ddf9d315bcbeb6474edaf3af2ff0245fd498d1",
+    "recorded_at": "2026-11-09T16:41:29.753273+00:00",
+    "next_gate": "Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery."
+  },
+  "files": {
+    "prepared/additional-board.json": {
+      "path": "/private/tmp/memq-directive-additional-pass-ta7x6j_b/prepared/additional-board.json",
+      "sha256": "c90232efaa6f120e01dd9ad93bbc540d5c617c515ff9b02f03a209496891a9b1",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.18\n}"
+    },
+    "prepared/additional-board.log": {
+      "path": "/private/tmp/memq-directive-additional-pass-ta7x6j_b/prepared/additional-board.log",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "text": "Development board validation passed: 36 tasks\n"
+    },
+    "prepared/additional-dashboard.json": {
+      "path": "/private/tmp/memq-directive-additional-pass-ta7x6j_b/prepared/additional-dashboard.json",
+      "sha256": "ec2844fc0278e33255dd0eb10556c77d2c268b16c8d0fd3d06710a91203ad1ce",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.18\n}"
+    },
+    "prepared/additional-dashboard.log": {
+      "path": "/private/tmp/memq-directive-additional-pass-ta7x6j_b/prepared/additional-dashboard.log",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "text": "Planning dashboard is current\n"
+    },
+    "prepared/additional-docs.json": {
+      "path": "/private/tmp/memq-directive-additional-pass-ta7x6j_b/prepared/additional-docs.json",
+      "sha256": "e24c246f76024aa6f7a96bed80a778ac740489ca9af16f2b1fa98fdebff3f6d2",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/check-documentation-lifecycle.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.84\n}"
+    },
+    "prepared/additional-docs.log": {
+      "path": "/private/tmp/memq-directive-additional-pass-ta7x6j_b/prepared/additional-docs.log",
+      "sha256": "8e02c1107b5c2acefd643e6bcd32018cfc208921edd80f06872c8f16f7a7ad06",
+      "text": "Documentation lifecycle validation passed: 920 Markdown files checked\n"
+    },
+    "prepared/additional-preservation.json": {
+      "path": "/private/tmp/memq-directive-additional-pass-ta7x6j_b/prepared/additional-preservation.json",
+      "sha256": "d6b1f87ebe9782af5cb1e126dcbf42e32ccf8e02c2c10526c2118532cba684ee",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/private/tmp/memq-directive-additional-pass-ta7x6j_b/audit_additional.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.58\n}"
+    },
+    "prepared/additional-preservation.log": {
+      "path": "/private/tmp/memq-directive-additional-pass-ta7x6j_b/prepared/additional-preservation.log",
+      "sha256": "a958474506815cfc9132d2dc0b1fa0ebddd1bb613fc61ba8c8ff543d192f0eed",
+      "text": "{\n  \"at\": \"2026-11-09T16:43:09.454103+00:00\",\n  \"status\": \"passed local document correction checks; not independent conformance\",\n  \"base\": \"8d78e2daa7eaabe1a3e42ad1dc4d9b45ff41b4c9\",\n  \"precommit_index\": \"a75737817f1357985316177c1b32e85e767b0e5ea792a2542f4a519bc037662e\",\n  \"exact_prepared_patch\": \"applied; reverse check passed\",\n  \"lower_README_nonadministrative_delta\": \"one exact historical qualifier only\",\n  \"current_explicit_gates\": 2,\n  \"manual_semantic_audit_required\": true,\n  \"technical_contract_directive_verifier_format_inputs\": \"unchanged\",\n  \"previous_reports_approvals_evidence\": \"preserved\",\n  \"protected_non_docs\": 1255,\n  \"dirty_examples\": 2,\n  \"ignored_entries\": 3,\n  \"supplied_raw_files\": 96,\n  \"preserved_external_locator\": 1,\n  \"log_append_only\": true,\n  \"board_event_history_preserved\": true,\n  \"authorization_rows_verified\": 7,\n  \"product_implementation\": \"not started\"\n}\n"
+    },
+    "preservation.json": {
+      "path": "/private/tmp/memq-directive-additional-pass-ta7x6j_b/preservation.json",
+      "sha256": "a958474506815cfc9132d2dc0b1fa0ebddd1bb613fc61ba8c8ff543d192f0eed",
+      "text": "{\n  \"at\": \"2026-11-09T16:43:09.454103+00:00\",\n  \"status\": \"passed local document correction checks; not independent conformance\",\n  \"base\": \"8d78e2daa7eaabe1a3e42ad1dc4d9b45ff41b4c9\",\n  \"precommit_index\": \"a75737817f1357985316177c1b32e85e767b0e5ea792a2542f4a519bc037662e\",\n  \"exact_prepared_patch\": \"applied; reverse check passed\",\n  \"lower_README_nonadministrative_delta\": \"one exact historical qualifier only\",\n  \"current_explicit_gates\": 2,\n  \"manual_semantic_audit_required\": true,\n  \"technical_contract_directive_verifier_format_inputs\": \"unchanged\",\n  \"previous_reports_approvals_evidence\": \"preserved\",\n  \"protected_non_docs\": 1255,\n  \"dirty_examples\": 2,\n  \"ignored_entries\": 3,\n  \"supplied_raw_files\": 96,\n  \"preserved_external_locator\": 1,\n  \"log_append_only\": true,\n  \"board_event_history_preserved\": true,\n  \"authorization_rows_verified\": 7,\n  \"product_implementation\": \"not started\"\n}\n"
+    },
+    "audit_additional.py": {
+      "path": "/private/tmp/memq-directive-additional-pass-ta7x6j_b/audit_additional.py",
+      "sha256": "8164cfa3aa514c1556f933aab35fecf22b9afd386f9bd8126b69f7abe668386c",
+      "text": "from pathlib import Path\nimport hashlib,json,os,re,stat,subprocess\nfrom datetime import datetime,timezone\nroot=Path.cwd();p=root/'docs/planning/active/command-refactor';s=Path('/private/tmp/memq-directive-additional-pass-ta7x6j_b');start=json.loads((s/'start.json').read_text());env=dict(os.environ,GIT_OPTIONAL_LOCKS='0',PYTHONDONTWRITEBYTECODE='1')\ndef sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()\ndef git(*a):return subprocess.check_output(['git',*a],env=env)\ndef check(ok,msg):\n if not ok:raise RuntimeError(msg)\ndef meta(path):\n path=Path(path);v=path.lstat();d={'mode':stat.S_IMODE(v.st_mode),'type':stat.S_IFMT(v.st_mode),'size':v.st_size,'mtime_ns':v.st_mtime_ns,'ctime_ns':v.st_ctime_ns}\n if path.is_file():d['sha256']=sha(path)\n if path.is_symlink():d['link']=os.readlink(path)\n return d\nidx=hashlib.sha256(git('ls-files','-s','-z')).hexdigest();status=git('status','--porcelain=v1').decode();check(idx==start['logical_index_sha256'],'index before staging');check(git('diff','--cached','--name-only')==b'','staging');check(git('rev-parse','HEAD').decode().strip()==start['head'],'HEAD');check(git('branch','--show-current').decode().strip()==start['branch'],'branch')\nallowed={str(p.relative_to(root))+'/'+name for name in ['README.md','authority.json','execution-log.md','tactical-plan.md','next-phase.md']}|{'docs/planning/board.yaml','docs/planning/README.md'}\nfor path,h in start['pins'].items():\n if path not in allowed:check(sha(root/path)==h,'immutable pin '+path)\nfor group in ['protected_non_docs','dirty','ignored_exports','supplied_raw_files','preserved_external_files']:\n for path,v in start[group].items():check(meta(root/path)==v,group+' '+path)\ncheck(set(x[3:] for x in status.splitlines() if not x[3:].startswith('docs/'))==set(start['dirty']),'unexpected non-doc edits')\ncheck({str(x.relative_to(root)) for x in [root/'exports',*sorted((root/'exports').rglob('*'))]}==set(start['ignored_exports']),'exports membership')\nold=git('show','8d78e2da:docs/planning/active/command-refactor/README.md').decode();current=(p/'README.md').read_text();bare='Await separate maintainer direction and approved scope for a next unit.';fixed='The post-SESSION instruction \u201cAwait separate maintainer direction and approved scope for a next unit\u201d is historical and superseded by the current MEMQ next gate above.'\ncheck(current.count(fixed)==1 and re.search(r'^'+re.escape(bare)+r'$',current,re.M) is None,'exact historical qualifier')\nanchor='\\n The wider initiative stays started/local.'\ndef normalize(text):return re.sub(r'^\\*\\*Next gate:\\*\\* .+$','<CURRENT_GATE>',text,flags=re.M)\ncheck(normalize(old[old.index(anchor):]).replace(bare,fixed)==normalize(current[current.index(anchor):]),'Unrelated lower README body changed')\nsubprocess.run(['git','apply','--reverse','--check',str(p/'validation/memory-queries/directive-review/round3/proposed-readme-fix.patch')],env=env,check=True)\nids=json.loads((s/'corrected-identities.json').read_text());a=json.loads((p/'authority.json').read_text());expected=ids['next_gate']\ncheck(re.findall(r'^\\*\\*Next gate:\\*\\* (.+)$',current,re.M)==[expected,expected],'current README gates');check('MEMQ `execution_phase: validation`; `validation_state: in_review`' in current,'current MEMQ phase')\nfor name in ['next-phase.md','tactical-plan.md']:\n text=(p/name).read_text().split('### Preserved DIAG acceptance checkpoint')[0];check(re.findall(r'^\\*\\*Next gate:\\*\\* (.+)$',text,re.M)==[expected],name+' current gate')\ncheck(a['current_scope']==expected and a['memory_queries_preparation']['next_gate']==expected,'authority gates');check(a['memory_queries_readiness_continuation']['instruction']=='authorized then iterate','explicit continuation')\nfor key,path in [('contract','memory-query-command-contract.md'),('directive','directives/CD-CMD-MEMQ-001-memory-queries.md'),('verifier','validation/memory-queries/verify_directive_corrections.py'),('format_helper','validation/memory-queries/format_debt.py'),('format_baseline','validation/memory-queries/format-baseline.json'),('approval','approval/memory-queries-directive-additional-pass.md'),('remediation','remediation/REM-CMD-MEMQ-DIR-003-historical-qualifier.md')]:check(sha(p/path)==ids[key],'input hash '+key)\nrows=re.findall(r'^\\| `([^`]+)` \\| `([a-f0-9]{64})` \\|$',(p/'approval/memory-queries-directive-additional-pass.md').read_text(),re.M)\nfor rel,h in rows:check(sha(p/rel)==h,'authorization pin '+rel)\ncheck((p/'execution-log.md').read_bytes().startswith(git('show','8d78e2da:docs/planning/active/command-refactor/execution-log.md')),'append-only log')\nimport yaml\nboard=yaml.safe_load((root/'docs/planning/board.yaml').read_text());prior=yaml.safe_load(git('show','8d78e2da:docs/planning/board.yaml'));check(board['events'][:-1]==prior['events'],'event history');check(next(t for t in board['tasks'] if t['id']=='friday-command-refactor')['next_gate']==expected,'board gate');check(expected in (root/'docs/planning/README.md').read_text(),'dashboard gate')\nsubprocess.run(['git','diff','--check'],env=env,check=True)\nresult={'at':datetime.now(timezone.utc).isoformat(),'status':'passed local document correction checks; not independent conformance','base':start['head'],'precommit_index':idx,'exact_prepared_patch':'applied; reverse check passed','lower_README_nonadministrative_delta':'one exact historical qualifier only','current_explicit_gates':2,'manual_semantic_audit_required':True,'technical_contract_directive_verifier_format_inputs':'unchanged','previous_reports_approvals_evidence':'preserved','protected_non_docs':1255,'dirty_examples':2,'ignored_entries':3,'supplied_raw_files':96,'preserved_external_locator':1,'log_append_only':True,'board_event_history_preserved':True,'authorization_rows_verified':len(rows),'product_implementation':'not started'}\n(s/'preservation.json').write_text(json.dumps(result,indent=2)+'\\n');print(json.dumps(result,indent=2))\n"
+    },
+    "corrected-identities.json": {
+      "path": "/private/tmp/memq-directive-additional-pass-ta7x6j_b/corrected-identities.json",
+      "sha256": "635b29a80512c861cecbffe107f8bcf91539610dab0e11b03b12806ad33f7b4b",
+      "text": "{\n  \"patch\": \"178c692287546e5e42ab00caec9d9271659221e99aa1273d35f5e80f2fb222a1\",\n  \"remediation\": \"44857e6f850864c37f43e0306514a139d2237a039a63a6cdea6c7cacaf8c1167\",\n  \"contract\": \"93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda\",\n  \"directive\": \"4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00\",\n  \"verifier\": \"83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5\",\n  \"format_helper\": \"3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751\",\n  \"format_baseline\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n  \"approval\": \"ef7adbca434cff387dfa1b0dc7ddf9d315bcbeb6474edaf3af2ff0245fd498d1\",\n  \"recorded_at\": \"2026-11-09T16:41:29.753273+00:00\",\n  \"next_gate\": \"Reconcile explicitly authorized additional Sol/Astra/Claude round4 directive review after the historical README qualifier and fresh isolated Sol receipt. Product D0/D1 remains unstarted; no acceptance or delivery.\"\n}\n"
+    }
+  },
+  "checks": {
+    "exact_prepared_patch": "applied; reverse check passed",
+    "manual_whole_index_review": "performed on this candidate; syntactic gate checks are not a semantic validator",
+    "lower_README_body": "one exact qualification after normalizing authorized current-gate labels",
+    "board_tasks": 36,
+    "documentation_files": 920,
+    "technical_inputs": "unchanged",
+    "source_implementation": "not started"
+  },
+  "limits": [
+    "Old Sol BLOCKED receipt remains invalid and preserved; a fresh compliant receipt is required.",
+    "Known external locator remains unchanged and is now an explicitly preserved external identity.",
+    "No technical contract/directive/helper/parser, product or package test change.",
+    "Existing root/format debt remains failed/unwaived; future implementation/build/install gates remain separate."
+  ]
+}

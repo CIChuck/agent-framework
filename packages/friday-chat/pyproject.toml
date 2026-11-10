@@ -8,6 +8,7 @@ license = "MIT"
 authors = [{ name = "Friday Team" }]
 dependencies = [
     "friday-framework-core==0.1.0a4",
+    "friday-framework-commands==0.1.0a4",
     "friday-framework-runtime==0.1.0a4",
     "friday-framework-memory==0.1.0a4",
     "friday-framework-llm==0.1.0a4",
@@ -74,6 +75,7 @@ asyncio_default_fixture_loop_scope = "function"
 
 [tool.uv.sources]
 friday-framework-core = { workspace = true }
+friday-framework-commands = { workspace = true }
 friday-framework-runtime = { workspace = true }
 friday-framework-memory = { workspace = true }
 friday-framework-llm = { workspace = true }

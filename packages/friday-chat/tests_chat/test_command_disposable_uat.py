@@ -337,10 +337,10 @@ async def test_real_app_cli_pty_command_uat_is_contained_and_provider_free(
     assert "provenance=synthesis" in output
     assert "Decayed records: excluded" in output
     assert "echo" in output
-    assert "estimate_source: last_automatic" in output
-    assert "estimate_source: pending_manual" in output
-    assert "Injected tools:" in output
-    assert "Cleared injected tools." in output
+    for removed in ("tool-budget", "inject-tools", "clear-tools"):
+        assert (
+            f"Unknown command: /{removed}. Type /help for available commands." in output
+        )
 
     assert runtime.session_identity.value == CURRENT_SESSION_ID
     assert app.session.identity == runtime.session_identity
@@ -350,9 +350,10 @@ async def test_real_app_cli_pty_command_uat_is_contained_and_provider_free(
     assert runtime.tool_selection.last_automatic_snapshot is not None
     assert runtime.tool_selection.last_automatic_snapshot.selected_names == ("echo",)
     post_clear_budget = await _execute(runtime, "/tool-budget")
-    assert "mode: automatic" in post_clear_budget
-    assert "pending_manual: none" in post_clear_budget
-    assert "estimate_source: last_automatic" in post_clear_budget
+    assert (
+        post_clear_budget
+        == "Unknown command: /tool-budget. Type /help for available commands."
+    )
     assert tools.calls == []
 
 

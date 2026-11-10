@@ -1,0 +1,126 @@
+{
+  "recorded_at": "2026-11-09T16:22:41.779073+00:00",
+  "reviewed_candidate": "818b42eeca4495cf34292e934dbdac34e31ca4db",
+  "outcome": "CHANGES_REQUESTED",
+  "scope": "directive/design readiness only",
+  "formal_council_clearance": "incomplete: Sol isolation-blocked; no VERIFIED aggregate",
+  "reports": {
+    "sol": {
+      "path": "sol.txt",
+      "sha256": "b6506f674d391b7319a3844a4c4e793453555c6a2ce8687db2eb5697a173ab51",
+      "outcome": "BLOCKED",
+      "score": 9.4,
+      "original_path": "/private/tmp/memq-directive-review-sol-ayp2c5l2/report.md"
+    },
+    "astra": {
+      "path": "astra.txt",
+      "sha256": "b6769612159bbe4c2b65ab7cfa3c2c01380a0ff36ee04367843587102861151b",
+      "outcome": "VERIFIED",
+      "score": 9.5,
+      "original_path": "/private/tmp/memq-directive-review-astra-mp6t3rf7/report.md"
+    },
+    "claude": {
+      "path": "claude.txt",
+      "sha256": "1df3ea7565e5f9272f35b2408ad313e63303a7d65bf7883b6d58023ecc48658a",
+      "outcome": "CHANGES_REQUESTED",
+      "score": 8.9,
+      "original_path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/e50ef93a-ec89-41dd-8085-ba8eaa88b76b/scratchpad/memq-r3-claude-80sBMk/report.md"
+    }
+  },
+  "open_candidate_finding": "MEMQ-DIR-R3-CLAUDE-001",
+  "blocked_seat_finding": "MEMQ-DIR-R3-SOL-001",
+  "correction_cycles_used": 2,
+  "automatic_iteration_stopped": true,
+  "all_review_tasks_terminal": true,
+  "request_sha256": "7b2d061b65cb24474740ef7469de3ffffc6455c50a44c4f5c9c379c0e67a15c7",
+  "manifest_sha256": "5dc0917f5ca4888a889ce622d27daa71f271b4005db3f635e31af3fd3b7bf821",
+  "precloseout_integrity": {
+    "at": "2026-11-09T16:20:09.522996+00:00",
+    "candidate": "818b42eeca4495cf34292e934dbdac34e31ca4db",
+    "status": "matched all reviewed identities before administrative closeout",
+    "logical_index": "605521c92aabaac58b31e9d705e5d25ff3b02750f8923c20cd9f9c5f36a8eef3",
+    "pins": 72,
+    "protected_non_docs": 1255,
+    "dirty": 2,
+    "ignored_exports": 3,
+    "supplied_raw_files": 88,
+    "known_external_side_effect": {
+      "path": "/private/tmp/memq-sol-current-path",
+      "identity": {
+        "mode": 420,
+        "type": 32768,
+        "size": 47,
+        "mtime_ns": 1794240324898427847,
+        "ctime_ns": 1794240324898427847,
+        "sha256": "58849ad5e064c08576c86c8e2794eea1e990bbce7f57c6321bc01f2665b4d70a"
+      }
+    }
+  },
+  "limits": [
+    "Sol external locator is preserved; no cleanup, retrospective waiver or substitution.",
+    "Astra/Sol treated the last SESSION paragraph as historical; Claude requires an explicit qualifier under CR06. The literal unqualified imperative remains, so its low finding is retained.",
+    "Current regex helper is a syntactic control, not a general semantic parser; manual whole-index review is required.",
+    "Root Ruff, root test_display and existing format debt remain failed/unwaived.",
+    "No product implementation, construction advancement, UAT, acceptance or delivery."
+  ],
+  "controller_closeout_audit": {
+    "recorded_at": "2026-11-09T16:24:52.749006+00:00",
+    "status": "passed administrative-recording audit, not council clearance",
+    "reviewed_candidate": "818b42eeca4495cf34292e934dbdac34e31ca4db",
+    "precloseout_logical_index": "605521c92aabaac58b31e9d705e5d25ff3b02750f8923c20cd9f9c5f36a8eef3",
+    "protected_non_docs": 1255,
+    "dirty_examples": 2,
+    "ignored_exports": 3,
+    "supplied_raw": 88,
+    "technical_inputs_and_historical_evidence": "unchanged",
+    "new_changes": "current state/history and report preservation only",
+    "source_implementation": "not started",
+    "known_external_locator": "preserved unchanged, not cleaned",
+    "proposed_patch": "check passed; NOT APPLIED",
+    "candidate_outcome": "CHANGES_REQUESTED",
+    "formal_council": "incomplete due blocked Sol isolation receipt",
+    "iteration": "stopped after two correction cycles"
+  },
+  "controller_receipts": {
+    "escalation-board.json": {
+      "path": "/private/tmp/memq-directive-round3-closeout-nw0y3cvg/prepared/escalation-board.json",
+      "sha256": "1733150c11b6325332f371c57ba64877bbb1d69748871a8f2efed9f185727577",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.17\n}"
+    },
+    "escalation-board.log": {
+      "path": "/private/tmp/memq-directive-round3-closeout-nw0y3cvg/prepared/escalation-board.log",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "text": "Development board validation passed: 36 tasks\n"
+    },
+    "escalation-dashboard.json": {
+      "path": "/private/tmp/memq-directive-round3-closeout-nw0y3cvg/prepared/escalation-dashboard.json",
+      "sha256": "e692da5be44c015b61940591cb4e17ace8216ccd784a2b7ca8d411fea66ff4da",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.17\n}"
+    },
+    "escalation-dashboard.log": {
+      "path": "/private/tmp/memq-directive-round3-closeout-nw0y3cvg/prepared/escalation-dashboard.log",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "text": "Planning dashboard is current\n"
+    },
+    "escalation-docs.json": {
+      "path": "/private/tmp/memq-directive-round3-closeout-nw0y3cvg/prepared/escalation-docs.json",
+      "sha256": "a7c237fd3abab12bdf00d4a00e3362c76a51ea71778d708fb3caed2bfd700851",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/check-documentation-lifecycle.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.77\n}"
+    },
+    "escalation-docs.log": {
+      "path": "/private/tmp/memq-directive-round3-closeout-nw0y3cvg/prepared/escalation-docs.log",
+      "sha256": "d7b780267b4fb5d2cb0a9bd034208bad89c817b621548b6e7609c2074c7b96af",
+      "text": "Documentation lifecycle validation passed: 917 Markdown files checked\n"
+    },
+    "final-audit.json": {
+      "path": "/private/tmp/memq-directive-round3-closeout-nw0y3cvg/final-audit.json",
+      "sha256": "17fdb2e6bce7b03bd0b42c51fb86d416249d36bac88bbc79ef5668a48477e6fa",
+      "text": "{\n  \"recorded_at\": \"2026-11-09T16:24:52.749006+00:00\",\n  \"status\": \"passed administrative-recording audit, not council clearance\",\n  \"reviewed_candidate\": \"818b42eeca4495cf34292e934dbdac34e31ca4db\",\n  \"precloseout_logical_index\": \"605521c92aabaac58b31e9d705e5d25ff3b02750f8923c20cd9f9c5f36a8eef3\",\n  \"protected_non_docs\": 1255,\n  \"dirty_examples\": 2,\n  \"ignored_exports\": 3,\n  \"supplied_raw\": 88,\n  \"technical_inputs_and_historical_evidence\": \"unchanged\",\n  \"new_changes\": \"current state/history and report preservation only\",\n  \"source_implementation\": \"not started\",\n  \"known_external_locator\": \"preserved unchanged, not cleaned\",\n  \"proposed_patch\": \"check passed; NOT APPLIED\",\n  \"candidate_outcome\": \"CHANGES_REQUESTED\",\n  \"formal_council\": \"incomplete due blocked Sol isolation receipt\",\n  \"iteration\": \"stopped after two correction cycles\"\n}\n"
+    },
+    "final_audit.py": {
+      "path": "/private/tmp/memq-directive-round3-closeout-nw0y3cvg/final_audit.py",
+      "sha256": "55d973c751e5c25a0b1cfb3d6a5cfb26f095513fc522a54a5b5a748108da2e97",
+      "text": "from pathlib import Path\nimport hashlib,json,os,re,stat,subprocess\nfrom datetime import datetime,timezone\nroot=Path.cwd();p=root/'docs/planning/active/command-refactor';s=Path('/private/tmp/memq-directive-round3-closeout-nw0y3cvg');start=json.loads((s/'start.json').read_text());m=start['manifest'];env=dict(os.environ,GIT_OPTIONAL_LOCKS='0',PYTHONDONTWRITEBYTECODE='1')\ndef sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()\ndef git(*a):return subprocess.check_output(['git',*a],env=env)\ndef check(ok,msg):\n if not ok:raise RuntimeError(msg)\ndef meta(path):\n path=Path(path);v=path.lstat();d={'mode':stat.S_IMODE(v.st_mode),'type':stat.S_IFMT(v.st_mode),'size':v.st_size,'mtime_ns':v.st_mtime_ns,'ctime_ns':v.st_ctime_ns}\n if path.is_file():d['sha256']=sha(path)\n if path.is_symlink():d['link']=os.readlink(path)\n return d\nidx=hashlib.sha256(git('ls-files','-s','-z')).hexdigest();status=git('status','--porcelain=v1').decode();check(idx==m['logical_index_sha256'],'index');check(git('diff','--cached','--name-only')==b'','staging');check(git('rev-parse','HEAD').decode().strip()==m['head'],'HEAD')\nallowed={str(p.relative_to(root))+'/'+name for name in ['README.md','authority.json','execution-log.md','tactical-plan.md','next-phase.md']}|{'docs/planning/board.yaml','docs/planning/README.md'}\nfor path,h in m['pins'].items():\n if path not in allowed:check(sha(root/path)==h,'immutable technical/history pin '+path)\nfor group in ['protected_non_docs','dirty','ignored_exports','supplied_raw_files']:\n for path,v in m[group].items():check(meta(root/path)==v,group+' '+path)\ncheck(set(x[3:] for x in status.splitlines() if not x[3:].startswith('docs/'))==set(m['dirty']),'unexpected non-doc edits')\ncheck({str(x.relative_to(root)) for x in [root/'exports',*sorted((root/'exports').rglob('*'))]}==set(m['ignored_exports']),'exports membership')\nmarker=start['known_external_side_effect'];check(meta(marker['path'])==marker['identity'],'external locator changed')\ncheck((p/'execution-log.md').read_bytes().startswith(git('show','818b42ee:docs/planning/active/command-refactor/execution-log.md')),'log history')\nimport yaml\nold=yaml.safe_load(git('show','818b42ee:docs/planning/board.yaml'));board=yaml.safe_load((root/'docs/planning/board.yaml').read_text());check(board['events'][:-1]==old['events'],'event history')\nnext_gate=json.loads((s/'recorded.json').read_text())['next_gate'];a=json.loads((p/'authority.json').read_text());check(a['current_scope']==next_gate and a['memory_queries_preparation']['next_gate']==next_gate,'authority gate');check(a['memory_queries_preparation']['validation_state']=='changes_requested','phase')\nreadme=(p/'README.md').read_text();check(re.findall(r'^\\*\\*Next gate:\\*\\* (.+)$',readme,re.M)==[next_gate,next_gate],'current explicit gates');check(readme.count('Await separate maintainer direction and approved scope for a next unit.')==1,'proposed correction was applied')\nfor name in ['tactical-plan.md','next-phase.md']:check('**Next gate:** '+next_gate in (p/name).read_text().split('### Preserved DIAG acceptance checkpoint')[0],name+' gate')\ncheck(next(t for t in board['tasks'] if t['id']=='friday-command-refactor')['next_gate']==next_gate,'board gate');check(next_gate in (root/'docs/planning/README.md').read_text(),'dashboard gate')\nout=p/'validation/memory-queries/directive-review/round3';e=json.loads((out/'evidence.json').read_text())\nfor seat,entry in e['reports'].items():check(sha(out/entry['path'])==entry['sha256'],'report '+seat)\nsubprocess.run(['git','apply','--check',str(out/'proposed-readme-fix.patch')],env=env,check=True);subprocess.run(['git','diff','--check'],env=env,check=True)\nresult={'recorded_at':datetime.now(timezone.utc).isoformat(),'status':'passed administrative-recording audit, not council clearance','reviewed_candidate':m['head'],'precloseout_logical_index':idx,'protected_non_docs':1255,'dirty_examples':2,'ignored_exports':3,'supplied_raw':88,'technical_inputs_and_historical_evidence':'unchanged','new_changes':'current state/history and report preservation only','source_implementation':'not started','known_external_locator':'preserved unchanged, not cleaned','proposed_patch':'check passed; NOT APPLIED','candidate_outcome':'CHANGES_REQUESTED','formal_council':'incomplete due blocked Sol isolation receipt','iteration':'stopped after two correction cycles'}\n(s/'final-audit.json').write_text(json.dumps(result,indent=2)+'\\n');e['controller_closeout_audit']=result;e['controller_receipts']={}\nfor path in sorted((s/'prepared').glob('escalation-*')):\n if path.suffix in ['.json','.log']:e['controller_receipts'][path.name]={'path':str(path),'sha256':sha(path),'text':path.read_text()}\ne['controller_receipts']['final-audit.json']={'path':str(s/'final-audit.json'),'sha256':sha(s/'final-audit.json'),'text':(s/'final-audit.json').read_text()}\ne['controller_receipts']['final_audit.py']={'path':str(s/'final_audit.py'),'sha256':sha(s/'final_audit.py'),'text':(s/'final_audit.py').read_text()}\n(out/'evidence.json').write_text(json.dumps(e,indent=2)+'\\n');print(json.dumps(result,indent=2))\npaths=sorted(allowed)+[str(f.relative_to(root)) for f in sorted(out.rglob('*')) if f.is_file()]\nsubprocess.run(['git','add','--',*paths],env=env,check=True);staged=set(git('diff','--cached','--name-only','-z').decode().strip('\\0').split('\\0'));check(staged==set(paths),'staged set');subprocess.run(['git','diff','--cached','--check'],env=env,check=True);print('Staged',len(paths),'administrative documentation paths')\n"
+    }
+  }
+}

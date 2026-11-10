@@ -13,6 +13,15 @@ python -m pip install "friday-chat==0.1.0a4"
 
 Friday distributions use the same release version; keep internal Friday dependencies aligned.
 
+Chat requires `friday-framework-commands==0.1.0a4` for the shared `/help`,
+`/exit` (`/quit`, `/q`) and `/cls` (`/clearscreen`) definitions and behavior.
+Chat also delegates `/history` and `/clear` to shared session handlers through
+an injected port. History preserves the current conversation order; clear empties
+that same history list before awaiting the runtime's current-session memory
+operation. Chat owns English output, terminal effects and session cleanup;
+`/cls` remains the separate display operation. The default catalog contains 41
+commands and three aliases. Custom registries retain their own handlers.
+
 ## Quick start: an offline interactive session
 
 Create `demo.yaml` in a disposable working directory:
@@ -78,7 +87,37 @@ Local telemetry is disabled by default. Enabled Chat telemetry supplies bounded 
 
 Embedding applications can inject a borrowed `TelemetryInterface` through `build_runtime(config, telemetry=...)`; Chat does not close that provider. Remote exporter assembly and provider-neutral Langfuse integration remain separate work. The legacy `langfuse` section is not activated by local debug telemetry. Persistence diagnostics distinguish an intermediate write from full-turn success; they do not promise atomic rollback.
 
+The six diagnostics (`/context`, `/prompt`, `/debug`, `/debug-budget`, `/timing`,
+`/debug-retrieval`) delegate to opt-in shared Commands handlers. Chat projects
+runtime/telemetry facts and renders their typed results. `/context --file` and
+`/prompt --file` overwrite `friday_context.txt` and `friday_prompt.txt` in the
+existing resolved export directory; context exports include `--debug` output.
+Retrieval awaits the existing public memory capability once. Exceptions and
+cancellation propagate without retry or rollback. Truthy non-string cached
+context/prompt values and direct non-string command arguments raise `TypeError`;
+falsy caches retain fallback behavior. `/context --debug` formats the selected
+text once and then measures the original value, as the legacy command did. These boundaries do not change parsing,
+registration, runtime service ownership or telemetry defaults.
+
 ## Development
+
+The six read-only memory queries (`/memory`, `/insights`, `/summaries`, `/meta`,
+`/entities`, `/list-ingested`) delegate to the neutral Commands handlers. Shared
+code selects record kinds and graph mode and awaits one injected capability;
+Chat retains service reads, detached display projection and English rendering.
+The typed boundary rejects mismatched record kinds and unsupported outcomes.
+Only exact lowercase first-argument `nodes` selects nodes-only graph output.
+Queries do not write memory, run synthesis, export files or change session state.
+
+`/list-ingested` reads persisted ingestion metadata from the short- and long-term
+collections. It groups by source and description, counts stored chunk records,
+and sorts by source then description (absent description first). Re-ingestion
+contributes the records actually retained; listing does not deduplicate ingestion
+events, inspect source files or read the decayed collection. Partial reads show
+sanitized warnings. Fake mode retains its insertion order and recorded counts.
+Ingestion itself is unchanged; source validation and command consolidation remain
+deferred. The MEMQ integration requires its D2 review and later installed proof
+before the separate human acceptance gate.
 
 Work from the monorepo root after the [shared contributor setup](https://github.com/CIChuck/agent-framework/blob/master/README.md#development).
 Run the focused suite:
@@ -94,3 +133,18 @@ uv run --no-sync pytest packages/friday-chat/tests_chat -q
 ## License
 
 [MIT](https://github.com/CIChuck/agent-framework/blob/master/LICENSE).
+
+
+### Reorganization maintenance order
+
+`/reorganize --full` explicitly selects the existing default full mode.
+With `--execute`, full mode runs dedupe/prune, pending verification, synthesis,
+verification of newly created insights, then lifecycle maintenance. Optional
+reembedding remains first. Skip flags are interpreted by the shared Memory
+pipeline; Chat delegates once inside its existing snapshot/recovery transaction.
+
+The two verification stages show selected/verified/rejected/uncertain counts.
+Failed/skipped/deferred summaries remain unavailable; rolled-back counts are
+labelled as attempted. Preview makes no provider calls and reports dependent
+scopes as deferred. New stage evidence is stored separately; recovery journals
+and bundles retain schema v1. Human UAT and acceptance are separate from tests.

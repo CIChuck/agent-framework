@@ -22,12 +22,16 @@ def strip_llm_reasoning(content: str) -> str:
     return stripped.strip()
 
 
-def parse_json_object_from_text(content: str | None) -> dict[str, Any] | None:
-    """Parse the first valid JSON object from noisy LLM response text."""
+def parse_json_object_from_text(
+    content: str | None, *, recover_nested_objects: bool = True
+) -> dict[str, Any] | None:
+    """Parse JSON; strict response callers can forbid nested-object recovery."""
     if not content:
         return None
 
-    candidates = _json_text_candidates(strip_llm_reasoning(content))
+    candidates = _json_text_candidates(
+        strip_llm_reasoning(content), recover_nested_objects=recover_nested_objects
+    )
     for candidate in candidates:
         parsed = _parse_json_object(candidate)
         if parsed is not None:
@@ -65,23 +69,50 @@ def json_parse_warning_detail(
     )
 
 
-def _json_text_candidates(content: str) -> list[str]:
+def _json_text_candidates(
+    content: str, *, recover_nested_objects: bool = True
+) -> list[str]:
     candidates = [content]
+    first_structure = next((i for i, char in enumerate(content) if char in "{["), None)
     candidates.extend(
         match.group(1)
         for match in re.finditer(r"```(?:json)?\s*([\s\S]*?)\s*```", content)
+        if recover_nested_objects
+        or first_structure is None
+        or match.start() < first_structure
     )
-    candidates.extend(_raw_json_object_candidates(content))
+    candidates.extend(
+        _raw_json_object_candidates(
+            content, recover_nested_objects=recover_nested_objects
+        )
+    )
     fixed = re.sub(r",\s*([}\]])", r"\1", content)
     if fixed != content:
         candidates.append(fixed)
-        candidates.extend(_raw_json_object_candidates(fixed))
+        candidates.extend(
+            _raw_json_object_candidates(
+                fixed, recover_nested_objects=recover_nested_objects
+            )
+        )
     return candidates
 
 
-def _raw_json_object_candidates(content: str) -> list[str]:
+def _raw_json_object_candidates(
+    content: str, *, recover_nested_objects: bool = True
+) -> list[str]:
     decoder = json.JSONDecoder()
     candidates: list[str] = []
+    if not recover_nested_objects:
+        # Decode only the enclosing value. A truncated object or an array must
+        # never be replaced by a complete dictionary contained within it.
+        first = next((i for i, char in enumerate(content) if char in "{["), None)
+        if first is None:
+            return []
+        try:
+            value, end = decoder.raw_decode(content[first:])
+        except json.JSONDecodeError:
+            return []
+        return [content[first : first + end]] if isinstance(value, dict) else []
     for index, char in enumerate(content):
         if char != "{":
             continue

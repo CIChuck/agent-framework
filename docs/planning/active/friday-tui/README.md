@@ -8,7 +8,7 @@ claims, reviews and test receipts retain their original provenance. No design
 approval, construction authority or code validation is inferred.
 
 **Current planning status — 2026-11-05:** Started, normal condition, with
-`design_only` authority on `feature/command-refactor` in Agent Framework.
+`design_only` authority on `feature/command-retirement` in Agent Framework.
 The maintainer confirmed Friday TUI is an active unit of planning work.
 The command refactor is the first phase. Planning may proceed; TUI construction
 remains held until command-refactor acceptance and separate authorization.

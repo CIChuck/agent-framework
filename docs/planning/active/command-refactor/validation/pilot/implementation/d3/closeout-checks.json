@@ -1,0 +1,43 @@
+{
+  "reviewed_candidate": "eb216421e533b98d5d025f74a5bc0ea177d2f5ec",
+  "recorded_at": "2026-11-08T03:13:08+00:00",
+  "result": "passed",
+  "scope": "Controller closeout metadata only; no product/test/dependency/lock/harness/approved-authority changes after reviewed candidate.",
+  "preserved_dirty_examples": true,
+  "append_only_execution_log": true,
+  "exact_reports_and_request_preserved": true,
+  "receipts": {
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d3-remediation-uvjjumuh/prepared/closeout-render.json": {
+      "sha256": "dbb698405714dfb41108ef4bd518cc483e0ecdfd0df689babc24e82c59271cd8",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.23\n}"
+    },
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d3-remediation-uvjjumuh/prepared/closeout-render.log": {
+      "sha256": "f27719abacb685f5c795dcccfe79316fc8f20c09c9ed1a562e331761233ec8fc",
+      "text": "Rendered docs/planning/README.md\n"
+    },
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d3-remediation-uvjjumuh/prepared/closeout-board.json": {
+      "sha256": "c66db212df91312173f775d924fe85106f6c24b4538b5782e6205d8a851c4be2",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.16\n}"
+    },
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d3-remediation-uvjjumuh/prepared/closeout-board.log": {
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "text": "Development board validation passed: 36 tasks\n"
+    },
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d3-remediation-uvjjumuh/prepared/closeout-dashboard.json": {
+      "sha256": "c4deb91a9bda2bccad5ea2d0fdf1140c8e12413a0ae396cb60daa5ee788d9d98",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.16\n}"
+    },
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d3-remediation-uvjjumuh/prepared/closeout-dashboard.log": {
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "text": "Planning dashboard is current\n"
+    },
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d3-remediation-uvjjumuh/prepared/closeout-docs.json": {
+      "sha256": "94e3170aa0b8c5b290fd34d92fe6b7cb0461ad56efbab08d21f378391e411fbc",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/check-documentation-lifecycle.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.68\n}"
+    },
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d3-remediation-uvjjumuh/prepared/closeout-docs.log": {
+      "sha256": "387fd94bf975d5079319685ee9fe669b4cc228b70914e6ffbe9ca2e311fabc0e",
+      "text": "Documentation lifecycle validation passed: 873 Markdown files checked\n"
+    }
+  }
+}

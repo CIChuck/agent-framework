@@ -1,0 +1,113 @@
+{
+  "candidate": "bab167579a0c6fcae8765f263ec754f1d4700d93",
+  "git": {
+    "logical_index_sha256": "bcd89cb4e53f408ab871cac3828756938d0fd9f0a46d9f01079a255ce087a865",
+    "head": "bab167579a0c6fcae8765f263ec754f1d4700d93",
+    "branch": "feature/command-retirement",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n",
+    "staged_diff": "",
+    "untracked": "",
+    "ignored_listing": ".DS_Store\n.friday/\n.mypy_cache/\n.mypy_cache/.gitignore\n.mypy_cache/3.10/\n.mypy_cache/3.13/\n.mypy_cache/CACHEDIR.TAG\n.pytest_cache/\n.pytest_cache/.gitignore\n.pytest_cache/CACHEDIR.TAG\n.pytest_cache/README.md\n.pytest_cache/v/\n.ruff_cache/\n.ruff_cache/.gitignore\n.ruff_cache/0.14.10/\n.ruff_cache/0.14.9/\n.ruff_cache/CACHEDIR.TAG\n.uv-cache/\n.uv-cache/.gitignore\n.uv-cache/.lock\n.uv-cache/CACHEDIR.TAG\n.uv-cache/archive-v0/\n.uv-cache/builds-v0/\n.uv-cache/environments-v2/\n.uv-cache/interpreter-v4/\n.uv-cache/sdists-v9/\n.uv-cache/simple-v21/\n.uv-cache/wheels-v6/\n.venv/\nbuild/\ndist/\ndocs/.DS_Store\ndocs/archive/.DS_Store\ndocs/archive/build-plans/.DS_Store\ndocs/archive/build-plans/completed/.DS_Store\ndocs/archive/research-notes/.DS_Store\ndocs/dev-skills/babysit-pr/scripts/__pycache__/\ndocs/planning/.DS_Store\ndocs/planning/build-plans/\ndocs/planning/build-plans/.DS_Store\ndocs/planning/upgrades/\ndocs/planning/upgrades/.DS_Store\nexperiments/__pycache__/\nexperiments/agent_quality/__pycache__/\nexperiments/agent_quality/tests/__pycache__/\nexperiments/prompt_transcript_audit/__pycache__/\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T205816Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T212326Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T230722Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T231627Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260317T015409Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260716T181954Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260718T111204Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260827T233934Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260827T235441Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260828T150229Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260828T152806Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260828T230735Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260914T192705Z.json\nexperiments/prompt_transcript_audit/tests/__pycache__/\nexperiments/provider_memory_smoke/__pycache__/\nexperiments/provider_memory_smoke/artifacts/\nexperiments/provider_memory_smoke/artifacts/extraction_rejections.log\nexperiments/provider_memory_smoke/artifacts/provider-memory-smoke-20260309T184421Z.json\nexperiments/provider_memory_smoke/config/runtime.local.yaml\nexperiments/provider_memory_smoke/tests/__pycache__/\nexperiments/workflow_artifact_smoke/__pycache__/\nexperiments/workflow_artifact_smoke/tests/__pycache__/\nexports/\npackages/friday-agent/.pytest_cache/\npackages/friday-agent/.pytest_cache/.gitignore\npackages/friday-agent/.pytest_cache/CACHEDIR.TAG\npackages/friday-agent/.pytest_cache/README.md\npackages/friday-agent/.pytest_cache/v/\npackages/friday-agent/src/friday_agent/__pycache__/\npackages/friday-agent/src/friday_agent/security/__pycache__/\npackages/friday-agent/src/friday_agent/tools/__pycache__/\npackages/friday-agent/src/friday_agent/workflows/__pycache__/\npackages/friday-agent/tests_agent/__pycache__/\npackages/friday-chat/.pytest_cache/\npackages/friday-chat/.pytest_cache/.gitignore\npackages/friday-chat/.pytest_cache/CACHEDIR.TAG\npackages/friday-chat/.pytest_cache/README.md\npackages/friday-chat/.pytest_cache/v/\npackages/friday-chat/src/friday_chat/__pycache__/\npackages/friday-chat/src/friday_chat/commands/__pycache__/\npackages/friday-chat/src/friday_chat/config_templates/__pycache__/\npackages/friday-chat/src/friday_chat/reorganization/__pycache__/\npackages/friday-chat/src/friday_chat/tools/__pycache__/\npackages/friday-chat/src/friday_chat/turns/__pycache__/\npackages/friday-chat/tests_chat/__pycache__/\npackages/friday-chat/tests_chat/compat/__pycache__/\npackages/friday-cli/.pytest_cache/\npackages/friday-cli/.pytest_cache/.gitignore\npackages/friday-cli/.pytest_cache/CACHEDIR.TAG\npackages/friday-cli/.pytest_cache/README.md\npackages/friday-cli/.pytest_cache/v/\npackages/friday-cli/src/friday_cli/__pycache__/\npackages/friday-cli/tests_cli/__pycache__/\npackages/friday-commands/src/friday_commands/__pycache__/\npackages/friday-core/.pytest_cache/\npackages/friday-core/.pytest_cache/.gitignore\npackages/friday-core/.pytest_cache/CACHEDIR.TAG\npackages/friday-core/.pytest_cache/README.md\npackages/friday-core/.pytest_cache/v/\npackages/friday-core/src/friday_core.egg-info/\npackages/friday-core/src/friday_core/__pycache__/\npackages/friday-core/src/friday_core/interfaces/__pycache__/\npackages/friday-core/src/friday_core/security/__pycache__/\npackages/friday-core/tests_core/__pycache__/\npackages/friday-finance/src/friday_finance/__pycache__/\npackages/friday-finance/src/friday_finance/providers/__pycache__/\npackages/friday-finance/src/friday_finance/providers/massive/__pycache__/\npackages/friday-finance/src/friday_finance/providers/massive/modules/__pycache__/\npackages/friday-finance/tests/__pycache__/\npackages/friday-llm/.pytest_cache/\npackages/friday-llm/.pytest_cache/.gitignore\npackages/friday-llm/.pytest_cache/CACHEDIR.TAG\npackages/friday-llm/.pytest_cache/README.md\npackages/friday-llm/.pytest_cache/v/\npackages/friday-llm/src/friday_llm/__pycache__/\npackages/friday-llm/tests_llm/__pycache__/\npackages/friday-mcp/.pytest_cache/\npackages/friday-mcp/.pytest_cache/.gitignore\npackages/friday-mcp/.pytest_cache/CACHEDIR.TAG\npackages/friday-mcp/.pytest_cache/README.md\npackages/friday-mcp/.pytest_cache/v/\npackages/friday-mcp/.ruff_cache/\npackages/friday-mcp/.ruff_cache/.gitignore\npackages/friday-mcp/.ruff_cache/0.14.10/\npackages/friday-mcp/.ruff_cache/0.14.9/\npackages/friday-mcp/.ruff_cache/CACHEDIR.TAG\npackages/friday-mcp/src/friday_mcp/__pycache__/\npackages/friday-mcp/src/friday_mcp/client/__pycache__/\npackages/friday-mcp/src/friday_mcp/server/__pycache__/\npackages/friday-mcp/src/friday_mcp/utils/__pycache__/\npackages/friday-mcp/tests_mcp/__pycache__/\npackages/friday-mcp/tests_mcp/client/__pycache__/\npackages/friday-mcp/tests_mcp/server/__pycache__/\npackages/friday-memory/.pytest_cache/\npackages/friday-memory/.pytest_cache/.gitignore\npackages/friday-memory/.pytest_cache/CACHEDIR.TAG\npackages/friday-memory/.pytest_cache/README.md\npackages/friday-memory/.pytest_cache/v/\npackages/friday-memory/src/friday_memory.egg-info/\npackages/friday-memory/src/friday_memory/__pycache__/\npackages/friday-memory/src/friday_memory/adapters/__pycache__/\npackages/friday-memory/src/friday_memory/context/__pycache__/\npackages/friday-memory/src/friday_memory/controller/__pycache__/\npackages/friday-memory/src/friday_memory/ingestion/__pycache__/\npackages/friday-memory/src/friday_memory/lifecycle/__pycache__/\npackages/friday-memory/src/friday_memory/maintenance/__pycache__/\npackages/friday-memory/src/friday_memory/models/__pycache__/\npackages/friday-memory/src/friday_memory/multi_agent/__pycache__/\npackages/friday-memory/src/friday_memory/retrieval/__pycache__/\npackages/friday-memory/tests_memory/__pycache__/\npackages/friday-memory/tests_memory/test_adapters/__pycache__/\npackages/friday-memory/tests_memory/test_context/__pycache__/\npackages/friday-memory/tests_memory/test_lifecycle/__pycache__/\npackages/friday-memory/tests_memory/test_maintenance/__pycache__/\npackages/friday-memory/tests_memory/test_retrieval/__pycache__/\npackages/friday-moltbook/.pytest_cache/\npackages/friday-moltbook/.pytest_cache/.gitignore\npackages/friday-moltbook/.pytest_cache/CACHEDIR.TAG\npackages/friday-moltbook/.pytest_cache/README.md\npackages/friday-moltbook/.pytest_cache/v/\npackages/friday-moltbook/src/friday_moltbook/__pycache__/\npackages/friday-moltbook/src/friday_moltbook/models/__pycache__/\npackages/friday-moltbook/tests_moltbook/__pycache__/\npackages/friday-runtime/.pytest_cache/\npackages/friday-runtime/.pytest_cache/.gitignore\npackages/friday-runtime/.pytest_cache/CACHEDIR.TAG\npackages/friday-runtime/.pytest_cache/README.md\npackages/friday-runtime/.pytest_cache/v/\npackages/friday-runtime/src/friday_runtime/__pycache__/\npackages/friday-runtime/tests_runtime/__pycache__/\npackages/friday-sandbox/.pytest_cache/\npackages/friday-sandbox/.pytest_cache/.gitignore\npackages/friday-sandbox/.pytest_cache/CACHEDIR.TAG\npackages/friday-sandbox/.pytest_cache/README.md\npackages/friday-sandbox/.pytest_cache/v/\npackages/friday-sandbox/.ruff_cache/\npackages/friday-sandbox/.ruff_cache/.gitignore\npackages/friday-sandbox/.ruff_cache/0.14.10/\npackages/friday-sandbox/.ruff_cache/0.14.9/\npackages/friday-sandbox/.ruff_cache/CACHEDIR.TAG\npackages/friday-sandbox/src/friday_sandbox/__pycache__/\npackages/friday-sandbox/tests_sandbox/__pycache__/\npackages/friday-speech/.pytest_cache/\npackages/friday-speech/.pytest_cache/.gitignore\npackages/friday-speech/.pytest_cache/CACHEDIR.TAG\npackages/friday-speech/.pytest_cache/README.md\npackages/friday-speech/.pytest_cache/v/\npackages/friday-speech/src/friday_speech/__pycache__/\npackages/friday-speech/src/friday_speech/adapters/__pycache__/\npackages/friday-speech/tests_speech/__pycache__/\npackages/friday-telemetry/.pytest_cache/\npackages/friday-telemetry/.pytest_cache/.gitignore\npackages/friday-telemetry/.pytest_cache/CACHEDIR.TAG\npackages/friday-telemetry/.pytest_cache/README.md\npackages/friday-telemetry/.pytest_cache/v/\npackages/friday-telemetry/src/friday_telemetry/__pycache__/\npackages/friday-telemetry/src/friday_telemetry/helpers/__pycache__/\npackages/friday-telemetry/src/friday_telemetry/models/__pycache__/\npackages/friday-telemetry/src/friday_telemetry/providers/__pycache__/\npackages/friday-telemetry/tests_telemetry/__pycache__/\npackages/friday-tools/.pytest_cache/\npackages/friday-tools/.pytest_cache/.gitignore\npackages/friday-tools/.pytest_cache/CACHEDIR.TAG\npackages/friday-tools/.pytest_cache/README.md\npackages/friday-tools/.pytest_cache/v/\npackages/friday-tools/.ruff_cache/\npackages/friday-tools/.ruff_cache/.gitignore\npackages/friday-tools/.ruff_cache/0.14.10/\npackages/friday-tools/.ruff_cache/0.14.9/\npackages/friday-tools/.ruff_cache/CACHEDIR.TAG\npackages/friday-tools/src/friday_tools/__pycache__/\npackages/friday-tools/src/friday_tools/adapters/__pycache__/\npackages/friday-tools/src/friday_tools/archive/__pycache__/\npackages/friday-tools/src/friday_tools/code/__pycache__/\npackages/friday-tools/src/friday_tools/codegen/__pycache__/\npackages/friday-tools/src/friday_tools/data/__pycache__/\npackages/friday-tools/src/friday_tools/encoding/__pycache__/\npackages/friday-tools/src/friday_tools/execution/__pycache__/\npackages/friday-tools/src/friday_tools/filesystem/__pycache__/\npackages/friday-tools/src/friday_tools/filesystem/readers/__pycache__/\npackages/friday-tools/src/friday_tools/finance/__pycache__/\npackages/friday-tools/src/friday_tools/git/__pycache__/\npackages/friday-tools/src/friday_tools/integrations/__pycache__/\npackages/friday-tools/src/friday_tools/math/__pycache__/\npackages/friday-tools/src/friday_tools/memory/__pycache__/\npackages/friday-tools/src/friday_tools/shell/__pycache__/\npackages/friday-tools/src/friday_tools/system/__pycache__/\npackages/friday-tools/src/friday_tools/text/__pycache__/\npackages/friday-tools/src/friday_tools/utility/__pycache__/\npackages/friday-tools/src/friday_tools/web/__pycache__/\npackages/friday-tools/tests_tools/__pycache__/\npackages/friday-transcript/.pytest_cache/\npackages/friday-transcript/.pytest_cache/.gitignore\npackages/friday-transcript/.pytest_cache/CACHEDIR.TAG\npackages/friday-transcript/.pytest_cache/README.md\npackages/friday-transcript/.pytest_cache/v/\npackages/friday-transcript/src/friday_transcript/__pycache__/\npackages/friday-transcript/src/friday_transcript/exporters/__pycache__/\npackages/friday-transcript/src/friday_transcript/models/__pycache__/\npackages/friday-transcript/src/friday_transcript/stores/__pycache__/\npackages/friday-transcript/tests/__pycache__/\npackages/friday-tui/\npackages/friday-tui/.pytest_cache/\npackages/friday-tui/.pytest_cache/.gitignore\npackages/friday-tui/.pytest_cache/CACHEDIR.TAG\npackages/friday-tui/.pytest_cache/README.md\npackages/friday-tui/.pytest_cache/v/\npackages/friday-tui/src/\npackages/friday-tui/src/friday_tui/\npackages/friday-tui/src/friday_tui/__pycache__/\npackages/friday-tui/tests_tui/\npackages/friday-tui/tests_tui/__pycache__/\nscripts/__pycache__/\nscripts/pypi.sh\nscripts/source-friday-chat-example-env.sh\ntests/__pycache__/\ntests/integration/__pycache__/\ntests/integration/memory/\ntests/integration/reorganization/__pycache__/\ntests/lab/.pytest_cache/\ntests/lab/.pytest_cache/.gitignore\ntests/lab/.pytest_cache/CACHEDIR.TAG\ntests/lab/.pytest_cache/README.md\ntests/lab/.pytest_cache/v/\ntests/lab/__pycache__/\n"
+  },
+  "groups": {
+    "pins": 156,
+    "protected_non_docs": 1255,
+    "accepted_repository_evidence": 192,
+    "accepted_D1": 29,
+    "dirty": 2,
+    "ignored_exports": 3,
+    "preserved_external_files": 1,
+    "supplied_raw_files": 3581
+  },
+  "provided_tree_entries": 275082,
+  "complete_listing_entries": 275082,
+  "issues": [],
+  "claude_artifacts": [
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/reports/claude-report.md",
+      "sha256": "999388a3bf740a7f7223737a933b731334ecbc458c2cd1c34c627e5223fb3b0b",
+      "expected": "999388a3bf740a7f7223737a933b731334ecbc458c2cd1c34c627e5223fb3b0b"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/boundary/start-integrity.json",
+      "sha256": "0bd7a252a4597c894e712f26919223a9d50195a50c56c69d59ad9ded611e3b4d",
+      "expected": "0bd7a252a4597c894e712f26919223a9d50195a50c56c69d59ad9ded611e3b4d"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/boundary/end-integrity.json",
+      "sha256": "f5d585c5eb89d5fca14394d67761c458f4f0e42e16f98d57c2c5c97ed9a81d32",
+      "expected": "f5d585c5eb89d5fca14394d67761c458f4f0e42e16f98d57c2c5c97ed9a81d32"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/reports/pair-audit.json",
+      "sha256": "1a0e9051686ba64c4e92fd1bfeaf6862ab750fcf0e6cb30f7c6df7b063e13e01",
+      "expected": "1a0e9051686ba64c4e92fd1bfeaf6862ab750fcf0e6cb30f7c6df7b063e13e01"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/reports/ast-audit.json",
+      "sha256": "98b4f95f1c79d12d16d7033ae712cffadff828ef1b5b98bae631f2fb45685cee",
+      "expected": "98b4f95f1c79d12d16d7033ae712cffadff828ef1b5b98bae631f2fb45685cee"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/reports/mutant-audit.json",
+      "sha256": "9c05cbe1a86377d145f0025be1c221718aeb71656f79b09317ae876f4e7a09a3",
+      "expected": "9c05cbe1a86377d145f0025be1c221718aeb71656f79b09317ae876f4e7a09a3"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/installed/summary.json",
+      "sha256": "fc1cb2b22fa0c669cd01289326649a42989baa51f0c199d82796d061267e161d",
+      "expected": "fc1cb2b22fa0c669cd01289326649a42989baa51f0c199d82796d061267e161d"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/controls/installed-control-summary.json",
+      "sha256": "d12ac40a4ba3c18b470ac1ca8a9484d8cd4f853ed47be0b3b0b682ccb7a3b9e8",
+      "expected": "d12ac40a4ba3c18b470ac1ca8a9484d8cd4f853ed47be0b3b0b682ccb7a3b9e8"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/controls/artifact-control-summary.json",
+      "sha256": "3df09944cb56bb88c59834301412e34a0675af38c89bfef4138531372e4de90f",
+      "expected": "3df09944cb56bb88c59834301412e34a0675af38c89bfef4138531372e4de90f"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/controls/semantic-control-summary.json",
+      "sha256": "3e3cb532d28a1b44b0b686e25836f52e776036853ec706fac9d165ef8c54f691",
+      "expected": "3e3cb532d28a1b44b0b686e25836f52e776036853ec706fac9d165ef8c54f691"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/controls/memq-semantic-control-summary.json",
+      "sha256": "c52308f33ef51cac5d0fedef3c34b42a23ba9dfdc2010b24bfcddff01516103b",
+      "expected": "c52308f33ef51cac5d0fedef3c34b42a23ba9dfdc2010b24bfcddff01516103b"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/captures/capture-receipts.json",
+      "sha256": "dfb7df2adab5f92a9edd43f66fca0dcd8d4b9a2e1b63e9c670e75c991555657e",
+      "expected": "dfb7df2adab5f92a9edd43f66fca0dcd8d4b9a2e1b63e9c670e75c991555657e"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/captures/supplemental-result.json",
+      "sha256": "1ac462a3e6daeac6a44a19b4e572914c6e4c5a249444e8f03c2d918d3685814d",
+      "expected": "1ac462a3e6daeac6a44a19b4e572914c6e4c5a249444e8f03c2d918d3685814d"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/build/bundle/bundle-report.json",
+      "sha256": "be80470817c7042b779d6f754c12bb33d77b713b1740c5c819767055df05a2af",
+      "expected": "be80470817c7042b779d6f754c12bb33d77b713b1740c5c819767055df05a2af"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/build/replay/bundle-report.json",
+      "sha256": "11b86c6795cf5c50a108473c1fecdf188d01ef75672a83c5728f3cf9544dcd1f",
+      "expected": "11b86c6795cf5c50a108473c1fecdf188d01ef75672a83c5728f3cf9544dcd1f"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/reports/ingest-defect.json",
+      "sha256": "173b25b8e1ed121dc083fa934b82a494112d2d500059546e576eabca4df9c1bc",
+      "expected": "173b25b8e1ed121dc083fa934b82a494112d2d500059546e576eabca4df9c1bc"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/008986c6-ea9b-481d-8a17-5f310335ff67/scratchpad/memq-d3-claude-r1.inlr71/reports/admin-gates.txt",
+      "sha256": "069d925cf31ec7dd6077650d85a0efd85783cfa6fbe5a1b239a22aaf6eb20562",
+      "expected": "069d925cf31ec7dd6077650d85a0efd85783cfa6fbe5a1b239a22aaf6eb20562"
+    }
+  ],
+  "claude_sums_sha256": "ac2e8403e517c7ca61d3e7b781b7e6360716bdff3778183c592378c455d0e32a"
+}

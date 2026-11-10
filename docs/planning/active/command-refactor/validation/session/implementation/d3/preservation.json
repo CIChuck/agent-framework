@@ -1,0 +1,43 @@
+{
+  "result": "passed",
+  "D3_base": "3cc7ef3376672b36ae1147298ccd55841f9a0145",
+  "aggregate_base": "1b1f703bd5af1c86bfd95a3e5c5fc72acf71a7a7",
+  "artifact_source": "8bb61e2c65ff33bc806050f0a55610b02533aa8e",
+  "D3_original_files_unchanged": 795,
+  "D3_original_test_files_unchanged": 279,
+  "test_prefixed_AST_definitions": 3028,
+  "syntactic_assertions": 9190,
+  "approved_preparation_original_files": 788,
+  "unchanged_preparation_files": 783,
+  "changed_original_files": [
+    "packages/friday-chat/README.md",
+    "packages/friday-chat/src/friday_chat/commands/registry.py",
+    "packages/friday-commands/README.md",
+    "packages/friday-commands/src/friday_commands/__init__.py",
+    "packages/friday-commands/src/friday_commands/contracts.py"
+  ],
+  "aggregate_product_paths": [
+    "packages/friday-chat/README.md",
+    "packages/friday-chat/src/friday_chat/commands/registry.py",
+    "packages/friday-chat/src/friday_chat/commands/session_views.py",
+    "packages/friday-chat/tests_chat/fixtures_session/session-baseline.json",
+    "packages/friday-chat/tests_chat/test_command_session_views.py",
+    "packages/friday-commands/README.md",
+    "packages/friday-commands/src/friday_commands/__init__.py",
+    "packages/friday-commands/src/friday_commands/contracts.py",
+    "packages/friday-commands/src/friday_commands/session_views.py",
+    "packages/friday-commands/tests_commands/test_session_views.py"
+  ],
+  "D1_D2_source_tests_preserved_during_D3": true,
+  "metadata_lock_dirty_examples_unchanged": true,
+  "artifact_replay_actual_hash_matches": 154,
+  "workspace_builds": 13,
+  "locked_inputs": 125,
+  "bundle_child_commands": 25,
+  "accepted_profile_equal": true,
+  "aggregate_AST": {
+    "contracts": "Only three approved models and exact alias/whitelist expansion; every retained node unchanged.",
+    "exports": "Exactly six additions to18 existing exports/order, no removed bindings or other AST changes except module description.",
+    "registry": "Only session import/helper, two exact wrapper delegation bodies and tuple entries0/2; all other retained AST unchanged."
+  }
+}

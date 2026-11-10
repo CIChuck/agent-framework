@@ -1,0 +1,64 @@
+{
+  "memory": {
+    "name": "memory",
+    "description": "Show typed memory, transcript, session, and context statistics.",
+    "category": "memory",
+    "usage": "/memory",
+    "aliases": [],
+    "arguments": [],
+    "detail": "Reports public episodic, vector, graph, transcript, lifecycle, priming, app-session, and last-context metrics. Empty stores report zero; unavailable or unconfigured components are labeled honestly."
+  },
+  "insights": {
+    "name": "insights",
+    "description": "List durable insights.",
+    "category": "memory",
+    "usage": "/insights",
+    "aliases": [],
+    "arguments": [],
+    "detail": null
+  },
+  "summaries": {
+    "name": "summaries",
+    "description": "List turn summaries.",
+    "category": "memory",
+    "usage": "/summaries",
+    "aliases": [],
+    "arguments": [],
+    "detail": null
+  },
+  "meta": {
+    "name": "meta",
+    "description": "List active meta insights with lifecycle and provenance metadata.",
+    "category": "memory",
+    "usage": "/meta",
+    "aliases": [],
+    "arguments": [],
+    "detail": "Queries typed short- and long-term meta_insight records, excludes decayed records, and shows bounded synthesis provenance, source, confidence, and verification fields when available. It never runs synthesis or reorganization."
+  },
+  "entities": {
+    "name": "entities",
+    "description": "List graph entities and relationships.",
+    "category": "memory",
+    "usage": "/entities [nodes|name]",
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "nodes|name",
+        "description": "Use 'nodes' for node details or provide an entity name to inspect.",
+        "required": false,
+        "default": null,
+        "choices": []
+      }
+    ],
+    "detail": null
+  },
+  "list-ingested": {
+    "name": "list-ingested",
+    "description": "List ingested document memory records.",
+    "category": "memory",
+    "usage": "/list-ingested",
+    "aliases": [],
+    "arguments": [],
+    "detail": null
+  }
+}

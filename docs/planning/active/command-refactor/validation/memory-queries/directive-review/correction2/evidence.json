@@ -1,0 +1,172 @@
+{
+  "unit": "MEMQ-001",
+  "kind": "directive readiness correction cycle2 controller evidence",
+  "recorded_at": "2026-11-09T16:02:51.518761+00:00",
+  "base": "0001357262bd86d17ce4f9a43c7bf98cc9115534",
+  "status": "passed controller correction checks; fresh council required",
+  "instruction": "lets apply the corrections and iterate",
+  "scope": "Exact closed-union test permission and complete README gate correction only; import-position clarification matches prior verifier",
+  "identities": {
+    "contract": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+    "directive": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00",
+    "verifier": "83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5",
+    "format_helper": "3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751",
+    "format_baseline": "7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2",
+    "remediation": "e9664c8806fae913e67b671c275f1920c1b4901d68194278c6a46f18a5f3ce9f",
+    "approval": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264",
+    "recorded_at": "2026-11-09T15:59:12.462665+00:00",
+    "next_gate": "Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery."
+  },
+  "files": {
+    "prepared/cycle2-board.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-board.json",
+      "sha256": "c90232efaa6f120e01dd9ad93bbc540d5c617c515ff9b02f03a209496891a9b1",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.18\n}"
+    },
+    "prepared/cycle2-board.log": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-board.log",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "text": "Development board validation passed: 36 tasks\n"
+    },
+    "prepared/cycle2-controls.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-controls.json",
+      "sha256": "48fd77c8e488c44d03ff0f2628a9646dc2f90ac38d078e19ddae7c9816815ab7",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/verify_directive_corrections.py\",\n    \".\",\n    \"/private/tmp/memq-directive-correction2-ba_z__2t/controls\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.58\n}"
+    },
+    "prepared/cycle2-controls.log": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-controls.log",
+      "sha256": "fe0125f1a1a5b42cfde09f6ad49bc1ff7da2501c7b532dac9a3c2fd6c3bec531",
+      "text": "{\n  \"scope\": \"document correction controls; no product implementation\",\n  \"status\": \"passed\",\n  \"diagnostic_bindings\": 54,\n  \"union_controls\": {\n    \"original_members\": 12,\n    \"expanded_members\": 18,\n    \"unchanged_and_extended_controls\": \"passed\",\n    \"AST_reversal\": \"passed\",\n    \"unrelated_behavior_rejected\": true,\n    \"call_assertion_witnesses\": [\n      {\n        \"control\": \"unchanged-helper-with-expanded-union\",\n        \"file\": \"/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands/tests_commands/test_diagnostics.py\",\n        \"call_assertion_line\": 203\n      },\n      {\n        \"control\": \"missing-member\",\n        \"file\": \"/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands/tests_commands/test_diagnostics.py\",\n        \"call_assertion_line\": 203\n      },\n      {\n        \"control\": \"extra-member\",\n        \"file\": \"/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands/tests_commands/test_diagnostics.py\",\n        \"call_assertion_line\": 203\n      },\n      {\n        \"control\": \"nested-member\",\n        \"file\": \"/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands/tests_commands/test_diagnostics.py\",\n        \"call_assertion_line\": 203\n      }\n    ],\n    \"limit\": \"Synthetic alias membership only, not implemented MQ model/whitelist proof\"\n  },\n  \"all_current_README_gates\": \"agree; injected stale gate rejected\",\n  \"diagnostic_and_session_AST_reversal\": \"passed\",\n  \"unrelated_assertion_rejected\": true,\n  \"retained_probe_functions\": [\n    \"retained_session_neutral_behavior\",\n    \"chat_behavior\",\n    \"neutral_diagnostics\",\n    \"chat_diagnostics\"\n  ],\n  \"D5_exact_ordered_exports\": 54,\n  \"all_four_extra_behavior_controls_rejected\": true,\n  \"format_inventory_sha256\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n  \"format_controls\": [\n    \"exact baseline\",\n    \"unchanged\",\n    \"shifted lines\",\n    \"formatted new code\",\n    \"new defect rejected\",\n    \"duplicate allowance rejected\"\n  ],\n  \"baseline_format_debt\": \"failed/unwaived\"\n}\n"
+    },
+    "prepared/cycle2-dashboard.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-dashboard.json",
+      "sha256": "ec2844fc0278e33255dd0eb10556c77d2c268b16c8d0fd3d06710a91203ad1ce",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.18\n}"
+    },
+    "prepared/cycle2-dashboard.log": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-dashboard.log",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "text": "Planning dashboard is current\n"
+    },
+    "prepared/cycle2-format.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-format.json",
+      "sha256": "5d8802e94db1cd298bcfbc4f1349103960db7257c269614cf2f8cbf4a4367b2f",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"ruff\",\n    \"format\",\n    \"--check\",\n    \"--no-cache\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/format_debt.py\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/verify_directive_corrections.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.03\n}"
+    },
+    "prepared/cycle2-format.log": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-format.log",
+      "sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938",
+      "text": "2 files already formatted\n"
+    },
+    "prepared/cycle2-lint.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-lint.json",
+      "sha256": "c6016a9e04056853165d871ea4091445907fd7c4e7587019ea4866bb496f21e4",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"ruff\",\n    \"check\",\n    \"--no-cache\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/format_debt.py\",\n    \"docs/planning/active/command-refactor/validation/memory-queries/verify_directive_corrections.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.03\n}"
+    },
+    "prepared/cycle2-lint.log": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-lint.log",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "text": "All checks passed!\n"
+    },
+    "prepared/cycle2-preservation.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-preservation.json",
+      "sha256": "4ea11c846a6d9b4fd6cc9283650e6f702d418aa6a5b648d2afc3cb4ed4f3cbff",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/private/tmp/memq-directive-correction2-ba_z__2t/audit_cycle2.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.6\n}"
+    },
+    "prepared/cycle2-preservation.log": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-preservation.log",
+      "sha256": "93faf937d0026e1476999f8118df464c6c6000ebe5c2970dae9327e6fac3c3a3",
+      "text": "{\n  \"recorded_at\": \"2026-11-09T16:01:11.666336+00:00\",\n  \"status\": \"passed\",\n  \"scope\": \"controller document correction cycle2, not independent conformance\",\n  \"precommit_head\": \"0001357262bd86d17ce4f9a43c7bf98cc9115534\",\n  \"precommit_logical_index\": \"78fa78eedaa7bdcc9568388a55e084b70e1d7087d395be6a1a9d7bcb01ef871b\",\n  \"protected_non_docs\": 1255,\n  \"dirty\": 2,\n  \"ignored_exports\": 3,\n  \"supplied_raw\": 62,\n  \"old_nonallowlisted_pins_preserved\": true,\n  \"old_report_approval_evidence_bytes_preserved\": true,\n  \"log_append_only\": true,\n  \"board_event_history_preserved\": true,\n  \"README_current_gates_checked\": 2,\n  \"normative_pin_counts\": {\n    \"CD-CMD-MEMQ-001-memory-queries.md\": 30,\n    \"memory-queries-directive-correction2.md\": 8\n  },\n  \"shell_blocks_checked\": 7,\n  \"current_bindings\": {\n    \"contract\": \"93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda\",\n    \"directive\": \"4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00\",\n    \"verifier\": \"83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5\",\n    \"format_helper\": \"3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751\",\n    \"format_baseline\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n    \"remediation\": \"e9664c8806fae913e67b671c275f1920c1b4901d68194278c6a46f18a5f3ce9f\",\n    \"approval\": \"54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264\",\n    \"recorded_at\": \"2026-11-09T15:59:12.462665+00:00\",\n    \"next_gate\": \"Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.\"\n  },\n  \"product_implementation\": \"not started\"\n}\n"
+    },
+    "controls/controls.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/controls/controls.json",
+      "sha256": "fe0125f1a1a5b42cfde09f6ad49bc1ff7da2501c7b532dac9a3c2fd6c3bec531",
+      "text": "{\n  \"scope\": \"document correction controls; no product implementation\",\n  \"status\": \"passed\",\n  \"diagnostic_bindings\": 54,\n  \"union_controls\": {\n    \"original_members\": 12,\n    \"expanded_members\": 18,\n    \"unchanged_and_extended_controls\": \"passed\",\n    \"AST_reversal\": \"passed\",\n    \"unrelated_behavior_rejected\": true,\n    \"call_assertion_witnesses\": [\n      {\n        \"control\": \"unchanged-helper-with-expanded-union\",\n        \"file\": \"/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands/tests_commands/test_diagnostics.py\",\n        \"call_assertion_line\": 203\n      },\n      {\n        \"control\": \"missing-member\",\n        \"file\": \"/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands/tests_commands/test_diagnostics.py\",\n        \"call_assertion_line\": 203\n      },\n      {\n        \"control\": \"extra-member\",\n        \"file\": \"/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands/tests_commands/test_diagnostics.py\",\n        \"call_assertion_line\": 203\n      },\n      {\n        \"control\": \"nested-member\",\n        \"file\": \"/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands/tests_commands/test_diagnostics.py\",\n        \"call_assertion_line\": 203\n      }\n    ],\n    \"limit\": \"Synthetic alias membership only, not implemented MQ model/whitelist proof\"\n  },\n  \"all_current_README_gates\": \"agree; injected stale gate rejected\",\n  \"diagnostic_and_session_AST_reversal\": \"passed\",\n  \"unrelated_assertion_rejected\": true,\n  \"retained_probe_functions\": [\n    \"retained_session_neutral_behavior\",\n    \"chat_behavior\",\n    \"neutral_diagnostics\",\n    \"chat_diagnostics\"\n  ],\n  \"D5_exact_ordered_exports\": 54,\n  \"all_four_extra_behavior_controls_rejected\": true,\n  \"format_inventory_sha256\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n  \"format_controls\": [\n    \"exact baseline\",\n    \"unchanged\",\n    \"shifted lines\",\n    \"formatted new code\",\n    \"new defect rejected\",\n    \"duplicate allowance rejected\"\n  ],\n  \"baseline_format_debt\": \"failed/unwaived\"\n}\n"
+    },
+    "controls/diagnostic-test-transform.py": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/controls/diagnostic-test-transform.py",
+      "sha256": "8f5590a65cc4b59bab86a5f4a21d2be52bec0d72405ca2db433076997c2514c5",
+      "text": "def test_diagnostic_specs_exports_and_factory():\n    import friday_commands.memory_queries as memory_queries_module\n    assert api.__all__ == ['PILOT_SPECS', 'SESSION_SPECS', 'CommandArgument', 'CommandError', 'CommandExecution', 'CommandHandler', 'CommandOutcome', 'CommandRegistry', 'CommandRequest', 'CommandSpec', 'DispatchResult', 'ExitData', 'FoundationData', 'HelpCatalog', 'HelpData', 'HistoryData', 'HistoryTurn', 'NoData', 'SessionClearedData', 'SessionPort', 'UiEffect', 'build_pilot_handlers', 'build_session_handlers', 'describe_help', 'DiagnosticField', 'ContextData', 'PromptData', 'DebugTurnData', 'DebugData', 'BudgetData', 'TimingCounter', 'TimingTurnData', 'TimingData', 'RetrievalData', 'RetrievalUnavailableData', 'DIAGNOSTIC_SPECS', 'DiagnosticsPort', 'build_diagnostic_handlers', 'MemoryWarningData', 'MemoryMetricData', 'MemorySectionData', 'MemoryStatisticsData', 'MemoryRecordData', 'MemoryRecordsData', 'MemoryQueryFailedData', 'MemoryUnavailableData', 'GraphEntityData', 'GraphRelationshipData', 'GraphData', 'IngestedDocumentData', 'IngestedDocumentsData', 'MEMORY_QUERY_SPECS', 'MemoryQueryPort', 'build_memory_query_handlers']\n    owners = ((contracts, ('CommandArgument', 'CommandError', 'CommandExecution', 'CommandOutcome', 'CommandRequest', 'CommandSpec', 'DispatchResult', 'ExitData', 'FoundationData', 'HelpData', 'HistoryData', 'HistoryTurn', 'NoData', 'SessionClearedData', 'UiEffect', 'DiagnosticField', 'ContextData', 'PromptData', 'DebugTurnData', 'DebugData', 'BudgetData', 'TimingCounter', 'TimingTurnData', 'TimingData', 'RetrievalData', 'RetrievalUnavailableData', 'MemoryWarningData', 'MemoryMetricData', 'MemorySectionData', 'MemoryStatisticsData', 'MemoryRecordData', 'MemoryRecordsData', 'MemoryQueryFailedData', 'MemoryUnavailableData', 'GraphEntityData', 'GraphRelationshipData', 'GraphData', 'IngestedDocumentData', 'IngestedDocumentsData')), (registry_module, ('CommandHandler', 'CommandRegistry')), (pilot_module, ('PILOT_SPECS', 'HelpCatalog', 'build_pilot_handlers', 'describe_help')), (session_module, ('SESSION_SPECS', 'SessionPort', 'build_session_handlers')), (shared, ('DIAGNOSTIC_SPECS', 'DiagnosticsPort', 'build_diagnostic_handlers')), (memory_queries_module, ('MEMORY_QUERY_SPECS', 'MemoryQueryPort', 'build_memory_query_handlers')))\n    expected_bindings = {name: getattr(module, name) for module, names in owners for name in names}\n    assert len(expected_bindings) == 54\n    assert set(expected_bindings) == set(api.__all__)\n    for name, expected in expected_bindings.items():\n        assert getattr(api, name) is expected, name\n    frozen = json.loads((Path(__file__).parent / 'fixtures/diagnostics-metadata.json').read_text())\n    metadata = {s.name: asdict(s) for s in DIAGNOSTIC_SPECS}\n    assert tuple(metadata) == NAMES\n    assert json.dumps(metadata, sort_keys=True) == json.dumps(frozen, sort_keys=True)\n    assert type(DIAGNOSTIC_SPECS) is tuple\n    with pytest.raises(FrozenInstanceError):\n        DIAGNOSTIC_SPECS[0].name = 'changed'\n    assert CommandRegistry().names() == frozenset()\n    first = build_diagnostic_handlers(NoReads())\n    second = build_diagnostic_handlers(NoReads())\n    assert type(first) is MappingProxyType\n    assert first is not second\n    assert tuple(first) == NAMES\n    with pytest.raises(TypeError):\n        first['other'] = first['context']\n    with pytest.raises(TypeError):\n        isinstance(NoReads(), DiagnosticsPort)\n    assert CommandRegistry().names() == frozenset()\n"
+    },
+    "controls/union-helper-transform.py": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/controls/union-helper-transform.py",
+      "sha256": "9fcf31d739462e6451dcad4d99539def4c69027dfd4bdcc2f1e06783bb807722",
+      "text": "def _check_closed_union_retains_old_variants_and_refuses_nested_values():\n    expected = {type(x) for x in PAYLOADS} | {NoData, HelpData, ExitData, HistoryData, SessionClearedData, contracts.MemoryUnavailableData, contracts.MemoryStatisticsData, contracts.MemoryRecordsData, contracts.MemoryQueryFailedData, contracts.GraphData, contracts.IngestedDocumentsData}\n    assert set(get_args(FoundationData.__value__)) == expected\n    for value in (NoData(), HelpData(()), ExitData(), HistoryData(()), SessionClearedData()):\n        assert CommandOutcome(data=value).data is value\n    for value in (Z, DEBUG_TURN, COUNTER, TIMING_TURN, object(), 'text', {}):\n        with pytest.raises(TypeError):\n            CommandOutcome(data=value)\n"
+    },
+    "preservation.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/preservation.json",
+      "sha256": "0c15e7e1eb83282591308afd0ed52753982be9cc2b96b3074167c9e45a67a0d6",
+      "text": "{\n  \"recorded_at\": \"2026-11-09T16:02:08.194073+00:00\",\n  \"status\": \"passed\",\n  \"scope\": \"controller document correction cycle2, not independent conformance\",\n  \"precommit_head\": \"0001357262bd86d17ce4f9a43c7bf98cc9115534\",\n  \"precommit_logical_index\": \"78fa78eedaa7bdcc9568388a55e084b70e1d7087d395be6a1a9d7bcb01ef871b\",\n  \"protected_non_docs\": 1255,\n  \"dirty\": 2,\n  \"ignored_exports\": 3,\n  \"supplied_raw\": 62,\n  \"old_nonallowlisted_pins_preserved\": true,\n  \"old_report_approval_evidence_bytes_preserved\": true,\n  \"log_append_only\": true,\n  \"board_event_history_preserved\": true,\n  \"README_current_gates_checked\": 2,\n  \"normative_pin_counts\": {\n    \"CD-CMD-MEMQ-001-memory-queries.md\": 30,\n    \"memory-queries-directive-correction2.md\": 8\n  },\n  \"shell_blocks_checked\": 7,\n  \"current_bindings\": {\n    \"contract\": \"93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda\",\n    \"directive\": \"4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00\",\n    \"verifier\": \"83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5\",\n    \"format_helper\": \"3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751\",\n    \"format_baseline\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n    \"remediation\": \"e9664c8806fae913e67b671c275f1920c1b4901d68194278c6a46f18a5f3ce9f\",\n    \"approval\": \"54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264\",\n    \"recorded_at\": \"2026-11-09T15:59:12.462665+00:00\",\n    \"next_gate\": \"Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.\"\n  },\n  \"product_implementation\": \"not started\"\n}\n"
+    },
+    "audit_cycle2.py": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/audit_cycle2.py",
+      "sha256": "04f1edcdcced17334e9686bc7a17382c4f97de531e83ecb7e74253643592b4c4",
+      "text": "from pathlib import Path\nimport hashlib,json,os,re,stat,subprocess\nfrom datetime import datetime,timezone\nroot=Path.cwd();p=root/'docs/planning/active/command-refactor';s=Path('/private/tmp/memq-directive-correction2-ba_z__2t');start=json.loads((s/'start.json').read_text());m=start['manifest'];env=dict(os.environ,GIT_OPTIONAL_LOCKS='0',PYTHONDONTWRITEBYTECODE='1')\ndef sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()\ndef git(*a):return subprocess.check_output(['git',*a],env=env)\ndef check(ok,msg):\n if not ok:raise RuntimeError(msg)\ndef meta(path):\n path=Path(path);v=path.lstat();d={'mode':stat.S_IMODE(v.st_mode),'type':stat.S_IFMT(v.st_mode),'size':v.st_size,'mtime_ns':v.st_mtime_ns,'ctime_ns':v.st_ctime_ns}\n if path.is_file():d['sha256']=sha(path)\n if path.is_symlink():d['link']=os.readlink(path)\n return d\nidx=hashlib.sha256(git('ls-files','-s','-z')).hexdigest();status=git('status','--porcelain=v1').decode();check(idx==m['logical_index_sha256'],'pre-staging index');check(git('diff','--cached','--name-only')==b'','staging');check(git('rev-parse','HEAD').decode().strip()==m['head'],'HEAD')\nfor g in ['protected_non_docs','dirty','ignored_exports','supplied_raw_files']:\n for path,v in m[g].items():check(meta(root/path)==v,g+' '+path)\ncheck({str(x.relative_to(root)) for x in [root/'exports',*sorted((root/'exports').rglob('*'))]}==set(m['ignored_exports']),'export membership')\ncheck(set(x[3:] for x in status.splitlines() if not x[3:].startswith('docs/'))==set(m['dirty']),'non-doc edits')\nallowed={str(p.relative_to(root))+'/'+x for x in ['README.md','authority.json','directives/CD-CMD-MEMQ-001-memory-queries.md','execution-log.md','memory-query-command-contract.md','tactical-plan.md','next-phase.md','validation/memory-queries/verify_directive_corrections.py']}|{'docs/planning/board.yaml','docs/planning/README.md'}\nfor path,h in m['pins'].items():\n if path not in allowed:check(sha(root/path)==h,'immutable prior pin '+path)\ncheck((p/'execution-log.md').read_bytes().startswith(git('show','00013572:docs/planning/active/command-refactor/execution-log.md')),'append-only log')\nimport yaml\nold=yaml.safe_load(git('show','00013572:docs/planning/board.yaml'));board=yaml.safe_load((root/'docs/planning/board.yaml').read_text());check(board['events'][:-1]==old['events'],'board event history')\nids=json.loads((s/'corrected-identities.json').read_text());a=json.loads((p/'authority.json').read_text())\nfor key,path in [('contract','memory-query-command-contract.md'),('directive','directives/CD-CMD-MEMQ-001-memory-queries.md'),('verifier','validation/memory-queries/verify_directive_corrections.py'),('approval','approval/memory-queries-directive-correction2.md'),('remediation','remediation/REM-CMD-MEMQ-DIR-002-union-and-gates.md'),('format_helper','validation/memory-queries/format_debt.py'),('format_baseline','validation/memory-queries/format-baseline.json')]:check(sha(p/path)==ids[key],'current hash '+key)\nfor section in ['memory_queries_preparation','memory_queries_approval']:\n check(a[section]['contract_sha256']==ids['contract'] and a[section]['directive_sha256']==ids['directive'],'authority binding '+section)\ncheck(a['memory_queries_preparation']['approval_sha256']==ids['approval'] and a['memory_queries_approval']['sha256']==ids['approval'],'approval hashes')\nexpected=ids['next_gate'];gates=re.findall(r'^\\*\\*Next gate:\\*\\* (.+)$',(p/'README.md').read_text(),re.M);check(len(gates)==2 and all(x==expected for x in gates),'all README gates');check('MEMQ-001 is in planning' not in (p/'README.md').read_text(),'README phase')\nfor name in ['tactical-plan.md','next-phase.md']:\n current=(p/name).read_text().split('### Preserved DIAG acceptance checkpoint')[0];check(re.findall(r'^\\*\\*Next gate:\\*\\* (.+)$',current,re.M)==[expected],name+' gate')\ncheck(next(t for t in board['tasks'] if t['id']=='friday-command-refactor')['next_gate']==expected,'board gate');check(expected in (root/'docs/planning/README.md').read_text(),'dashboard gate')\npincounts={}\nfor path in [p/'directives/CD-CMD-MEMQ-001-memory-queries.md',p/'approval/memory-queries-directive-correction2.md']:\n rows=re.findall(r'^\\| `([^`]+)` \\| `([a-f0-9]{64})` \\|$',path.read_text(),re.M)\n for rel,h in rows:check(sha(p/rel)==h,'normative pin '+rel)\n pincounts[path.name]=len(rows)\nblocks=re.findall(r'```sh\\n(.*?)\\n```',(p/'directives/CD-CMD-MEMQ-001-memory-queries.md').read_text(),re.S)\nfor n,block in enumerate(blocks):\n f=s/f'shell-{n}.zsh';f.write_text(block+'\\n');subprocess.run(['zsh','-n',str(f)],check=True,env=env)\nsubprocess.run(['git','diff','--check'],check=True,env=env)\nfor round in ['round1','round2']:\n d=json.loads((p/f'validation/memory-queries/directive-review/{round}/evidence.json').read_text())\n for seat,entry in d['reports'].items():check(sha(p/f'validation/memory-queries/directive-review/{round}'/entry['path'])==entry['sha256'],'historical report '+round+' '+seat)\nresult={'recorded_at':datetime.now(timezone.utc).isoformat(),'status':'passed','scope':'controller document correction cycle2, not independent conformance','precommit_head':m['head'],'precommit_logical_index':idx,'protected_non_docs':1255,'dirty':2,'ignored_exports':3,'supplied_raw':62,'old_nonallowlisted_pins_preserved':True,'old_report_approval_evidence_bytes_preserved':True,'log_append_only':True,'board_event_history_preserved':True,'README_current_gates_checked':len(gates),'normative_pin_counts':pincounts,'shell_blocks_checked':len(blocks),'current_bindings':ids,'product_implementation':'not started'}\n(s/'preservation.json').write_text(json.dumps(result,indent=2)+'\\n');print(json.dumps(result,indent=2))\n"
+    },
+    "corrected-identities.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/corrected-identities.json",
+      "sha256": "add5459466e834290274ddd0a96d3ec58d931b744ac2a5b9246cef4638f12609",
+      "text": "{\n  \"contract\": \"93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda\",\n  \"directive\": \"4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00\",\n  \"verifier\": \"83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5\",\n  \"format_helper\": \"3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751\",\n  \"format_baseline\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n  \"remediation\": \"e9664c8806fae913e67b671c275f1920c1b4901d68194278c6a46f18a5f3ce9f\",\n  \"approval\": \"54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264\",\n  \"recorded_at\": \"2026-11-09T15:59:12.462665+00:00\",\n  \"next_gate\": \"Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.\"\n}\n"
+    },
+    "prepared/cycle2-board-final.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-board-final.json",
+      "sha256": "4ef30c961256556d3b55f24b421b160870c49456ef7704ef8411185b36bf7273",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"validate\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.19\n}"
+    },
+    "prepared/cycle2-board-final.log": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-board-final.log",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "text": "Development board validation passed: 36 tasks\n"
+    },
+    "prepared/cycle2-dashboard-final.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-dashboard-final.json",
+      "sha256": "077c07f2b5a4e76cf3e99b446e5e202896db46a8c1dd58e910c1c4779bc01092",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/friday-dev-board.py\",\n    \"render\",\n    \"--check\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.19\n}"
+    },
+    "prepared/cycle2-dashboard-final.log": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-dashboard-final.log",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "text": "Planning dashboard is current\n"
+    },
+    "prepared/cycle2-docs.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-docs.json",
+      "sha256": "5b343f5b9c3982579a364f53869e7d33854de375e7d12f6d9005fb4898f60adf",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"scripts/check-documentation-lifecycle.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.86\n}"
+    },
+    "prepared/cycle2-docs.log": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-docs.log",
+      "sha256": "e0f02c471c206a5d755fcae1aa5852e34ef9b032af544b5e5732744b85be9d65",
+      "text": "Documentation lifecycle validation passed: 916 Markdown files checked\n"
+    },
+    "prepared/cycle2-preservation-final.json": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-preservation-final.json",
+      "sha256": "28b6faaa7ef9d8915d86713fa7dfb57e2a66a7c0c4342021b8fc54e7e40c3d58",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/private/tmp/memq-directive-correction2-ba_z__2t/audit_cycle2.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 0.63\n}"
+    },
+    "prepared/cycle2-preservation-final.log": {
+      "path": "/private/tmp/memq-directive-correction2-ba_z__2t/prepared/cycle2-preservation-final.log",
+      "sha256": "0c15e7e1eb83282591308afd0ed52753982be9cc2b96b3074167c9e45a67a0d6",
+      "text": "{\n  \"recorded_at\": \"2026-11-09T16:02:08.194073+00:00\",\n  \"status\": \"passed\",\n  \"scope\": \"controller document correction cycle2, not independent conformance\",\n  \"precommit_head\": \"0001357262bd86d17ce4f9a43c7bf98cc9115534\",\n  \"precommit_logical_index\": \"78fa78eedaa7bdcc9568388a55e084b70e1d7087d395be6a1a9d7bcb01ef871b\",\n  \"protected_non_docs\": 1255,\n  \"dirty\": 2,\n  \"ignored_exports\": 3,\n  \"supplied_raw\": 62,\n  \"old_nonallowlisted_pins_preserved\": true,\n  \"old_report_approval_evidence_bytes_preserved\": true,\n  \"log_append_only\": true,\n  \"board_event_history_preserved\": true,\n  \"README_current_gates_checked\": 2,\n  \"normative_pin_counts\": {\n    \"CD-CMD-MEMQ-001-memory-queries.md\": 30,\n    \"memory-queries-directive-correction2.md\": 8\n  },\n  \"shell_blocks_checked\": 7,\n  \"current_bindings\": {\n    \"contract\": \"93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda\",\n    \"directive\": \"4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00\",\n    \"verifier\": \"83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5\",\n    \"format_helper\": \"3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751\",\n    \"format_baseline\": \"7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2\",\n    \"remediation\": \"e9664c8806fae913e67b671c275f1920c1b4901d68194278c6a46f18a5f3ce9f\",\n    \"approval\": \"54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264\",\n    \"recorded_at\": \"2026-11-09T15:59:12.462665+00:00\",\n    \"next_gate\": \"Reconcile fresh Sol/Astra/Claude correction-cycle2 union allowance and all current gates, then full MEMQ directive review before D0/D1. Escalate any remaining mandatory findings; no product implementation or delivery.\"\n  },\n  \"product_implementation\": \"not started\"\n}\n"
+    }
+  },
+  "limits": [
+    "Marker aliases prove exact union membership, not model constructors or the new product whitelist.",
+    "Call assertion witnesses execute the actual helper AST with private globals and canonical filename; no product test file was edited.",
+    "Historical reports/receipts remain preserved; current outcome requires fresh round3.",
+    "Existing formatting/root debt remains failed/unwaived.",
+    "Second correction cycle: escalate any remaining mandatory findings."
+  ],
+  "checks": {
+    "exact_union_members": 18,
+    "canonical_assertion_refusals": 4,
+    "README_current_gates": 2,
+    "stale_gate_refusal": "passed",
+    "prior_binding_and_probe_controls": "passed",
+    "baseline_format_profile": "unchanged; debt failed/unwaived",
+    "new_tool_lint_and_format": "passed",
+    "board_tasks": 36,
+    "documentation_files": 916,
+    "shell_blocks": 7,
+    "preservation": "passed"
+  }
+}

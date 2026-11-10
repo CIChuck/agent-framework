@@ -119,17 +119,15 @@ effects uncertain even when a final response is missing.
 
 ## Native tools and selection
 
-Inspect `/tools`, `/recommend-tools <query>` and `/tool-budget`. Confirm an actual
-implementation exists, its dependencies are installed, its constructor is
-configured and its canonical name matches selection. `/inject-tools` replaces the
-manual names but retains configured `tools.context.required_tools`, suppressing
-optional automatic choices. The union of required and manually selected names
-must fit admission, count and schema budgets; `/clear-tools` restores automatic selection.
+Inspect `/tools` to confirm runtime membership. Confirm an actual implementation
+exists, its dependencies are installed, its constructor is configured and its
+canonical name matches the configured selection policy. Required names must fit
+admission, count and schema budgets.
 
 Unknown names, missing required tools and schema/token caps can reject a set.
 A registered tool may remain unselected. A selected schema is not permission to
-perform an operation. Use `/run-tool` only when execution itself is intended;
-choose harmless synthetic inputs in a disposable environment.
+perform an operation. Reproduce actual provider function-call execution with
+harmless synthetic inputs in a disposable environment.
 
 Inspect `ToolResult.error` when using the typed native API, and the specific
 string/error behavior when using `execute()`. Returned error text is not success.

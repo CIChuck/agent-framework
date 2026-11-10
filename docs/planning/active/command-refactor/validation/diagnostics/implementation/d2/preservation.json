@@ -1,0 +1,92 @@
+{
+  "base": "559c86a22651ca99fc4560a5ef40d7b6f2ea2f4f",
+  "D1_candidate": "409926b65d5a5d81590e9c3b06418a2ea12d343a",
+  "original_non_doc_files_checked": 1252,
+  "changed_original_files": [
+    "packages/friday-chat/README.md",
+    "packages/friday-chat/src/friday_chat/commands/registry.py",
+    "packages/friday-commands/README.md"
+  ],
+  "original_test_files": 280,
+  "original_counts": {
+    "test_definitions": 3035,
+    "assertions": 9267
+  },
+  "new_package_paths": [
+    "packages/friday-chat/src/friday_chat/commands/diagnostics.py",
+    "packages/friday-chat/tests_chat/test_command_diagnostics.py",
+    "packages/friday-chat/tests_chat/fixtures/diagnostics-baseline.json"
+  ],
+  "moved_helpers_AST_equal": [
+    "_build_context_text",
+    "_build_prompt_text",
+    "_write_export_file"
+  ],
+  "retained_registry_definitions": [
+    "CommandRegistry",
+    "CommandSpec",
+    "RegistryCommandContext",
+    "_CommandReorganizationProgress",
+    "_ReorganizeInvocation",
+    "_ReorganizeUsageError",
+    "_agent_handler",
+    "_agents_handler",
+    "_argument",
+    "_classify_error",
+    "_clear_handler",
+    "_compact_handler",
+    "_delegate_handler",
+    "_entities_handler",
+    "_exit_handler",
+    "_format_reorganization_result",
+    "_format_speech_config",
+    "_help_handler",
+    "_history_handler",
+    "_ingest_handler",
+    "_lifecycle_handler",
+    "_list_ingested_handler",
+    "_migrate_handler",
+    "_normalize_command_name",
+    "_parse_command_input",
+    "_parse_reorganize_invocation",
+    "_parse_workflow_inputs",
+    "_pilot_definition",
+    "_placeholder_handler",
+    "_read_handler",
+    "_reorganization_execute_refusal",
+    "_reorganization_failure_output",
+    "_reorganize_handler",
+    "_replay_handler",
+    "_reset_handler",
+    "_security_config_handler",
+    "_security_handler",
+    "_security_test_handler",
+    "_session_definition",
+    "_speech_handler",
+    "_speech_test_handler",
+    "_status_handler",
+    "_switch_handler",
+    "_tool_parameter_names",
+    "_tools_handler",
+    "_workflow_handler",
+    "build_default_registry"
+  ],
+  "retained_tuple_entries": 33,
+  "new_named_nodes": [
+    "test_diagnostic_metadata_and_frozen_cases",
+    "test_diagnostic_once_only_delegation",
+    "test_diagnostic_projection_order_and_failures",
+    "test_diagnostic_exports_fixed_bytes_and_failures",
+    "test_diagnostic_retrieval_projection_and_await",
+    "test_diagnostic_adapter_refusals_and_purity",
+    "test_diagnostic_real_app_sequence"
+  ],
+  "current_package_hashes": {
+    "packages/friday-chat/README.md": "f82ffba487f2b342ccaeb9b4970dd0cca071e705de5a8c15f4ce020b2070da98",
+    "packages/friday-chat/src/friday_chat/commands/diagnostics.py": "5e780d81136d0b652d2de3a034ea0457e1a762dd8c4628339eb047bd6b090df6",
+    "packages/friday-chat/src/friday_chat/commands/registry.py": "09a9d23f07423dbadab0c7a24d6c6106ebc7972c1d23bb9bb0711ac6222f2035",
+    "packages/friday-chat/tests_chat/fixtures/diagnostics-baseline.json": "7f379e1060e79db61e37e7959efea89d6aa1ea198e4badfce8b26aa4964bf455",
+    "packages/friday-chat/tests_chat/test_command_diagnostics.py": "eb4aa72b1e2132e63dd040c5e20fd14ba2f5f56d6f8ab07ad3895571ed7ea617",
+    "packages/friday-commands/README.md": "9668980b803b2f2f26d53be429257247c15e146d5f4713728261f1933833a02a"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "unit": "MEMQ-001",
+  "kind": "supplemental_controller_planning_characterization",
+  "recorded_at": "2026-11-09T14:45:58.859315+00:00",
+  "source_revision": "c5871054266da2340486d2043062c5fb95611c00",
+  "preparation_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
+  "scope": "Four actual legacy record-projection cases; no proposed implementation or independent conformance verdict. Original 76 cases/fixtures remain frozen.",
+  "source_files": {
+    "packages/friday-chat/src/friday_chat/commands/memory.py": "5dd48d607044f39c9cac6a41bd0650e27a42bb7c165cd079831f42c7f36c48a0",
+    "packages/friday-chat/src/friday_chat/memory_views.py": "64a87af9b8decf858c4d185fe7081c7a2a0f168f8df229e1e04bbcafab86932f"
+  },
+  "case_count": 4,
+  "cases": [
+    "insights-unused-metadata",
+    "summaries-unused-metadata",
+    "meta-evaluation-order",
+    "meta-incomplete-no-warnings"
+  ],
+  "files": {
+    "program": {
+      "path": "/tmp/memq-projection-review.25rbrl/characterize_records.py",
+      "sha256": "77bdd730f3ba300b5be04b9a9c9190c571eeb409331c1c6cd12fc6d56094cadf",
+      "text": "import asyncio,json\nfrom datetime import datetime,timezone\nfrom pathlib import Path\nfrom types import SimpleNamespace\nfrom friday_chat.commands.memory import insights_handler,summaries_handler,meta_handler\nfrom friday_chat.memory_views import MemoryCollection,MemoryRecordKind,MemoryRecordQueryResult,MemoryRecordView\ns=Path(__file__).parent;events=[]\nclass UnusedDate(datetime):\n def isoformat(self,*args,**kwargs):\n  events.append('UNUSED isoformat');raise RuntimeError('unused metadata evaluated')\nclass TracedDate(datetime):\n def isoformat(self,*args,**kwargs):\n  events.append('format created_at');return super().isoformat(*args,**kwargs)\nclass TracedFloat(float):\n def __new__(cls,value,label):\n  obj=super().__new__(cls,value);obj.label=label;return obj\n def __format__(self,spec):\n  events.append('format '+self.label);return super().__format__(spec)\nfields=set(MemoryRecordView.__dataclass_fields__)\nclass Row(MemoryRecordView):\n def __getattribute__(self,name):\n  if name in fields:events.append('read '+name)\n  return super().__getattribute__(name)\nclass Incomplete(MemoryRecordQueryResult):\n @property\n def complete(self):\n  events.append('read complete');return False\nasync def observe(handler,kind,row=None,incomplete=False):\n events.clear()\n result=Incomplete(kind,()) if incomplete else MemoryRecordQueryResult(kind,(row,))\n class Port:\n  async def query_memory_records(self,requested):\n   events.append('query '+requested.value);return result\n ctx=SimpleNamespace(runtime=SimpleNamespace(memory=Port()))\n out=await handler(ctx,(),None)\n return {'output':out.output,'events':list(events)}\nasync def main():\n rows={}\n for name,handler,kind in [('insights',insights_handler,MemoryRecordKind.INSIGHT),('summaries',summaries_handler,MemoryRecordKind.SUMMARY)]:\n  row=Row('id',kind,'text',MemoryCollection.SHORT_TERM,created_at=UnusedDate(2025,1,1))\n  a=await observe(handler,kind,row)\n  if a['events']!=['query '+kind.value,'read text']:raise RuntimeError('Plain record now reads metadata')\n  rows[name+'-unused-metadata']=a\n row=Row('id',MemoryRecordKind.META_INSIGHT,'text',MemoryCollection.SHORT_TERM,created_at=TracedDate(2025,1,1,tzinfo=timezone.utc),confidence=TracedFloat(.8,'confidence'),verification_confidence=TracedFloat(.9,'verification_confidence'))\n a=await observe(meta_handler,MemoryRecordKind.META_INSIGHT,row);order=['format verification_confidence','read text','format created_at','format confidence']\n if [a['events'].index(x) for x in order]!=sorted(a['events'].index(x) for x in order):raise RuntimeError('Unexpected meta evaluation order')\n rows['meta-evaluation-order']=a\n a=await observe(meta_handler,MemoryRecordKind.META_INSIGHT,incomplete=True)\n if not a['output'].startswith('Meta insight query incomplete;') or a['events']!=['query meta_insight','read complete']:raise RuntimeError('Incomplete flag behavior not observed')\n rows['meta-incomplete-no-warnings']=a\n proof={'kind':'planning-only actual legacy characterization, not proposed implementation','source_revision':'c5871054266da2340486d2043062c5fb95611c00','current_product_bytes_unchanged':True,'cases':rows,'application_network_or_real_store_calls':False}\n (s/'record-characterization.json').write_text(json.dumps(proof,indent=2)+'\\n');print(json.dumps(proof,indent=2))\nasyncio.run(main())\n"
+    },
+    "observations": {
+      "path": "/tmp/memq-projection-review.25rbrl/record-characterization.json",
+      "sha256": "072937b5cc871aff2e319d44e3269049a0cbfbb84837c4d60ebfb2bc719f7778",
+      "text": "{\n  \"kind\": \"planning-only actual legacy characterization, not proposed implementation\",\n  \"source_revision\": \"c5871054266da2340486d2043062c5fb95611c00\",\n  \"current_product_bytes_unchanged\": true,\n  \"cases\": {\n    \"insights-unused-metadata\": {\n      \"output\": \"Insights:\\n- text\",\n      \"events\": [\n        \"query insight\",\n        \"read text\"\n      ]\n    },\n    \"summaries-unused-metadata\": {\n      \"output\": \"Summaries:\\n- text\",\n      \"events\": [\n        \"query summary\",\n        \"read text\"\n      ]\n    },\n    \"meta-evaluation-order\": {\n      \"output\": \"Meta insights:\\n- text\\n  id=id; collection=short_term; stage=unavailable; created=2025-01-01T00:00:00+00:00\\n  confidence=0.800; source_count=unavailable; provenance=unavailable; source_ids=unavailable\\n  verification=unavailable (0.900)\\nDecayed records: excluded from active insight, summary, and meta queries.\",\n      \"events\": [\n        \"query meta_insight\",\n        \"read source_memory_ids\",\n        \"read provenance_truncated\",\n        \"read verification_status\",\n        \"read verification_confidence\",\n        \"read verification_confidence\",\n        \"format verification_confidence\",\n        \"read text\",\n        \"read record_id\",\n        \"read collection\",\n        \"read lifecycle_stage\",\n        \"read created_at\",\n        \"read created_at\",\n        \"format created_at\",\n        \"read confidence\",\n        \"format confidence\",\n        \"read source_count\",\n        \"read provenance_source_type\"\n      ]\n    },\n    \"meta-incomplete-no-warnings\": {\n      \"output\": \"Meta insight query incomplete; no records were returned from available stores.\\nRun /reorganize --full --execute only after resolving store warnings,\\nor use /help reorganize to inspect available modes.\\nDecayed records: excluded from active insight, summary, and meta queries.\",\n      \"events\": [\n        \"query meta_insight\",\n        \"read complete\"\n      ]\n    }\n  },\n  \"application_network_or_real_store_calls\": false\n}\n"
+    },
+    "command": {
+      "path": "/tmp/memq-projection-review.25rbrl/prepared/characterize-records.json",
+      "sha256": "1eacd56534c5dfb3f03330ba6de52fdb843073d9eb8517ae77d013694c8ed04e",
+      "text": "{\n  \"command\": [\n    \"uv\",\n    \"run\",\n    \"--offline\",\n    \"--frozen\",\n    \"--no-sync\",\n    \"--no-python-downloads\",\n    \"--with-editable\",\n    \"packages/friday-commands\",\n    \"python\",\n    \"-B\",\n    \"/tmp/memq-projection-review.25rbrl/characterize_records.py\"\n  ],\n  \"exit\": 0,\n  \"seconds\": 2.47\n}"
+    },
+    "log": {
+      "path": "/tmp/memq-projection-review.25rbrl/prepared/characterize-records.log",
+      "sha256": "072937b5cc871aff2e319d44e3269049a0cbfbb84837c4d60ebfb2bc719f7778",
+      "text": "{\n  \"kind\": \"planning-only actual legacy characterization, not proposed implementation\",\n  \"source_revision\": \"c5871054266da2340486d2043062c5fb95611c00\",\n  \"current_product_bytes_unchanged\": true,\n  \"cases\": {\n    \"insights-unused-metadata\": {\n      \"output\": \"Insights:\\n- text\",\n      \"events\": [\n        \"query insight\",\n        \"read text\"\n      ]\n    },\n    \"summaries-unused-metadata\": {\n      \"output\": \"Summaries:\\n- text\",\n      \"events\": [\n        \"query summary\",\n        \"read text\"\n      ]\n    },\n    \"meta-evaluation-order\": {\n      \"output\": \"Meta insights:\\n- text\\n  id=id; collection=short_term; stage=unavailable; created=2025-01-01T00:00:00+00:00\\n  confidence=0.800; source_count=unavailable; provenance=unavailable; source_ids=unavailable\\n  verification=unavailable (0.900)\\nDecayed records: excluded from active insight, summary, and meta queries.\",\n      \"events\": [\n        \"query meta_insight\",\n        \"read source_memory_ids\",\n        \"read provenance_truncated\",\n        \"read verification_status\",\n        \"read verification_confidence\",\n        \"read verification_confidence\",\n        \"format verification_confidence\",\n        \"read text\",\n        \"read record_id\",\n        \"read collection\",\n        \"read lifecycle_stage\",\n        \"read created_at\",\n        \"read created_at\",\n        \"format created_at\",\n        \"read confidence\",\n        \"format confidence\",\n        \"read source_count\",\n        \"read provenance_source_type\"\n      ]\n    },\n    \"meta-incomplete-no-warnings\": {\n      \"output\": \"Meta insight query incomplete; no records were returned from available stores.\\nRun /reorganize --full --execute only after resolving store warnings,\\nor use /help reorganize to inspect available modes.\\nDecayed records: excluded from active insight, summary, and meta queries.\",\n      \"events\": [\n        \"query meta_insight\",\n        \"read complete\"\n      ]\n    }\n  },\n  \"application_network_or_real_store_calls\": false\n}\n"
+    }
+  },
+  "prepared_inputs": {
+    "bootstrap.json": "935e992cbd1c50ef4f2717d8f19ea11a270f672d9e5a0e498494d64f9c2e5186",
+    "pilot_run.py": "acd0f1aac5bc372bc7357d5a74563730a17955d13b74062c23cfe8f4b8cdc178",
+    "pilot_guard.py": "e04eea8bc9722defe3ea89212385f8befda03e051b9816b305e1b9f73ff94681",
+    "sitecustomize.py": "d96294f94f5378beb38675d0624e6f78c622914cafbaffb4ce486d8310d2eb7e"
+  },
+  "reproduction": "Materialize the embedded program into a fresh private scratch; use the pinned offline prepare.py runner with a distinct label. The program writes record-characterization.json beside itself. Compare its cases after verifying source equality and rewrite all output/cache paths to that scratch.",
+  "limits": [
+    "Synthetic in-process memory objects only; no application network, providers or real stores.",
+    "Controller-authored planning evidence, not a formal independent product review.",
+    "This supplements the frozen preparation rather than replacing or changing its baseline/fixtures."
+  ]
+}

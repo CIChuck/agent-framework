@@ -1,0 +1,66 @@
+{
+  "scope": "Maintainer-directed documentation-only acceptance and defect registration",
+  "checks": [
+    {
+      "label": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "label": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "label": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 958 Markdown files checked\n",
+      "stderr": ""
+    }
+  ],
+  "runtime_tests_rerun": false,
+  "live_provider_or_personal_store_operation": false,
+  "parser_proof": "Exact source AST of pure argument parser; no app/provider/store imports",
+  "source_test_dependency_changes": [],
+  "original_uat_plan_preserved_sha256": "e6b11b076af42d32e5278d77c102cf47011ebae19ea1227234af3420f5ef85d7",
+  "protected_yaml_exports_external_identities_match": true,
+  "personal_state": "Untracked .friday-old tree preserved; no store contents inspected or modified",
+  "ledger_cells": [
+    "PAR-012",
+    "PAR-021",
+    "PAR-023",
+    "PAR-024",
+    "PAR-025",
+    "PAR-043"
+  ],
+  "delivery": "local only"
+}

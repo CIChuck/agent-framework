@@ -1,0 +1,21 @@
+{
+  "finding": "VAL-D1-R3-001",
+  "prior_candidate": "19d0b9d1885bfcd89b410d3903968af3ae17b046",
+  "authorization": "Explicit maintainer authorized following concrete one-line proposal and fresh council question; current authority records one-pass extension.",
+  "status": "applied_pending_fresh_council",
+  "change": "Use the known unsorted help/exit/cls PILOT_SPECS order as sorting-test input; keep sorted cls/exit/help expected output and all other assertions unchanged.",
+  "evidence": "sort-fix-evidence.json",
+  "acceptance": [
+    "Full G1 passes 217 cases with correct current runtime.",
+    "No-sort scratch mutant fails exactly the two sorting cases (215 unaffected cases pass).",
+    "Fresh scratch import origin is verified; mutation/setup failures are distinguished from semantic mutant rejection.",
+    "Runtime/frozen design/harness/dependency/lock/dirty examples unchanged.",
+    "Packet current process fields and board agree validation/in_review before D2."
+  ],
+  "non_goals": [
+    "No runtime or approved-contract changes",
+    "No optional advisory repairs",
+    "No D2 work before D1 reconciliation",
+    "No additional automatic cycle if this authorized council requests more changes"
+  ]
+}

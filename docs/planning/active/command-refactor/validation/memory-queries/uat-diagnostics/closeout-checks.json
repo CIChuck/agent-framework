@@ -1,0 +1,60 @@
+{
+  "reviewed_product_candidate": "3969e4d4438c5a18b3532a73d39d69352d26cda7",
+  "administrative_closeout_only": true,
+  "checks": [
+    {
+      "check": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "check": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "check": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 948 Markdown files checked\n",
+      "stderr": ""
+    }
+  ],
+  "package_files_unchanged": 757,
+  "protected_identities_unchanged": 7,
+  "raw_identities_unchanged": 252,
+  "repository_cache_files_unchanged": 383,
+  "reviewer_artifact_hashes_checked": 172,
+  "execution_log_append_only": true,
+  "unwaived_debt": "Historical root/whole-file format,2 raw dirty-example failures, dirty YAML whitespace; production verification cause still unknown.",
+  "acceptance": "pending",
+  "delivery": "local only"
+}

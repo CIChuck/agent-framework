@@ -1,0 +1,25 @@
+{
+  "unit": "DIAG-001 D2",
+  "correction_cycle": 1,
+  "round": 2,
+  "reviewed_base": "95b58d9169abe143e5aa537b8ad589309167dddf",
+  "product_test_source": "54e35947f8ee157ddab0b50f7e9e9e1db415f0ae",
+  "state": "implemented; independent closure pending",
+  "findings": {
+    "DIAG-D2-ASTRA-001": {
+      "fix": "Host-local per-invocation rendered context snapshot, matched by original typed text identity and count; same pure renderer reuses successful export body. Neutral models/protocol/flag ownership untouched. Distinct injected text/count/path still consumed.",
+      "proof": "New DG-T10/DG-T11 assertions: before39 pass/2 call assertions fail; corrected41 pass. Independent raising formatter probe passes legacy base and corrected export. New render-again/masking mutants fail named assertions."
+    },
+    "VAL-001": {
+      "fix": "DG-T08 enters its private tmp_path before scenarios; no preparation/fixture/expected-row edits.",
+      "proof": "Fresh legacy-engine and ignored-outcome launched with cwd=root; unchanged519 control, call assertion refusals and only private pytest exports. Repository ignored-export files/modes/timestamps/hashes unchanged before/after all21 mutants and dedicated root-cwd controls.",
+      "disclosure": "Earlier unsafe builder mutations wrote two ignored six-byte cached export files. Later rewrites were observed but precise external attribution is not asserted. No cleanup performed or authorized."
+    }
+  },
+  "advisories": {
+    "Claude_ADV_1": "Subsumed by mandatory Astra formatter finding; bytes-only equivalence did not cover raising/stateful formatter.",
+    "Claude_ADV_2": "AttributeError metadata advisory remains deferred; no unrelated correction.",
+    "Claude_ADV_3": "DG-T08 KeyError gets no rejection credit; separate call assertion witnesses reject legacy engine."
+  },
+  "round1_isolation_limit": "Tracked identity did not cover ignored export files. Prior no-write claims do not close this finding; no round1 aggregate verification is carried forward."
+}

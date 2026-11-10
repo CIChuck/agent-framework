@@ -1,0 +1,4037 @@
+{
+  "records": [
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/aggregate-complete.diff",
+      "expected_sha256": "14db154b7c5e5d73518707e04771ee9ca2bec0629ed46cd496ad2fa44f73ae4b",
+      "actual_sha256": "14db154b7c5e5d73518707e04771ee9ca2bec0629ed46cd496ad2fa44f73ae4b",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ast-audit.json",
+      "expected_sha256": "362bac94ad469dc1dcec66744c057f16eb41c4a32b3785c3035b105017b97385",
+      "actual_sha256": "362bac94ad469dc1dcec66744c057f16eb41c4a32b3785c3035b105017b97385",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/audit_d2.py",
+      "expected_sha256": "b587a4d5d0d066cc4da6c6b4f8cd5dfb5bd09fc2636b301022db51a0ef6b154f",
+      "actual_sha256": "b587a4d5d0d066cc4da6c6b4f8cd5dfb5bd09fc2636b301022db51a0ef6b154f",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/baseline-diagnostics.json",
+      "expected_sha256": "1dcd83ecd8d2e4e739099eb495e43f98b78439d7bb14e3bebc167ba1b8514e98",
+      "actual_sha256": "1dcd83ecd8d2e4e739099eb495e43f98b78439d7bb14e3bebc167ba1b8514e98",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/baseline-memory-queries.json",
+      "expected_sha256": "ce5da59c62ce761354b2977fcb0c3f5816a858c7e22d4873ae60e4d2613db6b9",
+      "actual_sha256": "ce5da59c62ce761354b2977fcb0c3f5816a858c7e22d4873ae60e4d2613db6b9",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/baseline-session.json",
+      "expected_sha256": "3210852a23743420fdcc61e2c213dedc632431c8d39b831cca36da3e2595ed46",
+      "actual_sha256": "3210852a23743420fdcc61e2c213dedc632431c8d39b831cca36da3e2595ed46",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/board-check-own.log",
+      "expected_sha256": "eb078f316913cf295f174f7a48f8aad10af837748c61625042637550c0cb31ba",
+      "actual_sha256": "eb078f316913cf295f174f7a48f8aad10af837748c61625042637550c0cb31ba",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/board-validate-own.log",
+      "expected_sha256": "29d2ec6175d458d70cb2408881f3d634d4d607beadc057421442e69548f4ed63",
+      "actual_sha256": "29d2ec6175d458d70cb2408881f3d634d4d607beadc057421442e69548f4ed63",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/boundary-end.json",
+      "expected_sha256": "546963bd5a854d3f6ec87135c7378d38e99d6bff5c5b61d9d12c26a997140fb2",
+      "actual_sha256": "546963bd5a854d3f6ec87135c7378d38e99d6bff5c5b61d9d12c26a997140fb2",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/boundary-interim.json",
+      "expected_sha256": "546963bd5a854d3f6ec87135c7378d38e99d6bff5c5b61d9d12c26a997140fb2",
+      "actual_sha256": "546963bd5a854d3f6ec87135c7378d38e99d6bff5c5b61d9d12c26a997140fb2",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/boundary-start.json",
+      "expected_sha256": "f7287ecb92c500028c4c48d3ae428e4a9ffe197bf4c9e2b2d5c04d7d7a6e2c8a",
+      "actual_sha256": "f7287ecb92c500028c4c48d3ae428e4a9ffe197bf4c9e2b2d5c04d7d7a6e2c8a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/boundary.py",
+      "expected_sha256": "f07215fb5d8f9fcea24a31a4e23246b4bef0deac8db0dca6ad2f3f6d4c9f4d0b",
+      "actual_sha256": "f07215fb5d8f9fcea24a31a4e23246b4bef0deac8db0dca6ad2f3f6d4c9f4d0b",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/candidate-lock.log",
+      "expected_sha256": "4f941db61f9acc25d401c04826d6750ae2ca338da604d4ad7b500aad6e1b64da",
+      "actual_sha256": "4f941db61f9acc25d401c04826d6750ae2ca338da604d4ad7b500aad6e1b64da",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/canonical-suites.json",
+      "expected_sha256": "7dd4726c8f21914dfd5124ab5a35d9a84472c20319c299e1673bfb841b2818a2",
+      "actual_sha256": "7dd4726c8f21914dfd5124ab5a35d9a84472c20319c299e1673bfb841b2818a2",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/canonical_suites.py",
+      "expected_sha256": "27d79d5ae54f30266daa9eb642faecdd9138f9beb5c42b29fe205b616d3f253b",
+      "actual_sha256": "27d79d5ae54f30266daa9eb642faecdd9138f9beb5c42b29fe205b616d3f253b",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/capture-diagnostics.py",
+      "expected_sha256": "8f7a55d5ae773774fa5ef6125215f29ea35b4788af13074451cdd5fc4e2e2464",
+      "actual_sha256": "8f7a55d5ae773774fa5ef6125215f29ea35b4788af13074451cdd5fc4e2e2464",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/capture-memory-queries.py",
+      "expected_sha256": "eafcfcbc45e04a11cd04bfc8203d7e4e953f1cc7a5be85b9ca9b2e1d113f0f8a",
+      "actual_sha256": "eafcfcbc45e04a11cd04bfc8203d7e4e953f1cc7a5be85b9ca9b2e1d113f0f8a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/capture-receipts.json",
+      "expected_sha256": "3fc40e032c7a18de65c0f8aa110a62086d8e364a38c17c82c1eaf4cec2408bd6",
+      "actual_sha256": "3fc40e032c7a18de65c0f8aa110a62086d8e364a38c17c82c1eaf4cec2408bd6",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/capture-session.py",
+      "expected_sha256": "5c72294b80ebf63eb68330b7d74e1bb7090b077ab175eb01069f9f84a3e3bd24",
+      "actual_sha256": "5c72294b80ebf63eb68330b7d74e1bb7090b077ab175eb01069f9f84a3e3bd24",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/captures.py",
+      "expected_sha256": "eba471ede97e508af25d74f8e2e3ce65a4988479eaa37b45d94d53e7b83293ca",
+      "actual_sha256": "eba471ede97e508af25d74f8e2e3ce65a4988479eaa37b45d94d53e7b83293ca",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/case-insensitive-nodes-mutation.json",
+      "expected_sha256": "a84abb79d39af853d149ac0d4a8820d13e81ebe14a7aa739db495cbfdfeb9b40",
+      "actual_sha256": "a84abb79d39af853d149ac0d4a8820d13e81ebe14a7aa739db495cbfdfeb9b40",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/case-insensitive-nodes-mutation.log",
+      "expected_sha256": "641b150199b3a29a0bfcf34685a47b460b6b1a168f705306f9a83839e544dd2a",
+      "actual_sha256": "641b150199b3a29a0bfcf34685a47b460b6b1a168f705306f9a83839e544dd2a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/checks.json",
+      "expected_sha256": "6d93b40996ca6d4bff0f40faaa9a3cea5e51048c4a116099de0ab6ba9fc59ea3",
+      "actual_sha256": "6d93b40996ca6d4bff0f40faaa9a3cea5e51048c4a116099de0ab6ba9fc59ea3",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/cli-own.log",
+      "expected_sha256": "988169be1563588c4681186a57bcd65e163f6c91b5e25c3b40c81595a19ffcdd",
+      "actual_sha256": "988169be1563588c4681186a57bcd65e163f6c91b5e25c3b40c81595a19ffcdd",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/compare-diagnostics.py",
+      "expected_sha256": "4b444677044e32c517dfec2374eab72bd610b861592f0e10ee0a21d072cb19fa",
+      "actual_sha256": "4b444677044e32c517dfec2374eab72bd610b861592f0e10ee0a21d072cb19fa",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/compare-memory-queries.py",
+      "expected_sha256": "afd38e74dd70ee2e3ab3cc43184c45e5d444c6fb0e1877e274a82d00705ff606",
+      "actual_sha256": "afd38e74dd70ee2e3ab3cc43184c45e5d444c6fb0e1877e274a82d00705ff606",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/compare-session.py",
+      "expected_sha256": "c333db8601d7f713fd86183714e241f50731dd27877fd2cafac692c978f57afa",
+      "actual_sha256": "c333db8601d7f713fd86183714e241f50731dd27877fd2cafac692c978f57afa",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/comparer-controls.log",
+      "expected_sha256": "b52236ea81bfa6644b25ec731c8375a0b6509c1a36f629fb28234a534581c3df",
+      "actual_sha256": "b52236ea81bfa6644b25ec731c8375a0b6509c1a36f629fb28234a534581c3df",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/d2-complete.diff",
+      "expected_sha256": "5f6127c44943e0992ae8742d9c96a207a23d71485ff1fc8719eff0c8ade00f5c",
+      "actual_sha256": "5f6127c44943e0992ae8742d9c96a207a23d71485ff1fc8719eff0c8ade00f5c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/d2-fast-final-own.log",
+      "expected_sha256": "ba4ff8184545bad626f9150c1108fa47121704f867a2a548ad37e8e9a635a152",
+      "actual_sha256": "ba4ff8184545bad626f9150c1108fa47121704f867a2a548ad37e8e9a635a152",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/d3-fast-final-own.log",
+      "expected_sha256": "aecc3c57795e795b6737289b368097394c951b7da7900ec33c55359a94da3a30",
+      "actual_sha256": "aecc3c57795e795b6737289b368097394c951b7da7900ec33c55359a94da3a30",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/decayed-collection-mutation.json",
+      "expected_sha256": "65b7943c39a9994a73cdfde3de7e9e94bc2b9e26c1c58753755ed7e97298824f",
+      "actual_sha256": "65b7943c39a9994a73cdfde3de7e9e94bc2b9e26c1c58753755ed7e97298824f",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/decayed-collection-mutation.log",
+      "expected_sha256": "6231bb606fd1033a1275b56dbdda570b4c267540bef6ca116451067df1cd6c3a",
+      "actual_sha256": "6231bb606fd1033a1275b56dbdda570b4c267540bef6ca116451067df1cd6c3a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/diagnostics-0-capture.log",
+      "expected_sha256": "7d8c19e1be3e264215cacb774b05a5c504b90d90462e97a783574f55bfb57623",
+      "actual_sha256": "7d8c19e1be3e264215cacb774b05a5c504b90d90462e97a783574f55bfb57623",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/diagnostics-0-compare.log",
+      "expected_sha256": "347e82bfa2a9cd00c64b8b4276210058494ad0d5db953480970eebc7b2488fc0",
+      "actual_sha256": "347e82bfa2a9cd00c64b8b4276210058494ad0d5db953480970eebc7b2488fc0",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/diagnostics-0-observations.json",
+      "expected_sha256": "1708f7b91624ddb041ed827d64e30b40ce4cc8e996afb92ce1c5739d39aea5fa",
+      "actual_sha256": "1708f7b91624ddb041ed827d64e30b40ce4cc8e996afb92ce1c5739d39aea5fa",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/documentation-own.log",
+      "expected_sha256": "635cb28dbfbcf0d7063e91a408dfe3167de72aebbc60de11f33f83b90a22b91e",
+      "actual_sha256": "635cb28dbfbcf0d7063e91a408dfe3167de72aebbc60de11f33f83b90a22b91e",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/double-format-mutation.json",
+      "expected_sha256": "27f3697fb384daf905c41246c893b1029be8ef09d957a0091f37ace04155ca84",
+      "actual_sha256": "27f3697fb384daf905c41246c893b1029be8ef09d957a0091f37ace04155ca84",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/double-format-mutation.log",
+      "expected_sha256": "2f9c09a672e047e3fea5d4a97439e60c220e28902279c5294713dcac5c2a314d",
+      "actual_sha256": "2f9c09a672e047e3fea5d4a97439e60c220e28902279c5294713dcac5c2a314d",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/double-query-mutation.json",
+      "expected_sha256": "8578bf8eea0fcb6d37231323bc2ff91529abbecc5792dc27af2fec44825d5c93",
+      "actual_sha256": "8578bf8eea0fcb6d37231323bc2ff91529abbecc5792dc27af2fec44825d5c93",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/double-query-mutation.log",
+      "expected_sha256": "5b21e6d502964c303fba290d4a77ef7010286f6337fd7ce02c590b23b4ab37dc",
+      "actual_sha256": "5b21e6d502964c303fba290d4a77ef7010286f6337fd7ce02c590b23b4ab37dc",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/entity-cap-mutation.json",
+      "expected_sha256": "072f6358b2705640ef2c37d3429df77818f98fe86e1009ca16766cbcc0fc4902",
+      "actual_sha256": "072f6358b2705640ef2c37d3429df77818f98fe86e1009ca16766cbcc0fc4902",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/entity-cap-mutation.log",
+      "expected_sha256": "6b9badb155d4bbbce47e818f4c75dceeadcf5c4de33fbdc281249abde61bccb1",
+      "actual_sha256": "6b9badb155d4bbbce47e818f4c75dceeadcf5c4de33fbdc281249abde61bccb1",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/final-lint-own.log",
+      "expected_sha256": "f12365a04e4aee2ebda316f90c9994a4d915a9c920bd9701efbc143fadbdef57",
+      "actual_sha256": "f12365a04e4aee2ebda316f90c9994a4d915a9c920bd9701efbc143fadbdef57",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/format-check-own.log",
+      "expected_sha256": "89886610aa584308fa1329970f405a36e5862369558433c1eb89f94f17a6cc31",
+      "actual_sha256": "89886610aa584308fa1329970f405a36e5862369558433c1eb89f94f17a6cc31",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/format-debt-final-own.log",
+      "expected_sha256": "97c2e4d2a33a630dabd8c6b5e906aee962026a2b7a6185936be0451bf64f746c",
+      "actual_sha256": "97c2e4d2a33a630dabd8c6b5e906aee962026a2b7a6185936be0451bf64f746c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/full-chat-final-own.log",
+      "expected_sha256": "d3860efcd15c847e011c31a7a5e45df0f0420c95bf2693928d58a59207e3cdef",
+      "actual_sha256": "d3860efcd15c847e011c31a7a5e45df0f0420c95bf2693928d58a59207e3cdef",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/guard.log",
+      "expected_sha256": "3e899b6a1c65066b20d0319e04f9b8c66b83b9401ab7a25a095c25ec235efa55",
+      "actual_sha256": "3e899b6a1c65066b20d0319e04f9b8c66b83b9401ab7a25a095c25ec235efa55",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ignored-result-mutation.json",
+      "expected_sha256": "c0f1249f2ef0bbbfbc892e5dce1711a68acf566b23972ab0ab35f37f766d2914",
+      "actual_sha256": "c0f1249f2ef0bbbfbc892e5dce1711a68acf566b23972ab0ab35f37f766d2914",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ignored-result-mutation.log",
+      "expected_sha256": "92aac86e332cb5a28cb5ff7c3b628e72a28f969b81e1113c9a62a0571bf9e6ce",
+      "actual_sha256": "92aac86e332cb5a28cb5ff7c3b628e72a28f969b81e1113c9a62a0571bf9e6ce",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/independent_meta.json",
+      "expected_sha256": "9e7a4725e7dd67c9b255fc727cb199bcb76f6217b85c2c4fe3fc4f5d0bde1263",
+      "actual_sha256": "9e7a4725e7dd67c9b255fc727cb199bcb76f6217b85c2c4fe3fc4f5d0bde1263",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/independent_meta.py",
+      "expected_sha256": "a39a151b27af43676f4ae26ca3cdf9f17f9508b0d1d5e3e26c197338be9daf87",
+      "actual_sha256": "a39a151b27af43676f4ae26ca3cdf9f17f9508b0d1d5e3e26c197338be9daf87",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest-baseline-identity.json",
+      "expected_sha256": "0f05f5b73c8c58094d4621125f1d6e4e790c9276a6716103b3be7a451ea8c094",
+      "actual_sha256": "0f05f5b73c8c58094d4621125f1d6e4e790c9276a6716103b3be7a451ea8c094",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest-none-baseline.json",
+      "expected_sha256": "48295ca5bc3bbadfab47b1baa29b999a0b0354428f8185a5556e7dc7f77a58cc",
+      "actual_sha256": "48295ca5bc3bbadfab47b1baa29b999a0b0354428f8185a5556e7dc7f77a58cc",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest-none-baseline.log",
+      "expected_sha256": "e744a66338827043b2991e319fa7bcc54c26c27f8c094abc81bbbe843810e50c",
+      "actual_sha256": "e744a66338827043b2991e319fa7bcc54c26c27f8c094abc81bbbe843810e50c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest-none-candidate.json",
+      "expected_sha256": "24ae410edf8f530501eb5ddc6b9c9026a6d9824d5fe6597445c1bb88f92a9e5d",
+      "actual_sha256": "24ae410edf8f530501eb5ddc6b9c9026a6d9824d5fe6597445c1bb88f92a9e5d",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest-none-candidate.log",
+      "expected_sha256": "a42161333ee887edb32e7a6231a6d154272b08555335830c1e7ad0babf11e6f5",
+      "actual_sha256": "a42161333ee887edb32e7a6231a6d154272b08555335830c1e7ad0babf11e6f5",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest_none_probe.py",
+      "expected_sha256": "d723d58018e8799f1c06dbbd31f0c6d8f76c46e1a3e9be4f9463111aece14b32",
+      "actual_sha256": "d723d58018e8799f1c06dbbd31f0c6d8f76c46e1a3e9be4f9463111aece14b32",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/legacy-substitution-mutation.json",
+      "expected_sha256": "fee41c22c136c44757f7f3da9934fa46210e35b7cad98ff7f6ed40467ff75733",
+      "actual_sha256": "fee41c22c136c44757f7f3da9934fa46210e35b7cad98ff7f6ed40467ff75733",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/legacy-substitution-mutation.log",
+      "expected_sha256": "1c987fea8733d6f91477e442f6b7a0fe3643d9e7d37196408b21031e20a41cd5",
+      "actual_sha256": "1c987fea8733d6f91477e442f6b7a0fe3643d9e7d37196408b21031e20a41cd5",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-0-capture.log",
+      "expected_sha256": "6c9816f759d6d56af7b3fdeff976ff02386f680937fc6484b3d16e492c6fabbb",
+      "actual_sha256": "6c9816f759d6d56af7b3fdeff976ff02386f680937fc6484b3d16e492c6fabbb",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-0-compare.log",
+      "expected_sha256": "78affaa1f7e4691235499985fcf78fa978e8c8e3b57e59aeb0be01a7e4518c74",
+      "actual_sha256": "78affaa1f7e4691235499985fcf78fa978e8c8e3b57e59aeb0be01a7e4518c74",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-0-observations.json",
+      "expected_sha256": "eae3177e640db1aa09edc29174f9a2f514a12cb41bafa018505e9d05fc75a356",
+      "actual_sha256": "eae3177e640db1aa09edc29174f9a2f514a12cb41bafa018505e9d05fc75a356",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-1-capture.log",
+      "expected_sha256": "608f9160fabef4e573737c63b846de9e22827cf9bc24a04f7f937ae097c098b1",
+      "actual_sha256": "608f9160fabef4e573737c63b846de9e22827cf9bc24a04f7f937ae097c098b1",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-1-compare.log",
+      "expected_sha256": "6994a2028cdfe95a1423e4ff4b6668451b10b3e92c3601cf71f3100d0b8a078e",
+      "actual_sha256": "6994a2028cdfe95a1423e4ff4b6668451b10b3e92c3601cf71f3100d0b8a078e",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-1-observations.json",
+      "expected_sha256": "18bb8779d96e4ce837369848ec3a84bba465a1400db96c7a57ef8e5652f59149",
+      "actual_sha256": "18bb8779d96e4ce837369848ec3a84bba465a1400db96c7a57ef8e5652f59149",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/metric_probe.json",
+      "expected_sha256": "a5b6c4183b562c0c4372882ff8217881fd70819dbf7b721d3238dce3b8e1a2d3",
+      "actual_sha256": "a5b6c4183b562c0c4372882ff8217881fd70819dbf7b721d3238dce3b8e1a2d3",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/metric_probe.py",
+      "expected_sha256": "9ccf1ccfb7d1db5a8585ef268d181a7e373b85df91cc28de698952dde59e6d98",
+      "actual_sha256": "9ccf1ccfb7d1db5a8585ef268d181a7e373b85df91cc28de698952dde59e6d98",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/missing-kind-refusal-mutation.json",
+      "expected_sha256": "f652dfac08e1692979fa3227f74f75cc1e3a088a11f08e044d92d1593c14df80",
+      "actual_sha256": "f652dfac08e1692979fa3227f74f75cc1e3a088a11f08e044d92d1593c14df80",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/missing-kind-refusal-mutation.log",
+      "expected_sha256": "e8042d61070a91655a087cfe51653531403a3bfde41c40c4cab592cf3eaeb2de",
+      "actual_sha256": "e8042d61070a91655a087cfe51653531403a3bfde41c40c4cab592cf3eaeb2de",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/missing-utilization-suffix-mutation.json",
+      "expected_sha256": "936a3673cd641a5f1110874335f0a8d2869ab3c29accf000c20e1b9bfbc74287",
+      "actual_sha256": "936a3673cd641a5f1110874335f0a8d2869ab3c29accf000c20e1b9bfbc74287",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/missing-utilization-suffix-mutation.log",
+      "expected_sha256": "6e03e7d75d7c749bf1cabfd09c22f288090731c004f6e8c1dbc714868bd69be2",
+      "actual_sha256": "6e03e7d75d7c749bf1cabfd09c22f288090731c004f6e8c1dbc714868bd69be2",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-results.json",
+      "expected_sha256": "648e89372a957e721fd56707a37ab1a6125f7c061f6e86674ed3bfccba5ad730",
+      "actual_sha256": "648e89372a957e721fd56707a37ab1a6125f7c061f6e86674ed3bfccba5ad730",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-witness-audit.json",
+      "expected_sha256": "0977849acb4f3799056074b167dfc0f62115191dc830f7cd6128491ee2bc3cd5",
+      "actual_sha256": "0977849acb4f3799056074b167dfc0f62115191dc830f7cd6128491ee2bc3cd5",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/mutation_launch.py",
+      "expected_sha256": "9008eaa1241b114330476f1e38fe5883e44c796caf22c4dd13564c688e92df57",
+      "actual_sha256": "9008eaa1241b114330476f1e38fe5883e44c796caf22c4dd13564c688e92df57",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/mutations.py",
+      "expected_sha256": "be18714abee72acd1c98a5c8c0d4bb8f7b8abdcf96cd0a816f1f16746285c98e",
+      "actual_sha256": "be18714abee72acd1c98a5c8c0d4bb8f7b8abdcf96cd0a816f1f16746285c98e",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/neutral-cohort-own.log",
+      "expected_sha256": "8670423aff84bad1aa23d08f487c00ebefe844496c8f5d71356e3eafe3b98a00",
+      "actual_sha256": "8670423aff84bad1aa23d08f487c00ebefe844496c8f5d71356e3eafe3b98a00",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/new-cases-own.log",
+      "expected_sha256": "1fbfc71c182b512a671829616b3c6541cf1ada88cc19dfeabe4553709de74824",
+      "actual_sha256": "1fbfc71c182b512a671829616b3c6541cf1ada88cc19dfeabe4553709de74824",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/new-format-check-own.log",
+      "expected_sha256": "eb6071cee24c6619833184cad97e2256d42aafae61b8e53ec35aa589f951a8d0",
+      "actual_sha256": "eb6071cee24c6619833184cad97e2256d42aafae61b8e53ec35aa589f951a8d0",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/nodes-relationships-mutation.json",
+      "expected_sha256": "79f88259d5e747d098c23618e1c34e918f4196fe2fb3157f05ff041cfdf56290",
+      "actual_sha256": "79f88259d5e747d098c23618e1c34e918f4196fe2fb3157f05ff041cfdf56290",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/nodes-relationships-mutation.log",
+      "expected_sha256": "886ea392018709ef5fa80ae4e23448bf3e7397d204f92fb1c6eb8dbedecd1571",
+      "actual_sha256": "886ea392018709ef5fa80ae4e23448bf3e7397d204f92fb1c6eb8dbedecd1571",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-cli.json",
+      "expected_sha256": "e5bd46c3cbb187b1bb308ed023fb65ea6a108584e86711cb117cdd775472c54c",
+      "actual_sha256": "e5bd46c3cbb187b1bb308ed023fb65ea6a108584e86711cb117cdd775472c54c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-cli.log",
+      "expected_sha256": "c97b7afc3bf1481d4bc584e86351afe9591a94fff3b234f0ca434628ce3c640e",
+      "actual_sha256": "c97b7afc3bf1481d4bc584e86351afe9591a94fff3b234f0ca434628ce3c640e",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-d2-fast-final.json",
+      "expected_sha256": "0707d9fa49ca3499f22202abfc5957ddc229d0e464200c22ecc4c70055238c98",
+      "actual_sha256": "0707d9fa49ca3499f22202abfc5957ddc229d0e464200c22ecc4c70055238c98",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-d2-fast-final.log",
+      "expected_sha256": "b32769501790ec83cd3b592db19536bc69cb514081bee6e57a995d470f7fa3f8",
+      "actual_sha256": "b32769501790ec83cd3b592db19536bc69cb514081bee6e57a995d470f7fa3f8",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-d3-fast-final.json",
+      "expected_sha256": "3a7560276bcb8a741cb31ddfc582432e86975963bc156ca2065296ae425ea495",
+      "actual_sha256": "3a7560276bcb8a741cb31ddfc582432e86975963bc156ca2065296ae425ea495",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-d3-fast-final.log",
+      "expected_sha256": "c97665c6b985722114bf06464fc2aace3cfb1150b3489e349fb82df35b16b853",
+      "actual_sha256": "c97665c6b985722114bf06464fc2aace3cfb1150b3489e349fb82df35b16b853",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-full-chat-final.json",
+      "expected_sha256": "1a71c54e3e52022195fb38d39c01280b513cfbbef03b30023c2cd6e1d64a78a3",
+      "actual_sha256": "1a71c54e3e52022195fb38d39c01280b513cfbbef03b30023c2cd6e1d64a78a3",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-full-chat-final.log",
+      "expected_sha256": "83c0c9f6120cefd961db12ea1bd9e0fbcd5ea20ec565edd78ee01d924739b332",
+      "actual_sha256": "83c0c9f6120cefd961db12ea1bd9e0fbcd5ea20ec565edd78ee01d924739b332",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-neutral-cohort.json",
+      "expected_sha256": "e5bd46c3cbb187b1bb308ed023fb65ea6a108584e86711cb117cdd775472c54c",
+      "actual_sha256": "e5bd46c3cbb187b1bb308ed023fb65ea6a108584e86711cb117cdd775472c54c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-neutral-cohort.log",
+      "expected_sha256": "7d8bdc5566c64ac1454e90051f7dc556605cc78234b141eaea494741a1cf2f0f",
+      "actual_sha256": "7d8bdc5566c64ac1454e90051f7dc556605cc78234b141eaea494741a1cf2f0f",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-new-cases.json",
+      "expected_sha256": "763e30dd4ace24fc5af648257b0e069a27047161c3f45df3fbab4c126ca4f659",
+      "actual_sha256": "763e30dd4ace24fc5af648257b0e069a27047161c3f45df3fbab4c126ca4f659",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-new-cases.log",
+      "expected_sha256": "bf129f638a66e04545949f96afae04732621a39850e1cf7f3de81933d3091de5",
+      "actual_sha256": "bf129f638a66e04545949f96afae04732621a39850e1cf7f3de81933d3091de5",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/pairs.json",
+      "expected_sha256": "f6a7ab1d020425e003ec05c1b02a4e175f2ab1da4ac10f08278ff92b3050deb0",
+      "actual_sha256": "f6a7ab1d020425e003ec05c1b02a4e175f2ab1da4ac10f08278ff92b3050deb0",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/pilot-capture.log",
+      "expected_sha256": "b0bc0504b5da15ab30ae1553a8ea55cd955b19db897daef01acac7bd517f35e8",
+      "actual_sha256": "b0bc0504b5da15ab30ae1553a8ea55cd955b19db897daef01acac7bd517f35e8",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/pilot-compare.log",
+      "expected_sha256": "73c2fe7e38928925b6b125db47a88f15fb4b980c67fe026c8d05425b041e2262",
+      "actual_sha256": "73c2fe7e38928925b6b125db47a88f15fb4b980c67fe026c8d05425b041e2262",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/pilot-observations.json",
+      "expected_sha256": "9548b4deb9b104fa1e815628c99c4e40ee00a33f1be9fe9d9619079934259f18",
+      "actual_sha256": "9548b4deb9b104fa1e815628c99c4e40ee00a33f1be9fe9d9619079934259f18",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/primary-document-identities.json",
+      "expected_sha256": "c671d31ac4a106204d75307fbe2e3f6d7892ffb6445dc775a54d67b051b39e66",
+      "actual_sha256": "c671d31ac4a106204d75307fbe2e3f6d7892ffb6445dc775a54d67b051b39e66",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/projection-before-second-await-mutation.json",
+      "expected_sha256": "f6102f9ea4122d516aeaeea6052bd075964f997227f0fb32717d45ed77628fa2",
+      "actual_sha256": "f6102f9ea4122d516aeaeea6052bd075964f997227f0fb32717d45ed77628fa2",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/projection-before-second-await-mutation.log",
+      "expected_sha256": "5083f0e4ad65e801b2ae0e0f7afce8019ed79be6af72afeda735a55154192e8d",
+      "actual_sha256": "5083f0e4ad65e801b2ae0e0f7afce8019ed79be6af72afeda735a55154192e8d",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prove_ingest_baseline.py",
+      "expected_sha256": "a69665f463be7efdf43dbb6c962be4da1c64bd46e20297df490f5490e3384370",
+      "actual_sha256": "a69665f463be7efdf43dbb6c962be4da1c64bd46e20297df490f5490e3384370",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/record-cap-mutation.json",
+      "expected_sha256": "7ae3117054ecbb7d482a7305e12173cb1b9d33dafc15a5f2bd0fc574f3cef33a",
+      "actual_sha256": "7ae3117054ecbb7d482a7305e12173cb1b9d33dafc15a5f2bd0fc574f3cef33a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/record-cap-mutation.log",
+      "expected_sha256": "d0a3a58bde05697e78abe20042345f31c0d027040f6de833740c1cd09cb42012",
+      "actual_sha256": "d0a3a58bde05697e78abe20042345f31c0d027040f6de833740c1cd09cb42012",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/report.md",
+      "expected_sha256": "2290e508f5b3ddac93c293a99a26b53942af04181c07a608ded9011791ecee1e",
+      "actual_sha256": "2290e508f5b3ddac93c293a99a26b53942af04181c07a608ded9011791ecee1e",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/run_checks.py",
+      "expected_sha256": "d61b5459100cd061a49d0186c460db606d51e239c9e5cc7b6018d79d83e30dcd",
+      "actual_sha256": "d61b5459100cd061a49d0186c460db606d51e239c9e5cc7b6018d79d83e30dcd",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/scope-audit.json",
+      "expected_sha256": "8d130a5783e469b55cb232ab83ba5a572638ffc4706450d83c43f9c91ddb75a3",
+      "actual_sha256": "8d130a5783e469b55cb232ab83ba5a572638ffc4706450d83c43f9c91ddb75a3",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/session-0-capture.log",
+      "expected_sha256": "619eebfcd1533b453a7b6dfd1f57fa3e14c7db33053829bfc02db36d5c7719eb",
+      "actual_sha256": "619eebfcd1533b453a7b6dfd1f57fa3e14c7db33053829bfc02db36d5c7719eb",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/session-0-compare.log",
+      "expected_sha256": "7f184f46fc0dec62ebe7e14da093e1a0ebf93cc70c040bf9091e37e7312db99d",
+      "actual_sha256": "7f184f46fc0dec62ebe7e14da093e1a0ebf93cc70c040bf9091e37e7312db99d",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/session-0-observations.json",
+      "expected_sha256": "fd522d0df4b509f8fa3d762473a858b576d4a39db4725d4e3e5e484e5387698e",
+      "actual_sha256": "fd522d0df4b509f8fa3d762473a858b576d4a39db4725d4e3e5e484e5387698e",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/source-changed-refusal.log",
+      "expected_sha256": "0c57d9e0db7f76c4f5c740c0dc20413ca66b11689589a4d188a0982c4d72ac97",
+      "actual_sha256": "0c57d9e0db7f76c4f5c740c0dc20413ca66b11689589a4d188a0982c4d72ac97",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/source-extra-refusal.log",
+      "expected_sha256": "23c7358478a03c4a80f0fd165b0731599eeecc4727b3c3147689c5d6d6072d38",
+      "actual_sha256": "23c7358478a03c4a80f0fd165b0731599eeecc4727b3c3147689c5d6d6072d38",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/source-types2-own.log",
+      "expected_sha256": "09c2e18ecfa8fb9ee72f234deaf1c5149ee58c771ab0831ade8e7ffffdf888af",
+      "actual_sha256": "09c2e18ecfa8fb9ee72f234deaf1c5149ee58c771ab0831ade8e7ffffdf888af",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental-records.log",
+      "expected_sha256": "5841677193f5201b1094624d0333ae63fced96aa6e77a1499a433478363537bb",
+      "actual_sha256": "5841677193f5201b1094624d0333ae63fced96aa6e77a1499a433478363537bb",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental-result.json",
+      "expected_sha256": "56c0713ac9b474177c2de49610485454abaee46aeb4a2a8cb988974a0514d3c6",
+      "actual_sha256": "56c0713ac9b474177c2de49610485454abaee46aeb4a2a8cb988974a0514d3c6",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental.py",
+      "expected_sha256": "9cc23adeb79dc48891a76514f91822c93b22adf3dc1f4df12aff55be510d53ef",
+      "actual_sha256": "9cc23adeb79dc48891a76514f91822c93b22adf3dc1f4df12aff55be510d53ef",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/swallowed-cancel-mutation.json",
+      "expected_sha256": "643ce41511e11f760a66710c14517d9eb533b26d6b38d5661f5d3362987f2d83",
+      "actual_sha256": "643ce41511e11f760a66710c14517d9eb533b26d6b38d5661f5d3362987f2d83",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/swallowed-cancel-mutation.log",
+      "expected_sha256": "43a046ed9f82b187e9f2e3d4c14462ba63d9fe0e712914c8950228b0eacc5218",
+      "actual_sha256": "43a046ed9f82b187e9f2e3d4c14462ba63d9fe0e712914c8950228b0eacc5218",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/unawaited-query-mutation.json",
+      "expected_sha256": "c01c7a996be58384c5e2bef1627496d9c802ba3a582839457a283ac1b296d0b3",
+      "actual_sha256": "c01c7a996be58384c5e2bef1627496d9c802ba3a582839457a283ac1b296d0b3",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/unawaited-query-mutation.log",
+      "expected_sha256": "a90b282814c05bc5c792b5d45552b87bfc17df4637a9682b9e714f2b1c67254a",
+      "actual_sha256": "a90b282814c05bc5c792b5d45552b87bfc17df4637a9682b9e714f2b1c67254a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/unchanged-mutation.json",
+      "expected_sha256": "4410c07c2bd5de56f7ee92a1522400871425640d5f4784101225c811422b7f15",
+      "actual_sha256": "4410c07c2bd5de56f7ee92a1522400871425640d5f4784101225c811422b7f15",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/unchanged-mutation.log",
+      "expected_sha256": "315650c9f24cb1fae4edc289da6a9c1179f8d291de6763609089d4d1f192286b",
+      "actual_sha256": "315650c9f24cb1fae4edc289da6a9c1179f8d291de6763609089d4d1f192286b",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/warning-dedupe-mutation.json",
+      "expected_sha256": "6af8036dae1621e0431563f13c69e756e73ac83520aa906e1f5e67608afe089c",
+      "actual_sha256": "6af8036dae1621e0431563f13c69e756e73ac83520aa906e1f5e67608afe089c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/warning-dedupe-mutation.log",
+      "expected_sha256": "3a44515f4d62d212ffebb2d543f17af9be3ca918548a07ef20420c13eecf6602",
+      "actual_sha256": "3a44515f4d62d212ffebb2d543f17af9be3ca918548a07ef20420c13eecf6602",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/warning-order-mutation.json",
+      "expected_sha256": "e8131644f6fbdf8fbd4eed9db189f09e0de8048550b4264a2e1c54ca9aee7a92",
+      "actual_sha256": "e8131644f6fbdf8fbd4eed9db189f09e0de8048550b4264a2e1c54ca9aee7a92",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/warning-order-mutation.log",
+      "expected_sha256": "9d0291a4d4b19c63c1accacfc7e83d230aad029ad2cde5fd214a3f5ce8110091",
+      "actual_sha256": "9d0291a4d4b19c63c1accacfc7e83d230aad029ad2cde5fd214a3f5ce8110091",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-count-mutation.json",
+      "expected_sha256": "a8f5e54be34e06dff4fa6816cc31055b6915232be5bfa00160aa7aabebed72c3",
+      "actual_sha256": "a8f5e54be34e06dff4fa6816cc31055b6915232be5bfa00160aa7aabebed72c3",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-count-mutation.log",
+      "expected_sha256": "d7ae510794da804c0b03df38b74383e05b937786c976e7734c96e3c969086188",
+      "actual_sha256": "d7ae510794da804c0b03df38b74383e05b937786c976e7734c96e3c969086188",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-grouping-mutation.json",
+      "expected_sha256": "511b9fde6407a2ab48521a358b0c620ef737e0ff0e19f1dbb091f2950d171058",
+      "actual_sha256": "511b9fde6407a2ab48521a358b0c620ef737e0ff0e19f1dbb091f2950d171058",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-grouping-mutation.log",
+      "expected_sha256": "d2b5afbf96bf5c26cbab1f84dfe81f08a6a1d0caba33f037db42e8fd9a2059e5",
+      "actual_sha256": "d2b5afbf96bf5c26cbab1f84dfe81f08a6a1d0caba33f037db42e8fd9a2059e5",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-order-mutation.json",
+      "expected_sha256": "f2c66eda3a3f9ac4d14c10311a76707166bed0c79547039a9b0163f9e4847ab4",
+      "actual_sha256": "f2c66eda3a3f9ac4d14c10311a76707166bed0c79547039a9b0163f9e4847ab4",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-order-mutation.log",
+      "expected_sha256": "5ee87991de8db22828bc0045df1b1393d6d6a9614a7938348c46e3d2720c83c5",
+      "actual_sha256": "5ee87991de8db22828bc0045df1b1393d6d6a9614a7938348c46e3d2720c83c5",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/zero-unavailable-mutation.json",
+      "expected_sha256": "ef822336b90e4082bb1c655ca87055b7ab9c174d93f3e968e635f423f1ddb95c",
+      "actual_sha256": "ef822336b90e4082bb1c655ca87055b7ab9c174d93f3e968e635f423f1ddb95c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/zero-unavailable-mutation.log",
+      "expected_sha256": "dd458a4f8507b8c9c2bf14b7903de525902cf7c2ec88011777fb4485ae2b3604",
+      "actual_sha256": "dd458a4f8507b8c9c2bf14b7903de525902cf7c2ec88011777fb4485ae2b3604",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/board-check.json",
+      "expected_sha256": "e692da5be44c015b61940591cb4e17ace8216ccd784a2b7ca8d411fea66ff4da",
+      "actual_sha256": "e692da5be44c015b61940591cb4e17ace8216ccd784a2b7ca8d411fea66ff4da",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/board-check.log",
+      "expected_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "actual_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/board-validate.json",
+      "expected_sha256": "1733150c11b6325332f371c57ba64877bbb1d69748871a8f2efed9f185727577",
+      "actual_sha256": "1733150c11b6325332f371c57ba64877bbb1d69748871a8f2efed9f185727577",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/board-validate.log",
+      "expected_sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "actual_sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/bootstrap.json",
+      "expected_sha256": "935e992cbd1c50ef4f2717d8f19ea11a270f672d9e5a0e498494d64f9c2e5186",
+      "actual_sha256": "935e992cbd1c50ef4f2717d8f19ea11a270f672d9e5a0e498494d64f9c2e5186",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/candidate-lock.json",
+      "expected_sha256": "bf968ff2bb66fcf68553ef2e1615bb77dbdaf8d65db2d98fa2c2b4cb7d51da65",
+      "actual_sha256": "bf968ff2bb66fcf68553ef2e1615bb77dbdaf8d65db2d98fa2c2b4cb7d51da65",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/candidate-lock.log",
+      "expected_sha256": "4d6270988ded9b28b78d6dad255a89ae99a0a4d197259515cab619a459ee5e62",
+      "actual_sha256": "4d6270988ded9b28b78d6dad255a89ae99a0a4d197259515cab619a459ee5e62",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/canonical-full-chat-corrected.json",
+      "expected_sha256": "2f3621ae71f320c0b608592b700ccf11c1b286b33fbf98ee8cac0554f5ad5826",
+      "actual_sha256": "2f3621ae71f320c0b608592b700ccf11c1b286b33fbf98ee8cac0554f5ad5826",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/canonical-full-chat-privatebase.json",
+      "expected_sha256": "bc7b7d1952fa2245fc5ba3ef96d0a7ff4f2cf118edbc79d45944766815e340bd",
+      "actual_sha256": "bc7b7d1952fa2245fc5ba3ef96d0a7ff4f2cf118edbc79d45944766815e340bd",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/canonical-full-chat-privatebase.log",
+      "expected_sha256": "c69915406b729c717f99039722916e723dd06bf1b1ddba20c13d05ea40d586bb",
+      "actual_sha256": "c69915406b729c717f99039722916e723dd06bf1b1ddba20c13d05ea40d586bb",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/cli.json",
+      "expected_sha256": "abdbbff6895e71cb175a609b47a567cd1f803917d9d91d5a03e2fcfce60b80f8",
+      "actual_sha256": "abdbbff6895e71cb175a609b47a567cd1f803917d9d91d5a03e2fcfce60b80f8",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/cli.log",
+      "expected_sha256": "d34b3022b2c1d0ab55d076c0660d0b06a59cbcfadef1519ab70cfd10fafff4f7",
+      "actual_sha256": "d34b3022b2c1d0ab55d076c0660d0b06a59cbcfadef1519ab70cfd10fafff4f7",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/comparer-controls.json",
+      "expected_sha256": "8b36f8b46f864430e900832ed4339310abf72dfdf54816320278fbc49b8472a8",
+      "actual_sha256": "8b36f8b46f864430e900832ed4339310abf72dfdf54816320278fbc49b8472a8",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/comparer-controls.log",
+      "expected_sha256": "12d1c75c7354cdf1cce584c9b9b58d1754a0eba82269b4db50ab5a16ea0a67ce",
+      "actual_sha256": "12d1c75c7354cdf1cce584c9b9b58d1754a0eba82269b4db50ab5a16ea0a67ce",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/controls.py",
+      "expected_sha256": "d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d",
+      "actual_sha256": "d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/d2-fast-final.json",
+      "expected_sha256": "f05781e7ddeae741f4370036704a134dbdd31baebd82e1bbd7201b905f9585dd",
+      "actual_sha256": "f05781e7ddeae741f4370036704a134dbdd31baebd82e1bbd7201b905f9585dd",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/d2-fast-final.log",
+      "expected_sha256": "9712977ba7b6e3f8249edb5975c9330bb67edd3450f3f676676962ada71beb5b",
+      "actual_sha256": "9712977ba7b6e3f8249edb5975c9330bb67edd3450f3f676676962ada71beb5b",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/d3-fast-final.json",
+      "expected_sha256": "59d3fb90cc9302589006f37f579789a34f9da0c8cc18e45267c2cdbbe7c3b7b7",
+      "actual_sha256": "59d3fb90cc9302589006f37f579789a34f9da0c8cc18e45267c2cdbbe7c3b7b7",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/d3-fast-final.log",
+      "expected_sha256": "32db4422a5f1a5f262c6e65e45248b04b752c7fee571d7caefc12e540ecf8f2c",
+      "actual_sha256": "32db4422a5f1a5f262c6e65e45248b04b752c7fee571d7caefc12e540ecf8f2c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/diagnostics-0-capture.json",
+      "expected_sha256": "7e512aaa784b51fdd9e0935041c9bc8070cecd685c77fec47bb6763f8d8e9a3a",
+      "actual_sha256": "7e512aaa784b51fdd9e0935041c9bc8070cecd685c77fec47bb6763f8d8e9a3a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/diagnostics-0-capture.log",
+      "expected_sha256": "33c09040d34dd70f469be1b4075cf5172fa5866081b9de686984b7dc48b2a4bf",
+      "actual_sha256": "33c09040d34dd70f469be1b4075cf5172fa5866081b9de686984b7dc48b2a4bf",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/diagnostics-0-compare.json",
+      "expected_sha256": "1dcd6db12c60ba51d2a4366604343a031b3749bd330330670ad9b4c3af39c5ec",
+      "actual_sha256": "1dcd6db12c60ba51d2a4366604343a031b3749bd330330670ad9b4c3af39c5ec",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/diagnostics-0-compare.log",
+      "expected_sha256": "8ed7310d927cfd8c86c4512d830ce4bd983358e85fa6c021a955c60fd004cf42",
+      "actual_sha256": "8ed7310d927cfd8c86c4512d830ce4bd983358e85fa6c021a955c60fd004cf42",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/documentation.json",
+      "expected_sha256": "5ff1342941c3705c972d6732e795526255f36111d8703229b54d490dda18a9e6",
+      "actual_sha256": "5ff1342941c3705c972d6732e795526255f36111d8703229b54d490dda18a9e6",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/documentation.log",
+      "expected_sha256": "762862d5db8c49b619817e376a1e79e046b9bf6a93bf06686274afa4b10c464a",
+      "actual_sha256": "762862d5db8c49b619817e376a1e79e046b9bf6a93bf06686274afa4b10c464a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/final-lint.json",
+      "expected_sha256": "f5b51f496246f8443586bacb1bf02a5582cbb8f88fd2f80f5b63d3a5fab83aaa",
+      "actual_sha256": "f5b51f496246f8443586bacb1bf02a5582cbb8f88fd2f80f5b63d3a5fab83aaa",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/final-lint.log",
+      "expected_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "actual_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/format-check.json",
+      "expected_sha256": "01b50e5ee050c665f0a5b8bf383d04427abe016a541abebde56323c40382f74a",
+      "actual_sha256": "01b50e5ee050c665f0a5b8bf383d04427abe016a541abebde56323c40382f74a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/format-check.log",
+      "expected_sha256": "134ca85e3f21dc053981a09e82d045b0c8fe160113ea0eacba66351824a26ada",
+      "actual_sha256": "134ca85e3f21dc053981a09e82d045b0c8fe160113ea0eacba66351824a26ada",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/format-debt-final.json",
+      "expected_sha256": "a44ada783b772fc1c10a040ff7c4c3e4c73b7ffb1a83d653f17f80923070af82",
+      "actual_sha256": "a44ada783b772fc1c10a040ff7c4c3e4c73b7ffb1a83d653f17f80923070af82",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/format-debt-final.log",
+      "expected_sha256": "1d6a7357d3da1f1afb251f43937da567d6c286fe0f8a75ffb61c2b2b0a056ba9",
+      "actual_sha256": "1d6a7357d3da1f1afb251f43937da567d6c286fe0f8a75ffb61c2b2b0a056ba9",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/full-chat-final.json",
+      "expected_sha256": "c417aeaf5049f8f48ede25f72843174a98e8f819c0c522ff01496a753c5db8c7",
+      "actual_sha256": "c417aeaf5049f8f48ede25f72843174a98e8f819c0c522ff01496a753c5db8c7",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/full-chat-final.log",
+      "expected_sha256": "286ef68748a415dc0e340a694de1a0e7dfa8309f77b763bfb1f8cb4c4797645b",
+      "actual_sha256": "286ef68748a415dc0e340a694de1a0e7dfa8309f77b763bfb1f8cb4c4797645b",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/guard.json",
+      "expected_sha256": "cbab7e0d0bdf96db3c92b2b9bcf7a52c8246391194327d6f070b745467c46950",
+      "actual_sha256": "cbab7e0d0bdf96db3c92b2b9bcf7a52c8246391194327d6f070b745467c46950",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/guard.log",
+      "expected_sha256": "69ace469ed23c05b1fe334be3cf727fea1de5730d8b40b9f24c80e802293b43d",
+      "actual_sha256": "69ace469ed23c05b1fe334be3cf727fea1de5730d8b40b9f24c80e802293b43d",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/independent-meta.json",
+      "expected_sha256": "a9e25976a581a18427b4aacc24d95849be69b285fcc476beedd02c89dab263fb",
+      "actual_sha256": "a9e25976a581a18427b4aacc24d95849be69b285fcc476beedd02c89dab263fb",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/independent-meta.log",
+      "expected_sha256": "d79e1fc792370260f26f76129bc1a552999e3e575d6ecd8ec532884809c9b859",
+      "actual_sha256": "d79e1fc792370260f26f76129bc1a552999e3e575d6ecd8ec532884809c9b859",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/ingest-none-baseline.json",
+      "expected_sha256": "2adf834b02f43cd2e77d394b24a952b9b2f5b9923ccec7b5a6927e77205c3f25",
+      "actual_sha256": "2adf834b02f43cd2e77d394b24a952b9b2f5b9923ccec7b5a6927e77205c3f25",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/ingest-none-baseline.log",
+      "expected_sha256": "b14ee8e557c4b8623fcda377598530d9a6094027e1ec3c61a458065fdd8798f4",
+      "actual_sha256": "b14ee8e557c4b8623fcda377598530d9a6094027e1ec3c61a458065fdd8798f4",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/ingest-none-candidate.json",
+      "expected_sha256": "bf655896e4858825667ce7d6e72abbf5a8491a0b7f46c32e80dca033d453dae8",
+      "actual_sha256": "bf655896e4858825667ce7d6e72abbf5a8491a0b7f46c32e80dca033d453dae8",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/ingest-none-candidate.log",
+      "expected_sha256": "b14ee8e557c4b8623fcda377598530d9a6094027e1ec3c61a458065fdd8798f4",
+      "actual_sha256": "b14ee8e557c4b8623fcda377598530d9a6094027e1ec3c61a458065fdd8798f4",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/launcher-single-mcp-result.json",
+      "expected_sha256": "c0df52bdb82c3df3499b45d6982ce49761955a3678ec50e4cab330f2c5667fa1",
+      "actual_sha256": "c0df52bdb82c3df3499b45d6982ce49761955a3678ec50e4cab330f2c5667fa1",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/launcher-single-mcp.json",
+      "expected_sha256": "bfa4a3821fc26b0c9305947148f3b21ebb6f29e286d5de0db4d1b811619665a3",
+      "actual_sha256": "bfa4a3821fc26b0c9305947148f3b21ebb6f29e286d5de0db4d1b811619665a3",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/launcher-single-mcp.log",
+      "expected_sha256": "7515943c8ce9bd2f65a472d9a06391a0fcce48e0b6b1374def5f51f770f35632",
+      "actual_sha256": "7515943c8ce9bd2f65a472d9a06391a0fcce48e0b6b1374def5f51f770f35632",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-0-capture.json",
+      "expected_sha256": "ff631454305a1b6b8ae68d5875cb905d2e9b6fabf4ae9ad5ddc561822ac8b771",
+      "actual_sha256": "ff631454305a1b6b8ae68d5875cb905d2e9b6fabf4ae9ad5ddc561822ac8b771",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-0-capture.log",
+      "expected_sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "actual_sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-0-compare.json",
+      "expected_sha256": "059216bd360c2e8378d05e8dcceae279dfba9e102d51138413ba9be059364086",
+      "actual_sha256": "059216bd360c2e8378d05e8dcceae279dfba9e102d51138413ba9be059364086",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-0-compare.log",
+      "expected_sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "actual_sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-1-capture.json",
+      "expected_sha256": "bb0c89dbeb79b5ce2cdce047ab692e14b8105e5f5aed1ed6be53af6c104e976a",
+      "actual_sha256": "bb0c89dbeb79b5ce2cdce047ab692e14b8105e5f5aed1ed6be53af6c104e976a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-1-capture.log",
+      "expected_sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "actual_sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-1-compare.json",
+      "expected_sha256": "63dfee1d9f45fd9d2a40222f33746228c25cb4950608ec74c2c39ddcf05328e2",
+      "actual_sha256": "63dfee1d9f45fd9d2a40222f33746228c25cb4950608ec74c2c39ddcf05328e2",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-1-compare.log",
+      "expected_sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "actual_sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/metric-probe.json",
+      "expected_sha256": "79f7d84266b8069069bb50ad9301f85f7b234120b60c16a32a25ef7d7265f9fc",
+      "actual_sha256": "79f7d84266b8069069bb50ad9301f85f7b234120b60c16a32a25ef7d7265f9fc",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/metric-probe.log",
+      "expected_sha256": "756ef68b41e042960a5cb32b8b11a0607ebba57066a77e6dd7372c17aa3ea320",
+      "actual_sha256": "756ef68b41e042960a5cb32b8b11a0607ebba57066a77e6dd7372c17aa3ea320",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-case-insensitive-nodes.json",
+      "expected_sha256": "5920c23f718c3500d1f7d859d9f990580a4712d08463c9e28cdbe36140a4c803",
+      "actual_sha256": "5920c23f718c3500d1f7d859d9f990580a4712d08463c9e28cdbe36140a4c803",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-case-insensitive-nodes.log",
+      "expected_sha256": "dc43dd61e6e4a3aca1b6a586245bad31ad65b2405f44963426591217818d5b79",
+      "actual_sha256": "dc43dd61e6e4a3aca1b6a586245bad31ad65b2405f44963426591217818d5b79",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-decayed-collection.json",
+      "expected_sha256": "65fab19474a83b29541daa71ea8d983097adfbbb2dc12c9b1fa8f7c64afbddac",
+      "actual_sha256": "65fab19474a83b29541daa71ea8d983097adfbbb2dc12c9b1fa8f7c64afbddac",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-decayed-collection.log",
+      "expected_sha256": "1fecb24d56290b0041a49130c93232df653245cb096783f314239be1554f78bb",
+      "actual_sha256": "1fecb24d56290b0041a49130c93232df653245cb096783f314239be1554f78bb",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-double-format.json",
+      "expected_sha256": "e8516fb051813576ec3ee037de926cadf0c6206ec7fabaafb48db2c80e805e55",
+      "actual_sha256": "e8516fb051813576ec3ee037de926cadf0c6206ec7fabaafb48db2c80e805e55",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-double-format.log",
+      "expected_sha256": "765334230143860c0aadf7937e0a26482a2c6d1293b8ab1fbbc1009f3746144f",
+      "actual_sha256": "765334230143860c0aadf7937e0a26482a2c6d1293b8ab1fbbc1009f3746144f",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-double-query.json",
+      "expected_sha256": "2c8152987a8af37485c68d06f68a60d4ba4db9b7bdbde9b0785176940d7daa1a",
+      "actual_sha256": "2c8152987a8af37485c68d06f68a60d4ba4db9b7bdbde9b0785176940d7daa1a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-double-query.log",
+      "expected_sha256": "8e45514631ca82773b0ba747062440fa75c7998e6357a124bec3cfa8dda2ac33",
+      "actual_sha256": "8e45514631ca82773b0ba747062440fa75c7998e6357a124bec3cfa8dda2ac33",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-entity-cap.json",
+      "expected_sha256": "e05c1b9e85a7083ba55829f8bd77d212791476a15982bf95432fbe33fe4f986e",
+      "actual_sha256": "e05c1b9e85a7083ba55829f8bd77d212791476a15982bf95432fbe33fe4f986e",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-entity-cap.log",
+      "expected_sha256": "56e397e792dcec1b5959fc17a85184541ec99647205c49d6fe20b1ec43189e84",
+      "actual_sha256": "56e397e792dcec1b5959fc17a85184541ec99647205c49d6fe20b1ec43189e84",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-ignored-result.json",
+      "expected_sha256": "f9ffe6d642ad91c32d8bce0a2f5b85bbe0091c3c63cd76f47d3ae55fe2bf801c",
+      "actual_sha256": "f9ffe6d642ad91c32d8bce0a2f5b85bbe0091c3c63cd76f47d3ae55fe2bf801c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-ignored-result.log",
+      "expected_sha256": "1154c2c878034b545722a30299ae3b692e482d1f2bee3d84c1703548b10bea06",
+      "actual_sha256": "1154c2c878034b545722a30299ae3b692e482d1f2bee3d84c1703548b10bea06",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-legacy-substitution.json",
+      "expected_sha256": "cc184e7a3691a0f6d8be9f22fd8bbc5308083992e2459b777cc2e6e349d8759d",
+      "actual_sha256": "cc184e7a3691a0f6d8be9f22fd8bbc5308083992e2459b777cc2e6e349d8759d",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-legacy-substitution.log",
+      "expected_sha256": "485085c272db6ae07197cd1433b9d417000df64d152ac58b7030d252aca5dbd9",
+      "actual_sha256": "485085c272db6ae07197cd1433b9d417000df64d152ac58b7030d252aca5dbd9",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-missing-kind-refusal.json",
+      "expected_sha256": "2fe51b2ec9263050086d09edc0e3a1261b4126144af416e0693f4368bc4f91a0",
+      "actual_sha256": "2fe51b2ec9263050086d09edc0e3a1261b4126144af416e0693f4368bc4f91a0",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-missing-kind-refusal.log",
+      "expected_sha256": "db4a7044cf782ea85c5dda23097593b50d5c0ac6175c467e11dd625044dad5ce",
+      "actual_sha256": "db4a7044cf782ea85c5dda23097593b50d5c0ac6175c467e11dd625044dad5ce",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-missing-utilization-suffix.json",
+      "expected_sha256": "f4bfb5c4eee216b7c9c579c4a7d7f8c7aa68d1ea1f4478cdd4f2519e46cc7584",
+      "actual_sha256": "f4bfb5c4eee216b7c9c579c4a7d7f8c7aa68d1ea1f4478cdd4f2519e46cc7584",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-missing-utilization-suffix.log",
+      "expected_sha256": "1d72cd319718dd42136ab4a83b321bc8d3916d4dbf986f2c80ff5ccaf9d10826",
+      "actual_sha256": "1d72cd319718dd42136ab4a83b321bc8d3916d4dbf986f2c80ff5ccaf9d10826",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-nodes-relationships.json",
+      "expected_sha256": "56c65b61cd0c745a3cc8e1e22b8f12e250642435b68839ab3a002cf02bd19bc7",
+      "actual_sha256": "56c65b61cd0c745a3cc8e1e22b8f12e250642435b68839ab3a002cf02bd19bc7",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-nodes-relationships.log",
+      "expected_sha256": "e1ce04373ed349bd51bdc38b68abd7fb90cc5ac720d4a98a8f8890ee6a02cbc3",
+      "actual_sha256": "e1ce04373ed349bd51bdc38b68abd7fb90cc5ac720d4a98a8f8890ee6a02cbc3",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-projection-before-second-await.json",
+      "expected_sha256": "41ef10ef40105f78f754ca81ab5162878e7f2f0ad46dcf50589ed7baf434e955",
+      "actual_sha256": "41ef10ef40105f78f754ca81ab5162878e7f2f0ad46dcf50589ed7baf434e955",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-projection-before-second-await.log",
+      "expected_sha256": "08aa634bf0ab5cbb2a59aaa8a3e60b16282c39462ae54243ac10af594a4e2f2e",
+      "actual_sha256": "08aa634bf0ab5cbb2a59aaa8a3e60b16282c39462ae54243ac10af594a4e2f2e",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-record-cap.json",
+      "expected_sha256": "9da5146600efe11502d6b6713d15b119bdd173818b75a14d7819a585f1d4e17b",
+      "actual_sha256": "9da5146600efe11502d6b6713d15b119bdd173818b75a14d7819a585f1d4e17b",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-record-cap.log",
+      "expected_sha256": "227c32e7a25f7815a490a43fa104de35183d10c4b5b7d4d0ffbb54d74b03a5b3",
+      "actual_sha256": "227c32e7a25f7815a490a43fa104de35183d10c4b5b7d4d0ffbb54d74b03a5b3",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-swallowed-cancel.json",
+      "expected_sha256": "c1678eb3113793056d1e2daebfba0d8e8ab20e57bb74c1e3e756bfe832623b1c",
+      "actual_sha256": "c1678eb3113793056d1e2daebfba0d8e8ab20e57bb74c1e3e756bfe832623b1c",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-swallowed-cancel.log",
+      "expected_sha256": "19a73908984ade513b509ff370814e0666c4325c58eab0ce4e9226d1736e4fde",
+      "actual_sha256": "19a73908984ade513b509ff370814e0666c4325c58eab0ce4e9226d1736e4fde",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-unawaited-query.json",
+      "expected_sha256": "ddcb669133794ee7e10f3b7b73f26608a8a5d6be0bd7b6d58b71df4ced8b52f1",
+      "actual_sha256": "ddcb669133794ee7e10f3b7b73f26608a8a5d6be0bd7b6d58b71df4ced8b52f1",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-unawaited-query.log",
+      "expected_sha256": "040f6a494f5c7797f70edb3904f46d2ec03ff0bc995986cd790a2f1353642177",
+      "actual_sha256": "040f6a494f5c7797f70edb3904f46d2ec03ff0bc995986cd790a2f1353642177",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-unchanged.json",
+      "expected_sha256": "0ae66f9764daf6edaad9b24cc0c91f9127eb635d7f3f985c2bc7bd78fdefc7dd",
+      "actual_sha256": "0ae66f9764daf6edaad9b24cc0c91f9127eb635d7f3f985c2bc7bd78fdefc7dd",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-unchanged.log",
+      "expected_sha256": "f2a5357d8c2484aba1fc92281e53431ce42d05a4dedaea419bfabd1096c5ff89",
+      "actual_sha256": "f2a5357d8c2484aba1fc92281e53431ce42d05a4dedaea419bfabd1096c5ff89",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-warning-dedupe.json",
+      "expected_sha256": "071793380c409b7e244a7255ec0112def3a26c599281e09d2533badb5691621b",
+      "actual_sha256": "071793380c409b7e244a7255ec0112def3a26c599281e09d2533badb5691621b",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-warning-dedupe.log",
+      "expected_sha256": "4e75f4907a581b343eb73fa8ba20116241c1f58b7f6cc858a6267e0ca147fb8f",
+      "actual_sha256": "4e75f4907a581b343eb73fa8ba20116241c1f58b7f6cc858a6267e0ca147fb8f",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-warning-order.json",
+      "expected_sha256": "51174f5948ae29fd545a69d04b8028adaa99467b372a73c035c2b45c0be9073a",
+      "actual_sha256": "51174f5948ae29fd545a69d04b8028adaa99467b372a73c035c2b45c0be9073a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-warning-order.log",
+      "expected_sha256": "ba2fb89ce188f99cc4acf1f32de9c80a86e58979b5e8b3fe2029d9c250eb9895",
+      "actual_sha256": "ba2fb89ce188f99cc4acf1f32de9c80a86e58979b5e8b3fe2029d9c250eb9895",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-count.json",
+      "expected_sha256": "00be6c235bc926cdcb4d795a294f48faf8dff6402666ae8068e62c75d3980a8e",
+      "actual_sha256": "00be6c235bc926cdcb4d795a294f48faf8dff6402666ae8068e62c75d3980a8e",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-count.log",
+      "expected_sha256": "291c8b7eda9dc9dc626b947a4191041af7648c71e2c2fe5831ad9d76eee780fd",
+      "actual_sha256": "291c8b7eda9dc9dc626b947a4191041af7648c71e2c2fe5831ad9d76eee780fd",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-grouping.json",
+      "expected_sha256": "8b59c0a8e13d07e55367c2b97e51a1a017208f8a44699f11a0c06b59f7dd0c5d",
+      "actual_sha256": "8b59c0a8e13d07e55367c2b97e51a1a017208f8a44699f11a0c06b59f7dd0c5d",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-grouping.log",
+      "expected_sha256": "9d9ffaff36ae69c8a20639ebb91a4d320efaba34ad78b92d4f073d04f136b2d7",
+      "actual_sha256": "9d9ffaff36ae69c8a20639ebb91a4d320efaba34ad78b92d4f073d04f136b2d7",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-order.json",
+      "expected_sha256": "0782b90732e868d755fd05fbf3d4a2f06a32d812a0fa207a49746303fb0f74c0",
+      "actual_sha256": "0782b90732e868d755fd05fbf3d4a2f06a32d812a0fa207a49746303fb0f74c0",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-order.log",
+      "expected_sha256": "32b8ad3fa16a7cd4394364ef0e5c3ab30832a66d3fc9b3f072deba9a93a651f8",
+      "actual_sha256": "32b8ad3fa16a7cd4394364ef0e5c3ab30832a66d3fc9b3f072deba9a93a651f8",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-zero-unavailable.json",
+      "expected_sha256": "462961e619077b5101b6a65224cc238a357862a1d81ccc9cf0d7b08866016684",
+      "actual_sha256": "462961e619077b5101b6a65224cc238a357862a1d81ccc9cf0d7b08866016684",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-zero-unavailable.log",
+      "expected_sha256": "bef8dfc64c55fb58feeb9af5bd5ea69c5a578477272a388b0ef6af06ccb62b6b",
+      "actual_sha256": "bef8dfc64c55fb58feeb9af5bd5ea69c5a578477272a388b0ef6af06ccb62b6b",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/neutral-cohort.json",
+      "expected_sha256": "f4e5279436feaa607a56592695f014aa6f0f006d77ace0c1063481ae81212bbe",
+      "actual_sha256": "f4e5279436feaa607a56592695f014aa6f0f006d77ace0c1063481ae81212bbe",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/neutral-cohort.log",
+      "expected_sha256": "c77d61df904b0b6cd19a8c82cdf27554535e45564998b07dcfd26cb4fe9b0eb9",
+      "actual_sha256": "c77d61df904b0b6cd19a8c82cdf27554535e45564998b07dcfd26cb4fe9b0eb9",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/new-cases.json",
+      "expected_sha256": "a956f4a4b1d9c0270a06d5b6212ecd69cc98883336e3c1f7154264e190bb50d9",
+      "actual_sha256": "a956f4a4b1d9c0270a06d5b6212ecd69cc98883336e3c1f7154264e190bb50d9",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/new-cases.log",
+      "expected_sha256": "d8465b37b79df893f9ed32378fcb013692747dfc3b89aec218adaceb1a6cc952",
+      "actual_sha256": "d8465b37b79df893f9ed32378fcb013692747dfc3b89aec218adaceb1a6cc952",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/new-format-check.json",
+      "expected_sha256": "d6e226862e939c90cf7a7d83ab58a6cba495fa4a7bbb0857b44fdcc941b7b268",
+      "actual_sha256": "d6e226862e939c90cf7a7d83ab58a6cba495fa4a7bbb0857b44fdcc941b7b268",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/new-format-check.log",
+      "expected_sha256": "eee76f865de5a9f2456950f710ae5d5f9b5bd0ea02aa54f614c5eed6642a0bfd",
+      "actual_sha256": "eee76f865de5a9f2456950f710ae5d5f9b5bd0ea02aa54f614c5eed6642a0bfd",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/normal-origin-full-chat.json",
+      "expected_sha256": "e4123ad89b9c717d92b5743e10e121d0773f4355b506817376485ffc5b3f23e3",
+      "actual_sha256": "e4123ad89b9c717d92b5743e10e121d0773f4355b506817376485ffc5b3f23e3",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/normal-origin-full-chat.log",
+      "expected_sha256": "ab9f32a4eb5c8e09e7134fe6a7498f7155d77e5571f2de2251ce00dffb643edc",
+      "actual_sha256": "ab9f32a4eb5c8e09e7134fe6a7498f7155d77e5571f2de2251ce00dffb643edc",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/normal-origins.json",
+      "expected_sha256": "51df903f34581af6ada6f7e4e5f21fa9cc9ddbe496d4eeff5a1139b272724488",
+      "actual_sha256": "51df903f34581af6ada6f7e4e5f21fa9cc9ddbe496d4eeff5a1139b272724488",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/offline-startup.json",
+      "expected_sha256": "20430a7cfe3403873d9792a4022335b84fe07ba94efea9489be6c5a7e6291700",
+      "actual_sha256": "20430a7cfe3403873d9792a4022335b84fe07ba94efea9489be6c5a7e6291700",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/offline-startup.log",
+      "expected_sha256": "427b7027b11aa9a8394f97c4b4ae0d6d0a741b0013c08e493ab2a03597703daa",
+      "actual_sha256": "427b7027b11aa9a8394f97c4b4ae0d6d0a741b0013c08e493ab2a03597703daa",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-cli.json",
+      "expected_sha256": "944a0e6ec14aa9a49b2c72e44cd31aa944fa189efd915071dee0af471087658b",
+      "actual_sha256": "944a0e6ec14aa9a49b2c72e44cd31aa944fa189efd915071dee0af471087658b",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-cli.log",
+      "expected_sha256": "32d6f7a555ec9193e15369224616e592b7c2b830b3b9c7c18bc1d6110c33f296",
+      "actual_sha256": "32d6f7a555ec9193e15369224616e592b7c2b830b3b9c7c18bc1d6110c33f296",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-d2-fast-final.json",
+      "expected_sha256": "d3fc224444e170afafe5f5474e02c3494344a752ab1bcee24538dea8b6bccd16",
+      "actual_sha256": "d3fc224444e170afafe5f5474e02c3494344a752ab1bcee24538dea8b6bccd16",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-d2-fast-final.log",
+      "expected_sha256": "c70b41387fce7d88790a2210751a616c158bc93a3b5c21b09bb28b7e741cefde",
+      "actual_sha256": "c70b41387fce7d88790a2210751a616c158bc93a3b5c21b09bb28b7e741cefde",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-d3-fast-final.json",
+      "expected_sha256": "6776e3b2099370921db95d05a745a7237eb925bbcf3a31898c616da4be2fc61d",
+      "actual_sha256": "6776e3b2099370921db95d05a745a7237eb925bbcf3a31898c616da4be2fc61d",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-d3-fast-final.log",
+      "expected_sha256": "b1ba9cb71cbb5782f57abe366061cc1988b9100bf7a88720f233466c51e1bfda",
+      "actual_sha256": "b1ba9cb71cbb5782f57abe366061cc1988b9100bf7a88720f233466c51e1bfda",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-full-chat-final.json",
+      "expected_sha256": "419901e398eeaa105d6f3a93fa13b50bc056c97276d149ce388a3b08a1278d59",
+      "actual_sha256": "419901e398eeaa105d6f3a93fa13b50bc056c97276d149ce388a3b08a1278d59",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-full-chat-final.log",
+      "expected_sha256": "4b51627e48339ad230fcf94de26da6709bff27b60c0b5d16eaf068428ed5a839",
+      "actual_sha256": "4b51627e48339ad230fcf94de26da6709bff27b60c0b5d16eaf068428ed5a839",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-neutral-cohort.json",
+      "expected_sha256": "8f010bb0eb168067c512040a3c58639da7bcdba7674848a26986b3215ee96b35",
+      "actual_sha256": "8f010bb0eb168067c512040a3c58639da7bcdba7674848a26986b3215ee96b35",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-neutral-cohort.log",
+      "expected_sha256": "75a0342ec734799091b56da7286629071715436a6d32244fd138707c77b693cf",
+      "actual_sha256": "75a0342ec734799091b56da7286629071715436a6d32244fd138707c77b693cf",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-new-cases.json",
+      "expected_sha256": "ddd96e329d72e8d1669d12d6ea9467c60f9fee45c91e58b0d4a79daca8a3e7b4",
+      "actual_sha256": "ddd96e329d72e8d1669d12d6ea9467c60f9fee45c91e58b0d4a79daca8a3e7b4",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-new-cases.log",
+      "expected_sha256": "4eda9c996e7f4b3ca2cec2deb5433fef1384e803d0bf441d1c18a03d9b956667",
+      "actual_sha256": "4eda9c996e7f4b3ca2cec2deb5433fef1384e803d0bf441d1c18a03d9b956667",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot-capture.json",
+      "expected_sha256": "619bef9a2a2379e53c31c82ea237b348e7304d9b3e55298c2dc7804132987b73",
+      "actual_sha256": "619bef9a2a2379e53c31c82ea237b348e7304d9b3e55298c2dc7804132987b73",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot-capture.log",
+      "expected_sha256": "dbbaf145090f03d8fe35f25a51ce91205ed4919d542794daed1eb4812b355308",
+      "actual_sha256": "dbbaf145090f03d8fe35f25a51ce91205ed4919d542794daed1eb4812b355308",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot-compare.json",
+      "expected_sha256": "cefb5c059746f519e23c27ceb087b59cc198d3bf58f1a4adcbf6830cef146f7f",
+      "actual_sha256": "cefb5c059746f519e23c27ceb087b59cc198d3bf58f1a4adcbf6830cef146f7f",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot-compare.log",
+      "expected_sha256": "57498c120adaf47f3114eb71cdce31c310264758485dc15016179da30a875be3",
+      "actual_sha256": "57498c120adaf47f3114eb71cdce31c310264758485dc15016179da30a875be3",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot_guard.py",
+      "expected_sha256": "e04eea8bc9722defe3ea89212385f8befda03e051b9816b305e1b9f73ff94681",
+      "actual_sha256": "e04eea8bc9722defe3ea89212385f8befda03e051b9816b305e1b9f73ff94681",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot_run.py",
+      "expected_sha256": "acd0f1aac5bc372bc7357d5a74563730a17955d13b74062c23cfe8f4b8cdc178",
+      "actual_sha256": "acd0f1aac5bc372bc7357d5a74563730a17955d13b74062c23cfe8f4b8cdc178",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/run.py",
+      "expected_sha256": "409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af",
+      "actual_sha256": "409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/session-0-capture.json",
+      "expected_sha256": "c507c69bf243c745857030091f9e4c93fd33f224db94d1053be551bdd9f11bce",
+      "actual_sha256": "c507c69bf243c745857030091f9e4c93fd33f224db94d1053be551bdd9f11bce",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/session-0-capture.log",
+      "expected_sha256": "299cfbf91c4a3909cf255b9c26e1834705e912eefd360ff6e1a89456be702d84",
+      "actual_sha256": "299cfbf91c4a3909cf255b9c26e1834705e912eefd360ff6e1a89456be702d84",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/session-0-compare.json",
+      "expected_sha256": "6eb57bf52334b8c72569d72ee10a27634de7c3e5b62489c44d2242c80f6c2415",
+      "actual_sha256": "6eb57bf52334b8c72569d72ee10a27634de7c3e5b62489c44d2242c80f6c2415",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/session-0-compare.log",
+      "expected_sha256": "43e6de8cab5609d4125cb733e259cf315de532eb9d04b0e59085769ea04d87c4",
+      "actual_sha256": "43e6de8cab5609d4125cb733e259cf315de532eb9d04b0e59085769ea04d87c4",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/sitecustomize.py",
+      "expected_sha256": "d96294f94f5378beb38675d0624e6f78c622914cafbaffb4ce486d8310d2eb7e",
+      "actual_sha256": "d96294f94f5378beb38675d0624e6f78c622914cafbaffb4ce486d8310d2eb7e",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/sol_origins.py",
+      "expected_sha256": "09ca442a7e223cbb6e09119a9b2ee6149b2d3a99f7606de8ad30ad69de777013",
+      "actual_sha256": "09ca442a7e223cbb6e09119a9b2ee6149b2d3a99f7606de8ad30ad69de777013",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-changed-refusal.json",
+      "expected_sha256": "d57760d39a7adda292fe4e027d8751f2f925f613d53dcc3530013f604ea987b5",
+      "actual_sha256": "d57760d39a7adda292fe4e027d8751f2f925f613d53dcc3530013f604ea987b5",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-changed-refusal.log",
+      "expected_sha256": "5c176f6c0459fb33dedf2e2470e8540909c62bbd393d5a2eadef282130599a97",
+      "actual_sha256": "5c176f6c0459fb33dedf2e2470e8540909c62bbd393d5a2eadef282130599a97",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-extra-refusal.json",
+      "expected_sha256": "117abe57fd0281446643702d846ae6471c09ee79dc77082aab05b9542d8fb85f",
+      "actual_sha256": "117abe57fd0281446643702d846ae6471c09ee79dc77082aab05b9542d8fb85f",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-extra-refusal.log",
+      "expected_sha256": "d723692d3b6596f618d68faa95f442fccbbef2243675e30c93f62b1a7b8beacb",
+      "actual_sha256": "d723692d3b6596f618d68faa95f442fccbbef2243675e30c93f62b1a7b8beacb",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-types2.json",
+      "expected_sha256": "82ebaa8edeb689c867b843f825dc697e5bcca052ee0b1ad325e94ce5a151857f",
+      "actual_sha256": "82ebaa8edeb689c867b843f825dc697e5bcca052ee0b1ad325e94ce5a151857f",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-types2.log",
+      "expected_sha256": "fc409d91e6c781eb25a1ec1310b7fcb0086b74ed3aa2c415bcd73f884f23f07a",
+      "actual_sha256": "fc409d91e6c781eb25a1ec1310b7fcb0086b74ed3aa2c415bcd73f884f23f07a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/supplemental-records.json",
+      "expected_sha256": "e3906953df11b89a0b58bc121e95a6d4f0edaa492981f9c6864512c1b432358a",
+      "actual_sha256": "e3906953df11b89a0b58bc121e95a6d4f0edaa492981f9c6864512c1b432358a",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/supplemental-records.log",
+      "expected_sha256": "c39a75f581047237abd45405a580ee01a353cd2ebb68c9d1e831d7ee4e873ed7",
+      "actual_sha256": "c39a75f581047237abd45405a580ee01a353cd2ebb68c9d1e831d7ee4e873ed7",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental-candidate/launch.py",
+      "expected_sha256": "83e9a63ee7966da6da09ad5ad81ee4f44bbd073175908013ad2ccf7652f658a5",
+      "actual_sha256": "83e9a63ee7966da6da09ad5ad81ee4f44bbd073175908013ad2ccf7652f658a5",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental-candidate/record-characterization.json",
+      "expected_sha256": "c39a75f581047237abd45405a580ee01a353cd2ebb68c9d1e831d7ee4e873ed7",
+      "actual_sha256": "c39a75f581047237abd45405a580ee01a353cd2ebb68c9d1e831d7ee4e873ed7",
+      "match": true
+    },
+    {
+      "seat": "sol",
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental-candidate/record_control.py",
+      "expected_sha256": "d9fccf0bc60038aabf345d3ca6d51e8327ed8f765b56d0d46cf02a5b024b2761",
+      "actual_sha256": "d9fccf0bc60038aabf345d3ca6d51e8327ed8f765b56d0d46cf02a5b024b2761",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/after.json",
+      "expected_sha256": "e51a21cc3ff90b11c3c5a3885f9e48bdc32aa55d3cedb06961d9fd2df7ac73d6",
+      "actual_sha256": "e51a21cc3ff90b11c3c5a3885f9e48bdc32aa55d3cedb06961d9fd2df7ac73d6",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/ast-audit.json",
+      "expected_sha256": "362bac94ad469dc1dcec66744c057f16eb41c4a32b3785c3035b105017b97385",
+      "actual_sha256": "362bac94ad469dc1dcec66744c057f16eb41c4a32b3785c3035b105017b97385",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/audit_d1.py",
+      "expected_sha256": "52f1b08eded72d4257f5554966e26cd880193b32cda0079d67c7f7aa8cf9f385",
+      "actual_sha256": "52f1b08eded72d4257f5554966e26cd880193b32cda0079d67c7f7aa8cf9f385",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/audit_d2.py",
+      "expected_sha256": "b587a4d5d0d066cc4da6c6b4f8cd5dfb5bd09fc2636b301022db51a0ef6b154f",
+      "actual_sha256": "b587a4d5d0d066cc4da6c6b4f8cd5dfb5bd09fc2636b301022db51a0ef6b154f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/baseline-diagnostics.json",
+      "expected_sha256": "1dcd83ecd8d2e4e739099eb495e43f98b78439d7bb14e3bebc167ba1b8514e98",
+      "actual_sha256": "1dcd83ecd8d2e4e739099eb495e43f98b78439d7bb14e3bebc167ba1b8514e98",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/baseline-memory-queries.json",
+      "expected_sha256": "ce5da59c62ce761354b2977fcb0c3f5816a858c7e22d4873ae60e4d2613db6b9",
+      "actual_sha256": "ce5da59c62ce761354b2977fcb0c3f5816a858c7e22d4873ae60e4d2613db6b9",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/baseline-session.json",
+      "expected_sha256": "3210852a23743420fdcc61e2c213dedc632431c8d39b831cca36da3e2595ed46",
+      "actual_sha256": "3210852a23743420fdcc61e2c213dedc632431c8d39b831cca36da3e2595ed46",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/before.json",
+      "expected_sha256": "3a22a90a4ee36ffe4e54884c0ab1afe87ea248e6f74f0d20e2adf70dba0aa15b",
+      "actual_sha256": "3a22a90a4ee36ffe4e54884c0ab1afe87ea248e6f74f0d20e2adf70dba0aa15b",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/board.log",
+      "expected_sha256": "33ab1f3dff7a7dd7aabf3e9400e30bd4df1ca307a7ad03ab96956eebea38f029",
+      "actual_sha256": "33ab1f3dff7a7dd7aabf3e9400e30bd4df1ca307a7ad03ab96956eebea38f029",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/boundary.py",
+      "expected_sha256": "690f299a95970ce93813e0112b11b509568a45b44883cd071cb60f19cd2f7b8a",
+      "actual_sha256": "690f299a95970ce93813e0112b11b509568a45b44883cd071cb60f19cd2f7b8a",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/candidate-lock.log",
+      "expected_sha256": "fb599e0760f2e47201d7c25fce5ca22478e5d0ab085ed205629bc129f2c83eac",
+      "actual_sha256": "fb599e0760f2e47201d7c25fce5ca22478e5d0ab085ed205629bc129f2c83eac",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/candidate.tar",
+      "expected_sha256": "62308e12785e7c12850894cd0deccbd917b5a8569a98697e734b31feab0a1340",
+      "actual_sha256": "62308e12785e7c12850894cd0deccbd917b5a8569a98697e734b31feab0a1340",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/capture-diagnostics.py",
+      "expected_sha256": "8f7a55d5ae773774fa5ef6125215f29ea35b4788af13074451cdd5fc4e2e2464",
+      "actual_sha256": "8f7a55d5ae773774fa5ef6125215f29ea35b4788af13074451cdd5fc4e2e2464",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/capture-memory-queries.py",
+      "expected_sha256": "eafcfcbc45e04a11cd04bfc8203d7e4e953f1cc7a5be85b9ca9b2e1d113f0f8a",
+      "actual_sha256": "eafcfcbc45e04a11cd04bfc8203d7e4e953f1cc7a5be85b9ca9b2e1d113f0f8a",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/capture-receipts.json",
+      "expected_sha256": "0f1a0cf10e913bba83d80909f039dd33b4dcd1ebe9a2fd1d82544a8458cd3b85",
+      "actual_sha256": "0f1a0cf10e913bba83d80909f039dd33b4dcd1ebe9a2fd1d82544a8458cd3b85",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/capture-session.py",
+      "expected_sha256": "5c72294b80ebf63eb68330b7d74e1bb7090b077ab175eb01069f9f84a3e3bd24",
+      "actual_sha256": "5c72294b80ebf63eb68330b7d74e1bb7090b077ab175eb01069f9f84a3e3bd24",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/captures.py",
+      "expected_sha256": "eba471ede97e508af25d74f8e2e3ce65a4988479eaa37b45d94d53e7b83293ca",
+      "actual_sha256": "eba471ede97e508af25d74f8e2e3ce65a4988479eaa37b45d94d53e7b83293ca",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/case-insensitive-nodes-mutation.json",
+      "expected_sha256": "935e5bf1af6ddb0bc2955e5be8648a63a267b9b4349512e4835aff4a4654f3f9",
+      "actual_sha256": "935e5bf1af6ddb0bc2955e5be8648a63a267b9b4349512e4835aff4a4654f3f9",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/case-insensitive-nodes-mutation.log",
+      "expected_sha256": "e91718288c0fec609db9b294620f235d83eaa96f7d3717daa0e4d08bab4cbaae",
+      "actual_sha256": "e91718288c0fec609db9b294620f235d83eaa96f7d3717daa0e4d08bab4cbaae",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/chat-origins.json",
+      "expected_sha256": "364981b5b9bb7050c4fc90ef21698fe0201a9061b6b0aefe6f935c72c390e2db",
+      "actual_sha256": "364981b5b9bb7050c4fc90ef21698fe0201a9061b6b0aefe6f935c72c390e2db",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/cli.json",
+      "expected_sha256": "e5bd46c3cbb187b1bb308ed023fb65ea6a108584e86711cb117cdd775472c54c",
+      "actual_sha256": "e5bd46c3cbb187b1bb308ed023fb65ea6a108584e86711cb117cdd775472c54c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/cli.log",
+      "expected_sha256": "62342969030d7267667fa8bc977ed8ee6481d94e2112e47712c4f08bf5c96af1",
+      "actual_sha256": "62342969030d7267667fa8bc977ed8ee6481d94e2112e47712c4f08bf5c96af1",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/compare-diagnostics.py",
+      "expected_sha256": "4b444677044e32c517dfec2374eab72bd610b861592f0e10ee0a21d072cb19fa",
+      "actual_sha256": "4b444677044e32c517dfec2374eab72bd610b861592f0e10ee0a21d072cb19fa",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/compare-memory-queries.py",
+      "expected_sha256": "afd38e74dd70ee2e3ab3cc43184c45e5d444c6fb0e1877e274a82d00705ff606",
+      "actual_sha256": "afd38e74dd70ee2e3ab3cc43184c45e5d444c6fb0e1877e274a82d00705ff606",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/compare-session.py",
+      "expected_sha256": "c333db8601d7f713fd86183714e241f50731dd27877fd2cafac692c978f57afa",
+      "actual_sha256": "c333db8601d7f713fd86183714e241f50731dd27877fd2cafac692c978f57afa",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/comparer-controls.log",
+      "expected_sha256": "15b3691e9ee13659b389db1675289154df97957c9d8e5cbd56f756100e09e314",
+      "actual_sha256": "15b3691e9ee13659b389db1675289154df97957c9d8e5cbd56f756100e09e314",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/d1-ast-audit.json",
+      "expected_sha256": "76c3cde4a3bb61ff86f159493770872e01e38e7ef3da1b3506b6a1db1bb85cee",
+      "actual_sha256": "76c3cde4a3bb61ff86f159493770872e01e38e7ef3da1b3506b6a1db1bb85cee",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/d2-fast.json",
+      "expected_sha256": "0707d9fa49ca3499f22202abfc5957ddc229d0e464200c22ecc4c70055238c98",
+      "actual_sha256": "0707d9fa49ca3499f22202abfc5957ddc229d0e464200c22ecc4c70055238c98",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/d2-fast.log",
+      "expected_sha256": "7121f4075a63a8a035ed2bfebf553194b2c3d71a5503dcd19231841300023155",
+      "actual_sha256": "7121f4075a63a8a035ed2bfebf553194b2c3d71a5503dcd19231841300023155",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/d3-fast.json",
+      "expected_sha256": "3a7560276bcb8a741cb31ddfc582432e86975963bc156ca2065296ae425ea495",
+      "actual_sha256": "3a7560276bcb8a741cb31ddfc582432e86975963bc156ca2065296ae425ea495",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/d3-fast.log",
+      "expected_sha256": "f780cc3f20e264ad12df5483c235b6bd95e37f0910ec1cd307e204b973262ddd",
+      "actual_sha256": "f780cc3f20e264ad12df5483c235b6bd95e37f0910ec1cd307e204b973262ddd",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/decayed-collection-mutation.json",
+      "expected_sha256": "71178009262743927bc312ab94f6a1eb31bdf225c6f5d6f1700b211057e02c64",
+      "actual_sha256": "71178009262743927bc312ab94f6a1eb31bdf225c6f5d6f1700b211057e02c64",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/decayed-collection-mutation.log",
+      "expected_sha256": "7c7a1cba0c3ecd3f2f6c5fb9daeba85d46dd119dd7fd7edec77248ae132b5a56",
+      "actual_sha256": "7c7a1cba0c3ecd3f2f6c5fb9daeba85d46dd119dd7fd7edec77248ae132b5a56",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/diagnostics-0-capture.log",
+      "expected_sha256": "f93b8513d923cfdad63c56278180595b472d6e4185dedea51249a67622df306a",
+      "actual_sha256": "f93b8513d923cfdad63c56278180595b472d6e4185dedea51249a67622df306a",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/diagnostics-0-compare.log",
+      "expected_sha256": "dd1a829af436642db4f8e9d8b51fe55d0471a1a3315072b1b0dcce8f6c340632",
+      "actual_sha256": "dd1a829af436642db4f8e9d8b51fe55d0471a1a3315072b1b0dcce8f6c340632",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/diagnostics-0-observations.json",
+      "expected_sha256": "458eb3aaef2e2092600ece6d36603450c20e056c23449e3803e3598542e066a1",
+      "actual_sha256": "458eb3aaef2e2092600ece6d36603450c20e056c23449e3803e3598542e066a1",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/double-format-mutation.json",
+      "expected_sha256": "cd1291cfdfe0945a3ff04aafccddfb73f09bd0b2f5df6022db82ca97b553a0af",
+      "actual_sha256": "cd1291cfdfe0945a3ff04aafccddfb73f09bd0b2f5df6022db82ca97b553a0af",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/double-format-mutation.log",
+      "expected_sha256": "1128ae190e45c8e5258f1e4ef88991fcab9d1c391ecfc6e540f1cfbfcc385369",
+      "actual_sha256": "1128ae190e45c8e5258f1e4ef88991fcab9d1c391ecfc6e540f1cfbfcc385369",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/double-query-mutation.json",
+      "expected_sha256": "f9b78c0244432e3850f590bd90bad79c4e12ae960962d31ae5168e790252db10",
+      "actual_sha256": "f9b78c0244432e3850f590bd90bad79c4e12ae960962d31ae5168e790252db10",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/double-query-mutation.log",
+      "expected_sha256": "ca51c086ac45f997bc011c0de90bbdd7c82a78aca9e1b1f65df844e6a40b2194",
+      "actual_sha256": "ca51c086ac45f997bc011c0de90bbdd7c82a78aca9e1b1f65df844e6a40b2194",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/entity-cap-mutation.json",
+      "expected_sha256": "a213eb878c7606ba96595cf3bf879e623f805b17b07b69849e78a2532d5d4856",
+      "actual_sha256": "a213eb878c7606ba96595cf3bf879e623f805b17b07b69849e78a2532d5d4856",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/entity-cap-mutation.log",
+      "expected_sha256": "4c5553a1f66285983b3d8cfcb67b85e5b0876247e69e2115e0078fbbdbf4749c",
+      "actual_sha256": "4c5553a1f66285983b3d8cfcb67b85e5b0876247e69e2115e0078fbbdbf4749c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/format-debt.log",
+      "expected_sha256": "2d611000e2642a05367ff99c7e3005034066ababf791250206e0c3980427b30d",
+      "actual_sha256": "2d611000e2642a05367ff99c7e3005034066ababf791250206e0c3980427b30d",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/format-new.log",
+      "expected_sha256": "eb6071cee24c6619833184cad97e2256d42aafae61b8e53ec35aa589f951a8d0",
+      "actual_sha256": "eb6071cee24c6619833184cad97e2256d42aafae61b8e53ec35aa589f951a8d0",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/format-whole.log",
+      "expected_sha256": "89886610aa584308fa1329970f405a36e5862369558433c1eb89f94f17a6cc31",
+      "actual_sha256": "89886610aa584308fa1329970f405a36e5862369558433c1eb89f94f17a6cc31",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/full-chat.json",
+      "expected_sha256": "80bc1ef108f55844c786630477df447967aa9be4997c291dfb591d809dc8ec38",
+      "actual_sha256": "80bc1ef108f55844c786630477df447967aa9be4997c291dfb591d809dc8ec38",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/full-chat.log",
+      "expected_sha256": "e9862fa3d412e5075c5c1435ae7578a527aaab1958481dacba2161081582aa2c",
+      "actual_sha256": "e9862fa3d412e5075c5c1435ae7578a527aaab1958481dacba2161081582aa2c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/guard.log",
+      "expected_sha256": "e73232ba4d7d13c07f9f85c3a740a4b8bb22f261bb239c780feb3eb05b22547c",
+      "actual_sha256": "e73232ba4d7d13c07f9f85c3a740a4b8bb22f261bb239c780feb3eb05b22547c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/ignored-result-mutation.json",
+      "expected_sha256": "3d34a7df20ea51ab04149bd634ef8b90f8336d2384e4e71f645933311bb9d388",
+      "actual_sha256": "3d34a7df20ea51ab04149bd634ef8b90f8336d2384e4e71f645933311bb9d388",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/ignored-result-mutation.log",
+      "expected_sha256": "df927fe3f10a4b7a1ef3c1c9cc061a3d61619d7192a5e0e3a7a73f1d2a9e5d64",
+      "actual_sha256": "df927fe3f10a4b7a1ef3c1c9cc061a3d61619d7192a5e0e3a7a73f1d2a9e5d64",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/independent-projection.json",
+      "expected_sha256": "b97189e525ae20486440a4651b52eeab9fc1d20680263d0c25784c6b5439ea1c",
+      "actual_sha256": "b97189e525ae20486440a4651b52eeab9fc1d20680263d0c25784c6b5439ea1c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/independent_projection.py",
+      "expected_sha256": "80221e32cb8da0b58565e6f2ee3f746dcfa5915e2f190278a26140142aea999e",
+      "actual_sha256": "80221e32cb8da0b58565e6f2ee3f746dcfa5915e2f190278a26140142aea999e",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/ingest-baseline-identity.json",
+      "expected_sha256": "e1efcc0d9b4503fded2693e2aa0fa301ea912fff606d0bd78383bfbeef211c7a",
+      "actual_sha256": "e1efcc0d9b4503fded2693e2aa0fa301ea912fff606d0bd78383bfbeef211c7a",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/ingest-none-baseline.json",
+      "expected_sha256": "2a5bdb546b152bb4af748e83b922ea7e5e58ef44e9c04756d5ff753e46fa20a3",
+      "actual_sha256": "2a5bdb546b152bb4af748e83b922ea7e5e58ef44e9c04756d5ff753e46fa20a3",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/ingest-none-baseline.log",
+      "expected_sha256": "f36837f0ad0ab88793c57b5e15477d281c111aa871a52d0091c38f07da2578d3",
+      "actual_sha256": "f36837f0ad0ab88793c57b5e15477d281c111aa871a52d0091c38f07da2578d3",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/ingest-none-candidate.json",
+      "expected_sha256": "f94e6d3d8c769163ab2e18e82845889b8bff98157acd971f8b36e3e1eb82fe6a",
+      "actual_sha256": "f94e6d3d8c769163ab2e18e82845889b8bff98157acd971f8b36e3e1eb82fe6a",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/ingest-none-candidate.log",
+      "expected_sha256": "c865f2f7c045db2c7491d5172c8a44b04cc065272c711a7b93a6dece2052dfb3",
+      "actual_sha256": "c865f2f7c045db2c7491d5172c8a44b04cc065272c711a7b93a6dece2052dfb3",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/ingest_none_probe.py",
+      "expected_sha256": "d723d58018e8799f1c06dbbd31f0c6d8f76c46e1a3e9be4f9463111aece14b32",
+      "actual_sha256": "d723d58018e8799f1c06dbbd31f0c6d8f76c46e1a3e9be4f9463111aece14b32",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/interim.json",
+      "expected_sha256": "3ce77e0dddfbb4c0364855616b503d4d2f8649c81d9d16b6d2cf0a0dd33c1371",
+      "actual_sha256": "3ce77e0dddfbb4c0364855616b503d4d2f8649c81d9d16b6d2cf0a0dd33c1371",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/legacy-substitution-mutation.json",
+      "expected_sha256": "02f280653f12e52d30128ddd972d3dd446656efdf0904b1e0890ef0a24c2ff16",
+      "actual_sha256": "02f280653f12e52d30128ddd972d3dd446656efdf0904b1e0890ef0a24c2ff16",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/legacy-substitution-mutation.log",
+      "expected_sha256": "73958edfa23cb90cab9d7a6e290e650ecf07eedeb457b71e42688a1ca7429a8f",
+      "actual_sha256": "73958edfa23cb90cab9d7a6e290e650ecf07eedeb457b71e42688a1ca7429a8f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/lifecycle.log",
+      "expected_sha256": "09d45a7ce70fa8425af6904baf2aeedaa69e004cfa19d49fbb26db7b1ddc914c",
+      "actual_sha256": "09d45a7ce70fa8425af6904baf2aeedaa69e004cfa19d49fbb26db7b1ddc914c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/lint.log",
+      "expected_sha256": "1223ae194b716b0d94b691660a6c40b81221710dbf14fb45162420838be3ded0",
+      "actual_sha256": "1223ae194b716b0d94b691660a6c40b81221710dbf14fb45162420838be3ded0",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/memory-queries-0-capture.log",
+      "expected_sha256": "ddf4ab7cdaffe5b4efd87908a6d5cda1b40f945f24d7a23d47701c91aab4e215",
+      "actual_sha256": "ddf4ab7cdaffe5b4efd87908a6d5cda1b40f945f24d7a23d47701c91aab4e215",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/memory-queries-0-compare.log",
+      "expected_sha256": "dd6a1533ac6e2ba9711e6889a8a0f4ab38bca0d717f671a464c123d3e3f282f0",
+      "actual_sha256": "dd6a1533ac6e2ba9711e6889a8a0f4ab38bca0d717f671a464c123d3e3f282f0",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/memory-queries-0-observations.json",
+      "expected_sha256": "8e6a20210ad56545369e62394bbf1431141cc4a4125f520161ccf7f09bf36e5b",
+      "actual_sha256": "8e6a20210ad56545369e62394bbf1431141cc4a4125f520161ccf7f09bf36e5b",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/memory-queries-1-capture.log",
+      "expected_sha256": "f66f5ab0d400e8d6e597ff14877b6e2bbdf4ff7161acf0770f92a2b40a147654",
+      "actual_sha256": "f66f5ab0d400e8d6e597ff14877b6e2bbdf4ff7161acf0770f92a2b40a147654",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/memory-queries-1-compare.log",
+      "expected_sha256": "d7d8a6358797e0f392398bdf0c24b0ae2aad4aca53ba29e071441143def8362c",
+      "actual_sha256": "d7d8a6358797e0f392398bdf0c24b0ae2aad4aca53ba29e071441143def8362c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/memory-queries-1-observations.json",
+      "expected_sha256": "216455fad0c8f9d7d038abfef8243d97b13e7c0889b7eb631824ea6639827bd7",
+      "actual_sha256": "216455fad0c8f9d7d038abfef8243d97b13e7c0889b7eb631824ea6639827bd7",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/missing-kind-refusal-mutation.json",
+      "expected_sha256": "66d80810cec6902bc1af087fcccd48faa86307c1425bcc1a91e17240bb3f1478",
+      "actual_sha256": "66d80810cec6902bc1af087fcccd48faa86307c1425bcc1a91e17240bb3f1478",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/missing-kind-refusal-mutation.log",
+      "expected_sha256": "c95f1bffd3e44f56982af7250e4da5dc59ab35c359f95ae21f2462e66078aa67",
+      "actual_sha256": "c95f1bffd3e44f56982af7250e4da5dc59ab35c359f95ae21f2462e66078aa67",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/missing-utilization-suffix-mutation.json",
+      "expected_sha256": "bc7e7c227f1bc35ca0399c9b0c3752356197dad842b4d286d17bf2efd6ec8a16",
+      "actual_sha256": "bc7e7c227f1bc35ca0399c9b0c3752356197dad842b4d286d17bf2efd6ec8a16",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/missing-utilization-suffix-mutation.log",
+      "expected_sha256": "5a1f643207de718f3a23db1cf0ada14ca57e7db78911135d79df1a1e777b7701",
+      "actual_sha256": "5a1f643207de718f3a23db1cf0ada14ca57e7db78911135d79df1a1e777b7701",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/mutation-results.json",
+      "expected_sha256": "a55ca3ef0a9a60d0e143cfbb8641adb13b78130da022be83df7c176e8b517971",
+      "actual_sha256": "a55ca3ef0a9a60d0e143cfbb8641adb13b78130da022be83df7c176e8b517971",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/mutation_launch.py",
+      "expected_sha256": "9008eaa1241b114330476f1e38fe5883e44c796caf22c4dd13564c688e92df57",
+      "actual_sha256": "9008eaa1241b114330476f1e38fe5883e44c796caf22c4dd13564c688e92df57",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/mutations.py",
+      "expected_sha256": "be18714abee72acd1c98a5c8c0d4bb8f7b8abdcf96cd0a816f1f16746285c98e",
+      "actual_sha256": "be18714abee72acd1c98a5c8c0d4bb8f7b8abdcf96cd0a816f1f16746285c98e",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/named.json",
+      "expected_sha256": "763e30dd4ace24fc5af648257b0e069a27047161c3f45df3fbab4c126ca4f659",
+      "actual_sha256": "763e30dd4ace24fc5af648257b0e069a27047161c3f45df3fbab4c126ca4f659",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/named.log",
+      "expected_sha256": "ebddf0c8a8841792d4301383db9e208afe1d66f431fcd6eadfed5f90339e14e3",
+      "actual_sha256": "ebddf0c8a8841792d4301383db9e208afe1d66f431fcd6eadfed5f90339e14e3",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/neutral-cohort.json",
+      "expected_sha256": "e5bd46c3cbb187b1bb308ed023fb65ea6a108584e86711cb117cdd775472c54c",
+      "actual_sha256": "e5bd46c3cbb187b1bb308ed023fb65ea6a108584e86711cb117cdd775472c54c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/neutral-cohort.log",
+      "expected_sha256": "000edecde4ed7426a4dbf8adf616b4a7d1a82f8d71577c48032dd3410fc0733c",
+      "actual_sha256": "000edecde4ed7426a4dbf8adf616b4a7d1a82f8d71577c48032dd3410fc0733c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/nodes-relationships-mutation.json",
+      "expected_sha256": "1b3415a1e9724730dc7e10c3e5477af6bb213710889e22317d8c8613b35f81cb",
+      "actual_sha256": "1b3415a1e9724730dc7e10c3e5477af6bb213710889e22317d8c8613b35f81cb",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/nodes-relationships-mutation.log",
+      "expected_sha256": "5195ae5cf220c20b6e17d42cd970e723d57c9a585476eb6114bd9c52a6dfc160",
+      "actual_sha256": "5195ae5cf220c20b6e17d42cd970e723d57c9a585476eb6114bd9c52a6dfc160",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/pair-audit.json",
+      "expected_sha256": "f6a7ab1d020425e003ec05c1b02a4e175f2ab1da4ac10f08278ff92b3050deb0",
+      "actual_sha256": "f6a7ab1d020425e003ec05c1b02a4e175f2ab1da4ac10f08278ff92b3050deb0",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/pilot-capture.log",
+      "expected_sha256": "61331551e70366172780a71ecbc56544d36d85b8da87ddb2576ecaa33ee26f3f",
+      "actual_sha256": "61331551e70366172780a71ecbc56544d36d85b8da87ddb2576ecaa33ee26f3f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/pilot-compare.log",
+      "expected_sha256": "c96a797fd1d6b7dd40ef3c65ac34c3dbe9d3151fcdcb3a2e914f7c841ff70507",
+      "actual_sha256": "c96a797fd1d6b7dd40ef3c65ac34c3dbe9d3151fcdcb3a2e914f7c841ff70507",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/pilot-observations.json",
+      "expected_sha256": "7507bf30acf58d84a5a5ab2be7fbca6ba368d528826b07fe93fe65ce5d23e8f2",
+      "actual_sha256": "7507bf30acf58d84a5a5ab2be7fbca6ba368d528826b07fe93fe65ce5d23e8f2",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/pre-D2.tar",
+      "expected_sha256": "0805f031f92fcda90aea69c7686a33e676b7acb518b34d2a4df08e51af1d6150",
+      "actual_sha256": "0805f031f92fcda90aea69c7686a33e676b7acb518b34d2a4df08e51af1d6150",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/allowed-sqlite.db",
+      "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/astra_origins.py",
+      "expected_sha256": "5a55934b17e1e234363e691056d408ff2c01e54f2d4710d0604a4ea7bd0d988c",
+      "actual_sha256": "5a55934b17e1e234363e691056d408ff2c01e54f2d4710d0604a4ea7bd0d988c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/board.json",
+      "expected_sha256": "4ef30c961256556d3b55f24b421b160870c49456ef7704ef8411185b36bf7273",
+      "actual_sha256": "4ef30c961256556d3b55f24b421b160870c49456ef7704ef8411185b36bf7273",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/board.log",
+      "expected_sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "actual_sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/bootstrap.json",
+      "expected_sha256": "935e992cbd1c50ef4f2717d8f19ea11a270f672d9e5a0e498494d64f9c2e5186",
+      "actual_sha256": "935e992cbd1c50ef4f2717d8f19ea11a270f672d9e5a0e498494d64f9c2e5186",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/build-requirements.txt",
+      "expected_sha256": "7fc40f9e2000109be576c2810389a801891ba9f1d52cecf52d2f2303794c0455",
+      "actual_sha256": "7fc40f9e2000109be576c2810389a801891ba9f1d52cecf52d2f2303794c0455",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/candidate-lock.json",
+      "expected_sha256": "9f378406818f8e925eddd56b5a2aad9ed430988cb280f9d3adfff57a53eb2263",
+      "actual_sha256": "9f378406818f8e925eddd56b5a2aad9ed430988cb280f9d3adfff57a53eb2263",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/candidate-lock.log",
+      "expected_sha256": "a78cc6e2e3bca4b1b2c38246dfb37844724c6c3a58a10ad56f869367cf3efc9d",
+      "actual_sha256": "a78cc6e2e3bca4b1b2c38246dfb37844724c6c3a58a10ad56f869367cf3efc9d",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/chat-canonical.json",
+      "expected_sha256": "2f2e6164fa6d9e230a479c4c381b8209654476b45d89f9a3f8f6529091b8ebc8",
+      "actual_sha256": "2f2e6164fa6d9e230a479c4c381b8209654476b45d89f9a3f8f6529091b8ebc8",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/chat-canonical.log",
+      "expected_sha256": "4c73c707b482e96439ea2f263d5af2cdce54ebe6432fa820a638178259ec2566",
+      "actual_sha256": "4c73c707b482e96439ea2f263d5af2cdce54ebe6432fa820a638178259ec2566",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/chat-first-failure.json",
+      "expected_sha256": "71ee01dedff08df0df818dd8546084ce8ac054315619e58d2a7795f3de5b578b",
+      "actual_sha256": "71ee01dedff08df0df818dd8546084ce8ac054315619e58d2a7795f3de5b578b",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/chat-first-failure.log",
+      "expected_sha256": "846b947a5a92b2db72f414c1122945415d89ff2a6e88f9105bfe24f53ea7b1b5",
+      "actual_sha256": "846b947a5a92b2db72f414c1122945415d89ff2a6e88f9105bfe24f53ea7b1b5",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/cli.json",
+      "expected_sha256": "58f413a0c499e3822625bce14b7f5267f25c54e1711ecc8527ed8ff45300d3fd",
+      "actual_sha256": "58f413a0c499e3822625bce14b7f5267f25c54e1711ecc8527ed8ff45300d3fd",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/cli.log",
+      "expected_sha256": "b20ddebb2e96ee0bd7ade67eb143941ef812dedd3e1afc558e843d3da4ebed73",
+      "actual_sha256": "b20ddebb2e96ee0bd7ade67eb143941ef812dedd3e1afc558e843d3da4ebed73",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/comparer-controls.json",
+      "expected_sha256": "a2d14b5a0927160111b04afe342fe80ad014ec6ee297074dd8e48b661d4f45aa",
+      "actual_sha256": "a2d14b5a0927160111b04afe342fe80ad014ec6ee297074dd8e48b661d4f45aa",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/comparer-controls.log",
+      "expected_sha256": "12d1c75c7354cdf1cce584c9b9b58d1754a0eba82269b4db50ab5a16ea0a67ce",
+      "actual_sha256": "12d1c75c7354cdf1cce584c9b9b58d1754a0eba82269b4db50ab5a16ea0a67ce",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/config.example.yaml",
+      "expected_sha256": "2e1db3a47a38076cbda7627265cf8b28ac2a9da96387b3f6788da1dc8bb2932f",
+      "actual_sha256": "2e1db3a47a38076cbda7627265cf8b28ac2a9da96387b3f6788da1dc8bb2932f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/controls.py",
+      "expected_sha256": "d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d",
+      "actual_sha256": "d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/d2-fast.json",
+      "expected_sha256": "4ed4b6134d34ac6e5fcd7b29766d80fab1ef60f9be6f7033d5f563792f78dc3c",
+      "actual_sha256": "4ed4b6134d34ac6e5fcd7b29766d80fab1ef60f9be6f7033d5f563792f78dc3c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/d2-fast.log",
+      "expected_sha256": "dfab364edace02dbd928ffc81d6d4c95946adb03cbec583fc3eb03af2560fc1f",
+      "actual_sha256": "dfab364edace02dbd928ffc81d6d4c95946adb03cbec583fc3eb03af2560fc1f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/d3-fast.json",
+      "expected_sha256": "1ab65128078455fcbc7dd26224cd7e524e0d78838a37d21b461b61135cf4f66b",
+      "actual_sha256": "1ab65128078455fcbc7dd26224cd7e524e0d78838a37d21b461b61135cf4f66b",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/d3-fast.log",
+      "expected_sha256": "b17a08c9a2815e8d8e59da4e9c85c01d1175133a7e3ec055265583e94eccce8f",
+      "actual_sha256": "b17a08c9a2815e8d8e59da4e9c85c01d1175133a7e3ec055265583e94eccce8f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/diagnostics-0-capture.json",
+      "expected_sha256": "44de663926625ba8f228aa5b8a81bdd7f35684c18a912123ab000b0c2c75e50d",
+      "actual_sha256": "44de663926625ba8f228aa5b8a81bdd7f35684c18a912123ab000b0c2c75e50d",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/diagnostics-0-capture.log",
+      "expected_sha256": "33c09040d34dd70f469be1b4075cf5172fa5866081b9de686984b7dc48b2a4bf",
+      "actual_sha256": "33c09040d34dd70f469be1b4075cf5172fa5866081b9de686984b7dc48b2a4bf",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/diagnostics-0-compare.json",
+      "expected_sha256": "76f68e4825f56f23fcacf19934fecfea7ea12c595ba07d004ba9f39139c139a4",
+      "actual_sha256": "76f68e4825f56f23fcacf19934fecfea7ea12c595ba07d004ba9f39139c139a4",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/diagnostics-0-compare.log",
+      "expected_sha256": "8ed7310d927cfd8c86c4512d830ce4bd983358e85fa6c021a955c60fd004cf42",
+      "actual_sha256": "8ed7310d927cfd8c86c4512d830ce4bd983358e85fa6c021a955c60fd004cf42",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/format-debt.json",
+      "expected_sha256": "0f8758df257a960fd2fe2e836f28aa7f4678130eeb49b987bb482aeae672de7f",
+      "actual_sha256": "0f8758df257a960fd2fe2e836f28aa7f4678130eeb49b987bb482aeae672de7f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/format-debt.log",
+      "expected_sha256": "1d6a7357d3da1f1afb251f43937da567d6c286fe0f8a75ffb61c2b2b0a056ba9",
+      "actual_sha256": "1d6a7357d3da1f1afb251f43937da567d6c286fe0f8a75ffb61c2b2b0a056ba9",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/format-new.json",
+      "expected_sha256": "d6e226862e939c90cf7a7d83ab58a6cba495fa4a7bbb0857b44fdcc941b7b268",
+      "actual_sha256": "d6e226862e939c90cf7a7d83ab58a6cba495fa4a7bbb0857b44fdcc941b7b268",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/format-new.log",
+      "expected_sha256": "eee76f865de5a9f2456950f710ae5d5f9b5bd0ea02aa54f614c5eed6642a0bfd",
+      "actual_sha256": "eee76f865de5a9f2456950f710ae5d5f9b5bd0ea02aa54f614c5eed6642a0bfd",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/format-whole.json",
+      "expected_sha256": "01b50e5ee050c665f0a5b8bf383d04427abe016a541abebde56323c40382f74a",
+      "actual_sha256": "01b50e5ee050c665f0a5b8bf383d04427abe016a541abebde56323c40382f74a",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/format-whole.log",
+      "expected_sha256": "134ca85e3f21dc053981a09e82d045b0c8fe160113ea0eacba66351824a26ada",
+      "actual_sha256": "134ca85e3f21dc053981a09e82d045b0c8fe160113ea0eacba66351824a26ada",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/full-chat.json",
+      "expected_sha256": "f61a54d008c905319256a0f3cffbb095f9ae2b155c8cb4a2221a7dd64d673ae2",
+      "actual_sha256": "f61a54d008c905319256a0f3cffbb095f9ae2b155c8cb4a2221a7dd64d673ae2",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/full-chat.log",
+      "expected_sha256": "cc8f6e8e63b777ba25ebad13e9e9367d0f89720dfedd899451b0655b6cfc040e",
+      "actual_sha256": "cc8f6e8e63b777ba25ebad13e9e9367d0f89720dfedd899451b0655b6cfc040e",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/guard.json",
+      "expected_sha256": "b1c61af656d12f8fdbd51edfb0aa78be39dde8ee7a96cd7775365f1e211fb8ec",
+      "actual_sha256": "b1c61af656d12f8fdbd51edfb0aa78be39dde8ee7a96cd7775365f1e211fb8ec",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/guard.log",
+      "expected_sha256": "69ace469ed23c05b1fe334be3cf727fea1de5730d8b40b9f24c80e802293b43d",
+      "actual_sha256": "69ace469ed23c05b1fe334be3cf727fea1de5730d8b40b9f24c80e802293b43d",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/independent-projection.json",
+      "expected_sha256": "4dd826953e67444887699fb5e068ab280713caeb6f0366db49272ae0801a3949",
+      "actual_sha256": "4dd826953e67444887699fb5e068ab280713caeb6f0366db49272ae0801a3949",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/independent-projection.log",
+      "expected_sha256": "67f66b28453987609b0db41d6242c2add1fe58af878f07f1c3bb93ccdef0e94d",
+      "actual_sha256": "67f66b28453987609b0db41d6242c2add1fe58af878f07f1c3bb93ccdef0e94d",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/ingest-none-baseline.json",
+      "expected_sha256": "538b85786bf6164dbb5c76b766104bd4040ea131451155519269bfefdcf3040e",
+      "actual_sha256": "538b85786bf6164dbb5c76b766104bd4040ea131451155519269bfefdcf3040e",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/ingest-none-baseline.log",
+      "expected_sha256": "b14ee8e557c4b8623fcda377598530d9a6094027e1ec3c61a458065fdd8798f4",
+      "actual_sha256": "b14ee8e557c4b8623fcda377598530d9a6094027e1ec3c61a458065fdd8798f4",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/ingest-none-candidate.json",
+      "expected_sha256": "6860a8687bff8a0e32a61308b7b6008573f1deb60c9a2a2f2e4824c6165991a8",
+      "actual_sha256": "6860a8687bff8a0e32a61308b7b6008573f1deb60c9a2a2f2e4824c6165991a8",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/ingest-none-candidate.log",
+      "expected_sha256": "b14ee8e557c4b8623fcda377598530d9a6094027e1ec3c61a458065fdd8798f4",
+      "actual_sha256": "b14ee8e557c4b8623fcda377598530d9a6094027e1ec3c61a458065fdd8798f4",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/lifecycle.json",
+      "expected_sha256": "c4b6d46d97a376bf60eabae74eac79ac091fb26b46f4c88af3f76499a009bdbf",
+      "actual_sha256": "c4b6d46d97a376bf60eabae74eac79ac091fb26b46f4c88af3f76499a009bdbf",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/lifecycle.log",
+      "expected_sha256": "762862d5db8c49b619817e376a1e79e046b9bf6a93bf06686274afa4b10c464a",
+      "actual_sha256": "762862d5db8c49b619817e376a1e79e046b9bf6a93bf06686274afa4b10c464a",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/lint.json",
+      "expected_sha256": "25b81cec110f05d46f08b216d395340eaf3c563c66432bbeda3e2173f2f8797e",
+      "actual_sha256": "25b81cec110f05d46f08b216d395340eaf3c563c66432bbeda3e2173f2f8797e",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/lint.log",
+      "expected_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "actual_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/memory-queries-0-capture.json",
+      "expected_sha256": "7ca063dc69de4af07596c01a33a80028345bce8738791cc7f6eef9a577792e4e",
+      "actual_sha256": "7ca063dc69de4af07596c01a33a80028345bce8738791cc7f6eef9a577792e4e",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/memory-queries-0-capture.log",
+      "expected_sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "actual_sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/memory-queries-0-compare.json",
+      "expected_sha256": "6f632f290b6614e55dcdf7a3b43204ca378f15bb5a7bd99f74f0d7f9cf454f7f",
+      "actual_sha256": "6f632f290b6614e55dcdf7a3b43204ca378f15bb5a7bd99f74f0d7f9cf454f7f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/memory-queries-0-compare.log",
+      "expected_sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "actual_sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/memory-queries-1-capture.json",
+      "expected_sha256": "9467935964c5642e0ee2231ff9697846975f115e7dd369bd68ffad7b3d706b09",
+      "actual_sha256": "9467935964c5642e0ee2231ff9697846975f115e7dd369bd68ffad7b3d706b09",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/memory-queries-1-capture.log",
+      "expected_sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "actual_sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/memory-queries-1-compare.json",
+      "expected_sha256": "1ec53bfaa2d8c2f38e9b205a1934ef6e426fde0849211d1e11b2562a78591c86",
+      "actual_sha256": "1ec53bfaa2d8c2f38e9b205a1934ef6e426fde0849211d1e11b2562a78591c86",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/memory-queries-1-compare.log",
+      "expected_sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "actual_sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/models-config.example.yaml",
+      "expected_sha256": "57a8d0d047833b6501415e149560d90a0437dc229f5e7891fa408aa3d17744c1",
+      "actual_sha256": "57a8d0d047833b6501415e149560d90a0437dc229f5e7891fa408aa3d17744c1",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-case-insensitive-nodes.json",
+      "expected_sha256": "4f98f91fb3d18e258c51efda25bca0a43889265afbf683167cfb7e5eb055f1e0",
+      "actual_sha256": "4f98f91fb3d18e258c51efda25bca0a43889265afbf683167cfb7e5eb055f1e0",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-case-insensitive-nodes.log",
+      "expected_sha256": "1717e686f7576c23b30affa21915307264a440f3b09b301c578d31de08167e04",
+      "actual_sha256": "1717e686f7576c23b30affa21915307264a440f3b09b301c578d31de08167e04",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-decayed-collection.json",
+      "expected_sha256": "ac7a9a1c30c7ecc5e26416f35dc195527df391318eb65ae8448da3e95ff3b902",
+      "actual_sha256": "ac7a9a1c30c7ecc5e26416f35dc195527df391318eb65ae8448da3e95ff3b902",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-decayed-collection.log",
+      "expected_sha256": "0756521f78db79c835f9a9ae97909a86f5ce2895ec1749afe646f831292c224c",
+      "actual_sha256": "0756521f78db79c835f9a9ae97909a86f5ce2895ec1749afe646f831292c224c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-double-format.json",
+      "expected_sha256": "9b5ce59bb7d4860249464ab985b20913f2964f3e23766809d514f47eda017d8c",
+      "actual_sha256": "9b5ce59bb7d4860249464ab985b20913f2964f3e23766809d514f47eda017d8c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-double-format.log",
+      "expected_sha256": "d5afbb9d354f41462041f9f1ccc7110d445fc7bf59a941e5715d8a379b3162e4",
+      "actual_sha256": "d5afbb9d354f41462041f9f1ccc7110d445fc7bf59a941e5715d8a379b3162e4",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-double-query.json",
+      "expected_sha256": "b76d1349177baf9f80c3ac776a39850bfbd3ad9d6f602a0bcb63bd0961621a1d",
+      "actual_sha256": "b76d1349177baf9f80c3ac776a39850bfbd3ad9d6f602a0bcb63bd0961621a1d",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-double-query.log",
+      "expected_sha256": "e7ae89fb40926a77b8411877b7aacc0e0b8f331230bced47b5824bf1c90da6de",
+      "actual_sha256": "e7ae89fb40926a77b8411877b7aacc0e0b8f331230bced47b5824bf1c90da6de",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-entity-cap.json",
+      "expected_sha256": "9e398b8d52b06f2b802310fb038986a7c1042b2a34a3b6789a56badf464d01d4",
+      "actual_sha256": "9e398b8d52b06f2b802310fb038986a7c1042b2a34a3b6789a56badf464d01d4",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-entity-cap.log",
+      "expected_sha256": "be52b42a8397de5ee61f472229d0aac2e356019f7d228e8c2ebde477c0a04e76",
+      "actual_sha256": "be52b42a8397de5ee61f472229d0aac2e356019f7d228e8c2ebde477c0a04e76",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-ignored-result.json",
+      "expected_sha256": "127906fc75025693cddb537364f5076ea47a1e53af565edaab01d5aacb5f2e97",
+      "actual_sha256": "127906fc75025693cddb537364f5076ea47a1e53af565edaab01d5aacb5f2e97",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-ignored-result.log",
+      "expected_sha256": "097803866417fc20d828bde2f50a9a571cacbdf550c132f6df379f183d38a9ea",
+      "actual_sha256": "097803866417fc20d828bde2f50a9a571cacbdf550c132f6df379f183d38a9ea",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-legacy-substitution.json",
+      "expected_sha256": "bcfd430081ac2a280264916dd95162e7dd155f639a7c61acf7afc70d13cf683e",
+      "actual_sha256": "bcfd430081ac2a280264916dd95162e7dd155f639a7c61acf7afc70d13cf683e",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-legacy-substitution.log",
+      "expected_sha256": "632cd981204e0851b4fbf8e8b96d2ef59dd5f502d8165d4e94876e9de07fc5cd",
+      "actual_sha256": "632cd981204e0851b4fbf8e8b96d2ef59dd5f502d8165d4e94876e9de07fc5cd",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-missing-kind-refusal.json",
+      "expected_sha256": "17749a2bc86d4e50bc31c04518048260c415b7afdf7100c07193e29fc2f6fd84",
+      "actual_sha256": "17749a2bc86d4e50bc31c04518048260c415b7afdf7100c07193e29fc2f6fd84",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-missing-kind-refusal.log",
+      "expected_sha256": "734558485d3bb83f24d4647d0697e9bf08d6da5b518828d1653006fade1eb909",
+      "actual_sha256": "734558485d3bb83f24d4647d0697e9bf08d6da5b518828d1653006fade1eb909",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-missing-utilization-suffix.json",
+      "expected_sha256": "f6a4f3466c37a16e0286cde0c6f238846d109f7edb44447b7ed3db2bd3596084",
+      "actual_sha256": "f6a4f3466c37a16e0286cde0c6f238846d109f7edb44447b7ed3db2bd3596084",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-missing-utilization-suffix.log",
+      "expected_sha256": "2434c48f73fd3ec48690b0217d2ffe721eb3750a1b4de10c6ed132581b2edae0",
+      "actual_sha256": "2434c48f73fd3ec48690b0217d2ffe721eb3750a1b4de10c6ed132581b2edae0",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-nodes-relationships.json",
+      "expected_sha256": "bca7be3618f5f4cf98a342b8b7658cccba2e8f691ad6ce86ffaf7b43af290448",
+      "actual_sha256": "bca7be3618f5f4cf98a342b8b7658cccba2e8f691ad6ce86ffaf7b43af290448",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-nodes-relationships.log",
+      "expected_sha256": "dd813ebbca8b9323d0518b99b0ccd193f5ed6eecd850d5e72feb2c8f61a4eeec",
+      "actual_sha256": "dd813ebbca8b9323d0518b99b0ccd193f5ed6eecd850d5e72feb2c8f61a4eeec",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-projection-before-second-await.json",
+      "expected_sha256": "0fc964e448dfa27b67bfc6251792218191bcd80010d92268a40e5d32bf291931",
+      "actual_sha256": "0fc964e448dfa27b67bfc6251792218191bcd80010d92268a40e5d32bf291931",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-projection-before-second-await.log",
+      "expected_sha256": "d2a402396da7578776aae83b9c6c692d1b623859e75d9c8cdc1d7f21af277720",
+      "actual_sha256": "d2a402396da7578776aae83b9c6c692d1b623859e75d9c8cdc1d7f21af277720",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-record-cap.json",
+      "expected_sha256": "070e842548e176b0ec17ed2e118fd8aa258a28492eab74cbab1e65ddd287672f",
+      "actual_sha256": "070e842548e176b0ec17ed2e118fd8aa258a28492eab74cbab1e65ddd287672f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-record-cap.log",
+      "expected_sha256": "f916068b9c1f756ab2915557eae5ea900b6eac9737b0f88feda9cd6f586635d6",
+      "actual_sha256": "f916068b9c1f756ab2915557eae5ea900b6eac9737b0f88feda9cd6f586635d6",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-swallowed-cancel.json",
+      "expected_sha256": "435da4f3dbbe88e55221344e189418630cb73c6cdbfc5c5749a4b3b5d5d693e7",
+      "actual_sha256": "435da4f3dbbe88e55221344e189418630cb73c6cdbfc5c5749a4b3b5d5d693e7",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-swallowed-cancel.log",
+      "expected_sha256": "7f1621c3a18647a4eb8c8485abe35cd4bfccc30b3bb67d20258a979deb9cab92",
+      "actual_sha256": "7f1621c3a18647a4eb8c8485abe35cd4bfccc30b3bb67d20258a979deb9cab92",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-unawaited-query.json",
+      "expected_sha256": "a87f4c09a4f46bf59da3abdce4532c7e9383d01fb54b1f5dc0a8adac57858a74",
+      "actual_sha256": "a87f4c09a4f46bf59da3abdce4532c7e9383d01fb54b1f5dc0a8adac57858a74",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-unawaited-query.log",
+      "expected_sha256": "2d44a434b9526d6bd7e005e40ada1a13e85c88a8569790c048f03ccf9d357b10",
+      "actual_sha256": "2d44a434b9526d6bd7e005e40ada1a13e85c88a8569790c048f03ccf9d357b10",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-unchanged.json",
+      "expected_sha256": "c240205035379d04fe618af70db95db526102cf5e6f4abee1fed7665978c115b",
+      "actual_sha256": "c240205035379d04fe618af70db95db526102cf5e6f4abee1fed7665978c115b",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-unchanged.log",
+      "expected_sha256": "5bc97ce857a4fe91df01424cd16e0992451233f7a4eef1b388acb4e26fcef40f",
+      "actual_sha256": "5bc97ce857a4fe91df01424cd16e0992451233f7a4eef1b388acb4e26fcef40f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-warning-dedupe.json",
+      "expected_sha256": "ecacd1861fc588f5e78ab803dccd13c1c097e540ba62fedfaf94136d4c983b1d",
+      "actual_sha256": "ecacd1861fc588f5e78ab803dccd13c1c097e540ba62fedfaf94136d4c983b1d",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-warning-dedupe.log",
+      "expected_sha256": "f9edca9aec58ebefe795bfa63c6cac1dc3fa536d7c92ede75c93c14619719709",
+      "actual_sha256": "f9edca9aec58ebefe795bfa63c6cac1dc3fa536d7c92ede75c93c14619719709",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-warning-order.json",
+      "expected_sha256": "0afed9a89630f0e1a430ee9f3fe10ac1ab214522d8247adf1ab85e9798758b98",
+      "actual_sha256": "0afed9a89630f0e1a430ee9f3fe10ac1ab214522d8247adf1ab85e9798758b98",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-warning-order.log",
+      "expected_sha256": "2676bdb3218bfe41c625f87a321c8a7ca2320a30b6113b02ce8f78095e940a16",
+      "actual_sha256": "2676bdb3218bfe41c625f87a321c8a7ca2320a30b6113b02ce8f78095e940a16",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-wrong-count.json",
+      "expected_sha256": "ed24b7b92be85ac85b99dada7d2836f97ac0fa7302c2a716af3695fb7959033e",
+      "actual_sha256": "ed24b7b92be85ac85b99dada7d2836f97ac0fa7302c2a716af3695fb7959033e",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-wrong-count.log",
+      "expected_sha256": "ce843888f7b1c9996ce4648a5b5a8831304219d7781914dc44d4fc18d0b15b41",
+      "actual_sha256": "ce843888f7b1c9996ce4648a5b5a8831304219d7781914dc44d4fc18d0b15b41",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-wrong-grouping.json",
+      "expected_sha256": "ab4da24038e238f2f0e71a2cdf7818112376d9c62b963168222409e420a252ed",
+      "actual_sha256": "ab4da24038e238f2f0e71a2cdf7818112376d9c62b963168222409e420a252ed",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-wrong-grouping.log",
+      "expected_sha256": "78786c2b7dd0901d5b2b3962023c9e1b6ffd5d8dfddd12b132db9b25aef8366c",
+      "actual_sha256": "78786c2b7dd0901d5b2b3962023c9e1b6ffd5d8dfddd12b132db9b25aef8366c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-wrong-order.json",
+      "expected_sha256": "75c310c163b83c5fb70dc84d270ef0a65880da36e82d7723699d3dd6e1e077bd",
+      "actual_sha256": "75c310c163b83c5fb70dc84d270ef0a65880da36e82d7723699d3dd6e1e077bd",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-wrong-order.log",
+      "expected_sha256": "c29b84ca88a46623361395a412347ca96b18f5c6c0fcb7ac5fa3b79406fdc398",
+      "actual_sha256": "c29b84ca88a46623361395a412347ca96b18f5c6c0fcb7ac5fa3b79406fdc398",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-zero-unavailable.json",
+      "expected_sha256": "937200aa04b0dd77ef2739d86dacf3d577e45efd9337efedfe923a7ea5ff13fe",
+      "actual_sha256": "937200aa04b0dd77ef2739d86dacf3d577e45efd9337efedfe923a7ea5ff13fe",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/mutation-zero-unavailable.log",
+      "expected_sha256": "5739dcc7eb9f08e82ef8a51fbe36200ec91dfa6ea910bf02dc282bdae2644a81",
+      "actual_sha256": "5739dcc7eb9f08e82ef8a51fbe36200ec91dfa6ea910bf02dc282bdae2644a81",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/named.json",
+      "expected_sha256": "1e09699d2a601906e4fd79653ef309ed07424f51ca0300735b2f5300477d5049",
+      "actual_sha256": "1e09699d2a601906e4fd79653ef309ed07424f51ca0300735b2f5300477d5049",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/named.log",
+      "expected_sha256": "74a79d77643ef9663c2435b3b86ea499c4148a897c08b60a210cd960fa793145",
+      "actual_sha256": "74a79d77643ef9663c2435b3b86ea499c4148a897c08b60a210cd960fa793145",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/neutral-cohort.json",
+      "expected_sha256": "3568a24f96460a1fb201cc1f43b02ef16d6911eaa31d9c437d504649d71e0a5f",
+      "actual_sha256": "3568a24f96460a1fb201cc1f43b02ef16d6911eaa31d9c437d504649d71e0a5f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/neutral-cohort.log",
+      "expected_sha256": "5c94c14e20c9d54bb7852ed5af9f34fe6f6fca0f3c4b8583ff5fa11065d4d671",
+      "actual_sha256": "5c94c14e20c9d54bb7852ed5af9f34fe6f6fca0f3c4b8583ff5fa11065d4d671",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/offline-startup.json",
+      "expected_sha256": "a89f879ff66c3526d346af9500e504e90a8b4fc0f827b948570ee12232149ba7",
+      "actual_sha256": "a89f879ff66c3526d346af9500e504e90a8b4fc0f827b948570ee12232149ba7",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/offline-startup.log",
+      "expected_sha256": "427b7027b11aa9a8394f97c4b4ae0d6d0a741b0013c08e493ab2a03597703daa",
+      "actual_sha256": "427b7027b11aa9a8394f97c4b4ae0d6d0a741b0013c08e493ab2a03597703daa",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/pilot-capture.json",
+      "expected_sha256": "7081dc47acf6408163729e2f8e35caa423c3423bb2c74eefa365c6343512bd7f",
+      "actual_sha256": "7081dc47acf6408163729e2f8e35caa423c3423bb2c74eefa365c6343512bd7f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/pilot-capture.log",
+      "expected_sha256": "dbbaf145090f03d8fe35f25a51ce91205ed4919d542794daed1eb4812b355308",
+      "actual_sha256": "dbbaf145090f03d8fe35f25a51ce91205ed4919d542794daed1eb4812b355308",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/pilot-compare.json",
+      "expected_sha256": "ed5cda8bc1ae0ea5b6ecce965ed318d88c25a4fd8e20b954e7ef33a832c64d7f",
+      "actual_sha256": "ed5cda8bc1ae0ea5b6ecce965ed318d88c25a4fd8e20b954e7ef33a832c64d7f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/pilot-compare.log",
+      "expected_sha256": "57498c120adaf47f3114eb71cdce31c310264758485dc15016179da30a875be3",
+      "actual_sha256": "57498c120adaf47f3114eb71cdce31c310264758485dc15016179da30a875be3",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/pilot_guard.py",
+      "expected_sha256": "e04eea8bc9722defe3ea89212385f8befda03e051b9816b305e1b9f73ff94681",
+      "actual_sha256": "e04eea8bc9722defe3ea89212385f8befda03e051b9816b305e1b9f73ff94681",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/pilot_run.py",
+      "expected_sha256": "acd0f1aac5bc372bc7357d5a74563730a17955d13b74062c23cfe8f4b8cdc178",
+      "actual_sha256": "acd0f1aac5bc372bc7357d5a74563730a17955d13b74062c23cfe8f4b8cdc178",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/render.json",
+      "expected_sha256": "e692da5be44c015b61940591cb4e17ace8216ccd784a2b7ca8d411fea66ff4da",
+      "actual_sha256": "e692da5be44c015b61940591cb4e17ace8216ccd784a2b7ca8d411fea66ff4da",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/render.log",
+      "expected_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "actual_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/run.py",
+      "expected_sha256": "409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af",
+      "actual_sha256": "409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/session-0-capture.json",
+      "expected_sha256": "395b4277bf933434aec03d469ef38b8c5aae1a5ce40ea4b2bcc68e56f2f49fde",
+      "actual_sha256": "395b4277bf933434aec03d469ef38b8c5aae1a5ce40ea4b2bcc68e56f2f49fde",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/session-0-capture.log",
+      "expected_sha256": "299cfbf91c4a3909cf255b9c26e1834705e912eefd360ff6e1a89456be702d84",
+      "actual_sha256": "299cfbf91c4a3909cf255b9c26e1834705e912eefd360ff6e1a89456be702d84",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/session-0-compare.json",
+      "expected_sha256": "c83c7b419016e5a643c145e63b69d1f8456bdb0ddd4685f9685d0199bd2042aa",
+      "actual_sha256": "c83c7b419016e5a643c145e63b69d1f8456bdb0ddd4685f9685d0199bd2042aa",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/session-0-compare.log",
+      "expected_sha256": "43e6de8cab5609d4125cb733e259cf315de532eb9d04b0e59085769ea04d87c4",
+      "actual_sha256": "43e6de8cab5609d4125cb733e259cf315de532eb9d04b0e59085769ea04d87c4",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/sitecustomize.py",
+      "expected_sha256": "d96294f94f5378beb38675d0624e6f78c622914cafbaffb4ce486d8310d2eb7e",
+      "actual_sha256": "d96294f94f5378beb38675d0624e6f78c622914cafbaffb4ce486d8310d2eb7e",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/source-changed-refusal.json",
+      "expected_sha256": "6f994b249e3a3a13bc12977b1780b0a7e0a7c7e524c17e015bc1e1fa8ad7fe5a",
+      "actual_sha256": "6f994b249e3a3a13bc12977b1780b0a7e0a7c7e524c17e015bc1e1fa8ad7fe5a",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/source-changed-refusal.log",
+      "expected_sha256": "3c602d39a6dbcdb56810c6f6e2f71b96781e3318ef9100abf3fe412d78fdd974",
+      "actual_sha256": "3c602d39a6dbcdb56810c6f6e2f71b96781e3318ef9100abf3fe412d78fdd974",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/source-extra-refusal.json",
+      "expected_sha256": "795290092e4eb4a4aa3d0b4ccc30dd315bf3caf1862ecc146a72b510b68caaf4",
+      "actual_sha256": "795290092e4eb4a4aa3d0b4ccc30dd315bf3caf1862ecc146a72b510b68caaf4",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/source-extra-refusal.log",
+      "expected_sha256": "a87c611bb914b36629d721b043fe7afebc614976cd6fadf5afc2afe0f743cc98",
+      "actual_sha256": "a87c611bb914b36629d721b043fe7afebc614976cd6fadf5afc2afe0f743cc98",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/supplemental-records.json",
+      "expected_sha256": "c5aff4f0b53e54f63b3b8a931a8b9e2ff274512a2a067b355f8d039e2da96e73",
+      "actual_sha256": "c5aff4f0b53e54f63b3b8a931a8b9e2ff274512a2a067b355f8d039e2da96e73",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/supplemental-records.log",
+      "expected_sha256": "c39a75f581047237abd45405a580ee01a353cd2ebb68c9d1e831d7ee4e873ed7",
+      "actual_sha256": "c39a75f581047237abd45405a580ee01a353cd2ebb68c9d1e831d7ee4e873ed7",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/types.json",
+      "expected_sha256": "06b2a9c896797954f7768f3293ba51adcb95904188f25a66350462b35923468d",
+      "actual_sha256": "06b2a9c896797954f7768f3293ba51adcb95904188f25a66350462b35923468d",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/types.log",
+      "expected_sha256": "fc409d91e6c781eb25a1ec1310b7fcb0086b74ed3aa2c415bcd73f884f23f07a",
+      "actual_sha256": "fc409d91e6c781eb25a1ec1310b7fcb0086b74ed3aa2c415bcd73f884f23f07a",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/unit-diff.json",
+      "expected_sha256": "cac983c5fc78cd42c32ceb691fbf05c2e739c8fa20e8939462e300ba5aacd86a",
+      "actual_sha256": "cac983c5fc78cd42c32ceb691fbf05c2e739c8fa20e8939462e300ba5aacd86a",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/unit-diff.log",
+      "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/worktree-diff.json",
+      "expected_sha256": "a2dd8bf05b5efd3f12acc97b57e0d843f242f05b409460756480fff565654fd6",
+      "actual_sha256": "a2dd8bf05b5efd3f12acc97b57e0d843f242f05b409460756480fff565654fd6",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prepared/worktree-diff.log",
+      "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/product.diff",
+      "expected_sha256": "9fd855b920730a71b38ccc254e5c169854bd0b661ab59f55432059574ba345a8",
+      "actual_sha256": "9fd855b920730a71b38ccc254e5c169854bd0b661ab59f55432059574ba345a8",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/projection-before-second-await-mutation.json",
+      "expected_sha256": "b42f13021c39668d73e0084238002e6de09fab28415344aac0594bcfc0dac32b",
+      "actual_sha256": "b42f13021c39668d73e0084238002e6de09fab28415344aac0594bcfc0dac32b",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/projection-before-second-await-mutation.log",
+      "expected_sha256": "570055694b12b6ef2925072ffa937eac94eee831f6d93f70c1fd92e52ee9ef48",
+      "actual_sha256": "570055694b12b6ef2925072ffa937eac94eee831f6d93f70c1fd92e52ee9ef48",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/prove_ingest_baseline.py",
+      "expected_sha256": "a69665f463be7efdf43dbb6c962be4da1c64bd46e20297df490f5490e3384370",
+      "actual_sha256": "a69665f463be7efdf43dbb6c962be4da1c64bd46e20297df490f5490e3384370",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/record-cap-mutation.json",
+      "expected_sha256": "67ab9599bc642f3b70d7a4872b0ce51a3d6fb6fe059c7020dee40d4b40888c8e",
+      "actual_sha256": "67ab9599bc642f3b70d7a4872b0ce51a3d6fb6fe059c7020dee40d4b40888c8e",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/record-cap-mutation.log",
+      "expected_sha256": "d452d5bd5ff2fe6808b4b8eb0818fbb472ba3a854388468e5547cab22988c2c5",
+      "actual_sha256": "d452d5bd5ff2fe6808b4b8eb0818fbb472ba3a854388468e5547cab22988c2c5",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/render.log",
+      "expected_sha256": "eb078f316913cf295f174f7a48f8aad10af837748c61625042637550c0cb31ba",
+      "actual_sha256": "eb078f316913cf295f174f7a48f8aad10af837748c61625042637550c0cb31ba",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/replay.tar",
+      "expected_sha256": "62308e12785e7c12850894cd0deccbd917b5a8569a98697e734b31feab0a1340",
+      "actual_sha256": "62308e12785e7c12850894cd0deccbd917b5a8569a98697e734b31feab0a1340",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/report.md",
+      "expected_sha256": "ec900fc90d0a9d906900f1474f0dd5df70948eb7ed17501ed61fefd66834e2d9",
+      "actual_sha256": "ec900fc90d0a9d906900f1474f0dd5df70948eb7ed17501ed61fefd66834e2d9",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/scope-audit.json",
+      "expected_sha256": "fa88b1f18c10f728e5058d291277728418967de24f5bfb50c5e8edf30db9fa90",
+      "actual_sha256": "fa88b1f18c10f728e5058d291277728418967de24f5bfb50c5e8edf30db9fa90",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/session-0-capture.log",
+      "expected_sha256": "1bbf18dbb9d8e87b2d0790caaa34b93117d22c8ebf75f50ebd72a7fee21fdfd6",
+      "actual_sha256": "1bbf18dbb9d8e87b2d0790caaa34b93117d22c8ebf75f50ebd72a7fee21fdfd6",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/session-0-compare.log",
+      "expected_sha256": "f67e1b355e02ed5260fbf2221a62b241f78282a18ee5faf562a7ebd787aad5ff",
+      "actual_sha256": "f67e1b355e02ed5260fbf2221a62b241f78282a18ee5faf562a7ebd787aad5ff",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/session-0-observations.json",
+      "expected_sha256": "90e3ed88edfd133d81c09b7c01876086a2badf4e1a066296b4e35a39daadb8ab",
+      "actual_sha256": "90e3ed88edfd133d81c09b7c01876086a2badf4e1a066296b4e35a39daadb8ab",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/source-changed-refusal.log",
+      "expected_sha256": "0a7557976531b04ba41c6dcc2ceb010930646be9a33a3b1af1bf453c806f8a8f",
+      "actual_sha256": "0a7557976531b04ba41c6dcc2ceb010930646be9a33a3b1af1bf453c806f8a8f",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/source-extra-refusal.log",
+      "expected_sha256": "15f705d3348c4c5535ca7a68d9d879ed6aed9800fd8c53f022c1539210c1bd41",
+      "actual_sha256": "15f705d3348c4c5535ca7a68d9d879ed6aed9800fd8c53f022c1539210c1bd41",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/static.json",
+      "expected_sha256": "1481155bd4fced66dda416d54f19d4a8e6611bd7896334ba098523acbf41eb8b",
+      "actual_sha256": "1481155bd4fced66dda416d54f19d4a8e6611bd7896334ba098523acbf41eb8b",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/static.py",
+      "expected_sha256": "8a409f0f093fcd5842036a9a7342704c339e907f2f27e426ce8cc75a23b66f30",
+      "actual_sha256": "8a409f0f093fcd5842036a9a7342704c339e907f2f27e426ce8cc75a23b66f30",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/suites.json",
+      "expected_sha256": "53d96506118b6aec9e5699b754ee9e4dace802ebce2dda89563babb28a0744c3",
+      "actual_sha256": "53d96506118b6aec9e5699b754ee9e4dace802ebce2dda89563babb28a0744c3",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/suites.py",
+      "expected_sha256": "3389d90d64e242b14c8bac6d44e1f22cbf4c9be056fcc8a8295771fb2e878668",
+      "actual_sha256": "3389d90d64e242b14c8bac6d44e1f22cbf4c9be056fcc8a8295771fb2e878668",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/supplemental-records.log",
+      "expected_sha256": "f7258ce07e7104f5c38ceee3e48d94a06a2ad5f1f379199521972a2a76cbac55",
+      "actual_sha256": "f7258ce07e7104f5c38ceee3e48d94a06a2ad5f1f379199521972a2a76cbac55",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/supplemental-result.json",
+      "expected_sha256": "45272479982dc23d498a78a755417a5ce48ee73b1a23d195f06d124e73c1c4f3",
+      "actual_sha256": "45272479982dc23d498a78a755417a5ce48ee73b1a23d195f06d124e73c1c4f3",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/supplemental.py",
+      "expected_sha256": "9cc23adeb79dc48891a76514f91822c93b22adf3dc1f4df12aff55be510d53ef",
+      "actual_sha256": "9cc23adeb79dc48891a76514f91822c93b22adf3dc1f4df12aff55be510d53ef",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/swallowed-cancel-mutation.json",
+      "expected_sha256": "584eb3fb679b1d1288eb2f9ee3f991b42780eba2408e6a72831bcecb3c3bf3ac",
+      "actual_sha256": "584eb3fb679b1d1288eb2f9ee3f991b42780eba2408e6a72831bcecb3c3bf3ac",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/swallowed-cancel-mutation.log",
+      "expected_sha256": "66c20f15deb70d3f9a5f63f19b1a4c44d70da9dd6859a14a75730f409fb015b4",
+      "actual_sha256": "66c20f15deb70d3f9a5f63f19b1a4c44d70da9dd6859a14a75730f409fb015b4",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/tmp0yqyi5r3.yaml",
+      "expected_sha256": "011bd2c99e1188fbe1de70024c5adcb9ebd2529a01c16d325f08c8b888467d34",
+      "actual_sha256": "011bd2c99e1188fbe1de70024c5adcb9ebd2529a01c16d325f08c8b888467d34",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/tmp59zane9j.yaml",
+      "expected_sha256": "80c25526619ea5de7d5865b4e4e2e22d1c8ed58f19f0a4c42365e94925d665cf",
+      "actual_sha256": "80c25526619ea5de7d5865b4e4e2e22d1c8ed58f19f0a4c42365e94925d665cf",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/tmpcvu38v3x.yaml",
+      "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/tmprmlrem1u.yaml",
+      "expected_sha256": "9497a137281a2b5dc055895fd47e132e350ab837b1210163cc31bfbb6b6e78dc",
+      "actual_sha256": "9497a137281a2b5dc055895fd47e132e350ab837b1210163cc31bfbb6b6e78dc",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/tmpuft9ebvj.yaml",
+      "expected_sha256": "00b489606677a883cff0e4093ee2dcbbeb992d3f823a11efdfc9ae5500efe6f5",
+      "actual_sha256": "00b489606677a883cff0e4093ee2dcbbeb992d3f823a11efdfc9ae5500efe6f5",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/types.log",
+      "expected_sha256": "33c754a3e02e663ab11794f935b28ee8477586a33ff9dd749f8eeb91730fa159",
+      "actual_sha256": "33c754a3e02e663ab11794f935b28ee8477586a33ff9dd749f8eeb91730fa159",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/unawaited-query-mutation.json",
+      "expected_sha256": "108bed4c617c969e0b121be0b910714f00143154f13f85c7265f52a78309edc1",
+      "actual_sha256": "108bed4c617c969e0b121be0b910714f00143154f13f85c7265f52a78309edc1",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/unawaited-query-mutation.log",
+      "expected_sha256": "e262cf1e1e07a918d1190e627adb6deee4a4639013b22af32c837674b6c5902c",
+      "actual_sha256": "e262cf1e1e07a918d1190e627adb6deee4a4639013b22af32c837674b6c5902c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/unchanged-mutation.json",
+      "expected_sha256": "ba1c53640e766f7cd616beb8859f494f466746a03355662fceaf624d2cfa7a8a",
+      "actual_sha256": "ba1c53640e766f7cd616beb8859f494f466746a03355662fceaf624d2cfa7a8a",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/unchanged-mutation.log",
+      "expected_sha256": "566aff9f5734d1d7990871d247440eb2557fe4e8eb0bc49fd0367b2d81d4eaf7",
+      "actual_sha256": "566aff9f5734d1d7990871d247440eb2557fe4e8eb0bc49fd0367b2d81d4eaf7",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/unit-diff.log",
+      "expected_sha256": "66b949706f4f805dbf5a435cada86f7f70bc4a73526822416778b0da86da8f51",
+      "actual_sha256": "66b949706f4f805dbf5a435cada86f7f70bc4a73526822416778b0da86da8f51",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/uv-d06cbd3e69ade1dc.lock",
+      "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/warning-dedupe-mutation.json",
+      "expected_sha256": "c7d295d959e95d5cd05ca46225601fc640e93671cdf8974080ef512b7f6fdb84",
+      "actual_sha256": "c7d295d959e95d5cd05ca46225601fc640e93671cdf8974080ef512b7f6fdb84",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/warning-dedupe-mutation.log",
+      "expected_sha256": "014d3c9f5f650baaa5cbbcdc4958f3d189ee5cdc8f04d42d7397b0b17be4b895",
+      "actual_sha256": "014d3c9f5f650baaa5cbbcdc4958f3d189ee5cdc8f04d42d7397b0b17be4b895",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/warning-order-mutation.json",
+      "expected_sha256": "08e2d39c848f306568086642457702608f262afb749943096b94e1d2cbabf263",
+      "actual_sha256": "08e2d39c848f306568086642457702608f262afb749943096b94e1d2cbabf263",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/warning-order-mutation.log",
+      "expected_sha256": "d5135f7ff4df5d999b106fb67aea1be47e03d25b2dbb7c0e95d5078ffd0cffde",
+      "actual_sha256": "d5135f7ff4df5d999b106fb67aea1be47e03d25b2dbb7c0e95d5078ffd0cffde",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/worktree-diff.log",
+      "expected_sha256": "ef3dc0984808209b14884ce4c06858dd724881b442b7cbfec4d9106b407f9be6",
+      "actual_sha256": "ef3dc0984808209b14884ce4c06858dd724881b442b7cbfec4d9106b407f9be6",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/wrong-count-mutation.json",
+      "expected_sha256": "6688a2d416c4a46317fd1e79cc66200dc7eaf5e43e6347e955bc28bb6259a802",
+      "actual_sha256": "6688a2d416c4a46317fd1e79cc66200dc7eaf5e43e6347e955bc28bb6259a802",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/wrong-count-mutation.log",
+      "expected_sha256": "cff8fe1dbd325604668ec8d18b59f678f1d4e0f6f3be08526ce7be928758f0e4",
+      "actual_sha256": "cff8fe1dbd325604668ec8d18b59f678f1d4e0f6f3be08526ce7be928758f0e4",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/wrong-grouping-mutation.json",
+      "expected_sha256": "e8703e02ef019849325ce046ff13884dd3579af8b82fb193806731017d79d5ff",
+      "actual_sha256": "e8703e02ef019849325ce046ff13884dd3579af8b82fb193806731017d79d5ff",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/wrong-grouping-mutation.log",
+      "expected_sha256": "7aff7f22f84d7c8acb954c51b273b43de7fe8b4a65d203a7e200e76f2b90744c",
+      "actual_sha256": "7aff7f22f84d7c8acb954c51b273b43de7fe8b4a65d203a7e200e76f2b90744c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/wrong-order-mutation.json",
+      "expected_sha256": "040b1fa37ee581a599bd18bb45dcf91c251e9f9c03435d87e6d2475e7c796d14",
+      "actual_sha256": "040b1fa37ee581a599bd18bb45dcf91c251e9f9c03435d87e6d2475e7c796d14",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/wrong-order-mutation.log",
+      "expected_sha256": "46e68352a9d5a4c63cc08ab975f2d0ea2d4815fbbbf715c679b87bb81d95154c",
+      "actual_sha256": "46e68352a9d5a4c63cc08ab975f2d0ea2d4815fbbbf715c679b87bb81d95154c",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/zero-unavailable-mutation.json",
+      "expected_sha256": "fe358ae40d47679160a21605f538e82500a5016e1870b5053671f78073affceb",
+      "actual_sha256": "fe358ae40d47679160a21605f538e82500a5016e1870b5053671f78073affceb",
+      "match": true
+    },
+    {
+      "seat": "astra",
+      "path": "/private/tmp/memq-d2-astra-r1-o67aPLb3/zero-unavailable-mutation.log",
+      "expected_sha256": "12bde060d249bd560554d66569e7e0dc29f9e2f1f12975d83c23367647d8ed71",
+      "actual_sha256": "12bde060d249bd560554d66569e7e0dc29f9e2f1f12975d83c23367647d8ed71",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/boundary-start.json",
+      "expected_sha256": "2bcca39d422311fb9026eb3970cf8e7e6bc10159e1b8b08afd8daf1ba754a30f",
+      "actual_sha256": "2bcca39d422311fb9026eb3970cf8e7e6bc10159e1b8b08afd8daf1ba754a30f",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/boundary-end.json",
+      "expected_sha256": "2bcca39d422311fb9026eb3970cf8e7e6bc10159e1b8b08afd8daf1ba754a30f",
+      "actual_sha256": "2bcca39d422311fb9026eb3970cf8e7e6bc10159e1b8b08afd8daf1ba754a30f",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/pairs.json",
+      "expected_sha256": "e7f86cec94c2023c85353d2252757f261aaf3a9de322a75f903c9b4c6ca70c36",
+      "actual_sha256": "e7f86cec94c2023c85353d2252757f261aaf3a9de322a75f903c9b4c6ca70c36",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/ast-audit.json",
+      "expected_sha256": "0432837cd4d93b5fd3c401d0288656fd12b2a95a37437de3544703f936867c64",
+      "actual_sha256": "0432837cd4d93b5fd3c401d0288656fd12b2a95a37437de3544703f936867c64",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/cap/receipts.json",
+      "expected_sha256": "89c42f623f5c05f71ef256d5ba85e6b1ec006a4664ff4609446166e0db5d6440",
+      "actual_sha256": "89c42f623f5c05f71ef256d5ba85e6b1ec006a4664ff4609446166e0db5d6440",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/supp/result.json",
+      "expected_sha256": "439714976b542e66c4138d3fb71d838292028901bcfac72e651e466aea0059ae",
+      "actual_sha256": "439714976b542e66c4138d3fb71d838292028901bcfac72e651e466aea0059ae",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/mut/results.json",
+      "expected_sha256": "a1968ec1e8e26dd04d42ff1d4ef50b597baeab8d0472790beb40cb30f9ba0c22",
+      "actual_sha256": "a1968ec1e8e26dd04d42ff1d4ef50b597baeab8d0472790beb40cb30f9ba0c22",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/mut/results-unchanged-rerun.json",
+      "expected_sha256": "81351e4befd9a007e186e417532ab5be3a29ed28962996eedded483c8cfedd96",
+      "actual_sha256": "81351e4befd9a007e186e417532ab5be3a29ed28962996eedded483c8cfedd96",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/canon/canonical.json",
+      "expected_sha256": "91746ce4cb95b507c3de353d5651eae2495af65013a26f1f88d93160c267c661",
+      "actual_sha256": "91746ce4cb95b507c3de353d5651eae2495af65013a26f1f88d93160c267c661",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/ingest/pre-d2.json",
+      "expected_sha256": "0d0cc5199ff1b404a70927f35580d4aa2b9822179b5ae6da434a5efbc51c8c58",
+      "actual_sha256": "0d0cc5199ff1b404a70927f35580d4aa2b9822179b5ae6da434a5efbc51c8c58",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/ingest/cand.json",
+      "expected_sha256": "f2578d4d32b670aab66aa573a8a57620133d311e631c58fe401e129967f5a884",
+      "actual_sha256": "f2578d4d32b670aab66aa573a8a57620133d311e631c58fe401e129967f5a884",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/report/claude.md",
+      "expected_sha256": "efdda99e495c6b754e8f8eb1843ce84907fdcf9bc16a3e1091d4e1f515e3c5af",
+      "actual_sha256": "efdda99e495c6b754e8f8eb1843ce84907fdcf9bc16a3e1091d4e1f515e3c5af",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/tools/boundary.py",
+      "expected_sha256": "d786815c67d09add940ebb0197f3ccbdae3ba4b55e32e5368e41a9a4255dd8cd",
+      "actual_sha256": "d786815c67d09add940ebb0197f3ccbdae3ba4b55e32e5368e41a9a4255dd8cd",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/tools/pairs.py",
+      "expected_sha256": "e67958c0547e889fa119cf8034600a794c1ffdcb6110fb9a593f0155892b294b",
+      "actual_sha256": "e67958c0547e889fa119cf8034600a794c1ffdcb6110fb9a593f0155892b294b",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/tools/captures.py",
+      "expected_sha256": "d6805d0c36ca2abf2dd106df3043afb87c6e68b60420a89d2bd4946f3ced5f85",
+      "actual_sha256": "d6805d0c36ca2abf2dd106df3043afb87c6e68b60420a89d2bd4946f3ced5f85",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/tools/supplemental.py",
+      "expected_sha256": "f38e9181d02e995cd32f8a2dd8dd5c58d557dfd6da355f14d0c35b72bcf2901d",
+      "actual_sha256": "f38e9181d02e995cd32f8a2dd8dd5c58d557dfd6da355f14d0c35b72bcf2901d",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/tools/mutations.py",
+      "expected_sha256": "b1a5c0c910e7ba96f14170f274514d6795fb455227cc34f7c916562035ae8a31",
+      "actual_sha256": "b1a5c0c910e7ba96f14170f274514d6795fb455227cc34f7c916562035ae8a31",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/tools/mut_launch.py",
+      "expected_sha256": "029ef9538f9525002422cb6a9d618426dab6a430eedad9a31316f4122542b730",
+      "actual_sha256": "029ef9538f9525002422cb6a9d618426dab6a430eedad9a31316f4122542b730",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/tools/ast_audit.py",
+      "expected_sha256": "fd48efa2807518e8f1783fc4f18aa4b08738275b3f6e02aeb28ecfa6b26dfafa",
+      "actual_sha256": "fd48efa2807518e8f1783fc4f18aa4b08738275b3f6e02aeb28ecfa6b26dfafa",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/tools/ingest_probe.py",
+      "expected_sha256": "26de5844f34ebe2e6ec0a49d7d2abfc1616b84bc8ccd4d9b6382d2b81755882b",
+      "actual_sha256": "26de5844f34ebe2e6ec0a49d7d2abfc1616b84bc8ccd4d9b6382d2b81755882b",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/full-commands.stdout",
+      "expected_sha256": "9a6c7e1108bd465528d359992f11a0b91bc287af488e5fca4cdde58fb4a1f09f",
+      "actual_sha256": "9a6c7e1108bd465528d359992f11a0b91bc287af488e5fca4cdde58fb4a1f09f",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/named52.stdout",
+      "expected_sha256": "d102f2ec247a5d2718e9902b9ee819758e952d44f3d603f45d81f3c7dff9407f",
+      "actual_sha256": "d102f2ec247a5d2718e9902b9ee819758e952d44f3d603f45d81f3c7dff9407f",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/full-cli.stdout",
+      "expected_sha256": "fbcbd387e5c1d9361216370618b216126c4343040a96fed39553ece1de8f222f",
+      "actual_sha256": "fbcbd387e5c1d9361216370618b216126c4343040a96fed39553ece1de8f222f",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/d2-fast.stdout",
+      "expected_sha256": "27ca4d1e00f0dcf51604095796fe42b5057561e030fdbbcd588e763451900125",
+      "actual_sha256": "27ca4d1e00f0dcf51604095796fe42b5057561e030fdbbcd588e763451900125",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/d3-fast.stdout",
+      "expected_sha256": "edcd47efe8f78debbc259d84496feb6ca413882fe2697f103dc35ca937b5a8b4",
+      "actual_sha256": "edcd47efe8f78debbc259d84496feb6ca413882fe2697f103dc35ca937b5a8b4",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/full-chat.stdout",
+      "expected_sha256": "f65130cb25b143fd39420a045b06ff5b5346f762eaa8545a50332c95197951ab",
+      "actual_sha256": "f65130cb25b143fd39420a045b06ff5b5346f762eaa8545a50332c95197951ab",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/lint.stdout",
+      "expected_sha256": "f12365a04e4aee2ebda316f90c9994a4d915a9c920bd9701efbc143fadbdef57",
+      "actual_sha256": "f12365a04e4aee2ebda316f90c9994a4d915a9c920bd9701efbc143fadbdef57",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/types.stdout",
+      "expected_sha256": "6b13ec5f193014e70d6a84f83f85a4d45616b52380466480f47d32f469df0970",
+      "actual_sha256": "6b13ec5f193014e70d6a84f83f85a4d45616b52380466480f47d32f469df0970",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/fmt-changed.stdout",
+      "expected_sha256": "89886610aa584308fa1329970f405a36e5862369558433c1eb89f94f17a6cc31",
+      "actual_sha256": "89886610aa584308fa1329970f405a36e5862369558433c1eb89f94f17a6cc31",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/fmt-new.stdout",
+      "expected_sha256": "e77eb9f346854d1ab5278003ba7d2ee6ee3202c47eaaf89d5d1a4f38c7926aa9",
+      "actual_sha256": "e77eb9f346854d1ab5278003ba7d2ee6ee3202c47eaaf89d5d1a4f38c7926aa9",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/fmt-views.stdout",
+      "expected_sha256": "b1e55e389c05b6f3c763dc898a5d492d38047f05b9a0a71529970422da367f03",
+      "actual_sha256": "b1e55e389c05b6f3c763dc898a5d492d38047f05b9a0a71529970422da367f03",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/fmt-debt.stdout",
+      "expected_sha256": "0a834b5948d119dd6c9b14b6825626f23ad60defb92d6b46981945f7e4432281",
+      "actual_sha256": "0a834b5948d119dd6c9b14b6825626f23ad60defb92d6b46981945f7e4432281",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/board-validate.stdout",
+      "expected_sha256": "b0150ffa2ef3223a7be4170398918f0085e8eaf6a5cd0fac63c789215fd85fdf",
+      "actual_sha256": "b0150ffa2ef3223a7be4170398918f0085e8eaf6a5cd0fac63c789215fd85fdf",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/board-check.stdout",
+      "expected_sha256": "252b14c5767ccadb0dafc80324e358b5e9e1d8ec06be2cb4d1dee9e477f2d372",
+      "actual_sha256": "252b14c5767ccadb0dafc80324e358b5e9e1d8ec06be2cb4d1dee9e477f2d372",
+      "match": true
+    },
+    {
+      "seat": "claude",
+      "path": "/private/tmp/memq-d2-claude-r1-Y1fM1MEc/out/doc-lifecycle.stdout",
+      "expected_sha256": "7f60b543f4c85b041e7a3721e7c1cedf07ab5c5cb9bd407ea05695f7e6d40b76",
+      "actual_sha256": "7f60b543f4c85b041e7a3721e7c1cedf07ab5c5cb9bd407ea05695f7e6d40b76",
+      "match": true
+    }
+  ],
+  "mismatches": []
+}

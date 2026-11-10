@@ -37,10 +37,6 @@ class CommandContext:
     last_budget_status: BudgetStatus | None = None
     last_tool_budget_snapshot: ToolBudgetSnapshot | None = None
     session: FridaySession | None = None
-    tool_results: list[str] = field(default_factory=list)
-    tool_lifecycle_records: list[str] = field(default_factory=list)
-    tool_ingestions: list[str] = field(default_factory=list)
-    injected_payload: str | None = None
     security_stats: dict[str, int] = field(
         default_factory=lambda: {
             "total_scans": 0,

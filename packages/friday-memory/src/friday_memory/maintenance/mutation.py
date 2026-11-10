@@ -16,7 +16,7 @@ import struct
 from collections.abc import Iterable, Mapping, Sequence
 from datetime import UTC, datetime
 from enum import Enum
-from typing import Protocol, runtime_checkable
+from typing import Literal, Protocol, runtime_checkable
 
 import chromadb
 from chromadb.api import ClientAPI
@@ -62,6 +62,7 @@ class MemoryMutationErrorCode(str, Enum):
     """Stable content-safe failure categories."""
 
     INVALID_COMMAND = "invalid_command"
+    CAPABILITY_UNAVAILABLE = "capability_unavailable"
     STORE_UNAVAILABLE = "store_unavailable"
     STORE_INTEGRITY_FAILED = "store_integrity_failed"
     APPLY_FAILED = "apply_failed"
@@ -81,6 +82,61 @@ class VectorMemoryReference(StrictMutationModel):
 
     collection: str
     memory_id: str
+
+
+class MemoryVerificationCounts(StrictMutationModel):
+    """Final persisted judge verdicts for exactly one verification stage."""
+
+    selected: int = Field(ge=0)
+    verified: int = Field(ge=0)
+    rejected: int = Field(ge=0)
+    uncertain: int = Field(ge=0)
+
+    @model_validator(mode="after")
+    def validate_total(self) -> MemoryVerificationCounts:
+        if self.selected != self.verified + self.rejected + self.uncertain:
+            raise ValueError("verification verdict counts must cover selection exactly")
+        return self
+
+
+class MemoryVerificationSelection(StrictMutationModel):
+    """Pending selection or an exact operation-local created batch."""
+
+    mode: Literal["pending", "created"] = "pending"
+    operation_id: str | None = Field(default=None, pattern=r"^[0-9a-f]{32}$")
+    synthesis_plan_id: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+    references: tuple[VectorMemoryReference, ...] = Field(default=(), max_length=128)
+
+    @model_validator(mode="after")
+    def validate_scope(self) -> MemoryVerificationSelection:
+        keys = [(r.collection, r.memory_id) for r in self.references]
+        if len(set(keys)) != len(keys):
+            raise ValueError("verification references must be unique")
+        if any(not c or not i for c, i in keys):
+            raise ValueError("verification references must be nonempty")
+        if self.mode == "pending":
+            if (
+                self.operation_id is not None
+                or self.synthesis_plan_id is not None
+                or self.references
+            ):
+                raise ValueError("pending selection cannot carry created scope")
+        elif self.operation_id is None or self.synthesis_plan_id is None:
+            raise ValueError(
+                "created selection requires operation and synthesis identities"
+            )
+        return self
+
+
+def _normalize_verification_selection(
+    step: MemoryMutationStep,
+    selection: MemoryVerificationSelection | None,
+) -> MemoryVerificationSelection | None:
+    if step is MemoryMutationStep.VERIFY:
+        return selection if selection is not None else MemoryVerificationSelection()
+    if selection is not None:
+        raise ValueError("only verification may carry a verification selection")
+    return None
 
 
 class VectorMemoryRecord(VectorMemoryReference):
@@ -154,6 +210,7 @@ class MemoryMutationPlan(StrictMutationModel):
 
     plan_id: str = Field(pattern=r"^[0-9a-f]{64}$")
     step: MemoryMutationStep
+    verification_selection: MemoryVerificationSelection | None = None
     scanned_count: int | None = Field(default=None, ge=0)
     candidate_count: int | None = Field(default=None, ge=0)
     vector_collection_count: int = Field(default=0, ge=0)
@@ -174,6 +231,15 @@ class MemoryMutationPlan(StrictMutationModel):
     minimum_synthesis_confidence: float | None = Field(default=None, ge=0.0, le=1.0)
     warnings: tuple[str, ...] = ()
     errors: tuple[MemoryMutationError, ...] = ()
+
+    @model_validator(mode="after")
+    def normalize_selection(self) -> MemoryMutationPlan:
+        object.__setattr__(
+            self,
+            "verification_selection",
+            _normalize_verification_selection(self.step, self.verification_selection),
+        )
+        return self
 
 
 class MemoryMetadataUpdate(VectorMemoryReference):
@@ -261,6 +327,7 @@ class MemoryMutationCommand(StrictMutationModel):
 
     plan_id: str = Field(pattern=r"^[0-9a-f]{64}$")
     step: MemoryMutationStep
+    verification_selection: MemoryVerificationSelection | None = None
     vector_additions: tuple[MemoryVectorAddition, ...] = ()
     synthesis_metadata_migrations: tuple[SynthesisMetadataMigration, ...] = ()
     verification_updates: tuple[MemoryVerificationUpdate, ...] = ()
@@ -269,6 +336,11 @@ class MemoryMutationCommand(StrictMutationModel):
 
     @model_validator(mode="after")
     def validate_step_payload(self) -> MemoryMutationCommand:
+        object.__setattr__(
+            self,
+            "verification_selection",
+            _normalize_verification_selection(self.step, self.verification_selection),
+        )
         fields_for_step = {
             MemoryMutationStep.SYNTHESIZE: (
                 *self.vector_additions,
@@ -300,6 +372,10 @@ class MemoryMutationResult(StrictMutationModel):
     succeeded: bool
     scanned_count: int | None = Field(default=None, ge=0)
     changed_count: int | None = Field(default=None, ge=0)
+    created_references: tuple[VectorMemoryReference, ...] | None = Field(
+        default=None, max_length=128
+    )
+    verification_counts: MemoryVerificationCounts | None = None
     warnings: tuple[str, ...] = ()
     errors: tuple[MemoryMutationError, ...] = ()
 
@@ -309,6 +385,18 @@ class MemoryMutationResult(StrictMutationModel):
             raise ValueError("successful mutation result cannot contain errors")
         if not self.succeeded and not self.errors:
             raise ValueError("failed mutation result requires typed errors")
+        if self.created_references is not None:
+            if not self.succeeded or self.step is not MemoryMutationStep.SYNTHESIZE:
+                raise ValueError(
+                    "only successful synthesis may report created references"
+                )
+            keys = [(r.collection, r.memory_id) for r in self.created_references]
+            if len(keys) != len(set(keys)):
+                raise ValueError("created references must be unique")
+        if self.verification_counts is not None and (
+            not self.succeeded or self.step is not MemoryMutationStep.VERIFY
+        ):
+            raise ValueError("only successful verification may report verdict counts")
         return self
 
 
@@ -336,7 +424,20 @@ class MemoryMutationVerification(StrictMutationModel):
 class MemoryMutationParticipant(Protocol):
     """Narrow public graph/vector planning and mutation interface."""
 
-    async def plan(self, step: MemoryMutationStep) -> MemoryMutationPlan: ...
+    def begin_operation(self, operation_id: str) -> None: ...
+
+    def end_operation(self, operation_id: str) -> None: ...
+
+    def verification_selection_for(
+        self, synthesis_result: MemoryMutationResult
+    ) -> MemoryVerificationSelection: ...
+
+    async def plan(
+        self,
+        step: MemoryMutationStep,
+        *,
+        verification_selection: MemoryVerificationSelection | None = None,
+    ) -> MemoryMutationPlan: ...
 
     async def apply(
         self,
@@ -367,6 +468,115 @@ class ExplicitMemoryMutationParticipant:
         self.layout = layout
         self._graph_store = graph_store
         self._synthesis_config = synthesis_config or SynthesisConfig()
+        self._operation_id: str | None = None
+        self._synthesis_receipts: dict[str, MemoryMutationResult] = {}
+        self._consumed_synthesis: set[str] = set()
+
+    def begin_operation(self, operation_id: str) -> None:
+        if re.fullmatch(r"[0-9a-f]{32}", operation_id) is None:
+            raise ValueError("invalid maintenance operation identity")
+        if self._operation_id is not None:
+            raise RuntimeError("memory maintenance operation is already active")
+        self._synthesis_receipts.clear()
+        self._consumed_synthesis.clear()
+        self._operation_id = operation_id
+
+    def end_operation(self, operation_id: str) -> None:
+        if self._operation_id != operation_id or self._operation_id is None:
+            raise RuntimeError("memory maintenance operation identity differs")
+        self._synthesis_receipts.clear()
+        self._consumed_synthesis.clear()
+        self._operation_id = None
+
+    def verification_selection_for(
+        self, synthesis_result: MemoryMutationResult
+    ) -> MemoryVerificationSelection:
+        if (
+            self._operation_id is None
+            or synthesis_result.step is not MemoryMutationStep.SYNTHESIZE
+            or not synthesis_result.succeeded
+            or synthesis_result.created_references is None
+            or self._synthesis_receipts.get(synthesis_result.plan_id)
+            is not synthesis_result
+            or synthesis_result.plan_id in self._consumed_synthesis
+        ):
+            raise ValueError(
+                "synthesis result is not an unconsumed receipt of this operation"
+            )
+        return MemoryVerificationSelection(
+            mode="created",
+            operation_id=self._operation_id,
+            synthesis_plan_id=synthesis_result.plan_id,
+            references=synthesis_result.created_references,
+        )
+
+    def _require_created_selection(
+        self, selection: MemoryVerificationSelection
+    ) -> None:
+        receipt = self._synthesis_receipts.get(selection.synthesis_plan_id or "")
+        if (
+            self._operation_id is None
+            or selection.operation_id != self._operation_id
+            or receipt is None
+            or receipt.created_references != selection.references
+            or selection.synthesis_plan_id in self._consumed_synthesis
+        ):
+            raise ValueError(
+                "verification selection is not an unconsumed operation batch"
+            )
+
+    def _success_result(
+        self, plan: MemoryMutationPlan, command: MemoryMutationCommand, changed: int
+    ) -> MemoryMutationResult:
+        counts = None
+        references = None
+        if command.step is MemoryMutationStep.SYNTHESIZE:
+            references = tuple(
+                VectorMemoryReference(collection=a.collection, memory_id=a.memory_id)
+                for a in command.vector_additions
+            )
+        if command.step is MemoryMutationStep.VERIFY:
+            totals = {status.value: 0 for status in MemoryVerificationStatus}
+            collections = self._collection_map() if command.verification_updates else {}
+            for update in command.verification_updates:
+                rows = collections[update.collection].get(
+                    ids=[update.memory_id], include=["metadatas"]
+                )
+                metadata = rows.get("metadatas")
+                if (
+                    rows.get("ids") != [update.memory_id]
+                    or not metadata
+                    or metadata[0] is None
+                    or metadata[0].get("verification_status") != update.status.value
+                    or metadata[0].get("verification_confidence") != update.confidence
+                ):
+                    raise ValueError(
+                        "persisted verification does not match final judge decision"
+                    )
+                totals[update.status.value] += 1
+            counts = MemoryVerificationCounts(
+                selected=len(command.verification_updates), **totals
+            )
+        result = MemoryMutationResult(
+            plan_id=plan.plan_id,
+            step=command.step,
+            succeeded=True,
+            scanned_count=plan.scanned_count,
+            changed_count=changed,
+            created_references=references,
+            verification_counts=counts,
+        )
+        if self._operation_id is not None and references is not None:
+            previous = self._synthesis_receipts.get(plan.plan_id)
+            if previous is not None:
+                if previous != result:
+                    raise ValueError("synthesis receipt cannot be overwritten")
+                return previous
+            self._synthesis_receipts[plan.plan_id] = result
+        selection = command.verification_selection
+        if selection is not None and selection.mode == "created":
+            self._consumed_synthesis.add(selection.synthesis_plan_id or "")
+        return result
 
     @staticmethod
     def _with_plan_id(plan: MemoryMutationPlan) -> MemoryMutationPlan:
@@ -768,8 +978,16 @@ class ExplicitMemoryMutationParticipant:
             return active
         return ()
 
-    async def plan(self, step: MemoryMutationStep) -> MemoryMutationPlan:
-        """Build a side-effect-free plan from explicit graph/vector state."""
+    async def plan(
+        self,
+        step: MemoryMutationStep,
+        *,
+        verification_selection: MemoryVerificationSelection | None = None,
+    ) -> MemoryMutationPlan:
+        """Build a side-effect-free plan bound to its exact verification scope."""
+        selection = _normalize_verification_selection(step, verification_selection)
+        if selection is not None and selection.mode == "created":
+            self._require_created_selection(selection)
         try:
             collections = self._collections()
             records = tuple(
@@ -797,6 +1015,7 @@ class ExplicitMemoryMutationParticipant:
                 MemoryMutationPlan(
                     plan_id="0" * 64,
                     step=step,
+                    verification_selection=selection,
                     errors=(
                         MemoryMutationError(
                             code=MemoryMutationErrorCode.STORE_UNAVAILABLE,
@@ -828,6 +1047,26 @@ class ExplicitMemoryMutationParticipant:
             if step is MemoryMutationStep.REEMBED
         )
         provider_records = self._provider_candidates(step, records)
+        if selection is not None and selection.mode == "created":
+            available = {self._reference_key(r): r for r in records}
+            selected = []
+            for reference in selection.references:
+                record = available.get(self._reference_key(reference))
+                metadata = (record.metadata or {}) if record is not None else {}
+                if (
+                    record is None
+                    or not record.document
+                    or not self._is_active(record)
+                    or metadata.get("maintenance_generated") is not True
+                    or metadata.get("type") != "meta_insight"
+                    or metadata.get("verification_status") != "unverified"
+                ):
+                    raise ValueError(
+                        "created verification record is absent, changed or ineligible"
+                    )
+                selected.append(record)
+            provider_records = tuple(selected)
+
         synthesis_groups: tuple[SynthesisCandidateGroup, ...] = ()
         synthesis_metadata_migrations: tuple[SynthesisMetadataMigration, ...] = ()
         existing_document_hashes: tuple[str, ...] = ()
@@ -878,6 +1117,7 @@ class ExplicitMemoryMutationParticipant:
             MemoryMutationPlan(
                 plan_id="0" * 64,
                 step=step,
+                verification_selection=selection,
                 scanned_count=len(records) + len(graph_nodes) + len(graph_edges),
                 candidate_count=candidate_count,
                 vector_collection_count=len(collections),
@@ -959,6 +1199,7 @@ class ExplicitMemoryMutationParticipant:
         if (
             plan.step is not command.step
             or plan.plan_id != command.plan_id
+            or plan.verification_selection != command.verification_selection
             or plan.errors
         ):
             raise ValueError("mutation command is not bound to the supplied plan")
@@ -1031,8 +1272,7 @@ class ExplicitMemoryMutationParticipant:
                     group is None
                     or addition.collection != group.collection
                     or addition.topic != group.topic
-                    or addition.memory_id
-                    != f"reorg-synth-{group.fingerprint[:20]}"
+                    or addition.memory_id != f"reorg-synth-{group.fingerprint[:20]}"
                     or self._reference_key(addition) in existing_keys
                     or not addition.document.strip()
                     or dimensions.get(addition.collection) != len(addition.embedding)
@@ -1041,8 +1281,7 @@ class ExplicitMemoryMutationParticipant:
                     or not source_keys.issubset(provider_keys)
                     or plan.minimum_synthesis_confidence is None
                     or addition.confidence < plan.minimum_synthesis_confidence
-                    or addition.synthesis_version
-                    != _SYNTHESIS_FINGERPRINT_VERSION
+                    or addition.synthesis_version != _SYNTHESIS_FINGERPRINT_VERSION
                 ):
                     raise ValueError("synthesis output exceeds its fresh plan")
             return
@@ -1100,18 +1339,14 @@ class ExplicitMemoryMutationParticipant:
         """Apply one already-validated command through public store APIs."""
         changed = 0
         try:
-            fresh_plan = await self.plan(command.step)
+            fresh_plan = await self.plan(
+                command.step, verification_selection=command.verification_selection
+            )
             if fresh_plan.plan_id != plan.plan_id:
                 raise ValueError("memory mutation plan is stale")
             self._validate_bound_command(fresh_plan, command)
             if fresh_plan.candidate_count == 0:
-                return MemoryMutationResult(
-                    plan_id=plan.plan_id,
-                    step=command.step,
-                    succeeded=True,
-                    scanned_count=plan.scanned_count,
-                    changed_count=0,
-                )
+                return self._success_result(fresh_plan, command, 0)
             collections = self._collection_map()
             deterministic_updates: list[MemoryMetadataUpdate] = []
             if command.step is MemoryMutationStep.DEDUPE:
@@ -1253,6 +1488,7 @@ class ExplicitMemoryMutationParticipant:
                         for update in command.graph_embedding_updates
                     ]
                 )
+            return self._success_result(fresh_plan, command, changed)
         except (ChromaError, KeyError, OSError, RuntimeError, ValueError) as exc:
             return MemoryMutationResult(
                 plan_id=plan.plan_id,
@@ -1267,13 +1503,6 @@ class ExplicitMemoryMutationParticipant:
                     ),
                 ),
             )
-        return MemoryMutationResult(
-            plan_id=plan.plan_id,
-            step=command.step,
-            succeeded=True,
-            scanned_count=plan.scanned_count,
-            changed_count=changed,
-        )
 
     async def verify_postconditions(
         self,
@@ -1492,6 +1721,8 @@ __all__ = [
     "MemoryMutationResult",
     "MemoryMutationStep",
     "MemoryMutationVerification",
+    "MemoryVerificationCounts",
+    "MemoryVerificationSelection",
     "MemoryVerificationStatus",
     "MemoryVerificationUpdate",
     "MemoryVectorAddition",

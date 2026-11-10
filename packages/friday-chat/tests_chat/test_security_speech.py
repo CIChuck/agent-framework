@@ -64,18 +64,6 @@ async def test_security_config_update_success_and_rollback() -> None:
     )
 
 
-async def test_injected_payload_is_single_use() -> None:
-    registry = build_default_registry()
-    context = _context()
-
-    await registry.execute("/inject-payload <script>bad</script>", context)
-    _, first = await registry.execute("/run-tool echo hello", context)
-    _, second = await registry.execute("/run-tool echo hello", context)
-
-    assert first is not None
-    assert "&lt;script&gt;bad&lt;/script&gt;" in first.output
-    assert second is not None
-    assert "&lt;script&gt;" not in second.output
 
 
 def test_embedding_sanitizer_can_disable_wrapping_for_memory_storage() -> None:

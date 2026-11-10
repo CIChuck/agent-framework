@@ -1,0 +1,297 @@
+{
+  "kind": "MEMQ-001 D3 and complete bounded aggregate council round1",
+  "mode": "FRESH independent READ-ONLY",
+  "workdir": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "branch": "feature/command-retirement",
+  "candidate": "bab167579a0c6fcae8765f263ec754f1d4700d93",
+  "D3_start": "4d3fb14841bc3555e33ea506f9212f62901dd027",
+  "artifact_and_probe_source": "e4c0b9a2c5e80569829cc56af9addc8b3e358714",
+  "aggregate_base": "c5871054266da2340486d2043062c5fb95611c00",
+  "D2_runtime_source": "3ed1d58ad8cc1e79522495da5cf19091185402d8",
+  "review_order": [
+    "D3 delta4d3fb148..candidate first, including probe and current evidence/status.",
+    "Then FULL bounded MEMQ aggregatec5871054..candidate, including retained D1/D2 interaction and accepted prior-family boundaries."
+  ],
+  "manifest": {
+    "path": "/private/tmp/friday-memq-d3-build-dp54_fru/council-round1/frozen-manifest.json",
+    "sha256": "0ee4fc20b9503a1839fae4f8899246eeee5c6a3bf86ab94be793a570a09369e9"
+  },
+  "authority": {
+    "contract": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/memory-query-command-contract.md",
+      "sha256": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda"
+    },
+    "directive": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-MEMQ-001-memory-queries.md",
+      "sha256": "4d1544121f19081acf7228ea6c01806b0c8dc9484b1a0cd801284baed8dfcf00"
+    },
+    "approval": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/approval/memory-queries.md",
+      "sha256": "0831ccbe058fb2e9154fa38cd16587265441bdf404d3e11556dc6e32a05074c1"
+    },
+    "current_amendment": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/approval/memory-queries-directive-correction2.md",
+      "sha256": "54c778f4d3dc73f8cd44c7fe19ff1b6b200b72cea2a7993c39479720a0295264"
+    }
+  },
+  "normative_inputs": [
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/memory-query-command-contract.md",
+      "normative_sha256": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+      "current_sha256": "93cdb3bd758e8fb7ab4760347e213cd7407127fcde612754e5a39ed199542eda",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/record-projection-characterization.json",
+      "normative_sha256": "a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d",
+      "current_sha256": "a191df967b3f84d0c3f91723e41cd45680ed84685a9f4bebf7f4f7724893009d",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/preparation.json",
+      "normative_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
+      "current_sha256": "e6d203a0f87c92ddd7f3e1038a53c18b59cb01cdb56e89b9a3e84c086e78b593",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-DIR-001-readiness.md",
+      "normative_sha256": "eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540",
+      "current_sha256": "eeaeba9e12b291d50a19e60869d66f4c10d7ea2d7dc37efb973f66df48559540",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/format_debt.py",
+      "normative_sha256": "3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751",
+      "current_sha256": "3ad2f9cce5439e6e29463d7e32caf11ad5750b5567a01e04315e47e735a53751",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/format-baseline.json",
+      "normative_sha256": "7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2",
+      "current_sha256": "7475cd9172dd566a2a4af71776eecd66f9275b239a969b1e6dc1ca2ea7ec7ad2",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/verify_directive_corrections.py",
+      "normative_sha256": "83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5",
+      "current_sha256": "83f63b327df7ad29478a1017b0b297dc96f98419ac5f71426d2c352dc62a19d5",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-DIR-002-union-and-gates.md",
+      "normative_sha256": "e9664c8806fae913e67b671c275f1920c1b4901d68194278c6a46f18a5f3ce9f",
+      "current_sha256": "e9664c8806fae913e67b671c275f1920c1b4901d68194278c6a46f18a5f3ce9f",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/approval/diagnostics-acceptance.md",
+      "normative_sha256": "1a3eecabf3b96bc456f1595933f5f2a8cba13810bb51bdb3ba6803d25e22b5ca",
+      "current_sha256": "1a3eecabf3b96bc456f1595933f5f2a8cba13810bb51bdb3ba6803d25e22b5ca",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/approval/diagnostics.md",
+      "normative_sha256": "8aeb991d742a38d717c49d488b34d6a5800b57fbec97b3d4a461e2027caa1cb2",
+      "current_sha256": "8aeb991d742a38d717c49d488b34d6a5800b57fbec97b3d4a461e2027caa1cb2",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/approval/diagnostics-context-evaluation.md",
+      "normative_sha256": "6a752d7977afb5e07c5212c8b361aba63b0c680f87a738a0a9fcd8bd01ce18de",
+      "current_sha256": "6a752d7977afb5e07c5212c8b361aba63b0c680f87a738a0a9fcd8bd01ce18de",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/diagnostics-command-contract.md",
+      "normative_sha256": "14dd68f6cc2c5dfbba7f31c19305eeeec68a00598b3b1a1740806832b621be62",
+      "current_sha256": "14dd68f6cc2c5dfbba7f31c19305eeeec68a00598b3b1a1740806832b621be62",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-DIAG-001-context-diagnostics.md",
+      "normative_sha256": "1a9a506020b8d5faa0b864c053b1085e8f8c15c8feab8a4c0f59d4293677ee47",
+      "current_sha256": "1a9a506020b8d5faa0b864c053b1085e8f8c15c8feab8a4c0f59d4293677ee47",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/remediation/REM-CMD-DIAG-D3-001-context-evaluation-order.md",
+      "normative_sha256": "3078bb19195044212a115cb3f3f169d030af2b282154d4d336856b37c41fa865",
+      "current_sha256": "3078bb19195044212a115cb3f3f169d030af2b282154d4d336856b37c41fa865",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/diagnostics/preparation.json",
+      "normative_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
+      "current_sha256": "1f8ee9c7e882d0d0e857deb8489b0eeb309e0d1fa5c21ccbf40223e0886a2c55",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/diagnostics/installed_probe.py",
+      "normative_sha256": "c943d7070aeae2624444a165a9c3f77f3317c062e06376b3d0f89e089d70db58",
+      "current_sha256": "c943d7070aeae2624444a165a9c3f77f3317c062e06376b3d0f89e089d70db58",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/evidence.json",
+      "normative_sha256": "17023f2ff51ecbea68a07e7fa97f447f7b987feccfe17b1ae31947abc2a16564",
+      "current_sha256": "17023f2ff51ecbea68a07e7fa97f447f7b987feccfe17b1ae31947abc2a16564",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/diagnostics/implementation/d3/correction-evidence.json",
+      "normative_sha256": "641d9b0d2d9cb94e409908bd94dc818718a666da2c466d4bab5ed79c0aac8db9",
+      "current_sha256": "641d9b0d2d9cb94e409908bd94dc818718a666da2c466d4bab5ed79c0aac8db9",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/approval/session-acceptance.md",
+      "normative_sha256": "86d2642ac4aa8aeaee73fc727539ef5bb9fe87946aedca085f9db07e50a87a1c",
+      "current_sha256": "86d2642ac4aa8aeaee73fc727539ef5bb9fe87946aedca085f9db07e50a87a1c",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/session/preparation.json",
+      "normative_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
+      "current_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/session/installed_probe.py",
+      "normative_sha256": "059c1e4e392de1e00853e4acaadfe97f7a1eefe3f4d1de412ebf4970f07f15cd",
+      "current_sha256": "059c1e4e392de1e00853e4acaadfe97f7a1eefe3f4d1de412ebf4970f07f15cd",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/approval/council-roster.md",
+      "normative_sha256": "80c8e25ed071503313e9b3c97d93d2fb3712d29de6822e22b539d7b3a3fa8e02",
+      "current_sha256": "80c8e25ed071503313e9b3c97d93d2fb3712d29de6822e22b539d7b3a3fa8e02",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/shared-command-api.md",
+      "normative_sha256": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+      "current_sha256": "e5ba883fb246967320243e1dbc9c2a70fcf6189c05540a45961388f2b6466b74",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/scope-decisions.md",
+      "normative_sha256": "6760092e9d7b4f38a0e96d8109fde0e95cd8c3db0aeaf05c927801243dccb749",
+      "current_sha256": "6760092e9d7b4f38a0e96d8109fde0e95cd8c3db0aeaf05c927801243dccb749",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/command-inventory.md",
+      "normative_sha256": "a671de2837683cab999dcc4ad8d03f1fe0d2158ba5bcbf2de38dc9fdd5b9a8da",
+      "current_sha256": "a671de2837683cab999dcc4ad8d03f1fe0d2158ba5bcbf2de38dc9fdd5b9a8da",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/backlog/friday-tui-command-followups/README.md",
+      "normative_sha256": "b8021069f2752074ac7fb6a25d9d41055749b161d7cd18b0c49f14eded35daa8",
+      "current_sha256": "9bc9ecd11af42722c321a15cd0a80ccec520254b49de3c2b0678088dcb821695",
+      "exact": false
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/installed_probe.py",
+      "normative_sha256": "8c1233a0a5181566bb188735358141e8718a5aaba205e6c4bfa3a2620a8e43ac",
+      "current_sha256": "8c1233a0a5181566bb188735358141e8718a5aaba205e6c4bfa3a2620a8e43ac",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/harness/prepare.py",
+      "normative_sha256": "788f6f8fbc7c4c6f1b53458632c16ecc09153c8d8604cb7ecb776dc8b3075f2e",
+      "current_sha256": "788f6f8fbc7c4c6f1b53458632c16ecc09153c8d8604cb7ecb776dc8b3075f2e",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/harness/bundle.py",
+      "normative_sha256": "46cc788e7aea59add8367de6568bae135cfd3689a813af8d530661f3267d327d",
+      "current_sha256": "46cc788e7aea59add8367de6568bae135cfd3689a813af8d530661f3267d327d",
+      "exact": true
+    },
+    {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/baseline.json",
+      "normative_sha256": "48c3161cf1a0467c7e95ac11a85de0972d46421b5a9318ee618651f7cc7ad7f1",
+      "current_sha256": "48c3161cf1a0467c7e95ac11a85de0972d46421b5a9318ee618651f7cc7ad7f1",
+      "exact": true
+    }
+  ],
+  "approved_normative_input_transition": {
+    "path": "docs/planning/backlog/friday-tui-command-followups/README.md",
+    "normative_frozen_sha256": "b8021069f2752074ac7fb6a25d9d41055749b161d7cd18b0c49f14eded35daa8",
+    "artifact_source_sha256": "b8021069f2752074ac7fb6a25d9d41055749b161d7cd18b0c49f14eded35daa8",
+    "current_sha256": "9bc9ecd11af42722c321a15cd0a80ccec520254b49de3c2b0678088dcb821695",
+    "authority": "Approved CD-CMD-MEMQ-001-memory-queries.md:437 permits updating CMD-F05 only to record MQ-D3 outcome.",
+    "exact_old_row": "| CMD-F05 | Repair ingested-source listing and define source validation. | Decide what `/list-ingested` must list from persistent metadata and what validation covers before changing ingestion or listing behavior. |",
+    "exact_new_row": "| CMD-F05 | Repair ingested-source listing and define source validation. | MQ-D3 outcome: option R implements the approved bounded persisted `/list-ingested` repair. Source validation and consolidation remain deferred. |",
+    "scope": "Only the MQ-D3 outcome cell; no transient D2/D3 status, ingestion-defect narrative or broader authority. This is the explicit permitted final outcome update, distinct from the reverted correction1 edit."
+  },
+  "criteria": {
+    "MD3-01": "Exact authority, complete D3 delta4d3fb148..candidate then full bounded MEMQ aggregatec5871054..candidate, retained neutral D1/Chat D2 interaction. No unrelated product/test/config/dependency/lock/framework/ingestion changes. D1/D2 reviewed candidates retained; no inherited verdict.",
+    "MD3-02": "Exact API54 bindings/owners,18-member union and strict models/factory/invocation/availability/kind/nodes invariants remain; all101 neutral and52 Chat named cases effective. Public preview_text/record_value and registry other33 entries unchanged; full approved AST reversals and old-test retention.",
+    "MD3-03": "New probe exact CLI/source40e9ca.. tied toe4c0b9a2; all4 retained behavior functions match pinned source after only authorized rename and SESSION38+16 list transform. No API spoof, subset weakening or changed behavior statements; glue/helpers/imports inventoried.",
+    "MD3-04": "Actual committed source build/replay: pinned3.13.10,8 tools,125 locked inputs,13 workspace builds each; all154 maps equal, baseline27changed127identical honest. Neutral1 dependency-free/no entry; Chat exact accepted138 names/versions; pip,finance/tools,lock inputs and no-fetch source controls actual.",
+    "MD3-05": "Actual installed pilot+MEMQ neutral/Chat normal/-O8 main probes, explicit guard, complete member/type/directory/byte/executable inventory, parent and entry-child origins, no repository/PYTHONPATH source injection. Runtime/probe bytes equal artifact source; source exports only inventory/fixture oracles.",
+    "MD3-06": "Installed strict models/factory6 await/cancel/error/availability/graph/kind invariants and all6 actual Chat canonical delegations, metadata/help/args, per-dispatch counts, distinct injected outcomes, custom/renamed wrappers, pure adapter/no unintended effects.",
+    "MD3-07": "Installed real FrameworkMemoryAdapter ingest/list actual persisted single/multi/re-ingest/promotion groups/counts/order/partial behavior, absent+empty distinct, no source/decayed read and read-only records; fake unchanged. Explicit-description workaround and old nullable-ingest TypeError remain separate, unwaived, source byte-preserved.",
+    "MD3-08": "All50 installed member/origin+10 archive+10 semantic exact refusal controls,3 pre-import/prebuild refusals and8 clean copied probes attributed. Copied roots proven before mutation; setup/import/report-collision failures never count. D2 retained20 actual CALL AssertionError mutants/control52 and1239 origin files assessed honestly, not blanket prior verdict.",
+    "MD3-09": "Fresh owning599/1390/155, named52/fast616+117, current source captures68+2+6 twice,68+4/25/196,supplemental4,guard18/comparer14, static15/newformat5/no-new-debt and lock214. Canonical source origins before/session-finish/after. RootRuff534 and rootpytest/collect collision7082=6929+153 failed/unwaived, not concealed or new loss.",
+    "MD3-10": "All720 embedded/raw pairs(473current+247retained) and all referenced artifact/profile/raw inputs assessed honestly; actual commands/exits and failed development vs passing formal lanes distinguished. Current source observations/probe profiles are actual executions, not invented future proof.",
+    "MD3-11": "Current metadata/gates, appendix histories and append-only log consistent. Exactly6 MEMQ PAR evidence cells/header only; CMD-F05 only stable MQ-D3 outcome under explicit directive437 with b8021069\u21929bc9ecd1 transition recorded, no transient status/ingest narrative.29 other normative inputs exact; all20 UAT NOT RUN; no acceptance/delivery/P0-P1 closure.",
+    "MD3-12": "Complete start/end Git logical identity and every manifest group/provided-tree entry/list match; both dirty configs/ignored export modes/times/external locator/accepted evidence/supplied caches preserved. One own fresh scratch, no agent-directed out-of-scratch writes, cleanup, nested delegation or delivery."
+  },
+  "pair_files": [
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d1/evidence.json",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d1/council-round1/evidence.json",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/evidence.json",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round1/evidence.json",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/correction1/evidence.json",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round2/evidence.json",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/correction2/evidence.json",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d2/council-round3/evidence.json",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/evidence.json"
+  ],
+  "pair_counts": {
+    "d1/evidence.json": 64,
+    "d1/council-round1/evidence.json": 26,
+    "d2/evidence.json": 94,
+    "d2/council-round1/evidence.json": 10,
+    "d2/correction1/evidence.json": 18,
+    "d2/council-round2/evidence.json": 10,
+    "d2/correction2/evidence.json": 15,
+    "d2/council-round3/evidence.json": 10,
+    "d3/evidence.json": 473
+  },
+  "report_requirements": [
+    "Return VERIFIED / CHANGES_REQUESTED / BLOCKED for D3 and bounded MEMQ aggregate only. Numbered mandatory findings, completeMD3-01..12 andMQ-T01..14 matrices, actual ran versus inspected commands/results/counts, two integrity boundaries and isolation, baseline debt/regressions/residual limits and advisory rubric score10. Score/majority cannot override a mandatory finding.",
+    "Reports/evidence only own scratch; return absolute paths and SHA256. No source repair, advancement, acceptance, UAT, delivery or automatic review/remediation loop."
+  ],
+  "required_now": [
+    "FIRST hash current request before reading it completely. Verify/read complete manifest and provided-tree JSON, independently audit every listed identity at start/end and complete supplied-tree path listing. Snapshot exact git ls-files -s -z hash BEFORE git status, GIT_OPTIONAL_LOCKS=0 to EVERY Git child. No raw .git/index substitute.",
+    "Read AGENTS/policies, exact authority/contract/directive/current approval/amendment, current source/tests/probe and complete selected diffs. No builder reasoning/inherited verdict. Read D2 history only for finding/provenance. The previous backlog scope breach was reverted; current separate CMD-F05 one-cell outcome is expressly authorized by directive437 and records its normative pin transition. Verify29 exact+1 permitted transition, not silently30 exact.",
+    "Allocate exactly one own fresh external scratch. ALL agent-directed writes/caches/TMPDIR/basetemps/copied source/exports/reports/markers there, -B/PYTHONDONTWRITEBYTECODE=1. Shared-checkout READ-ONLY exception; every supplied folder including entire D3 scratch/caches/installs/copies is READ-ONLY. Never directly run supplied writers/drivers or replay argv paths verbatim. Reconstruct inspected code into own scratch with EVERY explicit --cache-dir/env/output/export/basetemp path rewritten. Never create external locator/PID/breadcrumb; preserve /private/tmp/memq-sol-current-path and ignored exports exactly.",
+    "Run fresh own Commands/cohort599, full Chat1390 excluding onlylive_lmstudio, CLI155, named52/fast616+117 on current source with passive canonical origin witnesses (avoid eager-import full-suite launchers that previously failed). Full static15 named sources/probe lint/newformat/rawfailedformat/no-new-debt, root Ruff/rootpytest/collect with guard and own basetemp; board validate/render--check (never mutating render), docs and whitespace. Existing534/7082+4format/nullable-ingest debt remains failed/unwaived and separated from regressions.",
+    "Independently inspect/hash actual closed build/replay inputs, all154 artifact/profile maps and complete source inventories tied toe4c0b9a2; build/replay own fresh closed exports if needed for a defensible result. Do not claim an inspected build as your execution. Actual current installed proof MUST be run by you using own fresh build/install or private copied candidate prefixes, -I -B and-I -B -O, own pinned harness/helpers/outputs, all8 pilot/MEMQ main probes, complete artifact/origin checks and actual persisted listing. Baseline closed D0 trial may be inspected rather than rebuilt.",
+    "Reproduce current installed/member/origin/shadow, archive, prebuild/source and semantic refusal families in private copies, with exact reason attribution and restored clean probes; preserve50+10+10+3/8 coverage. Own copied roots must be proven first. No setup/import/cache/report collision credit. Relevant D2 mutation20 actual reports/control and origin hashes may be inspected since source/tests are byte-identical; independently classify actual terminal CALL AssertionError, or regenerate privately. Product exceptions and earlier setup/KeyError/new-cases7 failures earn zero credit.",
+    "Fresh source observations/capture replay and supplemental controls, pinned guard/comparer programs, no-flag and extra/byte refusal checks. Source programs need repository Git plumbing but behavior must execute at a private cwd to contain fallback exports: provided private-CWD launcher uses existing Git directory read-only viaGIT_DIR/GIT_WORK_TREE, creates no worktree; reconstruct safely or use equivalent. Pinned capture bytes stay unchanged, DIAG lexical/tmp alias must resolve inside OWN scratch. Supplemental program changes only its3 historical proof labels, never scenario statements.",
+    "Assess all720 pairs honestly plus provided-tree, source/package/probe/profile/artifact identities and relevant retained evidence. Actual full original/new installed helpers and origins bind every Commands/Chat module to its inventoried distribution root; no in-prefix shadow or API__all__ spoof. All4 retained bodies require exact approved AST reversals. Existing obsolete DIAG/SESSION38/24 main gates are not passingAPI54; newnamed retained copies are the proof.",
+    "No cleanup/restoration of ignored exports or supplied inputs, no new worktree/checkout, repairs, source/doc/board/index changes, nested delegation, providers/network/real user stores, acceptance, later-family or delivery. Host-managed transcript/checkpoint writes disclosed separately. Return to controller for reconciliation; no automatic loop."
+  ],
+  "tools": {
+    "python": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+    "python_version": "3.13.10",
+    "prepare": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/harness/prepare.py",
+    "bundle": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/pilot/harness/bundle.py",
+    "wheelhouse_read_only": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/ec0c884e-2bae-47e1-9aa9-c43c6d9be9e5/scratchpad/memq/prepared/wheelhouse",
+    "locked_artifacts_read_only": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/session-build-d1-_k6hm5vb/baseline-bundle/locked-artifacts",
+    "D3_builder_read_only": "/private/tmp/friday-memq-d3-build-dp54_fru",
+    "D3_context": "/private/tmp/friday-memq-d3-build-dp54_fru/context.json",
+    "raw_index": "/private/tmp/friday-memq-d3-build-dp54_fru/d3-raw-index.json"
+  },
+  "exclusions": [
+    "Human UAT20 is NOT RUN, not a missing automated D3 case. Final acceptance and any external delivery remain separate.",
+    "Do not expand to unrelated root debt, ingest repair, later families or whole-refactor/TUI acceptance.",
+    "No duplicate directive-readiness council. This is final implementation D3 plus full bounded MEMQ aggregate."
+  ],
+  "iteration": "D3 initial council round1. No reviewer loop; controller reconciles all seats before bounded human UAT/acceptance handoff."
+}

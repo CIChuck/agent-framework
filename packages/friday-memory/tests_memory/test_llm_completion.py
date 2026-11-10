@@ -63,6 +63,42 @@ def _typed_memory_response(content: str | None) -> TypedChatCompletionResponse:
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize("typed", [True, False])
+async def test_completion_preserves_available_model_and_finish_metadata(
+    typed, monkeypatch
+):
+    monkeypatch.setattr(llm_completion, "_legacy_warning_emitted", True)
+    if typed:
+        client = AsyncMock(spec=LiteLLMService)
+        client.chat_completion_request.return_value = _typed_memory_response(
+            "result"
+        ).model_copy(update={"finish_reason": "length"})
+    else:
+        client = _LegacyResponseClient(
+            ChatCompletionResponse(content="result", model="synthetic-memory")
+        )
+    response = await complete_memory_request(
+        client, messages=[{"role": "user", "content": "fixture"}]
+    )
+    assert response.model == "synthetic-memory"
+    assert response.finish_reason == ("length" if typed else None)
+    assert response.content == "result"
+
+
+@pytest.mark.asyncio
+async def test_missing_optional_completion_metadata_is_not_fabricated():
+    client = AsyncMock(spec=LiteLLMService)
+    client.chat_completion_request.return_value = SimpleNamespace(
+        content="result", reasoning_content=None
+    )
+    response = await complete_memory_request(
+        client, messages=[{"role": "user", "content": "fixture"}]
+    )
+    assert response.model is None
+    assert response.finish_reason is None
+
+
+@pytest.mark.asyncio
 @pytest.mark.parametrize("typed", [False, True])
 @pytest.mark.parametrize("content", [None, "", "synthetic content"])
 @pytest.mark.parametrize("temperature", [None, 0.0])

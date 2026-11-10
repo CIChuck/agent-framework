@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/private/tmp/memq-closeout-78maeo5m/uat/launch-fake.sh"
+  ],
+  "input": "/help memory\n/memory\n/insights\n/summaries\n/meta\n/entities\n/list-ingested\n/q\n",
+  "exit": 0,
+  "cwd": "/private/tmp/memq-closeout-78maeo5m/uat",
+  "config": "/private/tmp/memq-closeout-78maeo5m/uat/fake-config.yaml",
+  "stdout": "/private/tmp/memq-closeout-78maeo5m/uat-launch-smoke.stdout",
+  "stderr": "/private/tmp/memq-closeout-78maeo5m/uat-launch-smoke.stderr",
+  "scope": "Automated disposable fake launch smoke; no human UAT credit; real persisted cases not covered.",
+  "stdout_sha256": "d73d39fa293c08a0d102ce9a475ca01cd5bf8901333a764c149232706a9ef8ff",
+  "stdout_text": "\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                  \u2502\n\u2502    Friday        \u2502\n\u2502    Friday CLI    \u2502\n\u2502    v0.1.0a4      \u2502\n\u2502                  \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\nChuck: /help memoryWarning: Input is not a terminal (fd=0).\n\n/memory\nCategory: memory\nUsage: /memory\nDescription: Show typed memory, transcript, session, and context statistics.\nArguments: none\n\nReports public episodic, vector, graph, transcript, lifecycle, priming, \napp-session, and last-context metrics. Empty stores report zero; unavailable or \nunconfigured components are labeled honestly.\nChuck: /memory\nMemory statistics:\nSession:\n- session_id: session_7f0db3b911544f26b3eda500e1973d68\n- in_process_turns: 0\n- tracked_turn_ids: 0\n- scoped_variables: 0\nEpisodic:\n- episodic_current_session_turns: 0\nVector:\n- short_term: 0\n- long_term: 0\n- decayed: 0\n- active_total: 0\n- total: 0\nGraph:\n- nodes: not configured\n- relationships: not configured\nTranscript:\n- current_session_entries: 0\nLifecycle:\n- enabled: false\n- access_buffer_entries: not configured\n- access_buffer_accesses: not configured\nPriming:\n- enabled: true\n- previous_sessions: 0\nLast context:\n- total_tokens: unavailable (no completed turn)\n- message_tokens: unavailable (no completed turn)\n- tool_schema_tokens: unavailable (no completed turn)\n- available_budget: unavailable (no completed turn)\n- utilization: unavailable (no completed turn)\n- severity: unavailable (no completed turn)\nChuck: /insights\nNo insights found.\nChuck: /summaries\nNo summaries found.\nChuck: /meta\nNo meta insights found. Run /reorganize --full --execute with synthesis enabled,\nor use /help reorganize to inspect available modes.\nDecayed records: excluded from active insight, summary, and meta queries.\nChuck: /entities\nNo entities found.\nChuck: /list-ingested\nNo ingested documents.\nChuck: /q\nGoodbye.\n",
+  "stderr_sha256": "357883934fd54a0d4f099abaa3f56e61a13617a441447d0c4d3840513e8bef21",
+  "stderr_text": "Config warning [llm]: Legacy primary LLM execution is deprecated; add explicit llm.transport_target and llm.model_target to use typed Friday LLM controls.\nTelemetry: disabled (disabled)\n"
+}

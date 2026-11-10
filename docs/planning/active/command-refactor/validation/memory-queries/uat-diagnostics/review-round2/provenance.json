@@ -1,0 +1,9 @@
+{
+  "source_report": "/private/tmp/memq-vd-independent-c1-j0ddhbme/report.md",
+  "source_report_sha256": "8651c1c25cc2a7929e3c07e4bcaf006222bd73734a842ce6e99a95f95e3054ee",
+  "source_index": "/private/tmp/memq-vd-independent-c1-j0ddhbme/artifact-index.json",
+  "source_index_sha256": "b1510716d8713fec957b907c51aa38c6446fd84151d15092e369b0d9140d43c5",
+  "verified_artifact_hashes": 172,
+  "candidate": "3969e4d4438c5a18b3532a73d39d69352d26cda7",
+  "controller_scope_audit": "Read-only ledger and full frozen manifest checked before administrative-only closeout. No verdict inferred for unreviewed source."
+}

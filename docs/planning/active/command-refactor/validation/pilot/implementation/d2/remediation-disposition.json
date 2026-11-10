@@ -1,0 +1,20 @@
+{
+  "base": "3299904117693ed29c044cfe1e74637b7b55bb65",
+  "result": "passed",
+  "adapter_delta": "Exactly metadata.detail -> metadata.detail or None; all other adapter bytes identical.",
+  "existing_D2_tests": "Every original top-level function AST unchanged after removing new explicit asyncio marker; all prior assertions retained.",
+  "new_functions": [
+    "assert_invalid_projection_stays_lazy",
+    "test_approved_boundary_rejects_byte_argument_text_at_help_only",
+    "test_approved_boundary_rejects_byte_command_text_at_help_only",
+    "test_approved_boundary_rejects_truthy_non_string_detail_at_help_only",
+    "test_detail_projection_matches_old_direct_and_shared_async_help"
+  ],
+  "all_async_tests_explicitly_marked": true,
+  "dependencies_lock": "Byte-identical to correction base",
+  "protected_unchanged_count": 17115,
+  "source_before_sha256": "1ebfd64e571be6f430bf11e5df1d623d45dae62cb084007491ac28a8a0ce338f",
+  "source_after_sha256": "381a37bd3d6a9df5b4f6365d8b1ca2cc6ac213d9dad0d37e1ee49119314a114f",
+  "test_before_sha256": "ff381de1e9256f4c490b77660348fb1741478e287611197928f85d72ef4973ed",
+  "test_after_sha256": "d3efa41cafb6dc9d72d865aaf06ddb55c62019bbf0281eefef9dc2478177fa8c"
+}

@@ -12,6 +12,7 @@ from friday_transcript import TranscriptSnapshotManifest
 from friday_chat.reorganization.contracts import (
     JournalSafeBoundary,
     JournalState,
+    MaintenanceRunEvidence,
     OperationTrigger,
     ParticipantKind,
     RecoveryBundleManifest,
@@ -70,6 +71,18 @@ class MaintenanceArtifactStore:
             updated_at=timestamp,
             revision=0,
             state=JournalState.CREATED,
+        )
+
+    def write_run_evidence(self, evidence: MaintenanceRunEvidence) -> DurableArtifact:
+        """Write one new immutable event using existing confined atomic storage."""
+        path = (
+            self._layout.recovery_root
+            / evidence.run_id
+            / "evidence"
+            / f"{evidence.sequence:08d}-{evidence.state}.json"
+        )
+        return self._store.write_model(
+            self._relative(path), evidence, require_absent=True
         )
 
     def journal_path(self, run_id: str) -> Path:

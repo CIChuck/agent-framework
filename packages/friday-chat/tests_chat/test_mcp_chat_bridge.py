@@ -196,6 +196,8 @@ async def test_real_stdio_chat_turn_routes_exact_name_and_stops(
             handled, output = await registry.execute(command, context)
             assert handled and output is not None
             assert "SENTINEL-STDERR-SECRET" not in output.output
+            if command != "/tools":
+                assert output.output.startswith("Unknown command:")
         await runtime.stop_mcp_tools()
         assert (
             bridge.provider.manager is not None

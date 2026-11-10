@@ -1,3 +1,4 @@
+import pytest
 from friday_memory.json_response import (
     json_parse_warning_detail,
     json_response_text,
@@ -52,7 +53,7 @@ Reasoning: I need to produce the requested object.
 
 
 def test_strip_llm_reasoning_removes_common_xml_blocks() -> None:
-    content = "<analysis>private reasoning</analysis>{\"ok\": true}"
+    content = '<analysis>private reasoning</analysis>{"ok": true}'
 
     assert strip_llm_reasoning(content) == '{"ok": true}'
 
@@ -82,3 +83,38 @@ def test_json_parse_warning_detail_suppresses_reasoning_preview() -> None:
         "(raw_chars=0, reasoning_chars=24, sanitized_chars=24, "
         "preview=<content empty; reasoning_content present>)"
     )
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        '{"decisions":[]}',
+        'Result follows: {"decisions":[]} Done.',
+        'Result follows:\n```json\n{"decisions":[]}\n```',
+        '<think>{"private":true}</think>{"decisions":[]}',
+        '{"decisions":[],}',
+    ],
+)
+def test_strict_response_parsing_accepts_complete_enclosing_objects(content):
+    assert parse_json_object_from_text(content, recover_nested_objects=False) == {
+        "decisions": []
+    }
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        '{"decisions":[{"status":"verified"}',
+        '[{"decisions":[]}]',
+        '{"broken":"```json\n{"decisions":[]}\n```',
+        'Result follows: {"decisions":[{"status":"verified"}',
+        '```json\n{"decisions":[{"status":"verified"}\n```',
+    ],
+)
+def test_strict_response_parsing_never_salvages_nested_objects(content):
+    assert parse_json_object_from_text(content, recover_nested_objects=False) is None
+
+
+def test_default_parser_keeps_legacy_nested_recovery():
+    content = '{"decisions":[{"status":"verified"}'
+    assert parse_json_object_from_text(content) == {"status": "verified"}

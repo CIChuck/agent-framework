@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 
@@ -49,7 +50,29 @@ def test_friday_v2_command_surface_matches_reference() -> None:
 
     friday_v2_commands = _load_friday_v2_command_names()
 
-    assert reference_commands - friday_v2_commands == set()
+    retired = {
+        "clear-tools",
+        "inject-tools",
+        "recommend-tools",
+        "run-tool",
+        "tool-budget",
+        "inject-payload",
+        "prime",
+        "set",
+        "vars",
+    }
+    matrix = (
+        Path(__file__).resolve().parents[4]
+        / "docs/planning/active/command-refactor/validation/command-matrix.json"
+    )
+    rows = json.loads(matrix.read_text())["commands"]
+    expected = {row["name"] for row in rows if row["name"] not in retired}
+    aliases = {
+        alias for row in rows if row["name"] not in retired for alias in row["aliases"]
+    }
+    assert friday_v2_commands == expected | aliases
+    assert reference_commands - friday_v2_commands == retired
+    assert len(expected) == 41 and len(aliases) == 3
 
 
 def test_parity_override_fixture_shape() -> None:

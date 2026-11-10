@@ -5,9 +5,6 @@ from __future__ import annotations
 from dataclasses import FrozenInstanceError
 
 import pytest
-from friday_chat.commands.contracts import CommandMetadata
-from friday_chat.commands.registry import RegistryCommandContext
-from friday_chat.commands.tools import tool_budget_handler
 from friday_chat.config import FridayChatConfig
 from friday_chat.runtime import FakeMemoryController, FakeToolRegistry, build_runtime
 from friday_chat.tools.schemas import ToolDefinition
@@ -307,18 +304,9 @@ async def test_retrieval_receives_exact_budget_before_model(streaming: bool) -> 
     assert b is not None
     assert result.context_budget_tokens == b.memory_tokens_after_selection
     assert runtime.memory.retrieval_token_limits == [b.memory_tokens_after_selection]
-    command = await tool_budget_handler(
-        RegistryCommandContext(runtime=runtime),
-        (),
-        CommandMetadata(
-            name="tool-budget",
-            description="budget",
-            category="tools",
-            usage="/tool-budget",
-        ),
-    )
-    assert "reserved_result_tokens: 100" in command.output
-    assert "minimum_memory_tokens: 300" in command.output
+    assert b.reserved_result_tokens == 100
+    assert b.minimum_memory_tokens == 300
+
 
 
 @pytest.mark.parametrize(

@@ -1,0 +1,12 @@
+{
+  "finding": "VAL-SD1-001",
+  "remediation_cycle": 1,
+  "state": "implemented_pending_fresh_review",
+  "base": "363d67a4f26ef49ab83b1ebb5b06c9ab143d2b31",
+  "directive": "remediation/REM-CMD-SESSION-D1-001-export-surface.md",
+  "change": "Replace subset-only new-export assertion with independent exact ordered24-name list; existing18 names plus exactly six approved additions. No other test AST change.",
+  "evidence": "export-fix-evidence.json",
+  "required_verification": "S1=278; focused lint/format; unchanged control passes; extra/missing/reordered/duplicate exports each trigger exactly one export assertion failure, no setup/collection rejection credit.",
+  "advisory_ADV1": "2,999 counts FunctionDef/AsyncFunctionDef nodes with test_ prefix using ast.walk per277 original files, including nested/class-member nodes.9,072 counts every syntactic Assert. Neither is pytest collection.",
+  "availability": "Selected roster3, currently available Claude/Sol2; Gemini unavailable/no score, no retry or replacement. Report and reconcile coverage before D2 under council unreachable-provider instruction; no new human waiver asserted."
+}

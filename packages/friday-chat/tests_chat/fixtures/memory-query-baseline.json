@@ -1,0 +1,1417 @@
+{
+  "metadata": {
+    "memory": {
+      "name": "memory",
+      "description": "Show typed memory, transcript, session, and context statistics.",
+      "category": "memory",
+      "usage": "/memory",
+      "aliases": [],
+      "arguments": [],
+      "detail": "Reports public episodic, vector, graph, transcript, lifecycle, priming, app-session, and last-context metrics. Empty stores report zero; unavailable or unconfigured components are labeled honestly."
+    },
+    "insights": {
+      "name": "insights",
+      "description": "List durable insights.",
+      "category": "memory",
+      "usage": "/insights",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "summaries": {
+      "name": "summaries",
+      "description": "List turn summaries.",
+      "category": "memory",
+      "usage": "/summaries",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    },
+    "meta": {
+      "name": "meta",
+      "description": "List active meta insights with lifecycle and provenance metadata.",
+      "category": "memory",
+      "usage": "/meta",
+      "aliases": [],
+      "arguments": [],
+      "detail": "Queries typed short- and long-term meta_insight records, excludes decayed records, and shows bounded synthesis provenance, source, confidence, and verification fields when available. It never runs synthesis or reorganization."
+    },
+    "entities": {
+      "name": "entities",
+      "description": "List graph entities and relationships.",
+      "category": "memory",
+      "usage": "/entities [nodes|name]",
+      "aliases": [],
+      "arguments": [
+        {
+          "name": "nodes|name",
+          "description": "Use 'nodes' for node details or provide an entity name to inspect.",
+          "required": false,
+          "default": null,
+          "choices": []
+        }
+      ],
+      "detail": null
+    },
+    "list-ingested": {
+      "name": "list-ingested",
+      "description": "List ingested document memory records.",
+      "category": "memory",
+      "usage": "/list-ingested",
+      "aliases": [],
+      "arguments": [],
+      "detail": null
+    }
+  },
+  "cases": [
+    {
+      "case": "memory:runtime-missing",
+      "command": "memory",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime"
+      ]
+    },
+    {
+      "case": "memory:full",
+      "command": "memory",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Memory statistics:\nSession:\n- session_id: session-1\n- in_process_turns: 1\n- tracked_turn_ids: 3\n- scoped_variables: 1\nEpisodic:\n- episodic_current_session_turns: 3\nVector:\n- short_term: 0\n- long_term: 12\n- decayed: not configured\n- active_total: 12\n- total: unavailable (store read failed)\nGraph:\n- nodes: 5\n- relationships: 4\nTranscript:\n- current_session_entries: 2\nLifecycle:\n- enabled: false\n- access_buffer_entries: 2\n- access_buffer_accesses: 9\nPriming:\n- enabled: true\n- previous_sessions: not configured\nLast context:\n- total_tokens: 900\n- message_tokens: 700\n- tool_schema_tokens: 0\n- available_budget: 100\n- utilization: 87.2%\n- severity: warning\nWarnings:\n- graph: component initialization failed\n- vector long-term: store read failed",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_statistics",
+        "context.runtime",
+        "runtime.transcript",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "transcript.query_entries:session-1",
+        "context.last_budget_status",
+        "context.session",
+        "context.session",
+        "session.turn_ids",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "context.history",
+        "context.variables"
+      ]
+    },
+    {
+      "case": "memory:no-turn-no-session",
+      "command": "memory",
+      "args": [],
+      "result": {
+        "output": "Memory statistics:\nSession:\n- session_id: session-1\n- in_process_turns: 1\n- tracked_turn_ids: unavailable (session state unavailable)\n- scoped_variables: 1\nEpisodic:\n- episodic_current_session_turns: 3\nVector:\n- short_term: 0\n- long_term: 12\n- decayed: not configured\n- active_total: 12\n- total: unavailable (store read failed)\nGraph:\n- nodes: 5\n- relationships: 4\nTranscript:\n- current_session_entries: 2\nLifecycle:\n- enabled: false\n- access_buffer_entries: 2\n- access_buffer_accesses: 9\nPriming:\n- enabled: true\n- previous_sessions: not configured\nLast context:\n- total_tokens: unavailable (no completed turn)\n- message_tokens: unavailable (no completed turn)\n- tool_schema_tokens: unavailable (no completed turn)\n- available_budget: unavailable (no completed turn)\n- utilization: unavailable (no completed turn)\n- severity: unavailable (no completed turn)",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_statistics",
+        "context.runtime",
+        "runtime.transcript",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "transcript.query_entries:session-1",
+        "context.last_budget_status",
+        "context.session",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "context.history",
+        "context.variables"
+      ]
+    },
+    {
+      "case": "memory:store-failure",
+      "command": "memory",
+      "args": [],
+      "result": {
+        "output": "Memory statistics:\nSession:\n- session_id: session-1\n- in_process_turns: 1\n- tracked_turn_ids: unavailable (session state unavailable)\n- scoped_variables: 1\nEpisodic:\n- episodic_current_session_turns: unavailable (store read failed)\nVector:\n- short_term: unavailable (store read failed)\n- long_term: unavailable (store read failed)\n- decayed: unavailable (store read failed)\n- active_total: unavailable (store read failed)\n- total: unavailable (store read failed)\nGraph:\n- nodes: unavailable (store read failed)\n- relationships: unavailable (store read failed)\nTranscript:\n- current_session_entries: 2\nLifecycle:\n- enabled: unavailable (store read failed)\n- access_buffer_entries: unavailable (store read failed)\n- access_buffer_accesses: unavailable (store read failed)\nPriming:\n- enabled: unavailable (store read failed)\n- previous_sessions: unavailable (store read failed)\nLast context:\n- total_tokens: unavailable (no completed turn)\n- message_tokens: unavailable (no completed turn)\n- tool_schema_tokens: unavailable (no completed turn)\n- available_budget: unavailable (no completed turn)\n- utilization: unavailable (no completed turn)\n- severity: unavailable (no completed turn)\nWarnings:\n- episodic: store read failed",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_statistics",
+        "context.runtime",
+        "runtime.transcript",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "transcript.query_entries:session-1",
+        "context.last_budget_status",
+        "context.session",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "context.history",
+        "context.variables"
+      ]
+    },
+    {
+      "case": "memory:transcript-failure",
+      "command": "memory",
+      "args": [],
+      "result": {
+        "output": "Memory statistics:\nSession:\n- session_id: session-1\n- in_process_turns: 1\n- tracked_turn_ids: unavailable (session state unavailable)\n- scoped_variables: 1\nEpisodic:\n- episodic_current_session_turns: 3\nVector:\n- short_term: 0\n- long_term: 12\n- decayed: not configured\n- active_total: 12\n- total: unavailable (store read failed)\nGraph:\n- nodes: 5\n- relationships: 4\nTranscript:\n- current_session_entries: unavailable (store read failed)\nLifecycle:\n- enabled: false\n- access_buffer_entries: 2\n- access_buffer_accesses: 9\nPriming:\n- enabled: true\n- previous_sessions: not configured\nLast context:\n- total_tokens: unavailable (no completed turn)\n- message_tokens: unavailable (no completed turn)\n- tool_schema_tokens: unavailable (no completed turn)\n- available_budget: unavailable (no completed turn)\n- utilization: unavailable (no completed turn)\n- severity: unavailable (no completed turn)\nWarnings:\n- graph: component initialization failed\n- transcript: store read failed\n- vector long-term: store read failed",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_statistics",
+        "context.runtime",
+        "runtime.transcript",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "transcript.query_entries:session-1",
+        "context.last_budget_status",
+        "context.session",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "context.history",
+        "context.variables"
+      ]
+    },
+    {
+      "case": "memory:both-failures",
+      "command": "memory",
+      "args": [],
+      "result": {
+        "output": "Memory statistics:\nSession:\n- session_id: session-1\n- in_process_turns: 1\n- tracked_turn_ids: unavailable (session state unavailable)\n- scoped_variables: 1\nEpisodic:\n- episodic_current_session_turns: unavailable (store read failed)\nVector:\n- short_term: unavailable (store read failed)\n- long_term: unavailable (store read failed)\n- decayed: unavailable (store read failed)\n- active_total: unavailable (store read failed)\n- total: unavailable (store read failed)\nGraph:\n- nodes: unavailable (store read failed)\n- relationships: unavailable (store read failed)\nTranscript:\n- current_session_entries: unavailable (store read failed)\nLifecycle:\n- enabled: unavailable (store read failed)\n- access_buffer_entries: unavailable (store read failed)\n- access_buffer_accesses: unavailable (store read failed)\nPriming:\n- enabled: unavailable (store read failed)\n- previous_sessions: unavailable (store read failed)\nLast context:\n- total_tokens: unavailable (no completed turn)\n- message_tokens: unavailable (no completed turn)\n- tool_schema_tokens: unavailable (no completed turn)\n- available_budget: unavailable (no completed turn)\n- utilization: unavailable (no completed turn)\n- severity: unavailable (no completed turn)\nWarnings:\n- episodic: store read failed\n- transcript: store read failed",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_statistics",
+        "context.runtime",
+        "runtime.transcript",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "transcript.query_entries:session-1",
+        "context.last_budget_status",
+        "context.session",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "context.history",
+        "context.variables"
+      ]
+    },
+    {
+      "case": "memory:store-cancel",
+      "command": "memory",
+      "args": [],
+      "exception": {
+        "type": "CancelledError",
+        "message": "stats cancelled",
+        "same_object": true
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_statistics"
+      ]
+    },
+    {
+      "case": "memory:transcript-cancel",
+      "command": "memory",
+      "args": [],
+      "exception": {
+        "type": "CancelledError",
+        "message": "transcript cancelled",
+        "same_object": true
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_statistics",
+        "context.runtime",
+        "runtime.transcript",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "transcript.query_entries:session-1"
+      ]
+    },
+    {
+      "case": "memory:zero-budget-empty-session",
+      "command": "memory",
+      "args": [],
+      "result": {
+        "output": "Memory statistics:\nSession:\n- session_id: session-1\n- in_process_turns: 0\n- tracked_turn_ids: 0\n- scoped_variables: 0\nEpisodic:\n- episodic_current_session_turns: 3\nVector:\n- short_term: 0\n- long_term: 12\n- decayed: not configured\n- active_total: 12\n- total: unavailable (store read failed)\nGraph:\n- nodes: 5\n- relationships: 4\nTranscript:\n- current_session_entries: 0\nLifecycle:\n- enabled: false\n- access_buffer_entries: 2\n- access_buffer_accesses: 9\nPriming:\n- enabled: true\n- previous_sessions: not configured\nLast context:\n- total_tokens: 0\n- message_tokens: 0\n- tool_schema_tokens: 0\n- available_budget: -5\n- utilization: 0.0%\n- severity: ",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_statistics",
+        "context.runtime",
+        "runtime.transcript",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "transcript.query_entries:session-1",
+        "context.last_budget_status",
+        "context.session",
+        "context.session",
+        "session.turn_ids",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "context.history",
+        "context.variables"
+      ]
+    },
+    {
+      "case": "memory:session-id-control-text",
+      "command": "memory",
+      "args": [],
+      "result": {
+        "output": "Memory statistics:\nSession:\n- session_id: id with control xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...\n- in_process_turns: 1\n- tracked_turn_ids: unavailable (session state unavailable)\n- scoped_variables: 1\nEpisodic:\n- episodic_current_session_turns: 3\nVector:\n- short_term: 0\n- long_term: 12\n- decayed: not configured\n- active_total: 12\n- total: unavailable (store read failed)\nGraph:\n- nodes: 5\n- relationships: 4\nTranscript:\n- current_session_entries: 2\nLifecycle:\n- enabled: false\n- access_buffer_entries: 2\n- access_buffer_accesses: 9\nPriming:\n- enabled: true\n- previous_sessions: not configured\nLast context:\n- total_tokens: unavailable (no completed turn)\n- message_tokens: unavailable (no completed turn)\n- tool_schema_tokens: unavailable (no completed turn)\n- available_budget: unavailable (no completed turn)\n- utilization: unavailable (no completed turn)\n- severity: unavailable (no completed turn)",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_statistics",
+        "context.runtime",
+        "runtime.transcript",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "transcript.query_entries:id\twith\u0000control xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "context.last_budget_status",
+        "context.session",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "context.history",
+        "context.variables"
+      ]
+    },
+    {
+      "case": "memory:all-not-configured",
+      "command": "memory",
+      "args": [],
+      "result": {
+        "output": "Memory statistics:\nSession:\n- session_id: session-1\n- in_process_turns: 1\n- tracked_turn_ids: unavailable (session state unavailable)\n- scoped_variables: 1\nEpisodic:\n- episodic_current_session_turns: not configured\nVector:\n- short_term: not configured\n- long_term: not configured\n- decayed: not configured\n- active_total: not configured\n- total: not configured\nGraph:\n- nodes: not configured\n- relationships: not configured\nTranscript:\n- current_session_entries: 2\nLifecycle:\n- enabled: not configured\n- access_buffer_entries: not configured\n- access_buffer_accesses: not configured\nPriming:\n- enabled: not configured\n- previous_sessions: not configured\nLast context:\n- total_tokens: 900\n- message_tokens: 700\n- tool_schema_tokens: 0\n- available_budget: 100\n- utilization: 87.2%\n- severity: warning",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_statistics",
+        "context.runtime",
+        "runtime.transcript",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "transcript.query_entries:session-1",
+        "context.last_budget_status",
+        "context.session",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "context.history",
+        "context.variables"
+      ]
+    },
+    {
+      "case": "insights:runtime-missing",
+      "command": "insights",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime"
+      ]
+    },
+    {
+      "case": "insights:empty-complete",
+      "command": "insights",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "No insights found.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:insight"
+      ]
+    },
+    {
+      "case": "insights:empty-incomplete",
+      "command": "insights",
+      "args": [],
+      "result": {
+        "output": "No insights found.\nWarnings:\n- memory record: store read failed\n- vector short-term: store read failed",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:insight"
+      ]
+    },
+    {
+      "case": "insights:populated",
+      "command": "insights",
+      "args": [],
+      "result": {
+        "output": "Insights:\n- record 1 text\n- record 2 text\nWarnings:\n- vector decayed: store read failed",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:insight"
+      ]
+    },
+    {
+      "case": "insights:over-limit",
+      "command": "insights",
+      "args": [],
+      "result": {
+        "output": "Insights:\n- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...\n- record 1 text\n- record 2 text\n- record 3 text\n- record 4 text\n- record 5 text\n- record 6 text\n- record 7 text\n- record 8 text\n- record 9 text\n- record 10 text\n- record 11 text\n- record 12 text\n- record 13 text\n- record 14 text\n- record 15 text\n- record 16 text\n- record 17 text\n- record 18 text\n- record 19 text\n- record 20 text\n- record 21 text\n- record 22 text\n- record 23 text\n- record 24 text\n- record 25 text\n- record 26 text\n- record 27 text\n- record 28 text\n- record 29 text\n- record 30 text\n- record 31 text\n- record 32 text\n- record 33 text\n- record 34 text\n- record 35 text\n- record 36 text\n- record 37 text\n- record 38 text\n- record 39 text\n- record 40 text\n- record 41 text\n- record 42 text\n- record 43 text\n- record 44 text\n- record 45 text\n- record 46 text\n- record 47 text\n- record 48 text\n- record 49 text\n- record 50 text\n- record 51 text\n- record 52 text\n- record 53 text\n- record 54 text\n- record 55 text\n- record 56 text\n- record 57 text\n- record 58 text\n- record 59 text\n- record 60 text\n- record 61 text\n- record 62 text\n- record 63 text\n- record 64 text\n- record 65 text\n- record 66 text\n- record 67 text\n- record 68 text\n- record 69 text\n- record 70 text\n- record 71 text\n- record 72 text\n- record 73 text\n- record 74 text\n- record 75 text\n- record 76 text\n- record 77 text\n- record 78 text\n- record 79 text\n- record 80 text\n- record 81 text\n- record 82 text\n- record 83 text\n- record 84 text\n- record 85 text\n- record 86 text\n- record 87 text\n- record 88 text\n- record 89 text\n- record 90 text\n- record 91 text\n- record 92 text\n- record 93 text\n- record 94 text\n- record 95 text\n- record 96 text\n- record 97 text\n- record 98 text\n- record 99 text",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:insight"
+      ]
+    },
+    {
+      "case": "insights:query-failure",
+      "command": "insights",
+      "args": [],
+      "result": {
+        "output": "Unable to query insights: store read failed.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:insight"
+      ]
+    },
+    {
+      "case": "insights:query-cancel",
+      "command": "insights",
+      "args": [],
+      "exception": {
+        "type": "CancelledError",
+        "message": "query cancelled",
+        "same_object": true
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:insight"
+      ]
+    },
+    {
+      "case": "summaries:runtime-missing",
+      "command": "summaries",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime"
+      ]
+    },
+    {
+      "case": "summaries:empty-complete",
+      "command": "summaries",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "No summaries found.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:summary"
+      ]
+    },
+    {
+      "case": "summaries:empty-incomplete",
+      "command": "summaries",
+      "args": [],
+      "result": {
+        "output": "No summaries found.\nWarnings:\n- memory record: store read failed\n- vector short-term: store read failed",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:summary"
+      ]
+    },
+    {
+      "case": "summaries:populated",
+      "command": "summaries",
+      "args": [],
+      "result": {
+        "output": "Summaries:\n- record 1 text\n- record 2 text\nWarnings:\n- vector decayed: store read failed",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:summary"
+      ]
+    },
+    {
+      "case": "summaries:over-limit",
+      "command": "summaries",
+      "args": [],
+      "result": {
+        "output": "Summaries:\n- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...\n- record 1 text\n- record 2 text\n- record 3 text\n- record 4 text\n- record 5 text\n- record 6 text\n- record 7 text\n- record 8 text\n- record 9 text\n- record 10 text\n- record 11 text\n- record 12 text\n- record 13 text\n- record 14 text\n- record 15 text\n- record 16 text\n- record 17 text\n- record 18 text\n- record 19 text\n- record 20 text\n- record 21 text\n- record 22 text\n- record 23 text\n- record 24 text\n- record 25 text\n- record 26 text\n- record 27 text\n- record 28 text\n- record 29 text\n- record 30 text\n- record 31 text\n- record 32 text\n- record 33 text\n- record 34 text\n- record 35 text\n- record 36 text\n- record 37 text\n- record 38 text\n- record 39 text\n- record 40 text\n- record 41 text\n- record 42 text\n- record 43 text\n- record 44 text\n- record 45 text\n- record 46 text\n- record 47 text\n- record 48 text\n- record 49 text\n- record 50 text\n- record 51 text\n- record 52 text\n- record 53 text\n- record 54 text\n- record 55 text\n- record 56 text\n- record 57 text\n- record 58 text\n- record 59 text\n- record 60 text\n- record 61 text\n- record 62 text\n- record 63 text\n- record 64 text\n- record 65 text\n- record 66 text\n- record 67 text\n- record 68 text\n- record 69 text\n- record 70 text\n- record 71 text\n- record 72 text\n- record 73 text\n- record 74 text\n- record 75 text\n- record 76 text\n- record 77 text\n- record 78 text\n- record 79 text\n- record 80 text\n- record 81 text\n- record 82 text\n- record 83 text\n- record 84 text\n- record 85 text\n- record 86 text\n- record 87 text\n- record 88 text\n- record 89 text\n- record 90 text\n- record 91 text\n- record 92 text\n- record 93 text\n- record 94 text\n- record 95 text\n- record 96 text\n- record 97 text\n- record 98 text\n- record 99 text",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:summary"
+      ]
+    },
+    {
+      "case": "summaries:query-failure",
+      "command": "summaries",
+      "args": [],
+      "result": {
+        "output": "Unable to query summaries: store read failed.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:summary"
+      ]
+    },
+    {
+      "case": "summaries:query-cancel",
+      "command": "summaries",
+      "args": [],
+      "exception": {
+        "type": "CancelledError",
+        "message": "query cancelled",
+        "same_object": true
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:summary"
+      ]
+    },
+    {
+      "case": "meta:runtime-missing",
+      "command": "meta",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime"
+      ]
+    },
+    {
+      "case": "meta:empty-complete",
+      "command": "meta",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "No meta insights found. Run /reorganize --full --execute with synthesis enabled,\nor use /help reorganize to inspect available modes.\nDecayed records: excluded from active insight, summary, and meta queries.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:meta_insight"
+      ]
+    },
+    {
+      "case": "meta:empty-incomplete",
+      "command": "meta",
+      "args": [],
+      "result": {
+        "output": "Meta insight query incomplete; no records were returned from available stores.\nRun /reorganize --full --execute only after resolving store warnings,\nor use /help reorganize to inspect available modes.\nDecayed records: excluded from active insight, summary, and meta queries.\nWarnings:\n- memory record: store read failed\n- vector short-term: store read failed",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:meta_insight"
+      ]
+    },
+    {
+      "case": "meta:populated",
+      "command": "meta",
+      "args": [],
+      "result": {
+        "output": "Meta insights:\n- record 1 text\n  id=rec-001; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 2 text\n  id=rec-002; collection=long_term; stage=active; created=2026-11-09T01:02:03+00:00\n  confidence=0.123; source_count=0; provenance=synthesis; source_ids=a, b, ...\n  verification=verified (0.900)\nDecayed records: excluded from active insight, summary, and meta queries.\nWarnings:\n- vector decayed: store read failed",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:meta_insight"
+      ]
+    },
+    {
+      "case": "meta:over-limit",
+      "command": "meta",
+      "args": [],
+      "result": {
+        "output": "Meta insights:\n- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...\n  id=rec-000; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 1 text\n  id=rec-001; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 2 text\n  id=rec-002; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 3 text\n  id=rec-003; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 4 text\n  id=rec-004; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 5 text\n  id=rec-005; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 6 text\n  id=rec-006; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 7 text\n  id=rec-007; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 8 text\n  id=rec-008; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 9 text\n  id=rec-009; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 10 text\n  id=rec-010; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 11 text\n  id=rec-011; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 12 text\n  id=rec-012; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 13 text\n  id=rec-013; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 14 text\n  id=rec-014; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 15 text\n  id=rec-015; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 16 text\n  id=rec-016; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 17 text\n  id=rec-017; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 18 text\n  id=rec-018; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 19 text\n  id=rec-019; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 20 text\n  id=rec-020; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 21 text\n  id=rec-021; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 22 text\n  id=rec-022; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 23 text\n  id=rec-023; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 24 text\n  id=rec-024; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 25 text\n  id=rec-025; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 26 text\n  id=rec-026; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 27 text\n  id=rec-027; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 28 text\n  id=rec-028; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 29 text\n  id=rec-029; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 30 text\n  id=rec-030; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 31 text\n  id=rec-031; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 32 text\n  id=rec-032; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 33 text\n  id=rec-033; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 34 text\n  id=rec-034; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 35 text\n  id=rec-035; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 36 text\n  id=rec-036; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 37 text\n  id=rec-037; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 38 text\n  id=rec-038; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 39 text\n  id=rec-039; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 40 text\n  id=rec-040; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 41 text\n  id=rec-041; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 42 text\n  id=rec-042; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 43 text\n  id=rec-043; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 44 text\n  id=rec-044; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 45 text\n  id=rec-045; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 46 text\n  id=rec-046; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 47 text\n  id=rec-047; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 48 text\n  id=rec-048; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 49 text\n  id=rec-049; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 50 text\n  id=rec-050; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 51 text\n  id=rec-051; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 52 text\n  id=rec-052; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 53 text\n  id=rec-053; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 54 text\n  id=rec-054; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 55 text\n  id=rec-055; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 56 text\n  id=rec-056; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 57 text\n  id=rec-057; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 58 text\n  id=rec-058; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 59 text\n  id=rec-059; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 60 text\n  id=rec-060; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 61 text\n  id=rec-061; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 62 text\n  id=rec-062; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 63 text\n  id=rec-063; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 64 text\n  id=rec-064; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 65 text\n  id=rec-065; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 66 text\n  id=rec-066; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 67 text\n  id=rec-067; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 68 text\n  id=rec-068; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 69 text\n  id=rec-069; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 70 text\n  id=rec-070; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 71 text\n  id=rec-071; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 72 text\n  id=rec-072; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 73 text\n  id=rec-073; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 74 text\n  id=rec-074; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 75 text\n  id=rec-075; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 76 text\n  id=rec-076; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 77 text\n  id=rec-077; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 78 text\n  id=rec-078; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 79 text\n  id=rec-079; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 80 text\n  id=rec-080; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 81 text\n  id=rec-081; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 82 text\n  id=rec-082; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 83 text\n  id=rec-083; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 84 text\n  id=rec-084; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 85 text\n  id=rec-085; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 86 text\n  id=rec-086; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 87 text\n  id=rec-087; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 88 text\n  id=rec-088; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 89 text\n  id=rec-089; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 90 text\n  id=rec-090; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 91 text\n  id=rec-091; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 92 text\n  id=rec-092; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 93 text\n  id=rec-093; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 94 text\n  id=rec-094; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 95 text\n  id=rec-095; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 96 text\n  id=rec-096; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 97 text\n  id=rec-097; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 98 text\n  id=rec-098; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\n- record 99 text\n  id=rec-099; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\nDecayed records: excluded from active insight, summary, and meta queries.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:meta_insight"
+      ]
+    },
+    {
+      "case": "meta:query-failure",
+      "command": "meta",
+      "args": [],
+      "result": {
+        "output": "Unable to query meta insights: store read failed.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:meta_insight"
+      ]
+    },
+    {
+      "case": "meta:query-cancel",
+      "command": "meta",
+      "args": [],
+      "exception": {
+        "type": "CancelledError",
+        "message": "query cancelled",
+        "same_object": true
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:meta_insight"
+      ]
+    },
+    {
+      "case": "insights:service-returns-meta-kind",
+      "command": "insights",
+      "args": [],
+      "result": {
+        "output": "Insights:\n- record 7 text\n  id=rec-007; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable\nDecayed records: excluded from active insight, summary, and meta queries.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:insight"
+      ]
+    },
+    {
+      "case": "meta:service-returns-insight-kind-empty",
+      "command": "meta",
+      "args": [],
+      "result": {
+        "output": "No meta insights found.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:meta_insight"
+      ]
+    },
+    {
+      "case": "meta:sparse-record",
+      "command": "meta",
+      "args": [],
+      "result": {
+        "output": "Meta insights:\n- \n  id=mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm...; collection=short_term; stage=unavailable; created=unavailable\n  confidence=unavailable; source_count=unavailable; provenance=unavailable; source_ids=unavailable\n  verification=unavailable (0.500)\nDecayed records: excluded from active insight, summary, and meta queries.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_records:meta_insight"
+      ]
+    },
+    {
+      "case": "entities:all",
+      "command": "entities",
+      "args": [],
+      "result": {
+        "output": "Entities:\n- Alice (person), hits=3\n- n2, hits=0\n- n3\n- \n\nRelationships:\n- Alice -[knows]-> Bob, hits=2\n- s -[linked]-> t\n-  -[]-> ",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_relationships:None"
+      ]
+    },
+    {
+      "case": "entities:nodes",
+      "command": "entities",
+      "args": [
+        "nodes"
+      ],
+      "result": {
+        "output": "Entities:\n- Alice (person), hits=3\n- n2, hits=0\n- n3\n- ",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None"
+      ]
+    },
+    {
+      "case": "entities:nodes-extra",
+      "command": "entities",
+      "args": [
+        "nodes",
+        "x"
+      ],
+      "result": {
+        "output": "Entities:\n- Alice (person), hits=3\n- n2, hits=0\n- n3\n- ",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None"
+      ]
+    },
+    {
+      "case": "entities:name",
+      "command": "entities",
+      "args": [
+        "Alice",
+        "Smith"
+      ],
+      "result": {
+        "output": "Entities:\n- Alice (person), hits=3\n- n2, hits=0\n- n3\n- \n\nRelationships:\n- Alice -[knows]-> Bob, hits=2\n- s -[linked]-> t\n-  -[]-> ",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:'Alice Smith'",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_relationships:'Alice Smith'"
+      ]
+    },
+    {
+      "case": "entities:upper-nodes",
+      "command": "entities",
+      "args": [
+        "NODES"
+      ],
+      "result": {
+        "output": "Entities:\n- Alice (person), hits=3\n- n2, hits=0\n- n3\n- \n\nRelationships:\n- Alice -[knows]-> Bob, hits=2\n- s -[linked]-> t\n-  -[]-> ",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:'NODES'",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_relationships:'NODES'"
+      ]
+    },
+    {
+      "case": "entities:quoted",
+      "command": "entities",
+      "args": [
+        "\"a",
+        "b\""
+      ],
+      "result": {
+        "output": "Entities:\n- Alice (person), hits=3\n- n2, hits=0\n- n3\n- \n\nRelationships:\n- Alice -[knows]-> Bob, hits=2\n- s -[linked]-> t\n-  -[]-> ",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:'\"a b\"'",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_relationships:'\"a b\"'"
+      ]
+    },
+    {
+      "case": "entities:runtime-missing",
+      "command": "entities",
+      "args": [
+        "nodes"
+      ],
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime"
+      ]
+    },
+    {
+      "case": "entities:empty",
+      "command": "entities",
+      "args": [],
+      "result": {
+        "output": "No entities found.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_relationships:None"
+      ]
+    },
+    {
+      "case": "entities:nodes-empty",
+      "command": "entities",
+      "args": [
+        "nodes"
+      ],
+      "result": {
+        "output": "No entities found.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None"
+      ]
+    },
+    {
+      "case": "entities:relationships-only",
+      "command": "entities",
+      "args": [],
+      "result": {
+        "output": "Relationships:\n- Alice -[knows]-> Bob, hits=2\n- s -[linked]-> t\n-  -[]-> ",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_relationships:None"
+      ]
+    },
+    {
+      "case": "entities:entities-only",
+      "command": "entities",
+      "args": [],
+      "result": {
+        "output": "Entities:\n- Alice (person), hits=3\n- n2, hits=0\n- n3\n- ",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_relationships:None"
+      ]
+    },
+    {
+      "case": "entities:over-limit",
+      "command": "entities",
+      "args": [],
+      "result": {
+        "output": "Entities:\n- e0\n- e1\n- e2\n- e3\n- e4\n- e5\n- e6\n- e7\n- e8\n- e9\n- e10\n- e11\n- e12\n- e13\n- e14\n- e15\n- e16\n- e17\n- e18\n- e19\n- e20\n- e21\n- e22\n- e23\n- e24\n- e25\n- e26\n- e27\n- e28\n- e29\n- e30\n- e31\n- e32\n- e33\n- e34\n- e35\n- e36\n- e37\n- e38\n- e39\n- e40\n- e41\n- e42\n- e43\n- e44\n- e45\n- e46\n- e47\n- e48\n- e49\n- e50\n- e51\n- e52\n- e53\n- e54\n- e55\n- e56\n- e57\n- e58\n- e59\n- e60\n- e61\n- e62\n- e63\n- e64\n- e65\n- e66\n- e67\n- e68\n- e69\n- e70\n- e71\n- e72\n- e73\n- e74\n- e75\n- e76\n- e77\n- e78\n- e79\n- e80\n- e81\n- e82\n- e83\n- e84\n- e85\n- e86\n- e87\n- e88\n- e89\n- e90\n- e91\n- e92\n- e93\n- e94\n- e95\n- e96\n- e97\n- e98\n- e99\n\nRelationships:\n-  -[r0]-> \n-  -[r1]-> \n-  -[r2]-> \n-  -[r3]-> \n-  -[r4]-> \n-  -[r5]-> \n-  -[r6]-> \n-  -[r7]-> \n-  -[r8]-> \n-  -[r9]-> \n-  -[r10]-> \n-  -[r11]-> \n-  -[r12]-> \n-  -[r13]-> \n-  -[r14]-> \n-  -[r15]-> \n-  -[r16]-> \n-  -[r17]-> \n-  -[r18]-> \n-  -[r19]-> \n-  -[r20]-> \n-  -[r21]-> \n-  -[r22]-> \n-  -[r23]-> \n-  -[r24]-> \n-  -[r25]-> \n-  -[r26]-> \n-  -[r27]-> \n-  -[r28]-> \n-  -[r29]-> \n-  -[r30]-> \n-  -[r31]-> \n-  -[r32]-> \n-  -[r33]-> \n-  -[r34]-> \n-  -[r35]-> \n-  -[r36]-> \n-  -[r37]-> \n-  -[r38]-> \n-  -[r39]-> \n-  -[r40]-> \n-  -[r41]-> \n-  -[r42]-> \n-  -[r43]-> \n-  -[r44]-> \n-  -[r45]-> \n-  -[r46]-> \n-  -[r47]-> \n-  -[r48]-> \n-  -[r49]-> \n-  -[r50]-> \n-  -[r51]-> \n-  -[r52]-> \n-  -[r53]-> \n-  -[r54]-> \n-  -[r55]-> \n-  -[r56]-> \n-  -[r57]-> \n-  -[r58]-> \n-  -[r59]-> \n-  -[r60]-> \n-  -[r61]-> \n-  -[r62]-> \n-  -[r63]-> \n-  -[r64]-> \n-  -[r65]-> \n-  -[r66]-> \n-  -[r67]-> \n-  -[r68]-> \n-  -[r69]-> \n-  -[r70]-> \n-  -[r71]-> \n-  -[r72]-> \n-  -[r73]-> \n-  -[r74]-> \n-  -[r75]-> \n-  -[r76]-> \n-  -[r77]-> \n-  -[r78]-> \n-  -[r79]-> \n-  -[r80]-> \n-  -[r81]-> \n-  -[r82]-> \n-  -[r83]-> \n-  -[r84]-> \n-  -[r85]-> \n-  -[r86]-> \n-  -[r87]-> \n-  -[r88]-> \n-  -[r89]-> \n-  -[r90]-> \n-  -[r91]-> \n-  -[r92]-> \n-  -[r93]-> \n-  -[r94]-> \n-  -[r95]-> \n-  -[r96]-> \n-  -[r97]-> \n-  -[r98]-> \n-  -[r99]-> ",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_relationships:None"
+      ]
+    },
+    {
+      "case": "entities:entity-failure",
+      "command": "entities",
+      "args": [],
+      "exception": {
+        "type": "RuntimeError",
+        "message": "entity failure",
+        "same_object": true
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None"
+      ]
+    },
+    {
+      "case": "entities:relationship-failure",
+      "command": "entities",
+      "args": [],
+      "exception": {
+        "type": "RuntimeError",
+        "message": "relationship failure",
+        "same_object": true
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_relationships:None"
+      ]
+    },
+    {
+      "case": "entities:entity-cancel",
+      "command": "entities",
+      "args": [],
+      "exception": {
+        "type": "CancelledError",
+        "message": "entity cancelled",
+        "same_object": true
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None"
+      ]
+    },
+    {
+      "case": "entities:bad-record",
+      "command": "entities",
+      "args": [],
+      "exception": {
+        "type": "AttributeError",
+        "message": "'str' object has no attribute 'get'"
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_relationships:None"
+      ]
+    },
+    {
+      "case": "entities:unicode-values",
+      "command": "entities",
+      "args": [],
+      "result": {
+        "output": "Entities:\n- \u00c5\nname (1.5), hits=False",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_entities:None",
+        "context.runtime",
+        "runtime.memory",
+        "memory.list_relationships:None"
+      ]
+    },
+    {
+      "case": "list-ingested:runtime-missing",
+      "command": "list-ingested",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime"
+      ]
+    },
+    {
+      "case": "list-ingested:attribute-missing",
+      "command": "list-ingested",
+      "args": [],
+      "result": {
+        "output": "No ingested documents.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.ingested_documents"
+      ]
+    },
+    {
+      "case": "list-ingested:empty",
+      "command": "list-ingested",
+      "args": [],
+      "result": {
+        "output": "No ingested documents.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.ingested_documents"
+      ]
+    },
+    {
+      "case": "list-ingested:documents",
+      "command": "list-ingested",
+      "args": [
+        "ignored"
+      ],
+      "result": {
+        "output": "Ingested documents:\n- /a/b.md (2 chunks): Doc\n- c.txt (0 chunks): \n- \u00c5\nd (3 chunks): \n- 7 (1.5 chunks): ",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.ingested_documents"
+      ]
+    },
+    {
+      "case": "list-ingested:missing-key",
+      "command": "list-ingested",
+      "args": [],
+      "exception": {
+        "type": "KeyError",
+        "message": "'chunk_count'"
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.ingested_documents"
+      ]
+    },
+    {
+      "case": "list-ingested:falsy-non-list",
+      "command": "list-ingested",
+      "args": [],
+      "result": {
+        "output": "No ingested documents.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.ingested_documents"
+      ]
+    },
+    {
+      "case": "list-ingested:tuple",
+      "command": "list-ingested",
+      "args": [],
+      "result": {
+        "output": "Ingested documents:\n- t (1 chunks): d",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.ingested_documents"
+      ]
+    },
+    {
+      "case": "memory:await",
+      "during": {
+        "task_done": false,
+        "events": [
+          "context.runtime",
+          "context.runtime",
+          "runtime.memory",
+          "memory.query_memory_statistics"
+        ]
+      },
+      "result": {
+        "output": "Memory statistics:\nSession:\n- session_id: session-1\n- in_process_turns: 1\n- tracked_turn_ids: unavailable (session state unavailable)\n- scoped_variables: 1\nEpisodic:\n- episodic_current_session_turns: 3\nVector:\n- short_term: 0\n- long_term: 12\n- decayed: not configured\n- active_total: 12\n- total: unavailable (store read failed)\nGraph:\n- nodes: 5\n- relationships: 4\nTranscript:\n- current_session_entries: 2\nLifecycle:\n- enabled: false\n- access_buffer_entries: 2\n- access_buffer_accesses: 9\nPriming:\n- enabled: true\n- previous_sessions: not configured\nLast context:\n- total_tokens: unavailable (no completed turn)\n- message_tokens: unavailable (no completed turn)\n- tool_schema_tokens: unavailable (no completed turn)\n- available_budget: unavailable (no completed turn)\n- utilization: unavailable (no completed turn)\n- severity: unavailable (no completed turn)",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      },
+      "events": [
+        "context.runtime",
+        "context.runtime",
+        "runtime.memory",
+        "memory.query_memory_statistics",
+        "context.runtime",
+        "runtime.transcript",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "transcript.query_entries:session-1",
+        "context.last_budget_status",
+        "context.session",
+        "context.runtime",
+        "runtime.session_identity",
+        "identity.value",
+        "context.history",
+        "context.variables"
+      ]
+    },
+    {
+      "case": "dispatch:/MEMORY extra",
+      "handled": true,
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/insights a b",
+      "handled": true,
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/summaries",
+      "handled": true,
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/meta --full",
+      "handled": true,
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/entities nodes",
+      "handled": true,
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/entities \"a b\" c",
+      "handled": true,
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/list-ingested x",
+      "handled": true,
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch: /memory",
+      "handled": false,
+      "result": null
+    },
+    {
+      "case": "dispatch://memory",
+      "handled": true,
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "dispatch:/ entities",
+      "handled": true,
+      "result": {
+        "output": "Memory runtime is not initialized.",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:memory",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:insights",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:summaries",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:meta",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:entities",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    },
+    {
+      "case": "custom:list-ingested",
+      "handled": true,
+      "result": {
+        "output": "custom",
+        "handled": true,
+        "exit_requested": false,
+        "ui_effects": []
+      }
+    }
+  ]
+}

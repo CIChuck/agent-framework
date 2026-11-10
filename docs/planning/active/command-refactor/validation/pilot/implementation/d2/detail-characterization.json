@@ -1,0 +1,453 @@
+{
+  "base_revision": "670ecca6009c00196cf7d13911f81c7fe58a0c8e",
+  "candidate_revision": "d261f021d2b8048015ea582c2ed4502898739c2c",
+  "scratch": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d2-detail-decision-b5f8zyyv",
+  "probe": "Own private Git exports, origin-verified imports and fresh pinned offline runner/guard. Repository/supplied review exports unchanged.",
+  "results": {
+    "base": {
+      "origin": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d2-detail-decision-b5f8zyyv/base/packages/friday-chat/src/friday_chat/commands/registry.py",
+      "rows": [
+        {
+          "case": "detail:False",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments: none"
+        },
+        {
+          "case": "detail:False",
+          "focus": "report",
+          "output": "/report\nCategory: custom\nUsage: /report\nDescription: Report.\nArguments: none"
+        },
+        {
+          "case": "detail:False",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:zero",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments: none"
+        },
+        {
+          "case": "detail:zero",
+          "focus": "report",
+          "output": "/report\nCategory: custom\nUsage: /report\nDescription: Report.\nArguments: none"
+        },
+        {
+          "case": "detail:zero",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:empty-string",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments: none"
+        },
+        {
+          "case": "detail:empty-string",
+          "focus": "report",
+          "output": "/report\nCategory: custom\nUsage: /report\nDescription: Report.\nArguments: none"
+        },
+        {
+          "case": "detail:empty-string",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:empty-list",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments: none"
+        },
+        {
+          "case": "detail:empty-list",
+          "focus": "report",
+          "output": "/report\nCategory: custom\nUsage: /report\nDescription: Report.\nArguments: none"
+        },
+        {
+          "case": "detail:empty-list",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:integer",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments: none"
+        },
+        {
+          "case": "detail:integer",
+          "focus": "report",
+          "exception": "TypeError",
+          "message": "sequence item 6: expected str instance, int found"
+        },
+        {
+          "case": "detail:integer",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:list",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments: none"
+        },
+        {
+          "case": "detail:list",
+          "focus": "report",
+          "exception": "TypeError",
+          "message": "sequence item 6: expected str instance, list found"
+        },
+        {
+          "case": "detail:list",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:bytes",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments: none"
+        },
+        {
+          "case": "detail:bytes",
+          "focus": "report",
+          "exception": "TypeError",
+          "message": "sequence item 6: expected str instance, bytes found"
+        },
+        {
+          "case": "detail:bytes",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:valid-string",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments: none"
+        },
+        {
+          "case": "detail:valid-string",
+          "focus": "report",
+          "output": "/report\nCategory: custom\nUsage: /report\nDescription: Report.\nArguments: none\n\nExtra detail."
+        },
+        {
+          "case": "detail:valid-string",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "argument:name:bytes",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments:\n    - b'value' [optional]: Item."
+        },
+        {
+          "case": "argument:name:bytes",
+          "focus": "report",
+          "output": "/report\nCategory: custom\nUsage: /report\nDescription: Report.\nArguments:\n  - b'value' [optional]: Item."
+        },
+        {
+          "case": "argument:name:bytes",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "argument:description:bytes",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments:\n    - item [optional]: b'value'"
+        },
+        {
+          "case": "argument:description:bytes",
+          "focus": "report",
+          "output": "/report\nCategory: custom\nUsage: /report\nDescription: Report.\nArguments:\n  - item [optional]: b'value'"
+        },
+        {
+          "case": "argument:description:bytes",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        }
+      ]
+    },
+    "candidate": {
+      "origin": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d2-detail-decision-b5f8zyyv/candidate/packages/friday-chat/src/friday_chat/commands/registry.py",
+      "rows": [
+        {
+          "case": "detail:False",
+          "focus": null,
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:False",
+          "focus": "report",
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:False",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:zero",
+          "focus": null,
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:zero",
+          "focus": "report",
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:zero",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:empty-string",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments: none"
+        },
+        {
+          "case": "detail:empty-string",
+          "focus": "report",
+          "output": "/report\nCategory: custom\nUsage: /report\nDescription: Report.\nArguments: none"
+        },
+        {
+          "case": "detail:empty-string",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:empty-list",
+          "focus": null,
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:empty-list",
+          "focus": "report",
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:empty-list",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:integer",
+          "focus": null,
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:integer",
+          "focus": "report",
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:integer",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:list",
+          "focus": null,
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:list",
+          "focus": "report",
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:list",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:bytes",
+          "focus": null,
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:bytes",
+          "focus": "report",
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "detail:bytes",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "detail:valid-string",
+          "focus": null,
+          "output": "Available commands:\nUse /help <command> for focused details.\n\nCUSTOM\n-\n/report\n  Description: Report.\n  Usage: /report\n  Arguments: none"
+        },
+        {
+          "case": "detail:valid-string",
+          "focus": "report",
+          "output": "/report\nCategory: custom\nUsage: /report\nDescription: Report.\nArguments: none\n\nExtra detail."
+        },
+        {
+          "case": "detail:valid-string",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "argument:name:bytes",
+          "focus": null,
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "argument:name:bytes",
+          "focus": "report",
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "argument:name:bytes",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        },
+        {
+          "case": "argument:description:bytes",
+          "focus": null,
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "argument:description:bytes",
+          "focus": "report",
+          "exception": "TypeError",
+          "message": "Expected a string"
+        },
+        {
+          "case": "argument:description:bytes",
+          "focus": "unknown",
+          "output": "Unknown command: /unknown. Type /help for available commands."
+        }
+      ]
+    },
+    "differences": [
+      {
+        "case": "detail:False",
+        "focus": null,
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "detail:False",
+        "focus": "report",
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "detail:zero",
+        "focus": null,
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "detail:zero",
+        "focus": "report",
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "detail:empty-list",
+        "focus": null,
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "detail:empty-list",
+        "focus": "report",
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "detail:integer",
+        "focus": null,
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "detail:integer",
+        "focus": "report",
+        "base": "TypeError",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "detail:list",
+        "focus": null,
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "detail:list",
+        "focus": "report",
+        "base": "TypeError",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "detail:bytes",
+        "focus": null,
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "detail:bytes",
+        "focus": "report",
+        "base": "TypeError",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "argument:name:bytes",
+        "focus": null,
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "argument:name:bytes",
+        "focus": "report",
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "argument:description:bytes",
+        "focus": null,
+        "base": "success",
+        "candidate": "TypeError"
+      },
+      {
+        "case": "argument:description:bytes",
+        "focus": "report",
+        "base": "success",
+        "candidate": "TypeError"
+      }
+    ]
+  },
+  "receipts": {
+    "prepare.json": {
+      "sha256": "7d3393a8fe8ed88dbbcfbe430b8139bf049d7ab48e699346d7935c0502de9d49",
+      "text": "{\n  \"exit\": 0,\n  \"output\": \"{\\\"command\\\": [\\\"uv\\\", \\\"run\\\", \\\"--offline\\\", \\\"--frozen\\\", \\\"--no-sync\\\", \\\"--no-python-downloads\\\", \\\"--with-editable\\\", \\\"packages/friday-commands\\\", \\\"python\\\", \\\"-B\\\", \\\"-c\\\", \\\"import friday_commands; print('offline editable startup passed')\\\"], \\\"exit\\\": 0, \\\"seconds\\\": 0.35}\\n   Building friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\\n      Built friday-framework-commands @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-commands\\nInstalled 1 package in 1ms\\noffline editable startup passed\\n\\nPrepared /private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d2-detail-decision-b5f8zyyv/prepared; subsequent runner commands are offline\\n\"\n}\n"
+    },
+    "base-run.json": {
+      "sha256": "f743c22a4c15cf76d5452041c36f8ff0c5f5e5fcea386c2c3afa39d966a2bcf4",
+      "text": "{\n  \"exit\": 0,\n  \"output\": \"{\\\"command\\\": [\\\"uv\\\", \\\"run\\\", \\\"--offline\\\", \\\"--frozen\\\", \\\"--no-sync\\\", \\\"--no-python-downloads\\\", \\\"--with-editable\\\", \\\"packages/friday-commands\\\", \\\"python\\\", \\\"-B\\\", \\\"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d2-detail-decision-b5f8zyyv/probe.py\\\", \\\"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d2-detail-decision-b5f8zyyv/base\\\", \\\"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d2-detail-decision-b5f8zyyv/base.json\\\"], \\\"exit\\\": 0, \\\"seconds\\\": 1.97}\\n\\n\"\n}\n"
+    },
+    "candidate-run.json": {
+      "sha256": "2fe7c706d8e6f116cf763cdc680174a631d86fe4be042f339d966054836cf8c9",
+      "text": "{\n  \"exit\": 0,\n  \"output\": \"{\\\"command\\\": [\\\"uv\\\", \\\"run\\\", \\\"--offline\\\", \\\"--frozen\\\", \\\"--no-sync\\\", \\\"--no-python-downloads\\\", \\\"--with-editable\\\", \\\"packages/friday-commands\\\", \\\"python\\\", \\\"-B\\\", \\\"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d2-detail-decision-b5f8zyyv/probe.py\\\", \\\"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d2-detail-decision-b5f8zyyv/candidate\\\", \\\"/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pilot-d2-detail-decision-b5f8zyyv/candidate.json\\\"], \\\"exit\\\": 0, \\\"seconds\\\": 1.95}\\n\\n\"\n}\n"
+    },
+    "probe.py": {
+      "sha256": "f2291460cd6ae193b6a1c5fcfdcb428a10775f50addf6cc48dac96e74be02c56",
+      "text": "import sys,json\nfrom pathlib import Path\nsource=Path(sys.argv[1]);sys.path[:0]=[str(source/'packages/friday-chat/src'),str(source/'packages/friday-commands/src')]\nfrom friday_chat.commands.registry import CommandRegistry,CommandArgument\nimport friday_chat.commands.registry as module\nassert Path(module.__file__).resolve().is_relative_to(source.resolve())\nrows=[]\nfor label,value in [('False',False),('zero',0),('empty-string',''),('empty-list',[]),('integer',5),('list',['x']),('bytes',b'extra'),('valid-string','Extra detail.')]:\n registry=CommandRegistry();registry.register('report',description='Report.',category='custom',detail=value)\n for focus in [None,'report','unknown']:\n  try: result={'output':registry.render_help(focus)}\n  except Exception as error: result={'exception':type(error).__name__,'message':str(error)}\n  rows.append({'case':'detail:'+label,'focus':focus,**result})\nfor field in ['name','description']:\n registry=CommandRegistry();kwargs={'name':'item','description':'Item.'};kwargs[field]=b'value'\n registry.register('report',description='Report.',category='custom',arguments=(CommandArgument(**kwargs),))\n for focus in [None,'report','unknown']:\n  try: result={'output':registry.render_help(focus)}\n  except Exception as error: result={'exception':type(error).__name__,'message':str(error)}\n  rows.append({'case':'argument:'+field+':bytes','focus':focus,**result})\nPath(sys.argv[2]).write_text(json.dumps({'origin':str(module.__file__),'rows':rows},indent=2)+'\\n')\n"
+    }
+  }
+}

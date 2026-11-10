@@ -1,0 +1,2121 @@
+{
+  "seat": "sol",
+  "model": "gpt-6.1-sol/high",
+  "result": "VERIFIED",
+  "scope": "MEMQ-001 D2 only; no acceptance/advancement/delivery",
+  "candidate": "9db8311e44583f6db882847ff4643094668077bf",
+  "source_commit": "3ed1d58ad8cc1e79522495da5cf19091185402d8",
+  "start": "39661e870affaf7abb160df9da53e53dfe94c822",
+  "original_baseline": "c5871054266da2340486d2043062c5fb95611c00",
+  "scratch": "/private/tmp/memq-d2-sol-review-36t4k9o6",
+  "created_utc": "2026-11-09T19:23:03.385248+00:00",
+  "mandatory_findings": [],
+  "advisory_score": 9.6,
+  "executed_counts": {
+    "neutral_cohort": 599,
+    "Chat": 1390,
+    "CLI": 155,
+    "named": 52,
+    "D2_fast": 616,
+    "D3_fast_source": 117,
+    "mutants_with_actual_CALL_assertions": 20,
+    "strict_CALL_assertion_witnesses": 91,
+    "additional_exception_failures_zero_assertion_credit": 11,
+    "unchanged_mutation_control": 52,
+    "MEMQ_each_of_two_exports": {
+      "exact": 68,
+      "approved_refusals": 2,
+      "R_superseded": 6
+    },
+    "DIAG": {
+      "exact": 68,
+      "approved_refusals": 4
+    },
+    "SESSION": 25,
+    "pilot": 196,
+    "supplemental": 4,
+    "independent_meta_oracle": 4,
+    "guard": 18,
+    "comparer": 14,
+    "types_sources": 15,
+    "embedded_raw_pairs_verified": 94,
+    "boundary_entries_each": 1961
+  },
+  "start_boundary": {
+    "logical_index_sha256": "81debcb9570c61ffe3f1ac695e705ecd77f712ecaf9ce3526cf1bcc238b0a090",
+    "head": "9db8311e44583f6db882847ff4643094668077bf",
+    "branch": "feature/command-retirement",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n",
+    "staged_diff": "",
+    "untracked": "",
+    "ignored_listing": ".DS_Store\n.friday/\n.mypy_cache/\n.mypy_cache/.gitignore\n.mypy_cache/3.10/\n.mypy_cache/3.13/\n.mypy_cache/CACHEDIR.TAG\n.pytest_cache/\n.pytest_cache/.gitignore\n.pytest_cache/CACHEDIR.TAG\n.pytest_cache/README.md\n.pytest_cache/v/\n.ruff_cache/\n.ruff_cache/.gitignore\n.ruff_cache/0.14.10/\n.ruff_cache/0.14.9/\n.ruff_cache/CACHEDIR.TAG\n.uv-cache/\n.uv-cache/.gitignore\n.uv-cache/.lock\n.uv-cache/CACHEDIR.TAG\n.uv-cache/archive-v0/\n.uv-cache/builds-v0/\n.uv-cache/environments-v2/\n.uv-cache/interpreter-v4/\n.uv-cache/sdists-v9/\n.uv-cache/simple-v21/\n.uv-cache/wheels-v6/\n.venv/\nbuild/\ndist/\ndocs/.DS_Store\ndocs/archive/.DS_Store\ndocs/archive/build-plans/.DS_Store\ndocs/archive/build-plans/completed/.DS_Store\ndocs/archive/research-notes/.DS_Store\ndocs/dev-skills/babysit-pr/scripts/__pycache__/\ndocs/planning/.DS_Store\ndocs/planning/build-plans/\ndocs/planning/build-plans/.DS_Store\ndocs/planning/upgrades/\ndocs/planning/upgrades/.DS_Store\nexperiments/__pycache__/\nexperiments/agent_quality/__pycache__/\nexperiments/agent_quality/tests/__pycache__/\nexperiments/prompt_transcript_audit/__pycache__/\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T205816Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T212326Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T230722Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T231627Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260317T015409Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260716T181954Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260718T111204Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260827T233934Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260827T235441Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260828T150229Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260828T152806Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260828T230735Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260914T192705Z.json\nexperiments/prompt_transcript_audit/tests/__pycache__/\nexperiments/provider_memory_smoke/__pycache__/\nexperiments/provider_memory_smoke/artifacts/\nexperiments/provider_memory_smoke/artifacts/extraction_rejections.log\nexperiments/provider_memory_smoke/artifacts/provider-memory-smoke-20260309T184421Z.json\nexperiments/provider_memory_smoke/config/runtime.local.yaml\nexperiments/provider_memory_smoke/tests/__pycache__/\nexperiments/workflow_artifact_smoke/__pycache__/\nexperiments/workflow_artifact_smoke/tests/__pycache__/\nexports/\npackages/friday-agent/.pytest_cache/\npackages/friday-agent/.pytest_cache/.gitignore\npackages/friday-agent/.pytest_cache/CACHEDIR.TAG\npackages/friday-agent/.pytest_cache/README.md\npackages/friday-agent/.pytest_cache/v/\npackages/friday-agent/src/friday_agent/__pycache__/\npackages/friday-agent/src/friday_agent/security/__pycache__/\npackages/friday-agent/src/friday_agent/tools/__pycache__/\npackages/friday-agent/src/friday_agent/workflows/__pycache__/\npackages/friday-agent/tests_agent/__pycache__/\npackages/friday-chat/.pytest_cache/\npackages/friday-chat/.pytest_cache/.gitignore\npackages/friday-chat/.pytest_cache/CACHEDIR.TAG\npackages/friday-chat/.pytest_cache/README.md\npackages/friday-chat/.pytest_cache/v/\npackages/friday-chat/src/friday_chat/__pycache__/\npackages/friday-chat/src/friday_chat/commands/__pycache__/\npackages/friday-chat/src/friday_chat/config_templates/__pycache__/\npackages/friday-chat/src/friday_chat/reorganization/__pycache__/\npackages/friday-chat/src/friday_chat/tools/__pycache__/\npackages/friday-chat/src/friday_chat/turns/__pycache__/\npackages/friday-chat/tests_chat/__pycache__/\npackages/friday-chat/tests_chat/compat/__pycache__/\npackages/friday-cli/.pytest_cache/\npackages/friday-cli/.pytest_cache/.gitignore\npackages/friday-cli/.pytest_cache/CACHEDIR.TAG\npackages/friday-cli/.pytest_cache/README.md\npackages/friday-cli/.pytest_cache/v/\npackages/friday-cli/src/friday_cli/__pycache__/\npackages/friday-cli/tests_cli/__pycache__/\npackages/friday-commands/src/friday_commands/__pycache__/\npackages/friday-core/.pytest_cache/\npackages/friday-core/.pytest_cache/.gitignore\npackages/friday-core/.pytest_cache/CACHEDIR.TAG\npackages/friday-core/.pytest_cache/README.md\npackages/friday-core/.pytest_cache/v/\npackages/friday-core/src/friday_core.egg-info/\npackages/friday-core/src/friday_core/__pycache__/\npackages/friday-core/src/friday_core/interfaces/__pycache__/\npackages/friday-core/src/friday_core/security/__pycache__/\npackages/friday-core/tests_core/__pycache__/\npackages/friday-finance/src/friday_finance/__pycache__/\npackages/friday-finance/src/friday_finance/providers/__pycache__/\npackages/friday-finance/src/friday_finance/providers/massive/__pycache__/\npackages/friday-finance/src/friday_finance/providers/massive/modules/__pycache__/\npackages/friday-finance/tests/__pycache__/\npackages/friday-llm/.pytest_cache/\npackages/friday-llm/.pytest_cache/.gitignore\npackages/friday-llm/.pytest_cache/CACHEDIR.TAG\npackages/friday-llm/.pytest_cache/README.md\npackages/friday-llm/.pytest_cache/v/\npackages/friday-llm/src/friday_llm/__pycache__/\npackages/friday-llm/tests_llm/__pycache__/\npackages/friday-mcp/.pytest_cache/\npackages/friday-mcp/.pytest_cache/.gitignore\npackages/friday-mcp/.pytest_cache/CACHEDIR.TAG\npackages/friday-mcp/.pytest_cache/README.md\npackages/friday-mcp/.pytest_cache/v/\npackages/friday-mcp/.ruff_cache/\npackages/friday-mcp/.ruff_cache/.gitignore\npackages/friday-mcp/.ruff_cache/0.14.10/\npackages/friday-mcp/.ruff_cache/0.14.9/\npackages/friday-mcp/.ruff_cache/CACHEDIR.TAG\npackages/friday-mcp/src/friday_mcp/__pycache__/\npackages/friday-mcp/src/friday_mcp/client/__pycache__/\npackages/friday-mcp/src/friday_mcp/server/__pycache__/\npackages/friday-mcp/src/friday_mcp/utils/__pycache__/\npackages/friday-mcp/tests_mcp/__pycache__/\npackages/friday-mcp/tests_mcp/client/__pycache__/\npackages/friday-mcp/tests_mcp/server/__pycache__/\npackages/friday-memory/.pytest_cache/\npackages/friday-memory/.pytest_cache/.gitignore\npackages/friday-memory/.pytest_cache/CACHEDIR.TAG\npackages/friday-memory/.pytest_cache/README.md\npackages/friday-memory/.pytest_cache/v/\npackages/friday-memory/src/friday_memory.egg-info/\npackages/friday-memory/src/friday_memory/__pycache__/\npackages/friday-memory/src/friday_memory/adapters/__pycache__/\npackages/friday-memory/src/friday_memory/context/__pycache__/\npackages/friday-memory/src/friday_memory/controller/__pycache__/\npackages/friday-memory/src/friday_memory/ingestion/__pycache__/\npackages/friday-memory/src/friday_memory/lifecycle/__pycache__/\npackages/friday-memory/src/friday_memory/maintenance/__pycache__/\npackages/friday-memory/src/friday_memory/models/__pycache__/\npackages/friday-memory/src/friday_memory/multi_agent/__pycache__/\npackages/friday-memory/src/friday_memory/retrieval/__pycache__/\npackages/friday-memory/tests_memory/__pycache__/\npackages/friday-memory/tests_memory/test_adapters/__pycache__/\npackages/friday-memory/tests_memory/test_context/__pycache__/\npackages/friday-memory/tests_memory/test_lifecycle/__pycache__/\npackages/friday-memory/tests_memory/test_maintenance/__pycache__/\npackages/friday-memory/tests_memory/test_retrieval/__pycache__/\npackages/friday-moltbook/.pytest_cache/\npackages/friday-moltbook/.pytest_cache/.gitignore\npackages/friday-moltbook/.pytest_cache/CACHEDIR.TAG\npackages/friday-moltbook/.pytest_cache/README.md\npackages/friday-moltbook/.pytest_cache/v/\npackages/friday-moltbook/src/friday_moltbook/__pycache__/\npackages/friday-moltbook/src/friday_moltbook/models/__pycache__/\npackages/friday-moltbook/tests_moltbook/__pycache__/\npackages/friday-runtime/.pytest_cache/\npackages/friday-runtime/.pytest_cache/.gitignore\npackages/friday-runtime/.pytest_cache/CACHEDIR.TAG\npackages/friday-runtime/.pytest_cache/README.md\npackages/friday-runtime/.pytest_cache/v/\npackages/friday-runtime/src/friday_runtime/__pycache__/\npackages/friday-runtime/tests_runtime/__pycache__/\npackages/friday-sandbox/.pytest_cache/\npackages/friday-sandbox/.pytest_cache/.gitignore\npackages/friday-sandbox/.pytest_cache/CACHEDIR.TAG\npackages/friday-sandbox/.pytest_cache/README.md\npackages/friday-sandbox/.pytest_cache/v/\npackages/friday-sandbox/.ruff_cache/\npackages/friday-sandbox/.ruff_cache/.gitignore\npackages/friday-sandbox/.ruff_cache/0.14.10/\npackages/friday-sandbox/.ruff_cache/0.14.9/\npackages/friday-sandbox/.ruff_cache/CACHEDIR.TAG\npackages/friday-sandbox/src/friday_sandbox/__pycache__/\npackages/friday-sandbox/tests_sandbox/__pycache__/\npackages/friday-speech/.pytest_cache/\npackages/friday-speech/.pytest_cache/.gitignore\npackages/friday-speech/.pytest_cache/CACHEDIR.TAG\npackages/friday-speech/.pytest_cache/README.md\npackages/friday-speech/.pytest_cache/v/\npackages/friday-speech/src/friday_speech/__pycache__/\npackages/friday-speech/src/friday_speech/adapters/__pycache__/\npackages/friday-speech/tests_speech/__pycache__/\npackages/friday-telemetry/.pytest_cache/\npackages/friday-telemetry/.pytest_cache/.gitignore\npackages/friday-telemetry/.pytest_cache/CACHEDIR.TAG\npackages/friday-telemetry/.pytest_cache/README.md\npackages/friday-telemetry/.pytest_cache/v/\npackages/friday-telemetry/src/friday_telemetry/__pycache__/\npackages/friday-telemetry/src/friday_telemetry/helpers/__pycache__/\npackages/friday-telemetry/src/friday_telemetry/models/__pycache__/\npackages/friday-telemetry/src/friday_telemetry/providers/__pycache__/\npackages/friday-telemetry/tests_telemetry/__pycache__/\npackages/friday-tools/.pytest_cache/\npackages/friday-tools/.pytest_cache/.gitignore\npackages/friday-tools/.pytest_cache/CACHEDIR.TAG\npackages/friday-tools/.pytest_cache/README.md\npackages/friday-tools/.pytest_cache/v/\npackages/friday-tools/.ruff_cache/\npackages/friday-tools/.ruff_cache/.gitignore\npackages/friday-tools/.ruff_cache/0.14.10/\npackages/friday-tools/.ruff_cache/0.14.9/\npackages/friday-tools/.ruff_cache/CACHEDIR.TAG\npackages/friday-tools/src/friday_tools/__pycache__/\npackages/friday-tools/src/friday_tools/adapters/__pycache__/\npackages/friday-tools/src/friday_tools/archive/__pycache__/\npackages/friday-tools/src/friday_tools/code/__pycache__/\npackages/friday-tools/src/friday_tools/codegen/__pycache__/\npackages/friday-tools/src/friday_tools/data/__pycache__/\npackages/friday-tools/src/friday_tools/encoding/__pycache__/\npackages/friday-tools/src/friday_tools/execution/__pycache__/\npackages/friday-tools/src/friday_tools/filesystem/__pycache__/\npackages/friday-tools/src/friday_tools/filesystem/readers/__pycache__/\npackages/friday-tools/src/friday_tools/finance/__pycache__/\npackages/friday-tools/src/friday_tools/git/__pycache__/\npackages/friday-tools/src/friday_tools/integrations/__pycache__/\npackages/friday-tools/src/friday_tools/math/__pycache__/\npackages/friday-tools/src/friday_tools/memory/__pycache__/\npackages/friday-tools/src/friday_tools/shell/__pycache__/\npackages/friday-tools/src/friday_tools/system/__pycache__/\npackages/friday-tools/src/friday_tools/text/__pycache__/\npackages/friday-tools/src/friday_tools/utility/__pycache__/\npackages/friday-tools/src/friday_tools/web/__pycache__/\npackages/friday-tools/tests_tools/__pycache__/\npackages/friday-transcript/.pytest_cache/\npackages/friday-transcript/.pytest_cache/.gitignore\npackages/friday-transcript/.pytest_cache/CACHEDIR.TAG\npackages/friday-transcript/.pytest_cache/README.md\npackages/friday-transcript/.pytest_cache/v/\npackages/friday-transcript/src/friday_transcript/__pycache__/\npackages/friday-transcript/src/friday_transcript/exporters/__pycache__/\npackages/friday-transcript/src/friday_transcript/models/__pycache__/\npackages/friday-transcript/src/friday_transcript/stores/__pycache__/\npackages/friday-transcript/tests/__pycache__/\npackages/friday-tui/\npackages/friday-tui/.pytest_cache/\npackages/friday-tui/.pytest_cache/.gitignore\npackages/friday-tui/.pytest_cache/CACHEDIR.TAG\npackages/friday-tui/.pytest_cache/README.md\npackages/friday-tui/.pytest_cache/v/\npackages/friday-tui/src/\npackages/friday-tui/src/friday_tui/\npackages/friday-tui/src/friday_tui/__pycache__/\npackages/friday-tui/tests_tui/\npackages/friday-tui/tests_tui/__pycache__/\nscripts/__pycache__/\nscripts/pypi.sh\nscripts/source-friday-chat-example-env.sh\ntests/__pycache__/\ntests/integration/__pycache__/\ntests/integration/memory/\ntests/integration/reorganization/__pycache__/\ntests/lab/.pytest_cache/\ntests/lab/.pytest_cache/.gitignore\ntests/lab/.pytest_cache/CACHEDIR.TAG\ntests/lab/.pytest_cache/README.md\ntests/lab/.pytest_cache/v/\ntests/lab/__pycache__/\n",
+    "mismatches": [],
+    "checked": 1961
+  },
+  "end_boundary": {
+    "logical_index_sha256": "81debcb9570c61ffe3f1ac695e705ecd77f712ecaf9ce3526cf1bcc238b0a090",
+    "request_sha256": "c6844a77edf3125ae2ffdf7c99be7b2b8281034545618736c8a5b99412e15d2c",
+    "manifest_sha256": "c53d7bb9e82bc31708ef5f830fa5ac4a483440f86a4d628130c01a6d8adb522d",
+    "head": "9db8311e44583f6db882847ff4643094668077bf",
+    "branch": "feature/command-retirement",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n",
+    "staged_diff": "",
+    "untracked": "",
+    "ignored_listing": ".DS_Store\n.friday/\n.mypy_cache/\n.mypy_cache/.gitignore\n.mypy_cache/3.10/\n.mypy_cache/3.13/\n.mypy_cache/CACHEDIR.TAG\n.pytest_cache/\n.pytest_cache/.gitignore\n.pytest_cache/CACHEDIR.TAG\n.pytest_cache/README.md\n.pytest_cache/v/\n.ruff_cache/\n.ruff_cache/.gitignore\n.ruff_cache/0.14.10/\n.ruff_cache/0.14.9/\n.ruff_cache/CACHEDIR.TAG\n.uv-cache/\n.uv-cache/.gitignore\n.uv-cache/.lock\n.uv-cache/CACHEDIR.TAG\n.uv-cache/archive-v0/\n.uv-cache/builds-v0/\n.uv-cache/environments-v2/\n.uv-cache/interpreter-v4/\n.uv-cache/sdists-v9/\n.uv-cache/simple-v21/\n.uv-cache/wheels-v6/\n.venv/\nbuild/\ndist/\ndocs/.DS_Store\ndocs/archive/.DS_Store\ndocs/archive/build-plans/.DS_Store\ndocs/archive/build-plans/completed/.DS_Store\ndocs/archive/research-notes/.DS_Store\ndocs/dev-skills/babysit-pr/scripts/__pycache__/\ndocs/planning/.DS_Store\ndocs/planning/build-plans/\ndocs/planning/build-plans/.DS_Store\ndocs/planning/upgrades/\ndocs/planning/upgrades/.DS_Store\nexperiments/__pycache__/\nexperiments/agent_quality/__pycache__/\nexperiments/agent_quality/tests/__pycache__/\nexperiments/prompt_transcript_audit/__pycache__/\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T205816Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T212326Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T230722Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260316T231627Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260317T015409Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260716T181954Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260718T111204Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260827T233934Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260827T235441Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260828T150229Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260828T152806Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260828T230735Z.json\nexperiments/prompt_transcript_audit/artifacts/prompt-transcript-audit-20260914T192705Z.json\nexperiments/prompt_transcript_audit/tests/__pycache__/\nexperiments/provider_memory_smoke/__pycache__/\nexperiments/provider_memory_smoke/artifacts/\nexperiments/provider_memory_smoke/artifacts/extraction_rejections.log\nexperiments/provider_memory_smoke/artifacts/provider-memory-smoke-20260309T184421Z.json\nexperiments/provider_memory_smoke/config/runtime.local.yaml\nexperiments/provider_memory_smoke/tests/__pycache__/\nexperiments/workflow_artifact_smoke/__pycache__/\nexperiments/workflow_artifact_smoke/tests/__pycache__/\nexports/\npackages/friday-agent/.pytest_cache/\npackages/friday-agent/.pytest_cache/.gitignore\npackages/friday-agent/.pytest_cache/CACHEDIR.TAG\npackages/friday-agent/.pytest_cache/README.md\npackages/friday-agent/.pytest_cache/v/\npackages/friday-agent/src/friday_agent/__pycache__/\npackages/friday-agent/src/friday_agent/security/__pycache__/\npackages/friday-agent/src/friday_agent/tools/__pycache__/\npackages/friday-agent/src/friday_agent/workflows/__pycache__/\npackages/friday-agent/tests_agent/__pycache__/\npackages/friday-chat/.pytest_cache/\npackages/friday-chat/.pytest_cache/.gitignore\npackages/friday-chat/.pytest_cache/CACHEDIR.TAG\npackages/friday-chat/.pytest_cache/README.md\npackages/friday-chat/.pytest_cache/v/\npackages/friday-chat/src/friday_chat/__pycache__/\npackages/friday-chat/src/friday_chat/commands/__pycache__/\npackages/friday-chat/src/friday_chat/config_templates/__pycache__/\npackages/friday-chat/src/friday_chat/reorganization/__pycache__/\npackages/friday-chat/src/friday_chat/tools/__pycache__/\npackages/friday-chat/src/friday_chat/turns/__pycache__/\npackages/friday-chat/tests_chat/__pycache__/\npackages/friday-chat/tests_chat/compat/__pycache__/\npackages/friday-cli/.pytest_cache/\npackages/friday-cli/.pytest_cache/.gitignore\npackages/friday-cli/.pytest_cache/CACHEDIR.TAG\npackages/friday-cli/.pytest_cache/README.md\npackages/friday-cli/.pytest_cache/v/\npackages/friday-cli/src/friday_cli/__pycache__/\npackages/friday-cli/tests_cli/__pycache__/\npackages/friday-commands/src/friday_commands/__pycache__/\npackages/friday-core/.pytest_cache/\npackages/friday-core/.pytest_cache/.gitignore\npackages/friday-core/.pytest_cache/CACHEDIR.TAG\npackages/friday-core/.pytest_cache/README.md\npackages/friday-core/.pytest_cache/v/\npackages/friday-core/src/friday_core.egg-info/\npackages/friday-core/src/friday_core/__pycache__/\npackages/friday-core/src/friday_core/interfaces/__pycache__/\npackages/friday-core/src/friday_core/security/__pycache__/\npackages/friday-core/tests_core/__pycache__/\npackages/friday-finance/src/friday_finance/__pycache__/\npackages/friday-finance/src/friday_finance/providers/__pycache__/\npackages/friday-finance/src/friday_finance/providers/massive/__pycache__/\npackages/friday-finance/src/friday_finance/providers/massive/modules/__pycache__/\npackages/friday-finance/tests/__pycache__/\npackages/friday-llm/.pytest_cache/\npackages/friday-llm/.pytest_cache/.gitignore\npackages/friday-llm/.pytest_cache/CACHEDIR.TAG\npackages/friday-llm/.pytest_cache/README.md\npackages/friday-llm/.pytest_cache/v/\npackages/friday-llm/src/friday_llm/__pycache__/\npackages/friday-llm/tests_llm/__pycache__/\npackages/friday-mcp/.pytest_cache/\npackages/friday-mcp/.pytest_cache/.gitignore\npackages/friday-mcp/.pytest_cache/CACHEDIR.TAG\npackages/friday-mcp/.pytest_cache/README.md\npackages/friday-mcp/.pytest_cache/v/\npackages/friday-mcp/.ruff_cache/\npackages/friday-mcp/.ruff_cache/.gitignore\npackages/friday-mcp/.ruff_cache/0.14.10/\npackages/friday-mcp/.ruff_cache/0.14.9/\npackages/friday-mcp/.ruff_cache/CACHEDIR.TAG\npackages/friday-mcp/src/friday_mcp/__pycache__/\npackages/friday-mcp/src/friday_mcp/client/__pycache__/\npackages/friday-mcp/src/friday_mcp/server/__pycache__/\npackages/friday-mcp/src/friday_mcp/utils/__pycache__/\npackages/friday-mcp/tests_mcp/__pycache__/\npackages/friday-mcp/tests_mcp/client/__pycache__/\npackages/friday-mcp/tests_mcp/server/__pycache__/\npackages/friday-memory/.pytest_cache/\npackages/friday-memory/.pytest_cache/.gitignore\npackages/friday-memory/.pytest_cache/CACHEDIR.TAG\npackages/friday-memory/.pytest_cache/README.md\npackages/friday-memory/.pytest_cache/v/\npackages/friday-memory/src/friday_memory.egg-info/\npackages/friday-memory/src/friday_memory/__pycache__/\npackages/friday-memory/src/friday_memory/adapters/__pycache__/\npackages/friday-memory/src/friday_memory/context/__pycache__/\npackages/friday-memory/src/friday_memory/controller/__pycache__/\npackages/friday-memory/src/friday_memory/ingestion/__pycache__/\npackages/friday-memory/src/friday_memory/lifecycle/__pycache__/\npackages/friday-memory/src/friday_memory/maintenance/__pycache__/\npackages/friday-memory/src/friday_memory/models/__pycache__/\npackages/friday-memory/src/friday_memory/multi_agent/__pycache__/\npackages/friday-memory/src/friday_memory/retrieval/__pycache__/\npackages/friday-memory/tests_memory/__pycache__/\npackages/friday-memory/tests_memory/test_adapters/__pycache__/\npackages/friday-memory/tests_memory/test_context/__pycache__/\npackages/friday-memory/tests_memory/test_lifecycle/__pycache__/\npackages/friday-memory/tests_memory/test_maintenance/__pycache__/\npackages/friday-memory/tests_memory/test_retrieval/__pycache__/\npackages/friday-moltbook/.pytest_cache/\npackages/friday-moltbook/.pytest_cache/.gitignore\npackages/friday-moltbook/.pytest_cache/CACHEDIR.TAG\npackages/friday-moltbook/.pytest_cache/README.md\npackages/friday-moltbook/.pytest_cache/v/\npackages/friday-moltbook/src/friday_moltbook/__pycache__/\npackages/friday-moltbook/src/friday_moltbook/models/__pycache__/\npackages/friday-moltbook/tests_moltbook/__pycache__/\npackages/friday-runtime/.pytest_cache/\npackages/friday-runtime/.pytest_cache/.gitignore\npackages/friday-runtime/.pytest_cache/CACHEDIR.TAG\npackages/friday-runtime/.pytest_cache/README.md\npackages/friday-runtime/.pytest_cache/v/\npackages/friday-runtime/src/friday_runtime/__pycache__/\npackages/friday-runtime/tests_runtime/__pycache__/\npackages/friday-sandbox/.pytest_cache/\npackages/friday-sandbox/.pytest_cache/.gitignore\npackages/friday-sandbox/.pytest_cache/CACHEDIR.TAG\npackages/friday-sandbox/.pytest_cache/README.md\npackages/friday-sandbox/.pytest_cache/v/\npackages/friday-sandbox/.ruff_cache/\npackages/friday-sandbox/.ruff_cache/.gitignore\npackages/friday-sandbox/.ruff_cache/0.14.10/\npackages/friday-sandbox/.ruff_cache/0.14.9/\npackages/friday-sandbox/.ruff_cache/CACHEDIR.TAG\npackages/friday-sandbox/src/friday_sandbox/__pycache__/\npackages/friday-sandbox/tests_sandbox/__pycache__/\npackages/friday-speech/.pytest_cache/\npackages/friday-speech/.pytest_cache/.gitignore\npackages/friday-speech/.pytest_cache/CACHEDIR.TAG\npackages/friday-speech/.pytest_cache/README.md\npackages/friday-speech/.pytest_cache/v/\npackages/friday-speech/src/friday_speech/__pycache__/\npackages/friday-speech/src/friday_speech/adapters/__pycache__/\npackages/friday-speech/tests_speech/__pycache__/\npackages/friday-telemetry/.pytest_cache/\npackages/friday-telemetry/.pytest_cache/.gitignore\npackages/friday-telemetry/.pytest_cache/CACHEDIR.TAG\npackages/friday-telemetry/.pytest_cache/README.md\npackages/friday-telemetry/.pytest_cache/v/\npackages/friday-telemetry/src/friday_telemetry/__pycache__/\npackages/friday-telemetry/src/friday_telemetry/helpers/__pycache__/\npackages/friday-telemetry/src/friday_telemetry/models/__pycache__/\npackages/friday-telemetry/src/friday_telemetry/providers/__pycache__/\npackages/friday-telemetry/tests_telemetry/__pycache__/\npackages/friday-tools/.pytest_cache/\npackages/friday-tools/.pytest_cache/.gitignore\npackages/friday-tools/.pytest_cache/CACHEDIR.TAG\npackages/friday-tools/.pytest_cache/README.md\npackages/friday-tools/.pytest_cache/v/\npackages/friday-tools/.ruff_cache/\npackages/friday-tools/.ruff_cache/.gitignore\npackages/friday-tools/.ruff_cache/0.14.10/\npackages/friday-tools/.ruff_cache/0.14.9/\npackages/friday-tools/.ruff_cache/CACHEDIR.TAG\npackages/friday-tools/src/friday_tools/__pycache__/\npackages/friday-tools/src/friday_tools/adapters/__pycache__/\npackages/friday-tools/src/friday_tools/archive/__pycache__/\npackages/friday-tools/src/friday_tools/code/__pycache__/\npackages/friday-tools/src/friday_tools/codegen/__pycache__/\npackages/friday-tools/src/friday_tools/data/__pycache__/\npackages/friday-tools/src/friday_tools/encoding/__pycache__/\npackages/friday-tools/src/friday_tools/execution/__pycache__/\npackages/friday-tools/src/friday_tools/filesystem/__pycache__/\npackages/friday-tools/src/friday_tools/filesystem/readers/__pycache__/\npackages/friday-tools/src/friday_tools/finance/__pycache__/\npackages/friday-tools/src/friday_tools/git/__pycache__/\npackages/friday-tools/src/friday_tools/integrations/__pycache__/\npackages/friday-tools/src/friday_tools/math/__pycache__/\npackages/friday-tools/src/friday_tools/memory/__pycache__/\npackages/friday-tools/src/friday_tools/shell/__pycache__/\npackages/friday-tools/src/friday_tools/system/__pycache__/\npackages/friday-tools/src/friday_tools/text/__pycache__/\npackages/friday-tools/src/friday_tools/utility/__pycache__/\npackages/friday-tools/src/friday_tools/web/__pycache__/\npackages/friday-tools/tests_tools/__pycache__/\npackages/friday-transcript/.pytest_cache/\npackages/friday-transcript/.pytest_cache/.gitignore\npackages/friday-transcript/.pytest_cache/CACHEDIR.TAG\npackages/friday-transcript/.pytest_cache/README.md\npackages/friday-transcript/.pytest_cache/v/\npackages/friday-transcript/src/friday_transcript/__pycache__/\npackages/friday-transcript/src/friday_transcript/exporters/__pycache__/\npackages/friday-transcript/src/friday_transcript/models/__pycache__/\npackages/friday-transcript/src/friday_transcript/stores/__pycache__/\npackages/friday-transcript/tests/__pycache__/\npackages/friday-tui/\npackages/friday-tui/.pytest_cache/\npackages/friday-tui/.pytest_cache/.gitignore\npackages/friday-tui/.pytest_cache/CACHEDIR.TAG\npackages/friday-tui/.pytest_cache/README.md\npackages/friday-tui/.pytest_cache/v/\npackages/friday-tui/src/\npackages/friday-tui/src/friday_tui/\npackages/friday-tui/src/friday_tui/__pycache__/\npackages/friday-tui/tests_tui/\npackages/friday-tui/tests_tui/__pycache__/\nscripts/__pycache__/\nscripts/pypi.sh\nscripts/source-friday-chat-example-env.sh\ntests/__pycache__/\ntests/integration/__pycache__/\ntests/integration/memory/\ntests/integration/reorganization/__pycache__/\ntests/lab/.pytest_cache/\ntests/lab/.pytest_cache/.gitignore\ntests/lab/.pytest_cache/CACHEDIR.TAG\ntests/lab/.pytest_cache/README.md\ntests/lab/.pytest_cache/v/\ntests/lab/__pycache__/\n",
+    "mismatches": [],
+    "checked": 1961,
+    "groups": {
+      "pins": 121,
+      "protected_non_docs": 1255,
+      "accepted_repository_evidence": 150,
+      "accepted_D1": 29,
+      "dirty": 2,
+      "ignored_exports": 3,
+      "preserved_external_files": 1,
+      "supplied_raw_files": 400
+    }
+  },
+  "current_pairs": [
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/start-git.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/start-preservation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/before-chat-inventory.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/preservation-current.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/ast-audit.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/canonical-current.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/mutation-results.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/capture-receipts.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/supplemental-result.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/supplemental-candidate/record_control.py",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/supplemental-candidate/record-characterization.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/audit_d2.py",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/mutations.py",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/mutation_launch.py",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/captures.py",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/supplemental.py",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/full-chat-final.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/full-chat-final.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/neutral-cohort.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/neutral-cohort.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/cli.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/cli.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/d2-fast-final.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/d2-fast-final.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/d3-fast-final.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/d3-fast-final.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/canonical-current.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/canonical-current.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/source-types2.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/source-types2.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/final-lint.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/final-lint.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/format-check.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/format-check.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/format-debt-final.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/format-debt-final.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/guard.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/guard.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/comparer-controls.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/comparer-controls.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/candidate-lock.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/candidate-lock.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/supplemental-records.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/supplemental-records.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/unchanged-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/projection-before-second-await-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/warning-dedupe-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/warning-order-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/zero-unavailable-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/missing-utilization-suffix-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/record-cap-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/entity-cap-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/double-format-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/ignored-result-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/legacy-substitution-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/decayed-collection-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/wrong-grouping-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/wrong-count-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/wrong-order-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/swallowed-cancel-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/missing-kind-refusal-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/case-insensitive-nodes-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/nodes-relationships-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/unawaited-query-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/double-query-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/memory-queries-0-observations.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/memory-queries-1-observations.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/diagnostics-0-observations.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/session-0-observations.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/pilot-observations.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/board-render.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/board-render.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/board-validate.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/board-validate.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/board-check.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/board-check.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/documentation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/documentation.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/new-format-check.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/new-format-check.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/ingest-none-baseline.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/ingest-none-baseline.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/ingest-none-candidate.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/ingest-none-candidate.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/new-cases.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prepared/new-cases.log",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/excluded-setup-unchanged-mutation.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/excluded-setup-canonical.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/excluded-keyerror-kind.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/ingest-none-baseline.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/ingest-none-candidate.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/ingest-baseline-identity.json",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/ingest_none_probe.py",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/friday-memq-d2-build-simk3k62/prove_ingest_baseline.py",
+      "match": true
+    }
+  ],
+  "mutation_witnesses": [
+    {
+      "label": "unchanged",
+      "terminal_call_assertion_witnesses": [],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "projection-before-second-await",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases",
+        "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[all]",
+        "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[upper]",
+        "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[bad-record]",
+        "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[pending]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "warning-dedupe",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[normal]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[pending]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[format-once]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "warning-order",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[normal]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[pending]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[format-once]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "zero-unavailable",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[normal]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[pending]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[format-once]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "missing-utilization-suffix",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[normal]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[failures]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[pending]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[format-once]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "record-cap",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases"
+      ],
+      "non_assertion_failures": [
+        {
+          "node": "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[cap-insight]",
+          "phase": "call",
+          "tail": "):\n            raise ValueError(\"Unknown memory record kind\")\n        object.__setattr__(\n            self, \"records\", _snapshot(self.records, MemoryRecordData, exact=True)\n        )\n        if len(self.records) > 100:\n>           raise ValueError(\"At most 100 memory records are permitted\")\nE           ValueError: At most 100 memory records are permitted\n\n/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-copies3/record-cap/packages/friday-commands/src/friday_commands/contracts.py:409: ValueError"
+        },
+        {
+          "node": "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[cap-summary]",
+          "phase": "call",
+          "tail": "):\n            raise ValueError(\"Unknown memory record kind\")\n        object.__setattr__(\n            self, \"records\", _snapshot(self.records, MemoryRecordData, exact=True)\n        )\n        if len(self.records) > 100:\n>           raise ValueError(\"At most 100 memory records are permitted\")\nE           ValueError: At most 100 memory records are permitted\n\n/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-copies3/record-cap/packages/friday-commands/src/friday_commands/contracts.py:409: ValueError"
+        },
+        {
+          "node": "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[cap-meta_insight]",
+          "phase": "call",
+          "tail": "):\n            raise ValueError(\"Unknown memory record kind\")\n        object.__setattr__(\n            self, \"records\", _snapshot(self.records, MemoryRecordData, exact=True)\n        )\n        if len(self.records) > 100:\n>           raise ValueError(\"At most 100 memory records are permitted\")\nE           ValueError: At most 100 memory records are permitted\n\n/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-copies3/record-cap/packages/friday-commands/src/friday_commands/contracts.py:409: ValueError"
+        }
+      ]
+    },
+    {
+      "label": "entity-cap",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases"
+      ],
+      "non_assertion_failures": [
+        {
+          "node": "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[cap]",
+          "phase": "call",
+          "tail": "t='', hit_count='')))\n\n    def __post_init__(self) -> None:\n        object.__setattr__(\n            self, \"entities\", _snapshot(self.entities, GraphEntityData, exact=True)\n        )\n        if len(self.entities) > 100:\n>           raise ValueError(\"At most 100 graph entities are permitted\")\nE           ValueError: At most 100 graph entities are permitted\n\n/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-copies3/entity-cap/packages/friday-commands/src/friday_commands/contracts.py:489: ValueError"
+        }
+      ]
+    },
+    {
+      "label": "double-format",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[records-meta_insight]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "ignored-result",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_once_only_delegation[memory]",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_once_only_delegation[insights]",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_once_only_delegation[summaries]",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_once_only_delegation[meta]",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_once_only_delegation[entities]",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_once_only_delegation[list-ingested]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[normal]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[failures]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[pending]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[format-once]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[empty-insight]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[empty-summary]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[empty-meta_insight]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[records-meta_insight]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[cap-insight]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[cap-summary]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[cap-meta_insight]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[error-insight]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[error-summary]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[error-meta_insight]",
+        "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[all]",
+        "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[nodes]",
+        "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[upper]",
+        "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[pending]",
+        "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[cap]",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_real_app_sequence",
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[persisted]",
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[malformed]",
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[short-failure]",
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[long-failure]",
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[fake]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "legacy-substitution",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_once_only_delegation[memory]",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_once_only_delegation[insights]",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_once_only_delegation[summaries]",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_once_only_delegation[meta]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[normal]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[pending]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[format-once]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[records-insight]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[records-summary]",
+        "tests_chat/test_command_memory_queries.py::test_memory_record_projection_and_rendering[records-meta_insight]",
+        "tests_chat/test_command_memory_queries.py::test_memory_query_real_app_sequence"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "decayed-collection",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[persisted]",
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[malformed]",
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[short-failure]",
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[long-failure]",
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[cancel]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "wrong-grouping",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[persisted]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "wrong-count",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[persisted]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "wrong-order",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[persisted]",
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[malformed]",
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[short-failure]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "swallowed-cancel",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_ingested_listing_reads_persisted_metadata[cancel]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "missing-kind-refusal",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "case-insensitive-nodes",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases",
+        "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[upper]"
+      ],
+      "non_assertion_failures": []
+    },
+    {
+      "label": "nodes-relationships",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases"
+      ],
+      "non_assertion_failures": [
+        {
+          "node": "tests_chat/test_command_memory_queries.py::test_entities_projection_and_rendering[nodes]",
+          "phase": "call",
+          "tail": " None\n        data = await port.graph_snapshot(name, True)\n        if type(data) is not GraphData:\n            raise TypeError(\"Expected a GraphData\")\n        if nodes_only and data.relationships:\n>           raise ValueError(\"Nodes-only data must not carry relationships\")\nE           ValueError: Nodes-only data must not carry relationships\n\n/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-copies3/nodes-relationships/packages/friday-commands/src/friday_commands/memory_queries.py:149: ValueError"
+        }
+      ]
+    },
+    {
+      "label": "unawaited-query",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[store-cancel]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[transcript-cancel]"
+      ],
+      "non_assertion_failures": [
+        {
+          "node": "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases",
+          "phase": "call",
+          "tail": "  self._state = _State.EXPIRED\n    \n            if self._task.uncancel() <= self._cancelling and exc_type is not None:\n                # Since there are no new cancel requests, we're\n                # handling this.\n                if issubclass(exc_type, exceptions.CancelledError):\n>                   raise TimeoutError from exc_val\nE                   TimeoutError\n\n/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/asyncio/timeouts.py:116: TimeoutError"
+        },
+        {
+          "node": "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[normal]",
+          "phase": "call",
+          "tail": "request, execution, \"memory\")\n        if not available():\n            return CommandOutcome(data=MemoryUnavailableData(\"runtime_missing\"))\n        data = port.memory_statistics()\n        if type(data) is not MemoryStatisticsData:\n>           raise TypeError(\"Expected a MemoryStatisticsData\")\nE           TypeError: Expected a MemoryStatisticsData\n\n/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-copies3/unawaited-query/packages/friday-commands/src/friday_commands/memory_queries.py:118: TypeError"
+        },
+        {
+          "node": "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[failures]",
+          "phase": "call",
+          "tail": "request, execution, \"memory\")\n        if not available():\n            return CommandOutcome(data=MemoryUnavailableData(\"runtime_missing\"))\n        data = port.memory_statistics()\n        if type(data) is not MemoryStatisticsData:\n>           raise TypeError(\"Expected a MemoryStatisticsData\")\nE           TypeError: Expected a MemoryStatisticsData\n\n/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-copies3/unawaited-query/packages/friday-commands/src/friday_commands/memory_queries.py:118: TypeError"
+        },
+        {
+          "node": "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[pending]",
+          "phase": "call",
+          "tail": "request, execution, \"memory\")\n        if not available():\n            return CommandOutcome(data=MemoryUnavailableData(\"runtime_missing\"))\n        data = port.memory_statistics()\n        if type(data) is not MemoryStatisticsData:\n>           raise TypeError(\"Expected a MemoryStatisticsData\")\nE           TypeError: Expected a MemoryStatisticsData\n\n/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-copies3/unawaited-query/packages/friday-commands/src/friday_commands/memory_queries.py:118: TypeError"
+        },
+        {
+          "node": "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[format-once]",
+          "phase": "call",
+          "tail": "request, execution, \"memory\")\n        if not available():\n            return CommandOutcome(data=MemoryUnavailableData(\"runtime_missing\"))\n        data = port.memory_statistics()\n        if type(data) is not MemoryStatisticsData:\n>           raise TypeError(\"Expected a MemoryStatisticsData\")\nE           TypeError: Expected a MemoryStatisticsData\n\n/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-copies3/unawaited-query/packages/friday-commands/src/friday_commands/memory_queries.py:118: TypeError"
+        },
+        {
+          "node": "tests_chat/test_command_memory_queries.py::test_memory_query_real_app_sequence",
+          "phase": "call",
+          "tail": "request, execution, \"memory\")\n        if not available():\n            return CommandOutcome(data=MemoryUnavailableData(\"runtime_missing\"))\n        data = port.memory_statistics()\n        if type(data) is not MemoryStatisticsData:\n>           raise TypeError(\"Expected a MemoryStatisticsData\")\nE           TypeError: Expected a MemoryStatisticsData\n\n/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-copies3/unawaited-query/packages/friday-commands/src/friday_commands/memory_queries.py:118: TypeError"
+        }
+      ]
+    },
+    {
+      "label": "double-query",
+      "terminal_call_assertion_witnesses": [
+        "tests_chat/test_command_memory_queries.py::test_memory_query_metadata_and_frozen_cases",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[normal]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[failures]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[pending]",
+        "tests_chat/test_command_memory_queries.py::test_memory_statistics_projection_order_and_failures[format-once]"
+      ],
+      "non_assertion_failures": []
+    }
+  ],
+  "own_artifacts": [
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/aggregate-complete.diff",
+      "sha256": "14db154b7c5e5d73518707e04771ee9ca2bec0629ed46cd496ad2fa44f73ae4b",
+      "bytes": 11392222
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ast-audit.json",
+      "sha256": "362bac94ad469dc1dcec66744c057f16eb41c4a32b3785c3035b105017b97385",
+      "bytes": 573
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/audit_d2.py",
+      "sha256": "b587a4d5d0d066cc4da6c6b4f8cd5dfb5bd09fc2636b301022db51a0ef6b154f",
+      "bytes": 6532
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/baseline-diagnostics.json",
+      "sha256": "1dcd83ecd8d2e4e739099eb495e43f98b78439d7bb14e3bebc167ba1b8514e98",
+      "bytes": 100069
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/baseline-memory-queries.json",
+      "sha256": "ce5da59c62ce761354b2977fcb0c3f5816a858c7e22d4873ae60e4d2613db6b9",
+      "bytes": 148578
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/baseline-session.json",
+      "sha256": "3210852a23743420fdcc61e2c213dedc632431c8d39b831cca36da3e2595ed46",
+      "bytes": 70315
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/board-check-own.log",
+      "sha256": "eb078f316913cf295f174f7a48f8aad10af837748c61625042637550c0cb31ba",
+      "bytes": 264
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/board-validate-own.log",
+      "sha256": "29d2ec6175d458d70cb2408881f3d634d4d607beadc057421442e69548f4ed63",
+      "bytes": 271
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/boundary-end.json",
+      "sha256": "546963bd5a854d3f6ec87135c7378d38e99d6bff5c5b61d9d12c26a997140fb2",
+      "bytes": 13826
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/boundary-interim.json",
+      "sha256": "546963bd5a854d3f6ec87135c7378d38e99d6bff5c5b61d9d12c26a997140fb2",
+      "bytes": 13826
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/boundary-start.json",
+      "sha256": "f7287ecb92c500028c4c48d3ae428e4a9ffe197bf4c9e2b2d5c04d7d7a6e2c8a",
+      "bytes": 13410
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/boundary.py",
+      "sha256": "f07215fb5d8f9fcea24a31a4e23246b4bef0deac8db0dca6ad2f3f6d4c9f4d0b",
+      "bytes": 2099
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/candidate-lock.log",
+      "sha256": "4f941db61f9acc25d401c04826d6750ae2ca338da604d4ad7b500aad6e1b64da",
+      "bytes": 331
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/canonical-suites.json",
+      "sha256": "7dd4726c8f21914dfd5124ab5a35d9a84472c20319c299e1673bfb841b2818a2",
+      "bytes": 6166
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/canonical_suites.py",
+      "sha256": "27d79d5ae54f30266daa9eb642faecdd9138f9beb5c42b29fe205b616d3f253b",
+      "bytes": 1146
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/capture-diagnostics.py",
+      "sha256": "8f7a55d5ae773774fa5ef6125215f29ea35b4788af13074451cdd5fc4e2e2464",
+      "bytes": 11572
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/capture-memory-queries.py",
+      "sha256": "eafcfcbc45e04a11cd04bfc8203d7e4e953f1cc7a5be85b9ca9b2e1d113f0f8a",
+      "bytes": 19393
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/capture-receipts.json",
+      "sha256": "3fc40e032c7a18de65c0f8aa110a62086d8e364a38c17c82c1eaf4cec2408bd6",
+      "bytes": 19813
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/capture-session.py",
+      "sha256": "5c72294b80ebf63eb68330b7d74e1bb7090b077ab175eb01069f9f84a3e3bd24",
+      "bytes": 8274
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/captures.py",
+      "sha256": "eba471ede97e508af25d74f8e2e3ce65a4988479eaa37b45d94d53e7b83293ca",
+      "bytes": 3721
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/case-insensitive-nodes-mutation.json",
+      "sha256": "a84abb79d39af853d149ac0d4a8820d13e81ebe14a7aa739db495cbfdfeb9b40",
+      "bytes": 54358
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/case-insensitive-nodes-mutation.log",
+      "sha256": "641b150199b3a29a0bfcf34685a47b460b6b1a168f705306f9a83839e544dd2a",
+      "bytes": 6557
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/checks.json",
+      "sha256": "6d93b40996ca6d4bff0f40faaa9a3cea5e51048c4a116099de0ab6ba9fc59ea3",
+      "bytes": 18932
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/cli-own.log",
+      "sha256": "988169be1563588c4681186a57bcd65e163f6c91b5e25c3b40c81595a19ffcdd",
+      "bytes": 623
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/compare-diagnostics.py",
+      "sha256": "4b444677044e32c517dfec2374eab72bd610b861592f0e10ee0a21d072cb19fa",
+      "bytes": 4307
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/compare-memory-queries.py",
+      "sha256": "afd38e74dd70ee2e3ab3cc43184c45e5d444c6fb0e1877e274a82d00705ff606",
+      "bytes": 7860
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/compare-session.py",
+      "sha256": "c333db8601d7f713fd86183714e241f50731dd27877fd2cafac692c978f57afa",
+      "bytes": 2608
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/comparer-controls.log",
+      "sha256": "b52236ea81bfa6644b25ec731c8375a0b6509c1a36f629fb28234a534581c3df",
+      "bytes": 503
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/d2-complete.diff",
+      "sha256": "5f6127c44943e0992ae8742d9c96a207a23d71485ff1fc8719eff0c8ade00f5c",
+      "bytes": 4152277
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/d2-fast-final-own.log",
+      "sha256": "ba4ff8184545bad626f9150c1108fa47121704f867a2a548ad37e8e9a635a152",
+      "bytes": 1716
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/d3-fast-final-own.log",
+      "sha256": "aecc3c57795e795b6737289b368097394c951b7da7900ec33c55359a94da3a30",
+      "bytes": 889
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/decayed-collection-mutation.json",
+      "sha256": "65b7943c39a9994a73cdfde3de7e9e94bc2b9e26c1c58753755ed7e97298824f",
+      "bytes": 89946
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/decayed-collection-mutation.log",
+      "sha256": "6231bb606fd1033a1275b56dbdda570b4c267540bef6ca116451067df1cd6c3a",
+      "bytes": 6545
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/diagnostics-0-capture.log",
+      "sha256": "7d8c19e1be3e264215cacb774b05a5c504b90d90462e97a783574f55bfb57623",
+      "bytes": 449
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/diagnostics-0-compare.log",
+      "sha256": "347e82bfa2a9cd00c64b8b4276210058494ad0d5db953480970eebc7b2488fc0",
+      "bytes": 617
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/diagnostics-0-observations.json",
+      "sha256": "1708f7b91624ddb041ed827d64e30b40ce4cc8e996afb92ce1c5739d39aea5fa",
+      "bytes": 91113
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/documentation-own.log",
+      "sha256": "635cb28dbfbcf0d7063e91a408dfe3167de72aebbc60de11f33f83b90a22b91e",
+      "bytes": 296
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/double-format-mutation.json",
+      "sha256": "27f3697fb384daf905c41246c893b1029be8ef09d957a0091f37ace04155ca84",
+      "bytes": 50989
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/double-format-mutation.log",
+      "sha256": "2f9c09a672e047e3fea5d4a97439e60c220e28902279c5294713dcac5c2a314d",
+      "bytes": 6532
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/double-query-mutation.json",
+      "sha256": "8578bf8eea0fcb6d37231323bc2ff91529abbecc5792dc27af2fec44825d5c93",
+      "bytes": 65796
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/double-query-mutation.log",
+      "sha256": "5b21e6d502964c303fba290d4a77ef7010286f6337fd7ce02c590b23b4ab37dc",
+      "bytes": 6527
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/entity-cap-mutation.json",
+      "sha256": "072f6358b2705640ef2c37d3429df77818f98fe86e1009ca16766cbcc0fc4902",
+      "bytes": 53262
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/entity-cap-mutation.log",
+      "sha256": "6b9badb155d4bbbce47e818f4c75dceeadcf5c4de33fbdc281249abde61bccb1",
+      "bytes": 6520
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/final-lint-own.log",
+      "sha256": "f12365a04e4aee2ebda316f90c9994a4d915a9c920bd9701efbc143fadbdef57",
+      "bytes": 703
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/format-check-own.log",
+      "sha256": "89886610aa584308fa1329970f405a36e5862369558433c1eb89f94f17a6cc31",
+      "bytes": 952
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/format-debt-final-own.log",
+      "sha256": "97c2e4d2a33a630dabd8c6b5e906aee962026a2b7a6185936be0451bf64f746c",
+      "bytes": 471
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/full-chat-final-own.log",
+      "sha256": "d3860efcd15c847e011c31a7a5e45df0f0420c95bf2693928d58a59207e3cdef",
+      "bytes": 2597
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/guard.log",
+      "sha256": "3e899b6a1c65066b20d0319e04f9b8c66b83b9401ab7a25a095c25ec235efa55",
+      "bytes": 391
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ignored-result-mutation.json",
+      "sha256": "c0f1249f2ef0bbbfbc892e5dce1711a68acf566b23972ab0ab35f37f766d2914",
+      "bytes": 210105
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ignored-result-mutation.log",
+      "sha256": "92aac86e332cb5a28cb5ff7c3b628e72a28f969b81e1113c9a62a0571bf9e6ce",
+      "bytes": 6533
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/independent_meta.json",
+      "sha256": "9e7a4725e7dd67c9b255fc727cb199bcb76f6217b85c2c4fe3fc4f5d0bde1263",
+      "bytes": 4762
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/independent_meta.py",
+      "sha256": "a39a151b27af43676f4ae26ca3cdf9f17f9508b0d1d5e3e26c197338be9daf87",
+      "bytes": 2341
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest-baseline-identity.json",
+      "sha256": "0f05f5b73c8c58094d4621125f1d6e4e790c9276a6716103b3be7a451ea8c094",
+      "bytes": 1971
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest-none-baseline.json",
+      "sha256": "48295ca5bc3bbadfab47b1baa29b999a0b0354428f8185a5556e7dc7f77a58cc",
+      "bytes": 1131
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest-none-baseline.log",
+      "sha256": "e744a66338827043b2991e319fa7bcc54c26c27f8c094abc81bbbe843810e50c",
+      "bytes": 532
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest-none-candidate.json",
+      "sha256": "24ae410edf8f530501eb5ddc6b9c9026a6d9824d5fe6597445c1bb88f92a9e5d",
+      "bytes": 1134
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest-none-candidate.log",
+      "sha256": "a42161333ee887edb32e7a6231a6d154272b08555335830c1e7ad0babf11e6f5",
+      "bytes": 537
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/ingest_none_probe.py",
+      "sha256": "d723d58018e8799f1c06dbbd31f0c6d8f76c46e1a3e9be4f9463111aece14b32",
+      "bytes": 1563
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/legacy-substitution-mutation.json",
+      "sha256": "fee41c22c136c44757f7f3da9934fa46210e35b7cad98ff7f6ed40467ff75733",
+      "bytes": 109654
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/legacy-substitution-mutation.log",
+      "sha256": "1c987fea8733d6f91477e442f6b7a0fe3643d9e7d37196408b21031e20a41cd5",
+      "bytes": 6548
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-0-capture.log",
+      "sha256": "6c9816f759d6d56af7b3fdeff976ff02386f680937fc6484b3d16e492c6fabbb",
+      "bytes": 464
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-0-compare.log",
+      "sha256": "78affaa1f7e4691235499985fcf78fa978e8c8e3b57e59aeb0be01a7e4518c74",
+      "bytes": 705
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-0-observations.json",
+      "sha256": "eae3177e640db1aa09edc29174f9a2f514a12cb41bafa018505e9d05fc75a356",
+      "bytes": 124661
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-1-capture.log",
+      "sha256": "608f9160fabef4e573737c63b846de9e22827cf9bc24a04f7f937ae097c098b1",
+      "bytes": 461
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-1-compare.log",
+      "sha256": "6994a2028cdfe95a1423e4ff4b6668451b10b3e92c3601cf71f3100d0b8a078e",
+      "bytes": 705
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/memory-queries-1-observations.json",
+      "sha256": "18bb8779d96e4ce837369848ec3a84bba465a1400db96c7a57ef8e5652f59149",
+      "bytes": 123758
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/metric_probe.json",
+      "sha256": "a5b6c4183b562c0c4372882ff8217881fd70819dbf7b721d3238dce3b8e1a2d3",
+      "bytes": 339
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/metric_probe.py",
+      "sha256": "9ccf1ccfb7d1db5a8585ef268d181a7e373b85df91cc28de698952dde59e6d98",
+      "bytes": 1499
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/missing-kind-refusal-mutation.json",
+      "sha256": "f652dfac08e1692979fa3227f74f75cc1e3a088a11f08e044d92d1593c14df80",
+      "bytes": 48054
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/missing-kind-refusal-mutation.log",
+      "sha256": "e8042d61070a91655a087cfe51653531403a3bfde41c40c4cab592cf3eaeb2de",
+      "bytes": 4101
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/missing-utilization-suffix-mutation.json",
+      "sha256": "936a3673cd641a5f1110874335f0a8d2869ab3c29accf000c20e1b9bfbc74287",
+      "bytes": 72362
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/missing-utilization-suffix-mutation.log",
+      "sha256": "6e03e7d75d7c749bf1cabfd09c22f288090731c004f6e8c1dbc714868bd69be2",
+      "bytes": 6568
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-results.json",
+      "sha256": "648e89372a957e721fd56707a37ab1a6125f7c061f6e86674ed3bfccba5ad730",
+      "bytes": 28790
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/mutation-witness-audit.json",
+      "sha256": "0977849acb4f3799056074b167dfc0f62115191dc830f7cd6128491ee2bc3cd5",
+      "bytes": 19985
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/mutation_launch.py",
+      "sha256": "9008eaa1241b114330476f1e38fe5883e44c796caf22c4dd13564c688e92df57",
+      "bytes": 1568
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/mutations.py",
+      "sha256": "be18714abee72acd1c98a5c8c0d4bb8f7b8abdcf96cd0a816f1f16746285c98e",
+      "bytes": 6190
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/neutral-cohort-own.log",
+      "sha256": "8670423aff84bad1aa23d08f487c00ebefe844496c8f5d71356e3eafe3b98a00",
+      "bytes": 1159
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/new-cases-own.log",
+      "sha256": "1fbfc71c182b512a671829616b3c6541cf1ada88cc19dfeabe4553709de74824",
+      "bytes": 501
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/new-format-check-own.log",
+      "sha256": "eb6071cee24c6619833184cad97e2256d42aafae61b8e53ec35aa589f951a8d0",
+      "bytes": 424
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/nodes-relationships-mutation.json",
+      "sha256": "79f88259d5e747d098c23618e1c34e918f4196fe2fb3157f05ff041cfdf56290",
+      "bytes": 54902
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/nodes-relationships-mutation.log",
+      "sha256": "886ea392018709ef5fa80ae4e23448bf3e7397d204f92fb1c6eb8dbedecd1571",
+      "bytes": 6547
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-cli.json",
+      "sha256": "e5bd46c3cbb187b1bb308ed023fb65ea6a108584e86711cb117cdd775472c54c",
+      "bytes": 30740
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-cli.log",
+      "sha256": "c97b7afc3bf1481d4bc584e86351afe9591a94fff3b234f0ca434628ce3c640e",
+      "bytes": 1139
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-d2-fast-final.json",
+      "sha256": "0707d9fa49ca3499f22202abfc5957ddc229d0e464200c22ecc4c70055238c98",
+      "bytes": 40696
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-d2-fast-final.log",
+      "sha256": "b32769501790ec83cd3b592db19536bc69cb514081bee6e57a995d470f7fa3f8",
+      "bytes": 2233
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-d3-fast-final.json",
+      "sha256": "3a7560276bcb8a741cb31ddfc582432e86975963bc156ca2065296ae425ea495",
+      "bytes": 40744
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-d3-fast-final.log",
+      "sha256": "c97665c6b985722114bf06464fc2aace3cfb1150b3489e349fb82df35b16b853",
+      "bytes": 1406
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-full-chat-final.json",
+      "sha256": "1a71c54e3e52022195fb38d39c01280b513cfbbef03b30023c2cd6e1d64a78a3",
+      "bytes": 147684
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-full-chat-final.log",
+      "sha256": "83c0c9f6120cefd961db12ea1bd9e0fbcd5ea20ec565edd78ee01d924739b332",
+      "bytes": 6471
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-neutral-cohort.json",
+      "sha256": "e5bd46c3cbb187b1bb308ed023fb65ea6a108584e86711cb117cdd775472c54c",
+      "bytes": 30740
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-neutral-cohort.log",
+      "sha256": "7d8bdc5566c64ac1454e90051f7dc556605cc78234b141eaea494741a1cf2f0f",
+      "bytes": 1692
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-new-cases.json",
+      "sha256": "763e30dd4ace24fc5af648257b0e069a27047161c3f45df3fbab4c126ca4f659",
+      "bytes": 40234
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/origins-new-cases.log",
+      "sha256": "bf129f638a66e04545949f96afae04732621a39850e1cf7f3de81933d3091de5",
+      "bytes": 1016
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/pairs.json",
+      "sha256": "f6a7ab1d020425e003ec05c1b02a4e175f2ab1da4ac10f08278ff92b3050deb0",
+      "bytes": 10619
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/pilot-capture.log",
+      "sha256": "b0bc0504b5da15ab30ae1553a8ea55cd955b19db897daef01acac7bd517f35e8",
+      "bytes": 578
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/pilot-compare.log",
+      "sha256": "73c2fe7e38928925b6b125db47a88f15fb4b980c67fe026c8d05425b041e2262",
+      "bytes": 624
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/pilot-observations.json",
+      "sha256": "9548b4deb9b104fa1e815628c99c4e40ee00a33f1be9fe9d9619079934259f18",
+      "bytes": 240185
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/primary-document-identities.json",
+      "sha256": "c671d31ac4a106204d75307fbe2e3f6d7892ffb6445dc775a54d67b051b39e66",
+      "bytes": 4556
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/projection-before-second-await-mutation.json",
+      "sha256": "f6102f9ea4122d516aeaeea6052bd075964f997227f0fb32717d45ed77628fa2",
+      "bytes": 68118
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/projection-before-second-await-mutation.log",
+      "sha256": "5083f0e4ad65e801b2ae0e0f7afce8019ed79be6af72afeda735a55154192e8d",
+      "bytes": 6581
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prove_ingest_baseline.py",
+      "sha256": "a69665f463be7efdf43dbb6c962be4da1c64bd46e20297df490f5490e3384370",
+      "bytes": 2521
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/record-cap-mutation.json",
+      "sha256": "7ae3117054ecbb7d482a7305e12173cb1b9d33dafc15a5f2bd0fc574f3cef33a",
+      "bytes": 68751
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/record-cap-mutation.log",
+      "sha256": "d0a3a58bde05697e78abe20042345f31c0d027040f6de833740c1cd09cb42012",
+      "bytes": 6522
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/report.md",
+      "sha256": "2290e508f5b3ddac93c293a99a26b53942af04181c07a608ded9011791ecee1e",
+      "bytes": 17516
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/run_checks.py",
+      "sha256": "d61b5459100cd061a49d0186c460db606d51e239c9e5cc7b6018d79d83e30dcd",
+      "bytes": 1285
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/scope-audit.json",
+      "sha256": "8d130a5783e469b55cb232ab83ba5a572638ffc4706450d83c43f9c91ddb75a3",
+      "bytes": 3857
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/session-0-capture.log",
+      "sha256": "619eebfcd1533b453a7b6dfd1f57fa3e14c7db33053829bfc02db36d5c7719eb",
+      "bytes": 479
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/session-0-compare.log",
+      "sha256": "7f184f46fc0dec62ebe7e14da093e1a0ebf93cc70c040bf9091e37e7312db99d",
+      "bytes": 586
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/session-0-observations.json",
+      "sha256": "fd522d0df4b509f8fa3d762473a858b576d4a39db4725d4e3e5e484e5387698e",
+      "bytes": 61084
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/source-changed-refusal.log",
+      "sha256": "0c57d9e0db7f76c4f5c740c0dc20413ca66b11689589a4d188a0982c4d72ac97",
+      "bytes": 1603
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/source-extra-refusal.log",
+      "sha256": "23c7358478a03c4a80f0fd165b0731599eeecc4727b3c3147689c5d6d6072d38",
+      "bytes": 1559
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/source-types2-own.log",
+      "sha256": "09c2e18ecfa8fb9ee72f234deaf1c5149ee58c771ab0831ade8e7ffffdf888af",
+      "bytes": 791
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental-records.log",
+      "sha256": "5841677193f5201b1094624d0333ae63fced96aa6e77a1499a433478363537bb",
+      "bytes": 2198
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental-result.json",
+      "sha256": "56c0713ac9b474177c2de49610485454abaee46aeb4a2a8cb988974a0514d3c6",
+      "bytes": 1033
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental.py",
+      "sha256": "9cc23adeb79dc48891a76514f91822c93b22adf3dc1f4df12aff55be510d53ef",
+      "bytes": 2847
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/swallowed-cancel-mutation.json",
+      "sha256": "643ce41511e11f760a66710c14517d9eb533b26d6b38d5661f5d3362987f2d83",
+      "bytes": 52833
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/swallowed-cancel-mutation.log",
+      "sha256": "43a046ed9f82b187e9f2e3d4c14462ba63d9fe0e712914c8950228b0eacc5218",
+      "bytes": 6539
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/unawaited-query-mutation.json",
+      "sha256": "c01c7a996be58384c5e2bef1627496d9c802ba3a582839457a283ac1b296d0b3",
+      "bytes": 94838
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/unawaited-query-mutation.log",
+      "sha256": "a90b282814c05bc5c792b5d45552b87bfc17df4637a9682b9e714f2b1c67254a",
+      "bytes": 6537
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/unchanged-mutation.json",
+      "sha256": "4410c07c2bd5de56f7ee92a1522400871425640d5f4784101225c811422b7f15",
+      "bytes": 43552
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/unchanged-mutation.log",
+      "sha256": "315650c9f24cb1fae4edc289da6a9c1179f8d291de6763609089d4d1f192286b",
+      "bytes": 1107
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/warning-dedupe-mutation.json",
+      "sha256": "6af8036dae1621e0431563f13c69e756e73ac83520aa906e1f5e67608afe089c",
+      "bytes": 67583
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/warning-dedupe-mutation.log",
+      "sha256": "3a44515f4d62d212ffebb2d543f17af9be3ca918548a07ef20420c13eecf6602",
+      "bytes": 6533
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/warning-order-mutation.json",
+      "sha256": "e8131644f6fbdf8fbd4eed9db189f09e0de8048550b4264a2e1c54ca9aee7a92",
+      "bytes": 67427
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/warning-order-mutation.log",
+      "sha256": "9d0291a4d4b19c63c1accacfc7e83d230aad029ad2cde5fd214a3f5ce8110091",
+      "bytes": 6530
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-count-mutation.json",
+      "sha256": "a8f5e54be34e06dff4fa6816cc31055b6915232be5bfa00160aa7aabebed72c3",
+      "bytes": 50540
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-count-mutation.log",
+      "sha256": "d7ae510794da804c0b03df38b74383e05b937786c976e7734c96e3c969086188",
+      "bytes": 6524
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-grouping-mutation.json",
+      "sha256": "511b9fde6407a2ab48521a358b0c620ef737e0ff0e19f1dbb091f2950d171058",
+      "bytes": 51022
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-grouping-mutation.log",
+      "sha256": "d2b5afbf96bf5c26cbab1f84dfe81f08a6a1d0caba33f037db42e8fd9a2059e5",
+      "bytes": 6532
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-order-mutation.json",
+      "sha256": "f2c66eda3a3f9ac4d14c10311a76707166bed0c79547039a9b0163f9e4847ab4",
+      "bytes": 68285
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/wrong-order-mutation.log",
+      "sha256": "5ee87991de8db22828bc0045df1b1393d6d6a9614a7938348c46e3d2720c83c5",
+      "bytes": 6524
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/zero-unavailable-mutation.json",
+      "sha256": "ef822336b90e4082bb1c655ca87055b7ab9c174d93f3e968e635f423f1ddb95c",
+      "bytes": 66194
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/zero-unavailable-mutation.log",
+      "sha256": "dd458a4f8507b8c9c2bf14b7903de525902cf7c2ec88011777fb4485ae2b3604",
+      "bytes": 6539
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/board-check.json",
+      "sha256": "e692da5be44c015b61940591cb4e17ace8216ccd784a2b7ca8d411fea66ff4da",
+      "bytes": 296
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/board-check.log",
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "bytes": 30
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/board-validate.json",
+      "sha256": "1733150c11b6325332f371c57ba64877bbb1d69748871a8f2efed9f185727577",
+      "bytes": 283
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/board-validate.log",
+      "sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "bytes": 46
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/bootstrap.json",
+      "sha256": "935e992cbd1c50ef4f2717d8f19ea11a270f672d9e5a0e498494d64f9c2e5186",
+      "bytes": 3708
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/candidate-lock.json",
+      "sha256": "bf968ff2bb66fcf68553ef2e1615bb77dbdaf8d65db2d98fa2c2b4cb7d51da65",
+      "bytes": 346
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/candidate-lock.log",
+      "sha256": "4d6270988ded9b28b78d6dad255a89ae99a0a4d197259515cab619a459ee5e62",
+      "bytes": 51
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/canonical-full-chat-corrected.json",
+      "sha256": "2f3621ae71f320c0b608592b700ccf11c1b286b33fbf98ee8cac0554f5ad5826",
+      "bytes": 107125
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/canonical-full-chat-privatebase.json",
+      "sha256": "bc7b7d1952fa2245fc5ba3ef96d0a7ff4f2cf118edbc79d45944766815e340bd",
+      "bytes": 555
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/canonical-full-chat-privatebase.log",
+      "sha256": "c69915406b729c717f99039722916e723dd06bf1b1ddba20c13d05ea40d586bb",
+      "bytes": 65589
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/cli.json",
+      "sha256": "abdbbff6895e71cb175a609b47a567cd1f803917d9d91d5a03e2fcfce60b80f8",
+      "bytes": 453
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/cli.log",
+      "sha256": "d34b3022b2c1d0ab55d076c0660d0b06a59cbcfadef1519ab70cfd10fafff4f7",
+      "bytes": 260
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/comparer-controls.json",
+      "sha256": "8b36f8b46f864430e900832ed4339310abf72dfdf54816320278fbc49b8472a8",
+      "bytes": 324
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/comparer-controls.log",
+      "sha256": "12d1c75c7354cdf1cce584c9b9b58d1754a0eba82269b4db50ab5a16ea0a67ce",
+      "bytes": 237
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/controls.py",
+      "sha256": "d62238fd3fac3188f9464604cf091ed2eeb4d9ad76ef21f1f796b3b7af0ba20d",
+      "bytes": 423
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/d2-fast-final.json",
+      "sha256": "f05781e7ddeae741f4370036704a134dbdd31baebd82e1bbd7201b905f9585dd",
+      "bytes": 1102
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/d2-fast-final.log",
+      "sha256": "9712977ba7b6e3f8249edb5975c9330bb67edd3450f3f676676962ada71beb5b",
+      "bytes": 740
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/d3-fast-final.json",
+      "sha256": "59d3fb90cc9302589006f37f579789a34f9da0c8cc18e45267c2cdbbe7c3b7b7",
+      "bytes": 819
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/d3-fast-final.log",
+      "sha256": "32db4422a5f1a5f262c6e65e45248b04b752c7fee571d7caefc12e540ecf8f2c",
+      "bytes": 180
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/diagnostics-0-capture.json",
+      "sha256": "7e512aaa784b51fdd9e0935041c9bc8070cecd685c77fec47bb6763f8d8e9a3a",
+      "bytes": 488
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/diagnostics-0-capture.log",
+      "sha256": "33c09040d34dd70f469be1b4075cf5172fa5866081b9de686984b7dc48b2a4bf",
+      "bytes": 27
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/diagnostics-0-compare.json",
+      "sha256": "1dcd6db12c60ba51d2a4366604343a031b3749bd330330670ad9b4c3af39c5ec",
+      "bytes": 631
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/diagnostics-0-compare.log",
+      "sha256": "8ed7310d927cfd8c86c4512d830ce4bd983358e85fa6c021a955c60fd004cf42",
+      "bytes": 60
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/documentation.json",
+      "sha256": "5ff1342941c3705c972d6732e795526255f36111d8703229b54d490dda18a9e6",
+      "bytes": 280
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/documentation.log",
+      "sha256": "762862d5db8c49b619817e376a1e79e046b9bf6a93bf06686274afa4b10c464a",
+      "bytes": 70
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/final-lint.json",
+      "sha256": "f5b51f496246f8443586bacb1bf02a5582cbb8f88fd2f80f5b63d3a5fab83aaa",
+      "bytes": 774
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/final-lint.log",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "bytes": 19
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/format-check.json",
+      "sha256": "01b50e5ee050c665f0a5b8bf383d04427abe016a541abebde56323c40382f74a",
+      "bytes": 707
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/format-check.log",
+      "sha256": "134ca85e3f21dc053981a09e82d045b0c8fe160113ea0eacba66351824a26ada",
+      "bytes": 331
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/format-debt-final.json",
+      "sha256": "a44ada783b772fc1c10a040ff7c4c3e4c73b7ffb1a83d653f17f80923070af82",
+      "bytes": 477
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/format-debt-final.log",
+      "sha256": "1d6a7357d3da1f1afb251f43937da567d6c286fe0f8a75ffb61c2b2b0a056ba9",
+      "bytes": 60
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/full-chat-final.json",
+      "sha256": "c417aeaf5049f8f48ede25f72843174a98e8f819c0c522ff01496a753c5db8c7",
+      "bytes": 538
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/full-chat-final.log",
+      "sha256": "286ef68748a415dc0e340a694de1a0e7dfa8309f77b763bfb1f8cb4c4797645b",
+      "bytes": 2153
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/guard.json",
+      "sha256": "cbab7e0d0bdf96db3c92b2b9bcf7a52c8246391194327d6f070b745467c46950",
+      "bytes": 367
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/guard.log",
+      "sha256": "69ace469ed23c05b1fe334be3cf727fea1de5730d8b40b9f24c80e802293b43d",
+      "bytes": 78
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/independent-meta.json",
+      "sha256": "a9e25976a581a18427b4aacc24d95849be69b285fcc476beedd02c89dab263fb",
+      "bytes": 300
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/independent-meta.log",
+      "sha256": "d79e1fc792370260f26f76129bc1a552999e3e575d6ecd8ec532884809c9b859",
+      "bytes": 93
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/ingest-none-baseline.json",
+      "sha256": "2adf834b02f43cd2e77d394b24a952b9b2f5b9923ccec7b5a6927e77205c3f25",
+      "bytes": 512
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/ingest-none-baseline.log",
+      "sha256": "b14ee8e557c4b8623fcda377598530d9a6094027e1ec3c61a458065fdd8798f4",
+      "bytes": 86
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/ingest-none-candidate.json",
+      "sha256": "bf655896e4858825667ce7d6e72abbf5a8491a0b7f46c32e80dca033d453dae8",
+      "bytes": 517
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/ingest-none-candidate.log",
+      "sha256": "b14ee8e557c4b8623fcda377598530d9a6094027e1ec3c61a458065fdd8798f4",
+      "bytes": 86
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/launcher-single-mcp-result.json",
+      "sha256": "c0df52bdb82c3df3499b45d6982ce49761955a3678ec50e4cab330f2c5667fa1",
+      "bytes": 42418
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/launcher-single-mcp.json",
+      "sha256": "bfa4a3821fc26b0c9305947148f3b21ebb6f29e286d5de0db4d1b811619665a3",
+      "bytes": 593
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/launcher-single-mcp.log",
+      "sha256": "7515943c8ce9bd2f65a472d9a06391a0fcce48e0b6b1374def5f51f770f35632",
+      "bytes": 2925
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-0-capture.json",
+      "sha256": "ff631454305a1b6b8ae68d5875cb905d2e9b6fabf4ae9ad5ddc561822ac8b771",
+      "bytes": 502
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-0-capture.log",
+      "sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "bytes": 28
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-0-compare.json",
+      "sha256": "059216bd360c2e8378d05e8dcceae279dfba9e102d51138413ba9be059364086",
+      "bytes": 687
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-0-compare.log",
+      "sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "bytes": 96
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-1-capture.json",
+      "sha256": "bb0c89dbeb79b5ce2cdce047ab692e14b8105e5f5aed1ed6be53af6c104e976a",
+      "bytes": 499
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-1-capture.log",
+      "sha256": "e4ba38d710d5c5146aa56bf2b8c7668d7f5655b79d5fc6be0e8e47e80a635f6c",
+      "bytes": 28
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-1-compare.json",
+      "sha256": "63dfee1d9f45fd9d2a40222f33746228c25cb4950608ec74c2c39ddcf05328e2",
+      "bytes": 687
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/memory-queries-1-compare.log",
+      "sha256": "5b4161d9689701f9a85a737ae0f6da40fbc5455236959f4f8e8978f961b1948c",
+      "bytes": 96
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/metric-probe.json",
+      "sha256": "79f7d84266b8069069bb50ad9301f85f7b234120b60c16a32a25ef7d7265f9fc",
+      "bytes": 296
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/metric-probe.log",
+      "sha256": "756ef68b41e042960a5cb32b8b11a0607ebba57066a77e6dd7372c17aa3ea320",
+      "bytes": 340
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-case-insensitive-nodes.json",
+      "sha256": "5920c23f718c3500d1f7d859d9f990580a4712d08463c9e28cdbe36140a4c803",
+      "bytes": 623
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-case-insensitive-nodes.log",
+      "sha256": "dc43dd61e6e4a3aca1b6a586245bad31ad65b2405f44963426591217818d5b79",
+      "bytes": 9400
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-decayed-collection.json",
+      "sha256": "65fab19474a83b29541daa71ea8d983097adfbbb2dc12c9b1fa8f7c64afbddac",
+      "bytes": 611
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-decayed-collection.log",
+      "sha256": "1fecb24d56290b0041a49130c93232df653245cb096783f314239be1554f78bb",
+      "bytes": 44399
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-double-format.json",
+      "sha256": "e8516fb051813576ec3ee037de926cadf0c6206ec7fabaafb48db2c80e805e55",
+      "bytes": 596
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-double-format.log",
+      "sha256": "765334230143860c0aadf7937e0a26482a2c6d1293b8ab1fbbc1009f3746144f",
+      "bytes": 7370
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-double-query.json",
+      "sha256": "2c8152987a8af37485c68d06f68a60d4ba4db9b7bdbde9b0785176940d7daa1a",
+      "bytes": 593
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-double-query.log",
+      "sha256": "8e45514631ca82773b0ba747062440fa75c7998e6357a124bec3cfa8dda2ac33",
+      "bytes": 22366
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-entity-cap.json",
+      "sha256": "e05c1b9e85a7083ba55829f8bd77d212791476a15982bf95432fbe33fe4f986e",
+      "bytes": 586
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-entity-cap.log",
+      "sha256": "56e397e792dcec1b5959fc17a85184541ec99647205c49d6fe20b1ec43189e84",
+      "bytes": 10194
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-ignored-result.json",
+      "sha256": "f9ffe6d642ad91c32d8bce0a2f5b85bbe0091c3c63cd76f47d3ae55fe2bf801c",
+      "bytes": 599
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-ignored-result.log",
+      "sha256": "1154c2c878034b545722a30299ae3b692e482d1f2bee3d84c1703548b10bea06",
+      "bytes": 163425
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-legacy-substitution.json",
+      "sha256": "cc184e7a3691a0f6d8be9f22fd8bbc5308083992e2459b777cc2e6e349d8759d",
+      "bytes": 614
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-legacy-substitution.log",
+      "sha256": "485085c272db6ae07197cd1433b9d417000df64d152ac58b7030d252aca5dbd9",
+      "bytes": 64200
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-missing-kind-refusal.json",
+      "sha256": "2fe51b2ec9263050086d09edc0e3a1261b4126144af416e0693f4368bc4f91a0",
+      "bytes": 616
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-missing-kind-refusal.log",
+      "sha256": "db4a7044cf782ea85c5dda23097593b50d5c0ac6175c467e11dd625044dad5ce",
+      "bytes": 3551
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-missing-utilization-suffix.json",
+      "sha256": "f4bfb5c4eee216b7c9c579c4a7d7f8c7aa68d1ea1f4478cdd4f2519e46cc7584",
+      "bytes": 634
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-missing-utilization-suffix.log",
+      "sha256": "1d72cd319718dd42136ab4a83b321bc8d3916d4dbf986f2c80ff5ccaf9d10826",
+      "bytes": 26580
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-nodes-relationships.json",
+      "sha256": "56c65b61cd0c745a3cc8e1e22b8f12e250642435b68839ab3a002cf02bd19bc7",
+      "bytes": 613
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-nodes-relationships.log",
+      "sha256": "e1ce04373ed349bd51bdc38b68abd7fb90cc5ac720d4a98a8f8890ee6a02cbc3",
+      "bytes": 10421
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-projection-before-second-await.json",
+      "sha256": "41ef10ef40105f78f754ca81ab5162878e7f2f0ad46dcf50589ed7baf434e955",
+      "bytes": 647
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-projection-before-second-await.log",
+      "sha256": "08aa634bf0ab5cbb2a59aaa8a3e60b16282c39462ae54243ac10af594a4e2f2e",
+      "bytes": 21769
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-record-cap.json",
+      "sha256": "9da5146600efe11502d6b6713d15b119bdd173818b75a14d7819a585f1d4e17b",
+      "bytes": 587
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-record-cap.log",
+      "sha256": "227c32e7a25f7815a490a43fa104de35183d10c4b5b7d4d0ffbb54d74b03a5b3",
+      "bytes": 25369
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-swallowed-cancel.json",
+      "sha256": "c1678eb3113793056d1e2daebfba0d8e8ab20e57bb74c1e3e756bfe832623b1c",
+      "bytes": 605
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-swallowed-cancel.log",
+      "sha256": "19a73908984ade513b509ff370814e0666c4325c58eab0ce4e9226d1736e4fde",
+      "bytes": 8679
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-unawaited-query.json",
+      "sha256": "ddcb669133794ee7e10f3b7b73f26608a8a5d6be0bd7b6d58b71df4ced8b52f1",
+      "bytes": 603
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-unawaited-query.log",
+      "sha256": "040f6a494f5c7797f70edb3904f46d2ec03ff0bc995986cd790a2f1353642177",
+      "bytes": 51475
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-unchanged.json",
+      "sha256": "0ae66f9764daf6edaad9b24cc0c91f9127eb635d7f3f985c2bc7bd78fdefc7dd",
+      "bytes": 584
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-unchanged.log",
+      "sha256": "f2a5357d8c2484aba1fc92281e53431ce42d05a4dedaea419bfabd1096c5ff89",
+      "bytes": 589
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-warning-dedupe.json",
+      "sha256": "071793380c409b7e244a7255ec0112def3a26c599281e09d2533badb5691621b",
+      "bytes": 599
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-warning-dedupe.log",
+      "sha256": "4e75f4907a581b343eb73fa8ba20116241c1f58b7f6cc858a6267e0ca147fb8f",
+      "bytes": 23616
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-warning-order.json",
+      "sha256": "51174f5948ae29fd545a69d04b8028adaa99467b372a73c035c2b45c0be9073a",
+      "bytes": 596
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-warning-order.log",
+      "sha256": "ba2fb89ce188f99cc4acf1f32de9c80a86e58979b5e8b3fe2029d9c250eb9895",
+      "bytes": 23607
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-count.json",
+      "sha256": "00be6c235bc926cdcb4d795a294f48faf8dff6402666ae8068e62c75d3980a8e",
+      "bytes": 590
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-count.log",
+      "sha256": "291c8b7eda9dc9dc626b947a4191041af7648c71e2c2fe5831ad9d76eee780fd",
+      "bytes": 7286
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-grouping.json",
+      "sha256": "8b59c0a8e13d07e55367c2b97e51a1a017208f8a44699f11a0c06b59f7dd0c5d",
+      "bytes": 598
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-grouping.log",
+      "sha256": "9d9ffaff36ae69c8a20639ebb91a4d320efaba34ad78b92d4f073d04f136b2d7",
+      "bytes": 7297
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-order.json",
+      "sha256": "0782b90732e868d755fd05fbf3d4a2f06a32d812a0fa207a49746303fb0f74c0",
+      "bytes": 590
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-wrong-order.log",
+      "sha256": "32b8ad3fa16a7cd4394364ef0e5c3ab30832a66d3fc9b3f072deba9a93a651f8",
+      "bytes": 24469
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-zero-unavailable.json",
+      "sha256": "462961e619077b5101b6a65224cc238a357862a1d81ccc9cf0d7b08866016684",
+      "bytes": 605
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/mutation-zero-unavailable.log",
+      "sha256": "bef8dfc64c55fb58feeb9af5bd5ea69c5a578477272a388b0ef6af06ccb62b6b",
+      "bytes": 21972
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/neutral-cohort.json",
+      "sha256": "f4e5279436feaa607a56592695f014aa6f0f006d77ace0c1063481ae81212bbe",
+      "bytes": 505
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/neutral-cohort.log",
+      "sha256": "c77d61df904b0b6cd19a8c82cdf27554535e45564998b07dcfd26cb4fe9b0eb9",
+      "bytes": 740
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/new-cases.json",
+      "sha256": "a956f4a4b1d9c0270a06d5b6212ecd69cc98883336e3c1f7154264e190bb50d9",
+      "bytes": 492
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/new-cases.log",
+      "sha256": "d8465b37b79df893f9ed32378fcb013692747dfc3b89aec218adaceb1a6cc952",
+      "bytes": 99
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/new-format-check.json",
+      "sha256": "d6e226862e939c90cf7a7d83ab58a6cba495fa4a7bbb0857b44fdcc941b7b268",
+      "bytes": 468
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/new-format-check.log",
+      "sha256": "eee76f865de5a9f2456950f710ae5d5f9b5bd0ea02aa54f614c5eed6642a0bfd",
+      "bytes": 26
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/normal-origin-full-chat.json",
+      "sha256": "e4123ad89b9c717d92b5743e10e121d0773f4355b506817376485ffc5b3f23e3",
+      "bytes": 575
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/normal-origin-full-chat.log",
+      "sha256": "ab9f32a4eb5c8e09e7134fe6a7498f7155d77e5571f2de2251ce00dffb643edc",
+      "bytes": 2153
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/normal-origins.json",
+      "sha256": "51df903f34581af6ada6f7e4e5f21fa9cc9ddbe496d4eeff5a1139b272724488",
+      "bytes": 68395
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/offline-startup.json",
+      "sha256": "20430a7cfe3403873d9792a4022335b84fe07ba94efea9489be6c5a7e6291700",
+      "bytes": 314
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/offline-startup.log",
+      "sha256": "427b7027b11aa9a8394f97c4b4ae0d6d0a741b0013c08e493ab2a03597703daa",
+      "bytes": 32
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-cli.json",
+      "sha256": "944a0e6ec14aa9a49b2c72e44cd31aa944fa189efd915071dee0af471087658b",
+      "bytes": 455
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-cli.log",
+      "sha256": "32d6f7a555ec9193e15369224616e592b7c2b830b3b9c7c18bc1d6110c33f296",
+      "bytes": 750
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-d2-fast-final.json",
+      "sha256": "d3fc224444e170afafe5f5474e02c3494344a752ab1bcee24538dea8b6bccd16",
+      "bytes": 1105
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-d2-fast-final.log",
+      "sha256": "c70b41387fce7d88790a2210751a616c158bc93a3b5c21b09bb28b7e741cefde",
+      "bytes": 1230
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-d3-fast-final.json",
+      "sha256": "6776e3b2099370921db95d05a745a7237eb925bbcf3a31898c616da4be2fc61d",
+      "bytes": 822
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-d3-fast-final.log",
+      "sha256": "b1ba9cb71cbb5782f57abe366061cc1988b9100bf7a88720f233466c51e1bfda",
+      "bytes": 670
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-full-chat-final.json",
+      "sha256": "419901e398eeaa105d6f3a93fa13b50bc056c97276d149ce388a3b08a1278d59",
+      "bytes": 541
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-full-chat-final.log",
+      "sha256": "4b51627e48339ad230fcf94de26da6709bff27b60c0b5d16eaf068428ed5a839",
+      "bytes": 104936
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-neutral-cohort.json",
+      "sha256": "8f010bb0eb168067c512040a3c58639da7bcdba7674848a26986b3215ee96b35",
+      "bytes": 532
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-neutral-cohort.log",
+      "sha256": "75a0342ec734799091b56da7286629071715436a6d32244fd138707c77b693cf",
+      "bytes": 1230
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-new-cases.json",
+      "sha256": "ddd96e329d72e8d1669d12d6ea9467c60f9fee45c91e58b0d4a79daca8a3e7b4",
+      "bytes": 493
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/origins-new-cases.log",
+      "sha256": "4eda9c996e7f4b3ca2cec2deb5433fef1384e803d0bf441d1c18a03d9b956667",
+      "bytes": 589
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot-capture.json",
+      "sha256": "619bef9a2a2379e53c31c82ea237b348e7304d9b3e55298c2dc7804132987b73",
+      "bytes": 563
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot-capture.log",
+      "sha256": "dbbaf145090f03d8fe35f25a51ce91205ed4919d542794daed1eb4812b355308",
+      "bytes": 85
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot-compare.json",
+      "sha256": "cefb5c059746f519e23c27ceb087b59cc198d3bf58f1a4adcbf6830cef146f7f",
+      "bytes": 652
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot-compare.log",
+      "sha256": "57498c120adaf47f3114eb71cdce31c310264758485dc15016179da30a875be3",
+      "bytes": 42
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot_guard.py",
+      "sha256": "e04eea8bc9722defe3ea89212385f8befda03e051b9816b305e1b9f73ff94681",
+      "bytes": 2276
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/pilot_run.py",
+      "sha256": "acd0f1aac5bc372bc7357d5a74563730a17955d13b74062c23cfe8f4b8cdc178",
+      "bytes": 2479
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/run.py",
+      "sha256": "409769f1c17a63fcbd7ea2bd3d079af315dcc9afabca8bd35602033c198124af",
+      "bytes": 1190
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/session-0-capture.json",
+      "sha256": "c507c69bf243c745857030091f9e4c93fd33f224db94d1053be551bdd9f11bce",
+      "bytes": 488
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/session-0-capture.log",
+      "sha256": "299cfbf91c4a3909cf255b9c26e1834705e912eefd360ff6e1a89456be702d84",
+      "bytes": 57
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/session-0-compare.json",
+      "sha256": "6eb57bf52334b8c72569d72ee10a27634de7c3e5b62489c44d2242c80f6c2415",
+      "bytes": 589
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/session-0-compare.log",
+      "sha256": "43e6de8cab5609d4125cb733e259cf315de532eb9d04b0e59085769ea04d87c4",
+      "bytes": 67
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/sitecustomize.py",
+      "sha256": "d96294f94f5378beb38675d0624e6f78c622914cafbaffb4ce486d8310d2eb7e",
+      "bytes": 1528
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/sol_origins.py",
+      "sha256": "09ca442a7e223cbb6e09119a9b2ee6149b2d3a99f7606de8ad30ad69de777013",
+      "bytes": 1106
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-changed-refusal.json",
+      "sha256": "d57760d39a7adda292fe4e027d8751f2f925f613d53dcc3530013f604ea987b5",
+      "bytes": 485
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-changed-refusal.log",
+      "sha256": "5c176f6c0459fb33dedf2e2470e8540909c62bbd393d5a2eadef282130599a97",
+      "bytes": 1184
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-extra-refusal.json",
+      "sha256": "117abe57fd0281446643702d846ae6471c09ee79dc77082aab05b9542d8fb85f",
+      "bytes": 483
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-extra-refusal.log",
+      "sha256": "d723692d3b6596f618d68faa95f442fccbbef2243675e30c93f62b1a7b8beacb",
+      "bytes": 1142
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-types2.json",
+      "sha256": "82ebaa8edeb689c867b843f825dc697e5bcca052ee0b1ad325e94ce5a151857f",
+      "bytes": 837
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/source-types2.log",
+      "sha256": "fc409d91e6c781eb25a1ec1310b7fcb0086b74ed3aa2c415bcd73f884f23f07a",
+      "bytes": 44
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/supplemental-records.json",
+      "sha256": "e3906953df11b89a0b58bc121e95a6d4f0edaa492981f9c6864512c1b432358a",
+      "bytes": 312
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/prepared/supplemental-records.log",
+      "sha256": "c39a75f581047237abd45405a580ee01a353cd2ebb68c9d1e831d7ee4e873ed7",
+      "bytes": 1940
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental-candidate/launch.py",
+      "sha256": "83e9a63ee7966da6da09ad5ad81ee4f44bbd073175908013ad2ccf7652f658a5",
+      "bytes": 607
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental-candidate/record-characterization.json",
+      "sha256": "c39a75f581047237abd45405a580ee01a353cd2ebb68c9d1e831d7ee4e873ed7",
+      "bytes": 1940
+    },
+    {
+      "path": "/private/tmp/memq-d2-sol-review-36t4k9o6/supplemental-candidate/record_control.py",
+      "sha256": "d9fccf0bc60038aabf345d3ca6d51e8327ed8f765b56d0d46cf02a5b024b2761",
+      "bytes": 3275
+    }
+  ],
+  "limits": [
+    "D3 candidate builds/artifacts/installed proof excluded",
+    "UAT20 NOT RUN",
+    "Baseline nullable-ingest/format/root debt unwaived",
+    "Alternate eager-import pytest.main diagnostic launcher fails MCP; required python -m pytest lanes pass, including passive canonical-origin run; attempts retained without passing credit"
+  ]
+}

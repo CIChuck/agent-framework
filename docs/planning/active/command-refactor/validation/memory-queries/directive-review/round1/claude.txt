@@ -1,0 +1,236 @@
+# MEMQ-001 directive/design readiness — council round 1, seat `claude`
+
+- Reviewer: Claude Opus 5.5 (high), fresh context, read-only, no nested delegation, no repairs.
+- Request: `/private/tmp/memq-directive-council-r1-s_fg47r3/council-request.json`, SHA-256 `fdbbd0ffa871f3e818461abb40b49eb4ecd94ec9ca27b9d01c7c321c27a3d085` (verified first, again at end).
+- Manifest: `frozen-manifest.json`, SHA-256 `d547905755721b7afb49ff978de4c4307ca942703fc66978641287e8798f14d7` (verified at start and end).
+- Candidate: `feature/command-retirement` @ `76b949b2e621e7a44ddec6ed527784e781696c8c`; base `c5871054266da2340486d2043062c5fb95611c00`; bounded range `c5871054..76b949b2` (2 commits, 13 files, docs/planning only).
+- Private scratch: `/tmp/memq-directive-review-claude-AQr08y` (all writes, caches, exports and receipts are here).
+
+## Verdict
+
+**CHANGES_REQUESTED.** This verdict covers only whether the directive and contract are ready to execute. It is not a verdict on any implementation, product, construction, UAT, acceptance or delivery.
+
+The design is unusually well evidenced. Every pin and receipt checks out, the 76-case baseline replays exactly from clean exports, the 4 supplemental cases reproduce byte-for-byte, and Option R can be built through existing public APIs inside the allowlisted Chat paths.
+
+Two gate-level defects and one provenance defect must be fixed before D0/D1 starts:
+
+1. **MQ-D4 cannot be satisfied as written.**
+2. **The changed-Python formatting gate fails at baseline on files MEMQ must edit.** That debt is not classified anywhere.
+3. **Three canonical records carry a false, future-dated timestamp.**
+
+Advisory score: **8.3 / 10.** The score never overrides the mandatory findings.
+
+## Mandatory findings
+
+### MEMQ-DIR-CLAUDE-001 — Medium — The MQ-D4 owner-table extension has no compliant path
+
+- **Where:**
+  - `docs/planning/active/command-refactor/directives/CD-CMD-MEMQ-001-memory-queries.md:83` (allowlist row)
+  - `…/CD-CMD-MEMQ-001-memory-queries.md:263` (AST audit)
+  - `…/CD-CMD-MEMQ-001-memory-queries.md:96-98`
+  - `docs/planning/active/command-refactor/memory-query-command-contract.md:52` and `:163-171`
+  - target test `packages/friday-commands/tests_commands/test_diagnostics.py:349-394`
+- **Violated:** MR-02 (MQ-D4 narrow extensions), MR-07 (no weakened or extra old-test edits), AGENTS rule to stop when contract and directive disagree.
+- **What the documents say:**
+  - MQ-01 places all thirteen models in `friday_commands.contracts` (contract:52).
+  - The accepted test checks `getattr(module, name) is api.<name>` for every name in an `owners` table. That table already has a `contracts` row (test_diagnostics.py:350-377).
+  - The directive permits only three edits: append the sixteen names to the literal list, **add one `memory_queries` owner row**, and change `38` to `54` (directive:83).
+  - The AST audit requires the old test to equal the baseline "with only their exact MQ-D4 extensions removed" (directive:263).
+  - The contract's wording ("extending … the literal list, owner table and binding count by these sixteen names … plus one new `memory_queries` owner row") is broader than the directive's allowlist row.
+- **Evidence:** a bounded synthetic control in `/tmp/memq-directive-review-claude-AQr08y/synth-mqd4` (a private copy of `friday_commands` with stub models and a stub `memory_queries` module).
+  - **Variant A (directive-literal: one new row holding all 16 names).** Fails with `AttributeError: module 'friday_commands.memory_queries' has no attribute 'MemoryWarningData'`. It only passes if `memory_queries.py` imports seven otherwise-unused model classes. That would be a Ruff `F401` failure in the lint gate, would breach the "specs, protocol and factory only" allowlist (directive:79), and would record false ownership.
+  - **Variant B (append the 13 models to the existing `contracts` row and add a 3-name `memory_queries` row).** Binds all 16 correctly (54 exports, identity check True). But it edits the `contracts` row, which directive:83 does not authorize and the directive:263 audit would flag.
+  - Because of this, the D1 gate ("Full Commands/cohort passes, including both MQ-D4 extended assertions", directive:113) is likely to stop or be disputed at the first council.
+- **Minimal mitigation:** amend the directive (and, optionally for clarity, contract MQ-D4) to state:
+  - the 13 MQ-01 model names are appended, in MQ-01 export order, to the end of the existing `contracts` owner tuple;
+  - one new `(memory_queries_module, ("MEMORY_QUERY_SPECS", "MemoryQueryPort", "build_memory_query_handlers"))` row is added after the `shared` row;
+  - `38` becomes `54`;
+  - the directive:263 AST audit treats exactly these three edits as the extension.
+
+  Re-pin the changed bytes and get the maintainer's exact re-approval, or a maintainer-recorded bounded clarification, before construction.
+- **Required verification:** an AST dry-run that applies only the three authorized edits to a private copy of `test_diagnostics.py` and checks the audit passes. A synthetic binding check (as above) passes with 54 bindings. Hashes are re-verified in the approval record.
+
+### MEMQ-DIR-CLAUDE-002 — Medium — The formatting gate fails at baseline on MEMQ-edited files; that debt is not classified
+
+- **Where:**
+  - `…/CD-CMD-MEMQ-001-memory-queries.md:290-292` (changed-Python `ruff format --check`, recording only "the unchanged registry formatting debt")
+  - `:33-35` (known debt lists only registry formatting)
+  - `:85` (memory.py: wrapper bodies only; public `preview_text` unchanged)
+  - `:90-92` and `:266` (Option R: only the named additions)
+  - `:379` (stop on a new failing check)
+- **Violated:** MR-08 (executable gates, honest baseline-debt classification) and MR-10 (debt versus regression).
+- **Evidence:** executed through the guarded runner on the read-only root, whose package bytes equal base `c5871054`.
+  - `ruff format --check --no-cache` on `memory.py runtime.py adapters.py registry.py memory_views.py` exited 1. Receipt: `prepared/claude-format-baseline.{json,log}`.
+  - Four files would be reformatted. Hunk counts from `ruff format --diff` (receipt `prepared/claude-format-diff.log`): `memory.py` 3, `runtime.py` 2, `adapters.py` 36, `registry.py` 24.
+  - One `memory.py` hunk lies inside the public `preview_text`, which the directive requires to stay unchanged.
+  - By contrast, `ruff check` on those files plus `friday-commands` src/tests passed, and `mypy` (private cache) passed on 13 source files. Receipts: `claude-lint-baseline`, `claude-types-baseline`.
+  - `memory.py` is always changed. `runtime.py` and `adapters.py` are changed under the approved Option R.
+  - So the gate as written either produces an unclassified failure (a stop under :379), or invites whole-file reformatting outside the allowlist.
+- **Minimal mitigation:**
+  - At D0, record per-file baseline `ruff format --diff` inventories (hunk hashes) for `memory.py`, `runtime.py`, `adapters.py` and `registry.py` as failed/unwaived debt.
+  - Define the gate as: new files are fully formatted, and changed files have no format hunks beyond the baseline inventory.
+  - Explicitly forbid reformatting untouched code.
+  - Add this debt to the known-debt list and to the approval.
+- **Required verification:** D0 receipts showing the baseline inventories, and a dry-run demonstrating the comparison detects an injected new hunk and ignores the inventoried ones.
+
+### MEMQ-DIR-CLAUDE-003 — Low — Three canonical provenance records carry a false, future-dated timestamp
+
+- **Where:**
+  - `docs/planning/board.yaml:2872` (`at: '2026-11-09T15:20:00+00:00'`, preparation event)
+  - `docs/planning/active/command-refactor/execution-log.md:1846` (heading `2026-11-09T15:20:00+00:00`)
+  - `docs/planning/active/command-refactor/authority.json:956` (`memory_queries_preparation.recorded_at`)
+- **Violated:** MR-09 (evidence integrity and provenance) and MR-01 (an authority chain that cannot be misread). The lifecycle policy says the execution log is append-only.
+- **Evidence:** the actual timeline does not allow 15:20Z.
+  - Preparation raw receipts were written 14:09:38Z–14:18:37Z (manifest `supplied_raw_files` mtimes).
+  - Proposal commit `342bf85c` is 2026-11-09T09:25:00-05:00 (14:25Z).
+  - Supplemental characterization: 14:36:34Z.
+  - Approval: 14:49:49Z. Final commit `76b949b2`: 14:52Z. Manifest frozen: 14:58:27Z.
+  - The 15:20Z "prepared proposed" record therefore post-dates the approval, the final commit and the council freeze.
+  - The log now reads out of order (15:20Z, then 14:49Z), and board events place preparation after approval. A reader could infer that preparation followed approval.
+  - Board `validate` and `render --check` still pass; they do not check event chronology.
+- **Minimal mitigation:**
+  - Append (do not rewrite) a correction board event and an execution-log entry. Each should state that the 15:20Z stamp is erroneous and that preparation occurred about 14:09–14:25Z (commit `342bf85c`).
+  - Correct or annotate `authority.json` `memory_queries_preparation.recorded_at`.
+  - No change to the approved contract or directive is needed.
+- **Required verification:** board `validate` and `render --check`, an explicit check that event and log times are monotone or explained, and `git diff --check`.
+
+## Advisory (non-mandatory)
+
+- **A1.** `compare_memq.py` does not enforce the 68/2/6 split; it only prints it.
+  - Synthetic controls (`tools/synth.py`):
+    - an unchanged candidate with both flags returns `(0, 0)`, i.e. 76 exact;
+    - a candidate missing MQ-D1 returns `(0, 6)` and exits 0.
+  - The pinned comparator cannot change, so make "log line equals `… 68 exact rows + 2 declared kind refusals + 6 repair-superseded rows`" an explicit D2/D4 pass condition.
+- **A2.** The D0 instruction to reproduce DIAG, SESSION and pilot captures is prose only. Unlike the DIAG directive it omits argv shapes and the required identity arguments:
+  - DIAG `1dcd83ec…` / `8f7a55d5…`;
+  - SESSION `3210852a…` / `5c72294b…`;
+  - pilot `capture.py SOURCE OUT --revision`.
+
+  It also does not say whether these rerun on D2/D4 candidates. My bounded run derived the identities from the pinned preparations: DIAG matched with `--allow-declared-cache-refusal`, and SESSION matched 25/25. So the gap is under-specification, not infeasibility.
+- **A3.** The D5 retained-probe plan says to copy the DIAG/SESSION behavior checks "changing only … the sixteen appended expected names". SESSION's own `neutral_behavior` asserts 24 names, so appending sixteen gives 40, not 54. Only DIAG's `retained_session_neutral_behavior` (38 names) satisfies the plan. Name that function as the copy source.
+- **A4.** Exception classes and precedence are unspecified in two places, where DIAG stated "else `TypeError`/`ValueError`":
+  - MQ-01 cross-field invariants: metric state/value/reason, meta id/collection, plain-record metadata, the ≤100 cap;
+  - MQ-02 result checks: non-bool availability, wrong result type, nodes-only results that include relationships.
+
+  Suggest `TypeError` for type errors, `ValueError` for invariants, checked in declaration order.
+- **A5.** The MQ-03 summary attaches `%` only to the float branch. Legacy `_metric_text` appends the suffix for every non-bool available type. Production `utilization_pct` is always float, and "existing formatting" is the normative text, but clarify it.
+- **A6.** The MQ-04 ordered list omits that legacy formats a `str`-subclass `verification_status` last, in the final f-string after the provenance read, when the confidence is None. The generic "stateful string subclasses retain order" clause covers it. A MQ-T10 case for it is recommended.
+- **A7.** Option R policy gaps:
+  - a non-`str` `description` in metadata (warn, None, or coerce?);
+  - promotion is add-then-delete (`collection_manager.promote_memory`), so a transient or crash-left duplicate id is counted twice. Consider deduplicating by record id, or documenting it;
+  - say explicitly whether `No ingested documents.` can be followed by a `Warnings:` block.
+- **A8.** The mutation list lacks the distinctions the edited version introduced:
+  - plain-record metadata reads;
+  - a `complete` read outside the empty-meta branch;
+  - verification evaluated after text;
+  - a query-failure `try` that wraps projection;
+  - fake listing order;
+  - None-first description sort.
+- **A9.** The `memory.py` allowlist does not mention imports. Wrappers calling `memory_queries` while `memory_queries` imports `preview_text` from `memory` is a circular import. Say whether wrappers import lazily, and whether now-unused `memory_views` imports may be removed (registry has that permission; `memory.py` does not).
+- **A10.** The materialization heredoc runs `"$MEMQ_PYTHON" -B -` from the repository root without `-I`. Prefer `-I -B`.
+- **A11.** Board `next` selects `friday-langfuse-integration` (AWAITING_APPROVAL), not this initiative. `show friday-command-refactor` confirms `started` / `granted` / `feature/command-retirement`. Note this in next-phase so the AGENTS steps are unambiguous.
+- **A12.** "D3" means both a deliverable (D4–D5 phases) and a phase (Chat gate `d3`), e.g. "Implement `installed_probe.py` only at D3". Disambiguate.
+
+## Criteria matrix
+
+| ID | Outcome | Basis |
+| --- | --- | --- |
+| MR-01 Authority and scope | **Pass on authority chain; Low finding 003 on provenance** | Policy → board (`started` / `granted` / branch, via `show`) → approval (`approval/memory-queries.md`, 4 pins verified) → contract `2498724b…` → directive `3f830836…`. Option R is selected; Option P is retained but not approved. Base-to-candidate diff touches docs/planning only; packages are byte-identical (`diff -rq` of exports). No acceptance, delivery or next family is inferred. |
+| MR-02 Schema/API | **Changes requested (001)** | 13 models, 6 payload alternatives, 16 exports appended after the verified 38 (current `__all__` = 38). Validation rules match the existing `_snapshot`/`_string` helpers. MQ-D4 owner-row conflict (001). Probe plan ambiguity (A3) and exception classes (A4) are advisory. |
+| MR-03 Ownership/invocation | Pass (advisory A4) | Single availability, then exactly one awaited call. The selection table matches legacy `_entities_handler` (`bool(args and args[0]=="nodes")`, join, `NODES` as a name). MQ-D1 claim verified: both `FrameworkMemoryAdapter` and `FakeMemoryController` return the requested kind. MQ-D2 matches `CommandRequest` (`_snapshot(args, str)`). |
+| MR-04 Current-source compatibility | Pass (advisories A5, A6) | 76 cases recaptured from a clean base export and a clean candidate export: 76/76 exact, equal to frozen and embedded replay. The 4 supplemental cases reproduced byte-identically (`072937b5…`). Legacy read/format order checked against `memory.py:31-342` and `registry.py:298-337,733-749`. |
+| MR-05 Option R feasibility | Pass (advisory A7) | `/ingest` writes `type="ingested_file"`, `source`, `description` (adapters.py:376-410). `add_to_short_term` keeps caller keys. `create_longterm_metadata` copies metadata on promotion. `get_all(limit=None, where=…)` exists and is already used (adapters.py:599-649). Only two Chat implementers exist. No old test pins the defect. MQ-T14 is feasible through the existing real-adapter/fake-embeddings pattern (`test_mcp_memory.py:48-77`). No framework or `/ingest` change is needed. |
+| MR-06 Chat integration | Pass (advisory A9) | Registry tuple indices 3/9/10/11/12/16 and length 39 verified. Handler map, aliases and builder are preserved. No test imports the private helpers. `preview_text` / `record_value` importers are `diagnostics.py` and `registry.py`. |
+| MR-07 Test/mutation design | Pass with advisories A1, A8 (001 also affects the old-test edit) | MQ-T01..T14 trace to MQ-01..07 and D1..D4 (table below). Call-phase mutation witnesses and an unchanged control are required. Gates are staged D1/D2/D3. |
+| MR-08 Executable D0..D5 | **Changes requested (002)** | All 6 directive shell blocks pass `zsh -n`. D0 blocks executed with only scratch and harness paths rewritten: prepare, guard 18 controls, materialization, comparator selftest 14 controls, base capture/compare 76 exact. `bundle.py` D5 flags exist. Prior-family argv is prose only (A2). |
+| MR-09 Evidence integrity | Pass on identities; Low finding 003 | Preparation 23/23 embedded receipts and 25/25 raw files (receipts plus programs). Programs, fixtures, baseline and replay embedded hashes all verified. Supplemental 4/4 embedded = raw. Fixtures equal baseline metadata/cases. Directive 25/25 and approval 4/4 pins verified. Receipts I did not execute are labelled below. |
+| MR-10 Isolation and conclusion | Pass | Identical at start and end (details below). This seat issues no product, construction, UAT, acceptance or delivery verdict. |
+
+## MQ → test traceability (material)
+
+| Contract area | Gate tests / evidence |
+| --- | --- |
+| MQ-01 models/union/exports, MQ-D4 | MQ-T01, MQ-T02, two extended old tests (finding 001), D5 retained checks (A3) |
+| MQ-02 order/availability/single await/selection, MQ-D1, MQ-D2 | MQ-T03, MQ-T04, MQ-T05, MQ-T06 (`-O` / `-OO` standalone) |
+| MQ-03 `/memory` (12 frozen rows incl. await) | MQ-T09, MQ-T07, MQ-T12 |
+| MQ-04 records (8 + 7 + 9 rows; 2 MQ-D1 refusals; 4 supplemental cases) | MQ-T10, MQ-T07, MQ-T05 |
+| MQ-05 `/entities` (17 rows) | MQ-T11, MQ-T07 |
+| MQ-06 Option R (6 superseded rows; `runtime-missing` row exact) | MQ-T14 (R), MQ-T13, MQ-T07 |
+| MQ-07 dispatch/custom/once-only (10 dispatch + 6 custom rows) | MQ-T08, MQ-T12, MQ-T13, MQ-T07 |
+| Installed behavior | D5 `validation/memory-queries/installed_probe.py` (D3 deliverable) |
+
+## Executed checks (all fresh, by this seat)
+
+All runs went through the pinned harness copied from my private candidate export, from the read-only repository root. They used `GIT_OPTIONAL_LOCKS=0` and `PYTHONDONTWRITEBYTECODE=1`, with my own caches, basetemps and outputs, and distinct labels.
+
+| Check | Result / receipt |
+| --- | --- |
+| `prepare.py /tmp/…/prepared --wheelhouse <supplied>` (no fetch) | exit 0; bootstrap `935e992c…`, pilot_run `acd0f1aa…`, pilot_guard `e04eea8b…`, sitecustomize `d96294f9…`, all equal to the recorded values |
+| Directive D0 blocks 0–2 via `shell/d0_driver.sh` (only `MEMQ_SCRATCH` / `MEMQ_HARNESS` rewritten) | exit 0: guard "18 refusal controls"; comparator "refused: … 14 controls"; base capture plus compare "76 exact + 0 + 0". Scratch `d0.g8oSRn` |
+| Replay capture on a separate export of the candidate `76b949b2` | 76 exact; `before == replay == frozen` cases; source files 441, inventory `34a5a39f…`, 262 modules |
+| Extra-source and changed-byte controls | both exit 1 before import ("Source inventory differs from Git", "Source byte drift: …memory.py") |
+| Synthetic comparator count controls (`tools/synth.py`) | `(0,0)`, `(2,6)`, `(0,6)` as described in A1 |
+| Supplemental characterization (embedded program, label `claude-characterize-records`) | exit 0; output SHA `072937b5…` equals the embedded/raw value |
+| DIAG / SESSION comparers, identities derived from pinned preparations | DIAG "all … match exactly" with the allow flag; SESSION "all 25 … match exactly" |
+| Commands/cohort pytest | 498 passed |
+| `ruff check --no-cache` (D4 and Option R files) | All checks passed |
+| `ruff format --check --no-cache` (memory/registry/views/runtime/adapters) | exit 1, 4 files (finding 002) |
+| `mypy --cache-dir <private>` (13 files) | Success |
+| Board `validate`, `render --check`, `show friday-command-refactor`, `next` | passed (36 tasks); dashboard current; started/granted/branch; `next` = langfuse (A11) |
+| `check-documentation-lifecycle.py` | passed (908 Markdown files) |
+| `git diff --check` on range, worktree and staged | all exit 0 |
+| `zsh -n` on every directive `sh` block | ok (6/6) |
+| Synthetic MQ-D4 binding control (`synth-mqd4`) | Variant A AttributeError; Variant B 54 bindings ok (finding 001) |
+
+### Receipts inspected only (hash-verified, not re-executed)
+
+- Related Chat 587 passed.
+- Original controller comparator and replay receipts.
+- Trial capture: explicitly not the baseline.
+- `offline-startup`.
+- Board and docs receipts from the controller's `planning-checks.json`.
+- The before-counts Chat 1,338 and CLI 155.
+- D5 bundle and installed proof: a future deliverable, not required now.
+
+Prior DIAG/SESSION/pilot unit verdicts were not used as correctness evidence for this directive.
+
+## Integrity and isolation
+
+- **Start and end:**
+  - logical index (exact `git ls-files -s -z`, hashed before status) `730d51fc2821…` at both ends, equal to the manifest;
+  - HEAD `76b949b2…`, branch `feature/command-retirement`;
+  - staged diff empty; status identical (two dirty Chat examples only);
+  - `--ignored` status listing byte-identical (165 lines);
+  - pins 46/46, worktree = HEAD blob;
+  - protected non-docs 1,255/1,255 (mode/size/mtime/ctime/sha/link);
+  - dirty 2/2 and ignored exports 3/3 exact;
+  - supplied raw files 29/29 exact;
+  - supplied wheelhouse 8/8 hashes unchanged;
+  - request and manifest hashes unchanged.
+
+  Reports: `integrity/start.json`, `integrity/end.json`.
+- **No worktree writes.** `find -newer` excluding `.git` dirs returned 0 paths.
+- **Disclosure 1.** Early in the review I ran one `python -I` import of `friday_commands` from the root source without `-B`. The existing `__pycache__` files kept their 08:43 / Nov 7 timestamps, so nothing was written. All later Python ran with `-B` and `PYTHONDONTWRITEBYTECODE=1` or used private exports.
+- **Disclosure 2 (environment).** At 10:11:17 local, a `git fetch` of `origin` updated `.git/FETCH_HEAD`, 11 loose objects and the `docker-bench-security` submodule's FETCH_HEAD/refs. None of my commands fetch, and my guarded children cannot reach the network, so this looks like an external auto-fetch. It did not touch the index, HEAD, branch ref, worktree or any manifest identity.
+
+## Baseline debt versus regression
+
+These remain failed and unwaived. They were not rerun and are not called passing:
+
+- root Ruff 534;
+- root `test_display` collection conflict (6,929 collected);
+- legacy registry formatting.
+
+Newly measured and unclassified: baseline `ruff format` failures in `memory.py`, `runtime.py` and `adapters.py` (finding 002). This is pre-existing debt, not a regression, but the directive must classify it before its gate can run honestly. No regression was introduced by the candidate: the package bytes equal base.
+
+## Residual limits
+
+- The review covers directive and design readiness only. No MEMQ implementation, tests, probe or wheels exist to assess.
+- The D5 bundle, installed proof and full Chat/CLI suites were not executed.
+- The supplemental characterization imports from the root editable install, which equals base bytes. It has no export-origin guard of its own.
+- The Option R behavior with a real Chroma store is assessed by source reading plus the existing test pattern, not by execution.
+- Synthetic controls exercise the documents' logic, not future code.
+
+## Score
+
+Advisory rubric: **8.3 / 10**. Evidence quality is excellent; the deductions are for the two gate-level defects (001, 002) and the provenance error (003).

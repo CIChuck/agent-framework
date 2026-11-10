@@ -104,8 +104,7 @@ applications that must avoid shared import-time membership.
 
 The [source catalog](14-appendices.md#native-tool-source-catalog) lists tool
 definitions and marks obvious stubs. It is a source inventory, not the set
-registered in your running Chat session. `/tools` shows runtime membership;
-`/tool-budget` explains the selected schema set.
+registered in your running Chat session. `/tools` shows runtime membership.
 
 Common implementation groups include filesystem, shell, web, Git, data, text,
 encoding, archive, math, execution, finance, memory and integrations. Dependency
@@ -145,14 +144,10 @@ Chat selects a model-facing schema set each turn. `tools.context.max_tools` and
 Required names must resolve and fit policy. MCP has additional discovery/result
 limits and a minimum memory retrieval floor.
 
-`/inject-tools name ...` replaces the manual selection for later turns. The
-policy retains `tools.context.required_tools` alongside the requested names
-and suppresses optional automatic choices. The union of required and manually
-selected names must fit the same admission, count and schema-budget limits.
-`/clear-tools` restores automatic selection. Unknown names or over-budget
-required/manual choices can fail selection. `/recommend-tools <query>` gives
-recommendations, not a permission grant. `/run-tool` directly executes an
-admitted tool and can mutate state.
+The runtime selection APIs retain manual-selection support for applications.
+Configured required names and any application-provided manual names must fit
+admission, count and schema-budget limits. Normal Chat turns use the configured
+selection policy and provider function-call records.
 
 The loop also has iteration/failure/result limits. Treat reaching a limit as a
 partial operation; increasing it does not repair a failing integration. Never

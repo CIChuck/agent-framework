@@ -1,0 +1,91 @@
+# MEMQ-001 directive/design readiness review — Astra
+
+**CHANGES_REQUESTED — directive/design readiness only.**
+
+Reviewer: GPT-6 Astra, high reasoning effort; independent single seat, 2026-11-09. Fresh read-only review in `/Users/chuckrussell/Dev/gendev/agent-framework`. No delegation, repairs, product implementation, board updates or external actions. Advisory score: **8.5/10**. One mandatory finding prevents a readiness verdict; the score does not override it.
+
+Candidate: `76b949b2e621e7a44ddec6ed527784e781696c8c`, branch `feature/command-retirement`; complete bounded range `c5871054266da2340486d2043062c5fb95611c00..76b949b2e621e7a44ddec6ed527784e781696c8c`. The range changes 13 planning/evidence files and no product files. The current directive and contract were read in full; current legacy handlers, public collection reads, ingestion metadata, probe exports, materialized capture/comparison programs, changed authority records and relevant policy were inspected directly. Prior implementation verdicts were not used as correctness proof.
+
+All paths below without an absolute prefix are relative to the repository. Packet means `docs/planning/active/command-refactor/`. Evidence files referenced by short name reside beside this report.
+
+## Mandatory finding
+
+1. **MEMQ-DIR-ASTRA-001 — High: D5's permitted retained SESSION transformation cannot produce the required export surface.**
+
+   Location: `docs/planning/active/command-refactor/directives/CD-CMD-MEMQ-001-memory-queries.md:338` (the restriction continues through line 341). Controlling requirements: MR-02, MR-08; MQ-01's exact 54-name surface; D5's retained SESSION/DIAG checks and prohibition on weakening or spoofing exactness.
+
+   D5 says to copy the accepted probe behavior functions, changing **only function names and the sixteen appended expected names**, with an AST audit against the pinned functions. The actual pinned SESSION `neutral_behavior` at `validation/session/installed_probe.py:133` defines a 24-name `expected_exports` list, then at line 159 requires exact equality with `api.__all__`. Applying the permitted sixteen-name addition yields 40 names, not 54. The fourteen DIAG-era exports are missing. This is not a missing future implementation deliverable: the instruction is already internally unsatisfiable for a conforming future candidate. The directive itself recognizes the old SESSION 24-name assertion at lines 335–337, but does not authorize the necessary additional transformation.
+
+   Independent witness: AST extraction from the pinned SESSION function produced `original=24`, `permitted_additions=16`, `result=40`, `required=54`; see `retained-session-witness.json`. A future builder must either fail the retained check or exceed the specified AST edit allowance. Appending sixteen to the DIAG 38-name list is feasible; the defect is specific to the older SESSION list.
+
+   Minimal mitigation: explicitly distinguish the two retained transformations. Authorize replacing/extending the SESSION expected list to the exact current 38-name ordered baseline plus sixteen MEMQ names (30 additions relative to its frozen 24), while DIAG receives sixteen additions. State the precise AST exception for that list only; keep all behavioral assertions and frozen original probe files unchanged. Alternatively identify a pinned, already adapted 38-name SESSION behavior source and authorize that exact provenance. Reconcile changed directive/approval/authority hashes under the applicable authority process.
+
+   Required verification: a private static extraction must show both transformed lists equal the same exact ordered 54-name surface, and an AST comparison must show only authorized changes. At future D5, execute both retained behavior sets normally and optimized against actual installed candidate artifacts; this readiness review does not require those future artifacts now. Documentation impact is limited to the directive's retained-probe instructions and its dependent pins/approval records. No dependency/configuration change is needed.
+
+## Criteria matrix
+
+“Pass” here means document/design readiness within this review, never implementation conformance.
+
+| Criterion | Outcome | Evidence and assessment |
+| --- | --- | --- |
+| MR-01 | Pass | Approval `approval/memory-queries.md:20` pins the current contract/directive/preparation/supplement; its decisions and `authority.json` agree on option R, D0/D1 next and separate acceptance. Board/dashboard checks pass. Eighteen permitted package paths under R, explicit exclusions and baseline equality prevent framework or ingestion scope expansion. The execution log is append-only against the base. |
+| MR-02 | Changes requested | MQ-01 specifies thirteen frozen/slotted models, six outcome variants, sixteen ordered exports, exact bool/model validation, one-pass tuples, caps, optional/default relationships and retained invariants. MQ-D4 narrowly names the two old test assertions. The installed retained-probe plan fails as described in MEMQ-DIR-ASTRA-001. |
+| MR-03 | Pass | MQ-02 and MQ-T03–06 bind request/execution/name checks before reads, one exact-bool availability call, one awaited capability, kind and graph selection, exact outcomes and exception/cancellation identity. MQ-D1 and MQ-D2 refusals are explicit approved decisions rather than silent compatibility changes. |
+| MR-04 | Pass | MQ-03–05 checked against `commands/memory.py` and registry handlers. Plain records read text only; meta preserves verification-before-preview-before-ISO-before-confidence, repeated reads and empty-meta completion; graph projection follows both awaits. Two private original captures match all 76 rows; all four supplemental cases reproduce exactly. MQ-T09–11 require stronger stateful and failure-order probes than the basic captures. |
+| MR-05 | Pass with advisory clarification | Option R can use existing short/long-term `get_all(limit=None, where=...)`; `adapters.py:389` onward confirms the existing source/description/type metadata and multi-chunk fields. Grouping/count/order, re-ingestion totals, promotion coverage, collection warnings, cancellation, fake insertion order and no source-file/decayed reads are specified. MQ-T14 requires real temporary-store coverage. See advisory A1 on invalid description values. No production feasibility execution was claimed. |
+| MR-06 | Pass | MQ-07 constrains six wrappers and registry slots, original parsed args, fixed spec identity, fresh factory and exactly one consumption path; custom and renamed handlers remain authoritative. MQ-T08/T12 and D5 require injected distinct typed outcomes to detect ignored outcomes or a shadow engine. Metadata stays 41 canonical names/3 aliases and the 39-entry tuple remains ordered. |
+| MR-07 | Pass, subject to D5 correction | MQ-T01–14 map to schema/API, invocation, projection, purity and persisted-listing behavior. Named call-phase mutation failures, unchanged controls, three-time canonical-origin hashes, unchanged old assertions except MQ-D4 and staged D1/D2/D3 councils are enforceable requirements. Future nodes/mutants were not demanded or executed. |
+| MR-08 | Changes requested | Six shell blocks pass `zsh -n`; materialization, private offline harness, comparator and two original captures execute successfully. D0–D4 source/static/AST/preservation instructions are feasible. D5 closed bundle and actual installed-origin requirements are appropriately bounded, but its retained SESSION transformation needs MEMQ-DIR-ASTRA-001 fixed. |
+| MR-09 | Pass | All 23 original receipts, two programs, two fixtures, baseline/replay, four supplemental file records and relevant controller embedded records pass hash checks; 47 embedded records and 43 embedded/raw pairs verified overall. Their claimed results remain inspected receipts where not independently rerun. Reproduced capture, supplemental, guard, comparison and documentation results are listed separately below. |
+| MR-10 | Pass | Request first-hash check passed; full manifest parsed and every record verified. Start/end HEAD, branch, exact logical index before status, staging, 46 pins, 1,255 protected entries, dirty examples, ignored exports and 29 manifest raw files match. No supplied evidence write. Known baseline debt stays failed/unwaived. This is solely a document-readiness conclusion. |
+
+## Executed checks and evidence
+
+Fresh external scratch: `/private/tmp/memq-directive-review-astra-65zct1y9`. All writes, copies, source exports, modified controls, runner caches and reports were here. Every Git child inherited `GIT_OPTIONAL_LOCKS=0`; Python executions used bytecode suppression. No supplied argv was replayed verbatim. Private materialized programs retained their hashes, while all output/source/runner paths were newly selected.
+
+The interpreter was the repository's existing `.venv/bin/python` (3.13.10 environment); no sync, upgrade, downloads or real stores. `prepare.py` used the supplied wheelhouse read-only, copied and checked eight wheels into this scratch and generated the private offline runner. Startup passed.
+
+The command receipts and complete logs are in `prepared/<label>.json` and `.log`; `executed.json` records the main sequence. The common prefix was the repository interpreter, `-B`, this scratch's `prepared/pilot_run.py`, and the distinct label.
+
+| Labels / command suffix | Actual result |
+| --- | --- |
+| `guard`: `python -B .../harness/guard_selftest.py` | Exit 0; 18 refusal controls plus loopback and scratch/memory SQLite controls. |
+| `comparator`: `python -B <private>/compare_memq.py --selftest` | Exit 0; 14 refusal controls. |
+| `baseline-capture`, `replay-capture`: private capture program, separate Git exports, separate observation paths, exact base revision | Both exit 0; each validates all 441 package source files against Git before imports and records 262 Friday module origins. |
+| `baseline-compare`, `replay-compare`: private frozen baseline and observations, baseline SHA `ce5da59c62ce761354b2977fcb0c3f5816a858c7e22d4873ae60e4d2613db6b9`, capture SHA `eafcfcbc45e04a11cd04bfc8203d7e4e953f1cc7a5be85b9ca9b2e1d113f0f8a` | Both exit 0; six metadata records and 76 exact rows, zero refusals/superseded rows for original source. |
+| `supplemental`: private materialized `characterize_records.py` | Exit 0; four cases; reproduced JSON equals the embedded observations exactly. |
+| `extra-source-control` | Expected exit 1, `Source inventory differs from Git`, before product imports. |
+| `changed-source-control` | Expected exit 1, exact byte-drift refusal for private Commands `__init__.py`, before product imports. |
+| `board`: `python -B scripts/friday-dev-board.py validate` | Exit 0; 36 tasks. |
+| `board-render`: same script, `render --check` | Exit 0; dashboard current. |
+| `docs`: `python -B scripts/check-documentation-lifecycle.py` | Exit 0; 908 Markdown files. |
+| `diff-worktree`, `diff-range`: `git diff --check`, and exact bounded range | Both exit 0. |
+| `zsh -n shell-0.sh` through `shell-5.sh` | All exit 0; exact extracted shell blocks. |
+| Embedded/raw and 25 directive input pins; append-only log; retained SESSION AST extraction | Hash/append checks pass; AST witness demonstrates the mandatory finding. |
+
+The source-refusal controls are successful inventory guards, not product mutation rejection credit. The private altered files were restored; neither repository nor supplied export was modified. Original source captures do not exercise the future option R implementation: at that stage the required split is 68 exact + 2 declared refusals + 6 superseded rows, with separate repair tests. The comparator's opt-in flags permit exceptions; separate required assertions must establish the exact counts and behavior.
+
+## Inspected receipts and future enforcement limits
+
+The original preparation receipts record 587 related Chat tests and 498 Commands/cohort tests, as well as baseline/replay and guard controls. Those owning suites were **not rerun** in this documentation review. The earlier trial capture remains explicitly non-baseline. Controller planning checks and historical accepted DIAG/SESSION/pilot results were treated as provenance, never inherited verdicts. The controller's excluded missing-argument comparison attempt earns no correctness credit.
+
+D0 preparation and materialization were exercised; its future closed baseline artifact trial was inspected, not built here. D1 neutral, D2 integration/option R, D3 named tests, D4 full owning suites/static/root debt accounting and D5 builds/installed/mutation proof remain future work. Missing future MQ nodes, installed probe or wheels are not findings in this readiness review. Bundle source inspection confirms revision-aware inventory verification and private offline artifact inputs; it does not establish that future builds will pass. D5 still requires identical artifact/profile maps, actual installed module origins, no source injection, strict normal/optimized checks and private-copy tamper controls.
+
+Known root Ruff **534 findings**, the root Chat/CLI `test_display` collection conflict (**6,929 collected**) and legacy registry formatting remain **failed and unwaived**. They were not rerun, waived or counted as passing gates. No product regression is asserted from this planning-only diff.
+
+## Integrity and isolation
+
+Request SHA256 (verified before reading): `fdbbd0ffa871f3e818461abb40b49eb4ecd94ec9ca27b9d01c7c321c27a3d085`.
+Manifest SHA256: `d547905755721b7afb49ff978de4c4307ca942703fc66978641287e8798f14d7`.
+Exact logical index SHA256 at both boundaries: `730d51fc2821f79031a442e4b31e350258488f70575d2229b53ce55dcded81c0`.
+Staged diff empty at both boundaries. Only the two pre-existing modified Chat examples appear in status; their requested hashes match. Ignored exports retain content, mode, size, mtime/ctime and membership. All manifest-protected files and supplied evidence identities match; end audit has zero errors.
+
+Evidence: `start-corrected.json`, `end.json`, `audit_end.py`, `embedded-verification.json`, `manifest.json` and `bounded.diff`. Initial `start.json` recorded reviewer-side false mismatches from hashing symlink target names instead of dereferenced content; the correction checked both link metadata and the referenced file bytes. All twelve apparent differences resolved to exact manifest matches. This was an audit-method correction, not candidate drift.
+
+## Advisory and residual limits
+
+A1 (non-mandatory): explicitly spell out option R's policy for a mapping with a valid source but a non-string/non-None description, and add that example to MQ-T14. The view declares `str | None`, while the explicit malformed-record prose singles out absent/invalid source. A precise reject-and-warn or normalization rule would reduce builder discretion around grouping and sorting; this report does not authorize a particular policy.
+
+The approval's recorded user-message provenance was inspected as repository authority; private builder conversations were neither consulted nor inherited. No live Chroma/provider/network operation was performed. Broader old authorities and accepted implementations were inspected only insofar as needed for the MEMQ readiness boundary. This report does not revalidate prior units, prove future implementation, accept UAT, advance a work unit, grant construction authority or authorize delivery.
+
+Score basis: strong closed contract, explicit scope/authority and preserved evidence (3.0/3); compatibility and test design (2.7/3); executable gate readiness (1.0/2 because of the retained-probe contradiction); provenance and isolation (1.8/2). Total **8.5/10**, advisory only.

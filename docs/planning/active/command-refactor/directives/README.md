@@ -1,6 +1,6 @@
 # Command directive provenance
 
-Current working home is `agent-framework` on `feature/command-refactor`, under
+Current working home is `agent-framework` on `feature/command-retirement`, under
 the maintainer's latest [planning-transfer direction](../../../reconciliation/2026-11-05-tui-to-agent-framework/README.md). The
 [foundation directive](CD-CMD-FND-001-neutral-foundation.md) was approved,
 implemented and independently VERIFIED; the maintainer accepted that unit.

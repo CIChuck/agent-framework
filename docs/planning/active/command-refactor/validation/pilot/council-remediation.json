@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "authorization": "pilot_harness_amendment in authority.json; maintainer explicitly authorized applying council feedback",
+  "round1_candidate": "3952d213c6be360c2b8b638c0474d8142fa4bb20",
+  "round1_disposition": "CHANGES_REQUESTED",
+  "scope": "Planning and diagnostic tooling only; all product/test/config/metadata/lock bytes remain unchanged",
+  "corrections": {
+    "CLA-PILOT-01": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Exact closed-wheelhouse/no-index/offline/cache G0/G5 commands; cold baseline Commands wheel/sdist build, venv, install, pip check reproduced."
+    },
+    "CLA-PILOT-02": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Pilot SQLite audit extension plus plain/file/encoded URI refusal tests in synthetic repo, audit-only real-root probes and allowed scratch/memory controls. Historical open helper retained; pytest uses unique scratch basetemp."
+    },
+    "CLA-PILOT-03": {
+      "status": "applied_pending_fresh_review",
+      "correction": "PILOT-01 through10 mapped to exact test files; G1 includes import-boundary test, G3 includes full new pilot/session/display files; local G2 WIP commits explicitly permitted."
+    },
+    "CLA-PILOT-04": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Every file under package src verified including data; every loaded friday module/namespace origin checked; YAML and escaped-module controls reproduced."
+    },
+    "CLA-PILOT-05": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Explicit immutable empty catalog for exit/cls; exact snapshot key-map standalone consumer without resolve; FridayChatApp class name corrected."
+    },
+    "CLA-PILOT-06": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Changed/missing capture-program self-tests added; current prose clarified; historical initial/revised proposal hashes preserved separately."
+    },
+    "ARGON-PILOT-001": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Explicit TypeError rules for new shared focus/request/execution boundaries; legacy falsy Chat focus preserved and three baseline cases added."
+    },
+    "ARGON-PILOT-002": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Receipt collision refusal, repeated-receipt suffixes, output no-overwrite/checkout refusal; complete module origins and capture identity controls."
+    },
+    "ARGON-PILOT-003": {
+      "status": "applied_pending_fresh_review",
+      "correction": "Every new raw receipt classified final_gate/control/historical_attempt; round-one evidence immutable with explicit provenance; current narrative spacing corrected."
+    }
+  },
+  "baseline_revision": {
+    "source_revision": "7b80ca01489a52608aafb54b626b74fbb36efbe3",
+    "old_sha256": "30d5ae72c0ccc2a47845c6a5110da93a198a217ccc38f2e75250fe337782b8c7",
+    "new_sha256": "645b27cd87a52942d20068462903c0c1f1f42c0dde50e61da97f0b5a8c83d7cf",
+    "old_capture_sha256": "8910d67902ceef692b519612a7e0a2286eb7bce2dcfc53cac0226c591e6d9b2e",
+    "new_capture_sha256": "eb19a8b5c2da9906b39276c8641dc1b7ec0d29091be1193bf3d9f147a17fcdd4",
+    "preserved_original_observations": 193,
+    "new_cases": [
+      false,
+      0,
+      []
+    ]
+  },
+  "fresh_review_required": true
+}

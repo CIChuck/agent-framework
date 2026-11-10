@@ -1,0 +1,15 @@
+{
+  "all_distribution_keys_and_versions_unchanged": true,
+  "changed_package_only": "friday-chat",
+  "added_dependency_edges": [
+    {
+      "name": "friday-framework-commands"
+    }
+  ],
+  "added_requires_dist": [
+    {
+      "name": "friday-framework-commands",
+      "editable": "packages/friday-commands"
+    }
+  ]
+}

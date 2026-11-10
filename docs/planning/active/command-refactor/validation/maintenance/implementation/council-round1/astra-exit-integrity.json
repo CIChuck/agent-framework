@@ -1,0 +1,37 @@
+{
+  "fixture_raw_bytes": [],
+  "baseline_test_sha": true,
+  "authority_pins": {
+    "count": 14,
+    "bad": []
+  },
+  "deliverable_pins": {
+    "count": 14,
+    "bad": []
+  },
+  "product_pins": {
+    "count": 72,
+    "bad": []
+  },
+  "external_pins": {
+    "count": 461,
+    "bad": []
+  },
+  "protected_manifest": {
+    "count": 17513,
+    "bad": []
+  },
+  "personal_file_hashes": {
+    "count": 91,
+    "bad": []
+  },
+  "metadata_bad": [],
+  "symlinks_bad": [],
+  "gitlinks_bad": [],
+  "logical_index": "91007eb0d945d316d5aecef6428f4962e84661f2866d65807346ac1ba1676dc5",
+  "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+  "head": "b15ee091a1bfae07b61de521d6478b39ca4b48d2",
+  "branch": "feature/command-retirement",
+  "staged": "",
+  "baseline_test_path": "packages/friday-chat/tests_chat/test_reorganization_coordinator.py"
+}

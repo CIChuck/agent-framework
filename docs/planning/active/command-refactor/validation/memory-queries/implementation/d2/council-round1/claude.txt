@@ -1,0 +1,213 @@
+# MEMQ-001 D2 council round 1 — seat Claude (Opus 5.5/high)
+
+**Verdict: VERIFIED (D2 only).** No mandatory findings. Advisory score **9.4/10**.
+
+Scope: fresh, independent, read-only implementation-conformance review of D2 Chat integration and the approved option R persisted listing.
+- Candidate: `9db8311e44583f6db882847ff4643094668077bf`.
+- Product source: `3ed1d58ad8cc1e79522495da5cf19091185402d8`.
+- D2 start: `39661e870affaf7abb160df9da53e53dfe94c822`, after the reconciled D1 VERIFIED result.
+- Unit baseline: `c5871054266da2340486d2043062c5fb95611c00`.
+- Branch: `feature/command-retirement`.
+
+No builder verdict or private reasoning was relied on. Builder and D1 records were inspected only as provenance.
+
+This review confers no acceptance, advancement, delivery or loop authority. D3 builds, installed proof and UAT remain future work and are excluded.
+
+## Mandatory findings
+
+**MEMQ-D2-CLAUDE-001 — none.** No defect, scope breach, missing gate or integrity drift requires remediation before the controller reconciles D2.
+
+## Optional notes (non-mandatory, advisory)
+
+**N1 (low, test coverage): grouping of an empty description versus an absent one is not distinguished by any test.**
+- An exploratory mutant changed the grouping key to `(source, description or None)`. That merges a stored `""` description with an absent (`None`) one, and all 52 tests still pass.
+- The implementation itself is correct: it uses `(source_path, description)` at `packages/friday-chat/src/friday_chat/adapters.py:686`, which matches the contract's MQ-06 "one row per `(source, description)`".
+- Real `/ingest` never produces `""` (`registry.py:679` sets `" ".join(...) or None`), so the practical risk is low.
+- Mitigation: at D3, add one T14 row with a `""` and an absent description for the same source. This is a test-only change.
+
+**N2 (low, documentation): one descriptive field in `authority.json` is stale.**
+- `authority.json:996` (`memory_queries_preparation.projection_clarification`) still says "Chat projection/protocol changes are D2, unstarted".
+- Its sibling `state` already says `D2_implemented_council_pending`.
+- The controlling fields named by the directive all agree across the board, packet, log and authority: execution_phase, validation_state, next gate, roster and acceptance pending.
+- Mitigation: update the wording at the next controller status write.
+
+**N3 (medium, process/UAT): the pre-existing `/ingest` failure without a description is real and user-reachable, but it is tracked only in packet status prose.**
+- My paired controls reproduce it identically on clean pre-D2 and candidate exports, through both the adapter and the real `/ingest FILE` command. Details are in §MD2-11.
+- The CMD-F05 backlog row and the framework upgrade log do not record it.
+- UAT step MQ-UAT-10 tells the operator to "`/ingest` ... using existing syntax". If an operator omits the description, they will hit the TypeError and may misread it as a MEMQ regression.
+- This is not a D2 defect: the directive freezes `/ingest`, and option R's scoped requirements are met.
+- Mitigation:
+  - Record the defect in the backlog (CMD-F05/FILE-001) for a maintainer decision.
+  - Before UAT, have the D3/acceptance handoff tell operators to supply a description.
+  - Do not fix or waive the defect in MEMQ.
+
+**N4 (low, traceability): three mandatory behaviours are asserted only in the frozen-case node.**
+- The behaviours are `No entities found.` (MQ-T11), absence of a last-turn budget (MQ-T09) and the complete empty-meta message (MQ-T10).
+- Each one is asserted by MQ-T07's exact frozen rows (`entities:empty`/`nodes-empty`, `memory:no-turn-no-session`, `meta:empty-complete`), not inside its own node.
+- The assertions are effective: mutants hitting these paths fail T07. They are just located in a different node.
+- Mitigation: none is required for D2. Optionally, cross-reference them in the D3 test-traceability record.
+
+## MD2 matrix
+
+| ID | Result | Evidence (own execution unless marked *inspected*) |
+| --- | --- | --- |
+| MD2-01 | PASS | **History and authority:** `39661e87` → `3ed1d58a` → `9db8311e` is linear, and the D2 source commit's parent is the D1 reconciliation commit. Authority hashes match: contract `93cdb3bd…`, directive `4d154412…`, correction2 `54c778f4…`, preparation `e6d203a0…`. **Changed paths:** the D2 range touches 10 package paths, all on the option R allowlist. Across the whole unit there are 17 package paths. **No out-of-scope changes:** no metadata, dependency, lock, config, framework or test-file edits. In `friday-commands`, only the README changed in D2. |
+| MD2-02 | PASS | **Registry AST audit:** the tuple stays at 39 entries, and only indices 3, 9, 10, 11, 12 and 16 changed, each to `_memory_query_definition(name)`. Other top-level definitions keep their order and AST. Only `_entities_handler` and `_list_ingested_handler` bodies changed. The `_record_value` import was removed (now unused), and the memory_queries import and helper were added. **Captures:** pilot 196 is exact (41 metadata, 62 help, 29 dispatch, 61 custom, 3 lifecycle). The MEMQ comparer confirms "Six metadata records match". MQ-T07 confirms 41 canonical names and 3 aliases. |
+| MD2-03 | PASS | **Code:** `invoke_memory_query` (`memory_queries.py:537-544`) builds one `CommandRequest` from the fixed spec and the original args. It then makes a fresh port and factory, awaits one handler and calls the adapter. It does no context read before the request is built. **Wrappers:** all 6 wrappers make one call each. **Tests:** MQ-T08 ×6 passes. **Mutants:** `ignored-injected-result` and `x-eager-port-read` are refused. |
+| MD2-04 | PASS | **Code:** read and await order is identical, `_runtime()` reproduces the old AttributeError message, and the snapshot is built in the old order. There are 8 sections and 24 keys, formatting is unchanged, and warnings are deduplicated and sorted. **Tests:** T09 ×6 passes. Frozen rows `memory:*` (11) are exact. **Mutants:** zero-as-missing, missing utilization suffix, double-format, warning-dedupe and warning-order are refused. |
+| MD2-05 | PASS | **Code:** `_project_records` and `_project_meta_record` keep the old reads, truth tests and repeated accesses. `complete` is read only on the empty-meta branch. **Tests and controls:** T10 ×15 passes, and the 4 supplemental cases are exact (own control, below). **Mutants:** record-cap, `x-meta-double-format-confidence` and unawaited query are refused. |
+| MD2-06 | PASS | **Code:** entities are awaited, then relationships, before any `record_value` call. Caps are 100. **Tests:** T11 ×9 passes, and the 20 `entities:*` frozen rows are exact. **Mutants:** projection-before-second-await, entity-cap, case-insensitive-nodes and nodes-relationships are refused. |
+| MD2-07 | PASS | **Scope:** AST audit shows only the approved additions: 2 views, 2 `__all__` entries, a protocol method plus a fake method, and an adapter method plus `_ingested_document_view`. **Behaviour:** reads are the public `get_all(limit=None, where={"type":"ingested_file"})` on short- and long-term, through gather with `return_exceptions=True`. Grouping is `(source, description)`, counts are stored chunks, ordering is source then None-first. Partial reads warn, and cancellation and non-Exceptions are re-raised. **Tests:** T14 ×6 passes. **Mutants:** decayed read, grouping, count, None-last ordering, swallowed cancel, long-term-skipped and malformed-warning-dropped are refused. N1 records one survivor. |
+| MD2-08 | PASS | **Code:** `adapt_memory_query_outcome` accepts exact types only, rejects any error or effect, and has no legacy fallthrough. **Tests:** T12 ×8 passes, covering 14 bad data shapes plus subclasses. Output keeps the exact `CommandResult` defaults and has no trailing newline. |
+| MD2-09 | PASS (see N4) | **Named tests:** the 52 named tests pass. **Mutants:** all 20 required mutants are refused, each with at least one CALL-phase `AssertionError` witness, and canonical origins are stable at all 3 boundaries. The unchanged control passes 52/52. **Suites:** neutral/cohort 599, Chat 1390, CLI 155, fast lanes 616 and 117, and the canonical 651 run. |
+| MD2-10 | PASS | **MEMQ captures:** 68 exact + 2 kind refusals + 6 option-R-superseded, ×4 (2 rounds × 2 separate exports). All four observation sets are identical. Running without the flags is refused ("not 76 unchanged"). **Other families:** DIAG 68+4, and without its flag the comparer refuses. SESSION 25 and pilot 196 exact. **Harness controls:** guard 18 and comparer 14 pass. Extra-file and changed-byte sources are refused before import. **Supplemental:** 4 of 4 exact. |
+| MD2-11 | PASS (see N3) | **Evidence pairs:** 94 of 94 embedded/raw pairs are byte-identical and hash-equal. **Static gates:** Ruff on the full named path set is clean; mypy reports no issues in 15 files. Format: 2 new files plus `memory_views` pass; 4 existing files fail as baseline debt. The no-new-debt check reports `{}`. **Admin and lock:** board validate (36), render `--check`, docs (925), offline lock (214) and diff `--check` (worktree, D2 range, unit range) all pass. **Ingest:** paired nullable-ingest control is identical; the UAT plan is unchanged and NOT RUN. |
+| MD2-12 | PASS | **Integrity:** start and end boundaries match all 17 groups (below). **Isolation:** all of my writes are in one scratch directory. **Conduct:** no repairs, no nested delegation, no advancement. |
+
+## MQ-T07..14 matrix (own run, `test_command_memory_queries.py`, 52 passed)
+
+| Node | Cases | Mandatory assertions verified effective |
+| --- | ---: | --- |
+| MQ-T07 `test_memory_query_metadata_and_frozen_cases` | 1 | **Identity:** fixture SHA `0403471b…` (equals preparation `chat_behavior`), 41 canonical names, 3 aliases, 39 specs, six metadata records equal to the fixture. **Rows:** 76 rows reported as `[68,2,6]`. **Retained families:** reuses the accepted DIAG node. Only package-local fixtures are read; the planning packet is not. |
+| MQ-T08 `test_memory_query_once_only_delegation` | 6 | **Single pass:** one parse, factory and await each. **Identity:** fixed spec identity; the original parsed tuple is passed by identity. **Context:** a differing context registry; a tripwire context is not read. **Handlers:** the renamed wrapper keeps its canonical command, and custom handlers are authoritative. **Results:** injected distinct typed results are consumed. |
+| MQ-T09 `test_memory_statistics_projection_order_and_failures` | 6 | **Order and failures:** read/await order, Exception→warning, cancellation identity and the pending state. **Formatting:** zero, not-configured, bool, float and str values are formatted once. **Output:** `%` suffix, 256-character preview, unique sorted warnings. Budget absence is asserted via T07 (N4). |
+| MQ-T10 `test_memory_record_projection_and_rendering` | 15 | **All three kinds:** empty, populated, 100-record cap, failure and cancel. **Projection:** 160/80 previews exactly once; plain records touch only text. **Ordering:** traced verification→text→ISO→confidence order with repeated accesses; stateful and raising values. **Facts and output:** present-empty versus None; concatenation; the decayed line; renderer purity. |
+| MQ-T11 `test_entities_projection_and_rendering` | 9 | **Reads:** read order, nodes-only skip, `NODES` treated as a name, projection only after both awaits. **Values:** `0`/`False` are shown; the fallback is used. **Output and errors:** caps, blank separator, error/cancel identity, AttributeError after both reads. |
+| MQ-T12 `test_memory_query_adapter_refusals_and_purity` | 8 | **Accepted:** exactly six data shapes. **Rejected:** errors, effects, subclasses, None/object, 12 other foundation data types plus mapping/object, and child data. **Purity and defaults:** no service or preview recomputation; exact defaults; no trailing newline. |
+| MQ-T13 `test_memory_query_real_app_sequence` | 1 | **Sequence:** a turn, then the 6 commands, `/ingest` and `/list-ingested`, `/history`, `/clear`, `/cls`, `/q`. **Checks:** output and cleanup order; fake runtime only. |
+| MQ-T14 (option R) `test_ingested_listing_reads_persisted_metadata` | 6 | **Real adapter on `tmp_path`:** single-chunk, multi-chunk, re-ingest (×2 count) and promotion. **Grouping and order:** description groups, None-first. **Failure handling:** malformed records and per-collection failures warn; cancellation propagates. **Tripwires:** no decayed-collection or source-file reads. Fake listing behaviour is unchanged. |
+
+## Mutation controls (own reconstruction, own edits, own launcher)
+
+All mutants ran on private copies made from my clean Git export of `9db8311e`. Each run took canonical origin snapshots before pytest, at session finish and after; the 56 `friday_*` modules always resolved inside the copy.
+
+Witness rule: a failure counts only if it happens in the `call` phase and the caught exception type is exactly `AssertionError`.
+
+| Mutant | Exit | CALL `AssertionError` witness node(s) |
+| --- | --- | --- |
+| unchanged control | 0 (52 passed) | — |
+| projection-before-second-await | 1 | entities_projection, metadata_and_frozen_cases |
+| warning-dedupe / warning-order | 1 / 1 | statistics_projection, frozen_cases |
+| zero-as-missing | 1 | statistics_projection, frozen_cases |
+| missing-utilization-suffix | 1 | statistics_projection, frozen_cases |
+| record-cap / entity-cap | 1 / 1 | record_projection, frozen_cases / entities_projection, frozen_cases |
+| double-format (statistics float) | 1 | statistics_projection |
+| ignored-injected-result | 1 | once_only_delegation (+3 nodes) |
+| legacy-engine-substitution (pre-D2 `memory.py`) | 1 | once_only_delegation (+3 nodes) |
+| decayed-collection-read | 1 | ingested_listing |
+| wrong-grouping / wrong-count / wrong-order (None last) | 1 | ingested_listing |
+| swallowed-cancel | 1 | ingested_listing |
+| missing-kind-refusal (neutral) | 1 | frozen_cases (asserts that the exception is present) |
+| case-insensitive-nodes / nodes-relationships | 1 / 1 | entities_projection, frozen_cases / frozen_cases |
+| unawaited-query (host records) | 1 | record_projection, frozen_cases |
+| double-query (neutral records) | 1 | record_projection, frozen_cases |
+
+Result: 20 of 20 required mutants refused with named CALL assertions. Product-exception failures that carried no assertion were tallied separately and earned no credit.
+
+Exploratory extras:
+- Refused: `x-long-term-not-read`, `x-eager-port-read`, `x-meta-double-format-confidence`, `x-malformed-warning-dropped`, `x-unawaited-neutral-statistics`.
+- Survived: `x-merge-empty-and-none-description` (N1).
+
+**Excluded attempt:** my first mutation pass failed during setup because the basetemp parent directory was missing. Every node errored in setup with FileNotFoundError, so no credit was taken. That output is kept in `mut-excluded-attempt1-setup-failure/`, and the whole matrix was rerun.
+
+## Nullable-ingest baseline (paired control)
+
+I reconstructed my own probe and ran it on clean exports of `39661e87` (pre-D2) and `9db8311e` (candidate):
+- **Adapter and command paths:** `ingest_document(description=None)` and the real `/ingest FILE` command both raise the same `TypeError`, with message SHA `d72b418b…`, on both trees.
+- **Source identity:** the AST audit shows the source of `FrameworkMemoryAdapter.ingest_document`, `_ingest_document`, `_ingest_handler` and `FakeMemoryController.ingest_document` is byte-identical at `c5871054`, `39661e87` and `9db8311e`.
+- **Listing through the real path:** after `/ingest FILE described`, pre-D2 reports `No ingested documents.` and the candidate lists `- <F> (1 chunks): described`. This is the option R repair working end to end.
+
+Conclusion: the failure existed before D2 and was not repaired or waived. Option R's scoped requirements are met using explicit descriptions plus a stored record whose description key is absent. Cancellation through gather comes back as a reconstructed `CancelledError`, while identity is preserved at the public capability/port boundary (T14 cancel).
+
+## Commands
+
+**Executed by me** (runner = my `prepared/pilot_run.py`, offline/frozen, UV cache, TMPDIR, basetemp and mypy cache all inside my scratch, `GIT_OPTIONAL_LOCKS=0`):
+- **Integrity:** request SHA, manifest SHA, and start/end boundaries (17 groups each).
+- **Evidence pairs:** checked 94 pairs.
+- **Harness:**
+  - `prepare.py` into a fresh scratch, using the supplied wheelhouse read-only.
+  - guard self-test (18).
+- **Suites:**
+  - full Commands/cohort: 599 passed.
+  - named tests: 52 passed.
+  - full CLI: 155 passed.
+  - D2 fast lane: 616 passed.
+  - D3 fast lane: 117 passed.
+  - full Chat (live LM Studio excluded): 1390 passed, with 1 existing deprecation warning.
+  - canonical-origin lane (52 + 599): 651 passed.
+- **Captures:**
+  - comparer self-test (14).
+  - MEMQ capture and compare ×4.
+  - negative no-flag and kind-only compares (both refused, exit 1).
+  - DIAG capture and compare, plus a no-flag refusal.
+  - SESSION capture and compare.
+  - pilot capture and compare.
+  - `uv lock --check --offline` on the clean export: 214 packages.
+  - extra/changed-source refusals (exit 1, before import).
+- **Supplemental:** the 4-case control.
+- **Static and admin gates:**
+  - `ruff check`: full option R path set.
+  - `mypy --cache-dir <scratch>`: 15 files.
+  - `ruff format --check`: changed 7 (4 fail as baseline debt), new 2 and `memory_views` pass.
+  - `format_debt.py check`.
+  - `friday-dev-board.py validate` and `render --check` (never a plain `render`).
+  - `check-documentation-lifecycle.py`.
+  - `git diff --check` on the worktree, `39661e87..9db8311e` and `c5871054..9db8311e`.
+- **Audits and controls:** AST audit; 27 mutation runs (control, 20 required, 6 extras) plus a control rerun to record the count; paired ingest probe.
+
+**Inspected, not executed:**
+- Builder drivers (`captures.py`, `supplemental.py`, `mutations.py`, `mutation_launch.py`, `ingest_none_probe.py`, `prove_ingest_baseline.py`): hash-verified through the evidence pairs, read for argument shapes, and reconstructed independently.
+- Builder receipts and the D1 verified report.
+- `freeze.py`.
+
+**Not run:**
+- Root Ruff 534 and root pytest/collect: D4, known unwaived debt.
+- Rebuilding the baseline closed trial: optional.
+- D3 builds, installed probe and UAT: excluded.
+
+## Integrity boundaries and isolation
+
+Both start and end boundaries returned ALL_OK. The logical index was hashed (`git ls-files -s -z`) before status: `81debcb9…`. Groups checked:
+- HEAD `9db8311e` and branch.
+- Status: only the 2 dirty examples.
+- Staged diff empty; untracked files empty.
+- Ignored listing identical.
+- Pins (121), protected (1255), accepted evidence (150), accepted D1 (29) and dirty examples (2).
+- Ignored exports (3): bytes, mode and timestamps.
+- External locator `/private/tmp/memq-sol-current-path` (byte, mode and time identical).
+- Supplied raw files (400).
+
+The council folder still holds only its 4 original files.
+
+All deliberate writes went to `/private/tmp/memq-d2-claude-r1-Y1fM1MEc/`. That covers prepared harness, exports, captures, mutants, caches, basetemps, report and evidence.
+
+**Host-managed writes, disclosed and not deliberate:**
+- The Claude Code Bash tool's cwd tracker, `/tmp/claude-ccdc-cwd`.
+- Tool-output spill files under `~/.claude/projects/…/tool-results/`.
+
+## Debt, regressions and limits
+
+**Known debt, still failed and unwaived:**
+- Root Ruff 534.
+- Root `test_display` conflict (6929).
+- Four existing Chat whole-file format failures (`adapters.py`, `memory.py`, `registry.py`, `runtime.py`).
+- The nullable-ingest limitation (N3).
+
+**New regressions:** none. Every count matches the builder's claims, independently reproduced.
+
+**Limits:**
+- My mutants are my own reconstructions of the 20 named categories, not the builder's exact edits.
+- Source-only captures are not installed proof.
+- Promotion in T14 is exercised implicitly, but the `x-long-term-not-read` refusal shows long-term data contributes to the listing.
+
+## Advisory rubric
+
+| Dimension | Score |
+| --- | --- |
+| Scope and authority conformance | 10 |
+| Behavioural preservation | 9.5 |
+| Option R correctness | 9.5 |
+| Test effectiveness | 9.0 |
+| Evidence honesty and reproducibility | 9.5 |
+| Integrity and isolation | 10 |
+| **Overall (advisory, never overrides findings)** | **9.4/10** |
