@@ -1,3 +1,29 @@
+# MEMQ-001 — accepted; UAT closed
+
+Branch: `feature/command-retirement`
+Execution phase: closeout
+Validation state: verified; acceptance: accepted by Chuck Russell,2026-11-10
+
+Both [MEMQ UAT](uat/memq-user-acceptance-plan.md) and the
+[combined retest](uat/memq-repair-retest.md) are successful and closed per the
+maintainer. [Acceptance](approval/memory-queries-acceptance.md) records source,
+review evidence and limits. Full reorganization on exit produces positive `/meta`
+results, maintainer-reported. No additional provider/store execution was performed.
+
+The separate command-syntax defect FU-011 rejects `/reorganize --full --execute`;
+source inspection and isolated pure-parser evidence confirm full is the default
+and `/reorganize --execute` selects it. The `/meta` guidance recommends an
+unsupported explicit flag. [Open defect](../../backlog/friday-chat-framework-followups/upgrade-log.md#fu-011-reorganize-rejects-the-explicit-full-mode-flag).
+The [verification flow note](validation/memory-queries/acceptance/verification-flow.md)
+explains the three model roles, structural checks, ordering and failure signals.
+
+**Next gate:** MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.
+
+The parent initiative stays started/local. No subsequent code, TUI, delivery or
+whole-refactor acceptance is inferred. Known baseline debt remains unwaived.
+
+# Historical pre-acceptance MEMQ checkpoint — superseded by acceptance above
+
 # MEMQ-001 — shared entity/ingestion UAT repairs
 
 Branch: `feature/command-retirement`

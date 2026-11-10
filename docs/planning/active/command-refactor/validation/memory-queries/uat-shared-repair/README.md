@@ -1,5 +1,10 @@
 # Shared entity-quote and ingestion repair — candidate
 
+**Human acceptance update — 2026-11-10:** MEMQ UAT and the combined repair retest
+are successful and closed per Chuck Russell. [Acceptance](../../../approval/memory-queries-acceptance.md)
+supersedes the historical pending-UAT labels below. FU-011 explicit --full syntax
+is recorded separately; original runtime/review receipts remain unchanged.
+
 Status: shared repairs and corrected packet independently VERIFIED; human retest
 pending. Product source47134ad6. [Reconciliation](verified-report.md).
 [Correction](correction1/README.md); [original review](review-round1/report.md).

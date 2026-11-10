@@ -1,10 +1,11 @@
 # MEMQ combined repair retest
 
-Status: repair source47134ad6 / corrected packetead29d01 independently VERIFIED; human retest pending.
-[Verification](../validation/memory-queries/uat-shared-repair/verified-report.md).
-All human results remain pending. Preserve the maintainer's original UAT plan and
-reported failures. This companion is in the same UAT folder; no earlier result
-has been overwritten. Restart Friday Chat through the normal workflow to load the reviewed source. Existing YAML and personal stores are unchanged.
+Status: **PASS — maintainer-reported; CLOSED 2026-11-10**.
+Chuck Russell reports this combined repair retest was successful and directs
+closure. [Acceptance](../approval/memory-queries-acceptance.md). Earlier reported
+failures and original UAT notes remain preserved; no per-command logs/timings
+were supplied with this result. The procedure below is retained as a runbook.
+The separate explicit `--full` command-syntax issue is open as FU-011.
 
 1. Entity lookup: use a stored label visible in `/entities nodes`. Compare
    `/entities chuck` with `/entities "chuck"`. For the supplied known label compare
@@ -24,14 +25,13 @@ has been overwritten. Restart Friday Chat through the normal workflow to load th
    snapshots are created and successful verification may update metadata. Keep
    the new run ID and complete step/error lines. Errors should contain safe
    role/configured-model/schema/finish-reason/field-type details, without values.
-   The actual verification response has not yet been functionally repaired.
+   The maintainer now reports the combined retest successful; no causal claim is made about the earlier verification-response error.
 
-After successful verification, reassess full reorganization/synthesis before
-populated `/meta` UAT. This verify-only run does not synthesize meta memories.
-Keep remaining dependent UAT stopped if verification still fails. No claim is
-made that all three production issues or all20 UAT cases have passed.
+## Closure observations
 
-The configured verification models remain OpenRouter Gemini2.5 Flash for classifier/
-researcher and Gemini3.5 Flash Lite for judge. No token/model/config/pipeline change.
-The agent's checks use deterministic local embeddings and private stores only;
-these operator commands may use the configured live services.
+The maintainer reports full reorganization on exit produces positive `/meta`
+results and accepts the main MEMQ UAT. The verify-only procedure does not itself
+synthesize meta memories. Earlier warnings to keep MEMQ UAT blocked are superseded
+by this acceptance. The separate inability to use `/reorganize --full --execute`
+is FU-011; current full execution syntax is `/reorganize --execute`.
+No model/configuration, quarantine, order or verification policy changed here.

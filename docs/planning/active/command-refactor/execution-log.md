@@ -2300,3 +2300,20 @@ has been executed or accepted through this documentation change.
 - OpenAI-only future council preference retained. No Claude assignment, live
   provider/store operation, push, merge, release or acceptance was performed.
 - **Next gate:** Maintainer combined retest of entity quoting, ingestion without descriptions and verification diagnostics using uat/memq-repair-retest.md. Capture any verification role/model/finish/field error; remaining dependent UAT and acceptance stay pending.
+
+## 2026-11-10T13:27:29.974635+00:00 — MEMQ accepted; main and combined UAT closed
+
+- Chuck Russell explicitly reports both MEMQ UAT and combined repair retest
+  successful and directs closure. Positive /meta follows full reorganization
+  on exit, maintainer-reported. No per-case logs/timings or launch hash invented.
+- Acceptance record binds existing reviewed source47134ad6/packetead29d01 and
+  checkout39a631a9; original user UAT plan is preserved byte-exact before updates.
+- Record FU-011 separately: explicit --full rejected although full is default
+  and /meta guidance recommends the unsupported flag. Pure-parser reproduction
+  confirms rejection/default full; no maintenance, provider or personal-store run.
+- Verification flow is documented: sequential model verdicts, exact schema/ID
+  checks, verified-source synthesis gate and synthesis-before-verification order.
+  No external fact-check tool or generation/verification policy change added.
+- Parent initiative remains started/local. Configurations, exports, .friday-old
+  state and frozen evidence preserved; no source/test/dependency change or delivery.
+- **Next gate:** MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.

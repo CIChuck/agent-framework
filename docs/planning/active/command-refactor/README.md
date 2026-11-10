@@ -7,7 +7,15 @@ current work. This transfer changes documents only; imported implementation
 claims, reviews and test receipts retain their original provenance. No design
 approval, construction authority or code validation is inferred.
 
-**Current UAT repair:** shared quote/ingest repairs authorized under [REM-CMD-MEMQ-UAT-003](remediation/REM-CMD-MEMQ-UAT-003-shared-quote-ingest.md); source47134ad6 and corrected packetead29d01 independently VERIFIED; combined human retest pending. Prior diagnostics: `execution_phase: closeout`; `validation_state: verified` for the authorized [verification diagnostic subunit](remediation/REM-CMD-MEMQ-UAT-002-verification-diagnostics.md). Human UAT is stopped; populated `/meta` is blocked by maintenance verification. Prior D3 verification below remains scoped to its frozen candidate.
+**MEMQ accepted — 2026-11-10:** Chuck Russell reports both the main MEMQ UAT
+and combined repair retest successful and directs closure. [Acceptance](approval/memory-queries-acceptance.md)
+records the accepted query family, shared quote/ingestion repairs and diagnostics.
+Full reorganization on exit yields positive `/meta` results, maintainer-reported.
+The explicit `/reorganize --full --execute` syntax defect is separately open as
+[FU-011](../../backlog/friday-chat-framework-followups/upgrade-log.md#fu-011-reorganize-rejects-the-explicit-full-mode-flag).
+`execution_phase: closeout`; `validation_state: verified`; MEMQ acceptance: accepted.
+Earlier implementation/review/pending-UAT statements describe their historical
+freezes and are superseded by this acceptance. The wider initiative stays started/local.
 
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
@@ -44,8 +52,8 @@ The three fresh D1 seats are VERIFIED (Sol9.7, Astra9.6, Claude9.6), with no man
 D2 Chat integration and option R persisted listing are implemented at `3ed1d58a`;
 [builder evidence](validation/memory-queries/implementation/d2/README.md) records
 1,390 Chat,599 Commands/cohort and155 CLI passes plus20 current assertion-witnessed
-mutation refusals. [Round1 council](validation/memory-queries/implementation/d2/council-round1/report.md) reproduced the runtime checks; Sol9.6 and Claude9.4 VERIFIED, Astra9.3 CHANGES_REQUESTED for stale authority prose. [Round2](validation/memory-queries/implementation/d2/council-round2/report.md) resolves that finding; Claude identifies an overbroad frozen backlog edit. The [exact restoration](remediation/REM-CMD-MEMQ-D2-002-restore-frozen-backlog.md) is independently VERIFIED by [round3 reconciliation](validation/memory-queries/implementation/d2/verified-report.md): Sol/Astra/Claude9.5 each, no mandatory findings. [D3 builder evidence](validation/memory-queries/implementation/d3/README.md) records 2,144 owning-suite passes,154 matching artifacts,8 actual installed probes,50 member/origin+10 archive+10 semantic refusals and8 restored clean-copy probes. [Final D3/aggregate reconciliation](validation/memory-queries/implementation/d3/verified-report.md) is unanimously VERIFIED: Sol9.5, Astra9.4, Claude9.5; no mandatory findings. Installed proof uses committed source `e4c0b9a2`. The UAT plan remains
-NOT RUN and is ready for the [manual handoff](validation/memory-queries/implementation/d3/acceptance-handoff.md). Existing technical approval
+mutation refusals. [Round1 council](validation/memory-queries/implementation/d2/council-round1/report.md) reproduced the runtime checks; Sol9.6 and Claude9.4 VERIFIED, Astra9.3 CHANGES_REQUESTED for stale authority prose. [Round2](validation/memory-queries/implementation/d2/council-round2/report.md) resolves that finding; Claude identifies an overbroad frozen backlog edit. The [exact restoration](remediation/REM-CMD-MEMQ-D2-002-restore-frozen-backlog.md) is independently VERIFIED by [round3 reconciliation](validation/memory-queries/implementation/d2/verified-report.md): Sol/Astra/Claude9.5 each, no mandatory findings. [D3 builder evidence](validation/memory-queries/implementation/d3/README.md) records 2,144 owning-suite passes,154 matching artifacts,8 actual installed probes,50 member/origin+10 archive+10 semantic refusals and8 restored clean-copy probes. [Final D3/aggregate reconciliation](validation/memory-queries/implementation/d3/verified-report.md) is unanimously VERIFIED: Sol9.5, Astra9.4, Claude9.5; no mandatory findings. Installed proof uses committed source `e4c0b9a2`. The historical [manual handoff](validation/memory-queries/implementation/d3/acceptance-handoff.md)
+has been answered by [MEMQ acceptance](approval/memory-queries-acceptance.md). Existing technical approval
 governs construction; council results do not grant acceptance or delivery.
 [Correction controls and preservation](validation/memory-queries/directive-review/correction1/report.md)
 are historical controller evidence; current union and complete-index gate controls
@@ -53,7 +61,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Maintainer combined retest of entity quoting, ingestion without descriptions and verification diagnostics using uat/memq-repair-retest.md. Capture any verification role/model/finish/field error; remaining dependent UAT and acceptance stay pending.
+**Next gate:** MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -141,7 +149,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Maintainer combined retest of entity quoting, ingestion without descriptions and verification diagnostics using uat/memq-repair-retest.md. Capture any verification role/model/finish/field error; remaining dependent UAT and acceptance stay pending.
+**Next gate:** MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

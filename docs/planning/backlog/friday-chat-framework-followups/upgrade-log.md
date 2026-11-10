@@ -317,7 +317,7 @@ exports and records provider options separately from normalized generation.
 
 ## FU-009: Omit Absent Ingestion Description Metadata
 
-Status: shared repair independently VERIFIED at47134ad6 under REM-CMD-MEMQ-UAT-003; human retest pending
+Status: CLOSED — shared repair and combined retest accepted by Chuck Russell,2026-11-10
 Discovered During: MEMQ-001 D2 persisted-listing validation, 2026-11-09
 Framework Package: `packages/friday-memory` / public Chroma metadata boundary;
 the caller constructing this metadata is Friday Chat's FrameworkMemoryAdapter.
@@ -344,13 +344,13 @@ including all three independently reproduced paired controls; [CMD-F05](../frida
 
 Current repair: reusable Friday Memory metadata builder; Chat calls it in both
 branches. Real disposable Chroma command tests cover omitted/empty/explicit
-descriptions, counts/protection/listing/re-ingest; human UAT remains pending.
+descriptions, counts/protection/listing/re-ingest; human UAT is accepted/closed.
 [Repair evidence](../../active/command-refactor/validation/memory-queries/uat-shared-repair/README.md).
 
 ## FU-010: Preserve Maintenance Verification Response Diagnostics
 
-Status: diagnostic implementation independently VERIFIED at3969e4d4; targeted
-operator retest pending; underlying production verification failure unresolved.
+Status: CLOSED — diagnostic implementation and combined retest accepted by Chuck
+Russell,2026-11-10; full reorganization on exit yields positive /meta per maintainer.
 Discovered During: MEMQ populated-meta UAT,2026-11-09.
 Requested Change: Preserve shared completion metadata and safe role/model/schema/
 finish/validation-field evidence without exposing provider content. Distinguish
@@ -363,5 +363,48 @@ reply. REM-CMD-MEMQ-UAT-002 implements the bounded shared diagnostic boundary;
 Compatibility: Legacy parsing default and callers retain behavior; maintenance
 uses strict enclosing-object parsing and fails closed on explicit length output.
 Model/config/budget, batching, quarantine, order and rollback remain unchanged.
-Next Evidence: A fresh diagnostic response must establish the failed role/field
-before choosing the functional verification repair. Populated-meta UAT is blocked.
+Resolution: The maintainer reports the combined retest successful and positive
+/meta after full reorganization on exit. MEMQ UAT is accepted/closed. The earlier
+error cause is not retrospectively asserted; the separate explicit --full syntax
+issue remains FU-011, not an open verification-response blocker.
+
+## FU-011: Reorganize Rejects The Explicit Full Mode Flag
+
+Status: OPEN — documented command-syntax defect; implementation not started.
+Discovered During: Maintainer MEMQ UAT acceptance,2026-11-10.
+Owner: Friday Chat command argument handling; later shared MAINT-001 migration
+must preserve or deliberately repair its grammar under approved scope.
+
+Reproduction: Enter `/reorganize --full --execute` at the Chat prompt.
+Expected: Explicit full mode is accepted and invokes the same full maintenance
+request as `/reorganize --execute`, preserving execute/recovery/rollback safeguards.
+Actual: The parser rejects --full as an unknown argument before maintenance starts.
+The maintainer reports this error; exact source-AST execution reproduces
+`Unknown argument '--full'.` No live maintenance/provider/store operation was run.
+
+Cause: `_REORGANIZE_MODE_FLAGS` in commands/registry.py omits --full, while its
+no-mode default is full. The `/meta` empty-state guidance in commands/memory_queries.py
+recommends `/reorganize --full --execute`, producing an application guidance/parser
+mismatch. Exit maintenance bypasses slash-command parsing and constructs a typed
+FULL request directly for session full/deep modes. That is consistent with the
+maintainer's successful full reorganization on exit and positive `/meta` results.
+Current accepted syntax: `/reorganize --execute` selects full execution;
+`/reorganize` alone is a full dry run. This syntax observation does not attest a
+new full production run. The spelling `-- full` is not proposed as valid syntax.
+
+Impact: The advertised explicit command blocks an on-demand Meta Insight refresh.
+It is separate from the accepted read-only `/meta` query and the closed MEMQ UAT.
+A successful verification step alone does not generate Meta Insights: synthesis
+requires previously verified sources, and current full mode synthesizes before
+verification. Model review, JSON/schema validation, quarantine and rollback can
+also explain generation delays; see the flow note below. No external fact-checking
+is supplied by the current verifier role names alone.
+
+Bounded follow-up: reconcile the explicit --full grammar and user guidance; test
+parity with default full mode, dry-run/--execute, duplicate/conflicting modes,
+recovery exclusions and coordinator dispatch. Preserve pipeline, verification,
+quarantine, model/budget/config and backup/rollback policy. No implementation,
+policy change or broader migration is authorized by this defect registration.
+Source evidence: [acceptance](../../active/command-refactor/approval/memory-queries-acceptance.md),
+[pure-parser evidence](../../active/command-refactor/validation/memory-queries/acceptance/reorganize-argument-evidence.json),
+[verification flow](../../active/command-refactor/validation/memory-queries/acceptance/verification-flow.md).

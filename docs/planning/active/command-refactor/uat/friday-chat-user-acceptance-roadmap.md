@@ -345,3 +345,12 @@ Notes:
 This document records no test success or approval in advance. It does not amend
 the proposed contract/directive or authorize implementation, later-family work,
 full-refactor acceptance or external delivery.
+
+## MEMQ acceptance update — 2026-11-10
+
+Chuck Russell reports both the [MEMQ UAT](memq-user-acceptance-plan.md) and
+[combined repair retest](memq-repair-retest.md) successful and directs closure.
+[Bounded MEMQ acceptance](../approval/memory-queries-acceptance.md) is recorded;
+this does not change the earlier roadmap's per-case measurements or approve the
+whole command refactor. Full reorganization on exit yields positive `/meta` per
+the maintainer. FU-011 explicit --full argument rejection remains separately open.

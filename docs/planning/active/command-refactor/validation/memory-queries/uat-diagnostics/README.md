@@ -1,5 +1,10 @@
 # MEMQ UAT verification diagnostics — corrected candidate
 
+**Human acceptance update — 2026-11-10:** MEMQ UAT and the combined repair retest
+are successful and closed per Chuck Russell. [Acceptance](../../../approval/memory-queries-acceptance.md)
+supersedes the historical pending-UAT labels below. FU-011 explicit --full syntax
+is recorded separately; original runtime/review receipts remain unchanged.
+
 Status: **correction1 independently VERIFIED at3969e4d4; diagnostic retest next**.
 [Reconciliation](verified-report.md) and [operator handoff](diagnostic-retest-handoff.md).
 [Correction scope and checks](correction1/README.md) address MEMQ-VD-REV-002.
