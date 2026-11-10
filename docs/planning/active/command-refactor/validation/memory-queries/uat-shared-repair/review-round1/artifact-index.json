@@ -1,0 +1,373 @@
+{
+  "scratch": "/private/tmp/memq-openai-review-lxmqb4o2",
+  "excluded_bulk_directories": [
+    "installed",
+    "cache",
+    "stores",
+    "build-source",
+    "runner/uv-cache",
+    "runner/pytest-tmp"
+  ],
+  "artifacts": [
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/report.md",
+      "size": 13668,
+      "sha256": "64cf2a8a437a010e9049626979151a889500a61defb61652eaf841ec347bc13a"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/start-integrity.json",
+      "size": 21055,
+      "sha256": "f11f9b51f6619eeec08b2cd591a7439c91a724391d5872173922300e23c77078"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/start-corrected-integrity.json",
+      "size": 13620,
+      "sha256": "8906c30f67a7de2a471487555ea08f4c376849326dd789c0e03fc168f68e96b7"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/end-integrity.json",
+      "size": 13608,
+      "sha256": "96fced6c7cc89d0c875e35b99aae1016c11dd1ac7cfc523f5e068ab31a53c5a2"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/start-corrected-index.bin",
+      "size": 3240066,
+      "sha256": "24738fff7ba7c34e95f79572eaafae75c46d320655bfe5e9bcaac697830efa17"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/end-index.bin",
+      "size": 3240066,
+      "sha256": "24738fff7ba7c34e95f79572eaafae75c46d320655bfe5e9bcaac697830efa17"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/integrity.py",
+      "size": 2828,
+      "sha256": "5212e168b96feda977731c846473117b0ab4739a3d62d6d9463d47a8de3ba5d4"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/prepare-execution.json",
+      "size": 362,
+      "sha256": "c503d5dea031a916aca979dc575b144be4a94fccbd880c1243a4cd2d3476465a"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/bootstrap.json",
+      "size": 3708,
+      "sha256": "935e992cbd1c50ef4f2717d8f19ea11a270f672d9e5a0e498494d64f9c2e5186"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/review_origins.py",
+      "size": 839,
+      "sha256": "57802d0bceeb4dfd9a77f4bebfe99b0cb3f3765a80ca4f1ecda8620320e54856"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/review_examples.py",
+      "size": 489,
+      "sha256": "4ea059d06c0c5d8ddc792c9a02e582122305656a4b9d5fcaa16f59dd1957b5b4"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/lanes.json",
+      "size": 3005,
+      "sha256": "c50ea1e4247e96d740990e8bb294d5d3d9a16b23e0833d0012611cf6628aaff2"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/static-admin.json",
+      "size": 3816,
+      "sha256": "2a1e0e88352c70b753fa59aae64d69984c7534c0806d614b39b153a57be291aa"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/scope-format-debt.json",
+      "size": 416,
+      "sha256": "522d1847dceefcad1db4ac09cf48c3b103b8617c66c773985ed00485d5ccad78"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/old-test-audit.json",
+      "size": 169,
+      "sha256": "5f47eb4e9c7cd01a6ca12ce53679b49f0c141f9c8c1d48ef4993efa2dae7b1f3"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/fixture-proof.json",
+      "size": 349,
+      "sha256": "f9815e641e088cc8c6469fc15f9b776acc9c7ea3be54d5e204a8d00e0d19c43f"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/embedded-raw-pairs.json",
+      "size": 19813,
+      "sha256": "1414d3356e7ea1de398c224348c291f6841c406ba609ce427e8e0cd0deb3f7ec"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/mutation-classification.json",
+      "size": 28688,
+      "sha256": "e0409d334991ff9c3065fa26e691b658ee29569633073672401d11c8d381ceb6"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/origin-summary.json",
+      "size": 1268,
+      "sha256": "863458d72fc1e331f689f27ec589c4ef1c0f0b90f1ebbe99b71d55cfda75ad76"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/authority-pins.json",
+      "size": 12116,
+      "sha256": "4ad3d93d3f5d986f4a1ba082818d2169733006e5d5c543d849a7fb006892b16f"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/installed-proof.json",
+      "size": 36305,
+      "sha256": "9d0c19945a2f5df329478e9887d4967c0d48f970ad25aa619832bdaeba73c9fc"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/installed-executions.json",
+      "size": 6300,
+      "sha256": "12bdccb884781e38a3072129fc8a337d46b626df1a5d87962b1bd527a6bc50de"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/build-inputs.json",
+      "size": 51930,
+      "sha256": "1d238e6467287d6f3ed14de1b972ec3ab6406f0a6e3985e8a1dda98829b134c6"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/controller-disclosure.json",
+      "size": 627,
+      "sha256": "5c8b99646d43ed02d1b5b034d2678e54708aec9fa71e615129812de135945d53"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/run_lanes.py",
+      "size": 2456,
+      "sha256": "28d3e14b4a96321673cf1c8bb3c5fb89e57eb31e34e8a002a99684aee04e63ac"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/installed_review.py",
+      "size": 4399,
+      "sha256": "471e003b54428251d2f4e43189ab4c1a8cfb7d313aa5fdbcd50da07de2e18b76"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/static_review.py",
+      "size": 4754,
+      "sha256": "b73bbd8a05809cb6d778cfeef49c16628bdafe760014958ad5d6bb3c5ca06109"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/classify.py",
+      "size": 5261,
+      "sha256": "436b52852b8e7ed3495eca57509853211861cbf073e9793b73f7782edd6c67f4"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/focused-execution.json",
+      "size": 687,
+      "sha256": "b05824c463647097727348dc8d45fd9bef07c04e215bdcb4374adcae7b50b22c"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/focused-origins.json",
+      "size": 209831,
+      "sha256": "8fb82605b4ecd42479d1eefb2b4a4a6fa4a649d906a95470b27e8539bbcb73ed"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/focused.json",
+      "size": 750,
+      "sha256": "6a2d749e62f9f716af46dc53595acaf606f2f833fd4ad54aaf02ac8bab8a90b4"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/focused.log",
+      "size": 99,
+      "sha256": "d3578a7a1a62d14d09fa05502b04ebf15591c1df36a52a70a90429c27d511e39"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/commands-execution.json",
+      "size": 466,
+      "sha256": "12cc568b01767d8b7fb3cc10b31eae68c31d429c4d3cef01acf9d5b1f490dd9e"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/commands-origins.json",
+      "size": 5525,
+      "sha256": "9dc7c9bb283127419a23e44eefcc4e6cdcec256d0d451932d8c2ffc4a5ab6f6e"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/commands.json",
+      "size": 528,
+      "sha256": "5261fb752af9099736b616cad6c5494219c319fe619fb97e9e0969d914ffbb14"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/commands.log",
+      "size": 740,
+      "sha256": "c842c76fdb865688b18435784215b783d29e8cd012a3ae6e501f54061dacd496"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/chat-execution.json",
+      "size": 462,
+      "sha256": "6ee4e93f1a3a44a010c391b277d67edadd17aa5438dd4d8f6bbe3b5084f946e4"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/chat-origins.json",
+      "size": 236430,
+      "sha256": "ea4d25af5ae19751bb8d9ee699973e48d653c8031a670937b850d7d4d42f42b4"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/chat.json",
+      "size": 529,
+      "sha256": "aed05e1496001ec3f23418ed2913c6a42fd2fe62f463a3e132be3c865c41a9ad"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/chat.log",
+      "size": 2154,
+      "sha256": "95bfc3c14f8daa33a61fcf0efc46457ac66ecfa656678b7be88553cc935c9307"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/cli-execution.json",
+      "size": 389,
+      "sha256": "9e9d511931f10bfedbc0d7f0e90775b598d1f73a5349b6f176755b79c344f777"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/cli-origins.json",
+      "size": 5858,
+      "sha256": "35668b5bd14547708015d5a62823a8da1a5925559b61bb403049bbd18f0b24f1"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/cli.json",
+      "size": 457,
+      "sha256": "2dd0cb84cda5c9ac92f025e3ba7580c95f901b7863a7d8e16e1485adb9db9dd3"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/cli.log",
+      "size": 260,
+      "sha256": "c98ecbb70c8289b93d3aa68a02ba756ba2684e56a108d2bfed95b5a58c0928f3"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/memory-execution.json",
+      "size": 753,
+      "sha256": "6521947dae69e45f499cddfda5ecf474991d2e3b55fa3dea14a501b5d09b057a"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/memory-origins.json",
+      "size": 112952,
+      "sha256": "4dca09123483ee018b0ffeb19ef1e726a4aaae1151aacfed02e25c7e345a9073"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/memory.json",
+      "size": 818,
+      "sha256": "81553cfca4671aab64ee31b4df6afe26bca2a80d114ce2d270b7632a5b0dd66e"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/runner/memory.log",
+      "size": 260,
+      "sha256": "625f638d2adbfcc147fecfb426678c9ab2bdb4095fbd288c91c5c010eedf0b0d"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/headless-normal.json",
+      "size": 21816,
+      "sha256": "146b19c11b39fc4e3b0e07c3fb3dec39baf963c7181ae1402ada99703f052c29"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/headless-normal.stdout",
+      "size": 52,
+      "sha256": "cf9742a742e659ec2544af7df17fef84bb0599c1d7b5a219e7e7e5128b7a7381"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/headless-normal.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/functional-normal.json",
+      "size": 40815,
+      "sha256": "847454343b04110a959731c44ef504981de4581ee9539ca7e4bb6961c3b728c9"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/functional-normal.stdout",
+      "size": 54,
+      "sha256": "adb514560ba6f9fba646507363388eafa83af1bbb8b1e7bb5f0731268a84e38b"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/functional-normal.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-headless-normal.json",
+      "size": 21820,
+      "sha256": "d345027ed4a4ab94bfcfd6a4b7e2e736297fd0229fc305b5b59f3bf6bf51348a"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-headless-normal.stdout",
+      "size": 52,
+      "sha256": "cf9742a742e659ec2544af7df17fef84bb0599c1d7b5a219e7e7e5128b7a7381"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-headless-normal.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-maintenance-normal.json",
+      "size": 39705,
+      "sha256": "964e7826a0a42425a815b09f8e8c7ab32e160bec96f981133e47caed9053e3f1"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-maintenance-normal.stdout",
+      "size": 55,
+      "sha256": "04dc6a9901493f1120c38ba3924a338c3259458e05c0ba77161449c2c2eaaffd"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-maintenance-normal.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/headless-O.json",
+      "size": 21816,
+      "sha256": "146b19c11b39fc4e3b0e07c3fb3dec39baf963c7181ae1402ada99703f052c29"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/headless-O.stdout",
+      "size": 52,
+      "sha256": "4c0e4c0e970f8b2fb1e8f360e05d7e4edcb2e428abf6f230541af7d5ff78eda8"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/headless-O.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/functional-O.json",
+      "size": 40815,
+      "sha256": "847454343b04110a959731c44ef504981de4581ee9539ca7e4bb6961c3b728c9"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/functional-O.stdout",
+      "size": 54,
+      "sha256": "6b064ce7c829a19b72afe0c82373c437c597accb84ef3672c2ecd0a6d0c3676f"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/functional-O.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-headless-O.json",
+      "size": 21820,
+      "sha256": "d345027ed4a4ab94bfcfd6a4b7e2e736297fd0229fc305b5b59f3bf6bf51348a"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-headless-O.stdout",
+      "size": 52,
+      "sha256": "4c0e4c0e970f8b2fb1e8f360e05d7e4edcb2e428abf6f230541af7d5ff78eda8"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-headless-O.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-maintenance-O.json",
+      "size": 39705,
+      "sha256": "964e7826a0a42425a815b09f8e8c7ab32e160bec96f981133e47caed9053e3f1"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-maintenance-O.stdout",
+      "size": 55,
+      "sha256": "43fda05583cca8e57132be339521333d092ecd63c9a7a8bc668e2373d58a9d09"
+    },
+    {
+      "path": "/private/tmp/memq-openai-review-lxmqb4o2/diagnostic-maintenance-O.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

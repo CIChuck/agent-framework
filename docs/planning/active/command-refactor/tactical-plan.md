@@ -12,11 +12,19 @@ The [round1 council](validation/memory-queries/implementation/d2/council-round1/
 
 **Next gate:** Reconcile fresh OpenAI review of the shared entity-quote and ingestion repairs, then hand back one combined three-issue retest. Human UAT and acceptance remain pending.
 
-The exact contract/directive/approval and D1 product source remain unchanged
-(only the approved package README is updated). Human UAT is stopped after reported failures; the
-[plan](uat/memq-user-acceptance-plan.md) is in the established folder. D3 builds and installed behavior are verified; [human UAT and acceptance](validation/memory-queries/implementation/d3/acceptance-handoff.md) remain pending. Root/format debt and
-the unchanged ingest-without-description limitation stay unwaived. Historical
-checkpoints below describe their own freezes.
+The original MEMQ contract/directive/approval remain byte-exact historical
+technical inputs. Current shared Commands and ingestion changes are authorized by
+[REM-CMD-MEMQ-UAT-003](remediation/REM-CMD-MEMQ-UAT-003-shared-quote-ingest.md)
+and its [approval](approval/memory-queries-shared-uat-repair.md). Prior verification
+diagnostics are separately governed by REM-CMD-MEMQ-UAT-002 and remain verified.
+The shared quote/ingestion repair at47134ad6 has passed runtime, real-store and
+installed checks; its current-status documentation correction awaits fresh review.
+Human UAT is stopped after reported failures; the original
+[plan](uat/memq-user-acceptance-plan.md) is preserved and the
+[combined retest](uat/memq-repair-retest.md) covers all3 issues. Ingestion without
+a description is repaired in code; human confirmation remains pending. The actual
+verification-response failure is unresolved. Root/format and dirty-example debt
+remain failed/unwaived. Historical checkpoints below describe their own freezes.
 
 # Historical D1 reconciliation checkpoint — superseded for current execution state
 

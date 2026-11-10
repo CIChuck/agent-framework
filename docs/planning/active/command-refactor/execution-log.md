@@ -2274,3 +2274,15 @@ has been executed or accepted through this documentation change.
 - Candidate awaits fresh OpenAI read-only verification; no human acceptance,
   functional verification-reply repair, push or delivery follows automatically.
 - **Next gate:** Reconcile fresh OpenAI review of the shared entity-quote and ingestion repairs, then hand back one combined three-issue retest. Human UAT and acceptance remain pending.
+
+## Shared repair documentation correction1 — MEMQ-OPENAI-001
+
+- Fresh round1 review of47134ad6 supports all runtime/query/ingestion/artifact
+  criteria; CHANGES_REQUESTED only for3 stale current status/authority statements.
+- Correct current next-phase/tactical paragraphs and product_code_authority to
+  identify REM003 repairs separately from prior REM002 diagnostics. Original
+  contracts/approvals/directives, historical checkpoints and evidence stay exact.
+- This correction changes documentation only. Runtime/tests/wheels remain
+  byte-equal to47134ad6; fresh runtime receipts are preserved, not rerun or relabeled.
+- A new frozen documentation-only candidate receives fresh OpenAI read-only
+  semantic/admin/integrity review. Human retest and acceptance remain pending.

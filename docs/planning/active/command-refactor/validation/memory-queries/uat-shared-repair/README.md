@@ -1,6 +1,8 @@
 # Shared entity-quote and ingestion repair — candidate
 
-Status: implementation complete; fresh independent OpenAI review pending.
+Status: round1 requested3 current-document corrections; correction1 awaits fresh
+OpenAI review. Runtime/tests/artifacts remain frozen at47134ad6.
+[Correction](correction1/README.md); [original review](review-round1/report.md).
 [Directive](../../../remediation/REM-CMD-MEMQ-UAT-003-shared-quote-ingest.md) and
 [approval](../../../approval/memory-queries-shared-uat-repair.md) record the current
 maintainer instruction. Base0e5c3237; the earlier Chat-only proposal remains held.

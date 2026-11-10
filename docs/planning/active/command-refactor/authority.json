@@ -7,7 +7,7 @@
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
   "current_scope": "Reconcile fresh OpenAI review of the shared entity-quote and ingestion repairs, then hand back one combined three-issue retest. Human UAT and acceptance remain pending.",
-  "product_code_authority": "Chuck Russell\u2019s current proceed instruction, recorded in approval/memory-queries-verification-diagnostics.md and REM-CMD-MEMQ-UAT-002; exact shared diagnostics only.",
+  "product_code_authority": "Chuck Russell's current direction, recorded in approval/memory-queries-shared-uat-repair.md and REM-CMD-MEMQ-UAT-003, authorizes shared entity quote handling and ingestion metadata repairs. Prior shared verification diagnostics remain governed by approval/memory-queries-verification-diagnostics.md and REM-CMD-MEMQ-UAT-002.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -1510,6 +1510,9 @@
     "claude_council_assignments": "prohibited by current maintainer preference",
     "evidence": "validation/memory-queries/uat-shared-repair/evidence.json",
     "report": "validation/memory-queries/uat-shared-repair/README.md",
-    "combined_retest": "uat/memq-repair-retest.md"
+    "combined_retest": "uat/memq-repair-retest.md",
+    "correction_cycle": 1,
+    "initial_review": "CHANGES_REQUESTED: MEMQ-OPENAI-001 current status/authority prose only; runtime/tests/artifacts supported",
+    "correction": "validation/memory-queries/uat-shared-repair/correction1/README.md"
   }
 }
