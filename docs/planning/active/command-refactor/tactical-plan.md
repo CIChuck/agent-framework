@@ -1,3 +1,22 @@
+# MAINT-001 — maintenance specification for human review
+
+Branch: `feature/command-retirement`
+Execution phase: planning (documents only)
+Validation state: not_ready (draft; no council invoked)
+
+The [maintenance reorganization specification](maintenance-reorganization-specification.md)
+proposes verification of pending memories before synthesis, targeted verification
+of this run's new meta insights afterward, per-stage verdict counts, and the
+companion explicit `--full` correction. Accepted MEMQ and its UAT stay closed.
+
+Chuck Russell directed continued drafting and requested document review before
+council sub-agents are invoked. The primary agent prepares the draft directly;
+no sub-agents or implementation are authorized by this preparation checkpoint.
+
+**Next gate:** Chuck Russell reviews the MAINT-001 maintenance reorganization specification before any council or sub-agent invocation. Drafting only; no implementation approval. Accepted MEMQ remains closed; initiative stays started/local.
+
+## Preserved accepted MEMQ checkpoint
+
 # MEMQ-001 — accepted; UAT closed
 
 Branch: `feature/command-retirement`

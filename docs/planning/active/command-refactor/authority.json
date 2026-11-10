@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-10",
-  "decision": "MEMQ UAT and combined repair retest accepted and closed by Chuck Russell; separate FU-011 remains open",
+  "decision": "MAINT-001 specification drafting authorized; human document review before council. MEMQ remains accepted.",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
-  "product_code_authority": "Current work is documentation-only acceptance closure and FU-011 registration, at the maintainer's direction. MEMQ/REM-UAT-002/003 technical approvals remain historical authority for accepted bytes; no new product-code scope is granted.",
+  "current_scope": "Chuck Russell reviews the MAINT-001 maintenance reorganization specification before any council or sub-agent invocation. Drafting only; no implementation approval. Accepted MEMQ remains closed; initiative stays started/local.",
+  "product_code_authority": "No new product code authority. MAINT-001 document preparation and local document checks only; no sub-agent/council invocation until explicit direction after human review.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -1549,5 +1549,28 @@
     "separate_open_issue": "FU-011 explicit --full argument rejected",
     "supersedes": "earlier pending/NOT RUN/blocked labels for these MEMQ/UAT units; original frozen evidence remains historical",
     "delivery": "local only"
+  },
+  "accepted_checkpoint_before_maintenance": {
+    "decision": "MEMQ UAT and combined repair retest accepted and closed by Chuck Russell; separate FU-011 remains open",
+    "current_scope": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
+    "product_code_authority": "Current work is documentation-only acceptance closure and FU-011 registration, at the maintainer's direction. MEMQ/REM-UAT-002/003 technical approvals remain historical authority for accepted bytes; no new product-code scope is granted."
+  },
+  "maintenance_specification": {
+    "unit": "MAINT-001",
+    "status": "draft_for_maintainer_review",
+    "execution_phase": "planning",
+    "validation_state": "not_ready",
+    "document": "maintenance-reorganization-specification.md",
+    "sha256": "e085d9fbad99b8cf59887db4590e41ee6f9af2cb963dd99e4fbbc7ee7f2332ab",
+    "recorded_at": "2026-11-10T13:52:34.313775+00:00",
+    "baseline": "1093aff8",
+    "instructions": [
+      "We should continue drafting the maintenance specification that was requested regarding the reorganization order of events. Is that clear?",
+      "I would like an opportunity to review documents from before sub-agents are invoked for the council."
+    ],
+    "implementation_approval": "not_granted",
+    "council_authority": "not_granted; human document review first",
+    "delegated_work": "stopped; primary agent drafts directly",
+    "next_gate": "Chuck Russell reviews the MAINT-001 maintenance reorganization specification before any council or sub-agent invocation. Drafting only; no implementation approval. Accepted MEMQ remains closed; initiative stays started/local."
   }
 }

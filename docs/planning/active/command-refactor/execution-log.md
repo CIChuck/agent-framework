@@ -2317,3 +2317,30 @@ has been executed or accepted through this documentation change.
 - Parent initiative remains started/local. Configurations, exports, .friday-old
   state and frozen evidence preserved; no source/test/dependency change or delivery.
 - **Next gate:** MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.
+
+
+## 2026-11-10T13:52:34.313775+00:00 — MAINT-001 maintenance specification drafted for human review
+
+- Chuck Russell directed continued drafting of the reorganization order change,
+  then required an opportunity to review documents before council sub-agents.
+- Primary agent prepared [the draft specification](maintenance-reorganization-specification.md),
+  SHA256 `e085d9fbad99b8cf59887db4590e41ee6f9af2cb963dd99e4fbbc7ee7f2332ab`, against current source at1093aff8. No sub-agents resumed.
+- Proposed order: optional reembed; dedupe/prune; verify pending memories;
+  synthesize from eligible verified sources; verify exact newly created meta
+  references; lifecycle; existing postcondition/integrity checks.
+- Preserve existing pending-record coverage, including old meta and non-source
+  memories; expose per-stage judge counts and scoped/no-candidate/skip/failure
+  status. Specify run-local references, strict coverage, preview limitations,
+  rollback, cancellation and old-journal compatibility. Companion FU-011 stays
+  a proposed explicit-full spelling correction, not an implemented repair.
+- `execution_phase: planning`; `validation_state: not_ready`. Accepted MEMQ,
+  original UAT/evidence, product/config/lock/store bytes remain untouched.
+- Validation is limited to local board/dashboard/document and preservation
+  checks. No new behavioral tests, model calls, personal-store operations,
+  implementation, independent review or acceptance is claimed.
+- **Next gate:** Chuck Russell reviews the MAINT-001 maintenance reorganization specification before any council or sub-agent invocation. Drafting only; no implementation approval. Accepted MEMQ remains closed; initiative stays started/local.
+
+- Final local checks: board validate36, dashboard current, documentation lifecycle959
+  pass. Planning-only whitespace passes. Whole-worktree whitespace reports only
+  the preserved pre-existing models-config.example.yaml edits (not repaired).
+  Config, exports and .friday-old metadata/content preservation checks pass.

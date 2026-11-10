@@ -17,6 +17,12 @@ The explicit `/reorganize --full --execute` syntax defect is separately open as
 Earlier implementation/review/pending-UAT statements describe their historical
 freezes and are superseded by this acceptance. The wider initiative stays started/local.
 
+**Current planning — MAINT-001:** The [maintenance specification](maintenance-reorganization-specification.md)
+is drafted for Chuck Russell's review. It proposes changed verification/synthesis
+ordering and visible verdict counts. `execution_phase: planning`;
+`validation_state: not_ready` for this separate unit. Human document review
+precedes any council invocation. No product implementation is authorized.
+
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and
@@ -61,7 +67,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.
+**Next gate:** Chuck Russell reviews the MAINT-001 maintenance reorganization specification before any council or sub-agent invocation. Drafting only; no implementation approval. Accepted MEMQ remains closed; initiative stays started/local.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -149,7 +155,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.
+**Next gate:** Chuck Russell reviews the MAINT-001 maintenance reorganization specification before any council or sub-agent invocation. Drafting only; no implementation approval. Accepted MEMQ remains closed; initiative stays started/local.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

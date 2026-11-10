@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.
+  next_gate: Chuck Russell reviews the MAINT-001 maintenance reorganization specification before any council or sub-agent invocation. Drafting only; no implementation approval. Accepted MEMQ remains closed; initiative stays started/local.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -3028,3 +3028,10 @@ events:
   action: accepted MEMQ and closed both UAT records
   note: Main MEMQ UAT and combined repair retest successful. Full reorganization on exit yields positive /meta. Separate FU-011 explicit --full argument defect remains open. No whole-initiative acceptance or delivery.
   evidence: docs/planning/active/command-refactor/approval/memory-queries-acceptance.md
+- task: friday-command-refactor
+  at: '2026-11-10T13:52:34.313775+00:00'
+  actor: Codex
+  actor_role: agent
+  action: drafted MAINT-001 maintenance specification for human document review
+  note: Maintainer authorized continued drafting and requires review before council. Primary agent only; no implementation or sub-agents. Accepted MEMQ remains closed.
+  evidence: docs/planning/active/command-refactor/maintenance-reorganization-specification.md
