@@ -7,6 +7,8 @@ current work. This transfer changes documents only; imported implementation
 claims, reviews and test receipts retain their original provenance. No design
 approval, construction authority or code validation is inferred.
 
+**Current UAT repair:** `execution_phase: validation`; `validation_state: pending` for the authorized [verification diagnostic subunit](remediation/REM-CMD-MEMQ-UAT-002-verification-diagnostics.md). Human UAT is stopped; populated `/meta` is blocked by maintenance verification. Prior D3 verification below remains scoped to its frozen candidate.
+
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and
@@ -51,7 +53,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell’s bounded acceptance decision. D1–D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.
+**Next gate:** Reconcile fresh independent review of the bounded verification diagnostic candidate, then hand back a targeted diagnostic retest. Human UAT remains stopped; functional verification, quote/ingest repairs and acceptance remain pending.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -139,7 +141,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell’s bounded acceptance decision. D1–D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.
+**Next gate:** Reconcile fresh independent review of the bounded verification diagnostic candidate, then hand back a targeted diagnostic retest. Human UAT remains stopped; functional verification, quote/ingest repairs and acceptance remain pending.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

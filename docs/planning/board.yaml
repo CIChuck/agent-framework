@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell’s bounded acceptance decision. D1–D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.
+  next_gate: Reconcile fresh independent review of the bounded verification diagnostic candidate, then hand back a targeted diagnostic retest. Human UAT remains stopped; functional verification, quote/ingest repairs and acceptance remain pending.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -2986,3 +2986,17 @@ events:
   action: validation_reconciled
   note: MEMQ D3 and bounded aggregate unanimously VERIFIED (Sol9.5/Astra9.4/Claude9.5); all mandatory findings closed. Human UAT20 NOT RUN; acceptance pending. Initiative stays started/local.
   evidence: docs/planning/active/command-refactor/validation/memory-queries/implementation/d3/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-10T01:33:14.473229+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized bounded verification diagnostics
+  note: Current proceed instruction authorizes REM-CMD-MEMQ-UAT-002 shared diagnostic subunit. Human UAT stopped; no model/config/live-provider/store or unrelated command changes.
+  evidence: docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-UAT-002-verification-diagnostics.md
+- task: friday-command-refactor
+  at: '2026-11-10T01:58:04.218150+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze verification diagnostic implementation for review
+  note: Scoped source/tests, controlled regressions and installed probes complete. Raw dirty-example failures/cache deviation disclosed. UAT stopped; no acceptance or live provider/store action.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/uat-diagnostics/README.md

@@ -2194,3 +2194,30 @@ has been executed or accepted through this documentation change.
 - `execution_phase: closeout`; `validation_state: verified` for MEMQ D1–D3/aggregate.
   Human UAT20 NOT RUN; acceptance not granted; wider initiative started/local.
 - **Next gate:** Run the MEMQ 20-case human UAT plan on the verified installed candidate, then record Chuck Russell’s bounded acceptance decision. D1–D3 and the bounded aggregate are independently VERIFIED at bab16757. UAT NOT RUN; no acceptance or delivery.
+
+## 2026-11-10T01:33:14.473229+00:00 — authorized bounded verification diagnostics
+
+- Chuck Russell directed “proceed” after the diagnostic scope and YAML/model
+  analysis. Record REM-CMD-MEMQ-UAT-002 and matching approval before source edits.
+- Shared Memory owns completion metadata, JSON boundary and safe diagnostic
+  primitives; Chat attaches maintenance role and propagates safe errors.
+- Preserve schemas, coverage, quarantine, rollback and pipeline order. No model,
+  YAML, budget, live-provider, user-store, quote or ingest behavior change here.
+- Earlier Chat-only proposal stays held/unapproved. Populated meta UAT is blocked;
+  complete MEMQ acceptance remains pending. Prior VERIFIED binds bab16757 only.
+- `execution_phase: implementation`; `validation_state: not_ready` for diagnostics.
+- **Next gate:** Implement the authorized bounded verification diagnostics, freeze and independently review the candidate, then capture a targeted diagnostic retest. Human UAT remains stopped; no live-provider, model/config or store changes.
+
+## 2026-11-10T01:58:04.218150+00:00 — bounded verification diagnostic candidate ready
+
+- Shared metadata/parser/diagnostic implementation and Chat propagation complete.
+  Focused71, Commands599, controlled Chat1410/5skip, CLI155, Memory155 pass.
+  The2 raw dirty-example failures reproduce on baseline and remain unwaived.
+- Ruff/mypy4/new-format/no-new-debt pass;4 isolated installed normal/-O probes
+  pass after offline Memory/Chat wheel installation;138-name/version closure.
+- Preserve all user configs/UAT edits, exports, external locator and supplied
+  evidence. Early Ruff cache deviation and setup failures disclosed, with no
+  cleanup or passing credit for failed attempts. No live provider/store call.
+- `execution_phase: validation`; `validation_state: pending`. Actual production
+  role/field/truncation still unknown; no functional repair or UAT acceptance.
+- **Next gate:** Reconcile fresh independent review of the bounded verification diagnostic candidate, then hand back a targeted diagnostic retest. Human UAT remains stopped; functional verification, quote/ingest repairs and acceptance remain pending.

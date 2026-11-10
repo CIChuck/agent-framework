@@ -30,6 +30,7 @@ from friday_memory.json_response import (
     parse_json_object_from_text,
 )
 from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request
+from friday_memory.response_diagnostics import ResponseDiagnostic, response_diagnostic
 from friday_telemetry import TelemetryInterface
 from friday_telemetry.models.llm_events import ServiceRole
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
@@ -56,11 +57,26 @@ class StrictProviderModel(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
 
 
-class MaintenanceResponseParseError(ValueError):
+class MaintenanceResponseError(ValueError):
+    """A provider failure carrying shared, content-safe diagnostic evidence."""
+
+    def __init__(
+        self, message: str, *, diagnostic: ResponseDiagnostic | None = None
+    ) -> None:
+        self.diagnostic = diagnostic
+        detail = f"; {diagnostic.summary()}" if diagnostic is not None else ""
+        super().__init__(message + detail)
+
+
+class MaintenanceResponseParseError(MaintenanceResponseError):
     """A maintenance provider returned no parseable JSON object."""
 
 
-class MaintenanceResponseValidationError(ValueError):
+class MaintenanceResponseIncompleteError(MaintenanceResponseParseError):
+    """The provider explicitly reported an output-length termination."""
+
+
+class MaintenanceResponseValidationError(MaintenanceResponseError):
     """A maintenance provider response violated its typed contract."""
 
 
@@ -252,10 +268,24 @@ class LiteLlmMaintenanceProvider:
             max_tokens=self.config.max_tokens,
             timeout=self.config.timeout_seconds,
         )
-        parsed = parse_json_object_from_text(json_response_text(response))
+        diagnostic = response_diagnostic(
+            role=self.role.value,
+            configured_model=self.config.model,
+            response_model=response_model,
+            finish_reason=response.finish_reason,
+        )
+        if diagnostic.finish_reason in {"length", "max_tokens", "model_length"}:
+            raise MaintenanceResponseIncompleteError(
+                "maintenance provider reported an incomplete response",
+                diagnostic=diagnostic,
+            )
+        parsed = parse_json_object_from_text(
+            json_response_text(response), recover_nested_objects=False
+        )
         if parsed is None:
             raise MaintenanceResponseParseError(
-                "maintenance provider returned no parseable JSON object"
+                "maintenance provider returned no complete enclosing JSON object",
+                diagnostic=diagnostic,
             )
         try:
             canonical_json = json.dumps(
@@ -266,8 +296,15 @@ class LiteLlmMaintenanceProvider:
             return response_model.model_validate_json(canonical_json)
         except ValidationError as exc:
             raise MaintenanceResponseValidationError(
-                f"maintenance {response_model.__name__} response failed validation"
-            ) from exc
+                f"maintenance {response_model.__name__} response failed validation",
+                diagnostic=response_diagnostic(
+                    role=self.role.value,
+                    configured_model=self.config.model,
+                    response_model=response_model,
+                    finish_reason=response.finish_reason,
+                    error=exc,
+                ),
+            ) from None
 
 
 @dataclass
@@ -629,7 +666,13 @@ class FrameworkMaintenanceMutationAdapter(MaintenanceMutationAdapter):
                 errors.append(
                     self._error(
                         ReorganizationErrorCode.CAPABILITY_UNAVAILABLE,
-                        f"maintenance {role.value} provider readiness failed ({type(exc).__name__})",
+                        f"maintenance {role.value} provider readiness failed ({type(exc).__name__})"
+                        + (
+                            f"; {exc.diagnostic.summary()}"
+                            if isinstance(exc, MaintenanceResponseError)
+                            and exc.diagnostic is not None
+                            else ""
+                        ),
                     )
                 )
         needs_embedding = any(
@@ -705,7 +748,13 @@ class FrameworkMaintenanceMutationAdapter(MaintenanceMutationAdapter):
                 errors=(
                     self._error(
                         ReorganizationErrorCode.MUTATION_FAILED,
-                        f"maintenance step failed ({type(exc).__name__})",
+                        f"maintenance step failed ({type(exc).__name__})"
+                        + (
+                            f"; {exc.diagnostic.summary()}"
+                            if isinstance(exc, MaintenanceResponseError)
+                            and exc.diagnostic is not None
+                            else ""
+                        ),
                     ),
                 ),
             )
@@ -1079,6 +1128,8 @@ __all__ = [
     "MaintenanceLlmProvider",
     "MaintenanceLlmRole",
     "MaintenanceProviderConfig",
+    "MaintenanceResponseError",
+    "MaintenanceResponseIncompleteError",
     "MaintenanceResponseParseError",
     "MaintenanceResponseValidationError",
     "ProviderProbeResponse",

@@ -340,3 +340,22 @@ with missing, empty and explicit descriptions; persisted metadata and listing
 groups/counts; regression against explicit-description ingestion.
 Source Evidence: [MEMQ D2 round1 reconciliation](../../active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md),
 including all three independently reproduced paired controls; [CMD-F05](../friday-tui-command-followups/README.md).
+
+## FU-010: Preserve Maintenance Verification Response Diagnostics
+
+Status: diagnostic implementation complete; independent review pending; underlying
+production verification failure unresolved.
+Discovered During: MEMQ populated-meta UAT,2026-11-09.
+Requested Change: Preserve shared completion metadata and safe role/model/schema/
+finish/validation-field evidence without exposing provider content. Distinguish
+incomplete enclosing JSON from recovered nested objects.
+Source Evidence: Actual full run failed_rolled_back during234-record verification;
+synthesis had0 candidates with156 quarantined sources. A synthetic truncated
+response reproduces the generic schema-error mechanism, not the actual provider
+reply. REM-CMD-MEMQ-UAT-002 implements the bounded shared diagnostic boundary;
+[implementation/evidence](../../active/command-refactor/validation/memory-queries/uat-diagnostics/README.md).
+Compatibility: Legacy parsing default and callers retain behavior; maintenance
+uses strict enclosing-object parsing and fails closed on explicit length output.
+Model/config/budget, batching, quarantine, order and rollback remain unchanged.
+Next Evidence: A fresh diagnostic response must establish the failed role/field
+before choosing the functional verification repair. Populated-meta UAT is blocked.
