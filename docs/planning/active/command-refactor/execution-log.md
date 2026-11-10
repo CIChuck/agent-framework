@@ -2834,3 +2834,21 @@ has been executed or accepted through this documentation change.
 - Execution phase: planning; validation state: in_review. All actual product,
   dependency/model, user-store, acceptance and delivery operations remain absent.
 - **Next gate:** Reconcile fresh Sol/Astra/Opus round3 of the corrected INGEST design and explicit fresh-store upgrade policy. Each seat must be VERIFIED >=9.5 with no mandatory findings; round4 is the last remaining authorized pass if needed. Gate A/construction and MAINT human acceptance remain separate.
+
+
+## 2026-11-10T22:49:20.621400+00:00 — INGEST round3 reconciled; final round4 correction freeze
+
+- Round3: Sol VERIFIED9.6; Astra CHANGES_REQUESTED9.2; Opus procedural BLOCKED
+  with separate technical CHANGES_REQUESTED9.15. Raw reports, matrices, request,
+  wrappers and17583-entry/six-record frozen integrity preserved unchanged.
+- Corrected Chat's typed Memory-v2/aggregate-v2 handoff and exact public scope,
+  without rebinding old classes or changing Chat path/journal fingerprints.
+  Fresh CREATE requires raw explicit origin and absent vector/graph/WAL paths;
+  unset defaults, Runtime container reuse and side effects are unambiguous.
+- Bounded advisories cover import edges, direct-client namespace fall-through,
+  inert service objects, disjoint marker rows, backup guidance and one trace map.
+- For future round4, wrapper enforcement targets Git/repository/admin subprocesses;
+  plain scratch reads/report hashing are permitted. Old BLOCKED result stands.
+- Execution phase: planning; validation state: in_review. Round4 is the last
+  authorized pass. No product, install, model/store, acceptance or delivery work.
+- **Next gate:** Reconcile the final authorized Sol/Astra/Opus round4 of corrected INGEST documents. Pass only if every seat is independently VERIFIED >=9.5 with no mandatory findings; otherwise return remaining issues without a fifth pass. Gate A/construction and MAINT human acceptance remain separate.

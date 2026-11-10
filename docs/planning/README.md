@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Reconcile fresh Sol/Astra/Opus round3 of the corrected INGEST design and explicit fresh-store upgrade policy. Each seat must be VERIFIED >=9.5 with no mandatory findings; round4 is the last remaining authorized pass if needed. Gate A/construction and MAINT human acceptance remain separate. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Reconcile the final authorized Sol/Astra/Opus round4 of corrected INGEST documents. Pass only if every seat is independently VERIFIED >=9.5 with no mandatory findings; otherwise return remaining issues without a fifth pass. Gate A/construction and MAINT human acceptance remain separate. |
 
 ## Completed
 

@@ -1,0 +1,230 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "round": 3,
+  "candidate": "36362be514ef387183a27d930cd41a8799e3d714",
+  "correction_base": "2956b861de75fcf7ebf463c82f5f470cf6fa7b40",
+  "recorded_at": "2026-11-10T22:45:23.530641+00:00",
+  "outcome": "BLOCKED",
+  "technical_outcome": "CHANGES_REQUESTED",
+  "score_gate": "not met; no averaging or carry-forward of Sol verdict to a new candidate",
+  "seats": {
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "outcome": "VERIFIED",
+      "technical_outcome": "VERIFIED",
+      "score": 9.6,
+      "report": "sol-report.md",
+      "sha256": "5cef64bfb2816ad091c36963f4dcae08c4b53ec2b431e20cdd7dfe0be791c3d5",
+      "original_report": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/sol-r3-Wzz06b/review-report.md",
+      "criteria_as_reported": {
+        "IR-01": "PASS",
+        "IR-02": "PASS",
+        "IR-03": "PASS",
+        "IR-04": "PASS",
+        "IR-05": "PASS",
+        "IR-06": "PASS",
+        "IR-07": "PASS",
+        "IR-08": "PASS",
+        "IR-09": "PASS",
+        "IR-10": "PASS",
+        "IR-11": "PASS",
+        "IR-12": "PASS",
+        "IR-13": "PASS",
+        "IR-14": "PASS",
+        "IR-15": "PASS",
+        "IR-16": "PASS",
+        "IR-R01": "PASS",
+        "IR-R02": "PASS",
+        "IR-R03": "PASS",
+        "IR-R04": "PASS",
+        "IR-R05": "PASS",
+        "IR-R06": "PASS",
+        "IR-R07": "PASS",
+        "IR-R08": "PASS",
+        "IR-S01": "PASS",
+        "IR-S02": "PASS",
+        "IR-S03": "PASS",
+        "IR-S04": "PASS"
+      },
+      "receipts": {
+        "start-integrity": {
+          "file": "sol-start-integrity.json",
+          "sha256": "20f19e62fcf837a82ae2a0f04563750cbd8b059c853397470039d8ce6f8933cd"
+        },
+        "end-integrity": {
+          "file": "sol-end-integrity.json",
+          "sha256": "b23551fd210a938f53fe1e6ac1310f07edb87460b29710ee5478f66c13b979ba"
+        },
+        "command-audit": {
+          "file": "sol-command-audit.jsonl",
+          "sha256": "fbf0551c92eb25fb281f9c4866e0315d4e0cc9940a34908253985da21b6f8737"
+        }
+      }
+    },
+    "astra": {
+      "model": "gpt-6-astra",
+      "outcome": "CHANGES_REQUESTED",
+      "technical_outcome": "CHANGES_REQUESTED",
+      "score": 9.2,
+      "report": "astra-report.md",
+      "sha256": "4959005bbb626f13bd1c9d947b50e3dff9edd8633df76088eb42b5c2f1dbdde2",
+      "original_report": "/tmp/astra-ingest-r3-20261110-9c62/review-report.md",
+      "criteria_as_reported": {
+        "IR-01": "PASS",
+        "IR-02": "PASS",
+        "IR-03": "PASS",
+        "IR-04": "PASS",
+        "IR-05": "PASS",
+        "IR-06": "PASS",
+        "IR-07": "PASS",
+        "IR-08": "CHANGES_REQUESTED",
+        "IR-09": "PASS",
+        "IR-10": "PASS",
+        "IR-11": "PASS",
+        "IR-12": "PASS",
+        "IR-13": "PASS",
+        "IR-14": "PASS",
+        "IR-15": "PASS",
+        "IR-16": "CHANGES_REQUESTED",
+        "IR-R01": "PASS",
+        "IR-R02": "PASS",
+        "IR-R03": "PASS",
+        "IR-R04": "PASS",
+        "IR-R05": "PASS",
+        "IR-R06": "PASS",
+        "IR-R07": "PASS",
+        "IR-R08": "PASS",
+        "IR-S01": "PASS",
+        "IR-S02": "CHANGES_REQUESTED",
+        "IR-S03": "PASS",
+        "IR-S04": "PASS"
+      },
+      "receipts": {
+        "start-integrity": {
+          "file": "astra-start-integrity.json",
+          "sha256": "b23551fd210a938f53fe1e6ac1310f07edb87460b29710ee5478f66c13b979ba"
+        },
+        "end-integrity": {
+          "file": "astra-end-integrity.json",
+          "sha256": "b23551fd210a938f53fe1e6ac1310f07edb87460b29710ee5478f66c13b979ba"
+        },
+        "command-audit": {
+          "file": "astra-command-audit.jsonl",
+          "sha256": "71b707ff84f403b38a59752d4df1411070426196ad58d583ab2fd5e924deff2f"
+        }
+      }
+    },
+    "opus": {
+      "model": "claude-opus-5-5",
+      "outcome": "BLOCKED",
+      "technical_outcome": "CHANGES_REQUESTED",
+      "score": 9.15,
+      "report": "opus-report.md",
+      "sha256": "fc37681dd6f7cbcbdb684ee0eb8e18ea196fc198ba522fbb90f2057eb0d37829",
+      "original_report": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/a67a969e-1460-4968-b7e1-a1ee6da5b7e2/scratchpad/ingest-r3-opus-review/review-report.md",
+      "criteria_as_reported": {
+        "IR-01": "P",
+        "IR-02": "P",
+        "IR-03": "P",
+        "IR-04": "P",
+        "IR-05": "P",
+        "IR-06": "P",
+        "IR-07": "P",
+        "IR-08": "P/A",
+        "IR-09": "P",
+        "IR-10": "P",
+        "IR-11": "P",
+        "IR-12": "P",
+        "IR-13": "P",
+        "IR-14": "P/A",
+        "IR-15": "P/A",
+        "IR-16": "P",
+        "IR-R01": "P",
+        "IR-R02": "P",
+        "IR-R03": "P",
+        "IR-R04": "P",
+        "IR-R05": "P",
+        "IR-R06": "P",
+        "IR-R07": "P",
+        "IR-R08": "P",
+        "IR-S01": "**F**",
+        "IR-S02": "P/A",
+        "IR-S03": "P/A",
+        "IR-S04": "P/A"
+      },
+      "receipts": {
+        "start-integrity": {
+          "file": "opus-start-integrity.json",
+          "sha256": "b23551fd210a938f53fe1e6ac1310f07edb87460b29710ee5478f66c13b979ba"
+        },
+        "end-integrity": {
+          "file": "opus-end-integrity.json",
+          "sha256": "b23551fd210a938f53fe1e6ac1310f07edb87460b29710ee5478f66c13b979ba"
+        },
+        "command-audit": {
+          "file": "opus-command-audit.jsonl",
+          "sha256": "5a06a34ce297343a9a1a22ce8cad4f719d79f7de55d9c402bf2dc5ae03c68fc9"
+        }
+      }
+    }
+  },
+  "mandatory_findings": [
+    {
+      "sources": [
+        "INGEST-R3-ASTRA-001"
+      ],
+      "requirement": "Version2 Memory manifest through Chat aggregate typed writer/readers/rollback and exact scope"
+    },
+    {
+      "sources": [
+        "Opus M-1"
+      ],
+      "requirement": "Exact unset-default and fresh graph/WAL/Runtime container creation eligibility"
+    }
+  ],
+  "advisories": [
+    "SOL-R3-A01",
+    "Opus A-1",
+    "Opus A-2",
+    "Opus A-3",
+    "Opus A-4",
+    "Opus A-5",
+    "Opus A-6"
+  ],
+  "archives": [
+    {
+      "file": "review-request.json",
+      "sha256": "faa4e9570318004b6e1bf00db15e60925a006f5484a47a5c399b640279379af4",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r3-gywt4bca/inputs/review-request.json"
+    },
+    {
+      "file": "check_integrity.py",
+      "sha256": "080be4f9b781c5624492ab83071dcd6301f5d30f8c65a33eb636ab0a90a9d368",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r3-gywt4bca/inputs/check_integrity.py"
+    },
+    {
+      "file": "read_only_command.py",
+      "sha256": "cb0669f81efd0098c104d7b96342fcd614255021ea2bfa49cbbb6af7c2fea248",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r3-gywt4bca/inputs/read_only_command.py"
+    },
+    {
+      "file": "preserved-state.json",
+      "sha256": "43bc63142365560b7bfc72004d0edd493f1c9ec5f21e7cff724b54b12af52ce8",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r3-gywt4bca/inputs/preserved-state.json"
+    },
+    {
+      "file": "protected-manifest.raw.json.gz",
+      "sha256": "62a4587de97370667950f5b741293ece5ca12626de6b7bafbb84a6c008c3c000",
+      "decompressed_sha256": "28e876a22b071811590d1c57da66b814c5fbac4b713c6c5e79f3eefd0a837554",
+      "entries": 17583
+    }
+  ],
+  "request_sha256": "faa4e9570318004b6e1bf00db15e60925a006f5484a47a5c399b640279379af4",
+  "integrity": "all three start/end and controller frozen check PASS;17583 protected records/six metadata records unchanged",
+  "opus_procedure": "BLOCKED retained exactly: two plain cat/wc commands over own scratch bypassed the round3 all-child-process wrapper rule. Later integrity does not retroactively conform. Separate technical CHANGES_REQUESTED9.15 preserved.",
+  "future_procedure": "For future round4 only, require wrapper on Git/repository/admin or processes that can invoke them. Plain read-only cat/wc/hash and report writes confined to own scratch are explicitly permitted without it. This is a precision correction to the controller request, not a changed round3 verdict or weakened repository read-only/environment requirement.",
+  "remaining_authorized_rounds": [
+    4
+  ],
+  "next_gate": "Bounded correction of both mandatory findings and useful advisories, then final fresh round4. No construction, gate-A execution, stores, acceptance or delivery."
+}

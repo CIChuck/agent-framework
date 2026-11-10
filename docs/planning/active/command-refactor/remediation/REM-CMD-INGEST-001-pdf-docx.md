@@ -1,6 +1,6 @@
 # REM-CMD-INGEST-001 — document extraction, shared chunking and embedding limits
 
-Status: **PROPOSED — correction cycle2, independent design council round3**. Baseline `7ad916f2`.
+Status: **PROPOSED — correction cycle3, final authorized design council round4**. Baseline `7ad916f2`.
 This document defines a bounded repair and its dependency-readiness gate. It is
 not an approved construction directive or a completed compatibility assessment.
 Working branch: `feature/cmd-ingest-001`, based on published command-refactor head
@@ -172,7 +172,11 @@ The Core contracts avoid new dependency edges; they do not erase existing ones.
 Memory's large-file processor lazily imports the Tools code chunker, and legacy
 Tools memory inspection/maintenance/lifecycle modules import Memory without a
 declared package dependency. Those edges are recorded, not broadened or repaired
-here. Code chunking may drive summarization windows only; stored code raw chunks
+here. Core also already lazily imports Memory in `profiles.py` and
+`interfaces/transcript.py` without a declared Memory dependency. Those are existing
+compatibility edges, not permission for new backend imports in neutral contracts.
+`profiles.py` retains only its existing lazy adapter imports; the transcript
+interface is inventoried and unchanged. Code chunking may drive summarization windows only; stored code raw chunks
 now come from the shared plan. New policy modules import no Tools and new Tools
 storage paths import no Memory directly.
 
@@ -222,6 +226,11 @@ Prepare this evidence in an isolated environment, without modifying the working
    constructors, precomputed vectors and caches; asymmetric preparation cannot
    be enabled while a relevant caller is unclassified. Freeze exact paths,
    narrow affected MAINT regressions and approved oracle deltas.
+   Produce one trace table joining each caller/consumer to path origin, normalized
+   destination/open intent, store/embedding readiness, vector role/envelope,
+   source-versus-derived policy, exact test node, installed lane and negative
+   witness/oracle exception. It consolidates the existing DI/TD obligations;
+   it is not another experiment or a new source route.
    Include all direct Chroma openers: vector adapter/collection manager, recovery,
    mutation participant, pruner, synthesizer and fact checker; include Runtime
    pool/non-pool assembly, Core profiles and CLI re-exports/container. Search all
@@ -833,7 +842,10 @@ binding check or as a reason to initialize it during a safe snapshot.
 
 Use a lazy ready-or-unavailable capability at application assembly: parsing a
 catalog/config and registering `/read` must not instantiate Chroma, create a
-namespace, initialize embeddings or open a legacy graph. A memory-dependent
+namespace, initialize model/tokenizer/provider resources or open a legacy graph.
+Inert embedding-service/configuration objects that only hold validated settings
+and perform no provider/network/model/store I/O may be constructed; the gate
+does not require eliminating those existing lightweight objects. A memory-dependent
 operation first resolves that capability; on failure it returns a stable reason
 and remedy without touching the store/provider. Background consolidation and
 exit maintenance obey the same check, never silently become successful no-ops.
@@ -845,6 +857,11 @@ helper **before** PersistentClient: recovery discovery/export/restore, mutation
 participant, pruner, synthesizer and fact checker as well as adapters/collection
 manager. Readiness/provenance failures propagate as typed failures rather than
 being swallowed as empty results, skipped pruning or successful maintenance.
+Each direct opener targets exactly the layout's normalized vector directory.
+Remove its `[memory_dir, memory_dir/vector]` probing/fall-through from guarded
+paths: a refusal ends the operation and cannot select a second namespace.
+Legacy callers without an explicit resolved directory/admission fail actionably
+instead of guessing. No model-equivalence or filename probe authorizes fallback.
 Retain ordinary operation-specific error policy otherwise. This is identity
 admission, not a change to verification/synthesis logic or maintenance sequencing.
 
@@ -883,6 +900,52 @@ strict existing validators. Recovery ordering, snapshot quiescence/token ownersh
 rollback triggers, ULP checks, journal lifecycle and user approval stay intact.
 These narrow identity seams explicitly amend the earlier recovery exclusion;
 they do not authorize recovery-engine redesign or a new migration framework.
+
+### Versioned Memory-to-Chat recovery handoff
+
+Keep `MemorySnapshotManifest` and its version1 validators/readers strict and
+unchanged for historical interpretation. Add an explicitly named v2 model and a
+public closed version-discriminating loader/envelope in Memory maintenance.
+Only exact versions1/2 dispatch; malformed/unknown discriminants and mixed
+payloads refuse. Active bound recovery explicitly requires the v2 member.
+Do not broaden or silently rebind the old public class to accept both versions.
+Expose the v2 model/typed loader through necessary Memory maintenance/root
+exports, appending names without changing old bindings. A strict Pydantic
+envelope can serve the existing typed `AtomicJsonStore.read_model`; no `Any`
+payload, unchecked cast or generic serializer rewrite is needed.
+
+Chat adds a separate strict `RecoveryBundleManifestV2`, version2 participant
+writer/reader path and a closed version-dispatch inspection surface. Retain the
+old aggregate model/readers as version1. The only compatible combinations are:
+
+| Aggregate bundle | Embedded Memory | Embedded Transcript | Allowed use |
+| --- | --- | --- | --- |
+| Version1 | Strict Memory version1 | Existing Transcript version1 | Offline historical inspection only; never a bound-store restore. |
+| Version2 | Strict identity-bearing Memory version2 | Existing Transcript version1 | Current guarded snapshot, exact verification and same-namespace rollback. |
+| Any other or mixed combination | Any | Any | Refuse schema/version admission; no live effects. |
+
+`coordinator.py` must use the typed Memory v2 loader, build the Chat v2 aggregate,
+and carry that exact type through `_SnapshotEvidence` and the active rollback
+path. `artifacts.py` writes/reads the v2 model and independently reparses the
+referenced Memory v2 participant; embedded and referenced canonical payloads,
+hashes, run identity, sidecar/space/incarnation and participant fingerprints must
+match exactly. It never falls back to v1 after a v2 parsing failure. Retain all
+existing path confinement, owner checks, hashes, timestamps, Transcript validation
+and participant uniqueness rules. Chat reorganization/root exports may append
+necessary v2 types/loaders without rebinding v1 names. Offline dispatch remains
+closed and must not return an identity-free object to the active restore method.
+
+The identity-bearing **Memory participant fingerprint** is the v2 digest of its
+explicit paths plus sidecar binding/incarnation. Chat's separate
+`FridayChatMaintenanceLayout.layout_fingerprint` stays the existing path-only
+version1 digest used by leases/journals/approval. The aggregate checks that
+path fingerprint and, independently, `participant_layout_fingerprint` against
+the v2 Memory manifest and current admitted namespace. Do not substitute one
+fingerprint for the other. No `layout.py`/`assembly.py` fingerprint change,
+Transcript version bump, journal-schema change or maintenance-order change is
+authorized. Generic AtomicJsonStore behavior remains unchanged; only the typed
+models supplied by its callers change. The final directive freezes exact
+versioned exports/loaders and fixture exceptions before product work.
 
 ### Execution, cancellation and admission
 
@@ -938,10 +1001,43 @@ Transcript history, backups and old namespaces are not copied, replayed, deleted
 or bulk indexed by this selection. Do not rewrite either dirty example YAML.
 
 The public factory takes a typed open intent: `OPEN_BOUND` opens only an admitted
-matching namespace; `CREATE_FRESH` requires the explicitly supplied path to be
-absent. Frontends derive the latter only for that configured absent destination
-when a memory-dependent operation is actually requested, never from an unbound
-existing directory or profile edit. Config parsing and `/read` never create it.
+matching namespace; `CREATE_FRESH` requires an explicitly supplied absent path.
+**Unset is not explicit:** Chat's unset `memory.persist_directory` and Runtime's
+absent raw vector-path setting never authorize creation, even if their fallback
+`.friday/vector` or `.friday/chroma` directory is absent on a first run. The user
+sees a readiness diagnostic asking for a destination to be configured; `/read`
+still works. A supplied raw setting equal to the usual default is explicit and
+can qualify if absent. Preserve the raw-key-origin bit before defaults/merging;
+do not infer it by comparing the resolved string with its default value.
+Runtime's already-supported raw configuration locations preserve this origin.
+Programmatic headless callers supply a typed StoreOpenRequest containing an
+explicit destination/open intent; a default RuntimeConfig alone is not a fresh
+creation request. The exact typed signature freezes at gate A, not a new CLI flag.
+
+Frontends derive CREATE_FRESH only for that explicit absent destination when a
+memory-dependent operation is requested, never from an unbound directory or
+profile edit. Fallback paths are diagnostic/OPEN_BOUND destinations only: an
+already ready matching bound default may open, but an absent default cannot be
+created without explicit origin. Config parsing and `/read` never create it.
+Fresh creation preconditions are exact: the selected vector directory, the
+resolved graph file, and the configured access-WAL path must all be absent.
+An unconfigured WAL is absent for this purpose; do not discover another WAL by
+scanning. Any existing graph or configured WAL, even empty, refuses CREATE_FRESH
+before directory/marker/client/provider creation, with its path and the remedy:
+select new associated destinations. Never ignore, adopt, truncate or copy it.
+Apply checks under the normal admission/creation boundary and recheck before the
+ready marker. An external race stops readiness; it cannot bless a newly appeared
+file. A pending namespace newly allocated by this attempt is not auto-cleaned or
+repaired, and pre-existing files remain untouched.
+
+For Runtime, `runtime_data_root` is a container, not itself the vector namespace:
+reusing it is permitted only when the selected vector, actual resolved graph
+and configured WAL are all absent. Existing unrelated transcript/artifact files
+remain in place and are not replayed into the new namespace. If reused root
+contains its usual existing graph or WAL, refusal is mandatory. Choosing a new
+runtime_data_root instead also selects fresh transcript/artifact locations by
+the existing containment rules; disclose that effect and copy/reset nothing.
+
 A pre-created empty directory is still existing/unbound and refuses; choose a
 different absent destination. There is no automatic suffix, rename, fallback
 root or stamping of old content. Direct API callers supply their intent and
@@ -962,11 +1058,17 @@ The operation matrix is mandatory in Chat, Runtime and direct factory tests:
 
 | Namespace state | `/read` / headless file extraction | Memory-dependent turn, semantic recall or new embedding/write | Store-only snapshot/maintenance/restore |
 | --- | --- | --- | --- |
-| Explicitly selected absent destination | Available with normal file-format readiness; never creates Memory | Resolve verified capabilities and CREATE_FRESH once; validate associated graph/WAL layout before any creation; then normal guarded operation | Does not create a namespace merely to snapshot/restore. Refuse unavailable store until initialized. |
+| Unset destination, fallback path absent | Available | Readiness refusal; configure an explicit path. No CREATE_FRESH, marker, client, model/provider or associated-path creation. | Refuse unavailable store; no discovery/import/create. |
+| Explicit destination absent and resolved graph/configured WAL absent | Available with normal file-format readiness; never creates Memory | Resolve verified capabilities and CREATE_FRESH once; then normal guarded operation. | Does not create merely to snapshot/restore; unavailable until initialized. |
+| Explicit vector destination absent but graph or configured WAL exists | Available | Readiness refusal naming the associated path/remedy, before any creation or provider/store I/O. | Refuse; preserve associated content and metadata. |
 | Bound ready, matching identity/incarnation | Available without embedding/Chroma startup | Allowed after operation-specific embedding/counter checks and provenance admission | Allowed under store-admission checks; operations that generate embeddings additionally require model readiness; restore requires same namespace/layout. |
-| Existing legacy-unbound, including an empty directory | Available | Explicit readiness refusal. No legacy use, stamping, migration, automatic alternate destination or provider call | Refuse before live client, backup/restore mutation or maintenance effects. Historical artifacts remain untouched/offline-inspectable. |
+| Existing directory without marker, including empty or a lost old marker | Available | Explicit readiness refusal. No legacy use, stamping, migration, automatic alternate destination or provider call | Refuse before live client, backup/restore mutation or maintenance effects. Historical artifacts remain untouched/offline-inspectable. |
 | Bound ready but configured space mismatches, even same dimensions | Available | Explicit mismatch refusal; no rebind or new preparation | Refuse live operations/restore; no overwriting sidecar from a snapshot. |
-| Pending, malformed, inconsistent or missing marker on an existing root | Available | Explicit refusal; no automatic repair | Explicit refusal; preserve current recovery-required reporting where applicable. |
+| Marker exists but is pending, malformed or inconsistent | Available | Explicit refusal; no automatic repair | Explicit refusal; preserve current recovery-required reporting where applicable. |
+
+A missing marker belongs solely to the unbound row, whether never created or
+lost; no history scan tries to distinguish those cases. Marker-present invalid
+states belong to the final row. All refusals preserve old state and never repair.
 
 Availability of `/read` still depends on the admitted file's extraction assets;
 it does not require Memory identity, embedding capacity or provider inference.
@@ -982,11 +1084,21 @@ modes and mtime/ctime, including parent directories: create-and-delete probes
 under the old path are not allowed. No existing stores are inspected or changed
 while this specification is prepared; these are future runtime/test obligations.
 
+### Operator upgrade note
+
+Before upgrading a legacy installation, stop writers and retain a verified backup
+using the old release's authorized snapshot tooling or a consistent cold copy
+of the full old state/configuration. Keep the compatible old installation for
+legacy restoration if needed: the new guarded tooling will refuse snapshot or
+restore of an identity-free namespace. This specification does not perform a
+backup, scan, reset or legacy restore; it adds no backup engine. A fresh selection
+does not replace a backup, and old artifacts are never automatically upgraded.
+
 ## Proposed exact implementation paths
 
 | Path | Allowed purpose |
 | --- | --- |
-| `packages/friday-core/src/friday_core/ingestion.py` (new), `interfaces/memory.py`, `profiles.py`, focused Core tests | Neutral immutable source/chunk/options/counter, injected ingestion entry and identity-bearing vector/query contracts. No policy/backend imports; exact signatures freeze at gate A. |
+| `packages/friday-core/src/friday_core/ingestion.py` (new), `interfaces/memory.py`, `profiles.py`, focused Core tests | Neutral immutable source/chunk/options/counter, ingestion entry, explicit-origin/open-intent and identity-bearing vector/query contracts. New contracts have no policy/backend imports; profiles retains only its existing lazy adapter imports. Exact signatures freeze at gate A. |
 | `packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py` (new) | Shared typed Docling extraction/chunking adapter, neutral provenance, local asset/status/format checks and errors. |
 | `packages/friday-tools/pyproject.toml` | New document-ingestion extra with selected Docling release and mandatory `certifi>=2026.10.19`; other requirements unchanged. |
 | `packages/friday-tools/README.md` | Public capability, dependency and local-model setup/limits. |
@@ -1007,6 +1119,7 @@ while this specification is prepared; these are future runtime/test obligations.
 | `packages/friday-chat/src/friday_chat/commands/files.py` | Four-format delegation/admission and result metadata, document-line refusal; retain text behavior. |
 | `packages/friday-chat/src/friday_chat/commands/registry.py` | Default file-handler-only raw-tail delegation, document failure/success adaptation and exact help cells. No other handlers/parser policy. |
 | Chat `src/friday_chat/config.py`, `runtime.py`, `adapters.py` | Typed ingestion config, shared-capability wiring and effective-option presentation; remove Chat character slicing from ingestion, distinguish query/document embedding calls, preserve existing store paths and metadata helper. |
+| Memory `maintenance/__init__.py`, root `__init__.py`; Chat `reorganization/contracts.py`, `artifacts.py`, `coordinator.py`, `reorganization/__init__.py`, root `__init__.py`, focused aggregate/recovery tests | Strict new Memory/Chat v2 models and typed public loaders/exports, aggregate write/read/participant equality and same-namespace rollback only. Old v1 classes/bindings and generic AtomicJsonStore remain unchanged; no journal, path-layout fingerprint or maintenance-order redesign. |
 | Chat `src/friday_chat/reorganization/mutation.py`, focused provider-construction tests | Pool/non-pool embedding capability injection or explicit preflight refusal only. No reorganization sequencing/provider-role/prompt changes. |
 | Chat packaged `src/friday_chat/config_templates/config.example.yaml`, `models-config.example.yaml`, focused config tests | New default/schema examples and capability requirements bound to the verified current profile. Qwen remains illustrative; do not overwrite either dirty repository example YAML. |
 | `packages/friday-chat/pyproject.toml` | Default dependency on the new Tools extra only. |
@@ -1060,10 +1173,11 @@ by this document update.
 | DI-25 | Genuine Office structure oracle distinguishes missing formula cache from blank, hidden row/column, large merged ranges, notes versus comments and backend clipping. Non-text audit cannot supply or repair text. Unknown mapping/warning refuses before ingestion; wrong-format and renamed generic ZIP/multi-document input refuse. |
 | DI-26 | Event loop remains responsive during conversion/counting; cancellation before worker start, during work and immediately after completion cannot cause ingestion. Admission stays held until worker quiescence, late results discarded and cleanup idempotent. No hard-thread-timeout/OS-sandbox claim. |
 | DI-27 | Same-namespace snapshot/verify/restore and automatic rollback preserve binding, data and graph-vector identity. Wrong space with same dimensions, wrong incarnation/layout, identity-free v1 artifact, pending/malformed/missing sidecar and binding tamper refuse before client/live writes. No rebinding. Private bound preflight is distinct from live restore. Existing journal/quiescence/ULP policies remain tested. |
-| DI-28 | Every inventoried direct client path uses identity admission: adapters, collection manager, recovery, mutation participant, pruner, synthesizer, fact checker. Missing admission cannot be swallowed as a skip/empty success. Maintained Chat snapshot/rollback and direct participant entry paths both execute; no bare-client bypass mutant survives. |
-| DI-29 | Actual Chat/Runtime pool and non-pool startup with absent capacity/unbound store followed by `/read` or read-only headless extraction: zero Chroma/embedding/provider construction and actionable readiness. Core public factory persistent/ephemeral paths and CLI delegation inherit the decided policy. No implicit stateless chat or legacy fallback. Run every row of the recorded root-state matrix, including default legacy path, pre-created empty root, first explicit fresh creation, bound mismatch and pending marker. Preserve all old-path metadata and keep /read/exit usable. |
+| DI-28 | Every direct client uses exact normalized-destination admission. Pruner/synthesizer/fact-checker cannot fall through to memory_dir/vector or another root after refusal; include a namespace-fallback mutant. Missing admission is not skip/empty success. Maintained Chat aggregate snapshot/rollback and direct participant entries execute; no bare-client bypass survives. |
+| DI-29 | Actual Chat/Runtime pool/non-pool startup and read-only extraction: zero Chroma/model/tokenizer initialization or provider/store I/O; inert service/config objects are allowed. Test unset + absent fallback refusal, explicit value equal to default creation eligibility, unbound/empty/mismatched/invalid-marker refusal, absent vector + existing graph, absent vector + configured WAL, and reused Runtime root both with old graph/WAL (refuse) and only unrelated state (eligible). Core direct StoreOpenRequest/ephemeral and CLI delegation inherit exact policy. No stateless/legacy fallback; preserve old metadata, /read and exit. |
 | DI-30 | Storage receipts are destination/incarnation/collection-specific: same-space new destination or different collection, lost record IDs/provenance and disabled→enabled storage cannot skip ingestion. Extraction cache reuse is distinct from completed-storage evidence. Unwired Chat smart_read storage remains unwired and explicitly refuses requested storage. |
 | DI-31 | Plain CSV/TSV keeps all source spans/late rows and reports missing supplied table structure; structured tables repeat known headers. No inferred/fabricated header. Hosted mutable identity/missing offline BPE refuses operation; qualified pinned deployment passes only after real gate-A proof. Inactive migration/stub earns no integration credit. |
+| DI-32 | Actual Chat bound Memory-v2 snapshot → aggregate-v2 writer/read/participant reparse → same-namespace restore/automatic rollback. Accept only bundle1/memory1/transcript1 for offline inspection and bundle2/memory2/transcript1 for active use; reject mixed/unknown versions, binding/incarnation/participant digest tamper and v1 bound restore before live effects. Verify old v1 validators/exports remain strict, Memory v2 fingerprint is distinct from unchanged Chat path fingerprint, and generic AtomicJsonStore needs no bypass. |
 
 
 Keep old assertion bodies unless the final approved directive lists an exact

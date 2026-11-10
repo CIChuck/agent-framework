@@ -1,0 +1,10 @@
+{
+  "candidate": "36362be514ef387183a27d930cd41a8799e3d714",
+  "base": "2956b861de75fcf7ebf463c82f5f470cf6fa7b40",
+  "request": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r3-gywt4bca/inputs/review-request.json",
+  "request_sha256": "faa4e9570318004b6e1bf00db15e60925a006f5484a47a5c399b640279379af4",
+  "helper_sha256": "080be4f9b781c5624492ab83071dcd6301f5d30f8c65a33eb636ab0a90a9d368",
+  "wrapper_sha256": "cb0669f81efd0098c104d7b96342fcd614255021ea2bfa49cbbb6af7c2fea248",
+  "protected_entries": 17583,
+  "logical_index": "43738da1ed6e59de584e729e570b1bbeb4b5ab54b7813c66660f684951b5f9fc"
+}

@@ -1,21 +1,23 @@
-# Document-ingestion remediation — corrected round3 design
+# Document-ingestion remediation — final round4 design review
 
 Execution phase: planning; validation state: in_review.
-The maintainer selected [fresh-store-required upgrade behavior](approval/ingest-existing-store-policy.md),
-preserving existing files and `/read`. The corrected
-[REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) specifies the request mechanism
-and root-state/operation matrix, identity-preserving recovery/direct clients,
-Runtime/Core/CLI composition and destination-specific cache receipts.
+[Round3](validation/document-ingestion/council-round3/report.md) did not pass:
+Sol VERIFIED9.6, Astra CHANGES_REQUESTED9.2 and Opus procedurally BLOCKED with
+separate technical CHANGES_REQUESTED9.15. Those outcomes are retained unchanged.
 
-[Round2](validation/document-ingestion/council-round2/report.md) remains historical:
-Sol VERIFIED9.5, Astra CHANGES_REQUESTED9.0 and qualified Opus CHANGES_REQUESTED8.4.
-The [current correction brief](validation/document-ingestion/council-round3/correction-brief.json)
-binds fresh round3. The authorized stop gate is every seat independently VERIFIED
->=9.5 with no mandatory findings; round4 remains available if needed.
-No installation, gate-A execution, product construction or store operation is
-activated. MAINT human UAT/acceptance and delivery remain separate.
+The corrected [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and
+[companion](proposals/tools-document-adoption.md) now specify the typed Chat
+v2 aggregate handoff and exact fresh-creation/default/associated-path rules,
+with the useful advisories. The explicit fresh-store-required policy is settled;
+old state and `/read` remain preserved. [Correction scope](validation/document-ingestion/council-round4/correction-brief.json)
+binds this last authorized fresh council. All prior design requirements still apply.
 
-**Next gate:** Reconcile fresh Sol/Astra/Opus round3 of the corrected INGEST design and explicit fresh-store upgrade policy. Each seat must be VERIFIED >=9.5 with no mandatory findings; round4 is the last remaining authorized pass if needed. Gate A/construction and MAINT human acceptance remain separate.
+Each seat must independently return VERIFIED >=9.5/no mandatory findings. If
+not, return remaining issues without a fifth review or automatic remediation.
+No gate-A execution, construction, models/stores, acceptance or delivery is
+authorized by the document gate. MAINT human UAT/acceptance remain separate.
+
+**Next gate:** Reconcile the final authorized Sol/Astra/Opus round4 of corrected INGEST documents. Pass only if every seat is independently VERIFIED >=9.5 with no mandatory findings; otherwise return remaining issues without a fifth pass. Gate A/construction and MAINT human acceptance remain separate.
 
 ## Separate MAINT closeout and historical checkpoints
 

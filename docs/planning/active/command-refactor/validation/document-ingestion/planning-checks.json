@@ -1,10 +1,10 @@
 {
   "unit": "REM-CMD-INGEST-001",
-  "round3_draft": false,
-  "status": "planning_checks_only_policy_recorded_before_council",
+  "round": 4,
+  "status": "planning_checks_only_final_design",
   "outcome": "PASS",
-  "recorded_at": "2026-11-10T22:26:16.034251+00:00",
-  "baseline": "2956b861de75fcf7ebf463c82f5f470cf6fa7b40",
+  "recorded_at": "2026-11-10T22:51:04.740956+00:00",
+  "baseline": "36362be514ef387183a27d930cd41a8799e3d714",
   "checks": [
     {
       "check": "board",
@@ -57,7 +57,7 @@
         "scripts/check-documentation-lifecycle.py"
       ],
       "exit": 0,
-      "stdout": "Documentation lifecycle validation passed: 987 Markdown files checked\n",
+      "stdout": "Documentation lifecycle validation passed: 991 Markdown files checked\n",
       "stderr": ""
     },
     {
@@ -91,11 +91,10 @@
       "stderr": ""
     }
   ],
-  "protected_entries_matched": 17549,
+  "protected_entries_matched": 17571,
   "owned_existing_status_or_technical_paths": [
     "docs/planning/README.md",
     "docs/planning/active/command-refactor/README.md",
-    "docs/planning/active/command-refactor/approval/ingest-existing-store-policy.md",
     "docs/planning/active/command-refactor/authority.json",
     "docs/planning/active/command-refactor/execution-log.md",
     "docs/planning/active/command-refactor/next-phase.md",
@@ -108,20 +107,21 @@
     "docs/planning/board.yaml"
   ],
   "preserved_metadata_records": 6,
-  "logical_index_sha256_before_status": "a486635c3d1b91bc606ab7463a7de17c8d35b54bc65487eb9fd9985e91c3cd5a",
+  "logical_index_sha256_before_status": "43738da1ed6e59de584e729e570b1bbeb4b5ab54b7813c66660f684951b5f9fc",
   "maint_other_unit_authority": "unchanged",
+  "explicit_upgrade_policy": "unchanged",
   "yaml_examples": 3,
   "pins": {
-    "remediation/REM-CMD-INGEST-001-pdf-docx.md": "85184a069b48afcc9f8b654594f38a536e3800a7881e6cba113b4f51e598fbf0",
-    "proposals/tools-document-adoption.md": "2f1cbf543abe1532cc975ca9f9affa12f55ad6e4a43cc2220a7fef6a3449cd6f",
-    "validation/document-ingestion/council-round2/reconciliation.json": "a2c4b2e0f2961954616736471ce0846d92e213f0919acfb8cffd9d8d7c812c90",
-    "validation/document-ingestion/council-round3/correction-brief.json": "5016b425de225b4b61671c464c42877ed19eea81dede921cd2613a7f6528a380"
+    "remediation/REM-CMD-INGEST-001-pdf-docx.md": "61d93548eeae52be1b273e8ae985860d869cceac6a88868eb9396e7a2adf1804",
+    "proposals/tools-document-adoption.md": "b5429eb75427aa12f016ad1d0a571743c066375c1a3da34826b3e464ba5e8ba1",
+    "validation/document-ingestion/council-round3/reconciliation.json": "e43010db1a29f2d305ea5bd9195cd556b42a7ebae78bca88f9ef8ded1e827ecc",
+    "validation/document-ingestion/council-round4/correction-brief.json": "9623b6837c91d1645630059ca2b5abdde94ce5887862dbf58b723630a55fef27"
   },
   "not_performed": [
     "product edits/tests/builds",
     "gate A/installs/models/providers",
     "store operations/reset/migration",
-    "round3 dispatch (not yet performed at these checks)",
+    "round4 dispatch (pending these checks)",
     "MAINT UAT/acceptance",
     "delivery"
   ],

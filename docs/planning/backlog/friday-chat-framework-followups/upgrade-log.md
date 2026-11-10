@@ -428,7 +428,10 @@ Friday Chat delegation/default document dependencies; shared Memory ingestion po
 LLM capability/limit enforcement and minimal Core contracts. Engine replacement is excluded;
 narrow durable store-identity/query-envelope and role handoffs are proposed exceptions.
 The correction draft also covers identity-preserving snapshot/restore/direct-client
-admission and Runtime/Core/CLI composition. No recovery ordering changes. The
+admission and Runtime/Core/CLI composition. No recovery ordering changes.
+The final design correction adds typed Memory-v2/Chat-bundle-v2 dispatch and
+explicit unset-default/graph/WAL creation qualification; old strict v1 schemas,
+Chat path fingerprints and maintenance ordering remain unchanged. The
 maintainer explicitly selected fresh-store-required behavior: preserve existing
 files and /read, with no legacy mode, migration or reset.
 Requested Change: Use one pinned Docling pipeline for PDF/DOCX/XLSX/PPTX extraction,
