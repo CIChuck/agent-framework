@@ -5,8 +5,9 @@ planning awaits document review; MAINT-001 human UAT/acceptance remains pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is open against `master` from `feature/command-retirement`. Publication does not
-complete MAINT UAT/acceptance or authorize INGEST construction. The next scoped
-branch is `feature/cmd-ingest-001`, based on this submission while review is pending.
+complete MAINT UAT/acceptance or authorize INGEST construction. The current scoped
+branch is `feature/cmd-ingest-001`, based on submitted head `df62b77d` while review
+is pending; [branch handoff](validation/document-ingestion/branch-handoff.md).
 
 **Working-folder update — 2026-11-05:** The maintainer changed direction:
 current command-first and Friday TUI planning is consolidated in the
@@ -25,7 +26,7 @@ The explicit `/reorganize --full --execute` syntax defect is separately open as
 Earlier implementation/review/pending-UAT statements describe their historical
 freezes and are superseded by this acceptance. The wider initiative stays started/local.
 
-**Current work — MAINT-001:** [Implementation verification](validation/maintenance/implementation/verified-report.md)
+**Separate MAINT-001 closeout:** [Implementation verification](validation/maintenance/implementation/verified-report.md)
 reconciles Astra9.5 and Sol9.6, both VERIFIED, no mandatory findings. Reviewed
 candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
@@ -47,7 +48,7 @@ MAINT implementation verification and its pending human UAT remain unchanged.
 ReaderFactory and smart_read routing; the shared helper alone does not establish
 that those tools have been upgraded.
 
-**Working home:** `agent-framework`, branch `feature/command-retirement`.
+**Working home:** `agent-framework`, branch `feature/cmd-ingest-001`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and
 accepted by Chuck Russell. Exact strengthened RET-001 is now approved and implemented locally; independently VERIFIED at `f896ef53` and accepted by Chuck Russell on 2026-11-07.
@@ -91,7 +92,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.
+**Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001; parent PR #15 targets master. MAINT-001 human UAT/acceptance pending. Delivery pushed.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

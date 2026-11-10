@@ -2722,3 +2722,16 @@ has been executed or accepted through this documentation change.
   in the PR. INGEST is planning only. No merge, release or agents authorized.
 - Uncommitted user YAML and .friday-old/ excluded; ignored exports untouched.
 - **Next gate:** Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.
+
+
+## 2026-11-10T20:43:27.753975+00:00 — INGEST-001 branch isolated from published command refactor
+
+- Created and checked out feature/cmd-ingest-001 from parent df62b77d after PR #15
+  publication. No rebase, cherry-pick, cleanup or new product change.
+- Updated current board/packet branch and narrowed current authority to
+  design_only. Historical approvals, frozen review inputs and pending MAINT
+  human UAT/acceptance retain their prior scope.
+- Branch handoff records the pending-parent comparison, squash-merge caveat and
+  exact INGEST readiness/approval boundaries. All current decisions are retained.
+- Preserved user YAML/generated state; no council, model install or store reset.
+- **Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001; parent PR #15 targets master. MAINT-001 human UAT/acceptance pending. Delivery pushed.

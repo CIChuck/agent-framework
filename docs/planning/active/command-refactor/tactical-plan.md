@@ -14,7 +14,7 @@ manifest; it must precede an approved implementation directive and code.
 
 MAINT-001 remains independently VERIFIED; human UAT/acceptance remain pending.
 
-**Next gate:** Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.
+**Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001; parent PR #15 targets master. MAINT-001 human UAT/acceptance pending. Delivery pushed.
 
 ## Separate MAINT closeout and historical checkpoints
 

@@ -3,6 +3,11 @@
 Status: **PROPOSED — maintainer document review**. Baseline `7ad916f2`.
 This document defines a bounded repair and its dependency-readiness gate. It is
 not an approved construction directive or a completed compatibility assessment.
+Working branch: `feature/cmd-ingest-001`, based on published command-refactor head
+`df62b77d551491cfb33ad2492c711036b09c9d4c` ([PR #15](https://github.com/CIChuck/agent-framework/pull/15)).
+[Branch handoff](../validation/document-ingestion/branch-handoff.md) records scope
+and construction boundaries. The assessment baseline above remains historical.
+
 No product edits, installs, model downloads or council invocation are authorized
 by placement in this packet. The requested planning work is authorized.
 

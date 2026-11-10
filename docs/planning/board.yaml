@@ -709,11 +709,11 @@ tasks:
   priority: 36
   work_state: started
   condition: normal
-  implementation_authority: granted
+  implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed."
+  next_gate: "Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001; parent PR #15 targets master. MAINT-001 human UAT/acceptance pending. Delivery pushed."
   delivery_state: pushed
-  branch: feature/command-retirement
+  branch: feature/cmd-ingest-001
   depends_on: []
   validation:
   - docs/planning/active/command-refactor/validation/maintenance/implementation/verified-report.md
@@ -3099,3 +3099,10 @@ events:
   action: delivery local -> pushed
   note: Chuck Russell authorized branch publication and PR submission; feature/command-retirement is pushed and PR 15 is open against master. Human acceptance and INGEST construction remain separate.
   evidence: https://github.com/CIChuck/agent-framework/pull/15; head ac3f9fa0bdadf95a6fc76d40b39fbc077b53da96
+- task: friday-command-refactor
+  at: '2026-11-10T20:43:27.753975+00:00'
+  actor: Codex
+  actor_role: agent
+  action: isolated INGEST-001 planning on a scoped feature branch
+  note: Chuck Russell directs the branch split after publication. Parent PR 15/head df62b77d is preserved. Current branch is feature/cmd-ingest-001 with design_only authority; no construction, model switch, store reset, council or acceptance granted.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md
