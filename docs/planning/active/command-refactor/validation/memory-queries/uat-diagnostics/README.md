@@ -1,6 +1,7 @@
 # MEMQ UAT verification diagnostics — corrected candidate
 
-Status: **correction1 complete; fresh independent review pending**.
+Status: **correction1 independently VERIFIED at3969e4d4; diagnostic retest next**.
+[Reconciliation](verified-report.md) and [operator handoff](diagnostic-retest-handoff.md).
 [Correction scope and checks](correction1/README.md) address MEMQ-VD-REV-002.
 The [initial review](review-round1/report.md) remains BLOCKED for reviewer isolation;
 it is not carried forward as verification. See its [preserved disclosure](review-round1/reviewer-temp-disclosure.json).

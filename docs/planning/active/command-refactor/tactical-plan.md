@@ -1,8 +1,8 @@
-# MEMQ-001 — verification diagnostic candidate; independent review pending
+# MEMQ-001 — verification diagnostics independently verified; targeted retest next
 
 Branch: `feature/command-retirement`
-Execution phase: validation
-Validation state: pending (diagnostic repair); prior D3 verified at bab16757
+Execution phase: closeout
+Validation state: verified (diagnostics only); prior D3 verified at bab16757
 
 Chat source `3ed1d58ad8cc1e79522495da5cf19091185402d8` implements the six delegated queries and approved
 option R persisted listing. [Builder evidence](validation/memory-queries/implementation/d2/README.md)
@@ -10,10 +10,10 @@ records Chat1390, Commands/cohort599, CLI155, fast lanes616/117, all52 new
 MQ-T07..14 cases,20 assertion-witnessed mutants and exact current observations.
 The [round1 council](validation/memory-queries/implementation/d2/council-round1/report.md) reproduced those runtime checks. Sol9.6 and Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for stale authority prose. [Round2](validation/memory-queries/implementation/d2/council-round2/report.md) resolves ASTRA-001 but identifies a frozen backlog scope breach. The exact approved bytes are restored and [round3](validation/memory-queries/implementation/d2/verified-report.md) is unanimously VERIFIED9.5, no mandatory findings. [D3](validation/memory-queries/implementation/d3/README.md) has completed builder builds/replay, actual installed proof and controls at sourcee4c0b9a2; [final council](validation/memory-queries/implementation/d3/verified-report.md) is unanimously VERIFIED (Sol9.5/Astra9.4/Claude9.5), with no mandatory findings. Original reports remain scoped to their candidates.
 
-**Next gate:** Reconcile fresh independent review of the bounded verification diagnostic candidate, then hand back a targeted diagnostic retest. Human UAT remains stopped; functional verification, quote/ingest repairs and acceptance remain pending.
+**Next gate:** Run the targeted verification diagnostic retest in a restarted Chat process; capture the new run ID and safe role/model/finish/field evidence. Human UAT remains stopped; functional verification, quote/ingest repairs and acceptance remain pending.
 
 The exact contract/directive/approval and D1 product source remain unchanged
-(only the approved package README is updated). UAT20 remains NOT RUN; the
+(only the approved package README is updated). Human UAT is stopped after reported failures; the
 [plan](uat/memq-user-acceptance-plan.md) is in the established folder. D3 builds and installed behavior are verified; [human UAT and acceptance](validation/memory-queries/implementation/d3/acceptance-handoff.md) remain pending. Root/format debt and
 the unchanged ingest-without-description limitation stay unwaived. Historical
 checkpoints below describe their own freezes.

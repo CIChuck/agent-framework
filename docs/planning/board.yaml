@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh independent review of the bounded verification diagnostic candidate, then hand back a targeted diagnostic retest. Human UAT remains stopped; functional verification, quote/ingest repairs and acceptance remain pending.
+  next_gate: Run the targeted verification diagnostic retest in a restarted Chat process; capture the new run ID and safe role/model/finish/field evidence. Human UAT remains stopped; functional verification, quote/ingest repairs and acceptance remain pending.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -3000,3 +3000,10 @@ events:
   action: froze verification diagnostic implementation for review
   note: Scoped source/tests, controlled regressions and installed probes complete. Raw dirty-example failures/cache deviation disclosed. UAT stopped; no acceptance or live provider/store action.
   evidence: docs/planning/active/command-refactor/validation/memory-queries/uat-diagnostics/README.md
+- task: friday-command-refactor
+  at: '2026-11-10T02:35:05.596930+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled bounded verification diagnostics
+  note: Corrected candidate3969e4d4 independently VERIFIED; initial BLOCKED review preserved, no waiver. Targeted operator retest next; underlying failure and UAT still pending. Initiative started/local.
+  evidence: docs/planning/active/command-refactor/validation/memory-queries/uat-diagnostics/verified-report.md
