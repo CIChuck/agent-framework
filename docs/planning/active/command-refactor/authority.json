@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-10",
-  "decision": "MAINT-001 specification readiness VERIFIED by OpenAI council round1; implementation remains unapproved",
+  "decision": "MAINT-001 specification readiness verified; construction directive drafted for human review",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Prepare the exact MAINT-001 construction directive for Chuck Russell to review, carrying the reconciled specification advisories. No implementation or further council/sub-agent invocation without explicit direction.",
-  "product_code_authority": "No MAINT-001 product implementation authority. Specification review complete only; exact directive and human document-review gate remain. Accepted MEMQ remains closed.",
+  "current_scope": "Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review.",
+  "product_code_authority": "MAINT-001 directive drafting only. No product implementation approval, no new council or sub-agent invocation. Accepted MEMQ remains closed.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -1571,7 +1571,7 @@
     "implementation_approval": "not_granted",
     "council_authority": "Round1 explicitly authorized and completed; further invocations require direction after human document review",
     "delegated_work": "stopped; primary agent drafts directly",
-    "next_gate": "Prepare the exact MAINT-001 construction directive for Chuck Russell to review, carrying the reconciled specification advisories. No implementation or further council/sub-agent invocation without explicit direction.",
+    "next_gate": "Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review.",
     "reviewed_candidate": "2d0957f495b2a11088388bc7e61d4ced3a3f4db4",
     "council_round": 1,
     "council_report": "validation/maintenance/specification/round1/report.md",
@@ -1590,5 +1590,20 @@
       }
     },
     "mandatory_findings": []
+  },
+  "maintenance_construction_directive": {
+    "status": "proposed_for_human_review",
+    "prepared_at": "2026-11-10T14:40:46.835869+00:00",
+    "baseline": "06234fa8a56eaeff09266b4d20ed503dd71df1fa",
+    "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
+    "sha256": "906e7ee6c717612247b2619c4c49bd1e9f0280aa6b940835956105736030d932",
+    "preparation": "validation/maintenance/construction-preparation.json",
+    "preparation_sha256": "e06675197bb46b5ccdb1324dd12ba567ebee4366cdd7035031fee0d68a686e96",
+    "instruction": "Proceed, build the construction directive.",
+    "execution_phase": "planning",
+    "validation_state": "not_ready",
+    "implementation_approval": "not_granted",
+    "council_invocation": "not_authorized; human review first",
+    "next_gate": "Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review."
   }
 }

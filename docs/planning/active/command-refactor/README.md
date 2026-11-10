@@ -17,12 +17,12 @@ The explicit `/reorganize --full --execute` syntax defect is separately open as
 Earlier implementation/review/pending-UAT statements describe their historical
 freezes and are superseded by this acceptance. The wider initiative stays started/local.
 
-**Current planning — MAINT-001:** The [specification](maintenance-reorganization-specification.md)
-is independently [VERIFIED for design readiness](validation/maintenance/specification/round1/report.md)
-by the OpenAI-only round1 council (Sol9.0/Astra9.2), with no mandatory findings.
-`execution_phase: planning`; `validation_state: verified` for specification only.
-The exact construction directive is next, for human document review before any
-further council invocation. No product implementation is authorized.
+**Current planning — MAINT-001:** The [construction directive](directives/CD-CMD-MAINT-001-reorganization-order.md)
+and [preparation pins](validation/maintenance/construction-preparation.json) are
+proposed for Chuck Russell's document review. `execution_phase: planning`;
+`validation_state: not_ready` for the directive. The [specification council](validation/maintenance/specification/round1/report.md)
+is verified separately. No implementation or further council invocation is
+approved. Accepted MEMQ remains closed.
 
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
@@ -68,7 +68,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Prepare the exact MAINT-001 construction directive for Chuck Russell to review, carrying the reconciled specification advisories. No implementation or further council/sub-agent invocation without explicit direction.
+**Next gate:** Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -156,7 +156,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Prepare the exact MAINT-001 construction directive for Chuck Russell to review, carrying the reconciled specification advisories. No implementation or further council/sub-agent invocation without explicit direction.
+**Next gate:** Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

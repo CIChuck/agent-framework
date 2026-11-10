@@ -1,3 +1,28 @@
+# MAINT-001 — construction directive for human review
+
+Branch: `feature/command-retirement`
+Execution phase: planning (directive drafting only)
+Validation state: not_ready (directive); specification readiness verified
+
+[Proposed construction directive](directives/CD-CMD-MAINT-001-reorganization-order.md)
+SHA256 `906e7ee6c717612247b2619c4c49bd1e9f0280aa6b940835956105736030d932` implements the reviewed specification and resolves its
+three advisory groups. [Preparation pins](validation/maintenance/construction-preparation.json)
+SHA256 `e06675197bb46b5ccdb1324dd12ba567ebee4366cdd7035031fee0d68a686e96` bind baseline source and authority.
+
+Concrete choices include operation-scoped shared creation receipts, exact created
+verification selection, final-judge counts, configuration-only verification
+preflight, provider-free preview, and separate immutable run evidence while
+retaining recovery journal/bundle version1. The file allowlist, test nodes,
+commands, fixture relocation rules and later validation gates are explicit.
+
+**Next gate:** Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review.
+
+No product changes, fixture generation, runtime tests or agents were started.
+Accepted MEMQ and its UAT remain closed. The earlier council verified the
+specification, not this new directive or its concrete choices.
+
+## Historical specification reconciliation checkpoint
+
 # MAINT-001 — specification council VERIFIED; directive preparation next
 
 Branch: `feature/command-retirement`

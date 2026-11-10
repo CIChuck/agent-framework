@@ -1,0 +1,88 @@
+{
+  "unit": "MAINT-001",
+  "scope": "document preparation checks only; no behavior implementation/proof",
+  "recorded_at": "2026-11-10T14:41:41.465399+00:00",
+  "directive_sha256": "906e7ee6c717612247b2619c4c49bd1e9f0280aa6b940835956105736030d932",
+  "preparation_sha256": "e06675197bb46b5ccdb1324dd12ba567ebee4366cdd7035031fee0d68a686e96",
+  "source_inputs_verified": 812,
+  "authority_pins_verified": 11,
+  "protected_metadata_preserved": true,
+  "checks": [
+    {
+      "command": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "python",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "python",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 961 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "zsh",
+        "-n",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/maint-directive-prep-wyceexqx/commands.zsh"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "not_run": [
+    "product tests",
+    "baseline fixture generation",
+    "builds",
+    "providers",
+    "personal stores",
+    "council"
+  ],
+  "limits": "Proposed directive not independently validated; construction approval remains absent."
+}

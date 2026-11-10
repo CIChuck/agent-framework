@@ -2369,3 +2369,30 @@ has been executed or accepted through this documentation change.
 - Reconciliation validation: board36 valid, dashboard current, documentation
   lifecycle960 pass; planning-only whitespace passes; embedded/raw reports and
   request match hashes; reviewed spec and protected user state remain unchanged.
+
+
+## 2026-11-10T14:40:46.835869+00:00 — MAINT-001 proposed construction directive prepared
+
+- Chuck Russell: “Proceed, build the construction directive.” Document drafting
+  only; earlier human-review-before-council instruction remains controlling.
+- [Directive](directives/CD-CMD-MAINT-001-reorganization-order.md), SHA256
+  `906e7ee6c717612247b2619c4c49bd1e9f0280aa6b940835956105736030d932`; [preparation](validation/maintenance/construction-preparation.json),
+  SHA256 `e06675197bb46b5ccdb1324dd12ba567ebee4366cdd7035031fee0d68a686e96`, bind baseline06234fa8 and812 product/test/script inputs.
+- Shared typed selection/count models, operation-local synthesis receipts,
+  selected-scope fresh-plan binding, Chat ordering and safe result rendering are
+  specified. Retain journal/bundle v1; separate immutable per-stage evidence,
+  audited test-fixture relocation and installed recovery prove compatibility.
+- Council advisories resolved as explicit construction requirements: no provider
+  preview, configuration-only verification preflight with non-empty assessments;
+  migration-only empty created selections; real baseline v1 recovery fixtures.
+- Exact source/test allowlist, meaningful named tests/rejection controls, offline
+  commands, clean build/replay, installed origins and future UAT gates included.
+  No tests/builds/providers/personal stores were exercised while drafting.
+- `execution_phase: planning`; `validation_state: not_ready` for directive only.
+  Reviewed specification/council evidence and accepted MEMQ remain unchanged.
+- **Next gate:** Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review.
+
+- Local final checks: board36 valid, dashboard current, docs lifecycle961 and
+  planning-only whitespace pass; shell blocks parse under zsh. All812 source
+  inputs and11 authority pins match, protected config/export/personal metadata
+  unchanged. Exact local receipts are in validation/maintenance/construction-checks.json.

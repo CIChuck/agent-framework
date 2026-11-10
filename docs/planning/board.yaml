@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Prepare the exact MAINT-001 construction directive for Chuck Russell to review, carrying the reconciled specification advisories. No implementation or further council/sub-agent invocation without explicit direction.
+  next_gate: Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -3042,3 +3042,10 @@ events:
   action: reconciled OpenAI-only MAINT-001 specification council round1
   note: Sol9.0 and Astra9.2 VERIFIED design readiness only, no mandatory findings. Exact construction directive and human review remain next; no product implementation or further council authorized.
   evidence: docs/planning/active/command-refactor/validation/maintenance/specification/round1/report.md
+- task: friday-command-refactor
+  at: '2026-11-10T14:40:46.835869+00:00'
+  actor: Codex
+  actor_role: agent
+  action: drafted proposed MAINT-001 construction directive for human review
+  note: Explicit drafting instruction; exact typed contracts, compatibility route, scoped tests and safe commands prepared. No implementation or council/sub-agent invocation. Accepted MEMQ stays closed.
+  evidence: docs/planning/active/command-refactor/directives/CD-CMD-MAINT-001-reorganization-order.md
