@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.
+  next_gate: Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -3070,3 +3070,10 @@ events:
   action: reconciled verified MAINT-001 round3 document council with fresh Astra replacement
   note: Sol9.3 and valid Astra9.2; no mandatory findings. Initial blocked isolation attempt preserved/excluded. Exact construction approval pending, no product edits or new agents.
   evidence: docs/planning/active/command-refactor/validation/maintenance/specification/round3/report.md
+- task: friday-command-refactor
+  at: '2026-11-10T16:05:14.348162+00:00'
+  actor: Codex
+  actor_role: agent
+  action: added mandatory MAINT-001 fixed vectors and recorded conditional minimum score gate
+  note: User authorized fresh Astra/Sol review; BOTH must be VERIFIED at least9.5 each with no mandatory findings before bounded construction. No activation yet and no automatic repeat loop on failure.
+  evidence: docs/planning/active/command-refactor/approval/maintenance-reorganization-conditional.md

@@ -1,6 +1,6 @@
 # CD-CMD-MAINT-001 — reorganization ordering and verdict reporting
 
-Status: **REVISED PROPOSAL — shared pipeline ownership; construction not approved.**
+Status: **FIXED-VECTOR REVISION — construction conditional on the recorded review gate.**
 Owner: Chuck Russell. Prepared 2026-11-10. Branch: `feature/command-retirement`.
 Draft product baseline: `06234fa8a56eaeff09266b4d20ed503dd71df1fa`.
 Ownership revision starts from documentation candidate `b41bd4e7` with identical
@@ -19,7 +19,7 @@ No product code, tests, providers or personal stores are changed by drafting.
 
 Apply AGENTS, repository engineering, lifecycle and independent-validation
 policies, then the specification M-01..05/MT-01..09 and this bounded directive.
-The [construction preparation](../validation/maintenance/construction-preparation-v3.json)
+The [construction preparation](../validation/maintenance/construction-preparation-v4.json)
 pins the complete baseline revision, specification, council report, policies,
 existing source/test bytes and package/lock metadata. Record its SHA256 together
 with this directive's final SHA256 in any subsequent exact approval. Only
@@ -31,7 +31,7 @@ Primary immutable design inputs:
 | Input relative to packet | SHA256 |
 | --- | --- |
 | `maintenance-reorganization-specification.md` | `56e3cd5fc75b402ab4aeda46f80807873b79a3df96debadb83164c2c0debfdad` |
-| `validation/maintenance/construction-preparation-v3.json` | `d73d31362a90f1845b3a5b8f2767a85734599195b206ecd5275019f6e683f5f1` |
+| `validation/maintenance/construction-preparation-v4.json` | `66e940efd0271b03bd3ae5c358c1320cf30e4d0d474d3c278be67d5e593f8f4d` |
 
 Scope is one bounded maintenance unit: pending verification before synthesis,
 targeted verification of newly generated meta insights, per-stage verdict counts,
@@ -251,6 +251,30 @@ hashing. Thus pending mode binds the actual selected records as well as the
 selector; an exact-empty created batch remains a meaningful bound selection.
 The plan ID also binds record content under the existing shared plan hash.
 Do not return the raw references or content in observer receipts.
+
+**Mandatory independent fixed-vector requirement (Astra A-01).** The immutable
+[selection digest vectors](../validation/maintenance/selection-digest-vectors.json)
+contain literal canonical UTF-8 JSON and SHA256 expectations for unsorted pending
+references with Unicode values and an exact-empty created selection. In
+`test_selection_digest_fixed_vectors` (the new Memory pipeline test file), load
+an exact package-local copy of this fixture, pass each input through the production
+receipt/canonicalization path, and assert both canonical bytes and digest equal
+the literal expectations. No expected value may be computed using a production
+helper, hash wrapper or receipt serializer. Fixture bytes are pinned by preparation;
+copy them unchanged and never regenerate the expected values to match the code.
+
+The planning vectors were authored independently of the future implementation
+and their hashes cross-checked with two standard tools. This is reference-data
+validation only, not a product-test pass. Keep separate mutation/behavior tests:
+wrong Unicode escaping, unsorted keys/references or a trailing newline must fail
+these literal assertions; changing operation/stage/plan or an effective reference
+must change the digest, while duplicate/invalid references are refused. Headless
+and installed probes must exercise the same vectors. Installed probes take a
+hash-verified fixture copy from the clean export/private scratch as input and
+exercise installed production modules; no source-tree imports or extra runtime
+packaging/dependency change is permitted. Runtime tests read only
+the package-local fixture, never the active planning packet.
+
 
 Correlate before/planned/after by operation_id + stage sequence + stage. Validate
 that planned/result plan ID and digest match the pipeline's own applied plan and
@@ -505,6 +529,7 @@ All paths are repository-relative. No unlisted product/test path may change.
 | `packages/friday-chat/src/friday_chat/reorganization/artifacts.py` | New evidence writer using existing safe store; no snapshot/journal rewriting. |
 | `packages/friday-chat/src/friday_chat/commands/registry.py` | Reorganize parser, usage, its metadata/help entry and result formatting only. |
 | `packages/friday-chat/tests_chat/test_maintenance_order.py` (new) | Exact mode/order/preflight/count/preview/scope and negative-control tests. |
+| `packages/friday-memory/tests_memory/test_maintenance/fixtures/selection-digest-vectors.json` (new) | Exact byte copy of the pinned independent reference vectors; no regeneration. |
 | `packages/friday-memory/tests_memory/test_maintenance/test_pipeline.py` (new) | Complete shared order/modes/providers/lifecycle/postconditions/observer/cancellation behavior. |
 | `packages/friday-memory/tests_memory/test_maintenance/test_verification_selection.py` (new) | Shared strict models, receipts, planning/apply/postcondition tests. |
 | `tests/integration/reorganization/test_maintenance_headless.py` (new) | No-Chat shared consumer, real disposable-store flow and origin checks. |
@@ -541,6 +566,7 @@ Async tests use explicit markers, bounded event-controlled waits and task cleanu
 | --- | --- |
 | `test_selection_models_and_operation_receipts` (Memory) | Strict counts/selection fields, exact empty, duplicate/foreign/changed/stale receipt, missing record, old operation, one consumption, begin/end cleanup. |
 | `test_scoped_apply_and_postconditions` (Memory) | Same selection bound through fresh re-plan/apply; source drift refused before writes; exact coverage, persisted judge counts, created reference order and empty migration-only result. |
+| `test_selection_digest_fixed_vectors` (Memory pipeline/headless/installed) | Literal canonical JSON and hashes, Unicode values, unsorted pending inputs and exact-empty created scope; no production-derived expectations. |
 | `test_full_order_and_same_run_synthesis` (Memory pipeline) | Full order and all skip combinations; newly verified source used immediately; old meta/non-source coverage retained; rejected/uncertain remain ineligible. |
 | `test_generated_scope_is_exact` (Memory pipeline) | Only returned new references; no uncertain source retry; no counts/timestamp inference; migration-only/abstention empty; repeated runs, errors and cancellation clean state. |
 | `test_preview_and_verification_call_policy` (Memory pipeline) | Missing providers and tripwire probe/complete/embed methods; zero calls in preview and empty verification; conditional configuration checks and fresh assessment failures roll back. |
@@ -692,6 +718,11 @@ this allowlist. Do not silently broaden the unit or relax verification safety.
 
 **Current gate:** The maintainer requested the shared-ownership revisions and
 fresh Astra/Sol review of both revised documents. This is document review only;
-no implementation is authorized without
-subsequent exact construction approval. The earlier specification verdict does
+the [conditional approval](../approval/maintenance-reorganization-conditional.md)
+allows advancement only after both fresh Astra/Sol reviewers independently return
+VERIFIED with scores at least9.5/10 each and no mandatory findings. Missing scores,
+BLOCKED, any lower score or unresolved mandatory findings mean stop and return
+the result to Chuck Russell. Do not average scores, round up, selectively omit
+findings, add reviewers to override a failing seat or loop to chase the threshold.
+The controller must verify the exact approved hashes and gate before code edits. The earlier specification verdict does
 not validate this newly drafted directive or its new concrete choices.

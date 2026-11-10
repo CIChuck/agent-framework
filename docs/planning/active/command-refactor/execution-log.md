@@ -2462,3 +2462,27 @@ has been executed or accepted through this documentation change.
 - Administrative checks pass: board36 valid, dashboard current, documentation
   lifecycle964 and planning whitespace. All17 embedded/raw artifacts match;
   exact reviewed documents,812 product inputs and protected metadata preserved.
+
+
+## 2026-11-10T16:05:14.348162+00:00 — mandatory fixed vectors and conditional9.5 council gate
+
+- Chuck Russell: “Yes, add Astra's fixed vector requirement. Reinvoke the council.
+  Proceed only if council scores 9.5 or greater.” Exact conditional approval
+  binds specification/directive/v4 preparation/vector hashes. Both named fresh
+  reviews must be VERIFIED with scores>=9.5 each and no open mandatory findings;
+  missing/blocked/lower scores mean stop, no averaging or automatic chasing loop.
+- The new package-local fixture and named future test are explicitly allowlisted.
+  Planning reference JSON/hash vectors cover Unicode/unsorted pending inputs and
+  exact-empty created selection; hashes cross-checked independently using hashlib
+  and shasum. These are reference-data checks, not runtime implementation tests.
+- Directive SHA256 `931d42538d9f100392743d8e9826eec00b67297af788dd84e4453e820ebea2e7`; v4 preparation SHA256 `66e940efd0271b03bd3ae5c358c1320cf30e4d0d474d3c278be67d5e593f8f4d`.
+  Existing runtime scope/ownership/cancellation/receipt semantics are unchanged.
+- Freeze document revision, then fresh high-effort Astra/Sol round4. Prior
+  round3 verdicts stay historical; conditional construction not yet activated.
+- **Next gate:** Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.
+
+- Final planning-only checks: board validates 36 tasks; generated dashboard is
+  current; documentation lifecycle checks 965 Markdown files; whitespace and
+  extracted shell syntax checks pass. All 812 pinned baseline product files,
+  six preserved metadata entries, four conditional input hashes and both
+  independent canonical-JSON/hash vectors pass. No runtime suite/build was run.

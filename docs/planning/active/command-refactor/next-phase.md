@@ -1,3 +1,24 @@
+# MAINT-001 — fixed-vector requirement and conditional review gate
+
+Execution phase: validation (documents only)
+Validation state: in_review (round4)
+
+The [directive](directives/CD-CMD-MAINT-001-reorganization-order.md) now requires
+independent [literal JSON/SHA vectors](validation/maintenance/selection-digest-vectors.json)
+for Unicode/unsorted pending references and exact-empty created selections. Expected
+values may not come from production helpers. [V4 pins](validation/maintenance/construction-preparation-v4.json)
+bind the inputs. No product code or tests have been implemented.
+
+[Conditional approval](approval/maintenance-reorganization-conditional.md) records
+Chuck Russell's exact instruction. Both fresh Astra/Sol reviews must be VERIFIED
+and each score>=9.5/10, with no open mandatory findings. Prior scores cannot carry
+forward. On failure stop; no score-chasing review loop. On success record exact
+activation before the bounded implementation and its planned independent validation.
+
+**Next gate:** Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.
+
+## Historical round3 handoff
+
 # MAINT-001 — documents VERIFIED; exact construction approval pending
 
 Execution phase: planning (human implementation-approval checkpoint)

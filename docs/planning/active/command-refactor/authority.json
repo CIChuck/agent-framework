@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-10",
-  "decision": "MAINT-001 specification/directive document readiness VERIFIED by valid OpenAI round3; exact construction approval pending",
+  "decision": "MAINT-001 fixed-vector requirement added; fresh OpenAI review and minimum9.5 conditional advancement",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.",
-  "product_code_authority": "No MAINT-001 implementation approval. Ready for the maintainer exact construction decision. Specification/directive council results grant readiness only; accepted MEMQ remains closed.",
+  "current_scope": "Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.",
+  "product_code_authority": "Conditional approval only under approval/maintenance-reorganization-conditional.md. Not activated until BOTH fresh reviewers meet the recorded score/outcome/finding/hash gate. No code edits during review.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -1617,7 +1617,7 @@
     },
     "mandatory_findings": [],
     "implementation_approval": "not_granted",
-    "next_gate": "Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.",
+    "next_gate": "Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.",
     "document": "maintenance-reorganization-specification.md",
     "sha256": "56e3cd5fc75b402ab4aeda46f80807873b79a3df96debadb83164c2c0debfdad"
   },
@@ -1639,10 +1639,10 @@
       "correction_cycle": 1,
       "council_round": 3
     },
-    "status": "document_readiness_verified",
-    "execution_phase": "planning",
-    "validation_state": "verified",
-    "council_round": 3,
+    "status": "fixed_vector_revision_in_review",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
+    "council_round": 4,
     "reviewed_candidate": "4c09f5afe582043273447f3bfa3490e884054511",
     "council_report": "validation/maintenance/specification/round3/report.md",
     "results": {
@@ -1661,12 +1661,59 @@
       }
     },
     "mandatory_findings": [],
-    "implementation_approval": "not_granted",
-    "next_gate": "Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.",
+    "implementation_approval": "conditional_pending_gate",
+    "next_gate": "Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.",
     "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
-    "sha256": "16ceb43df6e1bfef265e6338888eaee95327eb29d09cdb4a839d3dae9853cfae",
-    "preparation": "validation/maintenance/construction-preparation-v3.json",
-    "preparation_sha256": "d73d31362a90f1845b3a5b8f2767a85734599195b206ecd5275019f6e683f5f1"
+    "sha256": "931d42538d9f100392743d8e9826eec00b67297af788dd84e4453e820ebea2e7",
+    "preparation": "validation/maintenance/construction-preparation-v4.json",
+    "preparation_sha256": "66e940efd0271b03bd3ae5c358c1320cf30e4d0d474d3c278be67d5e593f8f4d",
+    "historical_round3_result": {
+      "historical_checkpoint": {
+        "status": "corrected_documents_in_review",
+        "prepared_at": "2026-11-10T14:40:46.835869+00:00",
+        "baseline": "06234fa8a56eaeff09266b4d20ed503dd71df1fa",
+        "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
+        "sha256": "16ceb43df6e1bfef265e6338888eaee95327eb29d09cdb4a839d3dae9853cfae",
+        "preparation": "validation/maintenance/construction-preparation-v3.json",
+        "preparation_sha256": "d73d31362a90f1845b3a5b8f2767a85734599195b206ecd5275019f6e683f5f1",
+        "instruction": "revise invoke the council to review the document after revisions were made.",
+        "execution_phase": "validation",
+        "validation_state": "in_review",
+        "implementation_approval": "not_granted",
+        "council_invocation": "authorized: fresh GPT-6 Astra/high and GPT-6.1 Sol/high, both documents, read-only",
+        "next_gate": "Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.",
+        "correction_cycle": 1,
+        "council_round": 3
+      },
+      "status": "document_readiness_verified",
+      "execution_phase": "planning",
+      "validation_state": "verified",
+      "council_round": 3,
+      "reviewed_candidate": "4c09f5afe582043273447f3bfa3490e884054511",
+      "council_report": "validation/maintenance/specification/round3/report.md",
+      "results": {
+        "sol": {
+          "outcome": "VERIFIED",
+          "score": 9.3,
+          "model": "gpt-6.1-sol",
+          "report": "sol/report.md"
+        },
+        "astra": {
+          "outcome": "VERIFIED",
+          "score": 9.2,
+          "model": "gpt-6-astra",
+          "report": "astra_valid/report.md",
+          "instance": "fresh isolation reissue"
+        }
+      },
+      "mandatory_findings": [],
+      "implementation_approval": "not_granted",
+      "next_gate": "Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.",
+      "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
+      "sha256": "16ceb43df6e1bfef265e6338888eaee95327eb29d09cdb4a839d3dae9853cfae",
+      "preparation": "validation/maintenance/construction-preparation-v3.json",
+      "preparation_sha256": "d73d31362a90f1845b3a5b8f2767a85734599195b206ecd5275019f6e683f5f1"
+    }
   },
   "maintenance_directive_before_ownership_revision": {
     "status": "proposed_for_human_review",
@@ -1760,5 +1807,19 @@
     "outcome": "VERIFIED",
     "mandatory_findings": [],
     "excluded_attempt": "Initial Astra BLOCKED; preserved, not waived; fresh independent Astra replacement supplies coverage."
+  },
+  "maintenance_conditional_approval": {
+    "instruction": "Yes, add Astra's fixed vector requirement. Reinvoke the council. Proceed only if council scores 9.5 or greater.",
+    "record": "approval/maintenance-reorganization-conditional.md",
+    "sha256": "636e5d336210e255e79b4c4e8ed1e763fabd03c8db5ef3ee262b937f123c5ac0",
+    "minimum_each": 9.5,
+    "outcome_each": "VERIFIED",
+    "open_mandatory_findings": 0,
+    "activation": "pending; not granted during review",
+    "models": [
+      "GPT-6 Astra/high",
+      "GPT-6.1 Sol/high"
+    ],
+    "next_gate": "Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report."
   }
 }
