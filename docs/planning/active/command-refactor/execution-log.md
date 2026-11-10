@@ -2670,3 +2670,21 @@ has been executed or accepted through this documentation change.
   claims and authorization. No second converter or implicit scope expansion.
 - Certifi>=2026.10.19 and shared package/model readiness remain mandatory.
   No product changes, installs, providers, stores or agents were run.
+
+
+## 2026-11-10T19:28:51.063788+00:00 — four-format Docling planning scope expanded
+
+- Maintainer explicitly adds XLSX and PPTX to the document-ingestion unit and
+  treats text/web ingestion through commands and tools as existing capabilities.
+- REM-CMD-INGEST-001 now covers PDF/DOCX/XLSX/PPTX. Proposed defaults specify
+  visible-sheet/slide scope, cached formula values without recalculation, native
+  slide text/tables and labeled speaker notes, with truthful exclusion coverage.
+- TOOLS-DOC-001 adopts the same four formats through ReaderFactory and smart_read;
+  legacy XLSX selection/range/row APIs and direct readers remain explicit
+  compatibility obligations. A helper or Chat-only success is not Tools proof.
+- Existing text/web routes and Memory chunking/storage remain unchanged. Their
+  assumed availability is not a new audit result. Certifi>=2026.10.19 remains
+  mandatory; exact Docling/backends/models and compatibility proof remain pending.
+- Historical assessment/accepted evidence, product/tests/dependencies/lock, user
+  YAML and generated state are preserved. No install, model download or council.
+- **Next gate:** Review expanded PDF/DOCX/XLSX/PPTX Docling remediation and Tools adoption plan before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.

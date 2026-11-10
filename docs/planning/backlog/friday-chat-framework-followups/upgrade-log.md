@@ -418,25 +418,32 @@ installed proof and independent implementation validation are still pending;
 this is not acceptance or closure of unrelated follow-ups.
 
 
-## FU-012: Extract Actual PDF/DOCX Text Before Ingestion
+## FU-012: Extract Actual PDF/DOCX/XLSX/PPTX Text Before Ingestion
 
-Status: PROPOSED — separate bounded document-ingestion remediation; no code yet
-Discovered During: Maintainer report and guarded source inspection,2026-11-10
+Status: PROPOSED — bounded four-format ingestion and companion Tools adoption; no code yet
+Discovered During: Maintainer report and guarded source inspection,2026-11-10;
+maintainer subsequently expanded scope to XLSX and PPTX.
 Framework Package: Friday Tools shared extraction; Friday Commands file arguments;
 Friday Chat delegation/default document dependencies. Memory storage stays unchanged.
-Requested Change: Use a pinned Docling pipeline for local PDF/DOCX text/OCR
-conversion before ingestion; refuse corrupt/partial/empty results, preserve
-quoted paths, and make Python/model requirements explicit. Reject placeholder
-XLSX ingestion without adding spreadsheet extraction to this unit.
-Reason: The current SmartFileReader returns synthetic placeholders for binary
-documents; the command may store them and report success. Simply linking the
-old PDF reader would also permit page-error diagnostics as successful content.
-Compatibility Risk: Exact read/ingest behavior/help and default dependency closure
-change deliberately; shared tokenizer must preserve unrelated commands. No
-existing placeholder-record cleanup or re-ingestion is included.
-Suggested Follow-Up Tests: Genuine PDF/DOCX/scanned fixtures through registry,
-shared extraction and disposable Chroma; inspect stored chunks, not only listing
-metadata. Missing dependency/models, malformed files, partial conversion, empty
-output and quoted repeated-space paths need negative/installed proofs.
-Source Evidence: [Assessment](../../active/command-refactor/validation/document-ingestion/assessment.md)
+Requested Change: Use one pinned Docling pipeline for PDF/DOCX/XLSX/PPTX extraction,
+with local PDF OCR, quoted paths, explicit format coverage and dependency/model
+requirements. Upgrade named Tools consumers through the companion adoption plan.
+Proposed defaults cover visible worksheets/slides, saved formula values without
+recalculation and labeled speaker notes. Preserve existing text/web ingestion;
+this planning assumption is not a new validation claim. No unrelated format rollout.
+Reason: SmartFileReader returns placeholders for PDF/DOCX/XLSX and does not admit
+PPTX. Old PDF page failures can become successful diagnostic content. Existing
+Tools consumers also require explicit routing, beyond adding a shared helper.
+Compatibility Risk: Exact read/ingest format/help and default closure change;
+shared tokenizer preserves unrelated commands. Freeze all four format policies
+and Tools XLSX selections/pagination before construction. No historical record
+cleanup, Memory storage change, formula calculation or slide rendering.
+Suggested Follow-Up Tests: Genuine PDF/DOCX/scanned/multi-sheet/multi-slide fixtures
+through registry, shared extraction, public Tools and disposable Chroma. Inspect
+late markers in stored chunks, notes/tables/order and exact coverage. Refuse
+missing dependencies/models, corrupt/partial/empty output, uncached formula
+results and malformed paths; prove installed normal/optimized behavior and the
+mandatory certifi>=2026.10.19 floor.
+Source Evidence: [Historical source assessment](../../active/command-refactor/validation/document-ingestion/assessment.md),
+[scope expansion](../../active/command-refactor/validation/document-ingestion/format-expansion.json)
 and [proposed remediation](../../active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md).

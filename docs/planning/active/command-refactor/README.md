@@ -1,5 +1,8 @@
 # Shared Friday command refactor — TUI effort, first phase
 
+**Status:** started/local. Four-format document-ingestion planning is awaiting
+document review; MAINT-001 is verified with human UAT/acceptance pending.
+
 **Working-folder update — 2026-11-05:** The maintainer changed direction:
 current command-first and Friday TUI planning is consolidated in the
 `agent-framework` folder. Earlier TUI-folder directions are superseded for
@@ -25,8 +28,11 @@ is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
 **Additional requested planning — document ingestion:**
 [Proposed Docling remediation](remediation/REM-CMD-INGEST-001-pdf-docx.md)
-addresses silent PDF/DOCX placeholder ingestion, quoted paths and dependency/model
-readiness. [Guarded source assessment](validation/document-ingestion/assessment.md)
+replaces PDF/DOCX/XLSX placeholders and adds PPTX extraction through one shared
+Tools converter, with quoted paths and explicit dependency/model readiness.
+Text/web ingestion are existing capabilities for this plan and remain unchanged.
+The proposed spreadsheet/slide defaults and limits require document review.
+[Guarded source assessment](validation/document-ingestion/assessment.md)
 confirms the defect. Execution phase: planning; validation state: not_ready.
 No document-ingestion code, installation or council is approved or started.
 MAINT implementation verification and its pending human UAT remain unchanged.
@@ -78,7 +84,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.
+**Next gate:** Review expanded PDF/DOCX/XLSX/PPTX Docling remediation and Tools adoption plan before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

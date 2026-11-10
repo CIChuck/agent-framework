@@ -1,10 +1,18 @@
-# REM-CMD-INGEST-001 — real PDF/DOCX extraction before ingestion
+# REM-CMD-INGEST-001 — PDF, DOCX, XLSX and PPTX extraction before ingestion
 
 Status: **PROPOSED — maintainer document review**. Baseline `7ad916f2`.
 This document defines a bounded repair and its dependency-readiness gate. It is
 not an approved construction directive or a completed compatibility assessment.
 No product edits, installs, model downloads or council invocation are authorized
 by placement in this packet. The requested planning work is authorized.
+
+**Maintainer scope expansion — 2026-11-10:** include XLSX workbooks and PPTX
+presentations alongside PDF and DOCX. Text and web ingestion are existing
+capabilities for this plan; preserve their entry points and behavior rather than
+reimplementing or migrating them to Docling. This assumption is not a new
+validation claim about those capabilities. The original filename is retained
+for existing links and historical evidence. Format defaults below are proposed
+for document review, not implemented behavior.
 
 ## Problem and independent assessment
 
@@ -31,7 +39,7 @@ Additional observations matter to the repair:
 ## Package choice: Docling, behind a shared capability
 
 The maintainer identified Docling as a promising backend. This proposal selects
-**Docling for PDF and DOCX conversion**, with a pinned local pipeline. Its
+**Docling for PDF, DOCX, XLSX and PPTX conversion**, with a pinned local pipeline. Its
 structured document/Markdown output suits the existing text chunking boundary.
 This is an architectural recommendation, not a measured quality/performance claim.
 [Project capabilities](https://github.com/docling-project/docling),
@@ -83,7 +91,10 @@ Prepare this evidence in an isolated environment, without modifying the working
    the chosen Docling requirement **and explicit `certifi>=2026.10.19`**; make
    default Chat depend on
    `friday-framework-tools[document-ingestion]==0.1.0a4`. Keep existing Tools
-   `documents`/`spreadsheets` extras and consumers intact. The default Chat profile
+   `documents`/`spreadsheets` compatibility extras intact within this unit. Include
+   the selected release's XLSX/PPTX backend requirements in the resolved profile;
+   inventory `openpyxl` and `python-pptx` versions if required. Do not assume the
+   base Docling distribution installs every backend. The default Chat profile
    will change deliberately; the old 138-distribution closure is not its oracle.
    The neutral Commands-only closure remains one distribution.
 3. Select exactly one local, CPU-capable OCR engine and required language/model
@@ -92,9 +103,11 @@ Prepare this evidence in an isolated environment, without modifying the working
    Pin the backend rather than relying on automatic engine selection. Do not
    download every Docling model, enable VLM enrichment, or add remote services.
 4. Freeze the actual conversion API, status/error mapping, Markdown serialization,
-   document-size/page/decompressed-archive limits and model-lookup behavior.
-   Document missing-model behavior. PDF assets are not a prerequisite for DOCX
-   when its selected pipeline does not use them. Test that distinction.
+   document-size/page/sheet/row/cell/slide/decompressed-archive limits and
+   model-lookup behavior. Prove the format rules in section B on the selected
+   release; upstream main-branch documentation is not pinned-release proof.
+   Document missing-model behavior. PDF assets are not a prerequisite for DOCX,
+   XLSX or PPTX when their selected pipelines do not use them. Test that distinction.
 5. Produce a readiness manifest and precise metadata/lock delta. Stop if an
    unrelated upgrade, unsupported wheel, external executable, unbounded model
    fetch or conflicting dependency requires scope beyond this proposal.
@@ -149,15 +162,19 @@ installations. No package upgrade has been executed while updating this proposal
 Expose a documented typed capability in a new public Tools submodule, provisionally
 `friday_tools.filesystem.readers.document_ingestion`. Keep third-party objects
 inside it. Return a frozen, runtime-validated `ExtractedDocument` containing a
-resolved local source path, PDF/DOCX format, nonempty Markdown text, real PDF page
-count where available, declared coverage and immutable warning codes/messages.
+resolved local source path, admitted format, nonempty Markdown text, real PDF
+page count, ordered XLSX sheet identities and PPTX slide count/indices where
+applicable, declared coverage and immutable warning codes/messages. Counts
+distinguish total, included and intentionally excluded units; unknown is not a
+fabricated zero. Retain typed page/block/sheet/slide provenance for Tools adoption.
 Expose a typed extraction error with stable failure categories. No `Any`-shaped
 ReaderResult dictionary crosses into Chat; no new blanket typing suppression.
 The implementation manifest freezes exact signatures after gate A.
 
 The capability must:
 
-- Accept only existing local regular `.pdf`/`.docx` files, case-insensitively.
+- Accept only existing local regular `.pdf`/`.docx`/`.xlsx`/`.pptx` files,
+  case-insensitively.
   Apply the explicit format allowlist before invoking Docling. No URL input,
   MIME-based expansion, generic binary fallback or plugin format discovery.
 - Convert the complete admitted document before calling Memory. Accept only a
@@ -178,7 +195,7 @@ The capability must:
   into the existing chunker; no status messages, filenames-as-substitute-content,
   raw binary, data-URI images or diagnostic prose in stored text. Do not fetch
   external references or enable remote conversion/enrichment services.
-- Reject encrypted/password-required PDF explicitly in this unit; no password
+- Reject encrypted/password-required documents explicitly in this unit; no password
   CLI/API is added. Corruption, permission/read errors and conversion-limit
   failures produce no ingestion call. Known partial conversion is not accepted
   merely because its serializer returned some text.
@@ -186,12 +203,58 @@ The capability must:
   option, not a page/paragraph count. Do not silently truncate a document or
   reinterpret lines as pages. A later page-range feature is separate scope.
 
+### Format rules to freeze at readiness
+
+These are deliberately text-extraction rules for the existing chunker, not a
+spreadsheet calculation engine or a presentation-rendering project. The same
+conversion profile applies through Chat and adopted Tools consumers. A requested
+content scope is complete only when all its required content has been converted;
+the declared exclusions below are not permission to accept converter failures.
+
+| Format | Required extracted content | Proposed default and declared limits |
+| --- | --- | --- |
+| PDF | Native text and tables in page/reading order; local OCR for scanned pages; real page count. | Existing PDF/OCR requirements remain. No password handling, remote OCR or VLM enrichment. |
+| DOCX | Paragraphs, headings and tables in body order. | Characterize and disclose omitted Word parts; no promise of full visual fidelity. |
+| XLSX | Visible worksheets in workbook order, with source sheet names, row/column relationships and cell text/values retained as tables. | Read saved formula results without recalculation. Hidden sheets/rows/columns are excluded with explicit coverage warnings/counts. No new sheet/range CLI options. |
+| PPTX | Visible slides in deck order, titles, text boxes, bullet hierarchy, native tables and separately labeled speaker notes. | Preserve original slide numbers and a deterministic within-slide text order. Hidden slides/shapes are excluded with coverage warnings/counts. No slide rendering or animation/media execution. |
+
+For **XLSX**, preserve Unicode, multiline cells, booleans, zero, dates, numeric
+values and leading-zero text. Define deterministic serialization of those types
+and merged cells at gate A; do not duplicate merged values into unrelated cells
+or lose sheet/table boundaries. Formula results are the workbook's saved cache,
+not newly computed or independently verified values; report that limitation.
+If an included formula has no usable cached result or has an error result, fail
+before ingestion with a specific error rather than silently treating it as blank
+or inventing a value. Do not resolve external workbook links, run calculations,
+execute macros or add LibreOffice. Reject `.xls`/`.xlsm` in this new profile.
+Charts, images, comments and embedded objects are outside workbook cell-text
+coverage; disclose detected omissions. A chart-only workbook with no usable
+included cell text fails the meaningful-content check.
+
+For **PPTX**, scope the promise to native text, tables and notes. Freeze the
+within-slide ordering rule against fixtures rather than claiming that every
+arbitrary visual layout has a unique reading order. Charts, SmartArt, embedded
+objects, images and audio/video do not establish text coverage. Report detected
+omissions explicitly; do not infer their contents or fetch linked media.
+Presentations with no usable native or notes text fail clearly; PDF OCR does
+not imply Office-image OCR support. Comments and master/layout-only content are excluded
+and disclosed when present. Reject `.ppt`/`.pptm` in this profile.
+
+For both new formats, empty sheets/slides retain truthful source-unit metadata
+but their labels do not satisfy the meaningful-content check. No first-sheet,
+first-slide, preview-row or serializer-default limit may silently replace the
+full admitted scope. Unexpected missing cells/slides or backend clipping is a
+conversion failure, not a warning-only success. Readiness must prove detection
+of these conditions and proposed visibility/notes/formula rules on real files.
+If the selected release cannot support a rule, stop and revise the documented
+contract before implementation; do not silently narrow it or add another engine.
+
 Within this INGEST unit, the legacy Tools factory/reader consumers retain their
 current behavior. This is **not** a claim that existing Tools entry points have
 adopted Docling. The [TOOLS-DOC-001 companion plan](../proposals/tools-document-adoption.md)
 requires separate routing and public-consumer proofs for `ReaderFactory` and
 `SmartFileReadTool`, using the same shared converter. The common readiness gate
-must preserve typed page/block provenance needed for that adoption. No duplicate
+must preserve typed page/block/sheet/cell/slide provenance needed for that adoption. No duplicate
 backend or broad Tools change is authorized by this INGEST allowlist.
 
 ## C — path parsing and Chat integration
@@ -222,7 +285,7 @@ commands retain their original arguments/authority; aliases of a default file
 handler get the same file parsing. `_parse_command_input` remains unchanged for
 all other paths. No join-and-strip workaround or global `shlex` replacement.
 
-`SmartFileReader` delegates PDF/DOCX to the shared extraction capability and maps
+`SmartFileReader` delegates PDF/DOCX/XLSX/PPTX to the shared extraction capability and maps
 its typed result into `FileReadResult`, adding only sideband backend/coverage/
 warning fields needed for presentation. Text/CSV/TSV/JSON behavior remains.
 `/read` displays real extracted text and document metadata. `/ingest` uses that
@@ -234,10 +297,11 @@ success. This repair guarantees no memory/embedding write before successful
 extraction; it does **not** introduce an ingestion rollback transaction or claim
 existing multi-chunk storage failures are atomic. Keep admission-gate behavior.
 
-Remove the common placeholder method. For `.xlsx`, both `/read` and `/ingest`
-return an explicit unsupported-format message and make no ingestion call.
-Real spreadsheet extraction/openpyxl installation is deferred. Do not enable
-XLSX just because Docling can support it.
+Remove the common placeholder method. Replace XLSX placeholder output with real
+workbook extraction, and add PPTX admission explicitly for both `/read` and
+`/ingest`. All other new Docling formats remain disabled. Existing text/table
+and web ingestion routes remain outside this change; do not redirect them
+through the new document pipeline or claim they were revalidated by this plan.
 
 Update only read/ingest help/detail and their changed response fields. Preserve
 the remaining catalog, aliases, parser quirks and accepted metadata oracles.
@@ -253,12 +317,12 @@ Retain immutable snapshots; supply a separate exact exception comparison.
 | `packages/friday-tools/tests_tools/test_document_ingestion.py` (new) | Real format/OCR extraction and typed failure/coverage tests. |
 | `packages/friday-commands/src/friday_commands/file_inputs.py` (new) | Pure scoped raw-tail tokenizer; no root API export edits. |
 | `packages/friday-commands/tests_commands/test_file_inputs.py` (new) | Headless quoting/leading-option/description and malformed-input proofs. |
-| `packages/friday-chat/src/friday_chat/commands/files.py` | PDF/DOCX delegation/result presentation, document-line refusal, XLSX refusal; retain text behavior. |
+| `packages/friday-chat/src/friday_chat/commands/files.py` | Four-format delegation/admission and result metadata, document-line refusal; retain text behavior. |
 | `packages/friday-chat/src/friday_chat/commands/registry.py` | Default file-handler-only raw-tail delegation, document failure/success adaptation and exact help cells. No other handlers/parser policy. |
 | `packages/friday-chat/pyproject.toml` | Default dependency on the new Tools extra only. |
 | `packages/friday-chat/README.md` | Supported document behavior and provisioning. |
 | `packages/friday-chat/tests_chat/test_document_ingestion.py` (new) | Actual registry and zero-ingestion-on-read-failure assertions. |
-| `packages/friday-chat/tests_chat/test_files_replay_shell.py` | Replace fake PDF/DOCX/XLSX placeholder expectations with genuine success/explicit refusal; keep test names and unrelated text/replay/shell assertions. |
+| `packages/friday-chat/tests_chat/test_files_replay_shell.py` | Replace fake PDF/DOCX/XLSX placeholder expectations with genuine extraction assertions; add PPTX coverage; keep test names and unrelated text/replay/shell assertions. |
 | `tests/integration/test_document_ingestion.py` (new) | Registry → extraction → real Memory adapter → disposable Chroma, deterministic embeddings; source/installed proof helper if needed. |
 | Package-local synthetic `tests_*/fixtures/document-ingestion/` (new) | Genuine text, table and scanned fixtures/provenance; no user documents. |
 | `uv.lock` | Deliberate Docling graph delta and requested Certifi upgrade to at least2026.10.19, inventoried at gate A. No unrelated package upgrade. |
@@ -277,13 +341,16 @@ changes. If integration cannot fit these paths, stop and reconcile the boundary.
 | DI-03 | Genuine image-only scanned PDF with readable test text: real local OCR yields expected words with network blocked. Separate blank/unreadable image fixture fails empty-text checks. Missing OCR/model assets report readiness failure before ingestion. |
 | DI-04 | Corrupt/encrypted documents, converter exception, PARTIAL_SUCCESS, page failure after one good page, unavailable library/model and read failure after path resolution: exact error category and zero memory/embedding calls. Diagnostic strings and image-only serializer output must not count as content. |
 | DI-05 | Both quoted path forms, two consecutive spaces, Unicode/apostrophes/backslashes, optional description, omitted description, malformed/empty quotes and literal option-like filenames. Unquoted behavior/leading text flags retained; other/custom handlers unaffected. |
-| DI-06 | Document `--lines=1`, malformed and negative variants fail explicitly without conversion/ingestion; current text/table limit behavior is unchanged. XLSX/unknown binary paths fail closed without fallback. |
-| DI-07 | Invoke actual `/ingest` on genuine PDF and DOCX through real Memory/Chroma with deterministic embeddings; cover single/multiple chunks. Inspect stored documents, late source markers, chunk metadata/counts, source/type/protection and absent/explicit descriptions. `/list-ingested` alone is not proof. |
+| DI-06 | All four document formats reject `--lines=1`, malformed and negative variants explicitly without conversion/ingestion; current text/table limit behavior is unchanged. Non-allowlisted binary/legacy/macro-enabled paths fail closed without fallback. |
+| DI-07 | Invoke actual `/ingest` on genuine PDF, DOCX, XLSX and PPTX through real Memory/Chroma with deterministic embeddings; cover single/multiple chunks. Inspect stored documents, late source markers, sheet/slide separators, chunk metadata/counts, source/type/protection and absent/explicit descriptions. `/list-ingested` alone is not proof. |
 | DI-08 | Headless consumers import shared tokenizer/extractor without Chat/TUI; no Docling dependency in Commands. Default clean Chat install contains the declared converter stack and Certifi>=2026.10.19, verified after all installs; plain Tools without the extra fails lazily/actionably for documents. Both ordinary and `-O` installed real conversions/OCR/storage run. |
-| DI-09 | Negative controls: placeholder substitution, ignored conversion failure, metadata-only image output, dropped last PDF page/table, reordered DOCX table, quote-split regression and swallowed missing-model failure produce named call-phase assertion witnesses. Unchanged control, canonical origins and before/finish/after hashes; no setup/import rejection credit. |
+| DI-09 | Negative controls: placeholder substitution, ignored conversion failure, metadata-only image output, dropped last PDF page/table/sheet/slide or PPTX notes, reordered DOCX table, concealed missing formula cache, quote-split regression and swallowed missing-model failure produce named call-phase assertion witnesses. Unchanged control, canonical origins and before/finish/after hashes; no setup/import rejection credit. |
 | DI-10 | Full affected package/cohort/CLI/Memory regressions, focused Ruff/mypy/new-file formatting, exact metadata/lock/default closure inventory, enforced Certifi floor/negative control, source/wheel/installed data/origins and model manifest. Record baseline debt and exact approved file-help exceptions without waivers. |
 | DI-11 | Bound cold/warm startup and representative document elapsed time, progress/cancellation behavior and file/resource-limit refusal. Cancelled extraction cannot trigger later background ingestion. No unsupported hard-timeout or cross-platform claim. |
 | DI-12 | Freeze stable code/evidence, then separately authorized fresh OpenAI Sol/Astra independent review. No agents before maintainer document review/direction. Human UAT follows verification; acceptance and delivery remain separate. |
+| DI-13 | Genuine multi-sheet XLSX with late-sheet/late-row markers, cached formulas, missing/error formula caches, blank cells, zero/false/date/leading-zero text, merged cells and hidden content. Prove table relationships, coverage warnings, no recalculation/network/macro execution, and no silent active-sheet/preview-row limit. Independent fixture validity and saved-cache oracle required. |
+| DI-14 | Genuine multi-slide PPTX with late-slide markers, ordered text/bullets/tables, speaker notes, hidden slides/shapes and an image-only case. Prove original numbering, separately labeled notes, honest omitted-content coverage and no media fetching/rendering. Required native text/table/notes failures yield zero ingestion calls. |
+| DI-15 | Every positive format has actual offline normal/optimized installed extraction and stored-chunk proof, plus corrupt/missing-backend/partial/empty and quoted-path tests. Existing text/web entry points and their scoped regression checks remain unchanged; do not infer broader web support from this unit. |
 
 Keep the old assertion bodies except the precisely documented file-format/help
 exceptions; add coverage rather than broadly rewriting accepted tests. Provision
@@ -298,13 +365,16 @@ Any cleanup needs a separate read-only identification report and exact approved
 record IDs/backup/disposition. Do not delete records by a substring search.
 
 No general file-family migration, new semantic chunker, embedding change, RAG
-redesign, remote OCR/vision, VLM enrichment, spreadsheet reader, URL conversion,
-Word `.doc`, password interface or guarantees for every document layout. Do not
+redesign, remote OCR/vision, VLM enrichment, spreadsheet calculation/editing,
+presentation rendering/editing, new URL/web conversion, additional Docling
+formats, legacy/macro-enabled Office files, password interface or guarantees
+for every document layout. Do not
 weaken quarantine, source-protection, maintenance admission or model policy.
 
 ## Next decision
 
-Review this proposed Docling-based boundary and installation/OCR requirements.
+Review this expanded four-format Docling boundary, proposed format defaults and
+installation/OCR requirements, together with the four-format Tools adoption plan.
 Gate A must establish the exact compatible package/model manifest and final
 construction directive before implementation. Current MAINT UAT remains a
 separate pending human activity. No further council was launched by this task.

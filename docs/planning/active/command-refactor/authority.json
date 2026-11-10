@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-10",
-  "decision": "MAINT-001 remains independently verified; PDF/DOCX ingestion remediation is proposed planning only",
+  "decision": "MAINT-001 remains independently verified; four-format document ingestion and Tools adoption are proposed planning only",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.",
+  "current_scope": "Review expanded PDF/DOCX/XLSX/PPTX Docling remediation and Tools adoption plan before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.",
   "product_code_authority": "Granted only for exact CD-CMD-MAINT-001 scope through conditional approval and round4 activation; no acceptance/delivery.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1899,15 +1899,15 @@
     "validation_state": "not_ready",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
-    "sha256": "9cf9171f45d2b8c26ae8b50504fa4db7db4453b7156353a1ca0b3a4e5b12e3db",
+    "sha256": "66c8ad1df6c6c1a8fae5779465543684f72994c8749029f496295423923ce039",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
-    "scope": "PDF/DOCX shared extraction/local OCR, quoted file paths, fail-closed XLSX; existing Memory chunking/metadata retained",
+    "scope": "PDF/DOCX/XLSX/PPTX shared extraction; local PDF OCR; quoted file paths; existing text/web ingestion and Memory chunking/metadata retained",
     "implementation_approval": "not_granted",
     "council": "not_invoked; maintainer document review first",
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.",
+    "next_gate": "Review expanded PDF/DOCX/XLSX/PPTX Docling remediation and Tools adoption plan before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -1921,7 +1921,26 @@
         "ReaderFactory/get_reader_for_path",
         "SmartFileReadTool.run"
       ],
-      "claim_boundary": "Shared capability delivery does not establish existing Tools consumer adoption; separate exact directive and public-entry installed proof required."
+      "claim_boundary": "All four formats require actual public Tools entry-point proof under the companion directive; shared capability or Chat ingestion alone does not establish Tools adoption.",
+      "requested_formats": [
+        "pdf",
+        "docx",
+        "xlsx",
+        "pptx"
+      ]
+    },
+    "requested_formats": [
+      "pdf",
+      "docx",
+      "xlsx",
+      "pptx"
+    ],
+    "format_expansion_authority": {
+      "maintainer": "Chuck Russell",
+      "date": "2026-11-10",
+      "instruction": "I'd like To expand this unit of work to include XLSX and PPTX documents - assume we're already capable of text and web ingestion by both the ingest command and through our tool chain.",
+      "scope_effect": "Expand planned document support in INGEST and TOOLS-DOC; existing text/web behavior is assumed and preserved, not newly validated; format defaults remain proposed; no product construction or council authority inferred.",
+      "evidence": "validation/document-ingestion/format-expansion.json"
     }
   }
 }

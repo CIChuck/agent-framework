@@ -1,0 +1,71 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "companion": "TOOLS-DOC-001",
+  "status": "maintainer_requested_planning_expansion_not_implementation",
+  "recorded_at": "2026-11-10T19:28:51.063788+00:00",
+  "baseline": "f6287faa0336554fc6e076ab548061a2b3ea55c3",
+  "authority": {
+    "maintainer": "Chuck Russell",
+    "date": "2026-11-10",
+    "instruction": "I'd like To expand this unit of work to include XLSX and PPTX documents - assume we're already capable of text and web ingestion by both the ingest command and through our tool chain.",
+    "scope_effect": "Expand planned document support in INGEST and TOOLS-DOC; existing text/web behavior is assumed and preserved, not newly validated; format defaults remain proposed; no product construction or council authority inferred.",
+    "evidence": "validation/document-ingestion/format-expansion.json"
+  },
+  "requested_formats": [
+    "pdf",
+    "docx",
+    "xlsx",
+    "pptx"
+  ],
+  "preserved_existing_capabilities": [
+    "text ingestion via command and tool chain",
+    "web ingestion via command and tool chain"
+  ],
+  "assumption_limit": "Existing text/web support is a maintainer planning assumption; this update does not audit or certify those routes.",
+  "proposed_defaults": {
+    "xlsx": "Visible sheets in workbook order; hidden sheet/row/column exclusions disclosed; saved formula results only, missing/error cache refuses ingestion; no recalculation or external links.",
+    "pptx": "Visible slides in deck order; native text/bullets/tables plus labeled speaker notes; hidden slide/shape exclusions disclosed; no visual/media interpretation.",
+    "shared": "No partial/empty/diagnostic content success; known required-content loss refuses; no document --lines; one Tools converter, existing Memory chunking/storage unchanged."
+  },
+  "current_source_observations": [
+    "Chat admits PDF/DOCX/XLSX through placeholders and has no PPTX admission.",
+    "ReaderFactory selects PdfReader/DocxReader/XlsxReader, then other readers and binary fallback; no PPTX strategy.",
+    "SmartFileReadTool binary list includes PDF/DOCX/XLSX but not PPTX; it has no four-format shared conversion routing.",
+    "XlsxReader has active-sheet default, explicit sheet name/index, cell_range and data-row offset/limit contracts, plus a legacy XLSM route."
+  ],
+  "source_pins": {
+    "packages/friday-chat/src/friday_chat/commands/files.py": "2c1555ad5ec48c5aab6cf3e14024a5591b86ace2b752f1420f273daf215c9f3c",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/factory.py": "748dbb97a90330cb8ef35f7275745749c2236386bf2494d1e30db8c942c539bc",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/xlsx_reader.py": "4f3bbe6c7f7f9735bfa26701976c0023bf10df5144d1fe5acd3366fe65fea9ee",
+    "packages/friday-tools/src/friday_tools/filesystem/smart_read.py": "23f514859df4ec0b228e0667187c28650982f3b2e6133d64de898dcfc54e6399",
+    "packages/friday-tools/pyproject.toml": "40f234b2f32bac75010ea6bbaa7b09e5d712e6d3d839a1963b485f6c1efd5b76"
+  },
+  "official_references": [
+    {
+      "title": "Docling supported formats",
+      "url": "https://docling-project.github.io/docling/usage/supported_formats/"
+    },
+    {
+      "title": "Upstream Excel backend; main branch is not a selected release",
+      "url": "https://github.com/docling-project/docling/blob/main/docling/backend/msexcel_backend.py"
+    },
+    {
+      "title": "Upstream PowerPoint backend; main branch is not a selected release",
+      "url": "https://github.com/docling-project/docling/blob/main/docling/backend/mspowerpoint_backend.py"
+    }
+  ],
+  "evidence_limit": "Official format/backend inspection supports planning only. No selected Docling release, conversion execution, model readiness, dependency resolution or installed proof. Historical PDF/DOCX assessment remains unchanged.",
+  "required_dependency_floor": {
+    "certifi": ">=2026.10.19",
+    "enforcement": "declared dependency, lock and post-install semantic-version/origin proof"
+  },
+  "not_performed": [
+    "product edits/tests",
+    "dependency/lock/environment changes",
+    "package/model installation",
+    "council/delegation",
+    "live provider or personal store operations",
+    "MAINT UAT/acceptance",
+    "delivery"
+  ]
+}

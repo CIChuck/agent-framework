@@ -1,14 +1,15 @@
 {
   "unit": "REM-CMD-INGEST-001",
   "status": "planning_checks_only",
-  "baseline": "37d789c4b4c09a0371f881f5877ebeca29ed32c0",
-  "recorded_at": "2026-11-10T19:09:04.530051+00:00",
+  "baseline": "f6287faa0336554fc6e076ab548061a2b3ea55c3",
+  "recorded_at": "2026-11-10T19:30:04.957675+00:00",
   "pins": {
-    "remediation/REM-CMD-INGEST-001-pdf-docx.md": "9cf9171f45d2b8c26ae8b50504fa4db7db4453b7156353a1ca0b3a4e5b12e3db",
+    "remediation/REM-CMD-INGEST-001-pdf-docx.md": "66c8ad1df6c6c1a8fae5779465543684f72994c8749029f496295423923ce039",
     "validation/document-ingestion/assessment.md": "fc681e1c483b3acb400b5a5854b9208b66c4401fc4a7455d778ca80b7b475f7f",
     "validation/document-ingestion/assessment.json": "ade8a16263c632fa68e786cae9145978798e75a704e1c0fe85f9f0a90000d4b3",
     "validation/document-ingestion/certifi-security-requirement.json": "4aa555cd6387d21b52b2b1d83b031c51bb480d17814664689706f8502e4b3774",
-    "proposals/tools-document-adoption.md": "cba52d64d3ad8a722db11a220a06d08cc5bb8e33aa5b4f92f48eba512eccf8a6"
+    "proposals/tools-document-adoption.md": "bbf1da6fffcaf69ee70d70e065c3677e4f0e48ee1f7f549dea2ac956f1d4c171",
+    "validation/document-ingestion/format-expansion.json": "93229156bcec385b07f491ce960fa61a99a2d3d26e2c585549d19c908d8c206f"
   },
   "checks": [
     {

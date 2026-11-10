@@ -2,14 +2,16 @@
 
 Execution phase: planning; validation state: not_ready for this new unit.
 [REM-CMD-INGEST-001](remediation/REM-CMD-INGEST-001-pdf-docx.md) proposes shared
-Docling conversion/local OCR and file-path parsing with existing Memory chunking.
+Docling conversion for PDF/DOCX/XLSX/PPTX, local PDF OCR and file-path parsing
+with existing Memory chunking. The Tools adoption plan covers the same formats.
+Text/web ingestion are existing capabilities for this plan and remain unchanged.
 No product construction or new council invocation is authorized by this draft.
 The next technical gate establishes the exact compatible dependency/model
 manifest; it must precede an approved implementation directive and code.
 
 MAINT-001 remains independently VERIFIED; human UAT/acceptance remain pending.
 
-**Next gate:** Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.
+**Next gate:** Review expanded PDF/DOCX/XLSX/PPTX Docling remediation and Tools adoption plan before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.
 
 ## Separate MAINT closeout and historical checkpoints
 
