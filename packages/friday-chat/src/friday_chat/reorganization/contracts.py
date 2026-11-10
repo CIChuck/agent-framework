@@ -6,6 +6,8 @@ from pathlib import Path
 from typing import Literal
 
 from friday_memory import MemorySnapshotManifest
+from friday_memory.maintenance.mutation import MemoryVerificationCounts
+from friday_memory.maintenance.pipeline import MemoryMaintenanceStageReceipt
 from friday_transcript import TranscriptSnapshotManifest
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -78,6 +80,8 @@ class MutationStep(str, Enum):
     PRUNE = "prune"
     SYNTHESIZE = "synthesize"
     VERIFY = "verify"
+    VERIFY_PENDING = "verify_pending"
+    VERIFY_GENERATED = "verify_generated"
     LIFECYCLE = "lifecycle"
 
 
@@ -277,6 +281,20 @@ class StoreOperationResult(StrictContractModel):
         return self
 
 
+class VerificationCounts(StrictContractModel):
+    """Presentation of final persisted Memory verdict counts."""
+
+    selected: int = Field(ge=0)
+    verified: int = Field(ge=0)
+    rejected: int = Field(ge=0)
+    uncertain: int = Field(ge=0)
+
+    @model_validator(mode="after")
+    def validate_total(self) -> "VerificationCounts":
+        MemoryVerificationCounts(**self.model_dump())
+        return self
+
+
 class MutationStepResult(StrictContractModel):
     """Content-safe evidence retained for one selected maintenance step."""
 
@@ -285,6 +303,9 @@ class MutationStepResult(StrictContractModel):
     scanned_count: int | None = Field(default=None, ge=0)
     candidate_count: int | None = Field(default=None, ge=0)
     changed_count: int | None = Field(default=None, ge=0)
+    verification_counts: VerificationCounts | None = None
+    selection_state: Literal["known", "deferred"] = "known"
+    receipt: MemoryMaintenanceStageReceipt | None = None
     warnings: tuple[str, ...] = ()
     errors: tuple[ReorganizationError, ...] = ()
 
@@ -304,6 +325,78 @@ class MutationStepResult(StrictContractModel):
             0,
         }:
             raise ValueError("skipped mutation step cannot report changes")
+        if self.receipt is not None and self.receipt.stage.value != self.step.value:
+            raise ValueError("presentation stage differs from shared receipt")
+        if self.selection_state == "deferred" and (
+            self.status is not MutationStepStatus.PREVIEWED
+            or self.candidate_count is not None
+            or self.changed_count is not None
+            or self.verification_counts is not None
+        ):
+            raise ValueError("deferred scope is preview-only with unknown counts")
+        verification = self.step in {
+            MutationStep.VERIFY,
+            MutationStep.VERIFY_PENDING,
+            MutationStep.VERIFY_GENERATED,
+        }
+        if self.verification_counts is not None and (
+            not verification
+            or self.status is not MutationStepStatus.COMPLETED
+            or self.candidate_count != self.verification_counts.selected
+        ):
+            raise ValueError("verdict counts require matching successful verification")
+        if (
+            self.status is MutationStepStatus.COMPLETED
+            and verification
+            and (self.receipt is not None or self.step is not MutationStep.VERIFY)
+            and (
+                self.receipt is None
+                or self.receipt.operation_id is None
+                or self.receipt.plan_id is None
+                or self.receipt.selection_sha256 is None
+                or self.verification_counts is None
+            )
+        ):
+            raise ValueError(
+                "new verification requires actual scope and verdict counts"
+            )
+        return self
+
+
+class MaintenanceRunEvidence(StrictContractModel):
+    """Immutable content-safe sidecar; recovery journal/bundle v1 is unchanged."""
+
+    schema_version: Literal[1] = 1
+    run_id: str = Field(pattern=r"^[0-9a-f]{32}$")
+    sequence: int = Field(ge=0)
+    state: Literal["started", "planned", "completed", "failed", "skipped"]
+    receipt: MemoryMaintenanceStageReceipt
+    result: MutationStepResult | None = None
+
+    @model_validator(mode="after")
+    def validate_event(self) -> "MaintenanceRunEvidence":
+        if self.run_id != self.receipt.operation_id:
+            raise ValueError("evidence and receipt operation identities differ")
+        if self.state in {"started", "planned"}:
+            if self.result is not None:
+                raise ValueError("nonterminal evidence cannot carry a result")
+            if self.state == "started" and (
+                self.receipt.plan_id is not None
+                or self.receipt.selection_sha256 is not None
+            ):
+                raise ValueError("started evidence precedes planning")
+            if (
+                self.state == "planned"
+                and self.receipt.stage.value != "lifecycle"
+                and self.receipt.plan_id is None
+            ):
+                raise ValueError("planned evidence requires the actual plan")
+        elif (
+            self.result is None
+            or self.result.status.value != self.state
+            or self.result.receipt != self.receipt
+        ):
+            raise ValueError("terminal evidence requires a matching result and receipt")
         return self
 
 

@@ -408,3 +408,11 @@ policy change or broader migration is authorized by this defect registration.
 Source evidence: [acceptance](../../active/command-refactor/approval/memory-queries-acceptance.md),
 [pure-parser evidence](../../active/command-refactor/validation/memory-queries/acceptance/reorganize-argument-evidence.json),
 [verification flow](../../active/command-refactor/validation/memory-queries/acceptance/verification-flow.md).
+
+
+### FU-011 — MAINT-001 implementation checkpoint (2026-11-10T17:05:42.159818+00:00)
+
+Explicit `/reorganize --full` admission/help is implemented locally under the
+exact MAINT-001 directive. Duplicate/conflicting modes remain refused. Full
+installed proof and independent implementation validation are still pending;
+this is not acceptance or closure of unrelated follow-ups.

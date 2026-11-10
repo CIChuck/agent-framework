@@ -64,6 +64,8 @@ from friday_memory.maintenance import (
 from friday_memory.maintenance.models import (
     MaintenanceConfig as FrameworkMaintenanceConfig,
 )
+from friday_memory.maintenance.pipeline import PromotionLifecycleMaintenanceRunner
+from friday_memory.maintenance.provider_contracts import LifecycleStepReport
 from friday_memory.models.budget import CompactionConfig
 from friday_memory.models.mcp import MCPMemoryPreparation, MCPMemorySnapshot
 from friday_memory.retrieval.mcp import (
@@ -101,12 +103,7 @@ from friday_chat.memory_views import (
     MemoryStoreComponent,
     MemoryStoreStatistics,
 )
-from friday_chat.reorganization.contracts import (
-    ReorganizationError,
-    ReorganizationErrorCode,
-)
 from friday_chat.reorganization.layout import FridayChatMaintenanceLayout
-from friday_chat.reorganization.mutation import LifecycleStepReport
 from friday_chat.runtime import (
     REORGANIZATION_EXECUTE_DISABLED_REASON,
     MCPTranscriptReceipt,
@@ -765,72 +762,20 @@ class FrameworkMaintenanceAdapter:
         self.actions.append("run_lifecycle")
 
     async def preview_reorganization_lifecycle(self) -> LifecycleStepReport:
-        """Report promotion/decay scope without mutation or embedding backfill."""
-        if self.promotion_service is None:
-            return LifecycleStepReport(
-                succeeded=False,
-                errors=(
-                    ReorganizationError(
-                        code=ReorganizationErrorCode.CAPABILITY_UNAVAILABLE,
-                        message="deterministic lifecycle promotion is unavailable",
-                    ),
-                ),
-            )
-        stats = await self.promotion_service.collection_manager.get_stats()
-        return LifecycleStepReport(
-            succeeded=True,
-            scanned_count=sum(
-                int(value) for value in stats.values() if isinstance(value, int)
-            ),
-            candidate_count=None,
-            changed_count=None,
-            warnings=(
-                "lifecycle candidate and change counts are unavailable before execution",
-            ),
-        )
+        """Delegate promotion/decay scope to the reusable Memory owner."""
+        return await PromotionLifecycleMaintenanceRunner(
+            self.promotion_service
+        ).preview_reorganization_lifecycle()
 
     async def run_reorganization_lifecycle(self) -> LifecycleStepReport:
-        """Run promotion/decay only; never backfill graph edge embeddings."""
+        """Delegate domain maintenance while retaining application instrumentation."""
         self._raise_next_error()
-        if self.promotion_service is None:
-            return LifecycleStepReport(
-                succeeded=False,
-                errors=(
-                    ReorganizationError(
-                        code=ReorganizationErrorCode.CAPABILITY_UNAVAILABLE,
-                        message="deterministic lifecycle promotion is unavailable",
-                    ),
-                ),
-            )
-        stats = await self.promotion_service.collection_manager.get_stats()
-        result = await self.promotion_service.run_promotion_cycle(dry_run=False)
-        if result.errors:
-            return LifecycleStepReport(
-                succeeded=False,
-                scanned_count=sum(
-                    int(value) for value in stats.values() if isinstance(value, int)
-                ),
-                errors=(
-                    ReorganizationError(
-                        code=ReorganizationErrorCode.MUTATION_FAILED,
-                        message="deterministic lifecycle promotion reported errors",
-                    ),
-                ),
-            )
-        changed_count = (
-            result.promoted_to_long_term
-            + result.decayed_from_long_term
-            + result.reactivated
-        )
-        self.actions.append("run_reorganization_lifecycle")
-        return LifecycleStepReport(
-            succeeded=True,
-            scanned_count=sum(
-                int(value) for value in stats.values() if isinstance(value, int)
-            ),
-            candidate_count=None,
-            changed_count=changed_count,
-        )
+        report = await PromotionLifecycleMaintenanceRunner(
+            self.promotion_service
+        ).run_reorganization_lifecycle()
+        if report.succeeded:
+            self.actions.append("run_reorganization_lifecycle")
+        return report
 
     def reorganization_execute_status(self) -> tuple[bool, str]:
         """Keep legacy direct mutation outside the Chat coordinator disabled."""

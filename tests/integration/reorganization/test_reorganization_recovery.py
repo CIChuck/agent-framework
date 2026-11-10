@@ -60,6 +60,7 @@ from friday_transcript import (
     TranscriptEntry,
     TranscriptSession,
 )
+from test_maintenance_order import SyntheticPipelineMixin, synthetic_planned_steps
 
 ProviderResponseT = TypeVar("ProviderResponseT", bound=StrictProviderModel)
 
@@ -180,7 +181,7 @@ class RecoveryHooks:
 
 
 @dataclass
-class GraphMutation:
+class GraphMutation(SyntheticPipelineMixin):
     graph: ElementXGraphStore
 
     def begin_run(self, request: ReorganizationRequest) -> None:
@@ -192,9 +193,8 @@ class GraphMutation:
     async def preview(
         self,
         request: ReorganizationRequest,
-        planned_steps: tuple[MutationStep, ...],
     ) -> tuple[MutationStepResult, ...]:
-        del request
+        planned_steps = synthetic_planned_steps(request)
         return tuple(
             MutationStepResult(
                 step=step,
@@ -208,10 +208,10 @@ class GraphMutation:
     async def preflight(
         self,
         request: ReorganizationRequest,
-        planned_steps: tuple[MutationStep, ...],
     ) -> MutationPreflight:
-        del request
-        return MutationPreflight(supported=True, planned_steps=planned_steps)
+        return MutationPreflight(
+            supported=True, planned_steps=synthetic_planned_steps(request)
+        )
 
     async def execute_step(
         self,
@@ -232,7 +232,9 @@ class GraphMutation:
                 )
             )
         return MutationStepResult(
-            step=step,
+            step=MutationStep.VERIFY
+            if step in {MutationStep.VERIFY_PENDING, MutationStep.VERIFY_GENERATED}
+            else step,
             status=MutationStepStatus.COMPLETED,
             scanned_count=1,
             candidate_count=1,
@@ -345,8 +347,7 @@ async def test_full_execute_uses_production_mutation_and_deterministic_providers
         log_directory=layout.log_root,
     )
     providers = {
-        role: DeterministicIntegrationLlm(role=role)
-        for role in MaintenanceLlmRole
+        role: DeterministicIntegrationLlm(role=role) for role in MaintenanceLlmRole
     }
     embedding = DeterministicIntegrationEmbedding()
     lifecycle = DeterministicIntegrationLifecycle()
@@ -392,13 +393,13 @@ async def test_full_execute_uses_production_mutation_and_deterministic_providers
     assert [step.step for step in result.mutation_steps] == [
         MutationStep.DEDUPE,
         MutationStep.PRUNE,
+        MutationStep.VERIFY_PENDING,
         MutationStep.SYNTHESIZE,
-        MutationStep.VERIFY,
+        MutationStep.VERIFY_GENERATED,
         MutationStep.LIFECYCLE,
     ]
     assert all(
-        step.status is MutationStepStatus.COMPLETED
-        for step in result.mutation_steps
+        step.status is MutationStepStatus.COMPLETED for step in result.mutation_steps
     )
     assert result.recovery_manifest_path is not None
     assert result.recovery_manifest_path.is_file()
@@ -410,8 +411,7 @@ async def test_full_execute_uses_production_mutation_and_deterministic_providers
     assert len(live["ids"]) == 3
     assert any(memory_id.startswith("reorg-") for memory_id in live["ids"])
     assert all(
-        metadata is not None
-        and metadata.get("verification_status") == "verified"
+        metadata is not None and metadata.get("verification_status") == "verified"
         for metadata in live["metadatas"] or []
     )
     assert await transcript.count_entries("session-1") == 1
@@ -439,9 +439,7 @@ async def test_full_execute_uses_production_mutation_and_deterministic_providers
 
     assert repeated.status is ResultStatus.COMPLETED
     repeated_synthesis = next(
-        step
-        for step in repeated.mutation_steps
-        if step.step is MutationStep.SYNTHESIZE
+        step for step in repeated.mutation_steps if step.step is MutationStep.SYNTHESIZE
     )
     assert repeated_synthesis.changed_count == 0
     assert collection.count() == vector_count_after_first_run

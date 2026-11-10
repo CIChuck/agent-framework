@@ -20,6 +20,21 @@ from friday_memory import (
     MemoryStoreKind,
     StoreDiscoveryState,
 )
+from friday_memory.maintenance.mutation import (
+    MemoryMutationError,
+    MemoryMutationErrorCode,
+    MemoryMutationVerification,
+)
+from friday_memory.maintenance.pipeline import (
+    MemoryMaintenanceBoundary,
+    MemoryMaintenanceMode,
+    MemoryMaintenanceObserver,
+    MemoryMaintenanceRequest,
+    MemoryMaintenanceRunResult,
+    MemoryMaintenanceStageReceipt,
+    MemoryMaintenanceStageResult,
+)
+from friday_memory.maintenance.provider_contracts import MaintenanceResponseError
 from friday_transcript import (
     TranscriptSnapshotManifest,
     TranscriptSnapshotParticipant,
@@ -31,6 +46,7 @@ from friday_chat.reorganization.artifacts import MaintenanceArtifactStore
 from friday_chat.reorganization.contracts import (
     JournalSafeBoundary,
     JournalState,
+    MaintenanceRunEvidence,
     MutationStep,
     MutationStepResult,
     MutationStepStatus,
@@ -52,6 +68,7 @@ from friday_chat.reorganization.contracts import (
     StoreOperationResult,
     StoreOperationStatus,
     StrictContractModel,
+    VerificationCounts,
 )
 from friday_chat.reorganization.durability import (
     AtomicJsonStore,
@@ -65,6 +82,54 @@ from friday_chat.reorganization.lease import (
     LayoutLeaseHandle,
 )
 from friday_chat.reorganization.preflight import MaintenanceEnvironmentPreflight
+
+
+def to_memory_request(request: ReorganizationRequest) -> MemoryMaintenanceRequest:
+    """Adapt input fields once; the shared engine alone chooses domain policy."""
+    return MemoryMaintenanceRequest(
+        mode=MemoryMaintenanceMode(request.mode.value),
+        execute=request.execute,
+        skip_synthesis=request.skip_synthesis,
+        skip_verify=request.skip_verify,
+        skip_lifecycle=request.skip_lifecycle,
+        force_reembed=request.force_reembed,
+    )
+
+
+def present_memory_error(
+    error: MemoryMutationError, *, preflight: bool = False, integrity: bool = False
+) -> ReorganizationError:
+    code = (
+        ReorganizationErrorCode.PREFLIGHT_FAILED
+        if preflight
+        else ReorganizationErrorCode.INTEGRITY_FAILED
+        if integrity
+        else ReorganizationErrorCode.MUTATION_FAILED
+    )
+    if error.code is MemoryMutationErrorCode.CAPABILITY_UNAVAILABLE:
+        code = ReorganizationErrorCode.CAPABILITY_UNAVAILABLE
+    return ReorganizationError(
+        code=code, message=error.message, store=error.store or "memory"
+    )
+
+
+def present_stage_result(result: MemoryMaintenanceStageResult) -> MutationStepResult:
+    return MutationStepResult(
+        step=MutationStep(result.stage.value),
+        status=MutationStepStatus(result.status),
+        scanned_count=result.scanned_count,
+        candidate_count=result.candidate_count,
+        changed_count=result.changed_count,
+        verification_counts=VerificationCounts(
+            **result.verification_counts.model_dump()
+        )
+        if result.verification_counts is not None
+        else None,
+        selection_state=result.selection_state,
+        receipt=result.receipt,
+        warnings=result.warnings,
+        errors=tuple(present_memory_error(e) for e in result.errors),
+    )
 
 
 class CoordinatorFaultPoint(str, Enum):
@@ -251,32 +316,20 @@ class ManualMaintenanceResumeResult:
 class MaintenanceMutationAdapter(Protocol):
     """Constructor-injected mutation boundary; never selected by a CLI flag."""
 
-    def begin_run(self, request: ReorganizationRequest) -> None: ...
-
-    def end_run(self, request: ReorganizationRequest) -> None: ...
-
     async def preview(
-        self,
-        request: ReorganizationRequest,
-        planned_steps: tuple[MutationStep, ...],
+        self, request: ReorganizationRequest
     ) -> tuple[MutationStepResult, ...]: ...
 
-    async def preflight(
-        self,
-        request: ReorganizationRequest,
-        planned_steps: tuple[MutationStep, ...],
-    ) -> MutationPreflight: ...
+    async def preflight(self, request: ReorganizationRequest) -> MutationPreflight: ...
 
-    async def execute_step(
+    async def execute_pipeline(
         self,
-        request: ReorganizationRequest,
-        step: MutationStep,
-    ) -> MutationStepResult: ...
-
-    async def verify_postconditions(
-        self,
-        request: ReorganizationRequest,
-    ) -> MutationVerification: ...
+        request: MemoryMaintenanceRequest,
+        *,
+        run_id: str,
+        observer: MemoryMaintenanceObserver,
+        boundary: MemoryMaintenanceBoundary,
+    ) -> MemoryMaintenanceRunResult: ...
 
 
 class MaintenanceRuntimeHooks(Protocol):
@@ -495,7 +548,7 @@ class ReorganizationCoordinator:
         completed: list[ProgressStep] = []
         warnings: list[str] = []
         errors: list[ReorganizationError] = []
-        mutation_steps = list(self._skipped_mutation_steps(request))
+        mutation_steps: list[MutationStepResult] = []
         await self._progress(
             ProgressStep.PREFLIGHT,
             "Inspecting reorganization capabilities",
@@ -518,8 +571,7 @@ class ReorganizationCoordinator:
         environment = self._environment.inspect(self.layout, self._leases)
         errors.extend(environment.errors)
         errors.extend(self._store_preflight_errors(stores))
-        planned_steps = self._planned_steps(request)
-        if planned_steps:
+        if request.mode is not ReorganizationMode.BACKUP:
             if self._mutation is None:
                 errors.append(
                     self._error(
@@ -528,16 +580,9 @@ class ReorganizationCoordinator:
                     )
                 )
             else:
-                preflight = await self._mutation.preflight(request, planned_steps)
+                preflight = await self._mutation.preflight(request)
                 warnings.extend(preflight.warnings)
                 errors.extend(preflight.errors)
-                if preflight.planned_steps != planned_steps:
-                    errors.append(
-                        self._error(
-                            ReorganizationErrorCode.PREFLIGHT_FAILED,
-                            "maintenance adapter changed the coordinator plan",
-                        )
-                    )
                 if not preflight.supported and not preflight.errors:
                     errors.append(
                         self._error(
@@ -545,8 +590,11 @@ class ReorganizationCoordinator:
                             "maintenance capabilities are unavailable",
                         )
                     )
-                previews = await self._mutation.preview(request, planned_steps)
-                if tuple(preview.step for preview in previews) != planned_steps:
+                previews = await self._mutation.preview(request)
+                if (
+                    tuple(preview.step for preview in previews)
+                    != preflight.planned_steps
+                ):
                     errors.append(
                         self._error(
                             ReorganizationErrorCode.PREFLIGHT_FAILED,
@@ -622,10 +670,9 @@ class ReorganizationCoordinator:
         warnings: list[str] = []
         errors: list[ReorganizationError] = []
         stores: list[StoreOperationResult] = []
-        mutation_steps = list(self._skipped_mutation_steps(request))
+        mutation_steps: list[MutationStepResult] = []
         lease: LayoutLeaseHandle | None = None
         mutation_started = False
-        mutation_run_started = False
 
         environment = self._environment.inspect(self.layout, self._leases)
         if environment.errors:
@@ -708,10 +755,6 @@ class ReorganizationCoordinator:
             )
             stores = await self._discover_store_results()
             errors.extend(self._store_preflight_errors(stores))
-            planned_steps = self._planned_steps(request)
-            if planned_steps:
-                self._require_mutation_adapter().begin_run(request)
-                mutation_run_started = True
             preflight_errors, preflight_warnings = await self._preflight_mutation(
                 request
             )
@@ -815,70 +858,152 @@ class ReorganizationCoordinator:
             )
             mutation_started = True
             mutation = self._require_mutation_adapter()
-            for step in self._planned_steps(request):
-                await self._progress(
-                    ProgressStep.MUTATING,
-                    f"Applying maintenance step: {step.value}",
-                    progress,
-                    attempted,
-                )
-                await self._fault(
-                    CoordinatorFaultPoint.BEFORE_MUTATION_STEP,
-                    step,
-                )
-                step_result = await self._atomic(
-                    mutation.execute_step(request, step),
-                    cancellation_callback=self._cancellation_reporter(
-                        progress,
-                        ProgressStep.MUTATING,
-                    ),
-                )
-                mutation_steps.append(step_result)
-                warnings.extend(step_result.warnings)
-                errors.extend(step_result.errors)
-                if (
-                    step_result.step is not step
-                    or step_result.status is not MutationStepStatus.COMPLETED
-                ):
-                    if not step_result.errors:
-                        errors.append(
-                            self._error(
-                                ReorganizationErrorCode.MUTATION_FAILED,
-                                f"maintenance step {step.value} failed",
-                            )
-                        )
-                    raise RuntimeError("maintenance mutation step failed")
-                await self._fault(
-                    CoordinatorFaultPoint.AFTER_MUTATION_STEP,
-                    step,
-                )
-            completed.append(ProgressStep.MUTATING)
+            coordinator = self
+            event_sequence = 0
+            started_receipts: dict[int, MemoryMaintenanceStageReceipt] = {}
+            planned_receipts: dict[int, MemoryMaintenanceStageReceipt] = {}
+            observed: list[MemoryMaintenanceStageResult] = []
 
-            await self._fault(CoordinatorFaultPoint.BEFORE_LIVE_VERIFICATION)
-            await self._progress(
-                ProgressStep.VERIFYING_LIVE,
-                "Verifying live memory postconditions",
-                progress,
-                attempted,
-            )
-            verification = await self._atomic(
-                mutation.verify_postconditions(request),
-                cancellation_callback=self._cancellation_reporter(
-                    progress,
-                    ProgressStep.VERIFYING_LIVE,
-                ),
-            )
-            warnings.extend(verification.warnings)
-            errors.extend(verification.errors)
-            if not verification.verified:
-                if not verification.errors:
-                    errors.append(
-                        self._error(
-                            ReorganizationErrorCode.INTEGRITY_FAILED,
-                            "maintenance postcondition verification failed",
-                        )
+            def persist(
+                state: str,
+                receipt: MemoryMaintenanceStageReceipt,
+                result: MutationStepResult | None = None,
+            ) -> None:
+                nonlocal event_sequence
+                evidence = MaintenanceRunEvidence.model_validate(
+                    dict(
+                        run_id=cursor.journal.run_id,
+                        sequence=event_sequence,
+                        state=state,
+                        receipt=receipt,
+                        result=result,
                     )
-                raise RuntimeError("maintenance postconditions failed")
+                )
+                coordinator._artifacts.write_run_evidence(evidence)
+                event_sequence += 1
+
+            class Observer:
+                async def before_stage(
+                    self, receipt: MemoryMaintenanceStageReceipt
+                ) -> None:
+                    if (
+                        receipt.operation_id != cursor.journal.run_id
+                        or receipt.sequence != len(started_receipts)
+                    ):
+                        raise ValueError(
+                            "shared stage started with substituted operation/ordinal"
+                        )
+                    started_receipts[receipt.sequence] = receipt
+                    persist("started", receipt)
+                    step = MutationStep(receipt.stage.value)
+                    await coordinator._progress(
+                        ProgressStep.MUTATING,
+                        f"Applying maintenance step: {step.value}",
+                        progress,
+                        attempted,
+                    )
+                    await coordinator._fault(
+                        CoordinatorFaultPoint.BEFORE_MUTATION_STEP, step
+                    )
+
+                async def stage_planned(
+                    self, receipt: MemoryMaintenanceStageReceipt
+                ) -> None:
+                    before = started_receipts.get(receipt.sequence)
+                    if (
+                        before is None
+                        or before.operation_id != receipt.operation_id
+                        or before.stage is not receipt.stage
+                        or receipt.sequence in planned_receipts
+                    ):
+                        raise ValueError(
+                            "shared planned receipt changed stage identity"
+                        )
+                    planned_receipts[receipt.sequence] = receipt
+                    persist("planned", receipt)
+
+                async def after_stage(
+                    self, result: MemoryMaintenanceStageResult
+                ) -> None:
+                    expected = planned_receipts.get(
+                        result.receipt.sequence
+                    ) or started_receipts.get(result.receipt.sequence)
+                    if expected is None or expected != result.receipt:
+                        raise ValueError(
+                            "shared stage substituted or omitted planned scope evidence"
+                        )
+                    mapped = present_stage_result(result)
+                    # Keep facts available for rollback reporting even if evidence storage fails.
+                    observed.append(result)
+                    mutation_steps.append(mapped)
+                    warnings.extend(mapped.warnings)
+                    errors.extend(mapped.errors)
+                    try:
+                        persist(result.status, result.receipt, mapped)
+                    except Exception as exc:
+                        if result.status != "failed":
+                            raise
+                        errors.append(coordinator._exception_error(exc))
+                    if result.status == "completed":
+                        await coordinator._fault(
+                            CoordinatorFaultPoint.AFTER_MUTATION_STEP, mapped.step
+                        )
+
+                async def before_postconditions(self) -> None:
+                    completed.append(ProgressStep.MUTATING)
+                    await coordinator._fault(
+                        CoordinatorFaultPoint.BEFORE_LIVE_VERIFICATION
+                    )
+                    await coordinator._progress(
+                        ProgressStep.VERIFYING_LIVE,
+                        "Verifying live memory postconditions",
+                        progress,
+                        attempted,
+                    )
+
+                async def after_postconditions(
+                    self, verification: MemoryMutationVerification
+                ) -> None:
+                    warnings.extend(verification.warnings)
+                    errors.extend(
+                        present_memory_error(e, integrity=True)
+                        for e in verification.errors
+                    )
+
+            class Boundary:
+                async def run_atomic[T](
+                    self, operation: Callable[[], Awaitable[T]]
+                ) -> T:
+                    return await coordinator._atomic(
+                        operation(),
+                        cancellation_callback=coordinator._cancellation_reporter(
+                            progress, ProgressStep.MUTATING
+                        ),
+                    )
+
+            shared_result = await mutation.execute_pipeline(
+                to_memory_request(request),
+                run_id=cursor.journal.run_id,
+                observer=Observer(),
+                boundary=Boundary(),
+            )
+            if (
+                shared_result.operation_id != cursor.journal.run_id
+                or shared_result.stages != tuple(observed)
+            ):
+                raise ValueError("maintenance adapter substituted pipeline facts")
+            if (
+                not shared_result.succeeded
+                or shared_result.postconditions is None
+                or not shared_result.postconditions.verified
+            ):
+                for detail in shared_result.errors:
+                    mapped = present_memory_error(
+                        detail, integrity=shared_result.postconditions is not None
+                    )
+                    if mapped not in errors:
+                        errors.append(mapped)
+                raise RuntimeError("maintenance pipeline failed")
             await self._progress(
                 ProgressStep.COMPLETE,
                 "Reorganization completed with verified live state",
@@ -957,8 +1082,6 @@ class ReorganizationCoordinator:
                 errors,
             )
         finally:
-            if mutation_run_started and self._mutation is not None:
-                self._mutation.end_run(request)
             if lease is not None:
                 lease.release()
 
@@ -1610,8 +1733,7 @@ class ReorganizationCoordinator:
                     "runtime quiescence hooks are unavailable",
                 )
             )
-        planned_steps = self._planned_steps(request)
-        if planned_steps:
+        if request.mode is not ReorganizationMode.BACKUP:
             if self._mutation is None:
                 errors.append(
                     self._error(
@@ -1620,16 +1742,9 @@ class ReorganizationCoordinator:
                     )
                 )
             else:
-                preflight = await self._mutation.preflight(request, planned_steps)
+                preflight = await self._mutation.preflight(request)
                 warnings.extend(preflight.warnings)
                 errors.extend(preflight.errors)
-                if preflight.planned_steps != planned_steps:
-                    errors.append(
-                        self._error(
-                            ReorganizationErrorCode.PREFLIGHT_FAILED,
-                            "maintenance adapter changed the coordinator plan",
-                        )
-                    )
                 if not preflight.supported and not preflight.errors:
                     errors.append(
                         self._error(
@@ -1638,56 +1753,6 @@ class ReorganizationCoordinator:
                         )
                     )
         return errors, warnings
-
-    @staticmethod
-    def _planned_steps(
-        request: ReorganizationRequest,
-    ) -> tuple[MutationStep, ...]:
-        if request.mode is ReorganizationMode.BACKUP:
-            return ()
-        if request.mode is ReorganizationMode.ANALYZE:
-            return (MutationStep.ANALYZE,)
-        if request.mode is ReorganizationMode.DEDUPE:
-            return (MutationStep.DEDUPE,)
-        if request.mode is ReorganizationMode.PRUNE:
-            return (MutationStep.PRUNE,)
-        if request.mode is ReorganizationMode.SYNTHESIZE:
-            return (MutationStep.SYNTHESIZE,)
-        if request.mode is ReorganizationMode.VERIFY:
-            return (MutationStep.VERIFY,)
-        steps: list[MutationStep] = []
-        if request.force_reembed:
-            steps.append(MutationStep.REEMBED)
-        steps.extend((MutationStep.DEDUPE, MutationStep.PRUNE))
-        if not request.skip_synthesis:
-            steps.append(MutationStep.SYNTHESIZE)
-        if not request.skip_verify:
-            steps.append(MutationStep.VERIFY)
-        if not request.skip_lifecycle:
-            steps.append(MutationStep.LIFECYCLE)
-        return tuple(steps)
-
-    @staticmethod
-    def _skipped_mutation_steps(
-        request: ReorganizationRequest,
-    ) -> tuple[MutationStepResult, ...]:
-        if request.mode is not ReorganizationMode.FULL:
-            return ()
-        skipped: list[MutationStepResult] = []
-        for selected, step in (
-            (request.skip_synthesis, MutationStep.SYNTHESIZE),
-            (request.skip_verify, MutationStep.VERIFY),
-            (request.skip_lifecycle, MutationStep.LIFECYCLE),
-        ):
-            if selected:
-                skipped.append(
-                    MutationStepResult(
-                        step=step,
-                        status=MutationStepStatus.SKIPPED,
-                        changed_count=0,
-                    )
-                )
-        return tuple(skipped)
 
     def _unfinished_journals(self) -> tuple[RecoveryJournal, ...]:
         root = self.layout.recovery_root
@@ -2015,7 +2080,13 @@ class ReorganizationCoordinator:
             code = ReorganizationErrorCode.MUTATION_FAILED
         return cls._error(
             code,
-            f"reorganization operation failed ({type(exc).__name__})",
+            f"reorganization operation failed ({type(exc).__name__})"
+            + (
+                f"; {exc.diagnostic.summary()}"
+                if isinstance(exc, MaintenanceResponseError)
+                and exc.diagnostic is not None
+                else ""
+            ),
         )
 
     def _result(

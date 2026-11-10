@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "run_id": "d8abbda6e33c471f9e2440ff63bbfe48",
+  "created_at": "2026-11-10T11:17:27.635997",
+  "layout_fingerprint": "7fd42d3c3d136bd5ff64482af99e0dbe8d7ed7802cf7f40329e1367570fe1856",
+  "vector_source": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-maint-build._innqy6m/baseline-v1-canonical/completed/live/vector",
+  "graph_source": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-maint-build._innqy6m/baseline-v1-canonical/completed/live/graph.gpickle",
+  "access_buffer_wal_source": null,
+  "vector": {
+    "state": "present",
+    "strategy": "chroma_logical_export_rebuild",
+    "artifact_filename": "chroma-logical.json",
+    "artifact_sha256": "bf4cc6b40ba2fe80ef8b83c0427b5fc0a04c35720e3554660d078fcab381ffd5",
+    "artifact_size_bytes": 1624,
+    "maximum_float32_ulp_drift": 2,
+    "collections": [
+      {
+        "name": "coordinator-test",
+        "record_count": 1,
+        "logical_digest": "3f7416b87619495cc11a817f69d2410badf9c0fc1fbfa565c036ad16e0526123",
+        "query_probe_count": 1
+      }
+    ]
+  },
+  "graph": {
+    "state": "present",
+    "artifact_filename": "graph.gpickle",
+    "artifact_sha256": "669d49bf1cbfe11ad4282699ef558776d3952851af6355860efd9c435f102da5",
+    "artifact_size_bytes": 713,
+    "node_count": 1,
+    "edge_count": 0
+  },
+  "access_buffer": {
+    "state": "not_configured",
+    "strategy": "not_configured",
+    "wal_configured": false,
+    "buffered_item_count": 0,
+    "wal_size_bytes": 0
+  },
+  "verified": true
+}

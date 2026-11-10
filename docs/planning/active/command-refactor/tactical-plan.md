@@ -1,3 +1,14 @@
+# MAINT-001 — implementation checkpoint
+
+Shared contracts/pipeline and one-call Chat integration are implemented locally.
+Focused tests, real-store headless cancellation/rollback, v1 fixture recovery and
+the bounded retained-behavior comparison pass. Full final/installed proof and
+independent implementation validation remain pending.
+
+**Next gate:** Finish MAINT-001 clean source freeze, build/replay and installed proof, then fresh OpenAI implementation council; human UAT/acceptance and all delivery remain separate.
+
+## Historical approved construction checkpoint
+
 # MAINT-001 — approved construction checkpoint
 
 Both fresh round4 seats: VERIFIED9.6/10; zero mandatory findings. Exact conditional

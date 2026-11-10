@@ -133,3 +133,18 @@ uv run --no-sync pytest packages/friday-chat/tests_chat -q
 ## License
 
 [MIT](https://github.com/CIChuck/agent-framework/blob/master/LICENSE).
+
+
+### Reorganization maintenance order
+
+`/reorganize --full` explicitly selects the existing default full mode.
+With `--execute`, full mode runs dedupe/prune, pending verification, synthesis,
+verification of newly created insights, then lifecycle maintenance. Optional
+reembedding remains first. Skip flags are interpreted by the shared Memory
+pipeline; Chat delegates once inside its existing snapshot/recovery transaction.
+
+The two verification stages show selected/verified/rejected/uncertain counts.
+Failed/skipped/deferred summaries remain unavailable; rolled-back counts are
+labelled as attempted. Preview makes no provider calls and reports dependent
+scopes as deferred. New stage evidence is stored separately; recovery journals
+and bundles retain schema v1. Human UAT and acceptance are separate from tests.

@@ -62,6 +62,7 @@ from friday_chat.reorganization.contracts import (
     ReorganizationMode,
     ReorganizationRequest,
     ReorganizationResult,
+    ResultStatus,
 )
 from friday_chat.reorganization.coordinator import ReorganizationCoordinator
 from friday_chat.reorganization.gate import MaintenanceAdmissionGate
@@ -286,8 +287,6 @@ async def _timing_handler(
     return await invoke_diagnostic("timing", _args, context)
 
 
-
-
 async def _debug_retrieval_handler(
     context: CommandContext,
     args: tuple[str, ...],
@@ -483,9 +482,7 @@ def _format_reorganization_result(
             "unavailable" if step.scanned_count is None else str(step.scanned_count)
         )
         candidates = (
-            "unavailable"
-            if step.candidate_count is None
-            else str(step.candidate_count)
+            "unavailable" if step.candidate_count is None else str(step.candidate_count)
         )
         changed = (
             "unavailable" if step.changed_count is None else str(step.changed_count)
@@ -494,10 +491,29 @@ def _format_reorganization_result(
             f"Step {step.step.value}: {step.status.value}; scanned={scanned}; "
             f"candidates={candidates}; changed={changed}"
         )
+        if step.selection_state == "deferred":
+            lines.append("  Selection: deferred until preceding stage outcomes")
+        if step.step.value in {"verify", "verify_pending", "verify_generated"}:
+            counts = step.verification_counts
+            if counts is None:
+                lines.append("  Verdicts: unavailable")
+            else:
+                label = (
+                    "attempted; rolled back"
+                    if result.status is ResultStatus.FAILED_ROLLED_BACK
+                    else "attempted; retention uncertain"
+                    if result.status is ResultStatus.RECOVERY_REQUIRED
+                    else "persisted"
+                )
+                lines.append(
+                    f"  Verdicts ({label}): selected={counts.selected}; verified={counts.verified}; rejected={counts.rejected}; uncertain={counts.uncertain}"
+                )
+                if counts.selected == 0:
+                    lines.append("  No candidates")
+
     lines.extend(f"Warning: {warning}" for warning in result.warnings)
     lines.extend(
-        f"Error [{error.code.value}]: {error.message}"
-        for error in result.errors
+        f"Error [{error.code.value}]: {error.message}" for error in result.errors
     )
     return "\n".join(lines)
 
@@ -834,8 +850,6 @@ async def _security_config_handler(
     return CommandResult(output=f"Updated security {kind} to {value}.")
 
 
-
-
 async def _speech_handler(
     context: CommandContext,
     args: tuple[str, ...],
@@ -1080,14 +1094,6 @@ async def _tools_handler(
     return CommandResult(output="\n".join(lines))
 
 
-
-
-
-
-
-
-
-
 async def _help_handler(
     context: CommandContext,
     args: tuple[str, ...],
@@ -1199,13 +1205,8 @@ def _normalize_command_name(name: str) -> str:
     return name.removeprefix("/").strip().lower()
 
 
-
-
-
-
-
-
 _REORGANIZE_MODE_FLAGS = {
+    "--full": "full",
     "--backup": "backup",
     "--dedupe": "dedupe",
     "--analyze": "analyze",
@@ -1221,7 +1222,7 @@ _REORGANIZE_FULL_ONLY_FLAGS = (
 )
 _REORGANIZE_USAGE = (
     "Usage: /reorganize [--execute] "
-    "[--backup|--dedupe|--analyze|--prune|--synthesize|--verify] "
+    "[--full|--backup|--dedupe|--analyze|--prune|--synthesize|--verify] "
     "[--skip-synthesis] [--skip-verify] [--skip-lifecycle] [--force-reembed]\n"
     "       /reorganize --recover <run-id> [--execute]"
 )
@@ -1398,16 +1399,6 @@ def _tool_parameter_names(tool: ToolDefinition) -> list[str]:
     if not isinstance(properties, dict):
         return []
     return [str(name) for name in properties]
-
-
-
-
-
-
-
-
-
-
 
 
 @dataclass(frozen=True)
@@ -1616,8 +1607,9 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
             ),
             _argument(
                 "mode",
-                "Run one reorganization step instead of the full operation.",
+                "Choose explicit full mode or one reorganization step.",
                 choices=(
+                    "--full",
                     "--backup",
                     "--dedupe",
                     "--analyze",
@@ -1680,9 +1672,7 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "List registered runtime tools and optionally filter by category.",
         "tools",
         "/tools [category]",
-        arguments=(
-            _argument("category", "Optional runtime tool category filter."),
-        ),
+        arguments=(_argument("category", "Optional runtime tool category filter."),),
     ),
     CommandSpec("security", "Show security status.", "security", "/security"),
     CommandSpec(
@@ -1758,9 +1748,7 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "Switch active agent or show current agent status.",
         "orchestration",
         "/switch [agent]",
-        arguments=(
-            _argument("agent", "Agent name; omit to show the active agent."),
-        ),
+        arguments=(_argument("agent", "Agent name; omit to show the active agent."),),
     ),
     CommandSpec("agents", "List available agents.", "orchestration", "/agents"),
     CommandSpec(
@@ -1768,9 +1756,7 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "Show detailed agent information.",
         "orchestration",
         "/agent [name]",
-        arguments=(
-            _argument("name", "Agent name; omit to inspect the active agent."),
-        ),
+        arguments=(_argument("name", "Agent name; omit to inspect the active agent."),),
     ),
     CommandSpec(
         "delegate",

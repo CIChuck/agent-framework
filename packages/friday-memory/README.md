@@ -74,3 +74,19 @@ uv run --no-sync pytest packages/friday-memory/tests_memory -q
 ## License
 
 [MIT](https://github.com/CIChuck/agent-framework/blob/master/LICENSE).
+
+
+### Shared maintenance pipeline
+
+`friday_memory.maintenance.MemoryMaintenancePipeline` owns full-mode sequencing,
+provider assessment and strict response validation, scoped verification, synthesis,
+lifecycle and memory postconditions. Full mode verifies pending records before
+synthesis, then verifies only the insights created in that operation. Results
+include persisted final-judge counts and content-safe plan/selection receipts.
+Preview is provider-free; dependent scopes are deferred. The default boundary
+shields and drains each stage under repeated cancellation. Callers remain
+responsible for whole-run snapshots/rollback and application admission.
+
+The explicit request/provider/lifecycle/observer protocols support headless
+consumers without Friday Chat imports. No provider configuration, model, retry
+or eligibility policy is selected by a frontend-specific stage loop.

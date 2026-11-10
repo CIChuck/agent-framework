@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "unit": "MAINT-001",
+  "purpose": "Normative independent literal reference vectors for future selection-receipt tests; not runtime implementation proof.",
+  "encoding": "UTF-8, no BOM or trailing newline in hashed canonical text",
+  "derivation": "Literal canonical JSON authored without a production helper; SHA256 independently cross-checked with hashlib and shasum.",
+  "vectors": [
+    {
+      "id": "pending-unicode",
+      "input": {
+        "operation_id": "00000000000000000000000000000001",
+        "plan_id": "1111111111111111111111111111111111111111111111111111111111111111",
+        "references": [
+          {
+            "collection": "zeta",
+            "memory_id": "last"
+          },
+          {
+            "collection": "m\u00e9moire",
+            "memory_id": "\u8282\u70b9"
+          }
+        ],
+        "selection": {
+          "mode": "pending",
+          "operation_id": null,
+          "references": [],
+          "synthesis_plan_id": null
+        },
+        "sequence": 0,
+        "stage": "verify_pending"
+      },
+      "expected_canonical_json": "{\"operation_id\":\"00000000000000000000000000000001\",\"plan_id\":\"1111111111111111111111111111111111111111111111111111111111111111\",\"references\":[{\"collection\":\"m\\u00e9moire\",\"memory_id\":\"\\u8282\\u70b9\"},{\"collection\":\"zeta\",\"memory_id\":\"last\"}],\"selection\":{\"mode\":\"pending\",\"operation_id\":null,\"references\":[],\"synthesis_plan_id\":null},\"sequence\":0,\"stage\":\"verify_pending\"}",
+      "expected_sha256": "082bc35dabb55d3e8101ce346e3039f109bd5f115c1f2e2286e4b36cc84175d9"
+    },
+    {
+      "id": "created-exact-empty",
+      "input": {
+        "operation_id": "00000000000000000000000000000002",
+        "plan_id": "2222222222222222222222222222222222222222222222222222222222222222",
+        "references": [],
+        "selection": {
+          "mode": "created",
+          "operation_id": "00000000000000000000000000000002",
+          "references": [],
+          "synthesis_plan_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "sequence": 4,
+        "stage": "verify_generated"
+      },
+      "expected_canonical_json": "{\"operation_id\":\"00000000000000000000000000000002\",\"plan_id\":\"2222222222222222222222222222222222222222222222222222222222222222\",\"references\":[],\"selection\":{\"mode\":\"created\",\"operation_id\":\"00000000000000000000000000000002\",\"references\":[],\"synthesis_plan_id\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"},\"sequence\":4,\"stage\":\"verify_generated\"}",
+      "expected_sha256": "5502c0e7fd37ef3077ca2d9518b6f254dc7be04f8fd33844a8a20969314035b0"
+    }
+  ],
+  "rules": [
+    "Treat expected JSON bytes and hashes as fixed literals; never regenerate them through production canonicalization/digest code.",
+    "Pending input references are deliberately unsorted; expected canonical order is explicit. Unicode is in reference values; schema keys remain the fixed ASCII keys.",
+    "Exact-empty created selection is meaningful and may not fall back to pending.",
+    "Production tests also vary operation/stage/plan/reference values and reject invalid/duplicate references; these two vectors do not replace behavioral coverage."
+  ]
+}

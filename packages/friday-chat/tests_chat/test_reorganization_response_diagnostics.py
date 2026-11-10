@@ -9,7 +9,6 @@ import pytest
 from friday_chat.commands.registry import _format_reorganization_result
 from friday_chat.reorganization import mutation as m
 from friday_chat.reorganization.contracts import (
-    MutationStep,
     MutationStepStatus,
     OperationTrigger,
     ReorganizationMode,
@@ -139,19 +138,34 @@ async def test_unknown_finish_metadata_is_redacted():
     assert "private-finish-details" not in str(caught.value)
 
 
-def failing_adapter(payload, *, finish_reason="stop"):
+def failing_adapter(payload, *, finish_reason="stop", role=m.MaintenanceLlmRole.JUDGE):
     from test_reorganization_mutation import _adapter
 
     adapter, providers, _embedding, memory, _lifecycle = _adapter()
-    failing, client = provider(
-        m.MaintenanceLlmRole.JUDGE, payload, finish_reason=finish_reason
-    )
+    failing, client = provider(role, payload, finish_reason=finish_reason)
     replacements = dict(providers)
-    replacements[m.MaintenanceLlmRole.JUDGE] = failing
+    replacements[role] = failing
     adapter.providers = m.ExplicitMaintenanceProviderRegistry(
         llms=MappingProxyType(replacements), embedding=adapter.providers.embedding
     )
+    adapter._pipeline.providers = adapter.providers
     return adapter, memory, client
+
+
+async def observed_failure(adapter, request):
+    from friday_chat.reorganization.coordinator import present_stage_result
+    from friday_memory.maintenance.pipeline import ShieldedMemoryMaintenanceBoundary
+    from test_maintenance_order import CaptureObserver
+
+    observer = CaptureObserver()
+    with pytest.raises(m.MaintenanceResponseError):
+        await adapter.execute_pipeline(
+            adapter.memory_request(request),
+            run_id="1" * 32,
+            observer=observer,
+            boundary=ShieldedMemoryMaintenanceBoundary(),
+        )
+    return present_stage_result(observer.results[-1])
 
 
 @pytest.mark.asyncio
@@ -162,9 +176,7 @@ async def test_step_errors_keep_safe_diagnostics_without_applying_a_partial_plan
     request = ReorganizationRequest(
         trigger=OperationTrigger.MANUAL, mode=ReorganizationMode.VERIFY, execute=True
     )
-    adapter.begin_run(request)
-    result = await adapter.execute_step(request, MutationStep.VERIFY)
-    adapter.end_run(request)
+    result = await observed_failure(adapter, request)
     assert result.status is MutationStepStatus.FAILED
     assert "role=judge" in result.errors[0].message
     assert "model=openrouter/diagnostic-fixture" in result.errors[0].message
@@ -177,13 +189,17 @@ async def test_step_errors_keep_safe_diagnostics_without_applying_a_partial_plan
 
 @pytest.mark.asyncio
 async def test_preflight_diagnostics_are_safe_and_do_not_apply_changes():
-    adapter, memory, client = failing_adapter('{"ready":"private-value"}')
-    request = ReorganizationRequest(
-        trigger=OperationTrigger.MANUAL, mode=ReorganizationMode.VERIFY, execute=True
+    adapter, memory, client = failing_adapter(
+        '{"ready":"private-value"}', role=m.MaintenanceLlmRole.SYNTHESIZER
     )
-    result = await adapter.preflight(request, (MutationStep.VERIFY,))
+    request = ReorganizationRequest(
+        trigger=OperationTrigger.MANUAL,
+        mode=ReorganizationMode.SYNTHESIZE,
+        execute=True,
+    )
+    result = await adapter.preflight(request)
     assert not result.supported
-    assert "role=judge" in result.errors[0].message
+    assert "role=synthesizer" in result.errors[0].message
     assert "schema=ProviderProbeResponse" in result.errors[0].message
     assert "ready:bool_type" in result.errors[0].message
     assert "private-value" not in result.errors[0].message
@@ -207,9 +223,7 @@ async def test_typed_exception_without_diagnostic_does_not_leak_its_message(
     request = ReorganizationRequest(
         trigger=OperationTrigger.MANUAL, mode=ReorganizationMode.VERIFY, execute=True
     )
-    adapter.begin_run(request)
-    result = await adapter.execute_step(request, MutationStep.VERIFY)
-    adapter.end_run(request)
+    result = await observed_failure(adapter, request)
     assert result.status is MutationStepStatus.FAILED
     assert "private-provider-content" not in result.errors[0].message
     assert memory.commands == []
@@ -221,11 +235,28 @@ async def test_safe_diagnostic_survives_verified_rollback_journal_and_terminal(
 ):
     from pathlib import Path
 
-    from test_reorganization_coordinator import _production_coordinator
+    import chromadb
+    from test_maintenance_order import real_coordinator
 
-    fixture = await _production_coordinator(tmp_path)
-    adapter, memory, client = failing_adapter(
-        '{"decisions":[{"confidence":"private-value"}]}'
+    fixture, real_adapter, providers = await real_coordinator(tmp_path)
+    collection = chromadb.PersistentClient(
+        path=str(fixture.layout.vector_directory)
+    ).get_collection("coordinator-test")
+    collection.update(
+        ids=["memory-1"], metadatas=[{"type": "insight", "topic": "synthetic"}]
+    )
+    collection.add(
+        ids=["memory-duplicate"],
+        documents=["synthetic memory"],
+        metadatas=[{"type": "insight", "topic": "synthetic"}],
+        embeddings=[[1.0, 0.0]],
+    )
+    failing, client = provider(
+        m.MaintenanceLlmRole.JUDGE, '{"decisions":[{"confidence":"private-value"}]}'
+    )
+    providers[m.MaintenanceLlmRole.JUDGE] = failing
+    real_adapter._pipeline.providers = m.ExplicitMaintenanceProviderRegistry(
+        llms=providers, embedding=None
     )
     request = ReorganizationRequest(
         trigger=OperationTrigger.MANUAL,
@@ -234,22 +265,19 @@ async def test_safe_diagnostic_survives_verified_rollback_journal_and_terminal(
         skip_synthesis=True,
         skip_lifecycle=True,
     )
-    adapter.begin_run(request)
-    original = fixture.mutation.execute_step
-
-    async def execute(request, step):
-        if step is MutationStep.VERIFY:
-            return await adapter.execute_step(request, step)
-        return await original(request, step)
-
-    monkeypatch.setattr(fixture.mutation, "execute_step", execute)
     result = await fixture.coordinator.run(request)
-    adapter.end_run(request)
     assert result.status is ResultStatus.FAILED_ROLLED_BACK
     assert await fixture.graph.get_node("mutation-node") is None
     assert await fixture.graph.get_node("baseline-node") is not None
     assert client.chat_completion_request.await_count == 1
-    assert memory.commands == []
+    collection = chromadb.PersistentClient(
+        path=str(fixture.layout.vector_directory)
+    ).get_collection("coordinator-test")
+    assert collection.count() == 2
+    assert all(
+        (metadata or {}).get("verification_status") is None
+        for metadata in collection.get(include=["metadatas"])["metadatas"]
+    )
     journal = Path(result.journal_path).read_text()
     terminal = _format_reorganization_result(result, dry_run=False)
     for text in [journal, terminal]:

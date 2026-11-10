@@ -2499,3 +2499,32 @@ has been executed or accepted through this documentation change.
   shared mutation/pipeline extraction and Chat delegation. No live providers,
   personal stores, config/dependency changes or delivery authorized.
 - **Next gate:** MAINT-001 conditional gate satisfied: begin D0 baselines, then bounded shared Memory pipeline implementation and Chat delegation under exact approved directive; independent OpenAI implementation validation and human UAT/acceptance remain due.
+
+
+## 2026-11-10T17:05:42.159818+00:00 — MAINT-001 implementation source freeze preparation
+
+- D0 actual baseline: Memory775+one existing skip; Commands621; CLI155;
+  recovery7; guard18. Chat1415 passes plus the preserved edited-example default
+  failure. A clean old-export default test passes. Root Ruff534, collection7157
+  test_display mismatch and existing formatting debt remain failed/unwaived.
+- Completed/interrupted v1 fixtures were generated from old source before edits.
+  Their original bytes/provenance are preserved; test-only relocation records
+  JSON-pointer path/fingerprint/checksum changes. Completed records are read via
+  the ordinary artifact reader; interrupted records use coordinator recovery.
+- Implemented exact shared contracts, operation-local created receipts, final
+  judge counts, independent fixed vectors, shared provider decoding/engine,
+  shielding/draining, lifecycle adapter and Chat observer/evidence delegation.
+  Shared capability failures gain an explicit typed error category so Chat
+  retains CAPABILITY_UNAVAILABLE without reconstructing domain policy.
+- Changed tests adapt the old per-step API to one pipeline call, intentional
+  order/verification-preflight changes, and strengthen actual rollback/diagnostic
+  evidence. No original test node was removed or skipped. Final AST/assertion
+  delta audit remains due. Unchanged definitions retain baseline formatting.
+- Earlier immutable compatibility tests reject the approved reorganize help
+  delta. They remain failed; a separate exact-cell comparison passes pilot,
+  SESSION, DIAG and accepted MEMQ observations without editing frozen oracles.
+- Focused177 passes; added v1 and cancellation proofs pass. Fresh owning suite
+  and installed receipts must bind the final committed product source.
+- Protected YAML/personal/export metadata remain exact. No live providers,
+  personal stores, dependency/config changes, push or delivery occurred.
+- **Next gate:** Finish MAINT-001 clean source freeze, build/replay and installed proof, then fresh OpenAI implementation council; human UAT/acceptance and all delivery remain separate.

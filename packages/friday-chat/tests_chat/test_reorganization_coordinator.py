@@ -66,6 +66,7 @@ from friday_transcript import (
     TranscriptSnapshotParticipant,
     TranscriptSnapshotResult,
 )
+from test_maintenance_order import SyntheticPipelineMixin, synthetic_planned_steps
 
 
 @dataclass
@@ -211,7 +212,7 @@ class OrderingTranscriptParticipant:
 
 
 @dataclass
-class SyntheticGraphMutation:
+class SyntheticGraphMutation(SyntheticPipelineMixin):
     graph: ElementXGraphStore
     calls: list[str] = field(default_factory=list)
     preflight_errors: tuple[ReorganizationError, ...] = ()
@@ -225,9 +226,9 @@ class SyntheticGraphMutation:
     async def preview(
         self,
         request: ReorganizationRequest,
-        planned_steps: tuple[MutationStep, ...],
     ) -> tuple[MutationStepResult, ...]:
         self.calls.append(f"preview:{request.mode.value}")
+        planned_steps = synthetic_planned_steps(request)
         return tuple(
             MutationStepResult(
                 step=step,
@@ -241,9 +242,9 @@ class SyntheticGraphMutation:
     async def preflight(
         self,
         request: ReorganizationRequest,
-        planned_steps: tuple[MutationStep, ...],
     ) -> MutationPreflight:
         self.calls.append(f"preflight:{request.mode.value}")
+        planned_steps = synthetic_planned_steps(request)
         return MutationPreflight(
             supported=not self.preflight_errors,
             planned_steps=planned_steps,
@@ -270,7 +271,9 @@ class SyntheticGraphMutation:
                 )
             )
         return MutationStepResult(
-            step=step,
+            step=MutationStep.VERIFY
+            if step in {MutationStep.VERIFY_PENDING, MutationStep.VERIFY_GENERATED}
+            else step,
             status=MutationStepStatus.COMPLETED,
             scanned_count=1,
             candidate_count=1,
@@ -1023,7 +1026,8 @@ async def test_mutation_and_rollback_fault_boundaries_are_fail_safe(
         MutationStep.DEDUPE,
         MutationStep.PRUNE,
         MutationStep.SYNTHESIZE,
-        MutationStep.VERIFY,
+        MutationStep.VERIFY_PENDING,
+        MutationStep.VERIFY_GENERATED,
         MutationStep.LIFECYCLE,
     ],
 )

@@ -47,11 +47,11 @@ from friday_chat.turns.models import ChatModelResponse, InteractionTurn, ToolCal
 
 if TYPE_CHECKING:
     from friday_memory import MemoryRecoveryParticipant
+    from friday_memory.maintenance.provider_contracts import LifecycleStepReport
     from friday_transcript import TranscriptSnapshotParticipant
 
     from friday_chat.reorganization.coordinator import MaintenanceMutationAdapter
     from friday_chat.reorganization.layout import FridayChatMaintenanceLayout
-    from friday_chat.reorganization.mutation import LifecycleStepReport
 
 Message = Mapping[str, Any]
 
@@ -1021,7 +1021,7 @@ class FakeMaintenanceService:
 
     async def preview_reorganization_lifecycle(self) -> LifecycleStepReport:
         """Return a provider-free fake lifecycle preview."""
-        from friday_chat.reorganization.mutation import LifecycleStepReport
+        from friday_memory.maintenance.provider_contracts import LifecycleStepReport
 
         return LifecycleStepReport(
             succeeded=True,
@@ -1032,7 +1032,7 @@ class FakeMaintenanceService:
 
     async def run_reorganization_lifecycle(self) -> LifecycleStepReport:
         """Return a provider-free fake lifecycle execution report."""
-        from friday_chat.reorganization.mutation import LifecycleStepReport
+        from friday_memory.maintenance.provider_contracts import LifecycleStepReport
 
         self.actions.append("run_reorganization_lifecycle")
         return LifecycleStepReport(
