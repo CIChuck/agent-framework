@@ -60,7 +60,107 @@ from friday_transcript import (
     TranscriptEntry,
     TranscriptSession,
 )
-from test_maintenance_order import SyntheticPipelineMixin, synthetic_planned_steps
+
+
+def synthetic_planned_steps(request):
+    from friday_chat.reorganization.coordinator import to_memory_request
+    from friday_memory.maintenance.pipeline import MemoryMaintenancePipeline
+
+    return tuple(
+        MutationStep(s.value)
+        for s in MemoryMaintenancePipeline.planned_stages(to_memory_request(request))
+    )
+
+
+class SyntheticPipelineMixin:
+    """Test-only application-envelope fake; real domain proofs use real Memory."""
+
+    async def execute_pipeline(self, request, *, run_id, observer, boundary):
+        from friday_memory.maintenance.mutation import (
+            MemoryMutationVerification,
+            MemoryVerificationCounts,
+        )
+        from friday_memory.maintenance.pipeline import (
+            MemoryMaintenancePipeline,
+            MemoryMaintenanceRunResult,
+            MemoryMaintenanceStageReceipt,
+            MemoryMaintenanceStageResult,
+        )
+
+        self.begin_run(request)
+        stages = []
+        try:
+            for i, stage in enumerate(
+                MemoryMaintenancePipeline.planned_stages(request)
+            ):
+                before = MemoryMaintenanceStageReceipt(
+                    operation_id=run_id, sequence=i, stage=stage
+                )
+
+                async def run_stage(stage=stage, before=before):
+                    await observer.before_stage(before)
+                    if MemoryMaintenancePipeline._skipped(request, stage):
+                        result = MemoryMaintenanceStageResult(
+                            stage=stage, receipt=before, status="skipped"
+                        )
+                    else:
+                        receipt = before.model_copy(
+                            update={
+                                "plan_id": None
+                                if stage.value == "lifecycle"
+                                else "a" * 64,
+                                "selection_sha256": "b" * 64
+                                if stage.value
+                                in {"verify", "verify_pending", "verify_generated"}
+                                else None,
+                            }
+                        )
+                        await observer.stage_planned(receipt)
+                        old = await self.execute_step(
+                            request, MutationStep(stage.value)
+                        )
+                        counts = (
+                            MemoryVerificationCounts(
+                                selected=old.candidate_count or 0,
+                                verified=old.candidate_count or 0,
+                                rejected=0,
+                                uncertain=0,
+                            )
+                            if stage.value
+                            in {"verify", "verify_pending", "verify_generated"}
+                            else None
+                        )
+                        result = MemoryMaintenanceStageResult(
+                            stage=stage,
+                            receipt=receipt,
+                            status=old.status.value,
+                            scanned_count=old.scanned_count,
+                            candidate_count=old.candidate_count,
+                            changed_count=old.changed_count,
+                            verification_counts=counts,
+                        )
+                    await observer.after_stage(result)
+                    return result
+
+                stages.append(await boundary.run_atomic(run_stage))
+
+            async def post():
+                await observer.before_postconditions()
+                old = await self.verify_postconditions(request)
+                result = MemoryMutationVerification(verified=old.verified)
+                await observer.after_postconditions(result)
+                return result
+
+            verification = await boundary.run_atomic(post)
+            return MemoryMaintenanceRunResult(
+                operation_id=run_id,
+                succeeded=verification.verified,
+                stages=tuple(stages),
+                postconditions=verification,
+            )
+        finally:
+            self.end_run(request)
+
 
 ProviderResponseT = TypeVar("ProviderResponseT", bound=StrictProviderModel)
 
