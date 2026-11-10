@@ -2707,3 +2707,18 @@ has been executed or accepted through this documentation change.
 - User YAML edits and generated state preserved. No product edits, install, model
   activation, live backend call or council. MAINT acceptance remains separate.
 - **Next gate:** Review revised INGEST-001 extraction, all-source document/512 chunking and embedding-limit contract with Tools adoption before dependency/model readiness and construction; Qwen4B illustrative only. MAINT-001 human UAT/acceptance pending. Delivery local.
+
+
+## 2026-11-10T20:40:49.807575+00:00 — command-refactor branch published for review
+
+- Chuck Russell explicitly directs commit/push/PR submission and a separate
+  INGEST-001 feature branch. Existing work was committed through ac3f9fa0.
+- Pushed feature/command-retirement to origin, preserving exact committed HEAD.
+  Opened review-ready PR #15 against master; linked it to the current thread.
+- Fresh board/dashboard/docs/metadata/aggregate-whitespace and targeted credential
+  checks pass. Product/tests/scripts/lock remain byte-equal to the final reviewed
+  ae15a537 source; independent runtime receipts are inspected, not rerun.
+- Pending MAINT human UAT/acceptance and failed/unwaived gates remain explicit
+  in the PR. INGEST is planning only. No merge, release or agents authorized.
+- Uncommitted user YAML and .friday-old/ excluded; ignored exports untouched.
+- **Next gate:** Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.

@@ -1,7 +1,12 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/local. Ingestion extraction/chunking and embedding-limit
+**Status:** started/pushed. Ingestion extraction/chunking and embedding-limit
 planning awaits document review; MAINT-001 human UAT/acceptance remains pending.
+
+**Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
+is open against `master` from `feature/command-retirement`. Publication does not
+complete MAINT UAT/acceptance or authorize INGEST construction. The next scoped
+branch is `feature/cmd-ingest-001`, based on this submission while review is pending.
 
 **Working-folder update — 2026-11-05:** The maintainer changed direction:
 current command-first and Friday TUI planning is consolidated in the
@@ -86,7 +91,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Review revised INGEST-001 extraction, all-source document/512 chunking and embedding-limit contract with Tools adoption before dependency/model readiness and construction; Qwen4B illustrative only. MAINT-001 human UAT/acceptance pending. Delivery local.
+**Next gate:** Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

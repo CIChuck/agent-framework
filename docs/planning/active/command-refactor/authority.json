@@ -6,7 +6,7 @@
   "decision": "MAINT-001 remains independently verified; INGEST extraction, shared all-source chunking, embedding limits and Tools adoption are proposed planning only",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Review revised INGEST-001 extraction, all-source document/512 chunking and embedding-limit contract with Tools adoption before dependency/model readiness and construction; Qwen4B illustrative only. MAINT-001 human UAT/acceptance pending. Delivery local.",
+  "current_scope": "Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.",
   "product_code_authority": "Granted only for exact CD-CMD-MAINT-001 scope through conditional approval and round4 activation; no acceptance/delivery.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1907,7 +1907,7 @@
     "council": "not_invoked; maintainer document review first",
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Review revised INGEST-001 extraction, all-source document/512 chunking and embedding-limit contract with Tools adoption before dependency/model readiness and construction; Qwen4B illustrative only. MAINT-001 human UAT/acceptance pending. Delivery local.",
+    "next_gate": "Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -1980,5 +1980,20 @@
       "test_store": "fresh/disposable; no legacy migration/re-embedding; no reset performed"
     },
     "discussion_decisions": "validation/document-ingestion/discussion-decisions.json"
+  },
+  "command_refactor_publication": {
+    "status": "pushed_pr_open",
+    "authorized_by": "Chuck Russell",
+    "authorized_at": "2026-11-10",
+    "branch": "feature/command-retirement",
+    "submitted_head": "ac3f9fa0bdadf95a6fc76d40b39fbc077b53da96",
+    "base": "master",
+    "base_sha": "6f291ca5755a616d9185c86dff104b660a1fba8c",
+    "pull_request": "https://github.com/CIChuck/agent-framework/pull/15",
+    "evidence": "validation/delivery/command-retirement-publication.json",
+    "next_branch": "feature/cmd-ingest-001",
+    "merge_or_release_authority": "not_granted",
+    "maint_acceptance": "pending",
+    "ingest_construction": "not_granted"
   }
 }

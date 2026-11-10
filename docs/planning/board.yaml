@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-11-09'
+updated: '2026-11-10'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -711,8 +711,8 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Review revised INGEST-001 extraction, all-source document/512 chunking and embedding-limit contract with Tools adoption before dependency/model readiness and construction; Qwen4B illustrative only. MAINT-001 human UAT/acceptance pending. Delivery local."
-  delivery_state: local
+  next_gate: "Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed."
+  delivery_state: pushed
   branch: feature/command-retirement
   depends_on: []
   validation:
@@ -3092,3 +3092,10 @@ events:
   action: reconciled bounded MAINT-001 implementation council as VERIFIED
   note: Astra9.5 and Sol9.6 meet the conditional threshold with no mandatory findings. Targeted human UAT and separate acceptance remain pending; delivery local.
   evidence: docs/planning/active/command-refactor/validation/maintenance/implementation/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-10T20:40:49+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> pushed
+  note: Chuck Russell authorized branch publication and PR submission; feature/command-retirement is pushed and PR 15 is open against master. Human acceptance and INGEST construction remain separate.
+  evidence: https://github.com/CIChuck/agent-framework/pull/15; head ac3f9fa0bdadf95a6fc76d40b39fbc077b53da96

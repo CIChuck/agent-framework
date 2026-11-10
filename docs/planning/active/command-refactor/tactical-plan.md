@@ -14,7 +14,7 @@ manifest; it must precede an approved implementation directive and code.
 
 MAINT-001 remains independently VERIFIED; human UAT/acceptance remain pending.
 
-**Next gate:** Review revised INGEST-001 extraction, all-source document/512 chunking and embedding-limit contract with Tools adoption before dependency/model readiness and construction; Qwen4B illustrative only. MAINT-001 human UAT/acceptance pending. Delivery local.
+**Next gate:** Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.
 
 ## Separate MAINT closeout and historical checkpoints
 
