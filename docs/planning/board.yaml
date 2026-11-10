@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Run the targeted verification diagnostic retest in a restarted Chat process; capture the new run ID and safe role/model/finish/field evidence. Human UAT remains stopped; functional verification, quote/ingest repairs and acceptance remain pending.
+  next_gate: Reconcile fresh OpenAI review of the shared entity-quote and ingestion repairs, then hand back one combined three-issue retest. Human UAT and acceptance remain pending.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -3007,3 +3007,10 @@ events:
   action: reconciled bounded verification diagnostics
   note: Corrected candidate3969e4d4 independently VERIFIED; initial BLOCKED review preserved, no waiver. Targeted operator retest next; underlying failure and UAT still pending. Initiative started/local.
   evidence: docs/planning/active/command-refactor/validation/memory-queries/uat-diagnostics/verified-report.md
+- task: friday-command-refactor
+  at: '2026-11-10T02:58:56.992249+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized shared quote and ingestion repairs
+  note: Fix both remaining UAT issues with shared reusable ownership; maintainer will retest3 issues together. Future councils OpenAI Astra/Sol only. No acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/remediation/REM-CMD-MEMQ-UAT-003-shared-quote-ingest.md

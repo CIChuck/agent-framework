@@ -98,6 +98,18 @@ def _validate_invocation(
         raise ValueError("Request does not match this memory query handler")
 
 
+def _entity_name(args: tuple[str, ...]) -> str:
+    name = " ".join(args)
+    if (
+        len(name) >= 2
+        and name[0] in {"'", '"'}
+        and name[-1] == name[0]
+        and name[1:-1].strip()
+    ):
+        return name[1:-1]
+    return name
+
+
 def build_memory_query_handlers(port: MemoryQueryPort) -> Mapping[str, CommandHandler]:
     """Store the port without inspecting it and return fresh immutable handlers."""
 
@@ -141,7 +153,7 @@ def build_memory_query_handlers(port: MemoryQueryPort) -> Mapping[str, CommandHa
         if not available():
             return CommandOutcome(data=MemoryUnavailableData("runtime_missing"))
         nodes_only = bool(request.args) and request.args[0] == "nodes"
-        name = " ".join(request.args) if request.args and not nodes_only else None
+        name = _entity_name(request.args) if request.args and not nodes_only else None
         data = await port.graph_snapshot(name, not nodes_only)
         if type(data) is not GraphData:
             raise TypeError("Expected a GraphData")

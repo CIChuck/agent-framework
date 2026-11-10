@@ -317,7 +317,7 @@ exports and records provider options separately from normalized generation.
 
 ## FU-009: Omit Absent Ingestion Description Metadata
 
-Status: proposed; no repair authority
+Status: shared repair implemented under REM-CMD-MEMQ-UAT-003; independent review pending
 Discovered During: MEMQ-001 D2 persisted-listing validation, 2026-11-09
 Framework Package: `packages/friday-memory` / public Chroma metadata boundary;
 the caller constructing this metadata is Friday Chat's FrameworkMemoryAdapter.
@@ -340,6 +340,12 @@ with missing, empty and explicit descriptions; persisted metadata and listing
 groups/counts; regression against explicit-description ingestion.
 Source Evidence: [MEMQ D2 round1 reconciliation](../../active/command-refactor/validation/memory-queries/implementation/d2/council-round1/report.md),
 including all three independently reproduced paired controls; [CMD-F05](../friday-tui-command-followups/README.md).
+
+
+Current repair: reusable Friday Memory metadata builder; Chat calls it in both
+branches. Real disposable Chroma command tests cover omitted/empty/explicit
+descriptions, counts/protection/listing/re-ingest; human UAT remains pending.
+[Repair evidence](../../active/command-refactor/validation/memory-queries/uat-shared-repair/README.md).
 
 ## FU-010: Preserve Maintenance Verification Response Diagnostics
 

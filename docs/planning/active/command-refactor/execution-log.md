@@ -2250,3 +2250,27 @@ has been executed or accepted through this documentation change.
   The agent ran no live provider or personal-store operation. Quote/ingest
   repairs, populated-meta UAT and maintainer acceptance remain pending.
 - **Next gate:** Run the targeted verification diagnostic retest in a restarted Chat process; capture the new run ID and safe role/model/finish/field evidence. Human UAT remains stopped; functional verification, quote/ingest repairs and acceptance remain pending.
+
+## 2026-11-10T02:58:56.992249+00:00 — shared entity/ingestion repair authorized
+
+- Maintainer requested both remaining fixes and one combined retest of all3
+  issues, then explicitly said Proceed. Scope/approval are recorded in
+  REM-CMD-MEMQ-UAT-003; shared Commands and Memory own reusable behavior.
+- Preserve all3 dirty files, exports, external state and prior evidence. No
+  paid provider, personal-store operation, YAML, budget or maintenance changes.
+- Future councils use OpenAI GPT-6 Astra / GPT-6.1 Sol only; no Claude Opus seats.
+- **Next gate:** Implement and independently verify the authorized shared entity-quote and optional-ingest-description repairs, then hand back one combined retest with verification diagnostics. Human UAT and acceptance remain pending.
+
+## 2026-11-10T03:10:22.398045+00:00 — shared quote/ingestion candidate ready
+
+- Shared Commands owns one-pair entity quote normalization; shared Memory owns
+  absent optional description metadata; Chat delegates both ingestion branches.
+- Focused37, Commands621, controlled Chat1420/5skip, CLI155, Memory183 pass.
+  Real graph/Chroma stores are disposable; no paid provider/user-store call.
+-4 mutants have named call-phase assertion failures; control28 passes. Static
+  checks and no-new-debt pass; raw dirty-example and baseline debt remain unwaived.
+- Existing UAT/YAML/exports/external state remain preserved. New companion
+  uat/memq-repair-retest.md provides all3 retests without rewriting user notes.
+- Candidate awaits fresh OpenAI read-only verification; no human acceptance,
+  functional verification-reply repair, push or delivery follows automatically.
+- **Next gate:** Reconcile fresh OpenAI review of the shared entity-quote and ingestion repairs, then hand back one combined three-issue retest. Human UAT and acceptance remain pending.

@@ -745,7 +745,7 @@ async def test_memory_query_metadata_and_frozen_cases(tmp_path, monkeypatch):
             "tuple",
         )
     }
-    counts = [0, 0, 0]
+    counts = [0, 0, 0, 0]
     for row, expected in zip(actual["cases"], FIXTURE["cases"], strict=True):
         assert row["case"] == expected["case"]
         if row["case"] in kind_refusals:
@@ -759,10 +759,22 @@ async def test_memory_query_metadata_and_frozen_cases(tmp_path, monkeypatch):
             # These six synthetic attribute-fallback rows are superseded by
             # the real and fake typed listing tests, never claimed unchanged.
             counts[2] += 1
+        elif row["case"] == "entities:quoted":
+            changed = json.loads(json.dumps(expected))
+            replacements = {
+                "memory.list_entities:'\"a b\"'": "memory.list_entities:'a b'",
+                "memory.list_relationships:'\"a b\"'": "memory.list_relationships:'a b'",
+            }
+            assert all(changed["events"].count(event) == 1 for event in replacements)
+            changed["events"] = [
+                replacements.get(event, event) for event in changed["events"]
+            ]
+            assert row == changed
+            counts[3] += 1
         else:
             assert row == expected, row["case"]
             counts[0] += 1
-    assert counts == [68, 2, 6]
+    assert counts == [67, 2, 6, 1]
     # Reuse the accepted package-local controls for all retained families.
     from test_command_diagnostics import test_diagnostic_metadata_and_frozen_cases
 

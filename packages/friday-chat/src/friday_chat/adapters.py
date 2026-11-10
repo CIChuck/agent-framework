@@ -54,6 +54,7 @@ from friday_memory import (
 )
 from friday_memory.context.budget_monitor import ContextBudgetMonitor
 from friday_memory.ingestion.mcp import MCPMemoryIngester
+from friday_memory.ingestion.metadata import build_ingested_file_metadata
 from friday_memory.maintenance import (
     IncrementalGraphMaintainer,
     IncrementalMaintenanceConfig,
@@ -390,19 +391,13 @@ class FrameworkMemoryAdapter:
         if len(chunks) == 1:
             await self.controller.store_document(
                 chunks[0],
-                {
-                    "source": source_path,
-                    "description": description,
-                    "type": "ingested_file",
-                },
+                build_ingested_file_metadata(source_path, description),
                 protected=True,
             )
             return 1
         metadatas = [
             {
-                "source": source_path,
-                "description": description,
-                "type": "ingested_file",
+                **build_ingested_file_metadata(source_path, description),
                 "chunk_index": index,
                 "chunk_count": len(chunks),
             }

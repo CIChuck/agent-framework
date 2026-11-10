@@ -765,7 +765,7 @@ async def test_record_kind_and_graph_selection():
         ((Text("nodes"),), (None, False)),
         (("NODES",), ("NODES", True)),
         (("Ada", "Lovelace"), ("Ada Lovelace", True)),
-        (('"Ada', 'Lovelace"'), ('"Ada Lovelace"', True)),
+        (('"Ada', 'Lovelace"'), ("Ada Lovelace", True)),
         (("",), ("", True)),
         (("", "a", ""), (" a ", True)),
     ):
