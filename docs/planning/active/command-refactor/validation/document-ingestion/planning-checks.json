@@ -1,21 +1,10 @@
 {
   "unit": "REM-CMD-INGEST-001",
+  "round": 2,
   "status": "planning_checks_only",
-  "baseline": "3f0490cbaf4755ea67924490ce86e3a296466e83",
-  "recorded_at": "2026-11-10T21:02:36.470193+00:00",
-  "pins": {
-    "remediation/REM-CMD-INGEST-001-pdf-docx.md": "7cc7d382a725ed647f966a84f5513bfce84df28502667c14c63bfdce05491b7e",
-    "proposals/tools-document-adoption.md": "dccc9e8a02bd257479fde759666f7f15a238172628ca6dd2c4f15e3f2700e218",
-    "validation/document-ingestion/discussion-decisions.json": "1d34126facfa5e483b880003d42c0ac30b90ba4cac026e2e9b6bcc5f917fcc0b",
-    "validation/document-ingestion/format-expansion.json": "93229156bcec385b07f491ce960fa61a99a2d3d26e2c585549d19c908d8c206f",
-    "validation/document-ingestion/assessment.md": "fc681e1c483b3acb400b5a5854b9208b66c4401fc4a7455d778ca80b7b475f7f",
-    "validation/document-ingestion/assessment.json": "ade8a16263c632fa68e786cae9145978798e75a704e1c0fe85f9f0a90000d4b3",
-    "validation/document-ingestion/certifi-security-requirement.json": "4aa555cd6387d21b52b2b1d83b031c51bb480d17814664689706f8502e4b3774",
-    "validation/document-ingestion/branch-handoff.md": "245cb526887a067b5a2cb207f0db6f2ed92b53cc5b59d66db5ed6e45eec611c8",
-    "validation/delivery/command-retirement-publication.json": "7f50c2a073bee24b854b413cc36a7d001a2b1e79d7b0c9f5dfe92761fcf17fb8",
-    "validation/delivery/command-retirement-merge.json": "5f68a29339a6705a144d014211addcf9dc5b9e7f77544baa4ca22727428e802e",
-    "validation/document-ingestion/council-round1/roster.json": "5419b122e94d7bf786702c6adcce2f90e3a79b10b67d9af1686035b359f3bbed"
-  },
+  "outcome": "PASS",
+  "recorded_at": "2026-11-10T21:49:19.404247+00:00",
+  "baseline": "4f9cb13a7a868ec28305a6fe6445007cd3727532",
   "checks": [
     {
       "check": "board",
@@ -68,11 +57,28 @@
         "scripts/check-documentation-lifecycle.py"
       ],
       "exit": 0,
-      "stdout": "Documentation lifecycle validation passed: 978 Markdown files checked\n",
+      "stdout": "Documentation lifecycle validation passed: 982 Markdown files checked\n",
       "stderr": ""
     },
     {
-      "check": "owned_document_whitespace",
+      "check": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "check": "whitespace",
       "argv": [
         "git",
         "diff",
@@ -83,26 +89,28 @@
       "exit": 0,
       "stdout": "",
       "stderr": ""
-    },
-    {
-      "check": "planning_scope_and_yaml_examples",
-      "exit": 0,
-      "detail": "Three YAML examples parse; decisions/illustrative route agree; execution log append-only; MAINT object preserved. This is not product schema/runtime validation."
     }
   ],
-  "protected_original_files_matched": 16671,
-  "six_preserved_metadata_records": "matched",
-  "maint_implementation_object": "unchanged",
-  "code_dependencies_lock_changes": "none by this task",
+  "protected_entries_matched": 17524,
+  "preserved_metadata_records": 6,
+  "maint_and_other_unit_authority": "unchanged",
+  "logical_index_sha256_before_status": "b83fdda9d89357d379752db47992d67801b0a4e149d9dc659e9118453c0b2b20",
+  "yaml_examples": 3,
+  "pins": {
+    "remediation/REM-CMD-INGEST-001-pdf-docx.md": "0b389b419e2e2c927ead790d96e172a73799ebf8be1b19d2175e830a78f60d2d",
+    "proposals/tools-document-adoption.md": "1405da53d84143b20d590601db0c5a299f7ad6b863758ff966ee360d6eaab1a3",
+    "validation/document-ingestion/council-round2/correction-brief.json": "e2ef91282df2acec6f01313883de4af9fd6d4f30a4075469ebd3b62470f26605",
+    "validation/document-ingestion/council-iteration-authorization.json": "be44d9d72849449eb4c6c01cb322f111bb141b6cb93c592ad46292cc4a9b46d3",
+    "validation/document-ingestion/branch-handoff.md": "152b9ef43fde49786f21e5c564cb0237a3ef16b1678afc940092cbb8a8ba2a4d"
+  },
   "not_performed": [
-    "product implementation/tests",
+    "product edits/tests/builds",
     "dependency/model/counter readiness execution",
-    "package/model installation",
-    "model/backend calls",
-    "personal/test store reset or inspection",
-    "legacy migration/re-embedding",
-    "council/delegation",
+    "package/model installs",
+    "provider inference",
+    "store inspection/reset/migration",
     "MAINT UAT/acceptance",
     "delivery"
-  ]
+  ],
+  "failures": []
 }

@@ -2782,3 +2782,21 @@ has been executed or accepted through this documentation change.
 - Execution phase: planning; validation state: changes_requested. No installation,
   model activation, user-store operation, technical remediation or new council.
 - **Next gate:** Review the reconciled INGEST round1 findings and authorize a bounded document-only revision; resolve storage/cache ownership, embedding identity/capacity, Office audit and actual route scope before any new council, gate A or construction. MAINT human UAT/acceptance remain separate.
+
+
+## 2026-11-10T21:46:08.742345+00:00 — INGEST-001 document correction and bounded iteration authorized
+
+- Chuck Russell authorizes the council-derived document revision and up to three
+  additional fresh rounds (2–4), stopping with every seat VERIFIED >=9.5 and no
+  mandatory finding. Original reports remain immutable; no score averaging.
+- Proposed ownership now includes injected headless storage/cache entry, raw vs
+  derived records, durable store/graph-vector identity and complete role audit.
+  Missing capabilities refuse at embedding use; text document-default is shared
+  without Docling; local tokenizer/Office audit/execution rules are explicit.
+- Actual maintained, callable and absent web/tool routes are separated. Quoting,
+  literal flags, vector ordering, truncation and resource/cancellation advisories
+  are addressed without a new fetcher, automatic storage or runtime framework.
+- Technical proposal/companion changed; no product/tests/dependency/model/store
+  operations. MAINT authority/history and dirty/generated local state preserved.
+- Execution phase: planning; validation state: in_review (round2 design).
+- **Next gate:** Reconcile fresh Sol/Astra/Opus round2 of corrected INGEST design; repeat document-only within rounds2–4 budget until every seat VERIFIED >=9.5 with no mandatory findings. Gate A/implementation and MAINT human acceptance remain separate.

@@ -1,0 +1,134 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "round": 2,
+  "mode": "correction delta first then FULL bounded proposed design/companion",
+  "correction_base": "4f9cb13a7a868ec28305a6fe6445007cd3727532",
+  "technical_round1_candidate": "8be50b1218fc4db67fbd5d546fea9d7be6a2fd64",
+  "findings": [
+    {
+      "theme": "CR-01",
+      "finding_ids": [
+        "INGEST-R1-SOL-001",
+        "INGEST-R1-ASTRA-001",
+        "INGEST-R1-OPUS-008"
+      ],
+      "requirement": "One shared storage entry point, cache identity and honest unit sequencing",
+      "changed_sections": "Ownership: active routes/shared interfaces; companion sequence/cache",
+      "required_future_tests": [
+        "DI-19",
+        "DI-23",
+        "TD-02",
+        "TD-05",
+        "TD-10"
+      ],
+      "builder_disposition": "addressed in proposed text; independent closure not claimed"
+    },
+    {
+      "theme": "CR-02",
+      "finding_ids": [
+        "INGEST-R1-SOL-002",
+        "INGEST-R1-OPUS-001"
+      ],
+      "requirement": "Durable embedding-space identity and unbound legacy-store admission",
+      "changed_sections": "E: durable identity/fresh admission; exact store/Core paths",
+      "required_future_tests": [
+        "DI-21",
+        "DI-22"
+      ],
+      "builder_disposition": "addressed in proposed text; independent closure not claimed"
+    },
+    {
+      "theme": "CR-03",
+      "finding_ids": [
+        "INGEST-R1-OPUS-002"
+      ],
+      "requirement": "Complete query/document embedding role inventory",
+      "changed_sections": "A6/E: all embedding callers and graph/document roles",
+      "required_future_tests": [
+        "DI-22"
+      ],
+      "builder_disposition": "addressed in proposed text; independent closure not claimed"
+    },
+    {
+      "theme": "CR-04",
+      "finding_ids": [
+        "INGEST-R1-OPUS-003"
+      ],
+      "requirement": "Missing embedding-capacity fields and legacy constructors",
+      "changed_sections": "E: optional parsing/required operation capabilities and non-pool constructors",
+      "required_future_tests": [
+        "DI-18",
+        "DI-22"
+      ],
+      "builder_disposition": "addressed in proposed text; independent closure not claimed"
+    },
+    {
+      "theme": "CR-05",
+      "finding_ids": [
+        "INGEST-R1-OPUS-004"
+      ],
+      "requirement": "Document strategy for text and other non-Docling sources",
+      "changed_sections": "D: Memory-owned non-Docling block segmentation and packaging",
+      "required_future_tests": [
+        "DI-08",
+        "DI-16",
+        "DI-17"
+      ],
+      "builder_disposition": "addressed in proposed text; independent closure not claimed"
+    },
+    {
+      "theme": "CR-06",
+      "finding_ids": [
+        "INGEST-R1-OPUS-005"
+      ],
+      "requirement": "Local model-bound tokenization and nonblocking execution",
+      "changed_sections": "A assets/E: local counting and worker/cancellation contract",
+      "required_future_tests": [
+        "DI-24",
+        "DI-26"
+      ],
+      "builder_disposition": "addressed in proposed text; independent closure not claimed"
+    },
+    {
+      "theme": "CR-07",
+      "finding_ids": [
+        "INGEST-R1-OPUS-006"
+      ],
+      "requirement": "Office structural admission and observable omissions",
+      "changed_sections": "B: non-text structural admission/mapping/warnings",
+      "required_future_tests": [
+        "DI-13",
+        "DI-14",
+        "DI-25"
+      ],
+      "builder_disposition": "addressed in proposed text; independent closure not claimed"
+    },
+    {
+      "theme": "CR-08",
+      "finding_ids": [
+        "INGEST-R1-OPUS-007"
+      ],
+      "requirement": "Actual web and automatic-tool routes versus future capability",
+      "changed_sections": "Active route table/A6/DI16/DI19/TD10: no invented maintained route",
+      "required_future_tests": [
+        "DI-16",
+        "DI-19",
+        "TD-10"
+      ],
+      "builder_disposition": "addressed in proposed text; independent closure not claimed"
+    }
+  ],
+  "advisories": {
+    "INGEST-R1-SOL-003": "Mandatory-role inventory includes the direct adapter query.",
+    "INGEST-R1-ASTRA-002": "E/DI18 explicitly validates/reorders unique input indices and rejects malformed ordering.",
+    "INGEST-R1-ASTRA-003": "C/DI05 specifies reserved tokens, lookalikes, literal -- suffix and /read behavior.",
+    "OPUS-A01": "E/DI26 worker thread, admission held, late-result discard and quiescent cancellation; no hard-kill claim.",
+    "OPUS-A02": "B/DI25 exact format sniffing and single-document/ZIP refusal.",
+    "OPUS-A03": "E effective deployed per-input limits; no naive batch-size equals context assumption.",
+    "OPUS-A04": "C/DI05 and FU012 characterize/defer legacy malformed text line parsing but report truncation.",
+    "OPUS-A05": "A records separately authorized bounded hosts/assets/budgets manifest; not activated now.",
+    "OPUS-A06": "C specifies /read usage error and literal description token rules.",
+    "OPUS-A07": "Maintainer roster retained explicitly; two providers means no three-provider-diversity claim."
+  },
+  "limits": "No peer reports/verdicts/scores or builder correctness claim are evidence. Independently judge the changed text against source. Planned tests are not executed implementation proof."
+}

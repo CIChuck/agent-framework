@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Review the reconciled INGEST round1 findings and authorize a bounded document-only revision; resolve storage/cache ownership, embedding identity/capacity, Office audit and actual route scope before any new council, gate A or construction. MAINT human UAT/acceptance remain separate.",
+  "current_scope": "Reconcile fresh Sol/Astra/Opus round2 of corrected INGEST design; repeat document-only within rounds2\u20134 budget until every seat VERIFIED >=9.5 with no mandatory findings. Gate A/implementation and MAINT human acceptance remain separate.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1896,48 +1896,30 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "proposed",
     "execution_phase": "planning",
-    "validation_state": "changes_requested",
+    "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
-    "sha256": "7cc7d382a725ed647f966a84f5513bfce84df28502667c14c63bfdce05491b7e",
+    "sha256": "0b389b419e2e2c927ead790d96e172a73799ebf8be1b19d2175e830a78f60d2d",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
     "scope": "PDF/DOCX/XLSX/PPTX extraction/local PDF OCR; shared all-source document/512 chunking with document/recursive/fixed overrides; shared LLM limits/dimension checks; retained fetching, admission, metadata/protection/storage semantics",
     "implementation_approval": "not_granted",
     "council": {
-      "round": 1,
-      "status": "reconciled_changes_requested",
-      "scope": "full document/design readiness only",
-      "roster": "validation/document-ingestion/council-round1/roster.json",
-      "frozen_request": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-ingest-council-r1-inputs-qj57z4f_/review-request.json",
-      "no_construction_or_remediation_authority": true,
-      "reviewed_candidate": "8be50b1218fc4db67fbd5d546fea9d7be6a2fd64",
-      "report": "validation/document-ingestion/council-round1/report.md",
-      "reconciliation": "validation/document-ingestion/council-round1/reconciliation.json",
-      "results": {
-        "sol": {
-          "outcome": "CHANGES_REQUESTED",
-          "score": 8.1,
-          "report": "validation/document-ingestion/council-round1/sol-report.md",
-          "procedural_disposition": "no reported conduct deviation"
-        },
-        "astra": {
-          "outcome": "CHANGES_REQUESTED",
-          "score": 8.5,
-          "report": "validation/document-ingestion/council-round1/astra-report.md",
-          "procedural_disposition": "no reported conduct deviation"
-        },
-        "opus": {
-          "outcome": "CHANGES_REQUESTED",
-          "score": 7.3,
-          "report": "validation/document-ingestion/council-round1/opus-report.md",
-          "procedural_disposition": "qualified: all-command optional-lock compliance is not established"
-        }
-      }
+      "round": 2,
+      "status": "frozen_dispatch_pending",
+      "scope": "correction delta then full bounded document/design readiness only",
+      "roster": "validation/document-ingestion/council-round2/roster.json",
+      "correction_brief": "validation/document-ingestion/council-round2/correction-brief.json",
+      "prior_round": "validation/document-ingestion/council-round1/reconciliation.json",
+      "iteration_authorization": "validation/document-ingestion/council-iteration-authorization.json",
+      "scores_required_each": 9.5,
+      "last_permitted_round": 4,
+      "no_construction_or_gate_a_authority": true,
+      "frozen_request": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r2-p8slwm9l/inputs/review-request.json"
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Review the reconciled INGEST round1 findings and authorize a bounded document-only revision; resolve storage/cache ownership, embedding identity/capacity, Office audit and actual route scope before any new council, gate A or construction. MAINT human UAT/acceptance remain separate.",
+    "next_gate": "Reconcile fresh Sol/Astra/Opus round2 of corrected INGEST design; repeat document-only within rounds2\u20134 budget until every seat VERIFIED >=9.5 with no mandatory findings. Gate A/implementation and MAINT human acceptance remain separate.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -1991,7 +1973,7 @@
         "YAML",
         "built-in default"
       ],
-      "owner": "shared Memory policy, injected Tools Docling adapter; minimal Core contracts; Chat/TUI consumers",
+      "owner": "Memory policy and text block strategy; injected Tools document strategy; Core ingestion-entry; shared headless composition",
       "legacy_character_settings": "not token aliases or hidden defaults for the new ingestion path"
     },
     "embedding_decisions": {
@@ -2007,7 +1989,7 @@
       "illustrative_max_input_tokens": 32768,
       "illustrative_expected_dimensions": 2560,
       "active_model_change": "none by this planning task",
-      "test_store": "fresh/disposable; no legacy migration/re-embedding; no reset performed"
+      "test_store": "fresh bound stores for all new pipeline/preparation changes; legacy-unbound refuses; no migration/reset"
     },
     "discussion_decisions": "validation/document-ingestion/discussion-decisions.json",
     "branch": "feature/cmd-ingest-001",
@@ -2015,7 +1997,8 @@
     "parent_pull_request": "https://github.com/CIChuck/agent-framework/pull/15",
     "branch_handoff": "validation/document-ingestion/branch-handoff.md",
     "merged_parent_baseline": "c36e7ee51a9328918b9bb97712aa7f1d4a850d19",
-    "future_pull_request_base": "master"
+    "future_pull_request_base": "master",
+    "route_scope": "active local-file and smart_read storage; explicit supplied web/tool payload capability; no new maintained web/automatic route"
   },
   "command_refactor_publication": {
     "status": "merged_remote_branch_deleted",

@@ -36,7 +36,8 @@ their candidate-specific meaning. MAINT human UAT/acceptance remain pending.
 The canonical initiative remains started, delivery pushed, with current
 `implementation_authority: design_only`. This narrows authority for the new
 planning slice; it does not rewrite earlier unit approvals or grant acceptance.
-No product implementation, council/sub-agent, merge or release is launched.
+No product implementation, merge or release is authorized. The later explicit
+iteration authority permits fresh Sol/Astra/Opus document councils only.
 
 ## Preserved local state
 
@@ -44,4 +45,4 @@ The two edited Chat example YAML files remain uncommitted and unstaged;
 `.friday-old/` and ignored exports remain untouched. Historical receipts retain
 their original branch/source identities. Do not broad-stage or clean this checkout.
 
-**Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.
+**Next gate:** Reconcile fresh Sol/Astra/Opus round2 of corrected INGEST design; repeat document-only within rounds2–4 budget until every seat VERIFIED >=9.5 with no mandatory findings. Gate A/implementation and MAINT human acceptance remain separate.

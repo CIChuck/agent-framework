@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. Ingestion extraction/chunking and embedding-limit
-planning has changes requested by council; MAINT-001 human UAT/acceptance remains pending.
+planning is corrected for council round2; MAINT-001 human UAT/acceptance remains pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -42,10 +42,15 @@ tokens across all sources, with document/recursive/fixed overrides. Model catalo
 limits/dimension checks are planned; Qwen4B remains illustrative, with no migration.
 The proposed spreadsheet/slide defaults and limits require document review.
 [Guarded source assessment](validation/document-ingestion/assessment.md)
-confirms the defect. Execution phase: planning; validation state: changes_requested.
+confirms the defect. Execution phase: planning; validation state: in_review.
 The [round1 design council](validation/document-ingestion/council-round1/report.md)
 returns Sol8.1/Astra8.5/Opus7.3, all CHANGES_REQUESTED. Opus command-discipline
 compliance is qualified as recorded; no clean formal execution claim is made.
+The maintainer authorizes bounded document correction and up to three further
+councils (rounds2–4), requiring every seat VERIFIED >=9.5 with no mandatory
+findings. [Correction brief](validation/document-ingestion/council-round2/correction-brief.json)
+and [iteration authority](validation/document-ingestion/council-iteration-authorization.json)
+bind this round; the earlier reports retain their original scope.
 No document-ingestion product construction or installation is approved or started.
 MAINT implementation verification and its pending human UAT remain unchanged.
 [Tools adoption companion](proposals/tools-document-adoption.md) explicitly tracks
@@ -96,7 +101,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Review the reconciled INGEST round1 findings and authorize a bounded document-only revision; resolve storage/cache ownership, embedding identity/capacity, Office audit and actual route scope before any new council, gate A or construction. MAINT human UAT/acceptance remain separate.
+**Next gate:** Reconcile fresh Sol/Astra/Opus round2 of corrected INGEST design; repeat document-only within rounds2–4 budget until every seat VERIFIED >=9.5 with no mandatory findings. Gate A/implementation and MAINT human acceptance remain separate.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

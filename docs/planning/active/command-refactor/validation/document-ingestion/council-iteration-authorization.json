@@ -1,0 +1,20 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "maintainer": "Chuck Russell",
+  "recorded_at": "2026-11-10T21:46:08.742345+00:00",
+  "instruction": "Yes. Make the revisions per the council and reinvoke another council round. Iterate three more times up to that until we get a 9.5 across the board.",
+  "scope": "document-only revisions for reconciled mandatory findings and bounded useful advisories; no product edits, installs, gate A, model/store operations or delivery",
+  "roster": [
+    "gpt-6.1-sol",
+    "gpt-6-astra",
+    "claude-opus-5-5"
+  ],
+  "effort": "high",
+  "additional_round_budget": 3,
+  "first_additional_round": 2,
+  "last_permitted_round": 4,
+  "success": "Every seat independently VERIFIED, no mandatory findings, each score >=9.5; no averaging or pressure to award a target score.",
+  "budget_disposition": "Explicit bounded maintainer direction for three further advisory design passes governs the skill default. This is not an implementation remediation loop or a waiver of future independent-validation/acceptance gates.",
+  "stop": "Stop early on success; otherwise return remaining findings at budget exhaustion. Unavailability or isolation failure is reported, not silently substituted or counted as VERIFIED.",
+  "after_success": "Record document readiness and hand back the separate gate-A effects/activation boundary; no automatic construction or installation."
+}

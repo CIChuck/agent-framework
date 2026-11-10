@@ -425,7 +425,8 @@ Discovered During: Maintainer report and guarded source inspection,2026-11-10;
 maintainer subsequently expanded scope to XLSX and PPTX.
 Framework Package: Friday Tools shared extraction; Friday Commands file arguments;
 Friday Chat delegation/default document dependencies; shared Memory ingestion policy,
-LLM capability/limit enforcement and minimal Core contracts. Storage engines stay unchanged.
+LLM capability/limit enforcement and minimal Core contracts. Engine replacement is excluded;
+narrow durable store-identity/query-envelope and role handoffs are proposed exceptions.
 Requested Change: Use one pinned Docling pipeline for PDF/DOCX/XLSX/PPTX extraction,
 with local PDF OCR, quoted paths, explicit format coverage and dependency/model
 requirements. Upgrade named Tools consumers through the companion adoption plan.
@@ -440,7 +441,13 @@ Tools consumers also require explicit routing, beyond adding a shared helper.
 Compatibility Risk: Exact read/ingest format/help and default closure change;
 shared tokenizer preserves unrelated commands. Freeze all four format policies
 and Tools XLSX selections/pagination before construction. No historical record
-cleanup, storage-engine change, formula calculation or slide rendering.
+cleanup, storage-engine replacement, formula calculation or slide rendering.
+Round1 source inspection found absent maintained web/automatic-tool ingestion
+routes, direct smart_read storage/cache bypass and undeclared model preparation.
+The corrected plan classifies those routes and binds fresh stores explicitly.
+A separate parser follow-up remains: malformed text `--lines*` silently selects
+100 lines. This unit preserves that text compatibility but reports effective
+limits/truncation; document inputs refuse it and the new literal `--` suffix is opaque.
 Suggested Follow-Up Tests: Genuine PDF/DOCX/scanned/multi-sheet/multi-slide fixtures
 through registry, shared extraction, public Tools and disposable Chroma. Inspect
 late markers in stored chunks, notes/tables/order and exact coverage. Refuse

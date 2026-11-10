@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Review the reconciled INGEST round1 findings and authorize a bounded document-only revision; resolve storage/cache ownership, embedding identity/capacity, Office audit and actual route scope before any new council, gate A or construction. MAINT human UAT/acceptance remain separate."
+  next_gate: "Reconcile fresh Sol/Astra/Opus round2 of corrected INGEST design; repeat document-only within rounds2–4 budget until every seat VERIFIED >=9.5 with no mandatory findings. Gate A/implementation and MAINT human acceptance remain separate."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3127,3 +3127,10 @@ events:
   action: reconciled INGEST-001 round1 deep design council
   note: All three seats CHANGES_REQUESTED (Sol8.1/Astra8.5/Opus7.3); eleven mandatory IDs consolidated into eight open themes. Opus command-discipline conformance qualified. Design-only; no remediation, new council, gate A or construction.
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round1/report.md
+- task: friday-command-refactor
+  at: '2026-11-10T21:46:08.742345+00:00'
+  actor: Codex
+  actor_role: agent
+  action: corrected INGEST design for authorized council round2
+  note: Explicit maintainer authorizes document revisions and up to three additional fresh Sol/Astra/Opus rounds; stop only with all VERIFIED >=9.5/no mandatory finding, or return remaining issues at budget. No installation, gate A, product generation or acceptance.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-iteration-authorization.json
