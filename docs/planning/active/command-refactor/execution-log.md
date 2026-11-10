@@ -2735,3 +2735,17 @@ has been executed or accepted through this documentation change.
   exact INGEST readiness/approval boundaries. All current decisions are retained.
 - Preserved user YAML/generated state; no council, model install or store reset.
 - **Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001; parent PR #15 targets master. MAINT-001 human UAT/acceptance pending. Delivery pushed.
+
+
+## 2026-11-10T20:56:50.699900+00:00 — parent PR merge reconciled on scoped INGEST branch
+
+- Maintainer reports PR #15 merged and remote branch deleted; verified GitHub
+  merged=true at c36e7ee5 and absent remote feature/command-retirement.
+- Fetched/pruned remote refs. Integrated merged master with a regular merge
+  (c7d6476358acf6a11534bfae0d912d17d432ce46); existing published planning commit is preserved.
+  No rebase, force push, local branch deletion or stash.
+- Future INGEST diffs target master. Board delivery remains pushed for this
+  active unmerged branch; the parent's merged delivery is recorded separately.
+- Product/runtime remains unchanged; no council, model install, store reset or
+  human acceptance inferred. Protected user configuration/generated state retained.
+- **Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.

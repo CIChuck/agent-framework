@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-10",
-  "decision": "Command-refactor PR #15 is published; INGEST-001 continues as design-only work on its scoped branch",
+  "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001; parent PR #15 targets master. MAINT-001 human UAT/acceptance pending. Delivery pushed.",
+  "current_scope": "Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1899,7 +1899,7 @@
     "validation_state": "not_ready",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
-    "sha256": "d97cf5299dd4a412022dce172d88581f783624615325ddb5dc4cfbce3a3bce9e",
+    "sha256": "d51d6f4064b9fd2113707c17f32d4aa61f44dd2e504982772164a3a1f0af8ea2",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
     "scope": "PDF/DOCX/XLSX/PPTX extraction/local PDF OCR; shared all-source document/512 chunking with document/recursive/fixed overrides; shared LLM limits/dimension checks; retained fetching, admission, metadata/protection/storage semantics",
@@ -1907,7 +1907,7 @@
     "council": "not_invoked; maintainer document review first",
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001; parent PR #15 targets master. MAINT-001 human UAT/acceptance pending. Delivery pushed.",
+    "next_gate": "Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -1983,10 +1983,12 @@
     "branch": "feature/cmd-ingest-001",
     "branch_base": "df62b77d551491cfb33ad2492c711036b09c9d4c",
     "parent_pull_request": "https://github.com/CIChuck/agent-framework/pull/15",
-    "branch_handoff": "validation/document-ingestion/branch-handoff.md"
+    "branch_handoff": "validation/document-ingestion/branch-handoff.md",
+    "merged_parent_baseline": "c36e7ee51a9328918b9bb97712aa7f1d4a850d19",
+    "future_pull_request_base": "master"
   },
   "command_refactor_publication": {
-    "status": "pushed_pr_open",
+    "status": "merged_remote_branch_deleted",
     "authorized_by": "Chuck Russell",
     "authorized_at": "2026-11-10",
     "branch": "feature/command-retirement",
@@ -1996,9 +1998,14 @@
     "pull_request": "https://github.com/CIChuck/agent-framework/pull/15",
     "evidence": "validation/delivery/command-retirement-publication.json",
     "next_branch": "feature/cmd-ingest-001",
-    "merge_or_release_authority": "not_granted",
+    "merge_or_release_authority": "Merge observed; no agent merge or release authority inferred",
     "maint_acceptance": "pending",
     "ingest_construction": "not_granted",
-    "latest_verified_parent_head": "df62b77d551491cfb33ad2492c711036b09c9d4c"
+    "latest_verified_parent_head": "df62b77d551491cfb33ad2492c711036b09c9d4c",
+    "merge_commit": "c36e7ee51a9328918b9bb97712aa7f1d4a850d19",
+    "merged_at": "2026-11-10T20:54:01Z",
+    "remote_branch_deleted": true,
+    "merge_evidence": "validation/delivery/command-retirement-merge.json",
+    "merge_action": "Performed externally by maintainer/GitHub; independently observed by this controller"
   }
 }

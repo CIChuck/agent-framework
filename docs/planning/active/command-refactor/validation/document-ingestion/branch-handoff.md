@@ -3,14 +3,19 @@
 Status: **planning/design only; no construction approval**.
 Working branch: `feature/cmd-ingest-001`. Created from `df62b77d551491cfb33ad2492c711036b09c9d4c` on 2026-11-10.
 
-[Parent PR #15](https://github.com/CIChuck/agent-framework/pull/15) publishes
-`feature/command-retirement` against `master`. It is open, not merged or accepted
-by this handoff. The new branch starts from its submitted head so verified
-command/Memory behavior is present without copying or rewriting history.
-While the parent is open, review future INGEST-only deltas against that parent
-head/branch; after merge, reconcile the actual merge strategy before targeting
-`master`. Do not assume a squash merge preserves parent commit ancestry.
-No second PR or merge is requested by this branch creation.
+[Parent PR #15](https://github.com/CIChuck/agent-framework/pull/15) is merged
+into `master` at `c36e7ee51a9328918b9bb97712aa7f1d4a850d19` (2026-11-10T20:54:01Z).
+GitHub confirms the regular merge parents include submitted head `df62b77d`;
+remote `feature/command-retirement` is deleted. The local historical branch is
+retained; no local branch or personal state was deleted.
+
+This branch incorporates the merged `master` through `c7d6476358acf6a11534bfae0d912d17d432ce46`,
+without rebasing or rewriting its published `070764d4` planning commit. Future
+INGEST-only PRs/reviews target `master`; the merge-base is now the merged parent,
+so the earlier 127-commit command-refactor history is not repeated in that diff.
+Only planning/status changes currently differ. No second PR, implementation or
+human acceptance is created by this reconciliation.
+[External delivery evidence](../delivery/command-retirement-merge.json).
 
 ## Bounded work
 
@@ -39,4 +44,4 @@ The two edited Chat example YAML files remain uncommitted and unstaged;
 `.friday-old/` and ignored exports remain untouched. Historical receipts retain
 their original branch/source identities. Do not broad-stage or clean this checkout.
 
-**Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001; parent PR #15 targets master. MAINT-001 human UAT/acceptance pending. Delivery pushed.
+**Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.

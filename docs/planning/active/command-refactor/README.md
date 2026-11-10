@@ -4,10 +4,11 @@
 planning awaits document review; MAINT-001 human UAT/acceptance remains pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
-is open against `master` from `feature/command-retirement`. Publication does not
-complete MAINT UAT/acceptance or authorize INGEST construction. The current scoped
-branch is `feature/cmd-ingest-001`, based on submitted head `df62b77d` while review
-is pending; [branch handoff](validation/document-ingestion/branch-handoff.md).
+is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
+The current scoped branch `feature/cmd-ingest-001` incorporates that merge while
+retaining its separate planning commit. Merge does not complete MAINT human UAT
+or acceptance or authorize INGEST construction; see the
+[branch handoff](validation/document-ingestion/branch-handoff.md).
 
 **Working-folder update — 2026-11-05:** The maintainer changed direction:
 current command-first and Friday TUI planning is consolidated in the
@@ -92,7 +93,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001; parent PR #15 targets master. MAINT-001 human UAT/acceptance pending. Delivery pushed.
+**Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

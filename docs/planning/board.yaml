@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001; parent PR #15 targets master. MAINT-001 human UAT/acceptance pending. Delivery pushed."
+  next_gate: "Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3106,3 +3106,10 @@ events:
   action: isolated INGEST-001 planning on a scoped feature branch
   note: Chuck Russell directs the branch split after publication. Parent PR 15/head df62b77d is preserved. Current branch is feature/cmd-ingest-001 with design_only authority; no construction, model switch, store reset, council or acceptance granted.
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md
+- task: friday-command-refactor
+  at: '2026-11-10T20:56:50.699900+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled merged parent PR 15 and integrated master into INGEST branch
+  note: GitHub reports PR 15 merged at c36e7ee5; remote retirement branch is absent. Regular branch merge preserves 070764d4 and user edits without rebase/force-push. Current INGEST branch remains design_only/pushed; parent merge is a separate delivery fact, not MAINT acceptance or INGEST implementation authority.
+  evidence: docs/planning/active/command-refactor/validation/delivery/command-retirement-merge.json

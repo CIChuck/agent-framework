@@ -7,6 +7,8 @@ Working branch: `feature/cmd-ingest-001`, based on published command-refactor he
 `df62b77d551491cfb33ad2492c711036b09c9d4c` ([PR #15](https://github.com/CIChuck/agent-framework/pull/15)).
 [Branch handoff](../validation/document-ingestion/branch-handoff.md) records scope
 and construction boundaries. The assessment baseline above remains historical.
+The parent is now merged into `master` at `c36e7ee5`; this scoped branch
+incorporates that merge. Future INGEST-only review targets `master`.
 
 No product edits, installs, model downloads or council invocation are authorized
 by placement in this packet. The requested planning work is authorized.
