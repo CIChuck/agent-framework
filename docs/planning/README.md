@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Reconcile fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 round1 deep design review of REM-CMD-INGEST-001; dependency/model readiness and exact construction approval remain pending. MAINT human UAT/acceptance separate. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Review the reconciled INGEST round1 findings and authorize a bounded document-only revision; resolve storage/cache ownership, embedding identity/capacity, Office audit and actual route scope before any new council, gate A or construction. MAINT human UAT/acceptance remain separate. |
 
 ## Completed
 

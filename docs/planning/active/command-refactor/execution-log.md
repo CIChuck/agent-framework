@@ -2762,3 +2762,23 @@ has been executed or accepted through this documentation change.
   reports or controller reasoning. Review includes source feasibility and
   planned proof, not an invented claim that future implementation exists.
 - **Next gate:** Reconcile fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 round1 deep design review of REM-CMD-INGEST-001; dependency/model readiness and exact construction approval remain pending. MAINT human UAT/acceptance separate.
+
+
+## 2026-11-10T21:25:05.426858+00:00 — INGEST-001 deep design council reconciled, changes requested
+
+- All requested seats terminal: Sol8.1, Astra8.5, Opus7.3, each CHANGES_REQUESTED.
+  Eleven raw mandatory IDs map to eight open planning themes; none is waived
+  by score or majority. Exact reports, boundary receipts and immutable inputs
+  are preserved under validation/document-ingestion/council-round1/.
+- Storage/cache unit ownership, durable embedding identity, role inventory,
+  missing capacity fields, non-Docling defaults, tokenizer execution, Office
+  structural admission and absent web/automatic-tool routes require disposition.
+- Opus discloses two Git calls without explicit optional-lock refusal. Complete
+  all-command conformance is not certified; source findings remain qualified
+  evidence. Start/end and controller frozen integrity pass. No cleanup/reissue.
+- Controller source checks confirm the key handoff/role hazards; no runtime
+  behavior or selected-release readiness is claimed. Technical proposal and
+  companion bytes remain unchanged. Product/tests/lock/config remain preserved.
+- Execution phase: planning; validation state: changes_requested. No installation,
+  model activation, user-store operation, technical remediation or new council.
+- **Next gate:** Review the reconciled INGEST round1 findings and authorize a bounded document-only revision; resolve storage/cache ownership, embedding identity/capacity, Office audit and actual route scope before any new council, gate A or construction. MAINT human UAT/acceptance remain separate.

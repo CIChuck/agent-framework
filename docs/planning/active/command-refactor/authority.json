@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Reconcile fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 round1 deep design review of REM-CMD-INGEST-001; dependency/model readiness and exact construction approval remain pending. MAINT human UAT/acceptance separate.",
+  "current_scope": "Review the reconciled INGEST round1 findings and authorize a bounded document-only revision; resolve storage/cache ownership, embedding identity/capacity, Office audit and actual route scope before any new council, gate A or construction. MAINT human UAT/acceptance remain separate.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1896,7 +1896,7 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "proposed",
     "execution_phase": "planning",
-    "validation_state": "in_review",
+    "validation_state": "changes_requested",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "7cc7d382a725ed647f966a84f5513bfce84df28502667c14c63bfdce05491b7e",
@@ -1906,15 +1906,38 @@
     "implementation_approval": "not_granted",
     "council": {
       "round": 1,
-      "status": "authorized_dispatch_pending",
+      "status": "reconciled_changes_requested",
       "scope": "full document/design readiness only",
       "roster": "validation/document-ingestion/council-round1/roster.json",
       "frozen_request": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-ingest-council-r1-inputs-qj57z4f_/review-request.json",
-      "no_construction_or_remediation_authority": true
+      "no_construction_or_remediation_authority": true,
+      "reviewed_candidate": "8be50b1218fc4db67fbd5d546fea9d7be6a2fd64",
+      "report": "validation/document-ingestion/council-round1/report.md",
+      "reconciliation": "validation/document-ingestion/council-round1/reconciliation.json",
+      "results": {
+        "sol": {
+          "outcome": "CHANGES_REQUESTED",
+          "score": 8.1,
+          "report": "validation/document-ingestion/council-round1/sol-report.md",
+          "procedural_disposition": "no reported conduct deviation"
+        },
+        "astra": {
+          "outcome": "CHANGES_REQUESTED",
+          "score": 8.5,
+          "report": "validation/document-ingestion/council-round1/astra-report.md",
+          "procedural_disposition": "no reported conduct deviation"
+        },
+        "opus": {
+          "outcome": "CHANGES_REQUESTED",
+          "score": 7.3,
+          "report": "validation/document-ingestion/council-round1/opus-report.md",
+          "procedural_disposition": "qualified: all-command optional-lock compliance is not established"
+        }
+      }
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Reconcile fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 round1 deep design review of REM-CMD-INGEST-001; dependency/model readiness and exact construction approval remain pending. MAINT human UAT/acceptance separate.",
+    "next_gate": "Review the reconciled INGEST round1 findings and authorize a bounded document-only revision; resolve storage/cache ownership, embedding identity/capacity, Office audit and actual route scope before any new council, gate A or construction. MAINT human UAT/acceptance remain separate.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
