@@ -81,6 +81,56 @@ def _identifier(value: str, limit: int) -> str:
     return "unavailable"
 
 
+def _schema_node(node: object, root: dict[str, object]) -> dict[str, object]:
+    """Follow local schema references only; unknown paths stay redacted."""
+    seen: set[str] = set()
+    while isinstance(node, dict):
+        reference = node.get("$ref")
+        if reference is None:
+            return node
+        if (
+            not isinstance(reference, str)
+            or not reference.startswith("#/")
+            or reference in seen
+        ):
+            break
+        seen.add(reference)
+        node = root
+        for part in reference[2:].split("/"):
+            if not isinstance(node, dict):
+                return {}
+            node = node.get(part.replace("~1", "/").replace("~0", "~"))
+    return {}
+
+
+def _validation_path(
+    location: tuple[str | int, ...], root: dict[str, object]
+) -> tuple[str | int, ...]:
+    node: object = root
+    path: list[str | int] = []
+    for part in location[:6]:
+        current = _schema_node(node, root)
+        if isinstance(part, str):
+            properties = current.get("properties")
+            if isinstance(properties, dict) and part in properties:
+                path.append(
+                    part if _identifier(part, 64) != "unavailable" else "<field>"
+                )
+                node = properties[part]
+            else:
+                path.append("<field>")
+                node = current.get("additionalProperties")
+        else:
+            prefixes = current.get("prefixItems")
+            if isinstance(prefixes, list) and 0 <= part < len(prefixes):
+                node = prefixes[part]
+            else:
+                node = current.get("items")
+            is_array = current.get("type") == "array"
+            path.append(part if is_array and 0 <= part <= 100_000 else "<index>")
+    return tuple(path)
+
+
 def response_diagnostic(
     *,
     role: str,
@@ -90,35 +140,13 @@ def response_diagnostic(
     error: ValidationError | None = None,
 ) -> ResponseDiagnostic:
     """Redact unknown response keys and omit validation inputs/messages/context."""
-    allowed_fields: set[str] = set()
-
-    def collect_fields(node: object) -> None:
-        if isinstance(node, dict):
-            properties = node.get("properties")
-            if isinstance(properties, dict):
-                allowed_fields.update(properties)
-            for child in node.values():
-                collect_fields(child)
-        elif isinstance(node, list):
-            for child in node:
-                collect_fields(child)
-
-    collect_fields(response_model.model_json_schema())
+    schema = response_model.model_json_schema()
     issues = []
     if error is not None:
         for issue in error.errors(
             include_input=False, include_context=False, include_url=False
         )[:5]:
-            path = tuple(
-                (part if 0 <= part <= 100_000 else "<index>")
-                if isinstance(part, int)
-                else (
-                    part
-                    if part in allowed_fields and _identifier(part, 64) != "unavailable"
-                    else "<field>"
-                )
-                for part in issue["loc"][:6]
-            )
+            path = _validation_path(issue["loc"], schema)
             code = issue["type"]
             issues.append(
                 ResponseValidationIssue(

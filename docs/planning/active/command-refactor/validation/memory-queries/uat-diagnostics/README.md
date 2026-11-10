@@ -1,6 +1,16 @@
-# MEMQ UAT verification diagnostics — candidate for independent review
+# MEMQ UAT verification diagnostics — corrected candidate
 
-Status: **implementation complete; independent verification pending**.
+Status: **correction1 complete; fresh independent review pending**.
+[Correction scope and checks](correction1/README.md) address MEMQ-VD-REV-002.
+The [initial review](review-round1/report.md) remains BLOCKED for reviewer isolation;
+it is not carried forward as verification. See its [preserved disclosure](review-round1/reviewer-temp-disclosure.json).
+Current source validates diagnostic paths at their schema position. Unknown keys
+are redacted even when their names are valid fields elsewhere in the schema.
+All prior limits and actual-production uncertainty remain.
+
+# Historical initial diagnostic candidate — 4ffde1df
+
+Initial candidate status: **BLOCKED review; superseded by correction1**.
 [Authority](../../../remediation/REM-CMD-MEMQ-UAT-002-verification-diagnostics.md)
 records Chuck Russell’s current proceed instruction. Base f530e755. The earlier
 Chat-only quote/ingest proposal stays held; this subunit changes only diagnostics.

@@ -112,6 +112,30 @@ async def maintenance() -> dict:
                 "stop",
                 m.MaintenanceResponseValidationError,
             ),
+            *[
+                (
+                    "root-" + key,
+                    json.dumps({"decisions": [], key: "private-value"}),
+                    "stop",
+                    m.MaintenanceResponseValidationError,
+                )
+                for key in ("confidence", "status", "memory_id", "collection")
+            ],
+            (
+                "nested-decisions",
+                json.dumps(
+                    {
+                        "decisions": [
+                            {
+                                **json.loads(valid)["decisions"][0],
+                                "decisions": "private-value",
+                            }
+                        ]
+                    }
+                ),
+                "stop",
+                m.MaintenanceResponseValidationError,
+            ),
         ]:
             client = AsyncMock(spec=LiteLLMService)
             client.chat_completion_request.return_value = TypedChatCompletionResponse(
@@ -145,6 +169,18 @@ async def maintenance() -> dict:
                     "private-value" not in detail and "private-reasoning" not in detail,
                     "Content leak",
                 )
+                if label.startswith("root-") or label == "nested-decisions":
+                    expected_path = (
+                        ("<field>",)
+                        if label.startswith("root-")
+                        else ("decisions", 0, "<field>")
+                    )
+                    require(
+                        len(error.diagnostic.issues) == 1
+                        and error.diagnostic.issues[0].path == expected_path
+                        and error.diagnostic.issues[0].code == "extra_forbidden",
+                        "Unknown field at schema position was exposed",
+                    )
                 rows.append(
                     {
                         "role": role.value,

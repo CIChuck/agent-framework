@@ -1483,6 +1483,9 @@
     "functional_verification_repair": "not yet identified",
     "entity_ingest_repairs": "shared ownership agreed; earlier Chat-only proposal held/unapproved",
     "report": "validation/memory-queries/uat-diagnostics/README.md",
-    "evidence": "validation/memory-queries/uat-diagnostics/evidence.json"
+    "evidence": "validation/memory-queries/uat-diagnostics/evidence.json",
+    "correction_cycle": 1,
+    "initial_review": "BLOCKED; MEMQ-VD-REV-001 scratch breach retained; MEMQ-VD-REV-002 redaction corrected, fresh verification pending",
+    "correction_evidence": "validation/memory-queries/uat-diagnostics/correction1/evidence.json"
   }
 }

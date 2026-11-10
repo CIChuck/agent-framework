@@ -14,11 +14,67 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 class Decision(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
     confidence: float
+    status: str = "fixture"
+    memory_id: str = "fixture"
+    collection: str = "fixture"
 
 
 class Response(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
     decisions: tuple[Decision, ...]
+
+
+@pytest.mark.parametrize("key", ["confidence", "status", "memory_id", "collection"])
+def test_diagnostics_redact_root_keys_known_only_in_nested_schema(key):
+    with pytest.raises(ValidationError) as caught:
+        Response.model_validate_json(json.dumps({"decisions": [], key: "private"}))
+    diag = response_diagnostic(
+        role="judge",
+        configured_model="fixture",
+        response_model=Response,
+        finish_reason="stop",
+        error=caught.value,
+    )
+    assert [(issue.path, issue.code) for issue in diag.issues] == [
+        (("<field>",), "extra_forbidden")
+    ]
+
+
+def test_diagnostics_redact_nested_key_known_only_at_root():
+    with pytest.raises(ValidationError) as caught:
+        Response.model_validate_json(
+            '{"decisions":[{"confidence":0.5,"decisions":"private"}]}'
+        )
+    diag = response_diagnostic(
+        role="judge",
+        configured_model="fixture",
+        response_model=Response,
+        finish_reason="stop",
+        error=caught.value,
+    )
+    assert [(issue.path, issue.code) for issue in diag.issues] == [
+        (("decisions", 0, "<field>"), "extra_forbidden")
+    ]
+
+
+def test_diagnostics_redact_dictionary_keys_while_preserving_value_field_paths():
+    class MappedResponse(BaseModel):
+        decisions: dict[str, Decision]
+
+    with pytest.raises(ValidationError) as caught:
+        MappedResponse.model_validate_json(
+            '{"decisions":{"confidence":{"confidence":"private"}}}'
+        )
+    diag = response_diagnostic(
+        role="judge",
+        configured_model="fixture",
+        response_model=MappedResponse,
+        finish_reason="stop",
+        error=caught.value,
+    )
+    assert [(issue.path, issue.code) for issue in diag.issues] == [
+        (("decisions", "<field>", "confidence"), "float_type")
+    ]
 
 
 def test_diagnostics_redact_input_keys_values_messages_and_context():
