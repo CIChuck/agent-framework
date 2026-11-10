@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-11-10T18:09:59.937944+00:00",
+  "candidate": "b15ee091a1bfae07b61de521d6478b39ca4b48d2",
+  "artifact_source": "ae15a5374350807bd909bc823078087a53a47ce4",
+  "logical_index_before_status": "91007eb0d945d316d5aecef6428f4962e84661f2866d65807346ac1ba1676dc5",
+  "counts": {
+    "authority_pins": 14,
+    "deliverable_pins": 14,
+    "product_pins": 72,
+    "external_pins": 461,
+    "protected_manifest": 17513,
+    "personal_file_hashes": 91
+  },
+  "preserved_metadata": "all six exact",
+  "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+  "staging": "empty",
+  "reports": {
+    "astra": {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/maint-astra-review-nodsxy8l/MAINT-001-round1-Astra-report.md",
+      "sha256": "4c36b440e6bd346c7e200d01fd9100063a5e6479180aacbba325d3decb6d339d",
+      "outcome": "VERIFIED",
+      "score": 9.5
+    },
+    "sol": {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/maint-sol-review-k8ppbyw_/report.md",
+      "sha256": "1d5ffd565bb9c8683fdcaf670d726ef2fcde67df7f5576573f55d0d0c63ab79d",
+      "outcome": "VERIFIED",
+      "score": 9.6
+    }
+  },
+  "gate": "both independently VERIFIED >=9.5, no mandatory findings; UAT and acceptance remain pending"
+}

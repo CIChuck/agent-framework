@@ -2599,3 +2599,22 @@ has been executed or accepted through this documentation change.
 - No live provider, network, personal-store operation, cleanup, push or human UAT.
   Protected user/personal/export metadata remain exact.
 - **Next gate:** Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.
+
+
+## 2026-11-10T18:12:18.788919+00:00 — MAINT-001 implementation council reconciled
+
+- Fresh Astra and Sol each reviewed full bounded implementation/aggregate at
+  `b15ee091a1bfae07b61de521d6478b39ca4b48d2`. Both VERIFIED, scores9.5/9.6,
+  all MI01–12 PASS, no mandatory findings. Both satisfy the exact threshold.
+- Each reran owning/named checks, one own closed bundle matching both154-artifact
+  trials, four actual installed normal/O probes and representative refusals.
+  Larger controls/replay were inspected/hash-checked as each formal report says.
+- Controller independently rechecked all17513 protected/91 personal hashes,
+ 14/14/72/461 pins, logical index before status, branch/HEAD/staging and six
+  protected metadata records before this documentation-only reconciliation.
+- Reports and terminal integrity receipts are preserved exactly. No product
+  remediation is required; remaining platform/provider/UAT limits stay explicit.
+  Existing root debt and approved immutable-oracle failures remain failed.
+- Updated handoff and numbered UAT checklist; all cases NOT RUN. No live session,
+  provider, personal-store mutation, cleanup, push, acceptance or delivery.
+- **Next gate:** Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.

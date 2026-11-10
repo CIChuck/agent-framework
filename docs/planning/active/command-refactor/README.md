@@ -17,11 +17,11 @@ The explicit `/reorganize --full --execute` syntax defect is separately open as
 Earlier implementation/review/pending-UAT statements describe their historical
 freezes and are superseded by this acceptance. The wider initiative stays started/local.
 
-**Current work — MAINT-001:** The conditional document gate is satisfied and
-bounded construction is implemented locally. [Implementation evidence](validation/maintenance/implementation/README.md)
-binds source/artifacts `ae15a537`. Execution phase: validation; validation state:
-in_review, implementation round1. No independent implementation result or human
-UAT/acceptance is claimed.
+**Current work — MAINT-001:** [Implementation verification](validation/maintenance/implementation/verified-report.md)
+reconciles Astra9.5 and Sol9.6, both VERIFIED, no mandatory findings. Reviewed
+candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
+closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
+is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
@@ -67,7 +67,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.
+**Next gate:** Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

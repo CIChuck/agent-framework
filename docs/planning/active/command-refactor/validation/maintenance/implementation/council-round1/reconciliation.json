@@ -1,0 +1,54 @@
+{
+  "unit": "MAINT-001",
+  "round": 1,
+  "scope": "Full bounded implementation and aggregate",
+  "candidate": "b15ee091a1bfae07b61de521d6478b39ca4b48d2",
+  "product_and_artifact_source": "ae15a5374350807bd909bc823078087a53a47ce4",
+  "runtime_source": "6318959eeb4bed55ded0f22d66519645317b97de",
+  "request_sha256": "38e70301b045691b84c2c324ca972ec9db76306b330b6dee68ba3bf5d9bb8d76",
+  "recorded_at": "2026-11-10T18:12:18.787120+00:00",
+  "results": {
+    "astra": {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/maint-astra-review-nodsxy8l/MAINT-001-round1-Astra-report.md",
+      "sha256": "4c36b440e6bd346c7e200d01fd9100063a5e6479180aacbba325d3decb6d339d",
+      "outcome": "VERIFIED",
+      "score": 9.5,
+      "report": "validation/maintenance/implementation/council-round1/astra-report.md",
+      "raw_report": "validation/maintenance/implementation/council-round1/astra-report.raw.md.gz",
+      "raw_archive_sha256": "6d4336bbd89fe9b81c746e22478b5e7ef0029889236cdef9c0a56eed0a851670",
+      "readable_report_sha256": "99a74c17ae99f4b09388458d4243d42831607cb8e2a792137dc2dc5b0e6a1afe",
+      "sha256_applies_to": "Original report and decompressed raw archive; readable Markdown differs only by one removed blank EOF line"
+    },
+    "sol": {
+      "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/maint-sol-review-k8ppbyw_/report.md",
+      "sha256": "1d5ffd565bb9c8683fdcaf670d726ef2fcde67df7f5576573f55d0d0c63ab79d",
+      "outcome": "VERIFIED",
+      "score": 9.6,
+      "report": "validation/maintenance/implementation/council-round1/sol-report.md"
+    }
+  },
+  "outcome": "VERIFIED",
+  "mandatory_findings": [],
+  "criteria": {
+    "MI-01": "PASS, both reviewers",
+    "MI-02": "PASS, both reviewers",
+    "MI-03": "PASS, both reviewers",
+    "MI-04": "PASS, both reviewers",
+    "MI-05": "PASS, both reviewers",
+    "MI-06": "PASS, both reviewers",
+    "MI-07": "PASS, both reviewers",
+    "MI-08": "PASS, both reviewers",
+    "MI-09": "PASS, both reviewers",
+    "MI-10": "PASS, both reviewers",
+    "MI-11": "PASS, both reviewers",
+    "MI-12": "PASS, both reviewers"
+  },
+  "gate": "Each independently VERIFIED with score >=9.5; no averaging or substitution",
+  "next_gate": "Targeted human MAINT UAT, then separate bounded acceptance; delivery remains local",
+  "uat": "NOT RUN",
+  "acceptance": "not_granted",
+  "delivery": "local",
+  "controller_integrity": "controller-integrity.json",
+  "preservation": "17513 protected hashes,91 personal files,14/14/72/461 pins,logical index before status,staging and all six protected metadata records unchanged before documentation reconciliation",
+  "closeout_delta": "Only review/status/UAT documentation after frozen candidate. Product/probe and governing technical authority unchanged."
+}

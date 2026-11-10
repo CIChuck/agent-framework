@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-10",
-  "decision": "MAINT-001 construction condition satisfied; exact directive activated",
+  "decision": "MAINT-001 implementation independently verified; targeted human UAT and acceptance pending",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.",
+  "current_scope": "Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.",
   "product_code_authority": "Granted only for exact CD-CMD-MAINT-001 scope through conditional approval and round4 activation; no acceptance/delivery.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1614,7 +1614,7 @@
     },
     "mandatory_findings": [],
     "implementation_approval": "not_granted",
-    "next_gate": "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.",
+    "next_gate": "Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.",
     "document": "maintenance-reorganization-specification.md",
     "sha256": "56e3cd5fc75b402ab4aeda46f80807873b79a3df96debadb83164c2c0debfdad",
     "historical_document_round3": {
@@ -1656,9 +1656,9 @@
       "correction_cycle": 1,
       "council_round": 3
     },
-    "status": "implementation_in_review",
-    "execution_phase": "validation",
-    "validation_state": "in_review",
+    "status": "implementation_verified",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
     "council_round": 4,
     "reviewed_candidate": "2b0850bfe6cfc6a91d744fa4440a40eaadaf3a60",
     "council_report": "validation/maintenance/specification/round4/report.md",
@@ -1676,7 +1676,7 @@
     },
     "mandatory_findings": [],
     "implementation_approval": "conditional_gate_activated",
-    "next_gate": "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.",
+    "next_gate": "Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.",
     "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
     "sha256": "931d42538d9f100392743d8e9826eec00b67297af788dd84e4453e820ebea2e7",
     "preparation": "validation/maintenance/construction-preparation-v4.json",
@@ -1859,14 +1859,14 @@
       "GPT-6 Astra/high",
       "GPT-6.1 Sol/high"
     ],
-    "next_gate": "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.",
+    "next_gate": "Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.",
     "activation_sha256": "35b163e57e0634cfacd253f971cb209eca893a779c2016891a0bb913cd2d2f02",
     "state": "activated"
   },
   "maintenance_implementation": {
     "unit": "MAINT-001",
-    "execution_phase": "validation",
-    "validation_state": "in_review",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
     "round": 1,
     "source": "ae15a5374350807bd909bc823078087a53a47ce4",
     "runtime_source": "6318959eeb4bed55ded0f22d66519645317b97de",
@@ -1874,6 +1874,22 @@
     "human_uat": "not_run",
     "acceptance": "not_granted",
     "delivery": "local",
-    "next_gate": "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local."
+    "next_gate": "Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.",
+    "reviewed_candidate": "b15ee091a1bfae07b61de521d6478b39ca4b48d2",
+    "report": "validation/maintenance/implementation/verified-report.md",
+    "council_round": 1,
+    "results": {
+      "astra": {
+        "outcome": "VERIFIED",
+        "score": 9.5,
+        "report": "validation/maintenance/implementation/council-round1/astra-report.md"
+      },
+      "sol": {
+        "outcome": "VERIFIED",
+        "score": 9.6,
+        "report": "validation/maintenance/implementation/council-round1/sol-report.md"
+      }
+    },
+    "mandatory_findings": []
   }
 }

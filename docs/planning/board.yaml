@@ -711,11 +711,12 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local."
+  next_gate: "Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local."
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/maintenance/implementation/verified-report.md
   - docs/planning/active/command-refactor/validation/step3/correction-report.md
   - docs/planning/active/command-refactor/validation/legacy-cli-removal/report.md
   - docs/planning/active/command-refactor/validation/required-finance/report.md
@@ -3084,3 +3085,10 @@ events:
   action: activated exact MAINT-001 conditional construction after both fresh reviews
   note: Both Astra and Sol VERIFIED9.6, zero mandatory findings, frozen identity verified. D0 then bounded implementation; acceptance and delivery separate.
   evidence: docs/planning/active/command-refactor/validation/maintenance/specification/round4/activation.json
+- task: friday-command-refactor
+  at: '2026-11-10T18:12:43.310255+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled bounded MAINT-001 implementation council as VERIFIED
+  note: Astra9.5 and Sol9.6 meet the conditional threshold with no mandatory findings. Targeted human UAT and separate acceptance remain pending; delivery local.
+  evidence: docs/planning/active/command-refactor/validation/maintenance/implementation/verified-report.md

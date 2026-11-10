@@ -1,0 +1,23 @@
+{
+  "index_sha256_before_status": "91007eb0d945d316d5aecef6428f4962e84661f2866d65807346ac1ba1676dc5",
+  "index_equal": true,
+  "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+  "status_equal": true,
+  "head": "b15ee091a1bfae07b61de521d6478b39ca4b48d2",
+  "branch": "feature/command-retirement",
+  "staged": "",
+  "authority_pins": [],
+  "deliverable_pins": [],
+  "product_pins": [],
+  "external_pins": [],
+  "protected_manifest": {
+    "count": 17513,
+    "mismatches": []
+  },
+  "personal_file_hashes": {
+    "count": 91,
+    "mismatches": []
+  },
+  "metadata_mismatches": [],
+  "scratch_mode": "0o700"
+}

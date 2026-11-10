@@ -1,6 +1,7 @@
 # MAINT-001 — implementation evidence
 
-Execution phase: validation; validation state: in_review (implementation round1).
+Execution phase: closeout; validation state: verified (implementation round1).
+[Reconciled result](verified-report.md): Astra9.5, Sol9.6, no mandatory findings.
 The exact [conditional approval](../../../approval/maintenance-reorganization-conditional.md)
 was activated after both document reviewers independently met its threshold.
 [Evidence](evidence.json) and [D0](d0-evidence.json) retain exact argv, exits,
@@ -8,8 +9,8 @@ raw hashes, original assertions and failed/historical attempts.
 
 The final product, test and artifact source is `ae15a537`; runtime source is
 `6318959e`. Later changes only correct disposable fixture/test/probe packaging.
-The administrative candidate is frozen afterward; its non-documentation bytes
-must equal that source. No independent implementation verdict exists yet.
+The independently reviewed administrative candidate is `b15ee091`; its
+non-documentation bytes equal that source. Subsequent reconciliation is docs only.
 
 Memory owns full order, scopes, provider assessment, lifecycle and postconditions.
 Chat delegates once inside its existing application snapshot/rollback envelope.
@@ -31,6 +32,5 @@ failures remain failed/unwaived. The original installed MEMQ oracle also predate
 the accepted quote repair; its refusal is retained. No whole-repository-green
 claim follows. No providers, personal stores, UAT, acceptance or delivery ran.
 
-**Next gate:** fresh GPT-6 Astra/high and GPT-6.1 Sol/high implementation
-review/reconciliation, each independently VERIFIED at least9.5 with no mandatory
-findings; then targeted human UAT and separate acceptance.
+**Next gate:** targeted [human UAT](../../../uat/maintenance-reorganization-uat.md)
+and separate bounded acceptance. Both remain pending; delivery is local.

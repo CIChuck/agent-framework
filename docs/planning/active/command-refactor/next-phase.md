@@ -1,3 +1,16 @@
+# MAINT-001 — verified implementation, human UAT pending
+
+Execution phase: closeout; validation state: verified.
+[Reconciled council](validation/maintenance/implementation/verified-report.md):
+Astra9.5, Sol9.6, both VERIFIED; all12 criteria pass and no mandatory findings.
+Reviewed candidate `b15ee091`, product/artifact source `ae15a537`.
+[Human handoff](validation/maintenance/implementation/acceptance-handoff.md) and
+[checklist](uat/maintenance-reorganization-uat.md) are ready; all UAT remains NOT RUN.
+
+**Next gate:** Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.
+
+## Historical implementation checkpoints
+
 # MAINT-001 — implementation council freeze
 
 Execution phase: validation. Validation state: in_review, round1.
