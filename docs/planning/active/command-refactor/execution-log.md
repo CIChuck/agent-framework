@@ -2852,3 +2852,22 @@ has been executed or accepted through this documentation change.
 - Execution phase: planning; validation state: in_review. Round4 is the last
   authorized pass. No product, install, model/store, acceptance or delivery work.
 - **Next gate:** Reconcile the final authorized Sol/Astra/Opus round4 of corrected INGEST documents. Pass only if every seat is independently VERIFIED >=9.5 with no mandatory findings; otherwise return remaining issues without a fifth pass. Gate A/construction and MAINT human acceptance remain separate.
+
+
+## 2026-11-10T23:05:43.462778+00:00 — INGEST-001 design council VERIFIED, all-seat target met
+
+- Final round4: Sol9.6, Astra9.6, Opus9.5, each VERIFIED, all30 criteria PASS,
+  zero mandatory findings. Original reports and Git/admin/boundary receipts
+  preserved with exact hashes. No averaging or earlier-verdict carry-forward.
+- Controller final frozen integrity matches17606 protected entries/six metadata
+  records, HEAD/branch/index/status/staging. Reviewed REM/companion remain exact.
+- Opus's six advisories are nonblocking future Gate-A/directive inputs, not
+  independently closed or applied to the reviewed artifacts. Readiness execution
+  and every installed/product proof are still pending. Historical debt unwaived.
+- The initial council plus three authorized additional rounds are complete; all
+  current seats terminal, no fifth pass or replacement. Prior BLOCKED/changes
+  requested records retain their original candidate-specific meaning.
+- Execution phase: planning; validation state: verified (document/design only).
+  No dependency/model, product/test/build, store, MAINT acceptance or delivery
+  action follows automatically. User-edited/generated state remains preserved.
+- **Next gate:** Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.

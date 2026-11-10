@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. Ingestion extraction/chunking and embedding-limit
-planning is corrected for final council round4; MAINT-001 human UAT/acceptance remains pending.
+design readiness is VERIFIED; Gate-A execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -33,22 +33,22 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Additional requested planning — document ingestion:**
-The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and
-[Tools companion](proposals/tools-document-adoption.md) are corrected for final
-round4. Execution phase: planning; validation state: in_review.
-The maintainer's [fresh-store upgrade policy](approval/ingest-existing-store-policy.md)
-is unchanged: preserve old state and `/read`, no legacy mode/reset/migration.
+**Document-ingestion design — VERIFIED:**
+The [proposed REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and
+[Tools companion](proposals/tools-document-adoption.md) pass the
+[final council](validation/document-ingestion/council-round4/report.md) at
+`728cba77`: Sol9.6, Astra9.6, Opus9.5, each VERIFIED with all30 criteria passing
+and no mandatory findings. Execution phase: planning; validation state: verified
+for design readiness only. The reviewed technical bytes remain unchanged.
 
-[Round3](validation/document-ingestion/council-round3/report.md) returned Sol
-VERIFIED9.6, Astra CHANGES_REQUESTED9.2 and Opus procedurally BLOCKED with
-separate technical CHANGES_REQUESTED9.15. The remaining typed aggregate handoff
-and fresh-creation qualification are corrected, with bounded useful advisories.
-The [round4 correction scope](validation/document-ingestion/council-round4/correction-brief.json)
-binds the last authorized pass. Every seat must be VERIFIED >=9.5 with no
-mandatory findings; otherwise return remaining issues, with no fifth pass.
-No product code, gate-A execution, installation, store action, acceptance or
-delivery follows automatically. MAINT human UAT/acceptance remain separate.
+The [existing-store policy](approval/ingest-existing-store-policy.md) requires
+explicit fresh selection, preserves old files and `/read`, and adds no legacy
+mode/reset/migration. [Verified design](validation/document-ingestion/verified-design-report.md)
+pins the result; [handoff](validation/document-ingestion/gate-a-handoff.md) carries
+six nonblocking advisories to future Gate-A/final-directive preparation.
+The authorized iteration is complete and no council is active. Gate-A execution,
+model/package operations, code, store mutations, acceptance and delivery remain
+ungranted. MAINT human UAT/acceptance remains separate.
 
 **Working home:** `agent-framework`, branch `feature/cmd-ingest-001`.
 **Board ID:** `friday-command-refactor`.
@@ -94,7 +94,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Reconcile the final authorized Sol/Astra/Opus round4 of corrected INGEST documents. Pass only if every seat is independently VERIFIED >=9.5 with no mandatory findings; otherwise return remaining issues without a fifth pass. Gate A/construction and MAINT human acceptance remain separate.
+**Next gate:** Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

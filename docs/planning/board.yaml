@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Reconcile the final authorized Sol/Astra/Opus round4 of corrected INGEST documents. Pass only if every seat is independently VERIFIED >=9.5 with no mandatory findings; otherwise return remaining issues without a fifth pass. Gate A/construction and MAINT human acceptance remain separate."
+  next_gate: "Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3155,3 +3155,10 @@ events:
   action: corrected INGEST documents for final authorized council round4
   note: Round3 Sol VERIFIED9.6, Astra CHANGES_REQUESTED9.2, Opus procedural BLOCKED/technical CHANGES_REQUESTED9.15 retained. Typed aggregate v2 and exact fresh/default/live-path rules corrected. Future wrapper rule precisely covers Git/admin; scratch reads permitted. Last pass, each seat VERIFIED >=9.5/no mandatory finding; no construction/installation/store/delivery action.
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round4/correction-brief.json
+- task: friday-command-refactor
+  at: '2026-11-10T23:05:43.462778+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled INGEST document design VERIFIED at the all-seat score gate
+  note: Final round4 Sol9.6/Astra9.6/Opus9.5 all VERIFIED,30 criteria/no mandatory findings. Six advisories carried to future Gate-A/directive. Reviewed technical bytes unchanged; iteration complete/no active council. Design-only; no Gate-A execution, code, store operations, acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/verified-design-report.md

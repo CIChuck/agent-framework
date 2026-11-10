@@ -1,0 +1,121 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "round": 4,
+  "status": "controller_design_reconciliation_checks_only",
+  "outcome": "PASS",
+  "recorded_at": "2026-11-10T23:07:00.648542+00:00",
+  "reviewed_candidate": "728cba77e816e5618a06262dd4aa1cbc6e50a376",
+  "checks": [
+    {
+      "check": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "check": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "check": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 997 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "check": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "check": "whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "protected_entries_matched": 17597,
+  "owned_status_paths": [
+    "docs/planning/README.md",
+    "docs/planning/active/command-refactor/README.md",
+    "docs/planning/active/command-refactor/authority.json",
+    "docs/planning/active/command-refactor/execution-log.md",
+    "docs/planning/active/command-refactor/next-phase.md",
+    "docs/planning/active/command-refactor/tactical-plan.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/planning-checks.json",
+    "docs/planning/board.yaml"
+  ],
+  "preserved_metadata_records": 6,
+  "logical_index_sha256_before_status": "35a40c37ddfd7753db30f03eefd097ccee9c6f9ecbd5095f635f185e919dc280",
+  "maint_other_unit_authority": "unchanged",
+  "technical_artifacts": "exact reviewed REM/companion bytes unchanged",
+  "each_score_gate_met": true,
+  "yaml_examples": 3,
+  "not_performed": [
+    "product/runtime tests/builds",
+    "Gate-A/installs/models/providers",
+    "store operations/reset/migration",
+    "MAINT UAT/acceptance",
+    "push/PR/delivery",
+    "new council"
+  ],
+  "failures": []
+}

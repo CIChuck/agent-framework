@@ -1,23 +1,20 @@
-# Document-ingestion remediation — final round4 design review
+# Document-ingestion remediation — design VERIFIED, readiness execution pending
 
-Execution phase: planning; validation state: in_review.
-[Round3](validation/document-ingestion/council-round3/report.md) did not pass:
-Sol VERIFIED9.6, Astra CHANGES_REQUESTED9.2 and Opus procedurally BLOCKED with
-separate technical CHANGES_REQUESTED9.15. Those outcomes are retained unchanged.
+Execution phase: planning; validation state: verified (document/design only).
+[Final round4](validation/document-ingestion/council-round4/report.md) is
+unanimously VERIFIED: Sol9.6, Astra9.6, Opus9.5; all30 criteria pass and no
+mandatory finding remains. The all-seat9.5 gate is met on candidate728cba77.
+The three additional rounds are complete; no council remains active.
 
-The corrected [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and
-[companion](proposals/tools-document-adoption.md) now specify the typed Chat
-v2 aggregate handoff and exact fresh-creation/default/associated-path rules,
-with the useful advisories. The explicit fresh-store-required policy is settled;
-old state and `/read` remain preserved. [Correction scope](validation/document-ingestion/council-round4/correction-brief.json)
-binds this last authorized fresh council. All prior design requirements still apply.
+The reviewed [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and
+[companion](proposals/tools-document-adoption.md) are unchanged after review.
+[Verified design](validation/document-ingestion/verified-design-report.md) pins
+the result; [Gate-A/directive handoff](validation/document-ingestion/gate-a-handoff.md)
+carries six nonblocking advisories and future proof. This is no installed or
+implementation success claim. No dependency/model/store operation, construction,
+human acceptance or delivery is activated. MAINT human UAT/acceptance is separate.
 
-Each seat must independently return VERIFIED >=9.5/no mandatory findings. If
-not, return remaining issues without a fifth review or automatic remediation.
-No gate-A execution, construction, models/stores, acceptance or delivery is
-authorized by the document gate. MAINT human UAT/acceptance remain separate.
-
-**Next gate:** Reconcile the final authorized Sol/Astra/Opus round4 of corrected INGEST documents. Pass only if every seat is independently VERIFIED >=9.5 with no mandatory findings; otherwise return remaining issues without a fifth pass. Gate A/construction and MAINT human acceptance remain separate.
+**Next gate:** Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.
 
 ## Separate MAINT closeout and historical checkpoints
 

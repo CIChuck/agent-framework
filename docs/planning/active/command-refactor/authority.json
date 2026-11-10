@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Reconcile the final authorized Sol/Astra/Opus round4 of corrected INGEST documents. Pass only if every seat is independently VERIFIED >=9.5 with no mandatory findings; otherwise return remaining issues without a fifth pass. Gate A/construction and MAINT human acceptance remain separate.",
+  "current_scope": "Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1896,7 +1896,7 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "proposed",
     "execution_phase": "planning",
-    "validation_state": "in_review",
+    "validation_state": "verified",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "61d93548eeae52be1b273e8ae985860d869cceac6a88868eb9396e7a2adf1804",
@@ -1906,20 +1906,41 @@
     "implementation_approval": "not_granted",
     "council": {
       "round": 4,
-      "status": "frozen_dispatch_pending",
-      "scope": "correction delta then full bounded design readiness; final authorized pass",
+      "status": "reconciled_verified",
+      "scope": "full bounded document/design readiness only",
       "roster": "validation/document-ingestion/council-round4/roster.json",
-      "correction_brief": "validation/document-ingestion/council-round4/correction-brief.json",
-      "prior_round": "validation/document-ingestion/council-round3/reconciliation.json",
+      "reviewed_candidate": "728cba77e816e5618a06262dd4aa1cbc6e50a376",
+      "report": "validation/document-ingestion/council-round4/report.md",
+      "reconciliation": "validation/document-ingestion/council-round4/reconciliation.json",
+      "verified_design_report": "validation/document-ingestion/verified-design-report.md",
       "iteration_authorization": "validation/document-ingestion/council-iteration-authorization.json",
-      "frozen_request": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r4-g0490xr4/inputs/review-request.json",
       "scores_required_each": 9.5,
-      "last_permitted_round": 4,
+      "threshold_met_each": true,
+      "mandatory_findings": [],
+      "results": {
+        "sol": {
+          "outcome": "VERIFIED",
+          "score": 9.6,
+          "report": "validation/document-ingestion/council-round4/sol-report.md"
+        },
+        "astra": {
+          "outcome": "VERIFIED",
+          "score": 9.6,
+          "report": "validation/document-ingestion/council-round4/astra-report.md"
+        },
+        "opus": {
+          "outcome": "VERIFIED",
+          "score": 9.5,
+          "report": "validation/document-ingestion/council-round4/opus-report.md"
+        }
+      },
+      "round_budget_complete": true,
+      "no_active_council": true,
       "no_construction_or_gate_a_authority": true
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Reconcile the final authorized Sol/Astra/Opus round4 of corrected INGEST documents. Pass only if every seat is independently VERIFIED >=9.5 with no mandatory findings; otherwise return remaining issues without a fifth pass. Gate A/construction and MAINT human acceptance remain separate.",
+    "next_gate": "Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2018,11 +2039,22 @@
       "actual_store_operation": "none; design choice only"
     },
     "correction_cycle3": {
-      "status": "corrected_for_final_round4",
+      "status": "independently verified at728cba77; technical bytes unchanged",
       "brief": "validation/document-ingestion/council-round4/correction-brief.json",
       "final_pass": true,
       "round3_report": "validation/document-ingestion/council-round3/report.md",
       "past_procedural_block_retained": true
+    },
+    "design_readiness": {
+      "outcome": "VERIFIED",
+      "candidate": "728cba77e816e5618a06262dd4aa1cbc6e50a376",
+      "technical_pins": {
+        "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "61d93548eeae52be1b273e8ae985860d869cceac6a88868eb9396e7a2adf1804",
+        "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "b5429eb75427aa12f016ad1d0a571743c066375c1a3da34826b3e464ba5e8ba1"
+      },
+      "advisories": "six nonblocking, carried without changing reviewed artifacts",
+      "handoff": "validation/document-ingestion/gate-a-handoff.md",
+      "runtime_or_installed_proof": "not performed for INGEST"
     }
   },
   "command_refactor_publication": {
