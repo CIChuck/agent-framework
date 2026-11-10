@@ -17,12 +17,12 @@ The explicit `/reorganize --full --execute` syntax defect is separately open as
 Earlier implementation/review/pending-UAT statements describe their historical
 freezes and are superseded by this acceptance. The wider initiative stays started/local.
 
-**Current planning — MAINT-001:** The revised [specification](maintenance-reorganization-specification.md)
-and [directive](directives/CD-CMD-MAINT-001-reorganization-order.md) put pipeline
-sequencing/execution in shared Memory; Chat retains its application safety
-wrapper and presentation. `execution_phase: validation`; `validation_state: in_review`
-for fresh OpenAI-only document review. Earlier readiness does not carry forward
-to changed bytes. No product implementation is approved; accepted MEMQ stays closed.
+**Current planning — MAINT-001:** [Round2](validation/maintenance/specification/round2/report.md)
+requested changes to headless cancellation safety and shared scope receipts.
+The [corrected specification](maintenance-reorganization-specification.md) and
+[directive](directives/CD-CMD-MAINT-001-reorganization-order.md) are being frozen
+for fresh OpenAI round3. `execution_phase: validation`; `validation_state: in_review`.
+No finding is independently closed yet; no product construction approval.
 
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
@@ -68,7 +68,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Reconcile fresh OpenAI-only round2 review of the revised MAINT-001 specification and directive with Memory-owned pipeline execution. No product implementation approval; stop for human decision after review.
+**Next gate:** Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -156,7 +156,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Reconcile fresh OpenAI-only round2 review of the revised MAINT-001 specification and directive with Memory-owned pipeline execution. No product implementation approval; stop for human decision after review.
+**Next gate:** Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

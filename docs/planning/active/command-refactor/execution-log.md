@@ -2419,3 +2419,22 @@ has been executed or accepted through this documentation change.
   and planning whitespace pass; exact shell blocks parse as zsh. All812 product
   inputs, prior frozen evidence and protected personal/export/config state remain
   unchanged. Product tests/builds have not run for this document revision.
+
+
+## 2026-11-10T15:11:37.922483+00:00 — MAINT-001 round2 reconciled; document correction cycle1
+
+- Sol8.2/Astra8.6 CHANGES_REQUESTED on80e214b2. Two merged mandatory gaps:
+  R2-SOL-M01 default headless cancellation; R2-SOL-M02/MAINT-R2-ASTRA-01 shared
+  scope evidence transport. Both full reports and boundary receipts preserved.
+- Named remediation limits edits to documents: shared shield-and-drain boundary,
+  exact receipt/event/digest contract and related test/metadata clarifications.
+  Revised specification SHA256 `56e3cd5fc75b402ab4aeda46f80807873b79a3df96debadb83164c2c0debfdad`;
+  directive SHA256 `16ceb43df6e1bfef265e6338888eaee95327eb29d09cdb4a839d3dae9853cfae`; v3 preparation SHA256 `d73d31362a90f1845b3a5b8f2767a85734599195b206ecd5275019f6e683f5f1`.
+- Current phase validation/in_review, round3 pending fresh correction closure.
+  No runtime tests, code, store/provider operation or construction authority.
+- **Next gate:** Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.
+
+- Local correction checks pass: board36, current dashboard, docs lifecycle963,
+  planning whitespace and shell syntax. All original protected contents outside
+  the named document correction and all812 product inputs are unchanged; dirty
+  examples, personal state and export metadata preserved. No runtime proof claimed.

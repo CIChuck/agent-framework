@@ -87,6 +87,20 @@ Existing Chat import locations may re-export the shared contracts for compatibil
 Merely moving the order list while keeping an essential stage engine in Chat
 would not satisfy this specification.
 
+Every execute path, including a headless caller without injected hooks, must
+shield and drain each active stage/postcondition before propagating external
+cancellation. An outer rollback transaction is still required where whole-run
+restoration is promised; stage atomicity does not itself restore earlier stages.
+No headless default may directly await a multi-write stage without that protection.
+
+Memory produces a content-safe stage receipt binding operation, stage ordinal,
+plan identity and the digest of the normalized selection plus actual selected
+references. Observer events/results carry this receipt. Started-before-planning,
+skipped and deferred states may lack a plan/digest; a successfully planned
+verification, even an empty selection, must expose both before assessment/writes.
+Completed or post-plan failed verification results retain the same receipt. Chat
+copies it into durable evidence and never recomputes the selection digest.
+
 The implementation design must define typed shared contracts for:
 
 - an explicit verification selection: existing pending scope versus an exact
@@ -216,10 +230,10 @@ named in the future directive rather than silently regenerating its baseline.
 | ID | Required proof |
 | --- | --- |
 | MT-01 | Exact ordered calls on full/skip/standalone modes; a source verified in the first stage contributes to synthesis in the same run. Existing pending non-source/old-meta coverage is retained. |
-| MT-02 | The second stage sees only exact newly persisted references; uncertain sources are not reviewed twice. Empty, duplicate, missing, foreign and stale references are tested, including repeated runs and rollback. |
+| MT-02 | The second stage sees only exact newly persisted references; uncertain sources are not reviewed twice. Empty, duplicate, missing, foreign and stale references are tested, including repeated runs and rollback. Both verification stages must expose identical Memory-produced and persisted operation/plan/selection receipts; include empty and migration-only generated selections and substituted evidence refusals. |
 | MT-03 | Headless shared consumer imports no Chat code and executes the complete pipeline across full/skip/standalone modes, provider assessments, creation scope, lifecycle and postconditions. Chat makes one pipeline call and only adapts progress/results and the application recovery envelope. |
 | MT-04 | Final judge counts are exact across mixed/zero/all-rejected/all-uncertain verdicts. Failed/skipped/deferred counts cannot masquerade as successful zeros. Preview causes no mutation/provider call. |
-| MT-05 | Inject failures/cancellation before/after both verification stages, synthesis and persistence. Real disposable stores prove rollback removes new outputs and restores prior metadata; recovery-required and old-journal handling remain valid. |
+| MT-05 | Inject failures/cancellation before/after both verification stages, synthesis and persistence. Cancel during a suspended graph/lifecycle write after a preceding write, in both default-headless and injected-boundary paths: drain, no next stage, propagated cancellation and receipt cleanup. Real disposable stores prove outer rollback removes new outputs/restores prior metadata; recovery-required and old-journal handling remain valid. |
 | MT-06 | Implicit full equals explicit `--full`; conflicting/duplicate modes follow specified admission. Help is accurate; unrelated parser and command behavior remain unchanged. |
 | MT-07 | Complete scoped suites and current Chat/Memory/recovery integration regressions pass; meaningful negative controls reject old order, broad second selection, fake counts and weakened validation through call-phase assertions. Record existing root debt separately. |
 | MT-08 | Offline build/install probes exercise normal and optimized Python, canonical installed origins, a disposable real store and deterministic local provider doubles. Record exact artifacts, source, command exits and limits; no personal/live-provider run is implied. |

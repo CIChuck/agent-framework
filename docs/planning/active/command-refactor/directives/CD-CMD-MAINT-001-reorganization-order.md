@@ -19,7 +19,7 @@ No product code, tests, providers or personal stores are changed by drafting.
 
 Apply AGENTS, repository engineering, lifecycle and independent-validation
 policies, then the specification M-01..05/MT-01..09 and this bounded directive.
-The [construction preparation](../validation/maintenance/construction-preparation-v2.json)
+The [construction preparation](../validation/maintenance/construction-preparation-v3.json)
 pins the complete baseline revision, specification, council report, policies,
 existing source/test bytes and package/lock metadata. Record its SHA256 together
 with this directive's final SHA256 in any subsequent exact approval. Only
@@ -30,8 +30,8 @@ Primary immutable design inputs:
 
 | Input relative to packet | SHA256 |
 | --- | --- |
-| `maintenance-reorganization-specification.md` | `cf391414f15ac1e29b491f08cf2b08b73f6c7117d9d638ca73c1169dfc5dd57d` |
-| `validation/maintenance/construction-preparation-v2.json` | `7b41fd29b62701be08874a6da46b003c6a8cdbeefb342e05a8d2935380798744` |
+| `maintenance-reorganization-specification.md` | `56e3cd5fc75b402ab4aeda46f80807873b79a3df96debadb83164c2c0debfdad` |
+| `validation/maintenance/construction-preparation-v3.json` | `d73d31362a90f1845b3a5b8f2767a85734599195b206ecd5275019f6e683f5f1` |
 
 Scope is one bounded maintenance unit: pending verification before synthesis,
 targeted verification of newly generated meta insights, per-stage verdict counts,
@@ -172,7 +172,15 @@ In `pipeline.py`, use the existing strict/frozen model discipline:
   `force_reembed=False`. Retain current analyze-execute/full-only flag refusals.
 - `MemoryMaintenanceStage`: `analyze`, `reembed`, `dedupe`, `prune`,
   `verify_pending`, `synthesize`, `verify_generated`, `verify`, `lifecycle`.
-- `MemoryMaintenanceStageResult`: `stage`,
+- `MemoryMaintenanceStageReceipt`: `operation_id: str | None` (32 lowercase hex
+  when present), `sequence: int` (exact non-negative stage ordinal),
+  `stage: MemoryMaintenanceStage`, `plan_id: str | None` (64 lowercase hex),
+  `selection_sha256: str | None` (64 lowercase hex). Frozen/strict; no documents,
+  raw references, provider text or credentials. Execute receipts require the
+  actual operation ID; provider-free preview uses None and cannot claim applied
+  scope. See receipt lifecycle/canonicalization below.
+- `MemoryMaintenanceStageResult`: `stage`, required
+  `receipt: MemoryMaintenanceStageReceipt`,
   `status: Literal["previewed","completed","skipped","failed"]`, nullable
   non-negative exact `scanned_count`, `candidate_count`, `changed_count`,
   optional shared `verification_counts`,
@@ -185,7 +193,9 @@ In `pipeline.py`, use the existing strict/frozen model discipline:
 - `MemoryMaintenanceRunResult`: `operation_id` (32 hex), `succeeded: bool`,
   `stages: tuple[MemoryMaintenanceStageResult,...]`,
   `postconditions: MemoryMutationVerification | None`, `warnings`, `errors`.
-  Success requires verified postconditions and no failed stage/errors; failure
+  Every execute stage receipt must match operation_id and its unique ordered
+  stage ordinal; result.stage must equal receipt.stage. Success requires verified
+  postconditions and no failed stage/errors; failure
   cannot report committed success. Do not turn cancellation into a success result.
 
 `MemoryMaintenancePipeline` is constructed from the shared mutation participant,
@@ -210,21 +220,78 @@ uses a fresh plan. Shared execution returns failed domain results or propagates
 exceptions/cancellation without initiating application restore itself. The outer
 transaction must treat any failure as unsuccessful and roll back.
 
-`MemoryMaintenanceObserver` has async `before_stage(stage)`, `after_stage(result)`,
-`before_postconditions()` and `after_postconditions(verification)` hooks. They
-receive content-safe typed facts, never control the next stage, and may abort
-with an exception. A hook failure aborts the pipeline; it cannot be recorded as
-success. Missing observer means no-op hooks.
+`MemoryMaintenanceObserver` has async `before_stage(receipt)`,
+`stage_planned(receipt)`, `after_stage(result)`, `before_postconditions()` and
+`after_postconditions(verification)` hooks. The two receipt arguments use
+`MemoryMaintenanceStageReceipt`; after_stage receives the shared stage result.
+Hooks receive content-safe facts, never control the next stage, and may abort.
+Hook failure aborts the pipeline and outer transaction; missing observer is no-op.
+
+### Shared scope-receipt lifecycle (R2-SOL-M02 / MAINT-R2-ASTRA-01)
+
+For execute, before_stage gets the operation/stage ordinal identity with null
+plan/digest before planning. After the fresh shared plan is built, Memory emits
+stage_planned before provider assessments or apply writes. Memory stages carry
+that actual plan ID; verification stages also require a non-null selection digest,
+including valid zero pending/created selections. The pipeline copies the planned
+receipt unchanged into its completed or post-plan failed result. Planning failure
+retains null plan/digest; a skipped stage has null plan/digest; deferred preview
+has null operation/digest and no assertion of executed scope. Lifecycle has no
+MemoryMutationPlan, so its plan/digest are null. Other planned mutation stages
+have a plan ID but no verification selection digest. No later observer may
+substitute an unrelated well-formed receipt.
+
+Memory alone computes SHA256 of UTF-8 canonical JSON with `sort_keys=True`,
+`separators=(",", ":")`, `ensure_ascii=True`, `allow_nan=False`, containing exactly:
+`operation_id`, `sequence`, `stage` (enum value), `plan_id`, `selection` (normalized
+MemoryVerificationSelection serialized in JSON mode), and `references` (the actual
+fresh-plan provider-record keys, sorted lexicographically by collection then
+memory_id, encoded as objects with those two keys). Reject duplicates before
+hashing. Thus pending mode binds the actual selected records as well as the
+selector; an exact-empty created batch remains a meaningful bound selection.
+The plan ID also binds record content under the existing shared plan hash.
+Do not return the raw references or content in observer receipts.
+
+Correlate before/planned/after by operation_id + stage sequence + stage. Validate
+that planned/result plan ID and digest match the pipeline's own applied plan and
+selection, not merely the shape of supplied strings. Stage evidence from a prior
+operation or another plan is rejected. If provider/apply failure occurs after
+planning, retain known scope evidence without inventing successful verdicts.
+If a stage_planned evidence hook fails, stop before assessments/writes; outer
+rollback handles any earlier completed stages. Successful verification may never
+persist null scope evidence. This public channel remains usable after the
+participant's private receipts are cleared; no Chat access to private state.
+
+### Shared cancellation boundary (R2-SOL-M01)
 
 `MemoryMaintenanceBoundary` exposes generic async
 `run_atomic(operation: Callable[[], Awaitable[T]]) -> T`. The pipeline invokes it
-for each complete stage and for final memory postconditions. The default awaits
-directly for headless use. Chat supplies its existing shielded atomic boundary;
-this preserves stage-level cancellation safety instead of shielding an entire
-multi-stage run. Check pending cancellation at the before/after-stage safe hooks,
-never between a stage's apply writes. A boundary may protect or abort a supplied
-operation, not replace its domain result or execute another stage. Validate
-returned stage/plan identities; tests must cover callback failure and late cancel.
+for each complete stage (including planning, assessments and apply) and final
+memory postconditions. The default is a Memory-owned
+`ShieldedMemoryMaintenanceBoundary`, not a direct await: start exactly one owned
+stage task, await it through shielding, and on caller cancellation keep draining
+that same shielded task until it settles. Repeated caller cancellations must not
+cancel the worker or escape the drain early. Do not start/retry the stage again.
+If the worker fails, propagate its failure as primary; if it succeeds with
+cancellation pending, propagate cancellation at that boundary without starting
+the next stage. A worker-originated cancellation also aborts; never report it
+as success. Clear operation/selection state only after the worker has settled.
+
+Chat's injected boundary must delegate to this shared behavior or demonstrate
+the same shield-and-drain semantics; the existing helper is not assumed to
+satisfy repeated-cancellation behavior merely because it shields once. Preserve
+existing cancellation notifications and safe fault hooks. Do not shield the
+entire pipeline. Headless consumers requiring whole-run restoration must supply
+an outer snapshot/rollback transaction; the shared atomic boundary prevents
+mid-stage interruption but does not itself roll back earlier completed stages.
+
+A boundary may protect or abort the supplied operation, never replace a result
+or run another stage. Validate the returned result against the actual result
+produced inside the supplied operation, including receipt, counts and identity.
+Default and injected boundary tests must cancel after a write while a graph or
+lifecycle await is suspended, then release it and prove drain, no next stage,
+propagated cancellation, cleanup and outer restoration. Also cover worker failure
+while cancellation is pending, repeated cancellation and observer-hook failure.
 
 Full order and skips are owned here: optional REEMBED, DEDUPE, PRUNE,
 VERIFY_PENDING, SYNTHESIZE, VERIFY_GENERATED, optional LIFECYCLE, then memory
@@ -238,7 +305,11 @@ In `provider_contracts.py`, relocate the existing strict response models,
 `MaintenanceLlmRole`, response error classes and diagnostics, LLM/embedding
 protocols and explicit provider-registry type without Chat imports. Keep existing
 Chat names as aliases/re-exports of those shared types where callers depend on
-identity. Move schema/coverage validation, payload construction, three-role
+identity. Specifically extract the strict finish-reason/enclosing-JSON/schema
+decoder currently in LiteLlmMaintenanceProvider.complete_model into a reusable
+Memory helper taking the existing shared completion response and typed role/model.
+Chat provider objects retain transport construction and delegate decoding; no
+copy of the response-validation policy remains required in another frontend. Move schema/coverage validation, payload construction, three-role
 chaining and synthesis/reembedding command construction into the Memory engine.
 Chat-specific config reading and LiteLLM service construction remain injected
 composition code; response validation is shared, not reimplemented per UI.
@@ -253,7 +324,7 @@ wrappers and retain their action instrumentation. Do not move or redesign other
 maintenance, background extraction or runtime lifecycle behavior.
 
 Export the shared request/mode/stage/results/preflight/run-result, pipeline,
-observer/boundary protocols and provider contracts from the existing Memory
+observer/boundary protocols, stage receipt, default shielded boundary and provider contracts from the existing Memory
 maintenance surface. No dependency on `friday_chat` or `friday_commands` may be
 introduced into Memory. The headless proof must execute the complete sequence,
 not just call low-level selection helpers.
@@ -278,8 +349,13 @@ presentation enums. Backup/recovery preserve their current outer paths.
 
 Chat observer hooks translate domain events to existing fault/progress points
 and immutable stage evidence. Chat never computes order, skips, scope, verdicts
-or required provider roles. Map domain errors/results field-for-field into Chat
-presentation. The aggregate final-live-check path consumes the already computed
+or required provider roles. Map domain results field-for-field into Chat presentation, including the shared
+receipt without hashing or reconstructing references. Preserve error message/store
+and safe diagnostics, with explicit category adaptation: shared STORE_UNAVAILABLE
+or INVALID_COMMAND in preflight becomes PREFLIGHT_FAILED; stage planning/apply
+errors become MUTATION_FAILED; final STORE_INTEGRITY_FAILED or POSTCONDITION_FAILED
+becomes INTEGRITY_FAILED. Missing configured capabilities remain
+CAPABILITY_UNAVAILABLE. Never turn failure into an empty success result. The aggregate final-live-check path consumes the already computed
 shared postcondition result without reapplying commands or recomputing stage
 policy. Preserve distinct outer snapshot/live-integrity progress and every
 rollback/recovery failure distinction. Retain `VERIFY="verify"` for old records;
@@ -324,10 +400,13 @@ do not recalculate verdicts in Chat. Add to `MutationStepResult`:
 ```python
 verification_counts: VerificationCounts | None = None
 selection_state: Literal["known", "deferred"] = "known"
+receipt: MemoryMaintenanceStageReceipt | None = None
 ```
 
 Deferred is allowed only for PREVIEWED with candidate/changed/count summary None.
-New completed verification stages require a count summary matching candidate
+New executed verification stages copy the shared receipt; legacy results may
+read missing receipt as unavailable evidence. New completed verification stages
+require non-null operation/plan/selection binding and a count summary matching candidate
 count. Skipped/failed stages carry no success summary. Preserve old `VERIFY`
 result deserialization with missing counts as unavailable, not fabricated zeros.
 No-candidate is displayed from known zero candidates and zero summary, without
@@ -358,19 +437,26 @@ Do not add generated selections/counts to these existing recovery schemas.
 
 Add `MaintenanceRunEvidence` in Chat contracts, strict/frozen/extra-forbid:
 `schema_version: Literal[1]=1`, `run_id: str` (32 hex), `sequence: int` (exact,
-non-negative), `stage: MutationStep`, `state: Literal["started","completed",
-"failed","skipped"]`, `selection_sha256: str | None` (64 hex),
-`result: MutationStepResult | None`. Started requires no result; other states
-require a matching result/status. Selection digest is computed from the canonical
-typed shared selection, never raw documents. No memory text, provider response,
-prompt or credentials in this evidence.
+non-negative artifact-event ordinal), `state: Literal["started","planned",
+"completed","failed","skipped"]`,
+`receipt: MemoryMaintenanceStageReceipt`, `result: MutationStepResult | None`.
+Run ID must equal receipt.operation_id; execute evidence cannot use a preview
+receipt. Started/planned require no result; terminal states require a matching
+result/status and the same receipt facts. The artifact ordinal increases for
+all events; receipt.sequence identifies the stage and stays fixed across its
+started/planned/terminal events. Chat stores the Memory-produced receipt, without
+computing its digest. A planned verification requires plan/digest; successful
+verification cannot have null scope evidence. Failed pre-plan stages can retain
+nulls as specified. No memory text, raw reference lists, provider response, prompt
+or credentials in this evidence. Recovery journal/bundle v1 stays unchanged.
 
 Persist immutable numbered stage receipts under that run's existing recovery
 directory, using `MaintenanceArtifactStore` and the existing safe atomic JSON
 writer with its limits/permissions/confinement. Add
 `write_run_evidence(evidence: MaintenanceRunEvidence) -> DurableArtifact`.
 Keep `durability.py` unchanged. Include sequence and state in filenames; refuse
-overwrite. Write started before a stage and its result after completion. Persist
+overwrite. Write started before planning, planned when the shared stage_planned event
+arrives, and the terminal receipt after the stage settles. Persist
 all success receipts before the terminal-success journal transition. Missing
 success receipt/write failure before success causes ordinary rollback.
 
@@ -460,6 +546,8 @@ Async tests use explicit markers, bounded event-controlled waits and task cleanu
 | `test_preview_and_verification_call_policy` (Memory pipeline) | Missing providers and tripwire probe/complete/embed methods; zero calls in preview and empty verification; conditional configuration checks and fresh assessment failures roll back. |
 | `test_stage_counts_and_failure_rendering` (Chat) | Mixed/empty/rejected/uncertain counts, no triple-counting; skipped/deferred/failed unknowns; attempted-versus-retained rollback output. |
 | `test_explicit_full_and_unchanged_modes` (Chat) | Implicit/explicit equivalence, duplicate/conflicting flags, quoted/unknown/recovery arguments, help and other-mode behavior. |
+| `test_default_and_injected_cancellation_boundaries` (Memory pipeline/headless) | Cancel after a preceding write during suspended graph/lifecycle work; repeated cancel, worker error, drain, no next stage, cleanup and outer rollback on both paths. |
+| `test_scope_receipts_reach_durable_evidence` (Memory/Chat/headless) | Both verification stages, pending/exact-empty/migration-only selections, before/planned/after correlation, matching Memory and persisted digests, foreign/substituted/omitted evidence refused, hook-write failure rollback and repeat-run isolation. |
 | `test_headless_created_verification_flow` (headless) | Real disposable graph/Chroma and local provider/embedding doubles; complete full/skip/standalone pipeline, chain/selection/counts/lifecycle/postconditions and no `friday_chat` import before/after execution. |
 | `test_chat_delegates_pipeline_once` (Chat) | One pipeline execute call; no local order/skip/provider-role policy; request/run identity, safe hooks, typed result consumption and whole-run rollback. |
 | Existing recovery suite plus new cases | Persisted baseline completed/interrupted v1 fixtures, installed recovery, whole-run rollback restoring verdicts/removing new insights, unknown journal versions, failed sidecar writes and new-stage interruptions. |
@@ -468,6 +556,7 @@ In private product copies demonstrate named **call-phase assertion** failures fo
 old order, broad generated selection, modified selection at re-plan, missing
 receipt clearing, fabricated/three-role counts, provider-backed preview, migration
 count used as creation scope, missing second pass, a Chat-local order fallback, callback result substitution
+omitted/substituted planned/result scope receipts, unsafe direct-await default
 and weakened response coverage.
 Run unchanged controls with the same harness; record canonical origins and file
 hashes before testing, at session finish and afterward. Import/setup/collection
@@ -548,8 +637,8 @@ same checks on existing paths and records all baseline failures):
 
 ```sh
 export MYPY_CACHE_DIR="$MAINT_SCRATCH/mypy"
-"$MAINT_PYTHON" -B "$MAINT_RUNNER" lint ruff check --no-cache packages/friday-memory/src/friday_memory/maintenance/mutation.py packages/friday-memory/src/friday_memory/maintenance/pipeline.py packages/friday-memory/src/friday_memory/maintenance/provider_contracts.py packages/friday-chat/src/friday_chat/reorganization packages/friday-chat/src/friday_chat/commands/registry.py packages/friday-chat/tests_chat/test_maintenance_order.py packages/friday-memory/tests_memory/test_maintenance/test_verification_selection.py tests/integration/reorganization/test_maintenance_headless.py
-"$MAINT_PYTHON" -B "$MAINT_RUNNER" types mypy --cache-dir "$MAINT_SCRATCH/mypy" packages/friday-memory/src/friday_memory/maintenance/mutation.py packages/friday-memory/src/friday_memory/maintenance/pipeline.py packages/friday-memory/src/friday_memory/maintenance/provider_contracts.py packages/friday-chat/src/friday_chat/reorganization/contracts.py packages/friday-chat/src/friday_chat/reorganization/mutation.py packages/friday-chat/src/friday_chat/reorganization/coordinator.py packages/friday-chat/src/friday_chat/reorganization/artifacts.py packages/friday-chat/src/friday_chat/commands/registry.py
+"$MAINT_PYTHON" -B "$MAINT_RUNNER" lint ruff check --no-cache packages/friday-memory/src/friday_memory/maintenance/mutation.py packages/friday-memory/src/friday_memory/maintenance/pipeline.py packages/friday-memory/src/friday_memory/maintenance/provider_contracts.py packages/friday-chat/src/friday_chat/reorganization packages/friday-chat/src/friday_chat/commands/registry.py packages/friday-chat/tests_chat/test_maintenance_order.py packages/friday-memory/tests_memory/test_maintenance/test_verification_selection.py tests/integration/reorganization/test_maintenance_headless.py packages/friday-chat/src/friday_chat/adapters.py packages/friday-chat/src/friday_chat/runtime.py packages/friday-memory/tests_memory/test_maintenance/test_pipeline.py packages/friday-memory/src/friday_memory/maintenance/__init__.py
+"$MAINT_PYTHON" -B "$MAINT_RUNNER" types mypy --cache-dir "$MAINT_SCRATCH/mypy" packages/friday-memory/src/friday_memory/maintenance/mutation.py packages/friday-memory/src/friday_memory/maintenance/pipeline.py packages/friday-memory/src/friday_memory/maintenance/provider_contracts.py packages/friday-chat/src/friday_chat/reorganization/contracts.py packages/friday-chat/src/friday_chat/reorganization/mutation.py packages/friday-chat/src/friday_chat/reorganization/coordinator.py packages/friday-chat/src/friday_chat/reorganization/artifacts.py packages/friday-chat/src/friday_chat/commands/registry.py packages/friday-chat/src/friday_chat/adapters.py packages/friday-chat/src/friday_chat/runtime.py
 # MAINT_REVISION is the frozen committed product-source revision.
 # MAINT_ARTIFACTS is the supplied locked-input directory, with its inventory verified.
 git archive --format=tar --output "$MAINT_SCRATCH/source.tar" "$MAINT_REVISION"
@@ -564,7 +653,8 @@ tar -xf "$MAINT_SCRATCH/source.tar" -C "$MAINT_SCRATCH/source"
 "$MAINT_PYTHON" -B "$MAINT_RUNNER" docs python -B scripts/check-documentation-lifecycle.py
 ```
 
-Run new-file formatting on all four new Python test files and the new installed
+Run new-file formatting on the two new Memory source files, all four new Python
+test files and the new installed
 probe. Existing-file format comparisons use the immutable baseline profile and
 exact same formatter/config; preserve pre-existing debt. The allowlisted Memory
 `__init__` and all modified tests must also be linted. Record any

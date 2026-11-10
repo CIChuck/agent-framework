@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Reconcile fresh OpenAI-only round2 review of the revised MAINT-001 specification and directive with Memory-owned pipeline execution. No product implementation approval; stop for human decision after review.
+  next_gate: Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -3056,3 +3056,10 @@ events:
   action: revised MAINT-001 ownership and recorded authorized OpenAI document council
   note: Shared Memory owns the complete domain pipeline; Chat keeps application recovery and presentation. New review required for changed specification/directive. No product construction authority.
   evidence: docs/planning/active/command-refactor/directives/CD-CMD-MAINT-001-reorganization-order.md
+- task: friday-command-refactor
+  at: '2026-11-10T15:11:37.922483+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled MAINT-001 round2 and prepared bounded document corrections
+  note: Shared cancellation boundary and scope receipt contract corrected; fresh OpenAI round3 required. No implementation or acceptance.
+  evidence: docs/planning/active/command-refactor/validation/maintenance/specification/round2/report.md

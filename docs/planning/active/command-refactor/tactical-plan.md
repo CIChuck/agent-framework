@@ -1,3 +1,22 @@
+# MAINT-001 — document corrections in review (round3)
+
+Execution phase: validation (documents only)
+Validation state: in_review; correction cycle1
+
+[Round2](validation/maintenance/specification/round2/report.md) requested two
+merged corrections: headless cancellation safety and a public shared scope receipt.
+The [bounded correction](remediation/REM-CMD-MAINT-DOC-001-boundary-and-receipts.md)
+now specifies a shared shield-and-drain default and before/planned/after receipt
+transport. [Directive](directives/CD-CMD-MAINT-001-reorganization-order.md) and
+[specification](maintenance-reorganization-specification.md) require fresh closure;
+no prior verdict carries forward. [V3 pins](validation/maintenance/construction-preparation-v3.json).
+
+**Next gate:** Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.
+
+No product/test changes or provider/store operations; accepted MEMQ remains closed.
+
+## Historical ownership-review checkpoint
+
 # MAINT-001 — shared Memory pipeline revision in review
 
 Execution phase: validation (documents only)
