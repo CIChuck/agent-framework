@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Reconcile fresh OpenAI-only round2 review of the revised MAINT-001 specification and directive with Memory-owned pipeline execution. No product implementation approval; stop for human decision after review. |
 
 ## Completed
 

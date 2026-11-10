@@ -1,3 +1,26 @@
+# MAINT-001 — shared Memory pipeline revision in review
+
+Execution phase: validation (documents only)
+Validation state: in_review (revised specification and construction directive)
+
+The revised [specification](maintenance-reorganization-specification.md) and
+[directive](directives/CD-CMD-MAINT-001-reorganization-order.md) assign the complete
+memory pipeline to friday-memory: stage policy/selection, provider assessments,
+execution, lifecycle and postconditions. Chat invokes it once inside the existing
+cross-store recovery envelope and adapts progress/results. Headless tests must
+exercise the entire sequence without Chat imports.
+
+[Version2 preparation](validation/maintenance/construction-preparation-v2.json)
+binds the revised authority and unchanged product baseline. The earlier
+specification council does not cover these revised bytes. Chuck Russell explicitly
+requested fresh OpenAI-only review after the ownership revisions.
+
+**Next gate:** Reconcile fresh OpenAI-only round2 review of the revised MAINT-001 specification and directive with Memory-owned pipeline execution. No product implementation approval; stop for human decision after review.
+
+No product code or tests changed. Accepted MEMQ/UAT remain closed.
+
+## Historical directive draft checkpoint — superseded for current readiness
+
 # MAINT-001 — construction directive for human review
 
 Branch: `feature/command-retirement`

@@ -2396,3 +2396,26 @@ has been executed or accepted through this documentation change.
   planning-only whitespace pass; shell blocks parse under zsh. All812 source
   inputs and11 authority pins match, protected config/export/personal metadata
   unchanged. Exact local receipts are in validation/maintenance/construction-checks.json.
+
+
+## 2026-11-10T15:00:27.414858+00:00 — MAINT-001 ownership revision and fresh document review authorized
+
+- Chuck Russell challenged Chat-owned domain sequencing, then directed “revise
+  invoke the council to review the document after revisions were made.”
+- Revised specification SHA256 `cf391414f15ac1e29b491f08cf2b08b73f6c7117d9d638ca73c1169dfc5dd57d`;
+  directive SHA256 `cead1919e8982b2df0dff94deb923533fb94d6a2c54a8def26410ee637527332`. Memory now owns the complete pipeline and provider
+  assessment/command orchestration, lifecycle invocation and postconditions.
+  Chat retains application quiescence/snapshots/journal/rollback and UI adaptation.
+- Add a bounded shared pipeline/provider-contract extraction and lifecycle
+  delegation seams to the future allowlist. Headless proof executes all modes,
+  not just selection helpers. Preserve per-stage atomic cancellation hooks.
+- Old specification/draft/council/preparation history is preserved. Product
+  inputs remain byte-identical; no implementation or runtime test proof claimed.
+- `execution_phase: validation`; `validation_state: in_review` for documents.
+  Freeze this revision, then invoke fresh Astra/Sol high read-only contexts.
+- **Next gate:** Reconcile fresh OpenAI-only round2 review of the revised MAINT-001 specification and directive with Memory-owned pipeline execution. No product implementation approval; stop for human decision after review.
+
+- Revision checks: board36 valid, dashboard current, documentation lifecycle961
+  and planning whitespace pass; exact shell blocks parse as zsh. All812 product
+  inputs, prior frozen evidence and protected personal/export/config state remain
+  unchanged. Product tests/builds have not run for this document revision.

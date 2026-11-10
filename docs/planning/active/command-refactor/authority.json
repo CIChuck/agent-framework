@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-10",
-  "decision": "MAINT-001 specification readiness verified; construction directive drafted for human review",
+  "decision": "MAINT-001 shared pipeline ownership revision; fresh specification/directive council authorized",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review.",
-  "product_code_authority": "MAINT-001 directive drafting only. No product implementation approval, no new council or sub-agent invocation. Accepted MEMQ remains closed.",
+  "current_scope": "Reconcile fresh OpenAI-only round2 review of the revised MAINT-001 specification and directive with Memory-owned pipeline execution. No product implementation approval; stop for human decision after review.",
+  "product_code_authority": "Document ownership revisions and read-only Astra/Sol review only. No MAINT-001 product construction approval. Accepted MEMQ remains closed.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -1557,6 +1557,73 @@
   },
   "maintenance_specification": {
     "unit": "MAINT-001",
+    "status": "ownership_revision_in_review",
+    "execution_phase": "planning",
+    "validation_state": "in_review",
+    "document": "maintenance-reorganization-specification.md",
+    "sha256": "cf391414f15ac1e29b491f08cf2b08b73f6c7117d9d638ca73c1169dfc5dd57d",
+    "recorded_at": "2026-11-10T13:52:34.313775+00:00",
+    "baseline": "1093aff8",
+    "instructions": [
+      "We should continue drafting the maintenance specification that was requested regarding the reorganization order of events. Is that clear?",
+      "I would like an opportunity to review documents from before sub-agents are invoked for the council."
+    ],
+    "implementation_approval": "not_granted",
+    "council_authority": "Round1 explicitly authorized and completed; further invocations require direction after human document review",
+    "delegated_work": "stopped; primary agent drafts directly",
+    "next_gate": "Reconcile fresh OpenAI-only round2 review of the revised MAINT-001 specification and directive with Memory-owned pipeline execution. No product implementation approval; stop for human decision after review.",
+    "reviewed_candidate": "2d0957f495b2a11088388bc7e61d4ced3a3f4db4",
+    "council_round": 1,
+    "council_report": "validation/maintenance/specification/round1/report.md",
+    "council_results": {
+      "sol": {
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "outcome": "VERIFIED",
+        "score": 9.0
+      },
+      "astra": {
+        "model": "gpt-6-astra",
+        "effort": "high",
+        "outcome": "VERIFIED",
+        "score": 9.2
+      }
+    },
+    "mandatory_findings": [],
+    "prior_verdict_scope": "round1 verified only old specification at2d0957f4; superseded for current readiness"
+  },
+  "maintenance_construction_directive": {
+    "status": "ownership_revision_in_review",
+    "prepared_at": "2026-11-10T14:40:46.835869+00:00",
+    "baseline": "06234fa8a56eaeff09266b4d20ed503dd71df1fa",
+    "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
+    "sha256": "cead1919e8982b2df0dff94deb923533fb94d6a2c54a8def26410ee637527332",
+    "preparation": "validation/maintenance/construction-preparation-v2.json",
+    "preparation_sha256": "7b41fd29b62701be08874a6da46b003c6a8cdbeefb342e05a8d2935380798744",
+    "instruction": "revise invoke the council to review the document after revisions were made.",
+    "execution_phase": "planning",
+    "validation_state": "in_review",
+    "implementation_approval": "not_granted",
+    "council_invocation": "authorized: fresh GPT-6 Astra/high and GPT-6.1 Sol/high, both documents, read-only",
+    "next_gate": "Reconcile fresh OpenAI-only round2 review of the revised MAINT-001 specification and directive with Memory-owned pipeline execution. No product implementation approval; stop for human decision after review."
+  },
+  "maintenance_directive_before_ownership_revision": {
+    "status": "proposed_for_human_review",
+    "prepared_at": "2026-11-10T14:40:46.835869+00:00",
+    "baseline": "06234fa8a56eaeff09266b4d20ed503dd71df1fa",
+    "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
+    "sha256": "906e7ee6c717612247b2619c4c49bd1e9f0280aa6b940835956105736030d932",
+    "preparation": "validation/maintenance/construction-preparation.json",
+    "preparation_sha256": "e06675197bb46b5ccdb1324dd12ba567ebee4366cdd7035031fee0d68a686e96",
+    "instruction": "Proceed, build the construction directive.",
+    "execution_phase": "planning",
+    "validation_state": "not_ready",
+    "implementation_approval": "not_granted",
+    "council_invocation": "not_authorized; human review first",
+    "next_gate": "Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review."
+  },
+  "maintenance_specification_before_ownership_revision": {
+    "unit": "MAINT-001",
     "status": "specification_readiness_verified",
     "execution_phase": "planning",
     "validation_state": "verified",
@@ -1590,20 +1657,5 @@
       }
     },
     "mandatory_findings": []
-  },
-  "maintenance_construction_directive": {
-    "status": "proposed_for_human_review",
-    "prepared_at": "2026-11-10T14:40:46.835869+00:00",
-    "baseline": "06234fa8a56eaeff09266b4d20ed503dd71df1fa",
-    "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
-    "sha256": "906e7ee6c717612247b2619c4c49bd1e9f0280aa6b940835956105736030d932",
-    "preparation": "validation/maintenance/construction-preparation.json",
-    "preparation_sha256": "e06675197bb46b5ccdb1324dd12ba567ebee4366cdd7035031fee0d68a686e96",
-    "instruction": "Proceed, build the construction directive.",
-    "execution_phase": "planning",
-    "validation_state": "not_ready",
-    "implementation_approval": "not_granted",
-    "council_invocation": "not_authorized; human review first",
-    "next_gate": "Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review."
   }
 }

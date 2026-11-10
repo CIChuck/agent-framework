@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review.
+  next_gate: Reconcile fresh OpenAI-only round2 review of the revised MAINT-001 specification and directive with Memory-owned pipeline execution. No product implementation approval; stop for human decision after review.
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []
@@ -3048,4 +3048,11 @@ events:
   actor_role: agent
   action: drafted proposed MAINT-001 construction directive for human review
   note: Explicit drafting instruction; exact typed contracts, compatibility route, scoped tests and safe commands prepared. No implementation or council/sub-agent invocation. Accepted MEMQ stays closed.
+  evidence: docs/planning/active/command-refactor/directives/CD-CMD-MAINT-001-reorganization-order.md
+- task: friday-command-refactor
+  at: '2026-11-10T15:00:27.414858+00:00'
+  actor: Codex
+  actor_role: agent
+  action: revised MAINT-001 ownership and recorded authorized OpenAI document council
+  note: Shared Memory owns the complete domain pipeline; Chat keeps application recovery and presentation. New review required for changed specification/directive. No product construction authority.
   evidence: docs/planning/active/command-refactor/directives/CD-CMD-MAINT-001-reorganization-order.md

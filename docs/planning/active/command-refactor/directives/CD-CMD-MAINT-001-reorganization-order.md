@@ -1,21 +1,25 @@
 # CD-CMD-MAINT-001 — reorganization ordering and verdict reporting
 
-Status: **PROPOSED FOR HUMAN REVIEW; construction and council not authorized.**
+Status: **REVISED PROPOSAL — shared pipeline ownership; construction not approved.**
 Owner: Chuck Russell. Prepared 2026-11-10. Branch: `feature/command-retirement`.
-Draft baseline: `06234fa8a56eaeff09266b4d20ed503dd71df1fa`.
+Draft product baseline: `06234fa8a56eaeff09266b4d20ed503dd71df1fa`.
+Ownership revision starts from documentation candidate `b41bd4e7` with identical
+product bytes. The earlier specification verdict does not cover this revision.
 
 This directive implements the proposed [MAINT-001 specification](../maintenance-reorganization-specification.md).
 Its [OpenAI specification council](../validation/maintenance/specification/round1/report.md)
 returned VERIFIED (Sol9.0/Astra9.2) for design readiness, not construction.
 Chuck Russell authorized drafting this document and requires an opportunity to
-review documents before council sub-agents are invoked. Stop at that review gate.
+review documents before council sub-agents are invoked. The maintainer has now explicitly requested ownership revision and an
+OpenAI-only council on the revised documents; that authorization covers review,
+not product implementation.
 No product code, tests, providers or personal stores are changed by drafting.
 
 ## Authority, frozen inputs and boundaries
 
 Apply AGENTS, repository engineering, lifecycle and independent-validation
 policies, then the specification M-01..05/MT-01..09 and this bounded directive.
-The [construction preparation](../validation/maintenance/construction-preparation.json)
+The [construction preparation](../validation/maintenance/construction-preparation-v2.json)
 pins the complete baseline revision, specification, council report, policies,
 existing source/test bytes and package/lock metadata. Record its SHA256 together
 with this directive's final SHA256 in any subsequent exact approval. Only
@@ -26,8 +30,8 @@ Primary immutable design inputs:
 
 | Input relative to packet | SHA256 |
 | --- | --- |
-| `maintenance-reorganization-specification.md` | `e085d9fbad99b8cf59887db4590e41ee6f9af2cb963dd99e4fbbc7ee7f2332ab` |
-| `validation/maintenance/construction-preparation.json` | `e06675197bb46b5ccdb1324dd12ba567ebee4366cdd7035031fee0d68a686e96` |
+| `maintenance-reorganization-specification.md` | `cf391414f15ac1e29b491f08cf2b08b73f6c7117d9d638ca73c1169dfc5dd57d` |
+| `validation/maintenance/construction-preparation-v2.json` | `7b41fd29b62701be08874a6da46b003c6a8cdbeefb342e05a8d2935380798744` |
 
 Scope is one bounded maintenance unit: pending verification before synthesis,
 targeted verification of newly generated meta insights, per-stage verdict counts,
@@ -141,42 +145,155 @@ Do not change source eligibility or re-verify pending uncertain records in the
 second pass. Shared postconditions must check the final status for generated
 records as well as preceding source updates; no overwrite of earlier commands.
 
-Export the two new types from the existing Memory maintenance public surface.
+Export these types along with the D1b pipeline contracts from the existing
+Memory maintenance public surface.
 The headless test must use these operations without importing `friday_chat` and
 must demonstrate behavior, not just import absence.
 
-## D2 — Chat sequencing, preflight and presentation
+## D1b — shared memory-maintenance pipeline
 
-Add `VERIFY_PENDING="verify_pending"` and `VERIFY_GENERATED="verify_generated"`
-to Chat `MutationStep`. Preserve `VERIFY="verify"` for standalone mode and old
-records. Both new stages map to shared `MemoryMutationStep.VERIFY`; they retain
-the current classifier/researcher/judge chain and exact-coverage validation.
+Add `friday_memory.maintenance.pipeline` and `provider_contracts` as the reusable
+engine. Mode/skip selection and the entire memory stage loop must move here;
+Chat `_planned_steps`, `_skipped_mutation_steps`, `_required_roles` and the
+per-step execute loop cannot remain independent authorities. Preserve the
+existing domain validation, prompts, bounds, fingerprints and diagnostics when
+moving the provider assessment/command-building logic from Chat. No algorithm,
+confidence, model or retry-policy changes are authorized by this relocation.
 
-Full order is optional REEMBED, DEDUPE, PRUNE, VERIFY_PENDING, SYNTHESIZE,
-VERIFY_GENERATED, optional LIFECYCLE, then existing live postconditions. Apply
-the specification's complete skip/mode matrix. Verify-only remains one pending
-pass; synthesize-only does not implicitly verify its outputs.
+### Shared contracts and public call surface
 
-Extend `MaintenanceMutationAdapter.begin_run` and the concrete implementation to
-`begin_run(request, *, run_id: str) -> None`. The coordinator supplies the actual
-operation run ID already used for recovery evidence. The adapter invokes shared
-`begin_operation(run_id)` and `end_operation(run_id)` on its matching lifecycle,
-including rollback, cancellation and failure. Adapt injected test doubles only
-where this explicit interface changes. Request equality alone is not run identity.
-If shared begin fails, do not leave the Chat adapter marked active. End/cleanup
-errors must preserve the primary operation failure and recovery evidence.
+In `pipeline.py`, use the existing strict/frozen model discipline:
 
-The adapter obtains the generated selection through the shared receipt method
-after successful synthesis and passes it unchanged to shared planning. It may
-retain the typed result/selection only for that run; it must not reconstruct
-references. A full run reaching generated verification without its synthesis
-receipt is an error. A valid empty batch reports completed/no candidates, zero
-counts and no verification assessment. Migration-only synthesis is a required
-fixture: metadata backfill must not cause old records to enter the second stage.
+- `MemoryMaintenanceMode`: `full`, `analyze`, `dedupe`, `prune`, `synthesize`,
+  `verify`. Backup/recovery remain application-envelope operations, not memory
+  pipeline modes.
+- `MemoryMaintenanceRequest`: `mode`, plus exact bool fields `execute=False`,
+  `skip_synthesis=False`, `skip_verify=False`, `skip_lifecycle=False`,
+  `force_reembed=False`. Retain current analyze-execute/full-only flag refusals.
+- `MemoryMaintenanceStage`: `analyze`, `reembed`, `dedupe`, `prune`,
+  `verify_pending`, `synthesize`, `verify_generated`, `verify`, `lifecycle`.
+- `MemoryMaintenanceStageResult`: `stage`,
+  `status: Literal["previewed","completed","skipped","failed"]`, nullable
+  non-negative exact `scanned_count`, `candidate_count`, `changed_count`,
+  optional shared `verification_counts`,
+  `selection_state: Literal["known","deferred"]="known"`, warning strings and
+  `MemoryMutationError` members. Mirror the result invariants specified below
+  without importing any Chat result/error type.
+- `MemoryMaintenancePreflight`: `supported: bool`, `stages: tuple[Stage,...]`,
+  `warnings`, `errors`; `supported` cannot coexist with errors. Stage references
+  in these signatures mean the shared `MemoryMaintenanceStage` enum.
+- `MemoryMaintenanceRunResult`: `operation_id` (32 hex), `succeeded: bool`,
+  `stages: tuple[MemoryMaintenanceStageResult,...]`,
+  `postconditions: MemoryMutationVerification | None`, `warnings`, `errors`.
+  Success requires verified postconditions and no failed stage/errors; failure
+  cannot report committed success. Do not turn cancellation into a success result.
 
-### Council advisory A01: exact provider-call policy
+`MemoryMaintenancePipeline` is constructed from the shared mutation participant,
+explicit providers, lifecycle runner, and unchanged synthesis guidance. Expose:
 
-Preview performs local layout/store/shape inspection only. It neither requires
+```python
+def planned_stages(self, request: MemoryMaintenanceRequest) -> tuple[MemoryMaintenanceStage, ...]: ...
+async def preflight(self, request: MemoryMaintenanceRequest) -> MemoryMaintenancePreflight: ...
+async def preview(self, request: MemoryMaintenanceRequest) -> tuple[MemoryMaintenanceStageResult, ...]: ...
+async def execute(
+    self, request: MemoryMaintenanceRequest, *, operation_id: str,
+    observer: MemoryMaintenanceObserver | None = None,
+    boundary: MemoryMaintenanceBoundary | None = None,
+) -> MemoryMaintenanceRunResult: ...
+```
+
+Preview/preflight do not open an operation. Execute requires `execute=True`,
+opens the shared operation, selects and executes stages itself, checks memory
+postconditions, and closes operation/receipt state in `finally`. Reject overlap.
+The stage list is derived from request policy once; each data-dependent stage
+uses a fresh plan. Shared execution returns failed domain results or propagates
+exceptions/cancellation without initiating application restore itself. The outer
+transaction must treat any failure as unsuccessful and roll back.
+
+`MemoryMaintenanceObserver` has async `before_stage(stage)`, `after_stage(result)`,
+`before_postconditions()` and `after_postconditions(verification)` hooks. They
+receive content-safe typed facts, never control the next stage, and may abort
+with an exception. A hook failure aborts the pipeline; it cannot be recorded as
+success. Missing observer means no-op hooks.
+
+`MemoryMaintenanceBoundary` exposes generic async
+`run_atomic(operation: Callable[[], Awaitable[T]]) -> T`. The pipeline invokes it
+for each complete stage and for final memory postconditions. The default awaits
+directly for headless use. Chat supplies its existing shielded atomic boundary;
+this preserves stage-level cancellation safety instead of shielding an entire
+multi-stage run. Check pending cancellation at the before/after-stage safe hooks,
+never between a stage's apply writes. A boundary may protect or abort a supplied
+operation, not replace its domain result or execute another stage. Validate
+returned stage/plan identities; tests must cover callback failure and late cancel.
+
+Full order and skips are owned here: optional REEMBED, DEDUPE, PRUNE,
+VERIFY_PENDING, SYNTHESIZE, VERIFY_GENERATED, optional LIFECYCLE, then memory
+postconditions. Verify-only remains one pending pass; synthesize-only does not
+implicitly verify. Generated selection comes from the successful shared synthesis
+receipt, not the frontend. No receipt is an error; a valid empty/migration-only
+receipt yields known zero counts and no assessment call. Keep all command receipts
+until shared postconditions finish; clear them on every terminal path.
+
+In `provider_contracts.py`, relocate the existing strict response models,
+`MaintenanceLlmRole`, response error classes and diagnostics, LLM/embedding
+protocols and explicit provider-registry type without Chat imports. Keep existing
+Chat names as aliases/re-exports of those shared types where callers depend on
+identity. Move schema/coverage validation, payload construction, three-role
+chaining and synthesis/reembedding command construction into the Memory engine.
+Chat-specific config reading and LiteLLM service construction remain injected
+composition code; response validation is shared, not reimplemented per UI.
+
+The lifecycle runner protocol and its strict report must be shared and use
+Memory errors. The report retains `succeeded`, nullable non-negative exact
+scanned/candidate/changed counts, warnings and typed Memory errors, with the
+existing success/error invariants; adapt old Chat error construction explicitly. Relocate the bounded promotion/decay adapter for the existing public
+`MemoryPromotionService` here as `PromotionLifecycleMaintenanceRunner`; preserve
+its count/warning/error rules. Existing Chat lifecycle methods become delegation
+wrappers and retain their action instrumentation. Do not move or redesign other
+maintenance, background extraction or runtime lifecycle behavior.
+
+Export the shared request/mode/stage/results/preflight/run-result, pipeline,
+observer/boundary protocols and provider contracts from the existing Memory
+maintenance surface. No dependency on `friday_chat` or `friday_commands` may be
+introduced into Memory. The headless proof must execute the complete sequence,
+not just call low-level selection helpers.
+
+## D2 — Chat integration and application safety envelope
+
+Chat parses input, maps it once to `MemoryMaintenanceRequest`, constructs/injects
+Memory-owned provider/lifecycle capabilities and invokes the shared pipeline.
+The existing application wrapper retains writer quiescence, leases, memory and
+transcript snapshots, durable recovery journal, rollback and runtime resumption.
+No transcript/application dependency moves into Memory.
+
+Replace the coordinator's domain per-step loop with one adapter pipeline call
+inside the existing mutation transaction. Before it starts, all required verified
+snapshots/journal boundaries must already exist. Adapt the injected
+`MaintenanceMutationAdapter` to expose
+`execute_pipeline(request, *, run_id: str, observer: MemoryMaintenanceObserver,
+boundary: MemoryMaintenanceBoundary) -> MemoryMaintenanceRunResult`; replace
+its policy-bearing `execute_step` use. Its preflight/preview delegate to the
+shared pipeline; returned shared stage lists are authoritative, mapped to Chat
+presentation enums. Backup/recovery preserve their current outer paths.
+
+Chat observer hooks translate domain events to existing fault/progress points
+and immutable stage evidence. Chat never computes order, skips, scope, verdicts
+or required provider roles. Map domain errors/results field-for-field into Chat
+presentation. The aggregate final-live-check path consumes the already computed
+shared postcondition result without reapplying commands or recomputing stage
+policy. Preserve distinct outer snapshot/live-integrity progress and every
+rollback/recovery failure distinction. Retain `VERIFY="verify"` for old records;
+new Chat stage enum entries merely mirror shared names for presentation.
+
+All fake/injected adapter signature changes must be named and bounded in tests.
+A Chat integration spy must prove exactly one pipeline execute call, request/run
+identity and unchanged observer/boundary wiring. A separate headless run must
+show identical domain order and results without any Chat module being imported.
+
+### Shared pipeline preflight policy — council advisory A01
+
+The shared pipeline implements this policy; Chat delegates to it. Preview
+performs local layout/store/shape inspection only. It neither requires
 configured providers nor calls any LLM/embedding `probe`, `complete_model` or
 embed method. Re-plan locally for observable current eligibility, but report
 downstream verdict/output-dependent candidates as deferred/unknown. Preview
@@ -291,22 +408,29 @@ All paths are repository-relative. No unlisted product/test path may change.
 | Path | Permitted edits |
 | --- | --- |
 | `packages/friday-memory/src/friday_memory/maintenance/mutation.py` | D1 typed additions, operation receipts, selection-bound planning/apply, counts/references and postconditions only. |
-| `packages/friday-memory/src/friday_memory/maintenance/__init__.py` | Add two public type imports/exports only; no existing suppression expansion. |
+| `packages/friday-memory/src/friday_memory/maintenance/__init__.py` | Add D1/D1b public imports/exports only; no existing suppression expansion. |
+| `packages/friday-memory/src/friday_memory/maintenance/pipeline.py` (new) | Shared complete pipeline, policy, assessments, command orchestration, lifecycle adapter and postconditions. |
+| `packages/friday-memory/src/friday_memory/maintenance/provider_contracts.py` (new) | Shared strict provider/response/lifecycle contracts and validation diagnostics, relocated without policy changes. |
 | `packages/friday-chat/src/friday_chat/reorganization/contracts.py` | Two stage enum entries, the three D2 evidence/result additions and validators; keep journal/bundle schemas unchanged. |
-| `packages/friday-chat/src/friday_chat/reorganization/mutation.py` | Stage mapping, operation wiring, exact selection consumption, preflight/preview policy and count adaptation only. |
-| `packages/friday-chat/src/friday_chat/reorganization/coordinator.py` | Stage order/skips, run ID wiring, lifecycle-safe cleanup and immutable stage evidence; preserve recovery/lease/snapshot mechanics. |
+| `packages/friday-chat/src/friday_chat/reorganization/mutation.py` | Delegate to pipeline, re-export relocated types, retain config/provider construction and map shared facts. Remove relocated domain loop/assessment policy. |
+| `packages/friday-chat/src/friday_chat/reorganization/coordinator.py` | One pipeline invocation with progress/atomic hooks and run identity; remove local domain order/skips. Preserve recovery/lease/snapshot transaction mechanics. |
+| `packages/friday-chat/src/friday_chat/adapters.py` | Only two reorganization lifecycle methods delegate to shared promotion runner; preserve action instrumentation. |
+| `packages/friday-chat/src/friday_chat/runtime.py` | Only lifecycle report imports/annotations and corresponding fake methods adapt to shared contracts. |
 | `packages/friday-chat/src/friday_chat/reorganization/artifacts.py` | New evidence writer using existing safe store; no snapshot/journal rewriting. |
 | `packages/friday-chat/src/friday_chat/commands/registry.py` | Reorganize parser, usage, its metadata/help entry and result formatting only. |
 | `packages/friday-chat/tests_chat/test_maintenance_order.py` (new) | Exact mode/order/preflight/count/preview/scope and negative-control tests. |
+| `packages/friday-memory/tests_memory/test_maintenance/test_pipeline.py` (new) | Complete shared order/modes/providers/lifecycle/postconditions/observer/cancellation behavior. |
 | `packages/friday-memory/tests_memory/test_maintenance/test_verification_selection.py` (new) | Shared strict models, receipts, planning/apply/postcondition tests. |
 | `tests/integration/reorganization/test_maintenance_headless.py` (new) | No-Chat shared consumer, real disposable-store flow and origin checks. |
-| `packages/friday-chat/tests_chat/test_reorganization_coordinator.py` | Add new proofs; revise only order, new begin_run keyword/fakes and intentional preview-readiness expectations. |
+| `packages/friday-chat/tests_chat/test_reorganization_coordinator.py` | Add new proofs; revise only order, pipeline-call protocol/fakes and intentional preview-readiness expectations. |
 | `packages/friday-chat/tests_chat/test_reorganization_mutation.py` | Add proofs and narrowly adapt mapping, signatures, counts and verification-preflight assertions. |
 | `packages/friday-chat/tests_chat/test_reorganization_contracts.py` | New strict models; retain v1 journal rejection/round-trip assertions. |
 | `packages/friday-chat/tests_chat/test_reorganization_terminal.py` | Exact stage and verdict-count output expectations and rollback labelling. |
 | `packages/friday-chat/tests_chat/test_maintenance_commands.py` | Explicit-full parser/help/result and unchanged other-mode assertions. |
 | `packages/friday-chat/tests_chat/test_reorganization_foundations.py` | Only directly impacted mode metadata/help expectations, with baseline comparison. |
 | `packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py` | New result/interface proofs and compatibility assertions; retain all prior behavior assertions. |
+| `packages/friday-chat/tests_chat/test_reorganization_response_diagnostics.py` | Preserve relocated response-validation/error-identity behavior; imports/aliases only where necessary. |
+| `packages/friday-chat/tests_chat/test_command_production_adapters.py` | Targeted lifecycle delegation and unchanged action/count assertions only. |
 | `tests/integration/reorganization/test_reorganization_recovery.py` | Add v1 and new evidence recovery cases; narrow fake signature adaptations. |
 | `packages/friday-chat/tests_chat/fixtures/maintenance-v1/` (new) | Baseline-generated synthetic persisted journal/bundle fixture bytes and provenance; no personal store data. |
 | `packages/friday-chat/README.md`, `packages/friday-memory/README.md` | Describe this behavior and public shared boundary only. |
@@ -318,7 +442,8 @@ Do not remove old tests/assertions, add skips/xfails, weaken typing or suppressi
 or rewrite accepted evidence. Where an old expected order/output is intentionally
 changed, record the exact assertion delta and new equivalent stronger coverage.
 No `friday-commands`, runtime assembly, config, metadata/dependency/lock or global
-parser edits. If a direct integration seam cannot fit these paths, stop and name
+parser edits. The two named runtime lifecycle report/fake adaptations above do
+not authorize runtime assembly or other lifecycle policy changes. If a direct integration seam cannot fit these paths, stop and name
 it rather than broadening the allowlist.
 
 ## Required named tests and rejection witnesses
@@ -330,18 +455,20 @@ Async tests use explicit markers, bounded event-controlled waits and task cleanu
 | --- | --- |
 | `test_selection_models_and_operation_receipts` (Memory) | Strict counts/selection fields, exact empty, duplicate/foreign/changed/stale receipt, missing record, old operation, one consumption, begin/end cleanup. |
 | `test_scoped_apply_and_postconditions` (Memory) | Same selection bound through fresh re-plan/apply; source drift refused before writes; exact coverage, persisted judge counts, created reference order and empty migration-only result. |
-| `test_full_order_and_same_run_synthesis` (Chat) | Full order and all skip combinations; newly verified source used immediately; old meta/non-source coverage retained; rejected/uncertain remain ineligible. |
-| `test_generated_scope_is_exact` (Chat) | Only returned new references; no uncertain source retry; no counts/timestamp inference; migration-only/abstention empty; repeated runs, errors and cancellation clean state. |
-| `test_preview_and_verification_call_policy` (Chat) | Missing providers and tripwire probe/complete/embed methods; zero calls in preview and empty verification; conditional configuration checks and fresh assessment failures roll back. |
+| `test_full_order_and_same_run_synthesis` (Memory pipeline) | Full order and all skip combinations; newly verified source used immediately; old meta/non-source coverage retained; rejected/uncertain remain ineligible. |
+| `test_generated_scope_is_exact` (Memory pipeline) | Only returned new references; no uncertain source retry; no counts/timestamp inference; migration-only/abstention empty; repeated runs, errors and cancellation clean state. |
+| `test_preview_and_verification_call_policy` (Memory pipeline) | Missing providers and tripwire probe/complete/embed methods; zero calls in preview and empty verification; conditional configuration checks and fresh assessment failures roll back. |
 | `test_stage_counts_and_failure_rendering` (Chat) | Mixed/empty/rejected/uncertain counts, no triple-counting; skipped/deferred/failed unknowns; attempted-versus-retained rollback output. |
 | `test_explicit_full_and_unchanged_modes` (Chat) | Implicit/explicit equivalence, duplicate/conflicting flags, quoted/unknown/recovery arguments, help and other-mode behavior. |
-| `test_headless_created_verification_flow` (headless) | Real disposable graph/Chroma and local provider/embedding doubles; exact shared behavior and no `friday_chat` import before/after execution. |
+| `test_headless_created_verification_flow` (headless) | Real disposable graph/Chroma and local provider/embedding doubles; complete full/skip/standalone pipeline, chain/selection/counts/lifecycle/postconditions and no `friday_chat` import before/after execution. |
+| `test_chat_delegates_pipeline_once` (Chat) | One pipeline execute call; no local order/skip/provider-role policy; request/run identity, safe hooks, typed result consumption and whole-run rollback. |
 | Existing recovery suite plus new cases | Persisted baseline completed/interrupted v1 fixtures, installed recovery, whole-run rollback restoring verdicts/removing new insights, unknown journal versions, failed sidecar writes and new-stage interruptions. |
 
 In private product copies demonstrate named **call-phase assertion** failures for
 old order, broad generated selection, modified selection at re-plan, missing
 receipt clearing, fabricated/three-role counts, provider-backed preview, migration
-count used as creation scope, missing second pass and weakened response coverage.
+count used as creation scope, missing second pass, a Chat-local order fallback, callback result substitution
+and weakened response coverage.
 Run unchanged controls with the same harness; record canonical origins and file
 hashes before testing, at session finish and afterward. Import/setup/collection
 failures earn no mutation credit. No supplied installation is mutated.
@@ -355,7 +482,8 @@ planned; no automatic three-deliverable or repeated readiness-council workflow.
    product equality. Record actual tests/debt, AST/assertion inventories and all
    protected dirty/personal/export metadata. Generate disposable v1 fixtures using
    the pinned old implementation. Establish offline guard and source origins.
-2. **D1/D2:** implement shared contracts first, then Chat wiring. Run meaningful
+2. **D1/D2:** implement shared contracts and complete Memory pipeline first, then Chat
+   delegation and the retained application safety envelope. Run meaningful
    focused tests and rejection controls, retaining baseline assertions/deltas.
 3. **D3:** freeze product source; full regressions, clean build/replay and installed
    normal/optimized proof. Freeze administrative evidence afterward; distinguish
@@ -383,7 +511,7 @@ MAINT_SCRATCH="$(mktemp -d /tmp/friday-maint-build.XXXXXX)"
 "$MAINT_PYTHON" -B "$MAINT_HARNESS/prepare.py" "$MAINT_SCRATCH/prepared" --wheelhouse "$MAINT_WHEELHOUSE"
 MAINT_RUNNER="$MAINT_SCRATCH/prepared/pilot_run.py"
 "$MAINT_PYTHON" -B "$MAINT_RUNNER" guard python -B "$MAINT_HARNESS/guard_selftest.py"
-"$MAINT_PYTHON" -B "$MAINT_RUNNER" focused-memory python -B -m pytest -p no:cacheprovider -q packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py packages/friday-memory/tests_memory/test_maintenance/test_verification_selection.py
+"$MAINT_PYTHON" -B "$MAINT_RUNNER" focused-memory python -B -m pytest -p no:cacheprovider -q packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py packages/friday-memory/tests_memory/test_maintenance/test_verification_selection.py packages/friday-memory/tests_memory/test_maintenance/test_pipeline.py
 "$MAINT_PYTHON" -B "$MAINT_RUNNER" focused-chat python -B -m pytest -p controls -p no:cacheprovider -q packages/friday-chat/tests_chat/test_maintenance_order.py packages/friday-chat/tests_chat/test_reorganization_contracts.py packages/friday-chat/tests_chat/test_reorganization_coordinator.py packages/friday-chat/tests_chat/test_reorganization_mutation.py packages/friday-chat/tests_chat/test_reorganization_terminal.py packages/friday-chat/tests_chat/test_maintenance_commands.py packages/friday-chat/tests_chat/test_reorganization_foundations.py
 "$MAINT_PYTHON" -B "$MAINT_RUNNER" recovery-headless python -B -m pytest -p controls -p no:cacheprovider -q tests/integration/reorganization
 "$MAINT_PYTHON" -B "$MAINT_RUNNER" full-memory python -B -m pytest -p controls -p no:cacheprovider -q packages/friday-memory/tests_memory
@@ -400,7 +528,9 @@ where reproduced. Prior counts/scores are not current executions.
 
 Run changed-source/test `ruff check --no-cache`, new/changed-file format checks,
 and explicit-source mypy with both `MYPY_CACHE_DIR` and `--cache-dir` private.
-Include Memory mutation, Chat contracts/mutation/coordinator/artifacts/registry.
+Include Memory mutation/pipeline/provider_contracts and Chat
+contracts/mutation/coordinator/artifacts/registry plus the two named lifecycle
+adaptation paths. Include the fourth new test file in formatting/lint checks.
 Compare old-file formatting debt to the pinned baseline with the retained
 no-new-format-debt helper; do not reformat entire legacy files. Run package
 metadata, offline lock on an exact clean candidate export, board validate,
@@ -418,8 +548,8 @@ same checks on existing paths and records all baseline failures):
 
 ```sh
 export MYPY_CACHE_DIR="$MAINT_SCRATCH/mypy"
-"$MAINT_PYTHON" -B "$MAINT_RUNNER" lint ruff check --no-cache packages/friday-memory/src/friday_memory/maintenance/mutation.py packages/friday-chat/src/friday_chat/reorganization packages/friday-chat/src/friday_chat/commands/registry.py packages/friday-chat/tests_chat/test_maintenance_order.py packages/friday-memory/tests_memory/test_maintenance/test_verification_selection.py tests/integration/reorganization/test_maintenance_headless.py
-"$MAINT_PYTHON" -B "$MAINT_RUNNER" types mypy --cache-dir "$MAINT_SCRATCH/mypy" packages/friday-memory/src/friday_memory/maintenance/mutation.py packages/friday-chat/src/friday_chat/reorganization/contracts.py packages/friday-chat/src/friday_chat/reorganization/mutation.py packages/friday-chat/src/friday_chat/reorganization/coordinator.py packages/friday-chat/src/friday_chat/reorganization/artifacts.py packages/friday-chat/src/friday_chat/commands/registry.py
+"$MAINT_PYTHON" -B "$MAINT_RUNNER" lint ruff check --no-cache packages/friday-memory/src/friday_memory/maintenance/mutation.py packages/friday-memory/src/friday_memory/maintenance/pipeline.py packages/friday-memory/src/friday_memory/maintenance/provider_contracts.py packages/friday-chat/src/friday_chat/reorganization packages/friday-chat/src/friday_chat/commands/registry.py packages/friday-chat/tests_chat/test_maintenance_order.py packages/friday-memory/tests_memory/test_maintenance/test_verification_selection.py tests/integration/reorganization/test_maintenance_headless.py
+"$MAINT_PYTHON" -B "$MAINT_RUNNER" types mypy --cache-dir "$MAINT_SCRATCH/mypy" packages/friday-memory/src/friday_memory/maintenance/mutation.py packages/friday-memory/src/friday_memory/maintenance/pipeline.py packages/friday-memory/src/friday_memory/maintenance/provider_contracts.py packages/friday-chat/src/friday_chat/reorganization/contracts.py packages/friday-chat/src/friday_chat/reorganization/mutation.py packages/friday-chat/src/friday_chat/reorganization/coordinator.py packages/friday-chat/src/friday_chat/reorganization/artifacts.py packages/friday-chat/src/friday_chat/commands/registry.py
 # MAINT_REVISION is the frozen committed product-source revision.
 # MAINT_ARTIFACTS is the supplied locked-input directory, with its inventory verified.
 git archive --format=tar --output "$MAINT_SCRATCH/source.tar" "$MAINT_REVISION"
@@ -434,14 +564,14 @@ tar -xf "$MAINT_SCRATCH/source.tar" -C "$MAINT_SCRATCH/source"
 "$MAINT_PYTHON" -B "$MAINT_RUNNER" docs python -B scripts/check-documentation-lifecycle.py
 ```
 
-Run new-file formatting on all three new Python test files and the new installed
+Run new-file formatting on all four new Python test files and the new installed
 probe. Existing-file format comparisons use the immutable baseline profile and
 exact same formatter/config; preserve pre-existing debt. The allowlisted Memory
 `__init__` and all modified tests must also be linted. Record any
 whole-file type/lint baseline findings separately, never add suppressions.
 
 Create `validation/maintenance/installed_probe.py`: deterministic headless and
-Chat command flows on disposable real stores; normal `-I -B` and optimized
+Chat command flows on disposable real stores; complete shared pipeline and one-call Chat delegation; normal `-I -B` and optimized
 `-I -B -O`, explicit guard preload, installed canonical module origins; implicit/
 explicit full, shared receipt scopes/counts, no-provider preview, migration-only
 synthesis, v1 restart recovery and induced rollback. Use explicit require/raise,
@@ -470,8 +600,8 @@ Stop for scope mismatch, protected-state drift, missing offline inputs, an
 unexplained new regression, or a required schema/package/policy change outside
 this allowlist. Do not silently broaden the unit or relax verification safety.
 
-**Current stop:** Chuck Russell reviews this proposed directive and its exact
-preparation pins. No council/sub-agent invocation is authorized until he directs
-it after reviewing these documents. No implementation is authorized without
+**Current gate:** The maintainer requested the shared-ownership revisions and
+fresh Astra/Sol review of both revised documents. This is document review only;
+no implementation is authorized without
 subsequent exact construction approval. The earlier specification verdict does
 not validate this newly drafted directive or its new concrete choices.

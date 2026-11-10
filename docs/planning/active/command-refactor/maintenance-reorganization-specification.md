@@ -1,15 +1,15 @@
 # MAINT-001 — reorganization order and verification visibility
 
-Status: **DRAFT FOR MAINTAINER REVIEW — no implementation approval.**
+Status: **REVISED DRAFT — shared Memory pipeline ownership; no implementation approval.**
 Prepared 2026-11-10 on `feature/command-retirement`, baseline `1093aff8`.
 Owner: Chuck Russell. This is a proposed maintenance unit, separate from accepted
 MEMQ-001 and its closed UAT records.
 
 Chuck Russell requested a bounded specification for reorganization ordering and
 subsequently required an opportunity to review the documents **before council
-sub-agents are invoked**. Only document preparation and local document checks
-are authorized now. No sub-agents, council, product changes, live provider calls
-or operations on personal stores are authorized by this draft.
+sub-agents are invoked**. The maintainer now authorizes document revision, local document checks and a
+fresh OpenAI-only council on the revised documents. Product changes, live
+provider calls and operations on personal stores remain unauthorized.
 
 ## Problem and intended result
 
@@ -54,17 +54,38 @@ snapshot verification and durable recovery setup before mutations. Then:
 7. Existing live postcondition and integrity verification, durable completion
    and cleanup of the operation's own temporary recovery resources.
 
+Memory validates its own postconditions before returning pipeline success. The
+outer application retains its aggregate recovery/integrity checks.
+
 The two verification stages remain distinct from snapshot verification and
 live storage-integrity checks. Each selected verification stage retains the
 classifier → researcher → judge chain. Persist the judge's final verdicts.
 
 ## M-02 — run-local selection and shared ownership
 
-Memory eligibility, scoped planning, generated-record references, verdict
-persistence and count validation belong in shared `friday-memory` capabilities.
-The Chat coordinator consumes those capabilities, sequences stages and renders
-their results. A future TUI must not reproduce selection rules or depend on
-Friday Chat to obtain them. Extracting the entire coordinator is outside scope.
+The memory-maintenance pipeline belongs in `friday-memory`: mode/skip policy,
+stage order, scoped planning, provider assessment, synthesis, generated-record
+selection, verdict persistence/counts, lifecycle invocation and memory
+postconditions. Chat invokes that shared pipeline once; it must not choose or
+iterate domain stages itself. A future TUI or headless caller uses the same
+pipeline and typed result, without importing Friday Chat.
+
+The existing application safety envelope remains outside that memory pipeline:
+writer quiescence, memory/transcript recovery snapshots, exclusive leases,
+durable application journal, whole-operation rollback and runtime resumption.
+Chat currently supplies that envelope and renders shared events/results. Its
+callbacks may record progress, preserve atomic stage/cancellation boundaries or
+abort safely; they cannot reorder, skip, substitute or broaden memory stages.
+Extracting the complete cross-store recovery coordinator is outside this unit.
+This separates domain orchestration from the existing application transaction;
+it does not move transcript or UI dependencies into Memory.
+
+Shared provider contracts and assessment/command-building logic needed by the
+pipeline must also be reusable. Configuration lookup and provider construction
+stay at the composition boundary, injected through Memory-owned protocols.
+Existing Chat import locations may re-export the shared contracts for compatibility.
+Merely moving the order list while keeping an essential stage engine in Chat
+would not satisfy this specification.
 
 The implementation design must define typed shared contracts for:
 
@@ -172,11 +193,12 @@ Malformed/unknown versions fail closed with actionable recovery guidance.
 Anticipated seams, to be narrowed to exact files and typed signatures in the
 construction directive after specification review:
 
-- `friday_memory/maintenance/mutation.py`: scoped plans, created references,
-  verdict summaries, persistence/postcondition integration; shared exports only
-  as needed for the explicit typed interface.
-- `friday_chat/reorganization/{contracts,mutation,coordinator}.py`: stage
-  sequencing, run-local capability wiring, journal/result adaptation and preview.
+- `friday_memory/maintenance/{mutation,pipeline,provider_contracts}.py`: scoped
+  mutation, shared pipeline sequencing/execution, provider contracts, assessment
+  validation, run-local references, counts, lifecycle and memory postconditions.
+- `friday_chat/reorganization/{contracts,mutation,coordinator}.py`: one pipeline
+  invocation, typed capability/configuration wiring, progress/result adaptation
+  and the existing cross-store recovery envelope; no domain stage-order policy.
 - `friday_chat/commands/registry.py` and existing terminal/result rendering:
   `--full` admission/help and distinct stage summaries.
 - Focused package tests, a headless shared-capability test, installed proof and
@@ -195,7 +217,7 @@ named in the future directive rather than silently regenerating its baseline.
 | --- | --- |
 | MT-01 | Exact ordered calls on full/skip/standalone modes; a source verified in the first stage contributes to synthesis in the same run. Existing pending non-source/old-meta coverage is retained. |
 | MT-02 | The second stage sees only exact newly persisted references; uncertain sources are not reviewed twice. Empty, duplicate, missing, foreign and stale references are tested, including repeated runs and rollback. |
-| MT-03 | Headless shared consumer imports no Chat code and exercises scoped selection, creation references and verdict validation. Chat consumes returned typed results without recomputing scope. |
+| MT-03 | Headless shared consumer imports no Chat code and executes the complete pipeline across full/skip/standalone modes, provider assessments, creation scope, lifecycle and postconditions. Chat makes one pipeline call and only adapts progress/results and the application recovery envelope. |
 | MT-04 | Final judge counts are exact across mixed/zero/all-rejected/all-uncertain verdicts. Failed/skipped/deferred counts cannot masquerade as successful zeros. Preview causes no mutation/provider call. |
 | MT-05 | Inject failures/cancellation before/after both verification stages, synthesis and persistence. Real disposable stores prove rollback removes new outputs and restores prior metadata; recovery-required and old-journal handling remain valid. |
 | MT-06 | Implicit full equals explicit `--full`; conflicting/duplicate modes follow specified admission. Help is accurate; unrelated parser and command behavior remain unchanged. |
@@ -220,5 +242,6 @@ Current source inspection establishes the baseline, not implementation readiness
    a review result does not supply that approval. Independent implementation
    verification and human acceptance remain separate later gates.
 
-Current stop point: draft for human review. No council is invoked, no sub-agent
-is restarted and no product code is generated by this document-preparation task.
+The maintainer explicitly requested revision and a fresh OpenAI-only council on
+the revised documents. That authorizes this design/directive review only. No
+product construction or acceptance follows from the request or a review verdict.
