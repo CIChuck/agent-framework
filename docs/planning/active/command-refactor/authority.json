@@ -3,11 +3,11 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-10",
-  "decision": "MAINT-001 specification drafting authorized; human document review before council. MEMQ remains accepted.",
+  "decision": "MAINT-001 specification readiness VERIFIED by OpenAI council round1; implementation remains unapproved",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Chuck Russell reviews the MAINT-001 maintenance reorganization specification before any council or sub-agent invocation. Drafting only; no implementation approval. Accepted MEMQ remains closed; initiative stays started/local.",
-  "product_code_authority": "No new product code authority. MAINT-001 document preparation and local document checks only; no sub-agent/council invocation until explicit direction after human review.",
+  "current_scope": "Prepare the exact MAINT-001 construction directive for Chuck Russell to review, carrying the reconciled specification advisories. No implementation or further council/sub-agent invocation without explicit direction.",
+  "product_code_authority": "No MAINT-001 product implementation authority. Specification review complete only; exact directive and human document-review gate remain. Accepted MEMQ remains closed.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -1557,9 +1557,9 @@
   },
   "maintenance_specification": {
     "unit": "MAINT-001",
-    "status": "draft_for_maintainer_review",
+    "status": "specification_readiness_verified",
     "execution_phase": "planning",
-    "validation_state": "not_ready",
+    "validation_state": "verified",
     "document": "maintenance-reorganization-specification.md",
     "sha256": "e085d9fbad99b8cf59887db4590e41ee6f9af2cb963dd99e4fbbc7ee7f2332ab",
     "recorded_at": "2026-11-10T13:52:34.313775+00:00",
@@ -1569,8 +1569,26 @@
       "I would like an opportunity to review documents from before sub-agents are invoked for the council."
     ],
     "implementation_approval": "not_granted",
-    "council_authority": "not_granted; human document review first",
+    "council_authority": "Round1 explicitly authorized and completed; further invocations require direction after human document review",
     "delegated_work": "stopped; primary agent drafts directly",
-    "next_gate": "Chuck Russell reviews the MAINT-001 maintenance reorganization specification before any council or sub-agent invocation. Drafting only; no implementation approval. Accepted MEMQ remains closed; initiative stays started/local."
+    "next_gate": "Prepare the exact MAINT-001 construction directive for Chuck Russell to review, carrying the reconciled specification advisories. No implementation or further council/sub-agent invocation without explicit direction.",
+    "reviewed_candidate": "2d0957f495b2a11088388bc7e61d4ced3a3f4db4",
+    "council_round": 1,
+    "council_report": "validation/maintenance/specification/round1/report.md",
+    "council_results": {
+      "sol": {
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "outcome": "VERIFIED",
+        "score": 9.0
+      },
+      "astra": {
+        "model": "gpt-6-astra",
+        "effort": "high",
+        "outcome": "VERIFIED",
+        "score": 9.2
+      }
+    },
+    "mandatory_findings": []
   }
 }

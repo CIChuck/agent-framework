@@ -1,3 +1,23 @@
+# MAINT-001 — specification council VERIFIED; directive preparation next
+
+Branch: `feature/command-retirement`
+Execution phase: planning (documents only)
+Validation state: verified (specification readiness only)
+
+[Round1 reconciliation](validation/maintenance/specification/round1/report.md):
+Sol9.0 and Astra9.2 independently VERIFIED candidate `2d0957f4`; all MS-01..08
+pass and no mandatory findings remain. The reviewed specification is unchanged.
+Three merged advisories become directive/test-planning inputs: preflight and
+empty-stage semantics; migration-only synthesis; actual legacy recovery fixtures.
+No proposed runtime evidence has been executed for this unit.
+
+**Next gate:** Prepare the exact MAINT-001 construction directive for Chuck Russell to review, carrying the reconciled specification advisories. No implementation or further council/sub-agent invocation without explicit direction.
+
+Accepted MEMQ remains closed. This council does not grant construction or
+acceptance authority. No agents remain working on this review.
+
+## Historical pre-council human-review checkpoint
+
 # MAINT-001 — maintenance specification for human review
 
 Branch: `feature/command-retirement`
