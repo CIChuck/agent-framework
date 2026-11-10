@@ -1,13 +1,14 @@
 {
   "unit": "REM-CMD-INGEST-001",
   "status": "planning_checks_only",
-  "baseline": "d5a44e65b147b29f81dee993a3ecc8a9461d5586",
-  "recorded_at": "2026-11-10T19:02:37.028591+00:00",
+  "baseline": "37d789c4b4c09a0371f881f5877ebeca29ed32c0",
+  "recorded_at": "2026-11-10T19:09:04.530051+00:00",
   "pins": {
-    "remediation/REM-CMD-INGEST-001-pdf-docx.md": "80479b6fc7a08c8eb556890b6b7028c97fd907eb7bed25e935369bacbee7f2dc",
+    "remediation/REM-CMD-INGEST-001-pdf-docx.md": "9cf9171f45d2b8c26ae8b50504fa4db7db4453b7156353a1ca0b3a4e5b12e3db",
     "validation/document-ingestion/assessment.md": "fc681e1c483b3acb400b5a5854b9208b66c4401fc4a7455d778ca80b7b475f7f",
     "validation/document-ingestion/assessment.json": "ade8a16263c632fa68e786cae9145978798e75a704e1c0fe85f9f0a90000d4b3",
-    "validation/document-ingestion/certifi-security-requirement.json": "4aa555cd6387d21b52b2b1d83b031c51bb480d17814664689706f8502e4b3774"
+    "validation/document-ingestion/certifi-security-requirement.json": "4aa555cd6387d21b52b2b1d83b031c51bb480d17814664689706f8502e4b3774",
+    "proposals/tools-document-adoption.md": "cba52d64d3ad8a722db11a220a06d08cc5bb8e33aa5b4f92f48eba512eccf8a6"
   },
   "checks": [
     {
@@ -61,7 +62,7 @@
         "scripts/check-documentation-lifecycle.py"
       ],
       "exit": 0,
-      "stdout": "Documentation lifecycle validation passed: 976 Markdown files checked\n",
+      "stdout": "Documentation lifecycle validation passed: 977 Markdown files checked\n",
       "stderr": ""
     },
     {

@@ -186,8 +186,13 @@ The capability must:
   option, not a page/paragraph count. Do not silently truncate a document or
   reinterpret lines as pages. A later page-range feature is separate scope.
 
-The existing legacy Tools readers/factory are inspection evidence, not a second
-backend to repair here. Their unrelated tool consumers retain current behavior.
+Within this INGEST unit, the legacy Tools factory/reader consumers retain their
+current behavior. This is **not** a claim that existing Tools entry points have
+adopted Docling. The [TOOLS-DOC-001 companion plan](../proposals/tools-document-adoption.md)
+requires separate routing and public-consumer proofs for `ReaderFactory` and
+`SmartFileReadTool`, using the same shared converter. The common readiness gate
+must preserve typed page/block provenance needed for that adoption. No duplicate
+backend or broad Tools change is authorized by this INGEST allowlist.
 
 ## C — path parsing and Chat integration
 

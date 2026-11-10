@@ -1899,7 +1899,7 @@
     "validation_state": "not_ready",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
-    "sha256": "80479b6fc7a08c8eb556890b6b7028c97fd907eb7bed25e935369bacbee7f2dc",
+    "sha256": "9cf9171f45d2b8c26ae8b50504fa4db7db4453b7156353a1ca0b3a4e5b12e3db",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
     "scope": "PDF/DOCX shared extraction/local OCR, quoted file paths, fail-closed XLSX; existing Memory chunking/metadata retained",
@@ -1913,6 +1913,15 @@
       "authority": "explicit maintainer instruction",
       "evidence": "validation/document-ingestion/certifi-security-requirement.json",
       "enforcement": "declared dependency, lock, and post-install version/origin proof; not installed yet"
+    },
+    "tools_adoption": {
+      "proposal": "proposals/tools-document-adoption.md",
+      "status": "proposed_not_implemented",
+      "required_consumers": [
+        "ReaderFactory/get_reader_for_path",
+        "SmartFileReadTool.run"
+      ],
+      "claim_boundary": "Shared capability delivery does not establish existing Tools consumer adoption; separate exact directive and public-entry installed proof required."
     }
   }
 }

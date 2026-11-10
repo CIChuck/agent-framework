@@ -30,6 +30,9 @@ readiness. [Guarded source assessment](validation/document-ingestion/assessment.
 confirms the defect. Execution phase: planning; validation state: not_ready.
 No document-ingestion code, installation or council is approved or started.
 MAINT implementation verification and its pending human UAT remain unchanged.
+[Tools adoption companion](proposals/tools-document-adoption.md) explicitly tracks
+ReaderFactory and smart_read routing; the shared helper alone does not establish
+that those tools have been upgraded.
 
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.

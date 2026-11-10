@@ -2656,3 +2656,17 @@ has been executed or accepted through this documentation change.
 - Added semantic-version and below-floor gate-control requirements. No package,
   lock, environment, CA bundle or historical installation was modified.
   Overall document-ingestion construction and council remain unstarted.
+
+
+## 2026-11-10T19:08:42.575693+00:00 — explicit Friday Tools adoption obligation
+
+- Maintainer asked how Tools gains Docling while INGEST remains bounded. Source
+  inspection confirms independent routes: ReaderFactory selects legacy parsers;
+  smart_read skips PDF/DOCX before extraction. Adding a Tools helper alone
+  upgrades neither public entry point. file_read remains a text-specific API.
+- Added proposed TOOLS-DOC-001 companion plan with exact consumer inventory,
+  shared provenance/pagination/cache/sandbox requirements and public-entry tests.
+  Shared capability/INGEST delivery and Tools adoption have separate completion
+  claims and authorization. No second converter or implicit scope expansion.
+- Certifi>=2026.10.19 and shared package/model readiness remain mandatory.
+  No product changes, installs, providers, stores or agents were run.
