@@ -1,6 +1,6 @@
 # REM-CMD-INGEST-001 — document extraction, shared chunking and embedding limits
 
-Status: **PROPOSED — correction cycle1, independent design council round2**. Baseline `7ad916f2`.
+Status: **PROPOSED — correction cycle2 draft; existing-store decision pending before round3 freeze**. Baseline `7ad916f2`.
 This document defines a bounded repair and its dependency-readiness gate. It is
 not an approved construction directive or a completed compatibility assessment.
 Working branch: `feature/cmd-ingest-001`, based on published command-refactor head
@@ -99,6 +99,8 @@ proposed scope; no hosted vision/LLM service is added.
 | `friday-memory` | Shared ingestion entry/default resolution, non-Docling block segmentation, strategies and plan validation; inject Docling adaptation and exact counting. Own durable embedding-space binding and correct document/query roles. Reuse persistence/protection/description rules; no Docling/Tools imports or second split. |
 | `friday-llm` | Typed embedding capabilities, model-specific input preparation, accurate token counting, effective-limit checks and returned-vector validation for all callers. No document splitting or storage policy. |
 | `friday-chat` | Loads configuration, wires shared capabilities, delegates arguments/extraction/ingestion and renders effective options, statistics and safe errors. No Chat-only chunking algorithm. |
+| `friday-runtime` | RuntimeKernel uses the same public Memory factory and resolved embedding capability for pool/non-pool assembly. Deferred/readiness failures cannot instantiate a legacy client or silently fall back. No second policy. |
+| Core profiles / CLI compatibility container | The existing public store factory forwards typed binding/admission. CLI delegates RuntimeKernel and exposes its readiness; no independent client fallback or new executable. |
 
 The Core ingestion-entry protocol prevents a new Tools-to-Memory dependency.
 Tools consumes an injected capability; Memory implements it. Chat is one
@@ -121,10 +123,11 @@ verified at its frozen candidate, with human UAT/acceptance still pending.
 | Surface | Current source evidence | Obligation in this unit |
 | --- | --- | --- |
 | Chat `/ingest` local files/text | Maintained handler, character-sliced storage | Shared entry, all strategies and four-format conversion. No URL input. |
-| Headless smart_read text small/large/force_chunked storage and caches | Public tool, direct small-file storage, raw/derived large-file records and early cache returns | INGEST owns existing storage/cache integration, before document routing adoption. Stored source chunks come from the shared plan. |
+| Headless smart_read text small/large/force_chunked storage and caches | Public injected-Memory tool has direct small-file storage and raw/derived/cache paths. Current Chat supplies no Memory entry/controller; Runtime does not construct this tool. | INGEST corrects explicitly injected public storage/cache behavior without newly wiring it in Chat/Runtime. Storage requested without an entry now fails instead of silently doing nothing. |
 | Public ToolOutputIngester capability | Class exists; maintained Chat/Agent/Tools/Runtime caller absent; legacy integration caller exists | Adapt its explicitly called storage boundary and prove headlessly; do not activate automatic ingestion. |
 | Web reader/fetch tools | Maintained reads, no Memory handoff | Retain reads. Supplied extracted web text exercises the shared entry as a capability proof, not proof of a fetch-to-store route. |
 | Tools factory and smart_read document routing | Legacy readers/binary skips | TOOLS-DOC companion adopts the four formats after shared interfaces freeze. |
+| Lifecycle migration.py / Chat migrate stub | Public legacy code is not maintained wiring; fixed-dimension dummy query and nonexistent CollectionManager method; Chat action is a stub | Remains inactive, with no integration credit or functional repair. Direct calls cannot bypass ordinary guarded-store admission. |
 
 INGEST completion covers active storage paths and explicit public ingestion
 capabilities, not absent web/automatic wiring or Tools four-format adoption.
@@ -155,6 +158,23 @@ An mtime-only/context-only hit is insufficient. Recheck store opt-in on every
 request. Eligible extracted source may be reused, but drift or disabled→enabled
 storage requires re-planning/revalidation. Ignore unqualified historical entries
 without deleting or blessing them as new ingestion proof.
+
+Successful-storage receipts additionally bind canonical destination vector path,
+namespace incarnation (a fresh UUID fixed in its ready sidecar), exact destination
+collection set, stored record IDs and source/plan digest. Same embedding space
+does not mean the target contains the source. Before skipping storage, validate
+the admitted destination and record IDs/provenance. Missing/deleted records,
+different root/incarnation or collection selection invalidate completion. Reuse
+eligible extraction cache content, then run the common storage entry again;
+do not purge/repair historical records or trust a stored boolean alone.
+
+The Core contracts avoid new dependency edges; they do not erase existing ones.
+Memory's large-file processor lazily imports the Tools code chunker, and legacy
+Tools memory inspection/maintenance/lifecycle modules import Memory without a
+declared package dependency. Those edges are recorded, not broadened or repaired
+here. Code chunking may drive summarization windows only; stored code raw chunks
+now come from the shared plan. New policy modules import no Tools and new Tools
+storage paths import no Memory directly.
 
 ## A — dependency and model readiness, before product construction
 
@@ -202,6 +222,11 @@ Prepare this evidence in an isolated environment, without modifying the working
    constructors, precomputed vectors and caches; asymmetric preparation cannot
    be enabled while a relevant caller is unclassified. Freeze exact paths,
    narrow affected MAINT regressions and approved oracle deltas.
+   Include all direct Chroma openers: vector adapter/collection manager, recovery,
+   mutation participant, pruner, synthesizer and fact checker; include Runtime
+   pool/non-pool assembly, Core profiles and CLI re-exports/container. Search all
+   maintained package source and classify examples/dead paths separately. These
+   known seams are a lower bound, not dynamic proof of every possible consumer.
 7. Resolve the configured embedding profile to its exact served artifact and
    effective input limit, expected vector dimension, input-formatting convention
    and model-matched tokenizer. Provision offline local synchronous counting;
@@ -509,7 +534,8 @@ remove them before constructing the description. They are ingestion options,
 not `/read` options. Quoted option-like filenames remain paths. Empty values,
 unknown strategy names, non-integer/zero/negative token budgets, repeated instances
 of either override and missing `=` are usage errors before source I/O or network
-fetch. Preserve all other description/parser semantics. No launch-time global
+fetch. Missing `=` refers only to exact tokens `--chunking` and `--chunk-tokens`:
+`--chunking fixed` refuses, while `--chunkingX=fixed` and `--chunk=512` are description. Preserve all other description/parser semantics. No launch-time global
 chunking flags or per-format precedence layer is added in this unit.
 
 | Strategy | Boundary rule | Size enforcement |
@@ -523,7 +549,7 @@ or a reason to pad text. Count repeated headings, table headers, query/document
 formatting and special-token overhead where applicable. It is distinct from the
 embedding model's maximum accepted sequence length. Keep sheet/slide boundaries,
 source order and neutral per-chunk provenance; do not merge unrelated sheets or
-slides merely to fill a budget. Large tables retain row/header context across
+slides merely to fill a budget. Structured table blocks retain row/header context across
 chunks. Freeze an explicit lossless split-or-refuse rule for an individual cell,
 row or contextual prefix that cannot fit. No dropped source tail or silent
 truncation. Do not introduce another overlap CLI/config option in this unit;
@@ -539,6 +565,15 @@ provenance. Fix heading/fence/blank-line rules against fixtures at gate A. Empty
 or whitespace-only text refuses ingestion. This implementation needs no Docling
 extra and imports no Tools/Chat. Missing conversion extras affect only the four
 document formats; default text ingestion still works with the local counter.
+
+CSV/TSV passed as plain text has no declared table schema/header: preserve all
+source spans and explicitly report `table_structure_not_supplied` coverage,
+rather than infer a header or claim repeated-header table semantics. The header
+carry promise applies to Docling/native or explicitly supplied typed table
+blocks. A producer that supplies table structure can use that path. This unit
+does not add CSV header inference or silently relabel a first data row as a header.
+Tests distinguish structured tables from plain delimited text, including late
+rows and honest coverage; changing existing text extraction is not required.
 
 Memory owns default/override resolution and validates the complete chunk plan.
 It receives a typed document-chunker capability and model token counter through
@@ -575,7 +610,7 @@ An unselected old profile does not break application/config loading. A selected
 profile missing either value yields an actionable readiness error when its
 embedding service is used, before provider I/O; no silent unguarded mode.
 Packaged selected-profile examples receive measured values only after gate A.
-User-edited YAML is never overwritten. Legacy non-catalog Chat and maintenance
+User-edited YAML is never overwritten. Legacy non-catalog Chat, Runtime and maintenance
 constructors must accept the same resolved capability from an explicit,
 artifact-bound built-in readiness record or refuse at operation preflight. They
 must not infer dimensions/capacity from an arbitrary alias or bypass the guard.
@@ -591,6 +626,18 @@ bound to the served artifact/preparation identity, including special tokens.
 Docling's tokenizer adapter calls it locally, never an async/network bridge for
 each split. Server tokenization may verify boundary parity at gate A/preflight;
 it does not replace local assets. Any unresolved parity fails readiness.
+
+Hosted profiles have no inspectable local weight digest. They require a stable,
+provider-attested deployment/model revision plus the verified preparation and
+dimension contract; a mutable alias alone is unsupported by this guarded unit.
+Their offline tokenizer/BPE assets (for example, a supported tiktoken encoding)
+must be explicitly provisioned/hashes bound in the same assets root. No first-use
+download is allowed. If immutable provider identity or exact counting cannot be
+established, that selected hosted route refuses embedding operations actionably;
+catalog loading/read-only file commands remain possible. Do not silently switch
+the model or add an unguarded hosted compatibility lane. Gate A records qualified
+existing-provider routes and explicit unsupported aliases, not generic provider
+support inferred from one model's success.
 
 The following is an **illustration only**, not a selected/installed model or a
 valid configuration for today's unchanged schema:
@@ -692,11 +739,20 @@ Overflow is a fixed enforcement rule, not another user-configurable policy:
 
 ### Durable store identity and fresh-store admission
 
-Memory owns a versioned canonical embedding-space identity: actual model/artifact
-revision or digest, output dimension/normalization, query/document preparation
+Memory owns a versioned canonical embedding-space identity: actual local model/
+artifact revision/digest or qualified immutable hosted deployment revision, output dimension/normalization, query/document preparation
 revision, tokenizer/special-token convention and distance metric. Freeze exact
 canonical encoding/hash vectors at gate A. A mutable profile alias, endpoint URL
 or matching vector dimension is not identity; credentials never enter it.
+
+Here **root means the normalized vector directory**, not its memory parent:
+Chat uses `FridayChatMaintenanceLayout.vector_directory` (normally `.friday/vector`);
+Runtime uses resolved `RuntimeConfig.chroma_path`. The file is exactly
+`<vector-directory>/embedding-space.json`. Graph storage is a separately resolved
+path; graph vector envelopes must match this space and are not inferred from
+the graph file being nearby. A ready binding includes a random immutable namespace
+incarnation for destination receipts and recovery; same model identity does not
+make two roots the same namespace.
 
 For persistent stores, use a root-level `embedding-space.json` sidecar as the
 single authoritative binding for that root's vector namespace and collections.
@@ -721,7 +777,10 @@ preparation change still refuses; leave store bytes untouched on refusal.
 This admission covers cached/precomputed graph edge and node vectors too:
 attach the embedding-space identity in reserved properties on creation/update
 and verify it before similarity scoring. Unknown existing vector provenance
-refuses use; do not silently recompute/backfill legacy graph vectors. Missing
+fails the whole semantic recall operation with a typed provenance/readiness
+error; do not skip the vector, assign zero similarity, degrade rankings silently
+or recompute/backfill legacy graph vectors. Check the selected graph vector
+provenance at operation preflight before generating new query embeddings. Missing
 vectors may use the existing on-demand document-role computation. Graph text
 operations do not acquire a new embedding requirement merely to render.
 Precomputed vectors must carry a runtime-validated identity envelope matching
@@ -745,13 +804,85 @@ strategy/budget where relevant, role, embedding space, counting/preparation and
 conversion profile. A stale cache cannot bypass admission or the guard; ignore
 it rather than purging user records.
 
-**Test-store decision:** use fresh bound stores for the new pipeline, including
-preparation changes to the current model, not only model replacement tests; no
-legacy migration or bulk re-embedding implementation is required. Use disposable
-empty stores in automated proof. Do not scan, delete or reset current stores as a
+**Automated test-store decision:** use fresh bound disposable stores for all
+new-pipeline tests, including preparation changes to the current model. No legacy
+migration or bulk re-embedding implementation is required. This testing decision
+does not settle existing-installation upgrade behavior; the explicit policy
+checkpoint below remains pending. Do not scan, delete or reset current stores as a
 side effect of planning, startup, a profile edit or an ingestion command. Any
 later requested reset must identify the actual test-state scope; no such reset
 has been performed here.
+
+### Assembly, direct clients and identity-preserving recovery
+
+RuntimeKernel is the preferred headless assembly, using the same public Memory
+factory as Chat. Core `create_vector_store` forwards verified identity/admission
+to persistent or ephemeral adapters, refusing a missing/invalid identity before
+client construction. CLI's container and profiles module delegate/re-export
+those surfaces; source inspection finds no independent CLI embedding constructor.
+Tests still cover the exposed CLI access to prevent fallback. All pool/non-pool
+constructors resolve the same capability or retain a deferred typed refusal.
+
+Separate store-identity admission from embedding-execution readiness: a snapshot
+or stored-vector inspection need not tokenize or call an embedding provider when
+the immutable configured/store identity is already resolved and matches. It
+still requires namespace admission and cannot infer an unknown identity. Actual
+new embedding requests require the complete counter/capacity/service readiness.
+This avoids treating an offline embedding provider as permission to bypass a
+binding check or as a reason to initialize it during a safe snapshot.
+
+Use a lazy ready-or-unavailable capability at application assembly: parsing a
+catalog/config and registering `/read` must not instantiate Chroma, create a
+namespace, initialize embeddings or open a legacy graph. A memory-dependent
+operation first resolves that capability; on failure it returns a stable reason
+and remedy without touching the store/provider. Background consolidation and
+exit maintenance obey the same check, never silently become successful no-ops.
+The final existing-store behavior matrix needs the pending maintainer decision;
+this lazy boundary preserves read-only command availability for either choice.
+
+Every maintained direct client opener must use the common Memory admission
+helper **before** PersistentClient: recovery discovery/export/restore, mutation
+participant, pruner, synthesizer and fact checker as well as adapters/collection
+manager. Readiness/provenance failures propagate as typed failures rather than
+being swallowed as empty results, skipped pruning or successful maintenance.
+Retain ordinary operation-specific error policy otherwise. This is identity
+admission, not a change to verification/synthesis logic or maintenance sequencing.
+
+New bound namespaces produce version2 snapshots. The snapshot manifest and
+logical-vector artifact record the canonical embedding-space identity/digest,
+namespace incarnation and a hash/immutable copy of the ready sidecar. Include
+the normalized sidecar path, binding digest and incarnation in the versioned
+layout fingerprint. Graph artifact checks preserve vector-envelope identities.
+All those values must agree with each other and the currently admitted live
+namespace before a live client is opened or any snapshot/live file is changed.
+Snapshots preserve the binding as evidence; it is not a second live authority.
+
+Restore/automatic rollback in this unit targets the same layout and namespace
+incarnation only, with matching space. No cross-root import/clone is added.
+Preflight artifact hashes/schema/binding and graph provenance before deleting or
+repopulating any collection. Same-dimension different-space, missing/malformed/
+pending binding, identity-free snapshot or different-incarnation destination
+refuse with zero live-store/provider mutation. A successful rollback restores
+data under the original ready binding and leaves its sidecar bytes unchanged;
+restore must never copy a snapshot identity over an unrelated live sidecar.
+If the binding itself was changed/lost during a failed operation, refuse automatic
+restore and retain the existing recovery-required reporting; do not auto-rebind.
+
+Private vector-rebuild preflight may create an owned temporary namespace bound
+to the snapshot's verified space, explicitly marked non-live and unable to become
+a user restore destination. The live restore still requires original incarnation.
+All temporary clients use the same admission helper; there is no test bypass.
+Old version1 snapshots/journals stay untouched and readable for offline hash/
+schema inspection, explicitly marked identity-unbound. They cannot authorize
+new bound-store restore, client-based rebuild or inferred identity. Never stamp,
+upgrade, delete or re-embed them. Old journal scheduling/token rules do not change.
+
+The exact snapshot schema additions/dispatch, fingerprint vectors and fixture
+exceptions freeze in the final directive. Add versioned models without relaxing
+strict existing validators. Recovery ordering, snapshot quiescence/token ownership,
+rollback triggers, ULP checks, journal lifecycle and user approval stay intact.
+These narrow identity seams explicitly amend the earlier recovery exclusion;
+they do not authorize recovery-engine redesign or a new migration framework.
 
 ### Execution, cancellation and admission
 
@@ -779,11 +910,23 @@ begins may be partial; no new ingestion transaction/rollback is implied.
 [loaded/model capacity metadata](https://lmstudio.ai/docs/developer/rest/list)
 are upstream design references, not candidate-installed or backend readiness proof.
 
+### Existing-store policy checkpoint — not yet a selected upgrade policy
+
+Round2 distinguishes the earlier testing-only fresh-store decision from product
+upgrade behavior. The maintainer has been asked to choose explicit fresh-store
+refusal/read-only availability or a separate legacy mode. No selection is inferred
+from silence, and this draft does not authorize enforcing a new production policy.
+Before round3 freeze, record the answer, the exact fresh-root request mechanism
+and the fresh/matching/mismatched/unbound/pending root × operation matrix. A legacy
+mode would need an explicit separate preparation/capability boundary, never a
+silent bypass inside the guarded stack. No stores are inspected, reset or bound
+while preparing these documents.
+
 ## Proposed exact implementation paths
 
 | Path | Allowed purpose |
 | --- | --- |
-| `packages/friday-core/src/friday_core/ingestion.py` (new), `interfaces/memory.py`, focused Core tests | Neutral immutable source/chunk/options/counter, injected ingestion entry and identity-bearing vector/query contracts. No policy/backend imports; exact signatures freeze at gate A. |
+| `packages/friday-core/src/friday_core/ingestion.py` (new), `interfaces/memory.py`, `profiles.py`, focused Core tests | Neutral immutable source/chunk/options/counter, injected ingestion entry and identity-bearing vector/query contracts. No policy/backend imports; exact signatures freeze at gate A. |
 | `packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py` (new) | Shared typed Docling extraction/chunking adapter, neutral provenance, local asset/status/format checks and errors. |
 | `packages/friday-tools/pyproject.toml` | New document-ingestion extra with selected Docling release and mandatory `certifi>=2026.10.19`; other requirements unchanged. |
 | `packages/friday-tools/README.md` | Public capability, dependency and local-model setup/limits. |
@@ -796,6 +939,9 @@ are upstream design references, not candidate-installed or backend readiness pro
 | Memory new `ingestion/embedding_space.py`, `adapters/vector.py`, `adapters/simple_vector.py`, `controller/memory_controller.py`, `retrieval/collection_manager.py`, focused store/retrieval tests | Durable namespace sidecar or ephemeral identity admission and envelope propagation; correct query role, validate before client/provider I/O, preflight source/derived batch. No storage-engine replacement, migration or generic metadata redesign. |
 | Memory `maintenance/synthesizer.py`, `retrieval/graph_scorer.py`, `context/extractor.py`, `maintenance/pipeline.py`, `maintenance/reorganizer.py`, `maintenance/provider_contracts.py`, focused affected tests | Only inventoried embedding-role/capability/envelope propagation and narrow shape/refusal checks. No maintenance ordering, prompts, verification, quarantine, recovery or synthesis redesign. Correct graph edge/target document fallback roles as well as synthesizer roles. |
 | Memory `models/graph.py`, `adapters/graph.py`, `adapters/null_graph.py`, focused graph tests | Only reserved embedding-identity properties/envelope propagation and refusal at vector comparison/update. No graph schema redesign, import/migration or backfill. |
+| Memory `maintenance/recovery.py`, `recovery_models.py`, `mutation.py`, `pruner.py`, `fact_checker.py`, focused affected recovery/mutation tests | Only identity-aware direct-client admission, version2 binding capture/validation, fingerprint and same-namespace restore refusal. Preserve existing recovery/maintenance orchestration, token/quiescence, ULP, journal and rollback policies. |
+| Runtime `src/friday_runtime/di.py`, `config.py`, focused Runtime tests | Same resolved embedding/readiness and Memory factory wiring for pool/non-pool plus persistent/ephemeral paths; defer/refuse before client/provider effects. No new tool activation or runtime engine. |
+| CLI `src/friday_cli/container.py`, `profiles.py`, focused compatibility tests | Delegation/type/readiness compatibility only if needed; preserve re-exports and no executable. No independent legacy-client fallback. |
 | `packages/friday-llm/src/friday_llm/model_library.py`, `embeddings.py`, new `embedding_limits.py` if needed, corresponding focused tests | Strict capability fields/resolution, model-based counting/preparation, per-input guards, batch shape/dimension validation and safe failures for all callers. |
 | `packages/friday-llm/pyproject.toml` | Only selected counter/provider dependencies if needed; freeze exact optional/default placement at gate A. No unrelated provider expansion. |
 | `packages/friday-chat/src/friday_chat/commands/files.py` | Four-format delegation/admission and result metadata, document-line refusal; retain text behavior. |
@@ -814,9 +960,9 @@ are upstream design references, not candidate-installed or backend readiness pro
 
 Core/Memory/LLM additions above are a deliberate planning-scope expansion over
 the earlier extraction-only draft. The narrow store-binding, query-envelope and
-embedding-role seams above are explicit exceptions to its earlier storage/
-maintenance exclusions. No storage-engine replacement, maintenance orchestration,
-recovery, general model-catalog redesign, arbitrary provider, unrelated configuration,
+embedding-role, assembly and recovery identity seams above are explicit
+exceptions to its earlier storage/maintenance/recovery exclusions. No storage-engine replacement, maintenance orchestration,
+recovery-engine redesign, general model-catalog redesign, arbitrary provider, unrelated configuration,
 global format/factory policy or TUI source changes. Existing supported embedding
 providers need a compatible bounded guard/counter contract or an explicit readiness
 stop, not a new blanket suppression or silently disabled safety check. If integration
@@ -853,9 +999,21 @@ by this document update.
 | DI-24 | Synchronous offline tokenizer resolves only the manifest root; no network per split/global-cache lookup/download/custom-code escape. Boundary parity against actual serving behavior includes special tokens/headers and the serving physical ceiling. Unknown parity refuses readiness. |
 | DI-25 | Genuine Office structure oracle distinguishes missing formula cache from blank, hidden row/column, large merged ranges, notes versus comments and backend clipping. Non-text audit cannot supply or repair text. Unknown mapping/warning refuses before ingestion; wrong-format and renamed generic ZIP/multi-document input refuse. |
 | DI-26 | Event loop remains responsive during conversion/counting; cancellation before worker start, during work and immediately after completion cannot cause ingestion. Admission stays held until worker quiescence, late results discarded and cleanup idempotent. No hard-thread-timeout/OS-sandbox claim. |
+| DI-27 | Same-namespace snapshot/verify/restore and automatic rollback preserve binding, data and graph-vector identity. Wrong space with same dimensions, wrong incarnation/layout, identity-free v1 artifact, pending/malformed/missing sidecar and binding tamper refuse before client/live writes. No rebinding. Private bound preflight is distinct from live restore. Existing journal/quiescence/ULP policies remain tested. |
+| DI-28 | Every inventoried direct client path uses identity admission: adapters, collection manager, recovery, mutation participant, pruner, synthesizer, fact checker. Missing admission cannot be swallowed as a skip/empty success. Maintained Chat snapshot/rollback and direct participant entry paths both execute; no bare-client bypass mutant survives. |
+| DI-29 | Actual Chat/Runtime pool and non-pool startup with absent capacity/unbound store followed by `/read` or read-only headless extraction: zero Chroma/embedding/provider construction and actionable readiness. Core public factory persistent/ephemeral paths and CLI delegation inherit the decided policy. No implicit stateless chat or legacy fallback. Root-state operation matrix must match recorded maintainer decision before implementation. |
+| DI-30 | Storage receipts are destination/incarnation/collection-specific: same-space new destination or different collection, lost record IDs/provenance and disabled→enabled storage cannot skip ingestion. Extraction cache reuse is distinct from completed-storage evidence. Unwired Chat smart_read storage remains unwired and explicitly refuses requested storage. |
+| DI-31 | Plain CSV/TSV keeps all source spans/late rows and reports missing supplied table structure; structured tables repeat known headers. No inferred/fabricated header. Hosted mutable identity/missing offline BPE refuses operation; qualified pinned deployment passes only after real gate-A proof. Inactive migration/stub earns no integration credit. |
 
-Keep the old assertion bodies except the precisely documented file-format/help
-exceptions; add coverage rather than broadly rewriting accepted tests. Provision
+
+Keep old assertion bodies unless the final approved directive lists an exact
+intentional exception: file-format/help/count outputs, source raw chunk plans,
+guarded-store setup/admission or new bound snapshot version2. Freeze each affected
+test/fixture and before/after expectation at gate A; broad test rewrites or
+retroactive edits to accepted evidence are prohibited. Retain version1 snapshot
+fixtures for offline legacy inspection and add bound/version2 fixtures and
+assertions. Candidate-specific old MAINT verdicts are historical, not proof for
+these changed seams; require fresh affected and aggregate regressions. Provision
 and cache model artifacts explicitly before offline tests. A mocked converter is
 not sufficient positive proof. Do not add blanket source suppressions or skips.
 
@@ -882,7 +1040,11 @@ adoption plan. The maintainer has settled document/512 defaults, all three
 strategies, all-source scope, illustrative-only Qwen and fresh-store testing.
 Gate A must establish the exact compatible package/model/counter manifest and final
 construction directive before implementation. Current MAINT UAT remains a
-separate pending human activity. The maintainer authorizes this document-only
+separate pending human activity. Whether to add a maintained web-to-Memory
+route is a separate future scope decision for the maintainer; this unit preserves
+web reads and supplied-payload ingestion without inventing that route. The
+existing-store checkpoint above must be settled before round3. The maintainer
+authorizes this document-only
 correction and up to three further full fresh councils (rounds2–4). Each reviews
 the correction delta first, then the full proposed design/companion. Stop early
 only with every seat VERIFIED, no mandatory findings and scores at least9.5;

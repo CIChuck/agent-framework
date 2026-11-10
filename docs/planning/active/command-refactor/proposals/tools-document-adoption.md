@@ -1,6 +1,6 @@
 # TOOLS-DOC-001 — adopt shared Docling conversion in document-reading tools
 
-Status: **PROPOSED companion — correction cycle1 / council round2; no construction approval**.
+Status: **PROPOSED companion — correction cycle2 draft / round3 pending; no construction approval**.
 This is a scoped adoption plan, not a completed tool upgrade or implementation
 directive. It depends on the exact shared capability and dependency/model
 readiness from [REM-CMD-INGEST-001](../remediation/REM-CMD-INGEST-001-pdf-docx.md).
@@ -26,7 +26,7 @@ confirmed against unchanged product bytes at `f6287faa`, shows:
 | --- | --- | --- |
 | Chat `/read` and `/ingest` through `SmartFileReader` | PDF/DOCX/XLSX placeholders; PPTX not admitted | INGEST unit uses shared Docling extraction for all four formats. |
 | Tools `ReaderFactory` / `get_reader_for_path` | Selects legacy PDF/DOCX/XLSX readers; PPTX reaches binary fallback | Companion unit routes all four formats through typed adapters of the same shared converter. No independent engine/configuration policy. |
-| Tools `SmartFileReadTool` (`smart_read`) | PDF/DOCX/XLSX are binary-skipped; PPTX has no converter; text uses direct small-file storage and separate large-file/cache paths | INGEST first corrects existing text storage/cache handoffs. Companion adds document routing and conversion-cache identity, consuming that shared entry. |
+| Tools `SmartFileReadTool` (`smart_read`) | Public injected storage paths exist, but maintained Chat does not supply Memory and Runtime does not construct it. PDF/DOCX/XLSX binary-skip; PPTX lacks conversion. | INGEST corrects explicitly injected text storage/cache and makes unwired storage requests fail. Companion adds document routing but does not activate maintained storage wiring. |
 | Tools `FileReadTool` (`file_read`) and line readers | Text/encoding/line APIs | Remain text tools; do not silently turn line-oriented operations into document conversion. |
 | Direct public `PdfReader` / `DocxReader` / `XlsxReader` callers | Existing specialized reader APIs, including legacy XLSM support | Retain explicit compatibility APIs unless a separately approved contract migration covers them. Do not claim every direct reader caller has migrated. |
 
@@ -103,6 +103,10 @@ review its exact allowlist/criteria first; no automatic scope expansion.
   embedding space and counting/formatting revision
   for every source type. Preserve context-only text caching where it cannot
   bypass a later storage-policy/embedding check.
+  Completed-storage receipts additionally bind destination namespace path,
+  incarnation, exact collection set and record IDs/provenance, validated before
+  skipping storage. A matching model does not prove a fresh destination has the
+  data. Missing records or a switched collection require the common entry again.
   Its existing persistent cache queries `type=file_synthesis`, not arbitrary
   `/ingest` records; do not conflate these with the historical placeholder issue.
 - Define migration of the existing Tools `documents` extra and the new
@@ -145,7 +149,7 @@ this list is not construction authorization.
 | TD-01 | Actual `ReaderFactory.read` / `get_reader_for_path` on genuine PDF, DOCX, XLSX and PPTX reaches the shared converter once and returns distinctive source text, order and real metadata. Only these four routes change. XLSX active-sheet/explicit-sheet/range/row compatibility is tested separately from full-workbook ingestion. |
 | TD-02 | Actual `SmartFileReadTool.run(Input(...))` extracts all four formats through Docling; no binary-skip or raw ZIP/text success. Verify small and large/force_chunked paths, extracted-character sizing, full admitted scope, retained opt-in/context controls and exactly one shared ingestion chunk plan on storage paths. |
 | TD-03 | Both consumers refuse corrupt/encrypted/partial/empty conversion and missing library/models with no fallback/false success or unwanted storage/cache writes. Local OCR has real scanned-fixture proof, not only converter doubles. |
-| TD-04 | Existing filesystem sandbox denial still wins before converter access. Text/code/CSV/web extraction and direct legacy-reader contracts are preserved; shared ingestion chunking deltas are those explicitly established by INGEST. XLSX factory routing/format deltas are exact and separately approved; XLSM remains on its legacy route. |
+| TD-04 | Existing filesystem sandbox denial still wins before converter access. Text/code/CSV/web extraction and direct legacy-reader contracts are preserved; plain delimited payloads disclose absent table structure rather than infer headers; shared ingestion chunking deltas are those explicitly established by INGEST. XLSX factory routing/format deltas are exact and separately approved; XLSM remains on its legacy route. |
 | TD-05 | Cache hit/invalidation/force_reprocess prove conversion, strategy/budget, model and counting-profile drift. Ineligible historical entries are ignored, not purged. No stale ingestion cache can conceal a converter or embedding-guard failure. |
 | TD-06 | Tools pagination and structured metadata are explicit and tested. Same source/selection/profile produces matching extracted source markers before optional summaries. Compare common included content across Chat, factory and smart_read; an intentional factory sheet/range selection is not mistaken for lost full-workbook content. |
 | TD-07 | Clean installed Tools-with-profile works without Chat installed; Commands remains standard-library-only. The exact Docling/model manifest and post-install `certifi>=2026.10.19` checks apply in normal and optimized modes. |

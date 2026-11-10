@@ -1,0 +1,60 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "round": 3,
+  "state": "draft_awaiting_existing_store_preference",
+  "correction_base": "2956b861de75fcf7ebf463c82f5f470cf6fa7b40",
+  "mode": "correction delta first then FULL bounded proposed design; do not dispatch before policy answer is recorded",
+  "findings": [
+    {
+      "sources": [
+        "Opus M-1"
+      ],
+      "requirement": "Explicit existing-store upgrade policy and request mechanism, root-state/operation matrix",
+      "disposition": "PENDING: concise maintainer preference requested; no choice inferred or current production refusal declared approved"
+    },
+    {
+      "sources": [
+        "INGEST-R2-ASTRA-001",
+        "Opus M-2"
+      ],
+      "requirement": "Identity-preserving snapshot/verify/restore and all direct clients/composition roots",
+      "disposition": "addressed in draft; needs fresh independent closure",
+      "sections": [
+        "Assembly, direct clients and identity-preserving recovery",
+        "Proposed exact paths"
+      ],
+      "tests": [
+        "DI-27",
+        "DI-28",
+        "DI-29"
+      ]
+    }
+  ],
+  "advisories": {
+    "INGEST-R2-SOL-A01": "Lazy ready/unavailable capability; read-only startup, no Chroma/provider creation; DI29.",
+    "INGEST-R2-ASTRA-002": "Storage receipts bind namespace path/incarnation, collections and verified record IDs/provenance; DI30.",
+    "Opus A-1": "Chat smart_read has no Memory injection and Runtime does not instantiate it; keep unwired, fail explicit storage requests instead of silent no-op.",
+    "Opus A-2": "Acknowledge existing reverse imports; new policy remains neutral, code chunker only summarization windows, raw code records use shared plan.",
+    "Opus A-3": "Plain delimited text explicitly lacks supplied table structure/header carry and reports coverage; typed/native tables keep headers. No fabricated inferred header.",
+    "Opus A-4": "Hosted immutable deployment identity plus offline BPE assets, otherwise explicit unsupported operation; no mutable alias or first-use download bypass.",
+    "Opus A-5": "Active roster record points at current round2; next decision separately identifies future web-to-Memory route choice.",
+    "Opus A-6": "Sidecar is inside normalized vector directory; unknown graph vector provenance fails whole semantic recall, no skip/zero/backfill.",
+    "Opus A-7": "Legacy lifecycle migration public/not-maintained/broken and Chat stub classified with no credit or functional repair.",
+    "Opus A-8": "Missing equals applies only to exact option names; prefix lookalikes remain description."
+  },
+  "new_direct_client_source_inventory": [
+    "maintenance/recovery.py",
+    "maintenance/mutation.py",
+    "maintenance/pruner.py",
+    "maintenance/synthesizer.py",
+    "maintenance/fact_checker.py",
+    "adapters/vector.py",
+    "retrieval/collection_manager.py"
+  ],
+  "controller_source_qualification": "Current CLI container delegates to RuntimeKernel, not a separate constructor. Its compatibility readiness exposure is still in scope. Personal backup contents are not adopted as evidence.",
+  "not_performed": [
+    "product edits",
+    "installs/gate A/model/store operations",
+    "new review dispatch"
+  ]
+}

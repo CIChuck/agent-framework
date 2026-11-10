@@ -2800,3 +2800,21 @@ has been executed or accepted through this documentation change.
   operations. MAINT authority/history and dirty/generated local state preserved.
 - Execution phase: planning; validation state: in_review (round2 design).
 - **Next gate:** Reconcile fresh Sol/Astra/Opus round2 of corrected INGEST design; repeat document-only within rounds2–4 budget until every seat VERIFIED >=9.5 with no mandatory findings. Gate A/implementation and MAINT human acceptance remain separate.
+
+
+## 2026-11-10T22:11:51.549781+00:00 — INGEST council round2 reconciled; bounded correction draft
+
+- Sol VERIFIED9.5; Astra CHANGES_REQUESTED9.0; Opus CHANGES_REQUESTED8.4.
+  Reports/24-criterion matrices/raw hashes and frozen input evidence preserved.
+  Opus's post-check Git wrapper omission remains qualified, not certified clean.
+- Recovery snapshots/restore, direct clients, Runtime/Core/CLI composition and
+  destination storage receipts are specified without changing maintenance order.
+  Read-only startup, real smart_read wiring, hosted limits, CSV coverage, graph
+  refusal, inactive migration and exact flag wording are clarified in draft.
+- Opus M-1 requires an explicit upgrade behavior decision distinct from the
+  earlier test-only fresh-store choice. A concise preference question is pending;
+  no answer is inferred. Round3 is not dispatched before it is settled.
+- Execution phase: planning; validation state: changes_requested. No product,
+  dependency/model, store, human acceptance or delivery operation. Two authorized
+  further rounds (3–4) remain; user-local state and prior reports preserved.
+- **Next gate:** Resolve the pending existing-store upgrade preference, then freeze the corrected INGEST documents for fresh Sol/Astra/Opus round3. Rounds3–4 remain; every seat must be VERIFIED >=9.5 with no mandatory findings. Gate A/construction and MAINT human acceptance remain separate.

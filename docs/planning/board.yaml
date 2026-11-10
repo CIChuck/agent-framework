@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Reconcile fresh Sol/Astra/Opus round2 of corrected INGEST design; repeat document-only within rounds2–4 budget until every seat VERIFIED >=9.5 with no mandatory findings. Gate A/implementation and MAINT human acceptance remain separate."
+  next_gate: "Resolve the pending existing-store upgrade preference, then freeze the corrected INGEST documents for fresh Sol/Astra/Opus round3. Rounds3–4 remain; every seat must be VERIFIED >=9.5 with no mandatory findings. Gate A/construction and MAINT human acceptance remain separate."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3134,3 +3134,10 @@ events:
   action: corrected INGEST design for authorized council round2
   note: Explicit maintainer authorizes document revisions and up to three additional fresh Sol/Astra/Opus rounds; stop only with all VERIFIED >=9.5/no mandatory finding, or return remaining issues at budget. No installation, gate A, product generation or acceptance.
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-iteration-authorization.json
+- task: friday-command-refactor
+  at: '2026-11-10T22:11:51.549781+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled INGEST council round2 and drafted bounded correction cycle2
+  note: Sol VERIFIED9.5; Astra CHANGES_REQUESTED9.0; Opus CHANGES_REQUESTED8.4 with conduct qualification. Recovery/direct-client and composition corrections drafted. Existing-store upgrade behavior requires one maintainer preference before round3; no premature review, implementation or installation.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round2/report.md

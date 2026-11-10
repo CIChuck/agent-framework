@@ -1,0 +1,221 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "round": 2,
+  "candidate": "2956b861de75fcf7ebf463c82f5f470cf6fa7b40",
+  "correction_base": "4f9cb13a7a868ec28305a6fe6445007cd3727532",
+  "recorded_at": "2026-11-10T22:03:48.284085+00:00",
+  "outcome": "CHANGES_REQUESTED",
+  "score_gate": "not met: all three seats must be independently VERIFIED >=9.5 with no mandatory findings",
+  "seats": {
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "outcome": "VERIFIED",
+      "score": 9.5,
+      "report": "sol-report.md",
+      "report_sha256": "caeec4dd8eff5485fd47024926904d66a276462db04561f2598c9a2299a99fca",
+      "original_report": "/tmp/ingest-r2-sol-aRHC4m3s/review-report.md",
+      "criteria_as_reported": {
+        "IR-R01": "PASS",
+        "IR-R02": "PASS",
+        "IR-R03": "PASS",
+        "IR-R04": "PASS",
+        "IR-R05": "PASS",
+        "IR-R06": "PASS",
+        "IR-R07": "PASS",
+        "IR-R08": "PASS",
+        "IR-01": "PASS",
+        "IR-02": "PASS",
+        "IR-03": "PASS",
+        "IR-04": "PASS",
+        "IR-05": "PASS",
+        "IR-06": "PASS",
+        "IR-07": "PASS",
+        "IR-08": "PASS",
+        "IR-09": "PASS",
+        "IR-10": "PASS",
+        "IR-11": "PASS",
+        "IR-12": "PASS",
+        "IR-13": "PASS",
+        "IR-14": "PASS",
+        "IR-15": "PASS",
+        "IR-16": "PASS"
+      },
+      "receipts": {
+        "start-integrity.json": {
+          "file": "sol-start-integrity.json",
+          "sha256": "21aa8a9b815aeaa588ab2e6edfd377e6511e325eb7900a91d43a638d4d98e347"
+        },
+        "end-integrity.json": {
+          "file": "sol-end-integrity.json",
+          "sha256": "21aa8a9b815aeaa588ab2e6edfd377e6511e325eb7900a91d43a638d4d98e347"
+        }
+      },
+      "conduct": "no reported deviation"
+    },
+    "astra": {
+      "model": "gpt-6-astra",
+      "outcome": "CHANGES_REQUESTED",
+      "score": 9.0,
+      "report": "astra-report.md",
+      "report_sha256": "414175320a18397d185427ea64b366d6a6556f41ff4a27047f636f23733e3dd5",
+      "original_report": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/astra-ingest-r2-review-ahqs3h34/review-report.md",
+      "criteria_as_reported": {
+        "IR-01": "PASS",
+        "IR-02": "PASS",
+        "IR-03": "PASS",
+        "IR-04": "PASS",
+        "IR-05": "PASS",
+        "IR-06": "PASS",
+        "IR-07": "PASS",
+        "IR-08": "PASS",
+        "IR-09": "PASS",
+        "IR-10": "FAIL",
+        "IR-11": "PASS",
+        "IR-12": "PASS",
+        "IR-13": "PASS",
+        "IR-14": "FAIL",
+        "IR-15": "PASS",
+        "IR-16": "FAIL",
+        "IR-R01": "PASS",
+        "IR-R02": "FAIL",
+        "IR-R03": "FAIL",
+        "IR-R04": "PASS",
+        "IR-R05": "PASS",
+        "IR-R06": "PASS",
+        "IR-R07": "PASS",
+        "IR-R08": "PASS"
+      },
+      "receipts": {
+        "start-integrity.json": {
+          "file": "astra-start-integrity.json",
+          "sha256": "21aa8a9b815aeaa588ab2e6edfd377e6511e325eb7900a91d43a638d4d98e347"
+        },
+        "end-integrity.json": {
+          "file": "astra-end-integrity.json",
+          "sha256": "21aa8a9b815aeaa588ab2e6edfd377e6511e325eb7900a91d43a638d4d98e347"
+        },
+        "additional-source-pins.json": {
+          "file": "astra-additional-source-pins.json",
+          "sha256": "1f94ea8a76f09534e4c6a4c9b18da3b9ce5084fb96ed6954f5986048ea7f4a56"
+        }
+      },
+      "conduct": "no reported deviation"
+    },
+    "opus": {
+      "model": "claude-opus-5-5",
+      "outcome": "CHANGES_REQUESTED",
+      "score": 8.4,
+      "report": "opus-report.md",
+      "report_sha256": "16a3b45918a7ef959697b8c4326ee0690a7e23d8fd8da6cf6bc744467990865b",
+      "original_report": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/d6a9e142-7bff-4a3b-a599-5bd5e27fe34d/scratchpad/opus-ingest-r2-kIJhP3/review-report.md",
+      "criteria_as_reported": {
+        "IR-01": "PASS",
+        "IR-02": "PASS",
+        "IR-03": "PASS",
+        "IR-04": "PASS",
+        "IR-05": "PASS",
+        "IR-06": "PASS (A-8)",
+        "IR-07": "PASS (A-3)",
+        "IR-08": "PARTIAL (M-2, A-2)",
+        "IR-09": "PASS (A-4)",
+        "IR-10": "PASS",
+        "IR-11": "PASS",
+        "IR-12": "PASS",
+        "IR-13": "PARTIAL (A-1)",
+        "IR-14": "PARTIAL (M-1, M-2)",
+        "IR-15": "PARTIAL (M-1, A-5)",
+        "IR-16": "PARTIAL (M-1)",
+        "IR-R01": "PASS (A-1, A-2)",
+        "IR-R02": "PARTIAL (M-1, M-2)",
+        "IR-R03": "PARTIAL (M-2, A-7)",
+        "IR-R04": "PARTIAL (M-2, A-4)",
+        "IR-R05": "PASS (A-3)",
+        "IR-R06": "PASS",
+        "IR-R07": "PASS",
+        "IR-R08": "PARTIAL (A-1)"
+      },
+      "receipts": {
+        "start-integrity.json": {
+          "file": "opus-start-integrity.json",
+          "sha256": "21aa8a9b815aeaa588ab2e6edfd377e6511e325eb7900a91d43a638d4d98e347"
+        },
+        "end-integrity.json": {
+          "file": "opus-end-integrity.json",
+          "sha256": "21aa8a9b815aeaa588ab2e6edfd377e6511e325eb7900a91d43a638d4d98e347"
+        },
+        "post-deviation-integrity.json": {
+          "file": "opus-post-deviation-integrity.json",
+          "sha256": "21aa8a9b815aeaa588ab2e6edfd377e6511e325eb7900a91d43a638d4d98e347"
+        }
+      },
+      "conduct": "qualified: explicit Git environment missing on one disclosed post-check invocation; not a clean conformance claim"
+    }
+  },
+  "mandatory_themes": [
+    {
+      "id": "R2-01",
+      "sources": [
+        "Opus M-1"
+      ],
+      "title": "Existing-store upgrade behavior and explicit fresh-root mechanism",
+      "disposition": "open; maintainer preference requested asynchronously; do not infer production behavior from testing-only decision"
+    },
+    {
+      "id": "R2-02",
+      "sources": [
+        "INGEST-R2-ASTRA-001",
+        "Opus M-2"
+      ],
+      "title": "Snapshot/restore, direct client and composition-root identity coverage",
+      "disposition": "open; bounded document amendment authorized; preserve existing recovery orchestration"
+    }
+  ],
+  "advisories": [
+    "INGEST-R2-SOL-A01",
+    "INGEST-R2-ASTRA-002",
+    "Opus A-1",
+    "Opus A-2",
+    "Opus A-3",
+    "Opus A-4",
+    "Opus A-5",
+    "Opus A-6",
+    "Opus A-7",
+    "Opus A-8"
+  ],
+  "archives": [
+    {
+      "file": "review-request.json",
+      "sha256": "3a113826ce9b458ce21aa17298ed1ce5c7a096eb93f930353f82070ac6865455",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r2-p8slwm9l/inputs/review-request.json"
+    },
+    {
+      "file": "check_integrity.py",
+      "sha256": "6e1ec704678475fa6dbd45301c94a824e217a177cc8c83e05ee05b6f606278c3",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r2-p8slwm9l/inputs/check_integrity.py"
+    },
+    {
+      "file": "preserved-state.json",
+      "sha256": "43bc63142365560b7bfc72004d0edd493f1c9ec5f21e7cff724b54b12af52ce8",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r2-p8slwm9l/inputs/preserved-state.json"
+    },
+    {
+      "file": "protected-manifest.raw.json.gz",
+      "sha256": "6d1d9cfefe86993ce4b9e5d0c8e0d15e0e1da5f58d389a0709f7b55d713c496f",
+      "decompressed_sha256": "0e15d6cc24b6980b4d324805b3b7732fd38d7bcc8b7f5083aea3d93fa1d6c9e2",
+      "entries": 17561
+    },
+    {
+      "file": "dispatch-identity.json",
+      "sha256": "ec08108351f6338a548f6a649bd5363662e9bd40f04c41ee0a2a0c2839df322c"
+    }
+  ],
+  "request_sha256": "3a113826ce9b458ce21aa17298ed1ce5c7a096eb93f930353f82070ac6865455",
+  "integrity": "all three start/end, Opus post-deviation and controller frozen checks PASS; all17561 records and six metadata entries preserved",
+  "opus_conduct": "One git check-ignore bypassed the wrapper after end check. Later matching integrity does not establish prior command-environment compliance. Raw technical verdict/score retained, not promoted to clean formal conformance. Harness-owned tool output was disclosed separately. No attribution of external FETCH_HEAD/gitdir changes.",
+  "evidence_limits": "Administrative/integrity checks reproduced by reviewers; technical findings are source/document inspection. No runtime tests/builds/installations/live store/provider activity. No personal-backup content is adopted as controller evidence; maintained recovery/coordinator source establishes the seam.",
+  "remaining_authorized_rounds": [
+    3,
+    4
+  ],
+  "next_gate": "Correct the authorized document gaps and resolve existing-store behavior, then freeze for fresh full round3. No gate A/construction/acceptance/delivery authority."
+}

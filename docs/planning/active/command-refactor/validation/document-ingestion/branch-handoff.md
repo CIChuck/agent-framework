@@ -45,4 +45,4 @@ The two edited Chat example YAML files remain uncommitted and unstaged;
 `.friday-old/` and ignored exports remain untouched. Historical receipts retain
 their original branch/source identities. Do not broad-stage or clean this checkout.
 
-**Next gate:** Reconcile fresh Sol/Astra/Opus round2 of corrected INGEST design; repeat document-only within rounds2–4 budget until every seat VERIFIED >=9.5 with no mandatory findings. Gate A/implementation and MAINT human acceptance remain separate.
+**Next gate:** Resolve the pending existing-store upgrade preference, then freeze the corrected INGEST documents for fresh Sol/Astra/Opus round3. Rounds3–4 remain; every seat must be VERIFIED >=9.5 with no mandatory findings. Gate A/construction and MAINT human acceptance remain separate.
