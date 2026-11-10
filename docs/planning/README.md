@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Review expanded PDF/DOCX/XLSX/PPTX Docling remediation and Tools adoption plan before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Review revised INGEST-001 extraction, all-source document/512 chunking and embedding-limit contract with Tools adoption before dependency/model readiness and construction; Qwen4B illustrative only. MAINT-001 human UAT/acceptance pending. Delivery local. |
 
 ## Completed
 

@@ -1,15 +1,16 @@
 {
   "unit": "REM-CMD-INGEST-001",
   "status": "planning_checks_only",
-  "baseline": "f6287faa0336554fc6e076ab548061a2b3ea55c3",
-  "recorded_at": "2026-11-10T19:30:04.957675+00:00",
+  "baseline": "c59e8ed7c3caf9f20358f71f11e11b461f37d575",
+  "recorded_at": "2026-11-10T20:33:26.201069+00:00",
   "pins": {
-    "remediation/REM-CMD-INGEST-001-pdf-docx.md": "66c8ad1df6c6c1a8fae5779465543684f72994c8749029f496295423923ce039",
+    "remediation/REM-CMD-INGEST-001-pdf-docx.md": "e0375b3c5558a3e7c462674c7dc41c4d37e9e8eb583dc97498f35a01debb553f",
+    "proposals/tools-document-adoption.md": "dccc9e8a02bd257479fde759666f7f15a238172628ca6dd2c4f15e3f2700e218",
+    "validation/document-ingestion/discussion-decisions.json": "1d34126facfa5e483b880003d42c0ac30b90ba4cac026e2e9b6bcc5f917fcc0b",
+    "validation/document-ingestion/format-expansion.json": "93229156bcec385b07f491ce960fa61a99a2d3d26e2c585549d19c908d8c206f",
     "validation/document-ingestion/assessment.md": "fc681e1c483b3acb400b5a5854b9208b66c4401fc4a7455d778ca80b7b475f7f",
     "validation/document-ingestion/assessment.json": "ade8a16263c632fa68e786cae9145978798e75a704e1c0fe85f9f0a90000d4b3",
-    "validation/document-ingestion/certifi-security-requirement.json": "4aa555cd6387d21b52b2b1d83b031c51bb480d17814664689706f8502e4b3774",
-    "proposals/tools-document-adoption.md": "bbf1da6fffcaf69ee70d70e065c3677e4f0e48ee1f7f549dea2ac956f1d4c171",
-    "validation/document-ingestion/format-expansion.json": "93229156bcec385b07f491ce960fa61a99a2d3d26e2c585549d19c908d8c206f"
+    "validation/document-ingestion/certifi-security-requirement.json": "4aa555cd6387d21b52b2b1d83b031c51bb480d17814664689706f8502e4b3774"
   },
   "checks": [
     {
@@ -78,17 +79,26 @@
       "exit": 0,
       "stdout": "",
       "stderr": ""
+    },
+    {
+      "check": "planning_scope_and_yaml_examples",
+      "exit": 0,
+      "detail": "Three YAML examples parse; decisions/illustrative route agree; execution log append-only; MAINT object preserved. This is not product schema/runtime validation."
     }
   ],
   "protected_original_files_matched": 16671,
   "six_preserved_metadata_records": "matched",
+  "maint_implementation_object": "unchanged",
   "code_dependencies_lock_changes": "none by this task",
   "not_performed": [
-    "Docling install/resolution/benchmark",
-    "model downloads",
     "product implementation/tests",
-    "real store or user document operations",
+    "dependency/model/counter readiness execution",
+    "package/model installation",
+    "model/backend calls",
+    "personal/test store reset or inspection",
+    "legacy migration/re-embedding",
     "council/delegation",
-    "acceptance/delivery"
+    "MAINT UAT/acceptance",
+    "delivery"
   ]
 }

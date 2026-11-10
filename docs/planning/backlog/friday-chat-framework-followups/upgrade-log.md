@@ -420,24 +420,27 @@ this is not acceptance or closure of unrelated follow-ups.
 
 ## FU-012: Extract Actual PDF/DOCX/XLSX/PPTX Text Before Ingestion
 
-Status: PROPOSED — bounded four-format ingestion and companion Tools adoption; no code yet
+Status: PROPOSED — four-format extraction, shared ingestion chunking/embedding guards and Tools adoption; no code yet
 Discovered During: Maintainer report and guarded source inspection,2026-11-10;
 maintainer subsequently expanded scope to XLSX and PPTX.
 Framework Package: Friday Tools shared extraction; Friday Commands file arguments;
-Friday Chat delegation/default document dependencies. Memory storage stays unchanged.
+Friday Chat delegation/default document dependencies; shared Memory ingestion policy,
+LLM capability/limit enforcement and minimal Core contracts. Storage engines stay unchanged.
 Requested Change: Use one pinned Docling pipeline for PDF/DOCX/XLSX/PPTX extraction,
 with local PDF OCR, quoted paths, explicit format coverage and dependency/model
 requirements. Upgrade named Tools consumers through the companion adoption plan.
-Proposed defaults cover visible worksheets/slides, saved formula values without
-recalculation and labeled speaker notes. Preserve existing text/web ingestion;
-this planning assumption is not a new validation claim. No unrelated format rollout.
+Proposed format defaults cover visible worksheets/slides, saved formula values
+without recalculation and labeled speaker notes. All ingestion sources use
+document/512-token defaults with document/recursive/fixed overrides. Existing
+text/web fetching stays; token/dimension guards are shared. Qwen4B is illustrative
+only; fresh test stores require no legacy migration. No unrelated format rollout.
 Reason: SmartFileReader returns placeholders for PDF/DOCX/XLSX and does not admit
 PPTX. Old PDF page failures can become successful diagnostic content. Existing
 Tools consumers also require explicit routing, beyond adding a shared helper.
 Compatibility Risk: Exact read/ingest format/help and default closure change;
 shared tokenizer preserves unrelated commands. Freeze all four format policies
 and Tools XLSX selections/pagination before construction. No historical record
-cleanup, Memory storage change, formula calculation or slide rendering.
+cleanup, storage-engine change, formula calculation or slide rendering.
 Suggested Follow-Up Tests: Genuine PDF/DOCX/scanned/multi-sheet/multi-slide fixtures
 through registry, shared extraction, public Tools and disposable Chroma. Inspect
 late markers in stored chunks, notes/tables/order and exact coverage. Refuse

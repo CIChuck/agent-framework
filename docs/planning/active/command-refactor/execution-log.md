@@ -2688,3 +2688,22 @@ has been executed or accepted through this documentation change.
 - Historical assessment/accepted evidence, product/tests/dependencies/lock, user
   YAML and generated state are preserved. No install, model download or council.
 - **Next gate:** Review expanded PDF/DOCX/XLSX/PPTX Docling remediation and Tools adoption plan before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.
+
+
+## 2026-11-10T20:32:16.578006+00:00 — ingestion chunking and embedding discussion decisions recorded
+
+- Maintainer lifts the discussion-only document hold and requests this update.
+  Clarifications select all ingestion sources, document/512 defaults with CLI
+  overrides, and document/recursive/fixed strategies. Qwen4B stays illustrative.
+- Shared Memory owns policy; Tools adapts Docling chunking; minimal Core types
+  prevent package cycles. Shared LLM schema/resolver guards tokens, dimensions
+  and response shape, with model-resolved counting/formatting and no new user
+  tokenizer/instruction settings. Fetching/admission/protection remain.
+- Fresh disposable test stores replace legacy migration work; no reset, scan or
+  deletion is performed. Legacy character settings are not token-size aliases.
+- Revised scope/paths explicitly include Core/Memory/LLM ingestion changes; the
+  earlier extraction-only boundary is superseded for this proposed design.
+  Actual caller inventory and exact release/model/counter readiness remain due.
+- User YAML edits and generated state preserved. No product edits, install, model
+  activation, live backend call or council. MAINT acceptance remains separate.
+- **Next gate:** Review revised INGEST-001 extraction, all-source document/512 chunking and embedding-limit contract with Tools adoption before dependency/model readiness and construction; Qwen4B illustrative only. MAINT-001 human UAT/acceptance pending. Delivery local.

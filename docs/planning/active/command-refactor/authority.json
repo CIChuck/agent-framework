@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-10",
-  "decision": "MAINT-001 remains independently verified; four-format document ingestion and Tools adoption are proposed planning only",
+  "decision": "MAINT-001 remains independently verified; INGEST extraction, shared all-source chunking, embedding limits and Tools adoption are proposed planning only",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Review expanded PDF/DOCX/XLSX/PPTX Docling remediation and Tools adoption plan before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.",
+  "current_scope": "Review revised INGEST-001 extraction, all-source document/512 chunking and embedding-limit contract with Tools adoption before dependency/model readiness and construction; Qwen4B illustrative only. MAINT-001 human UAT/acceptance pending. Delivery local.",
   "product_code_authority": "Granted only for exact CD-CMD-MAINT-001 scope through conditional approval and round4 activation; no acceptance/delivery.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1899,15 +1899,15 @@
     "validation_state": "not_ready",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
-    "sha256": "66c8ad1df6c6c1a8fae5779465543684f72994c8749029f496295423923ce039",
+    "sha256": "e0375b3c5558a3e7c462674c7dc41c4d37e9e8eb583dc97498f35a01debb553f",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
-    "scope": "PDF/DOCX/XLSX/PPTX shared extraction; local PDF OCR; quoted file paths; existing text/web ingestion and Memory chunking/metadata retained",
+    "scope": "PDF/DOCX/XLSX/PPTX extraction/local PDF OCR; shared all-source document/512 chunking with document/recursive/fixed overrides; shared LLM limits/dimension checks; retained fetching, admission, metadata/protection/storage semantics",
     "implementation_approval": "not_granted",
     "council": "not_invoked; maintainer document review first",
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Review expanded PDF/DOCX/XLSX/PPTX Docling remediation and Tools adoption plan before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.",
+    "next_gate": "Review revised INGEST-001 extraction, all-source document/512 chunking and embedding-limit contract with Tools adoption before dependency/model readiness and construction; Qwen4B illustrative only. MAINT-001 human UAT/acceptance pending. Delivery local.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -1921,7 +1921,7 @@
         "ReaderFactory/get_reader_for_path",
         "SmartFileReadTool.run"
       ],
-      "claim_boundary": "All four formats require actual public Tools entry-point proof under the companion directive; shared capability or Chat ingestion alone does not establish Tools adoption.",
+      "claim_boundary": "Named public Tools consumers require actual adoption proof and shared all-source chunking/embedding checks; an extractor helper or Chat-only success does not establish Tools adoption.",
       "requested_formats": [
         "pdf",
         "docx",
@@ -1941,6 +1941,44 @@
       "instruction": "I'd like To expand this unit of work to include XLSX and PPTX documents - assume we're already capable of text and web ingestion by both the ingest command and through our tool chain.",
       "scope_effect": "Expand planned document support in INGEST and TOOLS-DOC; existing text/web behavior is assumed and preserved, not newly validated; format defaults remain proposed; no product construction or council authority inferred.",
       "evidence": "validation/document-ingestion/format-expansion.json"
-    }
+    },
+    "chunking_decisions": {
+      "default_strategy": "document",
+      "default_max_tokens": 512,
+      "strategies": [
+        "document",
+        "recursive",
+        "fixed"
+      ],
+      "scope": "all ingestion sources, including existing text/web and tool storage paths",
+      "main_config": "ingestion.chunking.strategy / ingestion.chunking.max_tokens",
+      "command_overrides": [
+        "--chunking=<strategy>",
+        "--chunk-tokens=<positive-integer>"
+      ],
+      "precedence": [
+        "explicit per-ingestion override",
+        "YAML",
+        "built-in default"
+      ],
+      "owner": "shared Memory policy, injected Tools Docling adapter; minimal Core contracts; Chat/TUI consumers",
+      "legacy_character_settings": "not token aliases or hidden defaults for the new ingestion path"
+    },
+    "embedding_decisions": {
+      "catalog": "existing model library",
+      "new_fields": [
+        "embedding_options.max_input_tokens",
+        "embedding_options.expected_dimensions"
+      ],
+      "separate_tokenizer_or_instruction_config": "not required; resolve and verify from exact model/artifact/serving identity",
+      "overflow": "split during chunking; reject invalid budgets/oversized final requests; never silently truncate or split one embedding input into multiple vectors",
+      "returned_vectors": "validate cardinality, expected dimensions and finite values before ingestion persistence",
+      "qwen4b": "illustrative_only_not_selected_or_installed",
+      "illustrative_max_input_tokens": 32768,
+      "illustrative_expected_dimensions": 2560,
+      "active_model_change": "none by this planning task",
+      "test_store": "fresh/disposable; no legacy migration/re-embedding; no reset performed"
+    },
+    "discussion_decisions": "validation/document-ingestion/discussion-decisions.json"
   }
 }

@@ -1,0 +1,117 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "status": "maintainer_decisions_recorded_in_proposed_design_not_implemented",
+  "baseline": "c59e8ed7c3caf9f20358f71f11e11b461f37d575",
+  "recorded_at": "2026-11-10T20:32:16.578006+00:00",
+  "maintainer": "Chuck Russell",
+  "prior_published_scope": "c59e8ed7",
+  "settled_decisions": {
+    "chunking": {
+      "default_strategy": "document",
+      "default_max_tokens": 512,
+      "strategies": [
+        "document",
+        "recursive",
+        "fixed"
+      ],
+      "scope": "all ingestion sources, including existing text/web and tool storage paths",
+      "main_config": "ingestion.chunking.strategy / ingestion.chunking.max_tokens",
+      "command_overrides": [
+        "--chunking=<strategy>",
+        "--chunk-tokens=<positive-integer>"
+      ],
+      "precedence": [
+        "explicit per-ingestion override",
+        "YAML",
+        "built-in default"
+      ],
+      "owner": "shared Memory policy, injected Tools Docling adapter; minimal Core contracts; Chat/TUI consumers",
+      "legacy_character_settings": "not token aliases or hidden defaults for the new ingestion path"
+    },
+    "embedding": {
+      "catalog": "existing model library",
+      "new_fields": [
+        "embedding_options.max_input_tokens",
+        "embedding_options.expected_dimensions"
+      ],
+      "separate_tokenizer_or_instruction_config": "not required; resolve and verify from exact model/artifact/serving identity",
+      "overflow": "split during chunking; reject invalid budgets/oversized final requests; never silently truncate or split one embedding input into multiple vectors",
+      "returned_vectors": "validate cardinality, expected dimensions and finite values before ingestion persistence",
+      "qwen4b": "illustrative_only_not_selected_or_installed",
+      "illustrative_max_input_tokens": 32768,
+      "illustrative_expected_dimensions": 2560,
+      "active_model_change": "none by this planning task",
+      "test_store": "fresh/disposable; no legacy migration/re-embedding; no reset performed"
+    },
+    "certifi": ">=2026.10.19 retained"
+  },
+  "clarification_answers": [
+    {
+      "question": "Select Qwen3-Embedding-4B for memory/maintenance or retain only as an example?",
+      "answer": "Keep Qwen 4B illustrative"
+    },
+    {
+      "question": "Apply new defaults/overrides to all sources or only four document formats?",
+      "answer": "Apply to all ingestion sources"
+    },
+    {
+      "question": "Which --chunking strategies?",
+      "answer": "document, recursive, and fixed"
+    }
+  ],
+  "additional_maintainer_direction": "Fresh test stores; no legacy re-embedding/migration required. Update the document after discussion; no source implementation or council requested.",
+  "source_observations": [
+    "Current Chat ingestion slices characters using smart_file.chunk_size, rather than exact model tokens.",
+    "Strict embedding options currently expose batch/cache sizes; token-limit/dimension fields are proposed additions.",
+    "Shared LLM embedding calls currently forward raw strings without local exact input-limit validation.",
+    "Memory has existing recursive/estimated-token and tool-output chunkers; their presence does not prove current Chat wiring or exact token enforcement."
+  ],
+  "source_pins": {
+    "packages/friday-chat/src/friday_chat/adapters.py": "90488c278666379825b8d971eae0a931fcc4ef4230b7a2e16fcb81aa9cc67b9d",
+    "packages/friday-chat/src/friday_chat/config.py": "734559482073fa66b2197604136d4fde805fc8f9e4ce7078f33df57c4a3c52d1",
+    "packages/friday-chat/src/friday_chat/runtime.py": "7a0003b0657e408261024be619a903f400f8e2f2f15533aa8392bd6ac904e6a2",
+    "packages/friday-llm/src/friday_llm/model_library.py": "754effe6adf32890073866d3192f75bbb7354642c5c32a64df456c22321b6add",
+    "packages/friday-llm/src/friday_llm/embeddings.py": "b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b",
+    "packages/friday-memory/src/friday_memory/ingestion/chunker.py": "3ab2ee869b9706d76b86c4834695fa6948ab10a50685df0566b3f0547c073015",
+    "packages/friday-memory/src/friday_memory/ingestion/tool_ingester.py": "e20502fb54d7288ed4ced51fc206d9a1070addf472ac156fc21a42331eea19e7",
+    "packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py": "a125280d7eeacf842d6420e0030d9a76665196a9fa3e8d47d2115fa01e802e0c"
+  },
+  "references": [
+    {
+      "title": "Docling native chunking",
+      "url": "https://docling-project.github.io/docling/concepts/chunking/"
+    },
+    {
+      "title": "Docling chunking packaging; must bind selected release",
+      "url": "https://github.com/docling-project/docling/blob/main/pyproject.toml"
+    },
+    {
+      "title": "Core tokenizer extras; must bind selected release",
+      "url": "https://github.com/docling-project/docling-core/blob/main/pyproject.toml"
+    },
+    {
+      "title": "Qwen4B model card, illustrative only",
+      "url": "https://huggingface.co/Qwen/Qwen3-Embedding-4B"
+    },
+    {
+      "title": "Model-bound counting",
+      "url": "https://lmstudio.ai/docs/python/tokenization"
+    },
+    {
+      "title": "Loaded/model capacity metadata",
+      "url": "https://lmstudio.ai/docs/developer/rest/list"
+    }
+  ],
+  "evidence_limit": "Planning and read-only source inspection, not selected-version dependency/model/counter readiness or candidate runtime proof.",
+  "not_performed": [
+    "product/test/config edits",
+    "package/model installation",
+    "dependency/lock changes",
+    "backend/provider calls",
+    "personal/test store reset or reads",
+    "legacy migration",
+    "council/delegation",
+    "MAINT human UAT or acceptance",
+    "delivery"
+  ]
+}

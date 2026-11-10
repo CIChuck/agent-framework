@@ -1,4 +1,4 @@
-# REM-CMD-INGEST-001 — PDF, DOCX, XLSX and PPTX extraction before ingestion
+# REM-CMD-INGEST-001 — document extraction, shared chunking and embedding limits
 
 Status: **PROPOSED — maintainer document review**. Baseline `7ad916f2`.
 This document defines a bounded repair and its dependency-readiness gate. It is
@@ -7,12 +7,22 @@ No product edits, installs, model downloads or council invocation are authorized
 by placement in this packet. The requested planning work is authorized.
 
 **Maintainer scope expansion — 2026-11-10:** include XLSX workbooks and PPTX
-presentations alongside PDF and DOCX. Text and web ingestion are existing
-capabilities for this plan; preserve their entry points and behavior rather than
-reimplementing or migrating them to Docling. This assumption is not a new
+presentations alongside PDF and DOCX. Text and web fetching/extraction are existing
+capabilities for this plan; preserve their entry points rather than replacing
+their source readers. The later shared chunking decision below intentionally
+changes their ingestion stage. This assumption is not a new
 validation claim about those capabilities. The original filename is retained
 for existing links and historical evidence. Format defaults below are proposed
 for document review, not implemented behavior.
+
+**Discussion decisions — 2026-11-10, after `c59e8ed7`:** default ingestion to
+`document` chunking with a 512-token budget, overridable per command. Accept
+`document`, `recursive` and `fixed` across all ingestion sources, including
+existing text/web and tool ingestion. Add model-profile input limits and expected
+vector dimensions with enforced overflow checks. Qwen3-Embedding-4B remains an
+illustrative profile, not the selected replacement model. Testing starts with
+fresh stores; legacy re-embedding/migration is excluded. This revision supersedes
+the earlier extraction-only/no-Memory-or-LLM-change boundary where stated below.
 
 ## Problem and independent assessment
 
@@ -40,7 +50,8 @@ Additional observations matter to the repair:
 
 The maintainer identified Docling as a promising backend. This proposal selects
 **Docling for PDF, DOCX, XLSX and PPTX conversion**, with a pinned local pipeline. Its
-structured document/Markdown output suits the existing text chunking boundary.
+structured document output supplies the proposed document-aware chunking path;
+Markdown is a rendering/export, not the sole structure passed between stages.
 This is an architectural recommendation, not a measured quality/performance claim.
 [Project capabilities](https://github.com/docling-project/docling),
 [supported formats](https://docling-project.github.io/docling/usage/supported_formats/).
@@ -67,10 +78,18 @@ proposed scope; no hosted vision/LLM service is added.
 
 | Owner | Responsibility |
 | --- | --- |
-| `friday-tools` | Shared typed document extraction capability, Docling adaptation, supported-format admission, conversion status/coverage checks, local asset readiness and safe errors. No Chat/TUI imports. |
-| `friday-commands` | A small standard-library-only file-argument tokenizer: quoted path interpretation shared by consumers. No filesystem, Docling or Memory imports. |
-| `friday-memory` | Existing chunking, embedding and persistence semantics. No source changes in this repair; metadata helper and both ingestion branches remain intact. |
-| `friday-chat` | Delegates raw file arguments/extraction, retains admission and memory invocation, renders source-derived statistics/warnings and failures. |
+| `friday-core` | Minimal public typed chunk/source/options and token-counter contracts needed by packages that already depend on Core. No conversion, model execution or ingestion policy. Exact additions freeze at readiness. |
+| `friday-tools` | Shared document extraction and Docling chunker adaptation; format/coverage/status checks, local assets and safe errors. Retain structure internally and return neutral chunks/provenance. No Chat/TUI imports or second policy owner. |
+| `friday-commands` | Standard-library-only file arguments and validation of the two command overrides. No filesystem, Docling or Memory imports; root API54 remains unchanged. |
+| `friday-memory` | Shared ingestion policy/default resolution and chunk-plan validation; inject the document chunker and exact token counter. Reuse persistence, protection and optional-description metadata rules. No Docling/Tools imports or second chunking pass on a validated plan. |
+| `friday-llm` | Typed embedding capabilities, model-specific input preparation, accurate token counting, effective-limit checks and returned-vector validation for all callers. No document splitting or storage policy. |
+| `friday-chat` | Loads configuration, wires shared capabilities, delegates arguments/extraction/ingestion and renders effective options, statistics and safe errors. No Chat-only chunking algorithm. |
+
+The limited Core contract prevents a new Tools-to-Memory or Memory-to-Tools
+dependency. Existing text/web extraction, URL admission, tool opt-in and safety
+rules remain, but their ingestion chunking now uses section D. Conversation
+turns and structured maintenance records are not automatically split into
+document chunks; the section E embedding guard still covers their requests.
 
 This is a prerequisite repair for later FILE-001 extraction, **not the complete
 FILE-001 command-family migration**. No new registry family, general command
@@ -97,6 +116,10 @@ Prepare this evidence in an isolated environment, without modifying the working
    base Docling distribution installs every backend. The default Chat profile
    will change deliberately; the old 138-distribution closure is not its oracle.
    The neutral Commands-only closure remains one distribution.
+   Explicitly resolve Docling's chunking feature and the matching tokenizer
+   dependencies as well. Native chunking is implemented in `docling-core` and
+   exposed through Docling; a minimal distribution may need a chunking extra.
+   Freeze the selected release's actual requirements, not an assumed extra name.
 3. Select exactly one local, CPU-capable OCR engine and required language/model
    set for an English scanned-PDF fixture. Record all layout/table/OCR weights,
    revisions, licenses, hashes, asset paths and explicit provisioning steps.
@@ -111,6 +134,20 @@ Prepare this evidence in an isolated environment, without modifying the working
 5. Produce a readiness manifest and precise metadata/lock delta. Stop if an
    unrelated upgrade, unsupported wheel, external executable, unbounded model
    fetch or conflicting dependency requires scope beyond this proposal.
+6. Inventory every active ingestion caller before freezing exact signatures:
+   file commands, text/Markdown ingestion, web-result ingestion, automatic tool
+   outputs and smart_read's storage paths. Separate extraction/read-only work
+   from ingestion. Prove the common policy is injected at each storage handoff;
+   an existing standalone class is not evidence that Chat wires it. If an assumed
+   web-ingestion route is missing, report the gap rather than silently adding a
+   new fetcher or claiming coverage. Freeze exact affected paths and oracle deltas.
+7. Resolve the configured embedding profile to its exact served artifact and
+   effective input limit, expected vector dimension, input-formatting convention
+   and model-matched tokenizer. Provision counting assets explicitly or verify
+   the server's counting capability. Unknown/mismatched limits or counters block
+   the new ingestion path. Do not download, activate or select Qwen solely because
+   this document includes an example. Record performance/compatibility evidence
+   separately from model-card specifications.
 
 This gate is **pending**, not a silently assumed success. Before code generation,
 the exact versioned implementation directive/manifest and approved scope must be
@@ -166,7 +203,10 @@ resolved local source path, admitted format, nonempty Markdown text, real PDF
 page count, ordered XLSX sheet identities and PPTX slide count/indices where
 applicable, declared coverage and immutable warning codes/messages. Counts
 distinguish total, included and intentionally excluded units; unknown is not a
-fabricated zero. Retain typed page/block/sheet/slide provenance for Tools adoption.
+fabricated zero. Retain typed page/block/sheet/slide provenance and access to the
+document chunking capability, not only a flattened Markdown string. Docling's
+mutable document objects stay inside Tools; return immutable neutral contracts
+and bind conversion/chunking to the same source/profile identity.
 Expose a typed extraction error with stable failure categories. No `Any`-shaped
 ReaderResult dictionary crosses into Chat; no new blanket typing suppression.
 The implementation manifest freezes exact signatures after gate A.
@@ -191,8 +231,8 @@ The capability must:
   image markers, document titles from metadata or HTML comments are not extracted
   source text. If OCR produces no usable text, fail clearly. If OCR assets are
   missing, report missing assets, not a successful empty document.
-- Return page count/coverage/warnings separately. Pass only extracted Markdown
-  into the existing chunker; no status messages, filenames-as-substitute-content,
+- Return page count/coverage/warnings separately. Pass structured source content
+  into the selected shared chunking strategy; no status messages, filenames-as-substitute-content,
   raw binary, data-URI images or diagnostic prose in stored text. Do not fetch
   external references or enable remote conversion/enrichment services.
 - Reject encrypted/password-required documents explicitly in this unit; no password
@@ -205,7 +245,7 @@ The capability must:
 
 ### Format rules to freeze at readiness
 
-These are deliberately text-extraction rules for the existing chunker, not a
+These are deliberately extraction rules for the shared chunking policy, not a
 spreadsheet calculation engine or a presentation-rendering project. The same
 conversion profile applies through Chat and adopted Tools consumers. A requested
 content scope is complete only when all its required content has been converted;
@@ -288,8 +328,11 @@ all other paths. No join-and-strip workaround or global `shlex` replacement.
 `SmartFileReader` delegates PDF/DOCX/XLSX/PPTX to the shared extraction capability and maps
 its typed result into `FileReadResult`, adding only sideband backend/coverage/
 warning fields needed for presentation. Text/CSV/TSV/JSON behavior remains.
-`/read` displays real extracted text and document metadata. `/ingest` uses that
-same successful text, then invokes the existing memory path exactly once.
+`/read` displays real extracted text and document metadata; it does not embed or
+chunk merely to display a file. `/ingest` uses that same successful source through
+the selected chunking strategy and the shared Memory ingestion entry once.
+Remove the Chat-owned character slicer from that path, rather than chunking
+twice. Keep the metadata helper and existing protection/storage semantics.
 
 Success is shown only after the memory capability returns an exact positive
 chunk count for a document. Existing storage exceptions are not turned into
@@ -300,37 +343,242 @@ existing multi-chunk storage failures are atomic. Keep admission-gate behavior.
 Remove the common placeholder method. Replace XLSX placeholder output with real
 workbook extraction, and add PPTX admission explicitly for both `/read` and
 `/ingest`. All other new Docling formats remain disabled. Existing text/table
-and web ingestion routes remain outside this change; do not redirect them
-through the new document pipeline or claim they were revalidated by this plan.
+and web extraction/fetching routes remain. Their ingestion chunking participates
+in section D without adding URL support to the local-file converter or claiming
+that this planning update itself revalidated runtime behavior.
 
 Update only read/ingest help/detail and their changed response fields. Preserve
 the remaining catalog, aliases, parser quirks and accepted metadata oracles.
 Retain immutable snapshots; supply a separate exact exception comparison.
 
+## D — shared ingestion chunking: document / 512 tokens by default
+
+The maintainer selected these defaults for **all ingestion sources**, not only
+PDF/DOCX/XLSX/PPTX. Apply one policy to command ingestion, existing text/Markdown
+and web-result ingestion, and the corresponding tool storage handoffs. Retain
+source extraction, tool admission, quarantine/provenance and store-to-memory
+controls. This is not permission to auto-ingest previously disabled tools, fetch
+new URLs, or re-chunk conversation/maintenance records as documents.
+
+The new configuration contract is:
+
+```yaml
+ingestion:
+  chunking:
+    strategy: document
+    max_tokens: 512
+```
+
+`strategy` accepts exactly `document`, `recursive` or `fixed`; `max_tokens` is a
+strict positive integer. Both keys are optional with the defaults above. Reject
+invalid configured values at configuration preflight. The current schema does
+not implement this section yet. Resolve explicit per-ingestion overrides first,
+then YAML settings, then built-in defaults. An omitted option does not erase the
+other configured value. Tool callers pass the same typed options; future TUI
+consumers can reuse the interface without importing Chat.
+
+Proposed command forms:
+
+```text
+/ingest "report.pdf"
+/ingest "report.pdf" project notes --chunking=recursive --chunk-tokens=768
+/ingest "report.xlsx" --chunking=document --chunk-tokens=512
+```
+
+The first form uses the effective configured defaults, initially document/512.
+The two recognized `--name=value` overrides may precede or follow the source path;
+remove them before constructing the description. They are ingestion options,
+not `/read` options. Quoted option-like filenames remain paths. Empty values,
+unknown strategy names, non-integer/zero/negative token budgets, repeated instances
+of either override and missing `=` are usage errors before source I/O or network
+fetch. Preserve all other description/parser semantics. No launch-time global
+chunking flags or per-format precedence layer is added in this unit.
+
+| Strategy | Boundary rule | Size enforcement |
+| --- | --- | --- |
+| `document` | Use document sections, paragraphs, tables, sheets and slides; preserve associated headings/headers/notes provenance. Use Docling's native hybrid chunker behind the Tools adapter. | Refine oversized units and merge suitable small units within the selected final-input token budget. Plain text and existing normalized web content supply paragraph/heading blocks to the same strategy; no new fetch/conversion route. |
+| `recursive` | Split at paragraphs, then sentences, then safe text boundaries for oversized spans. No LLM-based semantic segmentation. | Count with the active embedding model's tokenizer, including final contextualization. No four-characters-per-token approximation as enforcement. |
+| `fixed` | Deterministic bounded text windows, preserving Unicode and source coverage. | Token-sized windows, not the legacy Chat character count. It is an alternative strategy, not a promise of the old byte-for-byte chunks. |
+
+512 is the final embedding-input **budget**, not a requested exact chunk length
+or a reason to pad text. Count repeated headings, table headers, query/document
+formatting and special-token overhead where applicable. It is distinct from the
+embedding model's maximum accepted sequence length. Keep sheet/slide boundaries,
+source order and neutral per-chunk provenance; do not merge unrelated sheets or
+slides merely to fill a budget. Large tables retain row/header context across
+chunks. Freeze an explicit lossless split-or-refuse rule for an individual cell,
+row or contextual prefix that cannot fit. No dropped source tail or silent
+truncation. Do not introduce another overlap CLI/config option in this unit;
+freeze/document each strategy's bounded overlap/header behavior at gate A.
+
+Memory owns default/override resolution and validates the complete chunk plan.
+It receives a typed document-chunker capability and model token counter through
+injection. Tools owns Docling adaptation; recursive/fixed strategies are shared
+Memory implementations or explicit injected implementations. Core holds only
+minimal common contracts. Do not add a Tools/Memory import cycle or leak third-
+party document/tokenizer objects across packages. No consumer cuts an accepted
+chunk plan again before persistence. Read/summarization-only processing can retain
+its existing policy; every storage handoff uses the selected ingestion policy.
+
+The existing `smart_file.chunk_size`/`chunk_overlap` and legacy estimated-token
+settings are not aliases for these new token fields. They may remain for scoped
+legacy read/summarization operations; never interpret 2,048 characters as 2,048
+model tokens or use those settings as a hidden second ingestion default. Freeze
+exact intentionally changed chunk/count/help/config oracles without editing old
+snapshots broadly. The ingestion response reports effective strategy, budget and
+chunk count; persisted chunk metadata records policy/version, embedding profile
+identity and source-unit provenance using storage-compatible values.
+
+## E — embedding profiles and enforced limits
+
+Embedding profiles remain in the model catalog (`models-config.yaml` or the
+configured equivalent); the main YAML selects named services through the existing
+`embedding_pool`. Extend the strict shared LLM schema and resolver rather than
+adding ignored keys to YAML. The profile's proposed `embedding_options` gains:
+
+- `max_input_tokens`: strict positive integer declaring supported input capacity.
+- `expected_dimensions`: strict positive integer for validating returned vectors.
+
+Retain the endpoint, model identity/revision and existing batch/cache options.
+No operator tokenizer setting or arbitrary query/document-instruction setting
+is required. Resolve the matching tokenizer/counting mechanism and supported
+input convention from the exact model/artifact identity. Record that resolution
+in readiness/provenance; do not silently guess from an arbitrary server alias.
+Counting must be exact and available offline through provisioned assets or via
+an explicitly verified serving capability; missing support fails preflight.
+
+The following is an **illustration only**, not a selected/installed model or a
+valid configuration for today's unchanged schema:
+
+```yaml
+profiles:
+  qwen3_embedding_4b_local:
+    kind: embedding
+    endpoint: local_lmstudio
+    dialect: openai_embeddings
+    model: openai/qwen3-embedding-4b
+    model_target:
+      model_id: qwen3-embedding-4b
+      family: qwen3_embedding
+      revision: "<exact downloaded artifact revision>"
+    embedding_options:
+      max_input_tokens: 32768
+      expected_dimensions: 2560
+```
+
+An illustrative main-config binding is:
+
+```yaml
+embedding_pool:
+  default_service: memory
+  services:
+    memory:
+      profile: qwen3_embedding_4b_local
+      resilience_overrides:
+        timeout_seconds: 60
+    maintenance:
+      profile: qwen3_embedding_4b_local
+      resilience_overrides:
+        timeout_seconds: 60
+```
+
+Qwen publishes 32K input context and up to 2,560 dimensions for this model. The
+example alias/revision must match an actual supported artifact/server, and the
+profile does not command the server to increase context or resize output.
+[Official model card](https://huggingface.co/Qwen/Qwen3-Embedding-4B).
+The current configured Nomic profile remains selected until a later explicit
+model choice. Gate A verifies its actual artifact/limits/dimensions as well;
+this example does not silently replace memory or maintenance bindings.
+
+Some embedding models distinguish search queries from indexed documents using
+input conventions. Apply a verified convention once inside the shared LLM
+adapter, accounting for any server-applied formatting. For Qwen, the reference
+retrieval usage formats queries with an instruction and leaves documents without
+that instruction. Do not prepend a Nomic-specific convention to Qwen or persist
+embedding-only instructions as document text. Audit `embed_text` versus
+`embed_query`/`embed_documents` call sites so document storage is not accidentally
+formatted as a query. Tests cover both paths. No hosted LLM call is needed for
+local token counting or these deterministic formatting rules.
+
+Overflow is a fixed enforcement rule, not another user-configurable policy:
+
+1. Resolve the effective limit as the minimum of the configured supported cap
+   and verified artifact/server loaded capacity. A larger declared cap cannot
+   override a smaller loaded context. Missing/contradictory identity or capacity
+   blocks readiness; do not silently assume the model-card maximum.
+2. Validate the configured/requested chunk budget against that capacity and the
+   required formatting overhead. Reject an invalid override with the supported
+   limit; do not silently clamp it. The budget already includes overhead; do not
+   subtract it twice. Split content at the chunking stage.
+3. Count each final contextualized/prepared input, including server/template and
+   special-token effects. It must fit the requested chunk budget for ingestion
+   and the effective model limit for every embedding caller. Preflight all chunks
+   in an ingestion request before the first embedding/storage call. Unknown
+   counting/formatting behavior is not permission to send unbounded input.
+4. Recheck at the shared LLM embedding boundary for documents, queries, tool
+   outputs and maintenance callers. Reject oversized input before provider I/O;
+   never silently truncate or return multiple vectors for one supplied input.
+   Set backend truncation refusal where supported and prove no hidden truncation
+   with boundary controls for the supported deployment.
+5. Validate response cardinality, expected vector length and finite numeric
+   values before accepting a batch. Reject missing/extra/wrong-dimension outputs.
+   Ingestion validates its full embedding result before handing it to storage;
+   this does not introduce rollback for unrelated multi-write storage failures.
+
+The same configured profile identity binds indexing and retrieval in a store.
+A store/model mismatch must fail explicitly. Tool/ingestion caches also bind the
+resolved strategy/budget, embedding identity, counting/formatting revision and
+conversion profile; stale cache entries cannot bypass these checks. Leave old
+entries untouched rather than purging them.
+
+**Test-store decision:** the maintainer will start fresh for model testing; no
+legacy migration or bulk re-embedding implementation is required. Use disposable
+empty stores in automated proof. Do not scan, delete or reset current stores as a
+side effect of planning, startup, a profile edit or an ingestion command. Any
+later requested reset must identify the actual test-state scope; no such reset
+has been performed here.
+
+[Docling chunking](https://docling-project.github.io/docling/concepts/chunking/),
+[model-bound tokenization](https://lmstudio.ai/docs/python/tokenization) and
+[loaded/model capacity metadata](https://lmstudio.ai/docs/developer/rest/list)
+are upstream design references, not candidate-installed or backend readiness proof.
+
 ## Proposed exact implementation paths
 
 | Path | Allowed purpose |
 | --- | --- |
-| `packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py` (new) | Shared typed Docling extraction, local asset/status/format checks and errors. |
+| `packages/friday-core/src/friday_core/ingestion.py` (new), focused Core tests | Minimal neutral immutable source/chunk/options and counting protocols, if required to avoid cross-package cycles. No policy/backend imports; exact public signatures freeze at gate A. |
+| `packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py` (new) | Shared typed Docling extraction/chunking adapter, neutral provenance, local asset/status/format checks and errors. |
 | `packages/friday-tools/pyproject.toml` | New document-ingestion extra with selected Docling release and mandatory `certifi>=2026.10.19`; other requirements unchanged. |
 | `packages/friday-tools/README.md` | Public capability, dependency and local-model setup/limits. |
 | `packages/friday-tools/tests_tools/test_document_ingestion.py` (new) | Real format/OCR extraction and typed failure/coverage tests. |
-| `packages/friday-commands/src/friday_commands/file_inputs.py` (new) | Pure scoped raw-tail tokenizer; no root API export edits. |
-| `packages/friday-commands/tests_commands/test_file_inputs.py` (new) | Headless quoting/leading-option/description and malformed-input proofs. |
+| `packages/friday-commands/src/friday_commands/file_inputs.py` (new) | Pure scoped raw-tail tokenizer and ingestion override parsing; no root API export edits. |
+| `packages/friday-commands/tests_commands/test_file_inputs.py` (new) | Headless quoting/options/description and malformed-input proofs. |
+| `packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py` (new), ingestion `__init__.py`, focused ingestion tests | Shared policy/default resolution, recursive/fixed strategies, injected document strategy and validated chunk/embedding plan handoff. Preserve metadata/protection/storage semantics. |
+| Memory `ingestion/tool_ingester.py`, `ingestion/large_file_processor.py`, existing ingestion tests | Inject the common policy into actual text/web/tool storage paths identified at gate A; retain opt-in, admission, context-only summaries and non-ingestion behavior. No duplicate splitter on accepted chunks. |
+| `packages/friday-llm/src/friday_llm/model_library.py`, `embeddings.py`, new `embedding_limits.py` if needed, corresponding focused tests | Strict capability fields/resolution, model-based counting/preparation, per-input guards, batch shape/dimension validation and safe failures for all callers. |
+| `packages/friday-llm/pyproject.toml` | Only selected counter/provider dependencies if needed; freeze exact optional/default placement at gate A. No unrelated provider expansion. |
 | `packages/friday-chat/src/friday_chat/commands/files.py` | Four-format delegation/admission and result metadata, document-line refusal; retain text behavior. |
 | `packages/friday-chat/src/friday_chat/commands/registry.py` | Default file-handler-only raw-tail delegation, document failure/success adaptation and exact help cells. No other handlers/parser policy. |
+| Chat `src/friday_chat/config.py`, `runtime.py`, `adapters.py` | Typed ingestion config, shared-capability wiring and effective-option presentation; remove Chat character slicing from ingestion, distinguish query/document embedding calls, preserve existing store paths and metadata helper. |
+| Chat packaged `src/friday_chat/config_templates/config.example.yaml`, `models-config.example.yaml`, focused config tests | New default/schema examples and capability requirements bound to the verified current profile. Qwen remains illustrative; do not overwrite either dirty repository example YAML. |
 | `packages/friday-chat/pyproject.toml` | Default dependency on the new Tools extra only. |
 | `packages/friday-chat/README.md` | Supported document behavior and provisioning. |
 | `packages/friday-chat/tests_chat/test_document_ingestion.py` (new) | Actual registry and zero-ingestion-on-read-failure assertions. |
 | `packages/friday-chat/tests_chat/test_files_replay_shell.py` | Replace fake PDF/DOCX/XLSX placeholder expectations with genuine extraction assertions; add PPTX coverage; keep test names and unrelated text/replay/shell assertions. |
-| `tests/integration/test_document_ingestion.py` (new) | Registry → extraction → real Memory adapter → disposable Chroma, deterministic embeddings; source/installed proof helper if needed. |
+| `tests/integration/test_document_ingestion.py` (new) | Registry/tools/text/web → shared chunking → guarded embeddings → real Memory/disposable Chroma, deterministic vectors plus real model-matched counting; source/installed proof helper if needed. |
 | Package-local synthetic `tests_*/fixtures/document-ingestion/` (new) | Genuine text, table and scanned fixtures/provenance; no user documents. |
 | `uv.lock` | Deliberate Docling graph delta and requested Certifi upgrade to at least2026.10.19, inventoried at gate A. No unrelated package upgrade. |
 | This packet's document-ingestion remediation/validation/UAT/status records; planning board/dashboard; upgrade-log FU-012 | Planning, readiness, proof and human handoff for this unit only. |
 
-No `friday-memory` source, adapters/storage/chunker implementation, MAINT pipeline,
-recovery, unrelated configuration, global format/factory policy or TUI source
-changes. If integration cannot fit these paths, stop and reconcile the boundary.
+Core/Memory/LLM additions above are a deliberate planning-scope expansion over
+the earlier extraction-only draft. No Memory storage-engine, maintenance pipeline,
+recovery, general model-catalog redesign, arbitrary provider, unrelated configuration,
+global format/factory policy or TUI source changes. Existing supported embedding
+providers need a compatible bounded guard/counter contract or an explicit readiness
+stop, not a new blanket suppression or silently disabled safety check. If integration
+cannot fit these paths, stop and reconcile the boundary. No product edits are made
+by this document update.
 
 ## Required verification after approval
 
@@ -350,7 +598,12 @@ changes. If integration cannot fit these paths, stop and reconcile the boundary.
 | DI-12 | Freeze stable code/evidence, then separately authorized fresh OpenAI Sol/Astra independent review. No agents before maintainer document review/direction. Human UAT follows verification; acceptance and delivery remain separate. |
 | DI-13 | Genuine multi-sheet XLSX with late-sheet/late-row markers, cached formulas, missing/error formula caches, blank cells, zero/false/date/leading-zero text, merged cells and hidden content. Prove table relationships, coverage warnings, no recalculation/network/macro execution, and no silent active-sheet/preview-row limit. Independent fixture validity and saved-cache oracle required. |
 | DI-14 | Genuine multi-slide PPTX with late-slide markers, ordered text/bullets/tables, speaker notes, hidden slides/shapes and an image-only case. Prove original numbering, separately labeled notes, honest omitted-content coverage and no media fetching/rendering. Required native text/table/notes failures yield zero ingestion calls. |
-| DI-15 | Every positive format has actual offline normal/optimized installed extraction and stored-chunk proof, plus corrupt/missing-backend/partial/empty and quoted-path tests. Existing text/web entry points and their scoped regression checks remain unchanged; do not infer broader web support from this unit. |
+| DI-15 | Every positive format has actual offline normal/optimized installed extraction/chunking and stored-chunk proof, plus corrupt/missing-backend/partial/empty and quoted-path tests. Existing text/web extraction and safety contracts remain; intentional chunking/count deltas are exact and reviewed. Do not infer new web-fetch support. |
+| DI-16 | All three strategies execute under defaults and independent CLI/YAML overrides across document/text/web/tool ingestion. Verify exact precedence, missing/invalid/duplicate values and no I/O on usage errors. Headless Memory/Core consumer needs no Chat; Commands remains stdlib-only/API54 unchanged. |
+| DI-17 | Real model-matched token counts on Unicode, headings, repeated table headers, long rows/cells, sections/slides and plain web/text blocks. Final inputs stay within requested budget and effective capacity; no lost tail, fabricated text, split Unicode, second chunking pass or hidden character-estimate fallback. |
+| DI-18 | Profile schema/resolver and real guard paths: smaller loaded limit wins, unknown identity/counter refuses, below/at/over boundary inputs behave correctly, formatting applies once, one input yields one vector. Wrong count/dimension/non-finite output fails before ingestion storage. Control and named bypass mutants require call-phase assertion witnesses. |
+| DI-19 | Exact active-caller inventory proves text/web/automatic-tool/smart_read storage wiring and common options; fetching, tool opt-in, quarantine and provenance retained. Config/strategy/budget/model/profile changes invalidate ingestion caches; stale cached results cannot bypass guards. Read-only tools remain read-only. |
+| DI-20 | Fresh disposable stores only; no reset of current state or legacy migration. Qwen4B example never activates/downloads a model. Installed normal/optimized guard and source-to-store proofs use verified counter assets, realistic exact-dimension test vectors, canonical origins and post-install Certifi checks. Real backend readiness evidence is explicitly distinguished from doubles/model-card metadata. |
 
 Keep the old assertion bodies except the precisely documented file-format/help
 exceptions; add coverage rather than broadly rewriting accepted tests. Provision
@@ -364,8 +617,9 @@ Previously stored placeholders are a plausible impact, not a confirmed inventory
 Any cleanup needs a separate read-only identification report and exact approved
 record IDs/backup/disposition. Do not delete records by a substring search.
 
-No general file-family migration, new semantic chunker, embedding change, RAG
-redesign, remote OCR/vision, VLM enrichment, spreadsheet calculation/editing,
+No general file-family migration, LLM-based semantic chunking, automatic embedding
+model replacement, legacy re-embedding/migration, RAG redesign, remote OCR/vision,
+VLM enrichment, spreadsheet calculation/editing,
 presentation rendering/editing, new URL/web conversion, additional Docling
 formats, legacy/macro-enabled Office files, password interface or guarantees
 for every document layout. Do not
@@ -374,7 +628,9 @@ weaken quarantine, source-protection, maintenance admission or model policy.
 ## Next decision
 
 Review this expanded four-format Docling boundary, proposed format defaults and
-installation/OCR requirements, together with the four-format Tools adoption plan.
-Gate A must establish the exact compatible package/model manifest and final
+shared all-source chunking/embedding-limit contract, together with the Tools
+adoption plan. The maintainer has settled document/512 defaults, all three
+strategies, all-source scope, illustrative-only Qwen and fresh-store testing.
+Gate A must establish the exact compatible package/model/counter manifest and final
 construction directive before implementation. Current MAINT UAT remains a
 separate pending human activity. No further council was launched by this task.

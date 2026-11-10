@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/local. Four-format document-ingestion planning is awaiting
-document review; MAINT-001 is verified with human UAT/acceptance pending.
+**Status:** started/local. Ingestion extraction/chunking and embedding-limit
+planning awaits document review; MAINT-001 human UAT/acceptance remains pending.
 
 **Working-folder update — 2026-11-05:** The maintainer changed direction:
 current command-first and Friday TUI planning is consolidated in the
@@ -30,7 +30,9 @@ is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 [Proposed Docling remediation](remediation/REM-CMD-INGEST-001-pdf-docx.md)
 replaces PDF/DOCX/XLSX placeholders and adds PPTX extraction through one shared
 Tools converter, with quoted paths and explicit dependency/model readiness.
-Text/web ingestion are existing capabilities for this plan and remain unchanged.
+Existing text/web extraction remains; shared ingestion now defaults to document/512
+tokens across all sources, with document/recursive/fixed overrides. Model catalog
+limits/dimension checks are planned; Qwen4B remains illustrative, with no migration.
 The proposed spreadsheet/slide defaults and limits require document review.
 [Guarded source assessment](validation/document-ingestion/assessment.md)
 confirms the defect. Execution phase: planning; validation state: not_ready.
@@ -84,7 +86,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Review expanded PDF/DOCX/XLSX/PPTX Docling remediation and Tools adoption plan before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.
+**Next gate:** Review revised INGEST-001 extraction, all-source document/512 chunking and embedding-limit contract with Tools adoption before dependency/model readiness and construction; Qwen4B illustrative only. MAINT-001 human UAT/acceptance pending. Delivery local.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
