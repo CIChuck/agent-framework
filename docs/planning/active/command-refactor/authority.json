@@ -3,10 +3,10 @@
   "initiative": "friday-command-refactor",
   "maintainer": "Chuck Russell",
   "date": "2026-11-10",
-  "decision": "MAINT-001 implementation independently verified; targeted human UAT and acceptance pending",
+  "decision": "MAINT-001 remains independently verified; PDF/DOCX ingestion remediation is proposed planning only",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.",
+  "current_scope": "Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.",
   "product_code_authority": "Granted only for exact CD-CMD-MAINT-001 scope through conditional approval and round4 activation; no acceptance/delivery.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1891,5 +1891,22 @@
       }
     },
     "mandatory_findings": []
+  },
+  "document_ingestion_remediation": {
+    "unit": "REM-CMD-INGEST-001",
+    "status": "proposed",
+    "execution_phase": "planning",
+    "validation_state": "not_ready",
+    "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
+    "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
+    "sha256": "776741c21981bc8d874318ffeeb548d7a813940fade9b2853c4f05384fcc61e2",
+    "assessment": "validation/document-ingestion/assessment.md",
+    "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
+    "scope": "PDF/DOCX shared extraction/local OCR, quoted file paths, fail-closed XLSX; existing Memory chunking/metadata retained",
+    "implementation_approval": "not_granted",
+    "council": "not_invoked; maintainer document review first",
+    "dependency_or_model_installation": "not_performed",
+    "user_store_inspection_or_cleanup": "not_performed_or_authorized",
+    "next_gate": "Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local."
   }
 }

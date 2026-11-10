@@ -2618,3 +2618,28 @@ has been executed or accepted through this documentation change.
 - Updated handoff and numbered UAT checklist; all cases NOT RUN. No live session,
   provider, personal-store mutation, cleanup, push, acceptance or delivery.
 - **Next gate:** Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.
+
+
+## 2026-11-10T18:55:17.510027+00:00 — PDF/DOCX ingestion remediation proposed
+
+- Maintainer requested review of document placeholder ingestion and a bounded
+  remediation, then called out Docling and appropriate Python packages.
+- Read current source at7ad916f2: corrupt PDF/DOCX reaches actual registry success
+  and passes placeholder text into a capture-memory double. Genuine two-page PDF
+  and paragraph/table DOCX also get placeholders; quoted repeated-space paths
+  are split; document line limits ignored. Probe uses private synthetic fixtures
+  and the pinned audit guard, not real memory or user documents.
+- Existing Tools readers extract real text, but PDF page exceptions become
+  successful diagnostic content; image-only PDF returns empty success. DOCX
+  currently appends tables after paragraphs. A simple bridge is insufficient.
+- Official package documentation reviewed: Docling proposed shared backend with
+  explicit local OCR/assets/readiness, new default-Chat dependency contract and
+  strict partial/empty/error refusals. No versions resolved, packages installed,
+  models downloaded or Docling conversions benchmarked. Existing workspace
+  pypdf6.6/python-docx1.2 availability is not default-install proof.
+- Proposal covers Commands raw-path semantics and Tools conversion; no Memory
+  storage/chunker change, whole FILE-001 migration or MAINT change. XLSX proposed
+  fail-closed only; historical placeholder cleanup remains separate/unapproved.
+- Product code/tests/dependencies/lock, user YAML, personal state and accepted
+  evidence preserved. No agents invoked. MAINT human UAT/acceptance still due.
+- **Next gate:** Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.

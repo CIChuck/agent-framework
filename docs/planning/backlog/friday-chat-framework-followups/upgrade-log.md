@@ -416,3 +416,27 @@ Explicit `/reorganize --full` admission/help is implemented locally under the
 exact MAINT-001 directive. Duplicate/conflicting modes remain refused. Full
 installed proof and independent implementation validation are still pending;
 this is not acceptance or closure of unrelated follow-ups.
+
+
+## FU-012: Extract Actual PDF/DOCX Text Before Ingestion
+
+Status: PROPOSED — separate bounded document-ingestion remediation; no code yet
+Discovered During: Maintainer report and guarded source inspection,2026-11-10
+Framework Package: Friday Tools shared extraction; Friday Commands file arguments;
+Friday Chat delegation/default document dependencies. Memory storage stays unchanged.
+Requested Change: Use a pinned Docling pipeline for local PDF/DOCX text/OCR
+conversion before ingestion; refuse corrupt/partial/empty results, preserve
+quoted paths, and make Python/model requirements explicit. Reject placeholder
+XLSX ingestion without adding spreadsheet extraction to this unit.
+Reason: The current SmartFileReader returns synthetic placeholders for binary
+documents; the command may store them and report success. Simply linking the
+old PDF reader would also permit page-error diagnostics as successful content.
+Compatibility Risk: Exact read/ingest behavior/help and default dependency closure
+change deliberately; shared tokenizer must preserve unrelated commands. No
+existing placeholder-record cleanup or re-ingestion is included.
+Suggested Follow-Up Tests: Genuine PDF/DOCX/scanned fixtures through registry,
+shared extraction and disposable Chroma; inspect stored chunks, not only listing
+metadata. Missing dependency/models, malformed files, partial conversion, empty
+output and quoted repeated-space paths need negative/installed proofs.
+Source Evidence: [Assessment](../../active/command-refactor/validation/document-ingestion/assessment.md)
+and [proposed remediation](../../active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md).

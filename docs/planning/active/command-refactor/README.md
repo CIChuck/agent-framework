@@ -23,6 +23,14 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
+**Additional requested planning — document ingestion:**
+[Proposed Docling remediation](remediation/REM-CMD-INGEST-001-pdf-docx.md)
+addresses silent PDF/DOCX placeholder ingestion, quoted paths and dependency/model
+readiness. [Guarded source assessment](validation/document-ingestion/assessment.md)
+confirms the defect. Execution phase: planning; validation state: not_ready.
+No document-ingestion code, installation or council is approved or started.
+MAINT implementation verification and its pending human UAT remain unchanged.
+
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and
@@ -67,7 +75,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.
+**Next gate:** Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

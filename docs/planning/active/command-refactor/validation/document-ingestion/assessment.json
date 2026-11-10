@@ -1,0 +1,214 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "status": "planning_characterization_only",
+  "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
+  "recorded_at": "2026-11-10T18:51:01.190508+00:00",
+  "source_pins": {
+    "AGENTS.md": "9c2840ea92bf5f25acd5c85d36a18d2c7d9677c0768d1e811aef5efde6fc936b",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/active/command-refactor/scope-decisions.md": "6760092e9d7b4f38a0e96d8109fde0e95cd8c3db0aeaf05c927801243dccb749",
+    "packages/friday-chat/src/friday_chat/commands/files.py": "2c1555ad5ec48c5aab6cf3e14024a5591b86ace2b752f1420f273daf215c9f3c",
+    "packages/friday-chat/src/friday_chat/commands/registry.py": "4615bb2e8648b62f9eb3826ccaba73f157754fcf5c12beedeef5b59185dc0f63",
+    "packages/friday-chat/src/friday_chat/adapters.py": "90488c278666379825b8d971eae0a931fcc4ef4230b7a2e16fcb81aa9cc67b9d",
+    "packages/friday-memory/src/friday_memory/ingestion/metadata.py": "1952c60b10f6e929117eda8c86b0d21f64f526b2297f01bbb8c20bc712811e85",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/base.py": "4ade26a60d1723b1e965ea8b5b0bc95712620ee1b9cf575fb496aca06267fe98",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py": "b42b82261fbc1d7dd759b6f2527723cabb222903eb7469180d5982f92a5e0248",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/docx_reader.py": "454c5530827c4467c30495e1d2e783221632671c7f801a5d997775190a14cb23",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/factory.py": "748dbb97a90330cb8ef35f7275745749c2236386bf2494d1e30db8c942c539bc",
+    "packages/friday-chat/tests_chat/test_files_replay_shell.py": "94443a42877ea53b35ca5f1f7d204d90ebf6e71ce8d59dd0cd92ab735f53daf7",
+    "packages/friday-tools/pyproject.toml": "40f234b2f32bac75010ea6bbaa7b09e5d712e6d3d839a1963b485f6c1efd5b76",
+    "packages/friday-chat/pyproject.toml": "43cb2b3f4a4a950d4cf22875b5a38f82993649b43ea6760880c948c10fc381ec",
+    "uv.lock": "da69afe794ac85afce534107b5f6579514ed600ffc13e15a7c5a8b93c77ffedc"
+  },
+  "guarded_probe": {
+    "program": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/assessment-program.py",
+    "sha256": "f99a1b9d516b3a9ed04bf3d5c5576b02b1eeb353035e0cd72a235864d9b42d0e",
+    "text": "from pathlib import Path\nimport asyncio,hashlib,importlib.metadata as metadata,json,os,runpy,sys,tempfile\nfrom types import SimpleNamespace\nfrom unittest.mock import patch\nR=Path.cwd();S=Path(tempfile.mkdtemp(prefix='friday-document-ingestion-assessment-')).resolve();Path('/tmp/current-document-ingestion-assessment.txt').write_text(str(S)+'\\n');os.environ.update(GIT_OPTIONAL_LOCKS='0',PYTHONDONTWRITEBYTECODE='1',REVIEW_REPO=str(R),REVIEW_SCRATCH=str(S),LITELLM_LOCAL_MODEL_COST_MAP='True',FRIDAY_TELEMETRY_ENABLED='0',ANONYMIZED_TELEMETRY='False',XDG_CACHE_HOME=str(S/'cache'),XDG_CONFIG_HOME=str(S/'config'),XDG_DATA_HOME=str(S/'data'))\nold=Path(Path('/tmp/current-maint-build.txt').read_text()).resolve();sys.path.insert(0,str(old/'prepared'));runpy.run_path(str(old/'prepared/sitecustomize.py'),run_name='assessment_guard')\nfrom pypdf import PdfWriter\nfrom pypdf.generic import DictionaryObject,NameObject,NumberObject,DecodedStreamObject\nfrom docx import Document\nfrom friday_chat.commands.files import SmartFileReader\nfrom friday_chat.commands.registry import RegistryCommandContext,build_default_registry,_parse_command_input\nfrom friday_tools.filesystem.readers.pdf_reader import PdfReader\nfrom friday_tools.filesystem.readers.docx_reader import DocxReader\nfont=DictionaryObject({NameObject('/Type'):NameObject('/Font'),NameObject('/Subtype'):NameObject('/Type1'),NameObject('/BaseFont'):NameObject('/Helvetica')})\nw=PdfWriter();fontref=w._add_object(font)\nfor marker in ['PDF_SOURCE_ALPHA_4827','PDF_SOURCE_OMEGA_5913']:\n page=w.add_blank_page(width=300,height=200);stream=DecodedStreamObject();stream.set_data(('BT /F1 12 Tf 20 100 Td ('+marker+') Tj ET').encode());page[NameObject('/Resources')]=DictionaryObject({NameObject('/Font'):DictionaryObject({NameObject('/F1'):fontref})});page[NameObject('/Contents')]=w._add_object(stream)\npdf=S/'Genuine  Report.pdf';w.write(pdf)\ndocx=S/'Genuine  Report.docx';doc=Document();doc.add_paragraph('DOCX_BEFORE_4827');doc.add_table(rows=1,cols=1).cell(0,0).text='DOCX_TABLE_5913';doc.add_paragraph('DOCX_AFTER_6172');doc.save(docx)\nimage=PdfWriter();page=image.add_blank_page(width=100,height=100);x=DecodedStreamObject();x.set_data(b'\\x00\\x00\\x00');x.update({NameObject('/Type'):NameObject('/XObject'),NameObject('/Subtype'):NameObject('/Image'),NameObject('/Width'):NumberObject(1),NameObject('/Height'):NumberObject(1),NameObject('/ColorSpace'):NameObject('/DeviceRGB'),NameObject('/BitsPerComponent'):NumberObject(8)});page[NameObject('/Resources')]=DictionaryObject({NameObject('/XObject'):DictionaryObject({NameObject('/Im1'):image._add_object(x)})});stream=DecodedStreamObject();stream.set_data(b'q 100 0 0 100 0 0 cm /Im1 Do Q');page[NameObject('/Contents')]=image._add_object(stream);scan=S/'Image-only.pdf';image.write(scan)\npaths=[pdf,docx]\nfor ext in ['pdf','docx','xlsx']:\n p=S/('Corrupt.'+ext);p.write_bytes(b'not a valid document');paths.append(p)\nrows=[]\nfor p in paths:\n s=SmartFileReader().read(p,line_limit=1);rows.append({'file':p.name,'actual_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'smart_content':s.content,'smart_page_count':s.page_count,'smart_truncated':s.truncated})\nreal_pdf=PdfReader().read(pdf);real_docx=DocxReader().read(docx);empty=PdfReader().read(scan)\nclass FailedPage:\n def extract_text(self):raise ValueError('synthetic page decode failure')\nwith patch('pypdf.PdfReader',return_value=SimpleNamespace(is_encrypted=False,pages=[FailedPage()],metadata=None)):\n page_failure=PdfReader().read(pdf)\nclass Memory:\n def __init__(self):self.calls=[]\n async def ingest_document(self,**kwargs):self.calls.append(kwargs);return 1\nasync def invoke(p,quoted):\n memory=Memory();runtime=SimpleNamespace(memory=memory);registry=build_default_registry();ctx=RegistryCommandContext(runtime=runtime,registry=registry);text='/ingest '+('\"'+str(p)+'\"' if quoted else str(p))+' project notes';handled,result=await registry.execute(text,ctx);return {'input':text,'parsed':_parse_command_input(text),'handled':handled,'output':result.output,'ingestion_calls':memory.calls}\n# No-space corrupt cases demonstrate false success; genuine spaced paths demonstrate parsing failure.\ncommands=[asyncio.run(invoke(S/'Corrupt.pdf',False)),asyncio.run(invoke(S/'Corrupt.docx',False)),asyncio.run(invoke(pdf,True)),asyncio.run(invoke(docx,True))]\nmodules={n:str(sys.modules[n].__file__) for n in ['friday_chat.commands.files','friday_chat.commands.registry','friday_tools.filesystem.readers.pdf_reader','friday_tools.filesystem.readers.docx_reader']};assert all(Path(p).resolve().is_relative_to(R) for p in modules.values())\nresult={'mode':'Read-only planning characterization; capture-memory double only, not real-store/installed-candidate proof','scratch':str(S),'versions':{d:metadata.version(d) for d in ['pypdf','python-docx']},'modules':modules,'smart_reader':rows,'existing_pdf_reader':{'content':real_pdf.content,'pages':real_pdf.page_count,'error':real_pdf.error},'existing_docx_reader':{'content':real_docx.content,'error':real_docx.error},'image_only_pdf':{'content':empty.content,'error':empty.error},'page_extraction_failure':{'content':page_failure.content,'error':page_failure.error,'success':page_failure.success},'registry_commands':commands,'guard':{'source':str(old/'prepared/sitecustomize.py'),'sha256':hashlib.sha256((old/'prepared/sitecustomize.py').read_bytes()).hexdigest(),'no_network':True}}\n(S/'assessment.json').write_text(json.dumps(result,indent=2)+'\\n');print(json.dumps(result,indent=2))\n",
+    "result": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/assessment.json",
+    "result_sha256": "f421041c2a956822c84ab08e00cb16ea0063dbb271e956363cad93201b759512",
+    "observations": {
+      "mode": "Read-only planning characterization; capture-memory double only, not real-store/installed-candidate proof",
+      "scratch": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7",
+      "versions": {
+        "pypdf": "6.6.0",
+        "python-docx": "1.2.0"
+      },
+      "modules": {
+        "friday_chat.commands.files": "/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/src/friday_chat/commands/files.py",
+        "friday_chat.commands.registry": "/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/src/friday_chat/commands/registry.py",
+        "friday_tools.filesystem.readers.pdf_reader": "/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py",
+        "friday_tools.filesystem.readers.docx_reader": "/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-tools/src/friday_tools/filesystem/readers/docx_reader.py"
+      },
+      "smart_reader": [
+        {
+          "file": "Genuine  Report.pdf",
+          "actual_sha256": "0ac5aae8a19cf54bde838b9a8f1ab9feffef2cef904f67e193805f069ba0cf0e",
+          "smart_content": "[pdf content placeholder for Genuine  Report.pdf]",
+          "smart_page_count": 1,
+          "smart_truncated": false
+        },
+        {
+          "file": "Genuine  Report.docx",
+          "actual_sha256": "23ac722020817c7bc08e719eb0e35a64569a43ad9cef1600b4d2f277fdfd02e7",
+          "smart_content": "[docx content placeholder for Genuine  Report.docx]",
+          "smart_page_count": null,
+          "smart_truncated": false
+        },
+        {
+          "file": "Corrupt.pdf",
+          "actual_sha256": "797e6be22072b40950ac076ac041abf1ee7a2d21363dcd1a295b5f40f8cec763",
+          "smart_content": "[pdf content placeholder for Corrupt.pdf]",
+          "smart_page_count": 1,
+          "smart_truncated": false
+        },
+        {
+          "file": "Corrupt.docx",
+          "actual_sha256": "797e6be22072b40950ac076ac041abf1ee7a2d21363dcd1a295b5f40f8cec763",
+          "smart_content": "[docx content placeholder for Corrupt.docx]",
+          "smart_page_count": null,
+          "smart_truncated": false
+        },
+        {
+          "file": "Corrupt.xlsx",
+          "actual_sha256": "797e6be22072b40950ac076ac041abf1ee7a2d21363dcd1a295b5f40f8cec763",
+          "smart_content": "[xlsx content placeholder for Corrupt.xlsx]",
+          "smart_page_count": null,
+          "smart_truncated": false
+        }
+      ],
+      "existing_pdf_reader": {
+        "content": "--- Page 1 ---\nPDF_SOURCE_ALPHA_4827\n\n--- Page 2 ---\nPDF_SOURCE_OMEGA_5913",
+        "pages": 2,
+        "error": null
+      },
+      "existing_docx_reader": {
+        "content": "DOCX_BEFORE_4827\n\nDOCX_AFTER_6172\n\nDOCX_TABLE_5913",
+        "error": null
+      },
+      "image_only_pdf": {
+        "content": "",
+        "error": null
+      },
+      "page_extraction_failure": {
+        "content": "--- Page 1 ---\n[Error extracting text: synthetic page decode failure]",
+        "error": null,
+        "success": true
+      },
+      "registry_commands": [
+        {
+          "input": "/ingest /private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Corrupt.pdf project notes",
+          "parsed": [
+            "ingest",
+            [
+              "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Corrupt.pdf",
+              "project",
+              "notes"
+            ]
+          ],
+          "handled": true,
+          "output": "Ingested file:\n- source_path: /private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Corrupt.pdf\n- description: project notes\n- reader: pdf\n- chunks: 1",
+          "ingestion_calls": [
+            {
+              "source_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Corrupt.pdf",
+              "description": "project notes",
+              "content": "[pdf content placeholder for Corrupt.pdf]"
+            }
+          ]
+        },
+        {
+          "input": "/ingest /private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Corrupt.docx project notes",
+          "parsed": [
+            "ingest",
+            [
+              "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Corrupt.docx",
+              "project",
+              "notes"
+            ]
+          ],
+          "handled": true,
+          "output": "Ingested file:\n- source_path: /private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Corrupt.docx\n- description: project notes\n- reader: docx\n- chunks: 1",
+          "ingestion_calls": [
+            {
+              "source_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Corrupt.docx",
+              "description": "project notes",
+              "content": "[docx content placeholder for Corrupt.docx]"
+            }
+          ]
+        },
+        {
+          "input": "/ingest \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Genuine  Report.pdf\" project notes",
+          "parsed": [
+            "ingest",
+            [
+              "\"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Genuine",
+              "Report.pdf\"",
+              "project",
+              "notes"
+            ]
+          ],
+          "handled": true,
+          "output": "File not found: /Users/chuckrussell/Dev/gendev/agent-framework/\"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Genuine",
+          "ingestion_calls": []
+        },
+        {
+          "input": "/ingest \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Genuine  Report.docx\" project notes",
+          "parsed": [
+            "ingest",
+            [
+              "\"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Genuine",
+              "Report.docx\"",
+              "project",
+              "notes"
+            ]
+          ],
+          "handled": true,
+          "output": "File not found: /Users/chuckrussell/Dev/gendev/agent-framework/\"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-document-ingestion-assessment-d9_uvfa7/Genuine",
+          "ingestion_calls": []
+        }
+      ],
+      "guard": {
+        "source": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-maint-build._innqy6m/prepared/sitecustomize.py",
+        "sha256": "d96294f94f5378beb38675d0624e6f78c622914cafbaffb4ce486d8310d2eb7e",
+        "no_network": true
+      }
+    }
+  },
+  "limits": [
+    "No Docling install, resolver run, model download, conversion benchmark or product change.",
+    "Existing parser behavior reproduced using a capture-memory double, not Chroma or candidate-installed end-to-end proof.",
+    "Genuine synthetic PDF/DOCX/image-only fixtures were generated in private scratch; no user document/store was read.",
+    "Package alternatives reviewed through official sources; package compatibility and model provisioning remain readiness work."
+  ],
+  "requested_direction": "Use Docling as proposed shared PDF/DOCX extraction backend. Do not assume popularity establishes compatibility or quality.",
+  "references": [
+    {
+      "title": "Docling project and origin",
+      "url": "https://github.com/docling-project/docling"
+    },
+    {
+      "title": "Docling supported formats",
+      "url": "https://docling-project.github.io/docling/usage/supported_formats/"
+    },
+    {
+      "title": "Docling installation and OCR extras",
+      "url": "https://docling-project.github.io/docling/getting_started/installation/"
+    },
+    {
+      "title": "Docling prefetch/offline/limits",
+      "url": "https://docling-project.github.io/docling/usage/advanced_options/"
+    },
+    {
+      "title": "Microsoft MarkItDown",
+      "url": "https://github.com/microsoft/markitdown"
+    },
+    {
+      "title": "pypdf extraction limitations",
+      "url": "https://pypdf.readthedocs.io/en/stable/user/extract-text.html"
+    },
+    {
+      "title": "python-docx document iteration",
+      "url": "https://python-docx.readthedocs.io/en/latest/api/document.html"
+    }
+  ]
+}

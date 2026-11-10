@@ -1,3 +1,18 @@
+# Document-ingestion remediation — proposed planning
+
+Execution phase: planning; validation state: not_ready for this new unit.
+[REM-CMD-INGEST-001](remediation/REM-CMD-INGEST-001-pdf-docx.md) proposes shared
+Docling conversion/local OCR and file-path parsing with existing Memory chunking.
+No product construction or new council invocation is authorized by this draft.
+The next technical gate establishes the exact compatible dependency/model
+manifest; it must precede an approved implementation directive and code.
+
+MAINT-001 remains independently VERIFIED; human UAT/acceptance remain pending.
+
+**Next gate:** Review proposed REM-CMD-INGEST-001 Docling remediation before dependency/model readiness and code generation; MAINT-001 remains VERIFIED with separate human UAT/acceptance pending. Delivery local.
+
+## Separate MAINT closeout and historical checkpoints
+
 # MAINT-001 — verified implementation, human UAT pending
 
 Execution phase: closeout; validation state: verified.
