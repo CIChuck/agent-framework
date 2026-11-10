@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged."
+  next_gate: "Reconcile fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 round1 deep design review of REM-CMD-INGEST-001; dependency/model readiness and exact construction approval remain pending. MAINT human UAT/acceptance separate."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3113,3 +3113,10 @@ events:
   action: reconciled merged parent PR 15 and integrated master into INGEST branch
   note: GitHub reports PR 15 merged at c36e7ee5; remote retirement branch is absent. Regular branch merge preserves 070764d4 and user edits without rebase/force-push. Current INGEST branch remains design_only/pushed; parent merge is a separate delivery fact, not MAINT acceptance or INGEST implementation authority.
   evidence: docs/planning/active/command-refactor/validation/delivery/command-retirement-merge.json
+- task: friday-command-refactor
+  at: '2026-11-10T21:02:12.052548+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze INGEST-001 design for the explicitly requested three-seat council
+  note: Chuck Russell adds Claude Opus5.5 to GPT-6.1 Sol/GPT-6 Astra and requests a deep read-only review. High-effort fresh contexts; no provider substitution, implementation, remediation or acceptance authority.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round1/roster.json

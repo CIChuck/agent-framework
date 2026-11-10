@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. Ingestion extraction/chunking and embedding-limit
-planning awaits document review; MAINT-001 human UAT/acceptance remains pending.
+planning is in council review; MAINT-001 human UAT/acceptance remains pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -42,8 +42,9 @@ tokens across all sources, with document/recursive/fixed overrides. Model catalo
 limits/dimension checks are planned; Qwen4B remains illustrative, with no migration.
 The proposed spreadsheet/slide defaults and limits require document review.
 [Guarded source assessment](validation/document-ingestion/assessment.md)
-confirms the defect. Execution phase: planning; validation state: not_ready.
-No document-ingestion code, installation or council is approved or started.
+confirms the defect. Execution phase: planning; validation state: in_review.
+The maintainer authorizes one fresh deep Sol/Astra/Opus5.5 design council.
+No document-ingestion product construction or installation is approved or started.
 MAINT implementation verification and its pending human UAT remain unchanged.
 [Tools adoption companion](proposals/tools-document-adoption.md) explicitly tracks
 ReaderFactory and smart_read routing; the shared helper alone does not establish
@@ -93,7 +94,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.
+**Next gate:** Reconcile fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 round1 deep design review of REM-CMD-INGEST-001; dependency/model readiness and exact construction approval remain pending. MAINT human UAT/acceptance separate.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

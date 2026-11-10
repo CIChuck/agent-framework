@@ -2749,3 +2749,16 @@ has been executed or accepted through this documentation change.
 - Product/runtime remains unchanged; no council, model install, store reset or
   human acceptance inferred. Protected user configuration/generated state retained.
 - **Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.
+
+
+## 2026-11-10T21:02:12.052548+00:00 — three-seat deep INGEST-001 design council authorized
+
+- Maintainer explicitly adds Anthropic Claude Opus5.5 to OpenAI GPT-6.1 Sol and
+  GPT-6 Astra, requesting a deep full review of REM-CMD-INGEST-001. Available
+  provider/model identities resolved; all three seats use high effort.
+- Administrative roster/status freeze only. No proposal repairs or product
+  implementation, dependency/model operations or store reset. Each reviewer
+  gets a fresh context, exact pinned request and private scratch, without peer
+  reports or controller reasoning. Review includes source feasibility and
+  planned proof, not an invented claim that future implementation exists.
+- **Next gate:** Reconcile fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 round1 deep design review of REM-CMD-INGEST-001; dependency/model readiness and exact construction approval remain pending. MAINT human UAT/acceptance separate.

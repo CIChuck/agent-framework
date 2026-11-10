@@ -1,6 +1,6 @@
 # Document-ingestion remediation — proposed planning
 
-Execution phase: planning; validation state: not_ready for this new unit.
+Execution phase: planning; validation state: in_review for this proposed design.
 [REM-CMD-INGEST-001](remediation/REM-CMD-INGEST-001-pdf-docx.md) proposes shared
 Docling conversion for PDF/DOCX/XLSX/PPTX, local PDF OCR and file-path parsing
 with shared Memory chunking: document/512 tokens by default across all ingestion
@@ -8,13 +8,14 @@ sources, with document/recursive/fixed overrides. Existing text/web fetching and
 admission remain. Shared LLM guards enforce input limits and expected dimensions;
 Qwen4B is illustrative only. Fresh test stores replace legacy migration work.
 The Tools adoption plan uses these same capabilities.
-No product construction or new council invocation is authorized by this draft.
+One fresh read-only Sol/Astra/Opus5.5 council is explicitly authorized by the
+maintainer. The proposed design still grants no product construction authority.
 The next technical gate establishes the exact compatible dependency/model
 manifest; it must precede an approved implementation directive and code.
 
 MAINT-001 remains independently VERIFIED; human UAT/acceptance remain pending.
 
-**Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.
+**Next gate:** Reconcile fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 round1 deep design review of REM-CMD-INGEST-001; dependency/model readiness and exact construction approval remain pending. MAINT human UAT/acceptance separate.
 
 ## Separate MAINT closeout and historical checkpoints
 

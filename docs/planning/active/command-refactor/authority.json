@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.",
+  "current_scope": "Reconcile fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 round1 deep design review of REM-CMD-INGEST-001; dependency/model readiness and exact construction approval remain pending. MAINT human UAT/acceptance separate.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1896,18 +1896,25 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "proposed",
     "execution_phase": "planning",
-    "validation_state": "not_ready",
+    "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
-    "sha256": "d51d6f4064b9fd2113707c17f32d4aa61f44dd2e504982772164a3a1f0af8ea2",
+    "sha256": "7cc7d382a725ed647f966a84f5513bfce84df28502667c14c63bfdce05491b7e",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
     "scope": "PDF/DOCX/XLSX/PPTX extraction/local PDF OCR; shared all-source document/512 chunking with document/recursive/fixed overrides; shared LLM limits/dimension checks; retained fetching, admission, metadata/protection/storage semantics",
     "implementation_approval": "not_granted",
-    "council": "not_invoked; maintainer document review first",
+    "council": {
+      "round": 1,
+      "status": "authorized_dispatch_pending",
+      "scope": "full document/design readiness only",
+      "roster": "validation/document-ingestion/council-round1/roster.json",
+      "frozen_request": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-ingest-council-r1-inputs-qj57z4f_/review-request.json",
+      "no_construction_or_remediation_authority": true
+    },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.",
+    "next_gate": "Reconcile fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 round1 deep design review of REM-CMD-INGEST-001; dependency/model readiness and exact construction approval remain pending. MAINT human UAT/acceptance separate.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2007,5 +2014,18 @@
     "remote_branch_deleted": true,
     "merge_evidence": "validation/delivery/command-retirement-merge.json",
     "merge_action": "Performed externally by maintainer/GitHub; independently observed by this controller"
+  },
+  "active_council_roster": {
+    "authorized_by": "Chuck Russell",
+    "date": "2026-11-10",
+    "models": [
+      "gpt-6.1-sol",
+      "gpt-6-astra",
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "providers": "two OpenAI, one Anthropic",
+    "record": "validation/document-ingestion/council-round1/roster.json",
+    "historical_councils": "unchanged"
   }
 }

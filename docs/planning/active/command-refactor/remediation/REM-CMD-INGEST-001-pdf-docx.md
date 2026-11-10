@@ -1,6 +1,6 @@
 # REM-CMD-INGEST-001 — document extraction, shared chunking and embedding limits
 
-Status: **PROPOSED — maintainer document review**. Baseline `7ad916f2`.
+Status: **PROPOSED — independent council design review, round1**. Baseline `7ad916f2`.
 This document defines a bounded repair and its dependency-readiness gate. It is
 not an approved construction directive or a completed compatibility assessment.
 Working branch: `feature/cmd-ingest-001`, based on published command-refactor head
@@ -12,6 +12,9 @@ incorporates that merge. Future INGEST-only review targets `master`.
 
 No product edits, installs, model downloads or council invocation are authorized
 by placement in this packet. The requested planning work is authorized.
+The maintainer separately authorizes the fresh read-only Sol/Astra/Opus5.5
+round1 design council on2026-11-10; [recorded roster](../validation/document-ingestion/council-round1/roster.json).
+No implementation or remediation is authorized by that review.
 
 **Maintainer scope expansion — 2026-11-10:** include XLSX workbooks and PPTX
 presentations alongside PDF and DOCX. Text and web fetching/extraction are existing
@@ -602,7 +605,7 @@ by this document update.
 | DI-09 | Negative controls: placeholder substitution, ignored conversion failure, metadata-only image output, dropped last PDF page/table/sheet/slide or PPTX notes, reordered DOCX table, concealed missing formula cache, quote-split regression and swallowed missing-model failure produce named call-phase assertion witnesses. Unchanged control, canonical origins and before/finish/after hashes; no setup/import rejection credit. |
 | DI-10 | Full affected package/cohort/CLI/Memory regressions, focused Ruff/mypy/new-file formatting, exact metadata/lock/default closure inventory, enforced Certifi floor/negative control, source/wheel/installed data/origins and model manifest. Record baseline debt and exact approved file-help exceptions without waivers. |
 | DI-11 | Bound cold/warm startup and representative document elapsed time, progress/cancellation behavior and file/resource-limit refusal. Cancelled extraction cannot trigger later background ingestion. No unsupported hard-timeout or cross-platform claim. |
-| DI-12 | Freeze stable code/evidence, then separately authorized fresh OpenAI Sol/Astra independent review. No agents before maintainer document review/direction. Human UAT follows verification; acceptance and delivery remain separate. |
+| DI-12 | Freeze stable code/evidence, then separately authorized fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 independent review. No agents before maintainer document review/direction. Human UAT follows verification; acceptance and delivery remain separate. |
 | DI-13 | Genuine multi-sheet XLSX with late-sheet/late-row markers, cached formulas, missing/error formula caches, blank cells, zero/false/date/leading-zero text, merged cells and hidden content. Prove table relationships, coverage warnings, no recalculation/network/macro execution, and no silent active-sheet/preview-row limit. Independent fixture validity and saved-cache oracle required. |
 | DI-14 | Genuine multi-slide PPTX with late-slide markers, ordered text/bullets/tables, speaker notes, hidden slides/shapes and an image-only case. Prove original numbering, separately labeled notes, honest omitted-content coverage and no media fetching/rendering. Required native text/table/notes failures yield zero ingestion calls. |
 | DI-15 | Every positive format has actual offline normal/optimized installed extraction/chunking and stored-chunk proof, plus corrupt/missing-backend/partial/empty and quoted-path tests. Existing text/web extraction and safety contracts remain; intentional chunking/count deltas are exact and reviewed. Do not infer new web-fetch support. |
@@ -640,4 +643,5 @@ adoption plan. The maintainer has settled document/512 defaults, all three
 strategies, all-source scope, illustrative-only Qwen and fresh-store testing.
 Gate A must establish the exact compatible package/model/counter manifest and final
 construction directive before implementation. Current MAINT UAT remains a
-separate pending human activity. No further council was launched by this task.
+separate pending human activity. The currently authorized round1 council reviews
+this full proposal; reconcile its three terminal reports before any further action.
