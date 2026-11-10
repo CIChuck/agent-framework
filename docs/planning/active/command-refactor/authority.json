@@ -6,7 +6,7 @@
   "decision": "MAINT-001 construction condition satisfied; exact directive activated",
   "branch": "feature/command-retirement",
   "baseline": "c3426986",
-  "current_scope": "Finish MAINT-001 clean source freeze, build/replay and installed proof, then fresh OpenAI implementation council; human UAT/acceptance and all delivery remain separate.",
+  "current_scope": "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.",
   "product_code_authority": "Granted only for exact CD-CMD-MAINT-001 scope through conditional approval and round4 activation; no acceptance/delivery.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -33,7 +33,7 @@
     "resumed_by": "Chuck Russell",
     "resume_instruction": "Proceed to step three."
   },
-  "construction_directive_approval": "MEMQ current cycle2 amendment approval/memory-queries-directive-correction2.md; earlier accepted authorities preserved",
+  "construction_directive_approval": "MAINT-001 exact approval/maintenance-reorganization-conditional.md, activated in validation/maintenance/specification/round4/activation.json; earlier accepted authorities remain historical",
   "council_request": {
     "requested_by": "Chuck Russell",
     "scope": "Read-only evaluation of the frozen readiness review; no construction approval or automatic remediation loop",
@@ -1597,29 +1597,46 @@
     "status": "document_readiness_verified",
     "execution_phase": "planning",
     "validation_state": "verified",
-    "council_round": 3,
-    "reviewed_candidate": "4c09f5afe582043273447f3bfa3490e884054511",
-    "council_report": "validation/maintenance/specification/round3/report.md",
+    "council_round": 4,
+    "reviewed_candidate": "2b0850bfe6cfc6a91d744fa4440a40eaadaf3a60",
+    "council_report": "validation/maintenance/specification/round4/report.md",
     "results": {
       "sol": {
         "outcome": "VERIFIED",
-        "score": 9.3,
-        "model": "gpt-6.1-sol",
-        "report": "sol/report.md"
+        "score": 9.6,
+        "scope": "document readiness only"
       },
       "astra": {
         "outcome": "VERIFIED",
-        "score": 9.2,
-        "model": "gpt-6-astra",
-        "report": "astra_valid/report.md",
-        "instance": "fresh isolation reissue"
+        "score": 9.6,
+        "scope": "document readiness only"
       }
     },
     "mandatory_findings": [],
     "implementation_approval": "not_granted",
-    "next_gate": "Finish MAINT-001 clean source freeze, build/replay and installed proof, then fresh OpenAI implementation council; human UAT/acceptance and all delivery remain separate.",
+    "next_gate": "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.",
     "document": "maintenance-reorganization-specification.md",
-    "sha256": "56e3cd5fc75b402ab4aeda46f80807873b79a3df96debadb83164c2c0debfdad"
+    "sha256": "56e3cd5fc75b402ab4aeda46f80807873b79a3df96debadb83164c2c0debfdad",
+    "historical_document_round3": {
+      "council_round": 3,
+      "reviewed_candidate": "4c09f5afe582043273447f3bfa3490e884054511",
+      "council_report": "validation/maintenance/specification/round3/report.md",
+      "results": {
+        "sol": {
+          "outcome": "VERIFIED",
+          "score": 9.3,
+          "model": "gpt-6.1-sol",
+          "report": "sol/report.md"
+        },
+        "astra": {
+          "outcome": "VERIFIED",
+          "score": 9.2,
+          "model": "gpt-6-astra",
+          "report": "astra_valid/report.md",
+          "instance": "fresh isolation reissue"
+        }
+      }
+    }
   },
   "maintenance_construction_directive": {
     "historical_checkpoint": {
@@ -1639,30 +1656,27 @@
       "correction_cycle": 1,
       "council_round": 3
     },
-    "status": "approved_construction_started",
-    "execution_phase": "implementation",
-    "validation_state": "not_started",
+    "status": "implementation_in_review",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
     "council_round": 4,
-    "reviewed_candidate": "4c09f5afe582043273447f3bfa3490e884054511",
-    "council_report": "validation/maintenance/specification/round3/report.md",
+    "reviewed_candidate": "2b0850bfe6cfc6a91d744fa4440a40eaadaf3a60",
+    "council_report": "validation/maintenance/specification/round4/report.md",
     "results": {
       "sol": {
         "outcome": "VERIFIED",
-        "score": 9.3,
-        "model": "gpt-6.1-sol",
-        "report": "sol/report.md"
+        "score": 9.6,
+        "scope": "document readiness only"
       },
       "astra": {
         "outcome": "VERIFIED",
-        "score": 9.2,
-        "model": "gpt-6-astra",
-        "report": "astra_valid/report.md",
-        "instance": "fresh isolation reissue"
+        "score": 9.6,
+        "scope": "document readiness only"
       }
     },
     "mandatory_findings": [],
     "implementation_approval": "conditional_gate_activated",
-    "next_gate": "Finish MAINT-001 clean source freeze, build/replay and installed proof, then fresh OpenAI implementation council; human UAT/acceptance and all delivery remain separate.",
+    "next_gate": "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.",
     "document": "directives/CD-CMD-MAINT-001-reorganization-order.md",
     "sha256": "931d42538d9f100392743d8e9826eec00b67297af788dd84e4453e820ebea2e7",
     "preparation": "validation/maintenance/construction-preparation-v4.json",
@@ -1714,7 +1728,31 @@
       "preparation": "validation/maintenance/construction-preparation-v3.json",
       "preparation_sha256": "d73d31362a90f1845b3a5b8f2767a85734599195b206ecd5275019f6e683f5f1"
     },
-    "automated_validation": "focused177 plus added real-store/headless/v1 and compatibility checks; final frozen receipts pending"
+    "automated_validation": "Builder evidence recorded; independent implementation result pending.",
+    "implementation_council_round": 1,
+    "product_source": "ae15a5374350807bd909bc823078087a53a47ce4",
+    "artifact_source": "ae15a5374350807bd909bc823078087a53a47ce4",
+    "evidence": "validation/maintenance/implementation/evidence.json",
+    "historical_document_round3": {
+      "council_round": 4,
+      "reviewed_candidate": "4c09f5afe582043273447f3bfa3490e884054511",
+      "council_report": "validation/maintenance/specification/round3/report.md",
+      "results": {
+        "sol": {
+          "outcome": "VERIFIED",
+          "score": 9.3,
+          "model": "gpt-6.1-sol",
+          "report": "sol/report.md"
+        },
+        "astra": {
+          "outcome": "VERIFIED",
+          "score": 9.2,
+          "model": "gpt-6-astra",
+          "report": "astra_valid/report.md",
+          "instance": "fresh isolation reissue"
+        }
+      }
+    }
   },
   "maintenance_directive_before_ownership_revision": {
     "status": "proposed_for_human_review",
@@ -1821,8 +1859,21 @@
       "GPT-6 Astra/high",
       "GPT-6.1 Sol/high"
     ],
-    "next_gate": "Finish MAINT-001 clean source freeze, build/replay and installed proof, then fresh OpenAI implementation council; human UAT/acceptance and all delivery remain separate.",
+    "next_gate": "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.",
     "activation_sha256": "35b163e57e0634cfacd253f971cb209eca893a779c2016891a0bb913cd2d2f02",
     "state": "activated"
+  },
+  "maintenance_implementation": {
+    "unit": "MAINT-001",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
+    "round": 1,
+    "source": "ae15a5374350807bd909bc823078087a53a47ce4",
+    "runtime_source": "6318959eeb4bed55ded0f22d66519645317b97de",
+    "evidence": "validation/maintenance/implementation/evidence.json",
+    "human_uat": "not_run",
+    "acceptance": "not_granted",
+    "delivery": "local",
+    "next_gate": "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local."
   }
 }

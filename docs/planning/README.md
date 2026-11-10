@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Finish MAINT-001 clean source freeze, build/replay and installed proof, then fresh OpenAI implementation council; human UAT/acceptance and all delivery remain separate. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local. |
 
 ## Completed
 

@@ -17,11 +17,11 @@ The explicit `/reorganize --full --execute` syntax defect is separately open as
 Earlier implementation/review/pending-UAT statements describe their historical
 freezes and are superseded by this acceptance. The wider initiative stays started/local.
 
-**Current work — MAINT-001:** [Round4 reconciliation](validation/maintenance/specification/round4/report.md)
-records both seats VERIFIED9.6 and exact conditional construction activation.
-Execution phase: implementation; runtime validation not started. Build the bounded
-Memory-owned pipeline first, then Chat integration and installed proof. UAT,
-acceptance and delivery remain ungranted.
+**Current work — MAINT-001:** The conditional document gate is satisfied and
+bounded construction is implemented locally. [Implementation evidence](validation/maintenance/implementation/README.md)
+binds source/artifacts `ae15a537`. Execution phase: validation; validation state:
+in_review, implementation round1. No independent implementation result or human
+UAT/acceptance is claimed.
 
 **Working home:** `agent-framework`, branch `feature/command-retirement`.
 **Board ID:** `friday-command-refactor`.
@@ -67,7 +67,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.
+**Next gate:** Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Finish MAINT-001 clean source freeze, build/replay and installed proof, then fresh OpenAI implementation council; human UAT/acceptance and all delivery remain separate."
+  next_gate: "Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local."
   delivery_state: local
   branch: feature/command-retirement
   depends_on: []

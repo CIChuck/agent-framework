@@ -1,3 +1,14 @@
+# MAINT-001 — implementation council freeze
+
+Execution phase: validation. Validation state: in_review, round1.
+Product/artifact source: `ae15a5374350807bd909bc823078087a53a47ce4`. Governing technical bytes are unchanged.
+[Builder receipts](validation/maintenance/implementation/evidence.json) distinguish
+passes, approved immutable-oracle failures, baseline debt and excluded attempts.
+
+**Next gate:** Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.
+
+## Historical construction checkpoints
+
 # MAINT-001 — implementation checkpoint
 
 Shared contracts/pipeline and one-call Chat integration are implemented locally.

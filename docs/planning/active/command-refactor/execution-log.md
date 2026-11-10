@@ -2570,3 +2570,32 @@ has been executed or accepted through this documentation change.
   that snapshot. They are retained as pre-portability historical trials; refreshed
   outputs bind the new final source and fixture names. No live providers or
   protected state changes occurred.
+
+
+## 2026-11-10T17:55:20.349424+00:00 — MAINT-001 implementation council freeze
+
+- Product/test/artifact source: `ae15a5374350807bd909bc823078087a53a47ce4`. Runtime source6318959e remains
+  unchanged. Recovery fake now collects independently; baseline synthetic files
+  keep exact bytes under explicit storage/materialization names. No metadata,
+  ignore policy, production config, dependency or lock change.
+- Guarded owning suites: Memory802+one existing skip; Commands621; CLI155;
+  Chat1413/15.14 immutable failures are the exact approved reorganize help delta;
+  the other is protected user YAML. Clean default and bounded retained comparison
+  pass. All failure states retained, root Ruff534 and collection7196 conflict
+  unwaived. Seven existing source-format files still fail whole-file checks.
+- Final clean build/replay both154 artifacts match, closures1/138;2wheels and
+  2sdists pass checker. Four actual installed normal/O probes pass. Source18
+  mutations and callback assertion supplement,96 exact member/origin refusals,
+  six coherent semantic substitutions and restored copies recorded. Controls
+  bind earlier copied package bytes, independently identical to final packages.
+- Excluded attempts retained: custom clean Chat wrapper also fails against old
+  baseline; first recovery collection dependency; initial origin-hook/matcher
+  and counterfeit-count shape errors; wrong v1 node; initial pip/no-guard-env
+  setup mistakes; prototype sdists before fixture filename corrections. No
+  setup/import/collection error is credited as a mutation rejection.
+- Original809 inventory:794 unchanged,15 expressly allowlisted originals changed.
+  All282 original test files retained;3039 ast.walk test definitions retained,
+  assertions9581→9584. Individual allowed assertion deltas are recorded.
+- No live provider, network, personal-store operation, cleanup, push or human UAT.
+  Protected user/personal/export metadata remain exact.
+- **Next gate:** Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.
