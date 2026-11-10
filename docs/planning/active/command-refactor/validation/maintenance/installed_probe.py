@@ -379,6 +379,43 @@ async def chat_flow(helper: dict, root: Path, *, fail: bool) -> dict[str, object
     }
 
 
+async def retained_entity_repair() -> dict[str, object]:
+    """Pin the accepted MEMQ quote repair, newer than its frozen old probe."""
+    import friday_commands as api
+
+    class Port:
+        def __init__(self):
+            self.events = []
+
+        def memory_available(self):
+            self.events.append("available")
+            return True
+
+        async def graph_snapshot(self, name, include_relationships):
+            self.events.append((name, include_relationships))
+            return api.GraphData()
+
+    port = Port()
+    handler = api.build_memory_query_handlers(port)["entities"]
+    spec = next(s for s in api.MEMORY_QUERY_SPECS if s.name == "entities")
+    for arguments, name, include in [
+        (("nodes",), None, False),
+        (("NODES",), "NODES", True),
+        (("Ada", "Lovelace"), "Ada Lovelace", True),
+        (('"Ada', 'Lovelace"'), "Ada Lovelace", True),
+    ]:
+        port.events.clear()
+        result = await handler(
+            api.CommandRequest("entities", arguments, spec), api.CommandExecution()
+        )
+        require(
+            type(result.data) is api.GraphData
+            and port.events == ["available", (name, include)],
+            "accepted MEMQ entity interpretation changed",
+        )
+    return {"cases": 4, "matching_quotes_removed": True, "nodes_case_sensitive": True}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ["source", "prepared", "profile", "report"]:
@@ -425,6 +462,7 @@ def main() -> None:
 
     require(len(friday_commands.__all__) == 54, "retained Commands API changed")
     details = {
+        "retained_entity_repair": asyncio.run(retained_entity_repair()),
         "lane": args.lane,
         "revision": args.revision,
         "prefix": str(prefix),

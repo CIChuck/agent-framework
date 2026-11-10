@@ -578,6 +578,34 @@ async def recover_v1_fixture(fixture: Path, destination: Path, kind: str):
     source = fixture / kind
     destination = destination.resolve()
     shutil.copytree(source, destination)
+    materializations = []
+    manifest = json.loads((fixture / "materialization.json").read_text())
+    for row in manifest["files"]:
+        stored = Path(row["stored"])
+        materialized = Path(row["materialized"])
+        require(
+            not stored.is_absolute()
+            and not materialized.is_absolute()
+            and ".." not in stored.parts
+            and ".." not in materialized.parts,
+            "fixture materialization escaped root",
+        )
+        if stored.parts[0] != kind:
+            continue
+        private_source = destination.joinpath(*stored.parts[1:])
+        private_target = destination.joinpath(*materialized.parts[1:])
+        require(
+            private_source.is_file()
+            and not private_source.is_symlink()
+            and not private_target.exists(),
+            "fixture materialization target invalid",
+        )
+        require(
+            hashlib.sha256(private_source.read_bytes()).hexdigest() == row["sha256"],
+            "raw graph fixture bytes changed",
+        )
+        private_source.rename(private_target)
+        materializations.append(row)
     # Git archives preserve executable bits, not owner-only recovery modes.
     # Reconstitute stricter private modes only in this disposable test copy.
     permission_changes = []
@@ -706,6 +734,7 @@ async def recover_v1_fixture(fixture: Path, destination: Path, kind: str):
         "kind": kind,
         "source": str(source),
         "destination": str(destination),
+        "materializations": materializations,
         "permission_changes": permission_changes,
         "changes": audit,
         "files": [

@@ -2544,3 +2544,29 @@ has been executed or accepted through this documentation change.
 - Installed probe fixes use actual pyproject distribution names/hash-profile
   syntax and verify parent plus real entry-point-child origins/optimization.
   Both normal prototype lanes pass; final normal/optimized execution is due.
+
+
+## 2026-11-10T17:31:37.697311+00:00 — sdist fixture portability and retained-probe distinctions
+
+- The immutable pilot installed Chat probe correctly found four graph fixture
+  files omitted by inherited *.gpickle ignore policy. Renamed only those four
+  owned synthetic fixture files with a .fixture suffix, preserving every byte.
+  A pinned materialization map restores original names only in disposable copies
+  and records that mapping alongside private mode and JSON-pointer relocation.
+  No packaging metadata or global ignore policy changed. V1 recovery retest passes.
+- The older immutable MEMQ installed probe fails at quoted entity expectations
+  predating the accepted shared UAT repair. Commands source is byte-identical
+  to the D0 baseline. A separate current installed check pins matching-quote
+  removal and unchanged case-sensitive nodes interpretation; frozen probes
+  remain unmodified and failed, never relabelled passing.
+- A custom clean-export full-Chat harness produced unrelated MCP subprocess
+  failures; a paired old-baseline export reproduces the same failure. It receives
+  no correctness credit. The exact required checkout command reports1413 passed
+  and15 failures:14 immutable checks rejecting approved help/metadata changes,
+  plus1 preserved local example-config default mismatch. No MCP regression
+  appears in that exact lane. Clean Memory802+one existing skip, Commands621 and
+  CLI155 pass. The separate exact-cell comparison passes retained families.
+- 6318959e build/replay and four MAINT installed normal/optimized runs pass for
+  that snapshot. They are retained as pre-portability historical trials; refreshed
+  outputs bind the new final source and fixture names. No live providers or
+  protected state changes occurred.
