@@ -2893,3 +2893,18 @@ has been executed or accepted through this documentation change.
 - Execution phase: planning; validation state: pending. No product generation,
   package/model operations, user-store reads/reset, acceptance or delivery.
 - **Next gate:** Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary.
+
+
+## 2026-11-11T01:11:28.895397+00:00 — framework-wide INGEST embedding compatibility council authorized
+
+- Chuck Russell explicitly requests one fresh council and clarifies its audit
+  universe includes subsystems not named in the REM. All maintained packages,
+  entrypoints and indirect contract/store consumers must be classified.
+- Two cases: unchanged existing configuration, and replacement model with an
+  explicitly selected fresh compatible vector/graph namespace. No data reset,
+  deletion, migration, re-embedding or model/provider execution occurs here.
+- Sol, Astra and Opus each receive identical read-only scope and private output
+  requirements. Prior scores/verdicts are historical, not correctness evidence.
+- Execution phase: planning; validation state: in_review (round5). One pass only;
+  findings return for disposition without an automatic remediation loop.
+- **Next gate:** Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery.

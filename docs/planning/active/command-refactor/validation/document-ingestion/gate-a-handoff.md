@@ -1,6 +1,6 @@
 # INGEST-001 — Gate-A and final-directive handoff
 
-Status: current embedding-pool compatibility amendment pending review;
+Status: current embedding-pool compatibility amendment in framework-wide round5 review;
 [earlier VERIFIED design](verified-design-report.md) retained as history.
 The maintainer requested the REM update recorded in
 [the compatibility record](embedding-pool-compatibility.json). This is not
@@ -55,5 +55,6 @@ exists. Record measured dependencies/model/counter/Office behavior separately
 from model cards or doubles, with explicit stop conditions.
 
 All future tests, build/replay, normal/optimized installed proofs and human UAT
-remain future obligations. No fifth design council, acceptance or delivery is
-authorized by this completed iteration.
+remain future obligations. The completed iteration did not authorize another pass; the maintainer now
+separately authorizes one framework-wide round5. Acceptance and delivery remain
+ungranted.

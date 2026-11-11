@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery. |
 
 ## Completed
 

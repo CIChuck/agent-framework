@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary."
+  next_gate: "Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3169,3 +3169,10 @@ events:
   action: clarified INGEST embedding-pool operational compatibility
   note: Maintainer requests existing configurations and consumers remain operational. New fields may resolve from qualified readiness; explicit cross-subsystem DI-33 and unchanged fresh-store safety. Current REM pending review; old round4 results remain candidate-specific. No new council, Gate-A, source, store or delivery action.
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/embedding-pool-compatibility.json
+- task: friday-command-refactor
+  at: "2026-11-11T01:11:28.895397+00:00"
+  actor: Codex
+  actor_role: agent
+  action: froze single framework-wide embedding compatibility council
+  note: Explicit maintainer requests Sol/Astra/Opus review of all direct and indirect embedding consumers, including subsystems unnamed in REM; unchanged-config and replacement-model/fresh-namespace compatibility. One read-only pass; no automatic repair loop, installs, product/store actions or delivery.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round5/roster.json

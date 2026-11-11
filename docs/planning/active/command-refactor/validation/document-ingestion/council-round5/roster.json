@@ -1,0 +1,43 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "round": 5,
+  "status": "authorized_one_fresh_read_only_council",
+  "authorized_by": "Chuck Russell",
+  "recorded_at": "2026-11-11T01:11:28.895397+00:00",
+  "instruction": "Let's launch a council review, but direct them to really focus on the various embeddings across the multiple subsystems to ensure that rem cmd ingest .001 will not break any of the underlying subsystems. Ensure that there is backward compatibility. Ensure that the existing subsystems can weather an embedding model change without breaking . We know that if the embedding model was swapped, the legacy data would need to be reset.",
+  "clarification": "We also need to make sure that the current rem-cmd-ingest-001 does not break any of the existing subsystems that aren't named directly within that document.",
+  "seats": [
+    {
+      "seat": "sol",
+      "provider": "OpenAI",
+      "provider_instance": "codex",
+      "model": "gpt-6.1-sol",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "astra",
+      "provider": "OpenAI",
+      "provider_instance": "codex",
+      "model": "gpt-6-astra",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "opus",
+      "provider": "Anthropic",
+      "provider_instance": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "options": {
+        "effort": "high",
+        "fastMode": false
+      }
+    }
+  ],
+  "roster_exception": "Explicit two-OpenAI/one-Anthropic roster governs the skill default.",
+  "scope": "Framework-wide direct and indirect embedding/configuration/store consumer discovery, including unnamed subsystems; review current REM and companion for safe backwards-compatible design and model replacement with a fresh compatible namespace.",
+  "limits": "Document/source-feasibility review only. No product repair, Gate-A, installs/models/providers, tests/builds, real store access/reset/migration, or delivery. No automatic remediation loop.",
+  "score_target": "Each honest independent VERIFIED >=9.5/no mandatory findings remains the design quality target; no score inflation or automatic retry."
+}

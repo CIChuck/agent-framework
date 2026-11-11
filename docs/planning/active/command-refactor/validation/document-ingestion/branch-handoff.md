@@ -38,8 +38,8 @@ The canonical initiative remains started, delivery pushed, with current
 planning slice; it does not rewrite earlier unit approvals or grant acceptance.
 No product implementation, merge or release is authorized. The later explicit
 iteration authority covered the now-completed Sol/Astra/Opus rounds1–4 only.
-The current maintainer-requested embedding-pool compatibility amendment awaits
-review and does not launch another council or grant Gate-A authority.
+The maintainer separately authorizes one framework-wide round5 for the current
+compatibility amendment, including unnamed consumers. This grants no Gate-A authority.
 
 ## Preserved local state
 
@@ -47,4 +47,4 @@ The two edited Chat example YAML files remain uncommitted and unstaged;
 `.friday-old/` and ignored exports remain untouched. Historical receipts retain
 their original branch/source identities. Do not broad-stage or clean this checkout.
 
-**Next gate:** Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary.
+**Next gate:** Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery.

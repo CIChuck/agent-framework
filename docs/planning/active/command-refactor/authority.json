@@ -1896,7 +1896,7 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "proposed",
     "execution_phase": "planning",
-    "validation_state": "pending",
+    "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
@@ -1905,40 +1905,17 @@
     "scope": "PDF/DOCX/XLSX/PPTX extraction/local PDF OCR; shared all-source document/512 chunking with document/recursive/fixed overrides; shared LLM limits/dimension checks; retained fetching, admission, metadata/protection/storage semantics",
     "implementation_approval": "not_granted",
     "council": {
-      "round": 4,
-      "status": "historical_reconciled_verified_current_revision_pending",
-      "scope": "full bounded readiness at728cba77 only; changed REM not reviewed",
-      "roster": "validation/document-ingestion/council-round4/roster.json",
-      "reviewed_candidate": "728cba77e816e5618a06262dd4aa1cbc6e50a376",
-      "report": "validation/document-ingestion/council-round4/report.md",
-      "reconciliation": "validation/document-ingestion/council-round4/reconciliation.json",
-      "verified_design_report": "validation/document-ingestion/verified-design-report.md",
-      "iteration_authorization": "validation/document-ingestion/council-iteration-authorization.json",
+      "round": 5,
+      "status": "frozen_for_dispatch",
+      "scope": "Framework-wide direct and indirect embedding/configuration/store consumer discovery, including unnamed subsystems; review current REM and companion for safe backwards-compatible design and model replacement with a fresh compatible namespace.",
+      "roster": "validation/document-ingestion/council-round5/roster.json",
+      "scope_record": "validation/document-ingestion/council-round5/scope.md",
       "scores_required_each": 9.5,
-      "threshold_met_each": true,
-      "mandatory_findings": [],
-      "results": {
-        "sol": {
-          "outcome": "VERIFIED",
-          "score": 9.6,
-          "report": "validation/document-ingestion/council-round4/sol-report.md"
-        },
-        "astra": {
-          "outcome": "VERIFIED",
-          "score": 9.6,
-          "report": "validation/document-ingestion/council-round4/astra-report.md"
-        },
-        "opus": {
-          "outcome": "VERIFIED",
-          "score": 9.5,
-          "report": "validation/document-ingestion/council-round4/opus-report.md"
-        }
-      },
-      "round_budget_complete": true,
-      "no_active_council": true,
-      "no_construction_or_gate_a_authority": true,
-      "applies_to_current_revision": false,
-      "new_dispatch_authorized": false
+      "applies_to_current_revision": true,
+      "authority": "explicit maintainer request and clarification in roster",
+      "no_automatic_iteration": true,
+      "results": {},
+      "no_construction_or_gate_a_authority": true
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
@@ -2068,15 +2045,53 @@
     },
     "current_revision": {
       "kind": "embedding_pool_backward_compatibility",
-      "validation_state": "pending",
+      "validation_state": "in_review",
       "record": "validation/document-ingestion/embedding-pool-compatibility.json",
       "record_sha256": "3f17db1cb4a96918903548335ff6bff07741c1484e4ebca676050d887973c4e6",
       "rem_sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
       "prior_review_applies": false,
-      "new_council_active": false,
+      "new_council_active": true,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary."
-    }
+      "next_gate": "Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery."
+    },
+    "council_history": [
+      {
+        "round": 4,
+        "status": "historical_reconciled_verified_current_revision_pending",
+        "scope": "full bounded readiness at728cba77 only; changed REM not reviewed",
+        "roster": "validation/document-ingestion/council-round4/roster.json",
+        "reviewed_candidate": "728cba77e816e5618a06262dd4aa1cbc6e50a376",
+        "report": "validation/document-ingestion/council-round4/report.md",
+        "reconciliation": "validation/document-ingestion/council-round4/reconciliation.json",
+        "verified_design_report": "validation/document-ingestion/verified-design-report.md",
+        "iteration_authorization": "validation/document-ingestion/council-iteration-authorization.json",
+        "scores_required_each": 9.5,
+        "threshold_met_each": true,
+        "mandatory_findings": [],
+        "results": {
+          "sol": {
+            "outcome": "VERIFIED",
+            "score": 9.6,
+            "report": "validation/document-ingestion/council-round4/sol-report.md"
+          },
+          "astra": {
+            "outcome": "VERIFIED",
+            "score": 9.6,
+            "report": "validation/document-ingestion/council-round4/astra-report.md"
+          },
+          "opus": {
+            "outcome": "VERIFIED",
+            "score": 9.5,
+            "report": "validation/document-ingestion/council-round4/opus-report.md"
+          }
+        },
+        "round_budget_complete": true,
+        "no_active_council": true,
+        "no_construction_or_gate_a_authority": true,
+        "applies_to_current_revision": false,
+        "new_dispatch_authorized": false
+      }
+    ]
   },
   "command_refactor_publication": {
     "status": "merged_remote_branch_deleted",
@@ -2109,7 +2124,7 @@
     ],
     "effort": "high",
     "providers": "two OpenAI, one Anthropic",
-    "record": "validation/document-ingestion/council-round4/roster.json",
+    "record": "validation/document-ingestion/council-round5/roster.json",
     "historical_councils": "unchanged"
   }
 }

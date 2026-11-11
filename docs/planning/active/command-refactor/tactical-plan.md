@@ -1,6 +1,6 @@
 # Document-ingestion remediation — embedding-pool compatibility revision
 
-Execution phase: planning; validation state: pending.
+Execution phase: planning; validation state: in_review (round5).
 The maintainer requests backward compatibility for existing embedding-pool and
 maintained non-pool configurations. The [revised REM](remediation/REM-CMD-INGEST-001-pdf-docx.md)
 requires qualified readiness to supply omitted new fields, retained service
@@ -8,12 +8,12 @@ selection/APIs and explicit cross-subsystem operational proof in DI-33.
 [Revision record](validation/document-ingestion/embedding-pool-compatibility.json).
 
 The round4 VERIFIED scores9.6/9.6/9.5 apply only to the earlier candidate728cba77.
-The changed REM is pending review; exact prior council evidence and the Tools
-companion are preserved. No new council, Gate-A execution or construction is
-activated. The approved fresh-store policy, six advisory carry-forwards and
+The changed REM receives one separately authorized framework-wide round5,
+including unnamed embedding consumers. Exact prior evidence and the Tools
+companion are preserved. No Gate-A execution or construction is activated. The approved fresh-store policy, six advisory carry-forwards and
 separate MAINT human UAT/acceptance boundary remain.
 
-**Next gate:** Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary.
+**Next gate:** Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery.
 
 ## Separate MAINT closeout and historical checkpoints
 
