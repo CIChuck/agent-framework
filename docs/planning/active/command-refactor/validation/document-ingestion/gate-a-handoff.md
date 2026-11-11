@@ -1,6 +1,6 @@
 # INGEST-001 — Gate-A and final-directive handoff
 
-Status: current embedding-pool compatibility amendment in framework-wide round5 review;
+Status: current embedding-pool compatibility amendment requires changes after round5;
 [earlier VERIFIED design](verified-design-report.md) retained as history.
 The maintainer requested the REM update recorded in
 [the compatibility record](embedding-pool-compatibility.json). This is not
@@ -11,6 +11,12 @@ The prior reviewed REM/companion at
 Those verdicts do not cover the changed REM; the companion remains unchanged.
 All prior mandatory findings were closed **at design level**. Future feasibility and
 installed behavior remain unproved; no new dependency/model version is selected.
+
+The [framework-wide report](framework-compatibility-review.md) now records nine
+bounded technical themes and additional advisory dispositions. They need
+resolution before claiming current design readiness; the earlier six advisories
+remain historical carry-forwards, not the complete current open-work list. The
+technical REM/companion are unchanged here.
 
 ## Before readiness execution
 
@@ -56,5 +62,6 @@ from model cards or doubles, with explicit stop conditions.
 
 All future tests, build/replay, normal/optimized installed proofs and human UAT
 remain future obligations. The completed iteration did not authorize another pass; the maintainer now
-separately authorizes one framework-wide round5. Acceptance and delivery remain
-ungranted.
+separately authorized one framework-wide round5. It is complete with changes
+requested and Astra blocked; no further pass is activated. Acceptance and
+delivery remain ungranted.

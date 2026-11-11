@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. The current INGEST embedding-pool compatibility
-revision is in framework-wide council review; Gate-A execution and MAINT human UAT/acceptance remain pending.
+revision requires changes after framework-wide council review; Gate-A execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -33,24 +33,21 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Document-ingestion design — embedding-pool compatibility revision:**
-The [current REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) now makes existing
-pool/service configuration and operational compatibility explicit, with omitted
-new YAML fields supplied through qualified readiness. DI-33 requires cross-
-subsystem proof. Execution phase: planning; validation state: in_review (round5).
-The [round4 council](validation/document-ingestion/council-round4/report.md) at
-`728cba77` remains historical VERIFIED evidence (Sol9.6/Astra9.6/Opus9.5) for its
-exact earlier bytes; it does not cover this amendment. The Tools companion is
-unchanged. [Revision record](validation/document-ingestion/embedding-pool-compatibility.json).
+**Document-ingestion design — CHANGES_REQUESTED:**
+The [framework-wide review](validation/document-ingestion/framework-compatibility-review.md)
+of the [current REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) returns Sol8.6 and
+Opus7.2 CHANGES_REQUESTED; Astra is procedurally BLOCKED (provisional8.4 only).
+The all-seat9.5 gate is not met. Execution phase: planning; validation state:
+changes_requested. The [round5 report](validation/document-ingestion/council-round5/report.md)
+consolidates nine technical themes and preserves all raw evidence/disagreements.
 
-The [existing-store policy](approval/ingest-existing-store-policy.md) requires
-explicit fresh selection, preserves old files and `/read`, and adds no legacy
-mode/reset/migration. [Historical verified design](validation/document-ingestion/verified-design-report.md)
-pins the earlier result; [handoff](validation/document-ingestion/gate-a-handoff.md) carries
-six nonblocking advisories to future Gate-A/final-directive preparation.
-The earlier iteration is complete. A separately authorized single [round5](validation/document-ingestion/council-round5/scope.md) now audits named and unnamed framework consumers. Gate-A execution,
-model/package operations, code, store mutations, acceptance and delivery remain
-ungranted. MAINT human UAT/acceptance remains separate.
+The [earlier round4](validation/document-ingestion/council-round4/report.md) remains
+VERIFIED only for728cba77; it does not cover the pool amendment. The current REM
+and Tools companion are unchanged by this review reconciliation. All delegates
+are terminal, no replacement or automatic correction loop is started.
+The [fresh-store policy](approval/ingest-existing-store-policy.md) remains; no
+model/data reset, dependency installation, construction, acceptance or delivery
+is authorized. MAINT human UAT/acceptance stays separate.
 
 **Working home:** `agent-framework`, branch `feature/cmd-ingest-001`.
 **Board ID:** `friday-command-refactor`.
@@ -96,7 +93,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery.
+**Next gate:** Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

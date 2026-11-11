@@ -1,19 +1,17 @@
-# Document-ingestion remediation — embedding-pool compatibility revision
+# Document-ingestion remediation — framework compatibility changes requested
 
-Execution phase: planning; validation state: in_review (round5).
-The maintainer requests backward compatibility for existing embedding-pool and
-maintained non-pool configurations. The [revised REM](remediation/REM-CMD-INGEST-001-pdf-docx.md)
-requires qualified readiness to supply omitted new fields, retained service
-selection/APIs and explicit cross-subsystem operational proof in DI-33.
-[Revision record](validation/document-ingestion/embedding-pool-compatibility.json).
+Execution phase: planning; validation state: changes_requested.
+[Round5 framework-wide review](validation/document-ingestion/framework-compatibility-review.md)
+returns Sol8.6/Opus7.2 CHANGES_REQUESTED; Astra is procedurally BLOCKED with a
+provisional8.4 only. Nine bounded technical themes and advisory dispositions
+need decisions before a document correction. The all-seat9.5 gate is not met.
 
-The round4 VERIFIED scores9.6/9.6/9.5 apply only to the earlier candidate728cba77.
-The changed REM receives one separately authorized framework-wide round5,
-including unnamed embedding consumers. Exact prior evidence and the Tools
-companion are preserved. No Gate-A execution or construction is activated. The approved fresh-store policy, six advisory carry-forwards and
-separate MAINT human UAT/acceptance boundary remain.
+The current REM/companion are unchanged by reconciliation. Raw reports/pins and
+the old candidate-specific round4 result are preserved; no review is active.
+No automatic remediation, replacement council, Gate-A, code, model/store action,
+human acceptance or delivery is activated. MAINT remains separate.
 
-**Next gate:** Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery.
+**Next gate:** Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery.
 
 ## Separate MAINT closeout and historical checkpoints
 

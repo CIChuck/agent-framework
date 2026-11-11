@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery."
+  next_gate: "Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3176,3 +3176,10 @@ events:
   action: froze single framework-wide embedding compatibility council
   note: Explicit maintainer requests Sol/Astra/Opus review of all direct and indirect embedding consumers, including subsystems unnamed in REM; unchanged-config and replacement-model/fresh-namespace compatibility. One read-only pass; no automatic repair loop, installs, product/store actions or delivery.
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round5/roster.json
+- task: friday-command-refactor
+  at: "2026-11-11T01:37:37.401608+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled framework-wide INGEST council with changes requested
+  note: Sol8.6 and Opus7.2 CHANGES_REQUESTED; Astra procedurally BLOCKED with provisional8.4 only. Nine source-backed technical themes and all advisory IDs preserved; disabled CLI mutations qualified accurately. No technical REM/companion edit, replacement review, automatic repair, Gate-A, product/store action or delivery.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/framework-compatibility-review.md

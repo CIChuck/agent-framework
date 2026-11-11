@@ -1,11 +1,10 @@
 {
   "unit": "REM-CMD-INGEST-001",
-  "status": "embedding_pool_compatibility_document_checks_only",
+  "round": 5,
+  "status": "controller_review_reconciliation_checks_only",
   "outcome": "PASS",
-  "recorded_at": "2026-11-11T00:47:46.431001+00:00",
-  "base": "c28e6f8bba959f10137b8d772a667ec4e59389f5",
-  "revised_rem_sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
-  "validation_state": "pending_independent_review_not_verified",
+  "recorded_at": "2026-11-11T01:41:12.482597+00:00",
+  "reviewed_candidate": "06f294d779c5bc9ea3016eaffdf8efb349979ce4",
   "checks": [
     {
       "check": "board",
@@ -58,7 +57,7 @@
         "scripts/check-documentation-lifecycle.py"
       ],
       "exit": 0,
-      "stdout": "Documentation lifecycle validation passed: 997 Markdown files checked\n",
+      "stdout": "Documentation lifecycle validation passed: 1003 Markdown files checked\n",
       "stderr": ""
     },
     {
@@ -92,30 +91,33 @@
       "stderr": ""
     }
   ],
-  "allowed_planning_paths": [
+  "protected_entries_matched": 17633,
+  "preserved_metadata_records": 6,
+  "logical_index_sha256_before_status": "948187c7cb810e1721eaf094454ff68b44e4e6b35f65fad0290c6e98437a0ffe",
+  "owned_status_paths": [
     "docs/planning/README.md",
+    "docs/planning/board.yaml",
     "docs/planning/active/command-refactor/README.md",
     "docs/planning/active/command-refactor/authority.json",
     "docs/planning/active/command-refactor/execution-log.md",
     "docs/planning/active/command-refactor/next-phase.md",
-    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "docs/planning/active/command-refactor/tactical-plan.md",
     "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
-    "docs/planning/active/command-refactor/validation/document-ingestion/embedding-pool-compatibility.json",
     "docs/planning/active/command-refactor/validation/document-ingestion/gate-a-handoff.md",
-    "docs/planning/active/command-refactor/validation/document-ingestion/planning-checks.json",
-    "docs/planning/board.yaml"
+    "docs/planning/active/command-refactor/validation/document-ingestion/planning-checks.json"
   ],
-  "preserved_metadata_records": 6,
-  "logical_index_sha256_before_status": "fe92c5996493a0587e66700139d73806bc11c1abd0f24bb257ce4fca7f4e01f9",
-  "historical_council_and_other_authority": "unchanged",
-  "compatibility_tests": "DI-33 specified; runtime and installed execution deferred",
+  "technical_rem_companion": "unchanged from reviewed candidate",
+  "review_outcome": "CHANGES_REQUESTED, Astra procedural BLOCKED; quality gate not met",
+  "all_review_tasks_terminal": true,
+  "new_review_or_repair": "none",
+  "other_unit_authority_and_old_council_artifacts": "unchanged",
   "not_performed": [
-    "product/runtime tests/builds",
-    "Gate-A/installs/models/providers",
-    "store operations/reset/migration",
+    "product tests/imports/builds",
+    "Gate-A/install/model/provider calls",
+    "real store reads/reset/migration",
+    "technical document remediation",
     "MAINT acceptance",
-    "council/delegation",
+    "new council",
     "push/PR/delivery"
   ],
   "failures": []

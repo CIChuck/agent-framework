@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.",
+  "current_scope": "Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1896,7 +1896,7 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "proposed",
     "execution_phase": "planning",
-    "validation_state": "in_review",
+    "validation_state": "changes_requested",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
@@ -1906,7 +1906,7 @@
     "implementation_approval": "not_granted",
     "council": {
       "round": 5,
-      "status": "frozen_for_dispatch",
+      "status": "reconciled_changes_requested",
       "scope": "Framework-wide direct and indirect embedding/configuration/store consumer discovery, including unnamed subsystems; review current REM and companion for safe backwards-compatible design and model replacement with a fresh compatible namespace.",
       "roster": "validation/document-ingestion/council-round5/roster.json",
       "scope_record": "validation/document-ingestion/council-round5/scope.md",
@@ -1914,8 +1914,50 @@
       "applies_to_current_revision": true,
       "authority": "explicit maintainer request and clarification in roster",
       "no_automatic_iteration": true,
-      "results": {},
-      "no_construction_or_gate_a_authority": true
+      "results": {
+        "sol": {
+          "outcome": "CHANGES_REQUESTED",
+          "score": 8.6,
+          "score_is_provisional": false,
+          "formal_signoff": false,
+          "report": "validation/document-ingestion/council-round5/sol-report.md"
+        },
+        "astra": {
+          "outcome": "BLOCKED",
+          "score": 8.4,
+          "score_is_provisional": true,
+          "formal_signoff": false,
+          "report": "validation/document-ingestion/council-round5/astra-report.md"
+        },
+        "opus": {
+          "outcome": "CHANGES_REQUESTED",
+          "score": 7.2,
+          "score_is_provisional": false,
+          "formal_signoff": false,
+          "report": "validation/document-ingestion/council-round5/opus-report.md"
+        }
+      },
+      "no_construction_or_gate_a_authority": true,
+      "reviewed_candidate": "06f294d779c5bc9ea3016eaffdf8efb349979ce4",
+      "report": "validation/document-ingestion/council-round5/report.md",
+      "reconciliation": "validation/document-ingestion/council-round5/reconciliation.json",
+      "framework_compatibility_review": "validation/document-ingestion/framework-compatibility-review.md",
+      "threshold_met_each": false,
+      "formal_council_complete": false,
+      "procedural_blocker": "ASTRA-R5-B01",
+      "no_active_council": true,
+      "mandatory_technical_themes": [
+        "INGEST-EC-01",
+        "INGEST-EC-02",
+        "INGEST-EC-03",
+        "INGEST-EC-04",
+        "INGEST-EC-05",
+        "INGEST-EC-06",
+        "INGEST-EC-07",
+        "INGEST-EC-08",
+        "INGEST-EC-09"
+      ],
+      "no_automatic_remediation_or_new_review": true
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
@@ -2033,26 +2075,26 @@
       "past_procedural_block_retained": true
     },
     "design_readiness": {
-      "outcome": "historical_VERIFIED_at728cba77_current_revision_pending",
-      "candidate": "728cba77e816e5618a06262dd4aa1cbc6e50a376",
+      "outcome": "CHANGES_REQUESTED",
+      "candidate": "06f294d779c5bc9ea3016eaffdf8efb349979ce4",
       "technical_pins": {
-        "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "61d93548eeae52be1b273e8ae985860d869cceac6a88868eb9396e7a2adf1804",
+        "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
         "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "b5429eb75427aa12f016ad1d0a571743c066375c1a3da34826b3e464ba5e8ba1"
       },
-      "advisories": "six nonblocking, carried without changing reviewed artifacts",
-      "handoff": "validation/document-ingestion/gate-a-handoff.md",
-      "runtime_or_installed_proof": "not performed for INGEST"
+      "report": "validation/document-ingestion/framework-compatibility-review.md",
+      "runtime_or_installed_proof": "not performed for INGEST",
+      "formal_council_complete": false
     },
     "current_revision": {
       "kind": "embedding_pool_backward_compatibility",
-      "validation_state": "in_review",
+      "validation_state": "changes_requested",
       "record": "validation/document-ingestion/embedding-pool-compatibility.json",
       "record_sha256": "3f17db1cb4a96918903548335ff6bff07741c1484e4ebca676050d887973c4e6",
       "rem_sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
       "prior_review_applies": false,
-      "new_council_active": true,
+      "new_council_active": false,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery."
+      "next_gate": "Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery."
     },
     "council_history": [
       {
@@ -2090,6 +2132,19 @@
         "no_construction_or_gate_a_authority": true,
         "applies_to_current_revision": false,
         "new_dispatch_authorized": false
+      }
+    ],
+    "design_readiness_history": [
+      {
+        "outcome": "historical_VERIFIED_at728cba77_current_revision_pending",
+        "candidate": "728cba77e816e5618a06262dd4aa1cbc6e50a376",
+        "technical_pins": {
+          "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "61d93548eeae52be1b273e8ae985860d869cceac6a88868eb9396e7a2adf1804",
+          "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "b5429eb75427aa12f016ad1d0a571743c066375c1a3da34826b3e464ba5e8ba1"
+        },
+        "advisories": "six nonblocking, carried without changing reviewed artifacts",
+        "handoff": "validation/document-ingestion/gate-a-handoff.md",
+        "runtime_or_installed_proof": "not performed for INGEST"
       }
     ]
   },

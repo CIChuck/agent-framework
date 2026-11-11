@@ -1,0 +1,10 @@
+{
+  "candidate": "06f294d779c5bc9ea3016eaffdf8efb349979ce4",
+  "request": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-embedding-council-7qnmczu1/inputs/review-request.json",
+  "request_sha256": "e463c4e849957eb920e4260c10d408217498f6afb787da474c301a546e33c35c",
+  "helper_sha256": "2d383c058aec2af50f4b0c6d6b27909b7b57995755a89f3af6bcb2857eceb38a",
+  "wrapper_sha256": "cb0669f81efd0098c104d7b96342fcd614255021ea2bfa49cbbb6af7c2fea248",
+  "manifest_entries": 17643,
+  "logical_index": "948187c7cb810e1721eaf094454ff68b44e4e6b35f65fad0290c6e98437a0ffe",
+  "rem_sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea"
+}

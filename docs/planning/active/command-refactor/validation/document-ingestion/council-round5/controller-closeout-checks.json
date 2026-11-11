@@ -1,0 +1,124 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "round": 5,
+  "status": "controller_review_reconciliation_checks_only",
+  "outcome": "PASS",
+  "recorded_at": "2026-11-11T01:41:12.482597+00:00",
+  "reviewed_candidate": "06f294d779c5bc9ea3016eaffdf8efb349979ce4",
+  "checks": [
+    {
+      "check": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "check": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "check": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1003 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "check": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "check": "whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "protected_entries_matched": 17633,
+  "preserved_metadata_records": 6,
+  "logical_index_sha256_before_status": "948187c7cb810e1721eaf094454ff68b44e4e6b35f65fad0290c6e98437a0ffe",
+  "owned_status_paths": [
+    "docs/planning/README.md",
+    "docs/planning/board.yaml",
+    "docs/planning/active/command-refactor/README.md",
+    "docs/planning/active/command-refactor/authority.json",
+    "docs/planning/active/command-refactor/execution-log.md",
+    "docs/planning/active/command-refactor/next-phase.md",
+    "docs/planning/active/command-refactor/tactical-plan.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a-handoff.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/planning-checks.json"
+  ],
+  "technical_rem_companion": "unchanged from reviewed candidate",
+  "review_outcome": "CHANGES_REQUESTED, Astra procedural BLOCKED; quality gate not met",
+  "all_review_tasks_terminal": true,
+  "new_review_or_repair": "none",
+  "other_unit_authority_and_old_council_artifacts": "unchanged",
+  "not_performed": [
+    "product tests/imports/builds",
+    "Gate-A/install/model/provider calls",
+    "real store reads/reset/migration",
+    "technical document remediation",
+    "MAINT acceptance",
+    "new council",
+    "push/PR/delivery"
+  ],
+  "failures": []
+}

@@ -2908,3 +2908,22 @@ has been executed or accepted through this documentation change.
 - Execution phase: planning; validation state: in_review (round5). One pass only;
   findings return for disposition without an automatic remediation loop.
 - **Next gate:** Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery.
+
+
+## 2026-11-11T01:37:37.401608+00:00 — INGEST framework-wide council reconciled, changes requested
+
+- Sol8.6 and Opus7.2 return CHANGES_REQUESTED. Astra is formally BLOCKED for
+  authority-isolation conduct; provisional8.4 and technical observations are
+  preserved without treating them as a valid signoff. No all-seat gate pass.
+- Raw reports/audits/start-end checks match exact hashes. Controller source
+  checks consolidate nine technical themes and qualify the already-disabled
+  module CLI mutations accurately. Whole-framework consumer/scenario matrices
+  and all18 criterion rows remain available in each report.
+- Frozen integrity passed17643 entries/six metadata records before closeout.
+  No product tests/imports/builds, model/provider/store operations or installs
+  ran. The current REM and companion remain exact; no technical repair occurs.
+- This completes the single authorized review. No retry, replacement, new
+  council or automatic correction loop is started. Earlier reviews remain
+  candidate-specific history; MAINT acceptance and delivery are separate.
+- Execution phase: planning; validation state: changes_requested.
+- **Next gate:** Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery.
