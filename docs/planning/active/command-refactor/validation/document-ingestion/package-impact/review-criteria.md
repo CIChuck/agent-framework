@@ -59,7 +59,8 @@ at least 9.5 on both rubrics to end the loop successfully. Mandatory findings
 override high scores; no seat average, score coaching or threshold inflation.
 Review remains valuable below the threshold. The controller may make bounded
 document corrections within the original four-round cap, exhausted after
-round4. Chuck explicitly authorizes one additional full round5, recorded in
-[the extension](round5-authorization.json); no reset, replacement or round6.
-If that gate is unmet, stop for further guidance. A material change
+round4. The first extension round5 is complete. Chuck now authorizes one fresh
+full round6, recorded in [the new authorization](round6-authorization.json),
+with self-contained inputs and no memory/history searches. No reset, replacement
+or round7; if unmet stop for further guidance. A material change
 to the frozen technical scope stops for explicit disposition.

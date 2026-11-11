@@ -3176,3 +3176,28 @@ Every seat must be VERIFIED, no mandatory finding and coverage/overall >=9.5.
 After this one extra round, stop; if unmet ask Chuck for guidance. No replacement
 seat, sixth round, automatic correction loop or construction follows. Impact
 satisfaction, Gate-A activation and exact construction approval remain pending.
+
+
+## Finance offline validation correction and fresh review authorization — 2026-11-11
+
+[Round5 reconciliation](validation/document-ingestion/package-impact/round5/report.md)
+retains Astra VERIFIED, Opus CHANGES_REQUESTED for a planned live-test selector,
+and Sol BLOCKED before assessment by historical-memory exposure. No qualifying
+Sol score or correctness claim is inferred. After the stop/request for guidance,
+Chuck directed remediate and continue to the specific narrow correction and one
+fresh full council. [Recorded authority](validation/document-ingestion/package-impact/round6-authorization.json)
+grants round6 only, with no memory/history searches and unchanged score gates.
+
+The test plan/P-14 and REM now default to offline Finance test_basics.py and
+classify the existing live-provider module as excluded absent explicit authority.
+The final directive must classify non-default modules and bind exact selectors;
+no retained executed-coverage claim comes from an unrun live module. No provider
+call, credential use/repair, product/test or live-guide change was performed.
+Current assessment v0.6 and authority/navigation identify five completed rounds
+and this one fresh full review, without resetting history or old approvals.
+
+Fresh Sol/Astra/Opus reviews assess the delta then full PI-01–18 source-feasible
+planning scope from self-contained pinned inputs. Local memory, rollout/session
+history and peer reports are excluded. Each seat must independently VERIFIED,
+no mandatory finding and coverage/overall >=9.5. Stop after round6; if unmet ask
+Chuck for guidance. No replacement, seventh round or automatic construction.

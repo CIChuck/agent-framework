@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Package Impact Assessment v0.5 and amended REM: exactly one additional full council, round5/5, explicitly authorized by Chuck after four completed rounds. Correction delta then full PI-01–18 scope; no reset, replacement or sixth round. Every seat independently VERIFIED, no mandatory findings and coverage/overall >=9.5. If unmet after this round, stop for guidance. Chuck reviews in parallel; impact satisfaction, Gate-A activation and exact construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Package Impact Assessment v0.6 and amended REM: one fresh full council, round6/6, explicitly authorized by Chuck after five completed rounds. Corrected Finance offline validation delta then full PI-01–18 scope; self-contained pinned inputs, no memory/history searches. No reset, replacement or seventh round. Every seat independently VERIFIED, no mandatory findings and coverage/overall >=9.5. If unmet after this round, stop for guidance. Impact satisfaction, Gate-A and exact construction approval remain pending; no product/test/live-guide, provider/store or delivery action. |
 
 ## Completed
 

@@ -1,6 +1,6 @@
 # INGEST-001 — Package Impact Assessment
 
-Version: **0.5 — draft for Chuck Russell's review**, 2026-11-11.
+Version: **0.6 — draft for Chuck Russell's review**, 2026-11-11.
 
 This assessment describes **planned changes**, not completed upgrades. It covers
 all 17 current workspace packages: eight with proposed implementation changes
@@ -30,7 +30,7 @@ The source of planned scope is the current
 and [guide](guide-update-handoff.md) requirements now explicitly directed by Chuck.
 
 The old technical-design verdict at `f43368c5` and assessment-v0.2 verdict at
-`1a040de3` remain historical for their pinned bytes. This v0.5 and the amended
+`1a040de3` remain historical for their pinned bytes. This v0.6 and the amended
 REM require fresh review; those scores are not carried forward. Production source
 and package declarations remain unchanged from `f591989e`; no tests, live guides
 or architecture implementation has been rewritten during this planning revision.
@@ -56,7 +56,9 @@ Revision 0.4 reconciles that test permission with the unchanged normative annex,
 clarifies approval provenance and the CLI architecture, and aligns the scoped
 test/documentation paths. Revision 0.5 corrects actual test paths and discovery
 commands and reconciles current routing under Chuck's one-round extension.
-These corrections add no product feature or production-source owner.
+Revision 0.6 narrows Finance validation to offline coverage and binds the next
+self-contained review to Chuck's separate single-round authorization. These
+corrections add no product feature or production-source owner.
 
 The 17-package inventory is derived from root `pyproject.toml` workspace member
 patterns and each member's `packages/*/pyproject.toml`, not a directory count.
@@ -271,7 +273,8 @@ assessment, rather than reuse approval of the earlier REM hash. This document
 summarizes scope and unresolved details; it grants no broader edit authority.
 The assessment has its own [review criteria](validation/document-ingestion/package-impact/review-criteria.md)
 and [original four-round council authorization](validation/document-ingestion/package-impact/iteration-authorization.json),
-now extended by [exactly one additional round](validation/document-ingestion/package-impact/round5-authorization.json).
+followed by the consumed [first extension](validation/document-ingestion/package-impact/round5-authorization.json)
+and the currently authorized [single fresh round6](validation/document-ingestion/package-impact/round6-authorization.json).
 The current review includes the amended REM and explicit test/documentation
 requirements. Chuck reviews the linked draft in parallel. Earlier council
 verdicts do not cover these changed bytes or presume his satisfaction.
@@ -289,9 +292,10 @@ verdicts do not cover these changed bytes or presume his satisfaction.
    directive rather than reuse approval of the old hash. Material scope changes
    additionally return for renewed impact review. Keep one authoritative copy.
 4. Do not approve or begin construction until Chuck is satisfied with the exact
-   package impact and separately approves the directive. The original four rounds
-   are complete; Chuck now authorizes exactly one additional full council, round
-   5 of 5. This is no reset or further loop; stop for guidance if its gate is unmet.
+   package impact and separately approves the directive. Five rounds
+   are complete; Chuck now authorizes exactly one fresh full council, round6/6,
+   using self-contained pinned inputs without memory/history searches. This is no
+   reset or further loop; stop for guidance if its gate is unmet.
    No installs, product code, model/store operation, push or delivery is
    authorized by the assessment or its review.
 

@@ -75,7 +75,7 @@ packages may still need focused test/fixture rewrites; unrelated cases stay inta
 | P-11 Transcript | Retain strict v1/public persistence tests in `packages/friday-transcript/tests/`; adapt only affected cross-package receipt/aggregate fixtures and add strict mixed-version refusal witnesses in the owning suites. | Receipt ownership/readback, unchanged Transcript v1, Memory/Chat v2 ownership, independent path settings and no live identity overwrite. |
 | P-12 MCP | Retain transport tests; adapt affected optional-profile/import/integration fixtures when inherited dependencies or guarded Memory publication changes setup. | No transport feature change; exact snapshot text/pending IDs/receipts and truthful failure categories through actual Chat/Runtime consumers. |
 | P-13 Optimization | No existing package test suite is present. Add a declared-Memory dependency/import-profile witness only if the final inventory justifies it; its exact new package-local `tests_optimization/` or root integration path and selector must bind the directive. | Dependency inheritance without inventing an active source route, optimization algorithm or model-quality change. |
-| P-14 Finance | Retain existing behavior tests in `packages/friday-finance/tests/`; focused import/tool-catalog regressions may be added or have installation fixtures updated. | Ordinary Finance use does not acquire a Docling execution prerequisite. No financial algorithm rewrite. |
+| P-14 Finance | Retain offline behavior coverage in `packages/friday-finance/tests/test_basics.py`; focused import/tool-catalog regressions may be added or have installation fixtures updated. Classify `test_integration_massive.py` as live-provider coverage, excluded without explicit authority; do not claim it ran or silently retire its obligations. | Ordinary Finance use does not acquire a Docling execution prerequisite. No financial algorithm rewrite. |
 | P-15 Speech | Retain unrelated speech tests; add/adapt only justified shared-import/registration profile witnesses. | No new document/tokenizer prerequisite for ordinary speech use; no speech feature change. |
 | P-16 Sandbox | Retain Docker/Python execution tests; rewrite document filesystem-sandbox tests only in Tools, their actual owner. | Converter access remains behind Tools' FilesystemSandbox; no sandbox-engine or policy redesign. |
 | P-17 Moltbook | Retain existing behavior; conditional import/tool-registration test adaptation only if the final consumer inventory identifies an affected dependency/setup. | No new embedding/ingestion feature or speculative production edit. |
@@ -99,21 +99,32 @@ Retained/import evidence does not require a gratuitous test edit.
 
 ### Explicit execution of non-default suites
 
-Root pytest `testpaths` matches `packages/*/tests_*`, which omits the two existing
-`tests/` suites. Construction validation must therefore run them explicitly,
-including retained cases as well as scoped replacements, for example:
+Root pytest `testpaths` matches `packages/*/tests_*`, which omits the existing
+Transcript and Finance `tests/` directories and root `tests/integration/`. The
+final directive must classify each module in a non-default suite as offline or
+live and bind explicit selectors. Run retained offline cases and their scoped
+replacements; a whole-directory command must not implicitly authorize live tests.
+The current offline selectors are:
 
 ```bash
 uv run --no-sync pytest packages/friday-transcript/tests -q
-uv run --no-sync pytest packages/friday-finance/tests -q
+uv run --no-sync pytest packages/friday-finance/tests/test_basics.py -q
 ```
 
 These are future construction checks, not commands executed during this planning
 review. The approved directive binds the prepared environment, private caches/
 basetemps and installed/source profiles, and records exact executed selectors,
 counts and outcomes. Root collection alone supplies no credit for these suites.
-Any new Optimization witness has its own explicit selector. Existing failures
-remain failed/unwaived and are distinguished from candidate regressions.
+Finance's existing `test_integration_massive.py` calls a live external provider;
+it remains excluded unless a separate authorization names the service, effects
+and permitted credential handling. Preserve its existence/obligations in the
+migration inventory as live/not executed, with no offline regression or retained
+executed-coverage credit. Do not repair or use its credential under this unit.
+No source/test change or provider call is authorized by this planning correction.
+All four current Transcript test modules are offline. Named root integration
+witnesses and any new Optimization test also need exact explicit selectors and
+module-level offline/live classification; default collection supplies no credit.
+Existing failures remain failed/unwaived and separate from candidate regressions.
 
 ## Case-level migration map — required before the first test rewrite
 

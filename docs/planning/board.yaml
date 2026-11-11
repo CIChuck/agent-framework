@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Package Impact Assessment v0.5 and amended REM: exactly one additional full council, round5/5, explicitly authorized by Chuck after four completed rounds. Correction delta then full PI-01\u201318 scope; no reset, replacement or sixth round. Every seat independently VERIFIED, no mandatory findings and coverage/overall >=9.5. If unmet after this round, stop for guidance. Chuck reviews in parallel; impact satisfaction, Gate-A activation and exact construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action."
+  next_gate: "Package Impact Assessment v0.6 and amended REM: one fresh full council, round6/6, explicitly authorized by Chuck after five completed rounds. Corrected Finance offline validation delta then full PI-01\u201318 scope; self-contained pinned inputs, no memory/history searches. No reset, replacement or seventh round. Every seat independently VERIFIED, no mandatory findings and coverage/overall >=9.5. If unmet after this round, stop for guidance. Impact satisfaction, Gate-A and exact construction approval remain pending; no product/test/live-guide, provider/store or delivery action."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3271,3 +3271,11 @@ events:
   action: recorded explicit one-round package-impact extension and bounded corrections
   note: "Chuck answered proceed to the exact request for bounded document corrections and one additional full council. Original4 rounds exhausted; new maximum5, one review remaining. Actual test paths/discovery and current routing corrected, no scope change. Fresh Sol/Astra/Opus round5 at unchanged9.5 thresholds; stop if unmet. No product/Gate-A/delivery authority."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round5-authorization.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T19:29:08.475288+00:00"
+  actor: Codex
+  actor_role: agent
+  action: recorded bounded Finance validation remediation and fresh council authorization
+  note: "Chuck directed remediate and continue after the specific request for offline Finance validation correction and one fresh council. Round5 reports retained, including Sol BLOCKED. Maximum6, exactly one fresh round remaining; no memory/history searches, same9.5 gates. No product/test/live-guide edits, provider calls or construction authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round6-authorization.json
