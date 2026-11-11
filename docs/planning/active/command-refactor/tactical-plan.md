@@ -1,19 +1,19 @@
 # Document-ingestion remediation — test and documentation requirements revised
 
 Execution phase: validation; validation state: in_review for revised REM and
-Package Impact Assessment v0.3, council round3/4. Earlier f43368c5/1a040de3
+Package Impact Assessment v0.4, council round4/4 (final authorized round). Earlier f43368c5/1a040de3
 verdicts remain historical and do not validate the amended bytes.
 The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and normative
 [compatibility contract](embedding-compatibility-contract.md) incorporate the
 nine technical themes and high/medium advisory requirements. B01–B08 and
 FC-01–14 require successful baseline/replacement behavior as well as refusals.
 [Current amendment authority](validation/document-ingestion/test-doc-revision-authorization.json)
-continues the existing package-impact council budget: four total rounds, two
-already used; the next round is 3 and no budget is reset. Require independent coverage and overall scores >=9.5
+continues the existing package-impact council budget: four total rounds, three
+already used; the next round is 4 and no budget is reset. Require independent coverage and overall scores >=9.5
 and VERIFIED/no mandatory findings. Stop at success or after pass4 for guidance.
 No Gate-A, product code, model/store actions, acceptance or delivery follows.
 
-**Next gate:** Package Impact Assessment v0.3 and amended REM: fresh council round3/4 reviews traceable test restructuring and substantive canonical architecture/guide deliverables, delta first then complete current scope. Two rounds already used; no budget reset. Each seat VERIFIED/no mandatory findings and coverage/overall >=9.5 before moving on. Chuck reviews in parallel; impact satisfaction, Gate-A and exact construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action.
+**Next gate:** Package Impact Assessment v0.4 and amended REM: fourth and final council round4/4, correction delta then full PI-01–18 scope. Three rounds consumed; no reset, replacement or fifth round. Every seat must independently VERIFIED with no mandatory findings and coverage/overall >=9.5. If unmet, stop for Chuck's guidance. Chuck reviews in parallel; impact satisfaction, Gate-A activation and exact amended construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action.
 
 ## Separate MAINT closeout and historical checkpoints
 

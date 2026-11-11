@@ -22,6 +22,7 @@ file or reviewed technical contract is changed by this handoff.
 | Guide files | Scoped documentation change required for this implementation |
 | --- | --- |
 | [Quick start](../../../guides/00-quick-start.md), [Getting started](../../../guides/02-getting-started.md) | Candidate/release-qualified installation commands; default Chat's document stack versus optional Tools support; effective Certifi security floor; explicit local converter/OCR/tokenizer provisioning, resource expectations and actionable missing-assets behavior. Avoid automatic first-use downloads or claiming a dependency extra exists before it is implemented. |
+| [Executive summary](../../../guides/01-executive-summary.md), [Feature catalogue](../../../guides/FRIDAY-FEATURES.md) | Reconcile affected launcher/package/document-support claims and embedding-model upgrade guidance with the candidate: no standalone `friday` launcher, explicit fresh compatible namespaces instead of an implied in-place collection rebuild, and accurate INGEST versus companion support. Limit changes to these affected claims and their cross-references. |
 | [Core concepts](../../../guides/03-core-concepts.md) | Update the affected package/ownership explanation: Commands interprets file arguments; Tools converts; Memory owns ingestion policy/storage admission; LLM owns embedding preparation/counting/limits; Chat/Runtime compose. Document headless reuse and shared typed contracts without claiming a complete FILE-001/TUI migration. |
 | [Adaptive memory](../../../guides/04-adaptive-memory.md), [Memory management](../../../guides/memory-management-guidelines.md) | Explain identity-bound vector/graph state, explicitly configured fresh-store policy and coherent associated paths, unchanged-model preparation changes, first-run/unset refusals, Runtime-root consequences and old-release backup/recovery guidance. Distinguish document chunk tokens, embedding capacity and context/maintenance budgets. Preserve maintenance ordering and rollback semantics. |
 | [Tools](../../../guides/05-tools.md) | Explain the new shared document capability, supported formats/limits, sandbox and missing-dependency errors, injected Memory handoff and source/derived storage. Distinguish completed INGEST support from ReaderFactory/smart_read four-format adoption, which remains the separately directed TOOLS-DOC companion. Do not advertise every direct legacy reader as migrated. |
@@ -31,9 +32,18 @@ file or reviewed technical contract is changed by this handoff.
 | [Troubleshooting](../../../guides/13-troubleshooting.md) | Provide safe diagnostics/remedies for missing packages/assets, corrupt/encrypted/partial/empty documents, OCR limitations, overflow/shape/identity refusal, unset or existing-unbound paths, and cancellation/busy behavior. Explain which Memory operations are unavailable and that help, `/read` and exit remain usable. Do not recommend deleting stores, bypassing TLS, silent fallback or interpreting a listing as extraction proof. |
 | [Guide index](../../../guides/README.md), [Appendices](../../../guides/14-appendices.md) where affected | Repair navigation and supported-format/dependency/version matrices. Identify the implemented candidate/release baseline accurately. Limit edits to facts changed by this unit; no unrelated whole-guide refresh or automatic publication. |
 
-Package [Tools README](../../../../packages/friday-tools/README.md),
-[Chat README](../../../../packages/friday-chat/README.md), packaged templates and
+Package [Core README](../../../../packages/friday-core/README.md),
+[Tools README](../../../../packages/friday-tools/README.md),
+[Commands README](../../../../packages/friday-commands/README.md),
+[Memory README](../../../../packages/friday-memory/README.md),
+[LLM README](../../../../packages/friday-llm/README.md),
+[Chat README](../../../../packages/friday-chat/README.md),
+[Runtime README](../../../../packages/friday-runtime/README.md) and
+[CLI README](../../../../packages/friday-cli/README.md), packaged templates and
 final provisioning/upgrade instructions remain required alongside these guides.
+CLI's README must distinguish its public component registry/`arg` helper from
+Chat's maintained registry and the neutral Commands registry, and classify the
+placeholder REPL/main/server modules without implying a standalone launcher.
 Only future TOOLS-DOC acceptance permits its adoption claims; INGEST's shared
 converter alone does not satisfy that documentation milestone.
 
@@ -58,7 +68,7 @@ converter alone does not satisfy that documentation milestone.
    and his remaining approval conditions still apply.
 
 The old Package Impact Assessment council reviewed v0.2 at `1a040de3`. The
-current REM and v0.3 assessment include this expanded documentation requirement
+current REM and assessment include this expanded documentation requirement
 and need fresh review. The historical verdict is not extended to new bytes.
 This plan does not implement guides, satisfy Chuck's package-impact condition,
 activate Gate A, authorize code/tests or grant publication/delivery authority.

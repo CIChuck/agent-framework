@@ -27,6 +27,17 @@ The document must explain:
    compatibility-container delegation, headless composition, explicit configuration
    origin and ready/deferred/unavailable capability behavior. No standalone
    `friday` launcher or CLI-owned ingestion/reorganization policy is invented.
+   Explicitly distinguish `friday_cli.commands.CommandRegistry` and its exported
+   `arg` helper (retained public terminal-component API),
+   `friday_chat.commands.registry.CommandRegistry` (the maintained Chat
+   application's registry), and `friday_commands.registry.CommandRegistry`
+   (the neutral shared foundation). Name their owners, actual callers and
+   compatibility status; sharing a class name does not make them interchangeable.
+   State that `friday-chat` uses the Chat registry and delegates selected families
+   to shared handlers, rather than using the CLI component registry. Classify
+   CLI `repl.py`, `main.py` and `server/api.py` as placeholder compatibility
+   modules, not working launchers/server implementations. The CLI README must
+   carry the same distinction; this requires no new registry or runtime feature.
 3. **Shared owners:** Commands owns reusable argument/command semantics; Core
    owns neutral typed boundaries; Tools owns conversion/audit/adaptation; Memory
    owns ingestion/chunk plans/admission/storage; LLM owns preparation/counting/

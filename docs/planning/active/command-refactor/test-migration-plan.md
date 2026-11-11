@@ -38,6 +38,20 @@ preserves the gate obligation. Legacy case names/files are not immutable. Root
 API54 and other unchanged public contracts retain their literal expectations;
 reorganizing an affected fixture does not authorize an API change.
 
+### Reconciliation with the normative compatibility contract
+
+The unchanged compatibility contract's final preservation clause retains old
+public signatures/classes and assertion bodies except named final-directive
+fixture/oracle exceptions. Chuck's recorded test-restructuring decision is the
+narrow governing amendment to that test-body rule. Each case-level map entry
+that the final approved directive explicitly incorporates is a named exception,
+including an identified rename, move, split, replacement or justified retirement
+and its retained/replacement behavioral obligations. The plan alone is not an
+exception for an unidentified case. Unmapped body edits remain prohibited;
+existing public signatures/classes remain retained. Named FC test nodes stay
+unless an incorporated entry explicitly maps their approved equivalent while
+preserving the named gate's executed coverage. Accepted evidence stays immutable.
+
 ## Per-package migration scope
 
 The P IDs align with the [Package Impact Assessment](package-impact-assessment.md).
@@ -51,10 +65,10 @@ packages may still need focused test/fixture rewrites; unrelated cases stay inta
 | P-01 Core | Restructure/extend `tests_core/test_interfaces.py` and affected profile/factory fixtures for typed ingestion, query/vector identity and explicit open intent. New contract tests where needed. | Neutral imports/dependencies; factory forwarding; immutable shapes and refusal ordering; no backend policy in contracts. |
 | P-02 Tools | Rewrite affected `tests_tools/test_filesystem_readers.py`, `test_smart_read.py`, `test_memory_tools.py` fixtures/assertions; add shared document adapter/structural-audit tests. Preserve existing web/text coverage. Separate companion-only document routing cases. | Genuine four-format extraction, sandbox-before-read, missing assets/backends, source/derived and cache receipts, whole-layout admission, truthful wrapper results. No placeholder or mocked-converter-only success. |
 | P-03 Commands | Add pure file-input tests; reorganize affected shared helpers or API fixtures only when necessary. Existing SESSION/DIAG/MEMQ tests remain valid regression coverage. | Original raw-tail parsing, quotes/description/options and before-I/O validation; standard-library-only/API54 surface; no unrelated command-semantic changes. |
-| P-04 Memory | Significant fixture/case rework is expected across `tests_memory/test_ingestion*.py`, adapter vector/graph tests, context extraction/assembler/consolidator, collection/lifecycle, maintenance/recovery and `test_multi_agent.py`; add new ingestion/binding tests. | Admitted fresh namespaces and exact capabilities, matching reopen, role/dimension/capacity errors, no second chunking, full valid source/derived coverage, visibility and partial failures, strict v1/v2 recovery and retained maintenance safety. |
+| P-04 Memory | Significant fixture/case rework is expected across `tests_memory/test_ingestion*.py`, `test_adapters/test_vector.py`/`test_graph.py`, `test_context/test_extractor_cancellation.py`/`test_extraction_filter.py`/`test_assembler.py`/`test_assembler_lifecycle.py`/`test_consolidator.py`, `test_retrieval/test_collection_manager.py`/`test_graph_scorer.py`, lifecycle suites, `test_maintenance/test_backup.py`/`test_analyzer.py`/`test_recovery_participant.py`/`test_mutation_participant.py` and `test_multi_agent.py`; add new ingestion/binding tests. | Admitted fresh namespaces and exact capabilities, matching reopen, role/dimension/capacity errors, no second chunking, full valid source/derived coverage, visibility and partial failures, strict v1/v2 recovery and retained maintenance safety. |
 | P-05 LLM | Rewrite/extend `tests_llm/test_embeddings.py` and `test_model_library.py` plus affected capability/batch/cache doubles. Add qualified counter, input-envelope, ordering and malformed-result cases. | Existing call/selection/resilience contracts; exact query/document formatting, token limits, complete batch validation, lazy imports and omitted-field readiness. No character estimate or truncation accepted as token enforcement. |
 | P-06 Chat | Replace obsolete document-placeholder and character-slice expectations in `tests_chat/test_files_replay_shell.py` and affected adapter/config/registry fixtures. Restructure relevant MCP, maintenance, diagnostics and reorganization tests; add actual document-ingestion/public-path cases. | Real command delegation/storage, typed config precedence, effective help/output, read failures cause zero ingestion, worker/admission/cancellation, exact receipt/error behavior, old valid text/replay/shell contracts and strict aggregate recovery. |
-| P-07 Runtime | Rewrite affected `tests_runtime/test_kernel.py`, `test_config.py` and MCP/loading fixtures where startup, explicit origin, profile isolation or teardown changes; preserve actual tool-discovery witnesses. | Pool/non-pool assembly, no unavailable-store side effects, ephemeral isolation, observed inner-task completion, shutdown, real MCP observer mapping and minimal installs. |
+| P-07 Runtime | Rewrite affected `tests_runtime/test_di.py`, `test_kernel.py`, `test_config.py` and MCP/loading fixtures where startup, explicit origin, profile isolation or teardown changes; preserve actual tool-discovery witnesses. | Pool/non-pool assembly, no unavailable-store side effects, ephemeral isolation, observed inner-task completion, shutdown, real MCP observer mapping and minimal installs. |
 | P-08 CLI | Adapt focused compatibility/config/container/profile tests only as needed, including `tests_cli/test_cli_config.py` and new targeted fixtures. Old backend-opening assumptions may need replacement even if production delegation stays unchanged. | Raw origin survives configuration merging, Runtime delegation/readiness, constructor/re-export compatibility, no launcher or separate ingestion policy. |
 | P-09 Agent | Rewrite affected archive/context/background-memory integration fixtures and focused `tests_agent/test_base.py`/public-tool tests if shared contracts change their setup. No Agent production-source change is inferred. | Observe the real inner extraction task and terminal failure/status; retain authorization, actual tools and public inputs/results. Wrapper completion is not extraction success. |
 | P-10 Telemetry | Retain schema/reason tests; update only affected integration expectations for the exact approved existing reason/counter mapping. | Same event union and telemetry-disabled behavior; no new reason schema or silent dropped failure. |
@@ -73,6 +87,12 @@ need explicit dispositions. Genuine synthetic format/OCR fixtures replace fake
 extension-only positives; deterministic exact-dimension embeddings are separated
 from actual serving/tokenizer qualification. TOOLS-DOC tests remain its separate
 construction obligation and cannot be claimed complete by INGEST alone.
+
+The REM's test-only allowlist covers the P-10–17 consumer suites conditionally,
+including Telemetry, Transcript, MCP, Optimization, Finance, Speech, Sandbox and
+Moltbook; production source in those packages remains excluded. The final
+directive names exact old/new files and cases before any rewrite. A row that
+only needs retained/import evidence does not require a gratuitous test edit.
 
 ## Case-level migration map — required before the first test rewrite
 

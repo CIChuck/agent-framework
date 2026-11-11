@@ -39,13 +39,14 @@ Chuck authorizes traceable affected-test renaming/splitting/replacement and
 justified retirement, with every valid requirement retained or replaced. He
 requires a canonical command architecture plus substantive guide rewrites. The
 [revised REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) now includes G1/G2 and
-DI-35/36; [assessment v0.3](package-impact-assessment.md),
+DI-35/36; [assessment v0.4](package-impact-assessment.md),
 [test migration plan](test-migration-plan.md), [architecture plan](command-architecture-update-plan.md)
 and [guide scope](guide-update-handoff.md) are current review inputs. No tests,
 live guides or architecture implementation has been rewritten.
 
-Execution phase: validation; validation state: in_review. Fresh round 3 uses
-the standing four-total-round budget; two rounds have already been used. Each
+Execution phase: validation; validation state: in_review. Fresh round 4 uses
+the final slot of the standing four-total-round budget; three rounds have already
+been used. Stop for Chuck's guidance if this final round does not qualify. Each
 seat must VERIFIED with both scores at least 9.5 and no mandatory findings.
 Chuck reviews the linked documents in parallel. His package-impact satisfaction,
 remaining conditions, separate Gate-A activation and exact construction directive

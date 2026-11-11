@@ -21,8 +21,9 @@ beyond a lifecycle/link-check pass. Section G and DI-35/36 bind these obligation
 
 Prior technical-design reviews at `f43368c5` and assessment-v0.2 reviews at
 `1a040de3` remain historical evidence for their exact old bytes. This changed
-REM and assessment v0.3 need fresh review. The next assessment council is round
-3 within the existing four-total-round cap; the budget is not reset. Chuck
+REM and assessment v0.4 need fresh review. The next assessment council is round
+4, the final round within the existing four-total-round cap; the budget is not
+reset. Stop for Chuck's guidance if its conditions are unmet. Chuck
 reviews the linked revision in parallel. No product/test/guide implementation,
 Gate-A effects, model/store operation or delivery is authorized by this update.
 
@@ -1256,9 +1257,9 @@ organization does not authorize any slice or defer cross-subsystem proof.
 | `tests/integration/test_document_ingestion.py` (new) | Active registry/smart_read text storage and explicitly supplied text/web/tool payloads → shared chunking → guarded embeddings → real Memory/fresh bound Chroma. Capability tests do not claim absent route wiring. Deterministic vectors plus real model-matched counting; source/installed proof helper if needed. |
 | `tests/integration/test_embedding_compatibility.py` (new); focused existing Agent, multi-agent, MEMQ, CLI, Runtime and Core public-consumer tests | FC-01–14 named B/N/R proofs, full extraction→store→recall→maintenance/lifecycle and minimal installed profiles, actual delayed background completion, two-kernel logging/ephemeral isolation and real MCP publication outcome witnesses. Indirect consumers may remain source-unchanged; no source edit outside explicit allowlist is inferred from a test. |
 | Package-local synthetic `tests_*/fixtures/document-ingestion/` (new) | Genuine text, table and scanned fixtures/provenance; no user documents. |
-| Affected package-local tests/fixtures/helpers within the named owners and focused source-unchanged consumer suites above | Test-only rename/move/split/rewrite/replace/justified retirement under the case-level migration map; every valid requirement retains executed coverage. Exact old/new files and nodes freeze in the directive before rewriting. No production-source expansion or unrelated suite overhaul. |
+| Affected package-local tests/fixtures/helpers within the eight implementation owners and Agent consumer above; conditional `tests_telemetry`, `tests_transcript`, `tests_mcp`, `tests_optimization`, `tests_finance`, `tests_speech`, `tests_sandbox`, `tests_moltbook` in their matching packages; `tests/integration/test_package_cohort_metadata.py` | Test-only rename/move/split/rewrite/replace/justified retirement under the case-level migration map; every valid requirement retains executed coverage. Exact old/new files and nodes freeze in the directive before rewriting. No production-source expansion or unrelated suite overhaul. |
 | `docs/architecture/command-execution.md` (new), `docs/architecture/README.md` | Canonical current-candidate command architecture and navigation: Chat input/delegation/outcomes, CLI/Runtime roles, shared package boundaries, effects, deployment/configuration and diagrammed request/admission lifecycles. Planning remains in this packet until current implementation or accepted target exists. |
-| `docs/guides/00-quick-start.md`, `02-getting-started.md`, `03-core-concepts.md`, `04-adaptive-memory.md`, `05-tools.md`, `07-multi-agent.md`, `09-cli-reference.md`, `10-configuration.md`, `13-troubleshooting.md`, `memory-management-guidelines.md`, affected `README.md`/`14-appendices.md` | Substantive rewrites/restructuring of affected chapters, command/package tables, configuration/install/upgrade examples and cross-references, as required by the architecture and guide plans. Source/installed candidate facts and version provenance control; no unrelated whole-guide rewrite or publication. |
+| `docs/guides/00-quick-start.md`, `01-executive-summary.md`, `02-getting-started.md`, `03-core-concepts.md`, `04-adaptive-memory.md`, `05-tools.md`, `07-multi-agent.md`, `09-cli-reference.md`, `10-configuration.md`, `13-troubleshooting.md`, `memory-management-guidelines.md`, `FRIDAY-FEATURES.md`, affected `README.md`/`14-appendices.md` | Substantive rewrites/restructuring of affected chapters, command/package tables, configuration/install/upgrade examples and cross-references, as required by the architecture and guide plans. Source/installed candidate facts and version provenance control; no unrelated whole-guide rewrite or publication. |
 | Affected Core/Commands/LLM/Memory/Runtime/CLI package `README.md` files, alongside named Tools/Chat READMEs | Explain changed public contracts, headless reuse, dependency/profile/readiness requirements and retained roles consistently with the canonical architecture. Exact affected files bind the directive; no unrelated feature documentation rewrite. |
 | `uv.lock` | Deliberate Docling graph delta and requested Certifi upgrade to at least2026.10.19, inventoried at gate A. No unrelated package upgrade. |
 | This packet's document-ingestion remediation/validation/UAT/status records and embedding-compatibility-contract.md; planning board/dashboard; upgrade-log FU-012/013/014 | Planning, readiness, proof and human handoff for this unit only. |
@@ -1330,6 +1331,17 @@ remain AST-identical. Freeze an initial old-to-new case/fixture/oracle map in th
 final directive before the first test rewrite. Each retirement needs its exact
 reason, governing change and coverage/obsolete-requirement disposition.
 
+This is the narrow reconciliation with the unchanged compatibility contract's
+final assertion-body preservation clause, under Chuck's recorded amendment.
+Each case-level map entry explicitly incorporated into the final approved
+directive is the named fixture/oracle exception for that test change, including
+a mapped rename, move, split, replacement or justified retirement with its
+retained/replacement obligations. The general permission alone is not an
+exception for unidentified cases: unmapped body edits remain prohibited.
+Existing public signatures/classes remain retained. Named FC nodes stay unless
+an incorporated entry maps an approved equivalent and preserves executed gate
+coverage. No amendment to the annex's other requirements is implied.
+
 No blanket permission to rewrite unrelated suites, weaken assertions, skip or
 xfail regressions, broadly accept changed snapshots, or alter production safety
 to accommodate old fixtures. Counts/AST inventories are audit signals, not
@@ -1356,6 +1368,11 @@ and CLI/Runtime command execution, shared ownership, dependencies, admission/
 cancellation, outcomes/errors and deployment/data consequences. Rebuild
 affected command/package tables from the candidate; do not leave alpha3
 architecture statements inconsistent with implemented shared commands.
+Disambiguate the CLI component registry/`arg`, Chat application registry and
+neutral Commands registry by qualified name, owner, callers and compatibility
+status; identify the registry actually used by `friday-chat`. Classify CLI's
+placeholder `repl.py`, `main.py` and `server/api.py` without inventing a launcher
+or working server. The canonical architecture and CLI README must agree.
 
 Documentation acceptance includes source/schema/metadata traceability, reviewed
 architecture/request-flow diagrams, technically checked content and representative

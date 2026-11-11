@@ -1,6 +1,6 @@
 # INGEST-001 — Package Impact Assessment
 
-Version: **0.3 — draft for Chuck Russell's review**, 2026-11-11.
+Version: **0.4 — draft for Chuck Russell's review**, 2026-11-11.
 
 This assessment describes **planned changes**, not completed upgrades. It covers
 all 17 current workspace packages: eight with proposed implementation changes
@@ -10,8 +10,12 @@ still need restructuring. Dependency effects are identified
 separately from source edits. Repository-wide lock, test and provisioning work
 is described below the package tables.
 
-Chuck's approval of REM-CMD-INGEST-001 is conditional. He requires satisfaction
-with the overall per-package impact before approving the construction directive.
+Chuck's conditional approval referred to the earlier REM bytes, SHA256
+`e1c90753a3e2876df0f9f6f0ca82b1893455266cee1f252276f460b48a9f2a16`.
+The REM has since been amended at his direction to require traceable test
+restructuring and substantive architecture/guide updates. That earlier approval
+does not approve the amended bytes or a construction directive. He requires
+satisfaction with the overall per-package impact before approving that directive.
 This draft supplies that review input; it does not record satisfaction with the
 table, completion of his remaining conditions, Gate-A activation or construction
 approval.
@@ -26,7 +30,7 @@ The source of planned scope is the current
 and [guide](guide-update-handoff.md) requirements now explicitly directed by Chuck.
 
 The old technical-design verdict at `f43368c5` and assessment-v0.2 verdict at
-`1a040de3` remain historical for their pinned bytes. This v0.3 and the amended
+`1a040de3` remain historical for their pinned bytes. This v0.4 and the amended
 REM require fresh review; those scores are not carried forward. Production source
 and package declarations remain unchanged from `f591989e`; no tests, live guides
 or architecture implementation has been rewritten during this planning revision.
@@ -42,21 +46,28 @@ The work has two distinct delivery obligations:
   verification. It is not automatically implemented by installing Docling or
   completing INGEST. Combining the units requires an explicit scope revision.
 
-Revision 0.3 makes affected-test restructuring and substantive architecture/guide
-rewrites first-class scoped deliverables. Legacy test names/files may change
+Revision 0.3 introduced affected-test restructuring and substantive architecture/guide
+rewrites as first-class scoped deliverables. Legacy test names/files may change
 with a behavioral coverage map and justified retirement; documentation requires
 authored technical content and verified examples, not only a checker run.
 [Maintainer clarification](validation/document-ingestion/test-doc-revision-authorization.json)
 records both decisions and continuation within the original four-review cap.
+Revision 0.4 reconciles that test permission with the unchanged normative annex,
+clarifies approval provenance and the CLI architecture, and aligns the scoped
+test/documentation paths. It adds no product feature or production-source owner.
 
-The package names below are workspace directory names. `friday-cli` is the
+The 17-package inventory is derived from root `pyproject.toml` workspace member
+patterns and each member's `packages/*/pyproject.toml`, not a directory count.
+Ignored cache-only folders without package metadata are not members. The package
+names below are workspace directory names. `friday-cli` is the
 compatibility library; it gains no standalone launcher. No TUI package or TUI
 implementation is added by this plan.
 
 ## Packages with proposed implementation changes
 
 “Source” includes narrowly scoped interfaces, configuration models or wiring.
-Every affected package includes explicit test migration and documentation work.
+Every affected package includes explicit test migration and documentation work;
+the eight implementation rows also name their scoped package README updates.
 Affected test cases/helpers/fixtures may be renamed, split, rewritten, replaced
 or justifiably retired with retained/replacement coverage for every valid
 requirement. This is implementation scope, not permission to edit tests now.
@@ -64,14 +75,14 @@ Exact cases, paths, versions and interfaces bind the final approved directive.
 
 | ID / package | Change types | Planned upgrade and purpose | Compatibility boundary and required evidence |
 | --- | --- | --- | --- |
-| P-01 `friday-core` | Source, public contracts, tests | Add immutable source/block/chunk/options and ingestion-receipt contracts; an injected ingestion-entry interface; and typed embedding-space, prepared-vector/query and explicit-origin/admission contracts. Existing store factories forward that information. This gives Chat, Tools and headless consumers a common interface without making Core own conversion or ingestion policy. | No Docling, tokenizer or new Memory/backend dependency in the neutral contracts. Retain existing lazy adapter imports and unrelated public interfaces. Prove Core factory propagation and headless injection; REM ownership/path table, DI-18/19/29/33, FC-10/12. |
+| P-01 `friday-core` | Source, public contracts, tests, README | Add immutable source/block/chunk/options and ingestion-receipt contracts; an injected ingestion-entry interface; and typed embedding-space, prepared-vector/query and explicit-origin/admission contracts. Existing store factories forward that information. This gives Chat, Tools and headless consumers a common interface without making Core own conversion or ingestion policy. | No Docling, tokenizer or new Memory/backend dependency in the neutral contracts. Retain existing lazy adapter imports and unrelated public interfaces. Prove Core factory propagation and headless injection; REM ownership/path table, DI-18/19/29/33, FC-10/12. |
 | P-02 `friday-tools` | Source, dependency extra, tests, setup documentation | **INGEST:** implement one shared Docling conversion/chunker adapter for PDF/DOCX/XLSX/PPTX, local assets/OCR and non-text Office structural audit, provenance and truthful extraction errors. Add the `document-ingestion` extra with the selected Docling stack and `certifi>=2026.10.19`. Route explicitly injected existing text-storage/cache paths through the common ingestion entry; expose truthful errors from the affected Memory wrappers. Confirmed reset first admits the whole target layout without inference and retains its binding sidecar. **Companion:** subsequently adopt the converter in ReaderFactory and document `smart_read`, including selections and caches. | Bare Tools text operations remain usable without Docling. No new Tools-to-Memory dependency; consume the injected Core interface. No automatic storage activation, general tool rewrite or migration of every direct legacy reader. Test genuine formats, missing dependencies/assets, sandbox denial, cache/storage behavior and minimal imports. INGEST DI-01–25/30/34 and FC-01/07/12/13; companion TD-01–10 is a separate completion claim. |
-| P-03 `friday-commands` | Source, tests | Add pure raw-tail file-argument parsing so quoted paths and descriptions survive; validate scoped `--chunking=document\|recursive\|fixed` and `--chunk-tokens=N` overrides. Supply reusable argument semantics rather than a Chat-only parser. | Keep the package standard-library-only, its root API54 unchanged, and unrelated command parsing unchanged. No filesystem access, converter, Memory or embedding execution here. Prove quoting, descriptions, exact flag handling and malformed-input refusal headlessly; REM C and DI-05/08/09/16. |
-| P-04 `friday-memory` | Source, dependency extra request, tests | Own the common ingestion entry and `document`/512-token defaults, deterministic non-Docling segmentation, recursive/fixed strategies, validated plans and storage receipts. Add durable/ephemeral embedding-space admission and correct query/document roles. Propagate identity through vector/graph storage, recall and versioned recovery. Adapt extraction acknowledgement, owned background tasks, logging, lifecycle counts and the existing MCP/maintenance/backup consumers only where the new guard requires it. Retain the existing Memory-owned multi-agent controller/coordinator/journal as source-unchanged consumers of that space, with visibility and partial-failure proof. Request LLM's qualified counter extra through the existing pinned dependency. | The broadest source impact. Preserve record types, protection/description rules and existing maintenance order, prompts, quarantine, rollback and public receipt semantics. No second split of accepted plans; structured/derived records remain unsplit. No Docling/Tools imports in the new policy, storage-engine replacement, user reset/migration or backup repair project. Require ingestion-to-store positives, same-dimension mismatch refusals, matching reopen, graph/recall, extraction, lifecycle, recovery and all FC-01–14 B/N/R proofs. |
-| P-05 `friday-llm` | Source, model-profile schema, dependency extra, tests | Resolve typed embedding capabilities and model-specific query/document preparation; perform exact local token counting and effective input-limit checks; validate batch correspondence, vector shape and dimensions. Add a narrow `embedding-limits` extra for qualified local counters. These protections apply to existing embedding callers as well as document ingestion. | Keep existing pool/non-pool configuration families and selection/resilience rules. Missing new profile fields use a verified readiness record, not invented limits; unqualified deployments stop affected execution. No silent truncation, model swap or Qwen activation. Plain LLM-only imports remain usable without the extra. Prove B01–B08, limit boundaries, batch order, malformed results and normal/optimized minimal installs; REM E, DI-17/18/21–24/33, FC-10/12/14. |
+| P-03 `friday-commands` | Source, tests, README | Add pure raw-tail file-argument parsing so quoted paths and descriptions survive; validate scoped `--chunking=document\|recursive\|fixed` and `--chunk-tokens=N` overrides. Supply reusable argument semantics rather than a Chat-only parser. | Keep the package standard-library-only, its root API54 unchanged, and unrelated command parsing unchanged. No filesystem access, converter, Memory or embedding execution here. Prove quoting, descriptions, exact flag handling and malformed-input refusal headlessly; REM C and DI-05/08/09/16. |
+| P-04 `friday-memory` | Source, dependency extra request, tests, README | Own the common ingestion entry and `document`/512-token defaults, deterministic non-Docling segmentation, recursive/fixed strategies, validated plans and storage receipts. Add durable/ephemeral embedding-space admission and correct query/document roles. Propagate identity through vector/graph storage, recall and versioned recovery. Adapt extraction acknowledgement, owned background tasks, logging, lifecycle counts and the existing MCP/maintenance/backup consumers only where the new guard requires it. Retain the existing Memory-owned multi-agent controller/coordinator/journal as source-unchanged consumers of that space, with visibility and partial-failure proof. Request LLM's qualified counter extra through the existing pinned dependency. | The broadest source impact. Preserve record types, protection/description rules and existing maintenance order, prompts, quarantine, rollback and public receipt semantics. No second split of accepted plans; structured/derived records remain unsplit. No Docling/Tools imports in the new policy, storage-engine replacement, user reset/migration or backup repair project. Require ingestion-to-store positives, same-dimension mismatch refusals, matching reopen, graph/recall, extraction, lifecycle, recovery and all FC-01–14 B/N/R proofs. |
+| P-05 `friday-llm` | Source, model-profile schema, dependency extra, tests, README | Resolve typed embedding capabilities and model-specific query/document preparation; perform exact local token counting and effective input-limit checks; validate batch correspondence, vector shape and dimensions. Add a narrow `embedding-limits` extra for qualified local counters. These protections apply to existing embedding callers as well as document ingestion. | Keep existing pool/non-pool configuration families and selection/resilience rules. Missing new profile fields use a verified readiness record, not invented limits; unqualified deployments stop affected execution. No silent truncation, model swap or Qwen activation. Plain LLM-only imports remain usable without the extra. Prove B01–B08, limit boundaries, batch order, malformed results and normal/optimized minimal installs; REM E, DI-17/18/21–24/33, FC-10/12/14. |
 | P-06 `friday-chat` | Source, packaged configuration templates, dependency declaration, tests, user documentation | Delegate `/read` and `/ingest` four-format extraction and file arguments; wire common ingestion and render actual options, counts, provenance and errors. Remove Chat's ingestion character slicer. Default Chat requests Tools' new document-ingestion extra. Wire qualified embedding capabilities and typed errors through extraction, metadata inspection, MCP publication and maintenance adapters. Add `ingestion.chunking.strategy/max_tokens`; honor command → YAML → built-in precedence. Existing `smart_file.chunk_size/chunk_overlap` stop governing ingestion. Forward explicit `memory.persist_directory` origin and own conversion admission/cancellation as detailed below. Add strict aggregate recovery-v2 handoff/readers for Memory's identity-bearing snapshots. Update packaged configuration examples and setup instructions. | Chat remains a consumer of shared policy. Preserve unrelated commands, model-pool selection, MCP's exact single-record/receipt lifecycle and reorganization sequencing. Keep `/read` available when Memory admission fails; no URL-ingest route or automatic tool storage is added. Preserve the two dirty repository example YAML files. Require real registry-to-fresh-store tests, existing command regressions, metadata/MCP/error projection and strict v1/v2 recovery proof; REM C/E, DI-01–36, FC-01/02/06/10/13. |
-| P-07 `friday-runtime` | Source/configuration wiring, tests; inherited counter dependencies | Assemble the same public Memory factory and resolved embedding capabilities for pool/non-pool configurations. Preserve explicit `chroma_path`/`runtime_data_root` origin and assemble existing Memory-owned multi-agent consumers under `memory_mode: multi_agent`; preserve visibility and honest partial progress. Defer resourceful startup as required, keep namespace admission before clients/resources, isolate ephemeral kernels and drain owned extraction tasks/sinks during existing shutdown. Expose readiness without an independent legacy-client fallback. | No Runtime-owned chunker, model-selection redesign, new tool activation or runtime engine. Keep independent transcript persistence and existing profile semantics. No Docling dependency for a headless Memory/Runtime installation. Test persistent/ephemeral profiles, two-kernel isolation, failed admission before side effects, shutdown and the actual optional Tools import-discovery path and RuntimeMCPProvider observer witness; FC-01/02/06/09/10/12/13. |
-| P-08 `friday-cli` | Conditional source/type wiring, tests; inherited counter dependencies | Make only the compatibility-container/profile adaptations needed to forward explicit configuration origin and Runtime/Memory readiness while preserving existing constructor and re-export behavior. If the existing delegation already satisfies the contract, the directive records source unchanged with the required tests. | No new executable, independent client, chunking policy or Docling requirement. Keep environment/default/explicit-setting distinctions and Runtime delegation. Prove B06, explicit fresh-store selection with unset/first-run refusal and Runtime-root consequences, TESTING profile origin and minimal installed compatibility; FC-09/10/12 and the round-8 carry-forward. |
+| P-07 `friday-runtime` | Source/configuration wiring, tests, README; inherited counter dependencies | Assemble the same public Memory factory and resolved embedding capabilities for pool/non-pool configurations. Preserve explicit `chroma_path`/`runtime_data_root` origin and assemble existing Memory-owned multi-agent consumers under `memory_mode: multi_agent`; preserve visibility and honest partial progress. Defer resourceful startup as required, keep namespace admission before clients/resources, isolate ephemeral kernels and drain owned extraction tasks/sinks during existing shutdown. Expose readiness without an independent legacy-client fallback. | No Runtime-owned chunker, model-selection redesign, new tool activation or runtime engine. Keep independent transcript persistence and existing profile semantics. No Docling dependency for a headless Memory/Runtime installation. Test persistent/ephemeral profiles, two-kernel isolation, failed admission before side effects, shutdown and the actual optional Tools import-discovery path and RuntimeMCPProvider observer witness; FC-01/02/06/09/10/12/13. |
+| P-08 `friday-cli` | Conditional source/type wiring, tests, README; inherited counter dependencies | Make only the compatibility-container/profile adaptations needed to forward explicit configuration origin and Runtime/Memory readiness while preserving existing constructor and re-export behavior. If the existing delegation already satisfies the contract, the directive records source unchanged with the required tests. | No new executable, independent client, chunking policy or Docling requirement. Keep environment/default/explicit-setting distinctions and Runtime delegation. Prove B06, explicit fresh-store selection with unset/first-run refusal and Runtime-root consequences, TESTING profile origin and minimal installed compatibility; FC-09/10/12 and the round-8 carry-forward. |
 
 ## Packages with indirect impact or compatibility verification only
 
@@ -250,10 +261,12 @@ these deliverables; this planning step rewrites no live guide or architecture.
 
 ## Approval and change control
 
-This is the **single canonical package impact assessment**. The current packet
-links it alongside the frozen REM; the REM/annex/companion are not rewritten to
-add a navigation link or alter their reviewed hashes. This document summarizes
-their scope and exposes unresolved details; it grants no broader edit authority.
+This is the **single canonical package impact assessment**. The packet links it
+alongside the current amended REM. The annex and Tools companion retain their
+reviewed bytes; the REM was amended at Chuck's direction and is included in the
+fresh review. The final directive must bind the amended REM and exact final
+assessment, rather than reuse approval of the earlier REM hash. This document
+summarizes scope and unresolved details; it grants no broader edit authority.
 The assessment has its own [review criteria](validation/document-ingestion/package-impact/review-criteria.md)
 and [four-round council authorization](validation/document-ingestion/package-impact/iteration-authorization.json).
 The current review includes the amended REM and explicit test/documentation

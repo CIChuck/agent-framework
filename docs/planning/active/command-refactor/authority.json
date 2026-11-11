@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Package Impact Assessment v0.3 and amended REM: fresh council round3/4 reviews traceable test restructuring and substantive canonical architecture/guide deliverables, delta first then complete current scope. Two rounds already used; no budget reset. Each seat VERIFIED/no mandatory findings and coverage/overall >=9.5 before moving on. Chuck reviews in parallel; impact satisfaction, Gate-A and exact construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action.",
+    "next_gate": "Package Impact Assessment v0.4 and amended REM: fourth and final council round4/4, correction delta then full PI-01\u201318 scope. Three rounds consumed; no reset, replacement or fifth round. Every seat must independently VERIFIED with no mandatory findings and coverage/overall >=9.5. If unmet, stop for Chuck's guidance. Chuck reviews in parallel; impact satisfaction, Gate-A activation and exact amended construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2086,7 +2086,7 @@
       "outcome": "pending",
       "scope": "Current amended REM/test/documentation requirements; no inherited verdict for changed bytes.",
       "technical_pins": {
-        "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
+        "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "b7ded08d9166da2173399c2b178c33b7176846959d2e08c3e5f3292993393187",
         "docs/planning/active/command-refactor/embedding-compatibility-contract.md": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
         "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998"
       },
@@ -2099,19 +2099,21 @@
       "validation_state": "in_review",
       "record": "validation/document-ingestion/test-doc-revision-authorization.json",
       "record_sha256": "e8daa75be9227e8535a1e81075a24a5afc0923c01559124ee6e169024e955a8b",
-      "rem_sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
-      "assessment_sha256": "151f48c9f3e4b94816545e5d201727cfdde2674aad6a5a30c6607e61d80dc6a3",
+      "rem_sha256": "b7ded08d9166da2173399c2b178c33b7176846959d2e08c3e5f3292993393187",
+      "assessment_sha256": "5cd983cafb072e40f1d4e683458766f45a791e979a02dfaf5a647be5a9da04be",
       "plans": {
-        "test-migration-plan.md": "bff105f42d30a0866b68db1f9ba256e756fd7b80e729e61023d1b5f9c8bf4517",
-        "command-architecture-update-plan.md": "cd8125b2d04f333a99d15c5a4de911275b5017a43ac9ccd7a6192408f018cbb4",
-        "guide-update-handoff.md": "a42aedad38f6c0ee2c9c3a45f57353f5e7289377e10d2dae28286fec95f6bac8"
+        "test-migration-plan.md": "a2b569fbfd76d9eeb8a32aa0b8e97cb100ec9e1398615baf57a458e09c8b74e1",
+        "command-architecture-update-plan.md": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1",
+        "guide-update-handoff.md": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9"
       },
       "prior_review_applies": false,
       "new_council_active": true,
-      "council_round": 3,
+      "council_round": 4,
       "maximum_total_rounds": 4,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Package Impact Assessment v0.3 and amended REM: fresh council round3/4 reviews traceable test restructuring and substantive canonical architecture/guide deliverables, delta first then complete current scope. Two rounds already used; no budget reset. Each seat VERIFIED/no mandatory findings and coverage/overall >=9.5 before moving on. Chuck reviews in parallel; impact satisfaction, Gate-A and exact construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action."
+      "next_gate": "Package Impact Assessment v0.4 and amended REM: fourth and final council round4/4, correction delta then full PI-01\u201318 scope. Three rounds consumed; no reset, replacement or fifth round. Every seat must independently VERIFIED with no mandatory findings and coverage/overall >=9.5. If unmet, stop for Chuck's guidance. Chuck reviews in parallel; impact satisfaction, Gate-A activation and exact amended construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action.",
+      "correction_record": "validation/document-ingestion/package-impact/correction-cycle2.json",
+      "correction_record_sha256": "3616f89e029875860cf532dab6a95a38b210b9ca751e92a3c577ea9252974ee2"
     },
     "council_history": [
       {
@@ -2404,17 +2406,17 @@
     },
     "package_impact_assessment": {
       "document": "package-impact-assessment.md",
-      "version": "0.3-draft",
-      "sha256": "151f48c9f3e4b94816545e5d201727cfdde2674aad6a5a30c6607e61d80dc6a3",
+      "version": "0.4-draft",
+      "sha256": "5cd983cafb072e40f1d4e683458766f45a791e979a02dfaf5a647be5a9da04be",
       "status": "revised_draft_in_review",
-      "prepared_from": "f591989e5f0253be71e113df79a6a8af4e43521c",
+      "prepared_from": "c96ecbea685a2627e033d3a9cb62a2f05b72afb7",
       "technical_pins_unchanged": false,
       "scope_change": "Explicit maintainable test restructuring and substantive canonical architecture/guide deliverables; no additional product feature or production-source owner.",
       "package_rows": 17,
       "proposed_implementation_packages": 8,
       "cli_source_edits_conditional": true,
       "source_unchanged_compatibility_packages": 9,
-      "new_assessment_council_review": "round3_of_original_maximum4_delta_then_full_current_requirements",
+      "new_assessment_council_review": "round4_of_original_maximum4_corrections_then_full_current_requirements",
       "approval_condition": "Chuck Russell must be satisfied with the overall per-package impact before approving the construction directive.",
       "directive_binding": "One canonical referenced appendix; bind approved version, commit and SHA256.",
       "material_impact_change": "Revise assessment and obtain maintainer review before construction.",
@@ -2426,10 +2428,10 @@
         "authorization": "validation/document-ingestion/test-doc-revision-authorization.json",
         "standing_four_round_authorization": "validation/document-ingestion/package-impact/iteration-authorization.json",
         "criteria": "validation/document-ingestion/package-impact/review-criteria.md",
-        "round": 3,
-        "completed_rounds": 2,
+        "round": 4,
+        "completed_rounds": 3,
         "maximum_total_rounds": 4,
-        "remaining_including_current": 2,
+        "remaining_including_current": 1,
         "budget_reset": false,
         "status": "in_review",
         "minimum_each_coverage_and_overall": 9.5,
@@ -2512,6 +2514,14 @@
           "threshold_met_each": true,
           "mandatory_findings": []
         },
+        "applies_to_current_revision": false
+      },
+      {
+        "round": 3,
+        "candidate": "c96ecbea685a2627e033d3a9cb62a2f05b72afb7",
+        "report": "validation/document-ingestion/package-impact/round3/report.md",
+        "reconciliation": "validation/document-ingestion/package-impact/round3/reconciliation.json",
+        "outcome": "CHANGES_REQUESTED",
         "applies_to_current_revision": false
       }
     ],

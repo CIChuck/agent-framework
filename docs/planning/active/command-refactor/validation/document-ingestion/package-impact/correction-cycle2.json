@@ -1,0 +1,45 @@
+{
+  "unit": "INGEST-PACKAGE-IMPACT-001",
+  "revision": "0.4-draft",
+  "date": "2026-11-11",
+  "bounded_authority": "Existing four-total-round planning correction authorization and exact test/documentation clarifications; no scope reset.",
+  "delta_base": "c96ecbea685a2627e033d3a9cb62a2f05b72afb7",
+  "next_round": 4,
+  "maximum_total_rounds": 4,
+  "completed_rounds": 3,
+  "no_reissue_or_fifth_round": true,
+  "corrections": [
+    {
+      "id": "PC-05",
+      "finding": "PI-R3-OPUS-001",
+      "requirement": "Qualify the old conditional REM approval by its exact hash; describe the amended current REM and bind its bytes in the final directive. Annex and companion unchanged."
+    },
+    {
+      "id": "PC-06",
+      "finding": "PI-R3-OPUS-002",
+      "requirement": "Reconcile G1 and the test plan with annex preservation through explicitly incorporated case-level final-directive exceptions; preserve public signatures/classes and unmapped bodies/named FC nodes."
+    },
+    {
+      "id": "PC-07",
+      "finding": "PI-R3-OPUS-003",
+      "requirement": "Name CLI/Chat/Commands registries and CLI arg, actual Chat routing and placeholder CLI modules in canonical architecture and CLI README acceptance."
+    }
+  ],
+  "advisory_dispositions": {
+    "PI-R3-SOL-001": "Replace stale frozen-REM wording.",
+    "OPUS-A01": "Add narrowly affected executive-summary and feature-catalogue claims.",
+    "OPUS-A02": "Name conditional test-only consumer suites and root cohort-metadata test in REM paths.",
+    "OPUS-A03": "Add actual Runtime DI and focused Memory test anchors.",
+    "OPUS-A04": "List scoped README work in each implementation package change-type cell.",
+    "OPUS-A05": "Guide handoff names all eight required package READMEs.",
+    "OPUS-A06": "Count workspace members through pyproject declarations, excluding cache-only folders."
+  },
+  "protocol": "Final review excludes raw routing/history diffs and peer reports. Current technical documents plus pinned current routing snapshots are review inputs. Prior history labels in explicitly allowed current documents are provenance only, not correctness evidence and not an automatic block. Any accidental raw peer report/current peer verdict exposure is disclosed and stops independence qualification.",
+  "unchanged_boundaries": [
+    "17 packages and production-source ownership",
+    "annex and Tools companion bytes",
+    "API54 and retained public contracts",
+    "Gate-A and construction approvals pending",
+    "no product/test/live-guide implementation or data operations"
+  ]
+}

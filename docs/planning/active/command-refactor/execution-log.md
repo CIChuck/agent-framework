@@ -3126,3 +3126,29 @@ their exact bytes. Fresh round 3 reviews amendment delta then complete current
 requirements; maximum four total rounds is unchanged. Chuck reviews in parallel.
 No product/tests/live-guide implementation, installs, model/store operations,
 Gate-A, acceptance or delivery is authorized by the planning amendment.
+
+
+## Package-impact round3 reconciliation and final correction — 2026-11-11
+
+[Round3 reconciliation](validation/document-ingestion/package-impact/round3/report.md)
+preserves all terminal reports: Sol VERIFIED, Astra BLOCKED by contradictory
+review-input/display instructions, and Opus CHANGES_REQUESTED with three mandatory
+document findings. No advisory score waives the block or findings. The controller
+accepts responsibility for the brief inconsistency and corrects the next review
+inputs prospectively; the blocked seat is not relabelled.
+
+[Bounded correction](validation/document-ingestion/package-impact/correction-cycle2.json)
+qualifies the original REM approval by its old hash, reconciles the annex's test
+preservation rule through named case-level final-directive exceptions, and names
+all three command registries plus CLI placeholders in the architecture plan.
+Related guide/README/test-path/inventory advisories are incorporated. Assessment
+v0.4 and amended REM/plans remain planning requirements; annex and companion,
+production source, tests, live guides, package metadata and user state are unchanged.
+
+Round4 is the fourth and final full council within the original cap. It reviews
+the correction delta then the full current PI-01–18 scope. Every seat must qualify
+independently at coverage/overall >=9.5 with no mandatory finding. Corrected
+inputs exclude raw peer reports and historical routing diffs; past provenance
+labels supply no correctness credit. If unmet, stop for Chuck's guidance without
+a replacement seat, fifth round or automatic implementation. Exact amended
+assessment/REM approval, impact satisfaction, Gate-A and construction remain pending.
