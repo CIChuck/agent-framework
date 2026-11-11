@@ -1,24 +1,25 @@
-# INGEST package impact approved — Gate-A plan prepared for review
+# INGEST readiness harness instructions — prepared for review
 
-Execution phase: planning; validation state: in_review for the new Gate-A plan.
-The exact assessment v0.6 is [approved](approval/ingest-package-impact.md);
-[its round6 readiness verification](validation/document-ingestion/package-impact/current-verified-report.md)
-remains intact and supplies no executed dependency/model/format proof.
+Execution phase: planning; validation state: in_review. The exact assessment v0.6
+is [approved](approval/ingest-package-impact.md); its [round6 result](validation/document-ingestion/package-impact/current-verified-report.md)
+retains only its pinned document/source-feasibility meaning.
 
-The [Gate-A plan](validation/document-ingestion/gate-a/readiness-plan.md),
+The [Gate-A plan v0.3](validation/document-ingestion/gate-a/readiness-plan.md),
 [effects envelope](validation/document-ingestion/gate-a/effects-envelope.json),
-[metadata observations](validation/document-ingestion/gate-a/source-observations.json)
-and [consumer worklist](validation/document-ingestion/gate-a/consumer-readiness-matrix.md)
-are prepared for Chuck's review as v0.2 with the [manual harness/isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md).
-All test code, configuration, input and output must be isolated under `.friday_test/`;
-production LM Studio is excluded and a separate test service is required. These
-requirements are recorded, not implemented. No resolver, install, model transfer or inference
-has run; no new council is active or authorized. The proposal qualifies exact
-Docling/OCR/Certifi/counter inputs in a private target with numeric limits.
-Unbound served-model/counter facts stop the dependent model stage; Qwen remains
-illustrative. Reviewed contracts, existing scope and unrelated state are preserved.
+[isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md)
+and [draft harness directive](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
+are prepared. All versioned code/probes/generators/config/tests go under
+`tests/readiness/ingest/`; runtime files go under `.friday_test/`. Explicit offline
+selectors are required because root pytest discovery excludes `tests/`.
 
-**Next gate:** Exact Package Impact Assessment v0.6 remains approved. Gate-A readiness plan v0.2 now requires a manually runnable, production-isolated harness with code/config/inputs/outputs under .friday_test and an independent LM Studio test process/endpoint; production files, stores, environment and LM Studio are excluded. Requirements are recorded, not implemented or activated. Review and activate exact stages/run root/manifests/budgets before effects; A3 stays blocked until isolated test-service/model/counter facts are bound. No new council or construction authority. Measured readiness will finalize the impact appendix and exact construction directive for separate approval.
+Chuck permits reuse of the existing LM Studio endpoint after production shutdown,
+server restart and test-log separation. No independent server or served-weight
+copy is required. The operator must confirm the actual test window/model facts;
+that confirmation has not been supplied. No code/test environment has been built,
+no package/model effects activated and no new council authorized. Production
+application/configuration/stores and unrelated dirty state remain unchanged.
+
+**Next gate:** Exact Package Impact Assessment v0.6 remains approved. Gate-A plan v0.3 and draft CD-CMD-INGEST-GATE-A-001 place versioned harness/probe/generator/config/test code in tests/readiness/ingest/ and generated state in .friday_test/. Review the bounded harness directive before construction; no code/environment has been built or effects activated. Existing LM Studio endpoint may be reused only after operator-confirmed production shutdown, server restart and separated test logs; that window/model/counter evidence is not yet supplied. No independent server is required and no new council is authorized. Production application/configuration/stores stay unchanged. Measured readiness will finalize the later product directive.
 
 ## Separate MAINT closeout and historical checkpoints
 

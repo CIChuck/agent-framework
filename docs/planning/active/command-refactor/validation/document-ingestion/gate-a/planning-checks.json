@@ -1,19 +1,24 @@
 {
   "outcome": "PASS",
-  "scope": "Planning clarification only; isolation requirements not implemented or runtime-tested.",
-  "baseline_commit": "b2bfbe2c7471808bb7272c61bd71ea9a441eede8",
-  "logical_before_status": "c04e2a4a0dc837fca9936e12f4e4fd909d33147ccfe6415c1c6239708b7ee1d4",
+  "scope": "Planning reconciliation and construction-directive draft only. No executable harness or real readiness execution.",
+  "baseline_commit": "72c5d736a7b938b499f2eb5f933d0940183fae42",
+  "logical_before_status": "d44e68552a151b0829b1166700aaf553a543ec1ab90f5ed12bd62a0f6598a598",
   "protected_files_preserved": 17755,
-  "reviewed_document_pins_preserved": 9,
-  "production_local_metadata_records_preserved": 9,
-  "test_root_created": false,
-  "history_append_only_and_historical_gate_tails": "PASS",
-  "current_navigation_authority_and_readiness_hashes": "PASS",
-  "readiness_version": "0.2-draft",
+  "frozen_reviewed_document_pins_preserved": 9,
+  "local_metadata_records_preserved": 9,
+  "directive_parent_pins_verified": 14,
+  "harness_acceptance_criteria": 12,
+  "historical_gate_tails_and_append_only_log": "PASS",
+  "current_navigation_and_authority_hashes": "PASS",
+  "readiness_version": "0.3-draft",
+  "proposed_code_root": "tests/readiness/ingest/",
+  "runtime_root": ".friday_test/",
+  "root_test_discovery": "Harness excluded; explicit selectors required.",
+  "shared_endpoint_permission": "Conditional on operator-confirmed production shutdown/server restart/log separation and exact model/window/input facts.",
+  "window_confirmed": false,
+  "harness_construction_approval": "NOT_GRANTED",
+  "harness_implemented": false,
   "effects_activation": "NOT_GRANTED",
-  "production_lm_studio_endpoint_allowed": false,
-  "independent_test_process_required": true,
-  "manual_harness_status": "REQUIRED_NOT_IMPLEMENTED",
   "independent_review": "not requested or claimed",
   "administrative_checks": [
     {
@@ -62,7 +67,7 @@
         "scripts/check-documentation-lifecycle.py"
       ],
       "exit": 0,
-      "result": "1055 Markdown files valid"
+      "result": "1056 Markdown files valid"
     },
     {
       "argv": [
@@ -77,7 +82,7 @@
         "scripts/check-package-metadata.py"
       ],
       "exit": 0,
-      "result": "18 package manifests valid"
+      "result": "18 manifests valid"
     },
     {
       "argv": [
@@ -88,19 +93,18 @@
         "docs/planning"
       ],
       "exit": 0,
-      "result": "Clean; staged diff is checked again before commit"
+      "result": "Clean; staged diff checked again before commit"
     }
   ],
   "execution_not_performed": [
-    "harness construction",
-    "test root/environment/config/input generation",
+    "harness code/config/test generation",
+    "test-root creation",
     "dependency resolution/install",
     "model or asset transfer",
     "LM Studio request/process/config change",
-    "document conversion",
-    "embedding inference",
-    "Memory/Chroma operation",
-    "product test execution",
+    "document conversion or inference",
+    "Memory/Chroma/production store operation",
+    "product/harness test execution",
     "new council",
     "push"
   ]

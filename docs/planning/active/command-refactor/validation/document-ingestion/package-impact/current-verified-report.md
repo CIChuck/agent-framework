@@ -14,9 +14,10 @@ Read the current [assessment](../../../package-impact-assessment.md),
 labels in those contracts do not supersede this later controller result; no
 reviewed content was altered at closeout.
 
-Controller status update: Chuck [approved the exact v0.6 impact](../../../approval/ingest-package-impact.md).
-The new [Gate-A plan v0.2](../gate-a/readiness-plan.md), including
-[manual execution and production isolation](../gate-a/isolation-requirements.md), is prepared for review and
-scoped activation; its contents are not covered by the old council verdict.
-The formal reports and reviewed contract bytes remain unchanged. No
-implementation or dependency/model/store effects are authorized.
+Controller status update: Chuck [approved exact v0.6 impact](../../../approval/ingest-package-impact.md).
+The [Gate-A plan v0.3](../gate-a/readiness-plan.md) and [draft harness directive](../../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
+are prepared for review. Code is scoped to `tests/readiness/ingest/`, runtime
+state to `.friday_test/`, with operator-confirmed shared-LM-Studio testing while
+production is offline. Those new documents are not covered by the old council
+verdict. Formal reports/reviewed bytes remain unchanged; no construction or
+execution effects have been activated.

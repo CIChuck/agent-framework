@@ -1,6 +1,6 @@
 # INGEST-001 — Gate-A dependency and capability readiness plan
 
-Version: **0.2 — isolated manual harness requirements; prepared for maintainer review**, 2026-11-11.
+Version: **0.3 — shared LM Studio test window; prepared for maintainer review**, 2026-11-11.
 Execution status: **NOT ACTIVATED**. Public metadata/source research has been
 performed; dependency resolution, artifact installation, model transfer,
 conversion, inference and store operations have not.
@@ -30,6 +30,9 @@ metadata observations, not downloaded-artifact or compatibility evidence.
 [The consumer matrix](consumer-readiness-matrix.md) binds the final inventory work.
 The maintainer's [production-isolation and manual-harness requirements](isolation-requirements.md)
 control test code, configuration, inputs, outputs and local model-service use.
+The proposed [harness construction directive](../../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
+places all versioned harness/probe/generator/config/test code under
+`tests/readiness/ingest/`. It is a draft for review, not construction approval.
 
 ## Selected candidates to investigate
 
@@ -65,7 +68,8 @@ approved integration testing; A0–A4 do not create or write a Memory store.
 
 All executable test code and generated configuration run from that isolated copy
 and target. Working packages/tests, `.venv`, lock/metadata, user YAML/`.env`,
-`.friday/`, `.friday-old/`, exports and production services remain unchanged.
+`.friday/`, `.friday-old/` and exports remain unchanged. The only live-service
+exception is the operator-managed LM Studio test window below; no production application/store access is permitted.
 No live-checkout/working-environment imports, application defaults, ambient
 credentials or production configuration may enter the test process. Set all
 UV/XDG/Hugging Face/Transformers/Torch/temp/log paths explicitly under the run
@@ -91,17 +95,37 @@ the originals; no directory scanning, in-place conversion or external upload.
 Bind source hashes and expected passages/tables/questions. Current inputs remain
 unselected. The same limits apply to both classes.
 
-Embedding tests must use a separately owned LM Studio test process/server and
-private config/log/cache paths. The model identity may match production, but no
-requests, load/unload, settings changes or process actions may target production
-LM Studio. A different port alone is insufficient. If an independent instance
-cannot be established, A3 stays blocked. Shared-host resource contention is
-bounded, not claimed eliminated. The full [isolation requirements](isolation-requirements.md)
-also define manual commands, preflight, environment and boundary-failure evidence.
+### Shared LM Studio test window
 
-No persistent Memory namespace, backup/restore, maintenance run, provider Finance
-test, model swap/load/unload or credential use is authorized by this plan. A3
-remains locked until its independent endpoint/model facts and effects are bound.
+Chuck explicitly permits reuse of the existing LM Studio endpoint after shutting
+down the production application and restarting the server for testing. This
+supersedes v0.2's independent-process/endpoint requirement. The harness neither
+stops/restarts services nor edits production application or model configuration.
+The served model may remain at its existing location; no test copy of served
+weights is required merely to share this endpoint. Docling/OCR/tokenizer assets,
+test code/configuration, inputs and outputs remain isolated under `.friday_test/`.
+
+Before A3, bind a run-specific operator receipt confirming production is stopped,
+the server restart is complete, the exact endpoint/model and test log separation
+are identified, and the bounded test window is active. Bind confirmation time,
+expiry, run/config/input/asset hashes and the permitted requests/tokens. The log
+mechanism must demonstrably keep test logs separate from production logs; do not
+assume LM Studio offers a specific configuration switch. Missing confirmation,
+unknown model/counter facts or unproven log separation block A3. No receipt exists
+and no shutdown/restart is inferred from the instruction to perform them.
+
+During that window, only manifested embedding/capability requests to the exact
+local endpoint are allowed. No management API, model load/unload/swap, other
+provider, production store or background maintenance is authorized. Expired or
+revoked confirmation prevents new batches. Production must stay offline for the
+whole embedding stage. The operator owns service startup/shutdown and resumption
+of production; the harness cannot perform them automatically.
+
+Offline stages do not depend on a model window. Shared-host CPU/RAM/disk effects
+remain bounded, not claimed eliminated. Full [isolation requirements](isolation-requirements.md)
+define manual commands, preflight, environment and boundary-failure evidence.
+A0–A4 still make no Memory store writes; later integration stores remain reserved
+fresh test paths. No package/model/service effects are activated by this update.
 
 ### Proposed hard budgets
 
@@ -253,12 +277,12 @@ of the user's selected service or served weights. The existing Nomic tokenizer
 repository snapshot is merely a candidate; it must match the actual deployment.
 Read no dirty YAML, global model cache or personal model file by inference.
 
-Before any inference, activation must bind: independent LM Studio test process/server,
-private config/log/cache paths, dedicated local endpoint and service selection; served artifact/revision and digest; tokenizer data/digest; supported
+Before any inference, activation must bind: the operator-confirmed shared LM Studio
+test window, segregated log evidence, exact local endpoint and service selection; served artifact/revision and digest; tokenizer data/digest; supported
 capacity and returned dimensions; query/document/special-token preparation;
 normalization; and an explicit call/input-manifest allowance. The plan currently leaves
-those operator facts unbound, so A3 is blocked. Production LM Studio is excluded;
-sharing its endpoint is not isolation. No model load/unload, existing-store
+those operator facts unbound, so A3 is blocked. Endpoint reuse is permitted only
+in the confirmed production-offline window. No model load/unload, existing-store
 access or background maintenance is permitted. Qwen 4B remains illustrative.
 
 Qualify omitted-new-field baseline fixtures B01–B08, preserving actual pool/default/
@@ -309,7 +333,8 @@ started; no working CLI command is advertised before implementation.
 Activation records its exact version/hash, permitted stages, fresh run root,
 manifest reviewer and limits. A0 must precede any artifact-stage promotion;
 A1/A2 require exact promoted artifact/license manifests. A3 additionally needs
-operator test-deployment facts and an explicit call allowance. Unknown facts stop only
+operator model facts, the production-offline/restart/log-separation receipt and
+an explicit call allowance. Unknown facts stop only
 the dependent stage; they do not become invented defaults or an overall pass.
 
 No council, package installation, source/test/guide implementation or model call

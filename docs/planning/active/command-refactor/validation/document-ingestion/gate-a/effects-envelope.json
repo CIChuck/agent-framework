@@ -1,6 +1,6 @@
 {
   "unit": "REM-CMD-INGEST-001-GATE-A",
-  "version": "0.2-draft",
+  "version": "0.3-draft",
   "status": "NOT_ACTIVATED",
   "scope": "Isolated manually executable upstream dependency/converter/counter feasibility and source-linked final-directive inventory. All runtime code/config/input/output test-owned; no production mutation or product implementation.",
   "assessment_approval": {
@@ -121,8 +121,8 @@
     {
       "id": "A3",
       "name": "embedding qualification",
-      "network": "none until independently owned local test endpoint/process/private configuration/served-artifact/counter/role record is bound; production LM Studio excluded",
-      "effects": "At most stated local test embedding calls for manifested inputs after explicit isolated-endpoint activation. No production endpoint, remote/paid provider, model download/swap/load/unload or persistent store access."
+      "network": "Only exact local LM Studio endpoint after the bound production-offline/restart/log-separation receipt and model/counter facts pass; none otherwise.",
+      "effects": "At most stated embedding/capability calls for manifested test inputs in the confirmed window. No remote/paid provider, server/process management, model download/swap/load/unload or persistent store access."
     },
     {
       "id": "A4",
@@ -137,13 +137,12 @@
     "effective_limits_and_dimensions": null,
     "selected_baseline_service_configuration": null,
     "replacement_model": null,
-    "status": "A3 blocked until independent test-service/process/config/model/counter facts are bound. Production endpoint excluded; Qwen remains illustrative.",
-    "test_service_process_identity": null,
-    "private_service_config_log_cache_paths": null,
-    "isolated_test_model_asset_manifest": null
+    "status": "A3 blocked until confirmed production-offline/restart/log-separation window and exact endpoint/model/counter/input facts are bound. Existing local endpoint may be reused. Qwen remains illustrative.",
+    "operator_window_receipt": null,
+    "test_log_separation_evidence": null
   },
   "excluded_effects": [
-    "Production LM Studio requests/process/settings changes and reuse of production configuration, credentials, caches or stores",
+    "Model requests outside confirmed shared-LM-Studio test window; harness service/process/settings management or production application/config/store access",
     "Working .venv/uv.lock/pyproject or package source/test modification",
     "Dirty YAML, personal stores, .friday-old, exports or global model caches",
     "Third-party source distributions/build scripts, executable installers, new runtime services",
@@ -157,15 +156,15 @@
     "maintainer_approval_of_this_plan": "PENDING",
     "activation_id_and_exact_run_root": "REQUIRED_BEFORE_EXECUTION",
     "manifest_review_record": "REQUIRED_BEFORE_EACH_STAGE_PROMOTION",
-    "operator_local_model_record": "REQUIRED_BEFORE_A3",
+    "operator_local_model_record": "REQUIRED_BEFORE_A3, including confirmed production-offline/restart/log-separation window",
     "no_automatic_stage_promotion_on_missing_facts": true,
-    "boundary_preflight": "REQUIRED_BEFORE_EFFECTS; explicit test paths/process/endpoint, origins and negative controls"
+    "boundary_preflight": "REQUIRED_BEFORE_EFFECTS; explicit test paths/origins and negative controls; model window checked before every batch."
   },
   "isolation": {
     "requirements": "isolation-requirements.md",
     "status": "REQUIRED_NOT_IMPLEMENTED",
-    "existing_production_endpoint_allowed": false,
-    "test_lm_studio_process_and_config_required": true,
+    "existing_production_endpoint_allowed": true,
+    "test_lm_studio_process_and_config_required": false,
     "all_probe_writes_within_run_root": true,
     "shared_asset_publish": "Only promoted A2 publisher; new manifest directory from verified run-local staging; never overwrite.",
     "working_checkout_or_venv_imports_allowed": false,
@@ -174,19 +173,35 @@
     "test_workspace_git_ignore": "Required in separately approved harness scope before generation; not changed now.",
     "production_containment_claim": "Demonstrate with negative controls and protected-state checks; Python audit is not an OS sandbox.",
     "shared_host_resource_contention": "Limits apply; zero performance impact is not claimed.",
-    "shared_input_publish": "Only explicit fixture/supplied-input preparation; new manifest-named directory from run-local staging; never overwrite originals or existing inputs."
+    "shared_input_publish": "Only explicit fixture/supplied-input preparation; new manifest-named directory from run-local staging; never overwrite originals or existing inputs.",
+    "endpoint_reuse_condition": "Only confirmed operator-managed test window: production stopped, server restarted, test logs separated, exact endpoint/model/input/config/manifest hashes and expiry bound.",
+    "shared_lm_studio_exception": "Existing service/model assets may be reused under the window; no harness service management or model-directory mutation. Working application/env/config/store isolation remains mandatory."
   },
   "manual_operation": {
     "full_and_per_stage_runs": true,
     "offline_extraction_chunking_mode": true,
     "no_effects_preflight": true,
-    "cli_status": "NOT_IMPLEMENTED; publish actual commands only after implementation"
+    "cli_status": "NOT_IMPLEMENTED; publish actual commands only after implementation",
+    "versioned_code_root": "tests/readiness/ingest/"
   },
   "input_policy": {
     "baseline": "Hash-bound generated fixtures with known expected content.",
     "supplemental": "Explicitly supplied input manifest only; read-only copies, no in-place conversion/scanning/upload.",
     "originals": "Unchanged; content stays private unless a sanitized report is separately selected.",
-    "embedding": "Only explicitly manifested test inputs and independently activated local test service.",
+    "embedding": "Only explicitly manifested test inputs through the reused local endpoint inside the confirmed production-offline/restart/log-separation window.",
     "selection": "NONE_SELECTED"
+  },
+  "versioned_harness_root": "tests/readiness/ingest/",
+  "model_window_policy": {
+    "status": "NOT_CONFIRMED",
+    "receipt_per_run": true,
+    "operator_production_shutdown_required": true,
+    "operator_server_restart_required": true,
+    "separate_test_logs_required": true,
+    "exact_model_config_input_manifest_binding": true,
+    "expiry_and_revocation_required": true,
+    "check_before_each_batch": true,
+    "harness_service_management_allowed": false,
+    "production_resumption": "Operator responsibility; never automatic."
   }
 }

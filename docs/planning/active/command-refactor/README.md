@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. Exact INGEST package impact v0.6 is approved;
-Gate-A readiness plan v0.2 with manual-harness/production-isolation requirements
+Gate-A readiness plan v0.3 and the bounded manual-harness construction draft
 is prepared for review. Execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
@@ -42,21 +42,22 @@ test/architecture/guide contracts retain their reviewed bytes.
 [Round6 council](validation/document-ingestion/package-impact/current-verified-report.md)
 remains VERIFIED for that document/source-feasibility scope, not execution.
 
-The [new Gate-A plan](validation/document-ingestion/gate-a/readiness-plan.md),
-[effects envelope](validation/document-ingestion/gate-a/effects-envelope.json) and
-[consumer worklist](validation/document-ingestion/gate-a/consumer-readiness-matrix.md)
-are prepared locally for Chuck's review as v0.2. The [manual harness and isolation
-requirements](validation/document-ingestion/gate-a/isolation-requirements.md) keep
-all execution code/config/input/output under `.friday_test/` and require an
-independent LM Studio test service. Production code, configuration, installation,
-stores and model service remain untouched. The harness has not been implemented.
-Execution phase: planning; validation
-state: in_review for this new plan. Public metadata/source research only has run.
-Explicit scoped activation precedes resolution/install/conversion/model effects;
-exact local deployment inputs precede model qualification. No new council, product
-implementation, live-guide rewrite, user-store mutation or delivery is authorized.
-Measured readiness will bind the final appendix and construction directive for
-separate approval. Prior assessment approval persists for unchanged exact bytes.
+The [Gate-A plan v0.3](validation/document-ingestion/gate-a/readiness-plan.md),
+[effects envelope](validation/document-ingestion/gate-a/effects-envelope.json),
+[isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md)
+and [draft harness directive](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
+are prepared for Chuck's review. Versioned harness/probe/generator/config/test
+code belongs under `tests/readiness/ingest/`; generated environments, inputs,
+assets and results belong under `.friday_test/`. Production application files,
+configuration and stores remain untouched.
+
+The existing LM Studio endpoint may be reused only while production is stopped,
+after operator-confirmed server restart and separated test logs. This supersedes
+the earlier independent-server requirement. Actual window/model evidence is still
+pending. Execution phase: planning; validation state: in_review. No harness or
+test environment has been built and no effects/council/construction activated.
+Measured readiness will bind the final product directive for separate approval.
+Prior assessment approval persists for unchanged exact bytes.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

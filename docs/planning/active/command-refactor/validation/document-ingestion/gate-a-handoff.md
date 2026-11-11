@@ -1,44 +1,40 @@
-# INGEST-001 — approved impact and concrete Gate-A handoff
+# INGEST-001 — approved impact and readiness harness handoff
 
-Chuck [approved the exact v0.6 package impact](../../approval/ingest-package-impact.md).
-[Round6](package-impact/current-verified-report.md) remains VERIFIED for its
-pinned documents/source feasibility. Those bytes are unchanged.
+Chuck [approved exact package impact v0.6](../../approval/ingest-package-impact.md).
+[Round6](package-impact/current-verified-report.md) remains VERIFIED only for its
+unchanged pinned documents/source feasibility.
 
-The next prepared deliverables are:
+Prepared for review, not construction/effects activation:
 
-- [Readiness plan v0.2](gate-a/readiness-plan.md)
-- [Effects envelope and activation prerequisites](gate-a/effects-envelope.json)
-- [Exact public candidate metadata/URLs](gate-a/source-observations.json)
-- [Initial source-linked consumer worklist](gate-a/consumer-readiness-matrix.md)
-- [Manual execution and production isolation](gate-a/isolation-requirements.md)
+- [Gate-A plan v0.3](gate-a/readiness-plan.md) and [effects envelope](gate-a/effects-envelope.json).
+- [Manual harness and isolation requirements](gate-a/isolation-requirements.md).
+- [Draft CD-CMD-INGEST-GATE-A-001](../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md).
+- [Exact public candidate observations](gate-a/source-observations.json) and [consumer worklist](gate-a/consumer-readiness-matrix.md).
 
-Status: v0.2 prepared for Chuck's review; **NOT ACTIVATED**.
-All test code/config/input/output belongs under `.friday_test/`; working packages,
-`.venv`, production configuration and stores are excluded. An independent LM
-Studio test process/server with private settings and state is required; the
-production endpoint is not available to tests. Manual full/stage/offline/preflight
-operation and generated plus explicitly supplied document sets are requirements,
-not an implemented harness. The existing v0.1 temporary-root proposal is superseded. Current work records
-approval and drafts a concrete plan. Only public metadata/source research has
-run; no resolution, installation, model assets, conversion, provider or store
-operation has executed. There is no new council authorization or active agent.
+All versioned harness code, probes, fixture generators, test configuration and
+harness tests belong under `tests/readiness/ingest/`. Generated installations,
+document copies/assets, caches/logs and results belong under `.friday_test/`.
+No harness source/test directory or runtime environment has been created yet.
+The directive supplies explicit test selectors; root pytest excludes `tests/`.
 
-Activation binds exact plan/envelope hashes, permitted stages, absent private run
-root, target, budgets and manifest reviewer. Exact manifest promotion precedes
-artifact effects. Model-stage inputs remain unbound; they must be explicit before
-any manifested local test call. Qwen remains illustrative. Unknown facts or resource/
-license/host/scope conflicts stop the dependent stage; they do not become defaults.
+Chuck permits the existing local LM Studio endpoint to be reused after production
+is shut down, the server restarted and test logs separated. A separate server
+and copied served weights are no longer required. The operator owns shutdown,
+restart and later production resumption. No model call is permitted until the
+run-specific window, endpoint/model/counter facts, manifests, budgets and actual
+log-separation mechanism are bound. Reachability is not shutdown/restart evidence.
+No such window is currently confirmed; A3 remains unactivated.
 
-The plan incorporates the original OPUS-R4-A01–06 details by reference in the
-reviewed assessment and [nonblocking round6 carry-forward](package-impact/round6/readiness-carry-forward.md).
-Final source/caller/oracle paths, direct clients and B/N/R proof must bind the
-construction directive. Preserve the [test migration](../../test-migration-plan.md),
-[canonical architecture](../../command-architecture-update-plan.md) and
-[substantive guide](../../guide-update-handoff.md) requirements. Exact affected
-paths and any post-readiness material impact change return for review.
+The next gate is review of the exact bounded harness directive before code, then
+separately recorded stage activation and manifest promotion before dependencies,
+conversion or model effects. Public metadata/source research is the only completed
+upstream work. No new council, production mutation, store operation or delivery
+is authorized. The operator's server-restart permission does not grant the harness
+service-management rights.
 
-After measured readiness, finalize the single impact appendix and exact
-construction directive for separate approval before product code. Approval of
-unchanged assessment bytes need not be requested again; changed bytes require
-a new exact-version binding. Gate-A activation, construction, human acceptance
-and delivery remain separate from the approved package-impact condition.
+Preserve the [test migration](../../test-migration-plan.md), [canonical architecture](../../command-architecture-update-plan.md)
+and [guide](../../guide-update-handoff.md) requirements for later product work.
+The [round6 carry-forward](package-impact/round6/readiness-carry-forward.md)
+remains a readiness input. Measured readiness will finalize the impact appendix
+and exact product construction directive. Unchanged assessment bytes need no
+repeat approval; material changed impact returns for exact-version review.

@@ -3298,3 +3298,35 @@ No harness/environment/test directory has been built, no supplied documents
 selected, no package/model installed, no inference or store call made and no
 new council launched. The exact approved assessment and other reviewed inputs
 remain unchanged; construction and bounded effects retain their separate gates.
+
+
+## Tests-scoped harness draft and shared LM Studio window — 2026-11-11
+
+Chuck permits reuse of the existing LM Studio endpoint while production is shut
+down, after an operator-managed server restart and separated test logs. The
+agent obeyed the intervening stop and made no service/document changes until
+resumption. The latest proceed directs bounded preparation; the subsequent
+location instruction puts this unit's versioned code under the tests subfolder.
+
+[Gate-A plan v0.3](validation/document-ingestion/gate-a/readiness-plan.md),
+[the envelope](validation/document-ingestion/gate-a/effects-envelope.json) and
+[isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md)
+now record the controlled shared-endpoint window. This supersedes the earlier
+independent-process/endpoint and copied served-weight requirement, not application
+configuration/store isolation. Run-specific confirmation binds production shutdown,
+restart, actual log separation, model/counter facts, manifests, budgets and expiry;
+no confirmation or service state is inferred. The harness may not manage services.
+
+Prepared [CD-CMD-INGEST-GATE-A-001](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
+for exact-version review. Proposed code/config/probes/generators/tests live in
+`tests/readiness/ingest/`; all runtime environments/assets/input copies/results
+live in `.friday_test/`. The directive covers manual full/stage/offline/preflight
+operations, genuine controlled fixtures plus explicit supplied documents, negative
+isolation/window controls, explicit test selectors and normal/optimized evidence.
+Root test discovery excludes `tests/`, so unrun harness tests earn no root credit.
+
+This is a documentation-only planning checkpoint. No harness or test directory,
+dependency/model installation, document conversion, inference, Chroma/Memory
+operation, production process/configuration change, new council or push occurred.
+The exact approved impact and all other frozen reviewed contracts are preserved;
+product construction, stage effects and model-window activation remain separate.

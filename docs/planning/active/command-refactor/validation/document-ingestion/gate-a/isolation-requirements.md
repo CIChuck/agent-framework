@@ -1,6 +1,6 @@
 # INGEST-001 — manual readiness harness and production isolation
 
-Version: **0.1 — requirements recorded, not implemented**, 2026-11-11.
+Version: **0.2 — shared endpoint exception and test-code location; not implemented**, 2026-11-11.
 The [readiness plan](readiness-plan.md) and [effects envelope](effects-envelope.json)
 bind these requirements. No harness, environment, model service or store has been
 created or activated by this document.
@@ -12,19 +12,27 @@ Chuck requires:
 > One thing I want to ensure is that there will be no changes made to the production environment during this readiness test construction unit of work. All code, configuration, test input, and test output should be isolated from the production environment.
 
 This follows the manual-execution requirement and agreement to a project-local
-`.friday_test/` workspace. These clarify the readiness scope; they do not approve
-product construction, effects execution, new dependencies or a council.
+`.friday_test/` workspace. Chuck subsequently permits the existing LM Studio
+endpoint to be reused after production is shut down and the server restarted,
+with test logs separated. He directs versioned code for this unit into the `tests/`
+subfolder. The latest `proceed` authorizes this planning reconciliation and the
+bounded harness instructions. It does not activate inference or establish that
+shutdown/restart has happened; product construction and councils remain separate.
 
 ## Production boundary
 
-Treat the working application installation and its live services as production,
-including local LM Studio. Do not modify or run the working package source/test
-trees, `.venv`, `pyproject.toml`, `uv.lock`, user YAMLs, `.env`, `.friday/`,
+Treat the working application installation and its stores as production. The
+shared LM Studio test-window exception below is explicit; it does not extend to
+application files, stores or other services. Do not modify or run the working
+package source/test trees, `.venv`, `pyproject.toml`, `uv.lock`, user YAMLs, `.env`, `.friday/`,
 `.friday-old/`, exports, application databases, graph/WAL/recovery state, model
-configuration, model caches or existing background processes.
+configuration, model caches or existing background processes. Operator-managed
+LM Studio restart and transient inference effects during the confirmed test window
+are the bounded exception; the harness may not manage that service.
 
-Versioned readiness-only harness sources, fixture generators and manifests may
-be added only within the exact future harness scope. They must remain separate
+Versioned readiness-only harness, probes, fixture generators, sample test
+configuration, manifests and harness tests belong under `tests/readiness/ingest/`,
+as listed by the proposed construction directive. They must remain separate
 from production packages and execute from a frozen copy in the test run root.
 Source export and existing-input reads are explicit, read-only preparation
 operations; they never authorize modifying their originals. Production modules
@@ -84,30 +92,41 @@ only after manifest/hash verification; never silently reuse a Chroma test store.
 Cleanup may target only identified test-owned state and is never automatic
 cleanup, reset or migration of production data.
 
-## LM Studio separation
+## LM Studio reuse while production is offline
 
-The same model identity may be qualified in a test service. The production
-LM Studio endpoint, process and settings are excluded. A separate port alone
-does not establish isolation: record an independently owned test process or
-server, its endpoint, private data/config/log/cache paths and exact model facts.
-No readiness probe may start, stop, reload, switch models in or send requests to
-the production service. Reusing it would change its queue, logs and potentially
-caches even if its configuration remained unchanged.
+The maintainer permits the existing endpoint and served model to be reused. A
+separate LM Studio process/port and copied served-model weights are not required.
+This supersedes the earlier independent-service restriction only for the shared
+model service. Production application state is never part of the test workspace.
 
-Obtain any model assets for the test instance only through the explicit promoted
-manifest and activation. Never scan, modify or copy a personal model directory
-by inference. Explicitly supplied model files may be copied read-only into the test asset root
-only after their source paths/digests and copy allowance are bound. Probes and the
-test service use those isolated copies, not production model files; caches and
-generated state also belong to the test instance. No model download or test-service startup
-is authorized by this requirements record.
+The operator must first stop the production application, restart LM Studio for
+testing and establish separated test logs. Before any model request, a receipt
+must bind run ID, endpoint, model identity/artifact/counter facts, effective
+configuration/input/asset hashes, operator identity and confirmation times,
+server-restart evidence, log-separation method/destination and window expiry.
+Record what the operator attests versus what the harness can observe. A mere
+reachable endpoint or `--yes` flag cannot establish the prerequisites.
 
-If an isolated instance cannot be established, A3 stays blocked. A0/A1 and offline
-A2 may proceed only under their own activation. Synthetic vectors can test the
-harness protocol but cannot establish real embedding-model readiness. Shared-host
-CPU/RAM/disk contention remains possible; resource limits apply. A guarantee of
-zero production performance impact requires separate hardware and is not claimed
-for a same-host test directory.
+The harness must neither stop/start/restart LM Studio or production nor invoke
+model-management APIs. It may issue only the explicitly allowed model/capability
+requests inside the confirmed window and budgets. Production remains stopped
+throughout. Window expiry, revocation or a changed model/config/input/manifest
+requires new confirmation before further batches. No automatic fallback to a
+different endpoint, production profile, credential or model is permitted.
+
+Bind and verify the actual log-separation mechanism; do not invent support for a
+server log-directory flag. Test logs retained by the harness belong under the run
+root. If production/test log separation cannot be established, A3 is blocked.
+Existing immutable served-model assets may remain where LM Studio keeps them;
+the harness does not scan, change or copy that model directory. Operator-supplied
+model identity must still qualify; endpoint reuse does not prove token/dimension
+or preparation compatibility. Docling/OCR/tokenizer assets remain test-owned.
+
+No window receipt is recorded by this planning update. Production shutdown,
+server restart, model calls and production resumption have not been performed by
+the agent and must not be inferred from future-tense instructions. The operator
+owns resumption after tests. Offline stages can run under their own activation
+without this window. Same-host resource effects are bounded, not eliminated.
 
 ## Controlled and supplied documents
 
@@ -118,8 +137,8 @@ before conversion; never convert in place, scan production stores or write
 sidecars alongside the originals. Record expected passages/tables/questions and
 preserve original hashes/metadata. Apply the same admission/resource limits.
 
-Supplied content may reach only a separately activated local test embedding
-service; no external provider or upload is permitted. Reports containing source
+Supplied content may reach only the explicitly activated local LM Studio endpoint
+during the confirmed production-offline window; no external provider or upload is permitted. Reports containing source
 text remain private unless a separately selected sanitized summary is retained.
 No supplied documents are selected by this planning update.
 
@@ -128,7 +147,7 @@ No supplied documents are selected by this planning update.
 The harness must run without an agent and document exact setup, configuration,
 prerequisite, full-run and individual-stage commands. The CLI does not exist yet;
 publish working commands only after implementation. Offline extraction/chunking
-must run without model access. Embedding requires explicit test-endpoint and
+must run without model access. Embedding requires the confirmed shared-endpoint window and
 model qualification inputs. Dry-run/preflight must make no network/model/store
 calls and must show effective paths, planned effects and skipped/blocked stages.
 
@@ -136,7 +155,8 @@ Reserve the isolated vector/graph/state paths for later approved command-to-stor
 integration tests. A0–A4 currently qualify upstream feasibility and make no Memory
 store writes. Fresh test stores never reset, attach to or migrate production data.
 
-Before effects, fail closed on a production path/endpoint, missing explicit test
+Before effects, fail closed on a production application/store path, model request
+outside the confirmed shared-endpoint window, missing explicit test
 configuration, out-of-root write, live-checkout import, global-cache fallback or
 unowned process. Require negative witnesses for these cases, child-process
 coverage and normal/optimized execution. Describe the actual containment layer;

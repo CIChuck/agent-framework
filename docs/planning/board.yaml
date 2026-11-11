@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Exact Package Impact Assessment v0.6 remains approved. Gate-A readiness plan v0.2 now requires a manually runnable, production-isolated harness with code/config/inputs/outputs under .friday_test and an independent LM Studio test process/endpoint; production files, stores, environment and LM Studio are excluded. Requirements are recorded, not implemented or activated. Review and activate exact stages/run root/manifests/budgets before effects; A3 stays blocked until isolated test-service/model/counter facts are bound. No new council or construction authority. Measured readiness will finalize the impact appendix and exact construction directive for separate approval."
+  next_gate: "Exact Package Impact Assessment v0.6 remains approved. Gate-A plan v0.3 and draft CD-CMD-INGEST-GATE-A-001 place versioned harness/probe/generator/config/test code in tests/readiness/ingest/ and generated state in .friday_test/. Review the bounded harness directive before construction; no code/environment has been built or effects activated. Existing LM Studio endpoint may be reused only after operator-confirmed production shutdown, server restart and separated test logs; that window/model/counter evidence is not yet supplied. No independent server is required and no new council is authorized. Production application/configuration/stores stay unchanged. Measured readiness will finalize the later product directive."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3304,3 +3304,11 @@ events:
   action: recorded manual harness and production isolation requirements
   note: "Chuck requires all test code/config/input/output isolated from production. Gate-A plan v0.2 uses .friday_test, private configurations/caches and an independent LM Studio test process/endpoint; production stays untouched. Planning requirements only, no harness or environment created and no execution/council/construction activated."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/gate-a/isolation-requirements.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T21:15:31.969889+00:00"
+  actor: Codex
+  actor_role: agent
+  action: prepared tests-scoped readiness harness directive and shared model window
+  note: "Current proceed authorizes planning reconciliation and bounded instructions. All versioned harness/probe/generator/config/test code is proposed under tests/readiness/ingest/; generated state under .friday_test/. Existing LM Studio reuse is permitted only after operator-confirmed production shutdown, server restart and separate logs. Independent service requirement superseded; no code/environment, inference or new council activated. Exact impact approval and production state preserved."
+  evidence: docs/planning/active/command-refactor/directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md
