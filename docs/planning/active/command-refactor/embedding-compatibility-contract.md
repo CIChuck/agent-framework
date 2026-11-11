@@ -1,8 +1,8 @@
 # INGEST-001 — framework embedding compatibility contract
 
 Status: **PROPOSED normative annex to REM-CMD-INGEST-001; implementation unapproved**.
-This annex incorporates the round5 technical themes and the selected high/medium
-advisories. It is a contract for future construction and proof, not executed
+This annex incorporates the framework-wide technical themes and selected
+high/medium advisories, including the compatibility-cycle pass1 source corrections. It is a contract for future construction and proof, not executed
 evidence. The primary [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) retains its
 format, chunking, namespace, recovery and security requirements. This annex
 specializes its compatibility claims; it does not authorize product code,
@@ -41,8 +41,9 @@ authorization partitions, not independent physical embedding spaces.
 Intentional compatibility exceptions must be individually visible in the final
 directive: fresh-store-required admission; verified model-specific preparation
 and query/document role correction; explicit invalid/overflow/result refusal;
-MCP overflow outcome refinement; and the legacy physical-copy restriction in
-FC-03. None permits a silent model change. A formerly successful supported B/N
+MCP overflow/failure reporting; identity-safe physical backup/restore admission
+in FC-03; and isolated ephemeral profile persistence. Public backup creation is
+retained, not retired. None permits a silent model change. A formerly successful supported B/N
 flow that only refuses is a failed compatibility proof unless this exact
 exception list and its operator remedy cover it. Any additional exception stops
 readiness for maintainer disposition.
@@ -81,6 +82,12 @@ this supported-mechanism choice in the readiness manifest. A server-side swap
 with the same name/dimension must fail the qualification/refusal control; if
 the deployment cannot detect it, stop rather than promise protection it lacks.
 
+B02's existing hosted default may not qualify under this immutable serving-identity
+rule. Report this risk before Gate A and check it first within any separately
+authorized readiness envelope. Do not replace the default, drop the baseline or
+weaken identity checks to obtain a passing review. If it cannot qualify, return
+the concrete incompatibility for maintainer disposition.
+
 Chat currently ignores canonical `embedding.embedding_service` and chooses the
 pool default in `build_framework_embedding_service`. Preserve that baseline
 precedence in this unit: describe the field as a legacy no-op in catalog mode,
@@ -103,9 +110,10 @@ editing it. Report uncovered necessary scope before construction.
 | LLM pool/resolver, direct query/document APIs and caches | Shared preparation/counting/result guard, unchanged caller interfaces; B01–B08 and FC-10/12. |
 | Core store factories/interfaces; Memory vector/simple stores and collections | Namespace admission and identity-bearing query/vector handoff; no bare-vector or direct-client bypass. |
 | Chat/Runtime extraction, stored insights/summaries and graph edges | Preserve extraction LLM and actual embedding selections; full extraction→graph/vector→recall positives. |
-| Maintained sync graph scorer and semantic recall | FC-08. Missing vector is distinct from a vector with unknown/foreign identity. |
-| Public async graph scorer fallback | Public-unwired; retain guarded document-role fallback API, no maintained-route or installed-wiring claim. |
-| Chat compaction; public-unwired MemoryConsolidator | Preserve unsplit records. Compaction reports failures; FC-06 specializes acknowledgement for the consolidator. |
+| Maintained Chat/Runtime semantic recall | Neither composition root injects GraphPathScorer. Preserve unscored graph retrieval, without new graph-vector comparison or provenance preflight. FC-08 still guards actual query/vector/insight/summary operations. |
+| Public injectable sync and async graph scorer | Both are public-injectable, not wired in maintained Chat/Runtime. Identity-safe comparisons and document-role fallback are capability proofs, not route proofs; no new scoring/backfill wiring. |
+| Graph vectors from extraction, MAINT REEMBED and recovery | Maintained write/preserve paths. Guard writes/envelopes and snapshot identity; do not newly compare them during ordinary recall. |
+| Chat compaction; maintained extraction; public-unwired MemoryConsolidator | Preserve unsplit records. Compaction reports failures; FC-06 separately covers extraction acknowledgement/owned tasks and consolidation. |
 | Promotion/decay/reactivation; public lifecycle tool | FC-07, completed mutation counts and visible errors. |
 | MAINT pipeline, synthesis/re-embedding, stored-vector pruning/clustering and fact checks | Shared identity/roles; FC-05/11; no order/prompt/verification redesign. |
 | Recovery/mutation participant and Chat aggregate v2 | Retain primary REM's identity-preserving snapshot/rollback, strict versions and no rebind. |
@@ -118,6 +126,10 @@ editing it. Report uncovered necessary scope before construction.
 | Agent archive/extraction, recall_memory/store_fact tools | Controller/context-mediated; preserve public input/output and error reporting. Exact positive/refusal witnesses are required without a new model selector. |
 | Multi-agent controller/coordinator/journal | Underlying Memory space is shared; preserve authorization visibility and honest failed/partial-commit reporting. No new transaction promise. |
 | MCP publication and transcript receipts; MEMQ inspection | Preserve receipt ownership and store-only availability; FC-02/13. No embedding initialization merely to list admitted data. |
+| ContextAssembler inner background task and Runtime shutdown | FC-06 owns the actual extraction task and observable terminal status. The Agent outer scheduling wrapper is not completion proof; no new scheduler or retry queue. |
+| Tools MemoryMaintenanceTool/MemoryResetTool and GraphInspectionTool/VectorInspectionTool | Public injectable wrappers, no automatic activation. Retain admitted backup/maintenance/confirmed-clear and provider-offline inspection; expose typed failure/partial results. Lower-layer proof alone is insufficient. |
+| Chat FrameworkMaintenanceAdapter.reorganize/reorganize_memory | Non-dry-run legacy compatibility execution stays disabled; callable admitted dry-run remains. Maintained /reorganize still uses the coordinator with unchanged ordering. |
+| Runtime _friday_tools_catalog | Actual pkgutil.walk_packages/import_module startup is the minimal-install optional-dependency witness. |
 | Context assembly, passage routing, tool recommendation and ordinary tool registration | Preserve nonsemantic/LLM-only paths and lazy unavailable capability; no new document/embedding prerequisite. |
 | Telemetry and Transcript package contracts | Compatible unchanged unless a concrete boundary proves otherwise. Existing zero-attempt error telemetry is sufficient; transcript-v1 classes stay unchanged. |
 | Commands, MCP transports, Speech, Sandbox, Finance, Moltbook, Optimization, main/scripts | Source-backed unchanged/transitive dispositions and minimal-install/import checks; no unrelated source changes inferred. Dynamic tool imports remain a documented residual risk and installed registry witnesses cover configured supported tools. |
@@ -125,70 +137,159 @@ editing it. Report uncovered necessary scope before construction.
 
 ## Exact narrow integration requirements
 
-**FC-01 — startup and configured rejection logging.** Defer resourceful
-MemoryExtractor/rejection-handler construction until namespace admission; an
-inert configuration may be constructed earlier. No `mkdir` or FileHandler under
-a refused, unbound or not-yet-created vector namespace during startup or `/read`.
-After successful fresh creation, a log inside that admitted namespace may open.
-Qualify the configured log target in the layout manifest as belonging to the
-active namespace or an independent safe log root. A stale target inside a known
-legacy/foreign namespace refuses extraction readiness with an actionable remedy;
-do not write there, silently redirect it or rewrite YAML. Unknown target
-ownership is a readiness stop, not permission to scan stores. Selecting fresh
-associated log/recovery paths is part of coherent layout selection. Retain
-ordinary independent log destinations when qualified. Packaged/compat fixtures
-with logs inside vector/ must allow first-use CREATE_FRESH after deferral.
+**FC-01 — startup and owned rejection logging.** Defer resourceful
+MemoryExtractor/rejection-handler construction until namespace admission; inert
+settings can exist earlier. Startup and /read cannot mkdir/open a log in a
+refused, unbound or not-yet-created namespace. First-use CREATE_FRESH must work
+when the packaged log is inside vector/. Qualify the configured target as owned
+by that admitted namespace or an independent safe log root. Stale/foreign or
+unknown ownership refuses extraction readiness with an actionable remedy; no
+store scan, silent redirect or YAML rewrite. Keep qualified independent targets.
 
-**FC-02 — active MCP snapshots.** Treat `mcp_tool_snapshot` as a structured,
-single exact record, exempt from document/512 chunk planning like other structured
-memory records. Retain opt-in, sanitization, byte ceiling, deterministic identity,
-pending/publish/discard ownership and transcript receipt protocol. It still uses
-document-role shared counting/result/admission guards. A snapshot passing the
-byte ceiling can exceed the embedding token cap: detect before provider I/O and
-return the existing `oversized` outcome with no snapshot/receipt success.
-Non-capacity readiness/identity/storage failures retain an explicit failure
-outcome, never an apparently prepared snapshot. Do not split, truncate or change
-the stored text/receipt to make it fit. No new MCP activation or generic automatic
-ToolOutputIngester wiring is included. Exact new overflow oracle is approved only
-through the final construction directive; retain all other MCP assertions.
+Bind each emission to its admitted extractor/namespace using an extractor-owned
+sink/logger with propagation disabled and an owned handler lease. Do not fan out
+through the module-global logger to every configured path. Reconfiguration or
+close releases only that owner's handler after its task quiesces. Failed
+construction releases any new handler. Repeated same-owner/path setup is
+idempotent; two kernels cannot write or close each other's handlers. An explicit
+shared independent destination needs shared-target admission and owner-specific
+leases, not accidental global fan-out. A revoked/closed owner cannot write the
+old target; re-admit before reopening. Preserve standalone public filter and
+configure_rejection_logging call shapes and qualified independent logging; the
+final directive freezes private ownership injection without a logging redesign.
+Chat logging.extraction_rejections_file currently has no source consumer: keep
+it inert, never activate a second handler from it.
 
-**FC-03 — public legacy physical backups.** Choose a bounded explicit
-compatibility exception: legacy BackupManager file-copy create/live restore is
-not a supported backup engine for a bound namespace. Detect bound/pending state
-or a bound artifact and refuse before destination directories/copies/sidecar
-changes, directing callers to the maintained identity-aware Memory-v2 snapshot/
-restore API. Legacy-unbound live operations remain refused by the primary REM;
-offline historical manifest/checksum inspection remains available without
-opening live clients. Keep old BackupManifest types/signatures/interpretation;
-do not broaden their validators or re-enable module CLI restore. Maintained v2
-backup/restore positives must still pass. This restriction must be disclosed as
-an intentional public-legacy exception, never counted as successful operation of
-that old file-copy API. No general backup bridge or migration engine is added.
+**FC-02 — active MCP snapshots and public failure mapping.** Treat
+mcp_tool_snapshot as one exact structured record, exempt from document/512
+chunking. Retain opt-in, sanitization, byte ceiling, deterministic identity,
+pending/publish/discard ownership and transcript receipt protocol. Count the
+final stored record with document-role shared guards; byte-valid token overflow
+returns oversized before provider/store effects, never splits or truncates it.
+Preserve known typed refusal exceptions ahead of generic storage_failed catches.
 
-**FC-04 — analyzer and raw SQLite.** Public live ConsistencyAnalyzer receives
-the resolved layout and shared store-only identity admission before opening
-graph/SQLite data. Use the exact normalized vector root; remove alternative-root
-probing on guarded paths. Open SQLite read-only with no creation/journal effects.
-Do not initialize a provider/tokenizer for admitted store-only analysis. Preserve
-analysis algorithms and ordinary schema diagnostics; typed admission failures
-cannot become a successful empty analysis. Explicit offline legacy artifact
-inspection is separate and cannot count as admitted live analysis.
+The actual Chat persist_mcp_interaction entry must consume the preparation
+outcome. Its narrow memory_mcp.py adaptation is required:
 
-**FC-05 — no hidden embedder.** Public legacy synthesis with a valid injected
-service continues to work under the guarded namespace. Missing/failed/invalid
-embedding service must refuse before `collection.add`, never omit vectors and
-invoke Chroma's default embedding function. Retain the module CLI's disabled
-mutation paths. Public/dry-run reads still need admission; no CLI repair or
-automatic fallback model is authorized.
+| Preparation/result | Receipt/publication disposition | Public observer and turn result |
+| --- | --- | --- |
+| Disabled, ineligible, unallowlisted or unsafe | Existing policy skip; memory_ingested=false and no memory correlation. | Retain policy-skip behavior and no new activation. |
+| Byte or token oversized | Skip this snapshot, with false ingested flag/no memory correlation. | Explicit oversized initial decision, never ingested/published or an indistinguishable initial policy skip. |
+| Typed readiness/space/provenance/invalid-result refusal, or storage_failed | No successful skipped receipt for failed preparation. | Safe failure category, then existing MCPMemoryPersistenceError through turn persistence; retry eligibility retained. |
+| Ownership conflict | Existing hard ownership failure; no foreign-record deletion. | Safe ownership-conflict category and existing persistence error. |
+| Prepared/published/publication pending | Existing exact snapshot, verified append/readback and pending ownership. | Preserve published/pending outcomes and truthful flags. |
 
-**FC-06 — consolidation acknowledgement.** Classify MemoryConsolidator as
-public-unwired, separately from ordinary Chat/Runtime extraction. Successful
-summary persistence precedes acknowledgement of its source batch. Shared typed
-guard/refusal errors remain actionable; failed batches stay retryable and are
-not marked consolidated or reported as unqualified completed success. Mixed
-batches acknowledge only successfully stored work and report failures. Preserve
-prompts, batching, deduplication and scheduling. No new rollback/exactly-once
-transaction guarantee is claimed for unrelated storage failures.
+The observer keeps its callback shape with additional bounded safe reason
+literals. It stays optional/non-authoritative; no raw document/provider/secret
+text is reported. Keep receipt/provenance schemas unchanged. Existing skipped
+receipts cannot recover an original capacity reason: replay reports their skip,
+not a fabricated reason. Non-capacity failures are never persisted as skips.
+Retain current cancellation, readback and cleanup of newly owned, uncommitted
+snapshots; preserve existing/durably receipted pending records. Mixed ordinary/MCP
+turns keep existing partial-turn behavior, with explicit persistence failure;
+no new whole-turn rollback/atomicity is promised. Freeze exact approved error
+oracles in the final directive and test real public publication/receipt/observer,
+not only MCPMemoryIngester.
+
+**FC-03 — compatible public physical backups.** Retain BackupManager
+create_backup, verify_backup and restore_backup signatures/return types and the
+old BackupManifest class. Public create, enabled module backup, Reorganizer
+backup/backup_first and the injectable Tools wrapper must still succeed under
+admitted B/N. Do not retire them, disable backup_first or substitute a different
+API as proof of compatibility.
+
+Use shared store-only admission and the resolved layout before live source
+reads, destination mkdir or copy; no provider/tokenizer. Require a destination
+outside the active vector namespace and reject source/destination recursion or
+symlink escapes. Preserve an existing safe default, such as memory-root/backups
+beside vector/. If the default/explicit root is inside vector/, refuse before
+mkdir and point to the existing external backup_root/backup_dir option; do not
+silently relocate it. Copy the ready binding as immutable artifact evidence,
+without changing live source bytes/metadata. Keep the legacy manifest model;
+a separate strictly versioned bound receipt in the backup records the exact
+manifest/sidecar digests, normalized layout and incarnation. Freeze its schema
+and exact source/artifact member mapping at Gate A.
+
+Public restore succeeds into the SAME admitted space/incarnation/layout only,
+with validated bound receipt and permitted data inventory. Identity/target
+checks are mandatory even with verify_first=False; that flag controls the old
+optional data-checksum pass, not admission. Never copy a ready/pending marker,
+overwrite/recreate the live binding, clone another incarnation or attach an old
+artifact to a fresh namespace. Validate every path and identity before any live
+write. Identity-free artifacts retain offline manifest/checksum inspection;
+live restore remains refused by the approved fresh-store policy. Foreign,
+pending/malformed artifacts and an unsafe destination refuse before mkdir/copy.
+Preserve existing physical-copy consistency/quiescence preconditions and disclose
+limitations: no new online/crash-atomic Chroma backup engine. Prove positive
+public create/verify/same-incarnation restore on quiescent disposable B/N stores,
+including restored data and retained live identity. Maintained v2 snapshot and
+rollback remains separate proof; disabled module restore stays disabled. No
+generic bridge, migration, new command or maintenance-order change.
+
+**FC-04 — analyzer and raw SQLite.** Public ConsistencyAnalyzer uses
+the resolved exact layout and shared store-only admission before live graph or
+SQLite reads, with no alternative-root probing. All its SQLite opens, including
+Chroma and transcript databases, use explicit read-only URI mode and cannot
+create absent files/journals. No provider/tokenizer for admitted store-only
+analysis. Preserve algorithms and ordinary schema diagnostics; typed admission
+failure cannot become successful empty analysis. Offline historical artifact
+inspection is separate and not positive admitted live-analysis proof.
+
+**FC-05 — no hidden embedder, retained callable shapes.** Qualified
+public legacy synthesis keeps its injected service and document-role storage.
+Preserve accepted embed_query, embed and bare-callable invocation shapes at the
+public boundary: composition resolves an exact identity/counter capability from
+the existing service/readiness record and wraps that shape with the shared LLM
+guard/role adapter. This is the qualification route, not a new model selector.
+The wrapped callable must preserve the invocation shape and error/cancellation
+semantics while applying the qualified document preparation exactly once. A
+query-only callable with hidden preparation cannot be guessed into a document
+provider: qualify its bounded adapter or stop readiness. Its raw name or
+dimensions alone is not qualification. Freeze exact wrapper
+signatures at Gate A and test all three existing shapes positively in B/N.
+Unqualified/missing/failed/invalid services refuse actionably before collection.add;
+never omit vectors and invoke Chroma's default embedder. This is the existing
+capability-refusal rule, not retirement of duck-typed callers. Public/dry-run
+reads still need admission; disabled module mutations remain disabled. No new
+CLI fallback or automatic model.
+
+**FC-06 — extraction, background ownership and consolidation.** These
+are separate paths and need separate witnesses. In maintained MemoryExtractor
+storage, typed readiness/identity/provenance/overflow/invalid-result refusals at
+entity/relationship, edge embedding, insight batch/fallback or summary boundaries
+must surface as failed extraction (typed raise or result.error), including mixed
+partial outputs. Never turn a failed edge embedding into a vectorless edge.
+An absent edge vector is allowed when no edge embedder is configured, not when
+a configured service refuses. Known guard errors do not enter per-item fallback;
+retain unrelated non-guard fallback/error policy. Count only actual persistence;
+false/incomplete persistence returns cannot acknowledge the output as stored.
+Keep the existing stable insight/summary IDs and upsert semantics, graph dedup
+and partial-state reporting; do not promise a new all-or-nothing transaction.
+Prompts, ontology and extraction LLM selection stay unchanged.
+
+Chat _extract_turns keeps the failed/unprocessed turns in pending_extraction and
+does not mark them completed. Preserve its existing cancellation/commit-completed
+distinction. Successful retry uses the same output-slot identities; test against
+duplicate records instead of claiming full semantic exactly-once extraction.
+
+Memory ContextAssembler owns the actual inner task it starts for
+extract_context(async_execution=True), consumes its result/exception and retains
+per-turn queued/running/completed/failed-retryable/cancelled/skipped-unavailable
+status. Keep the existing method signature and None return; add only a typed
+read-only status/wait capability on the concrete Memory assembler, not a new Core
+requirement for custom context engines. Telemetry-disabled callers can inspect
+that status; a scheduling/turn_archived event is not extraction completion.
+Retain active task handles to completion, bound terminal-state retention to the
+session lifetime, and drain/cancel-and-await owned tasks before closing their
+extractor/sink during existing Runtime shutdown. Do not let the Agent's outer
+wrapper's return acknowledge the inner task. No-extractor is an explicit skip;
+failed work remains eligible for an explicit later call. No new automatic retry,
+queue, scheduler, durable journal or Agent public signature is introduced.
+
+MemoryConsolidator remains public-unwired. Persist a successful batch summary
+before acknowledging its source turns; failed batches remain retryable, mixed
+batches acknowledge only successful work and report failure. Preserve its
+prompts, batching, deduplication and scheduling.
 
 **FC-07 — lifecycle truthfulness.** In non-dry-run mode count promotion,
 demotion/reactivation only after successful mutation, respecting false returns
@@ -197,30 +298,46 @@ partial results and errors visible through both structured results and ordinary
 public lifecycle-tool `execute()` text. Do not bury errors solely in `data` while
 displaying completed counts. Preserve thresholds/order and generic Tools APIs.
 
-**FC-08 — recall and graph reality.** Let shared typed readiness, space,
-provenance, overflow and invalid-vector errors propagate through recall's gather,
-priming/fetch and graph exception paths. Keep ordinary unrelated degradation and
-cancellation behavior. Public tools may adapt them to explicit tool failures;
-they cannot become an empty successful ContextPayload. Background callers must
-retain observable failed/retryable status, not falsely acknowledge extraction.
-Maintained recall uses synchronous precomputed graph scoring. Preserve existing
-zero contribution for a genuinely absent vector; an existing vector with unknown,
-foreign or invalid provenance fails the whole semantic operation. Classify the
-async on-demand fallback as public-unwired; no new fallback/backfill activation.
+**FC-08 — actual recall and injectable graph scoring.** Typed shared
+readiness/space/provenance/overflow/invalid-vector errors propagate through actual
+recall/query, CollectionManager.get_all gather, controller priming/fetch,
+_fetch_recent_insights, _fetch_recent_summaries and get_insights_by_author.
+Preserve unrelated partial-read warnings/degradation and cancellation. Public
+tools may adapt refusal to explicit failure/unavailable, never empty successful
+ContextPayload. FC-06 covers actual background completion/acknowledgement.
 
-**FC-09 — Runtime profile matrix.** Preserve the MemoryProfile values and public
-factory interfaces. FULL uses persistent vector/lifecycle collections and graph;
-VECTOR_ONLY uses persistent vector/lifecycle collections and NullGraphStore.
-Both require explicit persistent open intent/admission. EPHEMERAL and TESTING use
-in-memory adapters and isolated in-memory lifecycle collections under one
-ephemeral identity/incarnation, never PersistentClient or a default disk root.
-Do not mix an ephemeral front store with persistent CollectionManager. Keep
-collection APIs and visibility semantics; isolate independent ephemeral kernels.
-This is a deliberate correction of profile persistence, not a new profile system.
-Transcript persistence is independently governed by its existing explicit
-settings; a Memory profile neither enables nor disables it. No Memory-caused
-graph/transcript-parent mkdir occurs on refused/ephemeral Memory paths. Isolate
-transcript effects explicitly in no-persistent-Memory tests.
+Neither maintained Chat nor Runtime composition injects GraphPathScorer. Keep
+their ordinary graph retrieval UNSCORED: it does not compare stored graph
+vectors and gains no vector-provenance preflight for an unused scorer. Stored
+graph vectors are maintained write/preserve state for extraction, REEMBED and
+recovery; guard those writes/snapshots. Both synchronous filter_paths_sync and
+async scoring/fallback are public-INJECTABLE APIs only. On explicitly injected
+comparisons, validate compatible query/stored-vector identity; an existing
+foreign/unknown/invalid vector fails the semantic operation, while a genuinely
+absent vector retains its existing zero contribution. Async fallback uses guarded
+document-role embeddings. No scorer/fallback/backfill is newly wired. Require
+actual Chat/Runtime spies proving ZERO graph-vector comparisons alongside public
+injected-scorer B/N/R capability tests, clearly labelled as different proofs.
+
+**FC-09 — Runtime profile matrix and concrete ephemeral isolation.**
+Preserve public MemoryProfile/factory shapes. FULL uses persistent vector/lifecycle
+collections and graph; VECTOR_ONLY uses persistent vector/lifecycle collections
+and NullGraphStore. Both require explicit open intent/admission. EPHEMERAL and
+TESTING use in-memory front and lifecycle stores with one identity/incarnation
+per kernel, never PersistentClient/default disk roots.
+
+Do not assume two Chroma EphemeralClients are isolated: the pinned backend shares
+one in-memory system. Namespace every Chroma-backed in-memory physical collection
+with the kernel's unique incarnation, carrying the same scope through front,
+short/long/decayed/MCP collections and admission. Keep logical configured base
+names/API semantics; internal suffixed names must satisfy backend constraints.
+Per-kernel clear/close deletes only owned collections and never resets the shared
+system or another kernel. Two kernels with different identities and the same
+logical names in one process must not share records/query results or dimension
+state. This is profile isolation, not a security or new profile-system promise.
+Transcript persistence stays independently configured; Memory profile does not
+enable/disable it. No Memory-caused graph/transcript-parent mkdir on refused or
+ephemeral Memory paths. Isolate independent transcript effects in no-disk tests.
 
 **FC-10 — configuration and CLI origin.** Apply B01–B08, including divergent
 Chat legacy hint versus actual pool default. Retain raw explicit-origin from
@@ -232,7 +349,9 @@ inventing a new public YAML knob. If origin cannot be preserved for a maintained
 constructor shape, stop and reconcile instead of assuming it was explicit.
 
 **FC-11 — maintenance admission, probe and dimensions.** Admitted namespace
-identity precedes any real provider probe, which itself uses the shared guard.
+identity precedes ALL real provider probes, including the synthesizer/chat LLM
+probe as well as embedding probes. Embedding probes use the shared guard; refused
+rows make no LLM/provider/model call, not merely zero embedding calls.
 For empty fresh collections use the admitted identity's expected dimension;
 observed stored rows, when present, must agree. Do not infer a model from rows.
 Graph-only REEMBED with empty collections must support a compatible identity.
@@ -251,7 +370,15 @@ LLM embedding consumer requests that extra or injects an equally qualified
 capability; plain LLM-only imports/configuration remain usable without it.
 Missing assets/dependencies refuse only affected embedding execution actionably;
 no first-use downloads. Core/Commands/plain Tools reads gain no document stack
-requirement. Actual minimal installed profiles must prove these edges.
+requirement. Actual minimal installed profiles must prove these edges. Invoke
+Runtime's real _friday_tools_catalog pkgutil/import discovery without Docling/OCR;
+its normal Memory dependency still supplies the counter extra. Separately test
+optional-package absence in a private copied-prefix import control with counter
+and document packages unavailable. Clearly label that as an import/dependency
+failure control, not a supported fully resolved Runtime installation. Tool
+modules, including the new document reader and embedding-limits module, must
+remain lazy; unsupported execution fails actionably. A synthetic registry is
+not proof of the actual catalog import path.
 
 **FC-13 — indirect consumers and inspection.** Add actual agent tools,
 archive/background extraction, Runtime multi-agent controller/coordinator,
@@ -261,7 +388,16 @@ partial failure. Store-only inspection of an admitted namespace works with
 inference unavailable; unavailable state projects an explicit unavailable result,
 not initialized clients or false empty success. Public legacy preprocessing can
 remain callable but its output is not evidence of the common chunk plan, and it
-must not split an already accepted plan a second time. No new automatic wiring.
+must not split an already accepted plan a second time. Public injectable Tools
+maintenance/reset/graph/vector inspection wrappers join actual-call tests. Keep
+existing confirmed-reset semantics and scope; before any clear, shared store-only
+admission validates the whole target layout. Refusal precedes graph/vector/
+episodic effects, without a new rollback guarantee for unrelated later errors.
+Successful reset retains the namespace binding; never implement model migration
+or erase the sidecar. Maintenance wrappers expose actual errors/partial results,
+not unconditional completed text. Legacy Chat execute methods stay disabled;
+their admitted dry-run and maintained coordinator path are separately tested.
+No new automatic wiring or actual user reset is authorized.
 
 **FC-14 — operational compatibility versus model quality.** Record existing
 retrieval/path/pruning thresholds without silently retuning them. B/N deterministic
@@ -283,14 +419,17 @@ installed lane, consumer and named call-phase negative witness at Gate A.
 
 | Contract | Required integration node | Primary existing focused test/source seam |
 | --- | --- | --- |
-| FC-01 | `test_rejection_logging_obeys_namespace_admission` | Extractor/filter construction, packaged/compat config and Runtime/Chat startup. |
-| FC-02 | `test_mcp_snapshot_embedding_compatibility` | Memory/Chat MCP tests and `tests/integration/test_mcp_memory_ingestion.py`; exact single-record success and token-overflow outcome. |
-| FC-03 | `test_legacy_backup_guarded_namespace_disposition` | `tests_memory/test_maintenance/test_backup.py`; maintained v2 recovery positive and old physical-copy refusal. |
+| FC-01 | `test_rejection_logging_obeys_namespace_admission` | Real first-use startup plus two owned sinks/kernels, reconfigure/close, failed setup, repeated same-path and unchanged old-root metadata. |
+| FC-02 | `test_mcp_snapshot_embedding_compatibility` | Real persist_mcp_interaction/turn observer, snapshot receipts and ownership: B/N, overflow, typed refusal, storage/ownership failure and mixed calls. |
+| FC-03 | `test_legacy_backup_guarded_namespace_disposition` | Public BackupManager create/verify/same-incarnation restore, module backup, Reorganizer backup_first and Tools wrapper positives; receipt/sidecar/unsafe-root/clone refusals and separate maintained v2 proof. |
 | FC-04 | `test_analyzer_store_only_namespace_admission` | `tests_memory/test_maintenance/test_analyzer.py`; provider-offline success and no SQLite/graph open on refusal. |
 | FC-05 | `test_legacy_synthesis_never_uses_default_embedder` | Synthesizer and module entry; spy on absent/failed embedder plus Chroma writes/default embedding. |
 | FC-06 | `test_consolidation_acknowledges_only_stored_batches` | `tests_memory/test_context/test_consolidator.py`; positive, mixed failure and retry. |
+| FC-06 | `test_extraction_acknowledges_only_stored_outputs` | Real Chat pending extraction, edge/batch/fallback/summary refusals, stable-ID retry and no vectorless edge after guard error. |
+| FC-06 | `test_background_extraction_status_observes_owned_task` | Actual Agent archive plus real ContextAssembler, delayed post-return failure, telemetry off, wait/status, no-extractor, cancellation and Runtime shutdown. |
 | FC-07 | `test_lifecycle_counts_and_tool_text_report_actual_effects` | `tests_memory/test_lifecycle/test_promotion.py`, Tools memory-tool tests; execute text plus structured result. |
-| FC-08 | `test_recall_propagates_embedding_refusals` | Controller/scorer, Chat recall, Runtime agent and recall_memory tool; no empty-success disguise. |
+| FC-08 | `test_recall_propagates_embedding_refusals` | Actual vector/query/priming/insight/summary consumers and get_all/refusal propagation; unscored maintained graph route separately spied. |
+| FC-08 | `test_injected_graph_scorer_binding_and_unscored_routes` | Actual Chat/Runtime have zero graph-vector comparisons; explicitly injected sync/async scorer B/N plus same-dimension foreign R. No new maintained wiring. |
 | FC-09 | `test_runtime_memory_profile_identity_and_persistence` | `tests_runtime/test_kernel.py`; four profiles, independent ephemeral kernels, separately controlled transcript. |
 | FC-10 | `test_existing_embedding_configuration_and_origin` | B01–B08 resolver/CLI fixtures; omitted fields, divergent hint/default, constructor/env origin. |
 | FC-11 | `test_maintenance_probe_and_empty_store_dimensions` | Pipeline/provider/mutation tests; zero provider before admission, graph-only empty fresh positive. |
@@ -312,5 +451,5 @@ Only the primary REM's allowlist plus the explicit narrow rows added for this
 annex authorize future construction. Keep old public signatures/classes and
 assertion bodies except the named final-directive fixture/oracle exceptions.
 Telemetry, unrelated packages and inactive routes receive no opportunistic
-rewrite. Existing backup-engine, maintenance sequencing, verification, quarantine,
+rewrite. Existing backup consistency limits, maintenance sequencing, verification, quarantine,
 rollback and user-state safeguards remain; no broader transaction promise.

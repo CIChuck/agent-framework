@@ -2948,3 +2948,28 @@ has been executed or accepted through this documentation change.
   verdict or lowered standard; no model/store operations in this planning work.
 - Execution phase: planning; validation state: in_review (pass1/4, global round6).
 - **Next gate:** Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
+
+
+## INGEST compatibility cycle pass1 reconciliation and pass2 correction — 2026-11-10
+
+Frozen pass1 `8d25d53a` did not meet the gate: Sol coverage9.1/overall8.8,
+Astra9.0/8.7, Opus7.7/8.0 (technical scores provisional after disclosed dirty-YAML
+read). Exact raw reports and conduct disposition are preserved in
+[round6](validation/document-ingestion/council-round6/report.md). No runtime
+assurance or finding closure is inferred. All six-record/protected integrity
+checks passed, and no reviewer wrote product/user state.
+
+Source-confirmed document correction retains public backup creation and bounded
+same-incarnation restore, correctly classifies BOTH graph-scorer APIs as injectable
+only, names maintained extraction catches/acknowledgement and actual owned task
+status, defines real Chat MCP outcome mapping and per-owner rejection-log lifecycle,
+and names ephemeral collection isolation despite Chroma's shared in-memory system.
+The high/medium advisories and small status/inspection clarifications are mapped
+to exact scope and future public-call source/installed witnesses. No new scoring
+wiring, scheduler, transaction/backup engine, reset/migration or source code.
+
+Next is fresh pass2/4 (global round7), correction delta first then full current
+bounded design and framework consumer inventory. Two further correction/review
+passes remain after it. Every seat must independently verify with coverage and
+overall >=9.5 and no mandatory findings; stop at pass4 for guidance otherwise.
+Gate-A effects, construction, MAINT acceptance and delivery remain ungranted.

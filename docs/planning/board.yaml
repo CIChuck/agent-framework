@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery."
+  next_gate: "Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3190,3 +3190,10 @@ events:
   action: revised INGEST framework compatibility specification for bounded council cycle
   note: Explicit maintainer authorizes nine mandatory themes and high/medium advisories in proposed REM/annex, followed by one initial plus three corrective passes maximum. Each seat coverage and overall >=9.5/VERIFIED/no findings; stop after fourth for guidance. Document-only, no Gate-A or product/store/delivery authority.
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/compatibility-iteration-authorization.json
+- task: friday-command-refactor
+  at: "2026-11-11T02:40:23.192924+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled INGEST compatibility pass1 and corrected the document scope for pass2
+  note: "Pass1 scores below gate; six source-confirmed themes corrected without product edits. Opus dirty-YAML read disclosed and formal seat blocked; no replacement. Public backups retained; graph scorer correctly injectable-only; owned extraction/logging and real MCP outcome seams specified. Fresh pass2/4, round7; two later correction passes remain. No Gate-A, construction, store action or delivery."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round6/reconciliation.json

@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.",
+  "current_scope": "Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1899,17 +1899,17 @@
     "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
-    "sha256": "1cf5299fe231e38a95147277d40bbec62c1f999dea00b10a978a09777fab286c",
+    "sha256": "069ff23f5980f4b1abf9edcbcdbf620ec4473ef99145212bcd0571bc7c1b1554",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
     "scope": "PDF/DOCX/XLSX/PPTX extraction/local PDF OCR; shared all-source document/512 chunking with document/recursive/fixed overrides; shared LLM limits/dimension checks; retained fetching, admission, metadata/protection/storage semantics",
     "implementation_approval": "not_granted",
     "council": {
-      "round": 6,
-      "cycle_pass": 1,
+      "round": 7,
+      "cycle_pass": 2,
       "maximum_cycle_passes": 4,
       "status": "preparing_frozen_dispatch",
-      "scope": "Full framework coverage, unchanged configuration and replacement-model/fresh-namespace operational compatibility; current REM/annex/companion design and source feasibility only.",
+      "scope": "Correction delta first, then full current REM/annex/Tools and framework-wide baseline/replacement compatibility coverage; design/source feasibility only.",
       "roster": "validation/document-ingestion/compatibility-iteration-authorization.json",
       "scores_required_each": 9.5,
       "coverage_score_required_each": 9.5,
@@ -1919,7 +1919,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.",
+    "next_gate": "Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2034,25 +2034,22 @@
     },
     "design_readiness": {
       "outcome": "CHANGES_REQUESTED",
-      "candidate": "06f294d779c5bc9ea3016eaffdf8efb349979ce4",
-      "technical_pins": {
-        "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
-        "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "b5429eb75427aa12f016ad1d0a571743c066375c1a3da34826b3e464ba5e8ba1"
-      },
-      "report": "validation/document-ingestion/framework-compatibility-review.md",
-      "runtime_or_installed_proof": "not performed for INGEST",
-      "formal_council_complete": false
+      "candidate": "8d25d53ac944ace99e3ae430364075b0c1200ff6",
+      "applies_to_current_revision": false,
+      "report": "validation/document-ingestion/council-round6/report.md",
+      "formal_council_complete": false,
+      "runtime_or_installed_proof": "not performed; corrected document candidate awaits pass2"
     },
     "current_revision": {
-      "kind": "framework_compatibility_correction",
+      "kind": "compatibility_pass1_source_correction",
       "validation_state": "in_review",
       "record": "validation/document-ingestion/compatibility-correction-map.json",
-      "record_sha256": "0cc764f86bd43091a12cc1ab8bb09832eba4d70bd9b6e876752f05b2b56316d9",
-      "rem_sha256": "1cf5299fe231e38a95147277d40bbec62c1f999dea00b10a978a09777fab286c",
+      "record_sha256": "42307859d45f9e98ea879524209787907f53c9963f4606b4b9d1d10e141fb4e0",
+      "rem_sha256": "069ff23f5980f4b1abf9edcbcdbf620ec4473ef99145212bcd0571bc7c1b1554",
       "prior_review_applies": false,
       "new_council_active": true,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery."
+      "next_gate": "Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery."
     },
     "council_history": [
       {
@@ -2098,7 +2095,7 @@
         "roster": "validation/document-ingestion/council-round5/roster.json",
         "scope_record": "validation/document-ingestion/council-round5/scope.md",
         "scores_required_each": 9.5,
-        "applies_to_current_revision": true,
+        "applies_to_current_revision": false,
         "authority": "explicit maintainer request and clarification in roster",
         "no_automatic_iteration": true,
         "results": {
@@ -2145,6 +2142,62 @@
           "INGEST-EC-09"
         ],
         "no_automatic_remediation_or_new_review": true
+      },
+      {
+        "round": 6,
+        "cycle_pass": 1,
+        "maximum_cycle_passes": 4,
+        "status": "reconciled_changes_requested",
+        "scope": "Full framework coverage, unchanged configuration and replacement-model/fresh-namespace operational compatibility; current REM/annex/companion design and source feasibility only.",
+        "roster": "validation/document-ingestion/compatibility-iteration-authorization.json",
+        "scores_required_each": 9.5,
+        "coverage_score_required_each": 9.5,
+        "threshold_met_each": false,
+        "results": {
+          "sol": {
+            "reported_outcome": "CHANGES_REQUESTED",
+            "controller_outcome": "CHANGES_REQUESTED",
+            "coverage": 9.1,
+            "overall": 8.8,
+            "formal_signoff": false,
+            "scores_provisional": false,
+            "raw_report_sha256": "b2ce34e8759b95c1779ee034377c0a9708912fa7cba886e449af1a66645ccf0a",
+            "raw_archive": "sol-report.md.gz",
+            "readable_report": "sol-report.md",
+            "readable_sha256": "b2ce34e8759b95c1779ee034377c0a9708912fa7cba886e449af1a66645ccf0a"
+          },
+          "astra": {
+            "reported_outcome": "CHANGES_REQUESTED",
+            "controller_outcome": "CHANGES_REQUESTED",
+            "coverage": 9.0,
+            "overall": 8.7,
+            "formal_signoff": false,
+            "scores_provisional": false,
+            "raw_report_sha256": "7e8103143f18d367ba74c9dba3b6694c185b871a2adaaec4e103861c5c4b5b3a",
+            "raw_archive": "astra-report.md.gz",
+            "readable_report": "astra-report.md",
+            "readable_sha256": "7e8103143f18d367ba74c9dba3b6694c185b871a2adaaec4e103861c5c4b5b3a"
+          },
+          "opus": {
+            "reported_outcome": "CHANGES_REQUESTED",
+            "controller_outcome": "BLOCKED",
+            "coverage": 7.7,
+            "overall": 8.0,
+            "formal_signoff": false,
+            "scores_provisional": true,
+            "raw_report_sha256": "6c76fe2e94884698d4ff5a05babdcb25cb50005c0730fd90e411d260bdb0b164",
+            "raw_archive": "opus-report.md.gz",
+            "readable_report": "opus-report.md",
+            "readable_sha256": "6c76fe2e94884698d4ff5a05babdcb25cb50005c0730fd90e411d260bdb0b164"
+          }
+        },
+        "no_construction_or_gate_a_authority": true,
+        "reviewed_candidate": "8d25d53ac944ace99e3ae430364075b0c1200ff6",
+        "report": "validation/document-ingestion/council-round6/report.md",
+        "reconciliation": "validation/document-ingestion/council-round6/reconciliation.json",
+        "applies_to_current_revision": false,
+        "no_active_council": true,
+        "formal_council_complete": false
       }
     ],
     "design_readiness_history": [
@@ -2158,22 +2211,33 @@
         "advisories": "six nonblocking, carried without changing reviewed artifacts",
         "handoff": "validation/document-ingestion/gate-a-handoff.md",
         "runtime_or_installed_proof": "not performed for INGEST"
+      },
+      {
+        "outcome": "CHANGES_REQUESTED",
+        "candidate": "06f294d779c5bc9ea3016eaffdf8efb349979ce4",
+        "technical_pins": {
+          "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
+          "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "b5429eb75427aa12f016ad1d0a571743c066375c1a3da34826b3e464ba5e8ba1"
+        },
+        "report": "validation/document-ingestion/framework-compatibility-review.md",
+        "runtime_or_installed_proof": "not performed for INGEST",
+        "formal_council_complete": false
       }
     ],
     "framework_compatibility_contract": {
       "document": "embedding-compatibility-contract.md",
-      "sha256": "ed298f6d5b6852c9604b16ac544c10352b3f565fb0aeaa1115aeb118dff77750",
+      "sha256": "bbafc99252f746891f671961b1f684b03e8a9f36f8d4fb702f5b83a117a3ddf3",
       "proofs": "FC-01 through FC-14; B01\u2013B08 and B/N/R scenarios",
       "status": "proposed_not_implemented"
     },
     "correction_map": {
       "record": "validation/document-ingestion/compatibility-correction-map.json",
-      "sha256": "0cc764f86bd43091a12cc1ab8bb09832eba4d70bd9b6e876752f05b2b56316d9"
+      "sha256": "42307859d45f9e98ea879524209787907f53c9963f4606b4b9d1d10e141fb4e0"
     },
     "compatibility_iteration": {
       "authorization": "validation/document-ingestion/compatibility-iteration-authorization.json",
       "sha256": "27e55b58ce1b63e2c835e6ecc060f10bbf940610eb0e493be2556785cd249d30",
-      "current_pass": 1,
+      "current_pass": 2,
       "maximum_passes": 4,
       "global_rounds": [
         6,
@@ -2181,8 +2245,8 @@
         8,
         9
       ],
-      "passes_completed": 0,
-      "additional_corrections_remaining": 3,
+      "passes_completed": 1,
+      "additional_corrections_remaining": 2,
       "stop_after_four_for_guidance": true,
       "new_delegates_per_pass": true,
       "product_changes_authorized": false

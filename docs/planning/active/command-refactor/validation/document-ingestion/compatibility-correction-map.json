@@ -1,10 +1,10 @@
 {
   "unit": "REM-CMD-INGEST-001",
-  "recorded_at": "2026-11-11T02:02:58.635062+00:00",
+  "recorded_at": "2026-11-11T02:37:55.011556+00:00",
   "status": "requirements_and_proposed_dispositions_not_validation",
   "baseline": "91ac63bad5e46eceddd252d5b7727f7a1d3c623a",
   "annex": "embedding-compatibility-contract.md",
-  "annex_sha256": "ed298f6d5b6852c9604b16ac544c10352b3f565fb0aeaa1115aeb118dff77750",
+  "annex_sha256": "bbafc99252f746891f671961b1f684b03e8a9f36f8d4fb702f5b83a117a3ddf3",
   "mandatory": [
     {
       "theme": "INGEST-EC-01",
@@ -219,5 +219,141 @@
     "Selected model/dependency readiness",
     "Construction approval"
   ],
-  "prior_procedural_block": "Astra round5 remains BLOCKED; new fresh review gets safe current-controls view instead of broad authority search."
+  "prior_procedural_block": "Astra round5 and Opus pass1 procedural deviations remain recorded; no automatic replacement or formal credit. Technical findings rechecked from source.",
+  "cycle_pass": 2,
+  "global_round": 7,
+  "amendment_base": "8d25d53ac944ace99e3ae430364075b0c1200ff6",
+  "pass1_corrections": [
+    {
+      "id": "IC-01",
+      "sources": [
+        "SOL-R6-M01",
+        "ASTRA-R6-001",
+        "OPUS-R6-M2"
+      ],
+      "contract": "FC-03",
+      "disposition": "Retain public create and same-incarnation identity-safe restore; no class/API retirement or generic bridge."
+    },
+    {
+      "id": "IC-02",
+      "sources": [
+        "SOL-R6-M02",
+        "ASTRA-R6-A1"
+      ],
+      "contract": "FC-06",
+      "disposition": "Own actual ContextAssembler task/status and drain at existing Runtime shutdown; preserve Agent/Core signatures."
+    },
+    {
+      "id": "IC-03",
+      "sources": [
+        "ASTRA-R6-002"
+      ],
+      "contract": "FC-02",
+      "disposition": "Real Chat MCP observer/receipt failure mapping, narrow memory_mcp.py scope."
+    },
+    {
+      "id": "IC-04",
+      "sources": [
+        "ASTRA-R6-003"
+      ],
+      "contract": "FC-01",
+      "disposition": "Per-owner admitted rejection sink with lifecycle/reconfiguration; no global fan-out."
+    },
+    {
+      "id": "IC-05",
+      "sources": [
+        "OPUS-R6-M1"
+      ],
+      "contract": "FC-08",
+      "disposition": "Both graph scorer APIs are injectable only; actual Chat/Runtime unscored route gets no unused-vector preflight."
+    },
+    {
+      "id": "IC-06",
+      "sources": [
+        "OPUS-R6-M3"
+      ],
+      "contract": "FC-06",
+      "disposition": "Typed extraction refusal surfaces before completed acknowledgement; stable-ID retry and truthful mixed output."
+    }
+  ],
+  "pass1_advisory_dispositions": [
+    {
+      "id": "OPUS-R6-A1",
+      "sections": [
+        "FC-09"
+      ],
+      "requirement": "Per-incarnation physical ephemeral collections despite shared Chroma system.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A2",
+      "sections": [
+        "FC-08"
+      ],
+      "requirement": "Name get_all/priming/author read catch seams and typed propagation.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A3",
+      "sections": [
+        "FC-13"
+      ],
+      "requirement": "Explicit public Tools wrappers and disabled Chat legacy/dry-run dispositions.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A4",
+      "sections": [
+        "FC-12"
+      ],
+      "requirement": "Actual Runtime pkgutil module catalog minimal-install witness.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A5",
+      "sections": [
+        "FC-05"
+      ],
+      "requirement": "Qualified shared-guard wrapper route for all retained callable shapes.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A6",
+      "sections": [
+        "FC-11"
+      ],
+      "requirement": "Admission before LLM synthesizer probe as well as embeddings.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A7",
+      "sections": [],
+      "requirement": "Current next-decision authority and pass count reconciled.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A8",
+      "sections": [
+        "FC-01"
+      ],
+      "requirement": "Do not activate inert Chat rejection-log setting.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A9",
+      "sections": [
+        "FC-10"
+      ],
+      "requirement": "Early visibility of hosted baseline immutable-identity feasibility stop.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A10",
+      "sections": [
+        "FC-04"
+      ],
+      "requirement": "Read-only transcript SQLite as well as Chroma.",
+      "status": "proposed_for_fresh_review"
+    }
+  ]
 }

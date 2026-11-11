@@ -1,6 +1,6 @@
 # Document-ingestion remediation — compatibility correction in review
 
-Execution phase: planning; validation state: in_review (cycle pass1/4, round6).
+Execution phase: planning; validation state: in_review (cycle pass2/4, round7).
 The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and normative
 [compatibility contract](embedding-compatibility-contract.md) incorporate the
 nine technical themes and high/medium advisory requirements. B01–B08 and
@@ -11,7 +11,7 @@ iterations, four total. Require independent coverage and overall scores >=9.5
 and VERIFIED/no mandatory findings. Stop at success or after pass4 for guidance.
 No Gate-A, product code, model/store actions, acceptance or delivery follows.
 
-**Next gate:** Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 ## Separate MAINT closeout and historical checkpoints
 
@@ -24,7 +24,7 @@ Reviewed candidate `b15ee091`, product/artifact source `ae15a537`.
 [Human handoff](validation/maintenance/implementation/acceptance-handoff.md) and
 [checklist](uat/maintenance-reorganization-uat.md) are ready; all UAT remains NOT RUN.
 
-**Next gate:** Run targeted human MAINT-001 UAT, then obtain separate bounded acceptance; implementation council round1 is reconciled VERIFIED (Astra9.5, Sol9.6), no mandatory findings. Delivery remains local.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 ## Historical implementation checkpoints
 
@@ -35,7 +35,7 @@ Product/artifact source: `ae15a5374350807bd909bc823078087a53a47ce4`. Governing t
 [Builder receipts](validation/maintenance/implementation/evidence.json) distinguish
 passes, approved immutable-oracle failures, baseline debt and excluded attempts.
 
-**Next gate:** Reconcile fresh MAINT-001 implementation round1 Astra/Sol reviews; require each VERIFIED at least9.5/10 and no mandatory findings before targeted human UAT and separate acceptance. Delivery remains local.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 ## Historical construction checkpoints
 
@@ -46,7 +46,7 @@ Focused tests, real-store headless cancellation/rollback, v1 fixture recovery an
 the bounded retained-behavior comparison pass. Full final/installed proof and
 independent implementation validation remain pending.
 
-**Next gate:** Finish MAINT-001 clean source freeze, build/replay and installed proof, then fresh OpenAI implementation council; human UAT/acceptance and all delivery remain separate.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 ## Historical approved construction checkpoint
 
@@ -55,7 +55,7 @@ independent implementation validation remain pending.
 Both fresh round4 seats: VERIFIED9.6/10; zero mandatory findings. Exact conditional
 approval is activated in [activation](validation/maintenance/specification/round4/activation.json).
 
-**Next gate:** MAINT-001 conditional gate satisfied: begin D0 baselines, then bounded shared Memory pipeline implementation and Chat delegation under exact approved directive; independent OpenAI implementation validation and human UAT/acceptance remain due.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 ## Historical document checkpoint
 
@@ -76,7 +76,7 @@ and each score>=9.5/10, with no open mandatory findings. Prior scores cannot car
 forward. On failure stop; no score-chasing review loop. On success record exact
 activation before the bounded implementation and its planned independent validation.
 
-**Next gate:** Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 ## Historical round3 handoff
 
@@ -94,7 +94,7 @@ The first Astra BLOCKED attempt remains preserved and excluded, not waived.
 [v3 pins](validation/maintenance/construction-preparation-v3.json) retain exact
 reviewed bytes. This is not runtime proof or construction approval.
 
-**Next gate:** Chuck Russell reviews the VERIFIED MAINT-001 specification/directive and grants exact bounded construction approval, or requests changes. No product edits or further agents before that decision; accepted MEMQ remains closed.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 No agents remain working on this council. Accepted MEMQ remains closed.
 
@@ -113,7 +113,7 @@ transport. [Directive](directives/CD-CMD-MAINT-001-reorganization-order.md) and
 [specification](maintenance-reorganization-specification.md) require fresh closure;
 no prior verdict carries forward. [V3 pins](validation/maintenance/construction-preparation-v3.json).
 
-**Next gate:** Reconcile fresh Astra/Sol round3 review of the corrected MAINT-001 specification/directive, correction delta first then full readiness. No product construction approval; unresolved findings return to the maintainer.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 No product/test changes or provider/store operations; accepted MEMQ remains closed.
 
@@ -136,7 +136,7 @@ binds the revised authority and unchanged product baseline. The earlier
 specification council does not cover these revised bytes. Chuck Russell explicitly
 requested fresh OpenAI-only review after the ownership revisions.
 
-**Next gate:** Reconcile fresh OpenAI-only round2 review of the revised MAINT-001 specification and directive with Memory-owned pipeline execution. No product implementation approval; stop for human decision after review.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 No product code or tests changed. Accepted MEMQ/UAT remain closed.
 
@@ -159,7 +159,7 @@ preflight, provider-free preview, and separate immutable run evidence while
 retaining recovery journal/bundle version1. The file allowlist, test nodes,
 commands, fixture relocation rules and later validation gates are explicit.
 
-**Next gate:** Chuck Russell reviews proposed CD-CMD-MAINT-001 construction directive and preparation pins. No product implementation or council/sub-agent invocation until explicit direction after document review.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 No product changes, fixture generation, runtime tests or agents were started.
 Accepted MEMQ and its UAT remain closed. The earlier council verified the
@@ -180,7 +180,7 @@ Three merged advisories become directive/test-planning inputs: preflight and
 empty-stage semantics; migration-only synthesis; actual legacy recovery fixtures.
 No proposed runtime evidence has been executed for this unit.
 
-**Next gate:** Prepare the exact MAINT-001 construction directive for Chuck Russell to review, carrying the reconciled specification advisories. No implementation or further council/sub-agent invocation without explicit direction.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 Accepted MEMQ remains closed. This council does not grant construction or
 acceptance authority. No agents remain working on this review.
@@ -202,7 +202,7 @@ Chuck Russell directed continued drafting and requested document review before
 council sub-agents are invoked. The primary agent prepares the draft directly;
 no sub-agents or implementation are authorized by this preparation checkpoint.
 
-**Next gate:** Chuck Russell reviews the MAINT-001 maintenance reorganization specification before any council or sub-agent invocation. Drafting only; no implementation approval. Accepted MEMQ remains closed; initiative stays started/local.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 ## Preserved accepted MEMQ checkpoint
 
@@ -225,7 +225,7 @@ unsupported explicit flag. [Open defect](../../backlog/friday-chat-framework-fol
 The [verification flow note](validation/memory-queries/acceptance/verification-flow.md)
 explains the three model roles, structural checks, ordering and failure signals.
 
-**Next gate:** MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 The parent initiative stays started/local. No subsequent code, TUI, delivery or
 whole-refactor acceptance is inferred. Known baseline debt remains unwaived.
@@ -244,7 +244,7 @@ records Chat1390, Commands/cohort599, CLI155, fast lanes616/117, all52 new
 MQ-T07..14 cases,20 assertion-witnessed mutants and exact current observations.
 The [round1 council](validation/memory-queries/implementation/d2/council-round1/report.md) reproduced those runtime checks. Sol9.6 and Claude9.4 VERIFIED; Astra9.3 CHANGES_REQUESTED for stale authority prose. [Round2](validation/memory-queries/implementation/d2/council-round2/report.md) resolves ASTRA-001 but identifies a frozen backlog scope breach. The exact approved bytes are restored and [round3](validation/memory-queries/implementation/d2/verified-report.md) is unanimously VERIFIED9.5, no mandatory findings. [D3](validation/memory-queries/implementation/d3/README.md) has completed builder builds/replay, actual installed proof and controls at sourcee4c0b9a2; [final council](validation/memory-queries/implementation/d3/verified-report.md) is unanimously VERIFIED (Sol9.5/Astra9.4/Claude9.5), with no mandatory findings. Original reports remain scoped to their candidates.
 
-**Next gate:** Maintainer combined retest of entity quoting, ingestion without descriptions and verification diagnostics using uat/memq-repair-retest.md. Capture any verification role/model/finish/field error; remaining dependent UAT and acceptance stay pending.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 The original MEMQ contract/directive/approval remain byte-exact historical
 technical inputs. Current shared Commands and ingestion changes are authorized by
@@ -273,7 +273,7 @@ The builder record and evidence bind the source, tests and preservation checks. 
 599, Chat 1,338 and CLI 155 pass; all 101 new neutral cases are included. The
 unchanged control passes and 14 mutants are rejected by test-call assertions.
 
-**Next gate:** Implement bounded MEMQ D2 Chat integration and approved option R persisted listing under the existing exact approval; freeze and obtain fresh D2 Sol/Astra/Claude council before D3. D1 VERIFIED at 9ce71581; UAT NOT RUN; no acceptance or delivery.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 The [MEMQ UAT plan](uat/memq-user-acceptance-plan.md) sits alongside the earlier
 roadmap. Every case remains NOT RUN pending D2/D3 and installed readiness.
@@ -296,7 +296,7 @@ was explicit after the earlier escalation. The old Sol BLOCKED receipt and
 external locator remain preserved; no past violation was waived. Fresh current
 seats independently satisfied isolation.
 
-**Next gate:** Reproduce MEMQ D0 baseline and preservation under the existing option R technical approval, then bounded neutral D1 with fresh D1 council before D2. Directive/design readiness VERIFIED at be15dca1; product implementation unstarted; no acceptance or delivery.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 The existing [option R technical approval](approval/memory-queries-directive-correction2.md)
 continues to bind exact contract/directive bytes. This review clears design
@@ -330,7 +330,7 @@ Chuck Russell reported successful manual UAT and [accepted DIAG-001](approval/di
 artifact source `28c544fa` is unchanged. The [UAT register](uat/friday-chat-user-acceptance-roadmap.md)
 records maintainer-reported results without inferred per-case detail.
 
-**Next gate:** Prepare proposed MEMQ-001 contract and directive (planning only) after accepted DIAG-001; construction requires their exact approval. No delivery follows automatically.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 The [proposed unit order](validation/step3/unit-map.json) places MEMQ-001
 (`/memory`, `/insights`, `/summaries`, `/meta`, `/entities`, `/list-ingested`)
@@ -356,7 +356,7 @@ The runtime order finding and both documentation findings are independently
 closed. Current1,991-suite/build/install receipts retain exact provenance; all
 review inputs and protected local state were rechecked before closeout metadata.
 
-**Next gate:** Chuck Russell's bounded DIAG-001 acceptance decision; manual UAT remains unrun. No next unit or delivery follows automatically.
+**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 Read the [acceptance handoff](validation/diagnostics/implementation/d3/acceptance-handoff.md)
 and [17-case UAT roadmap](uat/friday-chat-user-acceptance-roadmap.md). The latter
