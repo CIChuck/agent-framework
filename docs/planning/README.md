@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Reconcile compatibility-cycle pass3/4 (global round8) fresh Sol/Astra/Opus reviews of the corrected REM/annex/Tools and all framework consumers. Every seat must VERIFIED with coverage and overall >=9.5 and zero mandatory findings. At most one further correction/review pass remains; after pass4 stop for maintainer guidance. No Gate-A, construction, store/reset action or delivery. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | INGEST design/source readiness VERIFIED at f43368c5 by all3 seats with both scores >=9.5/no mandatory findings; bounded loop complete after3/4 passes, no active council. Review the concrete bounded Gate-A effects envelope before separate activation; qualify exact dependencies/models/counters/formats and approve the final construction directive before product code. No automatic installs, store/reset action, acceptance or delivery. |
 
 ## Completed
 

@@ -3000,3 +3000,21 @@ all-framework consumers. At most one later correction/review pass remains.
 Every seat must VERIFIED/no mandatory findings with coverage and overall >=9.5;
 after pass4 stop for maintainer guidance. No automatic Gate-A/construction,
 MAINT acceptance, data reset/migration, push or delivery authority.
+
+
+## INGEST compatibility council reconciled VERIFIED — 2026-11-10
+
+Reviewed `f43368c5`: Sol coverage9.6/overall9.6, Astra9.5/9.5 and Opus9.5/9.5,
+all VERIFIED, zero mandatory findings. [Round8](validation/document-ingestion/council-round8/report.md)
+preserves raw hashes/reports, exact technical pins, all32 criteria and conduct.
+All guarded integrity/admin checks pass; no runtime/installed proof inferred.
+The loop stops after3/4 passes; no fourth council or new sub-agent is launched.
+
+Reviewed REM/annex/Tools bytes are unchanged. Current routing and evidence only
+are reconciled. All11 advisory IDs are carried into the
+[readiness handoff](validation/document-ingestion/council-round8/readiness-carry-forward.md)
+without granting broader repair scope. Historical35 gate lines and prior raw
+reports remain preserved. Gate-A effects envelope review/activation and exact
+qualified construction directive approval remain required before code. No
+installs/models, personal-store cleanup/reset/migration, MAINT/human acceptance,
+push or delivery performed or authorized by this record.

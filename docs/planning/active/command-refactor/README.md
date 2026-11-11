@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. The current INGEST embedding-pool compatibility
-revision is in compatibility-cycle pass3/4 review; Gate-A execution and MAINT human UAT/acceptance remain pending.
+design is independently VERIFIED at f43368c5; Gate-A execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -33,20 +33,22 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Document-ingestion design — compatibility correction in review:**
-The [revised REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) binds the normative
-[framework compatibility contract](embedding-compatibility-contract.md): the original framework themes plus six pass1 correction themes, B01–B08
-and FC-01–14 proof, including actual extraction/MCP/logging/public-backup behavior.
-Execution phase: planning; validation state: in_review (cycle pass3/4, round8).
-The [new authorization](validation/document-ingestion/compatibility-iteration-authorization.json)
-permits an initial council plus three bounded document correction/review passes,
-requiring each independent VERIFIED with coverage and overall scores >=9.5 and
-no mandatory findings. Stop at the gate or after pass4 for maintainer guidance.
+**Document-ingestion design — independently VERIFIED:**
+The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md), normative
+[compatibility contract](embedding-compatibility-contract.md) and Tools companion
+are verified at `f43368c5`. [All three seats](validation/document-ingestion/council-round8/report.md)
+meet coverage AND overall>=9.5, with zero mandatory findings. The bounded loop
+ended at pass3/4 (round8); no fourth council is active. Reviewed technical bytes
+are unchanged; this current status is controller reconciliation only.
 
-[Round5](validation/document-ingestion/council-round5/report.md) remains historical
-changes-requested/blocked evidence; no old verdict covers the revised documents.
-No code, package/model readiness execution, user-store reset/migration, MAINT
-acceptance or delivery is granted. Low-impact telemetry stays unchanged.
+[Verified design handoff](validation/document-ingestion/compatibility-verified-report.md)
+and [nonblocking carry-forward](validation/document-ingestion/council-round8/readiness-carry-forward.md)
+define the next readiness/directive boundaries. Round4 and rounds5–7 reports
+remain immutable and candidate-specific. MCP/backups remain compatibility
+surfaces; unrelated FU013/014 repairs are separate and unwaived. Execution phase:
+planning; validation state: verified; construction authority: not granted.
+No Gate-A effects, product code, user-store reset/migration, MAINT acceptance
+or delivery follows this result.
 
 **Working home:** `agent-framework`, branch `feature/cmd-ingest-001`.
 **Board ID:** `friday-command-refactor`.

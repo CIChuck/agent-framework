@@ -711,11 +711,12 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Reconcile compatibility-cycle pass3/4 (global round8) fresh Sol/Astra/Opus reviews of the corrected REM/annex/Tools and all framework consumers. Every seat must VERIFIED with coverage and overall >=9.5 and zero mandatory findings. At most one further correction/review pass remains; after pass4 stop for maintainer guidance. No Gate-A, construction, store/reset action or delivery."
+  next_gate: "INGEST design/source readiness VERIFIED at f43368c5 by all3 seats with both scores >=9.5/no mandatory findings; bounded loop complete after3/4 passes, no active council. Review the concrete bounded Gate-A effects envelope before separate activation; qualify exact dependencies/models/counters/formats and approve the final construction directive before product code. No automatic installs, store/reset action, acceptance or delivery."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/document-ingestion/compatibility-verified-report.md
   - docs/planning/active/command-refactor/validation/maintenance/implementation/verified-report.md
   - docs/planning/active/command-refactor/validation/step3/correction-report.md
   - docs/planning/active/command-refactor/validation/legacy-cli-removal/report.md
@@ -3205,3 +3206,11 @@ events:
   action: corrected INGEST pass2 contracts and restored historical gates for pass3
   note: "All pass2 scores below gate. Five contract/history themes plus nine advisory dispositions; no product changes. Fresh pass3/4 then one final pass maximum; no Gate-A, store or delivery authority."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round7/reconciliation.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T03:52:54.229623+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled INGEST compatibility design VERIFIED and stopped the bounded council loop
+  note: "All3 seats independently VERIFIED with both coverage and overall >=9.5, zero mandatory findings, candidate f43368c5. Technical bytes unchanged; pass3/4 success stops further automatic review. Readiness/directive carry-forward only; no Gate-A, construction, model/store, acceptance or delivery authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/compatibility-verified-report.md

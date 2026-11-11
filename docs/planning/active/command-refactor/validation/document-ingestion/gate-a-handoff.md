@@ -1,17 +1,18 @@
 # INGEST-001 — Gate-A and final-directive handoff
 
-Status: revised REM plus normative compatibility annex in independent review,
-cycle pass3/4. The [iteration authority](compatibility-iteration-authorization.json)
-is document-only. [Correction map](compatibility-correction-map.json) tracks nine
-technical themes and the selected high/medium advisories without claiming closure.
-Earlier round4 and [round5 results](council-round5/report.md) retain only their
-candidate-specific meanings. No Gate-A effects or construction approval follows.
+Status: design/source feasibility VERIFIED at `f43368c5`; all3 independent seats
+meet both9.5 thresholds with no mandatory findings. The [pass3 reconciliation](council-round8/report.md)
+ends the loop after3/4 passes. No fourth review, installs or product work starts.
+Reviewed REM/annex/Tools bytes are unchanged. See the
+[exact verified design](compatibility-verified-report.md) and
+[all nonblocking carry-forward details](council-round8/readiness-carry-forward.md).
 
-The normative [compatibility contract](../../embedding-compatibility-contract.md)
-requires B01–B08, FC-01–14, source-linked consumer coverage and successful B/N
-operations, not refusal-only compatibility. Its baseline and new-model tests,
-minimal installs and quality limits remain future obligations. Resolve the current
-review gate before separately activating the readiness effects envelope.
+Existing [pass1](council-round6/report.md) and [pass2](council-round7/report.md)
+reports remain historical; no old verdict was reused. Successful B/N and refusal
+source/installed proofs, exact dependency/model/counter/format qualification and
+any later model-quality evaluation remain future. MCP/backups receive only
+causal compatibility adaptations, with no feature redesign. No acceptance,
+Gate-A activation, construction, personal-store or delivery authority is granted.
 
 ## Before readiness execution
 

@@ -48,4 +48,4 @@ The two edited Chat example YAML files remain uncommitted and unstaged;
 `.friday-old/` and ignored exports remain untouched. Historical receipts retain
 their original branch/source identities. Do not broad-stage or clean this checkout.
 
-**Next gate:** Reconcile compatibility-cycle pass3/4 (global round8) fresh Sol/Astra/Opus reviews of the corrected REM/annex/Tools and all framework consumers. Every seat must VERIFIED with coverage and overall >=9.5 and zero mandatory findings. At most one further correction/review pass remains; after pass4 stop for maintainer guidance. No Gate-A, construction, store/reset action or delivery.
+**Next gate:** INGEST design/source readiness VERIFIED at f43368c5 by all3 seats with both scores >=9.5/no mandatory findings; bounded loop complete after3/4 passes, no active council. Review the concrete bounded Gate-A effects envelope before separate activation; qualify exact dependencies/models/counters/formats and approve the final construction directive before product code. No automatic installs, store/reset action, acceptance or delivery.

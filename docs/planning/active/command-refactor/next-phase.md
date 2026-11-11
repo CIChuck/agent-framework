@@ -1,6 +1,6 @@
-# Document-ingestion remediation — compatibility correction in review
+# Document-ingestion remediation — compatibility design verified
 
-Execution phase: planning; validation state: in_review (cycle pass3/4, round8).
+Execution phase: planning; validation state: verified (reviewed f43368c5; cycle pass3/4, round8).
 The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and normative
 [compatibility contract](embedding-compatibility-contract.md) incorporate the
 nine technical themes and high/medium advisory requirements. B01–B08 and
@@ -11,7 +11,7 @@ iterations, four total. Require independent coverage and overall scores >=9.5
 and VERIFIED/no mandatory findings. Stop at success or after pass4 for guidance.
 No Gate-A, product code, model/store actions, acceptance or delivery follows.
 
-**Next gate:** Reconcile compatibility-cycle pass3/4 (global round8) fresh Sol/Astra/Opus reviews of the corrected REM/annex/Tools and all framework consumers. Every seat must VERIFIED with coverage and overall >=9.5 and zero mandatory findings. At most one further correction/review pass remains; after pass4 stop for maintainer guidance. No Gate-A, construction, store/reset action or delivery.
+**Next gate:** INGEST design/source readiness VERIFIED at f43368c5 by all3 seats with both scores >=9.5/no mandatory findings; bounded loop complete after3/4 passes, no active council. Review the concrete bounded Gate-A effects envelope before separate activation; qualify exact dependencies/models/counters/formats and approve the final construction directive before product code. No automatic installs, store/reset action, acceptance or delivery.
 
 ## Separate MAINT closeout and historical checkpoints
 
