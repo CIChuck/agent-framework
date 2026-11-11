@@ -3394,3 +3394,16 @@ bounded document-correction list and any fresh review authorization. No automati
 repair/replacement/iteration, construction, stage activation, acceptance or
 delivery follows. Earlier preparation-only council-authority wording is clarified
 in current metadata; the frozen directive is not rewritten during closeout.
+
+
+### Controller archive packaging correction — 2026-11-11
+
+The initial closeout commit 2fd8050e was created after the staged whitespace
+check failed on two byte-exact source-excerpt receipts. The combined-range check
+then failed on the same receipts. This was a controller sequencing error, not
+baseline debt or a reviewer failure. The two receipts are now stored losslessly
+compressed; archive mapping retains their original and encoded hashes. No source
+text was normalized, no reviewer report or directive was changed, and no production
+file/runtime was touched. The [packaging audit](validation/document-ingestion/gate-a/council-round1/evidence/controller-archive-packaging.json)
+records the failure/correction. Final range/staged/preservation checks are rerun
+before completing the closeout; all six design correction groups remain open.

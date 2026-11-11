@@ -66,7 +66,12 @@ The original [request](frozen-inputs/request.json), [current controls](frozen-in
 The [archive map](archive-map.json) records original/retained paths, byte hashes
 and encoding. Decompressing the manifest recovers its exact original bytes.
 Absolute original paths in raw receipts are provenance, never instructions to
-reuse another agent's cache/output directory. Exploratory diff files not needed
+reuse another agent's cache/output directory. Two source-excerpt receipts are also
+losslessly compressed to retain their original whitespace. The initial controller
+closeout committed them despite a failed staged whitespace check; the subsequent
+combined-range check failed too. This packaging correction preserves their exact
+source hashes and is recorded in [the controller audit](evidence/controller-archive-packaging.json).
+It changes no reviewer verdict, directive or production file. Exploratory diff files not needed
 for the formal evidence remain in original scratch and are not claimed archived.
 
 No reviewer ran tests, dependency resolution/install/build, format conversion,

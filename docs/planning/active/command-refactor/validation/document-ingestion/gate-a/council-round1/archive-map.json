@@ -184,12 +184,12 @@
     },
     {
       "source": "/tmp/igh-r1-sol-review-2oP7POrY/startup-source-evidence.txt",
-      "archive": "evidence/sol/startup-source-evidence.txt",
-      "encoding": "identity",
+      "archive": "evidence/sol/startup-source-evidence.txt.gz",
+      "encoding": "gzip",
       "source_sha256": "ff1dfdbfcca45c0e60f7d131eb85f68cc2fc3724b6cc46988672852c60fdbe2a",
-      "archive_sha256": "ff1dfdbfcca45c0e60f7d131eb85f68cc2fc3724b6cc46988672852c60fdbe2a",
+      "archive_sha256": "d6edec1bc7244f1a0579f4a3fa76a498790952b6219aff32bb1857602f42a240",
       "source_bytes": 1497,
-      "archive_bytes": 1497
+      "archive_bytes": 714
     },
     {
       "source": "/tmp/igh-r1-sol-review-2oP7POrY/input-identities.json",
@@ -400,12 +400,12 @@
     },
     {
       "source": "/tmp/igh-r1-astra-zsdvg9z1/python-startup-source.txt",
-      "archive": "evidence/astra/python-startup-source.txt",
-      "encoding": "identity",
+      "archive": "evidence/astra/python-startup-source.txt.gz",
+      "encoding": "gzip",
       "source_sha256": "6c0bb4cb2fed0eec293f2dae3cbf5e9193fa8b7b72af3ccf880096898309d717",
-      "archive_sha256": "6c0bb4cb2fed0eec293f2dae3cbf5e9193fa8b7b72af3ccf880096898309d717",
+      "archive_sha256": "e671ae7395b0df00a6c5021f774088a6965b0ecc6f730c09e17183e5eaa753cb",
       "source_bytes": 2208,
-      "archive_bytes": 2208
+      "archive_bytes": 1011
     },
     {
       "source": "/tmp/igh-r1-astra-zsdvg9z1/authority-pins.json",

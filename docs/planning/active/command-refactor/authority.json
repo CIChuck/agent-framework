@@ -2683,9 +2683,9 @@
         "outcome": "CHANGES_REQUESTED",
         "reviewed_candidate": "f81453695007cacfa072fe295b8da7aa478438ba",
         "report": "validation/document-ingestion/gate-a/council-round1/report.md",
-        "report_sha256": "1eacc7427da72160a18d8f913dff728186e7c4a8574b229f93a6226acd97b0b3",
+        "report_sha256": "884b67d7c6b58db367082fe5a2bdf06c54eac20612fc5422599a8131958c365a",
         "reconciliation": "validation/document-ingestion/gate-a/council-round1/reconciliation.json",
-        "reconciliation_sha256": "2221962b318ee987f196ff72eed4b647dfe12b22f2a313019e95b44126ad570a",
+        "reconciliation_sha256": "5183451fc749480e266be9de3b485f3ef9d86b2260d10080efa21552e1e82c85",
         "all_seats_terminal": true,
         "target_met": false,
         "mandatory_finding_ids": 7,
@@ -2694,7 +2694,7 @@
         "automatic_remediation_or_further_round": false,
         "controller_frozen_boundary": "PASS before closeout metadata changes",
         "closeout_checks": "validation/document-ingestion/gate-a/council-round1/closeout-checks.json",
-        "closeout_checks_sha256": "80f778a9cd1e01a474a79d67cf15305046e9cce68714908bb725fd1121fb7814"
+        "closeout_checks_sha256": "d67094d2e6fcf0f25d442e9356e406a87fca94a7cd73668d61e19db7e319f386"
       }
     },
     "lightweight_planning_exemption": {

@@ -131,5 +131,6 @@
   "controller_disposition": "Accept six design-gap groups for bounded correction planning, without changing the directive or executing mitigations. No finding is closed.",
   "authority_metadata_clarification": "Current council is explicitly authorized and complete; earlier preparation-only council_authority wording is superseded at closeout. Frozen directive remains unchanged.",
   "production_scope": "No production source/config/lock/env/store change or test environment creation. All review changes were planning metadata; reviewers wrote only their own external scratch.",
-  "next_gate": "Maintainer disposition of the bounded correction list and any fresh review authorization; no automatic remediation/loop/replacement, construction, activation, acceptance or delivery."
+  "next_gate": "Maintainer disposition of the bounded correction list and any fresh review authorization; no automatic remediation/loop/replacement, construction, activation, acceptance or delivery.",
+  "controller_archive_packaging_correction": "evidence/controller-archive-packaging.json"
 }
