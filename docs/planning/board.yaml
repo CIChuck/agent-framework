@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "INGEST design/source readiness VERIFIED at f43368c5 by all3 seats with both scores >=9.5/no mandatory findings; bounded loop complete after3/4 passes, no active council. Review the concrete bounded Gate-A effects envelope before separate activation; qualify exact dependencies/models/counters/formats and approve the final construction directive before product code. No automatic installs, store/reset action, acceptance or delivery."
+  next_gate: "Package Impact Assessment council round1/4: fresh Sol/Astra/Opus document review, each VERIFIED/no mandatory findings and coverage/overall >=9.5; bounded document corrections only. Chuck reviews the linked assessment in parallel; his satisfaction and remaining conditions are still required before final directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3214,3 +3214,19 @@ events:
   action: reconciled INGEST compatibility design VERIFIED and stopped the bounded council loop
   note: "All3 seats independently VERIFIED with both coverage and overall >=9.5, zero mandatory findings, candidate f43368c5. Technical bytes unchanged; pass3/4 success stops further automatic review. Readiness/directive carry-forward only; no Gate-A, construction, model/store, acceptance or delivery authority."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/compatibility-verified-report.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T13:24:05.266147+00:00"
+  actor: Codex
+  actor_role: agent
+  action: drafted INGEST package impact assessment under conditional maintainer approval
+  note: "Documentation only. Current plan mapped to all17 packages; eight proposed implementation packages including conditional CLI edits and nine source-unchanged compatibility packages. Maintainer satisfaction with package impact is required before construction directive approval; remaining conditions and Gate-A activation pending. Reviewed technical pins unchanged; no council or execution started."
+  evidence: docs/planning/active/command-refactor/package-impact-assessment.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T13:30:40.641649+00:00"
+  actor: Codex
+  actor_role: agent
+  action: recorded bounded Package Impact Assessment council authorization
+  note: "Explicit maintainer requests fresh Sol/Astra/Opus review and up to four total rounds of bounded document correction until every seat VERIFIED and coverage/overall >=9.5 with no mandatory findings. Maintainer reviews linked draft in parallel. This is a new document council; the completed technical-design loop stays closed. No Gate-A or implementation authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/iteration-authorization.json

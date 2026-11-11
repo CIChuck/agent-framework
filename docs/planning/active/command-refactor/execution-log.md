@@ -3018,3 +3018,38 @@ reports remain preserved. Gate-A effects envelope review/activation and exact
 qualified construction directive approval remain required before code. No
 installs/models, personal-store cleanup/reset/migration, MAINT/human acceptance,
 push or delivery performed or authorized by this record.
+
+
+## INGEST package impact assessment drafted — 2026-11-11
+
+Chuck conditionally approves the REM and requires satisfaction with overall
+per-package impact before approving the construction directive. His subsequent
+`proceed` authorizes this documentation step. [Assessment v0.1](package-impact-assessment.md)
+maps all 17 workspace packages: eight with proposed implementation changes
+(CLI changes only if needed) and nine with source-unchanged compatibility
+obligations. INGEST and TOOLS-DOC adoption remain separate delivery obligations.
+
+The draft includes dependency/configuration/data effects, required positives
+and refusals, unresolved Gate-A details, and exact-version/hash incorporation
+as a mandatory referenced appendix to the final directive. Its SHA256 is
+`df73594bd39c64190552b7e7e1d3deced9c73d49e09a24405711051492affb60`. Satisfaction with this draft and the remaining approval conditions
+are pending; no execution authority is inferred. The reviewed REM/annex/Tools
+technical bytes and prior council reports are unchanged. No agents, installs,
+product edits, provider/model calls, store operations or delivery were launched.
+
+
+## Package Impact Assessment council authorized — 2026-11-11
+
+Chuck directs fresh council review after the draft is constructed, targeting
+at least 9.5 per seat and a loop of at most four total rounds without further
+routine approval requests. He also requests a direct assessment link to review
+in parallel; that link was provided. [Authorization](validation/document-ingestion/package-impact/iteration-authorization.json)
+records the three named models, honest coverage/overall scoring, bounded
+document corrections and the stop after round4 if the gate is not met.
+
+Execution phase: validation; validation state: in_review, document round1/4.
+The prior technical-design council remains completed at f43368c5. This council
+assesses the new table and its traceability, not implementation or Gate-A proof.
+User satisfaction with the impact and remaining conditions is still pending.
+No product/dependency/configuration changes or model/store operations are
+authorized. Review candidate and private request pins are frozen before dispatch.

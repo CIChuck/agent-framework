@@ -50,6 +50,19 @@ planning; validation state: verified; construction authority: not granted.
 No Gate-A effects, product code, user-store reset/migration, MAINT acceptance
 or delivery follows this result.
 
+**Package impact review — 2026-11-11:** Chuck conditionally approves the REM
+and requires satisfaction with the per-package impact before construction
+directive approval. The [Package Impact Assessment](package-impact-assessment.md)
+v0.1 is ready for his review: eight proposed implementation packages (CLI
+conditional) and nine source-unchanged compatibility packages. It summarizes
+the frozen design. A separately authorized Sol/Astra/Opus council now reviews
+this assessment in up to four total rounds, requiring each seat VERIFIED with
+coverage and overall scores at least 9.5 and no mandatory findings. Chuck
+reviews the linked draft in parallel. Execution phase: validation; validation
+state: in_review for this document. His satisfaction, remaining approval
+conditions, Gate-A activation and construction remain pending. The
+final directive must bind the approved assessment as a referenced appendix.
+
 **Working home:** `agent-framework`, branch `feature/cmd-ingest-001`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and

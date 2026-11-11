@@ -14,6 +14,19 @@ any later model-quality evaluation remain future. MCP/backups receive only
 causal compatibility adaptations, with no feature redesign. No acceptance,
 Gate-A activation, construction, personal-store or delivery authority is granted.
 
+## Package impact review before construction approval
+
+[Package Impact Assessment v0.1](../../package-impact-assessment.md) is the
+canonical package-level review input. Chuck has conditionally approved the REM
+and explicitly requires satisfaction with the overall package impact before
+approving the construction directive. The assessment is drafted and now in a separately authorized four-round
+independent council, with Chuck reviewing the linked draft in parallel; it is
+not yet approved or verified. Capture any remaining conditions before
+readiness activation. Refine measured details at Gate A; return material scope
+changes for review. The final directive binds the approved version, commit and
+SHA256 as a required referenced appendix. The original technical pins remain
+unchanged.
+
 ## Before readiness execution
 
 Prepare the concrete effects envelope required by REM A: exact artifact hosts/
@@ -57,7 +70,9 @@ exists. Record measured dependencies/model/counter/Office behavior separately
 from model cards or doubles, with explicit stop conditions.
 
 All future tests, build/replay, normal/optimized installed proofs and human UAT
-remain future obligations. The earlier iterations are complete. The newly authorized compatibility cycle
-is limited to four full passes, with fresh reviewers after changes; stop at the
-score/verification gate or at pass4 for guidance. Acceptance and delivery remain
+remain future obligations. The compatibility council loop completed successfully
+at pass 3/4. The new, separately authorized Package Impact Assessment council
+is limited to four total rounds and does not reopen that completed cycle.
+Package-impact review, remaining approval conditions, Gate-A activation and the
+exact construction directive remain pending. Acceptance and delivery remain
 ungranted.
