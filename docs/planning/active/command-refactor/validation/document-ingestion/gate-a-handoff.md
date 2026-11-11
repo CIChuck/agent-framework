@@ -1,22 +1,17 @@
 # INGEST-001 — Gate-A and final-directive handoff
 
-Status: current embedding-pool compatibility amendment requires changes after round5;
-[earlier VERIFIED design](verified-design-report.md) retained as history.
-The maintainer requested the REM update recorded in
-[the compatibility record](embedding-pool-compatibility.json). This is not
-construction approval or Gate-A activation.
+Status: revised REM plus normative compatibility annex in independent review,
+cycle pass1/4. The [iteration authority](compatibility-iteration-authorization.json)
+is document-only. [Correction map](compatibility-correction-map.json) tracks nine
+technical themes and the selected high/medium advisories without claiming closure.
+Earlier round4 and [round5 results](council-round5/report.md) retain only their
+candidate-specific meanings. No Gate-A effects or construction approval follows.
 
-The prior reviewed REM/companion at
-`728cba77e816e5618a06262dd4aa1cbc6e50a376` received seats9.6/9.6/9.5.
-Those verdicts do not cover the changed REM; the companion remains unchanged.
-All prior mandatory findings were closed **at design level**. Future feasibility and
-installed behavior remain unproved; no new dependency/model version is selected.
-
-The [framework-wide report](framework-compatibility-review.md) now records nine
-bounded technical themes and additional advisory dispositions. They need
-resolution before claiming current design readiness; the earlier six advisories
-remain historical carry-forwards, not the complete current open-work list. The
-technical REM/companion are unchanged here.
+The normative [compatibility contract](../../embedding-compatibility-contract.md)
+requires B01–B08, FC-01–14, source-linked consumer coverage and successful B/N
+operations, not refusal-only compatibility. Its baseline and new-model tests,
+minimal installs and quality limits remain future obligations. Resolve the current
+review gate before separately activating the readiness effects envelope.
 
 ## Before readiness execution
 
@@ -61,7 +56,7 @@ exists. Record measured dependencies/model/counter/Office behavior separately
 from model cards or doubles, with explicit stop conditions.
 
 All future tests, build/replay, normal/optimized installed proofs and human UAT
-remain future obligations. The completed iteration did not authorize another pass; the maintainer now
-separately authorized one framework-wide round5. It is complete with changes
-requested and Astra blocked; no further pass is activated. Acceptance and
-delivery remain ungranted.
+remain future obligations. The earlier iterations are complete. The newly authorized compatibility cycle
+is limited to four full passes, with fresh reviewers after changes; stop at the
+score/verification gate or at pass4 for guidance. Acceptance and delivery remain
+ungranted.

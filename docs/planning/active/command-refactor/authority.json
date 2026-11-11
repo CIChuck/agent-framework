@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery.",
+  "current_scope": "Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1896,68 +1896,26 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "proposed",
     "execution_phase": "planning",
-    "validation_state": "changes_requested",
+    "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
-    "sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
+    "sha256": "1cf5299fe231e38a95147277d40bbec62c1f999dea00b10a978a09777fab286c",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
     "scope": "PDF/DOCX/XLSX/PPTX extraction/local PDF OCR; shared all-source document/512 chunking with document/recursive/fixed overrides; shared LLM limits/dimension checks; retained fetching, admission, metadata/protection/storage semantics",
     "implementation_approval": "not_granted",
     "council": {
-      "round": 5,
-      "status": "reconciled_changes_requested",
-      "scope": "Framework-wide direct and indirect embedding/configuration/store consumer discovery, including unnamed subsystems; review current REM and companion for safe backwards-compatible design and model replacement with a fresh compatible namespace.",
-      "roster": "validation/document-ingestion/council-round5/roster.json",
-      "scope_record": "validation/document-ingestion/council-round5/scope.md",
+      "round": 6,
+      "cycle_pass": 1,
+      "maximum_cycle_passes": 4,
+      "status": "preparing_frozen_dispatch",
+      "scope": "Full framework coverage, unchanged configuration and replacement-model/fresh-namespace operational compatibility; current REM/annex/companion design and source feasibility only.",
+      "roster": "validation/document-ingestion/compatibility-iteration-authorization.json",
       "scores_required_each": 9.5,
-      "applies_to_current_revision": true,
-      "authority": "explicit maintainer request and clarification in roster",
-      "no_automatic_iteration": true,
-      "results": {
-        "sol": {
-          "outcome": "CHANGES_REQUESTED",
-          "score": 8.6,
-          "score_is_provisional": false,
-          "formal_signoff": false,
-          "report": "validation/document-ingestion/council-round5/sol-report.md"
-        },
-        "astra": {
-          "outcome": "BLOCKED",
-          "score": 8.4,
-          "score_is_provisional": true,
-          "formal_signoff": false,
-          "report": "validation/document-ingestion/council-round5/astra-report.md"
-        },
-        "opus": {
-          "outcome": "CHANGES_REQUESTED",
-          "score": 7.2,
-          "score_is_provisional": false,
-          "formal_signoff": false,
-          "report": "validation/document-ingestion/council-round5/opus-report.md"
-        }
-      },
-      "no_construction_or_gate_a_authority": true,
-      "reviewed_candidate": "06f294d779c5bc9ea3016eaffdf8efb349979ce4",
-      "report": "validation/document-ingestion/council-round5/report.md",
-      "reconciliation": "validation/document-ingestion/council-round5/reconciliation.json",
-      "framework_compatibility_review": "validation/document-ingestion/framework-compatibility-review.md",
+      "coverage_score_required_each": 9.5,
       "threshold_met_each": false,
-      "formal_council_complete": false,
-      "procedural_blocker": "ASTRA-R5-B01",
-      "no_active_council": true,
-      "mandatory_technical_themes": [
-        "INGEST-EC-01",
-        "INGEST-EC-02",
-        "INGEST-EC-03",
-        "INGEST-EC-04",
-        "INGEST-EC-05",
-        "INGEST-EC-06",
-        "INGEST-EC-07",
-        "INGEST-EC-08",
-        "INGEST-EC-09"
-      ],
-      "no_automatic_remediation_or_new_review": true
+      "results": {},
+      "no_construction_or_gate_a_authority": true
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
@@ -2086,15 +2044,15 @@
       "formal_council_complete": false
     },
     "current_revision": {
-      "kind": "embedding_pool_backward_compatibility",
-      "validation_state": "changes_requested",
-      "record": "validation/document-ingestion/embedding-pool-compatibility.json",
-      "record_sha256": "3f17db1cb4a96918903548335ff6bff07741c1484e4ebca676050d887973c4e6",
-      "rem_sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
+      "kind": "framework_compatibility_correction",
+      "validation_state": "in_review",
+      "record": "validation/document-ingestion/compatibility-correction-map.json",
+      "record_sha256": "0cc764f86bd43091a12cc1ab8bb09832eba4d70bd9b6e876752f05b2b56316d9",
+      "rem_sha256": "1cf5299fe231e38a95147277d40bbec62c1f999dea00b10a978a09777fab286c",
       "prior_review_applies": false,
-      "new_council_active": false,
+      "new_council_active": true,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery."
+      "next_gate": "Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery."
     },
     "council_history": [
       {
@@ -2132,6 +2090,61 @@
         "no_construction_or_gate_a_authority": true,
         "applies_to_current_revision": false,
         "new_dispatch_authorized": false
+      },
+      {
+        "round": 5,
+        "status": "reconciled_changes_requested",
+        "scope": "Framework-wide direct and indirect embedding/configuration/store consumer discovery, including unnamed subsystems; review current REM and companion for safe backwards-compatible design and model replacement with a fresh compatible namespace.",
+        "roster": "validation/document-ingestion/council-round5/roster.json",
+        "scope_record": "validation/document-ingestion/council-round5/scope.md",
+        "scores_required_each": 9.5,
+        "applies_to_current_revision": true,
+        "authority": "explicit maintainer request and clarification in roster",
+        "no_automatic_iteration": true,
+        "results": {
+          "sol": {
+            "outcome": "CHANGES_REQUESTED",
+            "score": 8.6,
+            "score_is_provisional": false,
+            "formal_signoff": false,
+            "report": "validation/document-ingestion/council-round5/sol-report.md"
+          },
+          "astra": {
+            "outcome": "BLOCKED",
+            "score": 8.4,
+            "score_is_provisional": true,
+            "formal_signoff": false,
+            "report": "validation/document-ingestion/council-round5/astra-report.md"
+          },
+          "opus": {
+            "outcome": "CHANGES_REQUESTED",
+            "score": 7.2,
+            "score_is_provisional": false,
+            "formal_signoff": false,
+            "report": "validation/document-ingestion/council-round5/opus-report.md"
+          }
+        },
+        "no_construction_or_gate_a_authority": true,
+        "reviewed_candidate": "06f294d779c5bc9ea3016eaffdf8efb349979ce4",
+        "report": "validation/document-ingestion/council-round5/report.md",
+        "reconciliation": "validation/document-ingestion/council-round5/reconciliation.json",
+        "framework_compatibility_review": "validation/document-ingestion/framework-compatibility-review.md",
+        "threshold_met_each": false,
+        "formal_council_complete": false,
+        "procedural_blocker": "ASTRA-R5-B01",
+        "no_active_council": true,
+        "mandatory_technical_themes": [
+          "INGEST-EC-01",
+          "INGEST-EC-02",
+          "INGEST-EC-03",
+          "INGEST-EC-04",
+          "INGEST-EC-05",
+          "INGEST-EC-06",
+          "INGEST-EC-07",
+          "INGEST-EC-08",
+          "INGEST-EC-09"
+        ],
+        "no_automatic_remediation_or_new_review": true
       }
     ],
     "design_readiness_history": [
@@ -2146,7 +2159,34 @@
         "handoff": "validation/document-ingestion/gate-a-handoff.md",
         "runtime_or_installed_proof": "not performed for INGEST"
       }
-    ]
+    ],
+    "framework_compatibility_contract": {
+      "document": "embedding-compatibility-contract.md",
+      "sha256": "ed298f6d5b6852c9604b16ac544c10352b3f565fb0aeaa1115aeb118dff77750",
+      "proofs": "FC-01 through FC-14; B01\u2013B08 and B/N/R scenarios",
+      "status": "proposed_not_implemented"
+    },
+    "correction_map": {
+      "record": "validation/document-ingestion/compatibility-correction-map.json",
+      "sha256": "0cc764f86bd43091a12cc1ab8bb09832eba4d70bd9b6e876752f05b2b56316d9"
+    },
+    "compatibility_iteration": {
+      "authorization": "validation/document-ingestion/compatibility-iteration-authorization.json",
+      "sha256": "27e55b58ce1b63e2c835e6ecc060f10bbf940610eb0e493be2556785cd249d30",
+      "current_pass": 1,
+      "maximum_passes": 4,
+      "global_rounds": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "passes_completed": 0,
+      "additional_corrections_remaining": 3,
+      "stop_after_four_for_guidance": true,
+      "new_delegates_per_pass": true,
+      "product_changes_authorized": false
+    }
   },
   "command_refactor_publication": {
     "status": "merged_remote_branch_deleted",
@@ -2179,7 +2219,7 @@
     ],
     "effort": "high",
     "providers": "two OpenAI, one Anthropic",
-    "record": "validation/document-ingestion/council-round5/roster.json",
+    "record": "validation/document-ingestion/compatibility-iteration-authorization.json",
     "historical_councils": "unchanged"
   }
 }

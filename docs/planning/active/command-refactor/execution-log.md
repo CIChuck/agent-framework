@@ -2927,3 +2927,24 @@ has been executed or accepted through this documentation change.
   candidate-specific history; MAINT acceptance and delivery are separate.
 - Execution phase: planning; validation state: changes_requested.
 - **Next gate:** Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery.
+
+
+## 2026-11-11T02:04:15.454127+00:00 — revised framework compatibility contract; four-pass council cycle
+
+- Chuck Russell explicitly authorizes incorporation of nine technical themes and
+  selected high/medium advisories, then one fresh council plus up to three
+  document correction/review iterations (four total). The latest-after-fourth
+  guidance stop and honest per-seat coverage/overall9.5 gates are recorded.
+- Proposed normative annex binds B01–B08, FC-01–14, actual source routes and
+  exact B/N/R proof. REM/Tools companion correct the active MCP route; logging,
+  profile persistence, acknowledgement/count errors, hidden embedders and public
+  legacy surfaces now have narrow explicit dispositions and allowed paths.
+- Legacy physical-copy live backup is an explicit proposed compatibility
+  exception; maintained v2 recovery success remains required. No source code,
+  tests/config/dependencies/lock or user state changed. Future final construction
+  directive must approve exact exceptions/signatures after Gate A.
+- Historical raw reports remain unchanged. Fresh reviewers receive an exact
+  current-controls view, not a broad historical authority search. No inherited
+  verdict or lowered standard; no model/store operations in this planning work.
+- Execution phase: planning; validation state: in_review (pass1/4, global round6).
+- **Next gate:** Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.

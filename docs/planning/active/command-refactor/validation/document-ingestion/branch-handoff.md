@@ -38,9 +38,9 @@ The canonical initiative remains started, delivery pushed, with current
 planning slice; it does not rewrite earlier unit approvals or grant acceptance.
 No product implementation, merge or release is authorized. The later explicit
 iteration authority covered the now-completed Sol/Astra/Opus rounds1–4 only.
-The separately authorized framework-wide round5 is complete, with changes
-requested and Astra procedurally blocked. No correction or further review is
-automatically authorized; the technical REM remains unchanged.
+Round5 remains complete with changes requested and Astra blocked. The maintainer
+now explicitly authorizes the compatibility correction and four-pass bounded
+council cycle. The revised REM/annex await independent review; no product authority.
 
 ## Preserved local state
 
@@ -48,4 +48,4 @@ The two edited Chat example YAML files remain uncommitted and unstaged;
 `.friday-old/` and ignored exports remain untouched. Historical receipts retain
 their original branch/source identities. Do not broad-stage or clean this checkout.
 
-**Next gate:** Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery.
+**Next gate:** Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.

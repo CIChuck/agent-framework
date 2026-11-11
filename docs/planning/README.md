@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery. |
 
 ## Completed
 

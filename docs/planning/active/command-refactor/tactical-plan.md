@@ -1,17 +1,17 @@
-# Document-ingestion remediation — framework compatibility changes requested
+# Document-ingestion remediation — compatibility correction in review
 
-Execution phase: planning; validation state: changes_requested.
-[Round5 framework-wide review](validation/document-ingestion/framework-compatibility-review.md)
-returns Sol8.6/Opus7.2 CHANGES_REQUESTED; Astra is procedurally BLOCKED with a
-provisional8.4 only. Nine bounded technical themes and advisory dispositions
-need decisions before a document correction. The all-seat9.5 gate is not met.
+Execution phase: planning; validation state: in_review (cycle pass1/4, round6).
+The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and normative
+[compatibility contract](embedding-compatibility-contract.md) incorporate the
+nine technical themes and high/medium advisory requirements. B01–B08 and
+FC-01–14 require successful baseline/replacement behavior as well as refusals.
+[Authority](validation/document-ingestion/compatibility-iteration-authorization.json)
+permits one initial fresh council plus up to three bounded correction/review
+iterations, four total. Require independent coverage and overall scores >=9.5
+and VERIFIED/no mandatory findings. Stop at success or after pass4 for guidance.
+No Gate-A, product code, model/store actions, acceptance or delivery follows.
 
-The current REM/companion are unchanged by reconciliation. Raw reports/pins and
-the old candidate-specific round4 result are preserved; no review is active.
-No automatic remediation, replacement council, Gate-A, code, model/store action,
-human acceptance or delivery is activated. MAINT remains separate.
-
-**Next gate:** Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery.
+**Next gate:** Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
 ## Separate MAINT closeout and historical checkpoints
 

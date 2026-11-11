@@ -1,19 +1,22 @@
 # TOOLS-DOC-001 — adopt shared Docling conversion in document-reading tools
 
-Status: **PROPOSED companion — correction cycle3 / final council round4; no construction approval**.
+Status: **PROPOSED companion — framework compatibility correction; no construction approval**.
 This is a scoped adoption plan, not a completed tool upgrade or implementation
 directive. It depends on the exact shared capability and dependency/model
 readiness from [REM-CMD-INGEST-001](../remediation/REM-CMD-INGEST-001-pdf-docx.md).
 The maintainer expanded the document scope to **PDF, DOCX, XLSX and PPTX** on
 2026-11-10. That four-format scope applies to this adoption plan as well as Chat.
 Text and web reading remain existing capabilities; maintained web-to-Memory
-and automatic tool-output caller routes were not found. The later
+and generic automatic ToolOutputIngester routes were not found. Chat's active
+opt-in MCP snapshot-to-Memory route is separately governed as an exact unsplit
+structured record in [the compatibility annex](../embedding-compatibility-contract.md);
+it is not a document chunking/adoption route. The later
 maintainer discussion extends shared ingestion chunking to **all sources** with
 document/512 defaults and document/recursive/fixed overrides. That common policy
 and the embedding guards are established by INGEST; this companion adopts them
 without duplicating policy or adding fetchers. Supplied extracted web/tool text
 exercises the common entry without claiming absent product wiring. The maintainer
-authorizes document correction and at most three further councils, not readiness
+authorizes the current bounded four-pass document correction/review cycle, not readiness
 operations or implementation. No implementation claim is implied.
 
 ## Why a separate adoption obligation is needed

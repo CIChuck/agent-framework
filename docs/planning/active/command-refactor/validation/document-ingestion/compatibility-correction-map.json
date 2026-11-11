@@ -1,0 +1,223 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "recorded_at": "2026-11-11T02:02:58.635062+00:00",
+  "status": "requirements_and_proposed_dispositions_not_validation",
+  "baseline": "91ac63bad5e46eceddd252d5b7727f7a1d3c623a",
+  "annex": "embedding-compatibility-contract.md",
+  "annex_sha256": "ed298f6d5b6852c9604b16ac544c10352b3f565fb0aeaa1115aeb118dff77750",
+  "mandatory": [
+    {
+      "theme": "INGEST-EC-01",
+      "original_ids": [
+        "OPUS-M1"
+      ],
+      "requirement": "Startup rejection logging can pre-create or mutate a vector directory",
+      "contract_sections": [
+        "FC-01"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-02",
+      "original_ids": [
+        "OPUS-M2"
+      ],
+      "requirement": "Active opt-in MCP snapshot ingestion is omitted from the route contract",
+      "contract_sections": [
+        "FC-02"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-03",
+      "original_ids": [
+        "SOL-R5-M01",
+        "OPUS-M3"
+      ],
+      "requirement": "Public physical backup/restore can bypass binding and overwrite a sidecar",
+      "contract_sections": [
+        "FC-03"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-04",
+      "original_ids": [
+        "SOL-R5-M02",
+        "OPUS-M3"
+      ],
+      "requirement": "ConsistencyAnalyzer opens SQLite and graph data outside normalized admission",
+      "contract_sections": [
+        "FC-04"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-05",
+      "original_ids": [
+        "OPUS-M3"
+      ],
+      "requirement": "Legacy synthesis can omit vectors and invoke an implicit Chroma embedder",
+      "contract_sections": [
+        "FC-05"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-06",
+      "original_ids": [
+        "SOL-R5-M03",
+        "ASTRA-R5-001"
+      ],
+      "requirement": "Consolidation can acknowledge source turns after summary-storage refusal",
+      "contract_sections": [
+        "FC-06"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-07",
+      "original_ids": [
+        "ASTRA-R5-002"
+      ],
+      "requirement": "Lifecycle counts and tool text can report failed mutations as success",
+      "contract_sections": [
+        "FC-07"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-08",
+      "original_ids": [
+        "OPUS-M4"
+      ],
+      "requirement": "Recall can suppress typed refusals; async graph fallback is not maintained wiring",
+      "contract_sections": [
+        "FC-08"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-09",
+      "original_ids": [
+        "OPUS-M5"
+      ],
+      "requirement": "Runtime ephemeral/testing profiles still construct persistent lifecycle collections",
+      "contract_sections": [
+        "FC-09"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    }
+  ],
+  "high_medium_advisories": [
+    {
+      "original_ids": [
+        "OPUS-A1"
+      ],
+      "impact": "high",
+      "sections": [
+        "FC-10"
+      ],
+      "requirement": "Actual canonical Chat default versus legacy hint, preserved and visible."
+    },
+    {
+      "original_ids": [
+        "OPUS-A3"
+      ],
+      "impact": "high",
+      "sections": [
+        "FC-10"
+      ],
+      "requirement": "B01\u2013B08 qualified identities with absent/placeholder revisions and alias-swap refusal."
+    },
+    {
+      "original_ids": [
+        "OPUS-A4"
+      ],
+      "impact": "high",
+      "sections": [
+        "FC-11"
+      ],
+      "requirement": "Namespace admission before real provider probe."
+    },
+    {
+      "original_ids": [
+        "OPUS-A5"
+      ],
+      "impact": "high",
+      "sections": [
+        "FC-10"
+      ],
+      "requirement": "Preserve CLI raw explicit-origin across default forwarding."
+    },
+    {
+      "original_ids": [
+        "SOL-R5-A02",
+        "OPUS-A6"
+      ],
+      "impact": "high",
+      "sections": [
+        "FC-13"
+      ],
+      "requirement": "Actual transitive agent/multi-agent/MCP coverage and namespace distinction."
+    },
+    {
+      "original_ids": [
+        "ASTRA-R5-A02",
+        "OPUS-A8"
+      ],
+      "impact": "medium",
+      "sections": [
+        "FC-11"
+      ],
+      "requirement": "Declared dimension ceiling and identity-based empty-store behavior."
+    },
+    {
+      "original_ids": [
+        "OPUS-A10"
+      ],
+      "impact": "medium",
+      "sections": [
+        "FC-12"
+      ],
+      "requirement": "Headless counter extra/dependency profile without Docling."
+    },
+    {
+      "original_ids": [
+        "OPUS-A7"
+      ],
+      "impact": "medium",
+      "sections": [
+        "FC-13"
+      ],
+      "requirement": "Admitted store-only MEMQ reads without inference."
+    },
+    {
+      "original_ids": [
+        "OPUS-A2"
+      ],
+      "impact": "medium",
+      "sections": [
+        "FC-14"
+      ],
+      "requirement": "Operational compatibility versus later measured quality evaluation."
+    },
+    {
+      "original_ids": [
+        "OPUS-A11"
+      ],
+      "impact": "medium",
+      "sections": [
+        "FC-13"
+      ],
+      "requirement": "Public-unwired preprocessing never a second stored chunk plan."
+    }
+  ],
+  "not_claimed": [
+    "Independent finding closure",
+    "Executed B/N/R or installed proof",
+    "Selected model/dependency readiness",
+    "Construction approval"
+  ],
+  "prior_procedural_block": "Astra round5 remains BLOCKED; new fresh review gets safe current-controls view instead of broad authority search."
+}

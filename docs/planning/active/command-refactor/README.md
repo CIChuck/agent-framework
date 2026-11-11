@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. The current INGEST embedding-pool compatibility
-revision requires changes after framework-wide council review; Gate-A execution and MAINT human UAT/acceptance remain pending.
+revision is in compatibility-cycle pass1/4 review; Gate-A execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -33,21 +33,20 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Document-ingestion design — CHANGES_REQUESTED:**
-The [framework-wide review](validation/document-ingestion/framework-compatibility-review.md)
-of the [current REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) returns Sol8.6 and
-Opus7.2 CHANGES_REQUESTED; Astra is procedurally BLOCKED (provisional8.4 only).
-The all-seat9.5 gate is not met. Execution phase: planning; validation state:
-changes_requested. The [round5 report](validation/document-ingestion/council-round5/report.md)
-consolidates nine technical themes and preserves all raw evidence/disagreements.
+**Document-ingestion design — compatibility correction in review:**
+The [revised REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) binds the normative
+[framework compatibility contract](embedding-compatibility-contract.md): nine
+mandatory themes, ten high/medium advisory groups, B01–B08 and FC-01–14 proof.
+Execution phase: planning; validation state: in_review (cycle pass1/4, round6).
+The [new authorization](validation/document-ingestion/compatibility-iteration-authorization.json)
+permits an initial council plus three bounded document correction/review passes,
+requiring each independent VERIFIED with coverage and overall scores >=9.5 and
+no mandatory findings. Stop at the gate or after pass4 for maintainer guidance.
 
-The [earlier round4](validation/document-ingestion/council-round4/report.md) remains
-VERIFIED only for728cba77; it does not cover the pool amendment. The current REM
-and Tools companion are unchanged by this review reconciliation. All delegates
-are terminal, no replacement or automatic correction loop is started.
-The [fresh-store policy](approval/ingest-existing-store-policy.md) remains; no
-model/data reset, dependency installation, construction, acceptance or delivery
-is authorized. MAINT human UAT/acceptance stays separate.
+[Round5](validation/document-ingestion/council-round5/report.md) remains historical
+changes-requested/blocked evidence; no old verdict covers the revised documents.
+No code, package/model readiness execution, user-store reset/migration, MAINT
+acceptance or delivery is granted. Low-impact telemetry stays unchanged.
 
 **Working home:** `agent-framework`, branch `feature/cmd-ingest-001`.
 **Board ID:** `friday-command-refactor`.
@@ -93,7 +92,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery.
+**Next gate:** Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

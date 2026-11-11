@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery."
+  next_gate: "Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3183,3 +3183,10 @@ events:
   action: reconciled framework-wide INGEST council with changes requested
   note: Sol8.6 and Opus7.2 CHANGES_REQUESTED; Astra procedurally BLOCKED with provisional8.4 only. Nine source-backed technical themes and all advisory IDs preserved; disabled CLI mutations qualified accurately. No technical REM/companion edit, replacement review, automatic repair, Gate-A, product/store action or delivery.
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/framework-compatibility-review.md
+- task: friday-command-refactor
+  at: "2026-11-11T02:04:15.454127+00:00"
+  actor: Codex
+  actor_role: agent
+  action: revised INGEST framework compatibility specification for bounded council cycle
+  note: Explicit maintainer authorizes nine mandatory themes and high/medium advisories in proposed REM/annex, followed by one initial plus three corrective passes maximum. Each seat coverage and overall >=9.5/VERIFIED/no findings; stop after fourth for guidance. Document-only, no Gate-A or product/store/delivery authority.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/compatibility-iteration-authorization.json
