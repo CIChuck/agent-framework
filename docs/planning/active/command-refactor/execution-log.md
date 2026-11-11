@@ -3201,3 +3201,34 @@ planning scope from self-contained pinned inputs. Local memory, rollout/session
 history and peer reports are excluded. Each seat must independently VERIFIED,
 no mandatory finding and coverage/overall >=9.5. Stop after round6; if unmet ask
 Chuck for guidance. No replacement, seventh round or automatic construction.
+
+
+## Package-impact v0.6 VERIFIED; review loop closed — 2026-11-11
+
+[Round6 reconciliation](validation/document-ingestion/package-impact/round6/report.md)
+records three independently VERIFIED seats: Sol coverage9.85/overall9.65, Astra
+9.8/9.7, Opus9.8/9.7. All PI-01–18 and PC-10/11 pass with no mandatory findings.
+The original four rounds and both explicit single-round extensions remain
+recorded; earlier BLOCKED/CHANGES_REQUESTED results are preserved, not waived.
+All three current final results are read; the loop ends without a seventh round.
+
+Exact assessment v0.6, REM, test/architecture/guide plans, normative dependencies,
+criteria and authorization remain unchanged from reviewed candidate ae813002.
+Raw compressed reports and readable copies retain hashes, full matrices, honest
+rubrics, commands/provenance and limits. Current routing/authority records this
+metadata-only closeout; frozen pre-review pending labels are superseded without
+a silent contract edit. [Advisory carry-forward](validation/document-ingestion/package-impact/round6/readiness-carry-forward.md)
+is for later readiness/directive disposition, not a scope or effects grant.
+
+Five administrative checks and opening/closing identities passed in every
+qualifying seat; controller repeated identity before closeout. Source/test AST
+inspection is not executed runtime proof. Product/tests/live guides, lock and
+user configuration/state remain untouched; baseline debt stays failed/unwaived.
+
+[Current handoff](validation/document-ingestion/package-impact/current-verified-report.md)
+returns to Chuck for exact-version package-impact satisfaction and remaining
+conditions. After approval, prepare a bounded Gate-A dependency/capability/assets/
+resource effects plan for scoped activation. Measured results then finalize the
+impact appendix and exact construction directive for separate approval before
+code. No installs, providers/models/stores, implementation, acceptance or delivery
+are authorized by this document-readiness result.

@@ -1,11 +1,11 @@
 # INGEST-001 — Gate-A and final-directive handoff
 
-Status: revised REM/assessment v0.6 and test/documentation requirements are
-in review at round 6 of 6: Chuck explicitly authorizes one fresh full round
-after five completed rounds, with self-contained inputs and no memory/history
-searches; no reset, replacement or seventh round. Old technical
-and assessment-v0.2 verdicts remain historical for their exact bytes; no new
-Gate-A activation, dependency/model provisioning or construction is granted.
+Status: current assessment v0.6, amended REM and test/documentation plans are
+independently VERIFIED for document readiness/source feasibility at `ae813002`.
+[Current council](package-impact/current-verified-report.md) records all three
+round6 seats above the required thresholds, no mandatory findings. The loop is
+closed; no further round or effects are activated. Reviewed contract bytes remain
+unchanged; frozen pending labels are superseded by current controller metadata.
 
 ## Explicit test and documentation deliverables
 
@@ -66,9 +66,9 @@ exists. Record measured dependencies/model/counter/Office behavior separately
 from model cards or doubles, with explicit stop conditions.
 
 All source/test implementation, canonical architecture/guide rewrites, builds,
-installed proof and UAT remain future obligations. Fresh round 6 reviews the
-correction delta and full current requirements under the recorded one-round
-extension. If any seat fails to qualify, stop for Chuck's guidance. No further
-round or replacement is authorized.
+installed proof and UAT remain future obligations. Round6 is complete and all
+three seats qualify. The council loop is closed with no further automatic round.
+Carry forward the [current nonblocking details](package-impact/round6/readiness-carry-forward.md)
+into readiness/final-directive planning without changing reviewed bytes now.
 Current package-impact satisfaction, Gate-A activation, exact construction
 directive approval, acceptance and delivery remain ungranted.

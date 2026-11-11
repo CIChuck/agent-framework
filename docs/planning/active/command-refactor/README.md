@@ -34,25 +34,22 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Current INGEST requirements revision — test migration and architecture/docs:**
-Chuck authorizes traceable affected-test renaming/splitting/replacement and
-justified retirement, with every valid requirement retained or replaced. He
-requires a canonical command architecture plus substantive guide rewrites. The
-[revised REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) now includes G1/G2 and
-DI-35/36; [assessment v0.6](package-impact-assessment.md),
-[test migration plan](test-migration-plan.md), [architecture plan](command-architecture-update-plan.md)
-and [guide scope](guide-update-handoff.md) are current review inputs. No tests,
-live guides or architecture implementation has been rewritten.
+**Current INGEST package-impact readiness — VERIFIED for v0.6:**
+[Assessment](package-impact-assessment.md), [amended REM](remediation/REM-CMD-INGEST-001-pdf-docx.md),
+[test migration](test-migration-plan.md), [canonical architecture](command-architecture-update-plan.md)
+and [guide scope](guide-update-handoff.md) retain exact reviewed bytes at `ae813002`.
+[The current council record](validation/document-ingestion/package-impact/current-verified-report.md)
+qualifies all three fresh round6 seats, zero mandatory findings and coverage/overall
+each >=9.5. Execution phase: planning; validation state: verified for documents
+only. All reviews are terminal; the bounded loop has ended.
 
-Execution phase: validation; validation state: in_review. Five rounds are complete.
-[Chuck's fresh authorization](validation/document-ingestion/package-impact/round6-authorization.json)
-permits one full council, round6/6, using self-contained inputs without memory/
-history searches. No reset, replacement or seventh round. Stop for Chuck's
-guidance if it does not qualify. Each
-seat must VERIFIED with both scores at least 9.5 and no mandatory findings.
-Chuck reviews the linked documents in parallel. His package-impact satisfaction,
-remaining conditions, separate Gate-A activation and exact construction directive
-approval remain pending. No product or delivery authority follows.
+Chuck's exact-version satisfaction with the package impact and remaining
+conditions is pending. Next comes a bounded Gate-A readiness/effects plan for
+separate activation, then the measured final appendix and exact construction
+directive for approval before code. No test, live-guide or product implementation,
+dependency installation, provider/store operation or delivery is authorized.
+Frozen pre-review labels in the contracts describe that freeze and are superseded
+by the current controller result without changing reviewed content.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

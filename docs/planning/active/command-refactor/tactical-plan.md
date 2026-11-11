@@ -1,22 +1,18 @@
-# Document-ingestion remediation — test and documentation requirements revised
+# Document-ingestion package impact — readiness verified, maintainer review pending
 
-Execution phase: validation; validation state: in_review for revised REM and
-Package Impact Assessment v0.6, council round6/6 (one separately authorized fresh round). Earlier f43368c5/1a040de3
-verdicts remain historical and do not validate the amended bytes.
-The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and normative
-[compatibility contract](embedding-compatibility-contract.md) incorporate the
-nine technical themes and high/medium advisory requirements. B01–B08 and
-FC-01–14 require successful baseline/replacement behavior as well as refusals.
-[Current amendment authority](validation/document-ingestion/test-doc-revision-authorization.json)
-binds the test/documentation decisions. Five reviews are complete;
-[Chuck's new authorization](validation/document-ingestion/package-impact/round6-authorization.json)
-permits exactly one fresh full round, 6 of 6, without memory/history searches
-or a budget reset. Require independent coverage/overall >=9.5 and
-VERIFIED/no mandatory findings. Stop after round6; ask for guidance if unmet.
-No replacement or seventh round.
-No Gate-A, product code, model/store actions, acceptance or delivery follows.
+Execution phase: planning; validation state: verified for exact v0.6 documents at
+`ae813002`, not implementation. [Current reconciliation](validation/document-ingestion/package-impact/current-verified-report.md)
+records all three qualifying round6 seats; PI-01–18 and PC-10/11 pass, no
+mandatory findings, each coverage/overall >=9.5. The original4 rounds and two
+explicit single-round extensions are consumed. No active review or seventh round.
 
-**Next gate:** Package Impact Assessment v0.6 and amended REM: one fresh full council, round6/6, explicitly authorized by Chuck after five completed rounds. Corrected Finance offline validation delta then full PI-01–18 scope; self-contained pinned inputs, no memory/history searches. No reset, replacement or seventh round. Every seat independently VERIFIED, no mandatory findings and coverage/overall >=9.5. If unmet after this round, stop for guidance. Impact satisfaction, Gate-A and exact construction approval remain pending; no product/test/live-guide, provider/store or delivery action.
+The assessment/REM/test/architecture/guide plans retain exact reviewed bytes.
+Their frozen pending-review instructions are provenance superseded by the current
+controller result; no contract is silently amended. Earlier reports remain
+candidate-specific. [Nonblocking carry-forward](validation/document-ingestion/package-impact/round6/readiness-carry-forward.md)
+binds later readiness/directive dispositions without activating them.
+
+**Next gate:** Package Impact Assessment v0.6 and amended REM independently VERIFIED at ae813002 by all three round6 seats, no mandatory findings and both scores>=9.5 each. Council closed; no active review or further round. Chuck must confirm exact-version package-impact satisfaction and remaining conditions. Then prepare a bounded Gate-A readiness/effects plan for scoped activation; use its measured results to finalize the impact appendix and exact construction directive for separate approval. No installs, product/test/live-guide changes, model/store effects or delivery are authorized now.
 
 ## Separate MAINT closeout and historical checkpoints
 

@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Package Impact Assessment v0.6 and amended REM: one fresh full council, round6/6, explicitly authorized by Chuck after five completed rounds. Corrected Finance offline validation delta then full PI-01\u201318 scope; self-contained pinned inputs, no memory/history searches. No reset, replacement or seventh round. Every seat independently VERIFIED, no mandatory findings and coverage/overall >=9.5. If unmet after this round, stop for guidance. Impact satisfaction, Gate-A and exact construction approval remain pending; no product/test/live-guide, provider/store or delivery action.",
+  "current_scope": "Package Impact Assessment v0.6 and amended REM independently VERIFIED at ae813002 by all three round6 seats, no mandatory findings and both scores>=9.5 each. Council closed; no active review or further round. Chuck must confirm exact-version package-impact satisfaction and remaining conditions. Then prepare a bounded Gate-A readiness/effects plan for scoped activation; use its measured results to finalize the impact appendix and exact construction directive for separate approval. No installs, product/test/live-guide changes, model/store effects or delivery are authorized now.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1895,8 +1895,8 @@
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
     "status": "revised_planning_requirements",
-    "execution_phase": "validation",
-    "validation_state": "in_review",
+    "execution_phase": "planning",
+    "validation_state": "verified",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Package Impact Assessment v0.6 and amended REM: one fresh full council, round6/6, explicitly authorized by Chuck after five completed rounds. Corrected Finance offline validation delta then full PI-01\u201318 scope; self-contained pinned inputs, no memory/history searches. No reset, replacement or seventh round. Every seat independently VERIFIED, no mandatory findings and coverage/overall >=9.5. If unmet after this round, stop for guidance. Impact satisfaction, Gate-A and exact construction approval remain pending; no product/test/live-guide, provider/store or delivery action.",
+    "next_gate": "Package Impact Assessment v0.6 and amended REM independently VERIFIED at ae813002 by all three round6 seats, no mandatory findings and both scores>=9.5 each. Council closed; no active review or further round. Chuck must confirm exact-version package-impact satisfaction and remaining conditions. Then prepare a bounded Gate-A readiness/effects plan for scoped activation; use its measured results to finalize the impact appendix and exact construction directive for separate approval. No installs, product/test/live-guide changes, model/store effects or delivery are authorized now.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2083,20 +2083,22 @@
       "past_procedural_block_retained": true
     },
     "design_readiness": {
-      "outcome": "pending",
-      "scope": "Current amended REM/test/documentation requirements; no inherited verdict for changed bytes.",
+      "outcome": "VERIFIED",
+      "scope": "Current v0.6 assessment, amended REM and test/architecture/guide planning source feasibility only; exact ae813002 bytes.",
       "technical_pins": {
         "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
         "docs/planning/active/command-refactor/embedding-compatibility-contract.md": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
         "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998"
       },
       "prior_reviewed_candidate": "f43368c503da19fd245730ee579806db95ed3748",
-      "formal_council_complete": false,
-      "runtime_or_installed_proof": "not performed for INGEST"
+      "formal_council_complete": true,
+      "runtime_or_installed_proof": "not performed for INGEST",
+      "current_report": "validation/document-ingestion/package-impact/current-verified-report.md",
+      "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b"
     },
     "current_revision": {
       "kind": "test_migration_and_substantive_architecture_documentation",
-      "validation_state": "in_review",
+      "validation_state": "verified",
       "record": "validation/document-ingestion/test-doc-revision-authorization.json",
       "record_sha256": "e8daa75be9227e8535a1e81075a24a5afc0923c01559124ee6e169024e955a8b",
       "rem_sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
@@ -2107,13 +2109,15 @@
         "guide-update-handoff.md": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9"
       },
       "prior_review_applies": false,
-      "new_council_active": true,
+      "new_council_active": false,
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Package Impact Assessment v0.6 and amended REM: one fresh full council, round6/6, explicitly authorized by Chuck after five completed rounds. Corrected Finance offline validation delta then full PI-01\u201318 scope; self-contained pinned inputs, no memory/history searches. No reset, replacement or seventh round. Every seat independently VERIFIED, no mandatory findings and coverage/overall >=9.5. If unmet after this round, stop for guidance. Impact satisfaction, Gate-A and exact construction approval remain pending; no product/test/live-guide, provider/store or delivery action.",
+      "next_gate": "Package Impact Assessment v0.6 and amended REM independently VERIFIED at ae813002 by all three round6 seats, no mandatory findings and both scores>=9.5 each. Council closed; no active review or further round. Chuck must confirm exact-version package-impact satisfaction and remaining conditions. Then prepare a bounded Gate-A readiness/effects plan for scoped activation; use its measured results to finalize the impact appendix and exact construction directive for separate approval. No installs, product/test/live-guide changes, model/store effects or delivery are authorized now.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
-      "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b"
+      "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
+      "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+      "current_report": "validation/document-ingestion/package-impact/current-verified-report.md"
     },
     "council_history": [
       {
@@ -2408,7 +2412,7 @@
       "document": "package-impact-assessment.md",
       "version": "0.6-draft",
       "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
-      "status": "revised_draft_in_review",
+      "status": "independently_verified_ready_for_maintainer_review",
       "prepared_from": "b7c7b1393d6f18db3d26cc518adce2d8458f315a",
       "technical_pins_unchanged": false,
       "scope_change": "Explicit maintainable test restructuring and substantive canonical architecture/guide deliverables; no additional product feature or production-source owner.",
@@ -2423,27 +2427,34 @@
       "approval_of_assessment": "not_granted",
       "gate_a_activation": "not_granted",
       "construction_authority": "not_granted",
-      "validation_state": "in_review",
+      "validation_state": "verified",
       "council": {
         "authorization": "validation/document-ingestion/package-impact/round6-authorization.json",
         "criteria": "validation/document-ingestion/package-impact/review-criteria.md",
         "round": 6,
-        "completed_rounds": 5,
+        "completed_rounds": 6,
         "maximum_total_rounds": 6,
-        "remaining_including_current": 1,
+        "remaining_including_current": 0,
         "budget_reset": false,
-        "status": "in_review",
+        "status": "VERIFIED",
         "minimum_each_coverage_and_overall": 9.5,
         "mandatory_findings_allowed": 0,
         "prior_technical_council_is_historical": true,
         "no_gate_a_or_construction_authority": true,
         "extension_rounds_authorized": 2,
         "original_four_round_authorization": "validation/document-ingestion/package-impact/iteration-authorization.json",
-        "additional_rounds_this_authorization": 1
+        "additional_rounds_this_authorization": 1,
+        "all_seats_threshold_met": true,
+        "report": "validation/document-ingestion/package-impact/round6/report.md",
+        "reconciliation": "validation/document-ingestion/package-impact/round6/reconciliation.json",
+        "no_active_council": true,
+        "no_further_automatic_dispatch": true
       },
       "test_migration_plan": "test-migration-plan.md",
       "architecture_documentation_plan": "command-architecture-update-plan.md",
-      "prior_technical_reviewed_candidate": "f43368c503da19fd245730ee579806db95ed3748"
+      "prior_technical_reviewed_candidate": "f43368c503da19fd245730ee579806db95ed3748",
+      "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+      "current_report": "validation/document-ingestion/package-impact/current-verified-report.md"
     },
     "conditional_maintainer_approval": {
       "recorded_date": "2026-11-11",
@@ -2452,7 +2463,7 @@
       "document_sha256": "e1c90753a3e2876df0f9f6f0ca82b1893455266cee1f252276f460b48a9f2a16",
       "statement": "I approve it under a couple of conditions.",
       "known_condition": "I won't approve the construction directive unless I'm satisfied with the overall per-package impact of our planned approach.",
-      "current_authorization": "Correct the narrow Finance validation plan and run exactly one fresh full Sol/Astra/Opus council, round6/6, with self-contained pinned inputs and no memory/history searches. No seventh round or construction authority.",
+      "current_authorization": "The authorized document correction/council is complete. Exact-version package-impact satisfaction and remaining conditions are pending; next is bounded Gate-A planning for separate scoped activation. No effects, implementation or additional council is implied.",
       "remaining_conditions": "May be supplied by the maintainer; not presumed complete.",
       "fully_actionable_approval": false,
       "gate_a_or_construction_authority": false
@@ -2568,6 +2579,23 @@
       "implementation_authority": "not_granted",
       "review_budget_extension": "validation/document-ingestion/package-impact/round6-authorization.json",
       "original_record_budget_is_historical": true
+    },
+    "metadata_closeout": {
+      "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+      "reviewed_document_pins": {
+        "docs/planning/active/command-refactor/package-impact-assessment.md": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+        "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+        "docs/planning/active/command-refactor/test-migration-plan.md": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c",
+        "docs/planning/active/command-refactor/command-architecture-update-plan.md": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1",
+        "docs/planning/active/command-refactor/guide-update-handoff.md": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9",
+        "docs/planning/active/command-refactor/embedding-compatibility-contract.md": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+        "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998",
+        "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/review-criteria.md": "0bc426c0ed16c0feab720e7b4d597c0de28f924feb58e26945637457bb9aaf62",
+        "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round6-authorization.json": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b"
+      },
+      "reviewed_bytes_unchanged": true,
+      "frozen_pre_review_pending_labels_superseded_by_current_report": true,
+      "implementation_or_effects_authority": false
     }
   },
   "command_refactor_publication": {

@@ -1,0 +1,26 @@
+{
+  "outcome": "PASS",
+  "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+  "logical_before_status": "34a3b48276800231abf5478d9da5e4f67773f56b72a9f73ff20b0ebf8d2bb7ca",
+  "reviewed_document_pins_unchanged": 9,
+  "existing_protected_files_preserved_outside_metadata": 17741,
+  "metadata_only_changed_paths": [
+    "docs/planning/README.md",
+    "docs/planning/active/command-refactor/README.md",
+    "docs/planning/active/command-refactor/authority.json",
+    "docs/planning/active/command-refactor/execution-log.md",
+    "docs/planning/active/command-refactor/next-phase.md",
+    "docs/planning/active/command-refactor/tactical-plan.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a-handoff.md",
+    "docs/planning/board.yaml"
+  ],
+  "all_raw_and_readable_report_hashes": "PASS",
+  "all_seats_independent_gate": "PASS",
+  "preserved_local_records": 6,
+  "unrelated_status_preserved": true,
+  "history_append_only_or_exact_tail": "PASS",
+  "all_current_gates_consistent": true,
+  "maintainer_satisfaction_and_effects_authority": "NOT_GRANTED",
+  "fresh_admin_checks": "board/dashboard/lifecycle1051/metadata18/whitespace all exit0"
+}
