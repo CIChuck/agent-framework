@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Package Impact Assessment council round1/4: fresh Sol/Astra/Opus document review, each VERIFIED/no mandatory findings and coverage/overall >=9.5; bounded document corrections only. Chuck reviews the linked assessment in parallel; his satisfaction and remaining conditions are still required before final directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action."
+  next_gate: "Package Impact Assessment v0.2 council round2/4: review correction delta then complete table; every Sol/Astra/Opus seat VERIFIED/no mandatory findings and coverage/overall >=9.5. Chuck reviews in parallel; his exact-version satisfaction and remaining conditions precede directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3230,3 +3230,11 @@ events:
   action: recorded bounded Package Impact Assessment council authorization
   note: "Explicit maintainer requests fresh Sol/Astra/Opus review and up to four total rounds of bounded document correction until every seat VERIFIED and coverage/overall >=9.5 with no mandatory findings. Maintainer reviews linked draft in parallel. This is a new document council; the completed technical-design loop stays closed. No Gate-A or implementation authority."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/iteration-authorization.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T13:48:52.126581+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled Package Impact Assessment round1 and prepared v0.2 for round2
+  note: "Seven mandatory findings in four document themes and all13 advisories dispositioned. Fresh round2/4, delta first then full assessment; no current closure claim. Technical pins/product/user state unchanged. Maintainer reviews linked v0.2 in parallel; no Gate-A or construction."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round1/reconciliation.json

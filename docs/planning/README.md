@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Package Impact Assessment council round1/4: fresh Sol/Astra/Opus document review, each VERIFIED/no mandatory findings and coverage/overall >=9.5; bounded document corrections only. Chuck reviews the linked assessment in parallel; his satisfaction and remaining conditions are still required before final directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | design_only | pushed | Package Impact Assessment v0.2 council round2/4: review correction delta then complete table; every Sol/Astra/Opus seat VERIFIED/no mandatory findings and coverage/overall >=9.5. Chuck reviews in parallel; his exact-version satisfaction and remaining conditions precede directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action. |
 
 ## Completed
 

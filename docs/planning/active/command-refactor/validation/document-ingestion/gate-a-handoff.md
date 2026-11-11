@@ -16,12 +16,13 @@ Gate-A activation, construction, personal-store or delivery authority is granted
 
 ## Package impact review before construction approval
 
-[Package Impact Assessment v0.1](../../package-impact-assessment.md) is the
+[Package Impact Assessment v0.2](../../package-impact-assessment.md) is the
 canonical package-level review input. Chuck has conditionally approved the REM
 and explicitly requires satisfaction with the overall package impact before
 approving the construction directive. The assessment is drafted and now in a separately authorized four-round
 independent council, with Chuck reviewing the linked draft in parallel; it is
-not yet approved or verified. Capture any remaining conditions before
+not yet approved or verified. Round 1 findings are reconciled; current round
+2/4 reviews the v0.2 correction delta and complete assessment. Capture any remaining conditions before
 readiness activation. Refine measured details at Gate A; return material scope
 changes for review. The final directive binds the approved version, commit and
 SHA256 as a required referenced appendix. The original technical pins remain

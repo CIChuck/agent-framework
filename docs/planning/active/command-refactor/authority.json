@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Package Impact Assessment council round1/4: fresh Sol/Astra/Opus document review, each VERIFIED/no mandatory findings and coverage/overall >=9.5; bounded document corrections only. Chuck reviews the linked assessment in parallel; his satisfaction and remaining conditions are still required before final directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action.",
+  "current_scope": "Package Impact Assessment v0.2 council round2/4: review correction delta then complete table; every Sol/Astra/Opus seat VERIFIED/no mandatory findings and coverage/overall >=9.5. Chuck reviews in parallel; his exact-version satisfaction and remaining conditions precede directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1968,7 +1968,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Package Impact Assessment council round1/4: fresh Sol/Astra/Opus document review, each VERIFIED/no mandatory findings and coverage/overall >=9.5; bounded document corrections only. Chuck reviews the linked assessment in parallel; his satisfaction and remaining conditions are still required before final directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action.",
+    "next_gate": "Package Impact Assessment v0.2 council round2/4: review correction delta then complete table; every Sol/Astra/Opus seat VERIFIED/no mandatory findings and coverage/overall >=9.5. Chuck reviews in parallel; his exact-version satisfaction and remaining conditions precede directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2104,7 +2104,7 @@
       "prior_review_applies": true,
       "new_council_active": false,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Package Impact Assessment council round1/4: fresh Sol/Astra/Opus document review, each VERIFIED/no mandatory findings and coverage/overall >=9.5; bounded document corrections only. Chuck reviews the linked assessment in parallel; his satisfaction and remaining conditions are still required before final directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action.",
+      "next_gate": "Package Impact Assessment v0.2 council round2/4: review correction delta then complete table; every Sol/Astra/Opus seat VERIFIED/no mandatory findings and coverage/overall >=9.5. Chuck reviews in parallel; his exact-version satisfaction and remaining conditions precede directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action.",
       "reviewed_candidate": "f43368c503da19fd245730ee579806db95ed3748",
       "review_applies_to_frozen_technical_pins": true,
       "controller_bookkeeping_after_review": true
@@ -2384,10 +2384,10 @@
     },
     "package_impact_assessment": {
       "document": "package-impact-assessment.md",
-      "version": "0.1-draft",
-      "sha256": "df73594bd39c64190552b7e7e1d3deced9c73d49e09a24405711051492affb60",
+      "version": "0.2-draft",
+      "sha256": "c20f4bc8fdc05c77092c1f01c1943c639fd1c163859f1eaad7575bc7ab049501",
       "status": "draft_for_maintainer_review",
-      "prepared_from": "8390f3688d00985b1cac0443da8105f33fb1a6b7",
+      "prepared_from": "72ef265a981ef968a773172661bb512ddfd7da5e",
       "technical_reviewed_candidate": "f43368c503da19fd245730ee579806db95ed3748",
       "technical_pins_unchanged": true,
       "scope_change": "none; package-level summary of current REM/annex/companion",
@@ -2395,7 +2395,7 @@
       "proposed_implementation_packages": 8,
       "cli_source_edits_conditional": true,
       "source_unchanged_compatibility_packages": 9,
-      "new_assessment_council_review": "separately_authorized_round1_of_maximum4",
+      "new_assessment_council_review": "round2_of_maximum4_correction_delta_then_full_assessment",
       "approval_condition": "Chuck Russell must be satisfied with the overall per-package impact before approving the construction directive.",
       "directive_binding": "One canonical referenced appendix; bind approved version, commit and SHA256.",
       "material_impact_change": "Revise assessment and obtain maintainer review before construction.",
@@ -2406,13 +2406,15 @@
       "council": {
         "authorization": "validation/document-ingestion/package-impact/iteration-authorization.json",
         "criteria": "validation/document-ingestion/package-impact/review-criteria.md",
-        "round": 1,
+        "round": 2,
         "maximum_total_rounds": 4,
         "status": "in_review",
         "minimum_each_coverage_and_overall": 9.5,
         "mandatory_findings_allowed": 0,
         "prior_technical_council_loop_remains_complete": true,
-        "no_gate_a_or_construction_authority": true
+        "no_gate_a_or_construction_authority": true,
+        "completed_rounds": 1,
+        "correction_requirements": "validation/document-ingestion/package-impact/correction-cycle1.json"
       }
     },
     "conditional_maintainer_approval": {
@@ -2426,7 +2428,17 @@
       "remaining_conditions": "May be supplied by the maintainer; not presumed complete.",
       "fully_actionable_approval": false,
       "gate_a_or_construction_authority": false
-    }
+    },
+    "package_impact_review_history": [
+      {
+        "round": 1,
+        "candidate": "72ef265a981ef968a773172661bb512ddfd7da5e",
+        "outcome": "CHANGES_REQUESTED",
+        "report": "validation/document-ingestion/package-impact/round1/report.md",
+        "reconciliation": "validation/document-ingestion/package-impact/round1/reconciliation.json",
+        "applies_to_current_revision": false
+      }
+    ]
   },
   "command_refactor_publication": {
     "status": "merged_remote_branch_deleted",

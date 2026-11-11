@@ -3053,3 +3053,25 @@ assesses the new table and its traceability, not implementation or Gate-A proof.
 User satisfaction with the impact and remaining conditions is still pending.
 No product/dependency/configuration changes or model/store operations are
 authorized. Review candidate and private request pins are frozen before dispatch.
+
+
+## Package Impact Assessment round 1 reconciled; v0.2 frozen for round 2 — 2026-11-11
+
+All three seats returned CHANGES_REQUESTED on v0.1 at 72ef265a: Sol
+coverage/overall 9.40/9.40, Astra 9.0/9.1, Opus 8.55/8.65. Seven mandatory
+findings consolidate into four bounded documentation themes; all 13 optional
+advisories are dispositioned in the [reconciliation](validation/document-ingestion/package-impact/round1/reconciliation.json).
+Exact raw reports are archived alongside readable copies. All opening/closing
+identities and five administrative checks passed. No implementation proof
+or safety waiver is inferred.
+
+Assessment v0.2 exposes existing persistent-store/first-run and Runtime root
+effects, YAML/legacy-key precedence, bounded conversion/cancellation,
+multi-agent visibility/partial outcomes and complete DI-01–34 references.
+Optional precision fixes retain existing ownership and exact-version
+approval. SHA256 `c20f4bc8fdc05c77092c1f01c1943c639fd1c163859f1eaad7575bc7ab049501`.
+[Correction brief](validation/document-ingestion/package-impact/correction-cycle1.json)
+preserves each mandatory ID and recheck; closure remains pending fresh
+round 2/4, delta first then full PI-01–16 review. Technical REM/annex/Tools
+pins, source, dependencies, user YAML and state are unchanged. Chuck reviews
+in parallel; satisfaction/conditions, Gate-A and construction remain pending.
