@@ -1,7 +1,8 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. The current INGEST embedding-pool compatibility
-design is independently VERIFIED at f43368c5; Gate-A execution and MAINT human UAT/acceptance remain pending.
+design now includes revised test/documentation requirements pending fresh review;
+Gate-A execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -33,39 +34,29 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Document-ingestion design — independently VERIFIED:**
-The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md), normative
-[compatibility contract](embedding-compatibility-contract.md) and Tools companion
-are verified at `f43368c5`. [All three seats](validation/document-ingestion/council-round8/report.md)
-meet coverage AND overall>=9.5, with zero mandatory findings. The bounded loop
-ended at pass3/4 (round8); no fourth council is active. Reviewed technical bytes
-are unchanged; this current status is controller reconciliation only.
+**Current INGEST requirements revision — test migration and architecture/docs:**
+Chuck authorizes traceable affected-test renaming/splitting/replacement and
+justified retirement, with every valid requirement retained or replaced. He
+requires a canonical command architecture plus substantive guide rewrites. The
+[revised REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) now includes G1/G2 and
+DI-35/36; [assessment v0.3](package-impact-assessment.md),
+[test migration plan](test-migration-plan.md), [architecture plan](command-architecture-update-plan.md)
+and [guide scope](guide-update-handoff.md) are current review inputs. No tests,
+live guides or architecture implementation has been rewritten.
 
-[Verified design handoff](validation/document-ingestion/compatibility-verified-report.md)
-and [nonblocking carry-forward](validation/document-ingestion/council-round8/readiness-carry-forward.md)
-define the next readiness/directive boundaries. Round4 and rounds5–7 reports
-remain immutable and candidate-specific. MCP/backups remain compatibility
-surfaces; unrelated FU013/014 repairs are separate and unwaived. Technical-design
-status at `f43368c5`: planning / verified; construction authority: not granted.
-No Gate-A effects, product code, user-store reset/migration, MAINT acceptance
-or delivery follows this result.
+Execution phase: validation; validation state: in_review. Fresh round 3 uses
+the standing four-total-round budget; two rounds have already been used. Each
+seat must VERIFIED with both scores at least 9.5 and no mandatory findings.
+Chuck reviews the linked documents in parallel. His package-impact satisfaction,
+remaining conditions, separate Gate-A activation and exact construction directive
+approval remain pending. No product or delivery authority follows.
 
-**Package Impact Assessment — council VERIFIED, maintainer review pending:**
-[Assessment v0.2](package-impact-assessment.md) covers all 17 packages and keeps
-the eight proposed implementation owners (CLI conditional) distinct from nine
-source-unchanged compatibility packages. [All three round-2 seats](validation/document-ingestion/package-impact/round2/report.md)
-independently VERIFIED it at `1a040de3`, with both scores at least 9.5 and no
-mandatory findings. All seven original findings are closed; the loop ended after
-2/4 rounds. No third council is active. The exact reviewed assessment is unchanged.
-
-Chuck's satisfaction with the package impact and remaining REM conditions are
-pending. The [verified handoff](validation/document-ingestion/package-impact/verified-report.md)
-distinguishes this current review from later exact post-readiness version/hash
-sign-off and construction-directive approval. INGEST remains in planning with
-validation state verified; Gate-A execution and product work are not granted.
-The subsequent [guide coverage handoff](guide-update-handoff.md) is a proposed
-final-directive input, not covered by the assessment council's scores. Current
-guide pages still describe their released baseline and have not been rewritten.
+**Historical design evidence:** the technical-design report at `f43368c5` and
+[assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)
+at `1a040de3` remain valid only for their old pinned bytes. Their raw reports
+and accepted evidence are preserved. The changed REM/assessment are not marked
+VERIFIED by carrying those results forward. TOOLS-DOC stays a separate adoption
+obligation; unrelated FU-013/014 repairs remain separate and unwaived.
 
 **Working home:** `agent-framework`, branch `feature/cmd-ingest-001`.
 **Board ID:** `friday-command-refactor`.

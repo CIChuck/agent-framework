@@ -3101,3 +3101,28 @@ maps scoped installation, architecture, Memory, tools, commands, configuration
 and troubleshooting coverage into the future directive. It was not reviewed
 by the assessment council, changes none of its frozen bytes and supplies no
 new execution authority. Reconcile its exact paths/criteria before construction.
+
+
+## Explicit test restructuring and architecture/documentation requirements — 2026-11-11
+
+Chuck directs that substantial affected-test rewrites and substantive command
+architecture/guide updates be explicit implementation deliverables. In response
+to the two clarifying questions, he selects traceable test restructuring
+(renaming/splitting/replacement/justified retirement with every valid requirement
+covered) and one canonical architecture document plus guide updates.
+[Authorization](validation/document-ingestion/test-doc-revision-authorization.json)
+records the decisions and continuation within the existing four-review cap.
+
+The REM now has G1/G2 and DI-35/36; assessment v0.3 and the test migration,
+architecture and guide plans make the scope and acceptance concrete. Old blanket
+assertion-body preservation is replaced by semantic coverage mapping; no safety
+weakening, unrelated suite overhaul or historical evidence editing is allowed.
+Documentation acceptance includes authored content/diagrams, source/schema/
+metadata mapping, verified representative examples and independent technical
+review alongside structural checks. Actual tests/guides/source are untouched.
+
+Earlier f43368c5 and assessment-v0.2/1a040de3 verdicts remain historical for
+their exact bytes. Fresh round 3 reviews amendment delta then complete current
+requirements; maximum four total rounds is unchanged. Chuck reviews in parallel.
+No product/tests/live-guide implementation, installs, model/store operations,
+Gate-A, acceptance or delivery is authorized by the planning amendment.

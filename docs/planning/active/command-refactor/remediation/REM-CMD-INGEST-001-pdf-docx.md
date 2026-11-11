@@ -1,6 +1,6 @@
 # REM-CMD-INGEST-001 — document extraction, shared chunking and embedding limits
 
-Status: **PROPOSED — framework compatibility correction, authorized cycle pass3/4**. Baseline `7ad916f2`.
+Status: **REVISED PLANNING — explicit test migration and architecture/documentation requirements; fresh review pending**, 2026-11-11. Baseline `7ad916f2` is historical.
 This document defines a bounded repair and its dependency-readiness gate. It is
 not an approved construction directive or a completed compatibility assessment.
 Working branch: `feature/cmd-ingest-001`, based on published command-refactor head
@@ -10,28 +10,22 @@ and construction boundaries. The assessment baseline above remains historical.
 The parent is now merged into `master` at `c36e7ee5`; this scoped branch
 incorporates that merge. Future INGEST-only review targets `master`.
 
-No product edits, installs, model downloads or council invocation are authorized
-by placement in this packet. The requested planning work is authorized.
-The maintainer separately authorizes the fresh read-only Sol/Astra/Opus5.5
-round1 design council on2026-11-10; [recorded roster](../validation/document-ingestion/council-round1/roster.json).
-Historical authority, superseded for current review routing: that review
-authorized no implementation or remediation. On2026-11-10 the
-maintainer separately directs document corrections and up to three additional
-fresh Sol/Astra/Opus councils (rounds2–4), stopping when every seat independently
-returns VERIFIED with at least9.5/10 and no mandatory finding. This is bounded
-document-readiness work, not gate-A execution, installation or construction.
+The maintainer explicitly directs traceable restructuring of affected tests and
+one canonical command-architecture document plus substantive affected guide
+rewrites. [Recorded clarifications](../validation/document-ingestion/test-doc-revision-authorization.json)
+authorize this requirements revision. Test names/files are not immutable when
+restructure/replacement is justified; every still-valid behavior must retain
+substantive coverage and each retirement needs a reason and disposition.
+Documentation completion includes authored content and technical evidence,
+beyond a lifecycle/link-check pass. Section G and DI-35/36 bind these obligations.
 
-That iteration completed at `728cba77`, with all three seats VERIFIED at
-9.6/9.6/9.5. The maintainer subsequently requests the embedding-pool and backward-
-compatibility premise below. This changed revision is not covered by those
-candidate-specific verdicts; no further council or readiness execution is started
-by this document update.
+Prior technical-design reviews at `f43368c5` and assessment-v0.2 reviews at
+`1a040de3` remain historical evidence for their exact old bytes. This changed
+REM and assessment v0.3 need fresh review. The next assessment council is round
+3 within the existing four-total-round cap; the budget is not reset. Chuck
+reviews the linked revision in parallel. No product/test/guide implementation,
+Gate-A effects, model/store operation or delivery is authorized by this update.
 
-The maintainer now authorizes incorporating the round5 mandatory themes and
-high/medium-impact advisories, followed by one fresh council plus at most three
-correction/review iterations: four passes total, stopping at the all-seat9.5
-gate or after pass four for guidance. See the [bounded authority](../validation/document-ingestion/compatibility-iteration-authorization.json).
-This document-only authority grants no code, Gate-A effects or data reset.
 The normative [framework compatibility contract](../embedding-compatibility-contract.md)
 is part of this REM (SHA256 `1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb`);
 FC-01–14 specialize existing requirements and named
@@ -460,7 +454,7 @@ backend or broad Tools change is authorized by this INGEST allowlist.
 ## C — path parsing and Chat integration
 
 Add a shared `friday_commands.file_inputs` submodule; keep the existing root
-`__all__` and accepted API54 literal tests unchanged. It consumes the **original
+`__all__` and accepted literal API54 expectations unchanged. It consumes the **original
 raw argument tail**, never a reconstructed whitespace-split string.
 
 Contract for the first path:
@@ -1258,10 +1252,14 @@ organization does not authorize any slice or defer cross-subsystem proof.
 | `packages/friday-chat/pyproject.toml` | Default dependency on the new Tools extra only. |
 | `packages/friday-chat/README.md` | Supported document behavior and provisioning. |
 | `packages/friday-chat/tests_chat/test_document_ingestion.py` (new) | Actual registry and zero-ingestion-on-read-failure assertions. |
-| `packages/friday-chat/tests_chat/test_files_replay_shell.py` | Replace fake PDF/DOCX/XLSX placeholder expectations with genuine extraction assertions; add PPTX coverage; keep test names and unrelated text/replay/shell assertions. |
+| `packages/friday-chat/tests_chat/test_files_replay_shell.py` | Replace fake PDF/DOCX/XLSX placeholder expectations with genuine extraction assertions; add PPTX coverage. Affected cases may be renamed/split/replaced under the migration map; preserve every valid unrelated text/replay/shell requirement, not obsolete case bodies. |
 | `tests/integration/test_document_ingestion.py` (new) | Active registry/smart_read text storage and explicitly supplied text/web/tool payloads → shared chunking → guarded embeddings → real Memory/fresh bound Chroma. Capability tests do not claim absent route wiring. Deterministic vectors plus real model-matched counting; source/installed proof helper if needed. |
 | `tests/integration/test_embedding_compatibility.py` (new); focused existing Agent, multi-agent, MEMQ, CLI, Runtime and Core public-consumer tests | FC-01–14 named B/N/R proofs, full extraction→store→recall→maintenance/lifecycle and minimal installed profiles, actual delayed background completion, two-kernel logging/ephemeral isolation and real MCP publication outcome witnesses. Indirect consumers may remain source-unchanged; no source edit outside explicit allowlist is inferred from a test. |
 | Package-local synthetic `tests_*/fixtures/document-ingestion/` (new) | Genuine text, table and scanned fixtures/provenance; no user documents. |
+| Affected package-local tests/fixtures/helpers within the named owners and focused source-unchanged consumer suites above | Test-only rename/move/split/rewrite/replace/justified retirement under the case-level migration map; every valid requirement retains executed coverage. Exact old/new files and nodes freeze in the directive before rewriting. No production-source expansion or unrelated suite overhaul. |
+| `docs/architecture/command-execution.md` (new), `docs/architecture/README.md` | Canonical current-candidate command architecture and navigation: Chat input/delegation/outcomes, CLI/Runtime roles, shared package boundaries, effects, deployment/configuration and diagrammed request/admission lifecycles. Planning remains in this packet until current implementation or accepted target exists. |
+| `docs/guides/00-quick-start.md`, `02-getting-started.md`, `03-core-concepts.md`, `04-adaptive-memory.md`, `05-tools.md`, `07-multi-agent.md`, `09-cli-reference.md`, `10-configuration.md`, `13-troubleshooting.md`, `memory-management-guidelines.md`, affected `README.md`/`14-appendices.md` | Substantive rewrites/restructuring of affected chapters, command/package tables, configuration/install/upgrade examples and cross-references, as required by the architecture and guide plans. Source/installed candidate facts and version provenance control; no unrelated whole-guide rewrite or publication. |
+| Affected Core/Commands/LLM/Memory/Runtime/CLI package `README.md` files, alongside named Tools/Chat READMEs | Explain changed public contracts, headless reuse, dependency/profile/readiness requirements and retained roles consistently with the canonical architecture. Exact affected files bind the directive; no unrelated feature documentation rewrite. |
 | `uv.lock` | Deliberate Docling graph delta and requested Certifi upgrade to at least2026.10.19, inventoried at gate A. No unrelated package upgrade. |
 | This packet's document-ingestion remediation/validation/UAT/status records and embedding-compatibility-contract.md; planning board/dashboard; upgrade-log FU-012/013/014 | Planning, readiness, proof and human handoff for this unit only. |
 
@@ -1314,18 +1312,59 @@ by this document update.
 | DI-32 | Actual Chat bound Memory-v2 snapshot → aggregate-v2 writer/read/participant reparse → same-namespace restore/automatic rollback. Accept only bundle1/memory1/transcript1 for offline inspection and bundle2/memory2/transcript1 for active use; reject mixed/unknown versions, binding/incarnation/participant digest tamper and v1 bound restore before live effects. Verify old v1 validators/exports remain strict, Memory v2 fingerprint is distinct from unchanged Chat path fingerprint, and generic AtomicJsonStore needs no bypass. |
 | DI-33 | Preserve pre-change catalog/pool and maintained non-pool configuration fixtures with both new fields omitted. Assert unchanged service/profile/default/endpoint selection and existing embedding call interfaces, batch/cache/resilience settings, and successful operations using qualified readiness plus fresh admitted namespaces. Exercise extraction → graph and insight/summary storage → recall, compaction/lifecycle, maintenance synthesis/re-embedding and stored-vector comparisons. Same-space different service names pass; same-dimension different-space bindings to one namespace refuse before incompatible provider/storage effects; independent namespaces may use different spaces. Include overflow and typed error propagation without silent partial-success claims. Missing baseline readiness is a gate-A stop, not a waived compatibility test. Repeat representative cross-subsystem proofs in actual normal/optimized installed lanes. |
 | DI-34 | All FC-01–14 and B01–B08 in the normative compatibility annex bind the exact named integration nodes and focused lower-level assertions. Independently audit the whole framework including unnamed consumers; classify every discovered path, actual maintained versus public-unwired/inactive routes, required narrow source purposes, successful B/N and R controls and installed witness. Require exact source-backed exceptions for MCP overflow, profile persistence, identity-safe public backup/restore admission and guarded failures; safe refusal is not operational compatibility. No new unsupported route, implicit embedder, silent acknowledgement/count success or unknown baseline exclusion. |
+| DI-35 | Test migration acceptance: baseline case/fixture inventory and traceable retain/restructure/replace/retire/add map; exact old/new nodes and justified oracles/retirements, every valid requirement covered by executed substantive assertions, updated selectors and meaningful public/installed/negative witnesses. Counts/old assertion bodies alone do not prove preservation; no historical evidence rewrite, silent coverage loss or unrelated suite churn. |
+| DI-36 | Substantive documentation acceptance: canonical command architecture and necessary guide/README/configuration-section rewrites are complete for the candidate, coherent with source/requirements/package metadata and independently reviewed. Require change-to-document-to-source/example/probe mapping and representative verified commands/config/install examples plus structural/link checks. A documentation checker pass alone cannot satisfy content, architecture or example correctness. |
 
 
-Keep old assertion bodies unless the final approved directive lists an exact
-intentional exception: file-format/help/count outputs, source raw chunk plans,
-guarded-store setup/admission or new bound snapshot version2; existing MCP-reason failure adaptation. FU-013/014 remain separate failed/unwaived baseline defects, with no repair or positive-credit substitution. Freeze each affected
-test/fixture and before/after expectation at gate A; broad test rewrites or
-retroactive edits to accepted evidence are prohibited. Retain version1 snapshot
-fixtures for offline legacy inspection and add bound/version2 fixtures and
-assertions. Candidate-specific old MAINT verdicts are historical, not proof for
-these changed seams; require fresh affected and aggregate regressions. Provision
-and cache model artifacts explicitly before offline tests. A mocked converter is
-not sufficient positive proof. Do not add blanket source suppressions or skips.
+## G — required test migration and substantive documentation work
+
+### G1 — affected tests are maintained code
+
+Significant package test/fixture rewrites are expected where this refactor changes
+owners, interfaces, setup/admission, dependency profiles or approved outputs.
+Follow the [test migration plan](../test-migration-plan.md): affected tests may be
+renamed, moved, split, rewritten, replaced or retired when obsolete. Preserve
+every still-valid behavioral requirement through retained or replacement
+coverage; do not require obsolete implementation-specific assertion bodies to
+remain AST-identical. Freeze an initial old-to-new case/fixture/oracle map in the
+final directive before the first test rewrite. Each retirement needs its exact
+reason, governing change and coverage/obsolete-requirement disposition.
+
+No blanket permission to rewrite unrelated suites, weaken assertions, skip or
+xfail regressions, broadly accept changed snapshots, or alter production safety
+to accommodate old fixtures. Counts/AST inventories are audit signals, not
+semantic preservation proof. Preserve required DI/FC criteria and named gate
+witnesses unless the directive explicitly maps an approved equivalent. Update
+selectors/imports when cases move; uncalled/unawaited helpers do not count.
+Preserve v1 fixtures for valid offline legacy inspection and add bound/v2
+coverage. Accepted historical evidence/receipts are never edited retroactively.
+
+File-format/help/count changes, source plans, guarded-store fixture/admission,
+bound snapshots and exact existing MCP reason adaptations need explicit old/new
+oracle entries. FU-013/014 and root baseline debt remain failed/unwaived; no
+repair or false positive-credit substitution. Fresh affected-package and
+aggregate/public/installed proofs are required. Provision model assets before
+offline tests; mocked converter positives alone are insufficient.
+
+### G2 — architecture and guides are authored deliverables
+
+Follow the [command architecture plan](../command-architecture-update-plan.md)
+and [guide coverage](../guide-update-handoff.md). The directive MUST include
+the canonical architecture document and substantive affected-section rewrites
+across guides, package READMEs and configuration examples. Explain actual Chat
+and CLI/Runtime command execution, shared ownership, dependencies, admission/
+cancellation, outcomes/errors and deployment/data consequences. Rebuild
+affected command/package tables from the candidate; do not leave alpha3
+architecture statements inconsistent with implemented shared commands.
+
+Documentation acceptance includes source/schema/metadata traceability, reviewed
+architecture/request-flow diagrams, technically checked content and representative
+verified configuration/command/install examples. Review the changed prose and
+sections against source and installed candidate evidence. Lifecycle/link/schema
+checks are necessary structural checks and are not the complete acceptance gate.
+Use explicit candidate/release provenance; do not claim future or companion
+features as installed. No source, test or live-guide implementation occurs
+until the exact construction directive is approved.
 
 ## Non-goals and historical placeholders
 
@@ -1344,21 +1383,16 @@ weaken quarantine, source-protection, maintenance admission or model policy.
 
 ## Next decision
 
-Review this expanded four-format Docling boundary, proposed format defaults and
-shared all-source chunking/embedding-limit contract, together with the Tools
-adoption plan. The maintainer has settled document/512 defaults, all three
-strategies, all-source scope, illustrative-only Qwen and fresh-store testing.
-Gate A must establish the exact compatible package/model/counter manifest and final
-construction directive before implementation. Current MAINT UAT remains a
-separate pending human activity. Whether to add a maintained web-to-Memory
-route is a separate future scope decision for the maintainer; this unit preserves
-web reads and supplied-payload ingestion without inventing that route. The
-existing-store checkpoint is settled by the explicit recorded answer. The current authority is one initial council plus up to three correction/review
-iterations: four total passes, global rounds6–9. Pass1/round6 is reconciled as
-changes requested, with the Opus procedural deviation separately recorded in
-[its reconciliation](../validation/document-ingestion/council-round6/report.md).
-The present correction is for fresh pass3/round8, delta first then full current
-REM/annex/companion and all-framework consumer audit. Stop early only when each
-seat is VERIFIED, no mandatory findings, and both coverage and overall scores
-are >=9.5. After pass4 stop for maintainer guidance. No Gate-A execution,
-construction, acceptance, personal-store action or delivery follows this gate.
+Review the revised assessment v0.3, this test/documentation amendment, the
+test migration plan and canonical architecture/guide plan together. Fresh
+round 3 of the standing four-round cap reviews the amendment delta first and
+the full current package impact and governing requirements; prior verdicts
+remain historical. Require every seat VERIFIED, no mandatory findings and
+coverage/overall at least 9.5; stop after round4 for guidance if unmet.
+
+Chuck's package-impact satisfaction and remaining conditions still precede
+construction approval. Gate A must separately qualify exact dependencies, models,
+assets, APIs and implementation/test/doc paths. The final directive binds the
+accepted impact and test/documentation deliverables before code. Current MAINT
+UAT is separate; no new maintained web-to-Memory route, model selection, data
+reset/migration, publication or delivery is authorized here.

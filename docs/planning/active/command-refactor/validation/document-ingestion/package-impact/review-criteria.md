@@ -1,7 +1,7 @@
 # INGEST-PACKAGE-IMPACT-001 — independent document review criteria
 
 Scope: the complete current Package Impact Assessment and its current approval/
-navigation records, checked against the frozen REM/compatibility annex/Tools
+navigation records, checked against the current amended REM and unchanged compatibility annex/Tools
 companion and relevant source/package declarations. This is assessment readiness
 for maintainer review, not implementation, model qualification or construction
 approval. Initial round reviews the whole assessment; later rounds review the
@@ -25,10 +25,12 @@ numbered correction delta first, then the whole assessment and interactions.
 | PI-14 | Make satisfaction with the per-package impact an explicit maintainer prerequisite for construction approval. Bind a single canonical approved version/commit/hash into the directive; material impact changes return for review. Conditional REM approval and this council do not complete remaining conditions or activate effects. |
 | PI-15 | Make the table useful for the maintainer: concrete upgrade, purpose, change type, retained behavior and evidence; readable descriptions of scope magnitude without invented effort metrics or package-upgrade claims. |
 | PI-16 | Verify frozen identities, links/current-state consistency, append-only historical records and preserved unrelated state. Current assessment council status is separate from the prior technical-design verdict; no fresh review claim for edited technical contracts or runtime behavior. |
+| PI-17 | Test migration is a first-class per-package deliverable: explicit permission for justified case/file/helper rename, split, rewrite, replacement and retirement; a frozen initial inventory and old-to-new behavioral/oracle map before implementation; every still-valid requirement retains substantive executed coverage. Preserve gate obligations, scopes and historical evidence without requiring obsolete bodies or names, weakening production safety, silent skips or unrelated suite churn. Assess the planning requirements; no test implementation is required in this review. |
+| PI-18 | Documentation requires one canonical command architecture plus substantive affected guide/README/configuration rewrites. Plans and REM explicitly name ownership/Chat/CLI/Runtime flow, diagrams, package/dependency/version and data effects; technical source/schema/metadata consistency, representative verified examples and independent content review form acceptance alongside structural checks. A link/check pass alone is insufficient. Future implementation artifacts need not exist now; the current documentation plan must be concrete and scoped. |
 
 ## Honest scores and outcomes
 
-Return exactly VERIFIED, CHANGES_REQUESTED or BLOCKED, with every PI-01–16
+Return exactly VERIFIED, CHANGES_REQUESTED or BLOCKED, with every PI-01–18
 criterion assessed from evidence. Each mandatory finding identifies severity,
 affected text, controlling requirement, source/authority evidence, risk, bounded
 document correction and recheck. Keep optional advisories separate. A reviewer

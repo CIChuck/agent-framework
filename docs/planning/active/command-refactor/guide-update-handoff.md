@@ -1,14 +1,15 @@
 # INGEST-001 — Friday guide update handoff
 
-Status: **proposed construction-documentation requirement**, 2026-11-11.
+Status: **required substantive documentation deliverable; planning only**, 2026-11-11.
 
-Chuck asked whether this unit updates the Friday guides because the planned
-command architecture and installed packages change substantially. The current
-REM explicitly names Tools/Chat package READMEs, packaged configuration examples,
-and provisioning/upgrade instructions, but its proposed path list does **not**
-name `docs/guides/` files. This is a documentation coverage gap to resolve in the
-exact construction directive, not a claim that the guide updates are already
-implemented or independently reviewed.
+Chuck requires one canonical command-architecture document and substantive
+affected guide rewrites. The old REM named only package READMEs/templates; the
+current REM now explicitly includes guide/architecture paths, authored content
+requirements and DI-36 acceptance. The
+[architecture update plan](command-architecture-update-plan.md) binds technical
+review and verified examples in addition to structural checks. These sections
+may be rewritten or reorganized as necessary to describe coherent current
+Chat/CLI/Runtime and shared-package behavior; no live guide is rewritten now.
 
 The maintained [guide index](../../../guides/README.md) currently describes the
 released `0.1.0a3` documentation baseline. Upcoming INGEST behavior must not be
@@ -16,7 +17,7 @@ presented as available in that release before candidate source/installed proof.
 Keep accepted guide-refresh archives and evidence immutable. No current guide
 file or reviewed technical contract is changed by this handoff.
 
-## Proposed exact guide coverage
+## Required guide coverage
 
 | Guide files | Scoped documentation change required for this implementation |
 | --- | --- |
@@ -36,7 +37,7 @@ final provisioning/upgrade instructions remain required alongside these guides.
 Only future TOOLS-DOC acceptance permits its adoption claims; INGEST's shared
 converter alone does not satisfy that documentation milestone.
 
-## Bind into the construction directive
+## Required construction directive binding
 
 1. Reconcile the named guide paths with the final approved allowlist and the
    [Package Impact Assessment](package-impact-assessment.md). This adds explicit
@@ -47,15 +48,17 @@ converter alone does not satisfy that documentation milestone.
 3. Require a changed-behavior → guide-section → source/configuration authority →
    exact example/installed verification matrix. Check positive and failure
    examples; no credit for old alpha3 snippets or fabricated model/format proof.
-4. Make guide completion an explicit implementation acceptance criterion and
-   independent review input. Run lifecycle/link checks and the guide checks
-   appropriate to the affected examples; document any operator-only steps.
+4. Make authored architecture/guide rewrites and DI-36 technical acceptance an
+   explicit implementation completion criterion and independent review input.
+   Require the actual content/diagrams and representative verified examples,
+   source/schema/metadata consistency and structural/link/snippet checks;
+   document operator-only steps without inventing an execution result.
 5. Present the final scope and any material impact addition to Chuck before
    construction approval. The exact post-readiness assessment/directive binding
    and his remaining approval conditions still apply.
 
-The Package Impact Assessment council reviewed v0.2 at `1a040de3`; it did not
-review this subsequent guide handoff. Its verdict must not be extended to this
-new input. This document does not update the frozen REM, satisfy Chuck's package
-impact sign-off, activate Gate A, authorize product/guide implementation or grant
-publication/delivery authority.
+The old Package Impact Assessment council reviewed v0.2 at `1a040de3`. The
+current REM and v0.3 assessment include this expanded documentation requirement
+and need fresh review. The historical verdict is not extended to new bytes.
+This plan does not implement guides, satisfy Chuck's package-impact condition,
+activate Gate A, authorize code/tests or grant publication/delivery authority.

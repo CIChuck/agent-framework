@@ -1,18 +1,19 @@
-# Document-ingestion remediation — compatibility design verified
+# Document-ingestion remediation — test and documentation requirements revised
 
-Execution phase: planning; validation state: verified for Package Impact Assessment v0.2 at 1a040de3; maintainer approval pending.
-The underlying technical design remains verified at f43368c5 (prior cycle pass3/4, round8).
+Execution phase: validation; validation state: in_review for revised REM and
+Package Impact Assessment v0.3, council round3/4. Earlier f43368c5/1a040de3
+verdicts remain historical and do not validate the amended bytes.
 The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and normative
 [compatibility contract](embedding-compatibility-contract.md) incorporate the
 nine technical themes and high/medium advisory requirements. B01–B08 and
 FC-01–14 require successful baseline/replacement behavior as well as refusals.
-[Authority](validation/document-ingestion/compatibility-iteration-authorization.json)
-permits one initial fresh council plus up to three bounded correction/review
-iterations, four total. Require independent coverage and overall scores >=9.5
+[Current amendment authority](validation/document-ingestion/test-doc-revision-authorization.json)
+continues the existing package-impact council budget: four total rounds, two
+already used; the next round is 3 and no budget is reset. Require independent coverage and overall scores >=9.5
 and VERIFIED/no mandatory findings. Stop at success or after pass4 for guidance.
 No Gate-A, product code, model/store actions, acceptance or delivery follows.
 
-**Next gate:** Review Package Impact Assessment v0.2 (council VERIFIED at 1a040de3; every seat >=9.5/no mandatory findings), the proposed guide-update handoff and remaining REM approval conditions. The council loop is complete after 2/4 rounds. Then separately activate bounded Gate-A readiness and approve a final construction directive binding exact accepted package impact and explicit guide coverage. No automatic installs, product work, model/store action or delivery.
+**Next gate:** Package Impact Assessment v0.3 and amended REM: fresh council round3/4 reviews traceable test restructuring and substantive canonical architecture/guide deliverables, delta first then complete current scope. Two rounds already used; no budget reset. Each seat VERIFIED/no mandatory findings and coverage/overall >=9.5 before moving on. Chuck reviews in parallel; impact satisfaction, Gate-A and exact construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action.
 
 ## Separate MAINT closeout and historical checkpoints
 

@@ -1,34 +1,25 @@
 # INGEST-001 — Gate-A and final-directive handoff
 
-Status: design/source feasibility VERIFIED at `f43368c5`; all3 independent seats
-meet both9.5 thresholds with no mandatory findings. The [pass3 reconciliation](council-round8/report.md)
-ends the loop after3/4 passes. No fourth review, installs or product work starts.
-Reviewed REM/annex/Tools bytes are unchanged. See the
-[exact verified design](compatibility-verified-report.md) and
-[all nonblocking carry-forward details](council-round8/readiness-carry-forward.md).
+Status: revised REM/assessment v0.3 and test/documentation requirements are
+in review at council round 3 of the original four-round cap. Old technical
+and assessment-v0.2 verdicts remain historical for their exact bytes; no new
+Gate-A activation, dependency/model provisioning or construction is granted.
 
-Existing [pass1](council-round6/report.md) and [pass2](council-round7/report.md)
-reports remain historical; no old verdict was reused. Successful B/N and refusal
-source/installed proofs, exact dependency/model/counter/format qualification and
-any later model-quality evaluation remain future. MCP/backups receive only
-causal compatibility adaptations, with no feature redesign. No acceptance,
-Gate-A activation, construction, personal-store or delivery authority is granted.
+## Explicit test and documentation deliverables
 
-## Package impact review before construction approval
+[Assessment v0.3](../../package-impact-assessment.md),
+[test migration](../../test-migration-plan.md), [canonical architecture](../../command-architecture-update-plan.md)
+and [guide scope](../../guide-update-handoff.md) bind the current requirements.
+Affected tests may be restructured/replaced or retired with reasons and full
+valid-behavior coverage. Documentation requires authored architecture/guide
+rewrites, technical review and representative verified examples. DI-35/36 cannot
+be satisfied by counts, unchanged old bodies or a documentation checker alone.
 
-[Package Impact Assessment v0.2](../../package-impact-assessment.md) is independently
-VERIFIED at `1a040de3`: all three seats pass both 9.5 thresholds, no mandatory
-findings, loop complete after 2/4 rounds. Its exact bytes remain unchanged; see
-[reconciliation](package-impact/verified-report.md) and
-[optional carry-forward](package-impact/readiness-carry-forward.md).
-
-Chuck's own review and remaining conditions are still pending. His initial
-impact/conditions review now is distinct from final binding satisfaction with
-the exact post-Gate-A version, commit and SHA256 incorporated into the directive.
-The [guide handoff](../../guide-update-handoff.md) is a subsequent proposed
-documentation input: name the affected docs/guides files and validation in the
-final allowlist. It was not part of the council's verdict and changes no guide
-or reviewed technical text now. No readiness activation follows automatically.
+Chuck reviews the revision in parallel; his exact-version satisfaction and
+remaining conditions still precede construction approval. The final directive
+must bind the post-readiness assessment/version/hash, test migration map and
+documentation section/evidence matrix before code. No implementation starts
+from this planning amendment.
 
 ## Before readiness execution
 
@@ -72,9 +63,8 @@ unit or permission to add routes. Do not claim missing web/automatic-tool wiring
 exists. Record measured dependencies/model/counter/Office behavior separately
 from model cards or doubles, with explicit stop conditions.
 
-All future tests, build/replay, normal/optimized installed proofs and human UAT
-remain future obligations. The technical compatibility council finished at pass
-3/4 and the separate Package Impact Assessment council finished at round 2/4.
-No council is active. Chuck's impact review, guide-coverage reconciliation,
-remaining conditions, Gate-A activation and exact construction directive remain
-pending. Acceptance and delivery remain ungranted.
+All source/test implementation, canonical architecture/guide rewrites, builds,
+installed proof and UAT remain future obligations. Fresh round 3 reviews the
+changed requirements within the original four-total-round cap, without a reset.
+Current package-impact satisfaction, Gate-A activation, exact construction
+directive approval, acceptance and delivery remain ungranted.

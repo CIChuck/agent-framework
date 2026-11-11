@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Review Package Impact Assessment v0.2 (council VERIFIED at 1a040de3; every seat >=9.5/no mandatory findings), the proposed guide-update handoff and remaining REM approval conditions. The council loop is complete after 2/4 rounds. Then separately activate bounded Gate-A readiness and approve a final construction directive binding exact accepted package impact and explicit guide coverage. No automatic installs, product work, model/store action or delivery."
+  next_gate: "Package Impact Assessment v0.3 and amended REM: fresh council round3/4 reviews traceable test restructuring and substantive canonical architecture/guide deliverables, delta first then complete current scope. Two rounds already used; no budget reset. Each seat VERIFIED/no mandatory findings and coverage/overall >=9.5 before moving on. Chuck reviews in parallel; impact satisfaction, Gate-A and exact construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3247,3 +3247,11 @@ events:
   action: reconciled Package Impact Assessment VERIFIED and recorded guide handoff
   note: "All three round2 seats independently VERIFIED v0.2 at 1a040de3 with both scores>=9.5 and zero mandatory findings; seven original IDs closed. Loop stopped after2/4, no active council. Reviewed assessment/technical pins unchanged. Maintainer impact satisfaction and remaining conditions pending. New guide-coverage handoff is a proposed unreviewed final-directive input; no live guide, Gate-A, construction or delivery action."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/verified-report.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T17:06:47.715765+00:00"
+  actor: Codex
+  actor_role: agent
+  action: revised INGEST test migration and substantive architecture documentation requirements
+  note: "Explicit maintainer clarifications allow traceable affected-test restructuring and require canonical architecture plus guide rewrites. REM G1/G2 and DI-35/36, assessment v0.3 and supporting plans revised; old verdicts historical. Fresh round3 within original max4 budget, no reset. No implementation, live guide edits, Gate-A or delivery."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/test-doc-revision-authorization.json
