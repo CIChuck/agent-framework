@@ -72,10 +72,10 @@ packages may still need focused test/fixture rewrites; unrelated cases stay inta
 | P-08 CLI | Adapt focused compatibility/config/container/profile tests only as needed, including `tests_cli/test_cli_config.py` and new targeted fixtures. Old backend-opening assumptions may need replacement even if production delegation stays unchanged. | Raw origin survives configuration merging, Runtime delegation/readiness, constructor/re-export compatibility, no launcher or separate ingestion policy. |
 | P-09 Agent | Rewrite affected archive/context/background-memory integration fixtures and focused `tests_agent/test_base.py`/public-tool tests if shared contracts change their setup. No Agent production-source change is inferred. | Observe the real inner extraction task and terminal failure/status; retain authorization, actual tools and public inputs/results. Wrapper completion is not extraction success. |
 | P-10 Telemetry | Retain schema/reason tests; update only affected integration expectations for the exact approved existing reason/counter mapping. | Same event union and telemetry-disabled behavior; no new reason schema or silent dropped failure. |
-| P-11 Transcript | Retain strict v1/public persistence tests; adapt only affected cross-package receipt/aggregate fixtures and add strict mixed-version refusal witnesses in the owning suites. | Receipt ownership/readback, unchanged Transcript v1, Memory/Chat v2 ownership, independent path settings and no live identity overwrite. |
+| P-11 Transcript | Retain strict v1/public persistence tests in `packages/friday-transcript/tests/`; adapt only affected cross-package receipt/aggregate fixtures and add strict mixed-version refusal witnesses in the owning suites. | Receipt ownership/readback, unchanged Transcript v1, Memory/Chat v2 ownership, independent path settings and no live identity overwrite. |
 | P-12 MCP | Retain transport tests; adapt affected optional-profile/import/integration fixtures when inherited dependencies or guarded Memory publication changes setup. | No transport feature change; exact snapshot text/pending IDs/receipts and truthful failure categories through actual Chat/Runtime consumers. |
-| P-13 Optimization | Retain valid tests; add or adapt declared-Memory dependency/import-profile witnesses only where the final inventory justifies them. | Dependency inheritance without inventing an active source route, optimization algorithm or model-quality change. |
-| P-14 Finance | Retain existing behavior tests; focused import/tool-catalog regressions may be added or have installation fixtures updated. | Ordinary Finance use does not acquire a Docling execution prerequisite. No financial algorithm rewrite. |
+| P-13 Optimization | No existing package test suite is present. Add a declared-Memory dependency/import-profile witness only if the final inventory justifies it; its exact new package-local `tests_optimization/` or root integration path and selector must bind the directive. | Dependency inheritance without inventing an active source route, optimization algorithm or model-quality change. |
+| P-14 Finance | Retain existing behavior tests in `packages/friday-finance/tests/`; focused import/tool-catalog regressions may be added or have installation fixtures updated. | Ordinary Finance use does not acquire a Docling execution prerequisite. No financial algorithm rewrite. |
 | P-15 Speech | Retain unrelated speech tests; add/adapt only justified shared-import/registration profile witnesses. | No new document/tokenizer prerequisite for ordinary speech use; no speech feature change. |
 | P-16 Sandbox | Retain Docker/Python execution tests; rewrite document filesystem-sandbox tests only in Tools, their actual owner. | Converter access remains behind Tools' FilesystemSandbox; no sandbox-engine or policy redesign. |
 | P-17 Moltbook | Retain existing behavior; conditional import/tool-registration test adaptation only if the final consumer inventory identifies an affected dependency/setup. | No new embedding/ingestion feature or speculative production edit. |
@@ -88,11 +88,32 @@ extension-only positives; deterministic exact-dimension embeddings are separated
 from actual serving/tokenizer qualification. TOOLS-DOC tests remain its separate
 construction obligation and cannot be claimed complete by INGEST alone.
 
-The REM's test-only allowlist covers the P-10–17 consumer suites conditionally,
-including Telemetry, Transcript, MCP, Optimization, Finance, Speech, Sandbox and
-Moltbook; production source in those packages remains excluded. The final
-directive names exact old/new files and cases before any rewrite. A row that
-only needs retained/import evidence does not require a gratuitous test edit.
+The REM's test-only allowlist covers the existing Telemetry, Transcript, MCP,
+Finance, Speech, Sandbox and Moltbook consumer suites conditionally; production
+source remains excluded. Transcript and Finance use `packages/friday-transcript/tests/`
+and `packages/friday-finance/tests/`, not `tests_transcript/` or `tests_finance/`.
+Optimization has no baseline suite: any justified new package-local or root
+integration witness must have its exact path and selector in the directive.
+The final directive names exact old/new files and cases before any rewrite.
+Retained/import evidence does not require a gratuitous test edit.
+
+### Explicit execution of non-default suites
+
+Root pytest `testpaths` matches `packages/*/tests_*`, which omits the two existing
+`tests/` suites. Construction validation must therefore run them explicitly,
+including retained cases as well as scoped replacements, for example:
+
+```bash
+uv run --no-sync pytest packages/friday-transcript/tests -q
+uv run --no-sync pytest packages/friday-finance/tests -q
+```
+
+These are future construction checks, not commands executed during this planning
+review. The approved directive binds the prepared environment, private caches/
+basetemps and installed/source profiles, and records exact executed selectors,
+counts and outcomes. Root collection alone supplies no credit for these suites.
+Any new Optimization witness has its own explicit selector. Existing failures
+remain failed/unwaived and are distinguished from candidate regressions.
 
 ## Case-level migration map — required before the first test rewrite
 

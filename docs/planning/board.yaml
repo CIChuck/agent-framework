@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Package Impact Assessment v0.4 and amended REM: fourth and final council round4/4, correction delta then full PI-01\u201318 scope. Three rounds consumed; no reset, replacement or fifth round. Every seat must independently VERIFIED with no mandatory findings and coverage/overall >=9.5. If unmet, stop for Chuck's guidance. Chuck reviews in parallel; impact satisfaction, Gate-A activation and exact amended construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action."
+  next_gate: "Package Impact Assessment v0.5 and amended REM: exactly one additional full council, round5/5, explicitly authorized by Chuck after four completed rounds. Correction delta then full PI-01\u201318 scope; no reset, replacement or sixth round. Every seat independently VERIFIED, no mandatory findings and coverage/overall >=9.5. If unmet after this round, stop for guidance. Chuck reviews in parallel; impact satisfaction, Gate-A activation and exact construction directive approval remain pending. No product/tests/live-guide implementation, model/store or delivery action."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3263,3 +3263,11 @@ events:
   action: reconciled package impact round3 and prepared final bounded correction
   note: "Round3 retains Sol VERIFIED, Astra BLOCKED by review-brief conflict, and Opus CHANGES_REQUESTED. Three document corrections and related advisories are incorporated; protocol revised prospectively, no waiver. Fresh round4/4 is final; stop for guidance if unmet. No product/test/live-guide, Gate-A or delivery authority."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/correction-cycle2.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T18:21:33.691122+00:00"
+  actor: Codex
+  actor_role: agent
+  action: recorded explicit one-round package-impact extension and bounded corrections
+  note: "Chuck answered proceed to the exact request for bounded document corrections and one additional full council. Original4 rounds exhausted; new maximum5, one review remaining. Actual test paths/discovery and current routing corrected, no scope change. Fresh Sol/Astra/Opus round5 at unchanged9.5 thresholds; stop if unmet. No product/Gate-A/delivery authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round5-authorization.json

@@ -1,0 +1,35 @@
+{
+  "unit": "INGEST-PACKAGE-IMPACT-001",
+  "date": "2026-11-11",
+  "maintainer": "Chuck Russell",
+  "preceding_controller_question": "May I apply these bounded corrections and run one additional full council round, retaining the same 9.5 threshold?",
+  "maintainer_answer": "proceed",
+  "authorization": "Apply the two consolidated document correction groups and run exactly one additional fresh full Sol/Astra/Opus council.",
+  "original_maximum_rounds": 4,
+  "rounds_completed_before_extension": 4,
+  "additional_rounds_authorized": 1,
+  "maximum_total_rounds": 5,
+  "next_round": 5,
+  "remaining_including_next": 1,
+  "budget_reset": false,
+  "corrections": [
+    {
+      "id": "PC-08",
+      "requirement": "Name actual Transcript/Finance tests/ paths and explicit future execution selectors; Optimization has no baseline suite and any justified new witness path must bind the final directive. Mirror REM and migration plan."
+    },
+    {
+      "id": "PC-09",
+      "requirement": "Reconcile all current REM/assessment/authority/board/navigation fields with the current version, four completed rounds and exactly one authorized extension; preserve historical records."
+    }
+  ],
+  "threshold": "Every seat independently VERIFIED, no mandatory finding, coverage AND overall each >=9.5; honest scores, no averaging or waiver.",
+  "stop_condition": "After round5 stop: if gate unmet, ask for further maintainer guidance. No replacement seat, sixth round or automatic loop.",
+  "scope_exclusion": [
+    "product/test/live-guide implementation",
+    "new source owner or product feature",
+    "annex/Tools companion amendment",
+    "Gate-A downloads/installation/model/provider/store operations",
+    "maintainer impact satisfaction or construction approval",
+    "push/PR/publication/delivery"
+  ]
+}

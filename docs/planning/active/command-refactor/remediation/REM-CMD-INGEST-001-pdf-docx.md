@@ -21,9 +21,10 @@ beyond a lifecycle/link-check pass. Section G and DI-35/36 bind these obligation
 
 Prior technical-design reviews at `f43368c5` and assessment-v0.2 reviews at
 `1a040de3` remain historical evidence for their exact old bytes. This changed
-REM and assessment v0.4 need fresh review. The next assessment council is round
-4, the final round within the existing four-total-round cap; the budget is not
-reset. Stop for Chuck's guidance if its conditions are unmet. Chuck
+REM and assessment v0.5 need fresh review. Four rounds are complete. Chuck
+explicitly authorizes [one additional round](../validation/document-ingestion/package-impact/round5-authorization.json):
+round 5 of 5, with no budget reset, replacement seat or sixth round. Stop for
+Chuck's guidance if its conditions are unmet. Chuck
 reviews the linked revision in parallel. No product/test/guide implementation,
 Gate-A effects, model/store operation or delivery is authorized by this update.
 
@@ -1257,7 +1258,7 @@ organization does not authorize any slice or defer cross-subsystem proof.
 | `tests/integration/test_document_ingestion.py` (new) | Active registry/smart_read text storage and explicitly supplied text/web/tool payloads → shared chunking → guarded embeddings → real Memory/fresh bound Chroma. Capability tests do not claim absent route wiring. Deterministic vectors plus real model-matched counting; source/installed proof helper if needed. |
 | `tests/integration/test_embedding_compatibility.py` (new); focused existing Agent, multi-agent, MEMQ, CLI, Runtime and Core public-consumer tests | FC-01–14 named B/N/R proofs, full extraction→store→recall→maintenance/lifecycle and minimal installed profiles, actual delayed background completion, two-kernel logging/ephemeral isolation and real MCP publication outcome witnesses. Indirect consumers may remain source-unchanged; no source edit outside explicit allowlist is inferred from a test. |
 | Package-local synthetic `tests_*/fixtures/document-ingestion/` (new) | Genuine text, table and scanned fixtures/provenance; no user documents. |
-| Affected package-local tests/fixtures/helpers within the eight implementation owners and Agent consumer above; conditional `tests_telemetry`, `tests_transcript`, `tests_mcp`, `tests_optimization`, `tests_finance`, `tests_speech`, `tests_sandbox`, `tests_moltbook` in their matching packages; `tests/integration/test_package_cohort_metadata.py` | Test-only rename/move/split/rewrite/replace/justified retirement under the case-level migration map; every valid requirement retains executed coverage. Exact old/new files and nodes freeze in the directive before rewriting. No production-source expansion or unrelated suite overhaul. |
+| Affected package-local tests/fixtures/helpers within the eight implementation owners and Agent consumer above; conditional existing `packages/friday-telemetry/tests_telemetry/`, `packages/friday-transcript/tests/`, `packages/friday-mcp/tests_mcp/`, `packages/friday-finance/tests/`, `packages/friday-speech/tests_speech/`, `packages/friday-sandbox/tests_sandbox/`, `packages/friday-moltbook/tests_moltbook/`; `tests/integration/test_package_cohort_metadata.py`; any justified Optimization witness is new (exact package-local or integration path to bind in the directive) | Test-only rename/move/split/rewrite/replace/justified retirement under the case-level migration map; every valid requirement retains executed coverage. Exact old/new files and nodes freeze in the directive before rewriting. No production-source expansion or unrelated suite overhaul. Transcript and Finance require explicit suite selectors because root testpaths do not include their `tests/` folders; the migration plan specifies the future run commands. Optimization has no baseline suite. |
 | `docs/architecture/command-execution.md` (new), `docs/architecture/README.md` | Canonical current-candidate command architecture and navigation: Chat input/delegation/outcomes, CLI/Runtime roles, shared package boundaries, effects, deployment/configuration and diagrammed request/admission lifecycles. Planning remains in this packet until current implementation or accepted target exists. |
 | `docs/guides/00-quick-start.md`, `01-executive-summary.md`, `02-getting-started.md`, `03-core-concepts.md`, `04-adaptive-memory.md`, `05-tools.md`, `07-multi-agent.md`, `09-cli-reference.md`, `10-configuration.md`, `13-troubleshooting.md`, `memory-management-guidelines.md`, `FRIDAY-FEATURES.md`, affected `README.md`/`14-appendices.md` | Substantive rewrites/restructuring of affected chapters, command/package tables, configuration/install/upgrade examples and cross-references, as required by the architecture and guide plans. Source/installed candidate facts and version provenance control; no unrelated whole-guide rewrite or publication. |
 | Affected Core/Commands/LLM/Memory/Runtime/CLI package `README.md` files, alongside named Tools/Chat READMEs | Explain changed public contracts, headless reuse, dependency/profile/readiness requirements and retained roles consistently with the canonical architecture. Exact affected files bind the directive; no unrelated feature documentation rewrite. |
@@ -1400,12 +1401,14 @@ weaken quarantine, source-protection, maintenance admission or model policy.
 
 ## Next decision
 
-Review the revised assessment v0.3, this test/documentation amendment, the
-test migration plan and canonical architecture/guide plan together. Fresh
-round 3 of the standing four-round cap reviews the amendment delta first and
-the full current package impact and governing requirements; prior verdicts
-remain historical. Require every seat VERIFIED, no mandatory findings and
-coverage/overall at least 9.5; stop after round4 for guidance if unmet.
+Review assessment v0.5, this amended REM, the test migration plan and canonical
+architecture/guide plan together. Four rounds are complete; Chuck's recorded
+proceed authorizes exactly one additional full council, round 5 of 5. Review the
+bounded correction delta first, then the complete current package impact and
+governing requirements. Prior verdicts remain historical. Every seat must be
+VERIFIED, with no mandatory findings and coverage/overall each at least 9.5.
+After round5, stop; if unmet, ask Chuck for guidance. No replacement, sixth
+round, budget reset or automatic construction follows.
 
 Chuck's package-impact satisfaction and remaining conditions still precede
 construction approval. Gate A must separately qualify exact dependencies, models,

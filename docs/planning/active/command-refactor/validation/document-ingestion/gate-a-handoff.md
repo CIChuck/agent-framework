@@ -1,13 +1,14 @@
 # INGEST-001 — Gate-A and final-directive handoff
 
-Status: revised REM/assessment v0.4 and test/documentation requirements are
-in review at council round 4, the final round of the original four-round cap. Old technical
+Status: revised REM/assessment v0.5 and test/documentation requirements are
+in review at round 5 of 5: Chuck explicitly authorizes one additional full round
+after four completed rounds; no reset or sixth round. Old technical
 and assessment-v0.2 verdicts remain historical for their exact bytes; no new
 Gate-A activation, dependency/model provisioning or construction is granted.
 
 ## Explicit test and documentation deliverables
 
-[Assessment v0.4](../../package-impact-assessment.md),
+[Assessment v0.5](../../package-impact-assessment.md),
 [test migration](../../test-migration-plan.md), [canonical architecture](../../command-architecture-update-plan.md)
 and [guide scope](../../guide-update-handoff.md) bind the current requirements.
 Affected tests may be restructured/replaced or retired with reasons and full
@@ -64,8 +65,9 @@ exists. Record measured dependencies/model/counter/Office behavior separately
 from model cards or doubles, with explicit stop conditions.
 
 All source/test implementation, canonical architecture/guide rewrites, builds,
-installed proof and UAT remain future obligations. Fresh round 4 reviews the
-correction delta and full current requirements within the original four-total-round
-cap, without a reset. If any seat fails to qualify, stop for Chuck's guidance.
+installed proof and UAT remain future obligations. Fresh round 5 reviews the
+correction delta and full current requirements under the recorded one-round
+extension. If any seat fails to qualify, stop for Chuck's guidance. No further
+round or replacement is authorized.
 Current package-impact satisfaction, Gate-A activation, exact construction
 directive approval, acceptance and delivery remain ungranted.

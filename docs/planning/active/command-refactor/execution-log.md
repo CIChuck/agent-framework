@@ -3152,3 +3152,27 @@ inputs exclude raw peer reports and historical routing diffs; past provenance
 labels supply no correctness credit. If unmet, stop for Chuck's guidance without
 a replacement seat, fifth round or automatic implementation. Exact amended
 assessment/REM approval, impact satisfaction, Gate-A and construction remain pending.
+
+
+## Explicit one-round extension and document accuracy correction — 2026-11-11
+
+[Round4 reconciliation](validation/document-ingestion/package-impact/round4/report.md)
+records all three CHANGES_REQUESTED outcomes. After the controller stopped at
+the original four-round limit and requested guidance, Chuck answered proceed
+to the specific bounded corrections plus one additional full council request.
+[The recorded extension](validation/document-ingestion/package-impact/round5-authorization.json)
+authorizes round5 only; the budget is not reset.
+
+The REM/test plan now name actual Transcript and Finance tests/ paths, require
+explicit future suite selectors, and classify any justified Optimization witness
+as new. Current REM closing/header instructions, authority current_scope/current
+authorization, assessment v0.5, board and routing all use the one-round extension.
+The three-registry architecture and mapped test-exception rules are retained.
+Original approvals, historical reports/checkpoints, annex/companion and all
+production/test/live-guide/dependency bytes remain unchanged.
+
+Fresh Sol/Astra/Opus reviews examine the bounded delta then full PI-01–18 scope.
+Every seat must be VERIFIED, no mandatory finding and coverage/overall >=9.5.
+After this one extra round, stop; if unmet ask Chuck for guidance. No replacement
+seat, sixth round, automatic correction loop or construction follows. Impact
+satisfaction, Gate-A activation and exact construction approval remain pending.

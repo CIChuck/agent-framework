@@ -58,5 +58,8 @@ Every seat must be VERIFIED, have no mandatory findings and independently score
 at least 9.5 on both rubrics to end the loop successfully. Mandatory findings
 override high scores; no seat average, score coaching or threshold inflation.
 Review remains valuable below the threshold. The controller may make bounded
-document corrections within the maintainer's four-round cap. A material change
+document corrections within the original four-round cap, exhausted after
+round4. Chuck explicitly authorizes one additional full round5, recorded in
+[the extension](round5-authorization.json); no reset, replacement or round6.
+If that gate is unmet, stop for further guidance. A material change
 to the frozen technical scope stops for explicit disposition.
