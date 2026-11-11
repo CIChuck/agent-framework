@@ -1,0 +1,14 @@
+{
+  "docs/planning/active/command-refactor/authority.json": {
+    "/session_construction/historical_council_members": true,
+    "/historical_unit_summary_fields": true,
+    "/document_ingestion_remediation/council_history": true,
+    "/document_ingestion_remediation/design_readiness_history": true,
+    "/document_ingestion_remediation/package_impact_review_history": true
+  },
+  "docs/planning/board.yaml": {
+    "history_marker": "not found"
+  },
+  "construction_source_directive_sha256": "e44d4e4b28736d66a1de1e66314cb6da25343430dec0933be4ac9f1645ec91ad",
+  "directive_unchanged": true
+}

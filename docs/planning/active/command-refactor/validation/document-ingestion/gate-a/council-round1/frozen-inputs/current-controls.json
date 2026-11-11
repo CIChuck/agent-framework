@@ -1,0 +1,82 @@
+{
+  "candidate": "f81453695007cacfa072fe295b8da7aa478438ba",
+  "board": {
+    "work_state": "started",
+    "condition": "normal",
+    "implementation_authority": "design_only",
+    "delivery_state": "pushed",
+    "branch": "feature/cmd-ingest-001",
+    "next_gate": "One explicit read-only Sol/Astra/Opus council round is authorized for draft CD-CMD-INGEST-GATE-A-001, unchanged directive bytes e44d4e4b from 494eed4f. Review all HRC-01\u201316/HR-01\u201312, especially zero production-code/config/store/environment edits, code only under tests/readiness/ingest/, generated state under .friday_test/, and shared LM Studio only in the confirmed production-offline/restart/log-separation window. Target coverage and overall>=9.5 from every seat, no mandatory findings. Reconcile all three reports; no automatic loop, harness construction, stage/model activation or delivery authority."
+  },
+  "current_scope": "One explicit read-only Sol/Astra/Opus council round is authorized for draft CD-CMD-INGEST-GATE-A-001, unchanged directive bytes e44d4e4b from 494eed4f. Review all HRC-01\u201316/HR-01\u201312, especially zero production-code/config/store/environment edits, code only under tests/readiness/ingest/, generated state under .friday_test/, and shared LM Studio only in the confirmed production-offline/restart/log-separation window. Target coverage and overall>=9.5 from every seat, no mandatory findings. Reconcile all three reports; no automatic loop, harness construction, stage/model activation or delivery authority.",
+  "execution_phase": "planning",
+  "validation_state": "in_review",
+  "next_gate": "One explicit read-only Sol/Astra/Opus council round is authorized for draft CD-CMD-INGEST-GATE-A-001, unchanged directive bytes e44d4e4b from 494eed4f. Review all HRC-01\u201316/HR-01\u201312, especially zero production-code/config/store/environment edits, code only under tests/readiness/ingest/, generated state under .friday_test/, and shared LM Studio only in the confirmed production-offline/restart/log-separation window. Target coverage and overall>=9.5 from every seat, no mandatory findings. Reconcile all three reports; no automatic loop, harness construction, stage/model activation or delivery authority.",
+  "readiness_preparation": {
+    "plan": "validation/document-ingestion/gate-a/readiness-plan.md",
+    "version": "0.3-draft",
+    "plan_sha256": "c242934407c030d5ded36af9f3a1e2087f5e3f8a5aa11862b6fb32292b53f1cd",
+    "effects_envelope": "validation/document-ingestion/gate-a/effects-envelope.json",
+    "effects_envelope_sha256": "9ffe4bc59dba9d14babb85de661f561d7b14616198f9fd4486e4f03cb4c7641e",
+    "source_observations": "validation/document-ingestion/gate-a/source-observations.json",
+    "source_observations_sha256": "bbd408be71036faef3aa5b4298232635a4dade2f2e813444df6aae3a2e63fb80",
+    "consumer_worklist": "validation/document-ingestion/gate-a/consumer-readiness-matrix.md",
+    "consumer_worklist_sha256": "12c2bcc68892f8b5b14023f67d34b190565b7ca22ed79c2a4a9013437c5e9e7c",
+    "status": "in_review_council_round1",
+    "independent_review": "explicitly_requested_read_only_design_review",
+    "council_active": true,
+    "effects_activation": "not_granted",
+    "model_stage": "blocked_until_confirmed_shared_endpoint_window_and_exact_model_counter_inputs",
+    "research": "Public release/source metadata only; no resolver/install/model transfer/inference.",
+    "implementation_approval": "not_granted",
+    "isolation_requirements": "validation/document-ingestion/gate-a/isolation-requirements.md",
+    "isolation_requirements_sha256": "ec72dfbe953aa9ad9e0eae0e04e268b2af3142868a9a0883e73e2992178af546",
+    "production_isolation": "Production application/configuration/stores unchanged; shared LM Studio permitted only in operator-confirmed production-offline/restart/log-separation window. All harness code/config/inputs/outputs test-owned.",
+    "manual_harness": "Required; versioned code/config/probes/generators/tests under tests/readiness/ingest/; generated state under .friday_test/; not implemented.",
+    "requirements_authority": {
+      "maintainer": "Chuck Russell",
+      "date": "2026-11-11",
+      "condition": "All code, configuration, test input, and test output should be isolated from the production environment.",
+      "scope": "Current proceed resumes bounded documentation reconciliation and harness construction instructions, with tests/ code location. No code generation or effects activation inferred."
+    },
+    "model_service_decision": {
+      "maintainer": "Chuck Russell",
+      "date": "2026-11-11",
+      "statement": "we Can reuse the LM Studio endpoint.",
+      "production_offline_statement": "We'll shut down the production environment for this testing.",
+      "requirements": "Operator-managed server restart and separate test logs; no harness service management; exact model/window facts remain unbound.",
+      "supersedes": "v0.2 independent process/endpoint and copied served-weight requirement only.",
+      "window_confirmed": false
+    },
+    "harness_construction_directive": {
+      "unit": "CD-CMD-INGEST-GATE-A-001",
+      "document": "directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md",
+      "version": "0.1-draft",
+      "sha256": "e44d4e4b28736d66a1de1e66314cb6da25343430dec0933be4ac9f1645ec91ad",
+      "status": "in_review",
+      "construction_approval": "not_granted",
+      "versioned_code_root": "tests/readiness/ingest/",
+      "runtime_root": ".friday_test/",
+      "council_authority": "not_granted_by_current_preparation_request"
+    },
+    "directive_council": {
+      "round": 1,
+      "maximum_authorized_rounds": 1,
+      "authorization": "validation/document-ingestion/gate-a/council-round1/authorization.md",
+      "authorization_sha256": "bc567702032c7734f548c33643eb105f2fd46e51e3e444d68e50c4fb18b69d21",
+      "criteria": "validation/document-ingestion/gate-a/council-round1/criteria.md",
+      "criteria_sha256": "3a183db5563d74aca98c1e41e021fec151a5ccee32f006793f3ed139f0e11fe8",
+      "roster": "validation/document-ingestion/gate-a/council-round1/roster.json",
+      "roster_sha256": "65e788edb94a33dc3d0fa16755ed71d596f743c1e4a4029394cd6e73730a6904",
+      "status": "authorized_preparing_frozen_dispatch",
+      "design_only": true,
+      "construction_authority": false,
+      "effects_authority": false
+    }
+  },
+  "navigation": {
+    "next-phase.md": "# INGEST readiness harness instructions \u2014 prepared for review\n\nExecution phase: planning; validation state: in_review. The exact assessment v0.6\nis [approved](approval/ingest-package-impact.md); its [round6 result](validation/document-ingestion/package-impact/current-verified-report.md)\nretains only its pinned document/source-feasibility meaning.\n\nThe [Gate-A plan v0.3](validation/document-ingestion/gate-a/readiness-plan.md),\n[effects envelope](validation/document-ingestion/gate-a/effects-envelope.json),\n[isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md)\nand [draft harness directive](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)\nare prepared. All versioned code/probes/generators/config/tests go under\n`tests/readiness/ingest/`; runtime files go under `.friday_test/`. Explicit offline\nselectors are required because root pytest discovery excludes `tests/`.\n\nChuck permits reuse of the existing LM Studio endpoint after production shutdown,\nserver restart and test-log separation. No independent server or served-weight\ncopy is required. The operator must confirm the actual test window/model facts;\nthat confirmation has not been supplied. No code/test environment has been built or package/model effects activated.\nOne [read-only directive council round](validation/document-ingestion/gate-a/council-round1/authorization.md)\nis now explicitly authorized; all three complete reviews precede reconciliation. Production\napplication/configuration/stores and unrelated dirty state remain unchanged.\n\n**Next gate:** One explicit read-only Sol/Astra/Opus council round is authorized for draft CD-CMD-INGEST-GATE-A-001, unchanged directive bytes e44d4e4b from 494eed4f. Review all HRC-01\u201316/HR-01\u201312, especially zero production-code/config/store/environment edits, code only under tests/readiness/ingest/, generated state under .friday_test/, and shared LM Studio only in the confirmed production-offline/restart/log-separation window. Target coverage and overall>=9.5 from every seat, no mandatory findings. Reconcile all three reports; no automatic loop, harness construction, stage/model activation or delivery authority.\n\n",
+    "tactical-plan.md": "# INGEST readiness harness instructions \u2014 prepared for review\n\nExecution phase: planning; validation state: in_review. The exact assessment v0.6\nis [approved](approval/ingest-package-impact.md); its [round6 result](validation/document-ingestion/package-impact/current-verified-report.md)\nretains only its pinned document/source-feasibility meaning.\n\nThe [Gate-A plan v0.3](validation/document-ingestion/gate-a/readiness-plan.md),\n[effects envelope](validation/document-ingestion/gate-a/effects-envelope.json),\n[isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md)\nand [draft harness directive](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)\nare prepared. All versioned code/probes/generators/config/tests go under\n`tests/readiness/ingest/`; runtime files go under `.friday_test/`. Explicit offline\nselectors are required because root pytest discovery excludes `tests/`.\n\nChuck permits reuse of the existing LM Studio endpoint after production shutdown,\nserver restart and test-log separation. No independent server or served-weight\ncopy is required. The operator must confirm the actual test window/model facts;\nthat confirmation has not been supplied. No code/test environment has been built or package/model effects activated.\nOne [read-only directive council round](validation/document-ingestion/gate-a/council-round1/authorization.md)\nis now explicitly authorized; all three complete reviews precede reconciliation. Production\napplication/configuration/stores and unrelated dirty state remain unchanged.\n\n**Next gate:** One explicit read-only Sol/Astra/Opus council round is authorized for draft CD-CMD-INGEST-GATE-A-001, unchanged directive bytes e44d4e4b from 494eed4f. Review all HRC-01\u201316/HR-01\u201312, especially zero production-code/config/store/environment edits, code only under tests/readiness/ingest/, generated state under .friday_test/, and shared LM Studio only in the confirmed production-offline/restart/log-separation window. Target coverage and overall>=9.5 from every seat, no mandatory findings. Reconcile all three reports; no automatic loop, harness construction, stage/model activation or delivery authority.\n\n",
+    "README.md": " \u2014 impact approved; Gate-A plan ready for review:**\nChuck [approved exact assessment v0.6](approval/ingest-package-impact.md),\nSHA256 `f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176`.\nThe [assessment](package-impact-assessment.md), [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md),\ntest/architecture/guide contracts retain their reviewed bytes.\n[Round6 council](validation/document-ingestion/package-impact/current-verified-report.md)\nremains VERIFIED for that document/source-feasibility scope, not execution.\n\nThe [Gate-A plan v0.3](validation/document-ingestion/gate-a/readiness-plan.md),\n[effects envelope](validation/document-ingestion/gate-a/effects-envelope.json),\n[isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md)\nand [draft harness directive](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)\nare prepared for Chuck's review. Versioned harness/probe/generator/config/test\ncode belongs under `tests/readiness/ingest/`; generated environments, inputs,\nassets and results belong under `.friday_test/`. Production application files,\nconfiguration and stores remain untouched.\n\nThe existing LM Studio endpoint may be reused only while production is stopped,\nafter operator-confirmed server restart and separated test logs. This supersedes\nthe earlier independent-server requirement. Actual window/model evidence is still\npending. Execution phase: planning; validation state: in_review. Chuck explicitly\nauthorizes [one fresh read-only Sol/Astra/Opus directive council](validation/document-ingestion/gate-a/council-round1/authorization.md),\nwith production isolation as the central requirement. No harness or test environment\nhas been built and no runtime effects or construction activated.\nMeasured readiness will bind the final product directive for separate approval.\nPrior assessment approval persists for unchanged exact bytes.\n\n"
+  }
+}

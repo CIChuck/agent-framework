@@ -2,8 +2,8 @@
 
 **Status:** started/pushed. Exact INGEST package impact v0.6 is approved;
 Gate-A readiness plan v0.3 and the bounded manual-harness construction draft
-is in one authorized read-only council round. Execution and MAINT human
-UAT/acceptance remain pending.
+has completed its one read-only council round with changes requested.
+Execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -44,23 +44,22 @@ test/architecture/guide contracts retain their reviewed bytes.
 remains VERIFIED for that document/source-feasibility scope, not execution.
 
 The [Gate-A plan v0.3](validation/document-ingestion/gate-a/readiness-plan.md),
-[effects envelope](validation/document-ingestion/gate-a/effects-envelope.json),
 [isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md)
 and [draft harness directive](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
-are prepared for Chuck's review. Versioned harness/probe/generator/config/test
-code belongs under `tests/readiness/ingest/`; generated environments, inputs,
-assets and results belong under `.friday_test/`. Production application files,
-configuration and stores remain untouched.
+remain unchanged. The [one-round council reconciliation](validation/document-ingestion/gate-a/council-round1/report.md)
+records CHANGES_REQUESTED from Sol, Astra and Opus. Seven mandatory IDs form six
+open groups covering startup, promotion/resume, ambient tool settings, committed
+source export, native/cache evidence and loaded-model safeguards. The 9.5 target
+is unmet. The [advisory disposition](validation/document-ingestion/gate-a/council-round1/advisory-disposition.md)
+keeps proposed corrections bounded; no directive repair is performed at closeout.
 
-The existing LM Studio endpoint may be reused only while production is stopped,
-after operator-confirmed server restart and separated test logs. This supersedes
-the earlier independent-server requirement. Actual window/model evidence is still
-pending. Execution phase: planning; validation state: in_review. Chuck explicitly
-authorizes [one fresh read-only Sol/Astra/Opus directive council](validation/document-ingestion/gate-a/council-round1/authorization.md),
-with production isolation as the central requirement. No harness or test environment
-has been built and no runtime effects or construction activated.
-Measured readiness will bind the final product directive for separate approval.
-Prior assessment approval persists for unchanged exact bytes.
+Execution phase: planning; validation state: changes_requested. Versioned code
+remains proposed under `tests/readiness/ingest/`, runtime state `.friday_test/`.
+Shared LM Studio remains permitted only in the confirmed production-offline
+window after restart and separate logs. No harness/environment has been built,
+no model/store or production effect activated, and no further round is authorized.
+Next is Chuck's bounded correction/review direction. Existing exact package-impact
+approval persists; measured readiness and product construction are still future.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

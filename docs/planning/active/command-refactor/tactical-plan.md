@@ -1,26 +1,28 @@
-# INGEST readiness harness instructions — prepared for review
+# Gate-A harness council — changes requested
 
-Execution phase: planning; validation state: in_review. The exact assessment v0.6
-is [approved](approval/ingest-package-impact.md); its [round6 result](validation/document-ingestion/package-impact/current-verified-report.md)
-retains only its pinned document/source-feasibility meaning.
+Execution phase: planning; validation state: changes_requested.
+[Round1 reconciliation](validation/document-ingestion/gate-a/council-round1/report.md)
+records all three terminal CHANGES_REQUESTED results. The target is unmet; seven
+reported mandatory IDs form six distinct open correction groups:
 
-The [Gate-A plan v0.3](validation/document-ingestion/gate-a/readiness-plan.md),
-[effects envelope](validation/document-ingestion/gate-a/effects-envelope.json),
-[isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md)
-and [draft harness directive](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
-are prepared. All versioned code/probes/generators/config/tests go under
-`tests/readiness/ingest/`; runtime files go under `.friday_test/`. Explicit offline
-selectors are required because root pytest discovery excludes `tests/`.
+1. Trusted Python startup before guards.
+2. Promotion/resume/window lifecycle and preserved time budgets.
+3. Ambient tool settings/credentials/proxies and upward discovery.
+4. Committed-source export and source-Git non-mutation.
+5. Prevented versus detected native/cache effects and bounded evidence.
+6. Loaded-model/JIT/TTL/eviction conditions for shared LM Studio.
 
-Chuck permits reuse of the existing LM Studio endpoint after production shutdown,
-server restart and test-log separation. No independent server or served-weight
-copy is required. The operator must confirm the actual test window/model facts;
-that confirmation has not been supplied. No code/test environment has been built or package/model effects activated.
-One [read-only directive council round](validation/document-ingestion/gate-a/council-round1/authorization.md)
-is now explicitly authorized; all three complete reviews precede reconciliation. Production
-application/configuration/stores and unrelated dirty state remain unchanged.
+The [directive](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md), plan,
+envelope and all pinned parents remain unchanged; none of these findings is
+remediated. [Advisories and controller boundaries](validation/document-ingestion/gate-a/council-round1/advisory-disposition.md)
+retain the additional recommendations without widening effects or budgets.
+The exact approved [package impact](approval/ingest-package-impact.md) persists.
+No harness, environment, fixture conversion, model call, production mutation or
+new review was started. Reviewers used private external scratch; the controller
+consulted public documentation only. All protected-source checks passed before
+this metadata closeout. The one authorized council pass is exhausted.
 
-**Next gate:** One explicit read-only Sol/Astra/Opus council round is authorized for draft CD-CMD-INGEST-GATE-A-001, unchanged directive bytes e44d4e4b from 494eed4f. Review all HRC-01–16/HR-01–12, especially zero production-code/config/store/environment edits, code only under tests/readiness/ingest/, generated state under .friday_test/, and shared LM Studio only in the confirmed production-offline/restart/log-separation window. Target coverage and overall>=9.5 from every seat, no mandatory findings. Reconcile all three reports; no automatic loop, harness construction, stage/model activation or delivery authority.
+**Next gate:** Gate-A harness directive council round1 is CLOSED with CHANGES_REQUESTED from Sol, Astra and Opus on f8145369. Seven mandatory IDs form six open correction groups; the 9.5 target is unmet. Directive e44d4e4b and all pinned parents remain unchanged. Await Chuck direction for bounded document correction and any fresh review authorization; no automatic repair/replacement/extra round, harness construction or stage/model activation. Test-only code scope remains tests/readiness/ingest/, generated state .friday_test/, and shared LM Studio only in the confirmed production-offline/restart/log-separation window. Production code/configuration/environment/stores remain untouched; exact package-impact v0.6 approval persists.
 
 ## Separate MAINT closeout and historical checkpoints
 

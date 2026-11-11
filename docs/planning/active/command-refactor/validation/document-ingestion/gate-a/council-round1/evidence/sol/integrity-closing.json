@@ -1,0 +1,11 @@
+{
+  "outcome": "PASS",
+  "label": "closing",
+  "time": "2026-11-11T21:57:03.011476+00:00",
+  "candidate": "f81453695007cacfa072fe295b8da7aa478438ba",
+  "logical_before_status": "2873bdac566cf50f8c9acf1994aaaf02a23b58a31cc4c06cdb1e828b35ed0d46",
+  "authority_pins": 24,
+  "protected_files": 17773,
+  "preserved_records": 9,
+  "failures": []
+}

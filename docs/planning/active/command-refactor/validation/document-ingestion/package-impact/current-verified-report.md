@@ -15,9 +15,8 @@ labels in those contracts do not supersede this later controller result; no
 reviewed content was altered at closeout.
 
 Controller status update: Chuck [approved exact v0.6 impact](../../../approval/ingest-package-impact.md).
-The [Gate-A plan v0.3](../gate-a/readiness-plan.md) and [draft harness directive](../../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
-are in one explicitly requested read-only directive council round. Code is scoped to `tests/readiness/ingest/`, runtime
-state to `.friday_test/`, with operator-confirmed shared-LM-Studio testing while
-production is offline. Those new documents are not covered by the old council
-verdict. Formal reports/reviewed bytes remain unchanged; no construction or
-execution effects have been activated.
+The separate [Gate-A harness directive council](../gate-a/council-round1/report.md)
+has completed one pass with CHANGES_REQUESTED from every seat. Its six correction
+groups remain open; no repair or further review is authorized automatically.
+The impact/parent report bytes retain their exact scope and approval. No harness,
+production mutation, stage/model activation, construction or acceptance follows.

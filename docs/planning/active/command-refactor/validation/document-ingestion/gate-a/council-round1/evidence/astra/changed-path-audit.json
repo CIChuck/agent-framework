@@ -1,0 +1,152 @@
+[
+  {
+    "path": "docs/planning/README.md",
+    "base_exists": true,
+    "base_bytes": 8650,
+    "candidate_bytes": 8588,
+    "candidate_sha256": "40c2391f6280402cdab8c0594de090ee98649084229844cca2cdc604b9d5e296"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/README.md",
+    "base_exists": true,
+    "base_bytes": 23447,
+    "candidate_bytes": 23655,
+    "candidate_sha256": "e2e571a0349892e098aa53125baf4cf8833d392c4792828c3c7580108127b988"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/authority.json",
+    "base_exists": true,
+    "base_bytes": 146834,
+    "candidate_bytes": 148995,
+    "candidate_sha256": "fc4ae0fb228e0661f91730ff6de1ebd728273091886488f3d3f86e44704542a8",
+    "changed_top_level_keys": [
+      "document_ingestion_remediation",
+      "current_scope"
+    ]
+  },
+  {
+    "path": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md",
+    "base_exists": false,
+    "base_bytes": 0,
+    "candidate_bytes": 18822,
+    "candidate_sha256": "e44d4e4b28736d66a1de1e66314cb6da25343430dec0933be4ac9f1645ec91ad"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/execution-log.md",
+    "base_exists": true,
+    "base_bytes": 238991,
+    "candidate_bytes": 242740,
+    "candidate_sha256": "f04060827522d69ef3cb1a45aeab020c99f3b48a92419e63072e631c3c7031e8",
+    "historical_prefix_preserved": true,
+    "change_spans": [
+      [
+        "insert",
+        3300,
+        3300,
+        3300,
+        3357
+      ]
+    ]
+  },
+  {
+    "path": "docs/planning/active/command-refactor/next-phase.md",
+    "base_exists": true,
+    "base_bytes": 43091,
+    "candidate_bytes": 43112,
+    "candidate_sha256": "845237d0f97b1216f198639b6d500451a65d34a566f688a02da8f9ef79986179"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/tactical-plan.md",
+    "base_exists": true,
+    "base_bytes": 36263,
+    "candidate_bytes": 36284,
+    "candidate_sha256": "e8769255fca0ff672332ef04b723b02e271660f9119b6c4204c4ff2468167138"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
+    "base_exists": true,
+    "base_bytes": 3668,
+    "candidate_bytes": 3606,
+    "candidate_sha256": "70ba93c621a1fe60a130ce696e9f91ccda9827cfc594266ba5460db03315f812"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a-handoff.md",
+    "base_exists": true,
+    "base_bytes": 2871,
+    "candidate_bytes": 2972,
+    "candidate_sha256": "4ac5e40873c5191c652b013d69a9444fd473758b2fca13d1bd7b941828e41134"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/authorization.md",
+    "base_exists": false,
+    "base_bytes": 0,
+    "candidate_bytes": 1890,
+    "candidate_sha256": "bc567702032c7734f548c33643eb105f2fd46e51e3e444d68e50c4fb18b69d21"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/criteria.md",
+    "base_exists": false,
+    "base_bytes": 0,
+    "candidate_bytes": 5246,
+    "candidate_sha256": "3a183db5563d74aca98c1e41e021fec151a5ccee32f006793f3ed139f0e11fe8"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/roster.json",
+    "base_exists": false,
+    "base_bytes": 0,
+    "candidate_bytes": 1428,
+    "candidate_sha256": "65e788edb94a33dc3d0fa16755ed71d596f743c1e4a4029394cd6e73730a6904"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/effects-envelope.json",
+    "base_exists": true,
+    "base_bytes": 10634,
+    "candidate_bytes": 11813,
+    "candidate_sha256": "9ffe4bc59dba9d14babb85de661f561d7b14616198f9fd4486e4f03cb4c7641e"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/isolation-requirements.md",
+    "base_exists": true,
+    "base_bytes": 8162,
+    "candidate_bytes": 9772,
+    "candidate_sha256": "ec72dfbe953aa9ad9e0eae0e04e268b2af3142868a9a0883e73e2992178af546"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/planning-checks.json",
+    "base_exists": true,
+    "base_bytes": 2696,
+    "candidate_bytes": 3017,
+    "candidate_sha256": "1108741cf95e1e27654de2370271b32437ddc49be39ea7b0c8c895f0a405f919"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/readiness-plan.md",
+    "base_exists": true,
+    "base_bytes": 23003,
+    "candidate_bytes": 24724,
+    "candidate_sha256": "c242934407c030d5ded36af9f3a1e2087f5e3f8a5aa11862b6fb32292b53f1cd"
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/current-verified-report.md",
+    "base_exists": true,
+    "base_bytes": 1380,
+    "candidate_bytes": 1534,
+    "candidate_sha256": "44fdb0db00a763ef4c002c671a91900d9929a42a4d0fce72c082dfbdcebb6760",
+    "historical_prefix_preserved": false,
+    "change_spans": [
+      [
+        "replace",
+        16,
+        22,
+        16,
+        23
+      ]
+    ]
+  },
+  {
+    "path": "docs/planning/board.yaml",
+    "base_exists": true,
+    "base_bytes": 206577,
+    "candidate_bytes": 208044,
+    "candidate_sha256": "070efbba4feaa0749ae1642046532c530a676b16e727828238e807627f0d8a91"
+  }
+]

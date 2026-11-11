@@ -711,11 +711,12 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "One explicit read-only Sol/Astra/Opus council round is authorized for draft CD-CMD-INGEST-GATE-A-001, unchanged directive bytes e44d4e4b from 494eed4f. Review all HRC-01–16/HR-01–12, especially zero production-code/config/store/environment edits, code only under tests/readiness/ingest/, generated state under .friday_test/, and shared LM Studio only in the confirmed production-offline/restart/log-separation window. Target coverage and overall>=9.5 from every seat, no mandatory findings. Reconcile all three reports; no automatic loop, harness construction, stage/model activation or delivery authority."
+  next_gate: "Gate-A harness directive council round1 is CLOSED with CHANGES_REQUESTED from Sol, Astra and Opus on f8145369. Seven mandatory IDs form six open correction groups; the 9.5 target is unmet. Directive e44d4e4b and all pinned parents remain unchanged. Await Chuck direction for bounded document correction and any fresh review authorization; no automatic repair/replacement/extra round, harness construction or stage/model activation. Test-only code scope remains tests/readiness/ingest/, generated state .friday_test/, and shared LM Studio only in the confirmed production-offline/restart/log-separation window. Production code/configuration/environment/stores remain untouched; exact package-impact v0.6 approval persists."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/package-impact/current-verified-report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/package-impact/verified-report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/compatibility-verified-report.md
@@ -3320,3 +3321,11 @@ events:
   action: authorized read-only Gate-A harness construction-directive council
   note: "Explicit maintainer dispatch request; one fresh Sol/Astra/Opus round at high effort, target coverage/overall>=9.5, zero mandatory findings. Focus no production code/config/env/store edits, isolated tests/readiness/ingest and .friday_test, controlled shared LM Studio window. Directive/parent bytes unchanged; no construction, model calls, installs or service effects. No automatic additional round or repair loop."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/authorization.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T22:11:46.276575+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled and closed Gate-A harness council with changes requested
+  note: "All three terminal reports verified and archived, eight admin checks and opening/closing identity passed per seat. Sol 10.0/8.9, Astra 10.0/8.7, Opus 8.6/8.3 coverage/overall as reported; no averaging. Seven mandatory IDs form six open bounded design groups. Directive/14 parent bytes unchanged; no repairs, new council, construction, tests, install or model/store/service action. Exact impact approval persists; next is maintainer disposition. Controller public-primary documentation corroboration only."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/report.md

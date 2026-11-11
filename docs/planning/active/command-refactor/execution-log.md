@@ -3355,3 +3355,42 @@ This new explicit council authorization supersedes only the earlier no-council
 routing. It does not approve the draft for construction, activate stages, grant
 acceptance/delivery or renew a prior iteration loop. One complete council round
 then controller reconciliation; no automatic repair/replacement or further round.
+
+
+## Gate-A harness council round1 closed — CHANGES_REQUESTED — 2026-11-11
+
+[Controller reconciliation](validation/document-ingestion/gate-a/council-round1/report.md)
+archives all three hash-verified terminal reports. Sol reports coverage/overall
+10.0/8.9; Astra 10.0/8.7; Opus 8.6/8.3, all CHANGES_REQUESTED. Coverage definitions
+are preserved, not averaged into a compliance score. The target is unmet.
+
+Seven mandatory IDs collapse only the duplicate Sol/Astra startup finding into
+six open groups: trusted Python startup, promotion/resume/window bindings, ambient
+tool configuration, committed-source export/Git non-mutation, preventive versus
+detective native/cache evidence, and loaded-model/JIT/TTL/eviction preconditions.
+All are accepted for bounded correction planning, not implemented or closed.
+The [advisory disposition](validation/document-ingestion/gate-a/council-round1/advisory-disposition.md)
+retains all seven Opus advisories, preserves existing effect/time budgets and
+shared endpoint permission, and does not authorize global cache payload scans,
+production setting changes or a separate server requirement.
+
+All reviewers record fresh contexts, eight successful administrative checks and
+opening/closing integrity PASS: 17,773 protected files, 24 authority pins and nine
+metadata records. The controller's own final frozen check also passed. Exact raw
+reports, selected command/source/preservation evidence and frozen inputs are
+archived with hashes; the inventory is compressed losslessly and the review
+helper retained as audit text, not executable harness code. Static/runtime and
+attested/observed limits remain explicit. Controller public official Python/uv/LM
+Studio documentation checks corroborate mechanisms, not the local service state.
+
+Directive e44d4e4b at reviewed candidate f8145369, all 14 pinned parents and exact
+approved impact v0.6 remain unchanged. No harness, `.friday_test` environment,
+package/model install, test/conversion/inference, local endpoint/store operation,
+production mutation, new council or push occurred. This commit is archival/current
+metadata only. Root debt stays historical FAILED/UNWAIVED, not rerun or waived.
+
+The one authorized council pass is exhausted. Next is Chuck's disposition of the
+bounded document-correction list and any fresh review authorization. No automatic
+repair/replacement/iteration, construction, stage activation, acceptance or
+delivery follows. Earlier preparation-only council-authority wording is clarified
+in current metadata; the frozen directive is not rewritten during closeout.

@@ -1,0 +1,78 @@
+[
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/model_service_decision",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/directive_council",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/manual_harness",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/status",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/production_isolation",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/isolation_requirements_sha256",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/version",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/model_stage",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/council_active",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/independent_review",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/requirements_authority/scope",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/harness_construction_directive",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/plan_sha256",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/readiness_preparation/effects_envelope_sha256",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/next_gate",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/lightweight_planning_exemption/scope",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/lightweight_planning_exemption/reason",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/document_ingestion_remediation/current_revision/next_gate",
+    "change": "scalar_or_added_record"
+  },
+  {
+    "path": "/current_scope",
+    "change": "scalar_or_added_record"
+  }
+]

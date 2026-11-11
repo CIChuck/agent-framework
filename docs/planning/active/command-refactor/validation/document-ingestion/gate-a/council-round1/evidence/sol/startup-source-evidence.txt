@@ -1,0 +1,50 @@
+Source: /opt/homebrew/Cellar/python@3.14/3.14.2_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site.py
+SHA256: bf3567b10092d10189a9f7eb12eb1f0c72d023c0d4e72cfa93a5f2e7d3122fd0
+211:         try:
+212:             if line.startswith(("import ", "import\t")):
+213:                 exec(line)
+214:                 continue
+215:             line = line.rstrip()
+216:             dir, dircase = makepath(sitedir, line)
+
+648: 
+649: 
+650: def execsitecustomize():
+651:     """Run custom site specific code, if available."""
+652:     try:
+653:         try:
+
+688: 
+689: 
+690: def main():
+691:     """Add standard site-specific directories to the module search path.
+692: 
+693:     This function is called automatically when this module is imported,
+
+707:         ENABLE_USER_SITE = check_enableusersite()
+708:     known_paths = addusersitepackages(known_paths)
+709:     known_paths = addsitepackages(known_paths)
+710:     setquit()
+711:     setcopyright()
+712:     sethelper()
+
+711:     setcopyright()
+712:     sethelper()
+713:     if not sys.flags.isolated:
+714:         enablerlcompleter()
+715:     execsitecustomize()
+716:     if ENABLE_USER_SITE:
+
+713:     if not sys.flags.isolated:
+714:         enablerlcompleter()
+715:     execsitecustomize()
+716:     if ENABLE_USER_SITE:
+717:         execusercustomize()
+718: 
+
+719: # Prevent extending of sys.path when python was started with -S and
+720: # site is imported later.
+721: if not sys.flags.no_site:
+722:     main()
+723: 
+724: def _script():
