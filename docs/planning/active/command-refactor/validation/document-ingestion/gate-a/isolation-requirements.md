@@ -1,6 +1,6 @@
 # INGEST-001 — manual readiness harness and production isolation
 
-Version: **0.3 — corrected startup, tool, export, promotion and model controls; not implemented**, 2026-11-11.
+Version: **0.4 — corrected startup, tool, export, promotion and model controls; not implemented**, 2026-11-11.
 The [readiness plan](readiness-plan.md) and [effects envelope](effects-envelope.json)
 bind these requirements. Detailed execution semantics are centralized in the
 [execution contract](execution-contract.md). No harness, environment, model service or store has been
@@ -37,7 +37,10 @@ are the bounded exception; the harness may not manage that service.
 Versioned readiness-only harness, probes, fixture generators, sample test
 configuration, manifests and harness tests belong under `tests/readiness/ingest/`,
 as listed by the proposed construction directive. They must remain separate
-from production packages and execute from a frozen copy in the test run root.
+from production packages and, after init, execute from a frozen copy in the test
+run root. The only pre-init execution is the externally approved single stdlib
+bootstrap plus exact committed-manifest bytes verified/compiled in memory under
+contract1.1; no dirty sibling, cached pyc or path re-open is allowed.
 Source export and existing-input reads are explicit, read-only preparation
 operations; they never authorize modifying their originals. Export only selected
 blobs from recorded commits via the private Git view, not a working-tree copy. Production modules
@@ -90,8 +93,12 @@ temporary files, UV/XDG/Hugging Face/Transformers/Torch caches, logs, extracted
 text, chunks and reports belong to the run. Set dedicated cache/temp directories
 without repurposing HOME. Use an explicit environment allowlist; do not inherit
 application configuration, provider credentials, Python paths or proxy settings.
-Use qualified `-I -S -B` startup for every Python entry/worker and explicit private
-imports; no ambient site hooks or `.pth` processing. Neutralize each tool's user/
+Use qualified `-I -S -B` startup for every harness-launched entry/worker and exact
+verified-buffer private imports; no ambient site hooks or `.pth` processing.
+Contract1.2 separately qualifies native-tool-spawned Python with startup inventory
+and actual trace as detective/residual, never claimed guarded or -O by inheritance.
+Workers refuse undeclared Python-visible reads/probes too; contract2.1 inventories
+import-time dotenv/network/credentials and binds concrete neutralizers before imports. Neutralize each tool's user/
 system config, credentials, proxy and parent-discovery channels, not just env vars.
 Model calls and network access require their stage-specific destination allowance.
 

@@ -1,8 +1,8 @@
 # Gate-A harness — execution and evidence contract
 
-Version: **0.1 — corrected draft**, 2026-11-11. No construction or stage effects
-are activated. This contract resolves the six design-gap groups from the first
-council. Its obligations are proposed requirements, not claims of implemented
+Version: **0.2 — corrected draft**, 2026-11-11. No construction or stage effects
+are activated. This contract addresses the original six design-gap groups and
+the three proposed pre-init/tool-child/import corrections for corrective pass2. Its obligations are proposed requirements, not claims of implemented
 guards or completed qualification. The construction directive pins these bytes.
 
 ## 1. Trust roots, startup and interpreters
@@ -14,9 +14,9 @@ after that replacement has begun executing. A compromised OS, trusted binary or
 malicious operator is outside this test-harness threat model. No production
 interpreter, installation or configuration is changed to establish trust.
 
-All Python invocations, including preflight, init, control/report commands,
-tests and Python workers, use **`-I -S -B`**, with `-O` added in optimized lanes.
-No automatic site initialization, `site.main()`, arbitrary `.pth`,
+All **harness-launched** Python invocations, including preflight, init, control/report
+commands, tests and profile workers, use **`-I -S -B`**, with `-O` added in optimized lanes.
+For this guarded class, no automatic site initialization, `site.main()`, arbitrary `.pth`,
 `sitecustomize` or `usercustomize` is allowed. `PYTHON*` variables are not relied
 on under isolated mode; required behavior is explicit in argv. Before non-stdlib
 imports, validate executable/stdlib origins, lexical and canonical paths, ownership,
@@ -25,8 +25,8 @@ invocation path and resolved identity/context; a symlink to a shared base binary
 does not make its working-venv invocation acceptable.
 
 The core orchestrator uses only qualified stdlib and the hash-bound harness.
-Load sibling modules by explicit validated file locations, then install only the
-approved frozen harness roots. Installed-profile workers use separately recorded
+Load sibling modules from manifest-verified bytes as specified below, then install
+only the approved frozen harness roots. Installed-profile workers use separately recorded
 private interpreters and distribution/file manifests. With Python 3.13 `-S`, do
 not derive private site paths from `sys.prefix`: use the validated installation
 manifest and explicit private dependency roots. Do not restore discovery using
@@ -37,8 +37,81 @@ Required future proof: disposable fake-site `.pth`/`sitecustomize` canaries, cle
 positive startup and an intentionally unsafe private control showing the canaries
 are armed. Safe commands must enter the intended harness successfully with no
 canary execution, forbidden import/write or premature network request. Cover all
-entry points and Python children, normal and `-O`. A setup/import failure does
+harness entry points and harness-launched Python children, normal and `-O`. A setup/import failure does
 not prove a guard. Never plant canaries in the actual user/system installation.
+
+### 1.1 Pre-init code identity and exact-byte execution
+
+The externally approved **single stdlib-only bootstrap.py** is the pre-init trust
+root, verified by the operator before execution. It loads no sibling or third-party
+code until checking the activation's complete harness selection manifest. That
+manifest is prepared from the selected committed harness by the authorized
+controller before launch, independently approved/bound by its digest, and lists
+commit/tree, regular-file path/mode, blob ID and SHA256 for every permitted code
+file. A self-written manifest derived from dirty files is not approval. Preflight
+and init take this same manifest; no Git view or writes are needed for preflight.
+
+Read every selected pre-init sibling once into bounded memory, verify those exact
+bytes and blob identity, and compile/execute that same byte buffer with an explicit
+manifest filename/module mapping. Never validate a path then ask an import loader
+to reopen it. Never use cached .pyc, sourceless modules or path-loader cache fallback:
+-B prevents writes, not reads. Refuse missing/changed/extra importable harness files,
+symlinks and pre-init __pycache__/.pyc before any write; never clean them automatically.
+Normal and optimized startup use the same verification, with explicit exceptions.
+The single bootstrap remains the external trust root, not a self-authentication claim.
+
+Init's earliest writes/export are performed only by that verified stdlib bootstrap
+and verified in-memory modules. Export the committed harness, require code equality
+with the approved/executed manifest, then continue through the frozen run-root
+harness. All subsequent entries use the same verify-bytes/compile discipline before
+loading siblings; after init no executable code is taken from the working tree.
+A later launch revalidates its approved bootstrap identity and run/ledger binding.
+The verified source buffer remains what executes if the original path is swapped
+after the read; no later unverified path import is allowed. Concurrent modification
+that prevents a stable selection/export fails closed.
+
+Future C0 proof uses private fake checkouts: dirty sibling or extra importable file
+refuses before file creation; matching-mtime malicious pyc never executes; a deliberate
+post-hash path swap executes only the verified buffer or refuses, never swapped bytes.
+Clean positive preflight/init/resume succeeds in both normal and -O lanes.
+
+### 1.2 Native-tool-spawned interpreters and startup inventories
+
+A separate **tool-spawned** class covers uv interpreter queries and PEP517 backend
+children whose flags are selected by the native tool. Do not claim these automatically
+use -I/-S/-B, run the Python guard, or inherit -O. They are not allowed in no-effects
+preflight. Their profile must be version/platform qualified before A0/A1 effects,
+with approved expected child executables, argv/environment, startup roots, build
+environments, declared effects and actual execution observation mechanism. Record
+actual child argv and the sanitized explicit environment from qualified tool trace
+or native process evidence; missing child evidence blocks qualification. No secret
+values may enter these records. Unexpected child, site root or trace mismatch fails.
+
+Queries select the approved clean interpreter explicitly, never the production
+.venv. Backend execution uses only run-owned private interpreter/build targets and
+promoted hash-bound build tools. Disable automatic build isolation or any uninspected
+environment creation path: prepare and inventory the build target before the tool
+may execute it. If the chosen uv version cannot expose/control those operations,
+use a separately qualified harness-launched guarded backend worker for the same
+workspace wheel build, or block that tool profile; do not relax the boundary.
+No third-party sdist build is thereby permitted. No tool-child fallback to a user site.
+
+Before use, inventory .pth, sitecustomize/usercustomize and egg-link files in every
+selected interpreter site, private worker root and build target. Guarded workers
+never execute them; record their hashes as nonexecuted data. For site-enabled tool
+children, only demonstrably inert files or data-only paths resolving to already
+approved owned manifest roots may be admitted. Executable .pth import lines, startup
+customization, unclassified content or external paths block that tool-child shape.
+Do not delete installed files or silently run them. Choose the guarded backend shape
+if a needed distribution's startup file cannot qualify. Record the classification
+and distribution ownership for each file; check again when the target changes.
+
+Tool-child startup/native effects remain explicitly **detective/residual**, with
+section5 protected-state evidence; trace is not before-effect containment. The
+harness-launched class retains strict guarded startup. C0 must refuse an armed
+unclassified fake site before launching the tool, and show clean guarded positives.
+A1 retains actual tool-child trace, site inventory and before/after evidence; -O
+proof applies to the harness/guarded workers, not unclaimed native child flags.
 
 ## 2. Ambient settings and native tool profiles
 
@@ -52,12 +125,12 @@ argv, effective config origins and the suppression mechanism actually qualified.
 
 | Tool/channel | Required profile |
 | --- | --- |
-| uv | Qualified `--no-config`; no dotenv; explicit run-owned target/interpreter/cwd and selected requirements/export. Disable project discovery unless an exact run-owned metadata rehearsal is selected. `--no-project` alone can still discover a venv, so it is insufficient without explicit target binding. All UV/XDG data/cache/config/credential roots and `NETRC` point to owned empty/private locations; keyring and Hugging Face credential discovery disabled. No auth command or credential-bearing URL. |
+| uv | Qualified `--no-config`, `--no-python-downloads`, explicit `--python`; no `.python-version`/project/interpreter fallback and no dotenv; explicit run-owned target/interpreter/cwd and selected requirements/export. Disable project discovery unless an exact run-owned metadata rehearsal is selected. `--no-project` alone can still discover a venv, so it is insufficient without explicit target binding. All UV/XDG data/cache/config/credential roots and `NETRC` point to owned empty/private locations; keyring and Hugging Face credential discovery disabled. No auth command or credential-bearing URL. |
 | pip | No pip executable invocation in this unit; use the manifest-qualified uv wheel installer. Adding a pip workflow needs an explicit profile/scope revision rather than assuming its isolated flags are sufficient. |
 | Git | Use the private object view in section 3, never production repository discovery/configuration. Disable optional locks, replace objects, user/system configuration, hooks/fsmonitor, prompts, credentials, pagers, auto-maintenance and network protocols; bind cwd/git-dir/objects explicitly. |
 | HTTP | Direct clients with proxy/environment/netrc/keyring discovery disabled, explicit certificate trust origin, exact host/redirect/method/path policy and no automatic auth. Do not use macOS system proxy discovery. Empty environment variables alone do not establish this. |
 | Ruff/mypy/other validation tools | Explicit private config/project boundaries and `--no-cache` or run-owned cache/temp paths. Their argv/profile is part of the manifest; no upward discovery or repository cache. |
-| Third-party Python/native libraries | Manifest-owned local assets and all known library cache/output roots explicitly bound. Unknown configuration/cache/credential channel stops that profile before qualification; do not guess an environment-variable name. |
+| Third-party Python/native libraries | A1 inventory and qualify import-time configuration/read/network/cache/credential behavior before the real import. Bind explicit neutralizers and guards below; unknown behavior blocks the profile. Local assets and outputs are manifest-owned, never discovered from production defaults. |
 
 Flags and variables are version-qualified against each pinned tool, not assumed
 from current upstream documentation. The profile records bootstrap TLS roots
@@ -69,6 +142,54 @@ Future tests use a fake HOME-like directory and fake parent project/repository
 under test-owned roots, never real HOME. Poison those fixtures with tool settings,
 proxies, credentials and cache paths; prove they are ignored/refused and effective
 origins remain explicit. Reading or printing real credential files is forbidden.
+
+### 2.1 Import-time reads, environment and network
+
+A1 records a version-qualified side-effect inventory for every worker import tree,
+using package source and private controlled tests **before** real profile imports:
+dotenv discovery, credential/keyring reads, system proxy/TLS selection, telemetry,
+callbacks, model/cost metadata fetches, retries and default caches. Import is an
+effectful operation, never assumed safe merely because it precedes an API call.
+
+Before dependency imports, guards deny Python-visible payload reads **and existence/
+stat probes** outside declared worker read roots. Those roots are the private harness,
+source/target/assets and exact trusted interpreter/stdlib/TLS files, not an entire
+checkout, HOME or /etc. Production .env and all ancestor .env candidates are forbidden.
+Implement explicit guarded file/path entrypoints for reads/probes and import access;
+CPython audit hooks alone do not emit every stat probe. Known native read channels
+need separate qualified suppression/containment; unsupported coverage blocks the
+profile. Boundary/export collectors have separately declared metadata/object reads,
+never a general production-read privilege for workers. Do not log secret payloads.
+
+The current source links friday_llm.embeddings to LiteLLM. Its locked 1.100.1 import
+has DEV-mode dotenv loading and remote cost-map behavior, so A1/A3 must bind
+**LITELLM_MODE=PRODUCTION** and **LITELLM_LOCAL_MODEL_COST_MAP=True** before import,
+with telemetry/callbacks disabled using qualified APIs, explicit test-only endpoint/
+client and no credential/proxy auto-discovery. These names are starting source-backed
+profile requirements, not proof another version behaves identically. Inspect and
+qualify the exact installed version; no import of production .venv is permitted.
+No A1 import may make a network request. A3 permits only the selected status/embedding
+routes inside its approved window; there is no cost-map/telemetry exception.
+
+Use explicit no-system-proxy client construction (for example a qualified
+ProxyHandler({}) or trust_env=False plus verified absence of system proxy fallback),
+not just empty proxy variables. Disable SDK/service retries, or reserve and count
+every actual attempted request at the guarded transport/send boundary, including
+internal retries and redirects. An outer service call is not the request counter.
+No double counting may invent extra allowance; use request attempt IDs, charge the
+one shared 64-call budget for every authorized status/embedding transport attempt,
+and refuse unapproved destinations before send. Uninstrumented/native transports
+block the client profile. No real server call is used for C0 transport tests.
+
+Future proof uses the pinned real library only in an activated private A1 profile:
+a fake parent sentinel .env never enters the environment; an intentionally DEV-mode
+negative reaches a read/probe refusal without reading the sentinel; local cost-map
+and network-deny positives succeed. An in-process fake transport proves retry
+suppression/accounting, exact destinations and failure before unauthorized send.
+C0 covers the same protocol with dependency-free fake modules. System/macOS channels
+add version-qualified source/documentation or explicit tool-switch evidence; fake
+HOME fixtures alone cannot prove a system setting was neutralized. Unknown channels
+are a blocked result, never a reason to inspect real personal configuration.
 
 ## 3. Exact committed-source export without production Git mutation
 
@@ -138,7 +259,9 @@ rewrite this initial identity.
 
 Reject oversized control files before parsing: receipts/config/ledger records
 are at most 1 MiB each; inventory/manifest bytes remain within the existing 64 MiB
-metadata ceiling with explicit finite record bounds. No silent truncation.
+retained-control metadata ceiling with explicit finite record bounds. This is not
+an extra network metadata allowance; envelope transfer/request budgets still apply.
+No silent truncation.
 Use versioned strict JSON and canonical UTF-8 serialization (sorted keys, fixed
 separators, no NaN/duplicate keys). Each append-only ledger record has sequence,
 event, previous-record SHA256, timestamp and payload hashes; its own SHA256 covers
@@ -167,13 +290,19 @@ changes invalidate the run and require a new run ID.
 | Init to A0 | Activated metadata/source scope; immutable identity. A0 emits the candidate dependency/wheel manifest. |
 | A0 to A1 | Explicit promotion of exact dependency/wheel/build-tool metadata. A1 installs private profiles and emits installed evidence plus candidate asset/fixture/counter plans. |
 | A1 to A2 | Explicit promotion of assets/inputs and allowed transfer/fixture effects. A2 produces real-format evidence and candidate input/preparation manifests; local counts remain preliminary until qualified. |
-| Prepare A3 | Offline `prepare-model --model-profile <candidate-profile>` freezes the exact candidate model/counter/profile, synthetic or supplied test batch payload hashes and budgets after A2 promotion. It makes no endpoint call. Changes require a new candidate/promotion, not mutation of the previous batch. |
+| Prepare A3 | `all` does not synthesize model facts or invoke preparation. An explicit offline `prepare-model --model-profile <candidate-profile>` freezes the exact candidate model/counter/profile, synthetic or supplied test batch payload hashes and budgets after A2 promotion. It makes no endpoint call. Changes require a new candidate/promotion, not mutation of the previous batch. |
 | A2 to A3 | Explicit promotion of those exact manifests/batches, then a window receipt binding their hashes and the current promoted ledger tip. Only now can model status/embedding requests begin. The receipt anchors that promoted prefix; ordinary budget/status execution records may extend it, but any new scope-affecting promotion invalidates the receipt. |
 | A4/report | Aggregate observed/blocked/skipped results without new model/network/store effects. Full readiness requires every required qualification; a scoped offline pass never implies that. |
 
 `run --stage all` executes only consecutively ready stages. At a missing approval,
 promotion or window it returns `AWAITING_PROMOTION`/`AWAITING_WINDOW` and exits;
 it never waits interactively, polls for consent, bypasses a gate or auto-promotes.
+After A2, `all` exits `AWAITING_PREPARATION` until explicit prepare-model and its
+promotion exist, then `AWAITING_WINDOW` if the receipt is absent. It accepts
+`--window-receipt` only for an already-ready A3. After A3 (or an explicitly scoped
+offline/skipped result), it runs A4 aggregation with no new endpoint/network calls.
+Skipped A3 cannot yield full readiness. prepare-model and report print the exact
+manifest hashes, promoted prefix and receipt fields needed next, without consent.
 The operator/controller reviews the candidate, invokes promotion and starts
 another invocation. The window is prepared only after its referenced hashes
 exist. This resolves the former impossible up-front receipt/static-init binding.
@@ -189,6 +318,14 @@ an interrupted invocation, and never reset counters on resume. On exhaustion,
 stop effects and use only the existing quiescence grace to record failure; no
 fresh qualification allowance is created. No stalled human prompt keeps a process
 or model window alive. Record wall and active time separately.
+
+The manual `stop --config <run-config> --reason <safe-code>` command validates the
+owned run and atomically publishes sticky state/stop.json using a same-directory
+write/rename, without acquiring the run writer lease. It must not wait for an active
+stage, make network calls, remove evidence or kill a service. Repeating stop is
+idempotent. Readers recheck before each request/effect; already accepted in-flight
+work is bounded as section6 states. C0 proves concurrent stop, expiry and no new
+request after observation. Reopening never clears revocation implicitly.
 
 ## 5. Preventive controls, detective evidence and protected roots
 
@@ -208,7 +345,14 @@ cache/config roots (including absent roots). Hash committed/declared production
 files where permitted. For user cache directories collect only bounded metadata
 (canonical path, entry type, size, mode, mtime), no payloads, no symlink traversal
 or whole-HOME scan. Bind enumeration limits; if coverage would truncate or exceed
-the envelope, stop rather than silently claim a complete snapshot. Never inspect
+the envelope, stop rather than silently claim a complete snapshot. A streaming,
+canonical metadata digest with counts may replace retaining every entry, subject
+to the same explicit finite entry/time limits and retained-disk budget. Retain
+root/limit/digest/count/failure evidence; streaming is not a truncated snapshot.
+Concurrent external cache writers invalidate equality too: record attribution as
+unknown/external if supported, never excuse the change or restart the baseline
+mid-run to erase it. Coordinate quiet observation windows before activation if
+necessary; do not stop other applications or read cache payloads. Never inspect
 LM Studio model-directory payloads; the operator supplies served-model identity.
 
 Native tool binaries are qualified, hash-bound and run with explicit settings,
@@ -242,7 +386,12 @@ eviction behavior. Require a configuration in which requests cannot trigger a
 load/eviction and the loaded instance remains available through the window.
 Unknown/unsafe conditions block A3. Do not silently configure the server to make
 them safe. A setting change beyond the approved operator restart would need its
-own authority; no such change is made or granted by this paper correction.
+own authority; no such change is made or granted by this paper correction. This
+is a pending activation decision if the operator finds unsafe JIT/TTL/eviction: keep
+A3 blocked and return the smallest requested settings change for approval then.
+Do not assume the actual current setting or interrupt this document-only loop to
+change it. The installed server version is operator-attested and its selected
+status schema is separately observed/qualified; neither is known by this document.
 
 The operator selects **one** supported native read-only status profile in advance:
 `GET /api/v1/models` (matching embedding key and `loaded_instances[].id`) or
@@ -296,7 +445,7 @@ Use typed versioned records and explicit exceptions, normal and optimized proof,
 source/private-target origins and unchanged protected-state evidence. Keep all
 validation caches private; no production suite/configuration is rewritten.
 
-Suggested CLI statuses are `PASS`, `FAIL`, `AWAITING_PROMOTION`, `AWAITING_WINDOW`
+Suggested CLI statuses are `PASS`, `FAIL`, `AWAITING_PROMOTION`, `AWAITING_PREPARATION`, `AWAITING_WINDOW`
 and `INCOMPLETE`, each with scope and `readiness_complete`. `all` returns nonzero
 when awaiting/incomplete; report-render success is not qualification. Publish
 exact exit codes and walkthrough only after construction; no CLI exists today.

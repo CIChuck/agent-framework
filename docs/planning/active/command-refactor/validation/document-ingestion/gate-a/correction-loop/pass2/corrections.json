@@ -1,0 +1,49 @@
+{
+  "unit": "CD-CMD-INGEST-GATE-A-001",
+  "loop_pass": 2,
+  "prior_candidate": "23253a72ba265334e254c6a0bbad53f70cd85313",
+  "purpose": "Proposed locations/questions only; no independent closure or correctness credit.",
+  "retained_full_aggregate": "All original RC01-06, HRC01-16 and HR01-18 remain mandatory.",
+  "groups": [
+    {
+      "id": "P2-01",
+      "source_id": "Opus pass1 F1",
+      "locations": [
+        "execution-contract1.1",
+        "directive behaviors1-2/manual/HR13",
+        "envelope startup_policy"
+      ],
+      "proposal": "Externally approved single bootstrap plus complete committed manifest, read-once hash/compile buffers, pyc refusal and verified post-init switch."
+    },
+    {
+      "id": "P2-02",
+      "source_id": "Opus pass1 F2",
+      "locations": [
+        "execution-contract1.2/2/5",
+        "directive HR10/13",
+        "readiness A1/envelope startup_policy"
+      ],
+      "proposal": "Tool-spawned versus guarded startup, explicit child traces and inspected build/site targets, honest detection/unknown stop or guarded backend."
+    },
+    {
+      "id": "P2-03",
+      "source_id": "Opus pass1 F3",
+      "locations": [
+        "execution-contract2.1",
+        "directive behavior3/HR15",
+        "readiness A1/envelope tool_isolation"
+      ],
+      "proposal": "Pre-import channel inventory, concrete LiteLLM flags, read/probe enforcement and actual transport attempt budgets."
+    }
+  ],
+  "advisories": {
+    "A1": "Startup-file policy, contract1.2",
+    "A2": "System/native evidence and explicit uv no-python-downloads/interpreter, contract2",
+    "A3": "Streaming finite metadata/counts and external-change failure, contract5",
+    "A4": "Lease-free atomic sticky stop command, contract4/manual interface",
+    "A5": "all awaiting-preparation/window and offline A4, exact receipt outputs, contract4/manual",
+    "A6": "Explicit archive limits, root lint/type rules and guarded discovery, HR03/11",
+    "A7": "Read-only export, metadata-only separate overlay, directive scope",
+    "A8": "Pending safe-model-policy decision at activation only; no settings permission or actual facts, contract6"
+  }
+}

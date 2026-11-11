@@ -1,6 +1,6 @@
 # INGEST-001 — Gate-A dependency and capability readiness plan
 
-Version: **0.4 — corrected execution contract; prepared for council review**, 2026-11-11.
+Version: **0.5 — pre-init, tool-child and import-channel corrections; council review**, 2026-11-11.
 Execution status: **NOT ACTIVATED**. Public metadata/source research has been
 performed; dependency resolution, artifact installation, model transfer,
 conversion, inference and store operations have not.
@@ -70,13 +70,16 @@ an existing or aliased run destination is refused. The run contains `harness/`,
 `state/`, `logs/` and `reports/`. Reserve `vector/` and `graph.json` only for later
 approved integration testing; A0–A4 do not create or write a Memory store.
 
-All executable test code and generated configuration run from that isolated copy
-and target. Working packages/tests, `.venv`, lock/metadata, user YAML/`.env`,
+All post-init executable test code and generated configuration run from that
+isolated copy and target. Pre-init uses only the externally approved single stdlib
+bootstrap and committed-byte manifest verification in contract1.1. Working packages/tests, `.venv`, lock/metadata, user YAML/`.env`,
 `.friday/`, `.friday-old/` and exports remain unchanged. The only live-service
 exception is the operator-managed LM Studio test window below; no production application/store access is permitted.
 Use externally qualified interpreter/launcher identities and `-I -S -B` for
-every Python entry/worker, explicit controlled imports and manifest-owned private
-profile interpreters; do not restore ambient site processing.
+every harness-launched Python entry/worker, exact verified-buffer imports and
+manifest-owned private profile interpreters; do not restore ambient site processing.
+Native-tool-spawned Python has the separately inventoried/observed profile in
+contract1.2, never an unproved universal -I/-S/-B or -O claim.
 No live-checkout/working-environment imports, application defaults, ambient
 credentials or production configuration may enter the test process. Set all
 UV/XDG/Hugging Face/Transformers/Torch/temp/log paths explicitly under the run
@@ -161,7 +164,7 @@ Plan approval must name activated stages, run root, numeric budgets, source/harn
 commits, protected metadata scope and authorized promoters. The immutable init
 identity and append-only promotion ledger follow [contract section 4](execution-contract.md#4-run-identity-promotion-ledger-and-resumable-stages).
 Each stage emits a candidate; an explicit receipt/hash-bound promotion authorizes
-the next effects. `all` stops with awaiting-promotion/window and exits; it neither
+the next effects. `all` stops with awaiting-promotion/preparation/window and exits; it neither
 waits for human input nor manufactures consent. Later manifests extend the ledger
 instead of contradicting a static init binding. Counters and active time accumulate
 across resumes. The two-hour total is not multiplied per invocation/stage.
@@ -208,6 +211,9 @@ Only after A0 manifest promotion, transfer exact approved wheels from
 Third-party sdists/builds are excluded. Workspace wheel builds may use only the
 exact private source export and separately pinned existing build tools; no source
 edits or build-time network access. Inventory any build-tool requirement too.
+Prepare and inventory run-owned build environments before use; no automatic
+uninspected build isolation. Qualify actual uv-spawned child traces/startup files
+or use the guarded backend shape under contract1.2; unknown behavior blocks.
 
 Install separate disposable profiles for default Chat plus the document stack,
 Tools-only text, neutral Commands, headless Memory/Runtime/CLI/Agent and direct
@@ -216,6 +222,10 @@ report them as proposed, not shipped. Compare package maps with the actual basel
 The changed default Chat closure is deliberate; the old 138-distribution map is
 not its new oracle. Commands must remain a one-distribution neutral closure.
 
+Before any dependency import, inventory and qualify its version-specific import
+side effects under contract2.1, including LiteLLM dotenv/cost-map behavior, read/probe
+guards, no-proxy/credential clients and transport retry budgets. C0 uses fakes; real
+library sentinel tests require the private A1 profile and network-deny guard.
 Run target-interpreter dependency checks and module/distribution origins. Verify
 Certifi only **after all installation steps**, using parsed versions, target
 metadata and `certifi.where()` within the prefix. Repeat normal and `-O` modes.

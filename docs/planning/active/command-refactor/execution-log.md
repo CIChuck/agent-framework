@@ -3434,3 +3434,20 @@ under tests/readiness/ingest; generated runtime state .friday_test is not create
 No dependency/model install, conversion, inference, endpoint/store/process action,
 new provider or push is authorized. The controller used public primary references
 for mechanism details, not local-service or upstream package qualification.
+
+
+## 2026-11-11 — harness corrective pass1 reconciliation and pass2 freeze
+
+- [Pass1 result](validation/document-ingestion/gate-a/correction-loop/pass1/results/report.md):
+  Sol VERIFIED9.8/9.5, Astra VERIFIED10.0/9.6; Opus CHANGES_REQUESTED8.8/8.7,
+  three mandatory document findings. All seats terminal; no averaging/closure inference.
+- Preserve exact reports, frozen inputs and boundary/admin receipts with archive hashes.
+- Bounded proposed corrections: complete committed pre-init code identity and exact-byte
+  loading, distinct tool-spawned Python startup/trace, and guarded import-time settings/
+  read/network channels. Related operational/proof advisories clarified without new
+  product scope, server setting rights or numeric budget changes.
+- Prepare fresh corrective pass2/4 (harness-global round3), delta first then full aggregate;
+  three passes remain including this one. Stop on all-seat >=9.5 VERIFIED/no mandatory
+  or after pass4; no hidden replacement. Same three high-effort models.
+- No executable harness, .friday_test, environment/install, model/endpoint/service,
+  Memory store or production change. Exact approved business bytes preserved.

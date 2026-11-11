@@ -1,0 +1,39 @@
+{
+  "seat": "astra",
+  "candidate": "23253a72ba265334e254c6a0bbad53f70cd85313",
+  "pass": 1,
+  "outcome": "VERIFIED",
+  "coverage": 10.0,
+  "overall": 9.6,
+  "mandatory_findings": 0,
+  "report_original": "/tmp/astra-ingest-review-QtIDzDTs/report.md",
+  "report_sha256": "9f6ea6338d18170291eecbccbc1c81b07b7caa5a967329b74ebee4ff7db16a4d",
+  "task": {
+    "taskId": "node:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p1-astra-23253a72",
+    "childThreadId": "thread:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p1-astra-23253a72",
+    "link": "<t3-thread://v2/6ee9d258-4414-45b2-ad28-6fe30f4adb05/thread:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p1-astra-23253a72>",
+    "childRunId": "run:thread:thread%3Adelegated-task%3Acommand%253Amcp%253A7a0464e8-319e-4df4-a61b-0cb34a0e6461%253Adelegate-task%253Aingest-harness-correction-p1-astra-23253a72:ordinal:1",
+    "childNodeId": "node:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p1-astra-23253a72",
+    "status": "running",
+    "workState": "working",
+    "hasPendingChildRuns": false,
+    "latestTerminalRunId": null,
+    "latestTerminalStatus": null,
+    "latestTerminalSummary": null,
+    "latestTerminalResultContextTransferId": null,
+    "providerInstanceId": "codex",
+    "model": "gpt-6-astra",
+    "options": [
+      {
+        "id": "reasoningEffort",
+        "value": "high"
+      }
+    ],
+    "summary": null,
+    "resultContextTransferId": null,
+    "hasPendingQuestion": false,
+    "pendingApproval": null,
+    "waitTimedOut": false,
+    "next": "Completion wakes this thread, so end your turn. Do not wait on it or poll it."
+  }
+}

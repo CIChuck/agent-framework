@@ -1,0 +1,88 @@
+{
+  "candidate": "23253a72ba265334e254c6a0bbad53f70cd85313",
+  "board": {
+    "work_state": "started",
+    "condition": "normal",
+    "implementation_authority": "design_only",
+    "delivery_state": "pushed",
+    "branch": "feature/cmd-ingest-001",
+    "next_gate": "Four fresh corrective document council passes are authorized; pass1/4 (harness round2) is being frozen after scoped corrections to startup, promotion/resume, ambient tools, committed export, prevent/detect evidence and loaded-model safeguards. Review remediation delta then full bounded aggregate with all three seats; target VERIFIED/no mandatory findings and coverage/overall>=9.5 each, score honestly. Continue bounded document correction/review without asking Chuck, stop early on success or after pass4. No hidden replacements, production code/config/env/store change, executable harness construction or stage/model/service effects. Versioned code remains tests/readiness/ingest/, runtime state .friday_test/, shared LM Studio only in its confirmed production-offline window. Exact package-impact approval persists."
+  },
+  "current_scope": "Four fresh corrective document council passes are authorized; pass1/4 (harness round2) is being frozen after scoped corrections to startup, promotion/resume, ambient tools, committed export, prevent/detect evidence and loaded-model safeguards. Review remediation delta then full bounded aggregate with all three seats; target VERIFIED/no mandatory findings and coverage/overall>=9.5 each, score honestly. Continue bounded document correction/review without asking Chuck, stop early on success or after pass4. No hidden replacements, production code/config/env/store change, executable harness construction or stage/model/service effects. Versioned code remains tests/readiness/ingest/, runtime state .friday_test/, shared LM Studio only in its confirmed production-offline window. Exact package-impact approval persists.",
+  "execution_phase": "remediation",
+  "validation_state": "in_review",
+  "next_gate": "Four fresh corrective document council passes are authorized; pass1/4 (harness round2) is being frozen after scoped corrections to startup, promotion/resume, ambient tools, committed export, prevent/detect evidence and loaded-model safeguards. Review remediation delta then full bounded aggregate with all three seats; target VERIFIED/no mandatory findings and coverage/overall>=9.5 each, score honestly. Continue bounded document correction/review without asking Chuck, stop early on success or after pass4. No hidden replacements, production code/config/env/store change, executable harness construction or stage/model/service effects. Versioned code remains tests/readiness/ingest/, runtime state .friday_test/, shared LM Studio only in its confirmed production-offline window. Exact package-impact approval persists.",
+  "readiness_preparation": {
+    "plan": "validation/document-ingestion/gate-a/readiness-plan.md",
+    "version": "0.4-draft",
+    "plan_sha256": "8311540f88d1fc25e0f4f9d7b963b6618a5b2d2ba4722e1763d07dae8f3b50b4",
+    "effects_envelope": "validation/document-ingestion/gate-a/effects-envelope.json",
+    "effects_envelope_sha256": "6d07b7500cbf6019641e44aab9c61413ebe191fa6f7f4091c1bb2b2c9300606e",
+    "source_observations": "validation/document-ingestion/gate-a/source-observations.json",
+    "source_observations_sha256": "bbd408be71036faef3aa5b4298232635a4dade2f2e813444df6aae3a2e63fb80",
+    "consumer_worklist": "validation/document-ingestion/gate-a/consumer-readiness-matrix.md",
+    "consumer_worklist_sha256": "12c2bcc68892f8b5b14023f67d34b190565b7ca22ed79c2a4a9013437c5e9e7c",
+    "status": "corrected_draft_in_review_pass1",
+    "independent_review": "explicitly_authorized_bounded_four_pass_loop",
+    "council_active": true,
+    "effects_activation": "not_granted",
+    "model_stage": "blocked_until_confirmed_shared_endpoint_window_and_exact_model_counter_inputs",
+    "research": "Public release/source metadata only; no resolver/install/model transfer/inference.",
+    "implementation_approval": "not_granted",
+    "isolation_requirements": "validation/document-ingestion/gate-a/isolation-requirements.md",
+    "isolation_requirements_sha256": "148f86cd06fbfb13145df43a7c50003c6dada3ac8377a271471b92cdb656e8c3",
+    "production_isolation": "Production application/configuration/stores unchanged; shared LM Studio permitted only in operator-confirmed production-offline/restart/log-separation window. All harness code/config/inputs/outputs test-owned.",
+    "manual_harness": "Required; versioned code/config/probes/generators/tests under tests/readiness/ingest/; generated state under .friday_test/; not implemented.",
+    "requirements_authority": {
+      "maintainer": "Chuck Russell",
+      "date": "2026-11-11",
+      "condition": "All code, configuration, test input, and test output should be isolated from the production environment.",
+      "scope": "Current proceed resumes bounded documentation reconciliation and harness construction instructions, with tests/ code location. No code generation or effects activation inferred."
+    },
+    "model_service_decision": {
+      "maintainer": "Chuck Russell",
+      "date": "2026-11-11",
+      "statement": "we Can reuse the LM Studio endpoint.",
+      "production_offline_statement": "We'll shut down the production environment for this testing.",
+      "requirements": "Operator-managed server restart and separate test logs; no harness service management; exact model/window facts remain unbound.",
+      "supersedes": "v0.2 independent process/endpoint and copied served-weight requirement only.",
+      "window_confirmed": false
+    },
+    "harness_construction_directive": {
+      "unit": "CD-CMD-INGEST-GATE-A-001",
+      "document": "directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md",
+      "version": "0.2-draft",
+      "sha256": "9925170d3ca55c7429bb5a08132f175aa9690f6a80757a3bda52a58944854d3f",
+      "status": "corrected_draft_in_review",
+      "construction_approval": "not_granted",
+      "versioned_code_root": "tests/readiness/ingest/",
+      "runtime_root": ".friday_test/",
+      "council_authority": "explicit_four_pass_document_loop_current_pass1"
+    },
+    "directive_council": {
+      "loop_pass": 1,
+      "maximum_authorized_new_passes": 4,
+      "harness_global_round": 2,
+      "authorization": "validation/document-ingestion/gate-a/correction-loop/authorization.md",
+      "authorization_sha256": "d71afa78077d4be7748b99604e058333ff740a96bf545c836c64486baa6ae851",
+      "criteria": "validation/document-ingestion/gate-a/correction-loop/pass1/criteria.md",
+      "criteria_sha256": "61f7dcb2dd0d672555c4fc661f065dc1fb99906b2a900652ade31c78eae15023",
+      "roster": "validation/document-ingestion/gate-a/correction-loop/pass1/roster.json",
+      "roster_sha256": "23fa0adaef70f8b50838e962ae6468bb579cb69159d6366b8dd58c0a5b22f700",
+      "corrections": "validation/document-ingestion/gate-a/correction-loop/pass1/corrections.json",
+      "corrections_sha256": "c992504a59f369ab1877e7bcba9ab9535748618af95d5b45faaa4192ca3594ff",
+      "loop_state": "validation/document-ingestion/gate-a/correction-loop/loop-state.json",
+      "status": "authorized_preparing_frozen_dispatch",
+      "design_only": true,
+      "construction_authority": false,
+      "effects_authority": false
+    },
+    "execution_contract": "validation/document-ingestion/gate-a/execution-contract.md",
+    "execution_contract_sha256": "3ea79d8c19c5e420bc8dd5edd4734ebf9a328b956341d3addb4813a8ee17c35f"
+  },
+  "navigation": {
+    "next-phase.md": "# Gate-A harness corrected draft \u2014 corrective pass 1/4\n\nExecution phase: remediation (documents only); validation state: in_review.\nChuck [authorizes up to four fresh corrective council passes](validation/document-ingestion/gate-a/correction-loop/authorization.md),\nwithout intermediate permission questions. This is pass1/4, harness-global round2;\nstop early on the full 9.5 gate or after pass4, no uncounted replacements.\n\nThe [directive v0.2](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),\n[execution contract](validation/document-ingestion/gate-a/execution-contract.md),\n[plan v0.4](validation/document-ingestion/gate-a/readiness-plan.md), envelope and\nisolation requirements propose the six bounded corrections and related advisories.\n[Correction locations](validation/document-ingestion/gate-a/correction-loop/pass1/corrections.json)\nare a review map, not independent finding closure. Reviewers assess delta then\nthe full [criteria](validation/document-ingestion/gate-a/correction-loop/pass1/criteria.md).\n\nAll nine business inputs including approved package impact remain unchanged.\nNo executable harness, test environment, dependencies, model/client/store/service\nor production change is activated. Test code scope stays `tests/readiness/ingest/`,\ngenerated state `.friday_test/`; existing LM Studio reuse remains the controlled\nproduction-offline window. Budget numbers are unchanged; active-time versus human\nwaiting and future promotion/resume are now explicit.\n\n**Next gate:** Four fresh corrective document council passes are authorized; pass1/4 (harness round2) is being frozen after scoped corrections to startup, promotion/resume, ambient tools, committed export, prevent/detect evidence and loaded-model safeguards. Review remediation delta then full bounded aggregate with all three seats; target VERIFIED/no mandatory findings and coverage/overall>=9.5 each, score honestly. Continue bounded document correction/review without asking Chuck, stop early on success or after pass4. No hidden replacements, production code/config/env/store change, executable harness construction or stage/model/service effects. Versioned code remains tests/readiness/ingest/, runtime state .friday_test/, shared LM Studio only in its confirmed production-offline window. Exact package-impact approval persists.\n\n",
+    "tactical-plan.md": "# Gate-A harness corrected draft \u2014 corrective pass 1/4\n\nExecution phase: remediation (documents only); validation state: in_review.\nChuck [authorizes up to four fresh corrective council passes](validation/document-ingestion/gate-a/correction-loop/authorization.md),\nwithout intermediate permission questions. This is pass1/4, harness-global round2;\nstop early on the full 9.5 gate or after pass4, no uncounted replacements.\n\nThe [directive v0.2](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),\n[execution contract](validation/document-ingestion/gate-a/execution-contract.md),\n[plan v0.4](validation/document-ingestion/gate-a/readiness-plan.md), envelope and\nisolation requirements propose the six bounded corrections and related advisories.\n[Correction locations](validation/document-ingestion/gate-a/correction-loop/pass1/corrections.json)\nare a review map, not independent finding closure. Reviewers assess delta then\nthe full [criteria](validation/document-ingestion/gate-a/correction-loop/pass1/criteria.md).\n\nAll nine business inputs including approved package impact remain unchanged.\nNo executable harness, test environment, dependencies, model/client/store/service\nor production change is activated. Test code scope stays `tests/readiness/ingest/`,\ngenerated state `.friday_test/`; existing LM Studio reuse remains the controlled\nproduction-offline window. Budget numbers are unchanged; active-time versus human\nwaiting and future promotion/resume are now explicit.\n\n**Next gate:** Four fresh corrective document council passes are authorized; pass1/4 (harness round2) is being frozen after scoped corrections to startup, promotion/resume, ambient tools, committed export, prevent/detect evidence and loaded-model safeguards. Review remediation delta then full bounded aggregate with all three seats; target VERIFIED/no mandatory findings and coverage/overall>=9.5 each, score honestly. Continue bounded document correction/review without asking Chuck, stop early on success or after pass4. No hidden replacements, production code/config/env/store change, executable harness construction or stage/model/service effects. Versioned code remains tests/readiness/ingest/, runtime state .friday_test/, shared LM Studio only in its confirmed production-offline window. Exact package-impact approval persists.\n\n",
+    "README.md": " \u2014 impact approved; Gate-A plan ready for review:**\nChuck [approved exact assessment v0.6](approval/ingest-package-impact.md),\nSHA256 `f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176`.\nThe [assessment](package-impact-assessment.md), [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md),\ntest/architecture/guide contracts retain their reviewed bytes.\n[Round6 council](validation/document-ingestion/package-impact/current-verified-report.md)\nremains VERIFIED for that document/source-feasibility scope, not execution.\n\nThe [corrected directive v0.2](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),\n[execution contract](validation/document-ingestion/gate-a/execution-contract.md)\nand [plan v0.4](validation/document-ingestion/gate-a/readiness-plan.md) address the\nsix initial review groups as proposed requirements, not implemented guarantees.\nChuck [authorizes four fresh corrective council passes](validation/document-ingestion/gate-a/correction-loop/authorization.md);\nthis is pass1/4 (harness-global round2), delta first then full bounded design review.\nAll three seats must VERIFIED with no mandatory findings and both honest scores\nat least 9.5. Stop on success or after pass4. No hidden/replacement pass.\n\nExecution phase: remediation (documents only); validation state: in_review.\nAll business/impact approval bytes remain intact. No production code/configuration/\nenvironment/store, harness construction, stage/model/server effect or delivery is\nauthorized. Proposed code stays `tests/readiness/ingest/`, runtime `.friday_test/`,\nand shared LM Studio only within the operator-confirmed production-offline window.\nThe [loop state](validation/document-ingestion/gate-a/correction-loop/loop-state.json)\ntracks the cap; prior [round1](validation/document-ingestion/gate-a/council-round1/report.md)\nis preserved with its original changes-requested result.\n\n"
+  }
+}

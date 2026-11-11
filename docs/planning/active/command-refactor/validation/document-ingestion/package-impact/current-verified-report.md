@@ -15,7 +15,7 @@ labels in those contracts do not supersede this later controller result; no
 reviewed content was altered at closeout.
 
 Controller status update: Chuck [approved exact v0.6 impact](../../../approval/ingest-package-impact.md).
-The separate harness directive is now in [corrective pass1/4](../gate-a/correction-loop/loop-state.json)
+The separate harness directive is now in [corrective pass2/4](../gate-a/correction-loop/loop-state.json)
 under [new explicit authorization](../gate-a/correction-loop/authorization.md),
 following the initial changes-requested review. Its new draft is not covered by
 this parent verdict. Business/impact bytes remain unchanged; no construction,

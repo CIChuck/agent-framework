@@ -3,23 +3,32 @@
   "authorization": "authorization.md",
   "authorization_sha256": "d71afa78077d4be7748b99604e058333ff740a96bf545c836c64486baa6ae851",
   "new_passes_authorized": 4,
-  "passes_started": 1,
-  "passes_completed": 0,
-  "current_pass": 1,
-  "current_harness_global_round": 2,
-  "status": "preparing_frozen_pass1",
+  "passes_started": 2,
+  "passes_completed": 1,
+  "current_pass": 2,
+  "current_harness_global_round": 3,
+  "status": "preparing_frozen_pass2",
   "stop_on_all_seats_verified_ge_9_5": true,
   "stop_after_pass": 4,
   "no_unbudgeted_replacements": true,
   "construction_or_effects_authority": false,
-  "history": [],
+  "history": [
+    {
+      "pass": 1,
+      "harness_global_round": 2,
+      "reviewed_candidate": "23253a72ba265334e254c6a0bbad53f70cd85313",
+      "all_seats_terminal": true,
+      "record": "pass1/results/reconciliation.json",
+      "record_sha256": "3569738b3ae2f45d36357180e6fc2e9df4777a79bbf99bb2f6f19c8a2aaecf53"
+    }
+  ],
   "current": {
-    "base_commit": "35df1fa35162fdd70216ed47e5675a74c748139b",
-    "directive_version": "0.2-draft",
-    "plan_version": "0.4-draft",
-    "criteria": "pass1/criteria.md",
-    "roster": "pass1/roster.json",
-    "correction_map": "pass1/corrections.json",
-    "candidate": "bound in external frozen request after commit"
+    "base_commit": "23253a72ba265334e254c6a0bbad53f70cd85313",
+    "directive_version": "0.3-draft",
+    "plan_version": "0.5-draft",
+    "criteria": "pass2/criteria.md",
+    "roster": "pass2/roster.json",
+    "corrections": "pass2/corrections.json",
+    "candidate": "Bound in the external frozen request after commit."
   }
 }

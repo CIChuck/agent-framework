@@ -1,17 +1,17 @@
-# Gate-A harness corrected draft — corrective pass 1/4
+# Gate-A harness corrected draft — corrective pass 2/4
 
 Execution phase: remediation (documents only); validation state: in_review.
 Chuck [authorizes up to four fresh corrective council passes](validation/document-ingestion/gate-a/correction-loop/authorization.md),
-without intermediate permission questions. This is pass1/4, harness-global round2;
+without intermediate permission questions. This is pass2/4, harness-global round3;
 stop early on the full 9.5 gate or after pass4, no uncounted replacements.
 
-The [directive v0.2](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
+The [directive v0.3](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
 [execution contract](validation/document-ingestion/gate-a/execution-contract.md),
-[plan v0.4](validation/document-ingestion/gate-a/readiness-plan.md), envelope and
-isolation requirements propose the six bounded corrections and related advisories.
-[Correction locations](validation/document-ingestion/gate-a/correction-loop/pass1/corrections.json)
+[plan v0.5](validation/document-ingestion/gate-a/readiness-plan.md), envelope and
+isolation requirements propose the retained six correction groups plus committed-byte, tool-child and import-channel refinements.
+[Correction locations](validation/document-ingestion/gate-a/correction-loop/pass2/corrections.json)
 are a review map, not independent finding closure. Reviewers assess delta then
-the full [criteria](validation/document-ingestion/gate-a/correction-loop/pass1/criteria.md).
+the full [criteria](validation/document-ingestion/gate-a/correction-loop/pass2/criteria.md).
 
 All nine business inputs including approved package impact remain unchanged.
 No executable harness, test environment, dependencies, model/client/store/service
@@ -20,7 +20,7 @@ generated state `.friday_test/`; existing LM Studio reuse remains the controlled
 production-offline window. Budget numbers are unchanged; active-time versus human
 waiting and future promotion/resume are now explicit.
 
-**Next gate:** Four fresh corrective document council passes are authorized; pass1/4 (harness round2) is being frozen after scoped corrections to startup, promotion/resume, ambient tools, committed export, prevent/detect evidence and loaded-model safeguards. Review remediation delta then full bounded aggregate with all three seats; target VERIFIED/no mandatory findings and coverage/overall>=9.5 each, score honestly. Continue bounded document correction/review without asking Chuck, stop early on success or after pass4. No hidden replacements, production code/config/env/store change, executable harness construction or stage/model/service effects. Versioned code remains tests/readiness/ingest/, runtime state .friday_test/, shared LM Studio only in its confirmed production-offline window. Exact package-impact approval persists.
+**Next gate:** Corrective document pass2/4 (harness round3) is being frozen after committed pre-init byte binding, explicit native-tool Python classification, guarded import/read/network channels and related usability/proof clarifications. Independently review the delta then full bounded directive/readiness aggregate with Sol/Astra/Opus; require each VERIFIED, no mandatory findings, coverage and overall>=9.5 honestly. One pass completed, three remain including this one; no hidden replacements. Continue bounded corrections without intermediate questions, stop on success or after pass4. No production code/config/env/store changes, executable harness construction, stage/model/service effects or settings changes. Existing approved business inputs and numeric ceilings remain unchanged.
 
 ## Separate MAINT closeout and historical checkpoints
 

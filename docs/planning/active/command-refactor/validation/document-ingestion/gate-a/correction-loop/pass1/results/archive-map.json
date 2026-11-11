@@ -1,0 +1,523 @@
+{
+  "schema": 1,
+  "entries": [
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/report.md",
+      "archived": "sol/report.md",
+      "original_sha256": "f4caddbc30ede740d3db0ab270d7121f1a546cf79c2ab82a59d937d4f1e81e83",
+      "archived_sha256": "f4caddbc30ede740d3db0ab270d7121f1a546cf79c2ab82a59d937d4f1e81e83",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p1-1l9b_pck/received/sol-receipt.json",
+      "archived": "sol/receipt.json",
+      "original_sha256": "ee764198b69ac7d9f36a75d1e03b323817dee4c4e6c8c7179eb324eb423be51c",
+      "archived_sha256": "ee764198b69ac7d9f36a75d1e03b323817dee4c4e6c8c7179eb324eb423be51c",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/integrity-opening.json",
+      "archived": "sol/evidence/integrity-opening.json",
+      "original_sha256": "928b7be7f2cf4fd3b7d27c3ddeb53d4c50ce532110c0450a85f9e99ce01f8c9a",
+      "archived_sha256": "928b7be7f2cf4fd3b7d27c3ddeb53d4c50ce532110c0450a85f9e99ce01f8c9a",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/integrity-closing.json",
+      "archived": "sol/evidence/integrity-closing.json",
+      "original_sha256": "ebec304139b250e8de6d2d70b0262b3733d68aea7fe87a4065374f75ffbf118d",
+      "archived_sha256": "ebec304139b250e8de6d2d70b0262b3733d68aea7fe87a4065374f75ffbf118d",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/commands.json",
+      "archived": "sol/evidence/commands.json",
+      "original_sha256": "3aeb53ce10010f105f051d0bf48776a5869a419dc8ae36bd569cbb75cb30de6d",
+      "archived_sha256": "3aeb53ce10010f105f051d0bf48776a5869a419dc8ae36bd569cbb75cb30de6d",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/helper-commands.json",
+      "archived": "sol/evidence/helper-commands.json",
+      "original_sha256": "d9b27e73a16a0eb88f6ed5aa594a08e0b74771bb962b7c2bd6c5e00e9738547d",
+      "archived_sha256": "d9b27e73a16a0eb88f6ed5aa594a08e0b74771bb962b7c2bd6c5e00e9738547d",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/authority-pins.json",
+      "archived": "sol/evidence/authority-pins.json",
+      "original_sha256": "d88201f46f1a0e02126a3cedf201f5f6cc6328e3e48f7d7b1cd3b184baabaf31",
+      "archived_sha256": "d88201f46f1a0e02126a3cedf201f5f6cc6328e3e48f7d7b1cd3b184baabaf31",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/inspection-commands.json",
+      "archived": "sol/evidence/inspection-commands.json",
+      "original_sha256": "dc99794d2e6ddb581d63def577cf1629d4059eeb51b0ea9f876d1318837d1109",
+      "archived_sha256": "dc99794d2e6ddb581d63def577cf1629d4059eeb51b0ea9f876d1318837d1109",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/board.stderr",
+      "archived": "sol/evidence/board.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/board.stdout",
+      "archived": "sol/evidence/board.stdout.gz",
+      "original_sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "archived_sha256": "436b8145d0f36aeac949126094d41b70628f002a4398fadda39052164330ff12",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/dashboard.stderr",
+      "archived": "sol/evidence/dashboard.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/dashboard.stdout",
+      "archived": "sol/evidence/dashboard.stdout.gz",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "archived_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/documentation.stderr",
+      "archived": "sol/evidence/documentation.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/documentation.stdout",
+      "archived": "sol/evidence/documentation.stdout.gz",
+      "original_sha256": "9b88b39558ae01bc74ed46f358c88ad64c9d24417556713013b31d63c073fdfa",
+      "archived_sha256": "42fea7d458a74c3385e9ba00f47692c2a2547f781b609891450b78af8acf206d",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/metadata.stderr",
+      "archived": "sol/evidence/metadata.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/metadata.stdout",
+      "archived": "sol/evidence/metadata.stdout.gz",
+      "original_sha256": "b755228d64e991cad2a40d1ea238ea00e97d8d2fd420a5141fffa00476ed690f",
+      "archived_sha256": "e8dc8e69640137863a2bf51e0b21c3802e9e2167aff20c30511a734b1323c524",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/whitespace-preparation.stderr",
+      "archived": "sol/evidence/whitespace-preparation.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/whitespace-preparation.stdout",
+      "archived": "sol/evidence/whitespace-preparation.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/whitespace-staged.stderr",
+      "archived": "sol/evidence/whitespace-staged.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/whitespace-staged.stdout",
+      "archived": "sol/evidence/whitespace-staged.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/whitespace-unit.stderr",
+      "archived": "sol/evidence/whitespace-unit.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/whitespace-unit.stdout",
+      "archived": "sol/evidence/whitespace-unit.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/whitespace-worktree.stderr",
+      "archived": "sol/evidence/whitespace-worktree.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/ingest-sol-review-duNehPxA/whitespace-worktree.stdout",
+      "archived": "sol/evidence/whitespace-worktree.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/report.md",
+      "archived": "astra/report.md",
+      "original_sha256": "9f6ea6338d18170291eecbccbc1c81b07b7caa5a967329b74ebee4ff7db16a4d",
+      "archived_sha256": "9f6ea6338d18170291eecbccbc1c81b07b7caa5a967329b74ebee4ff7db16a4d",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p1-1l9b_pck/received/astra-receipt.json",
+      "archived": "astra/receipt.json",
+      "original_sha256": "a62c7d86822e086692e6d49f6aa18b5be736ffa49af90393739fbb4bd32119df",
+      "archived_sha256": "a62c7d86822e086692e6d49f6aa18b5be736ffa49af90393739fbb4bd32119df",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/integrity-opening.json",
+      "archived": "astra/evidence/integrity-opening.json",
+      "original_sha256": "1c9179c16cde3d35a63d7d2b32f67caa7c33d991e114762ad0a8013b5e49fe0e",
+      "archived_sha256": "1c9179c16cde3d35a63d7d2b32f67caa7c33d991e114762ad0a8013b5e49fe0e",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/integrity-closing.json",
+      "archived": "astra/evidence/integrity-closing.json",
+      "original_sha256": "9f2ebfdf008bcc0df527df92c8a475da42f0cf1675839253e80e843d6a2328be",
+      "archived_sha256": "9f2ebfdf008bcc0df527df92c8a475da42f0cf1675839253e80e843d6a2328be",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/commands.json",
+      "archived": "astra/evidence/commands.json",
+      "original_sha256": "46f9aab0994bbe16c7141c2986ded4a8ce24ebd5f8a1e349b3361da691c970a6",
+      "archived_sha256": "46f9aab0994bbe16c7141c2986ded4a8ce24ebd5f8a1e349b3361da691c970a6",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/pin-verification.json",
+      "archived": "astra/evidence/pin-verification.json",
+      "original_sha256": "f80d7ddcfb05bebaedd3d73c2f13254a3f58e1baf7db5f8f1b5091a7bacf7318",
+      "archived_sha256": "f80d7ddcfb05bebaedd3d73c2f13254a3f58e1baf7db5f8f1b5091a7bacf7318",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/pin-commands.json",
+      "archived": "astra/evidence/pin-commands.json",
+      "original_sha256": "421404d5748818eaf6f2394e31bf31f41ec6d1657b3f03a1a1fead9052db95d7",
+      "archived_sha256": "421404d5748818eaf6f2394e31bf31f41ec6d1657b3f03a1a1fead9052db95d7",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/board.stderr",
+      "archived": "astra/evidence/board.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/board.stdout",
+      "archived": "astra/evidence/board.stdout.gz",
+      "original_sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "archived_sha256": "436b8145d0f36aeac949126094d41b70628f002a4398fadda39052164330ff12",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/dashboard.stderr",
+      "archived": "astra/evidence/dashboard.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/dashboard.stdout",
+      "archived": "astra/evidence/dashboard.stdout.gz",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "archived_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/documentation.stderr",
+      "archived": "astra/evidence/documentation.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/documentation.stdout",
+      "archived": "astra/evidence/documentation.stdout.gz",
+      "original_sha256": "9b88b39558ae01bc74ed46f358c88ad64c9d24417556713013b31d63c073fdfa",
+      "archived_sha256": "42fea7d458a74c3385e9ba00f47692c2a2547f781b609891450b78af8acf206d",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/metadata.stderr",
+      "archived": "astra/evidence/metadata.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/metadata.stdout",
+      "archived": "astra/evidence/metadata.stdout.gz",
+      "original_sha256": "b755228d64e991cad2a40d1ea238ea00e97d8d2fd420a5141fffa00476ed690f",
+      "archived_sha256": "e8dc8e69640137863a2bf51e0b21c3802e9e2167aff20c30511a734b1323c524",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/whitespace-preparation.stderr",
+      "archived": "astra/evidence/whitespace-preparation.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/whitespace-preparation.stdout",
+      "archived": "astra/evidence/whitespace-preparation.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/whitespace-staged.stderr",
+      "archived": "astra/evidence/whitespace-staged.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/whitespace-staged.stdout",
+      "archived": "astra/evidence/whitespace-staged.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/whitespace-unit.stderr",
+      "archived": "astra/evidence/whitespace-unit.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/whitespace-unit.stdout",
+      "archived": "astra/evidence/whitespace-unit.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/whitespace-worktree.stderr",
+      "archived": "astra/evidence/whitespace-worktree.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/tmp/astra-ingest-review-QtIDzDTs/whitespace-worktree.stdout",
+      "archived": "astra/evidence/whitespace-worktree.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/report.md",
+      "archived": "opus/report.md",
+      "original_sha256": "a2ad327f07221f699d31802977c324a20dd1e3206b0a935687aa08a38300ed2f",
+      "archived_sha256": "a2ad327f07221f699d31802977c324a20dd1e3206b0a935687aa08a38300ed2f",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p1-1l9b_pck/received/opus-receipt.json",
+      "archived": "opus/receipt.json",
+      "original_sha256": "b2b2279a59849afe3b6eeb23776063ae39b9afe0b7601ebd8a7c77f67b86d5a5",
+      "archived_sha256": "b2b2279a59849afe3b6eeb23776063ae39b9afe0b7601ebd8a7c77f67b86d5a5",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/integrity-opening.json",
+      "archived": "opus/evidence/integrity-opening.json",
+      "original_sha256": "ffc3b6ae757ac2d25ed5eee113824f60d05658d114c493ed6e75d2d07f0ca02b",
+      "archived_sha256": "ffc3b6ae757ac2d25ed5eee113824f60d05658d114c493ed6e75d2d07f0ca02b",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/integrity-closing.json",
+      "archived": "opus/evidence/integrity-closing.json",
+      "original_sha256": "99d7c8ee38bd88195ed633bdc0e40ef57c32248f6dea7f2ae0fe3e0d20c441ba",
+      "archived_sha256": "99d7c8ee38bd88195ed633bdc0e40ef57c32248f6dea7f2ae0fe3e0d20c441ba",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/commands.json",
+      "archived": "opus/evidence/commands.json",
+      "original_sha256": "260b477d17035ef3335a916d9d3f6474991c85973d39c7f23f2c2e66e847911a",
+      "archived_sha256": "260b477d17035ef3335a916d9d3f6474991c85973d39c7f23f2c2e66e847911a",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/board.stderr",
+      "archived": "opus/evidence/board.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/board.stdout",
+      "archived": "opus/evidence/board.stdout.gz",
+      "original_sha256": "c4d2aec671b8fd5d5a978b1c191b186f6d151f7ace4785fbd74b06c3c5f3fdae",
+      "archived_sha256": "436b8145d0f36aeac949126094d41b70628f002a4398fadda39052164330ff12",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/dashboard.stderr",
+      "archived": "opus/evidence/dashboard.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/dashboard.stdout",
+      "archived": "opus/evidence/dashboard.stdout.gz",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "archived_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/documentation.stderr",
+      "archived": "opus/evidence/documentation.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/documentation.stdout",
+      "archived": "opus/evidence/documentation.stdout.gz",
+      "original_sha256": "9b88b39558ae01bc74ed46f358c88ad64c9d24417556713013b31d63c073fdfa",
+      "archived_sha256": "42fea7d458a74c3385e9ba00f47692c2a2547f781b609891450b78af8acf206d",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/metadata.stderr",
+      "archived": "opus/evidence/metadata.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/metadata.stdout",
+      "archived": "opus/evidence/metadata.stdout.gz",
+      "original_sha256": "b755228d64e991cad2a40d1ea238ea00e97d8d2fd420a5141fffa00476ed690f",
+      "archived_sha256": "e8dc8e69640137863a2bf51e0b21c3802e9e2167aff20c30511a734b1323c524",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-preparation.stderr",
+      "archived": "opus/evidence/whitespace-preparation.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-preparation.stdout",
+      "archived": "opus/evidence/whitespace-preparation.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-staged.stderr",
+      "archived": "opus/evidence/whitespace-staged.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-staged.stdout",
+      "archived": "opus/evidence/whitespace-staged.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-unit.stderr",
+      "archived": "opus/evidence/whitespace-unit.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-unit.stdout",
+      "archived": "opus/evidence/whitespace-unit.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-worktree.stderr",
+      "archived": "opus/evidence/whitespace-worktree.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-worktree.stdout",
+      "archived": "opus/evidence/whitespace-worktree.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p1-1l9b_pck/inputs/request.json",
+      "archived": "frozen-inputs/request.json",
+      "original_sha256": "d5c04007476e093519d795a3224d638ce7d4576dabd09f0a009fc200d9d92953",
+      "archived_sha256": "d5c04007476e093519d795a3224d638ce7d4576dabd09f0a009fc200d9d92953",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p1-1l9b_pck/inputs/review_tools.py",
+      "archived": "frozen-inputs/review_tools.py.txt",
+      "original_sha256": "7a7f2ef72d4b1e6592e6ba65d2762641865031a81e7bfdfc573b9ec5d56a11e5",
+      "archived_sha256": "7a7f2ef72d4b1e6592e6ba65d2762641865031a81e7bfdfc573b9ec5d56a11e5",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p1-1l9b_pck/inputs/current-controls.json",
+      "archived": "frozen-inputs/current-controls.json",
+      "original_sha256": "a99d6e84ff7ac9baa3f6b1c3c254cab4bb3f88f726e9198a407288e8b7f43e42",
+      "archived_sha256": "a99d6e84ff7ac9baa3f6b1c3c254cab4bb3f88f726e9198a407288e8b7f43e42",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p1-1l9b_pck/inputs/protected-manifest.json",
+      "archived": "frozen-inputs/protected-manifest.json.gz",
+      "original_sha256": "281491ea9a999b9bb0e4123392f49dbdca081e5a3f4722a5af29359d2fe2bc22",
+      "archived_sha256": "62c8b08c7d8628a60257c15bf46ac6a71bd7222c6d0a517c08da958a99e58485",
+      "lossless_gzip": true
+    },
+    {
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p1-1l9b_pck/packet-preflight.json",
+      "archived": "controller-preflight.json",
+      "original_sha256": "e1d8ccaa7c5ef6adfb72138fe8b0e31f5628329c6422be2d7993a1128f65cd79",
+      "archived_sha256": "e1d8ccaa7c5ef6adfb72138fe8b0e31f5628329c6422be2d7993a1128f65cd79",
+      "lossless_gzip": false
+    },
+    {
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p2-y50d7i5p/integrity-closing.json",
+      "archived": "controller-preedit-boundary.json",
+      "original_sha256": "437e5b4f9ee77126af3c12848b32a455b56427d33c432814f88461ab148bfe3e",
+      "archived_sha256": "437e5b4f9ee77126af3c12848b32a455b56427d33c432814f88461ab148bfe3e",
+      "lossless_gzip": false
+    }
+  ]
+}

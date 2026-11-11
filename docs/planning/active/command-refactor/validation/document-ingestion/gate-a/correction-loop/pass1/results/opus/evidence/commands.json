@@ -1,0 +1,142 @@
+[
+  {
+    "name": "board",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:08:57.871269+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/board.stdout",
+    "stderr": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/board.stderr"
+  },
+  {
+    "name": "dashboard",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:08:58.326651+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/dashboard.stdout",
+    "stderr": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/dashboard.stderr"
+  },
+  {
+    "name": "documentation",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:08:58.582446+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/documentation.stdout",
+    "stderr": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/documentation.stderr"
+  },
+  {
+    "name": "metadata",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-package-metadata.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:08:59.381608+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/metadata.stdout",
+    "stderr": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/metadata.stderr"
+  },
+  {
+    "name": "whitespace-worktree",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:08:59.472250+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-worktree.stdout",
+    "stderr": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-worktree.stderr"
+  },
+  {
+    "name": "whitespace-staged",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:08:59.480350+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-staged.stdout",
+    "stderr": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-staged.stderr"
+  },
+  {
+    "name": "whitespace-unit",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "35df1fa35162fdd70216ed47e5675a74c748139b..23253a72ba265334e254c6a0bbad53f70cd85313",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:08:59.487674+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-unit.stdout",
+    "stderr": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-unit.stderr"
+  },
+  {
+    "name": "whitespace-preparation",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "f81453695007cacfa072fe295b8da7aa478438ba..23253a72ba265334e254c6a0bbad53f70cd85313",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:08:59.497125+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-preparation.stdout",
+    "stderr": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/87d5f669-8954-47c3-8f96-389c9e2d699d/scratchpad/opus-review-p1-SW3t/whitespace-preparation.stderr"
+  }
+]

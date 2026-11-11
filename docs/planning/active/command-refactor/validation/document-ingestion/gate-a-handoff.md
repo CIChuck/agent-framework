@@ -2,14 +2,14 @@
 
 [Four-pass authorization](gate-a/correction-loop/authorization.md) follows the
 initial [changes-requested council](gate-a/council-round1/report.md). This is
-corrective pass1/4 (harness-global round2), not an extension of the old single pass.
+corrective pass2/4 (harness-global round3), not an extension of the old single pass.
 [Loop state](gate-a/correction-loop/loop-state.json) caps all attempted passes.
 Stop on all-seat VERIFIED/no mandatory/coverage+overall>=9.5, otherwise after pass4.
 No uncounted replacement, model substitution or question for routine corrections.
 
-The [directive v0.2](../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
-[execution contract](gate-a/execution-contract.md), [plan v0.4](gate-a/readiness-plan.md),
-envelope and isolation requirements are corrected drafts. [Locations](gate-a/correction-loop/pass1/corrections.json)
+The [directive v0.3](../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
+[execution contract](gate-a/execution-contract.md), [plan v0.5](gate-a/readiness-plan.md),
+envelope and isolation requirements are corrected drafts. [Locations](gate-a/correction-loop/pass2/corrections.json)
 are not correctness evidence; fresh reviewers close requirements independently,
 then examine the full bounded aggregate. Business/impact parents stay unchanged.
 

@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. Exact INGEST package impact v0.6 is approved;
-Gate-A readiness plan v0.3 and the bounded manual-harness construction draft
+Gate-A readiness plan v0.5 and the bounded manual-harness construction draft
 is under a newly authorized four-pass corrective council loop.
 Execution and MAINT human UAT/acceptance remain pending.
 
@@ -43,12 +43,12 @@ test/architecture/guide contracts retain their reviewed bytes.
 [Round6 council](validation/document-ingestion/package-impact/current-verified-report.md)
 remains VERIFIED for that document/source-feasibility scope, not execution.
 
-The [corrected directive v0.2](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
+The [corrected directive v0.3](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
 [execution contract](validation/document-ingestion/gate-a/execution-contract.md)
-and [plan v0.4](validation/document-ingestion/gate-a/readiness-plan.md) address the
+and [plan v0.5](validation/document-ingestion/gate-a/readiness-plan.md) address the
 six initial review groups as proposed requirements, not implemented guarantees.
 Chuck [authorizes four fresh corrective council passes](validation/document-ingestion/gate-a/correction-loop/authorization.md);
-this is pass1/4 (harness-global round2), delta first then full bounded design review.
+this is pass2/4 (harness-global round3), delta first then full bounded design review.
 All three seats must VERIFIED with no mandatory findings and both honest scores
 at least 9.5. Stop on success or after pass4. No hidden/replacement pass.
 

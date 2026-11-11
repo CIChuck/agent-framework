@@ -1,0 +1,326 @@
+[
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:AGENTS.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/reference/policies/repository-engineering-policy.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/reference/policies/development-task-lifecycle.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/reference/policies/independent-validation-policy.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:.agents/skills/council/SKILL.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 128
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:.agents/skills/independent-code-validator/SKILL.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/authorization.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/loop-state.json"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass1/criteria.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass1/roster.json"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass1/corrections.json"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/package-impact-assessment.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/test-migration-plan.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/command-architecture-update-plan.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/guide-update-handoff.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/embedding-compatibility-contract.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/proposals/tools-document-adoption.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/package-impact/review-criteria.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round6-authorization.json"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/readiness-plan.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/effects-envelope.json"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/isolation-requirements.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/execution-contract.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/source-observations.json"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/consumer-readiness-matrix.md"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  }
+]

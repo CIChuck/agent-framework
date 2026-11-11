@@ -1,6 +1,6 @@
 {
   "unit": "REM-CMD-INGEST-001-GATE-A",
-  "version": "0.4-draft",
+  "version": "0.5-draft",
   "status": "NOT_ACTIVATED",
   "scope": "Isolated manually executable upstream dependency/converter/counter feasibility and source-linked final-directive inventory. All runtime code/config/input/output test-owned; no production mutation or product implementation.",
   "assessment_approval": {
@@ -224,7 +224,8 @@
     "status_and_embedding_share_request_budget": true,
     "check_before_and_after_each_batch": true,
     "authentication": "Ambient/production credentials forbidden; required authentication blocks current profile.",
-    "server_settings_changes_allowed": false
+    "server_settings_changes_allowed": false,
+    "pending_settings_decision": "If actual safe preloaded policy cannot be attested, A3 remains blocked; any settings change requires separate authority at activation, never inferred now."
   },
   "execution_contract": "execution-contract.md",
   "time_accounting": {
@@ -244,9 +245,12 @@
     ],
     "optimized_additional_flag": "-O",
     "trusted_roots": "Externally qualified interpreter/stdlib/launcher; no self-authentication claim.",
-    "imports": "Explicit frozen harness and manifest-owned private profile roots after guards; no site.main/addsitedir/pth/startup-hook guard injection.",
+    "imports": "Read once, verify committed manifest/blob/SHA, compile and execute same buffer; no pyc/path-loader fallback; explicit guard before imports.",
     "orchestrator": "Qualified base interpreter, stdlib/harness only.",
-    "workers": "Separate private profile interpreters, explicit guard first; do not derive Python 3.13 -S site paths from sys.prefix."
+    "workers": "Separate private profile interpreters, explicit guard first; do not derive Python 3.13 -S site paths from sys.prefix.",
+    "required_flags_scope": "Harness-launched entry/tests/workers only; tool-spawned class separately qualified in contract1.2.",
+    "pre_init": "Externally verified single stdlib bootstrap and approved complete committed harness manifest; refuse dirty/extra/pyc before writes; post-init frozen run harness only.",
+    "tool_spawned": "Expected/actual version-qualified child argv/environment; prepared run-owned build targets, startup inventory, no unclassified executable sites; detective/residual evidence, not guarded flags."
   },
   "source_export": {
     "selection": "Recorded source/harness commit/tree and explicit regular-blob selection; no dirty/untracked/ignored copy.",
@@ -266,18 +270,20 @@
   "promotion_policy": {
     "init": "Immutable run/source/harness/config/envelope/seed binding.",
     "ledger": "Versioned strict canonical hash-chained append-only records with explicit authorized promotion receipts; chain is consistency evidence, not authentication of a malicious local owner.",
-    "all": "Ready consecutive stages only, then exit AWAITING_PROMOTION or AWAITING_WINDOW; no interactive waiting/auto-promotion.",
+    "all": "Consecutive ready stages; exits AWAITING_PROMOTION/PREPARATION/WINDOW without auto preparing facts or promoting. Accepts existing ready A3 window receipt; A4 is offline aggregate, skipped A3 cannot qualify full readiness.",
     "prepare_model": "Offline exact candidate model/counter/input batch freeze after A2; promotion precedes window receipt.",
-    "model_receipt": "Binds existing promoted manifest/batch hashes and ledger tip; revocation rechecked before requests."
+    "model_receipt": "Binds existing promoted manifest/batch hashes and ledger tip; revocation rechecked before requests.",
+    "stop": "Lease-free idempotent atomic sticky stop command; no network/service management or implicit reset."
   },
   "tool_isolation": {
     "requirements": "execution-contract.md sections 2-3",
     "HOME": "Unchanged; every relevant user/system/config/credential/proxy channel explicitly neutralized and qualified.",
-    "uv": "No config/dotenv/discovery fallback; explicit target/interpreter, run-owned NETRC/config/credentials/data/cache roots; keyring/ambient auth disabled.",
+    "uv": "No config/dotenv/.python-version/discovery fallback; --no-python-downloads and explicit --python/target; private config/NETRC/cache/credentials and qualified tool-child handling.",
     "pip_executable_allowed": false,
     "HTTP": "Direct clients; no automatic env/macOS proxy/netrc/keyring; explicit TLS roots and exact destinations.",
     "validation_tools": "Explicit config/project and private/no caches.",
-    "unknown_channels": "Block profile, do not guess or modify production settings."
+    "unknown_channels": "Block profile, do not guess or modify production settings.",
+    "import_channels": "A1 pre-import inventory, worker read/probe roots, LITELLM_MODE=PRODUCTION and LITELLM_LOCAL_MODEL_COST_MAP=True for qualified version, callbacks/telemetry off, explicit clients and transport-attempt budgets; unknown blocks."
   },
   "protected_state_policy": {
     "scope": "Declared checkout/source/lock/config/.venv/.env/.friday*/exports, production Git logical state and exact default tool/library cache/config roots.",

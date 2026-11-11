@@ -1,0 +1,142 @@
+[
+  {
+    "name": "board",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:09:21.255338+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/ingest-sol-review-duNehPxA/board.stdout",
+    "stderr": "/private/tmp/ingest-sol-review-duNehPxA/board.stderr"
+  },
+  {
+    "name": "dashboard",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:09:21.507753+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/ingest-sol-review-duNehPxA/dashboard.stdout",
+    "stderr": "/private/tmp/ingest-sol-review-duNehPxA/dashboard.stderr"
+  },
+  {
+    "name": "documentation",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:09:21.738199+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/ingest-sol-review-duNehPxA/documentation.stdout",
+    "stderr": "/private/tmp/ingest-sol-review-duNehPxA/documentation.stderr"
+  },
+  {
+    "name": "metadata",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-package-metadata.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:09:22.500422+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/ingest-sol-review-duNehPxA/metadata.stdout",
+    "stderr": "/private/tmp/ingest-sol-review-duNehPxA/metadata.stderr"
+  },
+  {
+    "name": "whitespace-worktree",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:09:22.589209+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/ingest-sol-review-duNehPxA/whitespace-worktree.stdout",
+    "stderr": "/private/tmp/ingest-sol-review-duNehPxA/whitespace-worktree.stderr"
+  },
+  {
+    "name": "whitespace-staged",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:09:22.597251+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/ingest-sol-review-duNehPxA/whitespace-staged.stdout",
+    "stderr": "/private/tmp/ingest-sol-review-duNehPxA/whitespace-staged.stderr"
+  },
+  {
+    "name": "whitespace-unit",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "35df1fa35162fdd70216ed47e5675a74c748139b..23253a72ba265334e254c6a0bbad53f70cd85313",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:09:22.604382+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/ingest-sol-review-duNehPxA/whitespace-unit.stdout",
+    "stderr": "/private/tmp/ingest-sol-review-duNehPxA/whitespace-unit.stderr"
+  },
+  {
+    "name": "whitespace-preparation",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "f81453695007cacfa072fe295b8da7aa478438ba..23253a72ba265334e254c6a0bbad53f70cd85313",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:09:22.614328+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/ingest-sol-review-duNehPxA/whitespace-preparation.stdout",
+    "stderr": "/private/tmp/ingest-sol-review-duNehPxA/whitespace-preparation.stderr"
+  }
+]

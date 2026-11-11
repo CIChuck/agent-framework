@@ -1,0 +1,62 @@
+{
+  "unit": "CD-CMD-INGEST-GATE-A-001",
+  "loop_pass": 1,
+  "maximum_new_passes": 4,
+  "harness_global_round": 2,
+  "reviewed_candidate": "23253a72ba265334e254c6a0bbad53f70cd85313",
+  "all_seats_terminal": true,
+  "outcome": "CHANGES_REQUESTED",
+  "target_met": false,
+  "seats": [
+    {
+      "seat": "sol",
+      "candidate": "23253a72ba265334e254c6a0bbad53f70cd85313",
+      "outcome": "VERIFIED",
+      "coverage": 9.8,
+      "overall": 9.5,
+      "mandatory_findings": 0,
+      "report_sha256": "f4caddbc30ede740d3db0ab270d7121f1a546cf79c2ab82a59d937d4f1e81e83"
+    },
+    {
+      "seat": "astra",
+      "candidate": "23253a72ba265334e254c6a0bbad53f70cd85313",
+      "outcome": "VERIFIED",
+      "coverage": 10.0,
+      "overall": 9.6,
+      "mandatory_findings": 0,
+      "report_sha256": "9f6ea6338d18170291eecbccbc1c81b07b7caa5a967329b74ebee4ff7db16a4d"
+    },
+    {
+      "seat": "opus",
+      "candidate": "23253a72ba265334e254c6a0bbad53f70cd85313",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 8.8,
+      "overall": 8.7,
+      "mandatory_findings": 3,
+      "report_sha256": "a2ad327f07221f699d31802977c324a20dd1e3206b0a935687aa08a38300ed2f"
+    }
+  ],
+  "required_corrections": [
+    {
+      "source": "Opus pass1",
+      "id": "F1",
+      "group": "P2-01",
+      "summary": "Bind every pre-init code byte to approved committed harness; no pyc/validate-then-import gap."
+    },
+    {
+      "source": "Opus pass1",
+      "id": "F2",
+      "group": "P2-02",
+      "summary": "Distinguish native-tool-spawned Python from guarded harness workers, qualify startup sites and actual child execution."
+    },
+    {
+      "source": "Opus pass1",
+      "id": "F3",
+      "group": "P2-03",
+      "summary": "Operationalize import-time configuration/read/network suppression and transport-level budgets."
+    }
+  ],
+  "controller_disposition": "Accept three bounded document corrections and related advisories; maintain original numeric/resource scope. No implementation or runtime facts inferred. Fresh pass2 then full aggregate required.",
+  "remaining_passes_including_next": 3,
+  "construction_or_effects_authority": false
+}
